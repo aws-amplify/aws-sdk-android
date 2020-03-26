@@ -41,6 +41,7 @@ import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperId
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminConfirmSignUpRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.AdminCreateUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminDeleteUserRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.AdminGetDeviceResult;
@@ -49,6 +50,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.DeviceRememberedStat
 import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersResult;
+import com.amazonaws.services.cognitoidentityprovider.model.MessageActionType;
 import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserType;
@@ -73,6 +75,11 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static com.amazonaws.mobile.client.AWSMobileClient.CHALLENGE_RESPONSE_NEW_PASSWORD_KEY;
+import static com.amazonaws.mobile.client.AWSMobileClient.CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY;
+import static com.amazonaws.mobile.client.UserState.SIGNED_IN;
+import static com.amazonaws.mobile.client.results.SignInState.DONE;
+import static com.amazonaws.mobile.client.results.SignInState.NEW_PASSWORD_REQUIRED;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
@@ -90,9 +97,12 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
     private static final String EMAIL = "somebody@email.com";
+    private static final String EMAIL_ADMIN_API_USER = "sombody-temp@amazon.com";
     private static final String BLURRED_EMAIL = "s***@e***.com";
     private static final String USERNAME = "somebody";
+    private static final String USERNAME_ADMIN_API_USER = "somebody-temp";
     private static final String PASSWORD = "1234Password!";
+    private static final String TEMP_PASSWORD = "Password1234!";
     private static String IDENTITY_ID;
     private static final String NEW_PASSWORD = "new1234Password!";
     private static final int THROTTLED_DELAY = 5000;
@@ -137,6 +147,22 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         AdminConfirmSignUpRequest adminConfirmSignUpRequest = new AdminConfirmSignUpRequest();
         adminConfirmSignUpRequest.withUsername(username).withUserPoolId(userpoolId);
         getUserpoolLL().adminConfirmSignUp(adminConfirmSignUpRequest);
+    }
+
+    private static void createUserViaAdminAPI(final String userpoolId,
+                                              final String username,
+                                              final String email) {
+        AdminCreateUserRequest request = new AdminCreateUserRequest()
+                .withUsername(username)
+                .withTemporaryPassword(TEMP_PASSWORD)
+                .withUserPoolId(userpoolId)
+                .withMessageAction(MessageActionType.SUPPRESS)
+                .withForceAliasCreation(true)
+                .withUserAttributes(
+                        new AttributeType().withName("email").withValue(email),
+                        new AttributeType().withName("email_verified").withValue("true")
+                );
+        getUserpoolLL().adminCreateUser(request);
     }
 
     public static void deleteAllUsers(final String userpoolId) {
@@ -212,6 +238,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         identityPoolId = identityPoolConfig.getString("PoolId");
 
         deleteAllUsers(userPoolId);
+        createUserViaAdminAPI(userPoolId, USERNAME_ADMIN_API_USER, EMAIL_ADMIN_API_USER);
     }
 
     @Before
@@ -296,6 +323,50 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertEquals("Cannot support MFA in tests", SignInState.DONE, signInResult.getSignInState());
     }
 
+    /**
+     * When the user signs in with temporary credentials, they should be prompted to set a new password.
+     * To do this, they can supply a map of attributes to {@link confirmSignIn(....)},
+     * including the challenge response (key = NEW_PASSWORD), as well as
+     * user attributes (key = userAttributes.<attribute name>) to be
+     * set as part of the update. The ability to pass additional attributes is
+     * needed so the caller can pass in any required attributes
+     * other than email and/or mobile.
+     */
+    @Test
+    public void testSignInForceChangePassword() throws Exception{
+        final CountDownLatch stateNotificationLatch = new CountDownLatch(1);
+        final AtomicReference<UserStateDetails> userState = new AtomicReference<UserStateDetails>();
+        listener = new UserStateListener() {
+            @Override
+            public void onUserStateChanged(UserStateDetails details) {
+                userState.set(details);
+                auth.removeUserStateListener(listener);
+                stateNotificationLatch.countDown();
+            }
+        };
+        auth.addUserStateListener(listener);
+        //Sign-in using the temporary password
+        final SignInResult signInResult = auth.signIn(USERNAME_ADMIN_API_USER, TEMP_PASSWORD, null);
+        //Assert we're receiving challenge to change password
+        assertEquals(NEW_PASSWORD_REQUIRED, signInResult.getSignInState());
+
+        HashMap<String, String> inputAttributes = new HashMap<String, String>();
+        //Add attribute to set new password
+        inputAttributes.put(CHALLENGE_RESPONSE_NEW_PASSWORD_KEY, PASSWORD);
+        //Set some extra attributes
+        inputAttributes.put(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + "name", "dummy-name");
+        inputAttributes.put(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + "nickname", "dummy-nickname");
+
+        //Confirm sign-in using the challenge response + attributes
+        SignInResult signInResultAfterConfirm = auth.confirmSignIn(inputAttributes);
+        assertEquals(DONE, signInResultAfterConfirm.getSignInState());
+
+        //Get the user attributes and assert the extra attributes were set
+        Map<String, String> userAttributes = auth.getUserAttributes();
+        assertEquals("dummy-name", userAttributes.get("name"));
+        assertEquals("dummy-nickname", userAttributes.get("nickname"));
+    }
+
     @Test
     public void testSignIn() throws Exception {
         final CountDownLatch stateNotificationLatch = new CountDownLatch(1);
@@ -341,7 +412,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         stateNotificationLatch.await(5, TimeUnit.SECONDS);
 
         UserStateDetails userStateDetails = userState.get();
-        assertEquals(userStateDetails.getUserState(), UserState.SIGNED_IN);
+        assertEquals(userStateDetails.getUserState(), SIGNED_IN);
         Map<String, String> details = userStateDetails.getDetails();
         assertNotEquals(getPackageConfigure().getString("identity_id"), details.toString());
     }
@@ -538,7 +609,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         UserStateDetails userStateDetails =
                 auth.federatedSignIn(IdentityProvider.DEVELOPER.toString(), token, options);
 
-        assertEquals(UserState.SIGNED_IN, userStateDetails.getUserState());
+        assertEquals(SIGNED_IN, userStateDetails.getUserState());
 
         assertNotNull("Credentials from federated sign-in should not be null", auth.getCredentials());
     }
@@ -775,7 +846,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
             @Override
             public void onResult(UserStateDetails result) {
-                assertEquals(UserState.SIGNED_IN,
+                assertEquals(SIGNED_IN,
                         result.getUserState());
                 waitForAWSMobileClientToBeInitialized.countDown();
             }
