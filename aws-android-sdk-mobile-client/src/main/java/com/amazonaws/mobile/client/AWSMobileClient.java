@@ -1136,6 +1136,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
         this.signInCallback = callback;
         signInState = null;
+        mStore.set(SIGN_IN_MODE, SignInMode.SIGN_IN.toString());
 
         return new Runnable() {
             @Override
@@ -1603,6 +1604,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                       final boolean assignState) {
 
         final Map<String, String> loginsMap = new HashMap<String, String>();
+        mStore.set(SIGN_IN_MODE, SignInMode.FEDERATED_SIGN_IN.toString());
+
         try {
             loginsMap.put(providerKey, token);
 
