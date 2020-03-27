@@ -1,5 +1,21 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.10](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.10)
+
+### Bug Fixes
+
+- **AWS Mobile Client**
+  - Fixes drop in UI to work with Dark Theme (Issue #1281)
+  - Fixes getTokens exception if attempting to do a normal sign in after having done HostedUI sign in previously (Issues #1469 and #1262)
+
+### Misc. Updates
+
+- Model updates for the following services
+    - **AWS Rekognition**
+        - This update adds the ability to detect text in videos and adds filters to image and video text detection.
+    - **AWS Auto Scaling**
+        - Amazon EC2 Auto Scaling now supports the ability to enable/disable target tracking, step scaling, and simple scaling policies.
+
 ## [Release 2.16.9](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.9)
 
 ### New Features
