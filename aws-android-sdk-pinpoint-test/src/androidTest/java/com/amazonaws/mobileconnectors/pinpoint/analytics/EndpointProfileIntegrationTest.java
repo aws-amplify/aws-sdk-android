@@ -111,7 +111,7 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
 
         EndpointProfileUser user = new EndpointProfileUser();
         user.setUserId(credentialsProvider.getIdentityId());
-        user.setUserAttributes(Collections.singletonMap("user-key", Arrays.asList("user-value")));
+        user.addUserAttribute("user-key", Collections.singletonList("user-value"));
         endpointProfile.setUser(user);
 
         targetingClient.updateEndpointProfile();
@@ -120,7 +120,7 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
         assertEquals(credentialsProvider.getIdentityId(),
                 endpointProfile.getUser().getUserId());
         assertNotNull(endpointProfile.getUser().getUserAttributes());
-        assertEquals(Collections.singletonMap("user-key", Arrays.asList("user-value")),
+        assertEquals(Collections.singletonMap("user-key", Collections.singletonList("user-value")),
                 endpointProfile.getUser().getUserAttributes());
 
         endpointProfile.addAttribute("key", Arrays.asList("value"));

@@ -1,5 +1,5 @@
 /**
- * Copyright 2016-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2016-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.core.util.JSONSerializab
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * An endpoint profile user
@@ -52,25 +53,35 @@ public class EndpointProfileUser implements JSONSerializable {
         this.userAttributes = userAttributes;
     }
 
+    public EndpointProfileUser addUserAttribute(String key, List<String> value) {
+        if (this.userAttributes == null) {
+            this.userAttributes = new ConcurrentHashMap<>();
+        }
+        this.userAttributes.put(key, value);
+        return this;
+    }
+
     @Override
     public JSONObject toJSONObject() {
         final JSONBuilder builder = new JSONBuilder(null);
         builder.withAttribute("UserId", getUserId());
 
-        final JSONObject attributesJson = new JSONObject();
-        for (final Map.Entry<String, List<String>> entry : getUserAttributes().entrySet()) {
-            try {
-                final JSONArray array = new JSONArray(entry.getValue());
-                attributesJson.put(entry.getKey(), array);
-            } catch (final JSONException e) {
-                // Do not log e due to potentially sensitive information
-                log.warn("Error serializing user attributes.");
+        if (getUserAttributes() != null) {
+            final JSONObject attributesJson = new JSONObject();
+            for (final Map.Entry<String, List<String>> entry : getUserAttributes().entrySet()) {
+                try {
+                    final JSONArray array = new JSONArray(entry.getValue());
+                    attributesJson.put(entry.getKey(), array);
+                } catch (final JSONException e) {
+                    // Do not log e due to potentially sensitive information
+                    log.warn("Error serializing user attributes.");
+                }
             }
-        }
 
-        // If there are any attributes put then add the attributes to the structure
-        if (attributesJson.length() > 0) {
-            builder.withAttribute("UserAttributes", attributesJson);
+            // If there are any attributes put then add the attributes to the structure
+            if (attributesJson.length() > 0) {
+                builder.withAttribute("UserAttributes", attributesJson);
+            }
         }
 
         return builder.toJSONObject();
