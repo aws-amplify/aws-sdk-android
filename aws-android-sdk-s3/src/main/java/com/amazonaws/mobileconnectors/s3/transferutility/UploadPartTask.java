@@ -15,7 +15,6 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-
 import com.amazonaws.event.ProgressEvent;
 import com.amazonaws.event.ProgressListener;
 import com.amazonaws.services.s3.AmazonS3;
@@ -112,7 +111,7 @@ class UploadPartTask implements Callable<Boolean> {
         public void progressChanged(ProgressEvent progressEvent) {
             if (ProgressEvent.RESET_EVENT_CODE == progressEvent.getEventCode()) {
                 // Reset will discard what's been transferred
-                LOGGER.info("Reset Event triggerred. Resetting the bytesCurrent to 0.");
+                LOGGER.info("Reset Event triggered. Resetting the bytesCurrent to 0.");
                 // Reset the local counter to 0.
                 bytesTransferredSoFar = 0;
             } else {
