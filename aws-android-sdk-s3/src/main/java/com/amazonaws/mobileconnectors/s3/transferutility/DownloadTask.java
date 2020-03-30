@@ -124,6 +124,8 @@ class DownloadTask implements Callable<Boolean> {
             if (TransferState.PENDING_PAUSE.equals(download.state)) {
                 updater.updateState(download.id, TransferState.PAUSED);
                 LOGGER.info("Transfer is " + TransferState.PAUSED);
+                ProgressEvent resetEvent = new ProgressEvent(0);
+                resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                 progressListener.progressChanged(new ProgressEvent(0));
                 return false;
             }
@@ -144,6 +146,8 @@ class DownloadTask implements Callable<Boolean> {
                      */
                     updater.updateState(download.id, TransferState.WAITING_FOR_NETWORK);
                     LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                    ProgressEvent resetEvent = new ProgressEvent(0);
+                    resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                     progressListener.progressChanged(new ProgressEvent(0));
                     return false;
                 }

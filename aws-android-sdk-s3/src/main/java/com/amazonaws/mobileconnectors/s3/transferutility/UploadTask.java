@@ -295,6 +295,8 @@ class UploadTask implements Callable<Boolean> {
             if (TransferState.PENDING_PAUSE.equals(upload.state)) {
                 updater.updateState(upload.id, TransferState.PAUSED);
                 LOGGER.info("Transfer is " + TransferState.PAUSED);
+                ProgressEvent resetEvent = new ProgressEvent(0);
+                resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                 progressListener.progressChanged(new ProgressEvent(0));
                 return false;
             }
@@ -315,6 +317,8 @@ class UploadTask implements Callable<Boolean> {
                      */
                     updater.updateState(upload.id, TransferState.WAITING_FOR_NETWORK);
                     LOGGER.debug("Network Connection Interrupted: " + "Moving the TransferState to WAITING_FOR_NETWORK");
+                    ProgressEvent resetEvent = new ProgressEvent(0);
+                    resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                     progressListener.progressChanged(new ProgressEvent(0));
                     return false;
                 }
