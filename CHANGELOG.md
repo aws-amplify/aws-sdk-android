@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.11)
+
+### New Features
+
+- **Amazon Pinpoint**
+  - `EndpointProfileUser` can now store user attributes, which will persist even after updating the endpoint.
+
 ## [Release 2.16.10](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.10)
 
 ### Bug Fixes

@@ -36,6 +36,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
@@ -106,9 +107,11 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
         EndpointProfile endpointProfile = targetingClient.currentEndpoint();
         assertNotNull(endpointProfile);
         assertNull(endpointProfile.getUser().getUserId());
+        assertNull(endpointProfile.getUser().getUserAttributes());
 
         EndpointProfileUser user = new EndpointProfileUser();
         user.setUserId(credentialsProvider.getIdentityId());
+        user.addUserAttribute("user-key", Collections.singletonList("user-value"));
         endpointProfile.setUser(user);
 
         targetingClient.updateEndpointProfile();
@@ -116,6 +119,9 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
         assertNotNull(endpointProfile);
         assertEquals(credentialsProvider.getIdentityId(),
                 endpointProfile.getUser().getUserId());
+        assertNotNull(endpointProfile.getUser().getUserAttributes());
+        assertEquals(Collections.singletonMap("user-key", Collections.singletonList("user-value")),
+                endpointProfile.getUser().getUserAttributes());
 
         endpointProfile.addAttribute("key", Arrays.asList("value"));
         targetingClient.updateEndpointProfile();

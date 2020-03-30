@@ -584,8 +584,9 @@ public class EventRecorder {
         if (endpointProfile.getUser().getUserId() == null) {
             user = null;
         } else {
-            user = new EndpointUser();
-            user.setUserId(endpointProfile.getUser().getUserId());
+            user = new EndpointUser()
+                    .withUserId(endpointProfile.getUser().getUserId())
+                    .withUserAttributes(endpointProfile.getUser().getUserAttributes());
         }
 
         endpoint.withChannelType(endpointProfile.getChannelType())
