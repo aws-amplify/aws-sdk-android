@@ -199,11 +199,12 @@ class TransferRecord {
      * @return true if the transfer is running and is paused successfully, false
      *         otherwise
      */
-    public boolean pause(final AmazonS3 s3, 
+    public boolean pause(final AmazonS3 s3,
                          final TransferStatusUpdater updater) {
-        if (!isFinalState(state) && 
-            !TransferState.PAUSED.equals(state)) {
-            updater.updateState(id, TransferState.PAUSED);
+        if (!isFinalState(state)
+                && !TransferState.PAUSED.equals(state)
+                && !TransferState.PENDING_PAUSE.equals(state)) {
+            updater.updateState(id, TransferState.PENDING_PAUSE);
             if (isRunning()) {
                 submittedTask.cancel(true);
             }
@@ -249,10 +250,11 @@ class TransferRecord {
     public boolean cancel(final AmazonS3 s3, 
                           final TransferStatusUpdater updater) {
         if (!isFinalState(state)) {
-            // Update the state to CANCELED in the TransferStatusUpdater and
-            // TransferDBUtil and involes the onStateChanged callback.
-            updater.updateState(id, TransferState.CANCELED);
+            // Update the state to PENDING_CANCEL in the TransferStatusUpdater
+            // and TransferDBUtil and involves the onStateChanged callback.
+            updater.updateState(id, TransferState.PENDING_CANCEL);
             if (isRunning()) {
+                // State will update to CANCELED upon encountering S3 exception
                 submittedTask.cancel(true);
             }
             // additional cleanup

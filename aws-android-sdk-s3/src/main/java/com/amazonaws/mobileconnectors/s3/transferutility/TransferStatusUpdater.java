@@ -367,7 +367,7 @@ class TransferStatusUpdater {
         public synchronized void progressChanged(ProgressEvent progressEvent) {
             if (ProgressEvent.RESET_EVENT_CODE == progressEvent.getEventCode()) {
                 // Reset will discard what's been transferred
-                LOGGER.info("Reset Event triggerred. Resetting the bytesCurrent to 0.");
+                LOGGER.info("Reset Event triggered. Resetting the bytesCurrent to 0.");
                 // Reset the local counter to 0.
                 bytesTransferredSoFar = 0;
             } else {

@@ -30,7 +30,6 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.ObjectTagging;
 import com.amazonaws.services.s3.model.PartETag;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.SSEAwsKeyManagementParams;
 import com.amazonaws.services.s3.model.Tag;
 import com.amazonaws.services.s3.model.UploadPartRequest;
@@ -193,15 +192,6 @@ class UploadTask implements Callable<Boolean> {
         } catch (final Exception e) {
             LOGGER.error("Upload resulted in an exception. " + e);
 
-            // If the thread that is executing the transfer is interrupted
-            // because of a user initiated pause or cancel operation,
-            // do not throw exception or set the state to FAILED.
-            if (TransferState.CANCELED.equals(upload.state) ||
-                TransferState.PAUSED.equals(upload.state)) {
-                LOGGER.info("Transfer is " + upload.state);
-                return false;
-            }
-
             /*
              * Future.get() will catch InterruptedException, but it's not a
              * failure, it may be caused by a pause operation from applications.
@@ -209,6 +199,21 @@ class UploadTask implements Callable<Boolean> {
              */
             for (final UploadPartTaskMetadata task : uploadPartTasks.values()) {
                 task.uploadPartTask.cancel(true);
+            }
+
+            // If the thread that is executing the transfer is interrupted
+            // because of a user initiated pause or cancel operation,
+            // do not throw exception or set the state to FAILED.
+            if (TransferState.PENDING_CANCEL.equals(upload.state)) {
+                updater.updateState(upload.id, TransferState.CANCELED);
+                LOGGER.info("Transfer is " + TransferState.CANCELED);
+                return false;
+            }
+
+            if (TransferState.PENDING_PAUSE.equals(upload.state)) {
+                updater.updateState(upload.id, TransferState.PAUSED);
+                LOGGER.info("Transfer is " + TransferState.PAUSED);
+                return false;
             }
 
             // interrupted due to network. Set the TransferState to 
@@ -274,20 +279,22 @@ class UploadTask implements Callable<Boolean> {
         putObjectRequest.setGeneralProgressListener(progressListener);
 
         try {
-            PutObjectResult putObjectResult = s3.putObject(putObjectRequest);
+            s3.putObject(putObjectRequest);
             updater.updateProgress(upload.id, length, length, true);
             updater.updateState(upload.id, TransferState.COMPLETED);
             return true;
         } catch (final Exception e) {
-           // we dont need to update progress listener
-            if (TransferState.CANCELED.equals(upload.state)) {
-                LOGGER.info("Transfer is " + upload.state);
+            // we dont need to update progress listener
+            if (TransferState.PENDING_CANCEL.equals(upload.state)) {
+                updater.updateState(upload.id, TransferState.CANCELED);
+                LOGGER.info("Transfer is " + TransferState.CANCELED);
                 return false;
             }
 
             // pause
-            if (TransferState.PAUSED.equals(upload.state)) {
-                LOGGER.info("Transfer is " + upload.state);
+            if (TransferState.PENDING_PAUSE.equals(upload.state)) {
+                updater.updateState(upload.id, TransferState.PAUSED);
+                LOGGER.info("Transfer is " + TransferState.PAUSED);
                 ProgressEvent resetEvent = new ProgressEvent(0);
                 resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                 progressListener.progressChanged(new ProgressEvent(0));

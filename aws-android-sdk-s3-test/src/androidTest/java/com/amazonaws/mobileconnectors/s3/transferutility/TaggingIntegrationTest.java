@@ -41,7 +41,7 @@ import static org.junit.Assert.fail;
 public class TaggingIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "amazon-transfer-util-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "amazon-transfer-util-integ-test-" + new Date().getTime();
 
     /** Instrumentation test context */
     private static Context context = InstrumentationRegistry.getContext();
@@ -85,21 +85,21 @@ public class TaggingIntegrationTest extends S3IntegrationTestBase {
                 .build();
 
         try {
-            s3.createBucket(bucketName);
-            waitForBucketCreation(bucketName);
+            s3.createBucket(BUCKET_NAME);
+            waitForBucketCreation(BUCKET_NAME);
         } catch (final Exception e) {
             System.out.println("Error in creating the bucket. "
-                    + "Please manually create the bucket " + bucketName);
+                    + "Please manually create the bucket " + BUCKET_NAME);
         }
     }
 
     @AfterClass
     public static void tearDown() {
         try {
-            deleteBucketAndAllContents(bucketName);
+            deleteBucketAndAllContents(BUCKET_NAME);
         } catch (final Exception e) {
             System.out.println("Error in deleting the bucket. "
-                    + "Please manually delete the bucket " + bucketName);
+                    + "Please manually delete the bucket " + BUCKET_NAME);
             e.printStackTrace();
         }
 
@@ -118,12 +118,12 @@ public class TaggingIntegrationTest extends S3IntegrationTestBase {
         latch = new CountDownLatch(1);
         // Small (1KB) file upload
         file = getRandomTempFile("small", 1000L);
-        util.upload(bucketName, file.getName(), file, metadata)
+        util.upload(BUCKET_NAME, file.getName(), file, metadata)
                 .setTransferListener(listener);
         latch.await(300, TimeUnit.SECONDS);
 
         List<Tag> tags = s3.getObjectTagging(new GetObjectTaggingRequest(
-                bucketName,
+                BUCKET_NAME,
                 file.getName()
         )).getTagSet();
         assertThat(tags.size(), is(2));
@@ -144,12 +144,12 @@ public class TaggingIntegrationTest extends S3IntegrationTestBase {
         // Large (5MB) file upload
         long size = 5 * 1024 * 1024 + 1;
         file = getRandomSparseFile("large", size);
-        util.upload(bucketName, file.getName(), file, metadata)
+        util.upload(BUCKET_NAME, file.getName(), file, metadata)
                 .setTransferListener(listener);
         latch.await(300, TimeUnit.SECONDS);
 
         List<Tag> tags = s3.getObjectTagging(new GetObjectTaggingRequest(
-                bucketName,
+                BUCKET_NAME,
                 file.getName()
         )).getTagSet();
         assertThat(tags.size(), is(2));

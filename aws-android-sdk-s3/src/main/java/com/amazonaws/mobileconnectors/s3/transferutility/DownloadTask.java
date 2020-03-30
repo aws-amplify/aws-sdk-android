@@ -114,14 +114,16 @@ class DownloadTask implements Callable<Boolean> {
             return true;
         } catch (final Exception e) {
             // No need to update the progress listener.
-            if (TransferState.CANCELED.equals(download.state)) {
-                LOGGER.info("Transfer is " + download.state);
+            if (TransferState.PENDING_CANCEL.equals(download.state)) {
+                updater.updateState(download.id, TransferState.CANCELED);
+                LOGGER.info("Transfer is " + TransferState.CANCELED);
                 return false;
             }
 
             // Reset the progress when the transfer is paused.
-            if (TransferState.PAUSED.equals(download.state)) {
-                LOGGER.info("Transfer is " + download.state);
+            if (TransferState.PENDING_PAUSE.equals(download.state)) {
+                updater.updateState(download.id, TransferState.PAUSED);
+                LOGGER.info("Transfer is " + TransferState.PAUSED);
                 ProgressEvent resetEvent = new ProgressEvent(0);
                 resetEvent.setEventCode(ProgressEvent.RESET_EVENT_CODE);
                 progressListener.progressChanged(new ProgressEvent(0));
