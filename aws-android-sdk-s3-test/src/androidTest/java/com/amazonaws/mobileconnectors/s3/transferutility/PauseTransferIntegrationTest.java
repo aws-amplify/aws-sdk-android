@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String bucketName = "amazon-transfer-util-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "amazon-transfer-util-integ-test-" + new Date().getTime();
     private static TransferUtility util;
     private static Context context = InstrumentationRegistry.getContext();
 
@@ -55,21 +55,21 @@ public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
                 .build();
 
         try {
-            s3.createBucket(bucketName);
-            waitForBucketCreation(bucketName);
+            s3.createBucket(BUCKET_NAME);
+            waitForBucketCreation(BUCKET_NAME);
         } catch (final Exception e) {
             System.out.println("Error in creating the bucket. "
-                    + "Please manually create the bucket " + bucketName);
+                    + "Please manually create the bucket " + BUCKET_NAME);
         }
     }
 
     @AfterClass
     public static void tearDown() {
         try {
-            deleteBucketAndAllContents(bucketName);
+            deleteBucketAndAllContents(BUCKET_NAME);
         } catch (final Exception e) {
             System.out.println("Error in deleting the bucket. "
-                    + "Please manually delete the bucket " + bucketName);
+                    + "Please manually delete the bucket " + BUCKET_NAME);
             e.printStackTrace();
         }
     }
@@ -98,7 +98,7 @@ public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
 
     private void testUploadPause() throws Exception {
         // start transfer and wait for progress
-        TransferObserver observer = util.upload(bucketName, file.getName(), file);
+        TransferObserver observer = util.upload(BUCKET_NAME, file.getName(), file);
         observer.setTransferListener(new TestListener());
         started.await(100, TimeUnit.MILLISECONDS);
 
