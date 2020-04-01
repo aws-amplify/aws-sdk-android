@@ -75,7 +75,7 @@ public class AnalyticsClient implements JSONSerializable {
     private final Map<String, Double> globalMetrics = new ConcurrentHashMap<String, Double>();
     private final Map<String, Map<String, String>> eventTypeAttributes = new ConcurrentHashMap<String, Map<String, String>>();
     private final Map<String, Map<String, Double>> eventTypeMetrics = new ConcurrentHashMap<String, Map<String, Double>>();
-    private Map<String, String> campaignAttributes = new ConcurrentHashMap<String, String>();
+    private Map<String, String> pinpointAttributes = new ConcurrentHashMap<String, String>();
     private String sessionId;
     private long sessionStartTime;
     private EventRecorder eventRecorder;
@@ -359,33 +359,33 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Adds the specified campaign attributes to events to track Campaign Analytic
+     * Adds the specified pinpoint attributes to events to track Campaign/Journey Analytic
      * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      *
-     * @param campaign the map with campaign attributes of the campaign received
+     * @param pinpointAttributes the map with pinpointAttributes attributes of the pinpointAttributes received
      */
-    public void setCampaignAttributes(Map<String, String> campaign) {
-        if (campaign == null) {
-            log.warn("Null campaign attributes provided to setCampaignAttributes.");
+    public void setPinpointAttributes(Map<String, String> pinpointAttributes) {
+        if (pinpointAttributes == null) {
+            log.warn("Null pinpointAttributes attributes provided to setPinpointAttributes.");
             return;
         }
 
-        campaignAttributes = campaign;
+        this.pinpointAttributes = pinpointAttributes;
     }
 
     /**
-     * Clears campaign attributes
+     * Clears pinpoint attributes
      * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      */
-    public void clearCampaignAttributes() {
-        for (final String key : campaignAttributes.keySet()) {
+    public void clearPinpointAttributes() {
+        for (final String key : pinpointAttributes.keySet()) {
             this.removeGlobalAttribute(key);
         }
-        campaignAttributes.clear();
+        pinpointAttributes.clear();
     }
 
     @Override

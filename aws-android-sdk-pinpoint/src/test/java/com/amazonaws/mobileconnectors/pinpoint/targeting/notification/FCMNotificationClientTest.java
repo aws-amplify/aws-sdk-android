@@ -152,7 +152,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
-        NotificationClient.CampaignPushResult pushResult
+        NotificationClient.PinpointPushResult pushResult
             = target.handleCampaignPush(buildNotificationDetails("12345"));
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -172,7 +172,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         // optOut is true because this test can't get the app icon resource id.
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
-        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
+        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.OPTED_OUT));
     }
 
 
@@ -183,7 +183,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
 
-        NotificationClient.CampaignPushResult pushResult
+        NotificationClient.PinpointPushResult pushResult
             = target.handleCampaignPush(buildNotificationDetails("12345"));
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -203,7 +203,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
         // Verify the notification is not posted and instead we get the result that the app was in the foreground.
-        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.APP_IN_FOREGROUND));
+        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.APP_IN_FOREGROUND));
     }
 
     @Test
@@ -223,7 +223,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
 
-        NotificationClient.CampaignPushResult pushResult
+        NotificationClient.PinpointPushResult pushResult
             = target.handleCampaignPush(buildNotificationDetails("12345"));
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -245,7 +245,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
 
         // verify that the notification is posted even though the app is in the foreground, will actually
         // be OPTED_OUT, since the test can't get the app icon id.
-        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
+        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.OPTED_OUT));
     }
 
     @Test
@@ -257,7 +257,7 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
-        NotificationClient.CampaignPushResult pushResult
+        NotificationClient.PinpointPushResult pushResult
             = target.handleCampaignPush(buildNotificationDetails("12345"));
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -279,14 +279,14 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
 
         // verify that the notification is posted even though the app is in the foreground, will actually
         // be OPTED_OUT, since the test can't get the app icon id.
-        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
+        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.OPTED_OUT));
     }
 
     @Test
     public void testHandleFCMPinpointMessageOpened() throws JSONException {
-        NotificationClient.CampaignPushResult result
+        NotificationClient.PinpointPushResult result
             = target.handleCampaignPush(buildNotificationDetails("_campaign.opened_notification"));
-        assertEquals(NotificationClient.CampaignPushResult.NOTIFICATION_OPENED, result);
+        assertEquals(NotificationClient.PinpointPushResult.NOTIFICATION_OPENED, result);
 
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -309,9 +309,9 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
                 .from("_campaign.opened")
                 .mapData(map)
                 .intentAction(NotificationClient.FCM_INTENT_ACTION);
-        NotificationClient.CampaignPushResult result =
+        NotificationClient.PinpointPushResult result =
                 target.handleCampaignPush(notificationDetailsBuilder.build());
-        assertEquals(NotificationClient.CampaignPushResult.NOT_HANDLED, result);
+        assertEquals(NotificationClient.PinpointPushResult.NOT_HANDLED, result);
     }
 
     @Test

@@ -88,9 +88,9 @@ abstract class NotificationClientBase {
     private static final String NOTIFICATION_BODY_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "body";
     private static final String NOTIFICATION_COLOR_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "color";
     private static final String NOTIFICATION_ICON_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "icon";
-    private static final String CAMPAIGN_IMAGE_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "imageUrl";
-    private static final String CAMPAIGN_IMAGE_ICON_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "imageIconUrl";
-    private static final String CAMPAIGN_IMAGE_SMALL_ICON_PUSH_KEY =
+    private static final String PINPOINT_IMAGE_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "imageUrl";
+    private static final String PINPOINT_IMAGE_ICON_PUSH_KEY = GCM_NOTIFICATION_PUSH_KEY_PREFIX + "imageIconUrl";
+    private static final String PINPOINT_IMAGE_SMALL_ICON_PUSH_KEY =
         GCM_NOTIFICATION_PUSH_KEY_PREFIX + "imageSmallIconUrl";
     // Engage Attributes
     private static final String CAMPAIGN_URL_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "url";
@@ -106,9 +106,9 @@ abstract class NotificationClientBase {
     private static final int ANDROID_OREO = 26;
     private static final int NOTIFICATION_CHANNEL_IMPORTANCE = 4; //IMPORTANCE_HIGH = 4. This corresponds to PRIORITY_HIGH (value 1) in NotificationBuilder. setPriority is deprecated in API 26
 
-    private static final String AWS_EVENT_TYPE_OPENED = "_campaign.opened_notification";
-    private static final String AWS_EVENT_TYPE_RECEIVED_FOREGROUND = "_campaign.received_foreground";
-    private static final String AWS_EVENT_TYPE_RECEIVED_BACKGROUND = "_campaign.received_background";
+    private static final String CAMPAIGN_AWS_EVENT_TYPE_OPENED = "_campaign.opened_notification";
+    private static final String CAMPAIGN_AWS_EVENT_TYPE_RECEIVED_FOREGROUND = "_campaign.received_foreground";
+    private static final String CAMPAIGN_AWS_EVENT_TYPE_RECEIVED_BACKGROUND = "_campaign.received_background";
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
     private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
     private static final String APP_OPS_MODE_ALLOWED = "MODE_ALLOWED";
@@ -249,7 +249,7 @@ abstract class NotificationClientBase {
         }
     }
 
-    private void addCampaignAttributesToEvent(final AnalyticsEvent pushEvent, final Map<String, String> campaignAttribs) {
+    private void addPinpointAttributesToEvent(final AnalyticsEvent pushEvent, final Map<String, String> campaignAttribs) {
         for (final Map.Entry<String, String> entry : campaignAttribs.entrySet()) {
             if (entry.getValue() != null) {
                 pushEvent.addAttribute(entry.getKey(), entry.getValue());
@@ -687,7 +687,7 @@ abstract class NotificationClientBase {
         final Intent notificationIntent = new Intent(pinpointContext.getApplicationContext(), intentReceiver);
         notificationIntent.setAction(intentAction);
         notificationIntent.putExtras(data);
-        notificationIntent.putExtra(INTENT_SNS_NOTIFICATION_FROM, AWS_EVENT_TYPE_OPENED);
+        notificationIntent.putExtra(INTENT_SNS_NOTIFICATION_FROM, CAMPAIGN_AWS_EVENT_TYPE_OPENED);
         notificationIntent.putExtra(CAMPAIGN_ID_PUSH_KEY, campaignId);
         notificationIntent.putExtra(REQUEST_ID, requestId);
         notificationIntent.setPackage(pinpointContext.getApplicationContext().getPackageName());
@@ -712,6 +712,10 @@ abstract class NotificationClientBase {
         }
     }
 
+    /**
+     * This overload is provided as a convenience since campaign was
+     * implemented before journey.
+     */
     private boolean displayNotification(
             final Bundle data,
             final Class<?> intentReceiver,
@@ -720,6 +724,29 @@ abstract class NotificationClientBase {
             final String iconSmallImageUrl,
             final Map<String, String> campaignAttributes,
             final String intentAction) {
+        return displayNotification(
+                data,
+                intentReceiver,
+                imageUrl,
+                iconImageUrl,
+                iconSmallImageUrl,
+                campaignAttributes,
+                intentAction,
+                CAMPAIGN_ID_ATTRIBUTE_KEY,
+                CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY
+        );
+    }
+
+    private boolean displayNotification(
+            final Bundle data,
+            final Class<?> intentReceiver,
+            final String imageUrl,
+            final String iconImageUrl,
+            final String iconSmallImageUrl,
+            final Map<String, String> campaignAttributes,
+            final String intentAction,
+            final String idAttributeKey,
+            final String activityIdAttributeKey) {
         log.info("Display Notification: " + data.toString());
 
         final int iconResId = getNotificationIconResourceId(data.getString(NOTIFICATION_ICON_PUSH_KEY));
@@ -730,11 +757,11 @@ abstract class NotificationClientBase {
         final String title = data.getString(NOTIFICATION_TITLE_PUSH_KEY);
         final String message = data.getString(NOTIFICATION_BODY_PUSH_KEY);
 
-        final String campaignId = campaignAttributes.get(CAMPAIGN_ID_ATTRIBUTE_KEY);
-        final String activityId = campaignAttributes.get(CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY);
-        final int requestID = getNotificationRequestId(campaignId, activityId);
+        final String pinpointObjectId = campaignAttributes.get(idAttributeKey);
+        final String activityId = campaignAttributes.get(activityIdAttributeKey);
+        final int requestID = getNotificationRequestId(pinpointObjectId, activityId);
 
-        log.debug("Displaying Notification for campaign: " + campaignId + 
+        log.debug("Displaying Notification for campaign/journey: " + pinpointObjectId +
             " ; activity: " + activityId + 
             " ; notification requestId: " + requestID);
 
@@ -749,7 +776,7 @@ abstract class NotificationClientBase {
                         iconImageUrl,
                         iconSmallImageUrl,
                         NotificationClientBase.this.createOpenAppPendingIntent(
-                                data, intentReceiver, campaignId, requestID, intentAction));
+                                data, intentReceiver, pinpointObjectId, requestID, intentAction));
 
                 notification.flags |= Notification.FLAG_AUTO_CANCEL;
                 notification.defaults |= Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE;
@@ -763,7 +790,7 @@ abstract class NotificationClientBase {
                         try {
                             color = Color.parseColor(colorString);
                         } catch (final IllegalArgumentException ex) {
-                            log.warn("Couldn't parse campaign notification color.", ex);
+                            log.warn("Couldn't parse notification color.", ex);
                             color = 0;
                         }
                         Exception exception = null;
@@ -777,7 +804,7 @@ abstract class NotificationClientBase {
                             exception = ex;
                         }
                         if (exception != null) {
-                            log.error("Couldn't set campaign notification color : " +
+                            log.error("Couldn't set notification color : " +
                                     exception.getMessage(), exception);
                         }
                     }
@@ -826,7 +853,7 @@ abstract class NotificationClientBase {
     }
 
     /* pkg */
-    NotificationClient.CampaignPushResult handleNotificationOpen(
+    NotificationClient.PinpointPushResult handleNotificationOpen(
         Map<String, String> campaignAttributes,
         final Bundle data) {
         // Add any campaign global attributes
@@ -837,19 +864,19 @@ abstract class NotificationClientBase {
             }
             addGlobalCampaignAttributes(campaignAttributes);
 
-            final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(AWS_EVENT_TYPE_OPENED);
+            final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(CAMPAIGN_AWS_EVENT_TYPE_OPENED);
             this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
             this.pinpointContext.getAnalyticsClient().submitEvents();
 
             final String url = data.getString(CAMPAIGN_URL_PUSH_KEY);
             if (url != null) {
                 openURL(url, false);
-                return NotificationClient.CampaignPushResult.NOTIFICATION_OPENED;
+                return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
             }
             final String deepLink = data.getString(CAMPAIGN_DEEP_LINK_PUSH_KEY);
             if (deepLink != null) {
                 openURL(deepLink, true);
-                return NotificationClient.CampaignPushResult.NOTIFICATION_OPENED;
+                return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
             }
             final String openApp = data.getString(CAMPAIGN_OPEN_APP_PUSH_KEY);
             if (openApp == null) {
@@ -857,7 +884,7 @@ abstract class NotificationClientBase {
             }
             openApp();
         }
-        return NotificationClient.CampaignPushResult.NOTIFICATION_OPENED;
+        return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
     }
 
     /**
@@ -868,9 +895,9 @@ abstract class NotificationClientBase {
      * local broadcast is sent.
      *
      * @param notificationDetails the notification message received by the device's messaging service
-     * @return {@link NotificationClient.CampaignPushResult}.
+     * @return {@link NotificationClient.PinpointPushResult}.
      */
-    public final NotificationClient.CampaignPushResult handleCampaignPush(NotificationDetails notificationDetails) {
+    public final NotificationClient.PinpointPushResult handleCampaignPush(NotificationDetails notificationDetails) {
         final String from = notificationDetails.getFrom();
         final Bundle data = notificationDetails.getBundle();
         final Class<?> intentReceiver = notificationDetails.getTargetClass();
@@ -879,38 +906,38 @@ abstract class NotificationClientBase {
 
         // Check if push data contains a Campaign Id
         if (data == null || !data.containsKey(CAMPAIGN_ID_PUSH_KEY)) {
-            return NotificationClient.CampaignPushResult.NOT_HANDLED;
+            return NotificationClient.PinpointPushResult.NOT_HANDLED;
         }
 
         final boolean isAppInForeground = appUtil.isAppInForeground();
 
-        final String imageUrl = data.getString(CAMPAIGN_IMAGE_PUSH_KEY);
-        final String imageIconUrl = data.getString(CAMPAIGN_IMAGE_ICON_PUSH_KEY);
-        final String imageSmallIconUrl = data.getString(CAMPAIGN_IMAGE_SMALL_ICON_PUSH_KEY);
+        final String imageUrl = data.getString(PINPOINT_IMAGE_PUSH_KEY);
+        final String imageIconUrl = data.getString(PINPOINT_IMAGE_ICON_PUSH_KEY);
+        final String imageSmallIconUrl = data.getString(PINPOINT_IMAGE_SMALL_ICON_PUSH_KEY);
         final Map<String, String> campaignAttributes = new HashMap<String, String>();
 
         campaignAttributes.put(CAMPAIGN_ID_ATTRIBUTE_KEY, data.getString(CAMPAIGN_ID_PUSH_KEY));
         campaignAttributes.put(CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY, data.getString(CAMPAIGN_TREATMENT_ID_PUSH_KEY));
         campaignAttributes.put(CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY, data.getString(CAMPAIGN_ACTIVITY_ID_PUSH_KEY));
 
-        this.pinpointContext.getAnalyticsClient().setCampaignAttributes(campaignAttributes);
+        this.pinpointContext.getAnalyticsClient().setPinpointAttributes(campaignAttributes);
         log.info("Campaign Attributes are:" + campaignAttributes);
 
-        if (AWS_EVENT_TYPE_OPENED.equals(from)) {
+        if (CAMPAIGN_AWS_EVENT_TYPE_OPENED.equals(from)) {
             return this.handleNotificationOpen(campaignAttributes, data);
         }
 
         // Create the push event.
         String eventType = null;
         if (isAppInForeground) {
-            eventType = AWS_EVENT_TYPE_RECEIVED_FOREGROUND;
+            eventType = CAMPAIGN_AWS_EVENT_TYPE_RECEIVED_FOREGROUND;
         } else {
-            eventType = AWS_EVENT_TYPE_RECEIVED_BACKGROUND;
+            eventType = CAMPAIGN_AWS_EVENT_TYPE_RECEIVED_BACKGROUND;
         }
         final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventType);
 
         // Add the campaign attributes.
-        addCampaignAttributesToEvent(pushEvent, campaignAttributes);
+        addPinpointAttributesToEvent(pushEvent, campaignAttributes);
         pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
         try {
             // Ignore whether the app is in the foreground if the configuration indicates it should post
@@ -918,12 +945,12 @@ abstract class NotificationClientBase {
             if (
                 !pinpointContext.getPinpointConfiguration().getShouldPostNotificationsInForeground() && isAppInForeground) {
                 // Notify the caller that the app was in the foreground.
-                return NotificationClient.CampaignPushResult.APP_IN_FOREGROUND;
+                return NotificationClient.PinpointPushResult.APP_IN_FOREGROUND;
             } else {
                 // Display a notification with an icon, title, message,
                 // image, and default sound.
                 if ("1".equalsIgnoreCase(data.getString(NOTIFICATION_SILENT_PUSH_KEY))) {
-                    return NotificationClient.CampaignPushResult.SILENT;
+                    return NotificationClient.PinpointPushResult.SILENT;
                 }
 
                 // App is in the background; attempt to display a
@@ -939,14 +966,14 @@ abstract class NotificationClientBase {
                     pushEvent.addAttribute("isOptedOut", "true");
                     // We can't post a notification, so delegate to the
                     // passed in handler.
-                    return NotificationClient.CampaignPushResult.OPTED_OUT;
+                    return NotificationClient.PinpointPushResult.OPTED_OUT;
                 }
             }
         } finally {
             this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
             this.pinpointContext.getAnalyticsClient().submitEvents();
         }
-        return NotificationClient.CampaignPushResult.POSTED_NOTIFICATION;
+        return NotificationClient.PinpointPushResult.POSTED_NOTIFICATION;
     }
 
     /**

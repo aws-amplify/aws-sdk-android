@@ -159,12 +159,12 @@ public class NotificationClient {
      *
      * @param from the from string received by the FCM service,
      * @param data the bundle received from the FCM service
-     * @return {@link CampaignPushResult}.
+     * @return {@link PinpointPushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
     @Deprecated
-    public CampaignPushResult handleFCMCampaignPush(final String from,
+    public PinpointPushResult handleFCMCampaignPush(final String from,
                                                     final Map<String, String> data) {
         NotificationDetails.NotificationDetailsBuilder notificationDetailsBuilder =
                 NotificationDetails.builder()
@@ -185,12 +185,12 @@ public class NotificationClient {
      * @param data         the bundle received from the GCM service
      * @param serviceClass the class extending GCMListenerService that handles
      *                     receiving GCM messages.
-     * @return {@link CampaignPushResult}.
+     * @return {@link PinpointPushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
     @Deprecated
-    public CampaignPushResult handleGCMCampaignPush(final String from, final Bundle data, final Class<? extends Service> serviceClass) {
+    public PinpointPushResult handleGCMCampaignPush(final String from, final Bundle data, final Class<? extends Service> serviceClass) {
         NotificationDetails.NotificationDetailsBuilder notificationDetailsBuilder =
                 NotificationDetails.builder()
                 .from(from)
@@ -284,16 +284,16 @@ public class NotificationClient {
      * local broadcast is sent.
      *
      * @param notificationDetails the notification message received by the device's messaging service
-     * @return {@link NotificationClient.CampaignPushResult}.
+     * @return {@link PinpointPushResult}.
      */
-    public CampaignPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
+    public PinpointPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
         return notificationClientBase.handleCampaignPush(notificationDetails);
     }
 
     /**
      * Result values of handling a pinpoint push message.
      */
-    public enum CampaignPushResult {
+    public enum PinpointPushResult {
         /**
          * The message wasn't for pinpoint.
          */
@@ -324,7 +324,7 @@ public class NotificationClient {
         SILENT
     }
 
-    CampaignPushResult handleNotificationOpen(Map<String, String> campaignAttributes,
+    PinpointPushResult handleNotificationOpen(Map<String, String> campaignAttributes,
                                               final Bundle data) {
         return notificationClientBase
                 .handleNotificationOpen(campaignAttributes, data);
