@@ -36,7 +36,7 @@ import static org.junit.Assert.assertTrue;
 public class LifecycleVersioningIntegrationTest extends S3IntegrationTestBase {
 
     private static final String BUCKET_NAME =
-            "lifecycle-versioning-integration-test-"
+            "android-sdk-lifecycle-versioning-integration-test-"
                     + System.currentTimeMillis();
 
     private static final String TAG = LifecycleVersioningIntegrationTest.class.getSimpleName();

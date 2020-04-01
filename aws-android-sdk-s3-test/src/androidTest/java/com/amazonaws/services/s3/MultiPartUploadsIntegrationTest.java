@@ -68,30 +68,30 @@ import java.util.Set;
 public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
 
     private static final long CONTENT_LENGTH = 10 * Constants.MB;
-    private static final String bucketName = "android-sdk-mp-upload-" + System.currentTimeMillis();
+    private static final String BUCKET_NAME = "android-sdk-mp-upload-" + System.currentTimeMillis();
     private final String REDIRECT_LOCATION = "/redirecting...";
     private String uploadId;
 
     @BeforeClass
     public static void setUpBucket() throws Exception {
-        s3.createBucket(bucketName);
-        waitForBucketCreation(bucketName);
-        enableVersioning(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        waitForBucketCreation(BUCKET_NAME);
+        enableVersioning(BUCKET_NAME);
     }
 
     /** Releases all resources created in these tests */
     @AfterClass
-    public static void tearDown() throws Exception {
-        disableVersioning(bucketName);
+    public static void tearDown() {
+        disableVersioning(BUCKET_NAME);
 
         try {
-            new TransferManager(s3).abortMultipartUploads(bucketName, new Date());
+            new TransferManager(s3).abortMultipartUploads(BUCKET_NAME, new Date());
         } catch (final Exception e) {
             e.printStackTrace();
         }
 
         try {
-            deleteBucketAndAllVersionedContents(bucketName);
+            deleteBucketAndAllVersionedContents(BUCKET_NAME);
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -100,14 +100,14 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
     /** Tests that a multipart upload can be created, listed and aborted. */
     @Test
     public void testAborted() throws Exception {
-        uploadId = initiateMultipartRequest(bucketName, "key");
-        uploadParts(bucketName, uploadId);
+        uploadId = initiateMultipartRequest(BUCKET_NAME, "key");
+        uploadParts(BUCKET_NAME, uploadId);
 
-        listMultipartUploads(bucketName);
-        listMultipartUploads(bucketName, uploadId);
-        listParts(bucketName, uploadId);
+        listMultipartUploads(BUCKET_NAME);
+        listMultipartUploads(BUCKET_NAME, uploadId);
+        listParts(BUCKET_NAME, uploadId);
 
-        abortMultipartUpload(bucketName, uploadId);
+        abortMultipartUpload(BUCKET_NAME, uploadId);
     }
 
     /** Tests that a multipart upload can be created, listed and completed. */
@@ -122,36 +122,36 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
 
         final InitiateMultipartUploadResult initiateResult = s3
                 .initiateMultipartUpload(new InitiateMultipartUploadRequest(
-                        bucketName, "key").withAccessControlList(acl)
+                        BUCKET_NAME, "key").withAccessControlList(acl)
                         .withStorageClass(StorageClass.ReducedRedundancy)
                         .withRedirectLocation(REDIRECT_LOCATION));
 
-        assertEquals(bucketName, initiateResult.getBucketName());
+        assertEquals(BUCKET_NAME, initiateResult.getBucketName());
         assertEquals("key", initiateResult.getKey());
         assertNotEmpty(initiateResult.getUploadId());
 
         uploadId = initiateResult.getUploadId();
 
-        final List<PartETag> partETags = uploadParts(bucketName, uploadId);
+        final List<PartETag> partETags = uploadParts(BUCKET_NAME, uploadId);
 
         // Initiate two more uploads so we can test prefix/delimiter
-        initiateMultipartRequest(bucketName, "key/foo/bar");
-        initiateMultipartRequest(bucketName, "key/bar/baz");
+        initiateMultipartRequest(BUCKET_NAME, "key/foo/bar");
+        initiateMultipartRequest(BUCKET_NAME, "key/bar/baz");
 
-        listMultipartUploads(bucketName);
-        listMultipartUploads(bucketName, uploadId);
-        listMultipartUploads(bucketName, "key/", "/");
-        listParts(bucketName, uploadId);
+        listMultipartUploads(BUCKET_NAME);
+        listMultipartUploads(BUCKET_NAME, uploadId);
+        listMultipartUploads(BUCKET_NAME, "key/", "/");
+        listParts(BUCKET_NAME, uploadId);
 
         final CompleteMultipartUploadResult completeMultipartUploadResult = s3.completeMultipartUpload(
-                new CompleteMultipartUploadRequest(bucketName, "key", uploadId, partETags));
+                new CompleteMultipartUploadRequest(BUCKET_NAME, "key", uploadId, partETags));
         assertNotEmpty(completeMultipartUploadResult.getBucketName());
         assertNotEmpty(completeMultipartUploadResult.getKey());
         assertNotEmpty(completeMultipartUploadResult.getETag());
         assertNotEmpty(completeMultipartUploadResult.getLocation());
         assertNotEmpty(completeMultipartUploadResult.getVersionId());
 
-        final AccessControlList aclRead = s3.getObjectAcl(bucketName, "key");
+        final AccessControlList aclRead = s3.getObjectAcl(BUCKET_NAME, "key");
         assertEquals(15, aclRead.getGrants().size());
 
         final Set<Grant> expectedGrants = translateEmailAclsIntoCanonical(acl);
@@ -162,9 +162,9 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
         }
 
         // Check we can get the redirect location back.
-        final S3Object object = s3.getObject(bucketName, "key");
+        final S3Object object = s3.getObject(BUCKET_NAME, "key");
         assertEquals(REDIRECT_LOCATION, object.getRedirectLocation());
-        assertEquals(bucketName, object.getBucketName());
+        assertEquals(BUCKET_NAME, object.getBucketName());
         assertEquals("key", object.getKey());
     }
 
@@ -172,7 +172,7 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testServerSideEncryption() throws Exception {
         final InitiateMultipartUploadRequest initiateRequest = new InitiateMultipartUploadRequest(
-                bucketName, "key")
+                BUCKET_NAME, "key")
                 .withCannedACL(CannedAccessControlList.PublicRead)
                 .withStorageClass(
                         StorageClass.ReducedRedundancy);
@@ -181,7 +181,7 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
                 ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION);
         final InitiateMultipartUploadResult initiateResult = s3.initiateMultipartUpload(initiateRequest);
 
-        assertEquals(bucketName, initiateResult.getBucketName());
+        assertEquals(BUCKET_NAME, initiateResult.getBucketName());
         assertEquals("key", initiateResult.getKey());
         assertNotEmpty(initiateResult.getUploadId());
 
@@ -190,7 +190,7 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
         final List<PartETag> partETags1 = new ArrayList<PartETag>();
 
         UploadPartResult uploadPartResult = s3.uploadPart(new UploadPartRequest()
-                .withBucketName(bucketName)
+                .withBucketName(BUCKET_NAME)
                 .withInputStream(new RandomInputStream(CONTENT_LENGTH))
                 .withKey("key")
                 .withPartNumber(1)
@@ -202,7 +202,7 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
         partETags1.add(new PartETag(uploadPartResult.getPartNumber(), uploadPartResult.getETag()));
 
         uploadPartResult = s3.uploadPart(new UploadPartRequest()
-                .withBucketName(bucketName)
+                .withBucketName(BUCKET_NAME)
                 .withInputStream(new RandomInputStream(CONTENT_LENGTH))
                 .withKey("key")
                 .withPartNumber(2)
@@ -215,10 +215,10 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
 
         final List<PartETag> partETags = partETags1;
 
-        listMultipartUploads(bucketName, uploadId);
+        listMultipartUploads(BUCKET_NAME, uploadId);
 
         final CompleteMultipartUploadResult completeMultipartUploadResult = s3.completeMultipartUpload(
-                new CompleteMultipartUploadRequest(bucketName, "key", uploadId, partETags));
+                new CompleteMultipartUploadRequest(BUCKET_NAME, "key", uploadId, partETags));
 
         assertNotEmpty(completeMultipartUploadResult.getBucketName());
         assertNotEmpty(completeMultipartUploadResult.getKey());
@@ -231,18 +231,18 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
     /** Test error handling during CompleteMultipartUpload. */
     @Test
     public void testCompletionFailed() throws Exception {
-        uploadId = initiateMultipartRequest(bucketName, "key");
-        final List<PartETag> partETags = uploadParts(bucketName, uploadId);
+        uploadId = initiateMultipartRequest(BUCKET_NAME, "key");
+        final List<PartETag> partETags = uploadParts(BUCKET_NAME, uploadId);
 
-        listMultipartUploads(bucketName);
-        listMultipartUploads(bucketName, uploadId);
-        listParts(bucketName, uploadId);
+        listMultipartUploads(BUCKET_NAME);
+        listMultipartUploads(BUCKET_NAME, uploadId);
+        listParts(BUCKET_NAME, uploadId);
 
         try {
             // fudge up an ETag to trigger an error response
             (partETags.get(1)).setETag((partETags.get(0)).getETag());
             s3.completeMultipartUpload(new CompleteMultipartUploadRequest(
-                    bucketName, "key", uploadId, partETags));
+                    BUCKET_NAME, "key", uploadId, partETags));
             fail("Expected an AmazonS3Exception");
         } catch (final AmazonS3Exception ase) {
             assertNotEmpty(ase.getErrorCode());
@@ -255,14 +255,14 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
     /** Tests error handling during UploadPart. */
     @Test
     public void testUploadError() throws Exception {
-        uploadId = initiateMultipartRequest(bucketName, "key");
-        uploadParts(bucketName, uploadId);
+        uploadId = initiateMultipartRequest(BUCKET_NAME, "key");
+        uploadParts(BUCKET_NAME, uploadId);
 
         final String testBody = "testBody";
 
         try {
             s3.uploadPart(new UploadPartRequest()
-                    .withBucketName(bucketName)
+                    .withBucketName(BUCKET_NAME)
                     .withInputStream(new StringInputStream(testBody))
                     .withKey("key")
                     .withPartNumber(1)

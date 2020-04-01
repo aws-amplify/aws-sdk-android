@@ -34,13 +34,13 @@ import org.junit.Test;
 public class S3PolicyIntegrationTest extends S3IntegrationTestBase {
 
     /** Name of the bucket created by this test */
-    private final String bucketName = "android-custom-bucket-policy-integ-test-"
+    private static final String BUCKET_NAME = "android-sdk-custom-bucket-policy-integ-test-"
             + System.currentTimeMillis();
 
     /** Release all allocated resources */
     @After
     public void tearDown() {
-        s3.deleteBucket(bucketName);
+        s3.deleteBucket(BUCKET_NAME);
     }
 
     /**
@@ -48,24 +48,24 @@ public class S3PolicyIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testPolicies() throws Exception {
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
 
         Policy policy = new Policy().withStatements(
                 new Statement(Statement.Effect.Allow)
                         .withActions(S3Actions.AllS3Actions)
                         .withPrincipals(Principal.AllUsers)
-                        .withResources(new S3BucketResource(bucketName))
+                        .withResources(new S3BucketResource(BUCKET_NAME))
                         .withConditions(
                                 S3ConditionFactory
                                         .newCannedACLCondition(CannedAccessControlList.Private)));
-        s3.setBucketPolicy(bucketName, policy.toJson());
+        s3.setBucketPolicy(BUCKET_NAME, policy.toJson());
 
         policy = new Policy()
                 .withStatements(
                         new Statement(Statement.Effect.Allow)
                                 .withActions(S3Actions.AllS3Actions)
                                 .withPrincipals(Principal.AllUsers)
-                                .withResources(new S3BucketResource(bucketName))
+                                .withResources(new S3BucketResource(BUCKET_NAME))
                                 .withConditions(
                                         S3ConditionFactory
                                                 .newCannedACLCondition(CannedAccessControlList.AuthenticatedRead),
@@ -74,9 +74,9 @@ public class S3PolicyIntegrationTest extends S3IntegrationTestBase {
                                                 "foo*")),
                         new Statement(Statement.Effect.Allow)
                                 .withActions(S3Actions.ListObjectVersions)
-                                .withResources(new S3BucketResource(bucketName))
+                                .withResources(new S3BucketResource(BUCKET_NAME))
                                 .withPrincipals(Principal.AllUsers));
-        s3.setBucketPolicy(bucketName, policy.toJson());
+        s3.setBucketPolicy(BUCKET_NAME, policy.toJson());
     }
 
 }

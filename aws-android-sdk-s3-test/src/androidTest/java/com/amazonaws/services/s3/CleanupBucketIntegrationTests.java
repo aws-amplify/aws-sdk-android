@@ -32,40 +32,9 @@ public class CleanupBucketIntegrationTests extends AWSTestBase {
     public void testCleanup() {
         final List<Bucket> buckets = s3.listBuckets();
         for (final Bucket bucket : buckets) {
-            if (bucket.getName().startsWith("transferservice-integration")
-                    || bucket.getName().contains("mobilehub")
-                    || bucket.getName().startsWith("java-get-object-integ-test")
-                    || bucket.getName().contains("integrationtest")
-                    || bucket.getName().contains("java-requester-pays-test")
-                    || bucket.getName().contains("normal-key-bucket-")
-                    || bucket.getName().contains("integ-test-bucket-")
-                    || bucket.getName().contains("java-get-object-integ-test-")
-                    || bucket.getName().contains("put-object-integ-test")
-                    || bucket.getName().contains("special-key-bucket-")
-                    || bucket.getName().contains("special-key-test-bucket-")
-                    || bucket.getName().contains("lifecycle-versioning-integration-test-")
-                    || bucket.getName().contains("bucket-replication-integ-test-")
-                    || bucket.getName().contains("list-objects-integ-test-")
-                    || bucket.getName().startsWith("java-s3-version-iteration-test-")
-                    || bucket.getName().startsWith("java-versioning-integ-test-")
-                    || bucket.getName().startsWith("java-sdk-mp-upload-")
-                    || bucket.getName().startsWith("java-storage-class-integ-test-")
-                    || bucket.getName().startsWith("java-sdk")
-                    || bucket.getName().startsWith("java-bucket-cross-origin-integ-test")
-                    || bucket.getName().startsWith("java-custom-bucket-policy-integ-test")
-                    || bucket.getName().startsWith("java-get-object-integ-test")
-                    || bucket.getName().startsWith("java-multiget-object-iteration-test")
-                    || bucket.getName().startsWith("amazon-s3-client-integ-test")
-                    || bucket.getName().startsWith("android-sdk-mp-upload")
-                    || bucket.getName().startsWith("java-sts-integ-test")
-                    || bucket.getName().startsWith("s3-low-level-presigned-url")
-                    || bucket.getName().startsWith("java-bucket-policy-integ-test")
-                    || bucket.getName().startsWith("copy-object-integ-test")
-                    || bucket.getName().startsWith("java-server-side-encryption-integ-test")) {
-
-                final String bucket_name = bucket.getName();
+            final String bucket_name = bucket.getName();
+            if (bucket_name.startsWith("android-sdk-")) {
                 try {
-
                     ObjectListing object_listing = s3.listObjects(bucket_name);
                     while (true) {
                         for (final Iterator<?> iterator = object_listing.getObjectSummaries()

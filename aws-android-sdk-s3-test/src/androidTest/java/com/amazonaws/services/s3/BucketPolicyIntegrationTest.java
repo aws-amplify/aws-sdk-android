@@ -37,7 +37,7 @@ import java.io.InputStream;
 public class BucketPolicyIntegrationTest extends S3IntegrationTestBase {
 
     /** Name of the bucket created by this test */
-    private final String bucketName = "java-bucket-policy-integ-test-" + System.currentTimeMillis();
+    private static final String BUCKET_NAME = "android-sdk-bucket-policy-integ-test-" + System.currentTimeMillis();
 
     /** Path to the sample policy for this test */
     private static final String POLICY_FILE = "samplePolicy.json";
@@ -45,15 +45,15 @@ public class BucketPolicyIntegrationTest extends S3IntegrationTestBase {
     /** Create bucket and wait for creation */
     @Before
     public void setUpBucket() throws Exception {
-        s3.createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
     }
 
     /** Release all allocated resources */
     @After
     public void tearDown() {
         try {
-            super.deleteBucketAndAllContents(bucketName);
+            super.deleteBucketAndAllContents(BUCKET_NAME);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -64,23 +64,23 @@ public class BucketPolicyIntegrationTest extends S3IntegrationTestBase {
     public void testBucketPolicies() throws Exception {
         InputStream policyInputStream = InstrumentationRegistry.getContext().getResources().getAssets().open(POLICY_FILE);
         String policyText = IOUtils.toString(policyInputStream);
-        policyText = replace(policyText, "@BUCKET_NAME@", bucketName);
+        policyText = replace(policyText, "@BUCKET_NAME@", BUCKET_NAME);
 
         // Verify that no policy exists yet
-        assertNull(s3.getBucketPolicy(bucketName).getPolicyText());
+        assertNull(s3.getBucketPolicy(BUCKET_NAME).getPolicyText());
 
         // Upload a new bucket policy
-        s3.setBucketPolicy(bucketName, policyText);
+        s3.setBucketPolicy(BUCKET_NAME, policyText);
 
         // Try to retrieve it - then set what we get back to make sure
         // we correctly parsed the policy text
-        String retrievedPolicyText = s3.getBucketPolicy(bucketName).getPolicyText();
-        assertTrue(retrievedPolicyText.indexOf(bucketName) != -1);
-        s3.setBucketPolicy(bucketName, retrievedPolicyText);
+        String retrievedPolicyText = s3.getBucketPolicy(BUCKET_NAME).getPolicyText();
+        assertTrue(retrievedPolicyText.indexOf(BUCKET_NAME) != -1);
+        s3.setBucketPolicy(BUCKET_NAME, retrievedPolicyText);
 
         // Delete it - and verify it's gone
-        s3.deleteBucketPolicy(bucketName);
-        assertNull(s3.getBucketPolicy(bucketName).getPolicyText());
+        s3.deleteBucketPolicy(BUCKET_NAME);
+        assertNull(s3.getBucketPolicy(BUCKET_NAME).getPolicyText());
 
         // Try to get the policy for a bucket we don't own to test error
         // handling

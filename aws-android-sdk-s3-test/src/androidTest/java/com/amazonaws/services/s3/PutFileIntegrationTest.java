@@ -48,7 +48,7 @@ import java.util.Set;
  */
 public class PutFileIntegrationTest extends S3IntegrationTestBase {
 
-    private static String bucketName = "put-object-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-put-object-integ-test-" + new Date().getTime();
     private static String key = "key";
     private static long contentLength = 443L;
     private static ObjectMetadata expectedMetadata;
@@ -59,8 +59,8 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
      */
     @BeforeClass
     public static void initializeTestData() throws Exception {
-        s3.createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
 
         expectedMetadata = new ObjectMetadata();
         expectedMetadata.setCacheControl("custom-cache-control");
@@ -76,8 +76,8 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
     /** Releases all resources created by tests */
     @AfterClass
     public static void tearDown() {
-        s3.deleteObject(bucketName, key);
-        s3.deleteBucket(bucketName);
+        s3.deleteObject(BUCKET_NAME, key);
+        s3.deleteBucket(BUCKET_NAME);
         file.delete();
     }
 
@@ -87,12 +87,12 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testPutFileWithRecognizedMimeType() throws Exception {
-        final PutObjectResult result = s3.putObject(bucketName, key, file);
+        final PutObjectResult result = s3.putObject(BUCKET_NAME, key, file);
         assertNotEmpty(result.getETag());
         assertNotEmpty(result.getContentMd5());
         assertNull(result.getVersionId());
 
-        final S3Object object = s3.getObject(bucketName, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
 
         final ObjectMetadata s3Metadata = object.getObjectMetadata();
@@ -112,9 +112,9 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testPutFileWithUnrecognizedMimeType() throws Exception {
         final File file = super.getRandomTempFile("foo", contentLength);
-        s3.putObject(bucketName, key, file);
+        s3.putObject(BUCKET_NAME, key, file);
 
-        final S3Object object = s3.getObject(bucketName, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
 
         final ObjectMetadata s3Metadata = object.getObjectMetadata();
@@ -135,10 +135,10 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testPutFileWithMetadata() throws Exception {
-        s3.putObject(new PutObjectRequest(bucketName, key, file)
+        s3.putObject(new PutObjectRequest(BUCKET_NAME, key, file)
                 .withMetadata(expectedMetadata));
 
-        final S3Object object = s3.getObject(bucketName, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
 
         final ObjectMetadata metadata = object.getObjectMetadata();
@@ -152,10 +152,10 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testPutFileWithCannedAcl() throws Exception {
-        s3.putObject(new PutObjectRequest(bucketName, key, file)
+        s3.putObject(new PutObjectRequest(BUCKET_NAME, key, file)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
 
-        final S3Object object = s3.getObject(bucketName, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
 
         final ObjectMetadata metadata = object.getObjectMetadata();
@@ -164,7 +164,7 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
         assertNotNull(metadata.getLastModified());
         assertTrue(metadata.getUserMetadata().isEmpty());
 
-        final AccessControlList acl = s3.getObjectAcl(bucketName, key);
+        final AccessControlList acl = s3.getObjectAcl(BUCKET_NAME, key);
         assertTrue(2 == acl.getGrants().size());
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
     }
@@ -186,9 +186,9 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
             acl.grantPermission(new EmailAddressGrantee(AWS_DR_TOOLS_EMAIL_ADDRESS), permission);
         }
 
-        s3.putObject(new PutObjectRequest(bucketName, key, file).withAccessControlList(acl));
+        s3.putObject(new PutObjectRequest(BUCKET_NAME, key, file).withAccessControlList(acl));
 
-        final S3Object object = s3.getObject(bucketName, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
 
         final ObjectMetadata metadata = object.getObjectMetadata();
@@ -197,7 +197,7 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
         assertNotNull(metadata.getLastModified());
         assertTrue(metadata.getUserMetadata().isEmpty());
 
-        final AccessControlList aclRead = s3.getObjectAcl(bucketName, key);
+        final AccessControlList aclRead = s3.getObjectAcl(BUCKET_NAME, key);
         assertTrue(15 == aclRead.getGrants().size());
 
         final Set<Grant> expectedGrants = translateEmailAclsIntoCanonical(acl);
@@ -215,19 +215,19 @@ public class PutFileIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testPutFileWithMetadataAndCannedAcl() throws Exception {
-        final PutObjectResult result = s3.putObject(new PutObjectRequest(bucketName, key, file)
+        final PutObjectResult result = s3.putObject(new PutObjectRequest(BUCKET_NAME, key, file)
                 .withMetadata(expectedMetadata)
                 .withCannedAcl(CannedAccessControlList.AuthenticatedRead));
         assertNotEmpty(result.getContentMd5());
 
-        final S3Object object = s3.getObject(bucketName, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
 
         final ObjectMetadata metadata = object.getObjectMetadata();
         assertMetadataEqual(expectedMetadata, metadata);
         assertTrue(contentLength == metadata.getContentLength());
 
-        final AccessControlList acl = s3.getObjectAcl(bucketName, key);
+        final AccessControlList acl = s3.getObjectAcl(BUCKET_NAME, key);
         assertTrue(2 == acl.getGrants().size());
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AuthenticatedUsers, Permission.Read));
     }

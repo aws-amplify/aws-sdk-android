@@ -51,7 +51,7 @@ import java.util.Set;
 public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
 
     /** The S3 bucket created and used by these tests */
-    private final static String bucketName = "copy-object-integ-test-" + new Date().getTime();
+    private final static String BUCKET_NAME = "android-sdk-copy-object-integ-test-" + new Date().getTime();
 
     /** The key of the object being copied */
     private final static String sourceKey = "source-key";
@@ -90,15 +90,15 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
     @AfterClass
     public static void tearDown() {
         try {
-            s3.deleteObject(bucketName, sourceKey);
+            s3.deleteObject(BUCKET_NAME, sourceKey);
         } catch (Exception e) {
         }
         try {
-            s3.deleteObject(bucketName, destinationKey);
+            s3.deleteObject(BUCKET_NAME, destinationKey);
         } catch (Exception e) {
         }
         try {
-            s3.deleteBucket(bucketName);
+            s3.deleteBucket(BUCKET_NAME);
         } catch (Exception e) {
         }
         try {
@@ -120,10 +120,10 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
         assertCopyObjectResultIsValid(s3.copyObject(newCopyObjectRequest().withAccessControlList(
                 acl)));
 
-        S3Object copiedObject = s3.getObject(bucketName, destinationKey);
+        S3Object copiedObject = s3.getObject(BUCKET_NAME, destinationKey);
         assertFileEqualsStream(file, copiedObject.getObjectContent());
 
-        AccessControlList aclRead = s3.getObjectAcl(bucketName, destinationKey);
+        AccessControlList aclRead = s3.getObjectAcl(BUCKET_NAME, destinationKey);
         assertEquals(15, aclRead.getGrants().size());
 
         Set<Grant> expectedGrants = translateEmailAclsIntoCanonical(acl);
@@ -141,8 +141,8 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testSuccessfulSimpleCopy() throws Exception {
-        s3.copyObject(bucketName, sourceKey, bucketName, destinationKey);
-        S3Object copiedObject = s3.getObject(bucketName, destinationKey);
+        s3.copyObject(BUCKET_NAME, sourceKey, BUCKET_NAME, destinationKey);
+        S3Object copiedObject = s3.getObject(BUCKET_NAME, destinationKey);
         assertFileEqualsStream(file, copiedObject.getObjectContent());
         assertEquals(expiresDate.toString(), copiedObject.getObjectMetadata().getHttpExpiresDate()
                 .toString());
@@ -169,7 +169,7 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
                 result.getLastModifiedDate().getTime();
         assertTrue(timeDifference < 1000 * 60 * 60 * 24);
 
-        S3Object object = s3.getObject(bucketName, destinationKey);
+        S3Object object = s3.getObject(BUCKET_NAME, destinationKey);
         assertFileEqualsStream(file, object.getObjectContent());
         assertEquals("AES256", object.getObjectMetadata().getSSEAlgorithm());
     }
@@ -198,7 +198,7 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
         request.setCannedAccessControlList(CannedAccessControlList.PublicRead);
         assertCopyObjectResultIsValid(s3.copyObject(request));
 
-        S3Object object = s3.getObject(bucketName, destinationKey);
+        S3Object object = s3.getObject(BUCKET_NAME, destinationKey);
         assertFileEqualsStream(file, object.getObjectContent());
         assertEquals("bar", object.getObjectMetadata().getUserMetadata().get("foo"));
         assertEquals(contentLength, object.getObjectMetadata().getContentLength());
@@ -209,7 +209,7 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
         Date httpExpiresDate = object.getObjectMetadata().getHttpExpiresDate();
         assertEquals(expiresDate.toString(), httpExpiresDate.toString());
 
-        AccessControlList acl = s3.getObjectAcl(bucketName, destinationKey);
+        AccessControlList acl = s3.getObjectAcl(BUCKET_NAME, destinationKey);
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
     }
 
@@ -272,7 +272,7 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testNoSuchKeyException() {
         try {
-            s3.copyObject(bucketName, "key", bucketName, destinationKey);
+            s3.copyObject(BUCKET_NAME, "key", BUCKET_NAME, destinationKey);
             fail("Expected an AmazonS3Exception, but wasn't thrown");
         } catch (AmazonS3Exception ase) {
             assertEquals("NoSuchKey", ase.getErrorCode());
@@ -295,14 +295,14 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @BeforeClass
     public static void initializeTestData() throws Exception {
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
         expiresDate = new Date(System.currentTimeMillis() + EXPIRES_TIME_IN_MILLIS);
         file = getRandomTempFile("copy-object-integ-test-" + new Date().getTime(), contentLength);
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setHttpExpiresDate(expiresDate);
-        s3.putObject(new PutObjectRequest(bucketName, sourceKey, file).withMetadata(metadata));
+        s3.putObject(new PutObjectRequest(BUCKET_NAME, sourceKey, file).withMetadata(metadata));
 
-        ObjectMetadata sourceObjectMetadata = s3.getObjectMetadata(bucketName, sourceKey);
+        ObjectMetadata sourceObjectMetadata = s3.getObjectMetadata(BUCKET_NAME, sourceKey);
 
         sourceEtag = sourceObjectMetadata.getETag();
         Date sourceLastModifiedDate = sourceObjectMetadata.getLastModified();
@@ -323,7 +323,7 @@ public class CopyObjectIntegrationTest extends S3IntegrationTestBase {
      * @return A new COpyObjectRequest, initialized for these test cases.
      */
     private CopyObjectRequest newCopyObjectRequest() {
-        return new CopyObjectRequest(bucketName, sourceKey, bucketName, destinationKey);
+        return new CopyObjectRequest(BUCKET_NAME, sourceKey, BUCKET_NAME, destinationKey);
     }
 
     /**

@@ -133,7 +133,6 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         final Owner bucketOwner = s3.getBucketAcl(bucketName).getOwner();
 
         // Public Read Canned ACL
-        s3.setBucketAcl(bucketName, CannedAccessControlList.PublicRead);
         s3.setObjectAcl(bucketName, key, CannedAccessControlList.PublicRead);
         AccessControlList bucketAcl = s3.getBucketAcl(bucketName);
         AccessControlList objectAcl = s3.getObjectAcl(bucketName, key);
@@ -144,8 +143,6 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         for (int index = 0; index < accessControls.length; index++) {
             final AccessControlList acl = accessControls[index];
             assertEquals(bucketOwner, acl.getOwner());
-            assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
-            assertEquals(2, acl.getGrants().size());
         }
 
         // Authenticated Read Canned ACL

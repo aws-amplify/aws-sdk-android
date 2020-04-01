@@ -75,7 +75,6 @@ public class V1BucketAddressingIntegrationTest extends S3IntegrationTestBase {
         createV1AddressedBucket(bucketName);
         file = super.getRandomTempFile("v1-addressing-integ-test", 333L);
 
-        s3.setBucketAcl(bucketName, CannedAccessControlList.PublicRead);
         s3.getBucketAcl(bucketName);
 
         s3.putObject(bucketName, key, file);
