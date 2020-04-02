@@ -7,6 +7,11 @@
 - **Amazon Pinpoint**
   - `EndpointProfileUser` can now store user attributes, which will persist even after updating the endpoint.
 
+### Bug Fixes
+
+- **Amazon S3**
+  - Fix a bug in `TransferUtility#pause(int)` when uploading a multipart item (> 5MB). See [Issue# 1500](https://github.com/aws-amplify/aws-sdk-android/issues/1500) for details.
+
 ## [Release 2.16.10](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.10)
 
 ### Bug Fixes
