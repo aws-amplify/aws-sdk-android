@@ -267,6 +267,55 @@ public class CognitoUser {
     public void confirmSignUpInBackground(final String confirmationCode,
             final boolean forcedAliasCreation,
             final GenericHandler callback) {
+        confirmSignUpInBackground(confirmationCode, forcedAliasCreation, null, callback);
+    }
+
+    /**
+     * Confirms user registration in current thread.
+     * <p>
+     * Confirming a user is required to complete the user's registration. Any
+     * other operations on a user are possible only after registration
+     * confirmation. <b>Note:</b> This method will perform network operations.
+     * Calling this method in applications' main thread will cause Android to
+     * throw NetworkOnMainThreadException.
+     * </p>
+     *
+     * @param confirmationCode REQUIRED: Code sent to the phone-number or email
+     *            used to register the user
+     * @param forcedAliasCreation REQUIRED: This flag indicates if the
+     *            confirmation should go-through in case of parameter
+     *            contentions.
+     * @param callback REQUIRED: This is a reference to {@link GenericHandler}
+     *            callback handler
+     */
+    public void confirmSignUp(String confirmationCode,
+            boolean forcedAliasCreation,
+            GenericHandler callback) {
+        confirmSignUp(confirmationCode, forcedAliasCreation, null, callback);
+    }
+
+    /**
+     * Confirms user registration in background.
+     * <p>
+     * Confirming a user is required to complete the user's registration. Any
+     * other operations on a user. are possible only after registration
+     * confirmation.
+     * </p>
+     *
+     * @param confirmationCode REQUIRED: Code sent to the phone-number or email
+     *            used to register the user.
+     * @param forcedAliasCreation REQUIRED: This flag indicates if the
+     *            confirmation should go-through in case of parameter
+     *            contentions.
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
+     * @param callback REQUIRED: This is a reference to {@link GenericHandler}
+     *            callback handler.
+     */
+    public void confirmSignUpInBackground(final String confirmationCode,
+                                          final boolean forcedAliasCreation,
+                                          final Map<String, String> clientMetadata,
+                                          final GenericHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
         }
@@ -276,7 +325,7 @@ public class CognitoUser {
                 final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
-                    confirmSignUpInternal(confirmationCode, forcedAliasCreation);
+                    confirmSignUpInternal(confirmationCode, forcedAliasCreation, clientMetadata);
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -311,17 +360,20 @@ public class CognitoUser {
      * @param forcedAliasCreation REQUIRED: This flag indicates if the
      *            confirmation should go-through in case of parameter
      *            contentions.
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
      * @param callback REQUIRED: This is a reference to {@link GenericHandler}
      *            callback handler
      */
     public void confirmSignUp(String confirmationCode,
-            boolean forcedAliasCreation,
-            GenericHandler callback) {
+                              boolean forcedAliasCreation,
+                              Map<String, String> clientMetadata,
+                              GenericHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
         }
         try {
-            confirmSignUpInternal(confirmationCode, forcedAliasCreation);
+            confirmSignUpInternal(confirmationCode, forcedAliasCreation, clientMetadata);
             callback.onSuccess();
         } catch (final Exception e) {
             callback.onFailure(e);
@@ -334,14 +386,19 @@ public class CognitoUser {
      * @param confirmationCode REQUIRED: Code to confirm this user.
      * @param forcedAliasCreation REQUIRED: If set over-rides parameter
      *            contentions
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
      */
-    private void confirmSignUpInternal(String confirmationCode, boolean forcedAliasCreation) {
+    private void confirmSignUpInternal(final String confirmationCode,
+                                       final boolean forcedAliasCreation,
+                                       final Map<String, String> clientMetadata) {
         final ConfirmSignUpRequest confirmUserRegistrationRequest = new ConfirmSignUpRequest()
                 .withClientId(clientId)
                 .withSecretHash(secretHash)
                 .withUsername(userId)
                 .withConfirmationCode(confirmationCode)
                 .withForceAliasCreation(forcedAliasCreation)
+                .withClientMetadata(clientMetadata)
                 .withUserContextData(getUserContextData());
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
@@ -450,6 +507,50 @@ public class CognitoUser {
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
      */
     public void forgotPasswordInBackground(final ForgotPasswordHandler callback) {
+        forgotPasswordInBackground(null, callback);
+    }
+
+    /**
+     * Starts the process to set a new new password for forgotten password case,
+     * in current thread.
+     * <p>
+     * This will initiate the process to set a new password when the current
+     * password is forgotten. The new password will be successfully set only
+     * after the verification code, sent to the registered email or phone number
+     * of the user, successfully verified by Cognito Identity Provider service.
+     * This method will pass a continuation object to the callback. Use setters
+     * in the Continuation object {@link ForgotPasswordContinuation} to set the
+     * new password and verification code and call continue on the continuation
+     * object, {@code CognitoIdentityProviderContinuation.continueTask()}.
+     * <b>Note:</b> This method will perform network operations. Calling this
+     * method in applications' main thread will cause Android to throw
+     * NetworkOnMainThreadException.
+     * </p>
+     *
+     * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
+     */
+    public void forgotPassword(final ForgotPasswordHandler callback) {
+        forgotPassword(null, callback);
+    }
+
+    /**
+     * Starts the process to set a new password for forgotten password case, in
+     * background.
+     * <p>
+     * This will initiate the process to set a new password when the current
+     * password is forgotten. The new password will be successfully set only
+     * after the verification code, sent to the registered email or phone number
+     * of the user, successfully verified by Cognito Identity Provider service.
+     * This method will pass a continuation object to the callback. Use setters
+     * in the Continuation object {@link ForgotPasswordContinuation} to set the
+     * new password and verification code and call continue on the continuation
+     * object, {@code CognitoIdentityProviderContinuation.continueTask()}.
+     * </p>
+     *
+     * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
+     */
+    public void forgotPasswordInBackground(final Map<String, String> clientMetadata,
+                                           final ForgotPasswordHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
         }
@@ -462,7 +563,7 @@ public class CognitoUser {
                 final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
-                    final ForgotPasswordResult forgotPasswordResult = forgotPasswordInternal();
+                    final ForgotPasswordResult forgotPasswordResult = forgotPasswordInternal(clientMetadata);
                     final ForgotPasswordContinuation continuation = new ForgotPasswordContinuation(
                             cognitoUser,
                             new CognitoUserCodeDeliveryDetails(
@@ -506,7 +607,8 @@ public class CognitoUser {
      *
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
      */
-    public void forgotPassword(ForgotPasswordHandler callback) {
+    public void forgotPassword(final Map<String, String> clientMetadata,
+                               final ForgotPasswordHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
         }
@@ -514,7 +616,7 @@ public class CognitoUser {
         final CognitoUser cognitoUser = this;
 
         try {
-            final ForgotPasswordResult forgotPasswordResult = forgotPasswordInternal();
+            final ForgotPasswordResult forgotPasswordResult = forgotPasswordInternal(clientMetadata);
             final ForgotPasswordContinuation continuation = new ForgotPasswordContinuation(
                     cognitoUser,
                     new CognitoUserCodeDeliveryDetails(
@@ -529,12 +631,13 @@ public class CognitoUser {
     /**
      * Internal method to start forgot password process.
      */
-    private ForgotPasswordResult forgotPasswordInternal() {
+    private ForgotPasswordResult forgotPasswordInternal(final Map<String, String> clientMetadata) {
         final ForgotPasswordRequest resetPasswordRequest = new ForgotPasswordRequest();
         resetPasswordRequest.setClientId(clientId);
         resetPasswordRequest.setSecretHash(secretHash);
         resetPasswordRequest.setUsername(userId);
         resetPasswordRequest.setUserContextData(getUserContextData());
+        resetPasswordRequest.setClientMetadata(clientMetadata);
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();
@@ -561,7 +664,31 @@ public class CognitoUser {
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback.
      */
     public void confirmPasswordInBackground(final String verificationCode,
+                                            final String newPassword,
+                                            final ForgotPasswordHandler callback) {
+        confirmPasswordInBackground(verificationCode, newPassword, null, callback);
+    }
+
+    /**
+     * Set new password and send verification code to Cognito Identity Provider
+     * service, in background.
+     * <p>
+     * This method will be called by {@link ForgotPasswordContinuation}
+     * continuation object.
+     * </p>
+     *
+     * @param verificationCode REQUIRED: Code sent from Cognito Identity
+     *            Provider Service.
+     * @param newPassword REQUIRED: New password. On successful verification of
+     *            {@code verificationCode}, this will be the new password for
+     *            this user.
+     * @param clientMetadata A map of custom key-value pairs that you can provide as input for any
+     *                       custom workflows triggered by confirm password.
+     * @param callback REQUIRED: {@link ForgotPasswordHandler} callback.
+     */
+    public void confirmPasswordInBackground(final String verificationCode,
             final String newPassword,
+            final Map<String, String> clientMetadata,
             final ForgotPasswordHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
@@ -572,7 +699,7 @@ public class CognitoUser {
                 final Handler handler = new Handler(context.getMainLooper());
                 Runnable returnCallback;
                 try {
-                    confirmPasswordInternal(verificationCode, newPassword);
+                    confirmPasswordInternal(verificationCode, newPassword, clientMetadata);
                     returnCallback = new Runnable() {
                         @Override
                         public void run() {
@@ -610,13 +737,39 @@ public class CognitoUser {
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback.
      */
     public void confirmPassword(final String verificationCode,
+                                final String newPassword,
+                                final ForgotPasswordHandler callback) {
+        confirmPassword(verificationCode, newPassword, null, callback);
+    }
+
+    /**
+     * Sends the new password and the verification code to Cognito Identity
+     * Provider service, in background.
+     * <p>
+     * This method will be called by {@link ForgotPasswordContinuation}
+     * continuation object. <b>Note:</b> This method will perform network
+     * operations. Calling this method in applications' main thread will cause
+     * Android to throw NetworkOnMainThreadException.
+     * </p>
+     *
+     * @param verificationCode REQUIRED: Code sent from Cognito Identity
+     *            Provider Service.
+     * @param newPassword REQUIRED: New password. On successful verification of
+     *            {@code verificationCode}, this will be the new password for
+     *            this user.
+     * @param clientMetadata A map of custom key-value pairs that you can provide as input for any
+     *                       custom workflows triggered by confirm password.
+     * @param callback REQUIRED: {@link ForgotPasswordHandler} callback.
+     */
+    public void confirmPassword(final String verificationCode,
             final String newPassword,
+            final Map<String, String> clientMetadata,
             final ForgotPasswordHandler callback) {
         if (callback == null) {
             throw new CognitoParameterInvalidException("callback is null");
         }
         try {
-            confirmPasswordInternal(verificationCode, newPassword);
+            confirmPasswordInternal(verificationCode, newPassword, clientMetadata);
             callback.onSuccess();
         } catch (final Exception e) {
             callback.onFailure(e);
@@ -629,7 +782,9 @@ public class CognitoUser {
      * @param verificationCode REQUIRED: Verification code sent to the user.
      * @param newPassword REQUIRED: New password for the user.
      */
-    private void confirmPasswordInternal(String verificationCode, String newPassword) {
+    private void confirmPasswordInternal(final String verificationCode,
+                                         final String newPassword,
+                                         final Map<String, String> clientMetadata) {
         final ConfirmForgotPasswordRequest confirmResetPasswordRequest = new ConfirmForgotPasswordRequest();
         confirmResetPasswordRequest.setUsername(userId);
         confirmResetPasswordRequest.setClientId(clientId);
@@ -637,6 +792,7 @@ public class CognitoUser {
         confirmResetPasswordRequest.setConfirmationCode(verificationCode);
         confirmResetPasswordRequest.setPassword(newPassword);
         confirmResetPasswordRequest.setUserContextData(getUserContextData());
+        confirmResetPasswordRequest.setClientMetadata(clientMetadata);
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         if (pinpointEndpointId != null) {
             AnalyticsMetadataType amd = new AnalyticsMetadataType();

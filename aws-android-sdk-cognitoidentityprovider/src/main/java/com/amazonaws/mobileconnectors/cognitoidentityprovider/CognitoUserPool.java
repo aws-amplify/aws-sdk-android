@@ -366,8 +366,46 @@ public class CognitoUserPool {
      * @param callback          REQUIRED: callback, must not be null
      */
     public void signUpInBackground(final String userId, final String password,
+                                   final CognitoUserAttributes userAttributes,
+                                   final Map<String, String> validationData,
+                                   final SignUpHandler callback) {
+        signUpInBackground(userId, password, userAttributes, validationData, null, callback);
+    }
+
+    /**
+     * Runs user registration in current thread.
+     * <p>
+     *      <b>Note:</b> This method will perform network operations. Calling this method in
+     *     applications' main thread will cause Android to throw NetworkOnMainThreadException.
+     * </p>
+     *
+     * @param userId            REQUIRED: userId for this user
+     * @param password          REQUIRED: Password for this user
+     * @param userAttributes    REQUIRED: Contains all attributes for this user
+     * @param validationData    REQUIRED: Parameters for lambda function for user registration
+     * @param callback          REQUIRED: callback, must not be null
+     */
+    public void signUp(final String userId, final String password,
+                       final CognitoUserAttributes userAttributes,
+                       final Map<String, String> validationData,
+                       final SignUpHandler callback) {
+        signUp(userId, password, userAttributes, validationData, null, callback);
+    }
+
+    /**
+     * Runs user registration in background.
+     *
+     * @param userId            REQUIRED: userId for this user
+     * @param password          REQUIRED: Password for this user
+     * @param userAttributes    REQUIRED: Contains all attributes for this user
+     * @param validationData    REQUIRED: Parameters for lambda function for user registration
+     * @param clientMetadata    REQUIRED: Client metadata for lambda function for user registration
+     * @param callback          REQUIRED: callback, must not be null
+     */
+    public void signUpInBackground(final String userId, final String password,
                                          final CognitoUserAttributes userAttributes,
                                          final Map<String, String> validationData,
+                                         final Map<String, String> clientMetadata,
                                          final SignUpHandler callback) {
         new Thread(new Runnable() {
             @Override
@@ -376,7 +414,7 @@ public class CognitoUserPool {
                 Runnable returnCallback;
                 try {
                     final SignUpResult signUpResult = signUpInternal(userId, password,
-                            userAttributes, validationData);
+                            userAttributes, validationData, clientMetadata);
                     final CognitoUser user = getUser(userId);
                     returnCallback = new Runnable() {
                         @Override
@@ -408,15 +446,17 @@ public class CognitoUserPool {
      * @param password          REQUIRED: Password for this user
      * @param userAttributes    REQUIRED: Contains all attributes for this user
      * @param validationData    REQUIRED: Parameters for lambda function for user registration
+     * @param clientMetadata    REQUIRED: Client metadata for lambda function for user registration
      * @param callback          REQUIRED: callback, must not be null
      */
     public void signUp(final String userId, final String password,
             final CognitoUserAttributes userAttributes,
             final Map<String, String> validationData,
+            final Map<String, String> clientMetadata,
             final SignUpHandler callback) {
         try {
             final SignUpResult signUpResult = signUpInternal(userId, password, userAttributes,
-                    validationData);
+                    validationData, clientMetadata);
             final CognitoUser user = getUser(userId);
             callback.onSuccess(user, signUpResult);
         } catch (final Exception e) {
@@ -432,12 +472,13 @@ public class CognitoUserPool {
      * @param userAttributes    REQUIRED: User attributes.
      * @param validationData    REQUIRED: Validation key value pairs, these will be passed to pre
      *                          and post registration lambda functions.
-     *
+     * @param clientMetadata    REQUIRED: Client metadata for lambda function for user registration
      * @return SignUpResult
      */
     private SignUpResult signUpInternal(String userId, String password,
-                                              CognitoUserAttributes userAttributes,
-                                              Map<String, String> validationData) {
+                                        CognitoUserAttributes userAttributes,
+                                        Map<String, String> validationData,
+                                        final Map<String, String> clientMetadata) {
 
         // Create a list of {@link AttributeType} from {@code userAttributes}
         List<AttributeType> validationDataList = null;
@@ -462,6 +503,7 @@ public class CognitoUserPool {
                 .withSecretHash(secretHash)
                 .withUserAttributes(userAttributes.getAttributesList())
                 .withValidationData(validationDataList)
+                .withClientMetadata(clientMetadata)
                 .withUserContextData(getUserContextData(userId));
         String ppEndpoint = getPinpointEndpointId();
         if (ppEndpoint != null) {
