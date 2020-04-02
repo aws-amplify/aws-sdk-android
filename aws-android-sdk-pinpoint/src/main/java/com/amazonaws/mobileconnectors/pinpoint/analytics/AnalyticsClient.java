@@ -75,7 +75,7 @@ public class AnalyticsClient implements JSONSerializable {
     private final Map<String, Double> globalMetrics = new ConcurrentHashMap<String, Double>();
     private final Map<String, Map<String, String>> eventTypeAttributes = new ConcurrentHashMap<String, Map<String, String>>();
     private final Map<String, Map<String, Double>> eventTypeMetrics = new ConcurrentHashMap<String, Map<String, Double>>();
-    private Map<String, String> pinpointAttributes = new ConcurrentHashMap<String, String>();
+    private Map<String, String> eventSourceAttributes = new ConcurrentHashMap<String, String>();
     private String sessionId;
     private long sessionStartTime;
     private EventRecorder eventRecorder;
@@ -364,15 +364,15 @@ public class AnalyticsClient implements JSONSerializable {
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      *
-     * @param pinpointAttributes the map with pinpointAttributes attributes of the pinpointAttributes received
+     * @param eventSourceAttributes the map with pinpointAttributes attributes of the pinpointAttributes received
      */
-    public void setPinpointAttributes(Map<String, String> pinpointAttributes) {
-        if (pinpointAttributes == null) {
+    public void setEventSourceAttributes(Map<String, String> eventSourceAttributes) {
+        if (eventSourceAttributes == null) {
             log.warn("Null pinpointAttributes attributes provided to setPinpointAttributes.");
             return;
         }
 
-        this.pinpointAttributes = pinpointAttributes;
+        this.eventSourceAttributes = eventSourceAttributes;
     }
 
     /**
@@ -381,11 +381,11 @@ public class AnalyticsClient implements JSONSerializable {
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      */
-    public void clearPinpointAttributes() {
-        for (final String key : pinpointAttributes.keySet()) {
+    public void clearEventSourceAttributes() {
+        for (final String key : eventSourceAttributes.keySet()) {
             this.removeGlobalAttribute(key);
         }
-        pinpointAttributes.clear();
+        eventSourceAttributes.clear();
     }
 
     @Override

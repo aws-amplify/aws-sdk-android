@@ -93,9 +93,9 @@ abstract class NotificationClientBase {
     private static final String PINPOINT_IMAGE_SMALL_ICON_PUSH_KEY =
         GCM_NOTIFICATION_PUSH_KEY_PREFIX + "imageSmallIconUrl";
     // Engage Attributes
-    private static final String CAMPAIGN_URL_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "url";
-    private static final String CAMPAIGN_DEEP_LINK_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "deeplink";
-    private static final String CAMPAIGN_OPEN_APP_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "openApp";
+    private static final String EVENT_SOURCE_URL_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "url";
+    private static final String EVENT_SOURCE_DEEP_LINK_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "deeplink";
+    private static final String EVENT_SOURCE_OPEN_APP_PUSH_KEY = PINPOINT_PUSH_KEY_PREFIX + "openApp";
     private static final String REQUEST_ID = "requestId";
     private static final int INVALID_RESOURCE = 0;
     private static final int ANDROID_JELLYBEAN = 16;
@@ -240,7 +240,7 @@ abstract class NotificationClientBase {
      */
     public abstract String getChannelType();
 
-    private void addGlobalCampaignAttributes(
+    private void addGlobalEventSourceAttributes(
         final Map<String, String> campaignAttribs) {
         for (final Map.Entry<String, String> entry : campaignAttribs.entrySet()) {
             if (entry.getValue() != null) {
@@ -854,31 +854,31 @@ abstract class NotificationClientBase {
 
     /* pkg */
     NotificationClient.PinpointPushResult handleNotificationOpen(
-        Map<String, String> campaignAttributes,
+        Map<String, String> eventSourceAttributes,
         final Bundle data) {
         // Add any campaign global attributes
-        if (campaignAttributes != null) {
+        if (eventSourceAttributes != null) {
             // Stop Session
             if (this.pinpointContext.getSessionClient() != null) {
                 this.pinpointContext.getSessionClient().stopSession();
             }
-            addGlobalCampaignAttributes(campaignAttributes);
+            addGlobalEventSourceAttributes(eventSourceAttributes);
 
             final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(CAMPAIGN_AWS_EVENT_TYPE_OPENED);
             this.pinpointContext.getAnalyticsClient().recordEvent(pushEvent);
             this.pinpointContext.getAnalyticsClient().submitEvents();
 
-            final String url = data.getString(CAMPAIGN_URL_PUSH_KEY);
+            final String url = data.getString(EVENT_SOURCE_URL_PUSH_KEY);
             if (url != null) {
                 openURL(url, false);
                 return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
             }
-            final String deepLink = data.getString(CAMPAIGN_DEEP_LINK_PUSH_KEY);
+            final String deepLink = data.getString(EVENT_SOURCE_DEEP_LINK_PUSH_KEY);
             if (deepLink != null) {
                 openURL(deepLink, true);
                 return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
             }
-            final String openApp = data.getString(CAMPAIGN_OPEN_APP_PUSH_KEY);
+            final String openApp = data.getString(EVENT_SOURCE_OPEN_APP_PUSH_KEY);
             if (openApp == null) {
                 log.warn("No key/value present to determine action for campaign notification, default to open app.");
             }
@@ -920,7 +920,7 @@ abstract class NotificationClientBase {
         campaignAttributes.put(CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY, data.getString(CAMPAIGN_TREATMENT_ID_PUSH_KEY));
         campaignAttributes.put(CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY, data.getString(CAMPAIGN_ACTIVITY_ID_PUSH_KEY));
 
-        this.pinpointContext.getAnalyticsClient().setPinpointAttributes(campaignAttributes);
+        this.pinpointContext.getAnalyticsClient().setEventSourceAttributes(campaignAttributes);
         log.info("Campaign Attributes are:" + campaignAttributes);
 
         if (CAMPAIGN_AWS_EVENT_TYPE_OPENED.equals(from)) {
