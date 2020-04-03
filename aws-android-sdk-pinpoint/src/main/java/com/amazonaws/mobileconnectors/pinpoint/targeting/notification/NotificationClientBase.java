@@ -241,8 +241,8 @@ abstract class NotificationClientBase {
     public abstract String getChannelType();
 
     private void addGlobalEventSourceAttributes(
-        final Map<String, String> campaignAttribs) {
-        for (final Map.Entry<String, String> entry : campaignAttribs.entrySet()) {
+        final Map<String, String> eventSourceAttributes) {
+        for (final Map.Entry<String, String> entry : eventSourceAttributes.entrySet()) {
             if (entry.getValue() != null) {
                 this.pinpointContext.getAnalyticsClient().addGlobalAttribute(entry.getKey(), entry.getValue());
             }
@@ -703,7 +703,7 @@ abstract class NotificationClientBase {
     int getNotificationRequestId(final String eventSourceId,
                                  final String activityId) {
         // Adding a random unique identifier for direct sends. For a campaign,
-        // use the campaignId and the activityId in order to prevent displaying
+        // use the eventSourceId and the activityId in order to prevent displaying
         // duplicate notifications from a campaign activity.
         if (DIRECT_CAMPAIGN_SEND.equals(eventSourceId) && activityId == null) {
             return random.nextInt();
@@ -880,7 +880,7 @@ abstract class NotificationClientBase {
             }
             final String openApp = data.getString(EVENT_SOURCE_OPEN_APP_PUSH_KEY);
             if (openApp == null) {
-                log.warn("No key/value present to determine action for campaign notification, default to open app.");
+                log.warn("No key/value present to determine action for pinpoint notification, default to open app.");
             }
             openApp();
         }
