@@ -249,8 +249,8 @@ abstract class NotificationClientBase {
         }
     }
 
-    private void addPinpointAttributesToEvent(final AnalyticsEvent pushEvent, final Map<String, String> campaignAttribs) {
-        for (final Map.Entry<String, String> entry : campaignAttribs.entrySet()) {
+    private void addPinpointAttributesToEvent(final AnalyticsEvent pushEvent, final Map<String, String> eventSourceAttributes) {
+        for (final Map.Entry<String, String> entry : eventSourceAttributes.entrySet()) {
             if (entry.getValue() != null) {
                 pushEvent.addAttribute(entry.getKey(), entry.getValue());
             }
@@ -654,7 +654,7 @@ abstract class NotificationClientBase {
      *
      * @param data             the data to push
      * @param intentReceiver   the class that handles receiving messages.
-     * @param campaignId       pinpoint campaign id
+     * @param eventSourceId       pinpoint campaign/journey id
      * @param requestId        request id
      * @param intentAction     intent action
      * @return {@link PendingIntent}
@@ -662,7 +662,7 @@ abstract class NotificationClientBase {
     protected abstract PendingIntent createOpenAppPendingIntent(
             final Bundle data,
             final Class<?> intentReceiver,
-            final String campaignId,
+            final String eventSourceId,
             final int requestId,
             final String intentAction);
 
@@ -672,7 +672,7 @@ abstract class NotificationClientBase {
      * intent.
      *
      * @param data the data to push
-     * @param campaignId identifies the pinpoint campaign
+     * @param eventSourceId identifies the pinpoint campaign
      * @param requestId identifies the notification request
      * @param intentAction specifies the action of the intent
      * @param intentReceiver the target class that handles receiving messages.
@@ -680,7 +680,7 @@ abstract class NotificationClientBase {
      */
     final Intent notificationIntent(
             final Bundle data,
-            final String campaignId,
+            final String eventSourceId,
             final int requestId,
             final String intentAction,
             final Class<?> intentReceiver) {
@@ -688,7 +688,7 @@ abstract class NotificationClientBase {
         notificationIntent.setAction(intentAction);
         notificationIntent.putExtras(data);
         notificationIntent.putExtra(INTENT_SNS_NOTIFICATION_FROM, CAMPAIGN_AWS_EVENT_TYPE_OPENED);
-        notificationIntent.putExtra(CAMPAIGN_ID_PUSH_KEY, campaignId);
+        notificationIntent.putExtra(CAMPAIGN_ID_PUSH_KEY, eventSourceId);
         notificationIntent.putExtra(REQUEST_ID, requestId);
         notificationIntent.setPackage(pinpointContext.getApplicationContext().getPackageName());
         return notificationIntent;
@@ -700,15 +700,15 @@ abstract class NotificationClientBase {
      *         is generated in order to uniquely identify the notification
      *         within the application.
      */
-    int getNotificationRequestId(final String campaignId,
+    int getNotificationRequestId(final String eventSourceId,
                                  final String activityId) {
         // Adding a random unique identifier for direct sends. For a campaign,
         // use the campaignId and the activityId in order to prevent displaying
         // duplicate notifications from a campaign activity.
-        if (DIRECT_CAMPAIGN_SEND.equals(campaignId) && activityId == null) {
+        if (DIRECT_CAMPAIGN_SEND.equals(eventSourceId) && activityId == null) {
             return random.nextInt();
         } else {
-            return (campaignId + ":" + activityId).hashCode();
+            return (eventSourceId + ":" + activityId).hashCode();
         }
     }
 
@@ -743,7 +743,7 @@ abstract class NotificationClientBase {
             final String imageUrl,
             final String iconImageUrl,
             final String iconSmallImageUrl,
-            final Map<String, String> campaignAttributes,
+            final Map<String, String> eventSourceAttributes,
             final String intentAction,
             final String idAttributeKey,
             final String activityIdAttributeKey) {
@@ -757,8 +757,8 @@ abstract class NotificationClientBase {
         final String title = data.getString(NOTIFICATION_TITLE_PUSH_KEY);
         final String message = data.getString(NOTIFICATION_BODY_PUSH_KEY);
 
-        final String pinpointObjectId = campaignAttributes.get(idAttributeKey);
-        final String activityId = campaignAttributes.get(activityIdAttributeKey);
+        final String pinpointObjectId = eventSourceAttributes.get(idAttributeKey);
+        final String activityId = eventSourceAttributes.get(activityIdAttributeKey);
         final int requestID = getNotificationRequestId(pinpointObjectId, activityId);
 
         log.debug("Displaying Notification for campaign/journey: " + pinpointObjectId +
@@ -827,7 +827,7 @@ abstract class NotificationClientBase {
                         .getLaunchIntentForPackage(pinpointContext.getApplicationContext().getPackageName());
 
         if (launchIntent == null) {
-            log.error("Couldn't get app launch intent for campaign notification.");
+            log.error("Couldn't get app launch intent for pinpoint notification.");
             return false;
         }
         launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);

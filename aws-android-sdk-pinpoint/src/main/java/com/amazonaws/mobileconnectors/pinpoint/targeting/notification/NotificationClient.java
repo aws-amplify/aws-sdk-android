@@ -324,15 +324,15 @@ public class NotificationClient {
         SILENT
     }
 
-    PinpointPushResult handleNotificationOpen(Map<String, String> campaignAttributes,
+    PinpointPushResult handleNotificationOpen(Map<String, String> eventSourceAttributes,
                                               final Bundle data) {
         return notificationClientBase
-                .handleNotificationOpen(campaignAttributes, data);
+                .handleNotificationOpen(eventSourceAttributes, data);
     }
 
-    int getNotificationRequestId(final String campaignId,
+    int getNotificationRequestId(final String eventSourceId,
                                  final String activityId) {
         return notificationClientBase
-                .getNotificationRequestId(campaignId, activityId);
+                .getNotificationRequestId(eventSourceId, activityId);
     }
 }
