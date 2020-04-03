@@ -274,6 +274,31 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
+    public void testWebsocketConnectionWithUsernamePassword() throws Exception {
+        // Given: the MqttClient and an instance of AWSIotMqttManager.
+        MockMqttClient mockClient = new MockMqttClient();
+        AWSIotMqttManager awsIotMqttManager = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        awsIotMqttManager.setMqttClient(mockClient);
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        // When: the SDK tries to connect to IoT.
+        awsIotMqttManager.connect("user", "password", csb);
+        Thread.sleep(500);  // connect is async, will return before callback is actually set in connect()
+        mockClient.mockConnectSuccess();
+
+        // Then: connect is invoked on the paho client and client status transitions through connecting
+        // to connected.
+        assertEquals(1, mockClient.connectCalls);
+        assertTrue(mockClient.mostRecentOptions.isCleanSession());
+        assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
+        assertEquals(2, csb.statuses.size());
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
+        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(MqttManagerConnectionState.Connected, awsIotMqttManager.getConnectionState());
+    }
+
+    @Test
     public void testConnectWithProxy() throws Exception {
         MockMqttClient mockClient = new MockMqttClient();
 

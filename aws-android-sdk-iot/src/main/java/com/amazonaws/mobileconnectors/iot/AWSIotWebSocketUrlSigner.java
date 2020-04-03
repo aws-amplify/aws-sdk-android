@@ -57,18 +57,43 @@ class AWSIotWebSocketUrlSigner {
     /**
      * Given the region and service name provided to the client, the endpoint and the current time
      * return a signed connection URL to be used when connecting via WebSocket to AWS IoT.
+     *
      * @param endpoint service endpoint with or without customer specific URL prefix.
      * @param awsCredentials credential set to be used in SigV4 signature algorithm.
      * @param currentTimeInMillis time value to be used in SigV4 calculations.  In milliseconds.
      * @return a URL with SigV4 signature formatted to be used with AWS IoT.
      */
-    public String getSignedUrl(String endpoint, AWSCredentials awsCredentials, long currentTimeInMillis) {
+    String getSignedUrl(final String endpoint,
+                        final AWSCredentials awsCredentials,
+                        final long currentTimeInMillis) {
+        return getSignedUrl(endpoint, awsCredentials, currentTimeInMillis, null);
+    }
+
+    /**
+     * Given the region and service name provided to the client, the endpoint and the current time
+     * return a signed connection URL to be used when connecting via WebSocket to AWS IoT.
+     *
+     * @param endpoint service endpoint with or without customer specific URL prefix.
+     * @param awsCredentials credential set to be used in SigV4 signature algorithm.
+     * @param currentTimeInMillis time value to be used in SigV4 calculations.  In milliseconds.
+     * @return a URL with SigV4 signature formatted to be used with AWS IoT.
+     */
+    public String getSignedUrl(final String endpoint,
+                               final AWSCredentials awsCredentials,
+                               final long currentTimeInMillis,
+                               final Region region) {
         // anonymous credentials, don't sign
         if (awsCredentials instanceof AnonymousAWSCredentials) {
             throw new IllegalArgumentException("Credentials cannot be Anonymous");
         }
 
-        Region signerRegion = AwsIotEndpointUtility.getRegionFromIotEndpoint(endpoint);
+        Region signerRegion;
+        if (region != null) {
+            signerRegion = region;
+        } else {
+            signerRegion = AwsIotEndpointUtility.getRegionFromIotEndpoint(endpoint);
+        }
+
         String signerRegionName = signerRegion.getName();
 
         AWSCredentials sanitizedCredentials = sanitizeCredentials(awsCredentials);
