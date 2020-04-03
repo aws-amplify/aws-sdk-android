@@ -21,11 +21,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.util.Log;
 
 /**
  * The Amazon Pinpoint push notification receiver.
  */
 public class PinpointNotificationReceiver extends BroadcastReceiver {
+    private static String TAG = PinpointNotificationReceiver.class.getSimpleName();
 
     private static volatile NotificationClient notificationClient = null;
 
@@ -40,17 +42,7 @@ public class PinpointNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (notificationClient != null) {
-            final String prefix = NotificationClientBase.CAMPAIGN_PUSH_KEY_PREFIX;
-            final Map<String, String> campaignAttributes = new HashMap<String, String>();
-            campaignAttributes.put(NotificationClientBase.CAMPAIGN_ID_ATTRIBUTE_KEY,
-                                   intent.getStringExtra(prefix.concat(NotificationClientBase.CAMPAIGN_ID_ATTRIBUTE_KEY)));
-            campaignAttributes
-                .put(NotificationClientBase.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY,
-                     intent.getStringExtra(prefix.concat(NotificationClientBase.CAMPAIGN_TREATMENT_ID_ATTRIBUTE_KEY)));
-            campaignAttributes
-                .put(NotificationClientBase.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY,
-                     intent.getStringExtra(prefix.concat(NotificationClientBase.CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY)));
-            notificationClient.handleNotificationOpen(campaignAttributes,
+            notificationClient.handleNotificationOpen(EventSourceType.getEventSourceAttributes(intent.getExtras()),
                                                       intent.getExtras());
         } else {
             final PackageManager pm = context.getPackageManager();

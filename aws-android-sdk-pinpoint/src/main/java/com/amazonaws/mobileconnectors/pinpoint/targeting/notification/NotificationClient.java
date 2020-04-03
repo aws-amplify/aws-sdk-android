@@ -285,10 +285,21 @@ public class NotificationClient {
      *
      * @param notificationDetails the notification message received by the device's messaging service
      * @return {@link PinpointPushResult}.
+     *
      */
-    public PinpointPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
-        return notificationClientBase.handleCampaignPush(notificationDetails);
+    public PinpointPushResult handlePushNotification(final NotificationDetails notificationDetails) {
+        return notificationClientBase.handlePushNotification(notificationDetails);
     }
+
+    /**
+     * @deprecated see {@link #handlePushNotification(NotificationDetails)}
+     */
+    @Deprecated
+    public PinpointPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
+        return notificationClientBase.handlePushNotification(notificationDetails);
+    }
+
+
 
     /**
      * Result values of handling a pinpoint push message.
