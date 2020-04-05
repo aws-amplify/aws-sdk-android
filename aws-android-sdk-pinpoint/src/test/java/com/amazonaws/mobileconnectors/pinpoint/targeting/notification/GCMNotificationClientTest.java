@@ -142,14 +142,10 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         pushBundle.putString("gcm.notification.title", "Robots are Red");
         pushBundle.putString("gcm.notification.body", "My Class is New");
         pushBundle.putString("gcm.notification.color", "#FF0000");
-        JSONObject campaignJson = new JSONObject();
-        campaignJson.put("campaign_id", "Customers rule");
-        campaignJson.put("campaign_activity_id", "the brink of dawn");
-        JSONObject engageJson = new JSONObject();
-        engageJson.put("openApp", "true");
-        engageJson.put("url", "http://amazon.com");
-        engageJson.put("deeplink", "http://amazon.com");
-        engageJson.put("campaign", campaignJson);
+        JSONObject engageJson = new JSONObject()
+            .put("openApp", "true")
+            .put("url", "http://amazon.com")
+            .put("deeplink", "http://amazon.com");
         pushBundle.putString("pinpoint", engageJson.toString());
         return pushBundle;
     }
@@ -159,18 +155,18 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         pushBundle.putString("gcm.notification.title", "Robots are Red");
         pushBundle.putString("gcm.notification.body", "My Class is New");
         pushBundle.putString("gcm.notification.color", "#FF0000");
-        JSONObject journeyJson = new JSONObject();
-        journeyJson.put("journey_id", "fake_journey_id");
-        journeyJson.put("journey_activity_id", "fake_journey_activity_id");
-        journeyJson.put("journey_run_id", "fake_journey_run_id");
-        journeyJson.put("feedback", "random_feedback");
-        journeyJson.put("endpoint_id", "fake_endpoint_id");
-        journeyJson.put("user_id", "fake_user_id");
-        JSONObject engageJson = new JSONObject();
-        engageJson.put("openApp", "true");
-        engageJson.put("url", "http://amazon.com");
-        engageJson.put("deeplink", "http://amazon.com");
-        engageJson.put("journey", journeyJson);
+        JSONObject engageJson = new JSONObject()
+            .put("openApp", "true")
+            .put("url", "http://amazon.com")
+            .put("deeplink", "http://amazon.com")
+            .put("journey", new JSONObject()
+                .put("journey_id", "fake_journey_id")
+                .put("journey_activity_id", "fake_journey_activity_id")
+                .put("journey_run_id", "fake_journey_run_id")
+                .put("feedback", "random_feedback")
+                .put("endpoint_id", "fake_endpoint_id")
+                .put("user_id", "fake_user_id")
+            );
         pushBundle.putString("pinpoint", engageJson.toString());
         return pushBundle;
     }
@@ -178,6 +174,16 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
     @Test
     public void testGCMJourneyMessageReceivedDefaultDoNotPostNotificationInForeground() throws JSONException {
         // Force the app to be in the background
+        final AnalyticsEvent expectedEvent = new AnalyticsClient(mockPinpointContext).createEvent("_journey.received_background")
+            .withAttribute("journey_id", "fake_journey_id")
+            .withAttribute("journey_activity_id", "fake_journey_activity_id")
+            .withAttribute("journey_run_id", "fake_journey_run_id")
+            .withAttribute("feedback", "random_feedback")
+            .withAttribute("endpoint_id", "fake_endpoint_id")
+            .withAttribute("user_id", "fake_user_id")
+            .withAttribute("isOptedOut", "true")
+            .withAttribute("isAppInForeground", "false");
+
         final AppUtil appUtil = Mockito.mock(AppUtil.class);
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
@@ -198,22 +204,9 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
 
         final AnalyticsEvent receivedEvent = eventCaptor.getAllValues().get(0);
-        assertThat(receivedEvent.getEventType(), is("_journey.received_background"));
         assertTrue(receivedEvent.getEventTimestamp() > 0);
-        for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
-        }
-        assertThat(receivedEvent.getAllAttributes().size(), is(8));
-        assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
-        assertThat(receivedEvent.getAttribute("isAppInForeground"), is("false"));
-        assertThat(receivedEvent.getAttribute("journey_id"), is("fake_journey_id"));
-        assertThat(receivedEvent.getAttribute("journey_activity_id"), is("fake_journey_activity_id"));
-        assertThat(receivedEvent.getAttribute("journey_run_id"), is("fake_journey_run_id"));
-        assertThat(receivedEvent.getAttribute("feedback"), is("random_feedback"));
-        assertThat(receivedEvent.getAttribute("endpoint_id"), is("fake_endpoint_id"));
-        assertThat(receivedEvent.getAttribute("user_id"), is("fake_user_id"));
-        // optOut is true because this test can't get the app icon resource id.
-        assertThat(receivedEvent.getAllMetrics().size(), is(0));
+        assertEquals("_journey.received_background", receivedEvent.getEventType());
+        assertEquals(expectedEvent.getAllAttributes(), receivedEvent.getAllAttributes());
     }
 
     @Test
@@ -223,7 +216,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
-        NotificationClient.PinpointPushResult pushResult
+        NotificationClient.CampaignPushResult pushResult
             = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -243,7 +236,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         // optOut is true because this test can't get the app icon resource id.
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
-        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.OPTED_OUT));
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
     }
 
 
@@ -254,7 +247,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
 
-        NotificationClient.PinpointPushResult pushResult
+        NotificationClient.CampaignPushResult pushResult
             = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -274,7 +267,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
         // Verify the notification is not posted and instead we get the result that the app was in the foreground.
-        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.APP_IN_FOREGROUND));
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.APP_IN_FOREGROUND));
     }
 
     @Test
@@ -294,7 +287,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(true);
 
-        NotificationClient.PinpointPushResult pushResult
+        NotificationClient.CampaignPushResult pushResult
             = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -316,7 +309,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
 
         // verify that the notification is posted even though the app is in the foreground, will actually
         // be OPTED_OUT, since the test can't get the app icon id.
-        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.OPTED_OUT));
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
     }
 
     @Test
@@ -328,7 +321,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
         Whitebox.setInternalState(target.notificationClientBase, "appUtil", appUtil);
         Mockito.when(appUtil.isAppInForeground()).thenReturn(false);
 
-        NotificationClient.PinpointPushResult pushResult
+        NotificationClient.CampaignPushResult pushResult
             = target.handleGCMCampaignPush("12345", buildPushBundle(), Service.class);
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -350,14 +343,14 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
 
         // verify that the notification is posted even though the app is in the foreground, will actually
         // be OPTED_OUT, since the test can't get the app icon id.
-        assertTrue(pushResult.equals(NotificationClient.PinpointPushResult.OPTED_OUT));
+        assertTrue(pushResult.equals(NotificationClient.CampaignPushResult.OPTED_OUT));
     }
 
     @Test
     public void testHandleGCMPinpointMessageOpened() throws JSONException {
-        NotificationClient.PinpointPushResult result
+        NotificationClient.CampaignPushResult result
             = target.handleGCMCampaignPush("_campaign.opened_notification", buildPushBundle(), Service.class);
-        assertEquals(NotificationClient.PinpointPushResult.NOTIFICATION_OPENED, result);
+        assertEquals(NotificationClient.CampaignPushResult.NOTIFICATION_OPENED, result);
 
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
@@ -375,10 +368,10 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
     @Test
     public void testEmptyBundle() {
         Bundle pushBundle = new Bundle();
-        NotificationClient.PinpointPushResult result = target.handleGCMCampaignPush("_campaign.opened",
+        NotificationClient.CampaignPushResult result = target.handleGCMCampaignPush("_campaign.opened",
                                                                                            pushBundle,
                                                                                            Service.class);
-        assertEquals(NotificationClient.PinpointPushResult.NOT_HANDLED, result);
+        assertEquals(NotificationClient.CampaignPushResult.NOT_HANDLED, result);
     }
 
     @Test

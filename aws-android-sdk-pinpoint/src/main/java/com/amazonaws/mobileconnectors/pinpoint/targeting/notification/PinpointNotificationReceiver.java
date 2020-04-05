@@ -42,7 +42,8 @@ public class PinpointNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (notificationClient != null) {
-            notificationClient.handleNotificationOpen(EventSourceType.getEventSourceAttributes(intent.getExtras()),
+            EventSourceType eventSourceType = EventSourceType.getEventSourceType(intent.getExtras());
+            notificationClient.handleNotificationOpen(eventSourceType.getAttributeParser().parseAttributes(intent.getExtras()),
                                                       intent.getExtras());
         } else {
             final PackageManager pm = context.getPackageManager();

@@ -89,7 +89,7 @@ public class NotificationClient {
     /**
      * Constructor.
      *
-     * @param pinpointContext the pinpoint context. {@link PinpointContext}
+     * @param pinpointContext the Pinpoint context. {@link PinpointContext}
      * @deprecated Use {@link #createClient(PinpointContext, ChannelType)} instead.
      */
     @Deprecated
@@ -151,7 +151,7 @@ public class NotificationClient {
     }
 
     /**
-     * Handles pinpoint FCM push messages by posting a local notification when
+     * Handles Pinpoint FCM push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
@@ -164,18 +164,18 @@ public class NotificationClient {
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
     @Deprecated
-    public PinpointPushResult handleFCMCampaignPush(final String from,
+    public CampaignPushResult handleFCMCampaignPush(final String from,
                                                     final Map<String, String> data) {
         NotificationDetails.NotificationDetailsBuilder notificationDetailsBuilder =
                 NotificationDetails.builder()
                 .from(from)
                 .mapData(data)
                 .intentAction(FCM_INTENT_ACTION);
-        return notificationClientBase.handleCampaignPush(notificationDetailsBuilder.build());
+        return handleCampaignPush(notificationDetailsBuilder.build());
     }
 
     /**
-     * Handles pinpoint GCM push messages by posting a local notification when
+     * Handles Pinpoint GCM push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
@@ -190,14 +190,14 @@ public class NotificationClient {
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
     @Deprecated
-    public PinpointPushResult handleGCMCampaignPush(final String from, final Bundle data, final Class<? extends Service> serviceClass) {
+    public CampaignPushResult handleGCMCampaignPush(final String from, final Bundle data, final Class<? extends Service> serviceClass) {
         NotificationDetails.NotificationDetailsBuilder notificationDetailsBuilder =
                 NotificationDetails.builder()
                 .from(from)
                 .bundle(data)
                 .serviceClass(serviceClass)
                 .intentAction(GCM_INTENT_ACTION);
-        return notificationClientBase.handleCampaignPush(notificationDetailsBuilder.build());
+        return handleCampaignPush(notificationDetailsBuilder.build());
     }
 
     /**
@@ -277,7 +277,7 @@ public class NotificationClient {
     }
 
     /**
-     * Handles pinpoint push messages by posting a local notification when
+     * Handles Pinpoint push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
@@ -295,14 +295,24 @@ public class NotificationClient {
      * @deprecated see {@link #handlePushNotification(NotificationDetails)}
      */
     @Deprecated
-    public PinpointPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
-        return notificationClientBase.handlePushNotification(notificationDetails);
+    public CampaignPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
+        return CampaignPushResult.valueOf(notificationClientBase.handlePushNotification(notificationDetails).toString());
     }
 
-
+    /**
+     * @deprecated see {@link PinpointPushResult}
+     */
+    public enum CampaignPushResult {
+        NOT_HANDLED,
+        POSTED_NOTIFICATION,
+        APP_IN_FOREGROUND,
+        OPTED_OUT,
+        NOTIFICATION_OPENED,
+        SILENT
+    }
 
     /**
-     * Result values of handling a pinpoint push message.
+     * Result values of handling a Pinpoint push message.
      */
     public enum PinpointPushResult {
         /**

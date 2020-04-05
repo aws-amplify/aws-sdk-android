@@ -359,7 +359,7 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Adds the specified pinpoint attributes to events to track Campaign/Journey Analytic
+     * Adds the specified Pinpoint attributes to events to track Campaign/Journey analytics
      * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
@@ -376,7 +376,7 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Clears pinpoint attributes
+     * Clears Pinpoint attributes
      * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.

@@ -108,10 +108,6 @@ abstract class NotificationClientBase {
     private static final int ANDROID_OREO = 26;
     private static final int NOTIFICATION_CHANNEL_IMPORTANCE = 4; //IMPORTANCE_HIGH = 4. This corresponds to PRIORITY_HIGH (value 1) in NotificationBuilder. setPriority is deprecated in API 26
 
-    private static final String CAMPAIGN_AWS_EVENT_TYPE_OPENED = "_campaign.opened_notification";
-    private static final String CAMPAIGN_AWS_EVENT_TYPE_RECEIVED_FOREGROUND = "_campaign.received_foreground";
-    private static final String CAMPAIGN_AWS_EVENT_TYPE_RECEIVED_BACKGROUND = "_campaign.received_background";
-    private static final String JOURNEY_AWS_EVENT_TYPE_OPENED = "_journey.opened_notification";
     private static final String CHECK_OP_NO_THROW = "checkOpNoThrow";
     private static final String OP_POST_NOTIFICATION = "OP_POST_NOTIFICATION";
     private static final String APP_OPS_MODE_ALLOWED = "MODE_ALLOWED";
@@ -155,7 +151,7 @@ abstract class NotificationClientBase {
     /**
      * Constructor.
      *
-     * @param pinpointContext the pinpoint context. {@link PinpointContext}
+     * @param pinpointContext the Pinpoint context. {@link PinpointContext}
      */
     protected NotificationClientBase(final PinpointContext pinpointContext) {
         this.pinpointContext = pinpointContext;
@@ -657,7 +653,7 @@ abstract class NotificationClientBase {
      *
      * @param data             the data to push
      * @param intentReceiver   the class that handles receiving messages.
-     * @param eventSourceId       pinpoint campaign/journey id
+     * @param eventSourceId       Pinpoint campaign/journey id
      * @param requestId        request id
      * @param intentAction     intent action
      * @return {@link PendingIntent}
@@ -675,7 +671,7 @@ abstract class NotificationClientBase {
      * intent.
      *
      * @param data the data to push
-     * @param eventSourceId identifies the pinpoint campaign
+     * @param eventSourceId identifies the Pinpoint campaign
      * @param requestId identifies the notification request
      * @param intentAction specifies the action of the intent
      * @param intentReceiver the target class that handles receiving messages.
@@ -870,7 +866,7 @@ abstract class NotificationClientBase {
     }
 
     /**
-     * Handles pinpoint push messages by posting a local notification when
+     * Handles Pinpoint push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
@@ -881,13 +877,13 @@ abstract class NotificationClientBase {
      */
     public NotificationClient.PinpointPushResult handlePushNotification(NotificationDetails notificationDetails) {
         final EventSourceType eventSourceType = EventSourceType.getEventSourceType(notificationDetails.getBundle());
-        if(eventSourceType == null) {
+        if (EventSourceType.UNKNOWN_EVENT_SOURCE_NAME.equals(eventSourceType.getEventSourceName())) {
             return NotificationClient.PinpointPushResult.NOT_HANDLED;
         }
 
         final Bundle bundle = notificationDetails.getBundle();
-        Map<String, String> eventSourceAttributes = eventSourceType.getAttributeParser().getEventSourceAttributes(bundle);
-        if(eventSourceAttributes == null) {
+        Map<String, String> eventSourceAttributes = eventSourceType.getAttributeParser().parseAttributes(bundle);
+        if (eventSourceAttributes.isEmpty()) {
             return NotificationClient.PinpointPushResult.NOT_HANDLED;
         }
 

@@ -23,6 +23,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSyntaxException;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,99 +49,44 @@ public class EventSourceType {
     private String eventSourceActivityIdAttributeKey;
     private String eventSourceKeyPrefix;
 
-    /**
-     * Campaign attributes are send from pinpoint flattened
-     * For example:
-     *  "pinpoint.campaign.campaign_id"
-     * Journey attributes come in JSON format
-     * This interface just seeks to abstract some of that away
-     * from the logic that handles the notfication
-     * @return
-     */
-    public interface EventSourceAttributeParser {
-        Map<String, String> getEventSourceAttributes(Bundle bundle);
-    }
+    private static final String CAMPAIGN_EVENT_SOURCE_NAME = "campaign";
+    private static final String JOURNEY_EVENT_SOURCE_NAME = "journey";
+    static final String UNKNOWN_EVENT_SOURCE_NAME = "unknown";
 
-    private static final EventSourceAttributeParser CAMPAIGN_PARSER = new EventSourceAttributeParser() {
-        @Override
-        public Map<String, String> getEventSourceAttributes(Bundle bundle) {
-            if(bundle == null) {
-                return null;
-            }
-            final Map<String, String> campaignAttributes = new HashMap<>();
-            String campaignKeyPrefix = CAMPAIGN.getEventSourceKeyPrefix();
+    private static final String CAMPAIGN_EVENT_SOURCE_PREFIX = "_campaign";
+    private static final String JOURNEY_EVENT_SOURCE_PREFIX = "_journey";
 
-            for(String key : bundle.keySet()) {
-                if (key.startsWith(campaignKeyPrefix)) {
-                    //If it matches the prefix, include it in the attributes
-                    //after stripping out the prefix
-                    campaignAttributes.put(key.replace(campaignKeyPrefix,""), bundle.getString(key));
-                }
-            }
-            return campaignAttributes.size() > 0 ? campaignAttributes : null;
-        }
-    };
-
-    private static final EventSourceAttributeParser JOURNEY_PARSER = new EventSourceAttributeParser() {
-        @Override
-        public Map<String, String> getEventSourceAttributes(Bundle bundle) {
-            String pinpointPayload = bundle.getString(PINPOINT_ATTRIBUTE_KEY);
-            if(pinpointPayload == null) {
-                return null;
-            }
-            Map<String, String> result = null;
-            try {
-                JsonElement pinpointJson = new JsonParser().parse(pinpointPayload);
-                JsonElement journeyJson = pinpointJson.getAsJsonObject().get(JOURNEY_ATTRIBUTE_KEY);
-                if(journeyJson == null) {
-                    return null;
-                }
-                result = new HashMap<>();
-                for(Map.Entry entry : journeyJson.getAsJsonObject().entrySet()) {
-                    result.put((String) entry.getKey(), ((JsonPrimitive)entry.getValue()).getAsString());
-                }
-            } catch(JsonSyntaxException ex) {
-                Log.w(TAG, "Exception attempting to parse pinpoint JSON payload.", ex);
-                Log.v(TAG, "Payload: "+pinpointPayload);
-                return null;
-            }
-
-            return result;
-        }
-    };
-
-    public static EventSourceType CAMPAIGN = new EventSourceType("campaign",
-            "_campaign",
+    private static EventSourceType CAMPAIGN = new EventSourceType(CAMPAIGN_EVENT_SOURCE_NAME,
+            CAMPAIGN_EVENT_SOURCE_PREFIX,
             CAMPAIGN_ID_ATTRIBUTE_KEY,
             CAMPAIGN_ACTIVITY_ID_ATTRIBUTE_KEY,
             CAMPAIGN_PUSH_KEY_PREFIX,
-            CAMPAIGN_PARSER);
-    public static EventSourceType JOURNEY = new EventSourceType("journey",
-            "_journey",
+            new CampaignAttributeParser());
+    private static EventSourceType JOURNEY = new EventSourceType(JOURNEY_EVENT_SOURCE_NAME,
+            JOURNEY_EVENT_SOURCE_PREFIX,
             JOURNEY_ID_ATTRIBUTE_KEY,
             JOURNEY_ACTIVITY_ID_ATTRIBUTE_KEY,
             null,
-            JOURNEY_PARSER);
+            new JourneyAttributeParser());
+    private static EventSourceType UNKNOWN = new EventSourceType(UNKNOWN_EVENT_SOURCE_NAME,
+            "",
+            "",
+            "",
+            "",
+            new EventSourceAttributeParser());
 
-    public static EventSourceType getEventSourceType(Bundle bundle) {
-        if(bundle == null) {
-            return null;
+    static EventSourceType getEventSourceType(Bundle bundle) {
+        if (bundle == null) {
+            return UNKNOWN;
         }
-        if(bundle.containsKey(CAMPAIGN.getEventSourceKeyPrefix()+CAMPAIGN.getEventSourceIdAttributeKey())) {
+        String campaignKey = CAMPAIGN.getEventSourceKeyPrefix() + CAMPAIGN.getEventSourceIdAttributeKey();
+        if (bundle.containsKey(campaignKey)) {
             return CAMPAIGN;
-        } else {
+        } else if (bundle.containsKey(PINPOINT_ATTRIBUTE_KEY) &&
+                  bundle.getString(PINPOINT_ATTRIBUTE_KEY).matches(".*\"journey_id\".*")) {
             return JOURNEY;
-        }
-    }
-
-    public static Map<String, String> getEventSourceAttributes(Bundle bundle) {
-        if(bundle == null) {
-            return null;
-        }
-        if(bundle.containsKey(CAMPAIGN.getEventSourceKeyPrefix()+CAMPAIGN.getEventSourceIdAttributeKey())) {
-            return CAMPAIGN_PARSER.getEventSourceAttributes(bundle);
         } else {
-            return JOURNEY_PARSER.getEventSourceAttributes(bundle);
+            return UNKNOWN;
         }
     }
 
@@ -151,44 +97,107 @@ public class EventSourceType {
                             String eventSourceKeyPrefix,
                             EventSourceAttributeParser attributeParser) {
         this.eventSourceName = eventSourceName;
-        this.eventTypeOpenend = eventSourcePrefix+"." + AWS_EVENT_TYPE_OPENED;
-        this.eventTypeReceivedBackground = eventSourcePrefix+"." + AWS_EVENT_TYPE_RECEIVED_BACKGROUND;
-        this.eventTypeReceivedForeground = eventSourcePrefix+"." + AWS_EVENT_TYPE_RECEIVED_FOREGROUND;
+        this.eventTypeOpenend = eventSourcePrefix + "." + AWS_EVENT_TYPE_OPENED;
+        this.eventTypeReceivedBackground = eventSourcePrefix + "." + AWS_EVENT_TYPE_RECEIVED_BACKGROUND;
+        this.eventTypeReceivedForeground = eventSourcePrefix + "." + AWS_EVENT_TYPE_RECEIVED_FOREGROUND;
         this.eventSourceIdAttributeKey = eventSourceIdAttributeKey;
         this.eventSourceActivityIdAttributeKey = eventSourceActivityIdAttributeKey;
         this.eventSourceKeyPrefix = eventSourceKeyPrefix;
         this.attributeParser = attributeParser;
     }
 
-    public EventSourceAttributeParser getAttributeParser() {
+    EventSourceAttributeParser getAttributeParser() {
         return attributeParser;
     }
 
-    public String getEventSourceName() {
+    String getEventSourceName() {
         return eventSourceName;
     }
 
-    public String getEventTypeOpenend() {
+    String getEventTypeOpenend() {
         return eventTypeOpenend;
     }
 
-    public String getEventTypeReceivedForeground() {
+    String getEventTypeReceivedForeground() {
         return eventTypeReceivedForeground;
     }
 
-    public String getEventTypeReceivedBackground() {
+    String getEventTypeReceivedBackground() {
         return eventTypeReceivedBackground;
     }
 
-    public String getEventSourceIdAttributeKey() {
+    String getEventSourceIdAttributeKey() {
         return eventSourceIdAttributeKey;
     }
 
-    public String getEventSourceActivityIdAttributeKey() {
+    String getEventSourceActivityIdAttributeKey() {
         return eventSourceActivityIdAttributeKey;
     }
 
-    public String getEventSourceKeyPrefix() {
+    String getEventSourceKeyPrefix() {
         return eventSourceKeyPrefix;
+    }
+
+    /**
+     * Campaign attributes are send from Pinpoint flattened
+     * For example:
+     *  "pinpoint.campaign.campaign_id"
+     * Journey attributes come in JSON format
+     * This class just seeks to abstract some of that away
+     * from the logic that handles the notfication and
+     * also provides a default implementation that returns
+     * an empty map.
+     */
+
+    public static class EventSourceAttributeParser {
+        public Map<String, String> parseAttributes(Bundle bundle) {
+            return Collections.emptyMap();
+        }
+    }
+
+    private static final class CampaignAttributeParser extends EventSourceAttributeParser {
+        @Override
+        public Map<String, String> parseAttributes(Bundle bundle) {
+            Map<String, String> result = new HashMap<>();
+            if (bundle == null) {
+                return result;
+            }
+            String campaignKeyPrefix = CAMPAIGN.getEventSourceKeyPrefix();
+            for (String key : bundle.keySet()) {
+                if (key.startsWith(campaignKeyPrefix)) {
+                    //If it matches the prefix, include it in the attributes
+                    //after stripping out the prefix
+                    result.put(key.replace(campaignKeyPrefix, ""), bundle.getString(key));
+                }
+            }
+            return result;
+        }
+    }
+
+    private static final class JourneyAttributeParser extends EventSourceAttributeParser {
+        @Override
+        public Map<String, String> parseAttributes(Bundle bundle) {
+            Map<String, String> result = new HashMap<>();
+            String pinpointPayload = bundle.getString(PINPOINT_ATTRIBUTE_KEY);
+            if (pinpointPayload == null) {
+                return result;
+            }
+            JsonElement pinpointJson;
+            try {
+                pinpointJson = new JsonParser().parse(pinpointPayload);
+            } catch (JsonSyntaxException ex) {
+                Log.w(TAG, "Exception attempting to parse pinpoint JSON payload.", ex);
+                Log.v(TAG, "Payload: " + pinpointPayload);
+                return result;
+            }
+            JsonElement journeyJson = pinpointJson.getAsJsonObject().get(JOURNEY_ATTRIBUTE_KEY);
+            if (journeyJson == null) {
+                return null;
+            }
+            for (Map.Entry entry : journeyJson.getAsJsonObject().entrySet()) {
+                result.put((String) entry.getKey(), ((JsonPrimitive) entry.getValue()).getAsString());
+            }
+            return result;
+        }
     }
 }

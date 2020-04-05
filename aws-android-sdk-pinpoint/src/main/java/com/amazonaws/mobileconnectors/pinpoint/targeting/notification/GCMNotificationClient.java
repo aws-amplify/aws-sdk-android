@@ -30,7 +30,7 @@ final class GCMNotificationClient extends NotificationClientBase {
     /**
      * Constructor.
      *
-     * @param pinpointContext the pinpoint context. {@link PinpointContext}
+     * @param pinpointContext the Pinpoint context. {@link PinpointContext}
      */
     protected GCMNotificationClient(PinpointContext pinpointContext) {
         super(pinpointContext);
