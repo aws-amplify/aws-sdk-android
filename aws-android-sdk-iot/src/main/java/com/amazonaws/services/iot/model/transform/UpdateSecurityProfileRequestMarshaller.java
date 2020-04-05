@@ -111,6 +111,19 @@ public class UpdateSecurityProfileRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (updateSecurityProfileRequest.getAdditionalMetricsToRetainV2() != null) {
+                java.util.List<MetricToRetain> additionalMetricsToRetainV2 = updateSecurityProfileRequest
+                        .getAdditionalMetricsToRetainV2();
+                jsonWriter.name("additionalMetricsToRetainV2");
+                jsonWriter.beginArray();
+                for (MetricToRetain additionalMetricsToRetainV2Item : additionalMetricsToRetainV2) {
+                    if (additionalMetricsToRetainV2Item != null) {
+                        MetricToRetainJsonMarshaller.getInstance().marshall(
+                                additionalMetricsToRetainV2Item, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (updateSecurityProfileRequest.getDeleteBehaviors() != null) {
                 Boolean deleteBehaviors = updateSecurityProfileRequest.getDeleteBehaviors();
                 jsonWriter.name("deleteBehaviors");

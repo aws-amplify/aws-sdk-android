@@ -35,35 +35,26 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for ListSecurityProfilesRequest
+ * JSON request marshaller for DeleteDimensionRequest
  */
-public class ListSecurityProfilesRequestMarshaller implements
-        Marshaller<Request<ListSecurityProfilesRequest>, ListSecurityProfilesRequest> {
+public class DeleteDimensionRequestMarshaller implements
+        Marshaller<Request<DeleteDimensionRequest>, DeleteDimensionRequest> {
 
-    public Request<ListSecurityProfilesRequest> marshall(
-            ListSecurityProfilesRequest listSecurityProfilesRequest) {
-        if (listSecurityProfilesRequest == null) {
+    public Request<DeleteDimensionRequest> marshall(DeleteDimensionRequest deleteDimensionRequest) {
+        if (deleteDimensionRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(ListSecurityProfilesRequest)");
+                    "Invalid argument passed to marshall(DeleteDimensionRequest)");
         }
 
-        Request<ListSecurityProfilesRequest> request = new DefaultRequest<ListSecurityProfilesRequest>(
-                listSecurityProfilesRequest, "AWSIot");
-        request.setHttpMethod(HttpMethodName.GET);
+        Request<DeleteDimensionRequest> request = new DefaultRequest<DeleteDimensionRequest>(
+                deleteDimensionRequest, "AWSIot");
+        request.setHttpMethod(HttpMethodName.DELETE);
 
-        String uriResourcePath = "/security-profiles";
-        if (listSecurityProfilesRequest.getNextToken() != null) {
-            request.addParameter("nextToken",
-                    StringUtils.fromString(listSecurityProfilesRequest.getNextToken()));
-        }
-        if (listSecurityProfilesRequest.getMaxResults() != null) {
-            request.addParameter("maxResults",
-                    StringUtils.fromInteger(listSecurityProfilesRequest.getMaxResults()));
-        }
-        if (listSecurityProfilesRequest.getDimensionName() != null) {
-            request.addParameter("dimensionName",
-                    StringUtils.fromString(listSecurityProfilesRequest.getDimensionName()));
-        }
+        String uriResourcePath = "/dimensions/{name}";
+        uriResourcePath = uriResourcePath.replace(
+                "{name}",
+                (deleteDimensionRequest.getName() == null) ? "" : StringUtils
+                        .fromString(deleteDimensionRequest.getName()));
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

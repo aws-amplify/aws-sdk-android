@@ -21,12 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the Device Defender security profiles you have created. You can use
- * filters to list only those security profiles associated with a thing group or
- * only those associated with your account.
+ * List the set of dimensions that are defined for your AWS account.
  * </p>
  */
-public class ListSecurityProfilesRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListDimensionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The token for the next set of results.
@@ -36,25 +34,13 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to retrieve at one time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
      */
     private Integer maxResults;
-
-    /**
-     * <p>
-     * A filter to limit results to the security profiles that use the defined
-     * dimension.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
-     */
-    private String dimensionName;
 
     /**
      * <p>
@@ -96,21 +82,21 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withNextToken(String nextToken) {
+    public ListDimensionsRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to retrieve at one time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
      *
      * @return <p>
-     *         The maximum number of results to return at one time.
+     *         The maximum number of results to retrieve at one time.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -119,14 +105,14 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to retrieve at one time.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 250<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     *            The maximum number of results to retrieve at one time.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -135,7 +121,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The maximum number of results to return at one time.
+     * The maximum number of results to retrieve at one time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -145,76 +131,13 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * <b>Range: </b>1 - 250<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of results to return at one time.
+     *            The maximum number of results to retrieve at one time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withMaxResults(Integer maxResults) {
+    public ListDimensionsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
-        return this;
-    }
-
-    /**
-     * <p>
-     * A filter to limit results to the security profiles that use the defined
-     * dimension.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
-     *
-     * @return <p>
-     *         A filter to limit results to the security profiles that use the
-     *         defined dimension.
-     *         </p>
-     */
-    public String getDimensionName() {
-        return dimensionName;
-    }
-
-    /**
-     * <p>
-     * A filter to limit results to the security profiles that use the defined
-     * dimension.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
-     *
-     * @param dimensionName <p>
-     *            A filter to limit results to the security profiles that use
-     *            the defined dimension.
-     *            </p>
-     */
-    public void setDimensionName(String dimensionName) {
-        this.dimensionName = dimensionName;
-    }
-
-    /**
-     * <p>
-     * A filter to limit results to the security profiles that use the defined
-     * dimension.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
-     *
-     * @param dimensionName <p>
-     *            A filter to limit results to the security profiles that use
-     *            the defined dimension.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public ListSecurityProfilesRequest withDimensionName(String dimensionName) {
-        this.dimensionName = dimensionName;
         return this;
     }
 
@@ -232,9 +155,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         if (getNextToken() != null)
             sb.append("nextToken: " + getNextToken() + ",");
         if (getMaxResults() != null)
-            sb.append("maxResults: " + getMaxResults() + ",");
-        if (getDimensionName() != null)
-            sb.append("dimensionName: " + getDimensionName());
+            sb.append("maxResults: " + getMaxResults());
         sb.append("}");
         return sb.toString();
     }
@@ -246,8 +167,6 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
 
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
-        hashCode = prime * hashCode
-                + ((getDimensionName() == null) ? 0 : getDimensionName().hashCode());
         return hashCode;
     }
 
@@ -258,9 +177,9 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         if (obj == null)
             return false;
 
-        if (obj instanceof ListSecurityProfilesRequest == false)
+        if (obj instanceof ListDimensionsRequest == false)
             return false;
-        ListSecurityProfilesRequest other = (ListSecurityProfilesRequest) obj;
+        ListDimensionsRequest other = (ListDimensionsRequest) obj;
 
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
@@ -271,11 +190,6 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
-            return false;
-        if (other.getDimensionName() == null ^ this.getDimensionName() == null)
-            return false;
-        if (other.getDimensionName() != null
-                && other.getDimensionName().equals(this.getDimensionName()) == false)
             return false;
         return true;
     }
