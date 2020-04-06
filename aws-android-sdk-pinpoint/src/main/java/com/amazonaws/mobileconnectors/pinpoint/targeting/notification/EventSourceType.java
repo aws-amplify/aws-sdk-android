@@ -33,7 +33,7 @@ import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.Not
 import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClientBase.JOURNEY_ACTIVITY_ID_ATTRIBUTE_KEY;
 import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClientBase.JOURNEY_ID_ATTRIBUTE_KEY;
 
-public class EventSourceType {
+class EventSourceType {
     private static final String TAG = EventSourceType.class.getSimpleName();
     private static final String AWS_EVENT_TYPE_OPENED = "opened_notification";
     private static final String AWS_EVENT_TYPE_RECEIVED_FOREGROUND = "received_foreground";
