@@ -829,7 +829,7 @@ abstract class NotificationClientBase {
     }
 
     /* pkg */
-    NotificationClient.PinpointPushResult handleNotificationOpen(
+    NotificationClient.PushResult handleNotificationOpen(
         Map<String, String> eventSourceAttributes,
         final Bundle data) {
         // Add any campaign global attributes
@@ -849,12 +849,12 @@ abstract class NotificationClientBase {
             final String url = data.getString(EVENT_SOURCE_URL_PUSH_KEY);
             if (url != null) {
                 openURL(url, false);
-                return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
+                return NotificationClient.PushResult.NOTIFICATION_OPENED;
             }
             final String deepLink = data.getString(EVENT_SOURCE_DEEP_LINK_PUSH_KEY);
             if (deepLink != null) {
                 openURL(deepLink, true);
-                return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
+                return NotificationClient.PushResult.NOTIFICATION_OPENED;
             }
             final String openApp = data.getString(EVENT_SOURCE_OPEN_APP_PUSH_KEY);
             if (openApp == null) {
@@ -862,7 +862,7 @@ abstract class NotificationClientBase {
             }
             openApp();
         }
-        return NotificationClient.PinpointPushResult.NOTIFICATION_OPENED;
+        return NotificationClient.PushResult.NOTIFICATION_OPENED;
     }
 
     /**
@@ -873,18 +873,18 @@ abstract class NotificationClientBase {
      * local broadcast is sent.
      *
      * @param notificationDetails the notification message received by the device's messaging service
-     * @return {@link NotificationClient.PinpointPushResult}.
+     * @return {@link NotificationClient.PushResult}.
      */
-    public NotificationClient.PinpointPushResult handlePushNotification(NotificationDetails notificationDetails) {
+    public NotificationClient.PushResult handlePushNotification(NotificationDetails notificationDetails) {
         final EventSourceType eventSourceType = EventSourceType.getEventSourceType(notificationDetails.getBundle());
         if (EventSourceType.UNKNOWN_EVENT_SOURCE_NAME.equals(eventSourceType.getEventSourceName())) {
-            return NotificationClient.PinpointPushResult.NOT_HANDLED;
+            return NotificationClient.PushResult.NOT_HANDLED;
         }
 
         final Bundle bundle = notificationDetails.getBundle();
         Map<String, String> eventSourceAttributes = eventSourceType.getAttributeParser().parseAttributes(bundle);
         if (eventSourceAttributes.isEmpty()) {
-            return NotificationClient.PinpointPushResult.NOT_HANDLED;
+            return NotificationClient.PushResult.NOT_HANDLED;
         }
 
         final boolean isAppInForeground = appUtil.isAppInForeground();
@@ -915,12 +915,12 @@ abstract class NotificationClientBase {
             // notifications in the foreground.
             if (!pinpointContext.getPinpointConfiguration().getShouldPostNotificationsInForeground() && isAppInForeground) {
                 // Notify the caller that the app was in the foreground.
-                return NotificationClient.PinpointPushResult.APP_IN_FOREGROUND;
+                return NotificationClient.PushResult.APP_IN_FOREGROUND;
             } else {
                 // Display a notification with an icon, title, message,
                 // image, and default sound.
                 if ("1".equalsIgnoreCase(bundle.getString(NOTIFICATION_SILENT_PUSH_KEY))) {
-                    return NotificationClient.PinpointPushResult.SILENT;
+                    return NotificationClient.PushResult.SILENT;
                 }
                 addPinpointAttributesToEvent(pushEvent, eventSourceAttributes);
                 // App is in the background; attempt to display a
@@ -942,7 +942,7 @@ abstract class NotificationClientBase {
                     pushEvent.addAttribute("isOptedOut", "true");
                     // We can't post a notification, so delegate to the
                     // passed in handler.
-                    return NotificationClient.PinpointPushResult.OPTED_OUT;
+                    return NotificationClient.PushResult.OPTED_OUT;
                 }
             }
         } finally {
@@ -950,14 +950,14 @@ abstract class NotificationClientBase {
             this.pinpointContext.getAnalyticsClient().submitEvents();
         }
 
-        return NotificationClient.PinpointPushResult.POSTED_NOTIFICATION;
+        return NotificationClient.PushResult.POSTED_NOTIFICATION;
     }
 
     /**
      * @deprecated Use {@link #handlePushNotification(NotificationDetails)}instead.
      */
     @Deprecated
-    public final NotificationClient.PinpointPushResult handleCampaignPush(NotificationDetails notificationDetails) {
+    public final NotificationClient.PushResult handleCampaignPush(NotificationDetails notificationDetails) {
         return handlePushNotification(notificationDetails);
     }
 

@@ -159,7 +159,7 @@ public class NotificationClient {
      *
      * @param from the from string received by the FCM service,
      * @param data the bundle received from the FCM service
-     * @return {@link PinpointPushResult}.
+     * @return {@link PushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
@@ -185,7 +185,7 @@ public class NotificationClient {
      * @param data         the bundle received from the GCM service
      * @param serviceClass the class extending GCMListenerService that handles
      *                     receiving GCM messages.
-     * @return {@link PinpointPushResult}.
+     * @return {@link PushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
@@ -284,10 +284,10 @@ public class NotificationClient {
      * local broadcast is sent.
      *
      * @param notificationDetails the notification message received by the device's messaging service
-     * @return {@link PinpointPushResult}.
+     * @return {@link PushResult}.
      *
      */
-    public PinpointPushResult handlePushNotification(final NotificationDetails notificationDetails) {
+    public PushResult handlePushNotification(final NotificationDetails notificationDetails) {
         return notificationClientBase.handlePushNotification(notificationDetails);
     }
 
@@ -300,7 +300,7 @@ public class NotificationClient {
     }
 
     /**
-     * @deprecated see {@link PinpointPushResult}
+     * @deprecated see {@link PushResult}
      */
     public enum CampaignPushResult {
         NOT_HANDLED,
@@ -314,7 +314,7 @@ public class NotificationClient {
     /**
      * Result values of handling a Pinpoint push message.
      */
-    public enum PinpointPushResult {
+    public enum PushResult {
         /**
          * The message wasn't for pinpoint.
          */
@@ -345,8 +345,8 @@ public class NotificationClient {
         SILENT
     }
 
-    PinpointPushResult handleNotificationOpen(Map<String, String> eventSourceAttributes,
-                                              final Bundle data) {
+    PushResult handleNotificationOpen(Map<String, String> eventSourceAttributes,
+                                      final Bundle data) {
         return notificationClientBase
                 .handleNotificationOpen(eventSourceAttributes, data);
     }

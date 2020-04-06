@@ -23,7 +23,6 @@ import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -31,10 +30,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.Whitebox;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.rule.PowerMockRule;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -50,7 +45,6 @@ import com.amazonaws.services.pinpoint.model.ChannelType;
 
 import android.app.Service;
 import android.os.Bundle;
-import org.robolectric.shadows.ShadowBitmap;
 
 import java.util.Map;
 
@@ -62,7 +56,6 @@ import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.spy;
@@ -195,10 +188,10 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
                         .serviceClass(Service.class)
                         .intentAction(GCM_INTENT_ACTION);
 
-        NotificationClient.PinpointPushResult pushResult
+        NotificationClient.PushResult pushResult
                 = target.handlePushNotification(notificationDetailsBuilder.build());
 
-        assertEquals(NotificationClient.PinpointPushResult.OPTED_OUT, pushResult);
+        assertEquals(NotificationClient.PushResult.OPTED_OUT, pushResult);
 
         ArgumentCaptor<AnalyticsEvent> eventCaptor = ArgumentCaptor.forClass(AnalyticsEvent.class);
         verify(mockEventRecorder, times(1)).recordEvent(eventCaptor.capture());
