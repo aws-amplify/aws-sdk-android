@@ -287,16 +287,16 @@ public class NotificationClient {
      * @return {@link PushResult}.
      *
      */
-    public PushResult handlePushNotification(final NotificationDetails notificationDetails) {
-        return notificationClientBase.handlePushNotification(notificationDetails);
+    public PushResult handleNotificationReceived(final NotificationDetails notificationDetails) {
+        return notificationClientBase.handleNotificationReceived(notificationDetails);
     }
 
     /**
-     * @deprecated see {@link #handlePushNotification(NotificationDetails)}
+     * @deprecated see {@link #handleNotificationReceived(NotificationDetails)}
      */
     @Deprecated
     public CampaignPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
-        return CampaignPushResult.valueOf(notificationClientBase.handlePushNotification(notificationDetails).toString());
+        return CampaignPushResult.valueOf(notificationClientBase.handleNotificationReceived(notificationDetails).toString());
     }
 
     /**

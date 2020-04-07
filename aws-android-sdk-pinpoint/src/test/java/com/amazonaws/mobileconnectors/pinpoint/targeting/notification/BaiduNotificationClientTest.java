@@ -241,12 +241,9 @@ public class BaiduNotificationClientTest extends MobileAnalyticsTestBase {
         for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
-        assertThat(receivedEvent.getAllAttributes().size(), is(5));
+        assertThat(receivedEvent.getAllAttributes().size(), is(2));
         assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
         assertThat(receivedEvent.getAttribute("isAppInForeground"), is("true"));
-        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
-        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
-        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
         // optOut is true because this test can't get the app icon resource id.
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 

@@ -875,7 +875,7 @@ abstract class NotificationClientBase {
      * @param notificationDetails the notification message received by the device's messaging service
      * @return {@link NotificationClient.PushResult}.
      */
-    public NotificationClient.PushResult handlePushNotification(NotificationDetails notificationDetails) {
+    public NotificationClient.PushResult handleNotificationReceived(NotificationDetails notificationDetails) {
         final EventSourceType eventSourceType = EventSourceType.getEventSourceType(notificationDetails.getBundle());
         if (EventSourceType.UNKNOWN_EVENT_SOURCE_NAME.equals(eventSourceType.getEventSourceName())) {
             return NotificationClient.PushResult.NOT_HANDLED;
@@ -907,6 +907,14 @@ abstract class NotificationClientBase {
         if (isAppInForeground) {
             pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedForeground());
         } else {
+            //This call removes previous events identifiers from the
+            //globalAttributes collection in AnalyticsEvent.
+            pinpointContext.getAnalyticsClient().clearEventSourceAttributes();
+            addGlobalEventSourceAttributes(eventSourceAttributes);
+            //This adds to the eventSourceAttributes collection
+            //so the analytics client knows what to remove from
+            //from the globalAttributes collection
+            pinpointContext.getAnalyticsClient().setEventSourceAttributes(eventSourceAttributes);
             pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedBackground());
         }
         pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
@@ -922,14 +930,6 @@ abstract class NotificationClientBase {
                 if ("1".equalsIgnoreCase(bundle.getString(NOTIFICATION_SILENT_PUSH_KEY))) {
                     return NotificationClient.PushResult.SILENT;
                 }
-                //This call removes previous events identifiers from the
-                //globalAttributes collection in AnalyticsEvent.
-                pinpointContext.getAnalyticsClient().clearEventSourceAttributes();
-                addGlobalEventSourceAttributes(eventSourceAttributes);
-                //This adds to the eventSourceAttributes collection
-                //so the analytics client knows what to remove from
-                //from the globalAttributes collection
-                pinpointContext.getAnalyticsClient().setEventSourceAttributes(eventSourceAttributes);
                 // App is in the background; attempt to display a
                 // notification in the notification center.,
                 if (!areAppNotificationsEnabled() ||
@@ -961,11 +961,11 @@ abstract class NotificationClientBase {
     }
 
     /**
-     * @deprecated Use {@link #handlePushNotification(NotificationDetails)}instead.
+     * @deprecated Use {@link #handleNotificationReceived(NotificationDetails)}instead.
      */
     @Deprecated
     public final NotificationClient.PushResult handleCampaignPush(NotificationDetails notificationDetails) {
-        return handlePushNotification(notificationDetails);
+        return handleNotificationReceived(notificationDetails);
     }
 
     /**
