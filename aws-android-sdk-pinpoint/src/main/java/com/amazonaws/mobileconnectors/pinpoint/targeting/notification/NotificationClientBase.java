@@ -239,23 +239,35 @@ abstract class NotificationClientBase {
      */
     public abstract String getChannelType();
 
-    private void addGlobalEventSourceAttributes(
-        final Map<String, String> eventSourceAttributes) {
-        for (final Map.Entry<String, String> entry : eventSourceAttributes.entrySet()) {
+    /**
+     * Replaces the current event source attributes (if any)
+     * with a new set of event source attributes
+     * @param attributes map of attribute values
+     */
+    private void updateEventSourceGlobally(final Map<String, String> attributes) {
+        //This call removes previous events identifiers from the
+        //globalAttributes collection in AnalyticsEvent.
+        pinpointContext.getAnalyticsClient().clearEventSourceAttributes();
+        addGlobalAttributes(attributes);
+        //This adds to the eventSourceAttributes collection
+        //so the analytics client knows what to remove from
+        //from the globalAttributes collection
+        pinpointContext.getAnalyticsClient().setEventSourceAttributes(attributes);
+    }
+
+    /**
+     * Adds the items in the input attributes collection
+     * to the AnalyticsClient's globalAttributes collection
+     * @param attributes map of attribute values
+     */
+    private void addGlobalAttributes(
+        final Map<String, String> attributes) {
+        for (final Map.Entry<String, String> entry : attributes.entrySet()) {
             if (entry.getValue() != null) {
                 this.pinpointContext.getAnalyticsClient().addGlobalAttribute(entry.getKey(), entry.getValue());
             }
         }
     }
-
-    private void addPinpointAttributesToEvent(final AnalyticsEvent pushEvent, final Map<String, String> eventSourceAttributes) {
-        for (final Map.Entry<String, String> entry : eventSourceAttributes.entrySet()) {
-            if (entry.getValue() != null) {
-                pushEvent.addAttribute(entry.getKey(), entry.getValue());
-            }
-        }
-    }
-
 
     private Resources getPackageResources() {
         final PackageManager packageManager = pinpointContext.getApplicationContext().getPackageManager();
@@ -839,7 +851,7 @@ abstract class NotificationClientBase {
             if (this.pinpointContext.getSessionClient() != null) {
                 this.pinpointContext.getSessionClient().stopSession();
             }
-            addGlobalEventSourceAttributes(eventSourceAttributes);
+            updateEventSourceGlobally(eventSourceAttributes);
 
             String eventType = eventSourceType.getEventTypeOpenend();
             final AnalyticsEvent pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventType);
@@ -907,14 +919,7 @@ abstract class NotificationClientBase {
         if (isAppInForeground) {
             pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedForeground());
         } else {
-            //This call removes previous events identifiers from the
-            //globalAttributes collection in AnalyticsEvent.
-            pinpointContext.getAnalyticsClient().clearEventSourceAttributes();
-            addGlobalEventSourceAttributes(eventSourceAttributes);
-            //This adds to the eventSourceAttributes collection
-            //so the analytics client knows what to remove from
-            //from the globalAttributes collection
-            pinpointContext.getAnalyticsClient().setEventSourceAttributes(eventSourceAttributes);
+            updateEventSourceGlobally(eventSourceAttributes);
             pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedBackground());
         }
         pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
