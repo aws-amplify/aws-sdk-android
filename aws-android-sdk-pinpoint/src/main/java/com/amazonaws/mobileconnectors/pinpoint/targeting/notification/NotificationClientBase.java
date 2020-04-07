@@ -922,7 +922,14 @@ abstract class NotificationClientBase {
                 if ("1".equalsIgnoreCase(bundle.getString(NOTIFICATION_SILENT_PUSH_KEY))) {
                     return NotificationClient.PushResult.SILENT;
                 }
-                addPinpointAttributesToEvent(pushEvent, eventSourceAttributes);
+                //This call removes previous events identifiers from the
+                //globalAttributes collection in AnalyticsEvent.
+                pinpointContext.getAnalyticsClient().clearEventSourceAttributes();
+                addGlobalEventSourceAttributes(eventSourceAttributes);
+                //This adds to the eventSourceAttributes collection
+                //so the analytics client knows what to remove from
+                //from the globalAttributes collection
+                pinpointContext.getAnalyticsClient().setEventSourceAttributes(eventSourceAttributes);
                 // App is in the background; attempt to display a
                 // notification in the notification center.,
                 if (!areAppNotificationsEnabled() ||
