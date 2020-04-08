@@ -42,7 +42,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
     private static final String BUCKET_NAME = "android-sdk-s3-version-iteration-test-"
-            + new Date().getTime();
+            + System.currentTimeMillis();
 
     @After
     public void deleteBucketContents() throws Exception {

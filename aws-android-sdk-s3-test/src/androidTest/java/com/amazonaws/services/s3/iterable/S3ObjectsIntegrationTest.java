@@ -37,10 +37,10 @@ public class S3ObjectsIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
     private static final String BUCKET_NAME = "android-sdk-s3-object-iteration-test-"
-            + new Date().getTime();
+            + System.currentTimeMillis();
 
     @AfterClass
-    public static void tearDown() throws Exception {
+    public static void tearDown() {
         deleteBucketAndAllContents(BUCKET_NAME);
     }
 

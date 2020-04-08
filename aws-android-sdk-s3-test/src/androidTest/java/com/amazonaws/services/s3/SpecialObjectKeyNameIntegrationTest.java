@@ -37,7 +37,8 @@ import java.util.List;
 /** Tests that S3 could handle special key names. **/
 public class SpecialObjectKeyNameIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String BUCKET_NAME = "android-sdk-special-key-test-bucket-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-special-key-test-bucket-"
+            + System.currentTimeMillis();
     private static final String OBJECT_CONTENTS = "Special key name test";
 
     @BeforeClass

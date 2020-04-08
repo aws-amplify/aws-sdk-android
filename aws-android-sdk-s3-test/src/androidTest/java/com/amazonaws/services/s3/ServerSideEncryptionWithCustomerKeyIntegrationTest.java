@@ -64,7 +64,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
 
     /** The bucket created and used by these tests */
     private static final String BUCKET_NAME = "android-sdk-server-side-encryption-integ-test-"
-            + new Date().getTime();
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
     private static final String KEY = "key";

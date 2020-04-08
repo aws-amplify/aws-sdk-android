@@ -59,7 +59,8 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
     private static final String KEY_NAME_WITH_SPECIAL_CHARS = "special-chars-@$%";
 
     /** The name of the bucket created, used, and deleted by these tests */
-    private static final String BUCKET_NAME = "android-sdk-list-objects-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-list-objects-integ-test-"
+            + System.currentTimeMillis();
 
     /** List of all keys created by these tests */
     private final List<String> keys = new ArrayList<String>();

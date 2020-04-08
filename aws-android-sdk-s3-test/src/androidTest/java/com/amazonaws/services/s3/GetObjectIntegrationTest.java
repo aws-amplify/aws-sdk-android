@@ -64,10 +64,11 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     private static final boolean ANDROID_TESTING = false;
 
     /** The bucket created and used by these tests */
-    private static final String BUCKET_NAME = "android-sdk-get-object-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-get-object-integ-test-"
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
-    private static final String key = "key";
+    private static final String KEY = "key";
 
     /** A date earlier than the uploaded object's last modified date */
     private static Date earlierDate;
@@ -129,8 +130,8 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         ObjectMetadata metadata = null;
         if (!ANDROID_TESTING) {
             file = new RandomTempFile("get-object-integ-test", fileSize);
-            s3.putObject(BUCKET_NAME, key, file);
-            s3.putObject(REQUESTER_PAYS_BUCKET_NAME, key, file);
+            s3.putObject(BUCKET_NAME, KEY, file);
+            s3.putObject(REQUESTER_PAYS_BUCKET_NAME, KEY, file);
         } else {
             file = getRandomTempFile("foo", fileSize);
             final ByteArrayInputStream bais = new ByteArrayInputStream(tempData);
@@ -138,11 +139,11 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
             metadata = new ObjectMetadata();
             metadata.setContentLength(fileSize);
 
-            s3.putObject(new PutObjectRequest(BUCKET_NAME, key, bais, metadata));
+            s3.putObject(new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata));
             bais.close();
         }
 
-        metadata = s3.getObjectMetadata(BUCKET_NAME, key);
+        metadata = s3.getObjectMetadata(BUCKET_NAME, KEY);
         etag = metadata.getETag();
 
         final Date lastModified = metadata.getLastModified();
@@ -161,7 +162,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testCloseS3Object() {
 
-        final S3Object object = s3.getObject(BUCKET_NAME, key);
+        final S3Object object = s3.getObject(BUCKET_NAME, KEY);
 
         try {
             drainStream(object.getObjectContent());
@@ -179,7 +180,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testRange() throws Exception {
-        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withRange(50, 100));
 
         assertEquals(51L, drainStream(object.getObjectContent()));
@@ -191,7 +192,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testNonMatchingETagConstraint() {
-        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withNonmatchingETagConstraint("non-matching-etag")
                 .withNonmatchingETagConstraint("another-non-matching-etag"));
 
@@ -203,7 +204,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
                     object.getObjectContent());
         }
 
-        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withNonmatchingETagConstraint(etag)));
     }
 
@@ -214,7 +215,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     public void testResponseHeaders() {
         final String override = "OVERRIDE";
 
-        S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withCacheControl(override)));
 
@@ -227,7 +228,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertEquals(override, object.getObjectMetadata().getCacheControl());
 
-        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withContentDisposition(override)));
         if (androidRootDir == null) {
@@ -239,7 +240,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertEquals(override, object.getObjectMetadata().getContentDisposition());
 
-        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withContentEncoding(override)));
         if (androidRootDir == null) {
@@ -251,7 +252,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertEquals(override, object.getObjectMetadata().getContentEncoding());
 
-        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withContentLanguage(override)));
         if (androidRootDir == null) {
@@ -264,7 +265,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         assertEquals(override,
                 object.getObjectMetadata().getRawMetadata().get("Content-Language"));
 
-        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withContentType(override)));
         if (androidRootDir == null) {
@@ -276,7 +277,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertEquals(override, object.getObjectMetadata().getContentType());
 
-        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withExpires("Sat, 01 Jan 2000 00:00:00 GMT")));
         if (androidRootDir == null) {
@@ -288,7 +289,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertEquals(new Date(946684800000L), object.getObjectMetadata().getHttpExpiresDate());
 
-        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withResponseHeaders(new ResponseHeaderOverrides()
                         .withCacheControl(override).withContentDisposition(override)
                         .withContentEncoding(override)
@@ -315,7 +316,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testMatchingETagConstraint() {
-        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withMatchingETagConstraint(etag)
                 .withMatchingETagConstraint("one-that-doesn't-match"));
         if (androidRootDir == null) {
@@ -327,7 +328,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertNull(object.getObjectMetadata().getVersionId());
 
-        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withMatchingETagConstraint("another-non-matching-etag")));
     }
 
@@ -337,7 +338,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testModifiedSinceConstraint() {
-        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withModifiedSinceConstraint(earlierDate));
         if (androidRootDir == null) {
             assertFileEqualsStream(file, object.getObjectContent());
@@ -348,7 +349,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertNull(object.getObjectMetadata().getVersionId());
 
-        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withModifiedSinceConstraint(laterDate)));
     }
 
@@ -358,7 +359,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testUnmodifiedSinceConstraint() {
-        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withUnmodifiedSinceConstraint(laterDate));
         if (androidRootDir == null) {
             assertFileEqualsStream(file, object.getObjectContent());
@@ -369,7 +370,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         }
         assertNull(object.getObjectMetadata().getVersionId());
 
-        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, key)
+        assertNull(s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY)
                 .withUnmodifiedSinceConstraint(earlierDate)));
     }
 
@@ -380,7 +381,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
     public void testGetObjectAsFile() throws Exception {
         if (androidRootDir == null) {
             final File tempFile = File.createTempFile("aws-java-sdk-integ-test", ".dat");
-            final ObjectMetadata objectMetadata = s3.getObject(new GetObjectRequest(BUCKET_NAME, key),
+            final ObjectMetadata objectMetadata = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY),
                     tempFile);
             assertNotNull(objectMetadata.getLastModified());
             assertNotNull(objectMetadata.getContentType());
@@ -388,7 +389,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
             assertTrue(tempFile.exists());
             assertFileEqualsStream(tempFile, new FileInputStream(file));
         } else {
-            final S3Object objectData = s3.getObject(new GetObjectRequest(BUCKET_NAME, key));
+            final S3Object objectData = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY));
             final ObjectMetadata objectMetadata = objectData.getObjectMetadata();
             assertNotNull(objectMetadata.getLastModified());
 
@@ -454,10 +455,10 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         final String regionalBucketName = BUCKET_NAME + ".with.periods.regional";
         try {
             regionalClient.createBucket(regionalBucketName);
-            regionalClient.putObject(regionalBucketName, key, file);
+            regionalClient.putObject(regionalBucketName, KEY, file);
 
             final S3Object objectData = regionalClient.getObject(new GetObjectRequest(regionalBucketName,
-                    key));
+                    KEY));
             final ObjectMetadata objectMetadata = objectData.getObjectMetadata();
             assertNotNull(objectMetadata.getLastModified());
 
@@ -476,7 +477,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testAbortConnection() throws Exception {
-        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, key));
+        final S3Object object = s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY));
         final byte[] content = new byte[1024];
         final S3ObjectInputStream objectContent = object.getObjectContent();
         objectContent.read(content);
@@ -520,7 +521,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         // Matches the default client set up in S3IntegrationTestBase
         AmazonS3 s3Local = new AmazonS3Client(credentials, Region.getRegion(Regions.US_WEST_1));
 
-        final S3Object obj = s3Local.getObject(BUCKET_NAME, key);
+        final S3Object obj = s3Local.getObject(BUCKET_NAME, KEY);
 
         s3Local = null;
 
@@ -575,9 +576,9 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
         s3.setBucketAcl(REQUESTER_PAYS_BUCKET_NAME, bucketAcl);
 
         // Setting the Acl for the requester for the newly created object.
-        final AccessControlList objectAcl = s3.getObjectAcl(REQUESTER_PAYS_BUCKET_NAME, key);
+        final AccessControlList objectAcl = s3.getObjectAcl(REQUESTER_PAYS_BUCKET_NAME, KEY);
         objectAcl.grantPermission(new CanonicalGrantee(id), Permission.Read);
-        s3.setObjectAcl(REQUESTER_PAYS_BUCKET_NAME, key, objectAcl);
+        s3.setObjectAcl(REQUESTER_PAYS_BUCKET_NAME, KEY, objectAcl);
 
         // Checking if requester pays is disabled for the bucket.
         assertFalse(s3.isRequesterPaysEnabled(REQUESTER_PAYS_BUCKET_NAME));
@@ -590,7 +591,7 @@ public class GetObjectIntegrationTest extends S3IntegrationTestBase {
 
         // Reading the object with requester pays enabled in getObject request.
         final GetObjectRequest getObjectRequest = new GetObjectRequest(
-                REQUESTER_PAYS_BUCKET_NAME, key, true);
+                REQUESTER_PAYS_BUCKET_NAME, KEY, true);
         final S3Object s3Object = requester.getObject(getObjectRequest);
 
         // Checking if requester is charged.

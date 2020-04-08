@@ -58,7 +58,8 @@ import java.util.Map;
  */
 public class VersioningIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String BUCKET_NAME = "android-sdk-versioning-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-versioning-integ-test-"
+            + System.currentTimeMillis();
     private static final String UNVERSIONED_KEY = "unversionedKey";
     private static final String VERSIONED_KEY = "key";
     private static final String DELETED_KEY = "deletedKey";

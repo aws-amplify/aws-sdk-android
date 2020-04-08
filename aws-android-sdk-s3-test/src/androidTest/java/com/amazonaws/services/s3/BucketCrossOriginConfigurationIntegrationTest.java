@@ -36,7 +36,7 @@ public class BucketCrossOriginConfigurationIntegrationTest extends S3Integration
 
     /** The bucket created and used by these tests */
     private static final String BUCKET_NAME = "android-sdk-bucket-cross-origin-integ-test-"
-            + new Date().getTime();
+            + System.currentTimeMillis();
 
     private static final int MAX_AGE_SECONDS = 3000;
     private static final String EXPOSE_HEADER = "x-amz-server-side-encryption";

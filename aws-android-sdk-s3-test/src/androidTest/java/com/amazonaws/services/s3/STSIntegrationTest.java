@@ -56,7 +56,8 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
     private static AmazonS3Client s3;
 
     /** The bucket created and used by these tests */
-    private static final String BUCKET_NAME = "android-sdk-sts-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-sts-integ-test-"
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
     private static final String key = "key";

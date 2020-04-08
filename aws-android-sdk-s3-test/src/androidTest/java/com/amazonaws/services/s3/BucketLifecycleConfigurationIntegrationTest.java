@@ -36,7 +36,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.Date;
 
 /**
  * Integration tests for multi object delete.
@@ -47,10 +46,10 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
 
     /** The bucket created and used by these tests */
     private static final String BUCKET_NAME = "android-sdk-bucket-lifecycle-integ-test-"
-            + new Date().getTime();
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
-    private static final String key = "key";
+    private static final String KEY = "key";
 
     /** The file containing the test data uploaded to S3 */
     private static File file = null;
@@ -113,7 +112,7 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
         ObjectMetadata metadata = null;
         if (!ANDROID_TESTING) {
             file = new RandomTempFile("get-object-integ-test", 1000L);
-            s3.putObject(BUCKET_NAME, key, file);
+            s3.putObject(BUCKET_NAME, KEY, file);
         } else {
             file = S3IntegrationTestBase.getRandomTempFile("foo", 1000L);
             ByteArrayInputStream bais = new ByteArrayInputStream(tempData);
@@ -121,7 +120,7 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
             metadata = new ObjectMetadata();
             metadata.setContentLength(1000);
 
-            s3.putObject(new PutObjectRequest(BUCKET_NAME, key, bais, metadata));
+            s3.putObject(new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata));
             bais.close();
         }
     }

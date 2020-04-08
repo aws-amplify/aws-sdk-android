@@ -47,7 +47,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static junit.framework.Assert.assertNull;
@@ -62,10 +61,10 @@ import static org.junit.Assert.fail;
 public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
-    private static final String BUCKET_NAME = "android-sdk-s3-client-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-s3-client-integ-test-" + System.currentTimeMillis();
 
     /** The key used in these tests */
-    private static final String key = "key";
+    private static final String KEY = "key";
 
     /** The file containing the test data uploaded to S3 */
     private static File file = null;
@@ -133,7 +132,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     public void testIsRequesterPays() throws Exception {
         file = S3IntegrationTestBase.getRandomTempFile("foo", 1000L);
 
-        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, key, bais, metadata);
+        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata);
         putObjectRequest.setRequesterPays(true);
 
         s3.putObject(putObjectRequest);
@@ -144,7 +143,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     public void testObjectTagging() throws Exception {
         try {
             // Create an object, add two new tags, and upload the object to Amazon S3.
-            PutObjectRequest putRequest = new PutObjectRequest(BUCKET_NAME, key, bais, metadata);
+            PutObjectRequest putRequest = new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata);
             List<Tag> tags = new ArrayList<Tag>();
             tags.add(new Tag("Tag 1", "This is tag 1"));
             tags.add(new Tag("Tag 2", "This is tag 2"));
@@ -152,7 +151,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
             PutObjectResult putResult = s3.putObject(putRequest);
 
             // Retrieve the object's tags.
-            GetObjectTaggingRequest getTaggingRequest = new GetObjectTaggingRequest(BUCKET_NAME, key);
+            GetObjectTaggingRequest getTaggingRequest = new GetObjectTaggingRequest(BUCKET_NAME, KEY);
             GetObjectTaggingResult getTagsResult = s3.getObjectTagging(getTaggingRequest);
             List<Tag> resultTags = getTagsResult.getTagSet();
             assertEquals(tags.size(), resultTags.size());
@@ -161,7 +160,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
             List<Tag> newTags = new ArrayList<Tag>();
             newTags.add(new Tag("Tag 3", "This is tag 3"));
             newTags.add(new Tag("Tag 4", "This is tag 4"));
-            s3.setObjectTagging(new SetObjectTaggingRequest(BUCKET_NAME, key, new ObjectTagging(newTags)));
+            s3.setObjectTagging(new SetObjectTaggingRequest(BUCKET_NAME, KEY, new ObjectTagging(newTags)));
             
             // Retrieve the object's tags.
             getTagsResult = s3.getObjectTagging(getTaggingRequest);

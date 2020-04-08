@@ -69,7 +69,8 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     private static final String EXPECTED_OBJECT_CONTENTS = "Hello S3 Java client world!!!";
 
     /** Name of the test bucket these tests will create, test, delete, etc */
-    private static final String EXPECTED_BUCKET_NAME = "android-sdk-integ-test-bucket-" + new Date().getTime();
+    private static final String EXPECTED_BUCKET_NAME = "android-sdk-integ-test-bucket-"
+            + System.currentTimeMillis();
 
     /** Name of the test S3 account running these tests */
     private final String expectedS3AccountOwnerName = "aws-dr-mobile-test-android";
@@ -443,7 +444,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testGetBucketLocation() {
-        assertEquals("us-west-1", s3.getBucketLocation(EXPECTED_BUCKET_NAME));
+        assertEquals(Regions.US_WEST_1.getName(), s3.getBucketLocation(EXPECTED_BUCKET_NAME));
     }
 
     /*
