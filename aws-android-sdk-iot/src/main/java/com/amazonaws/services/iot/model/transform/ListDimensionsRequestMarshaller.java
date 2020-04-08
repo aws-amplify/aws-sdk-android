@@ -35,34 +35,29 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for ListSecurityProfilesRequest
+ * JSON request marshaller for ListDimensionsRequest
  */
-public class ListSecurityProfilesRequestMarshaller implements
-        Marshaller<Request<ListSecurityProfilesRequest>, ListSecurityProfilesRequest> {
+public class ListDimensionsRequestMarshaller implements
+        Marshaller<Request<ListDimensionsRequest>, ListDimensionsRequest> {
 
-    public Request<ListSecurityProfilesRequest> marshall(
-            ListSecurityProfilesRequest listSecurityProfilesRequest) {
-        if (listSecurityProfilesRequest == null) {
+    public Request<ListDimensionsRequest> marshall(ListDimensionsRequest listDimensionsRequest) {
+        if (listDimensionsRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(ListSecurityProfilesRequest)");
+                    "Invalid argument passed to marshall(ListDimensionsRequest)");
         }
 
-        Request<ListSecurityProfilesRequest> request = new DefaultRequest<ListSecurityProfilesRequest>(
-                listSecurityProfilesRequest, "AWSIot");
+        Request<ListDimensionsRequest> request = new DefaultRequest<ListDimensionsRequest>(
+                listDimensionsRequest, "AWSIot");
         request.setHttpMethod(HttpMethodName.GET);
 
-        String uriResourcePath = "/security-profiles";
-        if (listSecurityProfilesRequest.getNextToken() != null) {
+        String uriResourcePath = "/dimensions";
+        if (listDimensionsRequest.getNextToken() != null) {
             request.addParameter("nextToken",
-                    StringUtils.fromString(listSecurityProfilesRequest.getNextToken()));
+                    StringUtils.fromString(listDimensionsRequest.getNextToken()));
         }
-        if (listSecurityProfilesRequest.getMaxResults() != null) {
+        if (listDimensionsRequest.getMaxResults() != null) {
             request.addParameter("maxResults",
-                    StringUtils.fromInteger(listSecurityProfilesRequest.getMaxResults()));
-        }
-        if (listSecurityProfilesRequest.getDimensionName() != null) {
-            request.addParameter("dimensionName",
-                    StringUtils.fromString(listSecurityProfilesRequest.getDimensionName()));
+                    StringUtils.fromInteger(listDimensionsRequest.getMaxResults()));
         }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {

@@ -21,45 +21,38 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Behavior
+ * JSON unmarshaller for response CreateDimensionResult
  */
-class BehaviorJsonUnmarshaller implements Unmarshaller<Behavior, JsonUnmarshallerContext> {
+public class CreateDimensionResultJsonUnmarshaller implements
+        Unmarshaller<CreateDimensionResult, JsonUnmarshallerContext> {
 
-    public Behavior unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public CreateDimensionResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        CreateDimensionResult createDimensionResult = new CreateDimensionResult();
+
         AwsJsonReader reader = context.getReader();
-        if (!reader.isContainer()) {
-            reader.skipValue();
-            return null;
-        }
-        Behavior behavior = new Behavior();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("name")) {
-                behavior.setName(StringJsonUnmarshaller.getInstance()
+                createDimensionResult.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("metric")) {
-                behavior.setMetric(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("metricDimension")) {
-                behavior.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("criteria")) {
-                behavior.setCriteria(BehaviorCriteriaJsonUnmarshaller.getInstance()
+            } else if (name.equals("arn")) {
+                createDimensionResult.setArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return behavior;
+
+        return createDimensionResult;
     }
 
-    private static BehaviorJsonUnmarshaller instance;
+    private static CreateDimensionResultJsonUnmarshaller instance;
 
-    public static BehaviorJsonUnmarshaller getInstance() {
+    public static CreateDimensionResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new BehaviorJsonUnmarshaller();
+            instance = new CreateDimensionResultJsonUnmarshaller();
         return instance;
     }
 }

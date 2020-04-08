@@ -21,45 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Behavior
+ * JSON unmarshaller for POJO MetricToRetain
  */
-class BehaviorJsonUnmarshaller implements Unmarshaller<Behavior, JsonUnmarshallerContext> {
+class MetricToRetainJsonUnmarshaller implements
+        Unmarshaller<MetricToRetain, JsonUnmarshallerContext> {
 
-    public Behavior unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public MetricToRetain unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Behavior behavior = new Behavior();
+        MetricToRetain metricToRetain = new MetricToRetain();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("name")) {
-                behavior.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("metric")) {
-                behavior.setMetric(StringJsonUnmarshaller.getInstance()
+            if (name.equals("metric")) {
+                metricToRetain.setMetric(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("metricDimension")) {
-                behavior.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("criteria")) {
-                behavior.setCriteria(BehaviorCriteriaJsonUnmarshaller.getInstance()
+                metricToRetain.setMetricDimension(MetricDimensionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return behavior;
+        return metricToRetain;
     }
 
-    private static BehaviorJsonUnmarshaller instance;
+    private static MetricToRetainJsonUnmarshaller instance;
 
-    public static BehaviorJsonUnmarshaller getInstance() {
+    public static MetricToRetainJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new BehaviorJsonUnmarshaller();
+            instance = new MetricToRetainJsonUnmarshaller();
         return instance;
     }
 }

@@ -104,7 +104,7 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Send data to CloudWatch logs.
+     * Send data to CloudWatch Logs.
      * </p>
      */
     private CloudwatchLogsAction cloudwatchLogs;
@@ -668,11 +668,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Send data to CloudWatch logs.
+     * Send data to CloudWatch Logs.
      * </p>
      *
      * @return <p>
-     *         Send data to CloudWatch logs.
+     *         Send data to CloudWatch Logs.
      *         </p>
      */
     public CloudwatchLogsAction getCloudwatchLogs() {
@@ -681,11 +681,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Send data to CloudWatch logs.
+     * Send data to CloudWatch Logs.
      * </p>
      *
      * @param cloudwatchLogs <p>
-     *            Send data to CloudWatch logs.
+     *            Send data to CloudWatch Logs.
      *            </p>
      */
     public void setCloudwatchLogs(CloudwatchLogsAction cloudwatchLogs) {
@@ -694,14 +694,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Send data to CloudWatch logs.
+     * Send data to CloudWatch Logs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cloudwatchLogs <p>
-     *            Send data to CloudWatch logs.
+     *            Send data to CloudWatch Logs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
