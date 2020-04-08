@@ -427,6 +427,76 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Deletes an Amazon Rekognition Custom Labels project. To delete a project
+     * you must first delete all versions of the model associated with the
+     * project. To delete a version of a model, see <a>DeleteProjectVersion</a>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DeleteProject</code> action.
+     * </p>
+     * 
+     * @param deleteProjectRequest
+     * @return deleteProjectResult The response from the DeleteProject service
+     *         method, as returned by Amazon Rekognition.
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteProjectResult deleteProject(DeleteProjectRequest deleteProjectRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a version of a model.
+     * </p>
+     * <p>
+     * You must first stop the model before you can delete it. To check if a
+     * model is running, use the <code>Status</code> field returned from
+     * <a>DescribeProjectVersions</a>. To stop a running model call
+     * <a>StopProjectVersion</a>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DeleteProjectVersion</code> action.
+     * </p>
+     * 
+     * @param deleteProjectVersionRequest
+     * @return deleteProjectVersionResult The response from the
+     *         DeleteProjectVersion service method, as returned by Amazon
+     *         Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws ResourceInUseException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteProjectVersionResult deleteProjectVersion(
+            DeleteProjectVersionRequest deleteProjectVersionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes the stream processor identified by <code>Name</code>. You assign
      * the value for <code>Name</code> when you create the stream processor with
      * <a>CreateStreamProcessor</a>. You might not be able to use the same name
