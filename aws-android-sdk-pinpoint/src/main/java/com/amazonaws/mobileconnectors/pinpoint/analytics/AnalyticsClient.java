@@ -359,29 +359,34 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Adds the specified Pinpoint attributes to events to track Campaign/Journey analytics
-     * <p>
-     * You should not use this method as it will be called by the NotificationManager when the app is opened
-     * from a push notification.
-     *
-     * @param eventSourceAttributes the map with pinpointAttributes attributes of the pinpointAttributes received
+     * Replaces the current event source attributes (if any)
+     * with a new set of event source attributes
+     * @param attributes map of attribute values
      */
-    public void setEventSourceAttributes(Map<String, String> eventSourceAttributes) {
-        if (eventSourceAttributes == null) {
-            log.warn("Null pinpointAttributes attributes provided to setPinpointAttributes.");
-            return;
+    public void updateEventSourceGlobally(final Map<String, String> attributes) {
+        //This call removes previous events identifiers from the
+        //globalAttributes collection in AnalyticsEvent.
+        clearEventSourceAttributes();
+        for (final Map.Entry<String, String> entry : attributes.entrySet()) {
+            if (entry.getValue() != null) {
+                addGlobalAttribute(entry.getKey(), entry.getValue());
+            }
         }
-
-        this.eventSourceAttributes = eventSourceAttributes;
+        //We set this so the analytics client knows what to remove from
+        //from the globalAttributes collection when it's time to clear it
+        this.eventSourceAttributes = attributes;
     }
 
     /**
-     * Clears Pinpoint attributes
+     * Removes the attributes currently stored in eventSourceAttributes
+     * from the globalAttributes collection. This is typically called
+     * when we want to switch which event source (campaign, journey, or other future
+     * pinpoint construct) pinpoint events are attributed to.
      * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      */
-    public void clearEventSourceAttributes() {
+    void clearEventSourceAttributes() {
         for (final String key : eventSourceAttributes.keySet()) {
             this.removeGlobalAttribute(key);
         }
