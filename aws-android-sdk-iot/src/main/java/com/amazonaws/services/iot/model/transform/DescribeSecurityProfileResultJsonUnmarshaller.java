@@ -62,6 +62,12 @@ public class DescribeSecurityProfileResultJsonUnmarshaller implements
                                 StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("additionalMetricsToRetainV2")) {
+                describeSecurityProfileResult
+                        .setAdditionalMetricsToRetainV2(new ListUnmarshaller<MetricToRetain>(
+                                MetricToRetainJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("version")) {
                 describeSecurityProfileResult.setVersion(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));

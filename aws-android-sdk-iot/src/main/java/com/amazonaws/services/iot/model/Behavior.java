@@ -43,6 +43,16 @@ public class Behavior implements Serializable {
 
     /**
      * <p>
+     * The dimension for a metric in your behavior. For example, using a
+     * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
+     * metric only to MQTT topics whose name match the pattern specified in the
+     * dimension.
+     * </p>
+     */
+    private MetricDimension metricDimension;
+
+    /**
+     * <p>
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
@@ -153,6 +163,69 @@ public class Behavior implements Serializable {
 
     /**
      * <p>
+     * The dimension for a metric in your behavior. For example, using a
+     * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
+     * metric only to MQTT topics whose name match the pattern specified in the
+     * dimension.
+     * </p>
+     *
+     * @return <p>
+     *         The dimension for a metric in your behavior. For example, using a
+     *         <code>TOPIC_FILTER</code> dimension, you can narrow down the
+     *         scope of the metric only to MQTT topics whose name match the
+     *         pattern specified in the dimension.
+     *         </p>
+     */
+    public MetricDimension getMetricDimension() {
+        return metricDimension;
+    }
+
+    /**
+     * <p>
+     * The dimension for a metric in your behavior. For example, using a
+     * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
+     * metric only to MQTT topics whose name match the pattern specified in the
+     * dimension.
+     * </p>
+     *
+     * @param metricDimension <p>
+     *            The dimension for a metric in your behavior. For example,
+     *            using a <code>TOPIC_FILTER</code> dimension, you can narrow
+     *            down the scope of the metric only to MQTT topics whose name
+     *            match the pattern specified in the dimension.
+     *            </p>
+     */
+    public void setMetricDimension(MetricDimension metricDimension) {
+        this.metricDimension = metricDimension;
+    }
+
+    /**
+     * <p>
+     * The dimension for a metric in your behavior. For example, using a
+     * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
+     * metric only to MQTT topics whose name match the pattern specified in the
+     * dimension.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param metricDimension <p>
+     *            The dimension for a metric in your behavior. For example,
+     *            using a <code>TOPIC_FILTER</code> dimension, you can narrow
+     *            down the scope of the metric only to MQTT topics whose name
+     *            match the pattern specified in the dimension.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Behavior withMetricDimension(MetricDimension metricDimension) {
+        this.metricDimension = metricDimension;
+        return this;
+    }
+
+    /**
+     * <p>
      * The criteria that determine if a device is behaving normally in regard to
      * the <code>metric</code>.
      * </p>
@@ -217,6 +290,8 @@ public class Behavior implements Serializable {
             sb.append("name: " + getName() + ",");
         if (getMetric() != null)
             sb.append("metric: " + getMetric() + ",");
+        if (getMetricDimension() != null)
+            sb.append("metricDimension: " + getMetricDimension() + ",");
         if (getCriteria() != null)
             sb.append("criteria: " + getCriteria());
         sb.append("}");
@@ -230,6 +305,8 @@ public class Behavior implements Serializable {
 
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getMetric() == null) ? 0 : getMetric().hashCode());
+        hashCode = prime * hashCode
+                + ((getMetricDimension() == null) ? 0 : getMetricDimension().hashCode());
         hashCode = prime * hashCode + ((getCriteria() == null) ? 0 : getCriteria().hashCode());
         return hashCode;
     }
@@ -252,6 +329,11 @@ public class Behavior implements Serializable {
         if (other.getMetric() == null ^ this.getMetric() == null)
             return false;
         if (other.getMetric() != null && other.getMetric().equals(this.getMetric()) == false)
+            return false;
+        if (other.getMetricDimension() == null ^ this.getMetricDimension() == null)
+            return false;
+        if (other.getMetricDimension() != null
+                && other.getMetricDimension().equals(this.getMetricDimension()) == false)
             return false;
         if (other.getCriteria() == null ^ this.getCriteria() == null)
             return false;

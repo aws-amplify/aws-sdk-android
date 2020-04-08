@@ -69,8 +69,21 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
+     * <p>
+     * <b>Note:</b> This API field is deprecated. Please use
+     * <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.
+     * </p>
      */
     private java.util.List<String> additionalMetricsToRetain;
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's behaviors, but it is also
+     * retained for any metric specified here.
+     * </p>
+     */
+    private java.util.List<MetricToRetain> additionalMetricsToRetainV2;
 
     /**
      * <p>
@@ -428,12 +441,21 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
+     * <p>
+     * <b>Note:</b> This API field is deprecated. Please use
+     * <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.
+     * </p>
      *
      * @return <p>
      *         A list of metrics whose data is retained (stored). By default,
      *         data is retained for any metric used in the security profile's
      *         <code>behaviors</code>, but it is also retained for any metric
      *         specified here.
+     *         </p>
+     *         <p>
+     *         <b>Note:</b> This API field is deprecated. Please use
+     *         <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a>
+     *         instead.
      *         </p>
      */
     public java.util.List<String> getAdditionalMetricsToRetain() {
@@ -447,12 +469,21 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <code>behaviors</code>, but it is also retained for any metric specified
      * here.
      * </p>
+     * <p>
+     * <b>Note:</b> This API field is deprecated. Please use
+     * <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.
+     * </p>
      *
      * @param additionalMetricsToRetain <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the security profile's
      *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> This API field is deprecated. Please use
+     *            <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2
+     *            </a> instead.
      *            </p>
      */
     public void setAdditionalMetricsToRetain(java.util.Collection<String> additionalMetricsToRetain) {
@@ -472,6 +503,10 @@ public class UpdateSecurityProfileResult implements Serializable {
      * here.
      * </p>
      * <p>
+     * <b>Note:</b> This API field is deprecated. Please use
+     * <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -480,6 +515,11 @@ public class UpdateSecurityProfileResult implements Serializable {
      *            data is retained for any metric used in the security profile's
      *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
+     *            </p>
+     *            <p>
+     *            <b>Note:</b> This API field is deprecated. Please use
+     *            <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2
+     *            </a> instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -504,6 +544,10 @@ public class UpdateSecurityProfileResult implements Serializable {
      * here.
      * </p>
      * <p>
+     * <b>Note:</b> This API field is deprecated. Please use
+     * <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -513,12 +557,115 @@ public class UpdateSecurityProfileResult implements Serializable {
      *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
      *            </p>
+     *            <p>
+     *            <b>Note:</b> This API field is deprecated. Please use
+     *            <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2
+     *            </a> instead.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public UpdateSecurityProfileResult withAdditionalMetricsToRetain(
             java.util.Collection<String> additionalMetricsToRetain) {
         setAdditionalMetricsToRetain(additionalMetricsToRetain);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's behaviors, but it is also
+     * retained for any metric specified here.
+     * </p>
+     *
+     * @return <p>
+     *         A list of metrics whose data is retained (stored). By default,
+     *         data is retained for any metric used in the profile's behaviors,
+     *         but it is also retained for any metric specified here.
+     *         </p>
+     */
+    public java.util.List<MetricToRetain> getAdditionalMetricsToRetainV2() {
+        return additionalMetricsToRetainV2;
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's behaviors, but it is also
+     * retained for any metric specified here.
+     * </p>
+     *
+     * @param additionalMetricsToRetainV2 <p>
+     *            A list of metrics whose data is retained (stored). By default,
+     *            data is retained for any metric used in the profile's
+     *            behaviors, but it is also retained for any metric specified
+     *            here.
+     *            </p>
+     */
+    public void setAdditionalMetricsToRetainV2(
+            java.util.Collection<MetricToRetain> additionalMetricsToRetainV2) {
+        if (additionalMetricsToRetainV2 == null) {
+            this.additionalMetricsToRetainV2 = null;
+            return;
+        }
+
+        this.additionalMetricsToRetainV2 = new java.util.ArrayList<MetricToRetain>(
+                additionalMetricsToRetainV2);
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's behaviors, but it is also
+     * retained for any metric specified here.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalMetricsToRetainV2 <p>
+     *            A list of metrics whose data is retained (stored). By default,
+     *            data is retained for any metric used in the profile's
+     *            behaviors, but it is also retained for any metric specified
+     *            here.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateSecurityProfileResult withAdditionalMetricsToRetainV2(
+            MetricToRetain... additionalMetricsToRetainV2) {
+        if (getAdditionalMetricsToRetainV2() == null) {
+            this.additionalMetricsToRetainV2 = new java.util.ArrayList<MetricToRetain>(
+                    additionalMetricsToRetainV2.length);
+        }
+        for (MetricToRetain value : additionalMetricsToRetainV2) {
+            this.additionalMetricsToRetainV2.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of metrics whose data is retained (stored). By default, data is
+     * retained for any metric used in the profile's behaviors, but it is also
+     * retained for any metric specified here.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalMetricsToRetainV2 <p>
+     *            A list of metrics whose data is retained (stored). By default,
+     *            data is retained for any metric used in the profile's
+     *            behaviors, but it is also retained for any metric specified
+     *            here.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateSecurityProfileResult withAdditionalMetricsToRetainV2(
+            java.util.Collection<MetricToRetain> additionalMetricsToRetainV2) {
+        setAdditionalMetricsToRetainV2(additionalMetricsToRetainV2);
         return this;
     }
 
@@ -680,6 +827,8 @@ public class UpdateSecurityProfileResult implements Serializable {
             sb.append("alertTargets: " + getAlertTargets() + ",");
         if (getAdditionalMetricsToRetain() != null)
             sb.append("additionalMetricsToRetain: " + getAdditionalMetricsToRetain() + ",");
+        if (getAdditionalMetricsToRetainV2() != null)
+            sb.append("additionalMetricsToRetainV2: " + getAdditionalMetricsToRetainV2() + ",");
         if (getVersion() != null)
             sb.append("version: " + getVersion() + ",");
         if (getCreationDate() != null)
@@ -710,6 +859,10 @@ public class UpdateSecurityProfileResult implements Serializable {
                 * hashCode
                 + ((getAdditionalMetricsToRetain() == null) ? 0 : getAdditionalMetricsToRetain()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAdditionalMetricsToRetainV2() == null) ? 0
+                        : getAdditionalMetricsToRetainV2().hashCode());
         hashCode = prime * hashCode + ((getVersion() == null) ? 0 : getVersion().hashCode());
         hashCode = prime * hashCode
                 + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
@@ -761,6 +914,13 @@ public class UpdateSecurityProfileResult implements Serializable {
             return false;
         if (other.getAdditionalMetricsToRetain() != null
                 && other.getAdditionalMetricsToRetain().equals(this.getAdditionalMetricsToRetain()) == false)
+            return false;
+        if (other.getAdditionalMetricsToRetainV2() == null
+                ^ this.getAdditionalMetricsToRetainV2() == null)
+            return false;
+        if (other.getAdditionalMetricsToRetainV2() != null
+                && other.getAdditionalMetricsToRetainV2().equals(
+                        this.getAdditionalMetricsToRetainV2()) == false)
             return false;
         if (other.getVersion() == null ^ this.getVersion() == null)
             return false;

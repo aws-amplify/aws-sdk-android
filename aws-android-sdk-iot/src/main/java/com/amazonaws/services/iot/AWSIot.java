@@ -31,6 +31,17 @@ import com.amazonaws.services.iot.model.*;
  * credentials to authenticate devices.
  * </p>
  * <p>
+ * The service endpoints that expose this API are listed in <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/iot-core.html">AWS IoT
+ * Core Endpoints and Quotas</a>. You must use the endpoint for the region that
+ * has the resources you want to access.
+ * </p>
+ * <p>
+ * The service name used by <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">AWS
+ * Signature Version 4</a> to sign the request is: <i>execute-api</i>.
+ * </p>
+ * <p>
  * For more information about how AWS IoT works, see the <a href=
  * "https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
  * >Developer Guide</a>.
@@ -661,6 +672,34 @@ public interface AWSIot {
      */
     CreateCertificateFromCsrResult createCertificateFromCsr(
             CreateCertificateFromCsrRequest createCertificateFromCsrRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Create a dimension that you can use to limit the scope of a metric used
+     * in a security profile for AWS IoT Device Defender. For example, using a
+     * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
+     * metric only to MQTT topics whose name match the pattern specified in the
+     * dimension.
+     * </p>
+     * 
+     * @param createDimensionRequest
+     * @return createDimensionResult The response from the CreateDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateDimensionResult createDimension(CreateDimensionRequest createDimensionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1385,6 +1424,28 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteCertificate(DeleteCertificateRequest deleteCertificateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes the specified dimension from your AWS account.
+     * </p>
+     * 
+     * @param deleteDimensionRequest
+     * @return deleteDimensionResult The response from the DeleteDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteDimensionResult deleteDimension(DeleteDimensionRequest deleteDimensionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2211,6 +2272,29 @@ public interface AWSIot {
      */
     DescribeDefaultAuthorizerResult describeDefaultAuthorizer(
             DescribeDefaultAuthorizerRequest describeDefaultAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides details about a dimension that is defined in your AWS account.
+     * </p>
+     * 
+     * @param describeDimensionRequest
+     * @return describeDimensionResult The response from the DescribeDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeDimensionResult describeDimension(DescribeDimensionRequest describeDimensionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3468,6 +3552,28 @@ public interface AWSIot {
 
     /**
      * <p>
+     * List the set of dimensions that are defined for your AWS account.
+     * </p>
+     * 
+     * @param listDimensionsRequest
+     * @return listDimensionsResult The response from the ListDimensions service
+     *         method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListDimensionsResult listDimensions(ListDimensionsRequest listDimensionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets a list of domain configurations for the user. This list is sorted
      * alphabetically by domain configuration name.
      * </p>
@@ -3931,6 +4037,7 @@ public interface AWSIot {
      * @throws InvalidRequestException
      * @throws ThrottlingException
      * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -5149,6 +5256,30 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void updateCertificate(UpdateCertificateRequest updateCertificateRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the definition for a dimension. You cannot change the type of a
+     * dimension after it is created (you can delete it and re-create it).
+     * </p>
+     * 
+     * @param updateDimensionRequest
+     * @return updateDimensionResult The response from the UpdateDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateDimensionResult updateDimension(UpdateDimensionRequest updateDimensionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

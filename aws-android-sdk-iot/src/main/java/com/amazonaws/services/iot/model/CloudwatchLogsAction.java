@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an action that sends data to CloudWatch logs.
+ * Describes an action that sends data to CloudWatch Logs.
  * </p>
  */
 public class CloudwatchLogsAction implements Serializable {

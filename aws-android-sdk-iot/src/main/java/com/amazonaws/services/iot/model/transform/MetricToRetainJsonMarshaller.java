@@ -19,40 +19,30 @@ import com.amazonaws.services.iot.model.*;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO Behavior
+ * JSON marshaller for POJO MetricToRetain
  */
-class BehaviorJsonMarshaller {
+class MetricToRetainJsonMarshaller {
 
-    public void marshall(Behavior behavior, AwsJsonWriter jsonWriter) throws Exception {
+    public void marshall(MetricToRetain metricToRetain, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (behavior.getName() != null) {
-            String name = behavior.getName();
-            jsonWriter.name("name");
-            jsonWriter.value(name);
-        }
-        if (behavior.getMetric() != null) {
-            String metric = behavior.getMetric();
+        if (metricToRetain.getMetric() != null) {
+            String metric = metricToRetain.getMetric();
             jsonWriter.name("metric");
             jsonWriter.value(metric);
         }
-        if (behavior.getMetricDimension() != null) {
-            MetricDimension metricDimension = behavior.getMetricDimension();
+        if (metricToRetain.getMetricDimension() != null) {
+            MetricDimension metricDimension = metricToRetain.getMetricDimension();
             jsonWriter.name("metricDimension");
             MetricDimensionJsonMarshaller.getInstance().marshall(metricDimension, jsonWriter);
-        }
-        if (behavior.getCriteria() != null) {
-            BehaviorCriteria criteria = behavior.getCriteria();
-            jsonWriter.name("criteria");
-            BehaviorCriteriaJsonMarshaller.getInstance().marshall(criteria, jsonWriter);
         }
         jsonWriter.endObject();
     }
 
-    private static BehaviorJsonMarshaller instance;
+    private static MetricToRetainJsonMarshaller instance;
 
-    public static BehaviorJsonMarshaller getInstance() {
+    public static MetricToRetainJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new BehaviorJsonMarshaller();
+            instance = new MetricToRetainJsonMarshaller();
         return instance;
     }
 }

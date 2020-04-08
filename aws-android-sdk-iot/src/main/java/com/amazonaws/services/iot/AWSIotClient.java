@@ -45,6 +45,17 @@ import com.amazonaws.services.iot.model.transform.*;
  * credentials to authenticate devices.
  * </p>
  * <p>
+ * The service endpoints that expose this API are listed in <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/iot-core.html">AWS IoT
+ * Core Endpoints and Quotas</a>. You must use the endpoint for the region that
+ * has the resources you want to access.
+ * </p>
+ * <p>
+ * The service name used by <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">AWS
+ * Signature Version 4</a> to sign the request is: <i>execute-api</i>.
+ * </p>
+ * <p>
  * For more information about how AWS IoT works, see the <a href=
  * "https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
  * >Developer Guide</a>.
@@ -1398,6 +1409,60 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<CreateCertificateFromCsrResult, JsonUnmarshallerContext> unmarshaller = new CreateCertificateFromCsrResultJsonUnmarshaller();
             JsonResponseHandler<CreateCertificateFromCsrResult> responseHandler = new JsonResponseHandler<CreateCertificateFromCsrResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Create a dimension that you can use to limit the scope of a metric used
+     * in a security profile for AWS IoT Device Defender. For example, using a
+     * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
+     * metric only to MQTT topics whose name match the pattern specified in the
+     * dimension.
+     * </p>
+     * 
+     * @param createDimensionRequest
+     * @return createDimensionResult The response from the CreateDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateDimensionResult createDimension(CreateDimensionRequest createDimensionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createDimensionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateDimensionRequest> request = null;
+        Response<CreateDimensionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateDimensionRequestMarshaller().marshall(createDimensionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateDimensionResult, JsonUnmarshallerContext> unmarshaller = new CreateDimensionResultJsonUnmarshaller();
+            JsonResponseHandler<CreateDimensionResult> responseHandler = new JsonResponseHandler<CreateDimensionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2783,6 +2848,54 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified dimension from your AWS account.
+     * </p>
+     * 
+     * @param deleteDimensionRequest
+     * @return deleteDimensionResult The response from the DeleteDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteDimensionResult deleteDimension(DeleteDimensionRequest deleteDimensionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteDimensionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteDimensionRequest> request = null;
+        Response<DeleteDimensionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteDimensionRequestMarshaller().marshall(deleteDimensionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteDimensionResult, JsonUnmarshallerContext> unmarshaller = new DeleteDimensionResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteDimensionResult> responseHandler = new JsonResponseHandler<DeleteDimensionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -4405,6 +4518,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DescribeDefaultAuthorizerResult, JsonUnmarshallerContext> unmarshaller = new DescribeDefaultAuthorizerResultJsonUnmarshaller();
             JsonResponseHandler<DescribeDefaultAuthorizerResult> responseHandler = new JsonResponseHandler<DescribeDefaultAuthorizerResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides details about a dimension that is defined in your AWS account.
+     * </p>
+     * 
+     * @param describeDimensionRequest
+     * @return describeDimensionResult The response from the DescribeDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeDimensionResult describeDimension(
+            DescribeDimensionRequest describeDimensionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeDimensionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeDimensionRequest> request = null;
+        Response<DescribeDimensionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeDimensionRequestMarshaller()
+                        .marshall(describeDimensionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeDimensionResult, JsonUnmarshallerContext> unmarshaller = new DescribeDimensionResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeDimensionResult> responseHandler = new JsonResponseHandler<DescribeDimensionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -6935,6 +7099,54 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * List the set of dimensions that are defined for your AWS account.
+     * </p>
+     * 
+     * @param listDimensionsRequest
+     * @return listDimensionsResult The response from the ListDimensions service
+     *         method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListDimensionsResult listDimensions(ListDimensionsRequest listDimensionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDimensionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDimensionsRequest> request = null;
+        Response<ListDimensionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDimensionsRequestMarshaller().marshall(listDimensionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDimensionsResult, JsonUnmarshallerContext> unmarshaller = new ListDimensionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListDimensionsResult> responseHandler = new JsonResponseHandler<ListDimensionsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of domain configurations for the user. This list is sorted
      * alphabetically by domain configuration name.
      * </p>
@@ -7853,6 +8065,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @throws InvalidRequestException
      * @throws ThrottlingException
      * @throws InternalFailureException
+     * @throws ResourceNotFoundException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -10262,6 +10475,56 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
             invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the definition for a dimension. You cannot change the type of a
+     * dimension after it is created (you can delete it and re-create it).
+     * </p>
+     * 
+     * @param updateDimensionRequest
+     * @return updateDimensionResult The response from the UpdateDimension
+     *         service method, as returned by AWS IoT.
+     * @throws InternalFailureException
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateDimensionResult updateDimension(UpdateDimensionRequest updateDimensionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateDimensionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateDimensionRequest> request = null;
+        Response<UpdateDimensionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateDimensionRequestMarshaller().marshall(updateDimensionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateDimensionResult, JsonUnmarshallerContext> unmarshaller = new UpdateDimensionResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateDimensionResult> responseHandler = new JsonResponseHandler<UpdateDimensionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
