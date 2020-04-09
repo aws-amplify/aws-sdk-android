@@ -138,12 +138,8 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         AccessControlList bucketAcl = s3.getBucketAcl(BUCKET_NAME);
         AccessControlList objectAcl = s3.getObjectAcl(BUCKET_NAME, KEY);
 
-        AccessControlList[] accessControls = new AccessControlList[] {
-                bucketAcl, objectAcl
-        };
-
-        assertEquals(bucketOwner, accessControls[0].getOwner());
-        assertEquals(bucketOwner, accessControls[1].getOwner());
+        assertEquals(bucketOwner, bucketAcl.getOwner());
+        assertEquals(bucketOwner, objectAcl.getOwner());
         assertTrue(doesAclContainGroupGrant(objectAcl, GroupGrantee.AllUsers, Permission.Read));
         assertTrue(doesAclContainsCanonicalGrant(objectAcl, DISPLAY_NAME, Permission.FullControl));
         assertEquals(2, objectAcl.getGrantsAsList().size());
@@ -155,7 +151,7 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         bucketAcl = s3.getBucketAcl(BUCKET_NAME);
         objectAcl = s3.getObjectAcl(BUCKET_NAME, KEY);
 
-        accessControls = new AccessControlList[] {
+        AccessControlList[] accessControls = new AccessControlList[] {
                 bucketAcl, objectAcl
         };
         for (int index = 0; index < accessControls.length; index++) {
