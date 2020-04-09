@@ -39,7 +39,7 @@ import org.junit.Test;
  */
 public class StorageClassIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String BUCKET_NAME = "java-storage-class-integ-test-" + System.currentTimeMillis();
+    private static final String BUCKET_NAME = "android-sdk-storage-class-integ-test-" + System.currentTimeMillis();
 
     private static final String TAG = StorageClassIntegrationTest.class.getSimpleName();
 

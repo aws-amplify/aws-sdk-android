@@ -37,7 +37,7 @@ import java.util.Date;
 public class AccelerateIntegrationTest extends S3IntegrationTestBase {
 
     /** The name of the bucket these tests will create, test on and delete */
-    private static final String BUCKET = "acceleration-integration-test-" + new Date().getTime();
+    private static final String BUCKET = "android-sdk-acceleration-integration-test-" + System.currentTimeMillis();
 
     /** The key of the object these tests will create, test on and delete */
     private static final String KEY = "key";

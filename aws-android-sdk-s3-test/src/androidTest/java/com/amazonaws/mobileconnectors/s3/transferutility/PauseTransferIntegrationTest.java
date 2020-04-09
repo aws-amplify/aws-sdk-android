@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String BUCKET_NAME = "amazon-transfer-util-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-transfer-util-integ-test-" + System.currentTimeMillis();
     private static TransferUtility util;
     private static Context context = InstrumentationRegistry.getContext();
 

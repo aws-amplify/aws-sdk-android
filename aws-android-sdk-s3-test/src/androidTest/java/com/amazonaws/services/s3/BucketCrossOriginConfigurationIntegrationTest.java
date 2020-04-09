@@ -35,8 +35,8 @@ public class BucketCrossOriginConfigurationIntegrationTest extends S3Integration
     private static final boolean ANDROID_TESTING = false;
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "java-bucket-cross-origin-integ-test-"
-            + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-bucket-cross-origin-integ-test-"
+            + System.currentTimeMillis();
 
     private static final int MAX_AGE_SECONDS = 3000;
     private static final String EXPOSE_HEADER = "x-amz-server-side-encryption";
@@ -57,25 +57,25 @@ public class BucketCrossOriginConfigurationIntegrationTest extends S3Integration
             setUpCredentials();
         }
 
-        s3.createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
     }
 
     @AfterClass
     public static void tearDown() throws Exception {
         // Delete the config
-        s3.deleteBucketCrossOriginConfiguration(bucketName);
-        assertNull(waitForbucketCrossOriginConfigurationDeleted(bucketName));
+        s3.deleteBucketCrossOriginConfiguration(BUCKET_NAME);
+        assertNull(waitForbucketCrossOriginConfigurationDeleted(BUCKET_NAME));
 
         // Delete the bucket
-        deleteBucketAndAllContents(bucketName);
+        deleteBucketAndAllContents(BUCKET_NAME);
     }
 
     @Test
     public void testBucketCrossOrigin() throws Exception {
         // Check the bucket for its existing CORS config
         BucketCrossOriginConfiguration bucketCrossOriginConfiguration = s3
-                .getBucketCrossOriginConfiguration(bucketName);
+                .getBucketCrossOriginConfiguration(BUCKET_NAME);
         assertNull(bucketCrossOriginConfiguration);
 
         // Apply a config
@@ -97,10 +97,10 @@ public class BucketCrossOriginConfigurationIntegrationTest extends S3Integration
         BucketCrossOriginConfiguration config = new BucketCrossOriginConfiguration().withRules(
                 rule1, rule2);
 
-        s3.setBucketCrossOriginConfiguration(bucketName, config);
+        s3.setBucketCrossOriginConfiguration(BUCKET_NAME, config);
 
         // Check reading it back
-        bucketCrossOriginConfiguration = waitForbucketCrossOriginConfiguration(bucketName);
+        bucketCrossOriginConfiguration = waitForbucketCrossOriginConfiguration(BUCKET_NAME);
         assertNotNull(bucketCrossOriginConfiguration);
         assertEquals(2, bucketCrossOriginConfiguration.getRules().size());
 

@@ -47,7 +47,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static junit.framework.Assert.assertNull;
@@ -62,10 +61,10 @@ import static org.junit.Assert.fail;
 public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "amazon-s3-client-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-s3-client-integ-test-" + System.currentTimeMillis();
 
     /** The key used in these tests */
-    private static final String key = "key";
+    private static final String KEY = "key";
 
     /** The file containing the test data uploaded to S3 */
     private static File file = null;
@@ -98,21 +97,21 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
                     .getString("bucket_with_sse_kms_enabled");
             kmsKeyId = getPackageConfigure("s3")
                     .getString("sse_kms_key_id");
-            s3.createBucket(bucketName);
-            waitForBucketCreation(bucketName);
+            s3.createBucket(BUCKET_NAME);
+            waitForBucketCreation(BUCKET_NAME);
         } catch (final Exception e) {
             System.out.println("Error in creating the bucket. "
-                    + "Please manually create the bucket " + bucketName);
+                    + "Please manually create the bucket " + BUCKET_NAME);
         }
     }
 
     @AfterClass
     public static void tearDown() {
         try {
-            deleteBucketAndAllContents(bucketName);
+            deleteBucketAndAllContents(BUCKET_NAME);
         } catch (final Exception e) {
             System.out.println("Error in deleting the bucket. "
-                + "Please manually delete the bucket " + bucketName);
+                + "Please manually delete the bucket " + BUCKET_NAME);
             e.printStackTrace();
         }
 
@@ -133,7 +132,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     public void testIsRequesterPays() throws Exception {
         file = S3IntegrationTestBase.getRandomTempFile("foo", 1000L);
 
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, bais, metadata);
+        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata);
         putObjectRequest.setRequesterPays(true);
 
         s3.putObject(putObjectRequest);
@@ -144,7 +143,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     public void testObjectTagging() throws Exception {
         try {
             // Create an object, add two new tags, and upload the object to Amazon S3.
-            PutObjectRequest putRequest = new PutObjectRequest(bucketName, key, bais, metadata);
+            PutObjectRequest putRequest = new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata);
             List<Tag> tags = new ArrayList<Tag>();
             tags.add(new Tag("Tag 1", "This is tag 1"));
             tags.add(new Tag("Tag 2", "This is tag 2"));
@@ -152,7 +151,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
             PutObjectResult putResult = s3.putObject(putRequest);
 
             // Retrieve the object's tags.
-            GetObjectTaggingRequest getTaggingRequest = new GetObjectTaggingRequest(bucketName, key);
+            GetObjectTaggingRequest getTaggingRequest = new GetObjectTaggingRequest(BUCKET_NAME, KEY);
             GetObjectTaggingResult getTagsResult = s3.getObjectTagging(getTaggingRequest);
             List<Tag> resultTags = getTagsResult.getTagSet();
             assertEquals(tags.size(), resultTags.size());
@@ -161,7 +160,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
             List<Tag> newTags = new ArrayList<Tag>();
             newTags.add(new Tag("Tag 3", "This is tag 3"));
             newTags.add(new Tag("Tag 4", "This is tag 4"));
-            s3.setObjectTagging(new SetObjectTaggingRequest(bucketName, key, new ObjectTagging(newTags)));
+            s3.setObjectTagging(new SetObjectTaggingRequest(BUCKET_NAME, KEY, new ObjectTagging(newTags)));
             
             // Retrieve the object's tags.
             getTagsResult = s3.getObjectTagging(getTaggingRequest);
@@ -186,9 +185,9 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
         //String expectedKey = "specialkeys %2A~/:'()![].txt";
         // This is not what should be uploaded.
         // String failKey = "specialkeys%20%2A~/%3A%27%28%29%21%5B%5D.txt";
-        s3.putObject(bucketName, key, "helloworld->key:colon😀happy]squarebracket.txt");
+        s3.putObject(BUCKET_NAME, key, "helloworld->key:colon😀happy]squarebracket.txt");
 
-        ListObjectsV2Result objectListing = s3.listObjectsV2(bucketName);
+        ListObjectsV2Result objectListing = s3.listObjectsV2(BUCKET_NAME);
         assert objectListing.getKeyCount() > 0;
         for (S3ObjectSummary object : objectListing.getObjectSummaries()) {
             System.out.println("Found key: " + object.getKey());
@@ -202,15 +201,15 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testListAndGetObjectWithSpecialCharactersKey() throws Exception {
         final ObjectListing objectListing = s3.listObjects(
-                new ListObjectsRequest(bucketName,
+                new ListObjectsRequest(BUCKET_NAME,
                         null, null, null, null)
                         .withEncodingType(Constants.URL_ENCODING));
         for (S3ObjectSummary object : objectListing.getObjectSummaries()) {
             System.out.println("Found key: " + object.getKey());
             // Check if the object exists
-            assertTrue(s3.doesObjectExist(bucketName, object.getKey()));
+            assertTrue(s3.doesObjectExist(BUCKET_NAME, object.getKey()));
             // Check downloading the object
-            GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, object.getKey());
+            GetObjectRequest getObjectRequest = new GetObjectRequest(BUCKET_NAME, object.getKey());
             S3Object s3Object = s3.getObject(getObjectRequest);
             assert s3Object != null;
             assertEquals(object.getKey(), s3Object.getKey());
@@ -222,14 +221,14 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     public void testListV2AndGetObjectWithSpecialCharactersKey() throws Exception {
         final ListObjectsV2Result listObjectsV2Result = s3.listObjectsV2(
                 new ListObjectsV2Request()
-                        .withBucketName(bucketName)
+                        .withBucketName(BUCKET_NAME)
                         .withEncodingType(Constants.URL_ENCODING));
         for (S3ObjectSummary object : listObjectsV2Result.getObjectSummaries()) {
             System.out.println("Found key: " + object.getKey());
             // Check if the object exists
-            assertTrue(s3.doesObjectExist(bucketName, object.getKey()));
+            assertTrue(s3.doesObjectExist(BUCKET_NAME, object.getKey()));
             // Check downloading the object
-            GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, object.getKey());
+            GetObjectRequest getObjectRequest = new GetObjectRequest(BUCKET_NAME, object.getKey());
             S3Object s3Object = s3.getObject(getObjectRequest);
             assert s3Object != null;
             assertEquals(object.getKey(), s3Object.getKey());

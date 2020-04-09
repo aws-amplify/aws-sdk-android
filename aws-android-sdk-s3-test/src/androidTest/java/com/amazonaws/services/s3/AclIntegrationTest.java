@@ -32,11 +32,9 @@ import com.amazonaws.services.s3.model.Permission;
 import com.amazonaws.util.StringUtils;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -45,16 +43,19 @@ import java.util.Set;
 public class AclIntegrationTest extends S3IntegrationTestBase {
 
     /** The name of the bucket these tests will create, test on and delete */
-    private final String bucketName = "acl-integration-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "acl-integration-test-" + System.currentTimeMillis();
 
     /** The key of the object these tests will create, test on and delete */
-    private final String key = "key";
+    private static final String KEY = "key";
+
+    /** The key of the object these tests will create, test on and delete */
+    private static final String DISPLAY_NAME = "aws-dr-mobile-test-android";
 
     /** Releases all test resources */
     @After
     public void tearDown() {
-        s3.deleteObject(bucketName, key);
-        s3.deleteBucket(bucketName);
+        s3.deleteObject(BUCKET_NAME, KEY);
+        s3.deleteBucket(BUCKET_NAME);
     }
 
     /**
@@ -62,22 +63,22 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testCustomAcls() throws Exception {
-        s3.createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
 
-        s3.putObject(bucketName, key,
+        s3.putObject(BUCKET_NAME, KEY,
                 new ByteArrayInputStream("foobarbazbar".getBytes(StringUtils.UTF8)),
                 new ObjectMetadata());
 
-        final AccessControlList customAcl = s3.getBucketAcl(bucketName);
+        final AccessControlList customAcl = s3.getBucketAcl(BUCKET_NAME);
         customAcl.grantPermission(new EmailAddressGrantee("aws-dr-eclipse@amazon.com"),
                 Permission.Read);
         customAcl.grantPermission(GroupGrantee.AllUsers, Permission.ReadAcp);
 
-        s3.setBucketAcl(bucketName, customAcl);
-        s3.setObjectAcl(bucketName, key, customAcl);
-        final AccessControlList bucketAcl = s3.getBucketAcl(bucketName);
-        final AccessControlList objectAcl = s3.getBucketAcl(bucketName);
+        s3.setBucketAcl(BUCKET_NAME, customAcl);
+        s3.setObjectAcl(BUCKET_NAME, KEY, customAcl);
+        final AccessControlList bucketAcl = s3.getBucketAcl(BUCKET_NAME);
+        final AccessControlList objectAcl = s3.getBucketAcl(BUCKET_NAME);
 
         final AccessControlList[] accessControls = new AccessControlList[] {
                 bucketAcl, objectAcl
@@ -90,7 +91,7 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
             assertEquals(customAcl.getOwner(), acl.getOwner());
             assertTrue(doesAclContainsCanonicalGrant(acl, "aws-dr-eclipse", Permission.Read));
             assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.ReadAcp));
-            assertEquals(3, acl.getGrants().size());
+            assertEquals(3, acl.getGrantsAsList().size());
         }
     }
 
@@ -104,18 +105,18 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
             acl.grantPermission(new EmailAddressGrantee(AWS_DR_TOOLS_EMAIL_ADDRESS), permission);
         }
 
-        s3.createBucket(new CreateBucketRequest(bucketName).withAccessControlList(acl));
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(new CreateBucketRequest(BUCKET_NAME).withAccessControlList(acl));
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
 
-        final AccessControlList aclRead = s3.getBucketAcl(bucketName);
+        final AccessControlList aclRead = s3.getBucketAcl(BUCKET_NAME);
 
-        assertEquals(15, aclRead.getGrants().size());
+        assertEquals(15, aclRead.getGrantsAsList().size());
 
         final Set<Grant> expectedGrants = translateEmailAclsIntoCanonical(acl);
 
         for (final Grant expected : expectedGrants) {
             assertTrue("Didn't find expectd grant " + expected,
-                    aclRead.getGrants().contains(expected));
+                    aclRead.getGrantsAsList().contains(expected));
         }
     }
 
@@ -124,19 +125,31 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testCannedAcls() throws Exception {
-        s3.createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
 
-        s3.putObject(bucketName, key,
+        s3.putObject(BUCKET_NAME, KEY,
                 new ByteArrayInputStream("foobarbazbar".getBytes(StringUtils.UTF8)),
                 new ObjectMetadata());
-        final Owner bucketOwner = s3.getBucketAcl(bucketName).getOwner();
+        final Owner bucketOwner = s3.getBucketAcl(BUCKET_NAME).getOwner();
 
         // Public Read Canned ACL
-        s3.setBucketAcl(bucketName, CannedAccessControlList.PublicRead);
-        s3.setObjectAcl(bucketName, key, CannedAccessControlList.PublicRead);
-        AccessControlList bucketAcl = s3.getBucketAcl(bucketName);
-        AccessControlList objectAcl = s3.getObjectAcl(bucketName, key);
+        s3.setObjectAcl(BUCKET_NAME, KEY, CannedAccessControlList.PublicRead);
+        AccessControlList bucketAcl = s3.getBucketAcl(BUCKET_NAME);
+        AccessControlList objectAcl = s3.getObjectAcl(BUCKET_NAME, KEY);
+
+        assertEquals(bucketOwner, bucketAcl.getOwner());
+        assertEquals(bucketOwner, objectAcl.getOwner());
+        assertTrue(doesAclContainGroupGrant(objectAcl, GroupGrantee.AllUsers, Permission.Read));
+        assertTrue(doesAclContainsCanonicalGrant(objectAcl, DISPLAY_NAME, Permission.FullControl));
+        assertEquals(2, objectAcl.getGrantsAsList().size());
+        assertEquals(1, bucketAcl.getGrantsAsList().size());
+
+        // Authenticated Read Canned ACL
+        s3.setBucketAcl(BUCKET_NAME, CannedAccessControlList.AuthenticatedRead);
+        s3.setObjectAcl(BUCKET_NAME, KEY, CannedAccessControlList.AuthenticatedRead);
+        bucketAcl = s3.getBucketAcl(BUCKET_NAME);
+        objectAcl = s3.getObjectAcl(BUCKET_NAME, KEY);
 
         AccessControlList[] accessControls = new AccessControlList[] {
                 bucketAcl, objectAcl
@@ -144,32 +157,16 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         for (int index = 0; index < accessControls.length; index++) {
             final AccessControlList acl = accessControls[index];
             assertEquals(bucketOwner, acl.getOwner());
-            assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
-            assertEquals(2, acl.getGrants().size());
-        }
-
-        // Authenticated Read Canned ACL
-        s3.setBucketAcl(bucketName, CannedAccessControlList.AuthenticatedRead);
-        s3.setObjectAcl(bucketName, key, CannedAccessControlList.AuthenticatedRead);
-        bucketAcl = s3.getBucketAcl(bucketName);
-        objectAcl = s3.getObjectAcl(bucketName, key);
-
-        accessControls = new AccessControlList[] {
-                bucketAcl, objectAcl
-        };
-        for (int index = 0; index < accessControls.length; index++) {
-            final AccessControlList acl = accessControls[index];
-            assertEquals(bucketOwner, acl.getOwner());
             assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AuthenticatedUsers,
                     Permission.Read));
-            assertEquals(2, acl.getGrants().size());
+            assertEquals(2, acl.getGrantsAsList().size());
         }
 
         // Private Canned ACL
-        s3.setBucketAcl(bucketName, CannedAccessControlList.Private);
-        s3.setObjectAcl(bucketName, key, CannedAccessControlList.Private);
-        bucketAcl = s3.getBucketAcl(bucketName);
-        objectAcl = s3.getObjectAcl(bucketName, key);
+        s3.setBucketAcl(BUCKET_NAME, CannedAccessControlList.Private);
+        s3.setObjectAcl(BUCKET_NAME, KEY, CannedAccessControlList.Private);
+        bucketAcl = s3.getBucketAcl(BUCKET_NAME);
+        objectAcl = s3.getObjectAcl(BUCKET_NAME, KEY);
 
         accessControls = new AccessControlList[] {
                 bucketAcl, objectAcl
@@ -177,7 +174,7 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         for (int index = 0; index < accessControls.length; index++) {
             final AccessControlList acl = accessControls[index];
             assertEquals(bucketOwner, acl.getOwner());
-            assertEquals(1, acl.getGrants().size());
+            assertEquals(1, acl.getGrantsAsList().size());
         }
     }
 
@@ -200,7 +197,7 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         String expectedDisplayName, 
         Permission expectedPermission) {
 
-        for (final java.util.Iterator iterator = acl.getGrants().iterator(); iterator.hasNext();) {
+        for (final java.util.Iterator iterator = acl.getGrantsAsList().iterator(); iterator.hasNext();) {
             final Grant grant = (Grant) iterator.next();
 
             final Grantee grantee = grant.getGrantee();

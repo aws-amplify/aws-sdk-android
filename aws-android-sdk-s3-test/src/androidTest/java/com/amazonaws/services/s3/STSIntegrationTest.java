@@ -56,7 +56,8 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
     private static AmazonS3Client s3;
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "java-sts-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-sts-integ-test-"
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
     private static final String key = "key";
@@ -68,9 +69,9 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
     private static byte[] tempData;
 
     @AfterClass
-    public static void tearDown() throws Exception {
+    public static void tearDown() {
         try {
-            deleteBucketAndAllContents(bucketName);
+            deleteBucketAndAllContents(BUCKET_NAME);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,12 +96,12 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
 
         STSSessionCredentialsProvider provider = new STSSessionCredentialsProvider(credentials);
         s3 = new AmazonS3Client(provider, Region.getRegion(Regions.US_WEST_2));
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
 
         ObjectMetadata metadata = null;
         if (!ANDROID_TESTING) {
             file = new RandomTempFile("get-object-integ-test", 1000L);
-            s3.putObject(bucketName, key, file);
+            s3.putObject(BUCKET_NAME, key, file);
         } else {
             file = getRandomTempFile("foo", 1000L);
             ByteArrayInputStream bais = new ByteArrayInputStream(tempData);
@@ -108,11 +109,11 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
             metadata = new ObjectMetadata();
             metadata.setContentLength(1000);
 
-            s3.putObject(new PutObjectRequest(bucketName, key, bais, metadata));
+            s3.putObject(new PutObjectRequest(BUCKET_NAME, key, bais, metadata));
             bais.close();
         }
 
-        metadata = s3.getObjectMetadata(bucketName, key);
+        metadata = s3.getObjectMetadata(BUCKET_NAME, key);
     }
 
     /**
@@ -120,7 +121,7 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testGetObject() {
-        S3Object object = s3.getObject(bucketName, key);
+        S3Object object = s3.getObject(BUCKET_NAME, key);
         assertFileEqualsStream(file, object.getObjectContent());
     }
 
@@ -130,7 +131,7 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testPresignedUrl() throws Exception {
         URL generatePresignedUrl = s3.generatePresignedUrl(new GeneratePresignedUrlRequest(
-                bucketName, key).withMethod(HttpMethod.GET));
+                BUCKET_NAME, key).withMethod(HttpMethod.GET));
 
         HttpClient client = new DefaultHttpClient();
         HttpUriRequest rq = new HttpGet(generatePresignedUrl.toURI());
@@ -145,7 +146,7 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
     @Ignore("TODO: fix 403 exception")
     public void testPresignedUrlPut() throws Exception {
         String newKey = key + 2;
-        URL presignedUrl = s3.generatePresignedUrl(new GeneratePresignedUrlRequest(bucketName,
+        URL presignedUrl = s3.generatePresignedUrl(new GeneratePresignedUrlRequest(BUCKET_NAME,
                 newKey)
                 .withMethod(HttpMethod.PUT));
 
@@ -156,6 +157,6 @@ public class STSIntegrationTest extends S3IntegrationTestBase {
         HttpResponse response = client.execute(rq);
         assertEquals(200, response.getStatusLine().getStatusCode());
 
-        assertFileEqualsStream(file, s3.getObject(bucketName, newKey).getObjectContent());
+        assertFileEqualsStream(file, s3.getObject(BUCKET_NAME, newKey).getObjectContent());
     }
 }

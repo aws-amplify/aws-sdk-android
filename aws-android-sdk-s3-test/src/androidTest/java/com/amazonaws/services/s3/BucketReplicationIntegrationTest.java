@@ -42,11 +42,11 @@ public class BucketReplicationIntegrationTest extends
         S3IntegrationTestBase {
 
     /** source bucket name for the replication integration test */
-    private static final String SOURCE_BUCKET_NAME = "bucket-replication-integ-test-"
+    private static final String SOURCE_BUCKET_NAME = "android-sdk-bucket-replication-integ-test-"
             + System.currentTimeMillis();
 
     /** destination bucket name for the replication integration test */
-    private static final String DESTINATION_BUCKET_NAME = "bucket-dest-replication-integ-test-"
+    private static final String DESTINATION_BUCKET_NAME = "android-sdk-bucket-dest-replication-integ-test-"
             + System.currentTimeMillis();
 
     private static final String RULE1 = "replication-rule-1-"

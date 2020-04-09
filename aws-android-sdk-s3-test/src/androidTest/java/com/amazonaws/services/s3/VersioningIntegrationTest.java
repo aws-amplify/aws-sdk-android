@@ -58,10 +58,11 @@ import java.util.Map;
  */
 public class VersioningIntegrationTest extends S3IntegrationTestBase {
 
-    private final String bucketName = "java-versioning-integ-test-" + new Date().getTime();
-    private final String unversionedKey = "unversionedKey";
-    private final String versionedKey = "key";
-    private final String deletedKey = "deletedKey";
+    private static final String BUCKET_NAME = "android-sdk-versioning-integ-test-"
+            + System.currentTimeMillis();
+    private static final String UNVERSIONED_KEY = "unversionedKey";
+    private static final String VERSIONED_KEY = "key";
+    private static final String DELETED_KEY = "deletedKey";
 
     public int POLL_TIMEOUT = 5 * 60 * 1000;
 
@@ -74,9 +75,9 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
 
     /** Releases all resources created by these tests */
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         try {
-            deleteBucketAndAllVersionedContents(bucketName);
+            deleteBucketAndAllVersionedContents(BUCKET_NAME);
         } catch (Exception e) {
         }
     }
@@ -107,11 +108,11 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
      * Creates test data for the versioning tests.
      */
     private void createTestData() throws Exception {
-        createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
 
         // Create an object before versioning is enabled for this bucket
-        PutObjectResult result = createObject(bucketName, unversionedKey, POLL_TIMEOUT);
+        PutObjectResult result = createObject(BUCKET_NAME, UNVERSIONED_KEY, POLL_TIMEOUT);
         assertNull(result.getVersionId());
         assertNotEmpty(result.getETag());
         assertNull(result.getVersionId());
@@ -119,19 +120,19 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         // Create an initial version of the object we'll create multiple
         // versions
         // of so that we have a NULL version to test with
-        result = createObject(bucketName, versionedKey, POLL_TIMEOUT);
+        result = createObject(BUCKET_NAME, VERSIONED_KEY, POLL_TIMEOUT);
         assertNull(result.getVersionId());
         assertNotEmpty(result.getETag());
         assertNull(result.getVersionId());
 
         // Create a few objects so we can test prefixes and delimiters in
         // listVersions
-        createObject(bucketName, "aaaa", POLL_TIMEOUT);
-        createObject(bucketName, "aaaa/aaaa", POLL_TIMEOUT);
-        createObject(bucketName, "aaaa/aaaa/aaaa", POLL_TIMEOUT);
+        createObject(BUCKET_NAME, "aaaa", POLL_TIMEOUT);
+        createObject(BUCKET_NAME, "aaaa/aaaa", POLL_TIMEOUT);
+        createObject(BUCKET_NAME, "aaaa/aaaa/aaaa", POLL_TIMEOUT);
 
         // And another to demonstrate a delete marker
-        createObject(bucketName, deletedKey, POLL_TIMEOUT);
+        createObject(BUCKET_NAME, DELETED_KEY, POLL_TIMEOUT);
     }
 
     /**
@@ -146,7 +147,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         // Enable versioning and query the configuration to check it
         s3.setBucketVersioningConfiguration(
                 new SetBucketVersioningConfigurationRequest(
-                        bucketName,
+                        BUCKET_NAME,
                         new BucketVersioningConfiguration(BucketVersioningConfiguration.ENABLED)));
         assertEquals(BucketVersioningConfiguration.ENABLED,
                 waitForBucketVersioningStatus(BucketVersioningConfiguration.ENABLED).getStatus());
@@ -154,7 +155,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         // Suspend versioning and query the configuration to check it
         s3.setBucketVersioningConfiguration(
                 new SetBucketVersioningConfigurationRequest(
-                        bucketName,
+                        BUCKET_NAME,
                         new BucketVersioningConfiguration(BucketVersioningConfiguration.SUSPENDED)));
         assertEquals(BucketVersioningConfiguration.SUSPENDED,
                 waitForBucketVersioningStatus(BucketVersioningConfiguration.SUSPENDED).getStatus());
@@ -163,14 +164,14 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         // features
         s3.setBucketVersioningConfiguration(
                 new SetBucketVersioningConfigurationRequest(
-                        bucketName,
+                        BUCKET_NAME,
                         new BucketVersioningConfiguration(BucketVersioningConfiguration.ENABLED)));
         assertEquals(BucketVersioningConfiguration.ENABLED,
                 waitForBucketVersioningStatus(BucketVersioningConfiguration.ENABLED).getStatus());
     }
 
     protected String getBucketVersioningStatus() {
-        String status = s3.getBucketVersioningConfiguration(bucketName)
+        String status = s3.getBucketVersioningConfiguration(BUCKET_NAME)
                 .getStatus();
         System.err.println("Status is: " + status);
         return status;
@@ -186,9 +187,9 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         long endTime = startTime + (10 * 60 * 1000);
         int hits = 0;
         BucketVersioningConfiguration versioningConfiguration = s3
-                .getBucketVersioningConfiguration(bucketName);
+                .getBucketVersioningConfiguration(BUCKET_NAME);
         while (System.currentTimeMillis() < endTime) {
-            versioningConfiguration = s3.getBucketVersioningConfiguration(bucketName);
+            versioningConfiguration = s3.getBucketVersioningConfiguration(BUCKET_NAME);
             if (!versioningConfiguration.getStatus().equals(status)) {
                 hits = 0;
                 Thread.sleep(1000);
@@ -215,14 +216,14 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
 
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentLength(s.getBytes(StringUtils.UTF8).length);
-            PutObjectResult putObjectResult = s3.putObject(bucketName, versionedKey,
+            PutObjectResult putObjectResult = s3.putObject(BUCKET_NAME, VERSIONED_KEY,
                     new ByteArrayInputStream(s.getBytes(StringUtils.UTF8)), metadata);
             assertNotEmpty(putObjectResult.getVersionId());
             assertNotEmpty(putObjectResult.getETag());
             int poll = 0;
             int hits = 0;
             while (poll++ < 60 * 10 && hits <= 10) {
-                if (!doesObjectExist(bucketName, versionedKey, putObjectResult.getVersionId())) {
+                if (!doesObjectExist(BUCKET_NAME, VERSIONED_KEY, putObjectResult.getVersionId())) {
                     Thread.sleep(1000);
                 }
                 hits++;
@@ -240,19 +241,19 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
     private void gotestGetObject() throws Exception {
         // Version unaware GET for an object written after versioning was
         // enabled should return a valid version ID
-        S3Object s3Object = s3.getObject(bucketName, versionedKey);
+        S3Object s3Object = s3.getObject(BUCKET_NAME, VERSIONED_KEY);
         assertNotEmpty(s3Object.getObjectMetadata().getVersionId());
 
         // Version unaware GET for an object written before versioning was
         // enabled should return the null version ID ("null").
-        S3Object object = s3.getObject(bucketName, unversionedKey);
+        S3Object object = s3.getObject(BUCKET_NAME, UNVERSIONED_KEY);
         assertEquals(Constants.NULL_VERSION_ID, object.getObjectMetadata().getVersionId());
 
         // Version aware GET should be able to access all versions of an object
         for (java.util.Iterator iterator = fileContentsByVersionId.keySet().iterator(); iterator
                 .hasNext();) {
             String versionId = (String) iterator.next();
-            GetObjectRequest getObjectRequest = new GetObjectRequest(bucketName, versionedKey,
+            GetObjectRequest getObjectRequest = new GetObjectRequest(BUCKET_NAME, VERSIONED_KEY,
                     versionId);
             s3Object = s3.getObject(getObjectRequest);
             assertEquals(versionId, s3Object.getObjectMetadata().getVersionId());
@@ -267,7 +268,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
      */
     private void gotestCopyObject() throws Exception {
         // version unaware
-        CopyObjectRequest request = new CopyObjectRequest(bucketName, unversionedKey, bucketName,
+        CopyObjectRequest request = new CopyObjectRequest(BUCKET_NAME, UNVERSIONED_KEY, BUCKET_NAME,
                 "copiedKey");
         CopyObjectResult result = s3.copyObject(request);
         assertNotEmpty(result.getETag());
@@ -277,7 +278,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         String versionId = (String) fileContentsByVersionId.keySet().toArray()[0];
 
         // version aware copy to a different object
-        request = new CopyObjectRequest(bucketName, versionedKey, versionId, bucketName,
+        request = new CopyObjectRequest(BUCKET_NAME, VERSIONED_KEY, versionId, BUCKET_NAME,
                 "newVersionedKey");
         result = s3.copyObject(request);
         assertNotEmpty(result.getETag());
@@ -285,8 +286,8 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         assertNotEmpty(result.getVersionId());
 
         // version aware copy to the same object
-        request = new CopyObjectRequest(bucketName, versionedKey, versionId, bucketName,
-                versionedKey);
+        request = new CopyObjectRequest(BUCKET_NAME, VERSIONED_KEY, versionId, BUCKET_NAME,
+                VERSIONED_KEY);
         result = s3.copyObject(request);
         assertNotEmpty(result.getETag());
         assertNotNull(result.getLastModifiedDate());
@@ -298,20 +299,20 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
      * correctly handle version IDs.
      */
     private void gotestHeadObject() throws Exception {
-        ObjectMetadata metadata = s3.getObjectMetadata(bucketName, versionedKey);
+        ObjectMetadata metadata = s3.getObjectMetadata(BUCKET_NAME, VERSIONED_KEY);
         assertNotEmpty(metadata.getVersionId());
 
         for (java.util.Iterator iterator = fileContentsByVersionId.keySet().iterator(); iterator
                 .hasNext();) {
             String versionId = (String) iterator.next();
-            metadata = s3.getObjectMetadata(new GetObjectMetadataRequest(bucketName, versionedKey,
+            metadata = s3.getObjectMetadata(new GetObjectMetadataRequest(BUCKET_NAME, VERSIONED_KEY,
                     versionId));
             assertNotEmpty(metadata.getVersionId());
         }
 
         // For objects uploaded before versioning was enabled, we expect
         // to see the null version ID
-        metadata = s3.getObjectMetadata(bucketName, unversionedKey);
+        metadata = s3.getObjectMetadata(BUCKET_NAME, UNVERSIONED_KEY);
         assertEquals(Constants.NULL_VERSION_ID, metadata.getVersionId());
     }
 
@@ -322,17 +323,17 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         String versionId = (String) fileContentsByVersionId.keySet().toArray()[1];
 
         // version aware on a specific version
-        s3.setObjectAcl(bucketName, versionedKey, versionId, CannedAccessControlList.PublicRead);
+        s3.setObjectAcl(BUCKET_NAME, VERSIONED_KEY, versionId, CannedAccessControlList.PublicRead);
 
         // version aware on the NULL version
-        s3.setObjectAcl(bucketName, versionedKey, Constants.NULL_VERSION_ID,
+        s3.setObjectAcl(BUCKET_NAME, VERSIONED_KEY, Constants.NULL_VERSION_ID,
                 CannedAccessControlList.PublicReadWrite);
 
         // version unaware on the head version
-        s3.setObjectAcl(bucketName, versionedKey, CannedAccessControlList.Private);
+        s3.setObjectAcl(BUCKET_NAME, VERSIONED_KEY, CannedAccessControlList.Private);
 
         // version unaware (with the null version ID?)
-        s3.setObjectAcl(bucketName, unversionedKey, CannedAccessControlList.LogDeliveryWrite);
+        s3.setObjectAcl(BUCKET_NAME, UNVERSIONED_KEY, CannedAccessControlList.LogDeliveryWrite);
         Thread.sleep(1000 * 60);
     }
 
@@ -344,20 +345,20 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         String versionId = (String) fileContentsByVersionId.keySet().toArray()[1];
 
         // version aware on a specific version
-        AccessControlList acl = s3.getObjectAcl(bucketName, versionedKey, versionId);
+        AccessControlList acl = s3.getObjectAcl(BUCKET_NAME, VERSIONED_KEY, versionId);
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
 
         // version aware on the NULL version
-        acl = s3.getObjectAcl(bucketName, versionedKey, Constants.NULL_VERSION_ID);
+        acl = s3.getObjectAcl(BUCKET_NAME, VERSIONED_KEY, Constants.NULL_VERSION_ID);
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Write));
 
         // version unaware on the head version
-        acl = s3.getObjectAcl(bucketName, versionedKey);
+        acl = s3.getObjectAcl(BUCKET_NAME, VERSIONED_KEY);
         assertFalse(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
 
         // version unaware
-        acl = s3.getObjectAcl(bucketName, unversionedKey);
+        acl = s3.getObjectAcl(BUCKET_NAME, UNVERSIONED_KEY);
         assertFalse(doesAclContainGroupGrant(acl, GroupGrantee.AllUsers, Permission.Read));
         assertTrue(doesAclContainGroupGrant(acl, GroupGrantee.LogDelivery, Permission.Write));
     }
@@ -368,12 +369,12 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
      */
     private void gotestListVersions() throws Exception {
         // Create a delete marker for us to test later
-        s3.deleteObject(bucketName, deletedKey);
+        s3.deleteObject(BUCKET_NAME, DELETED_KEY);
 
         // Test with only bucketName and prefix
-        VersionListing versionListing = s3.listVersions(bucketName, versionedKey);
-        assertEquals(bucketName, versionListing.getBucketName());
-        assertEquals(versionedKey, versionListing.getPrefix());
+        VersionListing versionListing = s3.listVersions(BUCKET_NAME, VERSIONED_KEY);
+        assertEquals(BUCKET_NAME, versionListing.getBucketName());
+        assertEquals(VERSIONED_KEY, versionListing.getPrefix());
         assertEquals(0, versionListing.getCommonPrefixes().size());
         assertTrue(versionListing.getMaxKeys() > 0);
         assertNull(versionListing.getDelimiter());
@@ -393,9 +394,9 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
 
         // Test with the delimiter parameter a prefix and returned common
         // prefixes
-        versionListing = s3.listVersions(new ListVersionsRequest(bucketName, "aa", null, null, "/",
+        versionListing = s3.listVersions(new ListVersionsRequest(BUCKET_NAME, "aa", null, null, "/",
                 null));
-        assertEquals(bucketName, versionListing.getBucketName());
+        assertEquals(BUCKET_NAME, versionListing.getBucketName());
         assertEquals(1, versionListing.getCommonPrefixes().size());
         assertEquals("aaaa/", versionListing.getCommonPrefixes().get(0));
         assertEquals("/", versionListing.getDelimiter());
@@ -416,9 +417,9 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         }
 
         // Test with a very low maxKeys to get a truncated result...
-        versionListing = s3.listVersions(new ListVersionsRequest(bucketName, null, null, null,
+        versionListing = s3.listVersions(new ListVersionsRequest(BUCKET_NAME, null, null, null,
                 null, new Integer(2)));
-        assertEquals(bucketName, versionListing.getBucketName());
+        assertEquals(BUCKET_NAME, versionListing.getBucketName());
         assertEquals(0, versionListing.getCommonPrefixes().size());
         assertNull(versionListing.getDelimiter());
         assertNull(versionListing.getKeyMarker());
@@ -441,7 +442,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         String nextVersionIdMarker = versionListing.getNextVersionIdMarker();
         String nextKeyMarker = versionListing.getNextKeyMarker();
         versionListing = s3.listNextBatchOfVersions(versionListing);
-        assertEquals(bucketName, versionListing.getBucketName());
+        assertEquals(BUCKET_NAME, versionListing.getBucketName());
         assertEquals(0, versionListing.getCommonPrefixes().size());
         assertNull(versionListing.getDelimiter());
         assertNull(versionListing.getEncodingType());
@@ -462,9 +463,9 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         }
 
         // Test out a delete marker
-        versionListing = s3.listVersions(new ListVersionsRequest(bucketName, deletedKey, null,
+        versionListing = s3.listVersions(new ListVersionsRequest(BUCKET_NAME, DELETED_KEY, null,
                 null, null, null));
-        assertEquals(bucketName, versionListing.getBucketName());
+        assertEquals(BUCKET_NAME, versionListing.getBucketName());
         assertEquals(0, versionListing.getCommonPrefixes().size());
         assertNull(versionListing.getDelimiter());
         assertNull(versionListing.getKeyMarker());
@@ -472,7 +473,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         assertNull(versionListing.getNextKeyMarker());
         assertNull(versionListing.getNextVersionIdMarker());
         assertNull(versionListing.getEncodingType());
-        assertEquals(deletedKey, versionListing.getPrefix());
+        assertEquals(DELETED_KEY, versionListing.getPrefix());
         assertFalse(versionListing.isTruncated());
 
         S3VersionSummary deleteMarker = versionListing.getVersionSummaries().get(0);
@@ -487,7 +488,7 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
 
         // Test list versions with encoding-type parameter
         String encodingType = "url";
-        versionListing = s3.listVersions(new ListVersionsRequest(bucketName, null, null, null,
+        versionListing = s3.listVersions(new ListVersionsRequest(BUCKET_NAME, null, null, null,
                 null, null)
                 .withEncodingType(encodingType));
         assertEquals(encodingType, versionListing.getEncodingType());
@@ -503,22 +504,22 @@ public class VersioningIntegrationTest extends S3IntegrationTestBase {
         String versionId = (String) fileContentsByVersionId.keySet().toArray()[1];
 
         // version unaware on the head version of a versioned file
-        s3.deleteObject(bucketName, versionedKey);
-        assertObjectDoesntExist(bucketName, versionedKey);
-        assertObjectIsDeleted(bucketName, versionedKey);
+        s3.deleteObject(BUCKET_NAME, VERSIONED_KEY);
+        assertObjectDoesntExist(BUCKET_NAME, VERSIONED_KEY);
+        assertObjectIsDeleted(BUCKET_NAME, VERSIONED_KEY);
 
         // version unaware on a file created before versioning was turned on
-        s3.deleteObject(bucketName, unversionedKey);
-        assertObjectDoesntExist(bucketName, unversionedKey);
-        assertObjectIsDeleted(bucketName, unversionedKey);
+        s3.deleteObject(BUCKET_NAME, UNVERSIONED_KEY);
+        assertObjectDoesntExist(BUCKET_NAME, UNVERSIONED_KEY);
+        assertObjectIsDeleted(BUCKET_NAME, UNVERSIONED_KEY);
 
         // version aware on a specific version
-        s3.deleteVersion(bucketName, versionedKey, versionId);
-        assertObjectDoesntExist(bucketName, versionedKey, versionId);
+        s3.deleteVersion(BUCKET_NAME, VERSIONED_KEY, versionId);
+        assertObjectDoesntExist(BUCKET_NAME, VERSIONED_KEY, versionId);
 
         // version aware on the NULL version
-        s3.deleteVersion(bucketName, versionedKey, Constants.NULL_VERSION_ID);
-        assertObjectDoesntExist(bucketName, versionedKey, Constants.NULL_VERSION_ID);
+        s3.deleteVersion(BUCKET_NAME, VERSIONED_KEY, Constants.NULL_VERSION_ID);
+        assertObjectDoesntExist(BUCKET_NAME, VERSIONED_KEY, Constants.NULL_VERSION_ID);
     }
 
     /*

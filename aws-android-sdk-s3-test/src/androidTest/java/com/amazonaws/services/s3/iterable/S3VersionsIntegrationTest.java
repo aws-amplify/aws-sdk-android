@@ -41,8 +41,8 @@ import java.util.Iterator;
 public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "java-s3-version-iteration-test-"
-            + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-s3-version-iteration-test-"
+            + System.currentTimeMillis();
 
     @After
     public void deleteBucketContents() throws Exception {
@@ -56,18 +56,18 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
     @BeforeClass
     public static void createVersionedBucket() throws Exception {
 
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
         waitForBucketCreation();
 
-        s3.setBucketVersioningConfiguration(new SetBucketVersioningConfigurationRequest(bucketName,
+        s3.setBucketVersioningConfiguration(new SetBucketVersioningConfigurationRequest(BUCKET_NAME,
                 new BucketVersioningConfiguration(BucketVersioningConfiguration.ENABLED)));
-        waitForBucketVersioningToBeEnabled(bucketName);
+        waitForBucketVersioningToBeEnabled(BUCKET_NAME);
 
     }
 
     @AfterClass
     public static void tearDown() throws Exception {
-        deleteBucketAndAllVersionedContents(bucketName);
+        deleteBucketAndAllVersionedContents(BUCKET_NAME);
     }
 
     @Test
@@ -78,13 +78,13 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
         Thread.sleep(200);
 
-        checkIteration(S3Versions.inBucket(s3, bucketName), "1-one", "2-two", "3-three");
+        checkIteration(S3Versions.inBucket(s3, BUCKET_NAME), "1-one", "2-two", "3-three");
     }
 
     protected void putObject(String key) {
         ObjectMetadata meta = new ObjectMetadata();
         meta.setContentLength(5);
-        s3.putObject(bucketName, key, new ByteArrayInputStream("HELLO".getBytes(StringUtils.UTF8)),
+        s3.putObject(BUCKET_NAME, key, new ByteArrayInputStream("HELLO".getBytes(StringUtils.UTF8)),
                 meta);
     }
 
@@ -97,7 +97,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
         Thread.sleep(200);
 
-        checkIteration(S3Versions.inBucket(s3, bucketName).withBatchSize(1), "1-one", "1-one",
+        checkIteration(S3Versions.inBucket(s3, BUCKET_NAME).withBatchSize(1), "1-one", "1-one",
                 "2-two", "3-three");
     }
 
@@ -109,7 +109,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
         Thread.sleep(200);
 
-        checkIteration(S3Versions.withPrefix(s3, bucketName, "foo"), "foobar", "foobaz");
+        checkIteration(S3Versions.withPrefix(s3, BUCKET_NAME, "foo"), "foobar", "foobaz");
     }
 
     @Test
@@ -120,7 +120,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
         Thread.sleep(200);
 
-        checkIteration(S3Versions.forKey(s3, bucketName, "the-key"), "the-key", "the-key");
+        checkIteration(S3Versions.forKey(s3, BUCKET_NAME, "the-key"), "the-key", "the-key");
     }
 
     @Test
@@ -131,7 +131,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
         Thread.sleep(200);
 
-        checkIteration(S3Versions.forKey(s3, bucketName, "the-key").withBatchSize(1), "the-key",
+        checkIteration(S3Versions.forKey(s3, BUCKET_NAME, "the-key").withBatchSize(1), "the-key",
                 "the-key");
     }
 
@@ -180,7 +180,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
     private void deleteAllVersionedContents() throws InterruptedException {
         // Delete all the versions in the bucket first
         Thread.sleep(1000 * 3);
-        VersionListing versionListing = s3.listVersions(bucketName, null);
+        VersionListing versionListing = s3.listVersions(BUCKET_NAME, null);
         do {
             for (java.util.Iterator iterator = versionListing.getVersionSummaries().iterator(); iterator
                     .hasNext();) {
@@ -188,7 +188,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
 
                 try {
                     s3.deleteVersion(new DeleteVersionRequest(
-                            bucketName, version.getKey(), version.getVersionId()));
+                            BUCKET_NAME, version.getKey(), version.getVersionId()));
                 } catch (Exception e) {
                 }
             }
@@ -210,7 +210,7 @@ public class S3VersionsIntegrationTest extends S3IntegrationTestBase {
         long endTime = startTime + (30 * 60 * 1000);
         int hits = 0;
         while (System.currentTimeMillis() < endTime) {
-            if (!s3.doesBucketExist(bucketName)) {
+            if (!s3.doesBucketExist(BUCKET_NAME)) {
                 Thread.sleep(1000);
                 hits = 0;
             }

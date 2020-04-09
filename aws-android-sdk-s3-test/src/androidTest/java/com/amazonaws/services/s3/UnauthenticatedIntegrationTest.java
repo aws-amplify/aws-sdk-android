@@ -65,7 +65,6 @@ public class UnauthenticatedIntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testUnauthenticatedOperations() {
         s3.createBucket(bucketName);
-        s3.setBucketAcl(bucketName, CannedAccessControlList.PublicRead);
 
         s3.putObject(new PutObjectRequest(
                 bucketName, "key-1", new RandomInputStream(123L), new ObjectMetadata())

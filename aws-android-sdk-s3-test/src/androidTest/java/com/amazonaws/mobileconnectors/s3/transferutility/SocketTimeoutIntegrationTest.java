@@ -82,7 +82,7 @@ class SocketTimeoutMockS3Client extends AmazonS3Client {
 
 public class SocketTimeoutIntegrationTest extends S3IntegrationTestBase {
     /** The bucket created and used by these tests */
-    private static final String BUCKET_NAME = "amazon-transfer-util-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-transfer-util-integ-test-" + System.currentTimeMillis();
 
     /** Instrumentation test context */
     private static Context context = InstrumentationRegistry.getContext();
