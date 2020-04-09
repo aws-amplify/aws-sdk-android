@@ -37,15 +37,16 @@ import java.util.List;
 /** Tests that S3 could handle special key names. **/
 public class SpecialObjectKeyNameIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String bucketName = "special-key-test-bucket-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-special-key-test-bucket-"
+            + System.currentTimeMillis();
     private static final String OBJECT_CONTENTS = "Special key name test";
 
     @BeforeClass
     public static void createBucket() {
-        CreateBucketRequest request = new CreateBucketRequest(bucketName);
+        CreateBucketRequest request = new CreateBucketRequest(BUCKET_NAME);
         Bucket bucket = s3.createBucket(request);
         assertNotNull(bucket);
-        assertEquals(bucketName, bucket.getName());
+        assertEquals(BUCKET_NAME, bucket.getName());
     }
 
     /**
@@ -62,17 +63,17 @@ public class SpecialObjectKeyNameIntegrationTest extends S3IntegrationTestBase {
 
     @AfterClass
     public static void tearDown() {
-        if (bucketName != null)
-            deleteBucketAndAllContents(bucketName);
+        if (BUCKET_NAME != null)
+            deleteBucketAndAllContents(BUCKET_NAME);
     }
 
     private void testPutObject(String specialKeyName) {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(OBJECT_CONTENTS.getBytes(StringUtils.UTF8).length);
-        s3.putObject(bucketName, specialKeyName,
+        s3.putObject(BUCKET_NAME, specialKeyName,
                 new ByteArrayInputStream(OBJECT_CONTENTS.getBytes(StringUtils.UTF8)), metadata);
 
-        List<S3ObjectSummary> objects = s3.listObjects(bucketName).getObjectSummaries();
+        List<S3ObjectSummary> objects = s3.listObjects(BUCKET_NAME).getObjectSummaries();
         for (S3ObjectSummary object : objects) {
             if (object.getKey().equals(specialKeyName)) {
                 return;

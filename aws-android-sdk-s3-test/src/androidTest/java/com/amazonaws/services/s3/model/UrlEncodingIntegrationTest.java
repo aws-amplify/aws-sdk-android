@@ -24,8 +24,8 @@ import org.junit.Test;
 
 public class UrlEncodingIntegrationTest extends S3IntegrationTestBase {
 
-    private static final String BUCKET_WITH_NORMAL_KEYS = "normal-key-bucket-" + System.currentTimeMillis();
-    private static final String BUCKET_WITH_SPECIAL_KEYS = "special-key-bucket-" + System.currentTimeMillis();
+    private static final String BUCKET_WITH_NORMAL_KEYS = "android-sdk-normal-key-bucket-" + System.currentTimeMillis();
+    private static final String BUCKET_WITH_SPECIAL_KEYS = "android-sdk-special-key-bucket-" + System.currentTimeMillis();
 
     /*
      * The normal keys. Url-encoding will not change their values.

@@ -36,12 +36,12 @@ import java.util.Set;
 public class S3ObjectsIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "java-s3-object-iteration-test-"
-            + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-s3-object-iteration-test-"
+            + System.currentTimeMillis();
 
     @AfterClass
-    public static void tearDown() throws Exception {
-        deleteBucketAndAllContents(bucketName);
+    public static void tearDown() {
+        deleteBucketAndAllContents(BUCKET_NAME);
     }
 
     /**
@@ -50,56 +50,56 @@ public class S3ObjectsIntegrationTest extends S3IntegrationTestBase {
     @BeforeClass
     public static void setUp() throws Exception {
         S3IntegrationTestBase.setUp();
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
     }
 
     @Test
     public void testIteratingAFewObjects() throws Exception {
-        deleteObjects(bucketName);
+        deleteObjects(BUCKET_NAME);
         putObject("1-one");
         putObject("2-two");
         putObject("3-three");
 
         Thread.sleep(200);
 
-        checkIteration(S3Objects.inBucket(s3, bucketName), "1-one", "2-two", "3-three");
+        checkIteration(S3Objects.inBucket(s3, BUCKET_NAME), "1-one", "2-two", "3-three");
     }
 
     @Test
     public void testIteratingMultiplePages() throws Exception {
-        deleteObjects(bucketName);
+        deleteObjects(BUCKET_NAME);
         putObject("1-one");
         putObject("2-two");
         putObject("3-three");
 
         Thread.sleep(200);
 
-        checkIteration(S3Objects.inBucket(s3, bucketName).withBatchSize(1), "1-one", "2-two",
+        checkIteration(S3Objects.inBucket(s3, BUCKET_NAME).withBatchSize(1), "1-one", "2-two",
                 "3-three");
     }
 
     @Test
     public void testIteratingWithPrefix() throws Exception {
-        deleteObjects(bucketName);
+        deleteObjects(BUCKET_NAME);
         putObject("foobar");
         putObject("foobaz");
         putObject("somethingelse");
 
         Thread.sleep(200);
 
-        checkIteration(S3Objects.withPrefix(s3, bucketName, "foo"), "foobar", "foobaz");
+        checkIteration(S3Objects.withPrefix(s3, BUCKET_NAME, "foo"), "foobar", "foobaz");
     }
 
     @Test
     public void testIteratingWithPrefixAndMultiplePages() throws Exception {
-        deleteObjects(bucketName);
+        deleteObjects(BUCKET_NAME);
         putObject("absolutely");
         putObject("foobar");
         putObject("foobaz");
 
         Thread.sleep(200);
 
-        checkIteration(S3Objects.withPrefix(s3, bucketName, "foo").withBatchSize(1), "foobar",
+        checkIteration(S3Objects.withPrefix(s3, BUCKET_NAME, "foo").withBatchSize(1), "foobar",
                 "foobaz");
     }
 
@@ -134,7 +134,7 @@ public class S3ObjectsIntegrationTest extends S3IntegrationTestBase {
     }
 
     private void putObject(String string) {
-        createObject(bucketName, string);
+        createObject(BUCKET_NAME, string);
     }
 
 }

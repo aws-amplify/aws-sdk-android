@@ -69,7 +69,8 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     private static final String EXPECTED_OBJECT_CONTENTS = "Hello S3 Java client world!!!";
 
     /** Name of the test bucket these tests will create, test, delete, etc */
-    private static String expectedBucketName = "integ-test-bucket-" + new Date().getTime();
+    private static final String EXPECTED_BUCKET_NAME = "android-sdk-integ-test-bucket-"
+            + System.currentTimeMillis();
 
     /** Name of the test S3 account running these tests */
     private final String expectedS3AccountOwnerName = "aws-dr-mobile-test-android";
@@ -85,9 +86,9 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @AfterClass
     public static void tearDown() {
-        if (expectedBucketName != null) {
+        if (EXPECTED_BUCKET_NAME != null) {
             try {
-                deleteBucketAndAllContents(expectedBucketName);
+                deleteBucketAndAllContents(EXPECTED_BUCKET_NAME);
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -100,15 +101,15 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @BeforeClass
     public static void createBucket() {
-        CreateBucketRequest request = new CreateBucketRequest(expectedBucketName);
+        CreateBucketRequest request = new CreateBucketRequest(EXPECTED_BUCKET_NAME);
         request.setCannedAcl(CannedAccessControlList.Private);
         Bucket bucket = s3.createBucket(request);
         assertNotNull(bucket);
-        assertEquals(expectedBucketName, bucket.getName());
+        assertEquals(EXPECTED_BUCKET_NAME, bucket.getName());
 
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(EXPECTED_OBJECT_CONTENTS.getBytes(StringUtils.UTF8).length);
-        s3.putObject(expectedBucketName, expectedKey, new ByteArrayInputStream(
+        s3.putObject(EXPECTED_BUCKET_NAME, expectedKey, new ByteArrayInputStream(
                 EXPECTED_OBJECT_CONTENTS.getBytes(StringUtils.UTF8)), metadata);
 
         AccessControlList bucketAcl = s3.getBucketAcl(bucket.getName());
@@ -128,7 +129,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         UnreliableRandomInputStream inputStream = new UnreliableRandomInputStream(
                 metadata.getContentLength());
         try {
-            s3.putObject(expectedBucketName, "key", inputStream, metadata);
+            s3.putObject(EXPECTED_BUCKET_NAME, "key", inputStream, metadata);
             fail("Expected an exception to be thrown");
         } catch (AmazonClientException ace) {
             Throwable cause = ace.getCause();
@@ -174,7 +175,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testDoesBucketExistUsingDeprecatedConstructors() {
-        assertTrue(s3.doesBucketExist(expectedBucketName)); // a bucket we own
+        assertTrue(s3.doesBucketExist(EXPECTED_BUCKET_NAME)); // a bucket we own
         assertTrue(s3.doesBucketExist("s3-bucket")); // a bucket we don't own
         assertFalse(s3.doesBucketExist( // a non-existent bucket
                 "qweoiuasnxcvmnsfkljawasmnxasqwoiasdlfjamnxjkaoia-" + System.currentTimeMillis()));
@@ -189,12 +190,12 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         AmazonS3 unknownCredentialsS3 = new AmazonS3Client(
                 new BasicAWSCredentials("FOO", "BAR"),
                 Region.getRegion(Regions.DEFAULT_REGION));
-        assertTrue(unknownCredentialsS3.doesBucketExist(expectedBucketName));
+        assertTrue(unknownCredentialsS3.doesBucketExist(EXPECTED_BUCKET_NAME));
 
         AmazonS3 badCredentialsS3 = new AmazonS3Client(
                 new BasicAWSCredentials(credentials.getAWSAccessKeyId(), "BAD"),
                 Region.getRegion(Regions.DEFAULT_REGION));
-        assertTrue(badCredentialsS3.doesBucketExist(expectedBucketName));
+        assertTrue(badCredentialsS3.doesBucketExist(EXPECTED_BUCKET_NAME));
 
     }
 
@@ -203,7 +204,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testDoesBucketExist() {
-        assertTrue(s3.doesBucketExist(expectedBucketName)); // a bucket we own
+        assertTrue(s3.doesBucketExist(EXPECTED_BUCKET_NAME)); // a bucket we own
         assertTrue(s3.doesBucketExist("s3-bucket")); // a bucket we don't own
         assertFalse(s3.doesBucketExist( // a non-existent bucket
                 "qweoiuasnxcvmnsfkljawasmnxasqwoiasdlfjamnxjkaoia-" + System.currentTimeMillis()));
@@ -218,12 +219,12 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         AmazonS3 unknownCredentialsS3 = new AmazonS3Client(
                 new BasicAWSCredentials("FOO", "BAR"),
                 Region.getRegion(Regions.DEFAULT_REGION));
-        assertTrue(unknownCredentialsS3.doesBucketExist(expectedBucketName));
+        assertTrue(unknownCredentialsS3.doesBucketExist(EXPECTED_BUCKET_NAME));
 
         AmazonS3 badCredentialsS3 = new AmazonS3Client(new BasicAWSCredentials(
                 credentials.getAWSAccessKeyId(), "BAD"),
                 Region.getRegion(Regions.DEFAULT_REGION));
-        assertTrue(badCredentialsS3.doesBucketExist(expectedBucketName));
+        assertTrue(badCredentialsS3.doesBucketExist(EXPECTED_BUCKET_NAME));
 
     }
 
@@ -232,13 +233,13 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(0);
         String key = "integ-test-key-zero byte file";
-        s3.putObject(expectedBucketName, key, new ByteArrayInputStream(new byte[0]), metadata);
+        s3.putObject(EXPECTED_BUCKET_NAME, key, new ByteArrayInputStream(new byte[0]), metadata);
 
-        metadata = s3.getObjectMetadata(expectedBucketName, key);
+        metadata = s3.getObjectMetadata(EXPECTED_BUCKET_NAME, key);
         assertTrue(0 == metadata.getContentLength());
         assertNotNull(metadata.getETag());
 
-        s3.getObject(expectedBucketName, key);
+        s3.getObject(EXPECTED_BUCKET_NAME, key);
     }
 
     /**
@@ -253,29 +254,29 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         String key = "integ-test-key-with spaces ~ in it";
 
         // Upload an object with spaces in the key
-        s3.putObject(expectedBucketName, key,
+        s3.putObject(EXPECTED_BUCKET_NAME, key,
                 new ByteArrayInputStream("FOO!".getBytes(StringUtils.UTF8)),
                 expectedMetadata);
 
         // Test listing the key with spaces in it
-        List<S3ObjectSummary> objects = s3.listObjects(expectedBucketName).getObjectSummaries();
+        List<S3ObjectSummary> objects = s3.listObjects(EXPECTED_BUCKET_NAME).getObjectSummaries();
         objectListContainsKey(objects, key);
 
         // Test getting an object with spaces in the key
-        InputStream inputStream = s3.getObject(expectedBucketName, key).getObjectContent();
+        InputStream inputStream = s3.getObject(EXPECTED_BUCKET_NAME, key).getObjectContent();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
                 StringUtils.UTF8));
         assertEquals("FOO!", reader.readLine());
 
         // Test getting object metadata with spaces in the key
-        ObjectMetadata objectMetadata = s3.getObjectMetadata(expectedBucketName, key);
+        ObjectMetadata objectMetadata = s3.getObjectMetadata(EXPECTED_BUCKET_NAME, key);
         Map<String, String> metadata = objectMetadata.getUserMetadata();
         assertTrue(expectedMetadata.getUserMetadata().size() == metadata.size());
         assertEquals("bar", metadata.get("bash"));
         assertEquals("foo", metadata.get("boo"));
 
         // Test deleting an object with spaces in the key
-        s3.deleteObject(expectedBucketName, key);
+        s3.deleteObject(EXPECTED_BUCKET_NAME, key);
     }
 
     /**
@@ -294,8 +295,8 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         Metadata.addUserMetadata("foo", "bar");
         Metadata.addUserMetadata("baz", "bash");
         Metadata.setHttpExpiresDate(expiresDate);
-        s3.putObject(expectedBucketName, expectedKey, input, Metadata);
-        ObjectMetadata objectMetadata = s3.getObjectMetadata(expectedBucketName, expectedKey);
+        s3.putObject(EXPECTED_BUCKET_NAME, expectedKey, input, Metadata);
+        ObjectMetadata objectMetadata = s3.getObjectMetadata(EXPECTED_BUCKET_NAME, expectedKey);
         Map<String, String> metadataMap = objectMetadata.getUserMetadata();
         assertTrue(2 == metadataMap.size());
         assertEquals("bar", metadataMap.get("foo"));
@@ -308,7 +309,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testGetObject() throws IOException {
-        InputStream inputStream = s3.getObject(expectedBucketName, expectedKey).getObjectContent();
+        InputStream inputStream = s3.getObject(EXPECTED_BUCKET_NAME, expectedKey).getObjectContent();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
                 StringUtils.UTF8));
         assertEquals(EXPECTED_OBJECT_CONTENTS, reader.readLine());
@@ -317,9 +318,9 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     /** Tests that we can create URLs for S3 objects. */
     @Test
     public void testGetUrl() {
-        URL url = s3.getUrl(expectedBucketName, expectedKey);
+        URL url = s3.getUrl(EXPECTED_BUCKET_NAME, expectedKey);
 
-        assertTrue(url.getHost().startsWith(expectedBucketName));
+        assertTrue(url.getHost().startsWith(EXPECTED_BUCKET_NAME));
         assertEquals("/" + expectedKey, url.getPath());
     }
 
@@ -329,17 +330,17 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testGetObjectMD5Validation() throws IOException {
         // Close without consuming all the contents
-        InputStream inputStream = s3.getObject(expectedBucketName, expectedKey).getObjectContent();
+        InputStream inputStream = s3.getObject(EXPECTED_BUCKET_NAME, expectedKey).getObjectContent();
         inputStream.close();
 
         // Consume all the contents before close
-        inputStream = s3.getObject(expectedBucketName, expectedKey).getObjectContent();
+        inputStream = s3.getObject(EXPECTED_BUCKET_NAME, expectedKey).getObjectContent();
         StreamUtils.consumeInputStream(inputStream);
         inputStream.close();
 
         // Get object with range
         inputStream = s3.getObject(
-                new GetObjectRequest(expectedBucketName, expectedKey).withRange(2, 5))
+                new GetObjectRequest(EXPECTED_BUCKET_NAME, expectedKey).withRange(2, 5))
                 .getObjectContent();
         StreamUtils.consumeInputStream(inputStream);
         inputStream.close();
@@ -349,11 +350,11 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     public void testObjectWithRedirectLocation() throws IOException {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(EXPECTED_OBJECT_CONTENTS.getBytes(StringUtils.UTF8).length);
-        s3.putObject(new PutObjectRequest(expectedBucketName, expectedKey + 1,
+        s3.putObject(new PutObjectRequest(EXPECTED_BUCKET_NAME, expectedKey + 1,
                 new ByteArrayInputStream(EXPECTED_OBJECT_CONTENTS.getBytes(StringUtils.UTF8)),
                 metadata)
                 .withRedirectLocation(REDIRECT_LOCATION));
-        S3Object object = s3.getObject(expectedBucketName, expectedKey + 1);
+        S3Object object = s3.getObject(EXPECTED_BUCKET_NAME, expectedKey + 1);
         InputStream inputStream = object.getObjectContent();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream,
                 StringUtils.UTF8));
@@ -362,17 +363,17 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         assertEquals(EXPECTED_OBJECT_CONTENTS, reader.readLine());
 
         // Whether we can successfully change the Object Direction
-        s3.setObjectRedirectLocation(expectedBucketName, expectedKey + 1, REDIRECT_LOCATION + 123);
+        s3.setObjectRedirectLocation(EXPECTED_BUCKET_NAME, expectedKey + 1, REDIRECT_LOCATION + 123);
 
-        object = s3.getObject(expectedBucketName, expectedKey + 1);
+        object = s3.getObject(EXPECTED_BUCKET_NAME, expectedKey + 1);
         inputStream = object.getObjectContent();
         reader = new BufferedReader(new InputStreamReader(inputStream, StringUtils.UTF8));
 
         assertEquals(REDIRECT_LOCATION + 123, object.getRedirectLocation());
         assertEquals(EXPECTED_OBJECT_CONTENTS, reader.readLine());
 
-        s3.putObject(new PutObjectRequest(expectedBucketName, expectedKey + 2, REDIRECT_LOCATION));
-        object = s3.getObject(expectedBucketName, expectedKey + 2);
+        s3.putObject(new PutObjectRequest(EXPECTED_BUCKET_NAME, expectedKey + 2, REDIRECT_LOCATION));
+        object = s3.getObject(EXPECTED_BUCKET_NAME, expectedKey + 2);
 
         assertEquals(REDIRECT_LOCATION, object.getRedirectLocation());
         assertTrue(0 == object.getObjectMetadata().getContentLength());
@@ -385,7 +386,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testListBuckets() {
         List<Bucket> buckets = s3.listBuckets();
-        Bucket bucket = findBucketInList(buckets, expectedBucketName);
+        Bucket bucket = findBucketInList(buckets, EXPECTED_BUCKET_NAME);
         assertNotNull(bucket);
         assertNotNull(bucket.getCreationDate());
         assertNotNull(bucket.getOwner());
@@ -409,14 +410,14 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testListObjects() {
-        List<S3ObjectSummary> objects = s3.listObjects(expectedBucketName).getObjectSummaries();
+        List<S3ObjectSummary> objects = s3.listObjects(EXPECTED_BUCKET_NAME).getObjectSummaries();
         assertTrue(objectListContainsKey(objects, expectedKey));
 
-        objects = s3.listObjects(expectedBucketName, "non-existant-object-key-prefix-")
+        objects = s3.listObjects(EXPECTED_BUCKET_NAME, "non-existant-object-key-prefix-")
                 .getObjectSummaries();
         assertNotNull(objects);
 
-        objects = s3.listObjects(new ListObjectsRequest(expectedBucketName, null, null, null, 0))
+        objects = s3.listObjects(new ListObjectsRequest(EXPECTED_BUCKET_NAME, null, null, null, 0))
                 .getObjectSummaries();
         assertTrue(objects.size() == 0);
     }
@@ -428,13 +429,13 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     @Test
     public void testListObjectsByPrefix() {
         ListObjectsRequest request = new ListObjectsRequest(
-                expectedBucketName, expectedKey.substring(0, 5), null, null, null);
+                EXPECTED_BUCKET_NAME, expectedKey.substring(0, 5), null, null, null);
         List<S3ObjectSummary> objects = s3.listObjects(request).getObjectSummaries();
 
         assertTrue(objectListContainsKey(objects, expectedKey));
 
         objects = s3.listObjects(new ListObjectsRequest(
-                expectedBucketName, "NonExistantKeyPrefix", null, null, null)).getObjectSummaries();
+                EXPECTED_BUCKET_NAME, "NonExistantKeyPrefix", null, null, null)).getObjectSummaries();
         assertTrue(0 == objects.size());
     }
 
@@ -443,7 +444,7 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testGetBucketLocation() {
-        assertEquals("us-west-1", s3.getBucketLocation(expectedBucketName));
+        assertEquals(Regions.US_WEST_1.getName(), s3.getBucketLocation(EXPECTED_BUCKET_NAME));
     }
 
     /*

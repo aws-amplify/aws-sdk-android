@@ -36,7 +36,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.Date;
 
 /**
  * Integration tests for multi object delete.
@@ -46,11 +45,11 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
     private static final boolean ANDROID_TESTING = false;
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "java-bucket-lifecycle-integ-test-"
-            + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-bucket-lifecycle-integ-test-"
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
-    private static final String key = "key";
+    private static final String KEY = "key";
 
     /** The file containing the test data uploaded to S3 */
     private static File file = null;
@@ -82,11 +81,11 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
     @AfterClass
     public static void tearDown() throws Exception {
         // Delete the config
-        s3.deleteBucketLifecycleConfiguration(bucketName);
-        assertNull(waitForBucketLifecycleConfigurationDeleted(bucketName));
+        s3.deleteBucketLifecycleConfiguration(BUCKET_NAME);
+        assertNull(waitForBucketLifecycleConfigurationDeleted(BUCKET_NAME));
 
         // Delete the bucket
-        deleteBucketAndAllContents(bucketName);
+        deleteBucketAndAllContents(BUCKET_NAME);
 
         // Delete the local file
         if (file != null) {
@@ -107,13 +106,13 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
 
         tempData = tempDataBuffer(1000);
 
-        s3.createBucket(bucketName);
-        S3IntegrationTestBase.waitForBucketCreation(bucketName);
+        s3.createBucket(BUCKET_NAME);
+        S3IntegrationTestBase.waitForBucketCreation(BUCKET_NAME);
 
         ObjectMetadata metadata = null;
         if (!ANDROID_TESTING) {
             file = new RandomTempFile("get-object-integ-test", 1000L);
-            s3.putObject(bucketName, key, file);
+            s3.putObject(BUCKET_NAME, KEY, file);
         } else {
             file = S3IntegrationTestBase.getRandomTempFile("foo", 1000L);
             ByteArrayInputStream bais = new ByteArrayInputStream(tempData);
@@ -121,7 +120,7 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
             metadata = new ObjectMetadata();
             metadata.setContentLength(1000);
 
-            s3.putObject(new PutObjectRequest(bucketName, key, bais, metadata));
+            s3.putObject(new PutObjectRequest(BUCKET_NAME, KEY, bais, metadata));
             bais.close();
         }
     }
@@ -130,7 +129,7 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
     public void testBucketLifecycle() throws Exception {
         // Check the bucket for its existing lifecycle config
         BucketLifecycleConfiguration bucketLifecycleConfiguration = s3
-                .getBucketLifecycleConfiguration(bucketName);
+                .getBucketLifecycleConfiguration(BUCKET_NAME);
         assertNull(bucketLifecycleConfiguration);
 
         // Apply a config
@@ -149,10 +148,10 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
                 .withStatus(BucketLifecycleConfiguration.DISABLED);
         BucketLifecycleConfiguration config = new BucketLifecycleConfiguration().withRules(rule1,
                 rule2);
-        s3.setBucketLifecycleConfiguration(bucketName, config);
+        s3.setBucketLifecycleConfiguration(BUCKET_NAME, config);
 
         // Check reading it back
-        bucketLifecycleConfiguration = waitForBucketLifecycleConfiguration(bucketName);
+        bucketLifecycleConfiguration = waitForBucketLifecycleConfiguration(BUCKET_NAME);
         assertNotNull(bucketLifecycleConfiguration);
         assertEquals(2, bucketLifecycleConfiguration.getRules().size());
         boolean seen1 = false, seen2 = false;
@@ -181,14 +180,14 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
 
         // Now put some objects and see if they have the right headers returned
         String expiringKey = "prefixKey";
-        s3.putObject(bucketName, expiringKey, file);
-        ObjectMetadata metadataExpriringKey = waitForObjectWithExpirationKeyExisit(bucketName,
+        s3.putObject(BUCKET_NAME, expiringKey, file);
+        ObjectMetadata metadataExpriringKey = waitForObjectWithExpirationKeyExisit(BUCKET_NAME,
                 expiringKey);
 
         String nonExpiringKey = "anotherKey";
-        s3.putObject(bucketName, nonExpiringKey, file);
+        s3.putObject(BUCKET_NAME, nonExpiringKey, file);
         ObjectMetadata metadataNonExpriringKey = waitForObjectWithNonExpirationKeyExisit(
-                bucketName, nonExpiringKey);
+                BUCKET_NAME, nonExpiringKey);
 
         assertNotNull(metadataExpriringKey.getExpirationTime());
         assertEquals(ruleId, metadataExpriringKey.getExpirationTimeRuleId());
@@ -198,25 +197,25 @@ public class BucketLifecycleConfigurationIntegrationTest extends S3IntegrationTe
 
         // There are several APIs that are affected by this header; test them
         ObjectMetadata copyObjectMetadata = null;
-        s3.copyObject(new CopyObjectRequest(bucketName, expiringKey, bucketName, expiringKey + "2"));
-        copyObjectMetadata = waitForObjectWithExpirationKeyExisit(bucketName, expiringKey + "2");
+        s3.copyObject(new CopyObjectRequest(BUCKET_NAME, expiringKey, BUCKET_NAME, expiringKey + "2"));
+        copyObjectMetadata = waitForObjectWithExpirationKeyExisit(BUCKET_NAME, expiringKey + "2");
 
         assertNotNull(copyObjectMetadata.getExpirationTime());
         assertEquals(ruleId, copyObjectMetadata.getExpirationTimeRuleId());
 
-        s3.copyObject(new CopyObjectRequest(bucketName, nonExpiringKey, bucketName, nonExpiringKey
+        s3.copyObject(new CopyObjectRequest(BUCKET_NAME, nonExpiringKey, BUCKET_NAME, nonExpiringKey
                 + "2"));
-        copyObjectMetadata = waitForObjectWithNonExpirationKeyExisit(bucketName, nonExpiringKey
+        copyObjectMetadata = waitForObjectWithNonExpirationKeyExisit(BUCKET_NAME, nonExpiringKey
                 + "2");
 
         assertNull(copyObjectMetadata.getExpirationTime());
         assertNull(copyObjectMetadata.getExpirationTimeRuleId());
 
-        metadataExpriringKey = waitForObjectWithExpirationKeyExisit(bucketName, expiringKey);
+        metadataExpriringKey = waitForObjectWithExpirationKeyExisit(BUCKET_NAME, expiringKey);
         assertNotNull(metadataExpriringKey.getExpirationTime());
         assertEquals(ruleId, metadataExpriringKey.getExpirationTimeRuleId());
 
-        metadataNonExpriringKey = waitForObjectWithNonExpirationKeyExisit(bucketName,
+        metadataNonExpriringKey = waitForObjectWithNonExpirationKeyExisit(BUCKET_NAME,
                 nonExpiringKey);
         assertNull(metadataNonExpriringKey.getExpirationTime());
         assertNull(metadataNonExpriringKey.getExpirationTimeRuleId());

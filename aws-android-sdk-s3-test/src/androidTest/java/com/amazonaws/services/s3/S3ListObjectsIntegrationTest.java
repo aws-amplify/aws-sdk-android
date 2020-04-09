@@ -59,14 +59,15 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
     private static final String KEY_NAME_WITH_SPECIAL_CHARS = "special-chars-@$%";
 
     /** The name of the bucket created, used, and deleted by these tests */
-    private final String bucketName = "list-objects-integ-test-" + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-list-objects-integ-test-"
+            + System.currentTimeMillis();
 
     /** List of all keys created by these tests */
     private final List<String> keys = new ArrayList<String>();
 
     @Before
     public void createBucketAndKeys() throws Exception {
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
         final NumberFormat numberFormatter = new DecimalFormat("##00");
         for (int i = 1; i <= 15; i++) {
             createKey("key-" + numberFormatter.format(i));
@@ -83,13 +84,13 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
         for (final java.util.Iterator iterator = keys.iterator(); iterator.hasNext();) {
             final String key = (String) iterator.next();
             try {
-                s3.deleteObject(bucketName, key);
+                s3.deleteObject(BUCKET_NAME, key);
             } catch (final Exception e) {
                 e.printStackTrace();
             }
         }
         try {
-            s3.deleteBucket(bucketName);
+            s3.deleteBucket(BUCKET_NAME);
         } catch (final Exception e) {
             e.printStackTrace();
         }
@@ -136,11 +137,11 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
      * parameters, set, etc.
      */
     private void gotestSimpleMethodForm() {
-        final ObjectListing objectListing = s3.listObjects(bucketName);
+        final ObjectListing objectListing = s3.listObjects(BUCKET_NAME);
         final List<S3ObjectSummary> objects = objectListing.getObjectSummaries();
 
         assertEquals(keys.size(), objects.size());
-        assertEquals(bucketName, objectListing.getBucketName());
+        assertEquals(BUCKET_NAME, objectListing.getBucketName());
         assertS3ObjectSummariesAreValid(objects);
 
         // We didn't use a delimiter, so we expect these to be empty/null
@@ -169,11 +170,11 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
         final String prefix = "key";
         final String marker = "key-01";
         final ObjectListing objectListing = s3.listObjects(
-                new ListObjectsRequest(bucketName, prefix, marker, null, null));
+                new ListObjectsRequest(BUCKET_NAME, prefix, marker, null, null));
         final List<S3ObjectSummary> objects = objectListing.getObjectSummaries();
 
         assertEquals(15 - 1, objects.size());
-        assertEquals(bucketName, objectListing.getBucketName());
+        assertEquals(BUCKET_NAME, objectListing.getBucketName());
         assertS3ObjectSummariesAreValid(objects);
         assertEquals(marker, objectListing.getMarker());
         assertEquals(prefix, objectListing.getPrefix());
@@ -202,11 +203,11 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
         final String prefix = "a";
         final String delimiter = "/";
         final ObjectListing objectListing = s3.listObjects(
-                new ListObjectsRequest(bucketName, prefix, null, delimiter, null));
+                new ListObjectsRequest(BUCKET_NAME, prefix, null, delimiter, null));
         final List<S3ObjectSummary> objects = objectListing.getObjectSummaries();
 
         assertEquals(1, objects.size());
-        assertEquals(bucketName, objectListing.getBucketName());
+        assertEquals(BUCKET_NAME, objectListing.getBucketName());
         assertS3ObjectSummariesAreValid(objects);
         assertEquals(prefix, objectListing.getPrefix());
         assertEquals(delimiter, objectListing.getDelimiter());
@@ -233,11 +234,11 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
     private void gotestComplexMethodWithMaxKeys() {
         final int maxKeys = 4;
         final ObjectListing objectListing = s3.listObjects(
-                new ListObjectsRequest(bucketName, null, null, null, new Integer(maxKeys)));
+                new ListObjectsRequest(BUCKET_NAME, null, null, null, new Integer(maxKeys)));
         final List<S3ObjectSummary> objects = objectListing.getObjectSummaries();
 
         assertEquals(maxKeys, objects.size());
-        assertEquals(bucketName, objectListing.getBucketName());
+        assertEquals(BUCKET_NAME, objectListing.getBucketName());
         assertEquals(maxKeys, objectListing.getMaxKeys());
         assertS3ObjectSummariesAreValid(objects);
 
@@ -263,7 +264,7 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
      */
     private void gotestComplexMethodWithEncodingType() {
         final ObjectListing objectListing = s3.listObjects(
-                new ListObjectsRequest(bucketName,
+                new ListObjectsRequest(BUCKET_NAME,
                         KEY_NAME_WITH_SPECIAL_CHARS, null, null, null)
                         .withEncodingType(Constants.URL_ENCODING));
         final List<S3ObjectSummary> objects = objectListing.getObjectSummaries();
@@ -285,12 +286,12 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
         final int maxKeys = 4;
         final String prefix = "key";
         final ObjectListing previousObjectListing = s3.listObjects(
-                new ListObjectsRequest(bucketName, prefix, null, null, new Integer(maxKeys)));
+                new ListObjectsRequest(BUCKET_NAME, prefix, null, null, new Integer(maxKeys)));
         final ObjectListing objectListing = s3.listNextBatchOfObjects(previousObjectListing);
         final List<S3ObjectSummary> objects = objectListing.getObjectSummaries();
 
         assertEquals(maxKeys, objects.size());
-        assertEquals(bucketName, objectListing.getBucketName());
+        assertEquals(BUCKET_NAME, objectListing.getBucketName());
         assertEquals(maxKeys, objectListing.getMaxKeys());
         assertEquals(prefix, objectListing.getPrefix());
         assertNotNull(objectListing.getMarker());
@@ -329,7 +330,7 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
         metadata.setContentLength(CONTENT_LENGTH);
         final InputStream input = new RandomInputStream(CONTENT_LENGTH);
 
-        s3.putObject(bucketName, key, input, metadata);
+        s3.putObject(BUCKET_NAME, key, input, metadata);
         keys.add(key);
     }
 
@@ -345,7 +346,7 @@ public class S3ListObjectsIntegrationTest extends S3IntegrationTestBase {
 
         for (final java.util.Iterator iterator = objectSummaries.iterator(); iterator.hasNext();) {
             final S3ObjectSummary obj = (S3ObjectSummary) iterator.next();
-            assertEquals(bucketName, obj.getBucketName());
+            assertEquals(BUCKET_NAME, obj.getBucketName());
             assertTrue(obj.getETag().length() > 1);
             assertFalse(obj.getETag().startsWith("\""));
             assertFalse(obj.getETag().endsWith("\""));

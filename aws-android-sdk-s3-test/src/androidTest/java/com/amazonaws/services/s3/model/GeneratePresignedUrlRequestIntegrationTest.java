@@ -46,7 +46,7 @@ public class GeneratePresignedUrlRequestIntegrationTest extends AWSTestBase {
 
 	private static AmazonS3 s3Client;
 	
-	private static final String BUCKET_NAME = "s3-low-level-presigned-url-" + System.currentTimeMillis();
+	private static final String BUCKET_NAME = "android-sdk-s3-low-level-presigned-url-" + System.currentTimeMillis();
 	
 	private static final long MILLISECONDS_IN_SECONDS = 1000;
 	
@@ -76,7 +76,7 @@ public class GeneratePresignedUrlRequestIntegrationTest extends AWSTestBase {
 	 * @throws java.lang.Exception
 	 */
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
+	public static void tearDownAfterClass() {
 	    CryptoTestUtils.deleteBucketAndAllContents(s3Client, BUCKET_NAME);
 	    s3Client = null;
 	}

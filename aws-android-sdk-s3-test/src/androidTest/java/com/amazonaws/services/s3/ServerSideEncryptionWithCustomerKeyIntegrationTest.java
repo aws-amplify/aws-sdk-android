@@ -63,8 +63,8 @@ import javax.crypto.SecretKey;
 public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3IntegrationTestBase {
 
     /** The bucket created and used by these tests */
-    private static final String bucketName = "java-server-side-encryption-integ-test-"
-            + new Date().getTime();
+    private static final String BUCKET_NAME = "android-sdk-server-side-encryption-integ-test-"
+            + System.currentTimeMillis();
 
     /** The key used in these tests */
     private static final String KEY = "key";
@@ -84,7 +84,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
 
     @AfterClass
     public static void tearDown() throws Exception {
-        deleteBucketAndAllContents(bucketName);
+        deleteBucketAndAllContents(BUCKET_NAME);
 
         if (file_singleUpload != null) {
             file_singleUpload.delete();
@@ -101,7 +101,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
     public static void setUp() throws Exception {
         S3IntegrationTestBase.setUp();
 
-        s3.createBucket(bucketName);
+        s3.createBucket(BUCKET_NAME);
 
         file_singleUpload = new RandomTempFile("get-object-integ-test-single-upload",
                 SINGLE_UPLOAD_OBJECT_SIZE);
@@ -115,7 +115,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
     @Test
     public void testPutObject() {
         PutObjectRequest putObjectRequest =
-                new PutObjectRequest(bucketName, KEY, file_singleUpload)
+                new PutObjectRequest(BUCKET_NAME, KEY, file_singleUpload)
                         .withSSECustomerKey(new SSECustomerKey(secretKey));
 
         PutObjectResult putObject = s3.putObject(putObjectRequest);
@@ -140,8 +140,8 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
     public void testGetObject() throws IOException {
         testPutObject();
 
-        GetObjectRequest request = new GetObjectRequest(bucketName, KEY);
-        File destination = createTempFile(bucketName, KEY);
+        GetObjectRequest request = new GetObjectRequest(BUCKET_NAME, KEY);
+        File destination = createTempFile(BUCKET_NAME, KEY);
 
         /* GetObject request without the SSE parameters should be rejected */
         try {
@@ -183,7 +183,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
          */
         try {
             // first try a bad request with a missing encryption key
-            s3.getObjectMetadata(new GetObjectMetadataRequest(bucketName, KEY));
+            s3.getObjectMetadata(new GetObjectMetadataRequest(BUCKET_NAME, KEY));
             fail("Exception is expected since server-side encryption key isn't provided");
         } catch (AmazonS3Exception expected) {
             assertEquals((Integer) 400, (Integer) expected.getStatusCode());
@@ -191,7 +191,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
 
         // then try with the correct key and verify that we don't get an
         // exception
-        s3.getObjectMetadata(new GetObjectMetadataRequest(bucketName, KEY)
+        s3.getObjectMetadata(new GetObjectMetadataRequest(BUCKET_NAME, KEY)
                 .withSSECustomerKey(serverSideEncryptionKey));
     }
 
@@ -200,7 +200,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         SSECustomerKey serverSideEncryptionKey = new SSECustomerKey(secretKey);
 
         InitiateMultipartUploadRequest initRequest =
-                new InitiateMultipartUploadRequest(bucketName, KEY)
+                new InitiateMultipartUploadRequest(BUCKET_NAME, KEY)
                         .withSSECustomerKey(serverSideEncryptionKey);
 
         InitiateMultipartUploadResult initResult = s3.initiateMultipartUpload(initRequest);
@@ -217,7 +217,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         for (int part = 1; part <= PART_NUMBER; part++) {
             UploadPartRequest uploadPartRequest = new UploadPartRequest()
                     .withUploadId(uploadId)
-                    .withBucketName(bucketName)
+                    .withBucketName(BUCKET_NAME)
                     .withKey(KEY)
                     .withFile(file_multipartUpload)
                     .withPartSize(PART_SIZE)
@@ -239,7 +239,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
 
         CompleteMultipartUploadResult completeResult = s3
                 .completeMultipartUpload(new CompleteMultipartUploadRequest(
-                        bucketName, KEY, uploadId, partETags));
+                        BUCKET_NAME, KEY, uploadId, partETags));
 
         assertEquals(ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION,
                 completeResult.getSSECustomerAlgorithm());
@@ -247,9 +247,9 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNull(completeResult.getSSEAlgorithm());
 
         // Verify the content of the uploaded object
-        GetObjectRequest request = new GetObjectRequest(bucketName, KEY)
+        GetObjectRequest request = new GetObjectRequest(BUCKET_NAME, KEY)
                 .withSSECustomerKey(serverSideEncryptionKey);
-        File destination = createTempFile(bucketName, KEY);
+        File destination = createTempFile(BUCKET_NAME, KEY);
         s3.getObject(request, destination);
         assertFileEqualsFile(file_multipartUpload, destination);
     }
@@ -262,7 +262,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         SecretKey newSecretKey = generateSecretKey();
         String newSecretKey_b64 = Base64.encodeAsString(newSecretKey.getEncoded());
         CopyObjectRequest copyRequest = new CopyObjectRequest(
-                bucketName, KEY, bucketName, destinationKey)
+                BUCKET_NAME, KEY, BUCKET_NAME, destinationKey)
                 .withDestinationSSECustomerKey(new SSECustomerKey(newSecretKey));
 
         /*
@@ -302,9 +302,9 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNull(copyResult.getSSEAlgorithm());
 
         // Verify the content of the copied object
-        GetObjectRequest request = new GetObjectRequest(bucketName, destinationKey)
+        GetObjectRequest request = new GetObjectRequest(BUCKET_NAME, destinationKey)
                 .withSSECustomerKey(new SSECustomerKey(newSecretKey_b64));
-        File destination = createTempFile(bucketName, destinationKey);
+        File destination = createTempFile(BUCKET_NAME, destinationKey);
         s3.getObject(request, destination);
         assertFileEqualsFile(file_singleUpload, destination);
     }
@@ -315,7 +315,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
 
         String destinationKey = "copy-sse-to-nonsse";
         CopyObjectRequest copyRequest = new CopyObjectRequest(
-                bucketName, KEY, bucketName, destinationKey)
+                BUCKET_NAME, KEY, BUCKET_NAME, destinationKey)
                 .withSourceSSECustomerKey(new SSECustomerKey(secretKey_b64));
 
         CopyObjectResult copyResult = s3.copyObject(copyRequest);
@@ -324,8 +324,8 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNull(copyResult.getSSEAlgorithm());
 
         // Verify the content of the copied object
-        GetObjectRequest request = new GetObjectRequest(bucketName, destinationKey);
-        File destination = createTempFile(bucketName, destinationKey);
+        GetObjectRequest request = new GetObjectRequest(BUCKET_NAME, destinationKey);
+        File destination = createTempFile(BUCKET_NAME, destinationKey);
         s3.getObject(request, destination);
         assertFileEqualsFile(file_singleUpload, destination);
     }
@@ -333,12 +333,12 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
     @Test
     public void testCopyObject_NonSSE_to_SSE() throws IOException {
         // Put an unecrypted object
-        s3.putObject(bucketName, KEY, file_singleUpload);
+        s3.putObject(BUCKET_NAME, KEY, file_singleUpload);
 
         String destinationKey = "copy-nonsse-to-sse";
         SSECustomerKey serverSideEncryptionKey = new SSECustomerKey(secretKey);
         CopyObjectRequest copyRequest = new CopyObjectRequest(
-                bucketName, KEY, bucketName, destinationKey)
+                BUCKET_NAME, KEY, BUCKET_NAME, destinationKey)
                 .withDestinationSSECustomerKey(serverSideEncryptionKey);
 
         CopyObjectResult copyResult = s3.copyObject(copyRequest);
@@ -349,8 +349,8 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNull(copyResult.getSSEAlgorithm());
 
         // Verify that we cannot retrieve the copied object without the SSE key
-        GetObjectRequest getRequest = new GetObjectRequest(bucketName, destinationKey);
-        final File destination = createTempFile(bucketName, destinationKey);
+        GetObjectRequest getRequest = new GetObjectRequest(BUCKET_NAME, destinationKey);
+        final File destination = createTempFile(BUCKET_NAME, destinationKey);
         try {
             s3.getObject(getRequest, destination);
             fail("Exception is expected since the object was copied with SSE.");
@@ -360,7 +360,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         }
 
         // We can still retrieve the original object without the key
-        s3.getObject(new GetObjectRequest(bucketName, KEY), destination);
+        s3.getObject(new GetObjectRequest(BUCKET_NAME, KEY), destination);
 
         // Now verify the content of the encrypted copy
         getRequest
@@ -377,9 +377,9 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         SSECustomerKey serverSideEncryptionKey = new SSECustomerKey(secretKey_b64);
 
         CopyPartRequest copyRequest = new CopyPartRequest()
-                .withSourceBucketName(bucketName)
+                .withSourceBucketName(BUCKET_NAME)
                 .withSourceKey(KEY)
-                .withDestinationBucketName(bucketName)
+                .withDestinationBucketName(BUCKET_NAME)
                 .withDestinationKey(destinationKey)
                 .withUploadId(uploadId)
                 .withFirstByte(0L)
@@ -405,22 +405,22 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNotNull(result.getSSECustomerKeyMd5());
         assertNull(result.getSSEAlgorithm());
 
-        s3.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName, destinationKey,
+        s3.abortMultipartUpload(new AbortMultipartUploadRequest(BUCKET_NAME, destinationKey,
                 uploadId));
     }
 
     @Test
     public void testCopyPart_NonSSE_To_SSE() {
         // Put an unecrypted object
-        s3.putObject(bucketName, KEY, file_singleUpload);
+        s3.putObject(BUCKET_NAME, KEY, file_singleUpload);
 
         final String destinationKey = "copy-part-nonsse-to-sse";
         final String uploadId = initNewMultipartUpload(destinationKey, true);
 
         CopyPartRequest copyRequest = new CopyPartRequest()
-                .withSourceBucketName(bucketName)
+                .withSourceBucketName(BUCKET_NAME)
                 .withSourceKey(KEY)
-                .withDestinationBucketName(bucketName)
+                .withDestinationBucketName(BUCKET_NAME)
                 .withDestinationKey(destinationKey)
                 .withUploadId(uploadId)
                 .withFirstByte(0L)
@@ -434,7 +434,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNotNull(result.getSSECustomerKeyMd5());
         assertNull(result.getSSEAlgorithm());
 
-        s3.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName, destinationKey,
+        s3.abortMultipartUpload(new AbortMultipartUploadRequest(BUCKET_NAME, destinationKey,
                 uploadId));
     }
 
@@ -445,9 +445,9 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         final String uploadId = initNewMultipartUpload(destinationKey, false);
 
         CopyPartRequest request = new CopyPartRequest()
-                .withSourceBucketName(bucketName)
+                .withSourceBucketName(BUCKET_NAME)
                 .withSourceKey(KEY)
-                .withDestinationBucketName(bucketName)
+                .withDestinationBucketName(BUCKET_NAME)
                 .withDestinationKey(destinationKey)
                 .withUploadId(uploadId)
                 .withFirstByte(0L)
@@ -461,13 +461,13 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
         assertNull(result.getSSECustomerKeyMd5());
         assertNull(result.getSSEAlgorithm());
 
-        s3.abortMultipartUpload(new AbortMultipartUploadRequest(bucketName, destinationKey,
+        s3.abortMultipartUpload(new AbortMultipartUploadRequest(BUCKET_NAME, destinationKey,
                 uploadId));
     }
 
     @Test
     public void testServerSideEncryptionBadAlgorithm() {
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, KEY, file_singleUpload);
+        PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, KEY, file_singleUpload);
         SSECustomerKey serverSideEncryptionKey = new SSECustomerKey(secretKey_b64);
         serverSideEncryptionKey.setAlgorithm("BAD");
         putObjectRequest.setSSECustomerKey(serverSideEncryptionKey);
@@ -481,7 +481,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
     }
 
     private static String initNewMultipartUpload(String key, boolean withSSE) {
-        InitiateMultipartUploadRequest initRequest = new InitiateMultipartUploadRequest(bucketName,
+        InitiateMultipartUploadRequest initRequest = new InitiateMultipartUploadRequest(BUCKET_NAME,
                 key);
 
         if (withSSE) {
@@ -505,7 +505,7 @@ public class ServerSideEncryptionWithCustomerKeyIntegrationTest extends S3Integr
     }
 
     private File createTempFile(String prefix, String suffix) throws IOException {
-        File tmp = File.createTempFile(bucketName, KEY);
+        File tmp = File.createTempFile(BUCKET_NAME, KEY);
         tmp.deleteOnExit();
         return tmp;
     }
