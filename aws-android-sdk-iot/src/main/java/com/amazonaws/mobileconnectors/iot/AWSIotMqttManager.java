@@ -1926,7 +1926,7 @@ public class AWSIotMqttManager {
          * @param value a {@link String} value for mqtt broker endpoint.
          * @return an instance of {@link Endpoint}.
          */
-        public static Endpoint froString(final String value) {
+        public static Endpoint fromString(final String value) {
             return new Endpoint(value);
         }
 

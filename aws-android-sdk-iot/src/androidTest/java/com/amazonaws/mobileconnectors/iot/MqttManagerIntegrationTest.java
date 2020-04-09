@@ -326,7 +326,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         AWSIotMqttManager mqttManager;
         if (customEndpoint != null) {
             mqttManager = AWSIotMqttManager.from(Region.getRegion(Regions.US_EAST_1),
-                    AWSIotMqttManager.ClientId.fromString("int-test-w-certs"), AWSIotMqttManager.Endpoint.froString(customEndpoint));
+                    AWSIotMqttManager.ClientId.fromString("int-test-w-certs"), AWSIotMqttManager.Endpoint.fromString(customEndpoint));
         } else {
             mqttManager = new AWSIotMqttManager("int-test-w-certs",
                     Region.getRegion(Regions.US_EAST_1), endpointPrefix);
@@ -744,7 +744,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         final List<String> messages = new ArrayList<String>();
 
         AWSIotMqttManager mqttManager = AWSIotMqttManager.from(Region.getRegion(Regions.US_EAST_1),
-                AWSIotMqttManager.ClientId.fromString("int-test-w-ws"), AWSIotMqttManager.Endpoint.froString(endpoint));
+                AWSIotMqttManager.ClientId.fromString("int-test-w-ws"), AWSIotMqttManager.Endpoint.fromString(endpoint));
         mqttManager.setAutoReconnect(false);
 
         switch (authMode) {
@@ -860,7 +860,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         AWSIotMqttManager mqttManager = AWSIotMqttManager.from(Region.getRegion(Regions.US_EAST_1),
                 AWSIotMqttManager.ClientId.fromString("int-test-w-ws"),
-                AWSIotMqttManager.Endpoint.froString(endpoint));
+                AWSIotMqttManager.Endpoint.fromString(endpoint));
         mqttManager.setAutoReconnect(true);
 
         switch (authMode) {
