@@ -47,13 +47,13 @@ final class EventSourceType {
     private static final String UNKNOWN_EVENT_SOURCE_NAME = "unknown";
 
     private final EventSourceAttributeParser attributeParser;
-    private String eventSourceName;
-    private String eventTypeOpenend;
-    private String eventTypeReceivedForeground;
-    private String eventTypeReceivedBackground;
-    private String eventSourceIdAttributeKey;
-    private String eventSourceActivityIdAttributeKey;
-    private String eventSourceKeyPrefix;
+    private final String eventSourceName;
+    private final String eventTypeOpenend;
+    private final String eventTypeReceivedForeground;
+    private final String eventTypeReceivedBackground;
+    private final String eventSourceIdAttributeKey;
+    private final String eventSourceActivityIdAttributeKey;
+    private final String eventSourceKeyPrefix;
 
     private static EventSourceType CAMPAIGN = new EventSourceType(CAMPAIGN_EVENT_SOURCE_NAME,
             CAMPAIGN_EVENT_SOURCE_PREFIX,
