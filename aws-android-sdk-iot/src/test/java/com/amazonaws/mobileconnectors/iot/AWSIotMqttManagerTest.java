@@ -3,13 +3,13 @@ package com.amazonaws.mobileconnectors.iot;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.util.StringUtils;
@@ -30,9 +30,11 @@ import java.io.File;
 import java.security.KeyPair;
 import java.security.KeyStore;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(RobolectricTestRunner.class)
@@ -246,8 +248,10 @@ public class AWSIotMqttManagerTest {
         assertTrue(mockClient.mostRecentOptions.isCleanSession());
         assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
         assertEquals(2, csb.statuses.size());
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(
+                Arrays.asList(AWSIotMqttClientStatus.Connecting, AWSIotMqttClientStatus.Connected),
+                csb.statuses
+        );
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
     }
 
@@ -261,15 +265,17 @@ public class AWSIotMqttManagerTest {
         TestClientStatusCallback csb = new TestClientStatusCallback();
 
         testClient.connect(new TestAwsCredentialsProvider(), csb);
-        Thread.sleep(500);  // connect is async, will return before callback is actually set in connect()
+        csb.latch.await(500, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         assertEquals(1, mockClient.connectCalls);
         assertTrue(mockClient.mostRecentOptions.isCleanSession());
         assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
         assertEquals(2, csb.statuses.size());
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(
+                Arrays.asList(AWSIotMqttClientStatus.Connecting, AWSIotMqttClientStatus.Connected),
+                csb.statuses
+        );
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
     }
 
@@ -283,8 +289,8 @@ public class AWSIotMqttManagerTest {
         TestClientStatusCallback csb = new TestClientStatusCallback();
 
         // When: the SDK tries to connect to IoT.
-        awsIotMqttManager.connect("user", "password", csb);
-        Thread.sleep(500);  // connect is async, will return before callback is actually set in connect()
+        awsIotMqttManager.connect("user", "pass", csb);
+        csb.latch.await(500, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
 
         // Then: connect is invoked on the paho client and client status transitions through connecting
@@ -293,8 +299,10 @@ public class AWSIotMqttManagerTest {
         assertTrue(mockClient.mostRecentOptions.isCleanSession());
         assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
         assertEquals(2, csb.statuses.size());
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(
+                Arrays.asList(AWSIotMqttClientStatus.Connecting, AWSIotMqttClientStatus.Connected),
+                csb.statuses
+        );
         assertEquals(MqttManagerConnectionState.Connected, awsIotMqttManager.getConnectionState());
     }
 
@@ -317,8 +325,10 @@ public class AWSIotMqttManagerTest {
         assertTrue(mockClient.mostRecentOptions.isCleanSession());
         assertEquals(300, mockClient.mostRecentOptions.getKeepAliveInterval());
         assertEquals(2, csb.statuses.size());
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(
+                Arrays.asList(AWSIotMqttClientStatus.Connecting, AWSIotMqttClientStatus.Connected),
+                csb.statuses
+        );
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
     }
 
@@ -350,8 +360,10 @@ public class AWSIotMqttManagerTest {
                 mockClient.mostRecentOptions.getWillMessage().getQos());
         assertFalse(mockClient.mostRecentOptions.getWillMessage().isRetained());
         assertEquals(2, csb.statuses.size());
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, csb.statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(1));
+        assertEquals(
+                Arrays.asList(AWSIotMqttClientStatus.Connecting, AWSIotMqttClientStatus.Connected),
+                csb.statuses
+        );
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
     }
 
@@ -387,8 +399,11 @@ public class AWSIotMqttManagerTest {
         testClient.connect(testKeystore, csb);
         assertEquals(1, mockClient.connectCalls);
         assertEquals(4, csb.statuses.size());
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(2));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, csb.statuses.get(3));
+        assertEquals(
+                Arrays.asList(AWSIotMqttClientStatus.Connecting, AWSIotMqttClientStatus.Connecting,
+                        AWSIotMqttClientStatus.Connected, AWSIotMqttClientStatus.Connected),
+                csb.statuses
+        );
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
     }
 
@@ -572,7 +587,7 @@ public class AWSIotMqttManagerTest {
         TestClientStatusCallback csb = new TestClientStatusCallback();
 
         testClient.connect(new TestAwsCredentialsProvider(), csb);
-        Thread.sleep(500);  // connect is async, will return before callback is actually set in connect()
+        csb.latch.await(500, TimeUnit.MILLISECONDS);
         mockClient.mockConnectSuccess();
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
         mockClient.mockDisconnect();
@@ -3011,14 +3026,17 @@ public class AWSIotMqttManagerTest {
      */
     private class TestClientStatusCallback implements AWSIotMqttClientStatusCallback {
         ArrayList<AWSIotMqttClientStatus> statuses;
+        final CountDownLatch latch;
 
         TestClientStatusCallback() {
             statuses = new ArrayList<AWSIotMqttClientStatus>();
+            latch = new CountDownLatch(1);
         }
 
         @Override
         public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
             statuses.add(status);
+            latch.countDown();
         }
     }
 
