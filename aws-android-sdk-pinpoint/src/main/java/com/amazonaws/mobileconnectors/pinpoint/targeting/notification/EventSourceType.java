@@ -40,6 +40,12 @@ class EventSourceType {
     private static final String AWS_EVENT_TYPE_RECEIVED_BACKGROUND = "received_background";
     private static final String PINPOINT_ATTRIBUTE_KEY = "pinpoint";
     private static final String JOURNEY_ATTRIBUTE_KEY = "journey";
+    private static final String CAMPAIGN_EVENT_SOURCE_NAME = "campaign";
+    private static final String JOURNEY_EVENT_SOURCE_NAME = "journey";
+    private static final String CAMPAIGN_EVENT_SOURCE_PREFIX = "_campaign";
+    private static final String JOURNEY_EVENT_SOURCE_PREFIX = "_journey";
+    static final String UNKNOWN_EVENT_SOURCE_NAME = "unknown";
+
     private final EventSourceAttributeParser attributeParser;
     private String eventSourceName;
     private String eventTypeOpenend;
@@ -49,12 +55,7 @@ class EventSourceType {
     private String eventSourceActivityIdAttributeKey;
     private String eventSourceKeyPrefix;
 
-    private static final String CAMPAIGN_EVENT_SOURCE_NAME = "campaign";
-    private static final String JOURNEY_EVENT_SOURCE_NAME = "journey";
-    static final String UNKNOWN_EVENT_SOURCE_NAME = "unknown";
 
-    private static final String CAMPAIGN_EVENT_SOURCE_PREFIX = "_campaign";
-    private static final String JOURNEY_EVENT_SOURCE_PREFIX = "_journey";
 
     private static EventSourceType CAMPAIGN = new EventSourceType(CAMPAIGN_EVENT_SOURCE_NAME,
             CAMPAIGN_EVENT_SOURCE_PREFIX,
