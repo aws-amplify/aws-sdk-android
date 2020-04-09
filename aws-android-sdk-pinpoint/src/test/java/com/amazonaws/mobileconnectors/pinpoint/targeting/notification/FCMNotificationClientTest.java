@@ -52,6 +52,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.times;
@@ -194,11 +195,11 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
-        assertThat(receivedEvent.getAllAttributes().size(), is(4));
+        assertThat(receivedEvent.getAllAttributes().size(), is(1));
         assertThat(receivedEvent.getAttribute("isAppInForeground"), is("true"));
-        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
-        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
-        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
+        assertNull(receivedEvent.getAttribute("campaign_id"));
+        assertNull(receivedEvent.getAttribute("treatment_id"));
+        assertNull(receivedEvent.getAttribute("campaign_activity_id"));
         // optOut is true because this test can't get the app icon resource id.
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 
@@ -234,12 +235,9 @@ public class FCMNotificationClientTest extends MobileAnalyticsTestBase {
         for (Map.Entry<String, String> entry : receivedEvent.getAllAttributes().entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
-        assertThat(receivedEvent.getAllAttributes().size(), is(5));
+        assertThat(receivedEvent.getAllAttributes().size(), is(2));
         assertThat(receivedEvent.getAttribute("isOptedOut"), is("true"));
         assertThat(receivedEvent.getAttribute("isAppInForeground"), is("true"));
-        assertThat(receivedEvent.getAttribute("campaign_id"), is("Customers rule"));
-        assertThat(receivedEvent.getAttribute("treatment_id"), is("Treat Me well please"));
-        assertThat(receivedEvent.getAttribute("campaign_activity_id"), is("the brink of dawn"));
         // optOut is true because this test can't get the app icon resource id.
         assertThat(receivedEvent.getAllMetrics().size(), is(0));
 

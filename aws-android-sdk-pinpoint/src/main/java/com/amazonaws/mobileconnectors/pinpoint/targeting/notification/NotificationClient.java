@@ -89,7 +89,7 @@ public class NotificationClient {
     /**
      * Constructor.
      *
-     * @param pinpointContext the pinpoint context. {@link PinpointContext}
+     * @param pinpointContext the Pinpoint context. {@link PinpointContext}
      * @deprecated Use {@link #createClient(PinpointContext, ChannelType)} instead.
      */
     @Deprecated
@@ -151,7 +151,7 @@ public class NotificationClient {
     }
 
     /**
-     * Handles pinpoint FCM push messages by posting a local notification when
+     * Handles Pinpoint FCM push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
@@ -159,7 +159,7 @@ public class NotificationClient {
      *
      * @param from the from string received by the FCM service,
      * @param data the bundle received from the FCM service
-     * @return {@link CampaignPushResult}.
+     * @return {@link PushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
@@ -171,11 +171,11 @@ public class NotificationClient {
                 .from(from)
                 .mapData(data)
                 .intentAction(FCM_INTENT_ACTION);
-        return notificationClientBase.handleCampaignPush(notificationDetailsBuilder.build());
+        return handleCampaignPush(notificationDetailsBuilder.build());
     }
 
     /**
-     * Handles pinpoint GCM push messages by posting a local notification when
+     * Handles Pinpoint GCM push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
@@ -185,7 +185,7 @@ public class NotificationClient {
      * @param data         the bundle received from the GCM service
      * @param serviceClass the class extending GCMListenerService that handles
      *                     receiving GCM messages.
-     * @return {@link CampaignPushResult}.
+     * @return {@link PushResult}.
      *
      * @deprecated Use {@link #handleCampaignPush(NotificationDetails)} instead.
      */
@@ -197,7 +197,7 @@ public class NotificationClient {
                 .bundle(data)
                 .serviceClass(serviceClass)
                 .intentAction(GCM_INTENT_ACTION);
-        return notificationClientBase.handleCampaignPush(notificationDetailsBuilder.build());
+        return handleCampaignPush(notificationDetailsBuilder.build());
     }
 
     /**
@@ -277,23 +277,45 @@ public class NotificationClient {
     }
 
     /**
-     * Handles pinpoint push messages by posting a local notification when
+     * Handles Pinpoint push messages by posting a local notification when
      * the app is in the background, or sending a local broadcast if the app is
      * in the foreground. Also on Api level 19 devices and above, if local
      * notifications have been disabled and the app is in the background, a
      * local broadcast is sent.
      *
      * @param notificationDetails the notification message received by the device's messaging service
-     * @return {@link NotificationClient.CampaignPushResult}.
+     * @return {@link PushResult}.
+     *
      */
-    public CampaignPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
-        return notificationClientBase.handleCampaignPush(notificationDetails);
+    public PushResult handleNotificationReceived(final NotificationDetails notificationDetails) {
+        return notificationClientBase.handleNotificationReceived(notificationDetails);
     }
 
     /**
-     * Result values of handling a pinpoint push message.
+     * @deprecated see {@link #handleNotificationReceived(NotificationDetails)}
      */
+    @Deprecated
+    public CampaignPushResult handleCampaignPush(final NotificationDetails notificationDetails) {
+        return CampaignPushResult.valueOf(notificationClientBase.handleNotificationReceived(notificationDetails).toString());
+    }
+
+    /**
+     * @deprecated see {@link PushResult}
+     */
+    @Deprecated
     public enum CampaignPushResult {
+        NOT_HANDLED,
+        POSTED_NOTIFICATION,
+        APP_IN_FOREGROUND,
+        OPTED_OUT,
+        NOTIFICATION_OPENED,
+        SILENT
+    }
+
+    /**
+     * Result values of handling a Pinpoint push message.
+     */
+    public enum PushResult {
         /**
          * The message wasn't for pinpoint.
          */
@@ -324,15 +346,15 @@ public class NotificationClient {
         SILENT
     }
 
-    CampaignPushResult handleNotificationOpen(Map<String, String> campaignAttributes,
-                                              final Bundle data) {
+    PushResult handleNotificationOpen(Map<String, String> eventSourceAttributes,
+                                      final Bundle data) {
         return notificationClientBase
-                .handleNotificationOpen(campaignAttributes, data);
+                .handleNotificationOpen(eventSourceAttributes, data);
     }
 
-    int getNotificationRequestId(final String campaignId,
+    int getNotificationRequestId(final String eventSourceId,
                                  final String activityId) {
         return notificationClientBase
-                .getNotificationRequestId(campaignId, activityId);
+                .getNotificationRequestId(eventSourceId, activityId);
     }
 }

@@ -44,12 +44,12 @@ final class ADMNotificationClient extends NotificationClientBase {
 
 
     @Override
-    protected PendingIntent createOpenAppPendingIntent(final Bundle pushBundle, final Class<?> targetClass, final String campaignId,
+    protected PendingIntent createOpenAppPendingIntent(final Bundle pushBundle, final Class<?> targetClass, final String eventSourceId,
                                                        final int requestId, final String intentAction) {
         PendingIntent contentIntent = null;
         if (intentAction.equals(NotificationClient.ADM_INTENT_ACTION)) {
             contentIntent = PendingIntent.getService(pinpointContext.getApplicationContext(), requestId,
-                    this.notificationIntent(pushBundle, campaignId, requestId, NotificationClient.ADM_INTENT_ACTION,
+                    this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.ADM_INTENT_ACTION,
                             targetClass), PendingIntent.FLAG_ONE_SHOT);
         }
         return contentIntent;

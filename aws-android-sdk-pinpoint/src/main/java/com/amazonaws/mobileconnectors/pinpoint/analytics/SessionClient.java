@@ -211,7 +211,7 @@ public class SessionClient {
         this.pinpointContext.getAnalyticsClient().recordEvent(e);
 
         // clear the global campaign attributes.
-        this.pinpointContext.getAnalyticsClient().clearCampaignAttributes();
+        this.pinpointContext.getAnalyticsClient().clearEventSourceAttributes();
 
         // Kill Session Object
         session = null;

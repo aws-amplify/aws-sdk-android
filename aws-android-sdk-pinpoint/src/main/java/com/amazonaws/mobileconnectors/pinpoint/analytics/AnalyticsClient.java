@@ -75,7 +75,7 @@ public class AnalyticsClient implements JSONSerializable {
     private final Map<String, Double> globalMetrics = new ConcurrentHashMap<String, Double>();
     private final Map<String, Map<String, String>> eventTypeAttributes = new ConcurrentHashMap<String, Map<String, String>>();
     private final Map<String, Map<String, Double>> eventTypeMetrics = new ConcurrentHashMap<String, Map<String, Double>>();
-    private Map<String, String> campaignAttributes = new ConcurrentHashMap<String, String>();
+    private final Map<String, String> eventSourceAttributes = new ConcurrentHashMap<String, String>();
     private String sessionId;
     private long sessionStartTime;
     private EventRecorder eventRecorder;
@@ -359,33 +359,48 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
-     * Adds the specified campaign attributes to events to track Campaign Analytic
-     * <p>
-     * You should not use this method as it will be called by the NotificationManager when the app is opened
-     * from a push notification.
      *
-     * @param campaign the map with campaign attributes of the campaign received
+     * @param campaign
+     * @deprecated see {@link #updateEventSourceGlobally(Map)}
      */
+    @Deprecated
     public void setCampaignAttributes(Map<String, String> campaign) {
-        if (campaign == null) {
-            log.warn("Null campaign attributes provided to setCampaignAttributes.");
-            return;
-        }
-
-        campaignAttributes = campaign;
+        updateEventSourceGlobally(campaign);
     }
 
     /**
-     * Clears campaign attributes
+     * Replaces the current event source attributes (if any)
+     * with a new set of event source attributes
+     * @param attributes map of attribute values
+     */
+    public void updateEventSourceGlobally(final Map<String, String> attributes) {
+        //This call removes previous events identifiers from the
+        //globalAttributes collection in AnalyticsEvent.
+        clearEventSourceAttributes();
+        for (final Map.Entry<String, String> entry : attributes.entrySet()) {
+            if (entry.getValue() != null) {
+                addGlobalAttribute(entry.getKey(), entry.getValue());
+            }
+        }
+        //We set this so the analytics client knows what to remove from
+        //from the globalAttributes collection when it's time to clear it
+        eventSourceAttributes.putAll(attributes);
+    }
+
+    /**
+     * Removes the attributes currently stored in eventSourceAttributes
+     * from the globalAttributes collection. This is typically called
+     * when we want to switch which event source (campaign, journey, or other future
+     * pinpoint construct) pinpoint events are attributed to.
      * <p>
      * You should not use this method as it will be called by the NotificationManager when the app is opened
      * from a push notification.
      */
-    public void clearCampaignAttributes() {
-        for (final String key : campaignAttributes.keySet()) {
+    void clearEventSourceAttributes() {
+        for (final String key : eventSourceAttributes.keySet()) {
             this.removeGlobalAttribute(key);
         }
-        campaignAttributes.clear();
+        eventSourceAttributes.clear();
     }
 
     @Override
