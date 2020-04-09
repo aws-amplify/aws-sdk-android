@@ -75,7 +75,7 @@ public class AnalyticsClient implements JSONSerializable {
     private final Map<String, Double> globalMetrics = new ConcurrentHashMap<String, Double>();
     private final Map<String, Map<String, String>> eventTypeAttributes = new ConcurrentHashMap<String, Map<String, String>>();
     private final Map<String, Map<String, Double>> eventTypeMetrics = new ConcurrentHashMap<String, Map<String, Double>>();
-    private Map<String, String> eventSourceAttributes = new ConcurrentHashMap<String, String>();
+    private final Map<String, String> eventSourceAttributes = new ConcurrentHashMap<String, String>();
     private String sessionId;
     private long sessionStartTime;
     private EventRecorder eventRecorder;
@@ -359,6 +359,16 @@ public class AnalyticsClient implements JSONSerializable {
     }
 
     /**
+     *
+     * @param campaign
+     * @deprecated see {@link #updateEventSourceGlobally(Map)}
+     */
+    @Deprecated
+    public void setCampaignAttributes(Map<String, String> campaign) {
+        updateEventSourceGlobally(campaign);
+    }
+
+    /**
      * Replaces the current event source attributes (if any)
      * with a new set of event source attributes
      * @param attributes map of attribute values
@@ -374,7 +384,7 @@ public class AnalyticsClient implements JSONSerializable {
         }
         //We set this so the analytics client knows what to remove from
         //from the globalAttributes collection when it's time to clear it
-        this.eventSourceAttributes = attributes;
+        eventSourceAttributes.putAll(attributes);
     }
 
     /**

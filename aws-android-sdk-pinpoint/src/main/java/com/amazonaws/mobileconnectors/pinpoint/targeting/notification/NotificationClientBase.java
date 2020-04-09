@@ -859,7 +859,7 @@ abstract class NotificationClientBase {
      */
     public NotificationClient.PushResult handleNotificationReceived(NotificationDetails notificationDetails) {
         final EventSourceType eventSourceType = EventSourceType.getEventSourceType(notificationDetails.getBundle());
-        if (EventSourceType.UNKNOWN_EVENT_SOURCE_NAME.equals(eventSourceType.getEventSourceName())) {
+        if (eventSourceType.isUnkown()) {
             return NotificationClient.PushResult.NOT_HANDLED;
         }
 

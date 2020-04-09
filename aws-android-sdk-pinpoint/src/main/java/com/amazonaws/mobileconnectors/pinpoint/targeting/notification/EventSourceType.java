@@ -33,7 +33,7 @@ import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.Not
 import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClientBase.JOURNEY_ACTIVITY_ID_ATTRIBUTE_KEY;
 import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClientBase.JOURNEY_ID_ATTRIBUTE_KEY;
 
-class EventSourceType {
+final class EventSourceType {
     private static final String TAG = EventSourceType.class.getSimpleName();
     private static final String AWS_EVENT_TYPE_OPENED = "opened_notification";
     private static final String AWS_EVENT_TYPE_RECEIVED_FOREGROUND = "received_foreground";
@@ -44,7 +44,7 @@ class EventSourceType {
     private static final String JOURNEY_EVENT_SOURCE_NAME = "journey";
     private static final String CAMPAIGN_EVENT_SOURCE_PREFIX = "_campaign";
     private static final String JOURNEY_EVENT_SOURCE_PREFIX = "_journey";
-    static final String UNKNOWN_EVENT_SOURCE_NAME = "unknown";
+    private static final String UNKNOWN_EVENT_SOURCE_NAME = "unknown";
 
     private final EventSourceAttributeParser attributeParser;
     private String eventSourceName;
@@ -54,8 +54,6 @@ class EventSourceType {
     private String eventSourceIdAttributeKey;
     private String eventSourceActivityIdAttributeKey;
     private String eventSourceKeyPrefix;
-
-
 
     private static EventSourceType CAMPAIGN = new EventSourceType(CAMPAIGN_EVENT_SOURCE_NAME,
             CAMPAIGN_EVENT_SOURCE_PREFIX,
@@ -105,6 +103,10 @@ class EventSourceType {
         this.eventSourceActivityIdAttributeKey = eventSourceActivityIdAttributeKey;
         this.eventSourceKeyPrefix = eventSourceKeyPrefix;
         this.attributeParser = attributeParser;
+    }
+
+    boolean isUnkown() {
+        return UNKNOWN_EVENT_SOURCE_NAME.equals(this.eventSourceName);
     }
 
     EventSourceAttributeParser getAttributeParser() {

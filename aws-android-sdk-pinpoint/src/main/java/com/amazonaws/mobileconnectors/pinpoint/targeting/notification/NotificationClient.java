@@ -302,6 +302,7 @@ public class NotificationClient {
     /**
      * @deprecated see {@link PushResult}
      */
+    @Deprecated
     public enum CampaignPushResult {
         NOT_HANDLED,
         POSTED_NOTIFICATION,
