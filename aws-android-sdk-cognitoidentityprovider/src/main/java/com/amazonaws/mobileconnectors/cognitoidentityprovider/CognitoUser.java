@@ -547,6 +547,8 @@ public class CognitoUser {
      * object, {@code CognitoIdentityProviderContinuation.continueTask()}.
      * </p>
      *
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       lambda functions triggered by forgot password.
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
      */
     public void forgotPasswordInBackground(final Map<String, String> clientMetadata,
@@ -605,6 +607,8 @@ public class CognitoUser {
      * NetworkOnMainThreadException.
      * </p>
      *
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       lambda functions triggered by forgot password.
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
      */
     public void forgotPassword(final Map<String, String> clientMetadata,

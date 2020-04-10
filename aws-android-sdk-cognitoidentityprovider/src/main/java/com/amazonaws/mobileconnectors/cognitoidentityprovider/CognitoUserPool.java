@@ -399,7 +399,7 @@ public class CognitoUserPool {
      * @param password          REQUIRED: Password for this user
      * @param userAttributes    REQUIRED: Contains all attributes for this user
      * @param validationData    REQUIRED: Parameters for lambda function for user registration
-     * @param clientMetadata    REQUIRED: Client metadata for lambda function for user registration
+     * @param clientMetadata    Client metadata for lambda function for user registration
      * @param callback          REQUIRED: callback, must not be null
      */
     public void signUpInBackground(final String userId, final String password,
@@ -446,7 +446,7 @@ public class CognitoUserPool {
      * @param password          REQUIRED: Password for this user
      * @param userAttributes    REQUIRED: Contains all attributes for this user
      * @param validationData    REQUIRED: Parameters for lambda function for user registration
-     * @param clientMetadata    REQUIRED: Client metadata for lambda function for user registration
+     * @param clientMetadata    Client metadata for lambda function for user registration
      * @param callback          REQUIRED: callback, must not be null
      */
     public void signUp(final String userId, final String password,
@@ -472,7 +472,7 @@ public class CognitoUserPool {
      * @param userAttributes    REQUIRED: User attributes.
      * @param validationData    REQUIRED: Validation key value pairs, these will be passed to pre
      *                          and post registration lambda functions.
-     * @param clientMetadata    REQUIRED: Client metadata for lambda function for user registration
+     * @param clientMetadata    Client metadata for lambda function for user registration
      * @return SignUpResult
      */
     private SignUpResult signUpInternal(String userId, String password,
