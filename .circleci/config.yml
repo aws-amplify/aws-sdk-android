@@ -670,7 +670,7 @@ jobs:
           name: clean up aws server 
           command: |
             set +e
-            bash CircleciScripts/cleanup_aws.sh
+            bash CircleciScripts/cleanup_test_s3_buckets.sh
 
   post_integrationtest:
     docker:
