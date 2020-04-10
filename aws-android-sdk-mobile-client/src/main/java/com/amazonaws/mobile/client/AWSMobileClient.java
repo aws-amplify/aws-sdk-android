@@ -1903,7 +1903,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                        final Callback<SignUpResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<SignUpResult>(callback);
-        internalCallback.async(_signUp(username, password, userAttributes, validationData, null, internalCallback));
+        internalCallback.async(_signUp(username, password, userAttributes, validationData,
+                Collections.<String, String>emptyMap(), internalCallback));
     }
 
     /**
@@ -1924,7 +1925,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                final Map<String, String> validationData) throws Exception {
 
         final InternalCallback<SignUpResult> internalCallback = new InternalCallback<SignUpResult>();
-        return internalCallback.await(_signUp(username, password, userAttributes, validationData, null, internalCallback));
+        return internalCallback.await(_signUp(username, password, userAttributes, validationData,
+                Collections.<String, String>emptyMap(), internalCallback));
     }
 
     private Runnable _signUp(final String username,
@@ -2031,7 +2033,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                               final Callback<SignUpResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<SignUpResult>(callback);
-        internalCallback.async(_confirmSignUp(username, signUpChallengeResponse, null, internalCallback));
+        internalCallback.async(_confirmSignUp(username, signUpChallengeResponse,
+                Collections.<String, String>emptyMap(), internalCallback));
     }
 
     /**
@@ -2045,7 +2048,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                       final String signUpChallengeResponse) throws Exception {
 
         final InternalCallback<SignUpResult> internalCallback = new InternalCallback<SignUpResult>();
-        return internalCallback.await(_confirmSignUp(username, signUpChallengeResponse, null, internalCallback));
+        return internalCallback.await(_confirmSignUp(username, signUpChallengeResponse,
+                Collections.<String, String>emptyMap(), internalCallback));
     }
 
     private Runnable _confirmSignUp(final String username,
@@ -2176,7 +2180,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                final Callback<ForgotPasswordResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<ForgotPasswordResult>(callback);
-        internalCallback.async(_forgotPassword(username, internalCallback, null));
+        internalCallback.async(_forgotPassword(username, internalCallback,
+                Collections.<String, String>emptyMap()));
     }
 
     /**
@@ -2188,7 +2193,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     public ForgotPasswordResult forgotPassword(final String username) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
-        return internalCallback.await(_forgotPassword(username, internalCallback, null));
+        return internalCallback.await(_forgotPassword(username, internalCallback, Collections.<String, String>emptyMap()));
     }
 
     private Runnable _forgotPassword(final String username,
@@ -2280,7 +2285,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                       final Callback<ForgotPasswordResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<ForgotPasswordResult>(callback);
-        internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse, null, internalCallback));
+        internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse,
+                Collections.<String, String>emptyMap(), internalCallback));
     }
 
     /**
@@ -2295,7 +2301,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                                       final String forgotPasswordChallengeResponse) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
-        return internalCallback.await(_confirmForgotPassword(password, forgotPasswordChallengeResponse, null, internalCallback));
+        return internalCallback.await(_confirmForgotPassword(password, forgotPasswordChallengeResponse,
+                Collections.<String, String>emptyMap(), internalCallback));
     }
 
     private Runnable _confirmForgotPassword(final String password,

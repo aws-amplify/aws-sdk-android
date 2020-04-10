@@ -110,6 +110,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -267,7 +268,8 @@ public class CognitoUser {
     public void confirmSignUpInBackground(final String confirmationCode,
             final boolean forcedAliasCreation,
             final GenericHandler callback) {
-        confirmSignUpInBackground(confirmationCode, forcedAliasCreation, null, callback);
+        confirmSignUpInBackground(confirmationCode, forcedAliasCreation,
+                Collections.<String, String>emptyMap(), callback);
     }
 
     /**
@@ -291,7 +293,7 @@ public class CognitoUser {
     public void confirmSignUp(String confirmationCode,
             boolean forcedAliasCreation,
             GenericHandler callback) {
-        confirmSignUp(confirmationCode, forcedAliasCreation, null, callback);
+        confirmSignUp(confirmationCode, forcedAliasCreation, Collections.<String, String>emptyMap(), callback);
     }
 
     /**
@@ -507,7 +509,7 @@ public class CognitoUser {
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
      */
     public void forgotPasswordInBackground(final ForgotPasswordHandler callback) {
-        forgotPasswordInBackground(null, callback);
+        forgotPasswordInBackground(Collections.<String, String>emptyMap(), callback);
     }
 
     /**
@@ -530,7 +532,7 @@ public class CognitoUser {
      * @param callback REQUIRED: {@link ForgotPasswordHandler} callback
      */
     public void forgotPassword(final ForgotPasswordHandler callback) {
-        forgotPassword(null, callback);
+        forgotPassword(Collections.<String, String>emptyMap(), callback);
     }
 
     /**
@@ -670,7 +672,7 @@ public class CognitoUser {
     public void confirmPasswordInBackground(final String verificationCode,
                                             final String newPassword,
                                             final ForgotPasswordHandler callback) {
-        confirmPasswordInBackground(verificationCode, newPassword, null, callback);
+        confirmPasswordInBackground(verificationCode, newPassword, Collections.<String, String>emptyMap(), callback);
     }
 
     /**
@@ -743,7 +745,7 @@ public class CognitoUser {
     public void confirmPassword(final String verificationCode,
                                 final String newPassword,
                                 final ForgotPasswordHandler callback) {
-        confirmPassword(verificationCode, newPassword, null, callback);
+        confirmPassword(verificationCode, newPassword, Collections.<String, String>emptyMap(), callback);
     }
 
     /**

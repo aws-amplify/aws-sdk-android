@@ -44,6 +44,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.UserContextDataType;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -369,7 +370,7 @@ public class CognitoUserPool {
                                    final CognitoUserAttributes userAttributes,
                                    final Map<String, String> validationData,
                                    final SignUpHandler callback) {
-        signUpInBackground(userId, password, userAttributes, validationData, null, callback);
+        signUpInBackground(userId, password, userAttributes, validationData, Collections.<String, String>emptyMap(), callback);
     }
 
     /**
@@ -389,7 +390,7 @@ public class CognitoUserPool {
                        final CognitoUserAttributes userAttributes,
                        final Map<String, String> validationData,
                        final SignUpHandler callback) {
-        signUp(userId, password, userAttributes, validationData, null, callback);
+        signUp(userId, password, userAttributes, validationData, Collections.<String, String>emptyMap(), callback);
     }
 
     /**
