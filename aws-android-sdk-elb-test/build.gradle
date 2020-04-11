@@ -7,8 +7,9 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName '1.0'
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -18,19 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
-    api (project(':aws-android-sdk-elb')) {
-        exclude group: 'com.google.android', module: 'android'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api (project(":aws-android-sdk-elb")){
+        exclude group: "com.google.android", module: "android"
     }
-    api (project(':aws-android-sdk-ec2')) {
-        exclude group: 'com.google.android', module: 'android'
+    api (project(":aws-android-sdk-ec2")){
+        exclude group: "com.google.android", module: "android"
     }
-
     testImplementation 'junit:junit:4.12'
-
+    androidTestImplementation project(":aws-android-sdk-testutils")
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation project(':aws-android-sdk-testutils')
 }
-

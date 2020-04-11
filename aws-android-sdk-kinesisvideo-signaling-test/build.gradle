@@ -7,8 +7,9 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName '1.0'
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -24,17 +25,15 @@ android {
 }
 
 dependencies {
-    api (project(':aws-android-sdk-kinesisvideo-signaling')) {
-        exclude group: 'com.google.android', module: 'android'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api (project(":aws-android-sdk-kinesisvideo-signaling")) {
+        exclude group: "com.google.android", module: "android"
     }
-
     testImplementation 'junit:junit:4.12'
-
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation project(':aws-android-sdk-testutils')
-    androidTestImplementation (project(':aws-android-sdk-kinesisvideo'))  {
-        exclude group: 'com.google.android', module: 'android'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation project(":aws-android-sdk-testutils")
+    androidTestImplementation (project(":aws-android-sdk-kinesisvideo"))  {
+        exclude group: "com.google.android", module: "android"
     }
 }
-

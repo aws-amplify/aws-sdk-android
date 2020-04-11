@@ -7,8 +7,10 @@ android {
         minSdkVersion 10
         targetSdkVersion 27
         versionCode 1
-        versionName '1.0'
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -17,18 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     lintOptions {
        disable 'InvalidPackage'
    }
+
 }
 
 dependencies {
-    api (project(':aws-android-sdk-core')) {
-        exclude group: 'com.google.android', module: 'android'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api (project(":aws-android-sdk-core")) {
+        exclude group: "com.google.android", module: "android"
     }
-    implementation 'com.android.support.test:runner:1.0.2'
 
     testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support.test:runner:1.0.2'
 }
-
