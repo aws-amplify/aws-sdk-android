@@ -3,10 +3,6 @@
     android:versionCode="2"
     android:versionName="2.1.2" >
 
-    <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="17" />
-
     <!-- The android resource is used here as stub, so that the res folder is unnecessary -->
     <application
         android:allowBackup="true"
