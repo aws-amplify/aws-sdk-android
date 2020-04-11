@@ -7,10 +7,8 @@ android {
         minSdkVersion 11
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -20,20 +18,18 @@ android {
         }
     }
 
-    // TODO Remove and fix lint issues
     lintOptions {
         abortOnError false
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':aws-android-sdk-core')
+    implementation 'com.google.guava:guava:20.0'
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    api project(":aws-android-sdk-core")
-    implementation "com.google.guava:guava:20.0"
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 }
+
