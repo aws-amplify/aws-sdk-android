@@ -21,11 +21,14 @@ import com.amazonaws.auth.CognitoCredentialsProvider;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+@RunWith(RobolectricTestRunner.class)
 public class AWSConfigurationTest {
 
     private static final String jsonString = "{\n" +

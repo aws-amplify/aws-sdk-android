@@ -25,11 +25,14 @@ import com.amazonaws.util.AWSRequestMetrics.Field;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 
+@RunWith(RobolectricTestRunner.class)
 public class AwsSdkMetricsTest {
     /**
      * By default the AWS SDK metric collection is disabled. Enabling it should

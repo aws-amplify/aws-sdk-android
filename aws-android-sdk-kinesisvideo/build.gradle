@@ -2,9 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName '1.0'
@@ -18,12 +19,12 @@ android {
         }
     }
 
-    lintOptions {
-        abortOnError false
-    }
-
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -33,9 +34,9 @@ dependencies {
     }
     implementation 'com.android.support:support-annotations:24.2.0'
     //noinspection DuplicatePlatformClasses
-    implementation 'org.apache.httpcomponents:httpclient:4.5.3'
+    compileOnly 'org.apache.httpcomponents:httpclient:4.5.3'
 
-    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation project(':aws-android-sdk-testutils')
 }
 

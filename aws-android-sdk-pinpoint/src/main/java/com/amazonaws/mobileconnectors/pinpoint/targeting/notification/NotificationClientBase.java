@@ -30,6 +30,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
@@ -278,11 +279,13 @@ abstract class NotificationClientBase {
 
     private Notification createLegacyNotification(final int iconResId, final String title, final String contentText,
                                                   final PendingIntent contentIntent) {
-        final Notification notification = new Notification();
-        notification.icon = iconResId;
-        notification.setLatestEventInfo(this.pinpointContext.getApplicationContext(), title, contentText, contentIntent);
-        notification.contentIntent = contentIntent;
-        return notification;
+        final Context context = this.pinpointContext.getApplicationContext();
+        return new NotificationCompat.Builder(context)
+            .setContentIntent(contentIntent)
+            .setContentText(contentText)
+            .setContentTitle(title)
+            .setSmallIcon(iconResId)
+            .build();
     }
 
     private boolean initClassesAndMethodsByReflection() {

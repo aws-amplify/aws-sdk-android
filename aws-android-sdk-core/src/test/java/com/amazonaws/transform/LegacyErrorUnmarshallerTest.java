@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonServiceException.ErrorType;
 import com.amazonaws.transform.LegacyErrorUnmarshaller;
-import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
+import org.apache.xerces.dom.DocumentImpl;
 
 import org.junit.Test;
 import org.w3c.dom.Document;

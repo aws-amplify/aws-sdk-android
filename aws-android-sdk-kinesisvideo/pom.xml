@@ -21,20 +21,20 @@
     </license>
   </licenses>
 
-    <repositories>    
-      <repository>
-       <id>android-support</id>
-       <url>file://${env.ANDROID_HOME}/extras/android/m2repository/</url>
-     </repository>
-     <repository>
-       <id>google-android-gms</id>
-       <url>file://${env.ANDROID_HOME}/extras/google/m2repository/</url>
-     </repository>
-     <repository>
-       <id>google-maven</id>
-       <url>https://maven.google.com</url>
-     </repository>
-   </repositories>
+  <repositories>    
+    <repository>
+      <id>android-support</id>
+      <url>file://${env.ANDROID_HOME}/extras/android/m2repository/</url>
+    </repository>
+    <repository>
+      <id>google-android-gms</id>
+      <url>file://${env.ANDROID_HOME}/extras/google/m2repository/</url>
+    </repository>
+    <repository>
+      <id>google-maven</id>
+      <url>https://maven.google.com</url>
+    </repository>
+  </repositories>
 
   <dependencies>
     <dependency>
@@ -43,21 +43,11 @@
       <optional>false</optional>
       <version>2.16.11</version>
     </dependency>
-
     <dependency>
-       <groupId>com.android.support</groupId>
-       <artifactId>support-annotations</artifactId>
-       <version>24.2.0</version>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-annotations</artifactId>
+      <version>24.2.0</version>
     </dependency>
-
-    <dependency>
-       <groupId>android</groupId>
-       <artifactId>android</artifactId>
-       <version>5.0</version>
-       <scope>system</scope>
-       <systemPath>${env.ANDROID_HOME}/platforms/android-${env.ANDROID_PLATFORM}/android.jar</systemPath>
-     </dependency>
-
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>

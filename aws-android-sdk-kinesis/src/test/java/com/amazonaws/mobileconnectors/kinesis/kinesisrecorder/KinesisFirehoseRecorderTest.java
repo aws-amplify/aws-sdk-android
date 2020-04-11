@@ -25,9 +25,12 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.io.IOException;
 
+@RunWith(RobolectricTestRunner.class)
 public class KinesisFirehoseRecorderTest {
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
