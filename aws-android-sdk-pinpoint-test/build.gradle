@@ -8,8 +8,8 @@ android {
         minSdkVersion 10
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -34,7 +34,7 @@ dependencies {
 
 devicefarm {
     // Required. The Project must already exist. You can create a project in the AWS console.
-    projectName "AWSAndroidKeyStoreTester"
+    projectName 'AWSAndroidKeyStoreTester'
 
     // Required. You must specify either accessKey and secretKey OR roleArn. roleArn takes precedence.
     authentication {

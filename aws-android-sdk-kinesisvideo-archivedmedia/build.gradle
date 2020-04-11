@@ -7,8 +7,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -28,13 +28,13 @@ android {
 }
 
 dependencies {
-    api (project(":aws-android-sdk-core")) {
-        exclude group: "com.google.android", module: "android"
+    api (project(':aws-android-sdk-core')) {
+        exclude group: 'com.google.android', module: 'android'
     }
-    implementation project(":aws-android-sdk-kinesisvideo")
+    implementation project(':aws-android-sdk-kinesisvideo')
 
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation project(":aws-android-sdk-testutils")
+    androidTestImplementation project(':aws-android-sdk-testutils')
 }
 

@@ -7,8 +7,8 @@ android {
         minSdkVersion 11
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -20,17 +20,17 @@ android {
 }
 
 dependencies {
-    api (project(":aws-android-sdk-core")){
-        exclude group: "com.google.android", module: "android"
+    api (project(':aws-android-sdk-core')){
+        exclude group: 'com.google.android', module: 'android'
     }
-    implementation "org.conscrypt:conscrypt-android:2.0.0"
-    implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.2"
+    implementation 'org.conscrypt:conscrypt-android:2.0.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.2'
 
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.mockito:mockito-all:1.10.5"
-    testImplementation "org.robolectric:robolectric:3.8"
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-all:1.10.5'
+    testImplementation 'org.robolectric:robolectric:3.8'
 
-    androidTestImplementation "com.android.support.test:runner:1.0.2"
-    androidTestImplementation "junit:junit:4.12"
-    androidTestImplementation project(":aws-android-sdk-testutils")
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation project(':aws-android-sdk-testutils')
 }

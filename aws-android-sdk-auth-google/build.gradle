@@ -7,8 +7,8 @@ android {
         minSdkVersion 11
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -24,9 +24,9 @@ android {
 }
 
 dependencies {
-    api project(":aws-android-sdk-auth-core")
-    api "com.google.android.gms:play-services-auth:9.8.0"
-    implementation "com.android.support:support-v4:23.0.1"
+    api project(':aws-android-sdk-auth-core')
+    api 'com.google.android.gms:play-services-auth:9.8.0'
+    implementation 'com.android.support:support-v4:23.0.1'
 
     testImplementation 'junit:junit:4.12'
 
