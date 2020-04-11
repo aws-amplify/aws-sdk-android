@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
@@ -7,20 +8,17 @@
   <version>2.16.13</version>
   <description>The AWS Android SDK with app integration for Amazon Cognito Your User Pools Service</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
-
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
     <version>2.16.13</version>
   </parent>
-
   <repositories>
     <repository>
       <id>google-maven</id>
       <url>https://maven.google.com</url>
     </repository>
   </repositories>
-
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -33,14 +31,13 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
   <dependencies>
     <dependency>
       <groupId>com.google.android</groupId>
       <artifactId>android</artifactId>
       <version>4.1.1.4</version>
       <scope>provided</scope>
-    </dependency>   
+    </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-cognitoidentityprovider-asf</artifactId>
@@ -60,20 +57,19 @@
       <type>aar</type>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
-          <groupId>com.simpligility.maven.plugins</groupId>
-          <artifactId>android-maven-plugin</artifactId>
-          <version>4.5.0</version>
-          <extensions>true</extensions>
-          <configuration>
-            <sdk>
-              <platform>${env.ANDROID_PLATFORM}</platform>
-              <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
-            </sdk>
-          </configuration>
+        <groupId>com.simpligility.maven.plugins</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>4.5.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <sdk>
+            <platform>${env.ANDROID_PLATFORM}</platform>
+            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
+          </sdk>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

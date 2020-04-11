@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
@@ -5,9 +6,8 @@
   <packaging>pom</packaging>
   <name>AWS SDK for Android</name>
   <version>2.16.13</version>
-  <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS&#8217; cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
+  <description>The Amazon Web Services SDK for Android provides Android APIs for building software on AWS&#x2019; cost-effective, scalable, and reliable infrastructure products. The AWS SDK for Android allows developers to code against APIs for all of Amazon's infrastructure web services (Amazon S3, Amazon EC2, Amazon SQS, Auto Scaling, etc).</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
-
   <properties>
     <project.build.sourceEncoding>
       UTF-8
@@ -16,11 +16,9 @@
       UTF-8
     </project.reporting.outputEncoding>
   </properties>
-
   <scm>
     <url>http://github.com/aws/aws-sdk-android.git</url>
   </scm>
-
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -28,7 +26,6 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-
   <modules>
     <module>aws-android-sdk-apigateway-core</module>
     <module>aws-android-sdk-auth-core</module>
@@ -75,7 +72,6 @@
     <module>aws-android-sdk-transcribe</module>
     <module>aws-android-sdk-translate</module>
   </modules>
-
   <developers>
     <developer>
       <id>amazonwebservices</id>
@@ -86,7 +82,6 @@
       </roles>
     </developer>
   </developers>
-
   <dependencies>
     <dependency>
       <groupId>com.google.android</groupId>
@@ -95,7 +90,6 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
-
   <build>
     <pluginManagement>
       <plugins>
@@ -111,12 +105,12 @@
           </configuration>
         </plugin>
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-                <useSystemClassLoader>false</useSystemClassLoader>
-            </configuration>
-        </plugin>           
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <useSystemClassLoader>false</useSystemClassLoader>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
@@ -128,21 +122,20 @@
           </configuration>
         </plugin>
         <plugin>
-		<groupId>org.codehaus.mojo</groupId>
-		<artifactId>cobertura-maven-plugin</artifactId>
-		<version>2.7</version>
-		<configuration>
-			<formats>
-				<format>html</format>
-				<format>xml</format>
-			</formats>
-			<check/>
-		</configuration>
-         </plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+            <formats>
+              <format>html</format>
+              <format>xml</format>
+            </formats>
+            <check/>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
-
   <profiles>
     <profile>
       <id>publishing</id>
@@ -163,8 +156,8 @@
             <configuration>
               <!-- This is necessary for gpg to not try to use the pinentry programs -->
               <gpgArguments>
-                  <arg>--pinentry-mode</arg>
-                  <arg>loopback</arg>
+                <arg>--pinentry-mode</arg>
+                <arg>loopback</arg>
               </gpgArguments>
             </configuration>
           </plugin>

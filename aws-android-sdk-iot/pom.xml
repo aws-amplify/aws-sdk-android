@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
@@ -6,13 +7,11 @@
   <name>AWS SDK for Android - AWS IoT</name>
   <description>The AWS Android SDK for AWS IoT module holds the client classes that are used for communicating with AWS IoT Service</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
-
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
     <version>2.16.13</version>
   </parent>
-
   <dependencies>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -51,7 +50,6 @@
       <type>aar</type>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>

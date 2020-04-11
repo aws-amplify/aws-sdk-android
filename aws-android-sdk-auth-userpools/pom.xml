@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
@@ -6,7 +7,6 @@
   <name>AWS SDK for Android - AWS Cognito Userpools SignIn</name>
   <description>The AWS Android SDK for Authentication - Cognito Userpools SignIn holds the client classes that are used for enabling communication with Cognito UserPools SignIn Provider</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
-
   <properties>
     <project.build.sourceEncoding>
       UTF-8
@@ -15,20 +15,17 @@
       UTF-8
     </project.reporting.outputEncoding>
   </properties>
-
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
     <version>2.16.13</version>
   </parent>
-
   <repositories>
     <repository>
       <id>google-maven</id>
       <url>https://maven.google.com</url>
     </repository>
   </repositories>
-
   <dependencies>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -36,7 +33,6 @@
       <optional>false</optional>
       <version>2.16.13</version>
     </dependency>
-    
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-auth-core</artifactId>
@@ -44,14 +40,12 @@
       <version>2.16.13</version>
       <type>aar</type>
     </dependency>
-
     <dependency>
       <groupId>com.google.android</groupId>
       <artifactId>android</artifactId>
       <version>4.1.1.4</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>com.android.support</groupId>
       <artifactId>support-v4</artifactId>
@@ -60,7 +54,6 @@
       <type>aar</type>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
@@ -75,7 +68,6 @@
           </sdk>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

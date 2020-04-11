@@ -24,6 +24,8 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -35,6 +37,7 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.Date;
 
+@RunWith(RobolectricTestRunner.class)
 public class SimpleTypeStaxUnmarshallerTest {
 
     /** Shared factory for creating XML event readers */

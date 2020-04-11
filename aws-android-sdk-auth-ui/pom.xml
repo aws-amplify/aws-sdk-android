@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
@@ -6,7 +7,6 @@
   <name>AWS SDK for Android - AWS Authentication UI</name>
   <description>The AWS Android SDK for Authentication UI holds the client classes that are used for presenting the SignIn Screen with SignInButtons and Amazon Cognito UserPools UI</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
-
   <properties>
     <project.build.sourceEncoding>
       UTF-8
@@ -15,20 +15,17 @@
       UTF-8
     </project.reporting.outputEncoding>
   </properties>
-
   <parent>
     <groupId>com.amazonaws</groupId>
     <artifactId>aws-android-sdk-pom</artifactId>
     <version>2.16.13</version>
   </parent>
-
   <repositories>
     <repository>
       <id>google-maven</id>
       <url>https://maven.google.com</url>
     </repository>
   </repositories>
-
   <dependencies>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -72,7 +69,6 @@
       <type>aar</type>
     </dependency>
   </dependencies>
-
   <build>
     <plugins>
       <plugin>
@@ -87,7 +83,6 @@
           </sdk>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
