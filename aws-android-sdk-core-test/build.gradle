@@ -8,9 +8,8 @@ android {
         minSdkVersion 10
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -22,22 +21,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    api (project(":aws-android-sdk-core")) {
-        exclude group: "com.google.android", module: "android"
+    api (project(':aws-android-sdk-core')) {
+        exclude group: 'com.google.android', module: 'android'
     }
 
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation project(":aws-android-sdk-testutils")
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation project(':aws-android-sdk-testutils')
 }
 
 devicefarm {
-
     // Required. The Project must already exist. You can create a project in the AWS console.
-    projectName "AWSAndroidKeyStoreTester"
+    projectName 'AWSAndroidKeyStoreTester'
 
     // Required. You must specify either accessKey and secretKey OR roleArn. roleArn takes precedence.
     authentication {
@@ -45,5 +41,6 @@ devicefarm {
         secretKey "$System.env.DEVICEFARM_SECRET_KEY"
     }
 
-    devicePool "AWSAndroidKeyStoreTesterPool"
+    devicePool 'AWSAndroidKeyStoreTesterPool'
 }
+

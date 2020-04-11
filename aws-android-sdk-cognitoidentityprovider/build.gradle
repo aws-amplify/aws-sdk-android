@@ -1,15 +1,14 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':aws-android-sdk-core')
+    implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0'
 
-    api project(":aws-android-sdk-core")
-    implementation "com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0"
-
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.robolectric:robolectric:3.8"
-    testImplementation "org.mockito:mockito-all:1.10.5"
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-all:1.10.5'
+    testImplementation 'org.robolectric:robolectric:3.8'
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
