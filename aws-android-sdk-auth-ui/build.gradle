@@ -8,7 +8,6 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -23,21 +22,15 @@ android {
     lintOptions {
         abortOnError false
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     api project(":aws-android-sdk-auth-core")
     implementation "com.android.support:appcompat-v7:23.0.1"
 
-    // Optional dependencies
-//    compile project(":aws-android-sdk-auth-facebook")
-//    compile project(":aws-android-sdk-auth-google")
-//    compile project(":aws-android-sdk-auth-userpools")
+    testImplementation 'junit:junit:4.12'
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
 }
+

@@ -1,16 +1,14 @@
 apply plugin: 'java-library'
 
 dependencies {
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-
     api "com.google.code.gson:gson:2.2.4"
     api "com.google.android:android:2.3.3"
     implementation "com.fasterxml.jackson.core:jackson-core:2.1.1"
 
-    testImplementation "junit:junit:4.12"
-    testImplementation "org.easymock:easymock:3.1"
-    testImplementation "org.apache.commons:commons-io:1.3.2"
     testImplementation "joda-time:joda-time:2.0"
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.apache.commons:commons-io:1.3.2"
+    testImplementation "org.easymock:easymock:3.1"
 }
 
 // This task is to create a symbolic link to android-23.jar
@@ -32,8 +30,8 @@ task getApi23(type:Exec) {
     commandLine 'sh', '-c', "rm -rf libs && mkdir libs && ln -s $System.env.ANDROID_HOME/platforms/android-23/android.jar libs/android-23.jar"
 }
 
-
 compileJava.dependsOn(getApi23)
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+
