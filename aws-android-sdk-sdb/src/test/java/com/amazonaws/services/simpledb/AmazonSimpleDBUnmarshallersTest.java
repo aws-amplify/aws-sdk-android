@@ -6,6 +6,8 @@ import java.io.InputStream;
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
@@ -30,6 +32,7 @@ import java.nio.ByteBuffer;
  *
  * Auto-generated
  */
+@RunWith(RobolectricTestRunner.class)
 public class AmazonSimpleDBUnmarshallersTest {
 
 

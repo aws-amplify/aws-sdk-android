@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-android-sdk-rekognition</artifactId>
-  <packaging>jar</packaging>
+  <packaging>aar</packaging>
   <name>AWS SDK for Android - Amazon Rekognition</name>
   <description>The AWS Android SDK for Amazon Rekognition module holds the client classes that are used for communicating with Amazon Rekognition Service</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
@@ -36,6 +36,18 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.simpligility.maven.plugins</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>4.5.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <sdk>
+            <platform>${env.ANDROID_PLATFORM}</platform>
+            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
+          </sdk>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

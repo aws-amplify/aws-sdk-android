@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
 
 import java.net.URL;
 import java.net.MalformedURLException;
+import java.util.Collections;
 
 import com.amazonaws.services.kinesisvideo.model.APIName;
 import com.amazonaws.services.kinesisvideo.model.ComparisonOperator;
@@ -64,6 +65,7 @@ public class KinesisVideoIntegrationTest extends KinesisVideoIntegrationTestBase
         String streamName = streamPrefix + System.currentTimeMillis();
 
         CreateStreamResult createStreamResult = kvClient.createStream(new CreateStreamRequest()
+                .withTags(Collections.singletonMap("key", "value"))
                 .withStreamName(streamName)
                 .withDataRetentionInHours(2)
                 .withDeviceName("integration-test-device"));

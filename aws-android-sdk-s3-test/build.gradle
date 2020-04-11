@@ -5,7 +5,7 @@ android {
     compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName '1.0'
@@ -19,7 +19,6 @@ android {
         }
     }
 
-    useLibrary 'org.apache.http.legacy'
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
     }

@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-android-sdk-cognitoidentityprovider</artifactId>
-  <packaging>jar</packaging>
+  <packaging>aar</packaging>
   <name>AWS SDK for Android - Amazon Cognito Identity Provider</name>
   <version>2.16.11</version>
   <description>The AWS Android SDK for Amazon Cognito Identity Provider module holds the client classes that are used for communicating with Amazon Cognito Identity Provider Service</description>
@@ -35,34 +35,22 @@
       <optional>false</optional>
       <version>1.0.0</version>
     </dependency>
-    <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>2.3.3</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.robolectric</groupId>
-      <artifactId>robolectric</artifactId>
-      <version>3.8</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <version>1.10.5</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.simpligility.maven.plugins</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>4.5.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <sdk>
+            <platform>${env.ANDROID_PLATFORM}</platform>
+            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
+          </sdk>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

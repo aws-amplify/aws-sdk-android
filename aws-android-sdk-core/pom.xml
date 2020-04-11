@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amazonaws</groupId>
   <artifactId>aws-android-sdk-core</artifactId>
-  <packaging>jar</packaging>
+  <packaging>aar</packaging>
   <name>AWS SDK for Android - Core Runtime</name>
   <description>The AWS SDK for Android - Core module holds the classes that is used by the individual service clients to interact with Amazon Web Services. Users need to depend on aws-java-sdk artifact for accessing individual client classes.</description>
   <url>http://aws.amazon.com/sdkforandroid</url>
@@ -15,27 +15,21 @@
 
   <dependencies>
     <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.1.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.1.1</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
       <version>2.2.4</version>
     </dependency>
     <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>2.3.3</version>
-      <scope>provided</scope>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.0</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -44,15 +38,15 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.3</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.3.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-      <version>2.4</version>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.12</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -62,16 +56,33 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>android</groupId>
-        <artifactId>android</artifactId>
-        <version>6.0</version>
-        <scope>system</scope>
-        <systemPath>${env.ANDROID_HOME}/platforms/android-23/android.jar</systemPath>
-    </dependency>   
+      <groupId>org.robolectric</groupId>
+      <artifactId>robolectric</artifactId>
+      <version>3.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.12.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.simpligility.maven.plugins</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <version>4.5.0</version>
+        <extensions>true</extensions>
+        <configuration>
+          <sdk>
+            <platform>${env.ANDROID_PLATFORM}</platform>
+            <buildTools>${env.ANDROID_BUILDTOOL_VERSION}</buildTools>
+          </sdk>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>

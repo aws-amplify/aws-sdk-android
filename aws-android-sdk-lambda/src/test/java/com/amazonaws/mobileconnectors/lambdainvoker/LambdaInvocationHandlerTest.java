@@ -33,15 +33,17 @@ import com.amazonaws.mobile.config.AWSConfiguration;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+import org.robolectric.RobolectricTestRunner;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.nio.ByteBuffer;
 
+@RunWith(RobolectricTestRunner.class)
 public class LambdaInvocationHandlerTest {
-
     private LambdaInvocationHandler handler;
     private AWSLambda lambda;
     private LambdaInvokerFactory factory;
