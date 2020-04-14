@@ -21,12 +21,6 @@ import java.io.Serializable;
  * <p>
  * Settings for content redaction within a transcription job.
  * </p>
- * <p>
- * You can redact transcripts in US English (en-us). For more information see:
- * <a href=
- * "https://docs.aws.amazon.com/transcribe/latest/dg/content-redaction.html"
- * >Automatic Content Redaction</a>
- * </p>
  */
 public class ContentRedaction implements Serializable {
     /**
@@ -42,17 +36,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter where you choose whether to output only the redacted
-     * transcript or generate an additional unredacted transcript.
+     * The output transcript file stored in either the default S3 bucket or in a
+     * bucket you specify.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs a JSON
-     * file with only the redacted transcript and related information.
+     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs a JSON file with the unredacted transcript and related
-     * information in addition to the JSON file with the redacted transcript.
+     * outputs both the redacted and unredacted transcripts.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -169,37 +162,32 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter where you choose whether to output only the redacted
-     * transcript or generate an additional unredacted transcript.
+     * The output transcript file stored in either the default S3 bucket or in a
+     * bucket you specify.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs a JSON
-     * file with only the redacted transcript and related information.
+     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs a JSON file with the unredacted transcript and related
-     * information in addition to the JSON file with the redacted transcript.
+     * outputs both the redacted and unredacted transcripts.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @return <p>
-     *         Request parameter where you choose whether to output only the
-     *         redacted transcript or generate an additional unredacted
-     *         transcript.
+     *         The output transcript file stored in either the default S3 bucket
+     *         or in a bucket you specify.
      *         </p>
      *         <p>
-     *         When you choose <code>redacted</code> Amazon Transcribe outputs a
-     *         JSON file with only the redacted transcript and related
-     *         information.
+     *         When you choose <code>redacted</code> Amazon Transcribe outputs
+     *         only the redacted transcript.
      *         </p>
      *         <p>
      *         When you choose <code>redacted_and_unredacted</code> Amazon
-     *         Transcribe outputs a JSON file with the unredacted transcript and
-     *         related information in addition to the JSON file with the
-     *         redacted transcript.
+     *         Transcribe outputs both the redacted and unredacted transcripts.
      *         </p>
      * @see RedactionOutput
      */
@@ -209,37 +197,33 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter where you choose whether to output only the redacted
-     * transcript or generate an additional unredacted transcript.
+     * The output transcript file stored in either the default S3 bucket or in a
+     * bucket you specify.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs a JSON
-     * file with only the redacted transcript and related information.
+     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs a JSON file with the unredacted transcript and related
-     * information in addition to the JSON file with the redacted transcript.
+     * outputs both the redacted and unredacted transcripts.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            Request parameter where you choose whether to output only the
-     *            redacted transcript or generate an additional unredacted
-     *            transcript.
+     *            The output transcript file stored in either the default S3
+     *            bucket or in a bucket you specify.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs a JSON file with only the redacted transcript and
-     *            related information.
+     *            outputs only the redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs a JSON file with the unredacted transcript
-     *            and related information in addition to the JSON file with the
-     *            redacted transcript.
+     *            Transcribe outputs both the redacted and unredacted
+     *            transcripts.
      *            </p>
      * @see RedactionOutput
      */
@@ -249,17 +233,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter where you choose whether to output only the redacted
-     * transcript or generate an additional unredacted transcript.
+     * The output transcript file stored in either the default S3 bucket or in a
+     * bucket you specify.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs a JSON
-     * file with only the redacted transcript and related information.
+     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs a JSON file with the unredacted transcript and related
-     * information in addition to the JSON file with the redacted transcript.
+     * outputs both the redacted and unredacted transcripts.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -269,20 +252,17 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            Request parameter where you choose whether to output only the
-     *            redacted transcript or generate an additional unredacted
-     *            transcript.
+     *            The output transcript file stored in either the default S3
+     *            bucket or in a bucket you specify.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs a JSON file with only the redacted transcript and
-     *            related information.
+     *            outputs only the redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs a JSON file with the unredacted transcript
-     *            and related information in addition to the JSON file with the
-     *            redacted transcript.
+     *            Transcribe outputs both the redacted and unredacted
+     *            transcripts.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -295,37 +275,33 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter where you choose whether to output only the redacted
-     * transcript or generate an additional unredacted transcript.
+     * The output transcript file stored in either the default S3 bucket or in a
+     * bucket you specify.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs a JSON
-     * file with only the redacted transcript and related information.
+     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs a JSON file with the unredacted transcript and related
-     * information in addition to the JSON file with the redacted transcript.
+     * outputs both the redacted and unredacted transcripts.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            Request parameter where you choose whether to output only the
-     *            redacted transcript or generate an additional unredacted
-     *            transcript.
+     *            The output transcript file stored in either the default S3
+     *            bucket or in a bucket you specify.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs a JSON file with only the redacted transcript and
-     *            related information.
+     *            outputs only the redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs a JSON file with the unredacted transcript
-     *            and related information in addition to the JSON file with the
-     *            redacted transcript.
+     *            Transcribe outputs both the redacted and unredacted
+     *            transcripts.
      *            </p>
      * @see RedactionOutput
      */
@@ -335,17 +311,16 @@ public class ContentRedaction implements Serializable {
 
     /**
      * <p>
-     * Request parameter where you choose whether to output only the redacted
-     * transcript or generate an additional unredacted transcript.
+     * The output transcript file stored in either the default S3 bucket or in a
+     * bucket you specify.
      * </p>
      * <p>
-     * When you choose <code>redacted</code> Amazon Transcribe outputs a JSON
-     * file with only the redacted transcript and related information.
+     * When you choose <code>redacted</code> Amazon Transcribe outputs only the
+     * redacted transcript.
      * </p>
      * <p>
      * When you choose <code>redacted_and_unredacted</code> Amazon Transcribe
-     * outputs a JSON file with the unredacted transcript and related
-     * information in addition to the JSON file with the redacted transcript.
+     * outputs both the redacted and unredacted transcripts.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -355,20 +330,17 @@ public class ContentRedaction implements Serializable {
      * <b>Allowed Values: </b>redacted, redacted_and_unredacted
      *
      * @param redactionOutput <p>
-     *            Request parameter where you choose whether to output only the
-     *            redacted transcript or generate an additional unredacted
-     *            transcript.
+     *            The output transcript file stored in either the default S3
+     *            bucket or in a bucket you specify.
      *            </p>
      *            <p>
      *            When you choose <code>redacted</code> Amazon Transcribe
-     *            outputs a JSON file with only the redacted transcript and
-     *            related information.
+     *            outputs only the redacted transcript.
      *            </p>
      *            <p>
      *            When you choose <code>redacted_and_unredacted</code> Amazon
-     *            Transcribe outputs a JSON file with the unredacted transcript
-     *            and related information in addition to the JSON file with the
-     *            redacted transcript.
+     *            Transcribe outputs both the redacted and unredacted
+     *            transcripts.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
