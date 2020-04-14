@@ -37,7 +37,7 @@ public class ListVocabularyFiltersResult implements Serializable {
 
     /**
      * <p>
-     * The list of vocabulary filters. It will contain at most
+     * The list of vocabulary filters. It contains at most
      * <code>MaxResults</code> number of filters. If there are more filters,
      * call the <code>ListVocabularyFilters</code> operation again with the
      * <code>NextToken</code> parameter in the request set to the value of the
@@ -141,7 +141,7 @@ public class ListVocabularyFiltersResult implements Serializable {
 
     /**
      * <p>
-     * The list of vocabulary filters. It will contain at most
+     * The list of vocabulary filters. It contains at most
      * <code>MaxResults</code> number of filters. If there are more filters,
      * call the <code>ListVocabularyFilters</code> operation again with the
      * <code>NextToken</code> parameter in the request set to the value of the
@@ -149,7 +149,7 @@ public class ListVocabularyFiltersResult implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The list of vocabulary filters. It will contain at most
+     *         The list of vocabulary filters. It contains at most
      *         <code>MaxResults</code> number of filters. If there are more
      *         filters, call the <code>ListVocabularyFilters</code> operation
      *         again with the <code>NextToken</code> parameter in the request
@@ -163,7 +163,7 @@ public class ListVocabularyFiltersResult implements Serializable {
 
     /**
      * <p>
-     * The list of vocabulary filters. It will contain at most
+     * The list of vocabulary filters. It contains at most
      * <code>MaxResults</code> number of filters. If there are more filters,
      * call the <code>ListVocabularyFilters</code> operation again with the
      * <code>NextToken</code> parameter in the request set to the value of the
@@ -171,7 +171,7 @@ public class ListVocabularyFiltersResult implements Serializable {
      * </p>
      *
      * @param vocabularyFilters <p>
-     *            The list of vocabulary filters. It will contain at most
+     *            The list of vocabulary filters. It contains at most
      *            <code>MaxResults</code> number of filters. If there are more
      *            filters, call the <code>ListVocabularyFilters</code> operation
      *            again with the <code>NextToken</code> parameter in the request
@@ -190,7 +190,7 @@ public class ListVocabularyFiltersResult implements Serializable {
 
     /**
      * <p>
-     * The list of vocabulary filters. It will contain at most
+     * The list of vocabulary filters. It contains at most
      * <code>MaxResults</code> number of filters. If there are more filters,
      * call the <code>ListVocabularyFilters</code> operation again with the
      * <code>NextToken</code> parameter in the request set to the value of the
@@ -201,7 +201,7 @@ public class ListVocabularyFiltersResult implements Serializable {
      * together.
      *
      * @param vocabularyFilters <p>
-     *            The list of vocabulary filters. It will contain at most
+     *            The list of vocabulary filters. It contains at most
      *            <code>MaxResults</code> number of filters. If there are more
      *            filters, call the <code>ListVocabularyFilters</code> operation
      *            again with the <code>NextToken</code> parameter in the request
@@ -225,7 +225,7 @@ public class ListVocabularyFiltersResult implements Serializable {
 
     /**
      * <p>
-     * The list of vocabulary filters. It will contain at most
+     * The list of vocabulary filters. It contains at most
      * <code>MaxResults</code> number of filters. If there are more filters,
      * call the <code>ListVocabularyFilters</code> operation again with the
      * <code>NextToken</code> parameter in the request set to the value of the
@@ -236,7 +236,7 @@ public class ListVocabularyFiltersResult implements Serializable {
      * together.
      *
      * @param vocabularyFilters <p>
-     *            The list of vocabulary filters. It will contain at most
+     *            The list of vocabulary filters. It contains at most
      *            <code>MaxResults</code> number of filters. If there are more
      *            filters, call the <code>ListVocabularyFilters</code> operation
      *            again with the <code>NextToken</code> parameter in the request
