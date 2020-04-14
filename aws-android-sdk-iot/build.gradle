@@ -24,7 +24,7 @@ dependencies {
         exclude group: 'com.google.android', module: 'android'
     }
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
-    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.2'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.3'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.mockito:mockito-all:1.10.5'
