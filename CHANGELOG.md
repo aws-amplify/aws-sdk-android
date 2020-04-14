@@ -6,6 +6,14 @@
 
 - **Amazon Transcribe**
   - This release adds support for batch transcription jobs within [Amazon Transcribe Medical](https://aws.amazon.com/transcribe/medical/).
+  
+- **Amazon Pinpoint**
+  - Added `handleNotificationReceived` API to `com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient`. This API handles push notifications for campaigns, and will be able to handle other push notification types coming from Pinpoint.
+  
+### Misc. Updates
+
+- **Amazon Pinpoint**
+  - Marked `handleCampaignPush` as deprecated. Use `handleNotificationReceived` instead
 
 ## [Release 2.16.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.11)
 
