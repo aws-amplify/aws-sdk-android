@@ -48,7 +48,9 @@ import java.util.Enumeration;
 import java.util.Scanner;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
+import android.support.annotation.RawRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
@@ -164,13 +166,15 @@ public abstract class AWSTestBase {
     public static JSONConfiguration getJSONConfiguration()
     {
         Context context = getContext() ;
-        if(mJSONConfiguration == null ) {
+        if (mJSONConfiguration == null) {
             try {
-                android.content.res.Resources resource = context.getResources();
-                final InputStream inputStream = resource.openRawResource(
-                        R.raw.testconfiguration);
-                final Scanner in = new Scanner(inputStream);
-                final StringBuilder sb = new StringBuilder();
+                Resources resources = context.getResources();
+                String packageName = context.getPackageName();
+                @RawRes int resourceId =
+                    resources.getIdentifier(TEST_CONFIGURATION_FILENAME, "raw", packageName);
+                InputStream inputStream = resources.openRawResource(resourceId);
+                Scanner in = new Scanner(inputStream);
+                StringBuilder sb = new StringBuilder();
                 while (in.hasNextLine()) {
                     sb.append(in.nextLine());
                 }
