@@ -3,11 +3,6 @@
     xmlns:amazon="http://schemas.amazon.com/apk/res/android"
     package="com.amazonaws.mobile.client">
 
-    <uses-sdk xmlns:tools="http://schemas.android.com/tools"
-        android:minSdkVersion="21"
-        android:targetSdkVersion="25"
-        tools:overrideLibrary="android.support.test.uiautomator.v18,com.amazonaws.mobile.auth.ui" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />

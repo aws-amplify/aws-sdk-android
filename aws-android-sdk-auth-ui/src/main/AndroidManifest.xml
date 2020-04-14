@@ -13,5 +13,5 @@
              android:screenOrientation="portrait"
              android:configChanges="keyboard|keyboardHidden|orientation|screenSize"/>
     </application>
-<uses-sdk android:minSdkVersion="23" android:targetSdkVersion="25" /></manifest>
+</manifest>
 
