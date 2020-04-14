@@ -1,5 +1,12 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
+
+### New Features
+
+- **Amazon Transcribe**
+  - This release adds support for batch transcription jobs within [Amazon Transcribe Medical](https://aws.amazon.com/transcribe/medical/).
+
 ## [Release 2.16.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.11)
 
 ### New Features
