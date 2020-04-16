@@ -24,8 +24,6 @@ dependencies {
         exclude group: 'com.google.android', module: 'android'
     }
 
-    testImplementation 'junit:junit:4.12'
-
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation project(':aws-android-sdk-testutils')
 }
