@@ -1,3 +1,22 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---amazonrelationaldatabaseservice
+---awsmediatailor
+---awssecurityhub
+---amazonsagemakerservice
+---awsmigrationhub
+---awselementalmediaconvert
+---ec2imagebuilder
+---awsiotevents
+---amazonimportexportsnowball
+---awslambda
+---amazonaugmentedairuntime
+---awsglue
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.11)
