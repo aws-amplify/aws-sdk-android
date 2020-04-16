@@ -1,0 +1,53 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.awselementalmediaconvert.model.transform;
+
+import com.amazonaws.services.awselementalmediaconvert.model.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+
+/**
+ * JSON marshaller for POJO MpdSettings
+ */
+class MpdSettingsJsonMarshaller {
+
+    public void marshall(MpdSettings mpdSettings, AwsJsonWriter jsonWriter) throws Exception {
+        jsonWriter.beginObject();
+        if (mpdSettings.getCaptionContainerType() != null) {
+            String captionContainerType = mpdSettings.getCaptionContainerType();
+            jsonWriter.name("CaptionContainerType");
+            jsonWriter.value(captionContainerType);
+        }
+        if (mpdSettings.getScte35Esam() != null) {
+            String scte35Esam = mpdSettings.getScte35Esam();
+            jsonWriter.name("Scte35Esam");
+            jsonWriter.value(scte35Esam);
+        }
+        if (mpdSettings.getScte35Source() != null) {
+            String scte35Source = mpdSettings.getScte35Source();
+            jsonWriter.name("Scte35Source");
+            jsonWriter.value(scte35Source);
+        }
+        jsonWriter.endObject();
+    }
+
+    private static MpdSettingsJsonMarshaller instance;
+
+    public static MpdSettingsJsonMarshaller getInstance() {
+        if (instance == null)
+            instance = new MpdSettingsJsonMarshaller();
+        return instance;
+    }
+}
