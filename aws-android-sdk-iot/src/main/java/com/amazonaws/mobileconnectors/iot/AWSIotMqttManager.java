@@ -745,8 +745,8 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("region is null");
         }
 
-        if (endpoint == null) {
-            throw new IllegalArgumentException("endpoint is null or an invalid domain.");
+        if (TextUtils.isEmpty(endpoint)) {
+            throw new IllegalArgumentException("endpoint is null or empty.");
         }
 
         this.topicListeners = new ConcurrentHashMap<String, AWSIotMqttTopic>();
@@ -1051,7 +1051,7 @@ public class AWSIotMqttManager {
         if (tokenSignature != null) {
             customWebsocketHeaders.setProperty("X-Amz-CustomAuthorizer-Signature", tokenSignature);
         }
-        customAuthConnect(getOptions());
+        customAuthConnect(buildOptions());
     }
 
     /**
@@ -1076,10 +1076,10 @@ public class AWSIotMqttManager {
         this.password = password;
         userStatusCallback = statusCallback;
         authMode = AuthenticationMode.USERNAME_PASSWORD;
-        customAuthConnect(getOptions());
+        customAuthConnect(buildOptions());
     }
 
-    private MqttConnectOptions getOptions() {
+    private MqttConnectOptions buildOptions() {
         final MqttConnectOptions options = new MqttConnectOptions();
         if (AuthenticationMode.USERNAME_PASSWORD.equals(authMode)) {
             options.setUserName(username);
