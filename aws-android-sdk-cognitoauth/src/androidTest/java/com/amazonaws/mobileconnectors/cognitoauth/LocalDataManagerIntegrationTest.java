@@ -47,15 +47,15 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestBase {
-    private static String TAG = LocalDataManagerIntegrationTest.class.getSimpleName();
+    private final static String TAG = LocalDataManagerIntegrationTest.class.getSimpleName();
 
     // Static fake parameters used under test
-    private static String APP_CLIENT_ID = "012345anexampleappclientid";
-    private static String WEB_DOMAIN = "examplewebdomain.auth.us-west-2.amazoncognito.com";
-    private static String USERNAME = "exampleuser";
-    private static String SIGN_IN_REDIRECT_URL = "https://signinredirect.example.com";
-    private static String SIGN_OUT_REDIRECT_URL = "https://signoutredirect.example.com";
-    private static Set SCOPES = new HashSet<>(Arrays.asList("email", "profile", "openid"));
+    private final static String APP_CLIENT_ID = "012345anexampleappclientid";
+    private final static String WEB_DOMAIN = "examplewebdomain.auth.us-west-2.amazoncognito.com";
+    private final static String USERNAME = "exampleuser";
+    private final static String SIGN_IN_REDIRECT_URL = "https://signinredirect.example.com";
+    private final static String SIGN_OUT_REDIRECT_URL = "https://signoutredirect.example.com";
+    private final static Set<String> SCOPES = new HashSet<>(Arrays.asList("email", "profile", "openid"));
 
     private static SharedPreferences sharedPreferencesForAuth;
     private static SharedPreferences sharedPreferencesForAuthEncryptionMaterials;
@@ -405,7 +405,7 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
         assertNotNull(sharedPreferencesForAuth.getString(lastAuthUserKey, null));
     }
 
-    private void verifySharedPreferencesForCachedState(AWSKeyValueStore awsKeyValueStore, String proofKeyValue, Set scopesValue) {
+    private void verifySharedPreferencesForCachedState(AWSKeyValueStore awsKeyValueStore, String proofKeyValue, Set<String> scopesValue) {
         assert sharedPreferencesForAuth.getAll().keySet().size() > 0;
         assert sharedPreferencesForAuthEncryptionMaterials.getAll().keySet().size() > 0;
 
@@ -414,7 +414,11 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
 
         assertEquals(proofKeyValue, cachedProofKey);
 
-        if (scopesValue != null) {
+        // If null is passed for scopesValue, test to ensure no scopes have been cached. If a set is
+        // passed then test for equality.
+        if (scopesValue == null) {
+            assertTrue(cachedScopes.isEmpty());
+        } else {
             assertEquals(scopesValue, cachedScopes);
         }
     }
