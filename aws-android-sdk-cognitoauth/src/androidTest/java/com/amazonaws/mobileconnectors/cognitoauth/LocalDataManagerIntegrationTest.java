@@ -47,10 +47,17 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestBase {
-    private static String TAG = LocalDataManagerIntegrationTest.class.getSimpleName();
+    private final static String TAG = LocalDataManagerIntegrationTest.class.getSimpleName();
+
+    // Static fake parameters used under test
+    private final static String APP_CLIENT_ID = "012345anexampleappclientid";
+    private final static String WEB_DOMAIN = "examplewebdomain.auth.us-west-2.amazoncognito.com";
+    private final static String USERNAME = "exampleuser";
+    private final static String SIGN_IN_REDIRECT_URL = "https://signinredirect.example.com";
+    private final static String SIGN_OUT_REDIRECT_URL = "https://signoutredirect.example.com";
+    private final static Set<String> SCOPES = new HashSet<>(Arrays.asList("email", "profile", "openid"));
 
     private static SharedPreferences sharedPreferencesForAuth;
-
     private static SharedPreferences sharedPreferencesForAuthEncryptionMaterials;
 
     private static String cachedIdTokenKey;
@@ -59,8 +66,6 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
     private static String cachedTokenTypeKey;
     private static String cachedTokenScopes;
     private static String lastAuthUserKey;
-    private static String clientId;
-    private static String username;
 
     @BeforeClass
     public static void setupBeforeClass() throws Exception {
@@ -70,21 +75,18 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
         sharedPreferencesForAuthEncryptionMaterials = InstrumentationRegistry.getTargetContext()
                 .getSharedPreferences(ClientConstants.APP_LOCAL_CACHE + ".encryptionkey", Context.MODE_PRIVATE);
 
-        clientId = getPackageConfigure().getString("AppClientId");
-        username = getPackageConfigure().getString("Username");
-
         cachedIdTokenKey = String.format(Locale.US, "%s.%s.%s.%s.%s",
-                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, username, ClientConstants.TOKEN_TYPE_ID, "encrypted");
+                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, APP_CLIENT_ID, USERNAME, ClientConstants.TOKEN_TYPE_ID, "encrypted");
         cachedAccessTokenKey = String.format(Locale.US, "%s.%s.%s.%s.%s",
-                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, username, ClientConstants.TOKEN_TYPE_ACCESS, "encrypted");
+                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, APP_CLIENT_ID, USERNAME, ClientConstants.TOKEN_TYPE_ACCESS, "encrypted");
         cachedRefreshTokenKey = String.format(Locale.US, "%s.%s.%s.%s.%s",
-                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, username, ClientConstants.TOKEN_TYPE_REFRESH, "encrypted");
+                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, APP_CLIENT_ID, USERNAME, ClientConstants.TOKEN_TYPE_REFRESH, "encrypted");
         cachedTokenTypeKey = String.format(Locale.US, "%s.%s.%s.%s.%s",
-                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, username, ClientConstants.TOKEN_KEY_TYPE, "encrypted");
+                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, APP_CLIENT_ID, USERNAME, ClientConstants.TOKEN_KEY_TYPE, "encrypted");
         cachedTokenScopes = String.format(Locale.US, "%s.%s.%s.%s.%s",
-                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, username, ClientConstants.TOKEN_KEY_SCOPES, "encrypted");
+                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, APP_CLIENT_ID, USERNAME, ClientConstants.TOKEN_KEY_SCOPES, "encrypted");
         lastAuthUserKey = String.format(Locale.US, "%s.%s.%s.%s",
-                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, clientId, ClientConstants.APP_LAST_AUTH_USER, "encrypted");
+                ClientConstants.APP_LOCAL_CACHE_KEY_PREFIX, APP_CLIENT_ID, ClientConstants.APP_LAST_AUTH_USER, "encrypted");
     }
 
     @AfterClass
@@ -122,13 +124,13 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
 
         try {
             Auth.Builder builder = new Auth.Builder();
-            Auth auth = builder.setAppClientId(getPackageConfigure().getString("AppClientId"))
-                    .setAppCognitoWebDomain(getPackageConfigure().getString("WebDomain"))
-                    .setSignInRedirect(getPackageConfigure().getString("SignInRedirectURI"))
-                    .setSignOutRedirect(getPackageConfigure().getString("SignOutRedirectURI"))
+            Auth auth = builder.setAppClientId(APP_CLIENT_ID)
+                    .setAppCognitoWebDomain(WEB_DOMAIN)
+                    .setSignInRedirect(SIGN_IN_REDIRECT_URL)
+                    .setSignOutRedirect(SIGN_OUT_REDIRECT_URL)
                     .setApplicationContext(InstrumentationRegistry.getTargetContext())
                     .setAdvancedSecurityDataCollection(true)
-                    .setScopes(setFromString("email,profile,openid"))
+                    .setScopes(SCOPES)
                     .setAuthHandler(new AuthHandler() {
                         @Override
                         public void onSuccess(AuthUserSession session) {
@@ -153,15 +155,15 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
                     new AccessToken("accessToken"),
                     new RefreshToken("refreshToken"));
             LocalDataManager.cacheSession(auth.awsKeyValueStore, InstrumentationRegistry.getTargetContext(),
-                    getPackageConfigure().getString("AppClientId"),
-                    getPackageConfigure().getString("Username"),
+                    APP_CLIENT_ID,
+                    USERNAME,
                     authUserSession,
-                    setFromString("email,profile,openid"));
+                    SCOPES);
 
             AuthUserSession cachedSession = LocalDataManager.getCachedSession(auth.awsKeyValueStore, InstrumentationRegistry.getTargetContext(),
-                    getPackageConfigure().getString("AppClientId"),
-                    getPackageConfigure().getString("Username"),
-                    setFromString("email,profile,openid"));
+                    APP_CLIENT_ID,
+                    USERNAME,
+                    SCOPES);
 
             assertEquals(authUserSession.getIdToken().getJWTToken(), cachedSession.getIdToken().getJWTToken());
             assertEquals(authUserSession.getAccessToken().getJWTToken(), cachedSession.getAccessToken().getJWTToken());
@@ -182,13 +184,13 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
 
         try {
             Auth.Builder builder = new Auth.Builder();
-            Auth auth = builder.setAppClientId(getPackageConfigure().getString("AppClientId"))
-                    .setAppCognitoWebDomain(getPackageConfigure().getString("WebDomain"))
-                    .setSignInRedirect(getPackageConfigure().getString("SignInRedirectURI"))
-                    .setSignOutRedirect(getPackageConfigure().getString("SignOutRedirectURI"))
+            Auth auth = builder.setAppClientId(APP_CLIENT_ID)
+                    .setAppCognitoWebDomain(WEB_DOMAIN)
+                    .setSignInRedirect(SIGN_IN_REDIRECT_URL)
+                    .setSignOutRedirect(SIGN_OUT_REDIRECT_URL)
                     .setApplicationContext(InstrumentationRegistry.getTargetContext())
                     .setAdvancedSecurityDataCollection(true)
-                    .setScopes(setFromString("email,profile,openid"))
+                    .setScopes(SCOPES)
                     .setAuthHandler(new AuthHandler() {
                         @Override
                         public void onSuccess(AuthUserSession session) {
@@ -211,10 +213,10 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
             LocalDataManager.cacheState(auth.awsKeyValueStore, InstrumentationRegistry.getTargetContext(),
                     "key",
                     "proofKey",
-                    setFromString("email,profile,openid"));
+                    SCOPES);
 
             printSharedPreferencesKeys();
-            verifySharedPreferencesForCachedState(auth.awsKeyValueStore, "proofKey", "email,profile,openid");
+            verifySharedPreferencesForCachedState(auth.awsKeyValueStore, "proofKey", SCOPES);
         } catch (Exception ex) {
             ex.printStackTrace();
             assertTrue("Error occurred" + ex, false);
@@ -227,10 +229,10 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
 
         try {
             Auth.Builder builder = new Auth.Builder();
-            Auth auth = builder.setAppClientId(getPackageConfigure().getString("AppClientId"))
-                    .setAppCognitoWebDomain(getPackageConfigure().getString("WebDomain"))
-                    .setSignInRedirect(getPackageConfigure().getString("SignInRedirectURI"))
-                    .setSignOutRedirect(getPackageConfigure().getString("SignOutRedirectURI"))
+            Auth auth = builder.setAppClientId(APP_CLIENT_ID)
+                    .setAppCognitoWebDomain(WEB_DOMAIN)
+                    .setSignInRedirect(SIGN_IN_REDIRECT_URL)
+                    .setSignOutRedirect(SIGN_OUT_REDIRECT_URL)
                     .setApplicationContext(InstrumentationRegistry.getTargetContext())
                     .setAdvancedSecurityDataCollection(true)
                     .setScopes(new HashSet<String>())
@@ -272,13 +274,13 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
 
         try {
             Auth.Builder builder = new Auth.Builder();
-            Auth auth = builder.setAppClientId(getPackageConfigure().getString("AppClientId"))
-                    .setAppCognitoWebDomain(getPackageConfigure().getString("WebDomain"))
-                    .setSignInRedirect(getPackageConfigure().getString("SignInRedirectURI"))
-                    .setSignOutRedirect(getPackageConfigure().getString("SignOutRedirectURI"))
+            Auth auth = builder.setAppClientId(APP_CLIENT_ID)
+                    .setAppCognitoWebDomain(WEB_DOMAIN)
+                    .setSignInRedirect(SIGN_IN_REDIRECT_URL)
+                    .setSignOutRedirect(SIGN_OUT_REDIRECT_URL)
                     .setApplicationContext(InstrumentationRegistry.getTargetContext())
                     .setAdvancedSecurityDataCollection(true)
-                    .setScopes(setFromString("email,profile,openid"))
+                    .setScopes(SCOPES)
                     .setPersistenceEnabled(false)
                     .setAuthHandler(new AuthHandler() {
                         @Override
@@ -303,18 +305,18 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
                     new IdToken("idToken"),
                     new AccessToken("accessToken"),
                     new RefreshToken("refreshToken"));
-            LocalDataManager.cacheSession(auth.awsKeyValueStore, 
+            LocalDataManager.cacheSession(auth.awsKeyValueStore,
                     InstrumentationRegistry.getTargetContext(),
-                    getPackageConfigure().getString("AppClientId"),
-                    getPackageConfigure().getString("Username"),
+                    APP_CLIENT_ID,
+                    USERNAME,
                     authUserSession,
-                    setFromString("email,profile,openid"));
+                    SCOPES);
 
             AuthUserSession cachedSession = LocalDataManager.getCachedSession(auth.awsKeyValueStore,
                     InstrumentationRegistry.getTargetContext(),
-                    getPackageConfigure().getString("AppClientId"),
-                    getPackageConfigure().getString("Username"),
-                    setFromString("email,profile,openid"));
+                    APP_CLIENT_ID,
+                    USERNAME,
+                    SCOPES);
 
             assertEquals(authUserSession.getIdToken().getJWTToken(), cachedSession.getIdToken().getJWTToken());
             assertEquals(authUserSession.getAccessToken().getJWTToken(), cachedSession.getAccessToken().getJWTToken());
@@ -336,13 +338,13 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
 
         try {
             Auth.Builder builder = new Auth.Builder();
-            Auth auth = builder.setAppClientId(getPackageConfigure().getString("AppClientId"))
-                    .setAppCognitoWebDomain(getPackageConfigure().getString("WebDomain"))
-                    .setSignInRedirect(getPackageConfigure().getString("SignInRedirectURI"))
-                    .setSignOutRedirect(getPackageConfigure().getString("SignOutRedirectURI"))
+            Auth auth = builder.setAppClientId(APP_CLIENT_ID)
+                    .setAppCognitoWebDomain(WEB_DOMAIN)
+                    .setSignInRedirect(SIGN_IN_REDIRECT_URL)
+                    .setSignOutRedirect(SIGN_OUT_REDIRECT_URL)
                     .setApplicationContext(InstrumentationRegistry.getTargetContext())
                     .setAdvancedSecurityDataCollection(true)
-                    .setScopes(setFromString("email,profile,openid"))
+                    .setScopes(SCOPES)
                     .setPersistenceEnabled(false)
                     .setAuthHandler(new AuthHandler() {
                         @Override
@@ -367,7 +369,7 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
                     InstrumentationRegistry.getTargetContext(),
                     "key",
                     "proofKey",
-                    setFromString("email,profile,openid"));
+                    SCOPES);
 
             printSharedPreferencesKeys();
 
@@ -403,30 +405,21 @@ public class LocalDataManagerIntegrationTest extends CognitoAuthIntegrationTestB
         assertNotNull(sharedPreferencesForAuth.getString(lastAuthUserKey, null));
     }
 
-    private void verifySharedPreferencesForCachedState(AWSKeyValueStore awsKeyValueStore, String proofKeyValue, String scopesValue) {
+    private void verifySharedPreferencesForCachedState(AWSKeyValueStore awsKeyValueStore, String proofKeyValue, Set<String> scopesValue) {
         assert sharedPreferencesForAuth.getAll().keySet().size() > 0;
         assert sharedPreferencesForAuthEncryptionMaterials.getAll().keySet().size() > 0;
 
-        assertEquals(proofKeyValue,
-                LocalDataManager.getCachedProofKey(awsKeyValueStore, InstrumentationRegistry.getTargetContext(), "key"));
-        assertEquals(scopesValue == null ? new HashSet<String>() : setFromString(scopesValue),
-                LocalDataManager.getCachedScopes(awsKeyValueStore, InstrumentationRegistry.getTargetContext(), "key"));
-    }
+        String cachedProofKey = LocalDataManager.getCachedProofKey(awsKeyValueStore, InstrumentationRegistry.getTargetContext(), "key");
+        Set cachedScopes = LocalDataManager.getCachedScopes(awsKeyValueStore, InstrumentationRegistry.getTargetContext(), "key");
 
-    static String setToString(Set<String> stringSet) {
-        StringBuilder strBuilder = new StringBuilder();
-        int index = 0;
-        for (String str: stringSet) {
-            strBuilder.append(str);
-            if (index++ < stringSet.size() - 1) {
-                strBuilder.append(",");
-            }
+        assertEquals(proofKeyValue, cachedProofKey);
+
+        // If null is passed for scopesValue, test to ensure no scopes have been cached. If a set is
+        // passed then test for equality.
+        if (scopesValue == null) {
+            assertTrue(cachedScopes.isEmpty());
+        } else {
+            assertEquals(scopesValue, cachedScopes);
         }
-        return strBuilder.toString();
-    }
-
-    static Set<String> setFromString(String str) {
-        String[] stringArray = str.split(",");
-        return new HashSet<String>(Arrays.asList(stringArray));
     }
 }
