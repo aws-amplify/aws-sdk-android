@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -148,6 +149,9 @@ public class ComprehendIntegrationTest extends AWSTestBase {
                 .getNeutral());
     }
 
+    @Ignore("In order to test topic modeling, we require an S3 bucket populated with an input file and an IAM role that can" +
+            "read from and write to that bucket. We could choose to do this using our CDK setup package, but this test" +
+            "is covering an unlikely mobile use-case, and spending up to 20 minutes of runtime to do so. Ignoring for now.")
     @Test
     public void testTopicModeling() throws Exception {
         final String inputS3Uri = "s3://comprehend-android-sdk-test/comprehend-input.txt";
