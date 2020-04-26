@@ -32,8 +32,10 @@ import com.amazonaws.services.s3.model.SetBucketVersioningConfigurationRequest;
 
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
+
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -41,11 +43,15 @@ import java.io.File;
 public class BucketReplicationIntegrationTest extends
         S3IntegrationTestBase {
 
-    /** source bucket name for the replication integration test */
+    /**
+     * source bucket name for the replication integration test
+     */
     private static final String SOURCE_BUCKET_NAME = "android-sdk-bucket-replication-integ-test-"
             + System.currentTimeMillis();
 
-    /** destination bucket name for the replication integration test */
+    /**
+     * destination bucket name for the replication integration test
+     */
     private static final String DESTINATION_BUCKET_NAME = "android-sdk-bucket-dest-replication-integ-test-"
             + System.currentTimeMillis();
 
@@ -107,7 +113,9 @@ public class BucketReplicationIntegrationTest extends
         }
     }
 
-    @Test
+    @Ignore("This test requires an IAM role with the ability to replicate data between S3 buckets. Previously it " +
+            "was hard-coded (ROLE), but the original account was deactivated. Since this test covers an uncommon" +
+            "use-case for users of the Android SDK and is testing generated code, we're disabling it.")
     public void testBucketReplication() {
         testSetAndRetrieveReplicationConfiguration();
         testDeleteConfiguration();
@@ -116,8 +124,7 @@ public class BucketReplicationIntegrationTest extends
     public void testSetAndRetrieveReplicationConfiguration() {
 
         // Setting new configuration and retrieving.
-        BucketReplicationConfiguration configuration = new BucketReplicationConfiguration()
-                .withRoleARN(ROLE);
+        BucketReplicationConfiguration configuration = new BucketReplicationConfiguration();
 
         configuration.addRule(
                 RULE1,
