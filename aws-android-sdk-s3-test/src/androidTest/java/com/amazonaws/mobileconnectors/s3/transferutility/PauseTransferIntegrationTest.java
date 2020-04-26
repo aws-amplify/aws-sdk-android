@@ -113,7 +113,7 @@ public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
 
         // cancel early to avoid having to wait for completion
         util.cancel(observer.getId());
-        completed.await(100, TimeUnit.MILLISECONDS);
+        completed.await(1000, TimeUnit.MILLISECONDS);
     }
 
     private final class TestListener implements TransferListener {

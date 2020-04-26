@@ -72,9 +72,6 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
     private static final String EXPECTED_BUCKET_NAME = "android-sdk-integ-test-bucket-"
             + System.currentTimeMillis();
 
-    /** Name of the test S3 account running these tests */
-    private final String expectedS3AccountOwnerName = "aws-dr-mobile-test-android";
-
     /** Name of the test key these tests will create, test, delete, etc */
     private static String expectedKey = "integ-test-key-" + new Date().getTime();
 
@@ -393,16 +390,6 @@ public class S3IntegrationTest extends S3IntegrationTestBase {
         assertEquals(bucket.getOwner(), s3.getS3AccountOwner());
         assertNotNull(bucket.getOwner().getDisplayName());
         assertNotNull(bucket.getOwner().getId());
-    }
-
-    /**
-     * Tests that we can get an account owner for this account
-     */
-    @Test
-    public void testGetS3AccountOwner() {
-        Owner owner = s3.getS3AccountOwner();
-        assertNotNull(owner);
-        assertEquals(expectedS3AccountOwnerName, owner.getDisplayName());
     }
 
     /**
