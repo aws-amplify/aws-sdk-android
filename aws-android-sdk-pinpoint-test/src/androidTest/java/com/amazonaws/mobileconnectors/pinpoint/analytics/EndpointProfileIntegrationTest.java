@@ -65,6 +65,14 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
 
     @Before
     public void setUp() throws Exception {
+        final String identityPoolId = getPackageConfigure("pinpoint")
+                .getString("identity_pool_id");
+
+        appId = getPackageConfigure("pinpoint")
+                .getString("AppId");
+        regions = Regions.fromName(getPackageConfigure("pinpoint")
+                .getString("Region"));
+
         appContext = InstrumentationRegistry.getTargetContext();
         appContext.deleteDatabase("awspinpoint.db");
 
@@ -72,17 +80,10 @@ public class EndpointProfileIntegrationTest extends AWSTestBase {
                 .getContext().getSystemService(Context.WIFI_SERVICE);
         assertTrue(wifiManager.setWifiEnabled(true));
 
-        appId = getPackageConfigure("pinpoint")
-                .getString("AppId");
-        regions = Regions.fromName(getPackageConfigure("pinpoint")
-                .getString("Region"));
-
         credentialsProvider = new CognitoCachingCredentialsProvider(
                 appContext,
-                getPackageConfigure("pinpoint")
-                        .getString("identity_pool_id"),
-                Regions.fromName(getPackageConfigure("pinpoint")
-                        .getString("identity_pool_id_region")));
+                identityPoolId,
+                regions);
         pinpointConfiguration = new PinpointConfiguration(appContext,
                 appId,
                 regions,
