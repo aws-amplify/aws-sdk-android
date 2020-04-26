@@ -26,6 +26,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSCredentialsProviderChain;
 import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.internal.keyvaluestore.KeyNotFoundException;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONException;
@@ -78,33 +79,39 @@ public abstract class AWSTestBase {
             }
         }
 
-        String getAccessKey() {
+        String getAccessKey() throws KeyNotFoundException {
             return extractStringByPath("Credentials.accessKey");
         }
 
-        String getSecretKey() {
+        String getSecretKey() throws KeyNotFoundException {
             return extractStringByPath("Credentials.secretKey");
         }
 
-        String getSessionToken() {
+        String getSessionToken() throws KeyNotFoundException {
             return extractStringByPath("Credentials.sessionToken");
         }
 
-        String getAccountId() {
+        String getAccountId() throws KeyNotFoundException {
             return extractStringByPath("Credentials.accountId");
         }
 
-        private String extractStringByPath(String path) {
+        private String extractStringByPath(String path) throws KeyNotFoundException {
             return extractStringByPath(mJSONObject, path);
         }
 
         // This is a poor man's implementation of JSONPath, that just handles literals,
         // with the '.' meaning "down one more level." This will break if your key contains a period.
-        private String extractStringByPath(JSONObject container, String path) {
+        private String extractStringByPath(JSONObject container, String path) throws KeyNotFoundException {
             int indexOfFirstPeriod = path.indexOf(".");
             if (indexOfFirstPeriod != -1) {
                 String firstPortion = path.substring(0, indexOfFirstPeriod);
-                return extractStringByPath(container, firstPortion);
+                String rest = path.substring(indexOfFirstPeriod + 1);
+
+                try {
+                    return extractStringByPath(container.getJSONObject(firstPortion), rest);
+                } catch(JSONException e) {
+                    throw new KeyNotFoundException("could not find " + path);
+                }
             }
             try {
                 return container.getString(path);
@@ -123,8 +130,12 @@ public abstract class AWSTestBase {
      */
     final static class JSONCredentialProvider implements AWSCredentialsProvider {
         @Override
-        public AWSCredentials getCredentials()  {
-            return new BasicSessionCredentials(getAccessKey() , getSecretKey(), getSessionToken());
+        public AWSCredentials getCredentials() {
+            try {
+                return new BasicSessionCredentials(getAccessKey(), getSecretKey(), getSessionToken());
+            } catch (KeyNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         @Override
@@ -172,19 +183,19 @@ public abstract class AWSTestBase {
         return sb.toString();
     }
 
-    public static String getAccessKey() {
+    public static String getAccessKey() throws KeyNotFoundException {
         return getJSONConfiguration().getAccessKey();
     }
 
-    public static String getSecretKey() {
+    public static String getSecretKey() throws KeyNotFoundException {
         return getJSONConfiguration().getSecretKey();
     }
 
-    public static String getSessionToken() {
+    public static String getSessionToken() throws KeyNotFoundException {
         return getJSONConfiguration().getSessionToken();
     }
 
-    public static String getAccountId() {
+    public static String getAccountId() throws KeyNotFoundException {
         return getJSONConfiguration().getAccountId();
     }
 
