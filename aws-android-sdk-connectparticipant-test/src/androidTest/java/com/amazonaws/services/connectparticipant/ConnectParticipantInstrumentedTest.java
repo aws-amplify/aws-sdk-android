@@ -30,6 +30,7 @@ import com.amazonaws.testutils.AWSTestBase;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -40,6 +41,7 @@ import static org.junit.Assert.fail;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+@Ignore("These tests require Amazon Connect resources which we cannot create via CloudFormation currently.")
 @RunWith(AndroidJUnit4.class)
 public class ConnectParticipantInstrumentedTest extends AWSTestBase {
 
