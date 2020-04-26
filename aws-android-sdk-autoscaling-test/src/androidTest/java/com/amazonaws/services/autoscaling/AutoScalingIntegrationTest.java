@@ -213,7 +213,6 @@ public class AutoScalingIntegrationTest extends AutoScalingIntegrationTestBase {
                         .withLaunchConfigurationName(launchConfigurationName)
                         .withImageId(AMI_ID)
                         .withInstanceType(INSTANCE_TYPE)
-                        .withKeyName(KEY_NAME)
                         .withSecurityGroups("default")
                         .withUserData(encodedUserData)
                         .withAssociatePublicIpAddress(false);
@@ -235,7 +234,6 @@ public class AutoScalingIntegrationTest extends AutoScalingIntegrationTestBase {
         assertEquals(AMI_ID, launchConfiguration.getImageId());
         assertEquals(INSTANCE_TYPE, launchConfiguration.getInstanceType());
         assertEquals(launchConfigurationName, launchConfiguration.getLaunchConfigurationName());
-        assertEquals(KEY_NAME, launchConfiguration.getKeyName());
         assertEquals("default", launchConfiguration.getSecurityGroups().get(0));
         assertEquals(encodedUserData, launchConfiguration.getUserData());
         assertEquals(false, launchConfiguration.getAssociatePublicIpAddress());

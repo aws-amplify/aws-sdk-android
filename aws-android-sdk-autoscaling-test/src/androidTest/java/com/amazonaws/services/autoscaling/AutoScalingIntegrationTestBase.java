@@ -50,7 +50,6 @@ public abstract class AutoScalingIntegrationTestBase extends AWSTestBase {
     protected static final String AVAILABILITY_ZONE = "us-east-1a";
     protected static final String AMI_ID = "ami-035be7bafff33b6b6";
     protected static final String INSTANCE_TYPE = "t2.micro";
-    protected static final String KEY_NAME = "fulghum";
 
     /**
      * Loads the AWS account info for the integration tests and creates an
@@ -78,8 +77,7 @@ public abstract class AutoScalingIntegrationTestBase extends AWSTestBase {
                 new CreateLaunchConfigurationRequest()
                         .withLaunchConfigurationName(name)
                         .withImageId(AMI_ID)
-                        .withInstanceType(INSTANCE_TYPE)
-                        .withKeyName(KEY_NAME);
+                        .withInstanceType(INSTANCE_TYPE);
         autoscaling.createLaunchConfiguration(createRequest);
     }
 
