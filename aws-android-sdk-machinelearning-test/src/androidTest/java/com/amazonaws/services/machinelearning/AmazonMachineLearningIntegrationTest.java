@@ -8,11 +8,13 @@ import com.amazonaws.services.machinelearning.model.PredictResult;
 import com.amazonaws.testutils.AWSTestBase;
 
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
 
+@Ignore("The model referenced by ML_MODEL_ID no longer exists, this test will need to be rewritten using dynamic resources.")
 public class AmazonMachineLearningIntegrationTest extends AWSTestBase {
 
     private static final String ML_MODEL_ID = "pr-hoMlig0hsoI";
