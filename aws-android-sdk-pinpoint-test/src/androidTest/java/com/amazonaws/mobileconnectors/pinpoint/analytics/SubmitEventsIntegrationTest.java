@@ -80,7 +80,7 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
                 getPackageConfigure("pinpoint")
                         .getString("identity_pool_id"),
                 Regions.fromName(getPackageConfigure("pinpoint")
-                        .getString("identity_pool_id_region")));
+                        .getString("Region")));
         pinpointConfiguration = new PinpointConfiguration(appContext,
                 appId,
                 regions,
