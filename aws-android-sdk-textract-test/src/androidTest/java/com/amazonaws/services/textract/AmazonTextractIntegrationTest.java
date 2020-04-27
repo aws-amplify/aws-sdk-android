@@ -15,6 +15,7 @@
 
 package com.amazonaws.services.textract;
 
+import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -22,8 +23,8 @@ import com.amazonaws.services.textract.model.AnalyzeDocumentRequest;
 import com.amazonaws.services.textract.model.AnalyzeDocumentResult;
 import com.amazonaws.services.textract.model.Block;
 import com.amazonaws.services.textract.model.Document;
-import com.amazonaws.services.textract.model.S3Object;
 import com.amazonaws.testutils.AWSTestBase;
+import com.amazonaws.util.IOUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,8 +32,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -47,7 +49,9 @@ public class AmazonTextractIntegrationTest extends AWSTestBase {
 
     private AmazonTextractClient textractClient;
 
-    /** Package name in testconfiguration.json */
+    /**
+     * Package name in testconfiguration.json
+     */
     protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().
             getResources().getString(R.string.package_name);
 
@@ -62,17 +66,26 @@ public class AmazonTextractIntegrationTest extends AWSTestBase {
     }
 
     @Test
-    public void testAnalyzeDocumentInS3() throws JSONException {
+    /**
+     * Test that a document can be analyzed through Textract from bytes.
+     *
+     * @throws IOException in the event the test document cannot be accessed from disk
+     */
+    public void testAnalyzeDocument() throws IOException {
+        final String fileName = "document.png";
+        final Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        final InputStream inputStream = context.getAssets().open(fileName);
+        final ByteBuffer imageBytes = ByteBuffer.wrap(IOUtils.toByteArray(inputStream));
+        final Document document = new Document().withBytes(imageBytes);
+
         AnalyzeDocumentRequest request = new AnalyzeDocumentRequest()
                 .withFeatureTypes("TABLES", "FORMS")
-                .withDocument(new Document().withS3Object(new S3Object()
-                                        .withName(getPackageConfigure().getString("s3_key_name"))
-                                        .withBucket(getPackageConfigure().getString("s3_bucket_name"))));
+                .withDocument(document);
 
         AnalyzeDocumentResult result = textractClient.analyzeDocument(request);
-        assertEquals(new Integer(1), result.getDocumentMetadata().getPages());
-
         List<Block> blocks = result.getBlocks();
+
+        assertEquals(new Integer(1), result.getDocumentMetadata().getPages());
         assert blocks.size() > 0;
     }
 }
