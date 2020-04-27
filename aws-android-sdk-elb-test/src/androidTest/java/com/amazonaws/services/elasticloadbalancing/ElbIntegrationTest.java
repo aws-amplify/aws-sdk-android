@@ -64,6 +64,7 @@ import com.amazonaws.testutils.AWSTestBase;
 
 import org.junit.After;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
@@ -75,6 +76,7 @@ import java.util.List;
  * Integration tests for the Elastic Load Balancing client.
  *
  */
+@Ignore("These tests cover generated code and require resources such as EC2 instances to do it. Disabling for now.")
 public class ElbIntegrationTest extends AWSTestBase {
 
     /** AMI used for tests that require an EC2 instance */
