@@ -54,6 +54,8 @@ commands:
             aws configure --profile android_sdk_test set region us-east-1
             echo -e "[android_sdk_test]\naws_access_key_id=${AWS_ACCESS_KEY_ID_TEST}\naws_secret_access_key=${AWS_SECRET_ACCESS_KEY_TEST}\n" >> ~/.aws/credentials
            
+            aws configure --profile build_resources set region us-east-1
+            echo -e "[build_resources]\naws_access_key_id=${BUILD_RESOURCES_AWS_ACCESS_KEY_ID_TEST}\naws_secret_access_key=${BUILD_RESOURCES_AWS_SECRET_ACCESS_KEY_TEST}\n" >> ~/.aws/credentials
 
   set_enviroment_variables:
     description: >-
@@ -459,7 +461,7 @@ jobs:
       - run:
           name: download third party libraries
           command: |
-            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
+            aws --profile build_resources s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
             cp "$ANDROID_HOME/platforms/android-27/android.jar"  third-party/android.jar
       - run:
@@ -525,7 +527,7 @@ jobs:
       - run:
           name: Download gpghome
           command: |
-            aws s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
+            aws --profile build_resources s3 cp s3://android-circleci-payload/gpghome/gpghome.zip gpghome.zip
             unzip -a gpghome.zip
       - run:
           name: Install Android SDK tools
@@ -607,7 +609,7 @@ jobs:
       - run:
           name: copy third party
           command: |
-            aws s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
+            aws --profile build_resources s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
             mv third-party  "$sdkNameWithVersion/third-party"
 
@@ -727,8 +729,8 @@ jobs:
       - run:
           name: Configure test information
           command: |
-            aws s3 cp s3://android-circleci-payload/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
-            aws s3 cp s3://android-circleci-payload/awsconfiguration.json  aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json           
+            aws --profile build_resources s3 cp s3://android-circleci-payload/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
+            aws --profile build_resources s3 cp s3://android-circleci-payload/awsconfiguration.json  aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json           
       - run:
           name: run integration tests
           command: |
@@ -1042,12 +1044,12 @@ jobs:
       - run:
           name: download devicefarm configure file
           command: |
-            aws s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
+            aws --profile build_resources s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
       - run:
           name: Configure test information
           command: |
-            aws s3 cp s3://android-circleci-payload/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
-            aws s3 cp s3://android-circleci-payload/awsconfiguration.json  aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json                       
+            aws --profile build_resources s3 cp s3://android-circleci-payload/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
+            aws --profile build_resources s3 cp s3://android-circleci-payload/awsconfiguration.json  aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json                       
       - run:
           name: launch integration test on device farm
           command: |
@@ -1090,7 +1092,7 @@ jobs:
       - run:
           name: download devicefarm configure file
           command: |
-            aws s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
+            aws --profile build_resources s3 cp s3://android-circleci-payload/devicefarm_configure.json devicefarm_configure.json
       - run:
           name: check integration test result on device farm
           command: |
