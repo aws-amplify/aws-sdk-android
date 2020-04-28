@@ -38,6 +38,9 @@ public enum Regions {
     /** us-west-2. */
     US_WEST_2("us-west-2"),
 
+    /** eu-south-1/ */
+    EU_SOUTH_1("eu-south-1"),
+
     /** eu-west-1/ */
     EU_WEST_1("eu-west-1"),
 
@@ -84,7 +87,10 @@ public enum Regions {
     CN_NORTHWEST_1("cn-northwest-1"),
 
     /** me-south-1. */
-    ME_SOUTH_1("me-south-1");
+    ME_SOUTH_1("me-south-1"),
+
+    /** af-south-1. */
+    AF_SOUTH_1("af-south-1");
 
     /**
      * The default region that new customers in the US are encouraged to use
