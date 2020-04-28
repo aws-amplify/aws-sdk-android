@@ -1,12 +1,13 @@
 apply plugin: 'java-library'
 
 dependencies {
-    api project(':aws-android-sdk-core')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-all:1.10.5'
+    api project(":aws-android-sdk-core")
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.mockito:mockito-all:1.10.5"
 }
 
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
-
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
