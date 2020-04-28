@@ -1,3 +1,16 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---amazonec2containerregistry
+---awselementalmedialive
+---amazonroute53
+---amazonsimplesystemsmanagerssm
+---amazonkinesisvideostreams
+---amazonkinesisvideostreamsarchivedmedia
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
