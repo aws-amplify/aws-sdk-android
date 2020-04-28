@@ -36,7 +36,7 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -152,7 +152,7 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -162,7 +162,7 @@ public class ChannelInfo implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel.
+     *         The Amazon Resource Name (ARN) of the signaling channel.
      *         </p>
      */
     public String getChannelARN() {
@@ -171,7 +171,7 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -181,7 +181,7 @@ public class ChannelInfo implements Serializable {
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel.
+     *            The Amazon Resource Name (ARN) of the signaling channel.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -190,7 +190,7 @@ public class ChannelInfo implements Serializable {
 
     /**
      * <p>
-     * The ARN of the signaling channel.
+     * The Amazon Resource Name (ARN) of the signaling channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -203,7 +203,7 @@ public class ChannelInfo implements Serializable {
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel.
+     *            The Amazon Resource Name (ARN) of the signaling channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

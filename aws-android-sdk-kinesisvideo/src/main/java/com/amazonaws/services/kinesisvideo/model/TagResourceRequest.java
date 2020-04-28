@@ -33,7 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,7 +55,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,7 +66,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * <br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel to which you want to add tags.
+     *         The Amazon Resource Name (ARN) of the signaling channel to which
+     *         you want to add tags.
      *         </p>
      */
     public String getResourceARN() {
@@ -73,7 +76,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,8 +87,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * <br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel to which you want to add
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel to
+     *            which you want to add tags.
      *            </p>
      */
     public void setResourceARN(String resourceARN) {
@@ -93,7 +97,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The ARN of the signaling channel to which you want to add tags.
+     * The Amazon Resource Name (ARN) of the signaling channel to which you want
+     * to add tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,8 +111,8 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * <br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel to which you want to add
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel to
+     *            which you want to add tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

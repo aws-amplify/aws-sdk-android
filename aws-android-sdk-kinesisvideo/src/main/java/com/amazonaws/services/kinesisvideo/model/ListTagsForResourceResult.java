@@ -20,9 +20,10 @@ import java.io.Serializable;
 public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next set of
+     * tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,9 +42,10 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next set of
+     * tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,9 +54,9 @@ public class ListTagsForResourceResult implements Serializable {
      *
      * @return <p>
      *         If you specify this parameter and the result of a
-     *         ListTagsForResource call is truncated, the response includes a
-     *         token that you can use in the next request to fetch the next set
-     *         of tags.
+     *         <code>ListTagsForResource</code> call is truncated, the response
+     *         includes a token that you can use in the next request to fetch
+     *         the next set of tags.
      *         </p>
      */
     public String getNextToken() {
@@ -63,9 +65,10 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next set of
+     * tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,9 +77,9 @@ public class ListTagsForResourceResult implements Serializable {
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
-     *            ListTagsForResource call is truncated, the response includes a
-     *            token that you can use in the next request to fetch the next
-     *            set of tags.
+     *            <code>ListTagsForResource</code> call is truncated, the
+     *            response includes a token that you can use in the next request
+     *            to fetch the next set of tags.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -85,9 +88,10 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * If you specify this parameter and the result of a ListTagsForResource
-     * call is truncated, the response includes a token that you can use in the
-     * next request to fetch the next set of tags.
+     * If you specify this parameter and the result of a
+     * <code>ListTagsForResource</code> call is truncated, the response includes
+     * a token that you can use in the next request to fetch the next set of
+     * tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,9 +103,9 @@ public class ListTagsForResourceResult implements Serializable {
      *
      * @param nextToken <p>
      *            If you specify this parameter and the result of a
-     *            ListTagsForResource call is truncated, the response includes a
-     *            token that you can use in the next request to fetch the next
-     *            set of tags.
+     *            <code>ListTagsForResource</code> call is truncated, the
+     *            response includes a token that you can use in the next request
+     *            to fetch the next set of tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

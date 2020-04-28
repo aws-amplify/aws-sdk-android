@@ -26,15 +26,16 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * If the <code>MessageTtlSeconds</code> value is updated (either increased or
- * reduced), then it only applies to new messages sent via this channel after
- * it's been updated. Existing messages are still expire as per the previous
+ * reduced), it only applies to new messages sent via this channel after it's
+ * been updated. Existing messages are still expired as per the previous
  * <code>MessageTtlSeconds</code> value.
  * </p>
  */
 public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel that you want to update.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,7 +68,8 @@ public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to update.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -77,7 +79,8 @@ public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel that you want to update.
+     *         The Amazon Resource Name (ARN) of the signaling channel that you
+     *         want to update.
      *         </p>
      */
     public String getChannelARN() {
@@ -86,7 +89,8 @@ public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to update.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * update.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,7 +100,8 @@ public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel that you want to update.
+     *            The Amazon Resource Name (ARN) of the signaling channel that
+     *            you want to update.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -105,7 +110,8 @@ public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to update.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * update.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,7 +124,8 @@ public class UpdateSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel that you want to update.
+     *            The Amazon Resource Name (ARN) of the signaling channel that
+     *            you want to update.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

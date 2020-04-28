@@ -29,7 +29,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UntagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +50,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,8 +61,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel from which you want to remove
-     *         tags.
+     *         The Amazon Resource Name (ARN) of the signaling channel from
+     *         which you want to remove tags.
      *         </p>
      */
     public String getResourceARN() {
@@ -69,7 +71,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,8 +82,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel from which you want to remove
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel from
+     *            which you want to remove tags.
      *            </p>
      */
     public void setResourceARN(String resourceARN) {
@@ -89,7 +92,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The ARN of the signaling channel from which you want to remove tags.
+     * The Amazon Resource Name (ARN) of the signaling channel from which you
+     * want to remove tags.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -102,8 +106,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <br/>
      *
      * @param resourceARN <p>
-     *            The ARN of the signaling channel from which you want to remove
-     *            tags.
+     *            The Amazon Resource Name (ARN) of the signaling channel from
+     *            which you want to remove tags.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

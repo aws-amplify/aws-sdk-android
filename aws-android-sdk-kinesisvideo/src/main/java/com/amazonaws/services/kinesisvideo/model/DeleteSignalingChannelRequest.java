@@ -29,7 +29,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,7 +46,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,7 +57,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,7 +68,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @return <p>
-     *         The ARN of the signaling channel that you want to delete.
+     *         The Amazon Resource Name (ARN) of the signaling channel that you
+     *         want to delete.
      *         </p>
      */
     public String getChannelARN() {
@@ -75,7 +78,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -85,7 +89,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel that you want to delete.
+     *            The Amazon Resource Name (ARN) of the signaling channel that
+     *            you want to delete.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -94,7 +99,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the signaling channel that you want to delete.
+     * The Amazon Resource Name (ARN) of the signaling channel that you want to
+     * delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -107,7 +113,8 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the signaling channel that you want to delete.
+     *            The Amazon Resource Name (ARN) of the signaling channel that
+     *            you want to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -122,7 +129,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +140,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      *         The current version of the signaling channel that you want to
      *         delete. You can obtain the current version by invoking the
      *         <code>DescribeSignalingChannel</code> or
-     *         <code>ListSignalingChannels</code> APIs.
+     *         <code>ListSignalingChannels</code> API operations.
      *         </p>
      */
     public String getCurrentVersion() {
@@ -145,7 +152,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -156,7 +163,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      *            The current version of the signaling channel that you want to
      *            delete. You can obtain the current version by invoking the
      *            <code>DescribeSignalingChannel</code> or
-     *            <code>ListSignalingChannels</code> APIs.
+     *            <code>ListSignalingChannels</code> API operations.
      *            </p>
      */
     public void setCurrentVersion(String currentVersion) {
@@ -168,7 +175,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      * The current version of the signaling channel that you want to delete. You
      * can obtain the current version by invoking the
      * <code>DescribeSignalingChannel</code> or
-     * <code>ListSignalingChannels</code> APIs.
+     * <code>ListSignalingChannels</code> API operations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,7 +189,7 @@ public class DeleteSignalingChannelRequest extends AmazonWebServiceRequest imple
      *            The current version of the signaling channel that you want to
      *            delete. You can obtain the current version by invoking the
      *            <code>DescribeSignalingChannel</code> or
-     *            <code>ListSignalingChannels</code> APIs.
+     *            <code>ListSignalingChannels</code> API operations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

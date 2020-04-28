@@ -73,7 +73,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP
      */
     private String aPIName;
 
@@ -226,7 +226,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP
      *
      * @return <p>
      *         The name of the API action for which to get an endpoint.
@@ -245,7 +245,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
@@ -267,7 +267,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
@@ -289,7 +289,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.
@@ -311,7 +311,7 @@ public class GetDataEndpointRequest extends AmazonWebServiceRequest implements S
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PUT_MEDIA, GET_MEDIA, LIST_FRAGMENTS,
      * GET_MEDIA_FOR_FRAGMENT_LIST, GET_HLS_STREAMING_SESSION_URL,
-     * GET_DASH_STREAMING_SESSION_URL
+     * GET_DASH_STREAMING_SESSION_URL, GET_CLIP
      *
      * @param aPIName <p>
      *            The name of the API action for which to get an endpoint.

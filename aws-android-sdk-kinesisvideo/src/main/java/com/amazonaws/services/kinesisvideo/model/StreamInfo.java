@@ -77,6 +77,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String kmsKeyId;
 
@@ -360,6 +361,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
      *         The ID of the AWS Key Management Service (AWS KMS) key that
@@ -378,6 +380,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
      *            The ID of the AWS Key Management Service (AWS KMS) key that
@@ -399,6 +402,7 @@ public class StreamInfo implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
      *            The ID of the AWS Key Management Service (AWS KMS) key that

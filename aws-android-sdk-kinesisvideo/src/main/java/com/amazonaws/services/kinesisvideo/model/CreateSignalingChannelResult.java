@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class CreateSignalingChannelResult implements Serializable {
     /**
      * <p>
-     * The ARN of the created channel.
+     * The Amazon Resource Name (ARN) of the created channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -33,7 +33,7 @@ public class CreateSignalingChannelResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the created channel.
+     * The Amazon Resource Name (ARN) of the created channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class CreateSignalingChannelResult implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The ARN of the created channel.
+     *         The Amazon Resource Name (ARN) of the created channel.
      *         </p>
      */
     public String getChannelARN() {
@@ -52,7 +52,7 @@ public class CreateSignalingChannelResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the created channel.
+     * The Amazon Resource Name (ARN) of the created channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +62,7 @@ public class CreateSignalingChannelResult implements Serializable {
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the created channel.
+     *            The Amazon Resource Name (ARN) of the created channel.
      *            </p>
      */
     public void setChannelARN(String channelARN) {
@@ -71,7 +71,7 @@ public class CreateSignalingChannelResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the created channel.
+     * The Amazon Resource Name (ARN) of the created channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -84,7 +84,7 @@ public class CreateSignalingChannelResult implements Serializable {
      * <br/>
      *
      * @param channelARN <p>
-     *            The ARN of the created channel.
+     *            The Amazon Resource Name (ARN) of the created channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

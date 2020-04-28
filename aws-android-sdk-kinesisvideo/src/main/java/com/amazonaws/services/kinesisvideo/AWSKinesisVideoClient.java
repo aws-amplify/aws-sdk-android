@@ -499,6 +499,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * @throws ResourceNotFoundException
      * @throws AccessDeniedException
      * @throws VersionMismatchException
+     * @throws ResourceInUseException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -568,6 +569,7 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * @throws ResourceNotFoundException
      * @throws NotAuthorizedException
      * @throws VersionMismatchException
+     * @throws ResourceInUseException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -608,8 +610,8 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
     /**
      * <p>
      * Returns the most current information about the signaling channel. You
-     * must specify either the name or the ARN of the channel that you want to
-     * describe.
+     * must specify either the name or the Amazon Resource Name (ARN) of the
+     * channel that you want to describe.
      * </p>
      * 
      * @param describeSignalingChannelRequest
@@ -781,10 +783,9 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * </p>
      * <p>
      * <code>Protocols</code> is used to determine the communication mechanism.
-     * For example, specifying <code>WSS</code> as the protocol, results in this
-     * API producing a secure websocket endpoint, and specifying
-     * <code>HTTPS</code> as the protocol, results in this API generating an
-     * HTTPS endpoint.
+     * For example, if you specify <code>WSS</code> as the protocol, this API
+     * produces a secure websocket endpoint. If you specify <code>HTTPS</code>
+     * as the protocol, this API generates an HTTPS endpoint.
      * </p>
      * <p>
      * <code>Role</code> determines the messaging permissions. A
@@ -1381,8 +1382,8 @@ public class AWSKinesisVideoClient extends AmazonWebServiceClient implements AWS
      * </p>
      * <p>
      * If the <code>MessageTtlSeconds</code> value is updated (either increased
-     * or reduced), then it only applies to new messages sent via this channel
-     * after it's been updated. Existing messages are still expire as per the
+     * or reduced), it only applies to new messages sent via this channel after
+     * it's been updated. Existing messages are still expired as per the
      * previous <code>MessageTtlSeconds</code> value.
      * </p>
      * 

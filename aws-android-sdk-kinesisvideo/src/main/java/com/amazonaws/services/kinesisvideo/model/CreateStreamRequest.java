@@ -115,6 +115,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      */
     private String kmsKeyId;
 
@@ -480,6 +481,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
      *         The ID of the AWS Key Management Service (AWS KMS) key that you
@@ -516,6 +518,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
      *            The ID of the AWS Key Management Service (AWS KMS) key that
@@ -555,6 +558,7 @@ public class CreateStreamRequest extends AmazonWebServiceRequest implements Seri
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>.+<br/>
      *
      * @param kmsKeyId <p>
      *            The ID of the AWS Key Management Service (AWS KMS) key that

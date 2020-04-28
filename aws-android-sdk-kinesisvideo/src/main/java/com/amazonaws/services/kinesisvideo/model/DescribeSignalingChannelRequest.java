@@ -22,7 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns the most current information about the signaling channel. You must
- * specify either the name or the ARN of the channel that you want to describe.
+ * specify either the name or the Amazon Resource Name (ARN) of the channel that
+ * you want to describe.
  * </p>
  */
 public class DescribeSignalingChannelRequest extends AmazonWebServiceRequest implements

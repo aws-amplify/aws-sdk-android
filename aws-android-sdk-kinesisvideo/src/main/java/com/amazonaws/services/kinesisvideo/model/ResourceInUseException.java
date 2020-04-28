@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The stream is currently not available for this operation.
+ * The signaling channel is currently not available for this operation.
  * </p>
  */
 public class ResourceInUseException extends AmazonServiceException {
