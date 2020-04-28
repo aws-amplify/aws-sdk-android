@@ -290,7 +290,31 @@ public enum Region {
      * When using buckets in this region, you must set the client endpoint to
      * <code>s3.me-south-1.amazonaws.com</code>.
      */
-    ME_Bahrain("me-south-1");
+    ME_Bahrain("me-south-1"),
+
+    /**
+     * The Europe (Milan) Region. This region uses Amazon S3 servers
+     * located in Milan.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-eu-south-1.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    EU_Milan("eu-south-1"),
+
+    /**
+     * The Africa (Cape Town) Region. This region uses Amazon S3 servers
+     * located in Cape Town.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-af-south-1.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    AP_CapeTown("af-south-1");
 
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this
