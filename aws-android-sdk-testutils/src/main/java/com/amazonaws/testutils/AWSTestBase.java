@@ -68,7 +68,7 @@ public abstract class AWSTestBase {
 
         public JSONObject getPackageConfigure(String packageName) {
             try {
-                return mJSONObject.getJSONObject("Packages")
+                return mJSONObject.getJSONObject("packages")
                     .getJSONObject(packageName);
             }
             catch (JSONException | NullPointerException configurationFileError) {
