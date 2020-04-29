@@ -259,6 +259,79 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Transcribe Medical transcribes your audio file.
+     * </p>
+     * 
+     * @param createMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         CreateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateMedicalVocabularyResult> createMedicalVocabularyAsync(
+            final CreateMedicalVocabularyRequest createMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateMedicalVocabularyResult>() {
+            public CreateMedicalVocabularyResult call() throws Exception {
+                return createMedicalVocabulary(createMedicalVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Transcribe Medical transcribes your audio file.
+     * </p>
+     * 
+     * @param createMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         CreateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateMedicalVocabularyResult> createMedicalVocabularyAsync(
+            final CreateMedicalVocabularyRequest createMedicalVocabularyRequest,
+            final AsyncHandler<CreateMedicalVocabularyRequest, CreateMedicalVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateMedicalVocabularyResult>() {
+            public CreateMedicalVocabularyResult call() throws Exception {
+                CreateMedicalVocabularyResult result = null;
+                try {
+                    result = createMedicalVocabulary(createMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createMedicalVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
      * Transcribe handles transcription of an audio file.
      * </p>
@@ -470,6 +543,78 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteMedicalTranscriptionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a vocabulary from Amazon Transcribe Medical.
+     * </p>
+     * 
+     * @param deleteMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteMedicalVocabularyAsync(
+            final DeleteMedicalVocabularyRequest deleteMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteMedicalVocabulary(deleteMedicalVocabularyRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a vocabulary from Amazon Transcribe Medical.
+     * </p>
+     * 
+     * @param deleteMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteMedicalVocabularyAsync(
+            final DeleteMedicalVocabularyRequest deleteMedicalVocabularyRequest,
+            final AsyncHandler<DeleteMedicalVocabularyRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteMedicalVocabulary(deleteMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteMedicalVocabularyRequest, result);
                 return result;
             }
         });
@@ -771,6 +916,77 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Retrieve information about a medical vocabulary.
+     * </p>
+     * 
+     * @param getMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         GetMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetMedicalVocabularyResult> getMedicalVocabularyAsync(
+            final GetMedicalVocabularyRequest getMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetMedicalVocabularyResult>() {
+            public GetMedicalVocabularyResult call() throws Exception {
+                return getMedicalVocabulary(getMedicalVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieve information about a medical vocabulary.
+     * </p>
+     * 
+     * @param getMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         GetMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetMedicalVocabularyResult> getMedicalVocabularyAsync(
+            final GetMedicalVocabularyRequest getMedicalVocabularyRequest,
+            final AsyncHandler<GetMedicalVocabularyRequest, GetMedicalVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetMedicalVocabularyResult>() {
+            public GetMedicalVocabularyResult call() throws Exception {
+                GetMedicalVocabularyResult result = null;
+                try {
+                    result = getMedicalVocabulary(getMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getMedicalVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Returns information about a transcription job. To see the status of the
      * job, check the <code>TranscriptionJobStatus</code> field. If the status
      * is <code>COMPLETED</code>, the job is finished and you can find the
@@ -1056,6 +1272,79 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(listMedicalTranscriptionJobsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns a list of vocabularies that match the specified criteria. You get
+     * the entire list of vocabularies if you don't enter a value in any of the
+     * request parameters.
+     * </p>
+     * 
+     * @param listMedicalVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListMedicalVocabularies service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListMedicalVocabulariesResult> listMedicalVocabulariesAsync(
+            final ListMedicalVocabulariesRequest listMedicalVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListMedicalVocabulariesResult>() {
+            public ListMedicalVocabulariesResult call() throws Exception {
+                return listMedicalVocabularies(listMedicalVocabulariesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns a list of vocabularies that match the specified criteria. You get
+     * the entire list of vocabularies if you don't enter a value in any of the
+     * request parameters.
+     * </p>
+     * 
+     * @param listMedicalVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListMedicalVocabularies service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListMedicalVocabulariesResult> listMedicalVocabulariesAsync(
+            final ListMedicalVocabulariesRequest listMedicalVocabulariesRequest,
+            final AsyncHandler<ListMedicalVocabulariesRequest, ListMedicalVocabulariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListMedicalVocabulariesResult>() {
+            public ListMedicalVocabulariesResult call() throws Exception {
+                ListMedicalVocabulariesResult result = null;
+                try {
+                    result = listMedicalVocabularies(listMedicalVocabulariesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listMedicalVocabulariesRequest, result);
                 return result;
             }
         });
@@ -1407,6 +1696,83 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(startTranscriptionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates an existing vocabulary with new values in a different text file.
+     * The <code>UpdateMedicalVocabulary</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateMedicalVocabularyResult> updateMedicalVocabularyAsync(
+            final UpdateMedicalVocabularyRequest updateMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateMedicalVocabularyResult>() {
+            public UpdateMedicalVocabularyResult call() throws Exception {
+                return updateMedicalVocabulary(updateMedicalVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates an existing vocabulary with new values in a different text file.
+     * The <code>UpdateMedicalVocabulary</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateMedicalVocabularyResult> updateMedicalVocabularyAsync(
+            final UpdateMedicalVocabularyRequest updateMedicalVocabularyRequest,
+            final AsyncHandler<UpdateMedicalVocabularyRequest, UpdateMedicalVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateMedicalVocabularyResult>() {
+            public UpdateMedicalVocabularyResult call() throws Exception {
+                UpdateMedicalVocabularyResult result = null;
+                try {
+                    result = updateMedicalVocabulary(updateMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateMedicalVocabularyRequest, result);
                 return result;
             }
         });

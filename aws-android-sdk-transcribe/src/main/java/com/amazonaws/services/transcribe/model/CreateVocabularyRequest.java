@@ -29,7 +29,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case-sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -93,7 +95,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case-sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,7 +106,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         The name of the vocabulary. The name must be unique within an AWS
-     *         account. The name is case-sensitive.
+     *         account. The name is case-sensitive. If you try to create a
+     *         vocabulary with the same name as a previous vocabulary you will
+     *         receive a <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyName() {
@@ -112,7 +118,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case-sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -121,7 +129,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary. The name must be unique within an
-     *            AWS account. The name is case-sensitive.
+     *            AWS account. The name is case-sensitive. If you try to create
+     *            a vocabulary with the same name as a previous vocabulary you
+     *            will receive a <code>ConflictException</code> error.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -131,7 +141,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case-sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -143,7 +155,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary. The name must be unique within an
-     *            AWS account. The name is case-sensitive.
+     *            AWS account. The name is case-sensitive. If you try to create
+     *            a vocabulary with the same name as a previous vocabulary you
+     *            will receive a <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

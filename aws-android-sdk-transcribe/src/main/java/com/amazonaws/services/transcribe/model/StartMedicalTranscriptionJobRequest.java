@@ -30,7 +30,9 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "."
      * or ".." by themselves as the job name. The name must also be unique
-     * within an AWS account.
+     * within an AWS account. If you try to create a medical transcription job
+     * with the same name as a previous medical transcription job you will
+     * receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -194,10 +196,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The speech of clinician in the input audio. <code>CONVERSATION</code>
-     * refers to conversations clinicians have with patients.
-     * <code>DICTATION</code> refers to medical professionals dictating their
-     * notes about a patient encounter.
+     * The type of speech in the input audio. <code>CONVERSATION</code> refers
+     * to conversations between two or more speakers, e.g., a conversations
+     * between doctors and patients. <code>DICTATION</code> refers to
+     * single-speaker dictated speech, e.g., for clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -209,7 +211,9 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "."
      * or ".." by themselves as the job name. The name must also be unique
-     * within an AWS account.
+     * within an AWS account. If you try to create a medical transcription job
+     * with the same name as a previous medical transcription job you will
+     * receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -219,7 +223,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * @return <p>
      *         The name of the medical transcription job. You can't use the
      *         strings "." or ".." by themselves as the job name. The name must
-     *         also be unique within an AWS account.
+     *         also be unique within an AWS account. If you try to create a
+     *         medical transcription job with the same name as a previous
+     *         medical transcription job you will receive a
+     *         <code>ConflictException</code> error.
      *         </p>
      */
     public String getMedicalTranscriptionJobName() {
@@ -230,7 +237,9 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "."
      * or ".." by themselves as the job name. The name must also be unique
-     * within an AWS account.
+     * within an AWS account. If you try to create a medical transcription job
+     * with the same name as a previous medical transcription job you will
+     * receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -240,7 +249,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * @param medicalTranscriptionJobName <p>
      *            The name of the medical transcription job. You can't use the
      *            strings "." or ".." by themselves as the job name. The name
-     *            must also be unique within an AWS account.
+     *            must also be unique within an AWS account. If you try to
+     *            create a medical transcription job with the same name as a
+     *            previous medical transcription job you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      */
     public void setMedicalTranscriptionJobName(String medicalTranscriptionJobName) {
@@ -251,7 +263,9 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "."
      * or ".." by themselves as the job name. The name must also be unique
-     * within an AWS account.
+     * within an AWS account. If you try to create a medical transcription job
+     * with the same name as a previous medical transcription job you will
+     * receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -264,7 +278,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * @param medicalTranscriptionJobName <p>
      *            The name of the medical transcription job. You can't use the
      *            strings "." or ".." by themselves as the job name. The name
-     *            must also be unique within an AWS account.
+     *            must also be unique within an AWS account. If you try to
+     *            create a medical transcription job with the same name as a
+     *            previous medical transcription job you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1322,20 +1339,21 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The speech of clinician in the input audio. <code>CONVERSATION</code>
-     * refers to conversations clinicians have with patients.
-     * <code>DICTATION</code> refers to medical professionals dictating their
-     * notes about a patient encounter.
+     * The type of speech in the input audio. <code>CONVERSATION</code> refers
+     * to conversations between two or more speakers, e.g., a conversations
+     * between doctors and patients. <code>DICTATION</code> refers to
+     * single-speaker dictated speech, e.g., for clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @return <p>
-     *         The speech of clinician in the input audio.
-     *         <code>CONVERSATION</code> refers to conversations clinicians have
-     *         with patients. <code>DICTATION</code> refers to medical
-     *         professionals dictating their notes about a patient encounter.
+     *         The type of speech in the input audio. <code>CONVERSATION</code>
+     *         refers to conversations between two or more speakers, e.g., a
+     *         conversations between doctors and patients.
+     *         <code>DICTATION</code> refers to single-speaker dictated speech,
+     *         e.g., for clinical notes.
      *         </p>
      * @see Type
      */
@@ -1345,20 +1363,21 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The speech of clinician in the input audio. <code>CONVERSATION</code>
-     * refers to conversations clinicians have with patients.
-     * <code>DICTATION</code> refers to medical professionals dictating their
-     * notes about a patient encounter.
+     * The type of speech in the input audio. <code>CONVERSATION</code> refers
+     * to conversations between two or more speakers, e.g., a conversations
+     * between doctors and patients. <code>DICTATION</code> refers to
+     * single-speaker dictated speech, e.g., for clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of clinician in the input audio.
-     *            <code>CONVERSATION</code> refers to conversations clinicians
-     *            have with patients. <code>DICTATION</code> refers to medical
-     *            professionals dictating their notes about a patient encounter.
+     *            The type of speech in the input audio.
+     *            <code>CONVERSATION</code> refers to conversations between two
+     *            or more speakers, e.g., a conversations between doctors and
+     *            patients. <code>DICTATION</code> refers to single-speaker
+     *            dictated speech, e.g., for clinical notes.
      *            </p>
      * @see Type
      */
@@ -1368,10 +1387,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The speech of clinician in the input audio. <code>CONVERSATION</code>
-     * refers to conversations clinicians have with patients.
-     * <code>DICTATION</code> refers to medical professionals dictating their
-     * notes about a patient encounter.
+     * The type of speech in the input audio. <code>CONVERSATION</code> refers
+     * to conversations between two or more speakers, e.g., a conversations
+     * between doctors and patients. <code>DICTATION</code> refers to
+     * single-speaker dictated speech, e.g., for clinical notes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1381,10 +1400,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of clinician in the input audio.
-     *            <code>CONVERSATION</code> refers to conversations clinicians
-     *            have with patients. <code>DICTATION</code> refers to medical
-     *            professionals dictating their notes about a patient encounter.
+     *            The type of speech in the input audio.
+     *            <code>CONVERSATION</code> refers to conversations between two
+     *            or more speakers, e.g., a conversations between doctors and
+     *            patients. <code>DICTATION</code> refers to single-speaker
+     *            dictated speech, e.g., for clinical notes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1397,20 +1417,21 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The speech of clinician in the input audio. <code>CONVERSATION</code>
-     * refers to conversations clinicians have with patients.
-     * <code>DICTATION</code> refers to medical professionals dictating their
-     * notes about a patient encounter.
+     * The type of speech in the input audio. <code>CONVERSATION</code> refers
+     * to conversations between two or more speakers, e.g., a conversations
+     * between doctors and patients. <code>DICTATION</code> refers to
+     * single-speaker dictated speech, e.g., for clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of clinician in the input audio.
-     *            <code>CONVERSATION</code> refers to conversations clinicians
-     *            have with patients. <code>DICTATION</code> refers to medical
-     *            professionals dictating their notes about a patient encounter.
+     *            The type of speech in the input audio.
+     *            <code>CONVERSATION</code> refers to conversations between two
+     *            or more speakers, e.g., a conversations between doctors and
+     *            patients. <code>DICTATION</code> refers to single-speaker
+     *            dictated speech, e.g., for clinical notes.
      *            </p>
      * @see Type
      */
@@ -1420,10 +1441,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The speech of clinician in the input audio. <code>CONVERSATION</code>
-     * refers to conversations clinicians have with patients.
-     * <code>DICTATION</code> refers to medical professionals dictating their
-     * notes about a patient encounter.
+     * The type of speech in the input audio. <code>CONVERSATION</code> refers
+     * to conversations between two or more speakers, e.g., a conversations
+     * between doctors and patients. <code>DICTATION</code> refers to
+     * single-speaker dictated speech, e.g., for clinical notes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1433,10 +1454,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      *
      * @param type <p>
-     *            The speech of clinician in the input audio.
-     *            <code>CONVERSATION</code> refers to conversations clinicians
-     *            have with patients. <code>DICTATION</code> refers to medical
-     *            professionals dictating their notes about a patient encounter.
+     *            The type of speech in the input audio.
+     *            <code>CONVERSATION</code> refers to conversations between two
+     *            or more speakers, e.g., a conversations between doctors and
+     *            patients. <code>DICTATION</code> refers to single-speaker
+     *            dictated speech, e.g., for clinical notes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

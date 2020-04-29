@@ -100,6 +100,18 @@ public class MedicalTranscriptionSetting implements Serializable {
 
     /**
      * <p>
+     * The name of the vocabulary to use when processing a medical transcription
+     * job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     */
+    private String vocabularyName;
+
+    /**
+     * <p>
      * Determines whether the transcription job uses speaker recognition to
      * identify different speakers in the input audio. Speaker recongition
      * labels individual speakers in the audio file. If you set the
@@ -649,6 +661,69 @@ public class MedicalTranscriptionSetting implements Serializable {
     }
 
     /**
+     * <p>
+     * The name of the vocabulary to use when processing a medical transcription
+     * job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     *
+     * @return <p>
+     *         The name of the vocabulary to use when processing a medical
+     *         transcription job.
+     *         </p>
+     */
+    public String getVocabularyName() {
+        return vocabularyName;
+    }
+
+    /**
+     * <p>
+     * The name of the vocabulary to use when processing a medical transcription
+     * job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     *
+     * @param vocabularyName <p>
+     *            The name of the vocabulary to use when processing a medical
+     *            transcription job.
+     *            </p>
+     */
+    public void setVocabularyName(String vocabularyName) {
+        this.vocabularyName = vocabularyName;
+    }
+
+    /**
+     * <p>
+     * The name of the vocabulary to use when processing a medical transcription
+     * job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 200<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
+     *
+     * @param vocabularyName <p>
+     *            The name of the vocabulary to use when processing a medical
+     *            transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public MedicalTranscriptionSetting withVocabularyName(String vocabularyName) {
+        this.vocabularyName = vocabularyName;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -668,7 +743,9 @@ public class MedicalTranscriptionSetting implements Serializable {
         if (getShowAlternatives() != null)
             sb.append("ShowAlternatives: " + getShowAlternatives() + ",");
         if (getMaxAlternatives() != null)
-            sb.append("MaxAlternatives: " + getMaxAlternatives());
+            sb.append("MaxAlternatives: " + getMaxAlternatives() + ",");
+        if (getVocabularyName() != null)
+            sb.append("VocabularyName: " + getVocabularyName());
         sb.append("}");
         return sb.toString();
     }
@@ -689,6 +766,8 @@ public class MedicalTranscriptionSetting implements Serializable {
                 + ((getShowAlternatives() == null) ? 0 : getShowAlternatives().hashCode());
         hashCode = prime * hashCode
                 + ((getMaxAlternatives() == null) ? 0 : getMaxAlternatives().hashCode());
+        hashCode = prime * hashCode
+                + ((getVocabularyName() == null) ? 0 : getVocabularyName().hashCode());
         return hashCode;
     }
 
@@ -727,6 +806,11 @@ public class MedicalTranscriptionSetting implements Serializable {
             return false;
         if (other.getMaxAlternatives() != null
                 && other.getMaxAlternatives().equals(this.getMaxAlternatives()) == false)
+            return false;
+        if (other.getVocabularyName() == null ^ this.getVocabularyName() == null)
+            return false;
+        if (other.getVocabularyName() != null
+                && other.getVocabularyName().equals(this.getVocabularyName()) == false)
             return false;
         return true;
     }

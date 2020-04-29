@@ -29,7 +29,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The name of the job. Note that you can't use the strings "." or ".." by
      * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * account. If you try to create a transcription job with the same name as a
+     * previous transcription job you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -209,7 +211,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The name of the job. Note that you can't use the strings "." or ".." by
      * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * account. If you try to create a transcription job with the same name as a
+     * previous transcription job you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -219,7 +223,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * @return <p>
      *         The name of the job. Note that you can't use the strings "." or
      *         ".." by themselves as the job name. The name must also be unique
-     *         within an AWS account.
+     *         within an AWS account. If you try to create a transcription job
+     *         with the same name as a previous transcription job you will
+     *         receive a <code>ConflictException</code> error.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -230,7 +236,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The name of the job. Note that you can't use the strings "." or ".." by
      * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * account. If you try to create a transcription job with the same name as a
+     * previous transcription job you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -240,7 +248,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * @param transcriptionJobName <p>
      *            The name of the job. Note that you can't use the strings "."
      *            or ".." by themselves as the job name. The name must also be
-     *            unique within an AWS account.
+     *            unique within an AWS account. If you try to create a
+     *            transcription job with the same name as a previous
+     *            transcription job you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -251,7 +262,9 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <p>
      * The name of the job. Note that you can't use the strings "." or ".." by
      * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * account. If you try to create a transcription job with the same name as a
+     * previous transcription job you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -264,7 +277,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * @param transcriptionJobName <p>
      *            The name of the job. Note that you can't use the strings "."
      *            or ".." by themselves as the job name. The name must also be
-     *            unique within an AWS account.
+     *            unique within an AWS account. If you try to create a
+     *            transcription job with the same name as a previous
+     *            transcription job you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

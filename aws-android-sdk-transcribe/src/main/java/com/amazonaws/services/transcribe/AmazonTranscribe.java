@@ -87,6 +87,32 @@ public interface AmazonTranscribe {
 
     /**
      * <p>
+     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Transcribe Medical transcribes your audio file.
+     * </p>
+     * 
+     * @param createMedicalVocabularyRequest
+     * @return createMedicalVocabularyResult The response from the
+     *         CreateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateMedicalVocabularyResult createMedicalVocabulary(
+            CreateMedicalVocabularyRequest createMedicalVocabularyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
      * Transcribe handles transcription of an audio file.
      * </p>
@@ -155,6 +181,27 @@ public interface AmazonTranscribe {
      */
     void deleteMedicalTranscriptionJob(
             DeleteMedicalTranscriptionJobRequest deleteMedicalTranscriptionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a vocabulary from Amazon Transcribe Medical.
+     * </p>
+     * 
+     * @param deleteMedicalVocabularyRequest
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteMedicalVocabulary(DeleteMedicalVocabularyRequest deleteMedicalVocabularyRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -248,6 +295,31 @@ public interface AmazonTranscribe {
     GetMedicalTranscriptionJobResult getMedicalTranscriptionJob(
             GetMedicalTranscriptionJobRequest getMedicalTranscriptionJobRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieve information about a medical vocabulary.
+     * </p>
+     * 
+     * @param getMedicalVocabularyRequest
+     * @return getMedicalVocabularyResult The response from the
+     *         GetMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetMedicalVocabularyResult getMedicalVocabulary(
+            GetMedicalVocabularyRequest getMedicalVocabularyRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -350,6 +422,32 @@ public interface AmazonTranscribe {
      */
     ListMedicalTranscriptionJobsResult listMedicalTranscriptionJobs(
             ListMedicalTranscriptionJobsRequest listMedicalTranscriptionJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns a list of vocabularies that match the specified criteria. You get
+     * the entire list of vocabularies if you don't enter a value in any of the
+     * request parameters.
+     * </p>
+     * 
+     * @param listMedicalVocabulariesRequest
+     * @return listMedicalVocabulariesResult The response from the
+     *         ListMedicalVocabularies service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListMedicalVocabulariesResult listMedicalVocabularies(
+            ListMedicalVocabulariesRequest listMedicalVocabulariesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -471,6 +569,34 @@ public interface AmazonTranscribe {
      */
     StartTranscriptionJobResult startTranscriptionJob(
             StartTranscriptionJobRequest startTranscriptionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates an existing vocabulary with new values in a different text file.
+     * The <code>UpdateMedicalVocabulary</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateMedicalVocabularyRequest
+     * @return updateMedicalVocabularyResult The response from the
+     *         UpdateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateMedicalVocabularyResult updateMedicalVocabulary(
+            UpdateMedicalVocabularyRequest updateMedicalVocabularyRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
