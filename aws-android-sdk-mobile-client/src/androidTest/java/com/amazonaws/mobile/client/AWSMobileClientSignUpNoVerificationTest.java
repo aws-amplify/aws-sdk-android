@@ -64,7 +64,7 @@ import static org.junit.Assert.assertNull;
 public class AWSMobileClientSignUpNoVerificationTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    private static final String EMAIL = "somebody@email.com";
+    private static final String EMAIL = "success+user@simulator.amazonses.com";
     private static final String USERNAME = "somebody";
     private static final String PASSWORD = "1234Password!";
     private static final long THREAD_WAIT_DURATION = 60;

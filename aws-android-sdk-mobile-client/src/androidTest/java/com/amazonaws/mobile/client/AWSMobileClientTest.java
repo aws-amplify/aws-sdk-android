@@ -96,9 +96,8 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
-    private static final String EMAIL = "somebody@email.com";
-    private static final String EMAIL_ADMIN_API_USER = "sombody-temp@amazon.com";
-    private static final String BLURRED_EMAIL = "s***@e***.com";
+    private static final String EMAIL = "success+user@simulator.amazonses.com";
+    private static final String EMAIL_ADMIN_API_USER = "success+admin@simulator.amazonses.com";
     private static final String USERNAME = "somebody";
     private static final String USERNAME_ADMIN_API_USER = "somebody-temp";
     private static final String PASSWORD = "1234Password!";
@@ -314,7 +313,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         final UserCodeDeliveryDetails details = signUpResult.getUserCodeDeliveryDetails();
         if (details != null) {
-            assertEquals(BLURRED_EMAIL, details.getDestination());
+            assertEquals("s***@e***.com", details.getDestination());
             assertEquals("email", details.getAttributeName());
             assertEquals("EMAIL", details.getDeliveryMedium());
         }
