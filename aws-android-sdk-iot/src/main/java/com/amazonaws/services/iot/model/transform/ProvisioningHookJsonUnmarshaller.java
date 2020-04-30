@@ -21,48 +21,40 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Certificate
+ * JSON unmarshaller for POJO ProvisioningHook
  */
-class CertificateJsonUnmarshaller implements Unmarshaller<Certificate, JsonUnmarshallerContext> {
+class ProvisioningHookJsonUnmarshaller implements
+        Unmarshaller<ProvisioningHook, JsonUnmarshallerContext> {
 
-    public Certificate unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public ProvisioningHook unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Certificate certificate = new Certificate();
+        ProvisioningHook provisioningHook = new ProvisioningHook();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("certificateArn")) {
-                certificate.setCertificateArn(StringJsonUnmarshaller.getInstance()
+            if (name.equals("payloadVersion")) {
+                provisioningHook.setPayloadVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("certificateId")) {
-                certificate.setCertificateId(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("status")) {
-                certificate.setStatus(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("certificateMode")) {
-                certificate.setCertificateMode(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("creationDate")) {
-                certificate.setCreationDate(DateJsonUnmarshaller.getInstance()
+            } else if (name.equals("targetArn")) {
+                provisioningHook.setTargetArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return certificate;
+        return provisioningHook;
     }
 
-    private static CertificateJsonUnmarshaller instance;
+    private static ProvisioningHookJsonUnmarshaller instance;
 
-    public static CertificateJsonUnmarshaller getInstance() {
+    public static ProvisioningHookJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new CertificateJsonUnmarshaller();
+            instance = new ProvisioningHookJsonUnmarshaller();
         return instance;
     }
 }

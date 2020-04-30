@@ -83,6 +83,19 @@ public class UpdateProvisioningTemplateRequestMarshaller implements
                 jsonWriter.name("provisioningRoleArn");
                 jsonWriter.value(provisioningRoleArn);
             }
+            if (updateProvisioningTemplateRequest.getPreProvisioningHook() != null) {
+                ProvisioningHook preProvisioningHook = updateProvisioningTemplateRequest
+                        .getPreProvisioningHook();
+                jsonWriter.name("preProvisioningHook");
+                ProvisioningHookJsonMarshaller.getInstance().marshall(preProvisioningHook,
+                        jsonWriter);
+            }
+            if (updateProvisioningTemplateRequest.getRemovePreProvisioningHook() != null) {
+                Boolean removePreProvisioningHook = updateProvisioningTemplateRequest
+                        .getRemovePreProvisioningHook();
+                jsonWriter.name("removePreProvisioningHook");
+                jsonWriter.value(removePreProvisioningHook);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

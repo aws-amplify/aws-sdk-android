@@ -72,6 +72,17 @@ public class CreateRoleAliasRequestMarshaller implements
                 jsonWriter.name("credentialDurationSeconds");
                 jsonWriter.value(credentialDurationSeconds);
             }
+            if (createRoleAliasRequest.getTags() != null) {
+                java.util.List<Tag> tags = createRoleAliasRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

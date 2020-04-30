@@ -2314,6 +2314,7 @@ public interface AWSIot {
      *         IoT.
      * @throws ResourceNotFoundException
      * @throws ThrottlingException
+     * @throws InvalidRequestException
      * @throws UnauthorizedException
      * @throws ServiceUnavailableException
      * @throws InternalFailureException
@@ -4573,6 +4574,35 @@ public interface AWSIot {
     RegisterCertificateResult registerCertificate(
             RegisterCertificateRequest registerCertificateRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Register a certificate that does not have a certificate authority (CA).
+     * </p>
+     * 
+     * @param registerCertificateWithoutCARequest
+     * @return registerCertificateWithoutCAResult The response from the
+     *         RegisterCertificateWithoutCA service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws CertificateStateException
+     * @throws CertificateValidationException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    RegisterCertificateWithoutCAResult registerCertificateWithoutCA(
+            RegisterCertificateWithoutCARequest registerCertificateWithoutCARequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>

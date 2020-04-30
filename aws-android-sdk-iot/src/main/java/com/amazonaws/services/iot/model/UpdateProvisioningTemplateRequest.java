@@ -75,6 +75,20 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
+     * Updates the pre-provisioning hook template.
+     * </p>
+     */
+    private ProvisioningHook preProvisioningHook;
+
+    /**
+     * <p>
+     * Removes pre-provisioning hook template.
+     * </p>
+     */
+    private Boolean removePreProvisioningHook;
+
+    /**
+     * <p>
      * The name of the fleet provisioning template.
      * </p>
      * <p>
@@ -353,6 +367,111 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
     }
 
     /**
+     * <p>
+     * Updates the pre-provisioning hook template.
+     * </p>
+     *
+     * @return <p>
+     *         Updates the pre-provisioning hook template.
+     *         </p>
+     */
+    public ProvisioningHook getPreProvisioningHook() {
+        return preProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Updates the pre-provisioning hook template.
+     * </p>
+     *
+     * @param preProvisioningHook <p>
+     *            Updates the pre-provisioning hook template.
+     *            </p>
+     */
+    public void setPreProvisioningHook(ProvisioningHook preProvisioningHook) {
+        this.preProvisioningHook = preProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Updates the pre-provisioning hook template.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param preProvisioningHook <p>
+     *            Updates the pre-provisioning hook template.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateProvisioningTemplateRequest withPreProvisioningHook(
+            ProvisioningHook preProvisioningHook) {
+        this.preProvisioningHook = preProvisioningHook;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Removes pre-provisioning hook template.
+     * </p>
+     *
+     * @return <p>
+     *         Removes pre-provisioning hook template.
+     *         </p>
+     */
+    public Boolean isRemovePreProvisioningHook() {
+        return removePreProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Removes pre-provisioning hook template.
+     * </p>
+     *
+     * @return <p>
+     *         Removes pre-provisioning hook template.
+     *         </p>
+     */
+    public Boolean getRemovePreProvisioningHook() {
+        return removePreProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Removes pre-provisioning hook template.
+     * </p>
+     *
+     * @param removePreProvisioningHook <p>
+     *            Removes pre-provisioning hook template.
+     *            </p>
+     */
+    public void setRemovePreProvisioningHook(Boolean removePreProvisioningHook) {
+        this.removePreProvisioningHook = removePreProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Removes pre-provisioning hook template.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param removePreProvisioningHook <p>
+     *            Removes pre-provisioning hook template.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateProvisioningTemplateRequest withRemovePreProvisioningHook(
+            Boolean removePreProvisioningHook) {
+        this.removePreProvisioningHook = removePreProvisioningHook;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -372,7 +491,11 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         if (getDefaultVersionId() != null)
             sb.append("defaultVersionId: " + getDefaultVersionId() + ",");
         if (getProvisioningRoleArn() != null)
-            sb.append("provisioningRoleArn: " + getProvisioningRoleArn());
+            sb.append("provisioningRoleArn: " + getProvisioningRoleArn() + ",");
+        if (getPreProvisioningHook() != null)
+            sb.append("preProvisioningHook: " + getPreProvisioningHook() + ",");
+        if (getRemovePreProvisioningHook() != null)
+            sb.append("removePreProvisioningHook: " + getRemovePreProvisioningHook());
         sb.append("}");
         return sb.toString();
     }
@@ -391,6 +514,12 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
                 + ((getDefaultVersionId() == null) ? 0 : getDefaultVersionId().hashCode());
         hashCode = prime * hashCode
                 + ((getProvisioningRoleArn() == null) ? 0 : getProvisioningRoleArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getPreProvisioningHook() == null) ? 0 : getPreProvisioningHook().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getRemovePreProvisioningHook() == null) ? 0 : getRemovePreProvisioningHook()
+                        .hashCode());
         return hashCode;
     }
 
@@ -428,6 +557,17 @@ public class UpdateProvisioningTemplateRequest extends AmazonWebServiceRequest i
             return false;
         if (other.getProvisioningRoleArn() != null
                 && other.getProvisioningRoleArn().equals(this.getProvisioningRoleArn()) == false)
+            return false;
+        if (other.getPreProvisioningHook() == null ^ this.getPreProvisioningHook() == null)
+            return false;
+        if (other.getPreProvisioningHook() != null
+                && other.getPreProvisioningHook().equals(this.getPreProvisioningHook()) == false)
+            return false;
+        if (other.getRemovePreProvisioningHook() == null
+                ^ this.getRemovePreProvisioningHook() == null)
+            return false;
+        if (other.getRemovePreProvisioningHook() != null
+                && other.getRemovePreProvisioningHook().equals(this.getRemovePreProvisioningHook()) == false)
             return false;
         return true;
     }

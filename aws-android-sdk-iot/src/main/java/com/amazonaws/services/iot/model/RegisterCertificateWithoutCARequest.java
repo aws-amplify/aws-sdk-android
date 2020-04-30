@@ -17,7 +17,15 @@ package com.amazonaws.services.iot.model;
 
 import java.io.Serializable;
 
-public class RegisterThingResult implements Serializable {
+import com.amazonaws.AmazonWebServiceRequest;
+
+/**
+ * <p>
+ * Register a certificate that does not have a certificate authority (CA).
+ * </p>
+ */
+public class RegisterCertificateWithoutCARequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
      * The certificate data, in PEM format.
@@ -30,10 +38,14 @@ public class RegisterThingResult implements Serializable {
 
     /**
      * <p>
-     * ARNs for the generated resources.
+     * The status of the register certificate request.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      */
-    private java.util.Map<String, String> resourceArns;
+    private String status;
 
     /**
      * <p>
@@ -84,90 +96,110 @@ public class RegisterThingResult implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public RegisterThingResult withCertificatePem(String certificatePem) {
+    public RegisterCertificateWithoutCARequest withCertificatePem(String certificatePem) {
         this.certificatePem = certificatePem;
         return this;
     }
 
     /**
      * <p>
-     * ARNs for the generated resources.
+     * The status of the register certificate request.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
      * @return <p>
-     *         ARNs for the generated resources.
+     *         The status of the register certificate request.
      *         </p>
+     * @see CertificateStatus
      */
-    public java.util.Map<String, String> getResourceArns() {
-        return resourceArns;
+    public String getStatus() {
+        return status;
     }
 
     /**
      * <p>
-     * ARNs for the generated resources.
+     * The status of the register certificate request.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param resourceArns <p>
-     *            ARNs for the generated resources.
+     * @param status <p>
+     *            The status of the register certificate request.
      *            </p>
+     * @see CertificateStatus
      */
-    public void setResourceArns(java.util.Map<String, String> resourceArns) {
-        this.resourceArns = resourceArns;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**
      * <p>
-     * ARNs for the generated resources.
+     * The status of the register certificate request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param resourceArns <p>
-     *            ARNs for the generated resources.
+     * @param status <p>
+     *            The status of the register certificate request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
+     * @see CertificateStatus
      */
-    public RegisterThingResult withResourceArns(java.util.Map<String, String> resourceArns) {
-        this.resourceArns = resourceArns;
+    public RegisterCertificateWithoutCARequest withStatus(String status) {
+        this.status = status;
         return this;
     }
 
     /**
      * <p>
-     * ARNs for the generated resources.
+     * The status of the register certificate request.
      * </p>
      * <p>
-     * The method adds a new key-value pair into resourceArns parameter, and
-     * returns a reference to this object so that method calls can be chained
-     * together.
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
      *
-     * @param key The key of the entry to be added into resourceArns.
-     * @param value The corresponding value of the entry to be added into
-     *            resourceArns.
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
+     * @param status <p>
+     *            The status of the register certificate request.
+     *            </p>
+     * @see CertificateStatus
      */
-    public RegisterThingResult addresourceArnsEntry(String key, String value) {
-        if (null == this.resourceArns) {
-            this.resourceArns = new java.util.HashMap<String, String>();
-        }
-        if (this.resourceArns.containsKey(key))
-            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
-                    + ") are provided.");
-        this.resourceArns.put(key, value);
-        return this;
+    public void setStatus(CertificateStatus status) {
+        this.status = status.toString();
     }
 
     /**
-     * Removes all the entries added into resourceArns.
+     * <p>
+     * The status of the register certificate request.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, INACTIVE, REVOKED, PENDING_TRANSFER,
+     * REGISTER_INACTIVE, PENDING_ACTIVATION
+     *
+     * @param status <p>
+     *            The status of the register certificate request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateStatus
      */
-    public RegisterThingResult clearresourceArnsEntries() {
-        this.resourceArns = null;
+    public RegisterCertificateWithoutCARequest withStatus(CertificateStatus status) {
+        this.status = status.toString();
         return this;
     }
 
@@ -184,8 +216,8 @@ public class RegisterThingResult implements Serializable {
         sb.append("{");
         if (getCertificatePem() != null)
             sb.append("certificatePem: " + getCertificatePem() + ",");
-        if (getResourceArns() != null)
-            sb.append("resourceArns: " + getResourceArns());
+        if (getStatus() != null)
+            sb.append("status: " + getStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -197,8 +229,7 @@ public class RegisterThingResult implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getCertificatePem() == null) ? 0 : getCertificatePem().hashCode());
-        hashCode = prime * hashCode
-                + ((getResourceArns() == null) ? 0 : getResourceArns().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -209,19 +240,18 @@ public class RegisterThingResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof RegisterThingResult == false)
+        if (obj instanceof RegisterCertificateWithoutCARequest == false)
             return false;
-        RegisterThingResult other = (RegisterThingResult) obj;
+        RegisterCertificateWithoutCARequest other = (RegisterCertificateWithoutCARequest) obj;
 
         if (other.getCertificatePem() == null ^ this.getCertificatePem() == null)
             return false;
         if (other.getCertificatePem() != null
                 && other.getCertificatePem().equals(this.getCertificatePem()) == false)
             return false;
-        if (other.getResourceArns() == null ^ this.getResourceArns() == null)
+        if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
-        if (other.getResourceArns() != null
-                && other.getResourceArns().equals(this.getResourceArns()) == false)
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }

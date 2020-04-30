@@ -84,6 +84,17 @@ public class RegisterCACertificateRequestMarshaller implements
                 RegistrationConfigJsonMarshaller.getInstance().marshall(registrationConfig,
                         jsonWriter);
             }
+            if (registerCACertificateRequest.getTags() != null) {
+                java.util.List<Tag> tags = registerCACertificateRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

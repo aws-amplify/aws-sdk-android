@@ -35,47 +35,39 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreatePolicyRequest
+ * JSON request marshaller for RegisterCertificateWithoutCARequest
  */
-public class CreatePolicyRequestMarshaller implements
-        Marshaller<Request<CreatePolicyRequest>, CreatePolicyRequest> {
+public class RegisterCertificateWithoutCARequestMarshaller
+        implements
+        Marshaller<Request<RegisterCertificateWithoutCARequest>, RegisterCertificateWithoutCARequest> {
 
-    public Request<CreatePolicyRequest> marshall(CreatePolicyRequest createPolicyRequest) {
-        if (createPolicyRequest == null) {
+    public Request<RegisterCertificateWithoutCARequest> marshall(
+            RegisterCertificateWithoutCARequest registerCertificateWithoutCARequest) {
+        if (registerCertificateWithoutCARequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(CreatePolicyRequest)");
+                    "Invalid argument passed to marshall(RegisterCertificateWithoutCARequest)");
         }
 
-        Request<CreatePolicyRequest> request = new DefaultRequest<CreatePolicyRequest>(
-                createPolicyRequest, "AWSIot");
+        Request<RegisterCertificateWithoutCARequest> request = new DefaultRequest<RegisterCertificateWithoutCARequest>(
+                registerCertificateWithoutCARequest, "AWSIot");
         request.setHttpMethod(HttpMethodName.POST);
 
-        String uriResourcePath = "/policies/{policyName}";
-        uriResourcePath = uriResourcePath.replace(
-                "{policyName}",
-                (createPolicyRequest.getPolicyName() == null) ? "" : StringUtils
-                        .fromString(createPolicyRequest.getPolicyName()));
+        String uriResourcePath = "/certificate/register-no-ca";
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createPolicyRequest.getPolicyDocument() != null) {
-                String policyDocument = createPolicyRequest.getPolicyDocument();
-                jsonWriter.name("policyDocument");
-                jsonWriter.value(policyDocument);
+            if (registerCertificateWithoutCARequest.getCertificatePem() != null) {
+                String certificatePem = registerCertificateWithoutCARequest.getCertificatePem();
+                jsonWriter.name("certificatePem");
+                jsonWriter.value(certificatePem);
             }
-            if (createPolicyRequest.getTags() != null) {
-                java.util.List<Tag> tags = createPolicyRequest.getTags();
-                jsonWriter.name("tags");
-                jsonWriter.beginArray();
-                for (Tag tagsItem : tags) {
-                    if (tagsItem != null) {
-                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
-                    }
-                }
-                jsonWriter.endArray();
+            if (registerCertificateWithoutCARequest.getStatus() != null) {
+                String status = registerCertificateWithoutCARequest.getStatus();
+                jsonWriter.name("status");
+                jsonWriter.value(status);
             }
 
             jsonWriter.endObject();

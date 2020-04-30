@@ -40,6 +40,11 @@ class CertificateJsonMarshaller {
             jsonWriter.name("status");
             jsonWriter.value(status);
         }
+        if (certificate.getCertificateMode() != null) {
+            String certificateMode = certificate.getCertificateMode();
+            jsonWriter.name("certificateMode");
+            jsonWriter.value(certificateMode);
+        }
         if (certificate.getCreationDate() != null) {
             java.util.Date creationDate = certificate.getCreationDate();
             jsonWriter.name("creationDate");

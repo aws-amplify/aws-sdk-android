@@ -91,6 +91,11 @@ class CertificateDescriptionJsonMarshaller {
             jsonWriter.name("validity");
             CertificateValidityJsonMarshaller.getInstance().marshall(validity, jsonWriter);
         }
+        if (certificateDescription.getCertificateMode() != null) {
+            String certificateMode = certificateDescription.getCertificateMode();
+            jsonWriter.name("certificateMode");
+            jsonWriter.value(certificateMode);
+        }
         jsonWriter.endObject();
     }
 
