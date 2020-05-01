@@ -68,7 +68,7 @@ public abstract class AWSTestBase {
 
         public JSONObject getPackageConfigure(String packageName) {
             try {
-                return mJSONObject.getJSONObject("Packages")
+                return mJSONObject.getJSONObject("packages")
                     .getJSONObject(packageName);
             }
             catch (JSONException | NullPointerException configurationFileError) {
@@ -80,19 +80,19 @@ public abstract class AWSTestBase {
         }
 
         String getAccessKey() throws KeyNotFoundException {
-            return extractStringByPath("Credentials.accessKey");
+            return extractStringByPath("credentials.accessKey");
         }
 
         String getSecretKey() throws KeyNotFoundException {
-            return extractStringByPath("Credentials.secretKey");
+            return extractStringByPath("credentials.secretKey");
         }
 
         String getSessionToken() throws KeyNotFoundException {
-            return extractStringByPath("Credentials.sessionToken");
+            return extractStringByPath("credentials.sessionToken");
         }
 
         String getAccountId() throws KeyNotFoundException {
-            return extractStringByPath("Credentials.accountId");
+            return extractStringByPath("credentials.accountId");
         }
 
         private String extractStringByPath(String path) throws KeyNotFoundException {
