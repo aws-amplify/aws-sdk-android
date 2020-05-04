@@ -1,0 +1,774 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.apigateway.model;
+
+import java.io.Serializable;
+
+import com.amazonaws.AmazonWebServiceRequest;
+
+/**
+ * <p>
+ * Simulate the execution of an <a>Authorizer</a> in your <a>RestApi</a> with
+ * headers, parameters, and an incoming request body.
+ * </p>
+ * <div class="seeAlso"> <a href=
+ * "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html"
+ * >Use Lambda Function as Authorizer</a> <a href=
+ * "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html"
+ * >Use Cognito User Pool as Authorizer</a> </div>
+ */
+public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * [Required] The string identifier of the associated <a>RestApi</a>.
+     * </p>
+     */
+    private String restApiId;
+
+    /**
+     * <p>
+     * [Required] Specifies a test invoke authorizer request's <a>Authorizer</a>
+     * ID.
+     * </p>
+     */
+    private String authorizerId;
+
+    /**
+     * <p>
+     * [Required] A key-value map of headers to simulate an incoming invocation
+     * request. This is where the incoming authorization token, or identity
+     * source, should be specified.
+     * </p>
+     */
+    private java.util.Map<String, String> headers;
+
+    /**
+     * <p>
+     * [Optional] The headers as a map from string to list of values to simulate
+     * an incoming invocation request. This is where the incoming authorization
+     * token, or identity source, may be specified.
+     * </p>
+     */
+    private java.util.Map<String, java.util.List<String>> multiValueHeaders;
+
+    /**
+     * <p>
+     * [Optional] The URI path, including query string, of the simulated
+     * invocation request. Use this to specify path parameters and query string
+     * parameters.
+     * </p>
+     */
+    private String pathWithQueryString;
+
+    /**
+     * <p>
+     * [Optional] The simulated request body of an incoming invocation request.
+     * </p>
+     */
+    private String body;
+
+    /**
+     * <p>
+     * A key-value map of stage variables to simulate an invocation on a
+     * deployed <a>Stage</a>.
+     * </p>
+     */
+    private java.util.Map<String, String> stageVariables;
+
+    /**
+     * <p>
+     * [Optional] A key-value map of additional context variables.
+     * </p>
+     */
+    private java.util.Map<String, String> additionalContext;
+
+    /**
+     * <p>
+     * [Required] The string identifier of the associated <a>RestApi</a>.
+     * </p>
+     *
+     * @return <p>
+     *         [Required] The string identifier of the associated
+     *         <a>RestApi</a>.
+     *         </p>
+     */
+    public String getRestApiId() {
+        return restApiId;
+    }
+
+    /**
+     * <p>
+     * [Required] The string identifier of the associated <a>RestApi</a>.
+     * </p>
+     *
+     * @param restApiId <p>
+     *            [Required] The string identifier of the associated
+     *            <a>RestApi</a>.
+     *            </p>
+     */
+    public void setRestApiId(String restApiId) {
+        this.restApiId = restApiId;
+    }
+
+    /**
+     * <p>
+     * [Required] The string identifier of the associated <a>RestApi</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param restApiId <p>
+     *            [Required] The string identifier of the associated
+     *            <a>RestApi</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withRestApiId(String restApiId) {
+        this.restApiId = restApiId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Required] Specifies a test invoke authorizer request's <a>Authorizer</a>
+     * ID.
+     * </p>
+     *
+     * @return <p>
+     *         [Required] Specifies a test invoke authorizer request's
+     *         <a>Authorizer</a> ID.
+     *         </p>
+     */
+    public String getAuthorizerId() {
+        return authorizerId;
+    }
+
+    /**
+     * <p>
+     * [Required] Specifies a test invoke authorizer request's <a>Authorizer</a>
+     * ID.
+     * </p>
+     *
+     * @param authorizerId <p>
+     *            [Required] Specifies a test invoke authorizer request's
+     *            <a>Authorizer</a> ID.
+     *            </p>
+     */
+    public void setAuthorizerId(String authorizerId) {
+        this.authorizerId = authorizerId;
+    }
+
+    /**
+     * <p>
+     * [Required] Specifies a test invoke authorizer request's <a>Authorizer</a>
+     * ID.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param authorizerId <p>
+     *            [Required] Specifies a test invoke authorizer request's
+     *            <a>Authorizer</a> ID.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withAuthorizerId(String authorizerId) {
+        this.authorizerId = authorizerId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Required] A key-value map of headers to simulate an incoming invocation
+     * request. This is where the incoming authorization token, or identity
+     * source, should be specified.
+     * </p>
+     *
+     * @return <p>
+     *         [Required] A key-value map of headers to simulate an incoming
+     *         invocation request. This is where the incoming authorization
+     *         token, or identity source, should be specified.
+     *         </p>
+     */
+    public java.util.Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    /**
+     * <p>
+     * [Required] A key-value map of headers to simulate an incoming invocation
+     * request. This is where the incoming authorization token, or identity
+     * source, should be specified.
+     * </p>
+     *
+     * @param headers <p>
+     *            [Required] A key-value map of headers to simulate an incoming
+     *            invocation request. This is where the incoming authorization
+     *            token, or identity source, should be specified.
+     *            </p>
+     */
+    public void setHeaders(java.util.Map<String, String> headers) {
+        this.headers = headers;
+    }
+
+    /**
+     * <p>
+     * [Required] A key-value map of headers to simulate an incoming invocation
+     * request. This is where the incoming authorization token, or identity
+     * source, should be specified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param headers <p>
+     *            [Required] A key-value map of headers to simulate an incoming
+     *            invocation request. This is where the incoming authorization
+     *            token, or identity source, should be specified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withHeaders(java.util.Map<String, String> headers) {
+        this.headers = headers;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Required] A key-value map of headers to simulate an incoming invocation
+     * request. This is where the incoming authorization token, or identity
+     * source, should be specified.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into headers parameter, and returns
+     * a reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into headers.
+     * @param value The corresponding value of the entry to be added into
+     *            headers.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest addheadersEntry(String key, String value) {
+        if (null == this.headers) {
+            this.headers = new java.util.HashMap<String, String>();
+        }
+        if (this.headers.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.headers.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into headers.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public TestInvokeAuthorizerRequest clearheadersEntries() {
+        this.headers = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Optional] The headers as a map from string to list of values to simulate
+     * an incoming invocation request. This is where the incoming authorization
+     * token, or identity source, may be specified.
+     * </p>
+     *
+     * @return <p>
+     *         [Optional] The headers as a map from string to list of values to
+     *         simulate an incoming invocation request. This is where the
+     *         incoming authorization token, or identity source, may be
+     *         specified.
+     *         </p>
+     */
+    public java.util.Map<String, java.util.List<String>> getMultiValueHeaders() {
+        return multiValueHeaders;
+    }
+
+    /**
+     * <p>
+     * [Optional] The headers as a map from string to list of values to simulate
+     * an incoming invocation request. This is where the incoming authorization
+     * token, or identity source, may be specified.
+     * </p>
+     *
+     * @param multiValueHeaders <p>
+     *            [Optional] The headers as a map from string to list of values
+     *            to simulate an incoming invocation request. This is where the
+     *            incoming authorization token, or identity source, may be
+     *            specified.
+     *            </p>
+     */
+    public void setMultiValueHeaders(java.util.Map<String, java.util.List<String>> multiValueHeaders) {
+        this.multiValueHeaders = multiValueHeaders;
+    }
+
+    /**
+     * <p>
+     * [Optional] The headers as a map from string to list of values to simulate
+     * an incoming invocation request. This is where the incoming authorization
+     * token, or identity source, may be specified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param multiValueHeaders <p>
+     *            [Optional] The headers as a map from string to list of values
+     *            to simulate an incoming invocation request. This is where the
+     *            incoming authorization token, or identity source, may be
+     *            specified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withMultiValueHeaders(
+            java.util.Map<String, java.util.List<String>> multiValueHeaders) {
+        this.multiValueHeaders = multiValueHeaders;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Optional] The headers as a map from string to list of values to simulate
+     * an incoming invocation request. This is where the incoming authorization
+     * token, or identity source, may be specified.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into multiValueHeaders parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into multiValueHeaders.
+     * @param value The corresponding value of the entry to be added into
+     *            multiValueHeaders.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest addmultiValueHeadersEntry(String key,
+            java.util.List<String> value) {
+        if (null == this.multiValueHeaders) {
+            this.multiValueHeaders = new java.util.HashMap<String, java.util.List<String>>();
+        }
+        if (this.multiValueHeaders.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.multiValueHeaders.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into multiValueHeaders.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public TestInvokeAuthorizerRequest clearmultiValueHeadersEntries() {
+        this.multiValueHeaders = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Optional] The URI path, including query string, of the simulated
+     * invocation request. Use this to specify path parameters and query string
+     * parameters.
+     * </p>
+     *
+     * @return <p>
+     *         [Optional] The URI path, including query string, of the simulated
+     *         invocation request. Use this to specify path parameters and query
+     *         string parameters.
+     *         </p>
+     */
+    public String getPathWithQueryString() {
+        return pathWithQueryString;
+    }
+
+    /**
+     * <p>
+     * [Optional] The URI path, including query string, of the simulated
+     * invocation request. Use this to specify path parameters and query string
+     * parameters.
+     * </p>
+     *
+     * @param pathWithQueryString <p>
+     *            [Optional] The URI path, including query string, of the
+     *            simulated invocation request. Use this to specify path
+     *            parameters and query string parameters.
+     *            </p>
+     */
+    public void setPathWithQueryString(String pathWithQueryString) {
+        this.pathWithQueryString = pathWithQueryString;
+    }
+
+    /**
+     * <p>
+     * [Optional] The URI path, including query string, of the simulated
+     * invocation request. Use this to specify path parameters and query string
+     * parameters.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param pathWithQueryString <p>
+     *            [Optional] The URI path, including query string, of the
+     *            simulated invocation request. Use this to specify path
+     *            parameters and query string parameters.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withPathWithQueryString(String pathWithQueryString) {
+        this.pathWithQueryString = pathWithQueryString;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Optional] The simulated request body of an incoming invocation request.
+     * </p>
+     *
+     * @return <p>
+     *         [Optional] The simulated request body of an incoming invocation
+     *         request.
+     *         </p>
+     */
+    public String getBody() {
+        return body;
+    }
+
+    /**
+     * <p>
+     * [Optional] The simulated request body of an incoming invocation request.
+     * </p>
+     *
+     * @param body <p>
+     *            [Optional] The simulated request body of an incoming
+     *            invocation request.
+     *            </p>
+     */
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    /**
+     * <p>
+     * [Optional] The simulated request body of an incoming invocation request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param body <p>
+     *            [Optional] The simulated request body of an incoming
+     *            invocation request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withBody(String body) {
+        this.body = body;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A key-value map of stage variables to simulate an invocation on a
+     * deployed <a>Stage</a>.
+     * </p>
+     *
+     * @return <p>
+     *         A key-value map of stage variables to simulate an invocation on a
+     *         deployed <a>Stage</a>.
+     *         </p>
+     */
+    public java.util.Map<String, String> getStageVariables() {
+        return stageVariables;
+    }
+
+    /**
+     * <p>
+     * A key-value map of stage variables to simulate an invocation on a
+     * deployed <a>Stage</a>.
+     * </p>
+     *
+     * @param stageVariables <p>
+     *            A key-value map of stage variables to simulate an invocation
+     *            on a deployed <a>Stage</a>.
+     *            </p>
+     */
+    public void setStageVariables(java.util.Map<String, String> stageVariables) {
+        this.stageVariables = stageVariables;
+    }
+
+    /**
+     * <p>
+     * A key-value map of stage variables to simulate an invocation on a
+     * deployed <a>Stage</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param stageVariables <p>
+     *            A key-value map of stage variables to simulate an invocation
+     *            on a deployed <a>Stage</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withStageVariables(
+            java.util.Map<String, String> stageVariables) {
+        this.stageVariables = stageVariables;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A key-value map of stage variables to simulate an invocation on a
+     * deployed <a>Stage</a>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into stageVariables parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into stageVariables.
+     * @param value The corresponding value of the entry to be added into
+     *            stageVariables.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest addstageVariablesEntry(String key, String value) {
+        if (null == this.stageVariables) {
+            this.stageVariables = new java.util.HashMap<String, String>();
+        }
+        if (this.stageVariables.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.stageVariables.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into stageVariables.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public TestInvokeAuthorizerRequest clearstageVariablesEntries() {
+        this.stageVariables = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Optional] A key-value map of additional context variables.
+     * </p>
+     *
+     * @return <p>
+     *         [Optional] A key-value map of additional context variables.
+     *         </p>
+     */
+    public java.util.Map<String, String> getAdditionalContext() {
+        return additionalContext;
+    }
+
+    /**
+     * <p>
+     * [Optional] A key-value map of additional context variables.
+     * </p>
+     *
+     * @param additionalContext <p>
+     *            [Optional] A key-value map of additional context variables.
+     *            </p>
+     */
+    public void setAdditionalContext(java.util.Map<String, String> additionalContext) {
+        this.additionalContext = additionalContext;
+    }
+
+    /**
+     * <p>
+     * [Optional] A key-value map of additional context variables.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param additionalContext <p>
+     *            [Optional] A key-value map of additional context variables.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest withAdditionalContext(
+            java.util.Map<String, String> additionalContext) {
+        this.additionalContext = additionalContext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [Optional] A key-value map of additional context variables.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into additionalContext parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into additionalContext.
+     * @param value The corresponding value of the entry to be added into
+     *            additionalContext.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestInvokeAuthorizerRequest addadditionalContextEntry(String key, String value) {
+        if (null == this.additionalContext) {
+            this.additionalContext = new java.util.HashMap<String, String>();
+        }
+        if (this.additionalContext.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.additionalContext.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into additionalContext.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public TestInvokeAuthorizerRequest clearadditionalContextEntries() {
+        this.additionalContext = null;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getRestApiId() != null)
+            sb.append("restApiId: " + getRestApiId() + ",");
+        if (getAuthorizerId() != null)
+            sb.append("authorizerId: " + getAuthorizerId() + ",");
+        if (getHeaders() != null)
+            sb.append("headers: " + getHeaders() + ",");
+        if (getMultiValueHeaders() != null)
+            sb.append("multiValueHeaders: " + getMultiValueHeaders() + ",");
+        if (getPathWithQueryString() != null)
+            sb.append("pathWithQueryString: " + getPathWithQueryString() + ",");
+        if (getBody() != null)
+            sb.append("body: " + getBody() + ",");
+        if (getStageVariables() != null)
+            sb.append("stageVariables: " + getStageVariables() + ",");
+        if (getAdditionalContext() != null)
+            sb.append("additionalContext: " + getAdditionalContext());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getRestApiId() == null) ? 0 : getRestApiId().hashCode());
+        hashCode = prime * hashCode
+                + ((getAuthorizerId() == null) ? 0 : getAuthorizerId().hashCode());
+        hashCode = prime * hashCode + ((getHeaders() == null) ? 0 : getHeaders().hashCode());
+        hashCode = prime * hashCode
+                + ((getMultiValueHeaders() == null) ? 0 : getMultiValueHeaders().hashCode());
+        hashCode = prime * hashCode
+                + ((getPathWithQueryString() == null) ? 0 : getPathWithQueryString().hashCode());
+        hashCode = prime * hashCode + ((getBody() == null) ? 0 : getBody().hashCode());
+        hashCode = prime * hashCode
+                + ((getStageVariables() == null) ? 0 : getStageVariables().hashCode());
+        hashCode = prime * hashCode
+                + ((getAdditionalContext() == null) ? 0 : getAdditionalContext().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof TestInvokeAuthorizerRequest == false)
+            return false;
+        TestInvokeAuthorizerRequest other = (TestInvokeAuthorizerRequest) obj;
+
+        if (other.getRestApiId() == null ^ this.getRestApiId() == null)
+            return false;
+        if (other.getRestApiId() != null
+                && other.getRestApiId().equals(this.getRestApiId()) == false)
+            return false;
+        if (other.getAuthorizerId() == null ^ this.getAuthorizerId() == null)
+            return false;
+        if (other.getAuthorizerId() != null
+                && other.getAuthorizerId().equals(this.getAuthorizerId()) == false)
+            return false;
+        if (other.getHeaders() == null ^ this.getHeaders() == null)
+            return false;
+        if (other.getHeaders() != null && other.getHeaders().equals(this.getHeaders()) == false)
+            return false;
+        if (other.getMultiValueHeaders() == null ^ this.getMultiValueHeaders() == null)
+            return false;
+        if (other.getMultiValueHeaders() != null
+                && other.getMultiValueHeaders().equals(this.getMultiValueHeaders()) == false)
+            return false;
+        if (other.getPathWithQueryString() == null ^ this.getPathWithQueryString() == null)
+            return false;
+        if (other.getPathWithQueryString() != null
+                && other.getPathWithQueryString().equals(this.getPathWithQueryString()) == false)
+            return false;
+        if (other.getBody() == null ^ this.getBody() == null)
+            return false;
+        if (other.getBody() != null && other.getBody().equals(this.getBody()) == false)
+            return false;
+        if (other.getStageVariables() == null ^ this.getStageVariables() == null)
+            return false;
+        if (other.getStageVariables() != null
+                && other.getStageVariables().equals(this.getStageVariables()) == false)
+            return false;
+        if (other.getAdditionalContext() == null ^ this.getAdditionalContext() == null)
+            return false;
+        if (other.getAdditionalContext() != null
+                && other.getAdditionalContext().equals(this.getAdditionalContext()) == false)
+            return false;
+        return true;
+    }
+}
