@@ -40,7 +40,7 @@ public class MyInterfaceIntegrationTest extends AWSTestBase {
         setUpCredentials();
 
         AWSCredentialsProvider provider = new StaticCredentialsProvider(credentials);
-        LambdaInvokerFactory factory = new LambdaInvokerFactory(InstrumentationRegistry.getContext(), Regions.US_WEST_2,
+        LambdaInvokerFactory factory = new LambdaInvokerFactory(InstrumentationRegistry.getContext(), Regions.US_EAST_1,
                 provider);
         LambdaDataBinder dataBinder = new LambdaJsonBinder();
         myInterface = factory.build(MyInterface.class, dataBinder);
@@ -99,7 +99,7 @@ public class MyInterfaceIntegrationTest extends AWSTestBase {
 
         String result = myInterface.echoFirstVersion(nameInfo);
 
-        Assert.assertEquals("versioned result", result, "versioned: " + nameInfo.getFirstName());
+        Assert.assertEquals("versioned result", result, nameInfo.getFirstName());
     }
 
     @Test
@@ -108,7 +108,7 @@ public class MyInterfaceIntegrationTest extends AWSTestBase {
 
         String result = myInterface.echoFirstAlias(nameInfo);
 
-        Assert.assertEquals("alias result", result, "alias: " + nameInfo.getFirstName());
+        Assert.assertEquals("alias result", result, nameInfo.getFirstName());
     }
 
     @Test

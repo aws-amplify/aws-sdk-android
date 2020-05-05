@@ -84,8 +84,7 @@ public class SQSIntegrationTest extends SQSIntegrationTestBase {
 
 
     private String getDeadLetterQueueArn() throws JSONException {
-
-        return  "arn:aws:sqs:" + getPackageConfigure().getString("test_region") + ":" + getAccountId()+ ":"
+        return  "arn:aws:sqs:us-east-1:" + getAccountId()+ ":"
                 + deadLetterQueueName;
     }
 

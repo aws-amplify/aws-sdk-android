@@ -18,6 +18,7 @@ package com.amazonaws.services.kinesis;
 
 import com.amazonaws.testutils.AWSTestBase;
 
+import org.json.JSONObject;
 import org.junit.BeforeClass;
 
 import java.io.File;
@@ -27,11 +28,17 @@ import java.util.Properties;
 
 public abstract class KinesisIntegrationTestBase extends AWSTestBase {
 
+    public static final String PACKAGE_NAME = "kinesis";
+
     protected static AmazonKinesisClient client;
 
     @BeforeClass
     public static void init() throws IOException {
         setUpCredentials();
         client = new AmazonKinesisClient(credentials);
+    }
+
+    public static JSONObject getPackageConfigure()  {
+        return getPackageConfigure(PACKAGE_NAME);
     }
 }

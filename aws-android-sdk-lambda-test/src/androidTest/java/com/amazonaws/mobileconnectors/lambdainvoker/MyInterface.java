@@ -30,7 +30,7 @@ public interface MyInterface {
     @LambdaFunction(functionName = "echo", invocationType = "RequestResponse")
     void syncSilence();
 
-    @LambdaFunction(functionName = "echoFirst", qualifier = "7")
+    @LambdaFunction(functionName = "echoFirst", qualifier = "$LATEST")
     String echoFirstVersion(NameInfo nameInfo);
 
     @LambdaFunction(functionName = "echoFirst", qualifier = "alias")

@@ -37,7 +37,7 @@ import java.util.UUID;
 
 public class KinesisFirehoseRecorderIntegrationTest extends KinesisRecorderIntegrationTestBase {
 
-    private static final String STREAM_NAME = "kinesis_firehose_recorder_test_dont_delete";
+    private String streamName;
 
     private KinesisFirehoseRecorder recorder;
     private AWSCredentialsProvider provider;
@@ -50,15 +50,17 @@ public class KinesisFirehoseRecorderIntegrationTest extends KinesisRecorderInteg
 
         provider = new CognitoCredentialsProvider(getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
+        streamName = getPackageConfigure("kinesis")
+                .getString("firehose_name");
     }
 
     @Test
     public void testSubmitRecord() throws IOException {
-        recorder = new KinesisFirehoseRecorder(temp.newFolder(), Regions.US_WEST_2, provider);
+        recorder = new KinesisFirehoseRecorder(temp.newFolder(), Regions.US_EAST_1, provider);
         final int count = 200;
         final int length = 10 * 1024;
         for (int i = 0; i < count; i++) {
-            recorder.saveRecord(randomBytes(length), STREAM_NAME);
+            recorder.saveRecord(randomBytes(length), streamName);
         }
 
         recorder.submitAllRecords();
@@ -86,12 +88,12 @@ public class KinesisFirehoseRecorderIntegrationTest extends KinesisRecorderInteg
 
     @Test
     public void testPartitionKey() throws IOException {
-        recorder = new KinesisFirehoseRecorder(temp.newFolder(), Regions.US_WEST_2, provider,
+        recorder = new KinesisFirehoseRecorder(temp.newFolder(), Regions.US_EAST_1, provider,
                 new KinesisRecorderConfig().withPartitionKey(UUID.randomUUID().toString()));
         final int count = 200;
         final int length = 10 * 1024;
         for (int i = 0; i < count; i++) {
-            recorder.saveRecord(randomBytes(length), STREAM_NAME);
+            recorder.saveRecord(randomBytes(length), streamName);
         }
 
         recorder.submitAllRecords();
