@@ -57,6 +57,13 @@ commands:
             aws configure --profile build_resources set region us-east-1
             echo -e "[build_resources]\naws_access_key_id=${BUILD_RESOURCES_AWS_ACCESS_KEY_ID_TEST}\naws_secret_access_key=${BUILD_RESOURCES_AWS_SECRET_ACCESS_KEY_TEST}\n" >> ~/.aws/credentials
 
+  build_test_config:
+    description: Runs the gradle task to build the testconfiguration.json file
+    steps:
+      - run:
+         name: run the script
+         command: bash gradlew buildTestConfig
+
   set_enviroment_variables:
     description: >-
       set environment variables
@@ -704,6 +711,7 @@ jobs:
     steps:
       - skip_job_if_required
       - set_enviroment_variables
+      - build_test_config
       - override_test_job
       - checkout
       - skip_test_job      

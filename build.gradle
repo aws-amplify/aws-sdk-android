@@ -21,3 +21,6 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task buildTestConfig(type:Exec) {
+  commandLine 'bin/build_test_config.sh'
+}
