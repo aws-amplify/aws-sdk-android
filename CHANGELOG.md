@@ -1,3 +1,17 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-appconfig
+---aws-android-sdk-lightsail
+---aws-android-sdk-simplesystemsmanager
+---aws-android-sdk-cloudwatchlogs
+---aws-android-sdk-codebuild
+---aws-android-sdk-elasticcomputecloud
+---aws-android-sdk-route53
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
