@@ -276,22 +276,21 @@ commands:
                 echo "skip current job as ${varaible_name} is set in project environment variabes"
                 circleci step halt
               fi             
+  generate_test_config:
+    description: >-
+      Generate the test configuration file from AWS SSM and the local
+      environment.
+    steps:
       - run:
-          name: skip_job_required_by_develops 
           command: |
-            echo "check if job can be skipped"
-            # # we can add script here to halt a job for circleci script test
-            # declare -a jobs=("prepare_release_sdk" "merge_to_master" "bump_sdk_version")
-            # for i in "${jobs[@]}"
-            # do
-            #   echo "$i":"${CIRCLE_JOB}"
-            #   if [ "$i" == "${CIRCLE_JOB}" ]
-            #   then 
-            #     echo "not skip job $i"
-            #     exit 0
-            #   fi
-            # done
-            # circleci step halt
+            FILE=testconfiguration.json
+            SRCDIR="${HOME}/.aws-amplify/aws-sdk-android"
+            LINKDIR=./aws-android-sdk-testutils/src/main/res/raw
+
+            mkdir -p "$SRCDIR"
+            python3 CircleciScripts/device_config_builder.py android > "${SRCDIR}/${FILE}"
+            ln -f -s "${SRCDIR}/${FILE}" "${LINKDIR}/${FILE}"
+
 jobs:
   build:
     working_directory: ~/code
@@ -672,8 +671,9 @@ jobs:
             fi
       - checkout
       - configure_aws
+      - generate_test_config
       - run:
-          name: clean up aws server 
+          name: Clean up AWS resources used under test
           command: |
             set +e
             bash CircleciScripts/cleanup_test_s3_buckets.sh
