@@ -1,80 +1,115 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Describe Vpc Peering Connections Request Marshaller
+ * JSON request marshaller for DescribeVpcPeeringConnectionsRequest
  */
-public class DescribeVpcPeeringConnectionsRequestMarshaller implements Marshaller<Request<DescribeVpcPeeringConnectionsRequest>, DescribeVpcPeeringConnectionsRequest> {
+public class DescribeVpcPeeringConnectionsRequestMarshaller
+        implements
+        Marshaller<Request<DescribeVpcPeeringConnectionsRequest>, DescribeVpcPeeringConnectionsRequest> {
 
-    public Request<DescribeVpcPeeringConnectionsRequest> marshall(DescribeVpcPeeringConnectionsRequest describeVpcPeeringConnectionsRequest) {
-
+    public Request<DescribeVpcPeeringConnectionsRequest> marshall(
+            DescribeVpcPeeringConnectionsRequest describeVpcPeeringConnectionsRequest) {
         if (describeVpcPeeringConnectionsRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(DescribeVpcPeeringConnectionsRequest)");
         }
 
-        Request<DescribeVpcPeeringConnectionsRequest> request = new DefaultRequest<DescribeVpcPeeringConnectionsRequest>(describeVpcPeeringConnectionsRequest, "AmazonEC2");
-        request.addParameter("Action", "DescribeVpcPeeringConnections");
-        request.addParameter("Version", "2015-10-01");
+        Request<DescribeVpcPeeringConnectionsRequest> request = new DefaultRequest<DescribeVpcPeeringConnectionsRequest>(
+                describeVpcPeeringConnectionsRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        java.util.List<String> vpcPeeringConnectionIdsList = describeVpcPeeringConnectionsRequest.getVpcPeeringConnectionIds();
-        int vpcPeeringConnectionIdsListIndex = 1;
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
 
-        for (String vpcPeeringConnectionIdsListValue : vpcPeeringConnectionIdsList) {
-            if (vpcPeeringConnectionIdsListValue != null) {
-                request.addParameter("VpcPeeringConnectionId." + vpcPeeringConnectionIdsListIndex, StringUtils.fromString(vpcPeeringConnectionIdsListValue));
-            }
-
-            vpcPeeringConnectionIdsListIndex++;
-        }
-
-        java.util.List<Filter> filtersList = describeVpcPeeringConnectionsRequest.getFilters();
-        int filtersListIndex = 1;
-
-        for (Filter filtersListValue : filtersList) {
-            Filter filterMember = filtersListValue;
-            if (filterMember != null) {
-                if (filterMember.getName() != null) {
-                    request.addParameter("Filter." + filtersListIndex + ".Name", StringUtils.fromString(filterMember.getName()));
-                }
-
-                java.util.List<String> valuesList = filterMember.getValues();
-                int valuesListIndex = 1;
-
-                for (String valuesListValue : valuesList) {
-                    if (valuesListValue != null) {
-                        request.addParameter("Filter." + filtersListIndex + ".Value." + valuesListIndex, StringUtils.fromString(valuesListValue));
+            if (describeVpcPeeringConnectionsRequest.getFilters() != null) {
+                java.util.List<Filter> filters = describeVpcPeeringConnectionsRequest.getFilters();
+                jsonWriter.name("Filters");
+                jsonWriter.beginArray();
+                for (Filter filtersItem : filters) {
+                    if (filtersItem != null) {
+                        FilterJsonMarshaller.getInstance().marshall(filtersItem, jsonWriter);
                     }
-
-                    valuesListIndex++;
                 }
+                jsonWriter.endArray();
+            }
+            if (describeVpcPeeringConnectionsRequest.getDryRun() != null) {
+                Boolean dryRun = describeVpcPeeringConnectionsRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
+            if (describeVpcPeeringConnectionsRequest.getVpcPeeringConnectionIds() != null) {
+                java.util.List<String> vpcPeeringConnectionIds = describeVpcPeeringConnectionsRequest
+                        .getVpcPeeringConnectionIds();
+                jsonWriter.name("VpcPeeringConnectionIds");
+                jsonWriter.beginArray();
+                for (String vpcPeeringConnectionIdsItem : vpcPeeringConnectionIds) {
+                    if (vpcPeeringConnectionIdsItem != null) {
+                        jsonWriter.value(vpcPeeringConnectionIdsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (describeVpcPeeringConnectionsRequest.getNextToken() != null) {
+                String nextToken = describeVpcPeeringConnectionsRequest.getNextToken();
+                jsonWriter.name("NextToken");
+                jsonWriter.value(nextToken);
+            }
+            if (describeVpcPeeringConnectionsRequest.getMaxResults() != null) {
+                Integer maxResults = describeVpcPeeringConnectionsRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
             }
 
-            filtersListIndex++;
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;

@@ -1,17 +1,18 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
@@ -19,31 +20,25 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeVpcClassicLinkDnsSupport(DescribeVpcClassicLinkDnsSupportRequest) DescribeVpcClassicLinkDnsSupport operation}.
  * <p>
- * Describes the ClassicLink DNS support status of one or more VPCs. If
- * enabled, the DNS hostname of a linked EC2-Classic instance resolves to
- * its private IP address when addressed from an instance in the VPC to
- * which it's linked. Similarly, the DNS hostname of an instance in a VPC
- * resolves to its private IP address when addressed from a linked
- * EC2-Classic instance. For more information about ClassicLink, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"> ClassicLink </a>
- * in the Amazon Elastic Compute Cloud User Guide.
+ * Describes the ClassicLink DNS support status of one or more VPCs. If enabled,
+ * the DNS hostname of a linked EC2-Classic instance resolves to its private IP
+ * address when addressed from an instance in the VPC to which it's linked.
+ * Similarly, the DNS hostname of an instance in a VPC resolves to its private
+ * IP address when addressed from a linked EC2-Classic instance. For more
+ * information, see <a href=
+ * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html"
+ * >ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#describeVpcClassicLinkDnsSupport(DescribeVpcClassicLinkDnsSupportRequest)
  */
-public class DescribeVpcClassicLinkDnsSupportRequest extends AmazonWebServiceRequest implements Serializable {
-
+public class DescribeVpcClassicLinkDnsSupportRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
-     * One or more VPC IDs.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> vpcIds;
-
-    /**
-     * The maximum number of items to return for this request. The request
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results.
+     * <p>
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>5 - 255<br/>
@@ -51,8 +46,9 @@ public class DescribeVpcClassicLinkDnsSupportRequest extends AmazonWebServiceReq
     private Integer maxResults;
 
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * <p>
+     * The token for the next page of results.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -60,121 +56,72 @@ public class DescribeVpcClassicLinkDnsSupportRequest extends AmazonWebServiceReq
     private String nextToken;
 
     /**
-     * One or more VPC IDs.
-     *
-     * @return One or more VPC IDs.
-     */
-    public java.util.List<String> getVpcIds() {
-        if (vpcIds == null) {
-              vpcIds = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              vpcIds.setAutoConstruct(true);
-        }
-        return vpcIds;
-    }
-    
-    /**
-     * One or more VPC IDs.
-     *
-     * @param vpcIds One or more VPC IDs.
-     */
-    public void setVpcIds(java.util.Collection<String> vpcIds) {
-        if (vpcIds == null) {
-            this.vpcIds = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> vpcIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(vpcIds.size());
-        vpcIdsCopy.addAll(vpcIds);
-        this.vpcIds = vpcIdsCopy;
-    }
-    
-    /**
-     * One or more VPC IDs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param vpcIds One or more VPC IDs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeVpcClassicLinkDnsSupportRequest withVpcIds(String... vpcIds) {
-        if (getVpcIds() == null) setVpcIds(new java.util.ArrayList<String>(vpcIds.length));
-        for (String value : vpcIds) {
-            getVpcIds().add(value);
-        }
-        return this;
-    }
-    
-    /**
      * One or more VPC IDs.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param vpcIds One or more VPC IDs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * </p>
      */
-    public DescribeVpcClassicLinkDnsSupportRequest withVpcIds(java.util.Collection<String> vpcIds) {
-        if (vpcIds == null) {
-            this.vpcIds = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> vpcIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(vpcIds.size());
-            vpcIdsCopy.addAll(vpcIds);
-            this.vpcIds = vpcIdsCopy;
-        }
-
-        return this;
-    }
+    private java.util.List<String> vpcIds;
 
     /**
-     * The maximum number of items to return for this request. The request
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results.
+     * <p>
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>5 - 255<br/>
      *
-     * @return The maximum number of items to return for this request. The request
-     *         returns a token that you can specify in a subsequent call to get the
-     *         next set of results.
+     * @return <p>
+     *         The maximum number of results to return with a single call. To
+     *         retrieve the remaining results, make another call with the
+     *         returned <code>nextToken</code> value.
+     *         </p>
      */
     public Integer getMaxResults() {
         return maxResults;
     }
-    
+
     /**
-     * The maximum number of items to return for this request. The request
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results.
+     * <p>
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>5 - 255<br/>
      *
-     * @param maxResults The maximum number of items to return for this request. The request
-     *         returns a token that you can specify in a subsequent call to get the
-     *         next set of results.
+     * @param maxResults <p>
+     *            The maximum number of results to return with a single call. To
+     *            retrieve the remaining results, make another call with the
+     *            returned <code>nextToken</code> value.
+     *            </p>
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
-    
+
     /**
-     * The maximum number of items to return for this request. The request
-     * returns a token that you can specify in a subsequent call to get the
-     * next set of results.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>5 - 255<br/>
      *
-     * @param maxResults The maximum number of items to return for this request. The request
-     *         returns a token that you can specify in a subsequent call to get the
-     *         next set of results.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param maxResults <p>
+     *            The maximum number of results to return with a single call. To
+     *            retrieve the remaining results, make another call with the
+     *            returned <code>nextToken</code> value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeVpcClassicLinkDnsSupportRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
@@ -182,50 +129,130 @@ public class DescribeVpcClassicLinkDnsSupportRequest extends AmazonWebServiceReq
     }
 
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * <p>
+     * The token for the next page of results.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
-     * @return The token for the next set of items to return. (You received this
-     *         token from a prior call.)
+     * @return <p>
+     *         The token for the next page of results.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
-    
+
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
+     * <p>
+     * The token for the next page of results.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
-     * @param nextToken The token for the next set of items to return. (You received this
-     *         token from a prior call.)
+     * @param nextToken <p>
+     *            The token for the next page of results.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
-    
+
     /**
-     * The token for the next set of items to return. (You received this
-     * token from a prior call.)
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The token for the next page of results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
-     * @param nextToken The token for the next set of items to return. (You received this
-     *         token from a prior call.)
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param nextToken <p>
+     *            The token for the next page of results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeVpcClassicLinkDnsSupportRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more VPC IDs.
+     * </p>
+     *
+     * @return <p>
+     *         One or more VPC IDs.
+     *         </p>
+     */
+    public java.util.List<String> getVpcIds() {
+        return vpcIds;
+    }
+
+    /**
+     * <p>
+     * One or more VPC IDs.
+     * </p>
+     *
+     * @param vpcIds <p>
+     *            One or more VPC IDs.
+     *            </p>
+     */
+    public void setVpcIds(java.util.Collection<String> vpcIds) {
+        if (vpcIds == null) {
+            this.vpcIds = null;
+            return;
+        }
+
+        this.vpcIds = new java.util.ArrayList<String>(vpcIds);
+    }
+
+    /**
+     * <p>
+     * One or more VPC IDs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcIds <p>
+     *            One or more VPC IDs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeVpcClassicLinkDnsSupportRequest withVpcIds(String... vpcIds) {
+        if (getVpcIds() == null) {
+            this.vpcIds = new java.util.ArrayList<String>(vpcIds.length);
+        }
+        for (String value : vpcIds) {
+            this.vpcIds.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more VPC IDs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcIds <p>
+     *            One or more VPC IDs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeVpcClassicLinkDnsSupportRequest withVpcIds(java.util.Collection<String> vpcIds) {
+        setVpcIds(vpcIds);
         return this;
     }
 
@@ -234,47 +261,58 @@ public class DescribeVpcClassicLinkDnsSupportRequest extends AmazonWebServiceReq
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getVpcIds() != null) sb.append("VpcIds: " + getVpcIds() + ",");
-        if (getMaxResults() != null) sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getNextToken() != null) sb.append("NextToken: " + getNextToken() );
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getVpcIds() != null)
+            sb.append("VpcIds: " + getVpcIds());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getVpcIds() == null) ? 0 : getVpcIds().hashCode()); 
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode()); 
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
+
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getVpcIds() == null) ? 0 : getVpcIds().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeVpcClassicLinkDnsSupportRequest == false) return false;
-        DescribeVpcClassicLinkDnsSupportRequest other = (DescribeVpcClassicLinkDnsSupportRequest)obj;
-        
-        if (other.getVpcIds() == null ^ this.getVpcIds() == null) return false;
-        if (other.getVpcIds() != null && other.getVpcIds().equals(this.getVpcIds()) == false) return false; 
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null) return false;
-        if (other.getMaxResults() != null && other.getMaxResults().equals(this.getMaxResults()) == false) return false; 
-        if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
-        if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
+        if (obj instanceof DescribeVpcClassicLinkDnsSupportRequest == false)
+            return false;
+        DescribeVpcClassicLinkDnsSupportRequest other = (DescribeVpcClassicLinkDnsSupportRequest) obj;
+
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getVpcIds() == null ^ this.getVpcIds() == null)
+            return false;
+        if (other.getVpcIds() != null && other.getVpcIds().equals(this.getVpcIds()) == false)
+            return false;
         return true;
     }
-    
 }
-    

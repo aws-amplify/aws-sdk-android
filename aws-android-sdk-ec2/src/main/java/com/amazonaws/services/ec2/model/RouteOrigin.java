@@ -1,24 +1,28 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Route Origin
  */
 public enum RouteOrigin {
-    
+
     CreateRouteTable("CreateRouteTable"),
     CreateRoute("CreateRoute"),
     EnableVgwRoutePropagation("EnableVgwRoutePropagation");
@@ -31,29 +35,30 @@ public enum RouteOrigin {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
+    }
+
+    private static final Map<String, RouteOrigin> enumMap;
+    static {
+        enumMap = new HashMap<String, RouteOrigin>();
+        enumMap.put("CreateRouteTable", CreateRouteTable);
+        enumMap.put("CreateRoute", CreateRoute);
+        enumMap.put("EnableVgwRoutePropagation", EnableVgwRoutePropagation);
     }
 
     /**
      * Use this in place of valueOf.
      *
-     * @param value
-     *            real value
+     * @param value real value
      * @return RouteOrigin corresponding to the value
      */
     public static RouteOrigin fromValue(String value) {
-        if (value == null || "".equals(value)) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        
-        } else if ("CreateRouteTable".equals(value)) {
-            return RouteOrigin.CreateRouteTable;
-        } else if ("CreateRoute".equals(value)) {
-            return RouteOrigin.CreateRoute;
-        } else if ("EnableVgwRoutePropagation".equals(value)) {
-            return RouteOrigin.EnableVgwRoutePropagation;
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
     }
 }
-    
