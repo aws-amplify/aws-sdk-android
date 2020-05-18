@@ -1,3 +1,16 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-chime
+---aws-android-sdk-ecs
+---aws-android-sdk-macie2
+---aws-android-sdk-qldb
+---aws-android-sdk-dynamodb
+---aws-android-sdk-ec2
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
