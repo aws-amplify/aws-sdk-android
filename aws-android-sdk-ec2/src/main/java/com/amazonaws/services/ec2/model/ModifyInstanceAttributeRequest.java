@@ -1,261 +1,347 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.Request;
-import com.amazonaws.services.ec2.model.transform.ModifyInstanceAttributeRequestMarshaller;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#modifyInstanceAttribute(ModifyInstanceAttributeRequest) ModifyInstanceAttribute operation}.
  * <p>
- * Modifies the specified attribute of the specified instance. You can
- * specify only one attribute at a time.
+ * Modifies the specified attribute of the specified instance. You can specify
+ * only one attribute at a time.
+ * </p>
+ * <p>
+ * <b>Note: </b>Using this action to change the security groups associated with
+ * an elastic network interface (ENI) attached to an instance in a VPC can
+ * result in an error if the instance has more than one ENI. To change the
+ * security groups associated with an ENI attached to an instance that has
+ * multiple ENIs, we recommend that you use the
+ * <a>ModifyNetworkInterfaceAttribute</a> action.
  * </p>
  * <p>
  * To modify some attributes, the instance must be stopped. For more
- * information, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html"> Modifying Attributes of a Stopped Instance </a>
- * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+ * information, see <a href=
+ * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_ChangingAttributesWhileInstanceStopped.html"
+ * >Modifying Attributes of a Stopped Instance</a> in the <i>Amazon Elastic
+ * Compute Cloud User Guide</i>.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#modifyInstanceAttribute(ModifyInstanceAttributeRequest)
  */
-public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<ModifyInstanceAttributeRequest> {
-
+public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The ID of the instance.
+     * <p>
+     * Specifies whether source/destination checking is enabled. A value of
+     * <code>true</code> means that checking is enabled, and <code>false</code>
+     * means that checking is disabled. This value must be <code>false</code>
+     * for a NAT instance to perform NAT.
+     * </p>
      */
-    private String instanceId;
+    private AttributeBooleanValue sourceDestCheck;
 
     /**
+     * <p>
      * The name of the attribute.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
+     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData,
+     * disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName,
+     * blockDeviceMapping, productCodes, sourceDestCheck, groupSet,
+     * ebsOptimized, sriovNetSupport, enaSupport
      */
     private String attribute;
 
     /**
+     * <p>
+     * Modifies the <code>DeleteOnTermination</code> attribute for volumes that
+     * are currently attached. The volume must be owned by the caller. If no
+     * value is specified for <code>DeleteOnTermination</code>, the default is
+     * <code>true</code> and the volume is deleted when the instance is
+     * terminated.
+     * </p>
+     * <p>
+     * To add instance store volumes to an Amazon EBS-backed instance, you must
+     * add them when you launch the instance. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     * >Updating the Block Device Mapping when Launching an Instance</a> in the
+     * <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     */
+    private java.util.List<InstanceBlockDeviceMappingSpecification> blockDeviceMappings;
+
+    /**
+     * <p>
+     * If the value is <code>true</code>, you can't terminate the instance using
+     * the Amazon EC2 console, CLI, or API; otherwise, you can. You cannot use
+     * this parameter for Spot Instances.
+     * </p>
+     */
+    private AttributeBooleanValue disableApiTermination;
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
+     * Specifies whether the instance is optimized for Amazon EBS I/O. This
+     * optimization provides dedicated throughput to Amazon EBS and an optimized
+     * configuration stack to provide optimal EBS I/O performance. This
+     * optimization isn't available with all instance types. Additional usage
+     * charges apply when using an EBS Optimized instance.
+     * </p>
+     */
+    private AttributeBooleanValue ebsOptimized;
+
+    /**
+     * <p>
+     * Set to <code>true</code> to enable enhanced networking with ENA for the
+     * instance.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     */
+    private AttributeBooleanValue enaSupport;
+
+    /**
+     * <p>
+     * [EC2-VPC] Changes the security groups of the instance. You must specify
+     * at least one security group, even if it's just the default security group
+     * for the VPC. You must specify the security group ID, not the security
+     * group name.
+     * </p>
+     */
+    private java.util.List<String> groups;
+
+    /**
+     * <p>
+     * The ID of the instance.
+     * </p>
+     */
+    private String instanceId;
+
+    /**
+     * <p>
+     * Specifies whether an instance stops or terminates when you initiate
+     * shutdown from the instance (using the operating system command for system
+     * shutdown).
+     * </p>
+     */
+    private AttributeValue instanceInitiatedShutdownBehavior;
+
+    /**
+     * <p>
+     * Changes the instance type to the specified value. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     * >Instance Types</a>. If the instance type is not valid, the error
+     * returned is <code>InvalidInstanceAttributeValue</code>.
+     * </p>
+     */
+    private AttributeValue instanceType;
+
+    /**
+     * <p>
+     * Changes the instance's kernel to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     */
+    private AttributeValue kernel;
+
+    /**
+     * <p>
+     * Changes the instance's RAM disk to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     */
+    private AttributeValue ramdisk;
+
+    /**
+     * <p>
+     * Set to <code>simple</code> to enable enhanced networking with the Intel
+     * 82599 Virtual Function interface for the instance.
+     * </p>
+     * <p>
+     * There is no way to disable enhanced networking with the Intel 82599
+     * Virtual Function interface at this time.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     */
+    private AttributeValue sriovNetSupport;
+
+    /**
+     * <p>
+     * Changes the instance's user data to the specified value. If you are using
+     * an AWS SDK or command line tool, base64-encoding is performed for you,
+     * and you can load the text from a file. Otherwise, you must provide
+     * base64-encoded text.
+     * </p>
+     */
+    private BlobAttributeValue userData;
+
+    /**
+     * <p>
      * A new value for the attribute. Use only with the <code>kernel</code>,
      * <code>ramdisk</code>, <code>userData</code>,
      * <code>disableApiTermination</code>, or
      * <code>instanceInitiatedShutdownBehavior</code> attribute.
+     * </p>
      */
     private String value;
 
     /**
-     * Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     * that are currently attached. The volume must be owned by the caller.
-     * If no value is specified for <code>DeleteOnTermination</code>, the
-     * default is <code>true</code> and the volume is deleted when the
-     * instance is terminated. <p>To add instance store volumes to an Amazon
-     * EBS-backed instance, you must add them when you launch the instance.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     * the Block Device Mapping when Launching an Instance</a> in the
-     * <i>Amazon Elastic Compute Cloud User Guide</i>.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<InstanceBlockDeviceMappingSpecification> blockDeviceMappings;
-
-    /**
-     * Specifies whether source/destination checking is enabled. A value of
-     * <code>true</code> means that checking is enabled, and
-     * <code>false</code> means checking is disabled. This value must be
-     * <code>false</code> for a NAT instance to perform NAT.
-     */
-    private Boolean sourceDestCheck;
-
-    /**
-     * If the value is <code>true</code>, you can't terminate the instance
-     * using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     * cannot use this paramater for Spot Instances.
-     */
-    private Boolean disableApiTermination;
-
-    /**
-     * Changes the instance type to the specified value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a>. If the instance type is not valid, the error returned is
-     * <code>InvalidInstanceAttributeValue</code>.
-     */
-    private String instanceType;
-
-    /**
-     * Changes the instance's kernel to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     */
-    private String kernel;
-
-    /**
-     * Changes the instance's RAM disk to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     */
-    private String ramdisk;
-
-    /**
-     * Changes the instance's user data to the specified base64-encoded
-     * value. For command line tools, base64 encoding is performed for you.
-     */
-    private String userData;
-
-    /**
-     * Specifies whether an instance stops or terminates when you initiate
-     * shutdown from the instance (using the operating system command for
-     * system shutdown).
-     */
-    private String instanceInitiatedShutdownBehavior;
-
-    /**
-     * [EC2-VPC] Changes the security groups of the instance. You must
-     * specify at least one security group, even if it's just the default
-     * security group for the VPC. You must specify the security group ID,
-     * not the security group name.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> groups;
-
-    /**
-     * Specifies whether the instance is optimized for EBS I/O. This
-     * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal EBS I/O performance.
-     * This optimization isn't available with all instance types. Additional
-     * usage charges apply when using an EBS Optimized instance.
-     */
-    private Boolean ebsOptimized;
-
-    /**
-     * Set to <code>simple</code> to enable enhanced networking for the
-     * instance. <p>There is no way to disable enhanced networking at this
-     * time. <p>This option is supported only for HVM instances. Specifying
-     * this option with a PV instance can make it unreachable.
-     */
-    private String sriovNetSupport;
-
-    /**
-     * Default constructor for a new ModifyInstanceAttributeRequest object.  Callers should use the
-     * setter or fluent setter (with...) methods to initialize this object after creating it.
-     */
-    public ModifyInstanceAttributeRequest() {}
-    
-    /**
-     * Constructs a new ModifyInstanceAttributeRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
-     * 
-     * @param instanceId The ID of the instance.
-     * @param attribute The name of the attribute.
-     */
-    public ModifyInstanceAttributeRequest(String instanceId, String attribute) {
-        setInstanceId(instanceId);
-        setAttribute(attribute);
-    }
-
-    /**
-     * Constructs a new ModifyInstanceAttributeRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
-     * 
-     * @param instanceId The ID of the instance.
-     * @param attribute The name of the attribute.
-     */
-    public ModifyInstanceAttributeRequest(String instanceId, InstanceAttributeName attribute) {
-        this.instanceId = instanceId;
-        this.attribute = attribute.toString();
-    }
-
-    /**
-     * The ID of the instance.
-     *
-     * @return The ID of the instance.
-     */
-    public String getInstanceId() {
-        return instanceId;
-    }
-    
-    /**
-     * The ID of the instance.
-     *
-     * @param instanceId The ID of the instance.
-     */
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
-    }
-    
-    /**
-     * The ID of the instance.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Specifies whether source/destination checking is enabled. A value of
+     * <code>true</code> means that checking is enabled, and <code>false</code>
+     * means that checking is disabled. This value must be <code>false</code>
+     * for a NAT instance to perform NAT.
+     * </p>
      *
-     * @param instanceId The ID of the instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @return <p>
+     *         Specifies whether source/destination checking is enabled. A value
+     *         of <code>true</code> means that checking is enabled, and
+     *         <code>false</code> means that checking is disabled. This value
+     *         must be <code>false</code> for a NAT instance to perform NAT.
+     *         </p>
      */
-    public ModifyInstanceAttributeRequest withInstanceId(String instanceId) {
-        this.instanceId = instanceId;
+    public AttributeBooleanValue getSourceDestCheck() {
+        return sourceDestCheck;
+    }
+
+    /**
+     * <p>
+     * Specifies whether source/destination checking is enabled. A value of
+     * <code>true</code> means that checking is enabled, and <code>false</code>
+     * means that checking is disabled. This value must be <code>false</code>
+     * for a NAT instance to perform NAT.
+     * </p>
+     *
+     * @param sourceDestCheck <p>
+     *            Specifies whether source/destination checking is enabled. A
+     *            value of <code>true</code> means that checking is enabled, and
+     *            <code>false</code> means that checking is disabled. This value
+     *            must be <code>false</code> for a NAT instance to perform NAT.
+     *            </p>
+     */
+    public void setSourceDestCheck(AttributeBooleanValue sourceDestCheck) {
+        this.sourceDestCheck = sourceDestCheck;
+    }
+
+    /**
+     * <p>
+     * Specifies whether source/destination checking is enabled. A value of
+     * <code>true</code> means that checking is enabled, and <code>false</code>
+     * means that checking is disabled. This value must be <code>false</code>
+     * for a NAT instance to perform NAT.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sourceDestCheck <p>
+     *            Specifies whether source/destination checking is enabled. A
+     *            value of <code>true</code> means that checking is enabled, and
+     *            <code>false</code> means that checking is disabled. This value
+     *            must be <code>false</code> for a NAT instance to perform NAT.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withSourceDestCheck(AttributeBooleanValue sourceDestCheck) {
+        this.sourceDestCheck = sourceDestCheck;
         return this;
     }
 
     /**
+     * <p>
      * The name of the attribute.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
+     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData,
+     * disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName,
+     * blockDeviceMapping, productCodes, sourceDestCheck, groupSet,
+     * ebsOptimized, sriovNetSupport, enaSupport
      *
-     * @return The name of the attribute.
-     *
+     * @return <p>
+     *         The name of the attribute.
+     *         </p>
      * @see InstanceAttributeName
      */
     public String getAttribute() {
         return attribute;
     }
-    
+
     /**
+     * <p>
      * The name of the attribute.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
+     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData,
+     * disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName,
+     * blockDeviceMapping, productCodes, sourceDestCheck, groupSet,
+     * ebsOptimized, sriovNetSupport, enaSupport
      *
-     * @param attribute The name of the attribute.
-     *
+     * @param attribute <p>
+     *            The name of the attribute.
+     *            </p>
      * @see InstanceAttributeName
      */
     public void setAttribute(String attribute) {
         this.attribute = attribute;
     }
-    
+
     /**
-     * The name of the attribute.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the attribute.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
+     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData,
+     * disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName,
+     * blockDeviceMapping, productCodes, sourceDestCheck, groupSet,
+     * ebsOptimized, sriovNetSupport, enaSupport
      *
-     * @param attribute The name of the attribute.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param attribute <p>
+     *            The name of the attribute.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see InstanceAttributeName
      */
     public ModifyInstanceAttributeRequest withAttribute(String attribute) {
@@ -264,32 +350,44 @@ public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest impl
     }
 
     /**
+     * <p>
      * The name of the attribute.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
+     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData,
+     * disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName,
+     * blockDeviceMapping, productCodes, sourceDestCheck, groupSet,
+     * ebsOptimized, sriovNetSupport, enaSupport
      *
-     * @param attribute The name of the attribute.
-     *
+     * @param attribute <p>
+     *            The name of the attribute.
+     *            </p>
      * @see InstanceAttributeName
      */
     public void setAttribute(InstanceAttributeName attribute) {
         this.attribute = attribute.toString();
     }
-    
+
     /**
-     * The name of the attribute.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the attribute.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData, disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName, blockDeviceMapping, productCodes, sourceDestCheck, groupSet, ebsOptimized, sriovNetSupport
+     * <b>Allowed Values: </b>instanceType, kernel, ramdisk, userData,
+     * disableApiTermination, instanceInitiatedShutdownBehavior, rootDeviceName,
+     * blockDeviceMapping, productCodes, sourceDestCheck, groupSet,
+     * ebsOptimized, sriovNetSupport, enaSupport
      *
-     * @param attribute The name of the attribute.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     *
+     * @param attribute <p>
+     *            The name of the attribute.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      * @see InstanceAttributeName
      */
     public ModifyInstanceAttributeRequest withAttribute(InstanceAttributeName attribute) {
@@ -298,50 +396,1106 @@ public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest impl
     }
 
     /**
+     * <p>
+     * Modifies the <code>DeleteOnTermination</code> attribute for volumes that
+     * are currently attached. The volume must be owned by the caller. If no
+     * value is specified for <code>DeleteOnTermination</code>, the default is
+     * <code>true</code> and the volume is deleted when the instance is
+     * terminated.
+     * </p>
+     * <p>
+     * To add instance store volumes to an Amazon EBS-backed instance, you must
+     * add them when you launch the instance. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     * >Updating the Block Device Mapping when Launching an Instance</a> in the
+     * <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Modifies the <code>DeleteOnTermination</code> attribute for
+     *         volumes that are currently attached. The volume must be owned by
+     *         the caller. If no value is specified for
+     *         <code>DeleteOnTermination</code>, the default is
+     *         <code>true</code> and the volume is deleted when the instance is
+     *         terminated.
+     *         </p>
+     *         <p>
+     *         To add instance store volumes to an Amazon EBS-backed instance,
+     *         you must add them when you launch the instance. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     *         >Updating the Block Device Mapping when Launching an Instance</a>
+     *         in the <i>Amazon Elastic Compute Cloud User Guide</i>.
+     *         </p>
+     */
+    public java.util.List<InstanceBlockDeviceMappingSpecification> getBlockDeviceMappings() {
+        return blockDeviceMappings;
+    }
+
+    /**
+     * <p>
+     * Modifies the <code>DeleteOnTermination</code> attribute for volumes that
+     * are currently attached. The volume must be owned by the caller. If no
+     * value is specified for <code>DeleteOnTermination</code>, the default is
+     * <code>true</code> and the volume is deleted when the instance is
+     * terminated.
+     * </p>
+     * <p>
+     * To add instance store volumes to an Amazon EBS-backed instance, you must
+     * add them when you launch the instance. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     * >Updating the Block Device Mapping when Launching an Instance</a> in the
+     * <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     *
+     * @param blockDeviceMappings <p>
+     *            Modifies the <code>DeleteOnTermination</code> attribute for
+     *            volumes that are currently attached. The volume must be owned
+     *            by the caller. If no value is specified for
+     *            <code>DeleteOnTermination</code>, the default is
+     *            <code>true</code> and the volume is deleted when the instance
+     *            is terminated.
+     *            </p>
+     *            <p>
+     *            To add instance store volumes to an Amazon EBS-backed
+     *            instance, you must add them when you launch the instance. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     *            >Updating the Block Device Mapping when Launching an
+     *            Instance</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
+     */
+    public void setBlockDeviceMappings(
+            java.util.Collection<InstanceBlockDeviceMappingSpecification> blockDeviceMappings) {
+        if (blockDeviceMappings == null) {
+            this.blockDeviceMappings = null;
+            return;
+        }
+
+        this.blockDeviceMappings = new java.util.ArrayList<InstanceBlockDeviceMappingSpecification>(
+                blockDeviceMappings);
+    }
+
+    /**
+     * <p>
+     * Modifies the <code>DeleteOnTermination</code> attribute for volumes that
+     * are currently attached. The volume must be owned by the caller. If no
+     * value is specified for <code>DeleteOnTermination</code>, the default is
+     * <code>true</code> and the volume is deleted when the instance is
+     * terminated.
+     * </p>
+     * <p>
+     * To add instance store volumes to an Amazon EBS-backed instance, you must
+     * add them when you launch the instance. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     * >Updating the Block Device Mapping when Launching an Instance</a> in the
+     * <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param blockDeviceMappings <p>
+     *            Modifies the <code>DeleteOnTermination</code> attribute for
+     *            volumes that are currently attached. The volume must be owned
+     *            by the caller. If no value is specified for
+     *            <code>DeleteOnTermination</code>, the default is
+     *            <code>true</code> and the volume is deleted when the instance
+     *            is terminated.
+     *            </p>
+     *            <p>
+     *            To add instance store volumes to an Amazon EBS-backed
+     *            instance, you must add them when you launch the instance. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     *            >Updating the Block Device Mapping when Launching an
+     *            Instance</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withBlockDeviceMappings(
+            InstanceBlockDeviceMappingSpecification... blockDeviceMappings) {
+        if (getBlockDeviceMappings() == null) {
+            this.blockDeviceMappings = new java.util.ArrayList<InstanceBlockDeviceMappingSpecification>(
+                    blockDeviceMappings.length);
+        }
+        for (InstanceBlockDeviceMappingSpecification value : blockDeviceMappings) {
+            this.blockDeviceMappings.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Modifies the <code>DeleteOnTermination</code> attribute for volumes that
+     * are currently attached. The volume must be owned by the caller. If no
+     * value is specified for <code>DeleteOnTermination</code>, the default is
+     * <code>true</code> and the volume is deleted when the instance is
+     * terminated.
+     * </p>
+     * <p>
+     * To add instance store volumes to an Amazon EBS-backed instance, you must
+     * add them when you launch the instance. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     * >Updating the Block Device Mapping when Launching an Instance</a> in the
+     * <i>Amazon Elastic Compute Cloud User Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param blockDeviceMappings <p>
+     *            Modifies the <code>DeleteOnTermination</code> attribute for
+     *            volumes that are currently attached. The volume must be owned
+     *            by the caller. If no value is specified for
+     *            <code>DeleteOnTermination</code>, the default is
+     *            <code>true</code> and the volume is deleted when the instance
+     *            is terminated.
+     *            </p>
+     *            <p>
+     *            To add instance store volumes to an Amazon EBS-backed
+     *            instance, you must add them when you launch the instance. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM"
+     *            >Updating the Block Device Mapping when Launching an
+     *            Instance</a> in the <i>Amazon Elastic Compute Cloud User
+     *            Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withBlockDeviceMappings(
+            java.util.Collection<InstanceBlockDeviceMappingSpecification> blockDeviceMappings) {
+        setBlockDeviceMappings(blockDeviceMappings);
+        return this;
+    }
+
+    /**
+     * <p>
+     * If the value is <code>true</code>, you can't terminate the instance using
+     * the Amazon EC2 console, CLI, or API; otherwise, you can. You cannot use
+     * this parameter for Spot Instances.
+     * </p>
+     *
+     * @return <p>
+     *         If the value is <code>true</code>, you can't terminate the
+     *         instance using the Amazon EC2 console, CLI, or API; otherwise,
+     *         you can. You cannot use this parameter for Spot Instances.
+     *         </p>
+     */
+    public AttributeBooleanValue getDisableApiTermination() {
+        return disableApiTermination;
+    }
+
+    /**
+     * <p>
+     * If the value is <code>true</code>, you can't terminate the instance using
+     * the Amazon EC2 console, CLI, or API; otherwise, you can. You cannot use
+     * this parameter for Spot Instances.
+     * </p>
+     *
+     * @param disableApiTermination <p>
+     *            If the value is <code>true</code>, you can't terminate the
+     *            instance using the Amazon EC2 console, CLI, or API; otherwise,
+     *            you can. You cannot use this parameter for Spot Instances.
+     *            </p>
+     */
+    public void setDisableApiTermination(AttributeBooleanValue disableApiTermination) {
+        this.disableApiTermination = disableApiTermination;
+    }
+
+    /**
+     * <p>
+     * If the value is <code>true</code>, you can't terminate the instance using
+     * the Amazon EC2 console, CLI, or API; otherwise, you can. You cannot use
+     * this parameter for Spot Instances.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param disableApiTermination <p>
+     *            If the value is <code>true</code>, you can't terminate the
+     *            instance using the Amazon EC2 console, CLI, or API; otherwise,
+     *            you can. You cannot use this parameter for Spot Instances.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withDisableApiTermination(
+            AttributeBooleanValue disableApiTermination) {
+        this.disableApiTermination = disableApiTermination;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the instance is optimized for Amazon EBS I/O. This
+     * optimization provides dedicated throughput to Amazon EBS and an optimized
+     * configuration stack to provide optimal EBS I/O performance. This
+     * optimization isn't available with all instance types. Additional usage
+     * charges apply when using an EBS Optimized instance.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether the instance is optimized for Amazon EBS I/O.
+     *         This optimization provides dedicated throughput to Amazon EBS and
+     *         an optimized configuration stack to provide optimal EBS I/O
+     *         performance. This optimization isn't available with all instance
+     *         types. Additional usage charges apply when using an EBS Optimized
+     *         instance.
+     *         </p>
+     */
+    public AttributeBooleanValue getEbsOptimized() {
+        return ebsOptimized;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the instance is optimized for Amazon EBS I/O. This
+     * optimization provides dedicated throughput to Amazon EBS and an optimized
+     * configuration stack to provide optimal EBS I/O performance. This
+     * optimization isn't available with all instance types. Additional usage
+     * charges apply when using an EBS Optimized instance.
+     * </p>
+     *
+     * @param ebsOptimized <p>
+     *            Specifies whether the instance is optimized for Amazon EBS
+     *            I/O. This optimization provides dedicated throughput to Amazon
+     *            EBS and an optimized configuration stack to provide optimal
+     *            EBS I/O performance. This optimization isn't available with
+     *            all instance types. Additional usage charges apply when using
+     *            an EBS Optimized instance.
+     *            </p>
+     */
+    public void setEbsOptimized(AttributeBooleanValue ebsOptimized) {
+        this.ebsOptimized = ebsOptimized;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the instance is optimized for Amazon EBS I/O. This
+     * optimization provides dedicated throughput to Amazon EBS and an optimized
+     * configuration stack to provide optimal EBS I/O performance. This
+     * optimization isn't available with all instance types. Additional usage
+     * charges apply when using an EBS Optimized instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ebsOptimized <p>
+     *            Specifies whether the instance is optimized for Amazon EBS
+     *            I/O. This optimization provides dedicated throughput to Amazon
+     *            EBS and an optimized configuration stack to provide optimal
+     *            EBS I/O performance. This optimization isn't available with
+     *            all instance types. Additional usage charges apply when using
+     *            an EBS Optimized instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withEbsOptimized(AttributeBooleanValue ebsOptimized) {
+        this.ebsOptimized = ebsOptimized;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to enable enhanced networking with ENA for the
+     * instance.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     *
+     * @return <p>
+     *         Set to <code>true</code> to enable enhanced networking with ENA
+     *         for the instance.
+     *         </p>
+     *         <p>
+     *         This option is supported only for HVM instances. Specifying this
+     *         option with a PV instance can make it unreachable.
+     *         </p>
+     */
+    public AttributeBooleanValue getEnaSupport() {
+        return enaSupport;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to enable enhanced networking with ENA for the
+     * instance.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     *
+     * @param enaSupport <p>
+     *            Set to <code>true</code> to enable enhanced networking with
+     *            ENA for the instance.
+     *            </p>
+     *            <p>
+     *            This option is supported only for HVM instances. Specifying
+     *            this option with a PV instance can make it unreachable.
+     *            </p>
+     */
+    public void setEnaSupport(AttributeBooleanValue enaSupport) {
+        this.enaSupport = enaSupport;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to enable enhanced networking with ENA for the
+     * instance.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enaSupport <p>
+     *            Set to <code>true</code> to enable enhanced networking with
+     *            ENA for the instance.
+     *            </p>
+     *            <p>
+     *            This option is supported only for HVM instances. Specifying
+     *            this option with a PV instance can make it unreachable.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withEnaSupport(AttributeBooleanValue enaSupport) {
+        this.enaSupport = enaSupport;
+        return this;
+    }
+
+    /**
+     * <p>
+     * [EC2-VPC] Changes the security groups of the instance. You must specify
+     * at least one security group, even if it's just the default security group
+     * for the VPC. You must specify the security group ID, not the security
+     * group name.
+     * </p>
+     *
+     * @return <p>
+     *         [EC2-VPC] Changes the security groups of the instance. You must
+     *         specify at least one security group, even if it's just the
+     *         default security group for the VPC. You must specify the security
+     *         group ID, not the security group name.
+     *         </p>
+     */
+    public java.util.List<String> getGroups() {
+        return groups;
+    }
+
+    /**
+     * <p>
+     * [EC2-VPC] Changes the security groups of the instance. You must specify
+     * at least one security group, even if it's just the default security group
+     * for the VPC. You must specify the security group ID, not the security
+     * group name.
+     * </p>
+     *
+     * @param groups <p>
+     *            [EC2-VPC] Changes the security groups of the instance. You
+     *            must specify at least one security group, even if it's just
+     *            the default security group for the VPC. You must specify the
+     *            security group ID, not the security group name.
+     *            </p>
+     */
+    public void setGroups(java.util.Collection<String> groups) {
+        if (groups == null) {
+            this.groups = null;
+            return;
+        }
+
+        this.groups = new java.util.ArrayList<String>(groups);
+    }
+
+    /**
+     * <p>
+     * [EC2-VPC] Changes the security groups of the instance. You must specify
+     * at least one security group, even if it's just the default security group
+     * for the VPC. You must specify the security group ID, not the security
+     * group name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groups <p>
+     *            [EC2-VPC] Changes the security groups of the instance. You
+     *            must specify at least one security group, even if it's just
+     *            the default security group for the VPC. You must specify the
+     *            security group ID, not the security group name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withGroups(String... groups) {
+        if (getGroups() == null) {
+            this.groups = new java.util.ArrayList<String>(groups.length);
+        }
+        for (String value : groups) {
+            this.groups.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * [EC2-VPC] Changes the security groups of the instance. You must specify
+     * at least one security group, even if it's just the default security group
+     * for the VPC. You must specify the security group ID, not the security
+     * group name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groups <p>
+     *            [EC2-VPC] Changes the security groups of the instance. You
+     *            must specify at least one security group, even if it's just
+     *            the default security group for the VPC. You must specify the
+     *            security group ID, not the security group name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withGroups(java.util.Collection<String> groups) {
+        setGroups(groups);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ID of the instance.
+     * </p>
+     *
+     * @return <p>
+     *         The ID of the instance.
+     *         </p>
+     */
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /**
+     * <p>
+     * The ID of the instance.
+     * </p>
+     *
+     * @param instanceId <p>
+     *            The ID of the instance.
+     *            </p>
+     */
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /**
+     * <p>
+     * The ID of the instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param instanceId <p>
+     *            The ID of the instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether an instance stops or terminates when you initiate
+     * shutdown from the instance (using the operating system command for system
+     * shutdown).
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether an instance stops or terminates when you
+     *         initiate shutdown from the instance (using the operating system
+     *         command for system shutdown).
+     *         </p>
+     */
+    public AttributeValue getInstanceInitiatedShutdownBehavior() {
+        return instanceInitiatedShutdownBehavior;
+    }
+
+    /**
+     * <p>
+     * Specifies whether an instance stops or terminates when you initiate
+     * shutdown from the instance (using the operating system command for system
+     * shutdown).
+     * </p>
+     *
+     * @param instanceInitiatedShutdownBehavior <p>
+     *            Specifies whether an instance stops or terminates when you
+     *            initiate shutdown from the instance (using the operating
+     *            system command for system shutdown).
+     *            </p>
+     */
+    public void setInstanceInitiatedShutdownBehavior(
+            AttributeValue instanceInitiatedShutdownBehavior) {
+        this.instanceInitiatedShutdownBehavior = instanceInitiatedShutdownBehavior;
+    }
+
+    /**
+     * <p>
+     * Specifies whether an instance stops or terminates when you initiate
+     * shutdown from the instance (using the operating system command for system
+     * shutdown).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param instanceInitiatedShutdownBehavior <p>
+     *            Specifies whether an instance stops or terminates when you
+     *            initiate shutdown from the instance (using the operating
+     *            system command for system shutdown).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withInstanceInitiatedShutdownBehavior(
+            AttributeValue instanceInitiatedShutdownBehavior) {
+        this.instanceInitiatedShutdownBehavior = instanceInitiatedShutdownBehavior;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Changes the instance type to the specified value. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     * >Instance Types</a>. If the instance type is not valid, the error
+     * returned is <code>InvalidInstanceAttributeValue</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Changes the instance type to the specified value. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     *         >Instance Types</a>. If the instance type is not valid, the error
+     *         returned is <code>InvalidInstanceAttributeValue</code>.
+     *         </p>
+     */
+    public AttributeValue getInstanceType() {
+        return instanceType;
+    }
+
+    /**
+     * <p>
+     * Changes the instance type to the specified value. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     * >Instance Types</a>. If the instance type is not valid, the error
+     * returned is <code>InvalidInstanceAttributeValue</code>.
+     * </p>
+     *
+     * @param instanceType <p>
+     *            Changes the instance type to the specified value. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     *            >Instance Types</a>. If the instance type is not valid, the
+     *            error returned is <code>InvalidInstanceAttributeValue</code>.
+     *            </p>
+     */
+    public void setInstanceType(AttributeValue instanceType) {
+        this.instanceType = instanceType;
+    }
+
+    /**
+     * <p>
+     * Changes the instance type to the specified value. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     * >Instance Types</a>. If the instance type is not valid, the error
+     * returned is <code>InvalidInstanceAttributeValue</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param instanceType <p>
+     *            Changes the instance type to the specified value. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html"
+     *            >Instance Types</a>. If the instance type is not valid, the
+     *            error returned is <code>InvalidInstanceAttributeValue</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withInstanceType(AttributeValue instanceType) {
+        this.instanceType = instanceType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's kernel to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Changes the instance's kernel to the specified value. We
+     *         recommend that you use PV-GRUB instead of kernels and RAM disks.
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     *         >PV-GRUB</a>.
+     *         </p>
+     */
+    public AttributeValue getKernel() {
+        return kernel;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's kernel to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     *
+     * @param kernel <p>
+     *            Changes the instance's kernel to the specified value. We
+     *            recommend that you use PV-GRUB instead of kernels and RAM
+     *            disks. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     *            >PV-GRUB</a>.
+     *            </p>
+     */
+    public void setKernel(AttributeValue kernel) {
+        this.kernel = kernel;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's kernel to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kernel <p>
+     *            Changes the instance's kernel to the specified value. We
+     *            recommend that you use PV-GRUB instead of kernels and RAM
+     *            disks. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     *            >PV-GRUB</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withKernel(AttributeValue kernel) {
+        this.kernel = kernel;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's RAM disk to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     *
+     * @return <p>
+     *         Changes the instance's RAM disk to the specified value. We
+     *         recommend that you use PV-GRUB instead of kernels and RAM disks.
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     *         >PV-GRUB</a>.
+     *         </p>
+     */
+    public AttributeValue getRamdisk() {
+        return ramdisk;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's RAM disk to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     *
+     * @param ramdisk <p>
+     *            Changes the instance's RAM disk to the specified value. We
+     *            recommend that you use PV-GRUB instead of kernels and RAM
+     *            disks. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     *            >PV-GRUB</a>.
+     *            </p>
+     */
+    public void setRamdisk(AttributeValue ramdisk) {
+        this.ramdisk = ramdisk;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's RAM disk to the specified value. We recommend that
+     * you use PV-GRUB instead of kernels and RAM disks. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     * >PV-GRUB</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ramdisk <p>
+     *            Changes the instance's RAM disk to the specified value. We
+     *            recommend that you use PV-GRUB instead of kernels and RAM
+     *            disks. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html"
+     *            >PV-GRUB</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withRamdisk(AttributeValue ramdisk) {
+        this.ramdisk = ramdisk;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set to <code>simple</code> to enable enhanced networking with the Intel
+     * 82599 Virtual Function interface for the instance.
+     * </p>
+     * <p>
+     * There is no way to disable enhanced networking with the Intel 82599
+     * Virtual Function interface at this time.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     *
+     * @return <p>
+     *         Set to <code>simple</code> to enable enhanced networking with the
+     *         Intel 82599 Virtual Function interface for the instance.
+     *         </p>
+     *         <p>
+     *         There is no way to disable enhanced networking with the Intel
+     *         82599 Virtual Function interface at this time.
+     *         </p>
+     *         <p>
+     *         This option is supported only for HVM instances. Specifying this
+     *         option with a PV instance can make it unreachable.
+     *         </p>
+     */
+    public AttributeValue getSriovNetSupport() {
+        return sriovNetSupport;
+    }
+
+    /**
+     * <p>
+     * Set to <code>simple</code> to enable enhanced networking with the Intel
+     * 82599 Virtual Function interface for the instance.
+     * </p>
+     * <p>
+     * There is no way to disable enhanced networking with the Intel 82599
+     * Virtual Function interface at this time.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     *
+     * @param sriovNetSupport <p>
+     *            Set to <code>simple</code> to enable enhanced networking with
+     *            the Intel 82599 Virtual Function interface for the instance.
+     *            </p>
+     *            <p>
+     *            There is no way to disable enhanced networking with the Intel
+     *            82599 Virtual Function interface at this time.
+     *            </p>
+     *            <p>
+     *            This option is supported only for HVM instances. Specifying
+     *            this option with a PV instance can make it unreachable.
+     *            </p>
+     */
+    public void setSriovNetSupport(AttributeValue sriovNetSupport) {
+        this.sriovNetSupport = sriovNetSupport;
+    }
+
+    /**
+     * <p>
+     * Set to <code>simple</code> to enable enhanced networking with the Intel
+     * 82599 Virtual Function interface for the instance.
+     * </p>
+     * <p>
+     * There is no way to disable enhanced networking with the Intel 82599
+     * Virtual Function interface at this time.
+     * </p>
+     * <p>
+     * This option is supported only for HVM instances. Specifying this option
+     * with a PV instance can make it unreachable.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sriovNetSupport <p>
+     *            Set to <code>simple</code> to enable enhanced networking with
+     *            the Intel 82599 Virtual Function interface for the instance.
+     *            </p>
+     *            <p>
+     *            There is no way to disable enhanced networking with the Intel
+     *            82599 Virtual Function interface at this time.
+     *            </p>
+     *            <p>
+     *            This option is supported only for HVM instances. Specifying
+     *            this option with a PV instance can make it unreachable.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withSriovNetSupport(AttributeValue sriovNetSupport) {
+        this.sriovNetSupport = sriovNetSupport;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's user data to the specified value. If you are using
+     * an AWS SDK or command line tool, base64-encoding is performed for you,
+     * and you can load the text from a file. Otherwise, you must provide
+     * base64-encoded text.
+     * </p>
+     *
+     * @return <p>
+     *         Changes the instance's user data to the specified value. If you
+     *         are using an AWS SDK or command line tool, base64-encoding is
+     *         performed for you, and you can load the text from a file.
+     *         Otherwise, you must provide base64-encoded text.
+     *         </p>
+     */
+    public BlobAttributeValue getUserData() {
+        return userData;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's user data to the specified value. If you are using
+     * an AWS SDK or command line tool, base64-encoding is performed for you,
+     * and you can load the text from a file. Otherwise, you must provide
+     * base64-encoded text.
+     * </p>
+     *
+     * @param userData <p>
+     *            Changes the instance's user data to the specified value. If
+     *            you are using an AWS SDK or command line tool, base64-encoding
+     *            is performed for you, and you can load the text from a file.
+     *            Otherwise, you must provide base64-encoded text.
+     *            </p>
+     */
+    public void setUserData(BlobAttributeValue userData) {
+        this.userData = userData;
+    }
+
+    /**
+     * <p>
+     * Changes the instance's user data to the specified value. If you are using
+     * an AWS SDK or command line tool, base64-encoding is performed for you,
+     * and you can load the text from a file. Otherwise, you must provide
+     * base64-encoded text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param userData <p>
+     *            Changes the instance's user data to the specified value. If
+     *            you are using an AWS SDK or command line tool, base64-encoding
+     *            is performed for you, and you can load the text from a file.
+     *            Otherwise, you must provide base64-encoded text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ModifyInstanceAttributeRequest withUserData(BlobAttributeValue userData) {
+        this.userData = userData;
+        return this;
+    }
+
+    /**
+     * <p>
      * A new value for the attribute. Use only with the <code>kernel</code>,
      * <code>ramdisk</code>, <code>userData</code>,
      * <code>disableApiTermination</code>, or
      * <code>instanceInitiatedShutdownBehavior</code> attribute.
+     * </p>
      *
-     * @return A new value for the attribute. Use only with the <code>kernel</code>,
-     *         <code>ramdisk</code>, <code>userData</code>,
+     * @return <p>
+     *         A new value for the attribute. Use only with the
+     *         <code>kernel</code>, <code>ramdisk</code>, <code>userData</code>,
      *         <code>disableApiTermination</code>, or
      *         <code>instanceInitiatedShutdownBehavior</code> attribute.
+     *         </p>
      */
     public String getValue() {
         return value;
     }
-    
+
     /**
+     * <p>
      * A new value for the attribute. Use only with the <code>kernel</code>,
      * <code>ramdisk</code>, <code>userData</code>,
      * <code>disableApiTermination</code>, or
      * <code>instanceInitiatedShutdownBehavior</code> attribute.
+     * </p>
      *
-     * @param value A new value for the attribute. Use only with the <code>kernel</code>,
-     *         <code>ramdisk</code>, <code>userData</code>,
-     *         <code>disableApiTermination</code>, or
-     *         <code>instanceInitiatedShutdownBehavior</code> attribute.
+     * @param value <p>
+     *            A new value for the attribute. Use only with the
+     *            <code>kernel</code>, <code>ramdisk</code>,
+     *            <code>userData</code>, <code>disableApiTermination</code>, or
+     *            <code>instanceInitiatedShutdownBehavior</code> attribute.
+     *            </p>
      */
     public void setValue(String value) {
         this.value = value;
     }
-    
+
     /**
+     * <p>
      * A new value for the attribute. Use only with the <code>kernel</code>,
      * <code>ramdisk</code>, <code>userData</code>,
      * <code>disableApiTermination</code>, or
      * <code>instanceInitiatedShutdownBehavior</code> attribute.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param value A new value for the attribute. Use only with the <code>kernel</code>,
-     *         <code>ramdisk</code>, <code>userData</code>,
-     *         <code>disableApiTermination</code>, or
-     *         <code>instanceInitiatedShutdownBehavior</code> attribute.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param value <p>
+     *            A new value for the attribute. Use only with the
+     *            <code>kernel</code>, <code>ramdisk</code>,
+     *            <code>userData</code>, <code>disableApiTermination</code>, or
+     *            <code>instanceInitiatedShutdownBehavior</code> attribute.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ModifyInstanceAttributeRequest withValue(String value) {
         this.value = value;
@@ -349,831 +1503,174 @@ public class ModifyInstanceAttributeRequest extends AmazonWebServiceRequest impl
     }
 
     /**
-     * Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     * that are currently attached. The volume must be owned by the caller.
-     * If no value is specified for <code>DeleteOnTermination</code>, the
-     * default is <code>true</code> and the volume is deleted when the
-     * instance is terminated. <p>To add instance store volumes to an Amazon
-     * EBS-backed instance, you must add them when you launch the instance.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     * the Block Device Mapping when Launching an Instance</a> in the
-     * <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     *         that are currently attached. The volume must be owned by the caller.
-     *         If no value is specified for <code>DeleteOnTermination</code>, the
-     *         default is <code>true</code> and the volume is deleted when the
-     *         instance is terminated. <p>To add instance store volumes to an Amazon
-     *         EBS-backed instance, you must add them when you launch the instance.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     *         the Block Device Mapping when Launching an Instance</a> in the
-     *         <i>Amazon Elastic Compute Cloud User Guide</i>.
-     */
-    public java.util.List<InstanceBlockDeviceMappingSpecification> getBlockDeviceMappings() {
-        if (blockDeviceMappings == null) {
-              blockDeviceMappings = new com.amazonaws.internal.ListWithAutoConstructFlag<InstanceBlockDeviceMappingSpecification>();
-              blockDeviceMappings.setAutoConstruct(true);
-        }
-        return blockDeviceMappings;
-    }
-    
-    /**
-     * Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     * that are currently attached. The volume must be owned by the caller.
-     * If no value is specified for <code>DeleteOnTermination</code>, the
-     * default is <code>true</code> and the volume is deleted when the
-     * instance is terminated. <p>To add instance store volumes to an Amazon
-     * EBS-backed instance, you must add them when you launch the instance.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     * the Block Device Mapping when Launching an Instance</a> in the
-     * <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @param blockDeviceMappings Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     *         that are currently attached. The volume must be owned by the caller.
-     *         If no value is specified for <code>DeleteOnTermination</code>, the
-     *         default is <code>true</code> and the volume is deleted when the
-     *         instance is terminated. <p>To add instance store volumes to an Amazon
-     *         EBS-backed instance, you must add them when you launch the instance.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     *         the Block Device Mapping when Launching an Instance</a> in the
-     *         <i>Amazon Elastic Compute Cloud User Guide</i>.
-     */
-    public void setBlockDeviceMappings(java.util.Collection<InstanceBlockDeviceMappingSpecification> blockDeviceMappings) {
-        if (blockDeviceMappings == null) {
-            this.blockDeviceMappings = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<InstanceBlockDeviceMappingSpecification> blockDeviceMappingsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<InstanceBlockDeviceMappingSpecification>(blockDeviceMappings.size());
-        blockDeviceMappingsCopy.addAll(blockDeviceMappings);
-        this.blockDeviceMappings = blockDeviceMappingsCopy;
-    }
-    
-    /**
-     * Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     * that are currently attached. The volume must be owned by the caller.
-     * If no value is specified for <code>DeleteOnTermination</code>, the
-     * default is <code>true</code> and the volume is deleted when the
-     * instance is terminated. <p>To add instance store volumes to an Amazon
-     * EBS-backed instance, you must add them when you launch the instance.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     * the Block Device Mapping when Launching an Instance</a> in the
-     * <i>Amazon Elastic Compute Cloud User Guide</i>.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param blockDeviceMappings Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     *         that are currently attached. The volume must be owned by the caller.
-     *         If no value is specified for <code>DeleteOnTermination</code>, the
-     *         default is <code>true</code> and the volume is deleted when the
-     *         instance is terminated. <p>To add instance store volumes to an Amazon
-     *         EBS-backed instance, you must add them when you launch the instance.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     *         the Block Device Mapping when Launching an Instance</a> in the
-     *         <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withBlockDeviceMappings(InstanceBlockDeviceMappingSpecification... blockDeviceMappings) {
-        if (getBlockDeviceMappings() == null) setBlockDeviceMappings(new java.util.ArrayList<InstanceBlockDeviceMappingSpecification>(blockDeviceMappings.length));
-        for (InstanceBlockDeviceMappingSpecification value : blockDeviceMappings) {
-            getBlockDeviceMappings().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     * that are currently attached. The volume must be owned by the caller.
-     * If no value is specified for <code>DeleteOnTermination</code>, the
-     * default is <code>true</code> and the volume is deleted when the
-     * instance is terminated. <p>To add instance store volumes to an Amazon
-     * EBS-backed instance, you must add them when you launch the instance.
-     * For more information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     * the Block Device Mapping when Launching an Instance</a> in the
-     * <i>Amazon Elastic Compute Cloud User Guide</i>.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param blockDeviceMappings Modifies the <code>DeleteOnTermination</code> attribute for volumes
-     *         that are currently attached. The volume must be owned by the caller.
-     *         If no value is specified for <code>DeleteOnTermination</code>, the
-     *         default is <code>true</code> and the volume is deleted when the
-     *         instance is terminated. <p>To add instance store volumes to an Amazon
-     *         EBS-backed instance, you must add them when you launch the instance.
-     *         For more information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html#Using_OverridingAMIBDM">Updating
-     *         the Block Device Mapping when Launching an Instance</a> in the
-     *         <i>Amazon Elastic Compute Cloud User Guide</i>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withBlockDeviceMappings(java.util.Collection<InstanceBlockDeviceMappingSpecification> blockDeviceMappings) {
-        if (blockDeviceMappings == null) {
-            this.blockDeviceMappings = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<InstanceBlockDeviceMappingSpecification> blockDeviceMappingsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<InstanceBlockDeviceMappingSpecification>(blockDeviceMappings.size());
-            blockDeviceMappingsCopy.addAll(blockDeviceMappings);
-            this.blockDeviceMappings = blockDeviceMappingsCopy;
-        }
-
-        return this;
-    }
-
-    /**
-     * Specifies whether source/destination checking is enabled. A value of
-     * <code>true</code> means that checking is enabled, and
-     * <code>false</code> means checking is disabled. This value must be
-     * <code>false</code> for a NAT instance to perform NAT.
-     *
-     * @return Specifies whether source/destination checking is enabled. A value of
-     *         <code>true</code> means that checking is enabled, and
-     *         <code>false</code> means checking is disabled. This value must be
-     *         <code>false</code> for a NAT instance to perform NAT.
-     */
-    public Boolean isSourceDestCheck() {
-        return sourceDestCheck;
-    }
-    
-    /**
-     * Specifies whether source/destination checking is enabled. A value of
-     * <code>true</code> means that checking is enabled, and
-     * <code>false</code> means checking is disabled. This value must be
-     * <code>false</code> for a NAT instance to perform NAT.
-     *
-     * @param sourceDestCheck Specifies whether source/destination checking is enabled. A value of
-     *         <code>true</code> means that checking is enabled, and
-     *         <code>false</code> means checking is disabled. This value must be
-     *         <code>false</code> for a NAT instance to perform NAT.
-     */
-    public void setSourceDestCheck(Boolean sourceDestCheck) {
-        this.sourceDestCheck = sourceDestCheck;
-    }
-    
-    /**
-     * Specifies whether source/destination checking is enabled. A value of
-     * <code>true</code> means that checking is enabled, and
-     * <code>false</code> means checking is disabled. This value must be
-     * <code>false</code> for a NAT instance to perform NAT.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param sourceDestCheck Specifies whether source/destination checking is enabled. A value of
-     *         <code>true</code> means that checking is enabled, and
-     *         <code>false</code> means checking is disabled. This value must be
-     *         <code>false</code> for a NAT instance to perform NAT.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withSourceDestCheck(Boolean sourceDestCheck) {
-        this.sourceDestCheck = sourceDestCheck;
-        return this;
-    }
-
-    /**
-     * Specifies whether source/destination checking is enabled. A value of
-     * <code>true</code> means that checking is enabled, and
-     * <code>false</code> means checking is disabled. This value must be
-     * <code>false</code> for a NAT instance to perform NAT.
-     *
-     * @return Specifies whether source/destination checking is enabled. A value of
-     *         <code>true</code> means that checking is enabled, and
-     *         <code>false</code> means checking is disabled. This value must be
-     *         <code>false</code> for a NAT instance to perform NAT.
-     */
-    public Boolean getSourceDestCheck() {
-        return sourceDestCheck;
-    }
-
-    /**
-     * If the value is <code>true</code>, you can't terminate the instance
-     * using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     * cannot use this paramater for Spot Instances.
-     *
-     * @return If the value is <code>true</code>, you can't terminate the instance
-     *         using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     *         cannot use this paramater for Spot Instances.
-     */
-    public Boolean isDisableApiTermination() {
-        return disableApiTermination;
-    }
-    
-    /**
-     * If the value is <code>true</code>, you can't terminate the instance
-     * using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     * cannot use this paramater for Spot Instances.
-     *
-     * @param disableApiTermination If the value is <code>true</code>, you can't terminate the instance
-     *         using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     *         cannot use this paramater for Spot Instances.
-     */
-    public void setDisableApiTermination(Boolean disableApiTermination) {
-        this.disableApiTermination = disableApiTermination;
-    }
-    
-    /**
-     * If the value is <code>true</code>, you can't terminate the instance
-     * using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     * cannot use this paramater for Spot Instances.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param disableApiTermination If the value is <code>true</code>, you can't terminate the instance
-     *         using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     *         cannot use this paramater for Spot Instances.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withDisableApiTermination(Boolean disableApiTermination) {
-        this.disableApiTermination = disableApiTermination;
-        return this;
-    }
-
-    /**
-     * If the value is <code>true</code>, you can't terminate the instance
-     * using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     * cannot use this paramater for Spot Instances.
-     *
-     * @return If the value is <code>true</code>, you can't terminate the instance
-     *         using the Amazon EC2 console, CLI, or API; otherwise, you can. You
-     *         cannot use this paramater for Spot Instances.
-     */
-    public Boolean getDisableApiTermination() {
-        return disableApiTermination;
-    }
-
-    /**
-     * Changes the instance type to the specified value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a>. If the instance type is not valid, the error returned is
-     * <code>InvalidInstanceAttributeValue</code>.
-     *
-     * @return Changes the instance type to the specified value. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a>. If the instance type is not valid, the error returned is
-     *         <code>InvalidInstanceAttributeValue</code>.
-     */
-    public String getInstanceType() {
-        return instanceType;
-    }
-    
-    /**
-     * Changes the instance type to the specified value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a>. If the instance type is not valid, the error returned is
-     * <code>InvalidInstanceAttributeValue</code>.
-     *
-     * @param instanceType Changes the instance type to the specified value. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a>. If the instance type is not valid, the error returned is
-     *         <code>InvalidInstanceAttributeValue</code>.
-     */
-    public void setInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-    }
-    
-    /**
-     * Changes the instance type to the specified value. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     * Types</a>. If the instance type is not valid, the error returned is
-     * <code>InvalidInstanceAttributeValue</code>.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param instanceType Changes the instance type to the specified value. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html">Instance
-     *         Types</a>. If the instance type is not valid, the error returned is
-     *         <code>InvalidInstanceAttributeValue</code>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-        return this;
-    }
-
-    /**
-     * Changes the instance's kernel to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     *
-     * @return Changes the instance's kernel to the specified value. We recommend
-     *         that you use PV-GRUB instead of kernels and RAM disks. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     */
-    public String getKernel() {
-        return kernel;
-    }
-    
-    /**
-     * Changes the instance's kernel to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     *
-     * @param kernel Changes the instance's kernel to the specified value. We recommend
-     *         that you use PV-GRUB instead of kernels and RAM disks. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     */
-    public void setKernel(String kernel) {
-        this.kernel = kernel;
-    }
-    
-    /**
-     * Changes the instance's kernel to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param kernel Changes the instance's kernel to the specified value. We recommend
-     *         that you use PV-GRUB instead of kernels and RAM disks. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withKernel(String kernel) {
-        this.kernel = kernel;
-        return this;
-    }
-
-    /**
-     * Changes the instance's RAM disk to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     *
-     * @return Changes the instance's RAM disk to the specified value. We recommend
-     *         that you use PV-GRUB instead of kernels and RAM disks. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     */
-    public String getRamdisk() {
-        return ramdisk;
-    }
-    
-    /**
-     * Changes the instance's RAM disk to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     *
-     * @param ramdisk Changes the instance's RAM disk to the specified value. We recommend
-     *         that you use PV-GRUB instead of kernels and RAM disks. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     */
-    public void setRamdisk(String ramdisk) {
-        this.ramdisk = ramdisk;
-    }
-    
-    /**
-     * Changes the instance's RAM disk to the specified value. We recommend
-     * that you use PV-GRUB instead of kernels and RAM disks. For more
-     * information, see <a
-     * href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param ramdisk Changes the instance's RAM disk to the specified value. We recommend
-     *         that you use PV-GRUB instead of kernels and RAM disks. For more
-     *         information, see <a
-     *         href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/UserProvidedKernels.html">PV-GRUB</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withRamdisk(String ramdisk) {
-        this.ramdisk = ramdisk;
-        return this;
-    }
-
-    /**
-     * Changes the instance's user data to the specified base64-encoded
-     * value. For command line tools, base64 encoding is performed for you.
-     *
-     * @return Changes the instance's user data to the specified base64-encoded
-     *         value. For command line tools, base64 encoding is performed for you.
-     */
-    public String getUserData() {
-        return userData;
-    }
-    
-    /**
-     * Changes the instance's user data to the specified base64-encoded
-     * value. For command line tools, base64 encoding is performed for you.
-     *
-     * @param userData Changes the instance's user data to the specified base64-encoded
-     *         value. For command line tools, base64 encoding is performed for you.
-     */
-    public void setUserData(String userData) {
-        this.userData = userData;
-    }
-    
-    /**
-     * Changes the instance's user data to the specified base64-encoded
-     * value. For command line tools, base64 encoding is performed for you.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param userData Changes the instance's user data to the specified base64-encoded
-     *         value. For command line tools, base64 encoding is performed for you.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withUserData(String userData) {
-        this.userData = userData;
-        return this;
-    }
-
-    /**
-     * Specifies whether an instance stops or terminates when you initiate
-     * shutdown from the instance (using the operating system command for
-     * system shutdown).
-     *
-     * @return Specifies whether an instance stops or terminates when you initiate
-     *         shutdown from the instance (using the operating system command for
-     *         system shutdown).
-     */
-    public String getInstanceInitiatedShutdownBehavior() {
-        return instanceInitiatedShutdownBehavior;
-    }
-    
-    /**
-     * Specifies whether an instance stops or terminates when you initiate
-     * shutdown from the instance (using the operating system command for
-     * system shutdown).
-     *
-     * @param instanceInitiatedShutdownBehavior Specifies whether an instance stops or terminates when you initiate
-     *         shutdown from the instance (using the operating system command for
-     *         system shutdown).
-     */
-    public void setInstanceInitiatedShutdownBehavior(String instanceInitiatedShutdownBehavior) {
-        this.instanceInitiatedShutdownBehavior = instanceInitiatedShutdownBehavior;
-    }
-    
-    /**
-     * Specifies whether an instance stops or terminates when you initiate
-     * shutdown from the instance (using the operating system command for
-     * system shutdown).
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param instanceInitiatedShutdownBehavior Specifies whether an instance stops or terminates when you initiate
-     *         shutdown from the instance (using the operating system command for
-     *         system shutdown).
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withInstanceInitiatedShutdownBehavior(String instanceInitiatedShutdownBehavior) {
-        this.instanceInitiatedShutdownBehavior = instanceInitiatedShutdownBehavior;
-        return this;
-    }
-
-    /**
-     * [EC2-VPC] Changes the security groups of the instance. You must
-     * specify at least one security group, even if it's just the default
-     * security group for the VPC. You must specify the security group ID,
-     * not the security group name.
-     *
-     * @return [EC2-VPC] Changes the security groups of the instance. You must
-     *         specify at least one security group, even if it's just the default
-     *         security group for the VPC. You must specify the security group ID,
-     *         not the security group name.
-     */
-    public java.util.List<String> getGroups() {
-        if (groups == null) {
-              groups = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              groups.setAutoConstruct(true);
-        }
-        return groups;
-    }
-    
-    /**
-     * [EC2-VPC] Changes the security groups of the instance. You must
-     * specify at least one security group, even if it's just the default
-     * security group for the VPC. You must specify the security group ID,
-     * not the security group name.
-     *
-     * @param groups [EC2-VPC] Changes the security groups of the instance. You must
-     *         specify at least one security group, even if it's just the default
-     *         security group for the VPC. You must specify the security group ID,
-     *         not the security group name.
-     */
-    public void setGroups(java.util.Collection<String> groups) {
-        if (groups == null) {
-            this.groups = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> groupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groups.size());
-        groupsCopy.addAll(groups);
-        this.groups = groupsCopy;
-    }
-    
-    /**
-     * [EC2-VPC] Changes the security groups of the instance. You must
-     * specify at least one security group, even if it's just the default
-     * security group for the VPC. You must specify the security group ID,
-     * not the security group name.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param groups [EC2-VPC] Changes the security groups of the instance. You must
-     *         specify at least one security group, even if it's just the default
-     *         security group for the VPC. You must specify the security group ID,
-     *         not the security group name.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withGroups(String... groups) {
-        if (getGroups() == null) setGroups(new java.util.ArrayList<String>(groups.length));
-        for (String value : groups) {
-            getGroups().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * [EC2-VPC] Changes the security groups of the instance. You must
-     * specify at least one security group, even if it's just the default
-     * security group for the VPC. You must specify the security group ID,
-     * not the security group name.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param groups [EC2-VPC] Changes the security groups of the instance. You must
-     *         specify at least one security group, even if it's just the default
-     *         security group for the VPC. You must specify the security group ID,
-     *         not the security group name.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withGroups(java.util.Collection<String> groups) {
-        if (groups == null) {
-            this.groups = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> groupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groups.size());
-            groupsCopy.addAll(groups);
-            this.groups = groupsCopy;
-        }
-
-        return this;
-    }
-
-    /**
-     * Specifies whether the instance is optimized for EBS I/O. This
-     * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal EBS I/O performance.
-     * This optimization isn't available with all instance types. Additional
-     * usage charges apply when using an EBS Optimized instance.
-     *
-     * @return Specifies whether the instance is optimized for EBS I/O. This
-     *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal EBS I/O performance.
-     *         This optimization isn't available with all instance types. Additional
-     *         usage charges apply when using an EBS Optimized instance.
-     */
-    public Boolean isEbsOptimized() {
-        return ebsOptimized;
-    }
-    
-    /**
-     * Specifies whether the instance is optimized for EBS I/O. This
-     * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal EBS I/O performance.
-     * This optimization isn't available with all instance types. Additional
-     * usage charges apply when using an EBS Optimized instance.
-     *
-     * @param ebsOptimized Specifies whether the instance is optimized for EBS I/O. This
-     *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal EBS I/O performance.
-     *         This optimization isn't available with all instance types. Additional
-     *         usage charges apply when using an EBS Optimized instance.
-     */
-    public void setEbsOptimized(Boolean ebsOptimized) {
-        this.ebsOptimized = ebsOptimized;
-    }
-    
-    /**
-     * Specifies whether the instance is optimized for EBS I/O. This
-     * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal EBS I/O performance.
-     * This optimization isn't available with all instance types. Additional
-     * usage charges apply when using an EBS Optimized instance.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param ebsOptimized Specifies whether the instance is optimized for EBS I/O. This
-     *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal EBS I/O performance.
-     *         This optimization isn't available with all instance types. Additional
-     *         usage charges apply when using an EBS Optimized instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withEbsOptimized(Boolean ebsOptimized) {
-        this.ebsOptimized = ebsOptimized;
-        return this;
-    }
-
-    /**
-     * Specifies whether the instance is optimized for EBS I/O. This
-     * optimization provides dedicated throughput to Amazon EBS and an
-     * optimized configuration stack to provide optimal EBS I/O performance.
-     * This optimization isn't available with all instance types. Additional
-     * usage charges apply when using an EBS Optimized instance.
-     *
-     * @return Specifies whether the instance is optimized for EBS I/O. This
-     *         optimization provides dedicated throughput to Amazon EBS and an
-     *         optimized configuration stack to provide optimal EBS I/O performance.
-     *         This optimization isn't available with all instance types. Additional
-     *         usage charges apply when using an EBS Optimized instance.
-     */
-    public Boolean getEbsOptimized() {
-        return ebsOptimized;
-    }
-
-    /**
-     * Set to <code>simple</code> to enable enhanced networking for the
-     * instance. <p>There is no way to disable enhanced networking at this
-     * time. <p>This option is supported only for HVM instances. Specifying
-     * this option with a PV instance can make it unreachable.
-     *
-     * @return Set to <code>simple</code> to enable enhanced networking for the
-     *         instance. <p>There is no way to disable enhanced networking at this
-     *         time. <p>This option is supported only for HVM instances. Specifying
-     *         this option with a PV instance can make it unreachable.
-     */
-    public String getSriovNetSupport() {
-        return sriovNetSupport;
-    }
-    
-    /**
-     * Set to <code>simple</code> to enable enhanced networking for the
-     * instance. <p>There is no way to disable enhanced networking at this
-     * time. <p>This option is supported only for HVM instances. Specifying
-     * this option with a PV instance can make it unreachable.
-     *
-     * @param sriovNetSupport Set to <code>simple</code> to enable enhanced networking for the
-     *         instance. <p>There is no way to disable enhanced networking at this
-     *         time. <p>This option is supported only for HVM instances. Specifying
-     *         this option with a PV instance can make it unreachable.
-     */
-    public void setSriovNetSupport(String sriovNetSupport) {
-        this.sriovNetSupport = sriovNetSupport;
-    }
-    
-    /**
-     * Set to <code>simple</code> to enable enhanced networking for the
-     * instance. <p>There is no way to disable enhanced networking at this
-     * time. <p>This option is supported only for HVM instances. Specifying
-     * this option with a PV instance can make it unreachable.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param sriovNetSupport Set to <code>simple</code> to enable enhanced networking for the
-     *         instance. <p>There is no way to disable enhanced networking at this
-     *         time. <p>This option is supported only for HVM instances. Specifying
-     *         this option with a PV instance can make it unreachable.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ModifyInstanceAttributeRequest withSriovNetSupport(String sriovNetSupport) {
-        this.sriovNetSupport = sriovNetSupport;
-        return this;
-    }
-
-    /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
-     */
-    @Override
-    public Request<ModifyInstanceAttributeRequest> getDryRunRequest() {
-        Request<ModifyInstanceAttributeRequest> request = new ModifyInstanceAttributeRequestMarshaller().marshall(this);
-        request.addParameter("DryRun", Boolean.toString(true));
-        return request;
-    }
-    
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getInstanceId() != null) sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getAttribute() != null) sb.append("Attribute: " + getAttribute() + ",");
-        if (getValue() != null) sb.append("Value: " + getValue() + ",");
-        if (getBlockDeviceMappings() != null) sb.append("BlockDeviceMappings: " + getBlockDeviceMappings() + ",");
-        if (isSourceDestCheck() != null) sb.append("SourceDestCheck: " + isSourceDestCheck() + ",");
-        if (isDisableApiTermination() != null) sb.append("DisableApiTermination: " + isDisableApiTermination() + ",");
-        if (getInstanceType() != null) sb.append("InstanceType: " + getInstanceType() + ",");
-        if (getKernel() != null) sb.append("Kernel: " + getKernel() + ",");
-        if (getRamdisk() != null) sb.append("Ramdisk: " + getRamdisk() + ",");
-        if (getUserData() != null) sb.append("UserData: " + getUserData() + ",");
-        if (getInstanceInitiatedShutdownBehavior() != null) sb.append("InstanceInitiatedShutdownBehavior: " + getInstanceInitiatedShutdownBehavior() + ",");
-        if (getGroups() != null) sb.append("Groups: " + getGroups() + ",");
-        if (isEbsOptimized() != null) sb.append("EbsOptimized: " + isEbsOptimized() + ",");
-        if (getSriovNetSupport() != null) sb.append("SriovNetSupport: " + getSriovNetSupport() );
+        if (getSourceDestCheck() != null)
+            sb.append("SourceDestCheck: " + getSourceDestCheck() + ",");
+        if (getAttribute() != null)
+            sb.append("Attribute: " + getAttribute() + ",");
+        if (getBlockDeviceMappings() != null)
+            sb.append("BlockDeviceMappings: " + getBlockDeviceMappings() + ",");
+        if (getDisableApiTermination() != null)
+            sb.append("DisableApiTermination: " + getDisableApiTermination() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun() + ",");
+        if (getEbsOptimized() != null)
+            sb.append("EbsOptimized: " + getEbsOptimized() + ",");
+        if (getEnaSupport() != null)
+            sb.append("EnaSupport: " + getEnaSupport() + ",");
+        if (getGroups() != null)
+            sb.append("Groups: " + getGroups() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getInstanceInitiatedShutdownBehavior() != null)
+            sb.append("InstanceInitiatedShutdownBehavior: "
+                    + getInstanceInitiatedShutdownBehavior() + ",");
+        if (getInstanceType() != null)
+            sb.append("InstanceType: " + getInstanceType() + ",");
+        if (getKernel() != null)
+            sb.append("Kernel: " + getKernel() + ",");
+        if (getRamdisk() != null)
+            sb.append("Ramdisk: " + getRamdisk() + ",");
+        if (getSriovNetSupport() != null)
+            sb.append("SriovNetSupport: " + getSriovNetSupport() + ",");
+        if (getUserData() != null)
+            sb.append("UserData: " + getUserData() + ",");
+        if (getValue() != null)
+            sb.append("Value: " + getValue());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode()); 
-        hashCode = prime * hashCode + ((getAttribute() == null) ? 0 : getAttribute().hashCode()); 
-        hashCode = prime * hashCode + ((getValue() == null) ? 0 : getValue().hashCode()); 
-        hashCode = prime * hashCode + ((getBlockDeviceMappings() == null) ? 0 : getBlockDeviceMappings().hashCode()); 
-        hashCode = prime * hashCode + ((isSourceDestCheck() == null) ? 0 : isSourceDestCheck().hashCode()); 
-        hashCode = prime * hashCode + ((isDisableApiTermination() == null) ? 0 : isDisableApiTermination().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode()); 
-        hashCode = prime * hashCode + ((getKernel() == null) ? 0 : getKernel().hashCode()); 
-        hashCode = prime * hashCode + ((getRamdisk() == null) ? 0 : getRamdisk().hashCode()); 
-        hashCode = prime * hashCode + ((getUserData() == null) ? 0 : getUserData().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceInitiatedShutdownBehavior() == null) ? 0 : getInstanceInitiatedShutdownBehavior().hashCode()); 
-        hashCode = prime * hashCode + ((getGroups() == null) ? 0 : getGroups().hashCode()); 
-        hashCode = prime * hashCode + ((isEbsOptimized() == null) ? 0 : isEbsOptimized().hashCode()); 
-        hashCode = prime * hashCode + ((getSriovNetSupport() == null) ? 0 : getSriovNetSupport().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getSourceDestCheck() == null) ? 0 : getSourceDestCheck().hashCode());
+        hashCode = prime * hashCode + ((getAttribute() == null) ? 0 : getAttribute().hashCode());
+        hashCode = prime * hashCode
+                + ((getBlockDeviceMappings() == null) ? 0 : getBlockDeviceMappings().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDisableApiTermination() == null) ? 0 : getDisableApiTermination().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
+        hashCode = prime * hashCode
+                + ((getEbsOptimized() == null) ? 0 : getEbsOptimized().hashCode());
+        hashCode = prime * hashCode + ((getEnaSupport() == null) ? 0 : getEnaSupport().hashCode());
+        hashCode = prime * hashCode + ((getGroups() == null) ? 0 : getGroups().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getInstanceInitiatedShutdownBehavior() == null) ? 0
+                        : getInstanceInitiatedShutdownBehavior().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode());
+        hashCode = prime * hashCode + ((getKernel() == null) ? 0 : getKernel().hashCode());
+        hashCode = prime * hashCode + ((getRamdisk() == null) ? 0 : getRamdisk().hashCode());
+        hashCode = prime * hashCode
+                + ((getSriovNetSupport() == null) ? 0 : getSriovNetSupport().hashCode());
+        hashCode = prime * hashCode + ((getUserData() == null) ? 0 : getUserData().hashCode());
+        hashCode = prime * hashCode + ((getValue() == null) ? 0 : getValue().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ModifyInstanceAttributeRequest == false) return false;
-        ModifyInstanceAttributeRequest other = (ModifyInstanceAttributeRequest)obj;
-        
-        if (other.getInstanceId() == null ^ this.getInstanceId() == null) return false;
-        if (other.getInstanceId() != null && other.getInstanceId().equals(this.getInstanceId()) == false) return false; 
-        if (other.getAttribute() == null ^ this.getAttribute() == null) return false;
-        if (other.getAttribute() != null && other.getAttribute().equals(this.getAttribute()) == false) return false; 
-        if (other.getValue() == null ^ this.getValue() == null) return false;
-        if (other.getValue() != null && other.getValue().equals(this.getValue()) == false) return false; 
-        if (other.getBlockDeviceMappings() == null ^ this.getBlockDeviceMappings() == null) return false;
-        if (other.getBlockDeviceMappings() != null && other.getBlockDeviceMappings().equals(this.getBlockDeviceMappings()) == false) return false; 
-        if (other.isSourceDestCheck() == null ^ this.isSourceDestCheck() == null) return false;
-        if (other.isSourceDestCheck() != null && other.isSourceDestCheck().equals(this.isSourceDestCheck()) == false) return false; 
-        if (other.isDisableApiTermination() == null ^ this.isDisableApiTermination() == null) return false;
-        if (other.isDisableApiTermination() != null && other.isDisableApiTermination().equals(this.isDisableApiTermination()) == false) return false; 
-        if (other.getInstanceType() == null ^ this.getInstanceType() == null) return false;
-        if (other.getInstanceType() != null && other.getInstanceType().equals(this.getInstanceType()) == false) return false; 
-        if (other.getKernel() == null ^ this.getKernel() == null) return false;
-        if (other.getKernel() != null && other.getKernel().equals(this.getKernel()) == false) return false; 
-        if (other.getRamdisk() == null ^ this.getRamdisk() == null) return false;
-        if (other.getRamdisk() != null && other.getRamdisk().equals(this.getRamdisk()) == false) return false; 
-        if (other.getUserData() == null ^ this.getUserData() == null) return false;
-        if (other.getUserData() != null && other.getUserData().equals(this.getUserData()) == false) return false; 
-        if (other.getInstanceInitiatedShutdownBehavior() == null ^ this.getInstanceInitiatedShutdownBehavior() == null) return false;
-        if (other.getInstanceInitiatedShutdownBehavior() != null && other.getInstanceInitiatedShutdownBehavior().equals(this.getInstanceInitiatedShutdownBehavior()) == false) return false; 
-        if (other.getGroups() == null ^ this.getGroups() == null) return false;
-        if (other.getGroups() != null && other.getGroups().equals(this.getGroups()) == false) return false; 
-        if (other.isEbsOptimized() == null ^ this.isEbsOptimized() == null) return false;
-        if (other.isEbsOptimized() != null && other.isEbsOptimized().equals(this.isEbsOptimized()) == false) return false; 
-        if (other.getSriovNetSupport() == null ^ this.getSriovNetSupport() == null) return false;
-        if (other.getSriovNetSupport() != null && other.getSriovNetSupport().equals(this.getSriovNetSupport()) == false) return false; 
+        if (obj instanceof ModifyInstanceAttributeRequest == false)
+            return false;
+        ModifyInstanceAttributeRequest other = (ModifyInstanceAttributeRequest) obj;
+
+        if (other.getSourceDestCheck() == null ^ this.getSourceDestCheck() == null)
+            return false;
+        if (other.getSourceDestCheck() != null
+                && other.getSourceDestCheck().equals(this.getSourceDestCheck()) == false)
+            return false;
+        if (other.getAttribute() == null ^ this.getAttribute() == null)
+            return false;
+        if (other.getAttribute() != null
+                && other.getAttribute().equals(this.getAttribute()) == false)
+            return false;
+        if (other.getBlockDeviceMappings() == null ^ this.getBlockDeviceMappings() == null)
+            return false;
+        if (other.getBlockDeviceMappings() != null
+                && other.getBlockDeviceMappings().equals(this.getBlockDeviceMappings()) == false)
+            return false;
+        if (other.getDisableApiTermination() == null ^ this.getDisableApiTermination() == null)
+            return false;
+        if (other.getDisableApiTermination() != null
+                && other.getDisableApiTermination().equals(this.getDisableApiTermination()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
+        if (other.getEbsOptimized() == null ^ this.getEbsOptimized() == null)
+            return false;
+        if (other.getEbsOptimized() != null
+                && other.getEbsOptimized().equals(this.getEbsOptimized()) == false)
+            return false;
+        if (other.getEnaSupport() == null ^ this.getEnaSupport() == null)
+            return false;
+        if (other.getEnaSupport() != null
+                && other.getEnaSupport().equals(this.getEnaSupport()) == false)
+            return false;
+        if (other.getGroups() == null ^ this.getGroups() == null)
+            return false;
+        if (other.getGroups() != null && other.getGroups().equals(this.getGroups()) == false)
+            return false;
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getInstanceInitiatedShutdownBehavior() == null
+                ^ this.getInstanceInitiatedShutdownBehavior() == null)
+            return false;
+        if (other.getInstanceInitiatedShutdownBehavior() != null
+                && other.getInstanceInitiatedShutdownBehavior().equals(
+                        this.getInstanceInitiatedShutdownBehavior()) == false)
+            return false;
+        if (other.getInstanceType() == null ^ this.getInstanceType() == null)
+            return false;
+        if (other.getInstanceType() != null
+                && other.getInstanceType().equals(this.getInstanceType()) == false)
+            return false;
+        if (other.getKernel() == null ^ this.getKernel() == null)
+            return false;
+        if (other.getKernel() != null && other.getKernel().equals(this.getKernel()) == false)
+            return false;
+        if (other.getRamdisk() == null ^ this.getRamdisk() == null)
+            return false;
+        if (other.getRamdisk() != null && other.getRamdisk().equals(this.getRamdisk()) == false)
+            return false;
+        if (other.getSriovNetSupport() == null ^ this.getSriovNetSupport() == null)
+            return false;
+        if (other.getSriovNetSupport() != null
+                && other.getSriovNetSupport().equals(this.getSriovNetSupport()) == false)
+            return false;
+        if (other.getUserData() == null ^ this.getUserData() == null)
+            return false;
+        if (other.getUserData() != null && other.getUserData().equals(this.getUserData()) == false)
+            return false;
+        if (other.getValue() == null ^ this.getValue() == null)
+            return false;
+        if (other.getValue() != null && other.getValue().equals(this.getValue()) == false)
+            return false;
         return true;
     }
-    
 }
-    

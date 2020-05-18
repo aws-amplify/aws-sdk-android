@@ -1,246 +1,339 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Run Instances Request Marshaller
+ * JSON request marshaller for RunInstancesRequest
  */
-public class RunInstancesRequestMarshaller implements Marshaller<Request<RunInstancesRequest>, RunInstancesRequest> {
+public class RunInstancesRequestMarshaller implements
+        Marshaller<Request<RunInstancesRequest>, RunInstancesRequest> {
 
     public Request<RunInstancesRequest> marshall(RunInstancesRequest runInstancesRequest) {
-
         if (runInstancesRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(RunInstancesRequest)");
         }
 
-        Request<RunInstancesRequest> request = new DefaultRequest<RunInstancesRequest>(runInstancesRequest, "AmazonEC2");
-        request.addParameter("Action", "RunInstances");
-        request.addParameter("Version", "2015-10-01");
+        Request<RunInstancesRequest> request = new DefaultRequest<RunInstancesRequest>(
+                runInstancesRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        if (runInstancesRequest.getImageId() != null) {
-            request.addParameter("ImageId", StringUtils.fromString(runInstancesRequest.getImageId()));
-        }
-        if (runInstancesRequest.getMinCount() != null) {
-            request.addParameter("MinCount", StringUtils.fromInteger(runInstancesRequest.getMinCount()));
-        }
-        if (runInstancesRequest.getMaxCount() != null) {
-            request.addParameter("MaxCount", StringUtils.fromInteger(runInstancesRequest.getMaxCount()));
-        }
-        if (runInstancesRequest.getKeyName() != null) {
-            request.addParameter("KeyName", StringUtils.fromString(runInstancesRequest.getKeyName()));
-        }
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
 
-        java.util.List<String> securityGroupsList = runInstancesRequest.getSecurityGroups();
-        int securityGroupsListIndex = 1;
-
-        for (String securityGroupsListValue : securityGroupsList) {
-            if (securityGroupsListValue != null) {
-                request.addParameter("SecurityGroup." + securityGroupsListIndex, StringUtils.fromString(securityGroupsListValue));
-            }
-
-            securityGroupsListIndex++;
-        }
-
-        java.util.List<String> securityGroupIdsList = runInstancesRequest.getSecurityGroupIds();
-        int securityGroupIdsListIndex = 1;
-
-        for (String securityGroupIdsListValue : securityGroupIdsList) {
-            if (securityGroupIdsListValue != null) {
-                request.addParameter("SecurityGroupId." + securityGroupIdsListIndex, StringUtils.fromString(securityGroupIdsListValue));
-            }
-
-            securityGroupIdsListIndex++;
-        }
-        if (runInstancesRequest.getUserData() != null) {
-            request.addParameter("UserData", StringUtils.fromString(runInstancesRequest.getUserData()));
-        }
-        if (runInstancesRequest.getInstanceType() != null) {
-            request.addParameter("InstanceType", StringUtils.fromString(runInstancesRequest.getInstanceType()));
-        }
-        Placement placementPlacement = runInstancesRequest.getPlacement();
-        if (placementPlacement != null) {
-            if (placementPlacement.getAvailabilityZone() != null) {
-                request.addParameter("Placement.AvailabilityZone", StringUtils.fromString(placementPlacement.getAvailabilityZone()));
-            }
-            if (placementPlacement.getGroupName() != null) {
-                request.addParameter("Placement.GroupName", StringUtils.fromString(placementPlacement.getGroupName()));
-            }
-            if (placementPlacement.getTenancy() != null) {
-                request.addParameter("Placement.Tenancy", StringUtils.fromString(placementPlacement.getTenancy()));
-            }
-            if (placementPlacement.getHostId() != null) {
-                request.addParameter("Placement.HostId", StringUtils.fromString(placementPlacement.getHostId()));
-            }
-            if (placementPlacement.getAffinity() != null) {
-                request.addParameter("Placement.Affinity", StringUtils.fromString(placementPlacement.getAffinity()));
-            }
-        }
-        if (runInstancesRequest.getKernelId() != null) {
-            request.addParameter("KernelId", StringUtils.fromString(runInstancesRequest.getKernelId()));
-        }
-        if (runInstancesRequest.getRamdiskId() != null) {
-            request.addParameter("RamdiskId", StringUtils.fromString(runInstancesRequest.getRamdiskId()));
-        }
-
-        java.util.List<BlockDeviceMapping> blockDeviceMappingsList = runInstancesRequest.getBlockDeviceMappings();
-        int blockDeviceMappingsListIndex = 1;
-
-        for (BlockDeviceMapping blockDeviceMappingsListValue : blockDeviceMappingsList) {
-            BlockDeviceMapping blockDeviceMappingMember = blockDeviceMappingsListValue;
-            if (blockDeviceMappingMember != null) {
-                if (blockDeviceMappingMember.getVirtualName() != null) {
-                    request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".VirtualName", StringUtils.fromString(blockDeviceMappingMember.getVirtualName()));
-                }
-                if (blockDeviceMappingMember.getDeviceName() != null) {
-                    request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".DeviceName", StringUtils.fromString(blockDeviceMappingMember.getDeviceName()));
-                }
-                EbsBlockDevice ebsBlockDeviceEbs = blockDeviceMappingMember.getEbs();
-                if (ebsBlockDeviceEbs != null) {
-                    if (ebsBlockDeviceEbs.getSnapshotId() != null) {
-                        request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".Ebs.SnapshotId", StringUtils.fromString(ebsBlockDeviceEbs.getSnapshotId()));
-                    }
-                    if (ebsBlockDeviceEbs.getVolumeSize() != null) {
-                        request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".Ebs.VolumeSize", StringUtils.fromInteger(ebsBlockDeviceEbs.getVolumeSize()));
-                    }
-                    if (ebsBlockDeviceEbs.isDeleteOnTermination() != null) {
-                        request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".Ebs.DeleteOnTermination", StringUtils.fromBoolean(ebsBlockDeviceEbs.isDeleteOnTermination()));
-                    }
-                    if (ebsBlockDeviceEbs.getVolumeType() != null) {
-                        request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".Ebs.VolumeType", StringUtils.fromString(ebsBlockDeviceEbs.getVolumeType()));
-                    }
-                    if (ebsBlockDeviceEbs.getIops() != null) {
-                        request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".Ebs.Iops", StringUtils.fromInteger(ebsBlockDeviceEbs.getIops()));
-                    }
-                    if (ebsBlockDeviceEbs.isEncrypted() != null) {
-                        request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".Ebs.Encrypted", StringUtils.fromBoolean(ebsBlockDeviceEbs.isEncrypted()));
+            if (runInstancesRequest.getBlockDeviceMappings() != null) {
+                java.util.List<BlockDeviceMapping> blockDeviceMappings = runInstancesRequest
+                        .getBlockDeviceMappings();
+                jsonWriter.name("BlockDeviceMappings");
+                jsonWriter.beginArray();
+                for (BlockDeviceMapping blockDeviceMappingsItem : blockDeviceMappings) {
+                    if (blockDeviceMappingsItem != null) {
+                        BlockDeviceMappingJsonMarshaller.getInstance().marshall(
+                                blockDeviceMappingsItem, jsonWriter);
                     }
                 }
-                if (blockDeviceMappingMember.getNoDevice() != null) {
-                    request.addParameter("BlockDeviceMapping." + blockDeviceMappingsListIndex + ".NoDevice", StringUtils.fromString(blockDeviceMappingMember.getNoDevice()));
-                }
+                jsonWriter.endArray();
             }
-
-            blockDeviceMappingsListIndex++;
-        }
-        if (runInstancesRequest.isMonitoring() != null) {
-            request.addParameter("Monitoring.Enabled", StringUtils.fromBoolean(runInstancesRequest.isMonitoring()));
-        }
-        if (runInstancesRequest.getSubnetId() != null) {
-            request.addParameter("SubnetId", StringUtils.fromString(runInstancesRequest.getSubnetId()));
-        }
-        if (runInstancesRequest.isDisableApiTermination() != null) {
-            request.addParameter("DisableApiTermination", StringUtils.fromBoolean(runInstancesRequest.isDisableApiTermination()));
-        }
-        if (runInstancesRequest.getInstanceInitiatedShutdownBehavior() != null) {
-            request.addParameter("InstanceInitiatedShutdownBehavior", StringUtils.fromString(runInstancesRequest.getInstanceInitiatedShutdownBehavior()));
-        }
-        if (runInstancesRequest.getPrivateIpAddress() != null) {
-            request.addParameter("PrivateIpAddress", StringUtils.fromString(runInstancesRequest.getPrivateIpAddress()));
-        }
-        if (runInstancesRequest.getClientToken() != null) {
-            request.addParameter("ClientToken", StringUtils.fromString(runInstancesRequest.getClientToken()));
-        }
-        if (runInstancesRequest.getAdditionalInfo() != null) {
-            request.addParameter("AdditionalInfo", StringUtils.fromString(runInstancesRequest.getAdditionalInfo()));
-        }
-
-        java.util.List<InstanceNetworkInterfaceSpecification> networkInterfacesList = runInstancesRequest.getNetworkInterfaces();
-        int networkInterfacesListIndex = 1;
-
-        for (InstanceNetworkInterfaceSpecification networkInterfacesListValue : networkInterfacesList) {
-            InstanceNetworkInterfaceSpecification instanceNetworkInterfaceSpecificationMember = networkInterfacesListValue;
-            if (instanceNetworkInterfaceSpecificationMember != null) {
-                if (instanceNetworkInterfaceSpecificationMember.getNetworkInterfaceId() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".NetworkInterfaceId", StringUtils.fromString(instanceNetworkInterfaceSpecificationMember.getNetworkInterfaceId()));
-                }
-                if (instanceNetworkInterfaceSpecificationMember.getDeviceIndex() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".DeviceIndex", StringUtils.fromInteger(instanceNetworkInterfaceSpecificationMember.getDeviceIndex()));
-                }
-                if (instanceNetworkInterfaceSpecificationMember.getSubnetId() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".SubnetId", StringUtils.fromString(instanceNetworkInterfaceSpecificationMember.getSubnetId()));
-                }
-                if (instanceNetworkInterfaceSpecificationMember.getDescription() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".Description", StringUtils.fromString(instanceNetworkInterfaceSpecificationMember.getDescription()));
-                }
-                if (instanceNetworkInterfaceSpecificationMember.getPrivateIpAddress() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".PrivateIpAddress", StringUtils.fromString(instanceNetworkInterfaceSpecificationMember.getPrivateIpAddress()));
-                }
-
-                java.util.List<String> groupsList = instanceNetworkInterfaceSpecificationMember.getGroups();
-                int groupsListIndex = 1;
-
-                for (String groupsListValue : groupsList) {
-                    if (groupsListValue != null) {
-                        request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".SecurityGroupId." + groupsListIndex, StringUtils.fromString(groupsListValue));
+            if (runInstancesRequest.getImageId() != null) {
+                String imageId = runInstancesRequest.getImageId();
+                jsonWriter.name("ImageId");
+                jsonWriter.value(imageId);
+            }
+            if (runInstancesRequest.getInstanceType() != null) {
+                String instanceType = runInstancesRequest.getInstanceType();
+                jsonWriter.name("InstanceType");
+                jsonWriter.value(instanceType);
+            }
+            if (runInstancesRequest.getIpv6AddressCount() != null) {
+                Integer ipv6AddressCount = runInstancesRequest.getIpv6AddressCount();
+                jsonWriter.name("Ipv6AddressCount");
+                jsonWriter.value(ipv6AddressCount);
+            }
+            if (runInstancesRequest.getIpv6Addresses() != null) {
+                java.util.List<InstanceIpv6Address> ipv6Addresses = runInstancesRequest
+                        .getIpv6Addresses();
+                jsonWriter.name("Ipv6Addresses");
+                jsonWriter.beginArray();
+                for (InstanceIpv6Address ipv6AddressesItem : ipv6Addresses) {
+                    if (ipv6AddressesItem != null) {
+                        InstanceIpv6AddressJsonMarshaller.getInstance().marshall(ipv6AddressesItem,
+                                jsonWriter);
                     }
-
-                    groupsListIndex++;
                 }
-                if (instanceNetworkInterfaceSpecificationMember.isDeleteOnTermination() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".DeleteOnTermination", StringUtils.fromBoolean(instanceNetworkInterfaceSpecificationMember.isDeleteOnTermination()));
-                }
-
-                java.util.List<PrivateIpAddressSpecification> privateIpAddressesList = instanceNetworkInterfaceSpecificationMember.getPrivateIpAddresses();
-                int privateIpAddressesListIndex = 1;
-
-                for (PrivateIpAddressSpecification privateIpAddressesListValue : privateIpAddressesList) {
-                    PrivateIpAddressSpecification privateIpAddressSpecificationMember = privateIpAddressesListValue;
-                    if (privateIpAddressSpecificationMember != null) {
-                        if (privateIpAddressSpecificationMember.getPrivateIpAddress() != null) {
-                            request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".PrivateIpAddresses." + privateIpAddressesListIndex + ".PrivateIpAddress", StringUtils.fromString(privateIpAddressSpecificationMember.getPrivateIpAddress()));
-                        }
-                        if (privateIpAddressSpecificationMember.isPrimary() != null) {
-                            request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".PrivateIpAddresses." + privateIpAddressesListIndex + ".Primary", StringUtils.fromBoolean(privateIpAddressSpecificationMember.isPrimary()));
-                        }
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getKernelId() != null) {
+                String kernelId = runInstancesRequest.getKernelId();
+                jsonWriter.name("KernelId");
+                jsonWriter.value(kernelId);
+            }
+            if (runInstancesRequest.getKeyName() != null) {
+                String keyName = runInstancesRequest.getKeyName();
+                jsonWriter.name("KeyName");
+                jsonWriter.value(keyName);
+            }
+            if (runInstancesRequest.getMaxCount() != null) {
+                Integer maxCount = runInstancesRequest.getMaxCount();
+                jsonWriter.name("MaxCount");
+                jsonWriter.value(maxCount);
+            }
+            if (runInstancesRequest.getMinCount() != null) {
+                Integer minCount = runInstancesRequest.getMinCount();
+                jsonWriter.name("MinCount");
+                jsonWriter.value(minCount);
+            }
+            if (runInstancesRequest.getMonitoring() != null) {
+                RunInstancesMonitoringEnabled monitoring = runInstancesRequest.getMonitoring();
+                jsonWriter.name("Monitoring");
+                RunInstancesMonitoringEnabledJsonMarshaller.getInstance().marshall(monitoring,
+                        jsonWriter);
+            }
+            if (runInstancesRequest.getPlacement() != null) {
+                Placement placement = runInstancesRequest.getPlacement();
+                jsonWriter.name("Placement");
+                PlacementJsonMarshaller.getInstance().marshall(placement, jsonWriter);
+            }
+            if (runInstancesRequest.getRamdiskId() != null) {
+                String ramdiskId = runInstancesRequest.getRamdiskId();
+                jsonWriter.name("RamdiskId");
+                jsonWriter.value(ramdiskId);
+            }
+            if (runInstancesRequest.getSecurityGroupIds() != null) {
+                java.util.List<String> securityGroupIds = runInstancesRequest.getSecurityGroupIds();
+                jsonWriter.name("SecurityGroupIds");
+                jsonWriter.beginArray();
+                for (String securityGroupIdsItem : securityGroupIds) {
+                    if (securityGroupIdsItem != null) {
+                        jsonWriter.value(securityGroupIdsItem);
                     }
-
-                    privateIpAddressesListIndex++;
                 }
-                if (instanceNetworkInterfaceSpecificationMember.getSecondaryPrivateIpAddressCount() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".SecondaryPrivateIpAddressCount", StringUtils.fromInteger(instanceNetworkInterfaceSpecificationMember.getSecondaryPrivateIpAddressCount()));
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getSecurityGroups() != null) {
+                java.util.List<String> securityGroups = runInstancesRequest.getSecurityGroups();
+                jsonWriter.name("SecurityGroups");
+                jsonWriter.beginArray();
+                for (String securityGroupsItem : securityGroups) {
+                    if (securityGroupsItem != null) {
+                        jsonWriter.value(securityGroupsItem);
+                    }
                 }
-                if (instanceNetworkInterfaceSpecificationMember.isAssociatePublicIpAddress() != null) {
-                    request.addParameter("NetworkInterface." + networkInterfacesListIndex + ".AssociatePublicIpAddress", StringUtils.fromBoolean(instanceNetworkInterfaceSpecificationMember.isAssociatePublicIpAddress()));
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getSubnetId() != null) {
+                String subnetId = runInstancesRequest.getSubnetId();
+                jsonWriter.name("SubnetId");
+                jsonWriter.value(subnetId);
+            }
+            if (runInstancesRequest.getUserData() != null) {
+                String userData = runInstancesRequest.getUserData();
+                jsonWriter.name("UserData");
+                jsonWriter.value(userData);
+            }
+            if (runInstancesRequest.getAdditionalInfo() != null) {
+                String additionalInfo = runInstancesRequest.getAdditionalInfo();
+                jsonWriter.name("AdditionalInfo");
+                jsonWriter.value(additionalInfo);
+            }
+            if (runInstancesRequest.getClientToken() != null) {
+                String clientToken = runInstancesRequest.getClientToken();
+                jsonWriter.name("ClientToken");
+                jsonWriter.value(clientToken);
+            }
+            if (runInstancesRequest.getDisableApiTermination() != null) {
+                Boolean disableApiTermination = runInstancesRequest.getDisableApiTermination();
+                jsonWriter.name("DisableApiTermination");
+                jsonWriter.value(disableApiTermination);
+            }
+            if (runInstancesRequest.getDryRun() != null) {
+                Boolean dryRun = runInstancesRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
+            if (runInstancesRequest.getEbsOptimized() != null) {
+                Boolean ebsOptimized = runInstancesRequest.getEbsOptimized();
+                jsonWriter.name("EbsOptimized");
+                jsonWriter.value(ebsOptimized);
+            }
+            if (runInstancesRequest.getIamInstanceProfile() != null) {
+                IamInstanceProfileSpecification iamInstanceProfile = runInstancesRequest
+                        .getIamInstanceProfile();
+                jsonWriter.name("IamInstanceProfile");
+                IamInstanceProfileSpecificationJsonMarshaller.getInstance().marshall(
+                        iamInstanceProfile, jsonWriter);
+            }
+            if (runInstancesRequest.getInstanceInitiatedShutdownBehavior() != null) {
+                String instanceInitiatedShutdownBehavior = runInstancesRequest
+                        .getInstanceInitiatedShutdownBehavior();
+                jsonWriter.name("InstanceInitiatedShutdownBehavior");
+                jsonWriter.value(instanceInitiatedShutdownBehavior);
+            }
+            if (runInstancesRequest.getNetworkInterfaces() != null) {
+                java.util.List<InstanceNetworkInterfaceSpecification> networkInterfaces = runInstancesRequest
+                        .getNetworkInterfaces();
+                jsonWriter.name("NetworkInterfaces");
+                jsonWriter.beginArray();
+                for (InstanceNetworkInterfaceSpecification networkInterfacesItem : networkInterfaces) {
+                    if (networkInterfacesItem != null) {
+                        InstanceNetworkInterfaceSpecificationJsonMarshaller.getInstance().marshall(
+                                networkInterfacesItem, jsonWriter);
+                    }
                 }
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getPrivateIpAddress() != null) {
+                String privateIpAddress = runInstancesRequest.getPrivateIpAddress();
+                jsonWriter.name("PrivateIpAddress");
+                jsonWriter.value(privateIpAddress);
+            }
+            if (runInstancesRequest.getElasticGpuSpecification() != null) {
+                java.util.List<ElasticGpuSpecification> elasticGpuSpecification = runInstancesRequest
+                        .getElasticGpuSpecification();
+                jsonWriter.name("ElasticGpuSpecification");
+                jsonWriter.beginArray();
+                for (ElasticGpuSpecification elasticGpuSpecificationItem : elasticGpuSpecification) {
+                    if (elasticGpuSpecificationItem != null) {
+                        ElasticGpuSpecificationJsonMarshaller.getInstance().marshall(
+                                elasticGpuSpecificationItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getElasticInferenceAccelerators() != null) {
+                java.util.List<ElasticInferenceAccelerator> elasticInferenceAccelerators = runInstancesRequest
+                        .getElasticInferenceAccelerators();
+                jsonWriter.name("ElasticInferenceAccelerators");
+                jsonWriter.beginArray();
+                for (ElasticInferenceAccelerator elasticInferenceAcceleratorsItem : elasticInferenceAccelerators) {
+                    if (elasticInferenceAcceleratorsItem != null) {
+                        ElasticInferenceAcceleratorJsonMarshaller.getInstance().marshall(
+                                elasticInferenceAcceleratorsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getTagSpecifications() != null) {
+                java.util.List<TagSpecification> tagSpecifications = runInstancesRequest
+                        .getTagSpecifications();
+                jsonWriter.name("TagSpecifications");
+                jsonWriter.beginArray();
+                for (TagSpecification tagSpecificationsItem : tagSpecifications) {
+                    if (tagSpecificationsItem != null) {
+                        TagSpecificationJsonMarshaller.getInstance().marshall(
+                                tagSpecificationsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getLaunchTemplate() != null) {
+                LaunchTemplateSpecification launchTemplate = runInstancesRequest
+                        .getLaunchTemplate();
+                jsonWriter.name("LaunchTemplate");
+                LaunchTemplateSpecificationJsonMarshaller.getInstance().marshall(launchTemplate,
+                        jsonWriter);
+            }
+            if (runInstancesRequest.getInstanceMarketOptions() != null) {
+                InstanceMarketOptionsRequest instanceMarketOptions = runInstancesRequest
+                        .getInstanceMarketOptions();
+                jsonWriter.name("InstanceMarketOptions");
+                InstanceMarketOptionsRequestJsonMarshaller.getInstance().marshall(
+                        instanceMarketOptions, jsonWriter);
+            }
+            if (runInstancesRequest.getCreditSpecification() != null) {
+                CreditSpecificationRequest creditSpecification = runInstancesRequest
+                        .getCreditSpecification();
+                jsonWriter.name("CreditSpecification");
+                CreditSpecificationRequestJsonMarshaller.getInstance().marshall(
+                        creditSpecification, jsonWriter);
+            }
+            if (runInstancesRequest.getCpuOptions() != null) {
+                CpuOptionsRequest cpuOptions = runInstancesRequest.getCpuOptions();
+                jsonWriter.name("CpuOptions");
+                CpuOptionsRequestJsonMarshaller.getInstance().marshall(cpuOptions, jsonWriter);
+            }
+            if (runInstancesRequest.getCapacityReservationSpecification() != null) {
+                CapacityReservationSpecification capacityReservationSpecification = runInstancesRequest
+                        .getCapacityReservationSpecification();
+                jsonWriter.name("CapacityReservationSpecification");
+                CapacityReservationSpecificationJsonMarshaller.getInstance().marshall(
+                        capacityReservationSpecification, jsonWriter);
+            }
+            if (runInstancesRequest.getHibernationOptions() != null) {
+                HibernationOptionsRequest hibernationOptions = runInstancesRequest
+                        .getHibernationOptions();
+                jsonWriter.name("HibernationOptions");
+                HibernationOptionsRequestJsonMarshaller.getInstance().marshall(hibernationOptions,
+                        jsonWriter);
+            }
+            if (runInstancesRequest.getLicenseSpecifications() != null) {
+                java.util.List<LicenseConfigurationRequest> licenseSpecifications = runInstancesRequest
+                        .getLicenseSpecifications();
+                jsonWriter.name("LicenseSpecifications");
+                jsonWriter.beginArray();
+                for (LicenseConfigurationRequest licenseSpecificationsItem : licenseSpecifications) {
+                    if (licenseSpecificationsItem != null) {
+                        LicenseConfigurationRequestJsonMarshaller.getInstance().marshall(
+                                licenseSpecificationsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (runInstancesRequest.getMetadataOptions() != null) {
+                InstanceMetadataOptionsRequest metadataOptions = runInstancesRequest
+                        .getMetadataOptions();
+                jsonWriter.name("MetadataOptions");
+                InstanceMetadataOptionsRequestJsonMarshaller.getInstance().marshall(
+                        metadataOptions, jsonWriter);
             }
 
-            networkInterfacesListIndex++;
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
-        IamInstanceProfileSpecification iamInstanceProfileSpecificationIamInstanceProfile = runInstancesRequest.getIamInstanceProfile();
-        if (iamInstanceProfileSpecificationIamInstanceProfile != null) {
-            if (iamInstanceProfileSpecificationIamInstanceProfile.getArn() != null) {
-                request.addParameter("IamInstanceProfile.Arn", StringUtils.fromString(iamInstanceProfileSpecificationIamInstanceProfile.getArn()));
-            }
-            if (iamInstanceProfileSpecificationIamInstanceProfile.getName() != null) {
-                request.addParameter("IamInstanceProfile.Name", StringUtils.fromString(iamInstanceProfileSpecificationIamInstanceProfile.getName()));
-            }
-        }
-        if (runInstancesRequest.isEbsOptimized() != null) {
-            request.addParameter("EbsOptimized", StringUtils.fromBoolean(runInstancesRequest.isEbsOptimized()));
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;

@@ -1,134 +1,199 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 /**
  * <p>
- * The capacity information for instances launched onto the Dedicated
- * host.
+ * The capacity information for instances that can be launched onto the
+ * Dedicated Host.
  * </p>
  */
 public class AvailableCapacity implements Serializable {
-
     /**
-     * The total number of instances that the Dedicated host supports.
+     * <p>
+     * The number of instances that can be launched onto the Dedicated Host
+     * depending on the host's available capacity. For Dedicated Hosts that
+     * support multiple instance types, this parameter represents the number of
+     * instances for each instance size that is supported on the host.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<InstanceCapacity> availableInstanceCapacity;
+    private java.util.List<InstanceCapacity> availableInstanceCapacity;
 
     /**
-     * The number of vCPUs available on the Dedicated host.
+     * <p>
+     * The number of vCPUs available for launching instances onto the Dedicated
+     * Host.
+     * </p>
      */
     private Integer availableVCpus;
 
     /**
-     * The total number of instances that the Dedicated host supports.
+     * <p>
+     * The number of instances that can be launched onto the Dedicated Host
+     * depending on the host's available capacity. For Dedicated Hosts that
+     * support multiple instance types, this parameter represents the number of
+     * instances for each instance size that is supported on the host.
+     * </p>
      *
-     * @return The total number of instances that the Dedicated host supports.
+     * @return <p>
+     *         The number of instances that can be launched onto the Dedicated
+     *         Host depending on the host's available capacity. For Dedicated
+     *         Hosts that support multiple instance types, this parameter
+     *         represents the number of instances for each instance size that is
+     *         supported on the host.
+     *         </p>
      */
     public java.util.List<InstanceCapacity> getAvailableInstanceCapacity() {
-        if (availableInstanceCapacity == null) {
-              availableInstanceCapacity = new com.amazonaws.internal.ListWithAutoConstructFlag<InstanceCapacity>();
-              availableInstanceCapacity.setAutoConstruct(true);
-        }
         return availableInstanceCapacity;
     }
-    
+
     /**
-     * The total number of instances that the Dedicated host supports.
+     * <p>
+     * The number of instances that can be launched onto the Dedicated Host
+     * depending on the host's available capacity. For Dedicated Hosts that
+     * support multiple instance types, this parameter represents the number of
+     * instances for each instance size that is supported on the host.
+     * </p>
      *
-     * @param availableInstanceCapacity The total number of instances that the Dedicated host supports.
+     * @param availableInstanceCapacity <p>
+     *            The number of instances that can be launched onto the
+     *            Dedicated Host depending on the host's available capacity. For
+     *            Dedicated Hosts that support multiple instance types, this
+     *            parameter represents the number of instances for each instance
+     *            size that is supported on the host.
+     *            </p>
      */
-    public void setAvailableInstanceCapacity(java.util.Collection<InstanceCapacity> availableInstanceCapacity) {
+    public void setAvailableInstanceCapacity(
+            java.util.Collection<InstanceCapacity> availableInstanceCapacity) {
         if (availableInstanceCapacity == null) {
             this.availableInstanceCapacity = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<InstanceCapacity> availableInstanceCapacityCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<InstanceCapacity>(availableInstanceCapacity.size());
-        availableInstanceCapacityCopy.addAll(availableInstanceCapacity);
-        this.availableInstanceCapacity = availableInstanceCapacityCopy;
+
+        this.availableInstanceCapacity = new java.util.ArrayList<InstanceCapacity>(
+                availableInstanceCapacity);
     }
-    
+
     /**
-     * The total number of instances that the Dedicated host supports.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of instances that can be launched onto the Dedicated Host
+     * depending on the host's available capacity. For Dedicated Hosts that
+     * support multiple instance types, this parameter represents the number of
+     * instances for each instance size that is supported on the host.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param availableInstanceCapacity The total number of instances that the Dedicated host supports.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param availableInstanceCapacity <p>
+     *            The number of instances that can be launched onto the
+     *            Dedicated Host depending on the host's available capacity. For
+     *            Dedicated Hosts that support multiple instance types, this
+     *            parameter represents the number of instances for each instance
+     *            size that is supported on the host.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public AvailableCapacity withAvailableInstanceCapacity(InstanceCapacity... availableInstanceCapacity) {
-        if (getAvailableInstanceCapacity() == null) setAvailableInstanceCapacity(new java.util.ArrayList<InstanceCapacity>(availableInstanceCapacity.length));
+    public AvailableCapacity withAvailableInstanceCapacity(
+            InstanceCapacity... availableInstanceCapacity) {
+        if (getAvailableInstanceCapacity() == null) {
+            this.availableInstanceCapacity = new java.util.ArrayList<InstanceCapacity>(
+                    availableInstanceCapacity.length);
+        }
         for (InstanceCapacity value : availableInstanceCapacity) {
-            getAvailableInstanceCapacity().add(value);
+            this.availableInstanceCapacity.add(value);
         }
         return this;
     }
-    
+
     /**
-     * The total number of instances that the Dedicated host supports.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of instances that can be launched onto the Dedicated Host
+     * depending on the host's available capacity. For Dedicated Hosts that
+     * support multiple instance types, this parameter represents the number of
+     * instances for each instance size that is supported on the host.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param availableInstanceCapacity The total number of instances that the Dedicated host supports.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param availableInstanceCapacity <p>
+     *            The number of instances that can be launched onto the
+     *            Dedicated Host depending on the host's available capacity. For
+     *            Dedicated Hosts that support multiple instance types, this
+     *            parameter represents the number of instances for each instance
+     *            size that is supported on the host.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public AvailableCapacity withAvailableInstanceCapacity(java.util.Collection<InstanceCapacity> availableInstanceCapacity) {
-        if (availableInstanceCapacity == null) {
-            this.availableInstanceCapacity = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<InstanceCapacity> availableInstanceCapacityCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<InstanceCapacity>(availableInstanceCapacity.size());
-            availableInstanceCapacityCopy.addAll(availableInstanceCapacity);
-            this.availableInstanceCapacity = availableInstanceCapacityCopy;
-        }
-
+    public AvailableCapacity withAvailableInstanceCapacity(
+            java.util.Collection<InstanceCapacity> availableInstanceCapacity) {
+        setAvailableInstanceCapacity(availableInstanceCapacity);
         return this;
     }
 
     /**
-     * The number of vCPUs available on the Dedicated host.
+     * <p>
+     * The number of vCPUs available for launching instances onto the Dedicated
+     * Host.
+     * </p>
      *
-     * @return The number of vCPUs available on the Dedicated host.
+     * @return <p>
+     *         The number of vCPUs available for launching instances onto the
+     *         Dedicated Host.
+     *         </p>
      */
     public Integer getAvailableVCpus() {
         return availableVCpus;
     }
-    
+
     /**
-     * The number of vCPUs available on the Dedicated host.
+     * <p>
+     * The number of vCPUs available for launching instances onto the Dedicated
+     * Host.
+     * </p>
      *
-     * @param availableVCpus The number of vCPUs available on the Dedicated host.
+     * @param availableVCpus <p>
+     *            The number of vCPUs available for launching instances onto the
+     *            Dedicated Host.
+     *            </p>
      */
     public void setAvailableVCpus(Integer availableVCpus) {
         this.availableVCpus = availableVCpus;
     }
-    
+
     /**
-     * The number of vCPUs available on the Dedicated host.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of vCPUs available for launching instances onto the Dedicated
+     * Host.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param availableVCpus The number of vCPUs available on the Dedicated host.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param availableVCpus <p>
+     *            The number of vCPUs available for launching instances onto the
+     *            Dedicated Host.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public AvailableCapacity withAvailableVCpus(Integer availableVCpus) {
         this.availableVCpus = availableVCpus;
@@ -140,43 +205,56 @@ public class AvailableCapacity implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getAvailableInstanceCapacity() != null) sb.append("AvailableInstanceCapacity: " + getAvailableInstanceCapacity() + ",");
-        if (getAvailableVCpus() != null) sb.append("AvailableVCpus: " + getAvailableVCpus() );
+        if (getAvailableInstanceCapacity() != null)
+            sb.append("AvailableInstanceCapacity: " + getAvailableInstanceCapacity() + ",");
+        if (getAvailableVCpus() != null)
+            sb.append("AvailableVCpus: " + getAvailableVCpus());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getAvailableInstanceCapacity() == null) ? 0 : getAvailableInstanceCapacity().hashCode()); 
-        hashCode = prime * hashCode + ((getAvailableVCpus() == null) ? 0 : getAvailableVCpus().hashCode()); 
+
+        hashCode = prime
+                * hashCode
+                + ((getAvailableInstanceCapacity() == null) ? 0 : getAvailableInstanceCapacity()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getAvailableVCpus() == null) ? 0 : getAvailableVCpus().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof AvailableCapacity == false) return false;
-        AvailableCapacity other = (AvailableCapacity)obj;
-        
-        if (other.getAvailableInstanceCapacity() == null ^ this.getAvailableInstanceCapacity() == null) return false;
-        if (other.getAvailableInstanceCapacity() != null && other.getAvailableInstanceCapacity().equals(this.getAvailableInstanceCapacity()) == false) return false; 
-        if (other.getAvailableVCpus() == null ^ this.getAvailableVCpus() == null) return false;
-        if (other.getAvailableVCpus() != null && other.getAvailableVCpus().equals(this.getAvailableVCpus()) == false) return false; 
+        if (obj instanceof AvailableCapacity == false)
+            return false;
+        AvailableCapacity other = (AvailableCapacity) obj;
+
+        if (other.getAvailableInstanceCapacity() == null
+                ^ this.getAvailableInstanceCapacity() == null)
+            return false;
+        if (other.getAvailableInstanceCapacity() != null
+                && other.getAvailableInstanceCapacity().equals(this.getAvailableInstanceCapacity()) == false)
+            return false;
+        if (other.getAvailableVCpus() == null ^ this.getAvailableVCpus() == null)
+            return false;
+        if (other.getAvailableVCpus() != null
+                && other.getAvailableVCpus().equals(this.getAvailableVCpus()) == false)
+            return false;
         return true;
     }
-    
 }
-    
