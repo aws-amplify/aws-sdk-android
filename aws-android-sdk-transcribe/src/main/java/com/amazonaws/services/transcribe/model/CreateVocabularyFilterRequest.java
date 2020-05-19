@@ -29,7 +29,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The vocabulary filter name. The name must be unique within the account
-     * that contains it.
+     * that contains it.If you try to create a vocabulary filter with the same
+     * name as a previous vocabulary filter you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -94,7 +96,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The vocabulary filter name. The name must be unique within the account
-     * that contains it.
+     * that contains it.If you try to create a vocabulary filter with the same
+     * name as a previous vocabulary filter you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -103,7 +107,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The vocabulary filter name. The name must be unique within the
-     *         account that contains it.
+     *         account that contains it.If you try to create a vocabulary filter
+     *         with the same name as a previous vocabulary filter you will
+     *         receive a <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -113,7 +119,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The vocabulary filter name. The name must be unique within the account
-     * that contains it.
+     * that contains it.If you try to create a vocabulary filter with the same
+     * name as a previous vocabulary filter you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -122,7 +130,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param vocabularyFilterName <p>
      *            The vocabulary filter name. The name must be unique within the
-     *            account that contains it.
+     *            account that contains it.If you try to create a vocabulary
+     *            filter with the same name as a previous vocabulary filter you
+     *            will receive a <code>ConflictException</code> error.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -132,7 +142,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The vocabulary filter name. The name must be unique within the account
-     * that contains it.
+     * that contains it.If you try to create a vocabulary filter with the same
+     * name as a previous vocabulary filter you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -144,7 +156,9 @@ public class CreateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      *
      * @param vocabularyFilterName <p>
      *            The vocabulary filter name. The name must be unique within the
-     *            account that contains it.
+     *            account that contains it.If you try to create a vocabulary
+     *            filter with the same name as a previous vocabulary filter you
+     *            will receive a <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

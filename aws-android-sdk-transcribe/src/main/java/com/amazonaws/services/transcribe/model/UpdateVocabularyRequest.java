@@ -29,7 +29,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case-sensitive.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,13 +67,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -92,7 +88,9 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case-sensitive.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,6 +99,9 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         The name of the vocabulary to update. The name is case-sensitive.
+     *         If you try to update a vocabulary with the same name as a
+     *         previous vocabulary you will receive a
+     *         <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyName() {
@@ -109,7 +110,9 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case-sensitive.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,7 +121,9 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary to update. The name is
-     *            case-sensitive.
+     *            case-sensitive. If you try to update a vocabulary with the
+     *            same name as a previous vocabulary you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -127,7 +132,9 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary to update. The name is case-sensitive.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -139,7 +146,9 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary to update. The name is
-     *            case-sensitive.
+     *            case-sensitive. If you try to update a vocabulary with the
+     *            same name as a previous vocabulary you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -342,13 +351,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -371,13 +374,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         API endpoint that you are calling. The general form is
      *         </p>
      *         <p>
-     *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *         </p>
-     *         <p>
      *         For example:
-     *         </p>
-     *         <p>
-     *         <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -401,13 +398,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -430,13 +421,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is
      *            </p>
      *            <p>
-     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *            </p>
-     *            <p>
      *            For example:
-     *            </p>
-     *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -460,13 +445,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -492,13 +471,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            as the API endpoint that you are calling. The general form is
      *            </p>
      *            <p>
-     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *            </p>
-     *            <p>
      *            For example:
-     *            </p>
-     *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

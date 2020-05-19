@@ -51,6 +51,11 @@ class MedicalTranscriptionSettingJsonMarshaller {
             jsonWriter.name("MaxAlternatives");
             jsonWriter.value(maxAlternatives);
         }
+        if (medicalTranscriptionSetting.getVocabularyName() != null) {
+            String vocabularyName = medicalTranscriptionSetting.getVocabularyName();
+            jsonWriter.name("VocabularyName");
+            jsonWriter.value(vocabularyName);
+        }
         jsonWriter.endObject();
     }
 

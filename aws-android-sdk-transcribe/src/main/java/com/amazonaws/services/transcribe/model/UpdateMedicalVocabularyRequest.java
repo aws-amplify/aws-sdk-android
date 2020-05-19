@@ -21,17 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a new custom vocabulary that you can use to change the way Amazon
- * Transcribe handles transcription of an audio file.
+ * Updates an existing vocabulary with new values in a different text file. The
+ * <code>UpdateMedicalVocabulary</code> operation overwrites all of the existing
+ * information with the values that you provide in the request.
  * </p>
  */
-public class CreateVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
+public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive. If you try to create a vocabulary
-     * with the same name as a previous vocabulary you will receive a
-     * <code>ConflictException</code> error.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -42,7 +42,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the entries in the updated vocabulary. US English
+     * (en-US) is the only valid language code in Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,16 +56,19 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * An array of strings that contains the vocabulary entries.
+     * The Amazon S3 location of the text file containing the definition of the
+     * custom vocabulary. The URI must be in the same AWS region as the API
+     * endpoint you are calling. You can see the fields you need to enter for
+     * you Amazon S3 location in the example URI here:
      * </p>
-     */
-    private java.util.List<String> phrases;
-
-    /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -72,9 +76,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
+     * For more information about custom vocabularies in Amazon Transcribe
+     * Medical, see <a href=
      * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -85,10 +90,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive. If you try to create a vocabulary
-     * with the same name as a previous vocabulary you will receive a
-     * <code>ConflictException</code> error.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,10 +100,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary. The name must be unique within an AWS
-     *         account. The name is case-sensitive. If you try to create a
-     *         vocabulary with the same name as a previous vocabulary you will
-     *         receive a <code>ConflictException</code> error.
+     *         The name of the vocabulary to update. The name is case-sensitive.
+     *         If you try to update a vocabulary with the same name as a
+     *         previous vocabulary you will receive a
+     *         <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyName() {
@@ -108,10 +112,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive. If you try to create a vocabulary
-     * with the same name as a previous vocabulary you will receive a
-     * <code>ConflictException</code> error.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,10 +122,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary. The name must be unique within an
-     *            AWS account. The name is case-sensitive. If you try to create
-     *            a vocabulary with the same name as a previous vocabulary you
-     *            will receive a <code>ConflictException</code> error.
+     *            The name of the vocabulary to update. The name is
+     *            case-sensitive. If you try to update a vocabulary with the
+     *            same name as a previous vocabulary you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -131,10 +134,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive. If you try to create a vocabulary
-     * with the same name as a previous vocabulary you will receive a
-     * <code>ConflictException</code> error.
+     * The name of the vocabulary to update. The name is case-sensitive. If you
+     * try to update a vocabulary with the same name as a previous vocabulary
+     * you will receive a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -145,22 +147,23 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyName <p>
-     *            The name of the vocabulary. The name must be unique within an
-     *            AWS account. The name is case-sensitive. If you try to create
-     *            a vocabulary with the same name as a previous vocabulary you
-     *            will receive a <code>ConflictException</code> error.
+     *            The name of the vocabulary to update. The name is
+     *            case-sensitive. If you try to update a vocabulary with the
+     *            same name as a previous vocabulary you will receive a
+     *            <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateVocabularyRequest withVocabularyName(String vocabularyName) {
+    public UpdateMedicalVocabularyRequest withVocabularyName(String vocabularyName) {
         this.vocabularyName = vocabularyName;
         return this;
     }
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the entries in the updated vocabulary. US English
+     * (en-US) is the only valid language code in Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +173,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @return <p>
-     *         The language code of the vocabulary entries.
+     *         The language code of the entries in the updated vocabulary. US
+     *         English (en-US) is the only valid language code in Amazon
+     *         Transcribe Medical.
      *         </p>
      * @see LanguageCode
      */
@@ -180,7 +185,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the entries in the updated vocabulary. US English
+     * (en-US) is the only valid language code in Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -190,7 +196,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the entries in the updated vocabulary. US
+     *            English (en-US) is the only valid language code in Amazon
+     *            Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -200,7 +208,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the entries in the updated vocabulary. US English
+     * (en-US) is the only valid language code in Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,20 +222,23 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the entries in the updated vocabulary. US
+     *            English (en-US) is the only valid language code in Amazon
+     *            Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public CreateVocabularyRequest withLanguageCode(String languageCode) {
+    public UpdateMedicalVocabularyRequest withLanguageCode(String languageCode) {
         this.languageCode = languageCode;
         return this;
     }
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the entries in the updated vocabulary. US English
+     * (en-US) is the only valid language code in Amazon Transcribe Medical.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -236,7 +248,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the entries in the updated vocabulary. US
+     *            English (en-US) is the only valid language code in Amazon
+     *            Transcribe Medical.
      *            </p>
      * @see LanguageCode
      */
@@ -246,7 +260,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the entries in the updated vocabulary. US English
+     * (en-US) is the only valid language code in Amazon Transcribe Medical.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -259,96 +274,34 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * he-IL, ms-MY, ja-JP, ar-AE
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the entries in the updated vocabulary. US
+     *            English (en-US) is the only valid language code in Amazon
+     *            Transcribe Medical.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
-    public CreateVocabularyRequest withLanguageCode(LanguageCode languageCode) {
+    public UpdateMedicalVocabularyRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
         return this;
     }
 
     /**
      * <p>
-     * An array of strings that contains the vocabulary entries.
-     * </p>
-     *
-     * @return <p>
-     *         An array of strings that contains the vocabulary entries.
-     *         </p>
-     */
-    public java.util.List<String> getPhrases() {
-        return phrases;
-    }
-
-    /**
-     * <p>
-     * An array of strings that contains the vocabulary entries.
-     * </p>
-     *
-     * @param phrases <p>
-     *            An array of strings that contains the vocabulary entries.
-     *            </p>
-     */
-    public void setPhrases(java.util.Collection<String> phrases) {
-        if (phrases == null) {
-            this.phrases = null;
-            return;
-        }
-
-        this.phrases = new java.util.ArrayList<String>(phrases);
-    }
-
-    /**
-     * <p>
-     * An array of strings that contains the vocabulary entries.
+     * The Amazon S3 location of the text file containing the definition of the
+     * custom vocabulary. The URI must be in the same AWS region as the API
+     * endpoint you are calling. You can see the fields you need to enter for
+     * you Amazon S3 location in the example URI here:
      * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param phrases <p>
-     *            An array of strings that contains the vocabulary entries.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateVocabularyRequest withPhrases(String... phrases) {
-        if (getPhrases() == null) {
-            this.phrases = new java.util.ArrayList<String>(phrases.length);
-        }
-        for (String value : phrases) {
-            this.phrases.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * An array of strings that contains the vocabulary entries.
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
      * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param phrases <p>
-     *            An array of strings that contains the vocabulary entries.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateVocabularyRequest withPhrases(java.util.Collection<String> phrases) {
-        setPhrases(phrases);
-        return this;
-    }
-
-    /**
+     * For example:
+     * </p>
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -356,9 +309,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
+     * For more information about custom vocabularies in Amazon Transcribe
+     * Medical, see <a href=
      * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -366,9 +320,19 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The S3 location of the text file that contains the definition of
-     *         the custom vocabulary. The URI must be in the same region as the
-     *         API endpoint that you are calling. The general form is
+     *         The Amazon S3 location of the text file containing the definition
+     *         of the custom vocabulary. The URI must be in the same AWS region
+     *         as the API endpoint you are calling. You can see the fields you
+     *         need to enter for you Amazon S3 location in the example URI here:
+     *         </p>
+     *         <p>
+     *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *         </p>
+     *         <p>
+     *         For example:
+     *         </p>
+     *         <p>
+     *         <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -376,9 +340,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *         </p>
      *         <p>
-     *         For more information about custom vocabularies, see <a href=
+     *         For more information about custom vocabularies in Amazon
+     *         Transcribe Medical, see <a href=
      *         "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     *         >Custom Vocabularies</a>.
+     *         >Medical Custom Vocabularies</a>.
      *         </p>
      */
     public String getVocabularyFileUri() {
@@ -387,9 +352,19 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * The Amazon S3 location of the text file containing the definition of the
+     * custom vocabulary. The URI must be in the same AWS region as the API
+     * endpoint you are calling. You can see the fields you need to enter for
+     * you Amazon S3 location in the example URI here:
+     * </p>
+     * <p>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -397,9 +372,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
+     * For more information about custom vocabularies in Amazon Transcribe
+     * Medical, see <a href=
      * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -407,9 +383,20 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
-     *            The S3 location of the text file that contains the definition
-     *            of the custom vocabulary. The URI must be in the same region
-     *            as the API endpoint that you are calling. The general form is
+     *            The Amazon S3 location of the text file containing the
+     *            definition of the custom vocabulary. The URI must be in the
+     *            same AWS region as the API endpoint you are calling. You can
+     *            see the fields you need to enter for you Amazon S3 location in
+     *            the example URI here:
+     *            </p>
+     *            <p>
+     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <p>
+     *            <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -417,9 +404,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
-     *            For more information about custom vocabularies, see <a href=
+     *            For more information about custom vocabularies in Amazon
+     *            Transcribe Medical, see <a href=
      *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     *            >Custom Vocabularies</a>.
+     *            >Medical Custom Vocabularies</a>.
      *            </p>
      */
     public void setVocabularyFileUri(String vocabularyFileUri) {
@@ -428,9 +416,19 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The S3 location of the text file that contains the definition of the
-     * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * The Amazon S3 location of the text file containing the definition of the
+     * custom vocabulary. The URI must be in the same AWS region as the API
+     * endpoint you are calling. You can see the fields you need to enter for
+     * you Amazon S3 location in the example URI here:
+     * </p>
+     * <p>
+     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <p>
+     * <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -438,9 +436,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
+     * For more information about custom vocabularies in Amazon Transcribe
+     * Medical, see <a href=
      * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -451,9 +450,20 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
-     *            The S3 location of the text file that contains the definition
-     *            of the custom vocabulary. The URI must be in the same region
-     *            as the API endpoint that you are calling. The general form is
+     *            The Amazon S3 location of the text file containing the
+     *            definition of the custom vocabulary. The URI must be in the
+     *            same AWS region as the API endpoint you are calling. You can
+     *            see the fields you need to enter for you Amazon S3 location in
+     *            the example URI here:
+     *            </p>
+     *            <p>
+     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <p>
+     *            <code>https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -461,14 +471,15 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
-     *            For more information about custom vocabularies, see <a href=
+     *            For more information about custom vocabularies in Amazon
+     *            Transcribe Medical, see <a href=
      *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
-     *            >Custom Vocabularies</a>.
+     *            >Medical Custom Vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateVocabularyRequest withVocabularyFileUri(String vocabularyFileUri) {
+    public UpdateMedicalVocabularyRequest withVocabularyFileUri(String vocabularyFileUri) {
         this.vocabularyFileUri = vocabularyFileUri;
         return this;
     }
@@ -488,8 +499,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
             sb.append("VocabularyName: " + getVocabularyName() + ",");
         if (getLanguageCode() != null)
             sb.append("LanguageCode: " + getLanguageCode() + ",");
-        if (getPhrases() != null)
-            sb.append("Phrases: " + getPhrases() + ",");
         if (getVocabularyFileUri() != null)
             sb.append("VocabularyFileUri: " + getVocabularyFileUri());
         sb.append("}");
@@ -505,7 +514,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
                 + ((getVocabularyName() == null) ? 0 : getVocabularyName().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
-        hashCode = prime * hashCode + ((getPhrases() == null) ? 0 : getPhrases().hashCode());
         hashCode = prime * hashCode
                 + ((getVocabularyFileUri() == null) ? 0 : getVocabularyFileUri().hashCode());
         return hashCode;
@@ -518,9 +526,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
         if (obj == null)
             return false;
 
-        if (obj instanceof CreateVocabularyRequest == false)
+        if (obj instanceof UpdateMedicalVocabularyRequest == false)
             return false;
-        CreateVocabularyRequest other = (CreateVocabularyRequest) obj;
+        UpdateMedicalVocabularyRequest other = (UpdateMedicalVocabularyRequest) obj;
 
         if (other.getVocabularyName() == null ^ this.getVocabularyName() == null)
             return false;
@@ -531,10 +539,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getLanguageCode() != null
                 && other.getLanguageCode().equals(this.getLanguageCode()) == false)
-            return false;
-        if (other.getPhrases() == null ^ this.getPhrases() == null)
-            return false;
-        if (other.getPhrases() != null && other.getPhrases().equals(this.getPhrases()) == false)
             return false;
         if (other.getVocabularyFileUri() == null ^ this.getVocabularyFileUri() == null)
             return false;

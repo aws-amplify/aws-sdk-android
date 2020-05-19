@@ -17,7 +17,7 @@ package com.amazonaws.services.transcribe.model;
 
 import java.io.Serializable;
 
-public class ListVocabulariesResult implements Serializable {
+public class ListMedicalVocabulariesResult implements Serializable {
     /**
      * <p>
      * The requested vocabulary state.
@@ -30,12 +30,12 @@ public class ListVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListVocabularies</code> operation returns a page of
+     * The <code>ListMedicalVocabularies</code> operation returns a page of
      * vocabularies at a time. The maximum size of the page is set by the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
+     * than the page size, Amazon Transcribe Medical returns the
+     * <code>NextPage</code> token. Include the token in the next request to the
+     * <code>ListMedicalVocabularies</code> operation to return the next page of
      * jobs.
      * </p>
      * <p>
@@ -105,7 +105,7 @@ public class ListVocabulariesResult implements Serializable {
      *         chained together.
      * @see VocabularyState
      */
-    public ListVocabulariesResult withStatus(String status) {
+    public ListMedicalVocabulariesResult withStatus(String status) {
         this.status = status;
         return this;
     }
@@ -145,19 +145,19 @@ public class ListVocabulariesResult implements Serializable {
      *         chained together.
      * @see VocabularyState
      */
-    public ListVocabulariesResult withStatus(VocabularyState status) {
+    public ListMedicalVocabulariesResult withStatus(VocabularyState status) {
         this.status = status.toString();
         return this;
     }
 
     /**
      * <p>
-     * The <code>ListVocabularies</code> operation returns a page of
+     * The <code>ListMedicalVocabularies</code> operation returns a page of
      * vocabularies at a time. The maximum size of the page is set by the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
+     * than the page size, Amazon Transcribe Medical returns the
+     * <code>NextPage</code> token. Include the token in the next request to the
+     * <code>ListMedicalVocabularies</code> operation to return the next page of
      * jobs.
      * </p>
      * <p>
@@ -166,13 +166,13 @@ public class ListVocabulariesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @return <p>
-     *         The <code>ListVocabularies</code> operation returns a page of
-     *         vocabularies at a time. The maximum size of the page is set by
+     *         The <code>ListMedicalVocabularies</code> operation returns a page
+     *         of vocabularies at a time. The maximum size of the page is set by
      *         the <code>MaxResults</code> parameter. If there are more jobs in
-     *         the list than the page size, Amazon Transcribe returns the
-     *         <code>NextPage</code> token. Include the token in the next
-     *         request to the <code>ListVocabularies</code> operation to return
-     *         in the next page of jobs.
+     *         the list than the page size, Amazon Transcribe Medical returns
+     *         the <code>NextPage</code> token. Include the token in the next
+     *         request to the <code>ListMedicalVocabularies</code> operation to
+     *         return the next page of jobs.
      *         </p>
      */
     public String getNextToken() {
@@ -181,12 +181,12 @@ public class ListVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListVocabularies</code> operation returns a page of
+     * The <code>ListMedicalVocabularies</code> operation returns a page of
      * vocabularies at a time. The maximum size of the page is set by the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
+     * than the page size, Amazon Transcribe Medical returns the
+     * <code>NextPage</code> token. Include the token in the next request to the
+     * <code>ListMedicalVocabularies</code> operation to return the next page of
      * jobs.
      * </p>
      * <p>
@@ -195,13 +195,14 @@ public class ListVocabulariesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListVocabularies</code> operation returns a page of
-     *            vocabularies at a time. The maximum size of the page is set by
-     *            the <code>MaxResults</code> parameter. If there are more jobs
-     *            in the list than the page size, Amazon Transcribe returns the
-     *            <code>NextPage</code> token. Include the token in the next
-     *            request to the <code>ListVocabularies</code> operation to
-     *            return in the next page of jobs.
+     *            The <code>ListMedicalVocabularies</code> operation returns a
+     *            page of vocabularies at a time. The maximum size of the page
+     *            is set by the <code>MaxResults</code> parameter. If there are
+     *            more jobs in the list than the page size, Amazon Transcribe
+     *            Medical returns the <code>NextPage</code> token. Include the
+     *            token in the next request to the
+     *            <code>ListMedicalVocabularies</code> operation to return the
+     *            next page of jobs.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -210,12 +211,12 @@ public class ListVocabulariesResult implements Serializable {
 
     /**
      * <p>
-     * The <code>ListVocabularies</code> operation returns a page of
+     * The <code>ListMedicalVocabularies</code> operation returns a page of
      * vocabularies at a time. The maximum size of the page is set by the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
+     * than the page size, Amazon Transcribe Medical returns the
+     * <code>NextPage</code> token. Include the token in the next request to the
+     * <code>ListMedicalVocabularies</code> operation to return the next page of
      * jobs.
      * </p>
      * <p>
@@ -227,18 +228,19 @@ public class ListVocabulariesResult implements Serializable {
      * <b>Pattern: </b>.+<br/>
      *
      * @param nextToken <p>
-     *            The <code>ListVocabularies</code> operation returns a page of
-     *            vocabularies at a time. The maximum size of the page is set by
-     *            the <code>MaxResults</code> parameter. If there are more jobs
-     *            in the list than the page size, Amazon Transcribe returns the
-     *            <code>NextPage</code> token. Include the token in the next
-     *            request to the <code>ListVocabularies</code> operation to
-     *            return in the next page of jobs.
+     *            The <code>ListMedicalVocabularies</code> operation returns a
+     *            page of vocabularies at a time. The maximum size of the page
+     *            is set by the <code>MaxResults</code> parameter. If there are
+     *            more jobs in the list than the page size, Amazon Transcribe
+     *            Medical returns the <code>NextPage</code> token. Include the
+     *            token in the next request to the
+     *            <code>ListMedicalVocabularies</code> operation to return the
+     *            next page of jobs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListVocabulariesResult withNextToken(String nextToken) {
+    public ListMedicalVocabulariesResult withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
@@ -294,7 +296,7 @@ public class ListVocabulariesResult implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListVocabulariesResult withVocabularies(VocabularyInfo... vocabularies) {
+    public ListMedicalVocabulariesResult withVocabularies(VocabularyInfo... vocabularies) {
         if (getVocabularies() == null) {
             this.vocabularies = new java.util.ArrayList<VocabularyInfo>(vocabularies.length);
         }
@@ -320,7 +322,8 @@ public class ListVocabulariesResult implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListVocabulariesResult withVocabularies(java.util.Collection<VocabularyInfo> vocabularies) {
+    public ListMedicalVocabulariesResult withVocabularies(
+            java.util.Collection<VocabularyInfo> vocabularies) {
         setVocabularies(vocabularies);
         return this;
     }
@@ -365,9 +368,9 @@ public class ListVocabulariesResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof ListVocabulariesResult == false)
+        if (obj instanceof ListMedicalVocabulariesResult == false)
             return false;
-        ListVocabulariesResult other = (ListVocabulariesResult) obj;
+        ListMedicalVocabulariesResult other = (ListMedicalVocabulariesResult) obj;
 
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
