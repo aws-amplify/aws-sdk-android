@@ -1,113 +1,125 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Modify Snapshot Attribute Request Marshaller
+ * JSON request marshaller for ModifySnapshotAttributeRequest
  */
-public class ModifySnapshotAttributeRequestMarshaller implements Marshaller<Request<ModifySnapshotAttributeRequest>, ModifySnapshotAttributeRequest> {
+public class ModifySnapshotAttributeRequestMarshaller implements
+        Marshaller<Request<ModifySnapshotAttributeRequest>, ModifySnapshotAttributeRequest> {
 
-    public Request<ModifySnapshotAttributeRequest> marshall(ModifySnapshotAttributeRequest modifySnapshotAttributeRequest) {
-
+    public Request<ModifySnapshotAttributeRequest> marshall(
+            ModifySnapshotAttributeRequest modifySnapshotAttributeRequest) {
         if (modifySnapshotAttributeRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(ModifySnapshotAttributeRequest)");
         }
 
-        Request<ModifySnapshotAttributeRequest> request = new DefaultRequest<ModifySnapshotAttributeRequest>(modifySnapshotAttributeRequest, "AmazonEC2");
-        request.addParameter("Action", "ModifySnapshotAttribute");
-        request.addParameter("Version", "2015-10-01");
+        Request<ModifySnapshotAttributeRequest> request = new DefaultRequest<ModifySnapshotAttributeRequest>(
+                modifySnapshotAttributeRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        if (modifySnapshotAttributeRequest.getSnapshotId() != null) {
-            request.addParameter("SnapshotId", StringUtils.fromString(modifySnapshotAttributeRequest.getSnapshotId()));
-        }
-        if (modifySnapshotAttributeRequest.getAttribute() != null) {
-            request.addParameter("Attribute", StringUtils.fromString(modifySnapshotAttributeRequest.getAttribute()));
-        }
-        if (modifySnapshotAttributeRequest.getOperationType() != null) {
-            request.addParameter("OperationType", StringUtils.fromString(modifySnapshotAttributeRequest.getOperationType()));
-        }
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
 
-        java.util.List<String> userIdsList = modifySnapshotAttributeRequest.getUserIds();
-        int userIdsListIndex = 1;
-
-        for (String userIdsListValue : userIdsList) {
-            if (userIdsListValue != null) {
-                request.addParameter("UserId." + userIdsListIndex, StringUtils.fromString(userIdsListValue));
+            if (modifySnapshotAttributeRequest.getAttribute() != null) {
+                String attribute = modifySnapshotAttributeRequest.getAttribute();
+                jsonWriter.name("Attribute");
+                jsonWriter.value(attribute);
             }
-
-            userIdsListIndex++;
-        }
-
-        java.util.List<String> groupNamesList = modifySnapshotAttributeRequest.getGroupNames();
-        int groupNamesListIndex = 1;
-
-        for (String groupNamesListValue : groupNamesList) {
-            if (groupNamesListValue != null) {
-                request.addParameter("UserGroup." + groupNamesListIndex, StringUtils.fromString(groupNamesListValue));
+            if (modifySnapshotAttributeRequest.getCreateVolumePermission() != null) {
+                CreateVolumePermissionModifications createVolumePermission = modifySnapshotAttributeRequest
+                        .getCreateVolumePermission();
+                jsonWriter.name("CreateVolumePermission");
+                CreateVolumePermissionModificationsJsonMarshaller.getInstance().marshall(
+                        createVolumePermission, jsonWriter);
             }
-
-            groupNamesListIndex++;
-        }
-        CreateVolumePermissionModifications createVolumePermissionModificationsCreateVolumePermission = modifySnapshotAttributeRequest.getCreateVolumePermission();
-        if (createVolumePermissionModificationsCreateVolumePermission != null) {
-
-            java.util.List<CreateVolumePermission> addList = createVolumePermissionModificationsCreateVolumePermission.getAdd();
-            int addListIndex = 1;
-
-            for (CreateVolumePermission addListValue : addList) {
-                CreateVolumePermission createVolumePermissionMember = addListValue;
-                if (createVolumePermissionMember != null) {
-                    if (createVolumePermissionMember.getUserId() != null) {
-                        request.addParameter("CreateVolumePermission.Add." + addListIndex + ".UserId", StringUtils.fromString(createVolumePermissionMember.getUserId()));
-                    }
-                    if (createVolumePermissionMember.getGroup() != null) {
-                        request.addParameter("CreateVolumePermission.Add." + addListIndex + ".Group", StringUtils.fromString(createVolumePermissionMember.getGroup()));
+            if (modifySnapshotAttributeRequest.getGroupNames() != null) {
+                java.util.List<String> groupNames = modifySnapshotAttributeRequest.getGroupNames();
+                jsonWriter.name("GroupNames");
+                jsonWriter.beginArray();
+                for (String groupNamesItem : groupNames) {
+                    if (groupNamesItem != null) {
+                        jsonWriter.value(groupNamesItem);
                     }
                 }
-
-                addListIndex++;
+                jsonWriter.endArray();
             }
-
-            java.util.List<CreateVolumePermission> removeList = createVolumePermissionModificationsCreateVolumePermission.getRemove();
-            int removeListIndex = 1;
-
-            for (CreateVolumePermission removeListValue : removeList) {
-                CreateVolumePermission createVolumePermissionMember = removeListValue;
-                if (createVolumePermissionMember != null) {
-                    if (createVolumePermissionMember.getUserId() != null) {
-                        request.addParameter("CreateVolumePermission.Remove." + removeListIndex + ".UserId", StringUtils.fromString(createVolumePermissionMember.getUserId()));
-                    }
-                    if (createVolumePermissionMember.getGroup() != null) {
-                        request.addParameter("CreateVolumePermission.Remove." + removeListIndex + ".Group", StringUtils.fromString(createVolumePermissionMember.getGroup()));
+            if (modifySnapshotAttributeRequest.getOperationType() != null) {
+                String operationType = modifySnapshotAttributeRequest.getOperationType();
+                jsonWriter.name("OperationType");
+                jsonWriter.value(operationType);
+            }
+            if (modifySnapshotAttributeRequest.getSnapshotId() != null) {
+                String snapshotId = modifySnapshotAttributeRequest.getSnapshotId();
+                jsonWriter.name("SnapshotId");
+                jsonWriter.value(snapshotId);
+            }
+            if (modifySnapshotAttributeRequest.getUserIds() != null) {
+                java.util.List<String> userIds = modifySnapshotAttributeRequest.getUserIds();
+                jsonWriter.name("UserIds");
+                jsonWriter.beginArray();
+                for (String userIdsItem : userIds) {
+                    if (userIdsItem != null) {
+                        jsonWriter.value(userIdsItem);
                     }
                 }
-
-                removeListIndex++;
+                jsonWriter.endArray();
             }
+            if (modifySnapshotAttributeRequest.getDryRun() != null) {
+                Boolean dryRun = modifySnapshotAttributeRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
+        }
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;

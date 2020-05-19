@@ -1,82 +1,106 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Modify Reserved Instances Request Marshaller
+ * JSON request marshaller for ModifyReservedInstancesRequest
  */
-public class ModifyReservedInstancesRequestMarshaller implements Marshaller<Request<ModifyReservedInstancesRequest>, ModifyReservedInstancesRequest> {
+public class ModifyReservedInstancesRequestMarshaller implements
+        Marshaller<Request<ModifyReservedInstancesRequest>, ModifyReservedInstancesRequest> {
 
-    public Request<ModifyReservedInstancesRequest> marshall(ModifyReservedInstancesRequest modifyReservedInstancesRequest) {
-
+    public Request<ModifyReservedInstancesRequest> marshall(
+            ModifyReservedInstancesRequest modifyReservedInstancesRequest) {
         if (modifyReservedInstancesRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(ModifyReservedInstancesRequest)");
         }
 
-        Request<ModifyReservedInstancesRequest> request = new DefaultRequest<ModifyReservedInstancesRequest>(modifyReservedInstancesRequest, "AmazonEC2");
-        request.addParameter("Action", "ModifyReservedInstances");
-        request.addParameter("Version", "2015-10-01");
+        Request<ModifyReservedInstancesRequest> request = new DefaultRequest<ModifyReservedInstancesRequest>(
+                modifyReservedInstancesRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        if (modifyReservedInstancesRequest.getClientToken() != null) {
-            request.addParameter("ClientToken", StringUtils.fromString(modifyReservedInstancesRequest.getClientToken()));
-        }
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
 
-        java.util.List<String> reservedInstancesIdsList = modifyReservedInstancesRequest.getReservedInstancesIds();
-        int reservedInstancesIdsListIndex = 1;
-
-        for (String reservedInstancesIdsListValue : reservedInstancesIdsList) {
-            if (reservedInstancesIdsListValue != null) {
-                request.addParameter("ReservedInstancesId." + reservedInstancesIdsListIndex, StringUtils.fromString(reservedInstancesIdsListValue));
+            if (modifyReservedInstancesRequest.getReservedInstancesIds() != null) {
+                java.util.List<String> reservedInstancesIds = modifyReservedInstancesRequest
+                        .getReservedInstancesIds();
+                jsonWriter.name("ReservedInstancesIds");
+                jsonWriter.beginArray();
+                for (String reservedInstancesIdsItem : reservedInstancesIds) {
+                    if (reservedInstancesIdsItem != null) {
+                        jsonWriter.value(reservedInstancesIdsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (modifyReservedInstancesRequest.getClientToken() != null) {
+                String clientToken = modifyReservedInstancesRequest.getClientToken();
+                jsonWriter.name("ClientToken");
+                jsonWriter.value(clientToken);
+            }
+            if (modifyReservedInstancesRequest.getTargetConfigurations() != null) {
+                java.util.List<ReservedInstancesConfiguration> targetConfigurations = modifyReservedInstancesRequest
+                        .getTargetConfigurations();
+                jsonWriter.name("TargetConfigurations");
+                jsonWriter.beginArray();
+                for (ReservedInstancesConfiguration targetConfigurationsItem : targetConfigurations) {
+                    if (targetConfigurationsItem != null) {
+                        ReservedInstancesConfigurationJsonMarshaller.getInstance().marshall(
+                                targetConfigurationsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
-            reservedInstancesIdsListIndex++;
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
-
-        java.util.List<ReservedInstancesConfiguration> targetConfigurationsList = modifyReservedInstancesRequest.getTargetConfigurations();
-        int targetConfigurationsListIndex = 1;
-
-        for (ReservedInstancesConfiguration targetConfigurationsListValue : targetConfigurationsList) {
-            ReservedInstancesConfiguration reservedInstancesConfigurationMember = targetConfigurationsListValue;
-            if (reservedInstancesConfigurationMember != null) {
-                if (reservedInstancesConfigurationMember.getAvailabilityZone() != null) {
-                    request.addParameter("ReservedInstancesConfigurationSetItemType." + targetConfigurationsListIndex + ".AvailabilityZone", StringUtils.fromString(reservedInstancesConfigurationMember.getAvailabilityZone()));
-                }
-                if (reservedInstancesConfigurationMember.getPlatform() != null) {
-                    request.addParameter("ReservedInstancesConfigurationSetItemType." + targetConfigurationsListIndex + ".Platform", StringUtils.fromString(reservedInstancesConfigurationMember.getPlatform()));
-                }
-                if (reservedInstancesConfigurationMember.getInstanceCount() != null) {
-                    request.addParameter("ReservedInstancesConfigurationSetItemType." + targetConfigurationsListIndex + ".InstanceCount", StringUtils.fromInteger(reservedInstancesConfigurationMember.getInstanceCount()));
-                }
-                if (reservedInstancesConfigurationMember.getInstanceType() != null) {
-                    request.addParameter("ReservedInstancesConfigurationSetItemType." + targetConfigurationsListIndex + ".InstanceType", StringUtils.fromString(reservedInstancesConfigurationMember.getInstanceType()));
-                }
-            }
-
-            targetConfigurationsListIndex++;
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;

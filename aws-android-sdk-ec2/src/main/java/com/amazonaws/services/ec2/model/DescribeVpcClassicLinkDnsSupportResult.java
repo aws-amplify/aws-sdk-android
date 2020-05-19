@@ -1,35 +1,28 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output of DescribeVpcClassicLinkDnsSupport.
- * </p>
- */
 public class DescribeVpcClassicLinkDnsSupportResult implements Serializable {
-
     /**
-     * Information about the ClassicLink DNS support status of the VPCs.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<ClassicLinkDnsSupport> vpcs;
-
-    /**
-     * The token to use when requesting the next set of items.
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
@@ -37,112 +30,149 @@ public class DescribeVpcClassicLinkDnsSupportResult implements Serializable {
     private String nextToken;
 
     /**
+     * <p>
      * Information about the ClassicLink DNS support status of the VPCs.
+     * </p>
+     */
+    private java.util.List<ClassicLinkDnsSupport> vpcs;
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
      *
-     * @return Information about the ClassicLink DNS support status of the VPCs.
+     * @return <p>
+     *         The token to use to retrieve the next page of results. This value
+     *         is <code>null</code> when there are no more results to return.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeVpcClassicLinkDnsSupportResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the ClassicLink DNS support status of the VPCs.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the ClassicLink DNS support status of the VPCs.
+     *         </p>
      */
     public java.util.List<ClassicLinkDnsSupport> getVpcs() {
-        if (vpcs == null) {
-              vpcs = new com.amazonaws.internal.ListWithAutoConstructFlag<ClassicLinkDnsSupport>();
-              vpcs.setAutoConstruct(true);
-        }
         return vpcs;
     }
-    
+
     /**
+     * <p>
      * Information about the ClassicLink DNS support status of the VPCs.
+     * </p>
      *
-     * @param vpcs Information about the ClassicLink DNS support status of the VPCs.
+     * @param vpcs <p>
+     *            Information about the ClassicLink DNS support status of the
+     *            VPCs.
+     *            </p>
      */
     public void setVpcs(java.util.Collection<ClassicLinkDnsSupport> vpcs) {
         if (vpcs == null) {
             this.vpcs = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<ClassicLinkDnsSupport> vpcsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ClassicLinkDnsSupport>(vpcs.size());
-        vpcsCopy.addAll(vpcs);
-        this.vpcs = vpcsCopy;
+
+        this.vpcs = new java.util.ArrayList<ClassicLinkDnsSupport>(vpcs);
     }
-    
+
     /**
-     * Information about the ClassicLink DNS support status of the VPCs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the ClassicLink DNS support status of the VPCs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param vpcs Information about the ClassicLink DNS support status of the VPCs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param vpcs <p>
+     *            Information about the ClassicLink DNS support status of the
+     *            VPCs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeVpcClassicLinkDnsSupportResult withVpcs(ClassicLinkDnsSupport... vpcs) {
-        if (getVpcs() == null) setVpcs(new java.util.ArrayList<ClassicLinkDnsSupport>(vpcs.length));
+        if (getVpcs() == null) {
+            this.vpcs = new java.util.ArrayList<ClassicLinkDnsSupport>(vpcs.length);
+        }
         for (ClassicLinkDnsSupport value : vpcs) {
-            getVpcs().add(value);
+            this.vpcs.add(value);
         }
         return this;
     }
-    
+
     /**
+     * <p>
      * Information about the ClassicLink DNS support status of the VPCs.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param vpcs Information about the ClassicLink DNS support status of the VPCs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param vpcs <p>
+     *            Information about the ClassicLink DNS support status of the
+     *            VPCs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DescribeVpcClassicLinkDnsSupportResult withVpcs(java.util.Collection<ClassicLinkDnsSupport> vpcs) {
-        if (vpcs == null) {
-            this.vpcs = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<ClassicLinkDnsSupport> vpcsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ClassicLinkDnsSupport>(vpcs.size());
-            vpcsCopy.addAll(vpcs);
-            this.vpcs = vpcsCopy;
-        }
-
-        return this;
-    }
-
-    /**
-     * The token to use when requesting the next set of items.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
-     *
-     * @return The token to use when requesting the next set of items.
-     */
-    public String getNextToken() {
-        return nextToken;
-    }
-    
-    /**
-     * The token to use when requesting the next set of items.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
-     *
-     * @param nextToken The token to use when requesting the next set of items.
-     */
-    public void setNextToken(String nextToken) {
-        this.nextToken = nextToken;
-    }
-    
-    /**
-     * The token to use when requesting the next set of items.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
-     *
-     * @param nextToken The token to use when requesting the next set of items.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeVpcClassicLinkDnsSupportResult withNextToken(String nextToken) {
-        this.nextToken = nextToken;
+    public DescribeVpcClassicLinkDnsSupportResult withVpcs(
+            java.util.Collection<ClassicLinkDnsSupport> vpcs) {
+        setVpcs(vpcs);
         return this;
     }
 
@@ -151,43 +181,50 @@ public class DescribeVpcClassicLinkDnsSupportResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getVpcs() != null) sb.append("Vpcs: " + getVpcs() + ",");
-        if (getNextToken() != null) sb.append("NextToken: " + getNextToken() );
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getVpcs() != null)
+            sb.append("Vpcs: " + getVpcs());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getVpcs() == null) ? 0 : getVpcs().hashCode()); 
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
+
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getVpcs() == null) ? 0 : getVpcs().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeVpcClassicLinkDnsSupportResult == false) return false;
-        DescribeVpcClassicLinkDnsSupportResult other = (DescribeVpcClassicLinkDnsSupportResult)obj;
-        
-        if (other.getVpcs() == null ^ this.getVpcs() == null) return false;
-        if (other.getVpcs() != null && other.getVpcs().equals(this.getVpcs()) == false) return false; 
-        if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
-        if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
+        if (obj instanceof DescribeVpcClassicLinkDnsSupportResult == false)
+            return false;
+        DescribeVpcClassicLinkDnsSupportResult other = (DescribeVpcClassicLinkDnsSupportResult) obj;
+
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getVpcs() == null ^ this.getVpcs() == null)
+            return false;
+        if (other.getVpcs() != null && other.getVpcs().equals(this.getVpcs()) == false)
+            return false;
         return true;
     }
-    
 }
-    
