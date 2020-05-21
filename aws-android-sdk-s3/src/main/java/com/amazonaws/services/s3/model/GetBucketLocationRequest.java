@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,67 +15,130 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 import java.io.Serializable;
 
+import com.amazonaws.AmazonWebServiceRequest;
+
 /**
- * Provides options for requesting an Amazon S3 bucket's location. You can
- * choose a bucket's location when creating it to ensure that the data stored in
- * your bucket is geographically close to the applications or customers
- * accessing your data.
- *
- * @see CreateBucketRequest
+ * <p>
+ * Returns the Region the bucket resides in. You set the bucket's Region using
+ * the <code>LocationConstraint</code> request parameter in a
+ * <code>CreateBucket</code> request. For more information, see
+ * <a>CreateBucket</a>.
+ * </p>
+ * <p>
+ * To use this implementation of the operation, you must be the bucket owner.
+ * </p>
+ * <p>
+ * The following operations are related to <code>GetBucketLocation</code>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>GetObject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CreateBucket</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GetBucketLocationRequest extends AmazonWebServiceRequest implements Serializable {
-
-    /** The name of the bucket whose location is being requested. */
-    private String bucketName;
-
     /**
-     * Constructs a new request object to create a new bucket with the specified
-     * name.
      * <p>
-     * When choosing a bucket name, keep in mind that Amazon S3 bucket names are
-     * globally unique.
-     *
-     * @param bucketName The name for the new bucket.
+     * The name of the bucket for which to get the location.
+     * </p>
      */
-    public GetBucketLocationRequest(String bucketName) {
-        this.bucketName = bucketName;
+    private String bucket;
+
+    /**
+     * <p>
+     * The name of the bucket for which to get the location.
+     * </p>
+     *
+     * @return <p>
+     *         The name of the bucket for which to get the location.
+     *         </p>
+     */
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Returns the name of the bucket whose location is being requested.
+     * <p>
+     * The name of the bucket for which to get the location.
+     * </p>
      *
-     * @return The name of the bucket whose location is being requested.
+     * @param bucket <p>
+     *            The name of the bucket for which to get the location.
+     *            </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Sets the name of the bucket whose location is being requested.
+     * <p>
+     * The name of the bucket for which to get the location.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param bucketName The name of the bucket whose location is being
-     *            requested.
-     */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
-
-    /**
-     * Sets the name of the bucket whose location is being requested, and
-     * returns this updated object so that additional method calls can be
-     * chained together.
-     *
-     * @param bucketName The name of the bucket whose location is being
-     *            requested.
-     * @return This updated object, so that additional method calls can be
+     * @param bucket <p>
+     *            The name of the bucket for which to get the location.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetBucketLocationRequest withBucketName(String bucketName) {
-        setBucketName(bucketName);
+    public GetBucketLocationRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof GetBucketLocationRequest == false)
+            return false;
+        GetBucketLocationRequest other = (GetBucketLocationRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        return true;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,34 +15,48 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Represents the current accelerate status for a bucket.
- * 
- * @see BucketAccelerateConfiguration
+ * Bucket Accelerate Status
  */
 public enum BucketAccelerateStatus {
 
-    Enabled("Enabled"), Suspended("Suspended");
+    Enabled("Enabled"),
+    Suspended("Suspended");
 
-    public static BucketAccelerateStatus fromValue(String statusString)
-            throws IllegalArgumentException {
-        for (BucketAccelerateStatus accelerateStatus : BucketAccelerateStatus.values()) {
-            if (accelerateStatus.toString().equals(statusString)) {
-                return accelerateStatus;
-            }
-        }
+    private String value;
 
-        throw new IllegalArgumentException("Cannot create enum from " + statusString + " value!");
-    }
-
-    private final String accelerateStatus;
-
-    private BucketAccelerateStatus(String status) {
-        this.accelerateStatus = status;
+    private BucketAccelerateStatus(String value) {
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return accelerateStatus;
+        return value;
+    }
+
+    private static final Map<String, BucketAccelerateStatus> enumMap;
+    static {
+        enumMap = new HashMap<String, BucketAccelerateStatus>();
+        enumMap.put("Enabled", Enabled);
+        enumMap.put("Suspended", Suspended);
+    }
+
+    /**
+     * Use this in place of valueOf.
+     *
+     * @param value real value
+     * @return BucketAccelerateStatus corresponding to the value
+     */
+    public static BucketAccelerateStatus fromValue(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Value cannot be null or empty!");
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
+        } else {
+            throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
+        }
     }
 }

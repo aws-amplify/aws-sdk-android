@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,193 +15,827 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.services.s3.internal.ObjectExpirationResult;
-import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
-import com.amazonaws.services.s3.internal.SSEResultBase;
-
 import java.io.Serializable;
-import java.util.Date;
 
-/**
- * The CompleteMultipartUploadResult contains all the information about the
- * CompleteMultipartUpload method.
- */
-public class CompleteMultipartUploadResult extends SSEResultBase
-        implements ObjectExpirationResult, S3RequesterChargedResult, Serializable {
-
-    /** The name of the bucket containing the completed multipart upload. */
-    private String bucketName;
-
-    /** The key by which the object is stored. */
-    private String key;
-
-    /** The URL identifying the new multipart object. */
+public class CompleteMultipartUploadResult implements Serializable {
+    /**
+     * <p>
+     * The URI that identifies the newly created object.
+     * </p>
+     */
     private String location;
 
     /**
-     * The entity tag identifying the new object. An entity tag is an opaque
-     * string that changes if and only if an object's data changes.
+     * <p>
+     * The name of the bucket that contains the newly created object.
+     * </p>
+     */
+    private String bucket;
+
+    /**
+     * <p>
+     * The object key of the newly created object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     */
+    private String key;
+
+    /**
+     * <p>
+     * If the object expiration is configured, this will contain the expiration
+     * date (expiry-date) and rule ID (rule-id). The value of rule-id is URL
+     * encoded.
+     * </p>
+     */
+    private String expiration;
+
+    /**
+     * <p>
+     * Entity tag that identifies the newly created object's data. Objects with
+     * different object data will have different entity tags. The entity tag is
+     * an opaque string. The entity tag may or may not be an MD5 digest of the
+     * object data. If the entity tag is not an MD5 digest of the object data,
+     * it will contain one or more nonhexadecimal characters and/or will consist
+     * of less than 32 or more than 32 hexadecimal digits.
+     * </p>
      */
     private String eTag;
 
     /**
-     * The version ID of the new object, only present if versioning has been
-     * enabled for the bucket.
+     * <p>
+     * If you specified server-side encryption either with an Amazon S3-managed
+     * encryption key or an AWS KMS customer master key (CMK) in your initiate
+     * multipart upload request, the response includes this header. It confirms
+     * the encryption algorithm that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     */
+    private String serverSideEncryption;
+
+    /**
+     * <p>
+     * Version ID of the newly created object, in case the bucket has versioning
+     * turned on.
+     * </p>
      */
     private String versionId;
 
-    /** The time this object expires, or null if it has no expiration */
-    private Date expirationTime;
-
-    /** The expiration rule for this object */
-    private String expirationTimeRuleId;
-
     /**
-     * Indicate if the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
+     * <p>
+     * If present, specifies the ID of the AWS Key Management Service (AWS KMS)
+     * symmetric customer managed customer master key (CMK) that was used for
+     * the object.
+     * </p>
      */
-    private boolean isRequesterCharged;
+    private String sSEKMSKeyId;
 
     /**
-     * Returns the URL identifying the new multipart object.
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     */
+    private String requestCharged;
+
+    /**
+     * <p>
+     * The URI that identifies the newly created object.
+     * </p>
      *
-     * @return The URL identifying the new multipart object.
+     * @return <p>
+     *         The URI that identifies the newly created object.
+     *         </p>
      */
     public String getLocation() {
         return location;
     }
 
     /**
-     * Sets the URL identifying the new multipart object.
+     * <p>
+     * The URI that identifies the newly created object.
+     * </p>
      *
-     * @param location The URL identifying the new multipart object.
+     * @param location <p>
+     *            The URI that identifies the newly created object.
+     *            </p>
      */
     public void setLocation(String location) {
         this.location = location;
     }
 
     /**
-     * Returns the name of the bucket containing the completed multipart object.
+     * <p>
+     * The URI that identifies the newly created object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The name of the bucket containing the completed multipart object.
+     * @param location <p>
+     *            The URI that identifies the newly created object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getBucketName() {
-        return bucketName;
+    public CompleteMultipartUploadResult withLocation(String location) {
+        this.location = location;
+        return this;
     }
 
     /**
-     * Sets the name of the bucket containing the completed multipart object.
+     * <p>
+     * The name of the bucket that contains the newly created object.
+     * </p>
      *
-     * @param bucketName The name of the bucket containing the completed
-     *            multipart object.
+     * @return <p>
+     *         The name of the bucket that contains the newly created object.
+     *         </p>
      */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Gets the key by which the newly created object is stored.
+     * <p>
+     * The name of the bucket that contains the newly created object.
+     * </p>
+     *
+     * @param bucket <p>
+     *            The name of the bucket that contains the newly created object.
+     *            </p>
+     */
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
+    /**
+     * <p>
+     * The name of the bucket that contains the newly created object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param bucket <p>
+     *            The name of the bucket that contains the newly created object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CompleteMultipartUploadResult withBucket(String bucket) {
+        this.bucket = bucket;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The object key of the newly created object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @return <p>
+     *         The object key of the newly created object.
+     *         </p>
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * Sets the key of the newly created object.
+     * <p>
+     * The object key of the newly created object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @param key <p>
+     *            The object key of the newly created object.
+     *            </p>
      */
     public void setKey(String key) {
         this.key = key;
     }
 
     /**
-     * Returns the entity tag identifying the new object. An entity tag is an
-     * opaque string that changes if and only if an object's data changes.
+     * <p>
+     * The object key of the newly created object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @return An opaque string that changes if and only if an object's data
-     *         changes.
+     * @param key <p>
+     *            The object key of the newly created object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CompleteMultipartUploadResult withKey(String key) {
+        this.key = key;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If the object expiration is configured, this will contain the expiration
+     * date (expiry-date) and rule ID (rule-id). The value of rule-id is URL
+     * encoded.
+     * </p>
+     *
+     * @return <p>
+     *         If the object expiration is configured, this will contain the
+     *         expiration date (expiry-date) and rule ID (rule-id). The value of
+     *         rule-id is URL encoded.
+     *         </p>
+     */
+    public String getExpiration() {
+        return expiration;
+    }
+
+    /**
+     * <p>
+     * If the object expiration is configured, this will contain the expiration
+     * date (expiry-date) and rule ID (rule-id). The value of rule-id is URL
+     * encoded.
+     * </p>
+     *
+     * @param expiration <p>
+     *            If the object expiration is configured, this will contain the
+     *            expiration date (expiry-date) and rule ID (rule-id). The value
+     *            of rule-id is URL encoded.
+     *            </p>
+     */
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
+    }
+
+    /**
+     * <p>
+     * If the object expiration is configured, this will contain the expiration
+     * date (expiry-date) and rule ID (rule-id). The value of rule-id is URL
+     * encoded.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param expiration <p>
+     *            If the object expiration is configured, this will contain the
+     *            expiration date (expiry-date) and rule ID (rule-id). The value
+     *            of rule-id is URL encoded.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CompleteMultipartUploadResult withExpiration(String expiration) {
+        this.expiration = expiration;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Entity tag that identifies the newly created object's data. Objects with
+     * different object data will have different entity tags. The entity tag is
+     * an opaque string. The entity tag may or may not be an MD5 digest of the
+     * object data. If the entity tag is not an MD5 digest of the object data,
+     * it will contain one or more nonhexadecimal characters and/or will consist
+     * of less than 32 or more than 32 hexadecimal digits.
+     * </p>
+     *
+     * @return <p>
+     *         Entity tag that identifies the newly created object's data.
+     *         Objects with different object data will have different entity
+     *         tags. The entity tag is an opaque string. The entity tag may or
+     *         may not be an MD5 digest of the object data. If the entity tag is
+     *         not an MD5 digest of the object data, it will contain one or more
+     *         nonhexadecimal characters and/or will consist of less than 32 or
+     *         more than 32 hexadecimal digits.
+     *         </p>
      */
     public String getETag() {
         return eTag;
     }
 
     /**
-     * Sets the entity tag identifying the new object. An entity tag is an
-     * opaque string that changes if and only if an object's data changes.
+     * <p>
+     * Entity tag that identifies the newly created object's data. Objects with
+     * different object data will have different entity tags. The entity tag is
+     * an opaque string. The entity tag may or may not be an MD5 digest of the
+     * object data. If the entity tag is not an MD5 digest of the object data,
+     * it will contain one or more nonhexadecimal characters and/or will consist
+     * of less than 32 or more than 32 hexadecimal digits.
+     * </p>
      *
-     * @param etag The entity tag.
+     * @param eTag <p>
+     *            Entity tag that identifies the newly created object's data.
+     *            Objects with different object data will have different entity
+     *            tags. The entity tag is an opaque string. The entity tag may
+     *            or may not be an MD5 digest of the object data. If the entity
+     *            tag is not an MD5 digest of the object data, it will contain
+     *            one or more nonhexadecimal characters and/or will consist of
+     *            less than 32 or more than 32 hexadecimal digits.
+     *            </p>
      */
-    public void setETag(String etag) {
-        this.eTag = etag;
+    public void setETag(String eTag) {
+        this.eTag = eTag;
     }
 
     /**
-     * Returns the version ID of the new object, only present if versioning has
-     * been enabled for the bucket.
+     * <p>
+     * Entity tag that identifies the newly created object's data. Objects with
+     * different object data will have different entity tags. The entity tag is
+     * an opaque string. The entity tag may or may not be an MD5 digest of the
+     * object data. If the entity tag is not an MD5 digest of the object data,
+     * it will contain one or more nonhexadecimal characters and/or will consist
+     * of less than 32 or more than 32 hexadecimal digits.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The version ID of the new object, only present if versioning has
-     *         been enabled for the bucket.
+     * @param eTag <p>
+     *            Entity tag that identifies the newly created object's data.
+     *            Objects with different object data will have different entity
+     *            tags. The entity tag is an opaque string. The entity tag may
+     *            or may not be an MD5 digest of the object data. If the entity
+     *            tag is not an MD5 digest of the object data, it will contain
+     *            one or more nonhexadecimal characters and/or will consist of
+     *            less than 32 or more than 32 hexadecimal digits.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CompleteMultipartUploadResult withETag(String eTag) {
+        this.eTag = eTag;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If you specified server-side encryption either with an Amazon S3-managed
+     * encryption key or an AWS KMS customer master key (CMK) in your initiate
+     * multipart upload request, the response includes this header. It confirms
+     * the encryption algorithm that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @return <p>
+     *         If you specified server-side encryption either with an Amazon
+     *         S3-managed encryption key or an AWS KMS customer master key (CMK)
+     *         in your initiate multipart upload request, the response includes
+     *         this header. It confirms the encryption algorithm that Amazon S3
+     *         used to encrypt the object.
+     *         </p>
+     * @see ServerSideEncryption
+     */
+    public String getServerSideEncryption() {
+        return serverSideEncryption;
+    }
+
+    /**
+     * <p>
+     * If you specified server-side encryption either with an Amazon S3-managed
+     * encryption key or an AWS KMS customer master key (CMK) in your initiate
+     * multipart upload request, the response includes this header. It confirms
+     * the encryption algorithm that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an Amazon
+     *            S3-managed encryption key or an AWS KMS customer master key
+     *            (CMK) in your initiate multipart upload request, the response
+     *            includes this header. It confirms the encryption algorithm
+     *            that Amazon S3 used to encrypt the object.
+     *            </p>
+     * @see ServerSideEncryption
+     */
+    public void setServerSideEncryption(String serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption;
+    }
+
+    /**
+     * <p>
+     * If you specified server-side encryption either with an Amazon S3-managed
+     * encryption key or an AWS KMS customer master key (CMK) in your initiate
+     * multipart upload request, the response includes this header. It confirms
+     * the encryption algorithm that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an Amazon
+     *            S3-managed encryption key or an AWS KMS customer master key
+     *            (CMK) in your initiate multipart upload request, the response
+     *            includes this header. It confirms the encryption algorithm
+     *            that Amazon S3 used to encrypt the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ServerSideEncryption
+     */
+    public CompleteMultipartUploadResult withServerSideEncryption(String serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If you specified server-side encryption either with an Amazon S3-managed
+     * encryption key or an AWS KMS customer master key (CMK) in your initiate
+     * multipart upload request, the response includes this header. It confirms
+     * the encryption algorithm that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an Amazon
+     *            S3-managed encryption key or an AWS KMS customer master key
+     *            (CMK) in your initiate multipart upload request, the response
+     *            includes this header. It confirms the encryption algorithm
+     *            that Amazon S3 used to encrypt the object.
+     *            </p>
+     * @see ServerSideEncryption
+     */
+    public void setServerSideEncryption(ServerSideEncryption serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption.toString();
+    }
+
+    /**
+     * <p>
+     * If you specified server-side encryption either with an Amazon S3-managed
+     * encryption key or an AWS KMS customer master key (CMK) in your initiate
+     * multipart upload request, the response includes this header. It confirms
+     * the encryption algorithm that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an Amazon
+     *            S3-managed encryption key or an AWS KMS customer master key
+     *            (CMK) in your initiate multipart upload request, the response
+     *            includes this header. It confirms the encryption algorithm
+     *            that Amazon S3 used to encrypt the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ServerSideEncryption
+     */
+    public CompleteMultipartUploadResult withServerSideEncryption(
+            ServerSideEncryption serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Version ID of the newly created object, in case the bucket has versioning
+     * turned on.
+     * </p>
+     *
+     * @return <p>
+     *         Version ID of the newly created object, in case the bucket has
+     *         versioning turned on.
+     *         </p>
      */
     public String getVersionId() {
         return versionId;
     }
 
     /**
-     * Sets the version ID of the new object, only present if versioning has
-     * been enabled for the bucket.
+     * <p>
+     * Version ID of the newly created object, in case the bucket has versioning
+     * turned on.
+     * </p>
      *
-     * @param versionId The version ID of the new object, only present if
-     *            versioning has been enabled for the bucket.
+     * @param versionId <p>
+     *            Version ID of the newly created object, in case the bucket has
+     *            versioning turned on.
+     *            </p>
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;
     }
 
     /**
-     * Returns the expiration time for this object, or null if it doesn't
-     * expire.
-     */
-    @Override
-    public Date getExpirationTime() {
-        return expirationTime;
-    }
-
-    /**
-     * Sets the expiration time for the object.
+     * <p>
+     * Version ID of the newly created object, in case the bucket has versioning
+     * turned on.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param expirationTime The expiration time for the object.
+     * @param versionId <p>
+     *            Version ID of the newly created object, in case the bucket has
+     *            versioning turned on.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    @Override
-    public void setExpirationTime(Date expirationTime) {
-        this.expirationTime = expirationTime;
+    public CompleteMultipartUploadResult withVersionId(String versionId) {
+        this.versionId = versionId;
+        return this;
     }
 
     /**
-     * Returns the {@link BucketLifecycleConfiguration} rule ID for this
-     * object's expiration, or null if it doesn't expire.
-     */
-    @Override
-    public String getExpirationTimeRuleId() {
-        return expirationTimeRuleId;
-    }
-
-    /**
-     * Sets the {@link BucketLifecycleConfiguration} rule ID for this object's
-     * expiration
+     * <p>
+     * If present, specifies the ID of the AWS Key Management Service (AWS KMS)
+     * symmetric customer managed customer master key (CMK) that was used for
+     * the object.
+     * </p>
      *
-     * @param expirationTimeRuleId The rule ID for this object's expiration
+     * @return <p>
+     *         If present, specifies the ID of the AWS Key Management Service
+     *         (AWS KMS) symmetric customer managed customer master key (CMK)
+     *         that was used for the object.
+     *         </p>
+     */
+    public String getSSEKMSKeyId() {
+        return sSEKMSKeyId;
+    }
+
+    /**
+     * <p>
+     * If present, specifies the ID of the AWS Key Management Service (AWS KMS)
+     * symmetric customer managed customer master key (CMK) that was used for
+     * the object.
+     * </p>
+     *
+     * @param sSEKMSKeyId <p>
+     *            If present, specifies the ID of the AWS Key Management Service
+     *            (AWS KMS) symmetric customer managed customer master key (CMK)
+     *            that was used for the object.
+     *            </p>
+     */
+    public void setSSEKMSKeyId(String sSEKMSKeyId) {
+        this.sSEKMSKeyId = sSEKMSKeyId;
+    }
+
+    /**
+     * <p>
+     * If present, specifies the ID of the AWS Key Management Service (AWS KMS)
+     * symmetric customer managed customer master key (CMK) that was used for
+     * the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSEKMSKeyId <p>
+     *            If present, specifies the ID of the AWS Key Management Service
+     *            (AWS KMS) symmetric customer managed customer master key (CMK)
+     *            that was used for the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CompleteMultipartUploadResult withSSEKMSKeyId(String sSEKMSKeyId) {
+        this.sSEKMSKeyId = sSEKMSKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @return <p>
+     *         If present, indicates that the requester was successfully charged
+     *         for the request.
+     *         </p>
+     * @see RequestCharged
+     */
+    public String getRequestCharged() {
+        return requestCharged;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @see RequestCharged
+     */
+    public void setRequestCharged(String requestCharged) {
+        this.requestCharged = requestCharged;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestCharged
+     */
+    public CompleteMultipartUploadResult withRequestCharged(String requestCharged) {
+        this.requestCharged = requestCharged;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @see RequestCharged
+     */
+    public void setRequestCharged(RequestCharged requestCharged) {
+        this.requestCharged = requestCharged.toString();
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestCharged
+     */
+    public CompleteMultipartUploadResult withRequestCharged(RequestCharged requestCharged) {
+        this.requestCharged = requestCharged.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
      */
     @Override
-    public void setExpirationTimeRuleId(String expirationTimeRuleId) {
-        this.expirationTimeRuleId = expirationTimeRuleId;
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getLocation() != null)
+            sb.append("Location: " + getLocation() + ",");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
+        if (getExpiration() != null)
+            sb.append("Expiration: " + getExpiration() + ",");
+        if (getETag() != null)
+            sb.append("ETag: " + getETag() + ",");
+        if (getServerSideEncryption() != null)
+            sb.append("ServerSideEncryption: " + getServerSideEncryption() + ",");
+        if (getVersionId() != null)
+            sb.append("VersionId: " + getVersionId() + ",");
+        if (getSSEKMSKeyId() != null)
+            sb.append("SSEKMSKeyId: " + getSSEKMSKeyId() + ",");
+        if (getRequestCharged() != null)
+            sb.append("RequestCharged: " + getRequestCharged());
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override
-    public boolean isRequesterCharged() {
-        return isRequesterCharged;
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getLocation() == null) ? 0 : getLocation().hashCode());
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
+        hashCode = prime * hashCode + ((getExpiration() == null) ? 0 : getExpiration().hashCode());
+        hashCode = prime * hashCode + ((getETag() == null) ? 0 : getETag().hashCode());
+        hashCode = prime * hashCode
+                + ((getServerSideEncryption() == null) ? 0 : getServerSideEncryption().hashCode());
+        hashCode = prime * hashCode + ((getVersionId() == null) ? 0 : getVersionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSEKMSKeyId() == null) ? 0 : getSSEKMSKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestCharged() == null) ? 0 : getRequestCharged().hashCode());
+        return hashCode;
     }
 
     @Override
-    public void setRequesterCharged(boolean isRequesterCharged) {
-        this.isRequesterCharged = isRequesterCharged;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof CompleteMultipartUploadResult == false)
+            return false;
+        CompleteMultipartUploadResult other = (CompleteMultipartUploadResult) obj;
+
+        if (other.getLocation() == null ^ this.getLocation() == null)
+            return false;
+        if (other.getLocation() != null && other.getLocation().equals(this.getLocation()) == false)
+            return false;
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+            return false;
+        if (other.getExpiration() == null ^ this.getExpiration() == null)
+            return false;
+        if (other.getExpiration() != null
+                && other.getExpiration().equals(this.getExpiration()) == false)
+            return false;
+        if (other.getETag() == null ^ this.getETag() == null)
+            return false;
+        if (other.getETag() != null && other.getETag().equals(this.getETag()) == false)
+            return false;
+        if (other.getServerSideEncryption() == null ^ this.getServerSideEncryption() == null)
+            return false;
+        if (other.getServerSideEncryption() != null
+                && other.getServerSideEncryption().equals(this.getServerSideEncryption()) == false)
+            return false;
+        if (other.getVersionId() == null ^ this.getVersionId() == null)
+            return false;
+        if (other.getVersionId() != null
+                && other.getVersionId().equals(this.getVersionId()) == false)
+            return false;
+        if (other.getSSEKMSKeyId() == null ^ this.getSSEKMSKeyId() == null)
+            return false;
+        if (other.getSSEKMSKeyId() != null
+                && other.getSSEKMSKeyId().equals(this.getSSEKMSKeyId()) == false)
+            return false;
+        if (other.getRequestCharged() == null ^ this.getRequestCharged() == null)
+            return false;
+        if (other.getRequestCharged() != null
+                && other.getRequestCharged().equals(this.getRequestCharged()) == false)
+            return false;
+        return true;
     }
 }

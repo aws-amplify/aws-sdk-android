@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,967 +15,1567 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.event.ProgressListener;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.internal.Constants;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
+import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides options for downloading an Amazon S3 object.
+ * Retrieves objects from Amazon S3. To use <code>GET</code>, you must have
+ * <code>READ</code> access to the object. If you grant <code>READ</code> access
+ * to the anonymous user, you can return the object without using an
+ * authorization header.
  * </p>
  * <p>
- * All <code>GetObjectRequests</code> must specify a bucket name and key.
- * Beyond that, requests can also specify:
- *
- *  <ul>
- *      <li>The range of bytes within the object to download,
- *      <li>Constraints controlling if the object will be downloaded or not.
- *  </ul>
+ * An Amazon S3 bucket has no directory hierarchy such as you would find in a
+ * typical computer file system. You can, however, create a logical hierarchy by
+ * using object key names that imply a folder structure. For example, instead of
+ * naming an object <code>sample.jpg</code>, you can name it
+ * <code>photos/2006/February/sample.jpg</code>.
  * </p>
  * <p>
- * If you are uploading or accessing <a
- * href="http://aws.amazon.com/kms/">KMS</a>-encrypted objects, you need to
- * specify the correct region of the bucket on your client and configure AWS
- * Signature Version 4 for added security. For more information on how to do
- * this, see
- * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify
- * -signature-version
+ * To get an object from such a logical hierarchy, specify the full key name for
+ * the object in the <code>GET</code> operation. For a virtual hosted-style
+ * request example, if you have the object
+ * <code>photos/2006/February/sample.jpg</code>, specify the resource as
+ * <code>/photos/2006/February/sample.jpg</code>. For a path-style request
+ * example, if you have the object <code>photos/2006/February/sample.jpg</code>
+ * in the bucket named <code>examplebucket</code>, specify the resource as
+ * <code>/examplebucket/photos/2006/February/sample.jpg</code>. For more
+ * information about request types, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html#VirtualHostingSpecifyBucket"
+ * >HTTP Host Header Bucket Specification</a>.
  * </p>
- *
- * @see GetObjectRequest#GetObjectRequest(String, String)
- * @see GetObjectRequest#GetObjectRequest(String, String, String)
- * @see GetObjectMetadataRequest
+ * <p>
+ * To distribute large files to many people, you can save bandwidth costs by
+ * using BitTorrent. For more information, see <a
+ * href="https://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html">Amazon
+ * S3 Torrent</a>. For more information about returning the ACL of an object,
+ * see <a>GetObjectAcl</a>.
+ * </p>
+ * <p>
+ * If the object you are retrieving is stored in the GLACIER or DEEP_ARCHIVE
+ * storage classes, before you can retrieve the object you must first restore a
+ * copy using . Otherwise, this operation returns an
+ * <code>InvalidObjectStateError</code> error. For information about restoring
+ * archived objects, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/restoring-objects.html"
+ * >Restoring Archived Objects</a>.
+ * </p>
+ * <p>
+ * Encryption request headers, like <code>x-amz-server-side-encryption</code>,
+ * should not be sent for GET requests if your object uses server-side
+ * encryption with CMKs stored in AWS KMS (SSE-KMS) or server-side encryption
+ * with Amazon S3–managed encryption keys (SSE-S3). If your object does use
+ * these types of keys, you’ll get an HTTP 400 BadRequest error.
+ * </p>
+ * <p>
+ * If you encrypt an object by using server-side encryption with
+ * customer-provided encryption keys (SSE-C) when you store the object in Amazon
+ * S3, then when you GET the object, you must use the following headers:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * x-amz-server-side​-encryption​-customer-algorithm
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * x-amz-server-side​-encryption​-customer-key
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * x-amz-server-side​-encryption​-customer-key-MD5
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * For more information about SSE-C, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html"
+ * >Server-Side Encryption (Using Customer-Provided Encryption Keys)</a>.
+ * </p>
+ * <p>
+ * Assuming you have permission to read object tags (permission for the
+ * <code>s3:GetObjectVersionTagging</code> action), the response also returns
+ * the <code>x-amz-tagging-count</code> header that provides the count of number
+ * of tags associated with the object. You can use <a>GetObjectTagging</a> to
+ * retrieve the tag set associated with an object.
+ * </p>
+ * <p>
+ * <b>Permissions</b>
+ * </p>
+ * <p>
+ * You need the <code>s3:GetObject</code> permission for this operation. For
+ * more information, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html"
+ * >Specifying Permissions in a Policy</a>. If the object you request does not
+ * exist, the error Amazon S3 returns depends on whether you also have the
+ * <code>s3:ListBucket</code> permission.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * If you have the <code>s3:ListBucket</code> permission on the bucket, Amazon
+ * S3 will return an HTTP status code 404 ("no such key") error.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * If you don’t have the <code>s3:ListBucket</code> permission, Amazon S3 will
+ * return an HTTP status code 403 ("access denied") error.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * <b>Versioning</b>
+ * </p>
+ * <p>
+ * By default, the GET operation returns the current version of an object. To
+ * return a different version, use the <code>versionId</code> subresource.
+ * </p>
+ * <note>
+ * <p>
+ * If the current version of the object is a delete marker, Amazon S3 behaves as
+ * if the object was deleted and includes <code>x-amz-delete-marker: true</code>
+ * in the response.
+ * </p>
+ * </note>
+ * <p>
+ * For more information about versioning, see <a>PutBucketVersioning</a>.
+ * </p>
+ * <p>
+ * <b>Overriding Response Header Values</b>
+ * </p>
+ * <p>
+ * There are times when you want to override certain response header values in a
+ * GET response. For example, you might override the Content-Disposition
+ * response header value in your GET request.
+ * </p>
+ * <p>
+ * You can override values for a set of response headers using the following
+ * query parameters. These response header values are sent only on a successful
+ * request, that is, when status code 200 OK is returned. The set of headers you
+ * can override using these parameters is a subset of the headers that Amazon S3
+ * accepts when you create an object. The response headers that you can override
+ * for the GET response are <code>Content-Type</code>,
+ * <code>Content-Language</code>, <code>Expires</code>,
+ * <code>Cache-Control</code>, <code>Content-Disposition</code>, and
+ * <code>Content-Encoding</code>. To override these header values in the GET
+ * response, you use the following request parameters.
+ * </p>
+ * <note>
+ * <p>
+ * You must sign the request, either using an Authorization header or a
+ * presigned URL, when using these parameters. They cannot be used with an
+ * unsigned (anonymous) request.
+ * </p>
+ * </note>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>response-content-type</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>response-content-language</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>response-expires</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>response-cache-control</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>response-content-disposition</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>response-content-encoding</code>
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * <b>Additional Considerations about Request Headers</b>
+ * </p>
+ * <p>
+ * If both of the <code>If-Match</code> and <code>If-Unmodified-Since</code>
+ * headers are present in the request as follows: <code>If-Match</code>
+ * condition evaluates to <code>true</code>, and;
+ * <code>If-Unmodified-Since</code> condition evaluates to <code>false</code>;
+ * then, S3 returns 200 OK and the data requested.
+ * </p>
+ * <p>
+ * If both of the <code>If-None-Match</code> and <code>If-Modified-Since</code>
+ * headers are present in the request as follows:<code> If-None-Match</code>
+ * condition evaluates to <code>false</code>, and;
+ * <code>If-Modified-Since</code> condition evaluates to <code>true</code>;
+ * then, S3 returns 304 Not Modified response code.
+ * </p>
+ * <p>
+ * For more information about conditional requests, see <a
+ * href="https://tools.ietf.org/html/rfc7232">RFC 7232</a>.
+ * </p>
+ * <p>
+ * The following operations are related to <code>GetObject</code>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>ListBuckets</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GetObjectAcl</a>
+ * </p>
+ * </li>
+ * </ul>
  */
-public class GetObjectRequest extends AmazonWebServiceRequest implements
-        SSECustomerKeyProvider, Serializable {
+public class GetObjectRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Builder of an S3 object identifier.  This member field is never null.
+     * <p>
+     * The bucket name containing the object.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      */
-    private S3ObjectIdBuilder s3ObjectIdBuilder = new S3ObjectIdBuilder();
-
-    /** Optional member indicating the byte range of data to retrieve */
-    private long[] range;
+    private String bucket;
 
     /**
-     * Optional list of ETag values that constrain this request to only be
-     * executed if the object's ETag matches one of the specified ETag values.
+     * <p>
+     * Return the object only if its entity tag (ETag) is the same as the one
+     * specified, otherwise return a 412 (precondition failed).
+     * </p>
      */
-    private List<String> matchingETagConstraints = new ArrayList<String>();
+    private String ifMatch;
 
     /**
-     * Optional list of ETag values that constrain this request to only be
-     * executed if the object's ETag does not match any of the specified ETag
-     * constraint values.
+     * <p>
+     * Return the object only if it has been modified since the specified time,
+     * otherwise return a 304 (not modified).
+     * </p>
      */
-    private List<String> nonmatchingEtagConstraints = new ArrayList<String>();
+    private java.util.Date ifModifiedSince;
 
     /**
-     * Optional field that constrains this request to only be executed if the
-     * object has not been modified since the specified date.
+     * <p>
+     * Return the object only if its entity tag (ETag) is different from the one
+     * specified, otherwise return a 304 (not modified).
+     * </p>
      */
-    private Date unmodifiedSinceConstraint;
+    private String ifNoneMatch;
 
     /**
-     * Optional field that constrains this request to only be executed if the
-     * object has been modified since the specified date.
+     * <p>
+     * Return the object only if it has not been modified since the specified
+     * time, otherwise return a 412 (precondition failed).
+     * </p>
      */
-    private Date modifiedSinceConstraint;
+    private java.util.Date ifUnmodifiedSince;
 
     /**
-     * Optional field that overrides headers on the response.
+     * <p>
+     * Key of the object to get.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      */
-    private ResponseHeaderOverrides responseHeaders;
+    private String key;
 
     /**
-     * The optional progress listener for receiving updates about object
-     * download status.
+     * <p>
+     * Downloads the specified range bytes of an object. For more information
+     * about the HTTP Range header, see <a
+     * href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     * >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon S3 doesn't support retrieving multiple ranges of data per
+     * <code>GET</code> request.
+     * </p>
+     * </note>
      */
-    private ProgressListener generalProgressListener;
+    private String range;
 
     /**
-     * If enabled, the requester is charged for downloading the data from
-     * Requester Pays Buckets.
+     * <p>
+     * Sets the <code>Cache-Control</code> header of the response.
+     * </p>
      */
-    private boolean isRequesterPays;
+    private String responseCacheControl;
 
     /**
-     * The optional customer-provided server-side encryption key to use to
-     * decrypt this object.
+     * <p>
+     * Sets the <code>Content-Disposition</code> header of the response
+     * </p>
      */
-    private SSECustomerKey sseCustomerKey;
+    private String responseContentDisposition;
 
     /**
-     * The part number of the requested part in a multipart object.
+     * <p>
+     * Sets the <code>Content-Encoding</code> header of the response.
+     * </p>
+     */
+    private String responseContentEncoding;
+
+    /**
+     * <p>
+     * Sets the <code>Content-Language</code> header of the response.
+     * </p>
+     */
+    private String responseContentLanguage;
+
+    /**
+     * <p>
+     * Sets the <code>Content-Type</code> header of the response.
+     * </p>
+     */
+    private String responseContentType;
+
+    /**
+     * <p>
+     * Sets the <code>Expires</code> header of the response.
+     * </p>
+     */
+    private java.util.Date responseExpires;
+
+    /**
+     * <p>
+     * VersionId used to reference a specific version of the object.
+     * </p>
+     */
+    private String versionId;
+
+    /**
+     * <p>
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
+     * </p>
+     */
+    private String sSECustomerAlgorithm;
+
+    /**
+     * <p>
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm</code> header.
+     * </p>
+     */
+    private String sSECustomerKey;
+
+    /**
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
+     */
+    private String sSECustomerKeyMD5;
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     */
+    private String requestPayer;
+
+    /**
+     * <p>
+     * Part number of the object being read. This is a positive integer between
+     * 1 and 10,000. Effectively performs a 'ranged' GET request for the part
+     * specified. Useful for downloading just a part of an object.
+     * </p>
      */
     private Integer partNumber;
 
     /**
-     * Constructs a new {@link GetObjectRequest} with all the required parameters.
+     * <p>
+     * The bucket name containing the object.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      *
-     * @param bucketName
-     *            The name of the bucket containing the desired object.
-     * @param key
-     *            The key in the specified bucket under which the object is
-     *            stored.
-     *
-     * @see GetObjectRequest#GetObjectRequest(String, String, String)
-     * @see GetObjectRequest#GetObjectRequest(String, String, boolean)
+     * @return <p>
+     *         The bucket name containing the object.
+     *         </p>
+     *         <p>
+     *         When using this API with an access point, you must direct
+     *         requests to the access point hostname. The access point hostname
+     *         takes the form
+     *         <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint
+     *         .<i>Region</i>.amazonaws.com. When using this operation using an
+     *         access point through the AWS SDKs, you provide the access point
+     *         ARN in place of the bucket name. For more information about
+     *         access point ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *         >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     *         Developer Guide</i>.
+     *         </p>
      */
-    public GetObjectRequest(String bucketName, String key) {
-        this(bucketName, key, null);
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Constructs a new {@link GetObjectRequest} with all the required parameters.
+     * <p>
+     * The bucket name containing the object.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      *
-     * @param bucketName
-     *            The name of the bucket containing the desired object.
-     * @param key
-     *            The key in the specified bucket under which the object is
-     *            stored.
-     * @param versionId
-     *            The Amazon S3 version ID specifying a specific version of the
-     *            object to download.
-     *
-     * @see GetObjectRequest#GetObjectRequest(String, String)
-     * @see GetObjectRequest#GetObjectRequest(String, String, boolean)
+     * @param bucket <p>
+     *            The bucket name containing the object.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
      */
-    public GetObjectRequest(String bucketName, String key, String versionId) {
-        setBucketName(bucketName);
-        setKey(key);
-        setVersionId(versionId);
-    }
-
-    public GetObjectRequest(S3ObjectId s3ObjectId) {
-        this.s3ObjectIdBuilder = new S3ObjectIdBuilder(s3ObjectId);
-    }
-
-    /**
-     * Constructs a new {@link GetObjectRequest} with all the required
-     * parameters.
-     *
-     * @param bucketName
-     *            The name of the bucket containing the desired object.
-     * @param key
-     *            The key in the specified bucket under which the object is
-     *            stored.
-     * @param isRequesterPays
-     *            If enabled, the requester is charged for downloading the data
-     *            from Requester Pays Buckets.
-     *
-     * @see GetObjectRequest#GetObjectRequest(String, String)
-     * @see GetObjectRequest#GetObjectRequest(String, String, String)
-     */
-    public GetObjectRequest(String bucketName, String key,
-            boolean isRequesterPays) {
-        this.s3ObjectIdBuilder
-            .withBucket(bucketName)
-            .withKey(key)
-            ;
-        this.isRequesterPays = isRequesterPays;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Gets the name of the bucket containing the object to be downloaded.
+     * <p>
+     * The bucket name containing the object.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The name of the bucket containing the object to be downloaded.
-     *
-     * @see GetObjectRequest#setBucketName(String)
-     * @see GetObjectRequest#withBucketName(String)
+     * @param bucket <p>
+     *            The bucket name containing the object.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getBucketName() {
-        return s3ObjectIdBuilder.getBucket();
-    }
-
-    /**
-     * Sets the name of the bucket containing the object to be downloaded.
-     *
-     * @param bucketName
-     *            The name of the bucket containing the object to be downloaded.
-     *
-     * @see GetObjectRequest#getBucketName()
-     * @see GetObjectRequest#withBucketName(String)
-     */
-    public void setBucketName(String bucketName) {
-        s3ObjectIdBuilder.setBucket(bucketName);
-    }
-
-    /**
-     * Sets the name of the bucket containing the object to be downloaded.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
-     *
-     * @param bucketName
-     *            The name of the bucket containing the object to be downloaded.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getBucketName()
-     * @see GetObjectRequest#setBucketName(String)
-     */
-    public GetObjectRequest withBucketName(String bucketName) {
-        setBucketName(bucketName);
+    public GetObjectRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
 
     /**
-     * Gets the key under which the object to be downloaded is stored.
+     * <p>
+     * Return the object only if its entity tag (ETag) is the same as the one
+     * specified, otherwise return a 412 (precondition failed).
+     * </p>
      *
-     * @return The key under which the object to be downloaded is stored.
+     * @return <p>
+     *         Return the object only if its entity tag (ETag) is the same as
+     *         the one specified, otherwise return a 412 (precondition failed).
+     *         </p>
+     */
+    public String getIfMatch() {
+        return ifMatch;
+    }
+
+    /**
+     * <p>
+     * Return the object only if its entity tag (ETag) is the same as the one
+     * specified, otherwise return a 412 (precondition failed).
+     * </p>
      *
-     * @see GetObjectRequest#setKey(String)
-     * @see GetObjectRequest#withKey(String)
+     * @param ifMatch <p>
+     *            Return the object only if its entity tag (ETag) is the same as
+     *            the one specified, otherwise return a 412 (precondition
+     *            failed).
+     *            </p>
+     */
+    public void setIfMatch(String ifMatch) {
+        this.ifMatch = ifMatch;
+    }
+
+    /**
+     * <p>
+     * Return the object only if its entity tag (ETag) is the same as the one
+     * specified, otherwise return a 412 (precondition failed).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ifMatch <p>
+     *            Return the object only if its entity tag (ETag) is the same as
+     *            the one specified, otherwise return a 412 (precondition
+     *            failed).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withIfMatch(String ifMatch) {
+        this.ifMatch = ifMatch;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Return the object only if it has been modified since the specified time,
+     * otherwise return a 304 (not modified).
+     * </p>
+     *
+     * @return <p>
+     *         Return the object only if it has been modified since the
+     *         specified time, otherwise return a 304 (not modified).
+     *         </p>
+     */
+    public java.util.Date getIfModifiedSince() {
+        return ifModifiedSince;
+    }
+
+    /**
+     * <p>
+     * Return the object only if it has been modified since the specified time,
+     * otherwise return a 304 (not modified).
+     * </p>
+     *
+     * @param ifModifiedSince <p>
+     *            Return the object only if it has been modified since the
+     *            specified time, otherwise return a 304 (not modified).
+     *            </p>
+     */
+    public void setIfModifiedSince(java.util.Date ifModifiedSince) {
+        this.ifModifiedSince = ifModifiedSince;
+    }
+
+    /**
+     * <p>
+     * Return the object only if it has been modified since the specified time,
+     * otherwise return a 304 (not modified).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ifModifiedSince <p>
+     *            Return the object only if it has been modified since the
+     *            specified time, otherwise return a 304 (not modified).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withIfModifiedSince(java.util.Date ifModifiedSince) {
+        this.ifModifiedSince = ifModifiedSince;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Return the object only if its entity tag (ETag) is different from the one
+     * specified, otherwise return a 304 (not modified).
+     * </p>
+     *
+     * @return <p>
+     *         Return the object only if its entity tag (ETag) is different from
+     *         the one specified, otherwise return a 304 (not modified).
+     *         </p>
+     */
+    public String getIfNoneMatch() {
+        return ifNoneMatch;
+    }
+
+    /**
+     * <p>
+     * Return the object only if its entity tag (ETag) is different from the one
+     * specified, otherwise return a 304 (not modified).
+     * </p>
+     *
+     * @param ifNoneMatch <p>
+     *            Return the object only if its entity tag (ETag) is different
+     *            from the one specified, otherwise return a 304 (not modified).
+     *            </p>
+     */
+    public void setIfNoneMatch(String ifNoneMatch) {
+        this.ifNoneMatch = ifNoneMatch;
+    }
+
+    /**
+     * <p>
+     * Return the object only if its entity tag (ETag) is different from the one
+     * specified, otherwise return a 304 (not modified).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ifNoneMatch <p>
+     *            Return the object only if its entity tag (ETag) is different
+     *            from the one specified, otherwise return a 304 (not modified).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withIfNoneMatch(String ifNoneMatch) {
+        this.ifNoneMatch = ifNoneMatch;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Return the object only if it has not been modified since the specified
+     * time, otherwise return a 412 (precondition failed).
+     * </p>
+     *
+     * @return <p>
+     *         Return the object only if it has not been modified since the
+     *         specified time, otherwise return a 412 (precondition failed).
+     *         </p>
+     */
+    public java.util.Date getIfUnmodifiedSince() {
+        return ifUnmodifiedSince;
+    }
+
+    /**
+     * <p>
+     * Return the object only if it has not been modified since the specified
+     * time, otherwise return a 412 (precondition failed).
+     * </p>
+     *
+     * @param ifUnmodifiedSince <p>
+     *            Return the object only if it has not been modified since the
+     *            specified time, otherwise return a 412 (precondition failed).
+     *            </p>
+     */
+    public void setIfUnmodifiedSince(java.util.Date ifUnmodifiedSince) {
+        this.ifUnmodifiedSince = ifUnmodifiedSince;
+    }
+
+    /**
+     * <p>
+     * Return the object only if it has not been modified since the specified
+     * time, otherwise return a 412 (precondition failed).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ifUnmodifiedSince <p>
+     *            Return the object only if it has not been modified since the
+     *            specified time, otherwise return a 412 (precondition failed).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withIfUnmodifiedSince(java.util.Date ifUnmodifiedSince) {
+        this.ifUnmodifiedSince = ifUnmodifiedSince;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Key of the object to get.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     *
+     * @return <p>
+     *         Key of the object to get.
+     *         </p>
      */
     public String getKey() {
-        return s3ObjectIdBuilder.getKey();
+        return key;
     }
 
     /**
-     * Sets the key under which the object to be downloaded is stored.
+     * <p>
+     * Key of the object to get.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key
-     *            The key under which the object to be downloaded is stored.
-     *
-     * @see GetObjectRequest#getKey()
-     * @see GetObjectRequest#withKey(String)
+     * @param key <p>
+     *            Key of the object to get.
+     *            </p>
      */
     public void setKey(String key) {
-        s3ObjectIdBuilder.setKey(key);
+        this.key = key;
     }
 
     /**
-     * Sets the key under which the object to be downloaded is stored.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
+     * <p>
+     * Key of the object to get.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key
-     *            The key under which the object to be downloaded is stored.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getKey()
-     * @see GetObjectRequest#setKey(String)
+     * @param key <p>
+     *            Key of the object to get.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetObjectRequest withKey(String key) {
-        setKey(key);
+        this.key = key;
         return this;
     }
 
     /**
      * <p>
-     * Gets the optional version ID specifying which version of the object to
-     * download. If not specified, the most recent version will be downloaded.
+     * Downloads the specified range bytes of an object. For more information
+     * about the HTTP Range header, see <a
+     * href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     * >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35</a>.
      * </p>
+     * <note>
      * <p>
-     * Objects created before versioning was enabled or when versioning is
-     * suspended are given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
+     * Amazon S3 doesn't support retrieving multiple ranges of data per
+     * <code>GET</code> request.
      * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Downloads the specified range bytes of an object. For more
+     *         information about the HTTP Range header, see <a href=
+     *         "https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     *         >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35
+     *         </a>.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Amazon S3 doesn't support retrieving multiple ranges of data per
+     *         <code>GET</code> request.
+     *         </p>
+     *         </note>
+     */
+    public String getRange() {
+        return range;
+    }
+
+    /**
      * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * Downloads the specified range bytes of an object. For more information
+     * about the HTTP Range header, see <a
+     * href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     * >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon S3 doesn't support retrieving multiple ranges of data per
+     * <code>GET</code> request.
+     * </p>
+     * </note>
+     *
+     * @param range <p>
+     *            Downloads the specified range bytes of an object. For more
+     *            information about the HTTP Range header, see <a href=
+     *            "https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     *            >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14
+     *            .35</a>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon S3 doesn't support retrieving multiple ranges of data
+     *            per <code>GET</code> request.
+     *            </p>
+     *            </note>
+     */
+    public void setRange(String range) {
+        this.range = range;
+    }
+
+    /**
+     * <p>
+     * Downloads the specified range bytes of an object. For more information
+     * about the HTTP Range header, see <a
+     * href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     * >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35</a>.
+     * </p>
+     * <note>
+     * <p>
+     * Amazon S3 doesn't support retrieving multiple ranges of data per
+     * <code>GET</code> request.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param range <p>
+     *            Downloads the specified range bytes of an object. For more
+     *            information about the HTTP Range header, see <a href=
+     *            "https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35"
+     *            >https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14
+     *            .35</a>.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Amazon S3 doesn't support retrieving multiple ranges of data
+     *            per <code>GET</code> request.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withRange(String range) {
+        this.range = range;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Cache-Control</code> header of the response.
      * </p>
      *
-     * @return The optional version ID specifying which version of the object to
-     *         download. If not specified, the most recent version will be
-     *         downloaded.
+     * @return <p>
+     *         Sets the <code>Cache-Control</code> header of the response.
+     *         </p>
+     */
+    public String getResponseCacheControl() {
+        return responseCacheControl;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Cache-Control</code> header of the response.
+     * </p>
      *
-     * @see GetObjectRequest#setVersionId(String)
-     * @see GetObjectRequest#withVersionId(String)
+     * @param responseCacheControl <p>
+     *            Sets the <code>Cache-Control</code> header of the response.
+     *            </p>
+     */
+    public void setResponseCacheControl(String responseCacheControl) {
+        this.responseCacheControl = responseCacheControl;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Cache-Control</code> header of the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param responseCacheControl <p>
+     *            Sets the <code>Cache-Control</code> header of the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withResponseCacheControl(String responseCacheControl) {
+        this.responseCacheControl = responseCacheControl;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Disposition</code> header of the response
+     * </p>
+     *
+     * @return <p>
+     *         Sets the <code>Content-Disposition</code> header of the response
+     *         </p>
+     */
+    public String getResponseContentDisposition() {
+        return responseContentDisposition;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Disposition</code> header of the response
+     * </p>
+     *
+     * @param responseContentDisposition <p>
+     *            Sets the <code>Content-Disposition</code> header of the
+     *            response
+     *            </p>
+     */
+    public void setResponseContentDisposition(String responseContentDisposition) {
+        this.responseContentDisposition = responseContentDisposition;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Disposition</code> header of the response
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param responseContentDisposition <p>
+     *            Sets the <code>Content-Disposition</code> header of the
+     *            response
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withResponseContentDisposition(String responseContentDisposition) {
+        this.responseContentDisposition = responseContentDisposition;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Encoding</code> header of the response.
+     * </p>
+     *
+     * @return <p>
+     *         Sets the <code>Content-Encoding</code> header of the response.
+     *         </p>
+     */
+    public String getResponseContentEncoding() {
+        return responseContentEncoding;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Encoding</code> header of the response.
+     * </p>
+     *
+     * @param responseContentEncoding <p>
+     *            Sets the <code>Content-Encoding</code> header of the response.
+     *            </p>
+     */
+    public void setResponseContentEncoding(String responseContentEncoding) {
+        this.responseContentEncoding = responseContentEncoding;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Encoding</code> header of the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param responseContentEncoding <p>
+     *            Sets the <code>Content-Encoding</code> header of the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withResponseContentEncoding(String responseContentEncoding) {
+        this.responseContentEncoding = responseContentEncoding;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Language</code> header of the response.
+     * </p>
+     *
+     * @return <p>
+     *         Sets the <code>Content-Language</code> header of the response.
+     *         </p>
+     */
+    public String getResponseContentLanguage() {
+        return responseContentLanguage;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Language</code> header of the response.
+     * </p>
+     *
+     * @param responseContentLanguage <p>
+     *            Sets the <code>Content-Language</code> header of the response.
+     *            </p>
+     */
+    public void setResponseContentLanguage(String responseContentLanguage) {
+        this.responseContentLanguage = responseContentLanguage;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Language</code> header of the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param responseContentLanguage <p>
+     *            Sets the <code>Content-Language</code> header of the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withResponseContentLanguage(String responseContentLanguage) {
+        this.responseContentLanguage = responseContentLanguage;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Type</code> header of the response.
+     * </p>
+     *
+     * @return <p>
+     *         Sets the <code>Content-Type</code> header of the response.
+     *         </p>
+     */
+    public String getResponseContentType() {
+        return responseContentType;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Type</code> header of the response.
+     * </p>
+     *
+     * @param responseContentType <p>
+     *            Sets the <code>Content-Type</code> header of the response.
+     *            </p>
+     */
+    public void setResponseContentType(String responseContentType) {
+        this.responseContentType = responseContentType;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Content-Type</code> header of the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param responseContentType <p>
+     *            Sets the <code>Content-Type</code> header of the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withResponseContentType(String responseContentType) {
+        this.responseContentType = responseContentType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Expires</code> header of the response.
+     * </p>
+     *
+     * @return <p>
+     *         Sets the <code>Expires</code> header of the response.
+     *         </p>
+     */
+    public java.util.Date getResponseExpires() {
+        return responseExpires;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Expires</code> header of the response.
+     * </p>
+     *
+     * @param responseExpires <p>
+     *            Sets the <code>Expires</code> header of the response.
+     *            </p>
+     */
+    public void setResponseExpires(java.util.Date responseExpires) {
+        this.responseExpires = responseExpires;
+    }
+
+    /**
+     * <p>
+     * Sets the <code>Expires</code> header of the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param responseExpires <p>
+     *            Sets the <code>Expires</code> header of the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withResponseExpires(java.util.Date responseExpires) {
+        this.responseExpires = responseExpires;
+        return this;
+    }
+
+    /**
+     * <p>
+     * VersionId used to reference a specific version of the object.
+     * </p>
+     *
+     * @return <p>
+     *         VersionId used to reference a specific version of the object.
+     *         </p>
      */
     public String getVersionId() {
-        return s3ObjectIdBuilder.getVersionId();
+        return versionId;
     }
 
     /**
-     * Sets the optional version ID specifying which version of the object to
-     * download. If not specified, the most recent version will be downloaded.
      * <p>
-     * Objects created before versioning was enabled or when versioning is
-     * suspended will be given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
-     * </p>
-     * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * VersionId used to reference a specific version of the object.
      * </p>
      *
-     * @param versionId
-     *            The optional version ID specifying which version of the object
-     *            to download.
-     *
-     * @see GetObjectRequest#getVersionId()
-     * @see GetObjectRequest#withVersionId(String)
+     * @param versionId <p>
+     *            VersionId used to reference a specific version of the object.
+     *            </p>
      */
     public void setVersionId(String versionId) {
-        s3ObjectIdBuilder.setVersionId(versionId);
+        this.versionId = versionId;
     }
 
     /**
      * <p>
-     * Sets the optional version ID specifying which version of the object to
-     * download and returns this object, enabling additional method calls to be
-     * chained together. If not specified, the most recent version will be
-     * downloaded.
+     * VersionId used to reference a specific version of the object.
      * </p>
      * <p>
-     * Objects created before versioning was enabled or when versioning is
-     * suspended will be given the default or <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
-     * </p>
-     * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
-     * </p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param versionId
-     *            The optional version ID specifying which version of the object
-     *            to download.
-     *
-     * @return The updated request object, enabling additional method calls to be
-     * chained together.
-     *
-     * @see GetObjectRequest#getVersionId()
-     * @see GetObjectRequest#setVersionId(String)
+     * @param versionId <p>
+     *            VersionId used to reference a specific version of the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetObjectRequest withVersionId(String versionId) {
-        setVersionId(versionId);
-        return this;
-    }
-
-
-    /*
-     * Optional Request Parameters
-     */
-
-    /**
-     * <p>
-     * Gets the optional inclusive byte range within the desired object
-     * that will be downloaded by this request.
-     * </p>
-     * <p>
-     * The range is returned as
-     * a two element array, containing the start and end index of the byte range.
-     * If no byte range has been specified, the entire object is downloaded and
-     * this method returns <code>null</code>.
-     * </p>
-     * @return A two element array indicating the inclusive start index and end index
-     *         within the object being downloaded by this request.
-     *         Returns <code>null</code> if no range has been specified,
-     *         and the whole object is
-     *         to be downloaded.
-     *
-     * @see #setRange(long, long)
-     * @see #withRange(long, long)
-     */
-    public long[] getRange() {
-        return range == null ? null : range.clone();
-    }
-
-    /**
-     * <p>
-     * Sets the optional inclusive byte range within the desired object that
-     * will be downloaded by this request.
-     * </p>
-     * <p>
-     * The first byte in an object has
-     * position 0; as an example, the first ten bytes of an object can be
-     * downloaded by specifying a range of 0 to 9.
-     * </p>
-     * <p>
-     * If no byte range is specified, this request downloads the entire
-     * object from Amazon S3.
-     * </p>
-     *
-     * @param start
-     *            The start of the inclusive byte range to download.
-     * @param end
-     *            The end of the inclusive byte range to download.
-     *
-     * @see #getRange()
-     * @see #withRange(long, long)
-     */
-    public void setRange(long start, long end) {
-        range = new long[] {start, end};
-    }
-
-    /**
-     * <p>
-     * Sets the optional inclusive start range within the desired object that the
-     * rest of which will be downloaded by this request.
-     * </p>
-     * <p>
-     * The first byte in an object has
-     * position 0; as an example, the object is of 10 bytes in length, the last
-     * 4 bytes can be downloaded by specifying the start range as 6.
-     * </p>
-     * <p>
-     * If no byte range is specified, this request downloads the entire
-     * object from Amazon S3.
-     * </p>
-     *
-     * @param start
-     *            The start of the inclusive byte range to download.
-     *
-     * @see #setRange(long, long)
-     * @see #withRange(long)
-     */
-    public void setRange(long start) {
-        setRange(start, Long.MAX_VALUE - 1);
-    }
-
-    /**
-     * <p>
-     * Sets the optional inclusive byte range within the desired object that
-     * will be downloaded by this request.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
-     * </p>
-     * <p>
-     * The first byte in an object has
-     * position 0; as an example, the first ten bytes of an object can be
-     * downloaded by specifying a range of 0 to 9.
-     * </p>
-     * <p>
-     * If no byte range is specified, this request downloads the entire
-     * object from Amazon S3.
-     * </p>
-     *
-     * @param start
-     *            The start of the inclusive byte range to download.
-     * @param end
-     *            The end of the inclusive byte range to download.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getRange()
-     * @see GetObjectRequest#setRange(long, long)
-     */
-    public GetObjectRequest withRange(long start, long end) {
-        setRange(start, end);
+        this.versionId = versionId;
         return this;
     }
 
     /**
      * <p>
-     * Sets the optional inclusive start range within the desired object that the
-     * rest of which will be downloaded by this request.
-     * </p>
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
-     * <p>
-     * The first byte in an object has
-     * position 0; as an example, the object is of 10 bytes in length, the last
-     * 4 bytes can be downloaded by specifying the start range as 6.
-     * </p>
-     * <p>
-     * If no byte range is specified, this request downloads the entire
-     * object from Amazon S3.
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
      * </p>
      *
-     * @param start
-     *            The start of the inclusive byte range to download.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see #withRange(long, long)
-     * @see #setRange(long)
+     * @return <p>
+     *         Specifies the algorithm to use to when encrypting the object (for
+     *         example, AES256).
+     *         </p>
      */
-    public GetObjectRequest withRange(long start) {
-        setRange(start);
-        return this;
+    public String getSSECustomerAlgorithm() {
+        return sSECustomerAlgorithm;
     }
 
     /**
-     * Gets the optional list of ETag constraints that, when present, <b>must</b>
-     * include a match for the object's current ETag in order for this
-     * request to be executed. Only one ETag in the list needs to match for this
-     * request to be executed by Amazon S3.
-     *
-     * @return The optional list of ETag constraints that when present <b>must</b>
-     *         include a match for the object's current ETag in order for this
-     *         request to be executed.
-     *
-     * @see GetObjectRequest#setMatchingETagConstraints(List)
-     * @see GetObjectRequest#withMatchingETagConstraint(String)
-     */
-    public List<String> getMatchingETagConstraints() {
-        return matchingETagConstraints;
-    }
-
-    /**
-     * Sets the optional list of ETag constraints that when present <b>must</b>
-     * include a match for the object's current ETag in order for this
-     * request to be executed. If none of the specified ETags match the object's
-     * current ETag, this request will not be executed. Only one ETag in the
-     * list needs to match for the request to be executed by Amazon S3.
-     *
-     * @param eTagList
-     *            The optional list of ETag constraints that <b>must</b> include a
-     *            match for the object's current ETag in order for this request
-     *            to be executed.
-     *
-     * @see GetObjectRequest#getMatchingETagConstraints()
-     * @see GetObjectRequest#withMatchingETagConstraint(String)
-     */
-    public void setMatchingETagConstraints(List<String> eTagList) {
-        this.matchingETagConstraints = eTagList;
-    }
-
-    /**
-     * Sets a single ETag constraint to this request.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
      * <p>
-     * Multiple ETag constraints can be added to a request, but one must match the object's
-     * current ETag in order for this request to be executed. If none of the
-     * ETag constraints added to this request match the object's current ETag,
-     * this request will not be executed by Amazon S3.
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
      * </p>
      *
-     * @param eTag
-     *            The matching ETag constraint to add to this request.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getMatchingETagConstraints()
-     * @see GetObjectRequest#setMatchingETagConstraints(List)
+     * @param sSECustomerAlgorithm <p>
+     *            Specifies the algorithm to use to when encrypting the object
+     *            (for example, AES256).
+     *            </p>
      */
-    public GetObjectRequest withMatchingETagConstraint(String eTag) {
-        this.matchingETagConstraints.add(eTag);
+    public void setSSECustomerAlgorithm(String sSECustomerAlgorithm) {
+        this.sSECustomerAlgorithm = sSECustomerAlgorithm;
+    }
+
+    /**
+     * <p>
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSECustomerAlgorithm <p>
+     *            Specifies the algorithm to use to when encrypting the object
+     *            (for example, AES256).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withSSECustomerAlgorithm(String sSECustomerAlgorithm) {
+        this.sSECustomerAlgorithm = sSECustomerAlgorithm;
         return this;
     }
 
     /**
-     * Gets the optional list of ETag constraints that when present, <b>must</b>
-     * not include a match for the object's current ETag in order for this
-     * request to be executed. If any entry in the non-matching ETag constraint
-     * list matches the object's current ETag, this request <b>will not</b> be
-     * executed by Amazon S3.
-     *
-     * @return The optional list of ETag constraints that when present, <b>must</b>
-     *         not include a match for the object's current ETag in order
-     *         for this request to be executed.
-     *
-     * @see GetObjectRequest#setNonmatchingETagConstraints(List)
-     * @see GetObjectRequest#withNonmatchingETagConstraint(String)
-     */
-    public List<String> getNonmatchingETagConstraints() {
-        return nonmatchingEtagConstraints;
-    }
-
-    /**
-     * Sets the optional list of ETag constraints that when present <b>must</b>
-     * not include a match for the object's current ETag in order for this
-     * request to be executed. If any entry in the non-matching ETag constraint
-     * list matches the object's current ETag, this request <b>will not</b> be
-     * executed by Amazon S3.
-     *
-     * @param eTagList
-     *            The list of ETag constraints that, when present, <b>must not</b>
-     *            include a match for the object's current ETag in order for
-     *            this request to be executed.
-     *
-     * @see GetObjectRequest#getNonmatchingETagConstraints()
-     * @see GetObjectRequest#withNonmatchingETagConstraint(String)
-     */
-    public void setNonmatchingETagConstraints(List<String> eTagList) {
-        this.nonmatchingEtagConstraints = eTagList;
-    }
-
-    /**
-     * Sets a single ETag constraint to this request.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
      * <p>
-     * Multiple ETag
-     * constraints can be added to a request, but all ETag constraints <b>must
-     * not</b> match the object's current ETag in order for this request to be
-     * executed. If any entry in the non-matching ETag constraint list matches
-     * the object's current ETag, this request <b>will not</b> be executed by
-     * Amazon S3.
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm</code> header.
      * </p>
      *
-     * @param eTag
-     *            The non-matching ETag constraint to add to this request.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getNonmatchingETagConstraints()
-     * @see GetObjectRequest#setNonmatchingETagConstraints(List)
+     * @return <p>
+     *         Specifies the customer-provided encryption key for Amazon S3 to
+     *         use in encrypting data. This value is used to store the object
+     *         and then it is discarded; Amazon S3 does not store the encryption
+     *         key. The key must be appropriate for use with the algorithm
+     *         specified in the
+     *         <code>x-amz-server-side​-encryption​-customer-algorithm</code>
+     *         header.
+     *         </p>
      */
-    public GetObjectRequest withNonmatchingETagConstraint(String eTag) {
-        this.nonmatchingEtagConstraints.add(eTag);
-        return this;
+    public String getSSECustomerKey() {
+        return sSECustomerKey;
     }
 
     /**
-     * Gets the optional unmodified constraint that restricts this
-     * request to executing only if the object has <b>not</b> been
-     * modified after the specified date.
-     *
-     * @return The optional unmodified constraint that restricts this
-     *         request to executing only if the object has <b>not</b>
-     *         been modified after the specified date.
-     *
-     * @see GetObjectRequest#setUnmodifiedSinceConstraint(Date)
-     * @see GetObjectRequest#withUnmodifiedSinceConstraint(Date)
-     */
-    public Date getUnmodifiedSinceConstraint() {
-        return unmodifiedSinceConstraint;
-    }
-
-    /**
-     * Sets the optional unmodified constraint that restricts this request
-     * to executing only if the object has <b>not</b> been modified after
-     * the specified date.
      * <p>
-     * Note that Amazon S3 will ignore any dates occurring in the future.
-     *
-     * @param date
-     *            The unmodified constraint that restricts this request to
-     *            executing only if the object has <b>not</b> been
-     *            modified after this date.
-     *
-     * @see GetObjectRequest#getUnmodifiedSinceConstraint()
-     * @see GetObjectRequest#withUnmodifiedSinceConstraint(Date)
-     */
-    public void setUnmodifiedSinceConstraint(Date date) {
-        this.unmodifiedSinceConstraint = date;
-    }
-
-    /**
-     * Sets the optional unmodified constraint that restricts this request
-     * to executing only if the object has <b>not</b> been modified after
-     * the specified date.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
-     * <p>
-     * Note that Amazon S3 will ignore any dates occurring in the future.
-     *
-     * @param date
-     *            The unmodified constraint that restricts this request to
-     *            executing only if the object has <b>not</b> been
-     *            modified after this date.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getUnmodifiedSinceConstraint()
-     * @see GetObjectRequest#setUnmodifiedSinceConstraint(Date)
-     */
-    public GetObjectRequest withUnmodifiedSinceConstraint(Date date) {
-        setUnmodifiedSinceConstraint(date);
-        return this;
-    }
-
-    /**
-     * Gets the optional modified constraint that restricts this
-     * request to executing only if the object <b>has</b> been
-     * modified after the specified date.
-     *
-     * @return The optional modified constraint that restricts this
-     *         request to executing only if the object <b>has</b>
-     *         been modified after the specified date.
-     *
-     * @see GetObjectRequest#setModifiedSinceConstraint(Date)
-     * @see GetObjectRequest#withModifiedSinceConstraint(Date)
-     */
-    public Date getModifiedSinceConstraint() {
-        return modifiedSinceConstraint;
-    }
-
-    /**
-     * Sets the optional modified constraint that restricts this request
-     * to executing only if the object <b>has</b> been modified after the
-     * specified date.
-     * <p>
-     * Note that Amazon S3 will ignore any dates occurring in the future.
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm</code> header.
      * </p>
      *
-     * @param date
-     *            The modified constraint that restricts this request to
-     *            executing only if the object <b>has</b> been modified
-     *            after the specified date.
-     *
-     * @see GetObjectRequest#getModifiedSinceConstraint()
-     * @see GetObjectRequest#withModifiedSinceConstraint(Date)
+     * @param sSECustomerKey <p>
+     *            Specifies the customer-provided encryption key for Amazon S3
+     *            to use in encrypting data. This value is used to store the
+     *            object and then it is discarded; Amazon S3 does not store the
+     *            encryption key. The key must be appropriate for use with the
+     *            algorithm specified in the
+     *            <code>x-amz-server-side​-encryption​-customer-algorithm</code>
+     *            header.
+     *            </p>
      */
-    public void setModifiedSinceConstraint(Date date) {
-        this.modifiedSinceConstraint = date;
+    public void setSSECustomerKey(String sSECustomerKey) {
+        this.sSECustomerKey = sSECustomerKey;
     }
 
     /**
-     * Sets the optional modified constraint that restricts this request
-     * to executing only if the object <b>has</b> been modified after the
-     * specified date.
-     * Returns this {@link GetObjectRequest}, enabling additional method
-     * calls to be chained together.
      * <p>
-     * Note that Amazon S3 will ignore any dates occurring in the future.
-     *
-     * @param date
-     *            The modified constraint that restricts this request to
-     *            executing only if the object <b>has</b> been modified
-     *            after the specified date.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getModifiedSinceConstraint()
-     * @see GetObjectRequest#setModifiedSinceConstraint(Date)
-     */
-    public GetObjectRequest withModifiedSinceConstraint(Date date) {
-        setModifiedSinceConstraint(date);
-        return this;
-    }
-
-    /**
-     * Returns the headers to be overridden in the service response.
-     *
-     * @return the headers to be overridden in the service response.
-     */
-    public ResponseHeaderOverrides getResponseHeaders() {
-        return responseHeaders;
-    }
-
-    /**
-     * Sets the headers to be overridden in the service response.
-     *
-     * @param responseHeaders
-     *            The headers to be overridden in the service response.
-     */
-    public void setResponseHeaders(ResponseHeaderOverrides responseHeaders) {
-        this.responseHeaders = responseHeaders;
-    }
-
-    /**
-     * Sets the headers to be overridden in the service response and returns
-     * this object, for method chaining.
-     *
-     * @param responseHeaders
-     *            The headers to be overridden in the service response.
-     *
-     * @return This {@link GetObjectRequest} for method chaining.
-     */
-    public GetObjectRequest withResponseHeaders(ResponseHeaderOverrides responseHeaders) {
-        setResponseHeaders(responseHeaders);
-        return this;
-    }
-
-    /**
-     * Sets the optional progress listener for receiving updates about object
-     * download status.
-     *
-     * @param progressListener
-     *            The legacy progress listener that is used exclusively for Amazon S3 client.
-     *
-     * @deprecated use {@link #setGeneralProgressListener(ProgressListener)}
-     *             instead.
-     */
-    @Deprecated
-    public void setProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
-        setGeneralProgressListener(new LegacyS3ProgressListener(progressListener));
-    }
-
-    /**
-     * Returns the optional progress listener for receiving updates about object
-     * download status.
-     *
-     * @return the optional progress listener for receiving updates about object
-     *          download status.
-     *
-     * @deprecated use {@link #getGeneralProgressListener()} instead.
-     */
-    @Deprecated
-    public com.amazonaws.services.s3.model.ProgressListener getProgressListener() {
-        if (generalProgressListener instanceof LegacyS3ProgressListener) {
-            return ((LegacyS3ProgressListener) generalProgressListener).unwrap();
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Sets the optional progress listener for receiving updates about object
-     * download status, and returns this updated object so that additional method
-     * calls can be chained together.
-     *
-     * @param progressListener
-     *            The legacy progress listener that is used exclusively for Amazon S3 client.
-     *
-     * @return This updated GetObjectRequest object.
-     *
-     * @deprecated use {@link #withGeneralProgressListener(ProgressListener)}
-     *             instead.
-     */
-    @Deprecated
-    public GetObjectRequest withProgressListener(
-            com.amazonaws.services.s3.model.ProgressListener progressListener) {
-        setProgressListener(progressListener);
-        return this;
-    }
-
-    /**
-     * Sets the optional progress listener for receiving updates about object
-     * download status.
-     *
-     * @param generalProgressListener The new progress listener.
-     */
-    public void setGeneralProgressListener(ProgressListener generalProgressListener) {
-        this.generalProgressListener = generalProgressListener;
-    }
-
-    /**
-     * Returns the optional progress listener for receiving updates about object
-     * download status.
-     *
-     * @return the optional progress listener for receiving updates about object
-     *         download status.
-     */
-    public ProgressListener getGeneralProgressListener() {
-        return generalProgressListener;
-    }
-
-    /**
-     * Sets the optional progress listener for receiving updates about object
-     * download status, and returns this updated object so that additional
-     * method calls can be chained together.
-     *
-     * @param generalProgressListener The new progress listener.
-     * @return This updated GetObjectRequest object.
-     */
-    public GetObjectRequest withGeneralProgressListener(ProgressListener progressListener) {
-        setGeneralProgressListener(progressListener);
-        return this;
-    }
-
-    /**
-     * Returns true if the user has enabled Requester Pays option when
-     * downloading an object from Requester Pays Bucket; else false.
-     *
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm</code> header.
+     * </p>
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to read an
-     * object from it without Requester Pays enabled will result in a 403 error
-     * and the bucket owner will be charged for the request.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
-     *
-     * @return true if the user has enabled Requester Pays option for
-     *         downloading an object from Requester Pays Bucket.
+     * @param sSECustomerKey <p>
+     *            Specifies the customer-provided encryption key for Amazon S3
+     *            to use in encrypting data. This value is used to store the
+     *            object and then it is discarded; Amazon S3 does not store the
+     *            encryption key. The key must be appropriate for use with the
+     *            algorithm specified in the
+     *            <code>x-amz-server-side​-encryption​-customer-algorithm</code>
+     *            header.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public boolean isRequesterPays() {
-        return isRequesterPays;
-    }
-
-    /**
-     * Used for downloading an Amazon S3 Object from a Requester Pays Bucket. If
-     * set the requester is charged for downloading the data from the bucket.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to read an
-     * object from it without Requester Pays enabled will result in a 403 error
-     * and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     */
-    public void setRequesterPays(boolean isRequesterPays) {
-        this.isRequesterPays = isRequesterPays;
-    }
-
-    /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket. It returns this
-     * updated GetObjectRequest object so that additional method calls can be
-     * chained together.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     *
-     * @return The updated GetObjectRequest object.
-     */
-    public GetObjectRequest withRequesterPays(boolean isRequesterPays) {
-        setRequesterPays(isRequesterPays);
-        return this;
-    }
-
-    @Override
-    public SSECustomerKey getSSECustomerKey() {
-        return sseCustomerKey;
-    }
-
-    /**
-     * Sets the optional customer-provided server-side encryption key to use to
-     * decrypt this object.
-     *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to decrypt this object.
-     */
-    public void setSSECustomerKey(SSECustomerKey sseKey) {
-        this.sseCustomerKey = sseKey;
-    }
-
-    /**
-     * Sets the optional customer-provided server-side encryption key to use to
-     * decrypt this object, and returns the updated GetObjectRequest so that
-     * additional method calls may be chained together.
-     *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to decrypt this object.
-     *
-     * @return The optional customer-provided server-side encryption key to use
-     *         to decrypt this object.
-     */
-    public GetObjectRequest withSSECustomerKey(SSECustomerKey sseKey) {
-        setSSECustomerKey(sseKey);
+    public GetObjectRequest withSSECustomerKey(String sSECustomerKey) {
+        this.sSECustomerKey = sSECustomerKey;
         return this;
     }
 
     /**
      * <p>
-     * Returns the optional part number that indicates the part to be downloaded in a multipart object.
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
      * </p>
      *
-     * @return The part number representing a part in a multipart object.
+     * @return <p>
+     *         Specifies the 128-bit MD5 digest of the encryption key according
+     *         to RFC 1321. Amazon S3 uses this header for a message integrity
+     *         check to ensure that the encryption key was transmitted without
+     *         error.
+     *         </p>
+     */
+    public String getSSECustomerKeyMD5() {
+        return sSECustomerKeyMD5;
+    }
+
+    /**
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
      *
-     * @see GetObjectRequest#setPartNumber(Integer)
-     * @see GetObjectRequest#withPartNumber(Integer)
+     * @param sSECustomerKeyMD5 <p>
+     *            Specifies the 128-bit MD5 digest of the encryption key
+     *            according to RFC 1321. Amazon S3 uses this header for a
+     *            message integrity check to ensure that the encryption key was
+     *            transmitted without error.
+     *            </p>
+     */
+    public void setSSECustomerKeyMD5(String sSECustomerKeyMD5) {
+        this.sSECustomerKeyMD5 = sSECustomerKeyMD5;
+    }
+
+    /**
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSECustomerKeyMD5 <p>
+     *            Specifies the 128-bit MD5 digest of the encryption key
+     *            according to RFC 1321. Amazon S3 uses this header for a
+     *            message integrity check to ensure that the encryption key was
+     *            transmitted without error.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetObjectRequest withSSECustomerKeyMD5(String sSECustomerKeyMD5) {
+        this.sSECustomerKeyMD5 = sSECustomerKeyMD5;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @return <p>
+     *         Confirms that the requester knows that they will be charged for
+     *         the request. Bucket owners need not specify this parameter in
+     *         their requests. For information about downloading objects from
+     *         requester pays buckets, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *         >Downloading Objects in Requestor Pays Buckets</a> in the
+     *         <i>Amazon S3 Developer Guide</i>.
+     *         </p>
+     * @see RequestPayer
+     */
+    public String getRequestPayer() {
+        return requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public GetObjectRequest withRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public GetObjectRequest withRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Part number of the object being read. This is a positive integer between
+     * 1 and 10,000. Effectively performs a 'ranged' GET request for the part
+     * specified. Useful for downloading just a part of an object.
+     * </p>
+     *
+     * @return <p>
+     *         Part number of the object being read. This is a positive integer
+     *         between 1 and 10,000. Effectively performs a 'ranged' GET request
+     *         for the part specified. Useful for downloading just a part of an
+     *         object.
+     *         </p>
      */
     public Integer getPartNumber() {
         return partNumber;
@@ -983,20 +1583,17 @@ public class GetObjectRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Sets the optional part number that indicates the part to be downloaded in a multipart object.
-     * </p>
-     * <p>
-     * The valid range for part number is 1 - 10000 inclusive.
-     * Part numbers are 1 based. If an object has 1 part, partNumber=1 would be the correct not 0.
-     * For partNumber < 1, an AmazonS3Exception is thrown with response code 400 bad request.
-     * For partNumber larger than actual part count,  an AmazonS3Exception is thrown with response code 416 Request Range Not Satisfiable.
+     * Part number of the object being read. This is a positive integer between
+     * 1 and 10,000. Effectively performs a 'ranged' GET request for the part
+     * specified. Useful for downloading just a part of an object.
      * </p>
      *
-     * @param partNumber
-     *            The part number representing a part in a multipart object.
-     *
-     * @see GetObjectRequest#getPartNumber()
-     * @see GetObjectRequest#withPartNumber(Integer)
+     * @param partNumber <p>
+     *            Part number of the object being read. This is a positive
+     *            integer between 1 and 10,000. Effectively performs a 'ranged'
+     *            GET request for the part specified. Useful for downloading
+     *            just a part of an object.
+     *            </p>
      */
     public void setPartNumber(Integer partNumber) {
         this.partNumber = partNumber;
@@ -1004,49 +1601,231 @@ public class GetObjectRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Sets the optional part number that indicates the part to be downloaded in a multipart object.
+     * Part number of the object being read. This is a positive integer between
+     * 1 and 10,000. Effectively performs a 'ranged' GET request for the part
+     * specified. Useful for downloading just a part of an object.
      * </p>
      * <p>
-     * The valid range for part number is 1 - 10000 inclusive.
-     * Part numbers are 1 based. If an object has 1 part, partNumber=1 would be the correct not 0.
-     * For partNumber < 1, an AmazonS3Exception is thrown with response code 400 bad request.
-     * For partNumber larger than actual part count,  an AmazonS3Exception is thrown with response code 416 Request Range Not Satisfiable.
-     * </p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param partNumber
-     *            The part number representing a part in a multipart object.
-     *
-     * @return This {@link GetObjectRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectRequest#getPartNumber()
-     * @see GetObjectRequest#setPartNumber(Integer)
+     * @param partNumber <p>
+     *            Part number of the object being read. This is a positive
+     *            integer between 1 and 10,000. Effectively performs a 'ranged'
+     *            GET request for the part specified. Useful for downloading
+     *            just a part of an object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetObjectRequest withPartNumber(Integer partNumber) {
-        setPartNumber(partNumber);
+        this.partNumber = partNumber;
         return this;
     }
 
-
     /**
-     * Returns an immutable S3 object id.
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
      */
-    public S3ObjectId getS3ObjectId() {
-        return s3ObjectIdBuilder.build();
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getIfMatch() != null)
+            sb.append("IfMatch: " + getIfMatch() + ",");
+        if (getIfModifiedSince() != null)
+            sb.append("IfModifiedSince: " + getIfModifiedSince() + ",");
+        if (getIfNoneMatch() != null)
+            sb.append("IfNoneMatch: " + getIfNoneMatch() + ",");
+        if (getIfUnmodifiedSince() != null)
+            sb.append("IfUnmodifiedSince: " + getIfUnmodifiedSince() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
+        if (getRange() != null)
+            sb.append("Range: " + getRange() + ",");
+        if (getResponseCacheControl() != null)
+            sb.append("ResponseCacheControl: " + getResponseCacheControl() + ",");
+        if (getResponseContentDisposition() != null)
+            sb.append("ResponseContentDisposition: " + getResponseContentDisposition() + ",");
+        if (getResponseContentEncoding() != null)
+            sb.append("ResponseContentEncoding: " + getResponseContentEncoding() + ",");
+        if (getResponseContentLanguage() != null)
+            sb.append("ResponseContentLanguage: " + getResponseContentLanguage() + ",");
+        if (getResponseContentType() != null)
+            sb.append("ResponseContentType: " + getResponseContentType() + ",");
+        if (getResponseExpires() != null)
+            sb.append("ResponseExpires: " + getResponseExpires() + ",");
+        if (getVersionId() != null)
+            sb.append("VersionId: " + getVersionId() + ",");
+        if (getSSECustomerAlgorithm() != null)
+            sb.append("SSECustomerAlgorithm: " + getSSECustomerAlgorithm() + ",");
+        if (getSSECustomerKey() != null)
+            sb.append("SSECustomerKey: " + getSSECustomerKey() + ",");
+        if (getSSECustomerKeyMD5() != null)
+            sb.append("SSECustomerKeyMD5: " + getSSECustomerKeyMD5() + ",");
+        if (getRequestPayer() != null)
+            sb.append("RequestPayer: " + getRequestPayer() + ",");
+        if (getPartNumber() != null)
+            sb.append("PartNumber: " + getPartNumber());
+        sb.append("}");
+        return sb.toString();
     }
 
-    /**
-     * Sets the S3 object id for this request.
-     */
-    public void setS3ObjectId(S3ObjectId s3ObjectId) {
-        this.s3ObjectIdBuilder = new S3ObjectIdBuilder(s3ObjectId);
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getIfMatch() == null) ? 0 : getIfMatch().hashCode());
+        hashCode = prime * hashCode
+                + ((getIfModifiedSince() == null) ? 0 : getIfModifiedSince().hashCode());
+        hashCode = prime * hashCode
+                + ((getIfNoneMatch() == null) ? 0 : getIfNoneMatch().hashCode());
+        hashCode = prime * hashCode
+                + ((getIfUnmodifiedSince() == null) ? 0 : getIfUnmodifiedSince().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
+        hashCode = prime * hashCode + ((getRange() == null) ? 0 : getRange().hashCode());
+        hashCode = prime * hashCode
+                + ((getResponseCacheControl() == null) ? 0 : getResponseCacheControl().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getResponseContentDisposition() == null) ? 0 : getResponseContentDisposition()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getResponseContentEncoding() == null) ? 0 : getResponseContentEncoding()
+                        .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getResponseContentLanguage() == null) ? 0 : getResponseContentLanguage()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getResponseContentType() == null) ? 0 : getResponseContentType().hashCode());
+        hashCode = prime * hashCode
+                + ((getResponseExpires() == null) ? 0 : getResponseExpires().hashCode());
+        hashCode = prime * hashCode + ((getVersionId() == null) ? 0 : getVersionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerAlgorithm() == null) ? 0 : getSSECustomerAlgorithm().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerKey() == null) ? 0 : getSSECustomerKey().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerKeyMD5() == null) ? 0 : getSSECustomerKeyMD5().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestPayer() == null) ? 0 : getRequestPayer().hashCode());
+        hashCode = prime * hashCode + ((getPartNumber() == null) ? 0 : getPartNumber().hashCode());
+        return hashCode;
     }
 
-    /**
-     * Fluent API to set the S3 object id for this request.
-     */
-    public GetObjectRequest withS3ObjectId(S3ObjectId s3ObjectId) {
-        setS3ObjectId(s3ObjectId);
-        return this;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof GetObjectRequest == false)
+            return false;
+        GetObjectRequest other = (GetObjectRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getIfMatch() == null ^ this.getIfMatch() == null)
+            return false;
+        if (other.getIfMatch() != null && other.getIfMatch().equals(this.getIfMatch()) == false)
+            return false;
+        if (other.getIfModifiedSince() == null ^ this.getIfModifiedSince() == null)
+            return false;
+        if (other.getIfModifiedSince() != null
+                && other.getIfModifiedSince().equals(this.getIfModifiedSince()) == false)
+            return false;
+        if (other.getIfNoneMatch() == null ^ this.getIfNoneMatch() == null)
+            return false;
+        if (other.getIfNoneMatch() != null
+                && other.getIfNoneMatch().equals(this.getIfNoneMatch()) == false)
+            return false;
+        if (other.getIfUnmodifiedSince() == null ^ this.getIfUnmodifiedSince() == null)
+            return false;
+        if (other.getIfUnmodifiedSince() != null
+                && other.getIfUnmodifiedSince().equals(this.getIfUnmodifiedSince()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+            return false;
+        if (other.getRange() == null ^ this.getRange() == null)
+            return false;
+        if (other.getRange() != null && other.getRange().equals(this.getRange()) == false)
+            return false;
+        if (other.getResponseCacheControl() == null ^ this.getResponseCacheControl() == null)
+            return false;
+        if (other.getResponseCacheControl() != null
+                && other.getResponseCacheControl().equals(this.getResponseCacheControl()) == false)
+            return false;
+        if (other.getResponseContentDisposition() == null
+                ^ this.getResponseContentDisposition() == null)
+            return false;
+        if (other.getResponseContentDisposition() != null
+                && other.getResponseContentDisposition().equals(
+                        this.getResponseContentDisposition()) == false)
+            return false;
+        if (other.getResponseContentEncoding() == null ^ this.getResponseContentEncoding() == null)
+            return false;
+        if (other.getResponseContentEncoding() != null
+                && other.getResponseContentEncoding().equals(this.getResponseContentEncoding()) == false)
+            return false;
+        if (other.getResponseContentLanguage() == null ^ this.getResponseContentLanguage() == null)
+            return false;
+        if (other.getResponseContentLanguage() != null
+                && other.getResponseContentLanguage().equals(this.getResponseContentLanguage()) == false)
+            return false;
+        if (other.getResponseContentType() == null ^ this.getResponseContentType() == null)
+            return false;
+        if (other.getResponseContentType() != null
+                && other.getResponseContentType().equals(this.getResponseContentType()) == false)
+            return false;
+        if (other.getResponseExpires() == null ^ this.getResponseExpires() == null)
+            return false;
+        if (other.getResponseExpires() != null
+                && other.getResponseExpires().equals(this.getResponseExpires()) == false)
+            return false;
+        if (other.getVersionId() == null ^ this.getVersionId() == null)
+            return false;
+        if (other.getVersionId() != null
+                && other.getVersionId().equals(this.getVersionId()) == false)
+            return false;
+        if (other.getSSECustomerAlgorithm() == null ^ this.getSSECustomerAlgorithm() == null)
+            return false;
+        if (other.getSSECustomerAlgorithm() != null
+                && other.getSSECustomerAlgorithm().equals(this.getSSECustomerAlgorithm()) == false)
+            return false;
+        if (other.getSSECustomerKey() == null ^ this.getSSECustomerKey() == null)
+            return false;
+        if (other.getSSECustomerKey() != null
+                && other.getSSECustomerKey().equals(this.getSSECustomerKey()) == false)
+            return false;
+        if (other.getSSECustomerKeyMD5() == null ^ this.getSSECustomerKeyMD5() == null)
+            return false;
+        if (other.getSSECustomerKeyMD5() != null
+                && other.getSSECustomerKeyMD5().equals(this.getSSECustomerKeyMD5()) == false)
+            return false;
+        if (other.getRequestPayer() == null ^ this.getRequestPayer() == null)
+            return false;
+        if (other.getRequestPayer() != null
+                && other.getRequestPayer().equals(this.getRequestPayer()) == false)
+            return false;
+        if (other.getPartNumber() == null ^ this.getPartNumber() == null)
+            return false;
+        if (other.getPartNumber() != null
+                && other.getPartNumber().equals(this.getPartNumber()) == false)
+            return false;
+        return true;
     }
 }

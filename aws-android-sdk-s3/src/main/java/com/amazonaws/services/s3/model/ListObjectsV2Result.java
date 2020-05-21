@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,378 +15,1404 @@
 
 package com.amazonaws.services.s3.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
-/**
- * Results of a listing of objects from an S3 bucket.
- */
-public class ListObjectsV2Result {
-
+public class ListObjectsV2Result implements Serializable {
     /**
-     * A list of summary information describing the objects stored in the bucket
+     * <p>
+     * Set to false if all of the results were returned. Set to true if more
+     * keys are available to return. If the number of results exceeds that
+     * specified by MaxKeys, all of the results might not be returned.
+     * </p>
      */
-    private List<S3ObjectSummary> objectSummaries = new ArrayList<S3ObjectSummary>();
+    private Boolean isTruncated;
 
     /**
-     * A list of the common prefixes included in this object listing - common
-     * prefixes will only be populated for requests that specified a delimiter
+     * <p>
+     * Metadata about each object returned.
+     * </p>
      */
-    private List<String> commonPrefixes = new ArrayList<String>();
+    private java.util.List<Object> contents;
 
     /**
-     * Indicates if this is a complete listing, or if the caller needs to make
-     * additional requests to Amazon S3 to see the full object listing for an S3
-     * bucket
+     * <p>
+     * Bucket name.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      */
-    private boolean isTruncated;
-
-    /** The name of the Amazon S3 bucket containing the listed objects */
-    private String bucketName;
-
-    /** KeyCount is the number of keys returned with this response */
-    private int keyCount;
+    private String name;
 
     /**
-     * NextContinuationToken is sent when isTruncated is true meaning there are
-     * more keys in the bucket that can be listed. The next list requests to
-     * Amazon S3 can be continued by providing this NextContinuationToken.
-     */
-    private String nextContinuationToken;
-
-    /* Original Request Parameters */
-
-    /**
-     * The prefix parameter originally specified by the caller when this object
-     * listing was returned
+     * <p>
+     * Keys that begin with the indicated prefix.
+     * </p>
      */
     private String prefix;
 
     /**
-     * The delimiter parameter originally specified by the caller when this
-     * object listing was returned
+     * <p>
+     * Causes keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be rolled up into a single result element
+     * in the CommonPrefixes collection. These rolled-up keys are not returned
+     * elsewhere in the response. Each rolled-up result counts as only one
+     * return against the <code>MaxKeys</code> value.
+     * </p>
      */
     private String delimiter;
 
     /**
-     * The maxKeys parameter originally specified by the caller when this object
-     * listing was returned
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
      */
-    private int maxKeys;
+    private Integer maxKeys;
 
     /**
-     * The encodingType parameter originally specified by the caller when this
-     * object listing was returned.
+     * <p>
+     * All of the keys rolled up into a common prefix count as a single return
+     * when calculating the number of returns.
+     * </p>
+     * <p>
+     * A response can contain <code>CommonPrefixes</code> only if you specify a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> contains all (if there are any) keys between
+     * <code>Prefix</code> and the next occurrence of the string specified by a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> lists keys that act like subdirectories in
+     * the directory specified by <code>Prefix</code>.
+     * </p>
+     * <p>
+     * For example, if the prefix is <code>notes/</code> and the delimiter is a
+     * slash (<code>/</code>) as in <code>notes/summer/july</code>, the common
+     * prefix is <code>notes/summer/</code>. All of the keys that roll up into a
+     * common prefix count as a single return when calculating the number of
+     * returns.
+     * </p>
+     */
+    private java.util.List<CommonPrefix> commonPrefixes;
+
+    /**
+     * <p>
+     * Encoding type used by Amazon S3 to encode object key names in the XML
+     * response.
+     * </p>
+     * <p>
+     * If you specify the encoding-type request parameter, Amazon S3 includes
+     * this element in the response, and returns encoded key name values in the
+     * following response elements:
+     * </p>
+     * <p>
+     * <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      */
     private String encodingType;
 
     /**
-     * Optional parameter which allows list to be continued from a specific
-     * point. ContinuationToken is provided in truncated list results.
+     * <p>
+     * KeyCount is the number of keys returned with this request. KeyCount will
+     * always be less than equals to MaxKeys field. Say you ask for 50 keys,
+     * your result will include less than equals 50 keys
+     * </p>
+     */
+    private Integer keyCount;
+
+    /**
+     * <p>
+     * If ContinuationToken was sent with the request, it is included in the
+     * response.
+     * </p>
      */
     private String continuationToken;
 
     /**
-     * Optional parameter indicating where you want Amazon S3 to start the
-     * object listing from. This can be any key in the bucket.
+     * <p>
+     * <code>NextContinuationToken</code> is sent when <code>isTruncated</code>
+     * is true, which means there are more keys in the bucket that can be
+     * listed. The next list requests to Amazon S3 can be continued with this
+     * <code>NextContinuationToken</code>. <code>NextContinuationToken</code> is
+     * obfuscated and is not a real key
+     * </p>
+     */
+    private String nextContinuationToken;
+
+    /**
+     * <p>
+     * If StartAfter was sent with the request, it is included in the response.
+     * </p>
      */
     private String startAfter;
 
     /**
-     * Gets whether or not this object listing is complete.
+     * <p>
+     * Set to false if all of the results were returned. Set to true if more
+     * keys are available to return. If the number of results exceeds that
+     * specified by MaxKeys, all of the results might not be returned.
+     * </p>
      *
-     * @return The value <code>true</code> if the object listing is <b>not
-     *         complete</b>. Returns the value <code>false</code> if otherwise.
-     *         When returning <code>true</code>, additional calls to Amazon S3
-     *         may be needed in order to obtain more results.
+     * @return <p>
+     *         Set to false if all of the results were returned. Set to true if
+     *         more keys are available to return. If the number of results
+     *         exceeds that specified by MaxKeys, all of the results might not
+     *         be returned.
+     *         </p>
      */
-    public boolean isTruncated() {
+    public Boolean isIsTruncated() {
         return isTruncated;
     }
 
     /**
-     * For internal use only. Sets the truncated property for this object
-     * listing, indicating if this is a complete listing or not and whether the
-     * caller needs to make additional calls to S3 to get more object summaries.
+     * <p>
+     * Set to false if all of the results were returned. Set to true if more
+     * keys are available to return. If the number of results exceeds that
+     * specified by MaxKeys, all of the results might not be returned.
+     * </p>
      *
-     * @param isTruncated The value <code>true</code> if the object listing is
-     *            <b>not complete</b>. The value <code>false</code> if
-     *            otherwise.
+     * @return <p>
+     *         Set to false if all of the results were returned. Set to true if
+     *         more keys are available to return. If the number of results
+     *         exceeds that specified by MaxKeys, all of the results might not
+     *         be returned.
+     *         </p>
      */
-    public void setTruncated(boolean isTruncated) {
+    public Boolean getIsTruncated() {
+        return isTruncated;
+    }
+
+    /**
+     * <p>
+     * Set to false if all of the results were returned. Set to true if more
+     * keys are available to return. If the number of results exceeds that
+     * specified by MaxKeys, all of the results might not be returned.
+     * </p>
+     *
+     * @param isTruncated <p>
+     *            Set to false if all of the results were returned. Set to true
+     *            if more keys are available to return. If the number of results
+     *            exceeds that specified by MaxKeys, all of the results might
+     *            not be returned.
+     *            </p>
+     */
+    public void setIsTruncated(Boolean isTruncated) {
         this.isTruncated = isTruncated;
     }
 
     /**
-     * Gets the name of the Amazon S3 bucket containing the objects listed in
-     * this {@link ListObjectsV2Result}.
+     * <p>
+     * Set to false if all of the results were returned. Set to true if more
+     * keys are available to return. If the number of results exceeds that
+     * specified by MaxKeys, all of the results might not be returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The name of the Amazon S3 bucket containing the objects listed in
-     *         this {@link ListObjectsV2Result}.
+     * @param isTruncated <p>
+     *            Set to false if all of the results were returned. Set to true
+     *            if more keys are available to return. If the number of results
+     *            exceeds that specified by MaxKeys, all of the results might
+     *            not be returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getBucketName() {
-        return bucketName;
+    public ListObjectsV2Result withIsTruncated(Boolean isTruncated) {
+        this.isTruncated = isTruncated;
+        return this;
     }
 
     /**
-     * For internal use only. Sets the name of the Amazon S3 bucket containing
-     * the objects listed in this {@link ListObjectsV2Result}.
+     * <p>
+     * Metadata about each object returned.
+     * </p>
      *
-     * @param bucketName The name of the Amazon S3 bucket containing the objects
-     *            listed in this {@link ListObjectsV2Result}.
+     * @return <p>
+     *         Metadata about each object returned.
+     *         </p>
      */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public java.util.List<Object> getContents() {
+        return contents;
     }
 
     /**
-     * Gets the prefix parameter originally used to request this object listing,
-     * or <code>null</code> if no prefix was specified. All objects and common
-     * prefixes included in this object listing start with the specified prefix.
+     * <p>
+     * Metadata about each object returned.
+     * </p>
      *
-     * @return The prefix parameter originally used to request this object
-     *         listing. Returns <code>null</code> if no prefix was specified.
+     * @param contents <p>
+     *            Metadata about each object returned.
+     *            </p>
+     */
+    public void setContents(java.util.Collection<Object> contents) {
+        if (contents == null) {
+            this.contents = null;
+            return;
+        }
+
+        this.contents = new java.util.ArrayList<Object>(contents);
+    }
+
+    /**
+     * <p>
+     * Metadata about each object returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contents <p>
+     *            Metadata about each object returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withContents(Object... contents) {
+        if (getContents() == null) {
+            this.contents = new java.util.ArrayList<Object>(contents.length);
+        }
+        for (Object value : contents) {
+            this.contents.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata about each object returned.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param contents <p>
+     *            Metadata about each object returned.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withContents(java.util.Collection<Object> contents) {
+        setContents(contents);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Bucket name.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Bucket name.
+     *         </p>
+     *         <p>
+     *         When using this API with an access point, you must direct
+     *         requests to the access point hostname. The access point hostname
+     *         takes the form
+     *         <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint
+     *         .<i>Region</i>.amazonaws.com. When using this operation using an
+     *         access point through the AWS SDKs, you provide the access point
+     *         ARN in place of the bucket name. For more information about
+     *         access point ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *         >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * <p>
+     * Bucket name.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param name <p>
+     *            Bucket name.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * <p>
+     * Bucket name.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param name <p>
+     *            Bucket name.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Keys that begin with the indicated prefix.
+     * </p>
+     *
+     * @return <p>
+     *         Keys that begin with the indicated prefix.
+     *         </p>
      */
     public String getPrefix() {
         return prefix;
     }
 
     /**
-     * For internal use only. Sets the prefix parameter originally used to
-     * request this object listing.
+     * <p>
+     * Keys that begin with the indicated prefix.
+     * </p>
      *
-     * @param prefix The prefix parameter originally used to request this object
-     *            listing.
+     * @param prefix <p>
+     *            Keys that begin with the indicated prefix.
+     *            </p>
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
     /**
-     * Gets the delimiter parameter originally used to request this object
-     * listing, or <code>null</code> if no delimiter specified.
      * <p>
-     * The delimiter value allows callers to condense S3 keys into common prefix
-     * listings. For example, if a caller specifies a delimiter of "/" (a common
-     * used value for delimiter), any keys that contain a common prefix between
-     * the start of the key and the first occurrence of "/" will not be included
-     * in the list of object summaries. Instead, the common prefixes list will
-     * have one entry for the common prefix.
+     * Keys that begin with the indicated prefix.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param prefix <p>
+     *            Keys that begin with the indicated prefix.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withPrefix(String prefix) {
+        this.prefix = prefix;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Causes keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be rolled up into a single result element
+     * in the CommonPrefixes collection. These rolled-up keys are not returned
+     * elsewhere in the response. Each rolled-up result counts as only one
+     * return against the <code>MaxKeys</code> value.
      * </p>
      *
-     * @return The delimiter parameter originally used to request this object
-     *         listing. Returns <code>null</code> if no delimiter was specified.
+     * @return <p>
+     *         Causes keys that contain the same string between the prefix and
+     *         the first occurrence of the delimiter to be rolled up into a
+     *         single result element in the CommonPrefixes collection. These
+     *         rolled-up keys are not returned elsewhere in the response. Each
+     *         rolled-up result counts as only one return against the
+     *         <code>MaxKeys</code> value.
+     *         </p>
      */
     public String getDelimiter() {
         return delimiter;
     }
 
     /**
-     * For internal use only. Sets the delimiter parameter originally used to
-     * request this object listing.
+     * <p>
+     * Causes keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be rolled up into a single result element
+     * in the CommonPrefixes collection. These rolled-up keys are not returned
+     * elsewhere in the response. Each rolled-up result counts as only one
+     * return against the <code>MaxKeys</code> value.
+     * </p>
      *
-     * @param delimiter The delimiter parameter originally used to request this
-     *            object listing.
+     * @param delimiter <p>
+     *            Causes keys that contain the same string between the prefix
+     *            and the first occurrence of the delimiter to be rolled up into
+     *            a single result element in the CommonPrefixes collection.
+     *            These rolled-up keys are not returned elsewhere in the
+     *            response. Each rolled-up result counts as only one return
+     *            against the <code>MaxKeys</code> value.
+     *            </p>
      */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
     }
 
     /**
-     * Gets the encoding type used by Amazon S3 to encode object key names in
-     * the XML response. If you specify <code>encodingType</code> request
-     * parameter, Amazon S3 includes this element in the response, and returns
-     * encoded key name values in the following response elements:
-     * <code>Delimiter, Marker, Prefix,
-     * NextMarker, Key</code>.
+     * <p>
+     * Causes keys that contain the same string between the prefix and the first
+     * occurrence of the delimiter to be rolled up into a single result element
+     * in the CommonPrefixes collection. These rolled-up keys are not returned
+     * elsewhere in the response. Each rolled-up result counts as only one
+     * return against the <code>MaxKeys</code> value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return <code>Null</code> if <code>encodingType</code> is not specified
-     *         in the request parameter.
+     * @param delimiter <p>
+     *            Causes keys that contain the same string between the prefix
+     *            and the first occurrence of the delimiter to be rolled up into
+     *            a single result element in the CommonPrefixes collection.
+     *            These rolled-up keys are not returned elsewhere in the
+     *            response. Each rolled-up result counts as only one return
+     *            against the <code>MaxKeys</code> value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withDelimiter(String delimiter) {
+        this.delimiter = delimiter;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
+     *
+     * @return <p>
+     *         Sets the maximum number of keys returned in the response. By
+     *         default the API returns up to 1,000 key names. The response might
+     *         contain fewer keys but will never contain more.
+     *         </p>
+     */
+    public Integer getMaxKeys() {
+        return maxKeys;
+    }
+
+    /**
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
+     *
+     * @param maxKeys <p>
+     *            Sets the maximum number of keys returned in the response. By
+     *            default the API returns up to 1,000 key names. The response
+     *            might contain fewer keys but will never contain more.
+     *            </p>
+     */
+    public void setMaxKeys(Integer maxKeys) {
+        this.maxKeys = maxKeys;
+    }
+
+    /**
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maxKeys <p>
+     *            Sets the maximum number of keys returned in the response. By
+     *            default the API returns up to 1,000 key names. The response
+     *            might contain fewer keys but will never contain more.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withMaxKeys(Integer maxKeys) {
+        this.maxKeys = maxKeys;
+        return this;
+    }
+
+    /**
+     * <p>
+     * All of the keys rolled up into a common prefix count as a single return
+     * when calculating the number of returns.
+     * </p>
+     * <p>
+     * A response can contain <code>CommonPrefixes</code> only if you specify a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> contains all (if there are any) keys between
+     * <code>Prefix</code> and the next occurrence of the string specified by a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> lists keys that act like subdirectories in
+     * the directory specified by <code>Prefix</code>.
+     * </p>
+     * <p>
+     * For example, if the prefix is <code>notes/</code> and the delimiter is a
+     * slash (<code>/</code>) as in <code>notes/summer/july</code>, the common
+     * prefix is <code>notes/summer/</code>. All of the keys that roll up into a
+     * common prefix count as a single return when calculating the number of
+     * returns.
+     * </p>
+     *
+     * @return <p>
+     *         All of the keys rolled up into a common prefix count as a single
+     *         return when calculating the number of returns.
+     *         </p>
+     *         <p>
+     *         A response can contain <code>CommonPrefixes</code> only if you
+     *         specify a delimiter.
+     *         </p>
+     *         <p>
+     *         <code>CommonPrefixes</code> contains all (if there are any) keys
+     *         between <code>Prefix</code> and the next occurrence of the string
+     *         specified by a delimiter.
+     *         </p>
+     *         <p>
+     *         <code>CommonPrefixes</code> lists keys that act like
+     *         subdirectories in the directory specified by <code>Prefix</code>.
+     *         </p>
+     *         <p>
+     *         For example, if the prefix is <code>notes/</code> and the
+     *         delimiter is a slash (<code>/</code>) as in
+     *         <code>notes/summer/july</code>, the common prefix is
+     *         <code>notes/summer/</code>. All of the keys that roll up into a
+     *         common prefix count as a single return when calculating the
+     *         number of returns.
+     *         </p>
+     */
+    public java.util.List<CommonPrefix> getCommonPrefixes() {
+        return commonPrefixes;
+    }
+
+    /**
+     * <p>
+     * All of the keys rolled up into a common prefix count as a single return
+     * when calculating the number of returns.
+     * </p>
+     * <p>
+     * A response can contain <code>CommonPrefixes</code> only if you specify a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> contains all (if there are any) keys between
+     * <code>Prefix</code> and the next occurrence of the string specified by a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> lists keys that act like subdirectories in
+     * the directory specified by <code>Prefix</code>.
+     * </p>
+     * <p>
+     * For example, if the prefix is <code>notes/</code> and the delimiter is a
+     * slash (<code>/</code>) as in <code>notes/summer/july</code>, the common
+     * prefix is <code>notes/summer/</code>. All of the keys that roll up into a
+     * common prefix count as a single return when calculating the number of
+     * returns.
+     * </p>
+     *
+     * @param commonPrefixes <p>
+     *            All of the keys rolled up into a common prefix count as a
+     *            single return when calculating the number of returns.
+     *            </p>
+     *            <p>
+     *            A response can contain <code>CommonPrefixes</code> only if you
+     *            specify a delimiter.
+     *            </p>
+     *            <p>
+     *            <code>CommonPrefixes</code> contains all (if there are any)
+     *            keys between <code>Prefix</code> and the next occurrence of
+     *            the string specified by a delimiter.
+     *            </p>
+     *            <p>
+     *            <code>CommonPrefixes</code> lists keys that act like
+     *            subdirectories in the directory specified by
+     *            <code>Prefix</code>.
+     *            </p>
+     *            <p>
+     *            For example, if the prefix is <code>notes/</code> and the
+     *            delimiter is a slash (<code>/</code>) as in
+     *            <code>notes/summer/july</code>, the common prefix is
+     *            <code>notes/summer/</code>. All of the keys that roll up into
+     *            a common prefix count as a single return when calculating the
+     *            number of returns.
+     *            </p>
+     */
+    public void setCommonPrefixes(java.util.Collection<CommonPrefix> commonPrefixes) {
+        if (commonPrefixes == null) {
+            this.commonPrefixes = null;
+            return;
+        }
+
+        this.commonPrefixes = new java.util.ArrayList<CommonPrefix>(commonPrefixes);
+    }
+
+    /**
+     * <p>
+     * All of the keys rolled up into a common prefix count as a single return
+     * when calculating the number of returns.
+     * </p>
+     * <p>
+     * A response can contain <code>CommonPrefixes</code> only if you specify a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> contains all (if there are any) keys between
+     * <code>Prefix</code> and the next occurrence of the string specified by a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> lists keys that act like subdirectories in
+     * the directory specified by <code>Prefix</code>.
+     * </p>
+     * <p>
+     * For example, if the prefix is <code>notes/</code> and the delimiter is a
+     * slash (<code>/</code>) as in <code>notes/summer/july</code>, the common
+     * prefix is <code>notes/summer/</code>. All of the keys that roll up into a
+     * common prefix count as a single return when calculating the number of
+     * returns.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param commonPrefixes <p>
+     *            All of the keys rolled up into a common prefix count as a
+     *            single return when calculating the number of returns.
+     *            </p>
+     *            <p>
+     *            A response can contain <code>CommonPrefixes</code> only if you
+     *            specify a delimiter.
+     *            </p>
+     *            <p>
+     *            <code>CommonPrefixes</code> contains all (if there are any)
+     *            keys between <code>Prefix</code> and the next occurrence of
+     *            the string specified by a delimiter.
+     *            </p>
+     *            <p>
+     *            <code>CommonPrefixes</code> lists keys that act like
+     *            subdirectories in the directory specified by
+     *            <code>Prefix</code>.
+     *            </p>
+     *            <p>
+     *            For example, if the prefix is <code>notes/</code> and the
+     *            delimiter is a slash (<code>/</code>) as in
+     *            <code>notes/summer/july</code>, the common prefix is
+     *            <code>notes/summer/</code>. All of the keys that roll up into
+     *            a common prefix count as a single return when calculating the
+     *            number of returns.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withCommonPrefixes(CommonPrefix... commonPrefixes) {
+        if (getCommonPrefixes() == null) {
+            this.commonPrefixes = new java.util.ArrayList<CommonPrefix>(commonPrefixes.length);
+        }
+        for (CommonPrefix value : commonPrefixes) {
+            this.commonPrefixes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * All of the keys rolled up into a common prefix count as a single return
+     * when calculating the number of returns.
+     * </p>
+     * <p>
+     * A response can contain <code>CommonPrefixes</code> only if you specify a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> contains all (if there are any) keys between
+     * <code>Prefix</code> and the next occurrence of the string specified by a
+     * delimiter.
+     * </p>
+     * <p>
+     * <code>CommonPrefixes</code> lists keys that act like subdirectories in
+     * the directory specified by <code>Prefix</code>.
+     * </p>
+     * <p>
+     * For example, if the prefix is <code>notes/</code> and the delimiter is a
+     * slash (<code>/</code>) as in <code>notes/summer/july</code>, the common
+     * prefix is <code>notes/summer/</code>. All of the keys that roll up into a
+     * common prefix count as a single return when calculating the number of
+     * returns.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param commonPrefixes <p>
+     *            All of the keys rolled up into a common prefix count as a
+     *            single return when calculating the number of returns.
+     *            </p>
+     *            <p>
+     *            A response can contain <code>CommonPrefixes</code> only if you
+     *            specify a delimiter.
+     *            </p>
+     *            <p>
+     *            <code>CommonPrefixes</code> contains all (if there are any)
+     *            keys between <code>Prefix</code> and the next occurrence of
+     *            the string specified by a delimiter.
+     *            </p>
+     *            <p>
+     *            <code>CommonPrefixes</code> lists keys that act like
+     *            subdirectories in the directory specified by
+     *            <code>Prefix</code>.
+     *            </p>
+     *            <p>
+     *            For example, if the prefix is <code>notes/</code> and the
+     *            delimiter is a slash (<code>/</code>) as in
+     *            <code>notes/summer/july</code>, the common prefix is
+     *            <code>notes/summer/</code>. All of the keys that roll up into
+     *            a common prefix count as a single return when calculating the
+     *            number of returns.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withCommonPrefixes(java.util.Collection<CommonPrefix> commonPrefixes) {
+        setCommonPrefixes(commonPrefixes);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Encoding type used by Amazon S3 to encode object key names in the XML
+     * response.
+     * </p>
+     * <p>
+     * If you specify the encoding-type request parameter, Amazon S3 includes
+     * this element in the response, and returns encoded key name values in the
+     * following response elements:
+     * </p>
+     * <p>
+     * <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
+     *
+     * @return <p>
+     *         Encoding type used by Amazon S3 to encode object key names in the
+     *         XML response.
+     *         </p>
+     *         <p>
+     *         If you specify the encoding-type request parameter, Amazon S3
+     *         includes this element in the response, and returns encoded key
+     *         name values in the following response elements:
+     *         </p>
+     *         <p>
+     *         <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     *         </p>
+     * @see EncodingType
      */
     public String getEncodingType() {
         return encodingType;
     }
 
     /**
-     * For internal use only. Sets the encoding type used by Amazon S3 to encode
-     * object key names in the XML response.
+     * <p>
+     * Encoding type used by Amazon S3 to encode object key names in the XML
+     * response.
+     * </p>
+     * <p>
+     * If you specify the encoding-type request parameter, Amazon S3 includes
+     * this element in the response, and returns encoded key name values in the
+     * following response elements:
+     * </p>
+     * <p>
+     * <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @param encodingType <code>Null</code> if <code>encodingType</code> is not
-     *            specified in the request parameter.
+     * @param encodingType <p>
+     *            Encoding type used by Amazon S3 to encode object key names in
+     *            the XML response.
+     *            </p>
+     *            <p>
+     *            If you specify the encoding-type request parameter, Amazon S3
+     *            includes this element in the response, and returns encoded key
+     *            name values in the following response elements:
+     *            </p>
+     *            <p>
+     *            <code>Delimiter, Prefix, Key,</code> and
+     *            <code>StartAfter</code>.
+     *            </p>
+     * @see EncodingType
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
     }
 
     /**
-     * Gets the optional continuation token. Continuation token allows a list to
-     * be continued from a specific point. ContinuationToken is provided in
-     * truncated list results.
+     * <p>
+     * Encoding type used by Amazon S3 to encode object key names in the XML
+     * response.
+     * </p>
+     * <p>
+     * If you specify the encoding-type request parameter, Amazon S3 includes
+     * this element in the response, and returns encoded key name values in the
+     * following response elements:
+     * </p>
+     * <p>
+     * <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @return The optional continuation token associated with this request.
+     * @param encodingType <p>
+     *            Encoding type used by Amazon S3 to encode object key names in
+     *            the XML response.
+     *            </p>
+     *            <p>
+     *            If you specify the encoding-type request parameter, Amazon S3
+     *            includes this element in the response, and returns encoded key
+     *            name values in the following response elements:
+     *            </p>
+     *            <p>
+     *            <code>Delimiter, Prefix, Key,</code> and
+     *            <code>StartAfter</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncodingType
+     */
+    public ListObjectsV2Result withEncodingType(String encodingType) {
+        this.encodingType = encodingType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Encoding type used by Amazon S3 to encode object key names in the XML
+     * response.
+     * </p>
+     * <p>
+     * If you specify the encoding-type request parameter, Amazon S3 includes
+     * this element in the response, and returns encoded key name values in the
+     * following response elements:
+     * </p>
+     * <p>
+     * <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
+     *
+     * @param encodingType <p>
+     *            Encoding type used by Amazon S3 to encode object key names in
+     *            the XML response.
+     *            </p>
+     *            <p>
+     *            If you specify the encoding-type request parameter, Amazon S3
+     *            includes this element in the response, and returns encoded key
+     *            name values in the following response elements:
+     *            </p>
+     *            <p>
+     *            <code>Delimiter, Prefix, Key,</code> and
+     *            <code>StartAfter</code>.
+     *            </p>
+     * @see EncodingType
+     */
+    public void setEncodingType(EncodingType encodingType) {
+        this.encodingType = encodingType.toString();
+    }
+
+    /**
+     * <p>
+     * Encoding type used by Amazon S3 to encode object key names in the XML
+     * response.
+     * </p>
+     * <p>
+     * If you specify the encoding-type request parameter, Amazon S3 includes
+     * this element in the response, and returns encoded key name values in the
+     * following response elements:
+     * </p>
+     * <p>
+     * <code>Delimiter, Prefix, Key,</code> and <code>StartAfter</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
+     *
+     * @param encodingType <p>
+     *            Encoding type used by Amazon S3 to encode object key names in
+     *            the XML response.
+     *            </p>
+     *            <p>
+     *            If you specify the encoding-type request parameter, Amazon S3
+     *            includes this element in the response, and returns encoded key
+     *            name values in the following response elements:
+     *            </p>
+     *            <p>
+     *            <code>Delimiter, Prefix, Key,</code> and
+     *            <code>StartAfter</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncodingType
+     */
+    public ListObjectsV2Result withEncodingType(EncodingType encodingType) {
+        this.encodingType = encodingType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * KeyCount is the number of keys returned with this request. KeyCount will
+     * always be less than equals to MaxKeys field. Say you ask for 50 keys,
+     * your result will include less than equals 50 keys
+     * </p>
+     *
+     * @return <p>
+     *         KeyCount is the number of keys returned with this request.
+     *         KeyCount will always be less than equals to MaxKeys field. Say
+     *         you ask for 50 keys, your result will include less than equals 50
+     *         keys
+     *         </p>
+     */
+    public Integer getKeyCount() {
+        return keyCount;
+    }
+
+    /**
+     * <p>
+     * KeyCount is the number of keys returned with this request. KeyCount will
+     * always be less than equals to MaxKeys field. Say you ask for 50 keys,
+     * your result will include less than equals 50 keys
+     * </p>
+     *
+     * @param keyCount <p>
+     *            KeyCount is the number of keys returned with this request.
+     *            KeyCount will always be less than equals to MaxKeys field. Say
+     *            you ask for 50 keys, your result will include less than equals
+     *            50 keys
+     *            </p>
+     */
+    public void setKeyCount(Integer keyCount) {
+        this.keyCount = keyCount;
+    }
+
+    /**
+     * <p>
+     * KeyCount is the number of keys returned with this request. KeyCount will
+     * always be less than equals to MaxKeys field. Say you ask for 50 keys,
+     * your result will include less than equals 50 keys
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param keyCount <p>
+     *            KeyCount is the number of keys returned with this request.
+     *            KeyCount will always be less than equals to MaxKeys field. Say
+     *            you ask for 50 keys, your result will include less than equals
+     *            50 keys
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withKeyCount(Integer keyCount) {
+        this.keyCount = keyCount;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If ContinuationToken was sent with the request, it is included in the
+     * response.
+     * </p>
+     *
+     * @return <p>
+     *         If ContinuationToken was sent with the request, it is included in
+     *         the response.
+     *         </p>
      */
     public String getContinuationToken() {
         return continuationToken;
     }
 
     /**
-     * Sets the optional continuation token. Continuation token allows a list to
-     * be continued from a specific point. ContinuationToken is provided in
-     * truncated list results.
+     * <p>
+     * If ContinuationToken was sent with the request, it is included in the
+     * response.
+     * </p>
      *
-     * @param continuationToken The optional continuation token to associate
-     *            with this request.
+     * @param continuationToken <p>
+     *            If ContinuationToken was sent with the request, it is included
+     *            in the response.
+     *            </p>
      */
     public void setContinuationToken(String continuationToken) {
         this.continuationToken = continuationToken;
     }
 
     /**
-     * Gets the optional NextContinuationToken. NextContinuationToken is sent
-     * when isTruncated is true meaning there are more keys in the bucket that
-     * can be listed. The next list requests to Amazon S3 can be continued by
-     * providing this NextContinuationToken.
+     * <p>
+     * If ContinuationToken was sent with the request, it is included in the
+     * response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The optional NextContinuationToken parameter.
+     * @param continuationToken <p>
+     *            If ContinuationToken was sent with the request, it is included
+     *            in the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsV2Result withContinuationToken(String continuationToken) {
+        this.continuationToken = continuationToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * <code>NextContinuationToken</code> is sent when <code>isTruncated</code>
+     * is true, which means there are more keys in the bucket that can be
+     * listed. The next list requests to Amazon S3 can be continued with this
+     * <code>NextContinuationToken</code>. <code>NextContinuationToken</code> is
+     * obfuscated and is not a real key
+     * </p>
+     *
+     * @return <p>
+     *         <code>NextContinuationToken</code> is sent when
+     *         <code>isTruncated</code> is true, which means there are more keys
+     *         in the bucket that can be listed. The next list requests to
+     *         Amazon S3 can be continued with this
+     *         <code>NextContinuationToken</code>.
+     *         <code>NextContinuationToken</code> is obfuscated and is not a
+     *         real key
+     *         </p>
      */
     public String getNextContinuationToken() {
         return nextContinuationToken;
     }
 
     /**
-     * Sets the optional NextContinuationToken. NextContinuationToken is sent
-     * when isTruncated is true meaning there are more keys in the bucket that
-     * can be listed. The next list requests to Amazon S3 can be continued by
-     * providing this NextContinuationToken.
+     * <p>
+     * <code>NextContinuationToken</code> is sent when <code>isTruncated</code>
+     * is true, which means there are more keys in the bucket that can be
+     * listed. The next list requests to Amazon S3 can be continued with this
+     * <code>NextContinuationToken</code>. <code>NextContinuationToken</code> is
+     * obfuscated and is not a real key
+     * </p>
      *
-     * @param nextContinuationToken The optional NextContinuationToken parameter
-     *            to associate with this request.
-     * @return The optional NextContinuationToken parameter.
+     * @param nextContinuationToken <p>
+     *            <code>NextContinuationToken</code> is sent when
+     *            <code>isTruncated</code> is true, which means there are more
+     *            keys in the bucket that can be listed. The next list requests
+     *            to Amazon S3 can be continued with this
+     *            <code>NextContinuationToken</code>.
+     *            <code>NextContinuationToken</code> is obfuscated and is not a
+     *            real key
+     *            </p>
      */
     public void setNextContinuationToken(String nextContinuationToken) {
         this.nextContinuationToken = nextContinuationToken;
     }
 
     /**
-     * Gets the number of keys returned with this response.
+     * <p>
+     * <code>NextContinuationToken</code> is sent when <code>isTruncated</code>
+     * is true, which means there are more keys in the bucket that can be
+     * listed. The next list requests to Amazon S3 can be continued with this
+     * <code>NextContinuationToken</code>. <code>NextContinuationToken</code> is
+     * obfuscated and is not a real key
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return number of keys returned with this response.
+     * @param nextContinuationToken <p>
+     *            <code>NextContinuationToken</code> is sent when
+     *            <code>isTruncated</code> is true, which means there are more
+     *            keys in the bucket that can be listed. The next list requests
+     *            to Amazon S3 can be continued with this
+     *            <code>NextContinuationToken</code>.
+     *            <code>NextContinuationToken</code> is obfuscated and is not a
+     *            real key
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public int getKeyCount() {
-        return keyCount;
+    public ListObjectsV2Result withNextContinuationToken(String nextContinuationToken) {
+        this.nextContinuationToken = nextContinuationToken;
+        return this;
     }
 
     /**
-     * Sets the number of keys returned with this response.
+     * <p>
+     * If StartAfter was sent with the request, it is included in the response.
+     * </p>
      *
-     * @param keyCount The number of keys that were returned with this response.
-     */
-    public void setKeyCount(int keyCount) {
-        this.keyCount = keyCount;
-    }
-
-    /**
-     * Gets the optional <code>maxKeys</code> parameter indicating the maximum
-     * number of keys to include in the response. Amazon S3 might return fewer
-     * keys than specified, but will never return more. Even if the optional
-     * parameter is not specified, Amazon S3 will limit the number of results in
-     * the response.
-     *
-     * @return The optional parameter indicating the maximum number of keys to
-     *         include in the response.
-     */
-    public int getMaxKeys() {
-        return maxKeys;
-    }
-
-    /**
-     * Sets the optional <code>maxKeys</code> parameter indicating the maximum
-     * number of keys to include in the response.
-     *
-     * @param maxKeys The optional parameter indicating the maximum number of
-     *            keys to include in the response.
-     */
-    public void setMaxKeys(int maxKeys) {
-        this.maxKeys = maxKeys;
-    }
-
-    /**
-     * Returns optional parameter indicating where you want Amazon S3 to start
-     * the object listing from. This can be any key in the bucket.
-     *
-     * @return the optional startAfter parameter
+     * @return <p>
+     *         If StartAfter was sent with the request, it is included in the
+     *         response.
+     *         </p>
      */
     public String getStartAfter() {
         return startAfter;
     }
 
     /**
-     * Sets the optional parameter indicating where you want Amazon S3 to start
-     * the object listing from. This can be any key in the bucket.
+     * <p>
+     * If StartAfter was sent with the request, it is included in the response.
+     * </p>
      *
-     * @param startAfter The optional startAfter parameter. This can be any key
-     *            in the bucket.
+     * @param startAfter <p>
+     *            If StartAfter was sent with the request, it is included in the
+     *            response.
+     *            </p>
      */
     public void setStartAfter(String startAfter) {
         this.startAfter = startAfter;
     }
 
     /**
-     * Gets the list of object summaries describing the objects stored in the S3
-     * bucket. Listings for large buckets can be truncated for performance
-     * reasons. Always check the {@link ListObjectsV2Result#isTruncated()}
-     * method to see if the returned listing is complete or if additional calls
-     * are needed to get more results. Callers can pass the
-     * nextContinuationToken into subsequent requests to get additional results.
+     * <p>
+     * If StartAfter was sent with the request, it is included in the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return A list of the object summaries describing the objects stored in
-     *         the S3 bucket.
+     * @param startAfter <p>
+     *            If StartAfter was sent with the request, it is included in the
+     *            response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public List<S3ObjectSummary> getObjectSummaries() {
-        return objectSummaries;
+    public ListObjectsV2Result withStartAfter(String startAfter) {
+        this.startAfter = startAfter;
+        return this;
     }
 
     /**
-     * <p>
-     * Gets the common prefixes included in this object listing. Common prefixes
-     * are only present if a delimiter was specified in the original request.
-     * </p>
-     * <p>
-     * Each common prefix represents a set of keys in the S3 bucket that have
-     * been condensed and omitted from the object summary results. This allows
-     * applications to organize and browse their keys hierarchically, similar to
-     * how a file system organizes files into directories.
-     * </p>
-     * <p>
-     * For example, consider a bucket that contains the following keys:
-     * <ul>
-     * <li>"foo/bar/baz"</li>
-     * <li>"foo/bar/bash"</li>
-     * <li>"foo/bar/bang"</li>
-     * <li>"foo/boo"</li>
-     * </ul>
-     * If calling <code>listObjects</code> with the prefix="foo/" and the
-     * delimiter="/" on this bucket, the returned <code>S3ObjectListing</code>
-     * will contain one entry in the common prefixes list ("foo/bar/") and none
-     * of the keys beginning with that common prefix will be included in the
-     * object summaries list.
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
      *
-     * @return The list of common prefixes included in this object listing,
-     *         which might be an empty list if no common prefixes were found.
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
      */
-    public List<String> getCommonPrefixes() {
-        return commonPrefixes;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getIsTruncated() != null)
+            sb.append("IsTruncated: " + getIsTruncated() + ",");
+        if (getContents() != null)
+            sb.append("Contents: " + getContents() + ",");
+        if (getName() != null)
+            sb.append("Name: " + getName() + ",");
+        if (getPrefix() != null)
+            sb.append("Prefix: " + getPrefix() + ",");
+        if (getDelimiter() != null)
+            sb.append("Delimiter: " + getDelimiter() + ",");
+        if (getMaxKeys() != null)
+            sb.append("MaxKeys: " + getMaxKeys() + ",");
+        if (getCommonPrefixes() != null)
+            sb.append("CommonPrefixes: " + getCommonPrefixes() + ",");
+        if (getEncodingType() != null)
+            sb.append("EncodingType: " + getEncodingType() + ",");
+        if (getKeyCount() != null)
+            sb.append("KeyCount: " + getKeyCount() + ",");
+        if (getContinuationToken() != null)
+            sb.append("ContinuationToken: " + getContinuationToken() + ",");
+        if (getNextContinuationToken() != null)
+            sb.append("NextContinuationToken: " + getNextContinuationToken() + ",");
+        if (getStartAfter() != null)
+            sb.append("StartAfter: " + getStartAfter());
+        sb.append("}");
+        return sb.toString();
     }
 
-    /**
-     * For internal use only. Sets the common prefixes for this object listing,
-     * representing the key prefixes that were rolled up because of the
-     * request's delimiter parameter.
-     *
-     * @param commonPrefixes The common prefixes for this object listing.
-     */
-    public void setCommonPrefixes(List<String> commonPrefixes) {
-        this.commonPrefixes = commonPrefixes;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode
+                + ((getIsTruncated() == null) ? 0 : getIsTruncated().hashCode());
+        hashCode = prime * hashCode + ((getContents() == null) ? 0 : getContents().hashCode());
+        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode + ((getPrefix() == null) ? 0 : getPrefix().hashCode());
+        hashCode = prime * hashCode + ((getDelimiter() == null) ? 0 : getDelimiter().hashCode());
+        hashCode = prime * hashCode + ((getMaxKeys() == null) ? 0 : getMaxKeys().hashCode());
+        hashCode = prime * hashCode
+                + ((getCommonPrefixes() == null) ? 0 : getCommonPrefixes().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncodingType() == null) ? 0 : getEncodingType().hashCode());
+        hashCode = prime * hashCode + ((getKeyCount() == null) ? 0 : getKeyCount().hashCode());
+        hashCode = prime * hashCode
+                + ((getContinuationToken() == null) ? 0 : getContinuationToken().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getNextContinuationToken() == null) ? 0 : getNextContinuationToken().hashCode());
+        hashCode = prime * hashCode + ((getStartAfter() == null) ? 0 : getStartAfter().hashCode());
+        return hashCode;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof ListObjectsV2Result == false)
+            return false;
+        ListObjectsV2Result other = (ListObjectsV2Result) obj;
+
+        if (other.getIsTruncated() == null ^ this.getIsTruncated() == null)
+            return false;
+        if (other.getIsTruncated() != null
+                && other.getIsTruncated().equals(this.getIsTruncated()) == false)
+            return false;
+        if (other.getContents() == null ^ this.getContents() == null)
+            return false;
+        if (other.getContents() != null && other.getContents().equals(this.getContents()) == false)
+            return false;
+        if (other.getName() == null ^ this.getName() == null)
+            return false;
+        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getPrefix() == null ^ this.getPrefix() == null)
+            return false;
+        if (other.getPrefix() != null && other.getPrefix().equals(this.getPrefix()) == false)
+            return false;
+        if (other.getDelimiter() == null ^ this.getDelimiter() == null)
+            return false;
+        if (other.getDelimiter() != null
+                && other.getDelimiter().equals(this.getDelimiter()) == false)
+            return false;
+        if (other.getMaxKeys() == null ^ this.getMaxKeys() == null)
+            return false;
+        if (other.getMaxKeys() != null && other.getMaxKeys().equals(this.getMaxKeys()) == false)
+            return false;
+        if (other.getCommonPrefixes() == null ^ this.getCommonPrefixes() == null)
+            return false;
+        if (other.getCommonPrefixes() != null
+                && other.getCommonPrefixes().equals(this.getCommonPrefixes()) == false)
+            return false;
+        if (other.getEncodingType() == null ^ this.getEncodingType() == null)
+            return false;
+        if (other.getEncodingType() != null
+                && other.getEncodingType().equals(this.getEncodingType()) == false)
+            return false;
+        if (other.getKeyCount() == null ^ this.getKeyCount() == null)
+            return false;
+        if (other.getKeyCount() != null && other.getKeyCount().equals(this.getKeyCount()) == false)
+            return false;
+        if (other.getContinuationToken() == null ^ this.getContinuationToken() == null)
+            return false;
+        if (other.getContinuationToken() != null
+                && other.getContinuationToken().equals(this.getContinuationToken()) == false)
+            return false;
+        if (other.getNextContinuationToken() == null ^ this.getNextContinuationToken() == null)
+            return false;
+        if (other.getNextContinuationToken() != null
+                && other.getNextContinuationToken().equals(this.getNextContinuationToken()) == false)
+            return false;
+        if (other.getStartAfter() == null ^ this.getStartAfter() == null)
+            return false;
+        if (other.getStartAfter() != null
+                && other.getStartAfter().equals(this.getStartAfter()) == false)
+            return false;
+        return true;
+    }
 }

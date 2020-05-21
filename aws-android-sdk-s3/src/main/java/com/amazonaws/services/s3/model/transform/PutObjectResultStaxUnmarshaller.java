@@ -1,0 +1,114 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.s3.model.transform;
+
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.xmlpull.v1.XmlPullParser;
+
+import com.amazonaws.services.s3.model.*;
+import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.transform.MapEntry;
+import com.amazonaws.transform.StaxUnmarshallerContext;
+import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
+
+/**
+ * StAX unmarshaller for response PutObjectResult
+ */
+public class PutObjectResultStaxUnmarshaller implements
+        Unmarshaller<PutObjectResult, StaxUnmarshallerContext> {
+
+    public PutObjectResult unmarshall(StaxUnmarshallerContext context) throws Exception {
+        PutObjectResult putObjectResult = new PutObjectResult();
+
+        int originalDepth = context.getCurrentDepth();
+        int targetDepth = originalDepth + 1;
+
+        if (context.isStartOfDocument())
+            targetDepth += 2;
+
+        while (true) {
+            int xmlEvent = context.nextEvent();
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
+
+            if (xmlEvent == XmlPullParser.START_TAG) {
+                if (context.testExpression("x-amz-expiration", targetDepth)) {
+                    putObjectResult.setExpiration(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
+                if (context.testExpression("ETag", targetDepth)) {
+                    putObjectResult.setETag(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-server-side-encryption", targetDepth)) {
+                    putObjectResult.setServerSideEncryption(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-version-id", targetDepth)) {
+                    putObjectResult.setVersionId(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-server-side-encryption-customer-algorithm",
+                        targetDepth)) {
+                    putObjectResult.setSSECustomerAlgorithm(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-server-side-encryption-customer-key-MD5",
+                        targetDepth)) {
+                    putObjectResult.setSSECustomerKeyMD5(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-server-side-encryption-aws-kms-key-id",
+                        targetDepth)) {
+                    putObjectResult.setSSEKMSKeyId(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-server-side-encryption-context", targetDepth)) {
+                    putObjectResult.setSSEKMSEncryptionContext(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+                if (context.testExpression("x-amz-request-charged", targetDepth)) {
+                    putObjectResult.setRequestCharged(StringStaxUnmarshaller.getInstance()
+                            .unmarshall(context));
+                    continue;
+                }
+            } else if (xmlEvent == XmlPullParser.END_TAG) {
+                if (context.getCurrentDepth() < originalDepth) {
+                    break;
+                }
+            }
+        }
+        return putObjectResult;
+    }
+
+    private static PutObjectResultStaxUnmarshaller instance;
+
+    public static PutObjectResultStaxUnmarshaller getInstance() {
+        if (instance == null)
+            instance = new PutObjectResultStaxUnmarshaller();
+        return instance;
+    }
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,135 +15,303 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.services.s3.AmazonS3;
 
 /**
- * Container for the the parameters of the ListParts operation.
  * <p>
- * Required Parameters: BucketName, Key, UploadId
- *
- * @see AmazonS3#listParts(ListPartsRequest)
+ * Lists the parts that have been uploaded for a specific multipart upload. This
+ * operation must include the upload ID, which you obtain by sending the
+ * initiate multipart upload request (see <a>CreateMultipartUpload</a>). This
+ * request returns a maximum of 1,000 uploaded parts. The default number of
+ * parts returned is 1,000 parts. You can restrict the number of parts returned
+ * by specifying the <code>max-parts</code> request parameter. If your multipart
+ * upload consists of more than 1,000 parts, the response returns an
+ * <code>IsTruncated</code> field with the value of true, and a
+ * <code>NextPartNumberMarker</code> element. In subsequent
+ * <code>ListParts</code> requests you can include the part-number-marker query
+ * string parameter and set its value to the <code>NextPartNumberMarker</code>
+ * field value from the previous response.
+ * </p>
+ * <p>
+ * For more information on multipart uploads, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/uploadobjusingmpu.html"
+ * >Uploading Objects Using Multipart Upload</a>.
+ * </p>
+ * <p>
+ * For information on permissions required to use the multipart upload API, see
+ * <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html"
+ * >Multipart Upload API and Permissions</a>.
+ * </p>
+ * <p>
+ * The following operations are related to <code>ListParts</code>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>UploadPart</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CompleteMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>AbortMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListMultipartUploads</a>
+ * </p>
+ * </li>
+ * </ul>
  */
-public class ListPartsRequest extends AmazonWebServiceRequest {
+public class ListPartsRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * Name of the bucket to which the parts are being uploaded.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private String bucket;
 
     /**
-     * The name of the bucket containing the multipart upload whose parts are
-     * being listed.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      */
-    private String bucketName;
-
-    /** The key of the associated multipart upload whose parts are being listed. */
     private String key;
 
-    /** The ID of the multipart upload whose parts are being listed. */
-    private String uploadId;
-
-    /** The optional maximum number of parts to be returned in the part listing. */
+    /**
+     * <p>
+     * Sets the maximum number of parts to return.
+     * </p>
+     */
     private Integer maxParts;
 
     /**
-     * The optional part number marker indicating where in the results to being
-     * listing parts.
+     * <p>
+     * Specifies the part after which listing should begin. Only parts with
+     * higher part numbers will be listed.
+     * </p>
      */
     private Integer partNumberMarker;
 
     /**
-     * Optional parameter indicating the encoding method to be applied on the
-     * response. An object key can contain any Unicode character; however, XML
-     * 1.0 parser cannot parse some characters, such as characters with an ASCII
-     * value from 0 to 10. For characters that are not supported in XML 1.0, you
-     * can add this parameter to request that Amazon S3 encode the keys in the
-     * response.
+     * <p>
+     * Upload ID identifying the multipart upload whose parts are being listed.
+     * </p>
      */
-    private String encodingType;
+    private String uploadId;
 
     /**
-     * If enabled, the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      */
-    private boolean isRequesterPays;
-
+    private String requestPayer;
 
     /**
-     * Constructs a new ListPartsRequest from the required parameters bucket
-     * name, key and upload ID.
+     * <p>
+     * Name of the bucket to which the parts are being uploaded.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      *
-     * @param bucketName The name of the bucket containing the parts to list.
-     * @param key The key of the associated multipart upload whose parts are
-     *            being listed.
-     * @param uploadId The ID of the multipart upload whose parts are being
-     *            listed.
+     * @return <p>
+     *         Name of the bucket to which the parts are being uploaded.
+     *         </p>
+     *         <p>
+     *         When using this API with an access point, you must direct
+     *         requests to the access point hostname. The access point hostname
+     *         takes the form
+     *         <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint
+     *         .<i>Region</i>.amazonaws.com. When using this operation using an
+     *         access point through the AWS SDKs, you provide the access point
+     *         ARN in place of the bucket name. For more information about
+     *         access point ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *         >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     *         Developer Guide</i>.
+     *         </p>
      */
-    public ListPartsRequest(String bucketName, String key, String uploadId) {
-        this.bucketName = bucketName;
-        this.key = key;
-        this.uploadId = uploadId;
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Returns the name of the bucket containing the multipart upload whose
-     * parts are being listed.
+     * <p>
+     * Name of the bucket to which the parts are being uploaded.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      *
-     * @return The name of the bucket containing the multipart upload whose
-     *         parts are being listed.
+     * @param bucket <p>
+     *            Name of the bucket to which the parts are being uploaded.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Sets the name of the bucket containing the multipart upload whose parts
-     * are being listed.
+     * <p>
+     * Name of the bucket to which the parts are being uploaded.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param bucketName The name of the bucket containing the multipart upload
-     *            whose parts are being listed.
+     * @param bucket <p>
+     *            Name of the bucket to which the parts are being uploaded.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
-
-    /**
-     * Sets the BucketName property for this request.
-     *
-     * @param bucketName The value that BucketName is set to
-     * @return the request with the BucketName set
-     */
-    public ListPartsRequest withBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public ListPartsRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
 
     /**
-     * Returns the key of the associated multipart upload whose parts are being
-     * listed.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @return The key of the associated multipart upload whose parts are being
-     *         listed.
+     * @return <p>
+     *         Object key for which the multipart upload was initiated.
+     *         </p>
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * Sets the key of the associated multipart upload whose parts are being
-     * listed.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key The key of the associated multipart upload whose parts are
-     *            being listed.
+     * @param key <p>
+     *            Object key for which the multipart upload was initiated.
+     *            </p>
      */
     public void setKey(String key) {
         this.key = key;
     }
 
     /**
-     * Sets the key of the associated multipart upload whose parts are being
-     * listed, and returns this updated ListPartsRequest object so that
-     * additional method calls can be chained together.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key The key of the associated multipart upload whose parts are
-     *            being listed.
-     * @return This updated ListPartsRequest object.
+     * @param key <p>
+     *            Object key for which the multipart upload was initiated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPartsRequest withKey(String key) {
         this.key = key;
@@ -151,104 +319,95 @@ public class ListPartsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Returns the ID of the multipart upload whose parts are being listed.
+     * <p>
+     * Sets the maximum number of parts to return.
+     * </p>
      *
-     * @return The ID of the multipart upload whose parts are being listed.
-     */
-    public String getUploadId() {
-        return uploadId;
-    }
-
-    /**
-     * Sets the ID of the multipart upload whose parts are being listed.
-     *
-     * @param uploadId The ID of the multipart upload whose parts are being
-     *            listed.
-     */
-    public void setUploadId(String uploadId) {
-        this.uploadId = uploadId;
-    }
-
-    /**
-     * Sets the ID of the multipart upload whose parts are being listed, and
-     * returns this updated ListPartsRequest object so that additional method
-     * calls can be chained together.
-     *
-     * @param uploadId The ID of the multipart upload whose parts are being
-     *            listed.
-     * @return This updated ListPartsRequest object.
-     */
-    public ListPartsRequest withUploadId(String uploadId) {
-        this.uploadId = uploadId;
-        return this;
-    }
-
-    /**
-     * Returns the optional maximum number of parts to be returned in the part
-     * listing.
-     *
-     * @return The optional maximum number of parts to be returned in the part
-     *         listing.
+     * @return <p>
+     *         Sets the maximum number of parts to return.
+     *         </p>
      */
     public Integer getMaxParts() {
         return maxParts;
     }
 
     /**
-     * Sets the optional maximum number of parts to be returned in the part
-     * listing.
+     * <p>
+     * Sets the maximum number of parts to return.
+     * </p>
      *
-     * @param maxParts The optional maximum number of parts to be returned in
-     *            the part listing.
+     * @param maxParts <p>
+     *            Sets the maximum number of parts to return.
+     *            </p>
      */
-    public void setMaxParts(int maxParts) {
+    public void setMaxParts(Integer maxParts) {
         this.maxParts = maxParts;
     }
 
     /**
-     * Sets the optional maximum number of parts to be returned in the part
-     * listing and returns this updated ListPartsRequest objects so that
-     * additional method calls can be chained together.
+     * <p>
+     * Sets the maximum number of parts to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param maxParts The optional maximum number of parts to be returned in
-     *            the part listing.
-     * @return This updated ListPartsRequest object.
+     * @param maxParts <p>
+     *            Sets the maximum number of parts to return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public ListPartsRequest withMaxParts(int maxParts) {
+    public ListPartsRequest withMaxParts(Integer maxParts) {
         this.maxParts = maxParts;
         return this;
     }
 
     /**
-     * Returns the optional part number marker indicating where in the results
-     * to being listing parts.
+     * <p>
+     * Specifies the part after which listing should begin. Only parts with
+     * higher part numbers will be listed.
+     * </p>
      *
-     * @return The optional part number marker indicating where in the results
-     *         to being listing parts.
+     * @return <p>
+     *         Specifies the part after which listing should begin. Only parts
+     *         with higher part numbers will be listed.
+     *         </p>
      */
     public Integer getPartNumberMarker() {
         return partNumberMarker;
     }
 
     /**
-     * Sets the optional part number marker indicating where in the results to
-     * being listing parts.
+     * <p>
+     * Specifies the part after which listing should begin. Only parts with
+     * higher part numbers will be listed.
+     * </p>
      *
-     * @param partNumberMarker The optional part number marker indicating where
-     *            in the results to being listing parts.
+     * @param partNumberMarker <p>
+     *            Specifies the part after which listing should begin. Only
+     *            parts with higher part numbers will be listed.
+     *            </p>
      */
     public void setPartNumberMarker(Integer partNumberMarker) {
         this.partNumberMarker = partNumberMarker;
     }
 
     /**
-     * Sets the optional part number marker indicating where in the results to
-     * being listing parts, and returns this updated ListPartsRequest object so
-     * that additional method calls can be chained together.
+     * <p>
+     * Specifies the part after which listing should begin. Only parts with
+     * higher part numbers will be listed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param partNumberMarker The optional part number marker indicating where
-     *            in the results to being listing parts.
-     * @return This updated ListPartsRequest object.
+     * @param partNumberMarker <p>
+     *            Specifies the part after which listing should begin. Only
+     *            parts with higher part numbers will be listed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListPartsRequest withPartNumberMarker(Integer partNumberMarker) {
         this.partNumberMarker = partNumberMarker;
@@ -256,112 +415,290 @@ public class ListPartsRequest extends AmazonWebServiceRequest {
     }
 
     /**
-     * Gets the optional <code>encodingType</code> parameter indicating the
-     * encoding method to be applied on the response.
+     * <p>
+     * Upload ID identifying the multipart upload whose parts are being listed.
+     * </p>
      *
-     * @return The encoding method to be applied on the response.
+     * @return <p>
+     *         Upload ID identifying the multipart upload whose parts are being
+     *         listed.
+     *         </p>
      */
-    public String getEncodingType() {
-        return encodingType;
+    public String getUploadId() {
+        return uploadId;
     }
 
     /**
-     * Sets the optional <code>encodingType</code> parameter indicating the
-     * encoding method to be applied on the response. An object key can contain
-     * any Unicode character; however, XML 1.0 parser cannot parse some
-     * characters, such as characters with an ASCII value from 0 to 10. For
-     * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Amazon S3 encode the keys in the response.
+     * <p>
+     * Upload ID identifying the multipart upload whose parts are being listed.
+     * </p>
      *
-     * @param encodingType The encoding method to be applied on the response.
-     *            Valid values: null (not encoded) or "url".
+     * @param uploadId <p>
+     *            Upload ID identifying the multipart upload whose parts are
+     *            being listed.
+     *            </p>
      */
-    public void setEncodingType(String encodingType) {
-        this.encodingType = encodingType;
+    public void setUploadId(String uploadId) {
+        this.uploadId = uploadId;
     }
 
     /**
-     * Sets the optional <code>encodingType</code> parameter indicating the
-     * encoding method to be applied on the response. An object key can contain
-     * any Unicode character; however, XML 1.0 parser cannot parse some
-     * characters, such as characters with an ASCII value from 0 to 10. For
-     * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Amazon S3 encode the keys in the response. Returns this
-     * {@link ListPartsRequest}, enabling additional method calls to be chained
+     * <p>
+     * Upload ID identifying the multipart upload whose parts are being listed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param encodingType The encoding method to be applied on the response.
-     *            Valid values: null (not encoded) or "url".
+     * @param uploadId <p>
+     *            Upload ID identifying the multipart upload whose parts are
+     *            being listed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public ListPartsRequest withEncodingType(String encodingType) {
-        setEncodingType(encodingType);
+    public ListPartsRequest withUploadId(String uploadId) {
+        this.uploadId = uploadId;
         return this;
     }
 
-
     /**
-     * Returns true if the user has enabled Requester Pays option when
-     * conducting this operation from Requester Pays Bucket; else false.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @return true if the user has enabled Requester Pays option for
-     *         conducting this operation from Requester Pays Bucket.
+     * @return <p>
+     *         Confirms that the requester knows that they will be charged for
+     *         the request. Bucket owners need not specify this parameter in
+     *         their requests. For information about downloading objects from
+     *         requester pays buckets, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *         >Downloading Objects in Requestor Pays Buckets</a> in the
+     *         <i>Amazon S3 Developer Guide</i>.
+     *         </p>
+     * @see RequestPayer
      */
-    public boolean isRequesterPays() {
-        return isRequesterPays;
+    public String getRequestPayer() {
+        return requestPayer;
     }
 
     /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
      */
-    public void setRequesterPays(boolean isRequesterPays) {
-        this.isRequesterPays = isRequesterPays;
+    public void setRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
     }
 
     /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket. It returns this
-     * updated ListPartsRequest object so that additional method calls can be
-     * chained together.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     *
-     * @return The updated ListPartsRequest object.
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
      */
-    public ListPartsRequest withRequesterPays(boolean isRequesterPays) {
-        setRequesterPays(isRequesterPays);
+    public ListPartsRequest withRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
         return this;
     }
 
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public ListPartsRequest withRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
+        if (getMaxParts() != null)
+            sb.append("MaxParts: " + getMaxParts() + ",");
+        if (getPartNumberMarker() != null)
+            sb.append("PartNumberMarker: " + getPartNumberMarker() + ",");
+        if (getUploadId() != null)
+            sb.append("UploadId: " + getUploadId() + ",");
+        if (getRequestPayer() != null)
+            sb.append("RequestPayer: " + getRequestPayer());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
+        hashCode = prime * hashCode + ((getMaxParts() == null) ? 0 : getMaxParts().hashCode());
+        hashCode = prime * hashCode
+                + ((getPartNumberMarker() == null) ? 0 : getPartNumberMarker().hashCode());
+        hashCode = prime * hashCode + ((getUploadId() == null) ? 0 : getUploadId().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestPayer() == null) ? 0 : getRequestPayer().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof ListPartsRequest == false)
+            return false;
+        ListPartsRequest other = (ListPartsRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+            return false;
+        if (other.getMaxParts() == null ^ this.getMaxParts() == null)
+            return false;
+        if (other.getMaxParts() != null && other.getMaxParts().equals(this.getMaxParts()) == false)
+            return false;
+        if (other.getPartNumberMarker() == null ^ this.getPartNumberMarker() == null)
+            return false;
+        if (other.getPartNumberMarker() != null
+                && other.getPartNumberMarker().equals(this.getPartNumberMarker()) == false)
+            return false;
+        if (other.getUploadId() == null ^ this.getUploadId() == null)
+            return false;
+        if (other.getUploadId() != null && other.getUploadId().equals(this.getUploadId()) == false)
+            return false;
+        if (other.getRequestPayer() == null ^ this.getRequestPayer() == null)
+            return false;
+        if (other.getRequestPayer() != null
+                && other.getRequestPayer().equals(this.getRequestPayer()) == false)
+            return false;
+        return true;
+    }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -12,35 +12,75 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model.transform;
 
-import com.amazonaws.services.s3.model.TopicConfiguration;
-import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.StringStaxUnmarshaller;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.xmlpull.v1.XmlPullParser;
+
+import com.amazonaws.services.s3.model.*;
+import com.amazonaws.transform.Unmarshaller;
+import com.amazonaws.transform.MapEntry;
 import com.amazonaws.transform.StaxUnmarshallerContext;
+import com.amazonaws.transform.SimpleTypeStaxUnmarshallers.*;
 
-class TopicConfigurationStaxUnmarshaller extends NotificationConfigurationStaxUnmarshaller<TopicConfiguration> {
+/**
+ * StAX unmarshaller for model TopicConfiguration
+ */
+class TopicConfigurationStaxUnmarshaller implements
+        Unmarshaller<TopicConfiguration, StaxUnmarshallerContext> {
 
-    private static TopicConfigurationStaxUnmarshaller instance = new TopicConfigurationStaxUnmarshaller();
+    public TopicConfiguration unmarshall(StaxUnmarshallerContext context) throws Exception {
+        TopicConfiguration topicConfiguration = new TopicConfiguration();
+
+        int originalDepth = context.getCurrentDepth();
+        int targetDepth = originalDepth + 1;
+
+        if (context.isStartOfDocument())
+            targetDepth += 2;
+
+        while (true) {
+            int xmlEvent = context.nextEvent();
+            if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                break;
+
+            if (xmlEvent == XmlPullParser.START_TAG) {
+                if (context.testExpression("Id", targetDepth)) {
+                    topicConfiguration.setId(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
+                if (context.testExpression("Topic", targetDepth)) {
+                    topicConfiguration.setTopicArn(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
+                if (context.testExpression("Events/member", targetDepth)) {
+                    topicConfiguration.withEvents(StringStaxUnmarshaller.getInstance().unmarshall(
+                            context));
+                    continue;
+                }
+                if (context.testExpression("Filter", targetDepth)) {
+                    topicConfiguration.setFilter(NotificationConfigurationFilterStaxUnmarshaller
+                            .getInstance().unmarshall(context));
+                    continue;
+                }
+            } else if (xmlEvent == XmlPullParser.END_TAG) {
+                if (context.getCurrentDepth() < originalDepth) {
+                    break;
+                }
+            }
+        }
+        return topicConfiguration;
+    }
+
+    private static TopicConfigurationStaxUnmarshaller instance;
 
     public static TopicConfigurationStaxUnmarshaller getInstance() {
+        if (instance == null)
+            instance = new TopicConfigurationStaxUnmarshaller();
         return instance;
     }
-
-    private TopicConfigurationStaxUnmarshaller() {
-    }
-
-    protected boolean handleXmlEvent(TopicConfiguration topicConfig, StaxUnmarshallerContext context, int targetDepth)
-            throws Exception {
-        if (context.testExpression("Topic", targetDepth)) {
-            topicConfig.setTopicARN(StringStaxUnmarshaller.getInstance().unmarshall(context));
-            return true;
-        }
-        return false;
-
-    }
-
-    protected TopicConfiguration createConfiguration() {
-        return new TopicConfiguration();
-    }
-
 }

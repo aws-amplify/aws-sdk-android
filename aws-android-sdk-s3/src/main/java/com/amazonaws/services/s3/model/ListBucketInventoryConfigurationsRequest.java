@@ -1,110 +1,263 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ *  http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
-package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
+package com.amazonaws.services.s3.model;
 
 import java.io.Serializable;
 
-/**
- * Request object to list inventory configurations of a bucket.
- */
-public class ListBucketInventoryConfigurationsRequest extends AmazonWebServiceRequest implements Serializable {
+import com.amazonaws.AmazonWebServiceRequest;
 
-    /** The name of the Amazon S3 bucket to list the inventory configurations. */
-    private String bucketName;
+/**
+ * <p>
+ * Returns a list of inventory configurations for the bucket. You can have up to
+ * 1,000 analytics configurations per bucket.
+ * </p>
+ * <p>
+ * This operation supports list pagination and does not return more than 100
+ * configurations at a time. Always check the <code>IsTruncated</code> element
+ * in the response. If there are no more configurations to list,
+ * <code>IsTruncated</code> is set to false. If there are more configurations to
+ * list, <code>IsTruncated</code> is set to true, and there is a value in
+ * <code>NextContinuationToken</code>. You use the
+ * <code>NextContinuationToken</code> value to continue the pagination of the
+ * list by passing the value in continuation-token in the request to
+ * <code>GET</code> the next page.
+ * </p>
+ * <p>
+ * To use this operation, you must have permissions to perform the
+ * <code>s3:GetInventoryConfiguration</code> action. The bucket owner has this
+ * permission by default. The bucket owner can grant this permission to others.
+ * For more information about permissions, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources"
+ * >Permissions Related to Bucket Subresource Operations</a> and <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html"
+ * >Managing Access Permissions to Your Amazon S3 Resources</a>.
+ * </p>
+ * <p>
+ * For information about the Amazon S3 inventory feature, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html"
+ * >Amazon S3 Inventory</a>
+ * </p>
+ * <p>
+ * The following operations are related to
+ * <code>ListBucketInventoryConfigurations</code>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>GetBucketInventoryConfiguration</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteBucketInventoryConfiguration</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>PutBucketInventoryConfiguration</a>
+ * </p>
+ * </li>
+ * </ul>
+ */
+public class ListBucketInventoryConfigurationsRequest extends AmazonWebServiceRequest implements
+        Serializable {
+    /**
+     * <p>
+     * The name of the bucket containing the inventory configurations to
+     * retrieve.
+     * </p>
+     */
+    private String bucket;
 
     /**
-     * Optional parameter which allows list to be continued from a specific point.
-     * ContinuationToken is provided in truncated list results.
+     * <p>
+     * The marker used to continue an inventory configuration listing that has
+     * been truncated. Use the NextContinuationToken from a previously truncated
+     * list response to continue the listing. The continuation token is an
+     * opaque value that Amazon S3 understands.
+     * </p>
      */
     private String continuationToken;
 
     /**
-     * Gets the name of the Amazon S3 bucket whose
-     * inventory configurations are to be listed.
+     * <p>
+     * The name of the bucket containing the inventory configurations to
+     * retrieve.
+     * </p>
      *
-     * @return The name of the Amazon S3 bucket whose
-     *         inventory configurations are to be listed.
+     * @return <p>
+     *         The name of the bucket containing the inventory configurations to
+     *         retrieve.
+     *         </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Sets the name of the Amazon S3 bucket whose inventory configurations are to be listed.
+     * <p>
+     * The name of the bucket containing the inventory configurations to
+     * retrieve.
+     * </p>
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose inventory
-     *            configurations are to be listed.
+     * @param bucket <p>
+     *            The name of the bucket containing the inventory configurations
+     *            to retrieve.
+     *            </p>
      */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Sets the name of the Amazon S3 bucket whose inventory configurations are to be listed.
-     * Returns this {@link ListBucketInventoryConfigurationsRequest}, enabling additional method
-     * calls to be chained together.
+     * <p>
+     * The name of the bucket containing the inventory configurations to
+     * retrieve.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param bucketName
-     *            The name of the Amazon S3 bucket whose inventory
-     *            configurations are to be listed.
-     *
-     * @return This {@link ListBucketInventoryConfigurationsRequest}, enabling additional method
-     *         calls to be chained together.
+     * @param bucket <p>
+     *            The name of the bucket containing the inventory configurations
+     *            to retrieve.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public ListBucketInventoryConfigurationsRequest withBucketName(String bucketName) {
-        setBucketName(bucketName);
+    public ListBucketInventoryConfigurationsRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
 
     /**
-     * Gets the optional continuation token.  Continuation token allows a list to be
-     * continued from a specific point. ContinuationToken is provided in truncated list results.
+     * <p>
+     * The marker used to continue an inventory configuration listing that has
+     * been truncated. Use the NextContinuationToken from a previously truncated
+     * list response to continue the listing. The continuation token is an
+     * opaque value that Amazon S3 understands.
+     * </p>
      *
-     * @return The optional continuation token associated with this request.
+     * @return <p>
+     *         The marker used to continue an inventory configuration listing
+     *         that has been truncated. Use the NextContinuationToken from a
+     *         previously truncated list response to continue the listing. The
+     *         continuation token is an opaque value that Amazon S3 understands.
+     *         </p>
      */
     public String getContinuationToken() {
         return continuationToken;
     }
 
     /**
-     * Sets the optional continuation token.  Continuation token allows a list to be
-     * continued from a specific point. ContinuationToken is provided in truncated list results.
+     * <p>
+     * The marker used to continue an inventory configuration listing that has
+     * been truncated. Use the NextContinuationToken from a previously truncated
+     * list response to continue the listing. The continuation token is an
+     * opaque value that Amazon S3 understands.
+     * </p>
      *
-     * @param continuationToken
-     *                     The optional continuation token to associate with this request.
+     * @param continuationToken <p>
+     *            The marker used to continue an inventory configuration listing
+     *            that has been truncated. Use the NextContinuationToken from a
+     *            previously truncated list response to continue the listing.
+     *            The continuation token is an opaque value that Amazon S3
+     *            understands.
+     *            </p>
      */
     public void setContinuationToken(String continuationToken) {
         this.continuationToken = continuationToken;
     }
 
     /**
-     * Sets the optional continuation token.  Continuation token allows a list to be
-     * continued from a specific point. ContinuationToken is provided in truncated list results.
+     * <p>
+     * The marker used to continue an inventory configuration listing that has
+     * been truncated. Use the NextContinuationToken from a previously truncated
+     * list response to continue the listing. The continuation token is an
+     * opaque value that Amazon S3 understands.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param continuationToken
-     *                     The optional continuation token to associate with this request.
-     *
-     * @return This {@link ListBucketInventoryConfigurationsRequest}, enabling additional method
-     *         calls to be chained together.
+     * @param continuationToken <p>
+     *            The marker used to continue an inventory configuration listing
+     *            that has been truncated. Use the NextContinuationToken from a
+     *            previously truncated list response to continue the listing.
+     *            The continuation token is an opaque value that Amazon S3
+     *            understands.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListBucketInventoryConfigurationsRequest withContinuationToken(String continuationToken) {
-        setContinuationToken(continuationToken);
+        this.continuationToken = continuationToken;
         return this;
     }
 
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getContinuationToken() != null)
+            sb.append("ContinuationToken: " + getContinuationToken());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode
+                + ((getContinuationToken() == null) ? 0 : getContinuationToken().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof ListBucketInventoryConfigurationsRequest == false)
+            return false;
+        ListBucketInventoryConfigurationsRequest other = (ListBucketInventoryConfigurationsRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getContinuationToken() == null ^ this.getContinuationToken() == null)
+            return false;
+        if (other.getContinuationToken() != null
+                && other.getContinuationToken().equals(this.getContinuationToken()) == false)
+            return false;
+        return true;
+    }
 }

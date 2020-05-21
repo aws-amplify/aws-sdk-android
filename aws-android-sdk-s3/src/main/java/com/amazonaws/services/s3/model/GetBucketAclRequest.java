@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,35 +15,122 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Request object containing all the options for requesting a bucket's Access
- * Control List (ACL).
+ * <p>
+ * This implementation of the <code>GET</code> operation uses the
+ * <code>acl</code> subresource to return the access control list (ACL) of a
+ * bucket. To use <code>GET</code> to return the ACL of the bucket, you must
+ * have <code>READ_ACP</code> access to the bucket. If <code>READ_ACP</code>
+ * permission is granted to the anonymous user, you can return the ACL of the
+ * bucket without using an authorization header.
+ * </p>
+ * <p class="title">
+ * <b>Related Resources</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * </p></li>
+ * </ul>
  */
-public class GetBucketAclRequest extends AmazonWebServiceRequest {
-    /** The name of the bucket whose ACL is being retrieved. */
-    private String bucketName;
+public class GetBucketAclRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * Specifies the S3 bucket whose ACL is being requested.
+     * </p>
+     */
+    private String bucket;
 
     /**
-     * Constructs a new GetBucketAclRequest object, ready to retrieve the ACL
-     * for the specified bucket when executed.
+     * <p>
+     * Specifies the S3 bucket whose ACL is being requested.
+     * </p>
      *
-     * @param bucketName The name of the bucket whose ACL will be retrieved by
-     *            this request when executed.
+     * @return <p>
+     *         Specifies the S3 bucket whose ACL is being requested.
+     *         </p>
      */
-    public GetBucketAclRequest(String bucketName) {
-        this.bucketName = bucketName;
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Returns the name of the bucket whose ACL will be retrieved by this
-     * request, when executed.
+     * <p>
+     * Specifies the S3 bucket whose ACL is being requested.
+     * </p>
      *
-     * @return The name of the bucket whose ACL will be retrieved by this
-     *         request, when executed.
+     * @param bucket <p>
+     *            Specifies the S3 bucket whose ACL is being requested.
+     *            </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
+    /**
+     * <p>
+     * Specifies the S3 bucket whose ACL is being requested.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param bucket <p>
+     *            Specifies the S3 bucket whose ACL is being requested.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetBucketAclRequest withBucket(String bucket) {
+        this.bucket = bucket;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof GetBucketAclRequest == false)
+            return false;
+        GetBucketAclRequest other = (GetBucketAclRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        return true;
     }
 }

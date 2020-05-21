@@ -1,8 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
- * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
- * for applicable license terms and NOTICE.txt for applicable notices.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,78 +18,33 @@ package com.amazonaws.services.s3.model;
 import java.io.Serializable;
 
 /**
- * Represents the owner of an Amazon S3 bucket.
+ * <p>
+ * Container for the owner's display name and ID.
+ * </p>
  */
 public class Owner implements Serializable {
-    private static final long serialVersionUID = -8916731456944569115L;
-
+    /**
+     * <p>
+     * Container for the display name of the owner.
+     * </p>
+     */
     private String displayName;
-    private String id;
 
     /**
      * <p>
-     * Constructs a new {@link Owner} without specifying an ID or display name.
+     * Container for the ID of the owner.
      * </p>
-     *
-     * @see Owner#Owner(String, String)
      */
-    public Owner() {
-    }
+    private String iD;
 
     /**
      * <p>
-     * Constructs a new {@link Owner} with the specified ID and display name.
+     * Container for the display name of the owner.
      * </p>
      *
-     * @param id The ID for the owner.
-     * @param displayName The display name for the owner.
-     * @see Owner#Owner()
-     */
-    public Owner(String id, String displayName) {
-        this.id = id;
-        this.displayName = displayName;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "S3Owner [name=" + getDisplayName() + ",id=" + getId() + "]";
-    }
-
-    /**
-     * <p>
-     * Gets the ID of the owner.
-     * </p>
-     *
-     * @return The ID of the owner.
-     * @see Owner#setId(String)
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * <p>
-     * Sets the ID of the owner.
-     * </p>
-     *
-     * @param id The ID of the owner.
-     * @see Owner#getId()
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * <p>
-     * Gets the display name of the owner.
-     * </p>
-     *
-     * @return The display name of the owner.
-     * @see Owner#setDisplayName(String)
+     * @return <p>
+     *         Container for the display name of the owner.
+     *         </p>
      */
     public String getDisplayName() {
         return displayName;
@@ -100,48 +52,131 @@ public class Owner implements Serializable {
 
     /**
      * <p>
-     * Sets the display name of the owner.
+     * Container for the display name of the owner.
      * </p>
      *
-     * @param name The display name of the owner.
-     * @see Owner#getDisplayName()
+     * @param displayName <p>
+     *            Container for the display name of the owner.
+     *            </p>
      */
-    public void setDisplayName(String name) {
-        this.displayName = name;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
+    /**
+     * <p>
+     * Container for the display name of the owner.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param displayName <p>
+     *            Container for the display name of the owner.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Owner withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Container for the ID of the owner.
+     * </p>
+     *
+     * @return <p>
+     *         Container for the ID of the owner.
+     *         </p>
+     */
+    public String getID() {
+        return iD;
+    }
+
+    /**
+     * <p>
+     * Container for the ID of the owner.
+     * </p>
+     *
+     * @param iD <p>
+     *            Container for the ID of the owner.
+     *            </p>
+     */
+    public void setID(String iD) {
+        this.iD = iD;
+    }
+
+    /**
+     * <p>
+     * Container for the ID of the owner.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param iD <p>
+     *            Container for the ID of the owner.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Owner withID(String iD) {
+        this.iD = iD;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
     @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof Owner)) {
-            return false;
-        }
-
-        Owner otherOwner = (Owner) obj;
-
-        String otherOwnerId = otherOwner.getId();
-        String otherOwnerName = otherOwner.getDisplayName();
-        String thisOwnerId = this.getId();
-        String thisOwnerName = this.getDisplayName();
-
-        if (otherOwnerId == null)
-            otherOwnerId = "";
-        if (otherOwnerName == null)
-            otherOwnerName = "";
-        if (thisOwnerId == null)
-            thisOwnerId = "";
-        if (thisOwnerName == null)
-            thisOwnerName = "";
-
-        return (otherOwnerId.equals(thisOwnerId) && otherOwnerName.equals(thisOwnerName));
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getDisplayName() != null)
+            sb.append("DisplayName: " + getDisplayName() + ",");
+        if (getID() != null)
+            sb.append("ID: " + getID());
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        if (id != null) {
-            return id.hashCode();
-        } else {
-            return 0;
-        }
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode
+                + ((getDisplayName() == null) ? 0 : getDisplayName().hashCode());
+        hashCode = prime * hashCode + ((getID() == null) ? 0 : getID().hashCode());
+        return hashCode;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof Owner == false)
+            return false;
+        Owner other = (Owner) obj;
+
+        if (other.getDisplayName() == null ^ this.getDisplayName() == null)
+            return false;
+        if (other.getDisplayName() != null
+                && other.getDisplayName().equals(this.getDisplayName()) == false)
+            return false;
+        if (other.getID() == null ^ this.getID() == null)
+            return false;
+        if (other.getID() != null && other.getID().equals(this.getID()) == false)
+            return false;
+        return true;
+    }
 }

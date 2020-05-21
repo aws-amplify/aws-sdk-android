@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,55 +15,122 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 import java.io.Serializable;
+
+import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides options for deleting a specified bucket. Amazon S3 buckets can only
- * be deleted when empty.
+ * Deletes the bucket. All objects (including all object versions and delete
+ * markers) in the bucket must be deleted before the bucket itself can be
+ * deleted.
  * </p>
+ * <p class="title">
+ * <b>Related Resources</b>
+ * </p>
+ * <ul>
+ * <li>
  * <p>
- * Note: When attempting to delete a bucket that does not exist, Amazon S3
- * returns a success message, not an error message.
- * </p>
+ * </p></li>
+ * <li>
+ * <p>
+ * </p></li>
+ * </ul>
  */
-public class DeleteBucketRequest extends AmazonWebServiceRequest implements
-        Serializable, S3AccelerateUnsupported {
-
+public class DeleteBucketRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The name of the Amazon S3 bucket to delete.
+     * <p>
+     * Specifies the bucket being deleted.
+     * </p>
      */
-    private String bucketName;
+    private String bucket;
 
     /**
-     * Constructs a new {@link DeleteBucketRequest}, ready to be executed to
-     * delete the specified bucket.
+     * <p>
+     * Specifies the bucket being deleted.
+     * </p>
      *
-     * @param bucketName The name of the Amazon S3 bucket to delete.
+     * @return <p>
+     *         Specifies the bucket being deleted.
+     *         </p>
      */
-    public DeleteBucketRequest(String bucketName) {
-        setBucketName(bucketName);
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Sets the name of the Amazon S3 bucket to delete.
+     * <p>
+     * Specifies the bucket being deleted.
+     * </p>
      *
-     * @param bucketName The name of the Amazon S3 bucket to delete.
-     * @see DeleteBucketRequest#getBucketName()
+     * @param bucket <p>
+     *            Specifies the bucket being deleted.
+     *            </p>
      */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Gets the name of the Amazon S3 bucket to delete.
+     * <p>
+     * Specifies the bucket being deleted.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The name of the Amazon S3 bucket to delete.
-     * @see DeleteBucketRequest#setBucketName(String)
+     * @param bucket <p>
+     *            Specifies the bucket being deleted.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getBucketName() {
-        return bucketName;
+    public DeleteBucketRequest withBucket(String bucket) {
+        this.bucket = bucket;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof DeleteBucketRequest == false)
+            return false;
+        DeleteBucketRequest other = (DeleteBucketRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        return true;
     }
 }

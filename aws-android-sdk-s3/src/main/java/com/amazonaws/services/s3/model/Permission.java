@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,105 +15,54 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * Specifies constants defining an access permission, as granted to grantees in
- * an {@link AccessControlList}. Only a limited set of permission are available;
- * each one is represented as a value in this enumeration.
+ * Permission
  */
 public enum Permission {
 
-    /**
-     * Provides READ, WRITE, READ_ACP, and WRITE_ACP permissions.
-     * <p>
-     * It does not convey additional rights and is provided only for
-     * convenience.
-     * </p>
-     */
-    FullControl("FULL_CONTROL", "x-amz-grant-full-control"),
+    FULL_CONTROL("FULL_CONTROL"),
+    WRITE("WRITE"),
+    WRITE_ACP("WRITE_ACP"),
+    READ("READ"),
+    READ_ACP("READ_ACP");
 
-    /**
-     * Grants permission to list the bucket when applied to a bucket. Grants
-     * permission to read object data and/or metadata when applied to an object.
-     */
-    Read("READ", "x-amz-grant-read"),
+    private String value;
 
-    /**
-     * Grants permission to create, overwrite, and delete any objects in the
-     * bucket.
-     * <p>
-     * This permission is not supported for objects.
-     * </p>
-     */
-    Write("WRITE", "x-amz-grant-write"),
-
-    /**
-     * Grants permission to read the ACL for the applicable bucket or object.
-     * <p>
-     * The owner of a bucket or object always implicitly has this permission.
-     * </p>
-     */
-    ReadAcp("READ_ACP", "x-amz-grant-read-acp"),
-
-    /**
-     * Gives permission to overwrite the ACP for the applicable bucket or
-     * object.
-     * <p>
-     * The owner of a bucket or object always has this permission implicitly.
-     * </p>
-     * <p>
-     * Granting this permission is equivalent to granting
-     * <code>FULL_CONTROL</code>because the grant recipient can make any changes
-     * to the ACP.
-     * </p>
-     */
-    WriteAcp("WRITE_ACP", "x-amz-grant-write-acp");
-
-    private String permissionString;
-    private String headerName;
-
-    private Permission(String permissionString, String headerName) {
-        this.permissionString = permissionString;
-        this.headerName = headerName;
+    private Permission(String value) {
+        this.value = value;
     }
 
-    /**
-     * Returns the name of the header used to grant this permission.
-     */
-    public String getHeaderName() {
-        return headerName;
-    }
-
-    /**
-     * Gets the string representation of this permission object as defined by
-     * Amazon S3, eg. <code>FULL_CONTROL</code>.
-     *
-     * @return The string representation of this permission object as defined by
-     *         Amazon S3, eg. <code>FULL_CONTROL</code>.
-     */
     @Override
     public String toString() {
-        return permissionString;
+        return value;
+    }
+
+    private static final Map<String, Permission> enumMap;
+    static {
+        enumMap = new HashMap<String, Permission>();
+        enumMap.put("FULL_CONTROL", FULL_CONTROL);
+        enumMap.put("WRITE", WRITE);
+        enumMap.put("WRITE_ACP", WRITE_ACP);
+        enumMap.put("READ", READ);
+        enumMap.put("READ_ACP", READ_ACP);
     }
 
     /**
-     * Returns the {@link Permission} enumeration value representing the
-     * specified Amazon S3 Region ID string. If specified string doesn't map to
-     * a known Amazon S3 Region, returns <code>null</code>.
+     * Use this in place of valueOf.
      *
-     * @param str A string representation of an Amazon S3 permission, eg.
-     *            <code>FULL_CONTROL</code>
-     * @return The {@link Permission} object represented by the given permission
-     *         string, Returns <code>null</code> if the string isn't a valid
-     *         representation of an Amazon S3 permission.
+     * @param value real value
+     * @return Permission corresponding to the value
      */
-    public static Permission parsePermission(String str) {
-        for (Permission permission : Permission.values()) {
-            if (permission.permissionString.equals(str)) {
-                return permission;
-            }
+    public static Permission fromValue(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Value cannot be null or empty!");
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
+        } else {
+            throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
-
-        return null;
     }
-
 }

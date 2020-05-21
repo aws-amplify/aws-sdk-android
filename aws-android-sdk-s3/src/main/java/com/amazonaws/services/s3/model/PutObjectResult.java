@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,183 +15,848 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.internal.ObjectExpirationResult;
-import com.amazonaws.services.s3.internal.S3RequesterChargedResult;
-import com.amazonaws.services.s3.internal.S3VersionResult;
-import com.amazonaws.services.s3.internal.SSEResultBase;
+import java.io.Serializable;
 
-import java.util.Date;
-
-/**
- * Contains the data returned by Amazon S3 from the <code>putObject</code>
- * operation. Use this request to access information about the new object
- * created from the <code>putObject</code> request, such as its ETag and
- * optional version ID.
- *
- * @see AmazonS3#putObject(String, String, java.io.File)
- * @see AmazonS3#putObject(String, String, java.io.InputStream,
- *      S3ObjectMetadata)
- * @see AmazonS3#putObject(PutObjectRequest)
- */
-public class PutObjectResult extends SSEResultBase
-        implements ObjectExpirationResult, S3RequesterChargedResult, S3VersionResult {
+public class PutObjectResult implements Serializable {
+    /**
+     * <p>
+     * If the expiration is configured for the object (see
+     * <a>PutBucketLifecycleConfiguration</a>), the response includes this
+     * header. It includes the expiry-date and rule-id key-value pairs that
+     * provide information about object expiration. The value of the rule-id is
+     * URL encoded.
+     * </p>
+     */
+    private String expiration;
 
     /**
-     * The version ID of the new, uploaded object. This field will only be
-     * present if object versioning has been enabled for the bucket to which the
-     * object was uploaded.
+     * <p>
+     * Entity tag for the uploaded object.
+     * </p>
+     */
+    private String eTag;
+
+    /**
+     * <p>
+     * If you specified server-side encryption either with an AWS KMS customer
+     * master key (CMK) or Amazon S3-managed encryption key in your PUT request,
+     * the response includes this header. It confirms the encryption algorithm
+     * that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     */
+    private String serverSideEncryption;
+
+    /**
+     * <p>
+     * Version of the object.
+     * </p>
      */
     private String versionId;
 
-    /** The ETag value of the new object */
-    private String eTag;
-
-    /** The time this object expires, or null if it has no expiration */
-    private Date expirationTime;
-
-    /** The expiration rule for this object */
-    private String expirationTimeRuleId;
-
-    /** The content MD5 */
-    private String contentMd5;
-
-    /** The metadata returned as a result of PutObject operation.*/
-    private ObjectMetadata metadata;
-
     /**
-     * Indicate if the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header confirming the
+     * encryption algorithm used.
+     * </p>
      */
-    private boolean isRequesterCharged;
+    private String sSECustomerAlgorithm;
 
     /**
-     * Gets the optional version ID of the newly uploaded object. This field
-     * will be set only if object versioning is enabled for the bucket the
-     * object was uploaded to.
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header to provide round-trip
+     * message integrity verification of the customer-provided encryption key.
+     * </p>
+     */
+    private String sSECustomerKeyMD5;
+
+    /**
+     * <p>
+     * If <code>x-amz-server-side-encryption</code> is present and has the value
+     * of <code>aws:kms</code>, this header specifies the ID of the AWS Key
+     * Management Service (AWS KMS) symmetric customer managed customer master
+     * key (CMK) that was used for the object.
+     * </p>
+     */
+    private String sSEKMSKeyId;
+
+    /**
+     * <p>
+     * If present, specifies the AWS KMS Encryption Context to use for object
+     * encryption. The value of this header is a base64-encoded UTF-8 string
+     * holding JSON with the encryption context key-value pairs.
+     * </p>
+     */
+    private String sSEKMSEncryptionContext;
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     */
+    private String requestCharged;
+
+    /**
+     * <p>
+     * If the expiration is configured for the object (see
+     * <a>PutBucketLifecycleConfiguration</a>), the response includes this
+     * header. It includes the expiry-date and rule-id key-value pairs that
+     * provide information about object expiration. The value of the rule-id is
+     * URL encoded.
+     * </p>
      *
-     * @return The optional version ID of the newly uploaded object.
-     * @see PutObjectResult#setVersionId(String)
+     * @return <p>
+     *         If the expiration is configured for the object (see
+     *         <a>PutBucketLifecycleConfiguration</a>), the response includes
+     *         this header. It includes the expiry-date and rule-id key-value
+     *         pairs that provide information about object expiration. The value
+     *         of the rule-id is URL encoded.
+     *         </p>
      */
-    @Override
-    public String getVersionId() {
-        return versionId;
+    public String getExpiration() {
+        return expiration;
     }
 
     /**
-     * Sets the optional version ID of the newly uploaded object.
+     * <p>
+     * If the expiration is configured for the object (see
+     * <a>PutBucketLifecycleConfiguration</a>), the response includes this
+     * header. It includes the expiry-date and rule-id key-value pairs that
+     * provide information about object expiration. The value of the rule-id is
+     * URL encoded.
+     * </p>
      *
-     * @param versionId The optional version ID of the newly uploaded object.
-     * @see PutObjectResult#getVersionId()
+     * @param expiration <p>
+     *            If the expiration is configured for the object (see
+     *            <a>PutBucketLifecycleConfiguration</a>), the response includes
+     *            this header. It includes the expiry-date and rule-id key-value
+     *            pairs that provide information about object expiration. The
+     *            value of the rule-id is URL encoded.
+     *            </p>
      */
-    @Override
-    public void setVersionId(String versionId) {
-        this.versionId = versionId;
+    public void setExpiration(String expiration) {
+        this.expiration = expiration;
     }
 
     /**
-     * Gets the ETag value for the newly created object.
+     * <p>
+     * If the expiration is configured for the object (see
+     * <a>PutBucketLifecycleConfiguration</a>), the response includes this
+     * header. It includes the expiry-date and rule-id key-value pairs that
+     * provide information about object expiration. The value of the rule-id is
+     * URL encoded.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The ETag value for the new object.
-     * @see PutObjectResult#setETag(String)
+     * @param expiration <p>
+     *            If the expiration is configured for the object (see
+     *            <a>PutBucketLifecycleConfiguration</a>), the response includes
+     *            this header. It includes the expiry-date and rule-id key-value
+     *            pairs that provide information about object expiration. The
+     *            value of the rule-id is URL encoded.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutObjectResult withExpiration(String expiration) {
+        this.expiration = expiration;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Entity tag for the uploaded object.
+     * </p>
+     *
+     * @return <p>
+     *         Entity tag for the uploaded object.
+     *         </p>
      */
     public String getETag() {
         return eTag;
     }
 
     /**
-     * Sets the ETag value for the new object that was created from the
-     * associated <code>putObject</code> request.
+     * <p>
+     * Entity tag for the uploaded object.
+     * </p>
      *
-     * @param eTag The ETag value for the new object.
-     * @see PutObjectResult#getETag()
+     * @param eTag <p>
+     *            Entity tag for the uploaded object.
+     *            </p>
      */
     public void setETag(String eTag) {
         this.eTag = eTag;
     }
 
     /**
-     * Returns the expiration time for this object, or null if it doesn't
-     * expire.
-     */
-    @Override
-    public Date getExpirationTime() {
-        return expirationTime;
-    }
-
-    /**
-     * Sets the expiration time for the object.
+     * <p>
+     * Entity tag for the uploaded object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param expirationTime The expiration time for the object.
+     * @param eTag <p>
+     *            Entity tag for the uploaded object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    @Override
-    public void setExpirationTime(Date expirationTime) {
-        this.expirationTime = expirationTime;
+    public PutObjectResult withETag(String eTag) {
+        this.eTag = eTag;
+        return this;
     }
 
     /**
-     * Returns the {@link BucketLifecycleConfiguration} rule ID for this
-     * object's expiration, or null if it doesn't expire.
-     */
-    @Override
-    public String getExpirationTimeRuleId() {
-        return expirationTimeRuleId;
-    }
-
-    /**
-     * Sets the {@link BucketLifecycleConfiguration} rule ID for this object's
-     * expiration
+     * <p>
+     * If you specified server-side encryption either with an AWS KMS customer
+     * master key (CMK) or Amazon S3-managed encryption key in your PUT request,
+     * the response includes this header. It confirms the encryption algorithm
+     * that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
      *
-     * @param expirationTimeRuleId The rule ID for this object's expiration
+     * @return <p>
+     *         If you specified server-side encryption either with an AWS KMS
+     *         customer master key (CMK) or Amazon S3-managed encryption key in
+     *         your PUT request, the response includes this header. It confirms
+     *         the encryption algorithm that Amazon S3 used to encrypt the
+     *         object.
+     *         </p>
+     * @see ServerSideEncryption
      */
-    @Override
-    public void setExpirationTimeRuleId(String expirationTimeRuleId) {
-        this.expirationTimeRuleId = expirationTimeRuleId;
+    public String getServerSideEncryption() {
+        return serverSideEncryption;
     }
 
     /**
-     * Sets the Base64-encoded MD5 hash of the object content that was
-     * calculated on the client-side.
+     * <p>
+     * If you specified server-side encryption either with an AWS KMS customer
+     * master key (CMK) or Amazon S3-managed encryption key in your PUT request,
+     * the response includes this header. It confirms the encryption algorithm
+     * that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
      *
-     * @param contentMd5 The content MD5
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an AWS KMS
+     *            customer master key (CMK) or Amazon S3-managed encryption key
+     *            in your PUT request, the response includes this header. It
+     *            confirms the encryption algorithm that Amazon S3 used to
+     *            encrypt the object.
+     *            </p>
+     * @see ServerSideEncryption
      */
-    public void setContentMd5(String contentMd5) {
-        this.contentMd5 = contentMd5;
+    public void setServerSideEncryption(String serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption;
     }
 
     /**
-     * Returns the Base64-encoded MD5 hash of the object content that was
-     * calculated on the client-side. This method returns null if the MD5
-     * validation is disabled and the caller didn't provide the MD5 hash in the
-     * ObjectMetadata when sending the PutObjectRequest.
+     * <p>
+     * If you specified server-side encryption either with an AWS KMS customer
+     * master key (CMK) or Amazon S3-managed encryption key in your PUT request,
+     * the response includes this header. It confirms the encryption algorithm
+     * that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an AWS KMS
+     *            customer master key (CMK) or Amazon S3-managed encryption key
+     *            in your PUT request, the response includes this header. It
+     *            confirms the encryption algorithm that Amazon S3 used to
+     *            encrypt the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ServerSideEncryption
      */
-    public String getContentMd5() {
-        return contentMd5;
+    public PutObjectResult withServerSideEncryption(String serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption;
+        return this;
     }
 
     /**
-     * Returns the metadata retrieved as a response to
-     * {@link AmazonS3Client#putObject(PutObjectRequest)} operation.
+     * <p>
+     * If you specified server-side encryption either with an AWS KMS customer
+     * master key (CMK) or Amazon S3-managed encryption key in your PUT request,
+     * the response includes this header. It confirms the encryption algorithm
+     * that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an AWS KMS
+     *            customer master key (CMK) or Amazon S3-managed encryption key
+     *            in your PUT request, the response includes this header. It
+     *            confirms the encryption algorithm that Amazon S3 used to
+     *            encrypt the object.
+     *            </p>
+     * @see ServerSideEncryption
      */
-    public ObjectMetadata getMetadata() {
-        return metadata;
+    public void setServerSideEncryption(ServerSideEncryption serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption.toString();
     }
 
     /**
-     * Sets the metadata retrieved as a response to
-     * {@link AmazonS3Client#putObject(PutObjectRequest)} operation.
+     * <p>
+     * If you specified server-side encryption either with an AWS KMS customer
+     * master key (CMK) or Amazon S3-managed encryption key in your PUT request,
+     * the response includes this header. It confirms the encryption algorithm
+     * that Amazon S3 used to encrypt the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>AES256, aws:kms
+     *
+     * @param serverSideEncryption <p>
+     *            If you specified server-side encryption either with an AWS KMS
+     *            customer master key (CMK) or Amazon S3-managed encryption key
+     *            in your PUT request, the response includes this header. It
+     *            confirms the encryption algorithm that Amazon S3 used to
+     *            encrypt the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ServerSideEncryption
      */
-    public void setMetadata(ObjectMetadata metadata) {
-        this.metadata = metadata;
+    public PutObjectResult withServerSideEncryption(ServerSideEncryption serverSideEncryption) {
+        this.serverSideEncryption = serverSideEncryption.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Version of the object.
+     * </p>
+     *
+     * @return <p>
+     *         Version of the object.
+     *         </p>
+     */
+    public String getVersionId() {
+        return versionId;
+    }
+
+    /**
+     * <p>
+     * Version of the object.
+     * </p>
+     *
+     * @param versionId <p>
+     *            Version of the object.
+     *            </p>
+     */
+    public void setVersionId(String versionId) {
+        this.versionId = versionId;
+    }
+
+    /**
+     * <p>
+     * Version of the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param versionId <p>
+     *            Version of the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutObjectResult withVersionId(String versionId) {
+        this.versionId = versionId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header confirming the
+     * encryption algorithm used.
+     * </p>
+     *
+     * @return <p>
+     *         If server-side encryption with a customer-provided encryption key
+     *         was requested, the response will include this header confirming
+     *         the encryption algorithm used.
+     *         </p>
+     */
+    public String getSSECustomerAlgorithm() {
+        return sSECustomerAlgorithm;
+    }
+
+    /**
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header confirming the
+     * encryption algorithm used.
+     * </p>
+     *
+     * @param sSECustomerAlgorithm <p>
+     *            If server-side encryption with a customer-provided encryption
+     *            key was requested, the response will include this header
+     *            confirming the encryption algorithm used.
+     *            </p>
+     */
+    public void setSSECustomerAlgorithm(String sSECustomerAlgorithm) {
+        this.sSECustomerAlgorithm = sSECustomerAlgorithm;
+    }
+
+    /**
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header confirming the
+     * encryption algorithm used.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSECustomerAlgorithm <p>
+     *            If server-side encryption with a customer-provided encryption
+     *            key was requested, the response will include this header
+     *            confirming the encryption algorithm used.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutObjectResult withSSECustomerAlgorithm(String sSECustomerAlgorithm) {
+        this.sSECustomerAlgorithm = sSECustomerAlgorithm;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header to provide round-trip
+     * message integrity verification of the customer-provided encryption key.
+     * </p>
+     *
+     * @return <p>
+     *         If server-side encryption with a customer-provided encryption key
+     *         was requested, the response will include this header to provide
+     *         round-trip message integrity verification of the
+     *         customer-provided encryption key.
+     *         </p>
+     */
+    public String getSSECustomerKeyMD5() {
+        return sSECustomerKeyMD5;
+    }
+
+    /**
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header to provide round-trip
+     * message integrity verification of the customer-provided encryption key.
+     * </p>
+     *
+     * @param sSECustomerKeyMD5 <p>
+     *            If server-side encryption with a customer-provided encryption
+     *            key was requested, the response will include this header to
+     *            provide round-trip message integrity verification of the
+     *            customer-provided encryption key.
+     *            </p>
+     */
+    public void setSSECustomerKeyMD5(String sSECustomerKeyMD5) {
+        this.sSECustomerKeyMD5 = sSECustomerKeyMD5;
+    }
+
+    /**
+     * <p>
+     * If server-side encryption with a customer-provided encryption key was
+     * requested, the response will include this header to provide round-trip
+     * message integrity verification of the customer-provided encryption key.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSECustomerKeyMD5 <p>
+     *            If server-side encryption with a customer-provided encryption
+     *            key was requested, the response will include this header to
+     *            provide round-trip message integrity verification of the
+     *            customer-provided encryption key.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutObjectResult withSSECustomerKeyMD5(String sSECustomerKeyMD5) {
+        this.sSECustomerKeyMD5 = sSECustomerKeyMD5;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If <code>x-amz-server-side-encryption</code> is present and has the value
+     * of <code>aws:kms</code>, this header specifies the ID of the AWS Key
+     * Management Service (AWS KMS) symmetric customer managed customer master
+     * key (CMK) that was used for the object.
+     * </p>
+     *
+     * @return <p>
+     *         If <code>x-amz-server-side-encryption</code> is present and has
+     *         the value of <code>aws:kms</code>, this header specifies the ID
+     *         of the AWS Key Management Service (AWS KMS) symmetric customer
+     *         managed customer master key (CMK) that was used for the object.
+     *         </p>
+     */
+    public String getSSEKMSKeyId() {
+        return sSEKMSKeyId;
+    }
+
+    /**
+     * <p>
+     * If <code>x-amz-server-side-encryption</code> is present and has the value
+     * of <code>aws:kms</code>, this header specifies the ID of the AWS Key
+     * Management Service (AWS KMS) symmetric customer managed customer master
+     * key (CMK) that was used for the object.
+     * </p>
+     *
+     * @param sSEKMSKeyId <p>
+     *            If <code>x-amz-server-side-encryption</code> is present and
+     *            has the value of <code>aws:kms</code>, this header specifies
+     *            the ID of the AWS Key Management Service (AWS KMS) symmetric
+     *            customer managed customer master key (CMK) that was used for
+     *            the object.
+     *            </p>
+     */
+    public void setSSEKMSKeyId(String sSEKMSKeyId) {
+        this.sSEKMSKeyId = sSEKMSKeyId;
+    }
+
+    /**
+     * <p>
+     * If <code>x-amz-server-side-encryption</code> is present and has the value
+     * of <code>aws:kms</code>, this header specifies the ID of the AWS Key
+     * Management Service (AWS KMS) symmetric customer managed customer master
+     * key (CMK) that was used for the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSEKMSKeyId <p>
+     *            If <code>x-amz-server-side-encryption</code> is present and
+     *            has the value of <code>aws:kms</code>, this header specifies
+     *            the ID of the AWS Key Management Service (AWS KMS) symmetric
+     *            customer managed customer master key (CMK) that was used for
+     *            the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutObjectResult withSSEKMSKeyId(String sSEKMSKeyId) {
+        this.sSEKMSKeyId = sSEKMSKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If present, specifies the AWS KMS Encryption Context to use for object
+     * encryption. The value of this header is a base64-encoded UTF-8 string
+     * holding JSON with the encryption context key-value pairs.
+     * </p>
+     *
+     * @return <p>
+     *         If present, specifies the AWS KMS Encryption Context to use for
+     *         object encryption. The value of this header is a base64-encoded
+     *         UTF-8 string holding JSON with the encryption context key-value
+     *         pairs.
+     *         </p>
+     */
+    public String getSSEKMSEncryptionContext() {
+        return sSEKMSEncryptionContext;
+    }
+
+    /**
+     * <p>
+     * If present, specifies the AWS KMS Encryption Context to use for object
+     * encryption. The value of this header is a base64-encoded UTF-8 string
+     * holding JSON with the encryption context key-value pairs.
+     * </p>
+     *
+     * @param sSEKMSEncryptionContext <p>
+     *            If present, specifies the AWS KMS Encryption Context to use
+     *            for object encryption. The value of this header is a
+     *            base64-encoded UTF-8 string holding JSON with the encryption
+     *            context key-value pairs.
+     *            </p>
+     */
+    public void setSSEKMSEncryptionContext(String sSEKMSEncryptionContext) {
+        this.sSEKMSEncryptionContext = sSEKMSEncryptionContext;
+    }
+
+    /**
+     * <p>
+     * If present, specifies the AWS KMS Encryption Context to use for object
+     * encryption. The value of this header is a base64-encoded UTF-8 string
+     * holding JSON with the encryption context key-value pairs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSEKMSEncryptionContext <p>
+     *            If present, specifies the AWS KMS Encryption Context to use
+     *            for object encryption. The value of this header is a
+     *            base64-encoded UTF-8 string holding JSON with the encryption
+     *            context key-value pairs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutObjectResult withSSEKMSEncryptionContext(String sSEKMSEncryptionContext) {
+        this.sSEKMSEncryptionContext = sSEKMSEncryptionContext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @return <p>
+     *         If present, indicates that the requester was successfully charged
+     *         for the request.
+     *         </p>
+     * @see RequestCharged
+     */
+    public String getRequestCharged() {
+        return requestCharged;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @see RequestCharged
+     */
+    public void setRequestCharged(String requestCharged) {
+        this.requestCharged = requestCharged;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestCharged
+     */
+    public PutObjectResult withRequestCharged(String requestCharged) {
+        this.requestCharged = requestCharged;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @see RequestCharged
+     */
+    public void setRequestCharged(RequestCharged requestCharged) {
+        this.requestCharged = requestCharged.toString();
+    }
+
+    /**
+     * <p>
+     * If present, indicates that the requester was successfully charged for the
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestCharged <p>
+     *            If present, indicates that the requester was successfully
+     *            charged for the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestCharged
+     */
+    public PutObjectResult withRequestCharged(RequestCharged requestCharged) {
+        this.requestCharged = requestCharged.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getExpiration() != null)
+            sb.append("Expiration: " + getExpiration() + ",");
+        if (getETag() != null)
+            sb.append("ETag: " + getETag() + ",");
+        if (getServerSideEncryption() != null)
+            sb.append("ServerSideEncryption: " + getServerSideEncryption() + ",");
+        if (getVersionId() != null)
+            sb.append("VersionId: " + getVersionId() + ",");
+        if (getSSECustomerAlgorithm() != null)
+            sb.append("SSECustomerAlgorithm: " + getSSECustomerAlgorithm() + ",");
+        if (getSSECustomerKeyMD5() != null)
+            sb.append("SSECustomerKeyMD5: " + getSSECustomerKeyMD5() + ",");
+        if (getSSEKMSKeyId() != null)
+            sb.append("SSEKMSKeyId: " + getSSEKMSKeyId() + ",");
+        if (getSSEKMSEncryptionContext() != null)
+            sb.append("SSEKMSEncryptionContext: " + getSSEKMSEncryptionContext() + ",");
+        if (getRequestCharged() != null)
+            sb.append("RequestCharged: " + getRequestCharged());
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override
-    public boolean isRequesterCharged() {
-        return isRequesterCharged;
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getExpiration() == null) ? 0 : getExpiration().hashCode());
+        hashCode = prime * hashCode + ((getETag() == null) ? 0 : getETag().hashCode());
+        hashCode = prime * hashCode
+                + ((getServerSideEncryption() == null) ? 0 : getServerSideEncryption().hashCode());
+        hashCode = prime * hashCode + ((getVersionId() == null) ? 0 : getVersionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerAlgorithm() == null) ? 0 : getSSECustomerAlgorithm().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerKeyMD5() == null) ? 0 : getSSECustomerKeyMD5().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSEKMSKeyId() == null) ? 0 : getSSEKMSKeyId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getSSEKMSEncryptionContext() == null) ? 0 : getSSEKMSEncryptionContext()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestCharged() == null) ? 0 : getRequestCharged().hashCode());
+        return hashCode;
     }
 
     @Override
-    public void setRequesterCharged(boolean isRequesterCharged) {
-        this.isRequesterCharged = isRequesterCharged;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof PutObjectResult == false)
+            return false;
+        PutObjectResult other = (PutObjectResult) obj;
+
+        if (other.getExpiration() == null ^ this.getExpiration() == null)
+            return false;
+        if (other.getExpiration() != null
+                && other.getExpiration().equals(this.getExpiration()) == false)
+            return false;
+        if (other.getETag() == null ^ this.getETag() == null)
+            return false;
+        if (other.getETag() != null && other.getETag().equals(this.getETag()) == false)
+            return false;
+        if (other.getServerSideEncryption() == null ^ this.getServerSideEncryption() == null)
+            return false;
+        if (other.getServerSideEncryption() != null
+                && other.getServerSideEncryption().equals(this.getServerSideEncryption()) == false)
+            return false;
+        if (other.getVersionId() == null ^ this.getVersionId() == null)
+            return false;
+        if (other.getVersionId() != null
+                && other.getVersionId().equals(this.getVersionId()) == false)
+            return false;
+        if (other.getSSECustomerAlgorithm() == null ^ this.getSSECustomerAlgorithm() == null)
+            return false;
+        if (other.getSSECustomerAlgorithm() != null
+                && other.getSSECustomerAlgorithm().equals(this.getSSECustomerAlgorithm()) == false)
+            return false;
+        if (other.getSSECustomerKeyMD5() == null ^ this.getSSECustomerKeyMD5() == null)
+            return false;
+        if (other.getSSECustomerKeyMD5() != null
+                && other.getSSECustomerKeyMD5().equals(this.getSSECustomerKeyMD5()) == false)
+            return false;
+        if (other.getSSEKMSKeyId() == null ^ this.getSSEKMSKeyId() == null)
+            return false;
+        if (other.getSSEKMSKeyId() != null
+                && other.getSSEKMSKeyId().equals(this.getSSEKMSKeyId()) == false)
+            return false;
+        if (other.getSSEKMSEncryptionContext() == null ^ this.getSSEKMSEncryptionContext() == null)
+            return false;
+        if (other.getSSEKMSEncryptionContext() != null
+                && other.getSSEKMSEncryptionContext().equals(this.getSSEKMSEncryptionContext()) == false)
+            return false;
+        if (other.getRequestCharged() == null ^ this.getRequestCharged() == null)
+            return false;
+        if (other.getRequestCharged() != null
+                && other.getRequestCharged().equals(this.getRequestCharged()) == false)
+            return false;
+        return true;
     }
 }

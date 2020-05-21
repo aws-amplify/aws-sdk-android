@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -12,288 +12,548 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provide options to get an object ACL.
+ * Returns the access control list (ACL) of an object. To use this operation,
+ * you must have READ_ACP access to the object.
  * </p>
  * <p>
- * Each bucket and object in Amazon S3 has an ACL that defines its access
- * control policy. When a request is made, Amazon S3 authenticates the request
- * using its standard authentication procedure and then checks the ACL to verify
- * the sender was granted access to the bucket or object. If the sender is
- * approved, the request proceeds. Otherwise, Amazon S3 returns an error.
+ * <b>Versioning</b>
  * </p>
- *
- * @see AmazonS3#getObjectAcl(String, String)
- * @see AmazonS3#getObjectAcl(String, String, String)
- * @see AmazonS3#getObjectAcl(GetObjectAclRequest)
+ * <p>
+ * By default, GET returns ACL information about the current version of an
+ * object. To return ACL information about a different version, use the
+ * versionId subresource.
+ * </p>
+ * <p>
+ * The following operations are related to <code>GetObjectAcl</code>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>GetObject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteObject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>PutObject</a>
+ * </p>
+ * </li>
+ * </ul>
  */
-public class GetObjectAclRequest extends AmazonWebServiceRequest implements Serializable{
+public class GetObjectAclRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * The bucket name that contains the object for which to get the ACL
+     * information.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     */
+    private String bucket;
 
     /**
-     * Builder of an S3 object identifier. This member field is never null.
+     * <p>
+     * The key of the object for which to get the ACL information.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      */
-    private S3ObjectIdBuilder s3ObjectIdBuilder = new S3ObjectIdBuilder();
+    private String key;
 
     /**
-     * If enabled, the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
+     * <p>
+     * VersionId used to reference a specific version of the object.
+     * </p>
      */
-    private boolean isRequesterPays;
+    private String versionId;
 
-    public GetObjectAclRequest(String bucketName, String key) {
-        this(bucketName, key, null);
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     */
+    private String requestPayer;
+
+    /**
+     * <p>
+     * The bucket name that contains the object for which to get the ACL
+     * information.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         The bucket name that contains the object for which to get the ACL
+     *         information.
+     *         </p>
+     *         <p>
+     *         When using this API with an access point, you must direct
+     *         requests to the access point hostname. The access point hostname
+     *         takes the form
+     *         <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint
+     *         .<i>Region</i>.amazonaws.com. When using this operation using an
+     *         access point through the AWS SDKs, you provide the access point
+     *         ARN in place of the bucket name. For more information about
+     *         access point ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *         >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     *         Developer Guide</i>.
+     *         </p>
+     */
+    public String getBucket() {
+        return bucket;
     }
 
-    public GetObjectAclRequest(String bucketName, String key, String versionId) {
-        setBucketName(bucketName);
-        setKey(key);
-        setVersionId(versionId);
+    /**
+     * <p>
+     * The bucket name that contains the object for which to get the ACL
+     * information.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     *
+     * @param bucket <p>
+     *            The bucket name that contains the object for which to get the
+     *            ACL information.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     */
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Gets the name of the bucket containing the object whose ACL is to be retrieved.
+     * <p>
+     * The bucket name that contains the object for which to get the ACL
+     * information.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The name of the bucket containing the object whose ACL is to be retrieved.
-     *
-     * @see GetObjectAclRequest#setBucketName(String)
-     * @see GetObjectAclRequest#withBucket(String)
+     * @param bucket <p>
+     *            The bucket name that contains the object for which to get the
+     *            ACL information.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getBucketName() {
-        return s3ObjectIdBuilder.getBucket();
-    }
-
-    /**
-     * Sets the name of the bucket containing the object whose ACL is to be retrieved.
-     *
-     * @param bucketName
-     *            The name of the bucket containing the object whose ACL is to be retrieved.
-     * @see GetObjectAclRequest#getBucketName()
-     * @see GetObjectAclRequest#withBucket(String)
-     */
-    public void setBucketName(String bucketName) {
-        s3ObjectIdBuilder.setBucket(bucketName);
-    }
-    /**
-     * Sets the name of the bucket containing the object whose ACL is to be retrieved.
-     * Returns this {@link GetObjectAclRequest}, enabling additional method
-     * calls to be chained together.
-     *
-     * @param bucketName
-     *            The name of the bucket containing the object whose ACL is to be retrieved.
-     * @return This {@link GetObjectAclRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectAclRequest#getBucketName()
-     * @see GetObjectAclRequest#setBucketName(String)
-     */
-    public GetObjectAclRequest withBucket(String bucketName) {
-        setBucketName(bucketName);
+    public GetObjectAclRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
+
     /**
-     * Gets the key under which the object whose ACL to be retrieved is stored.
+     * <p>
+     * The key of the object for which to get the ACL information.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @return The key under which the object whose ACL to be retrieved is stored.
-     *
-     * @see GetObjectAclRequest#setKey(String)
-     * @see GetObjectAclRequest#withKey(String)
+     * @return <p>
+     *         The key of the object for which to get the ACL information.
+     *         </p>
      */
     public String getKey() {
-        return s3ObjectIdBuilder.getKey();
+        return key;
     }
 
     /**
-     * Sets the key under which the object whose ACL to be retrieved is stored.
+     * <p>
+     * The key of the object for which to get the ACL information.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key
-     *            The key under which the object whose ACL to be retrieved is stored.
-     *
-     * @see GetObjectAclRequest#getKey()
-     * @see GetObjectAclRequest#withKey(String)
+     * @param key <p>
+     *            The key of the object for which to get the ACL information.
+     *            </p>
      */
     public void setKey(String key) {
-        s3ObjectIdBuilder.setKey(key);
+        this.key = key;
     }
 
     /**
-     * Sets the key under which the object whose ACL to be retrieved is stored.
-     * Returns this {@link GetObjectAclRequest}, enabling additional method
-     * calls to be chained together.
+     * <p>
+     * The key of the object for which to get the ACL information.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key
-     *            The key under which the object whose ACL to be retrieved is stored.
-     *
-     * @return This {@link GetObjectAclRequest}, enabling additional method
-     *         calls to be chained together.
-     *
-     * @see GetObjectAclRequest#getKey()
-     * @see GetObjectAclRequest#setKey(String)
+     * @param key <p>
+     *            The key of the object for which to get the ACL information.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetObjectAclRequest withKey(String key) {
-        setKey(key);
+        this.key = key;
         return this;
     }
 
     /**
      * <p>
-     * Gets the optional version ID specifying which version of the object whose ACL to
-     * be retrieved. If not specified, the most recent version's ACL will be retrieved.
-     * </p>
-     * <p>
-     * Objects created before versioning was enabled or when versioning is
-     * suspended are given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
-     * </p>
-     * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * VersionId used to reference a specific version of the object.
      * </p>
      *
-     * @return The optional version ID specifying which version of the object whose ACL
-     *         to be retrieved. If not specified, the most recent version will be
-     *         retrieved.
-     *
-     * @see GetObjectAclRequest#setVersionId(String)
-     * @see GetObjectAclRequest#withVersionId(String)
+     * @return <p>
+     *         VersionId used to reference a specific version of the object.
+     *         </p>
      */
     public String getVersionId() {
-        return s3ObjectIdBuilder.getVersionId();
+        return versionId;
     }
 
     /**
-     * Sets the optional version ID specifying which version of the object whose ACL to
-     * be retrieved. If not specified, the most recent version's ACL will be retrieved.
      * <p>
-     * Objects created before versioning was enabled or when versioning is
-     * suspended will be given the default <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
-     * </p>
-     * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
+     * VersionId used to reference a specific version of the object.
      * </p>
      *
-     * @param versionId
-     *            The optional version ID specifying which version of the object whose ACL
-     *            to be retrieved.
-     *
-     * @see GetObjectAclRequest#getVersionId()
-     * @see GetObjectAclRequest#withVersionId(String)
+     * @param versionId <p>
+     *            VersionId used to reference a specific version of the object.
+     *            </p>
      */
     public void setVersionId(String versionId) {
-        s3ObjectIdBuilder.setVersionId(versionId);
+        this.versionId = versionId;
     }
 
     /**
      * <p>
-     * Sets the optional version ID specifying which version of the object whose ACL to be
-     * retrieved and returns this {@link GetObjectAclRequest}, enabling additional method calls to be
-     * chained together. If not specified, the most recent version's ACL will be
-     * retrieved.
+     * VersionId used to reference a specific version of the object.
      * </p>
      * <p>
-     * Objects created before versioning was enabled or when versioning is
-     * suspended will be given the default or <code>null</code> version ID (see
-     * {@link Constants#NULL_VERSION_ID}). Note that the
-     * <code>null</code> version ID is a valid version ID and is not the
-     * same as not having a version ID.
-     * </p>
-     * <p>
-     * For more information about enabling versioning for a bucket, see
-     * {@link AmazonS3#setBucketVersioningConfiguration(SetBucketVersioningConfigurationRequest)}.
-     * </p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param versionId
-     *            The optional version ID specifying which version of the object whose ACL is
-     *            to be retrieved.
-     *
-     * @return The updated request object, enabling additional method calls to be
-     * chained together.
-     *
-     * @see GetObjectAclRequest#getVersionId()
-     * @see GetObjectAclRequest#setVersionId(String)
+     * @param versionId <p>
+     *            VersionId used to reference a specific version of the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetObjectAclRequest withVersionId(String versionId) {
-        setVersionId(versionId);
+        this.versionId = versionId;
         return this;
     }
 
     /**
-     * Returns true if the user has enabled Requester Pays option when
-     * conducting this operation from Requester Pays Bucket; else false.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @return true if the user has enabled Requester Pays option for
-     *         conducting this operation from Requester Pays Bucket.
+     * @return <p>
+     *         Confirms that the requester knows that they will be charged for
+     *         the request. Bucket owners need not specify this parameter in
+     *         their requests. For information about downloading objects from
+     *         requester pays buckets, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *         >Downloading Objects in Requestor Pays Buckets</a> in the
+     *         <i>Amazon S3 Developer Guide</i>.
+     *         </p>
+     * @see RequestPayer
      */
-    public boolean isRequesterPays() {
-        return isRequesterPays;
+    public String getRequestPayer() {
+        return requestPayer;
     }
 
     /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
      */
-    public void setRequesterPays(boolean isRequesterPays) {
-        this.isRequesterPays = isRequesterPays;
+    public void setRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
     }
 
     /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket. It returns this
-     * updated GetObjectAclRequest object so that additional method calls can be
-     * chained together.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     *
-     * @return The updated GetObjectAclRequest object.
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
      */
-    public GetObjectAclRequest withRequesterPays(boolean isRequesterPays) {
-        setRequesterPays(isRequesterPays);
+    public GetObjectAclRequest withRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
         return this;
     }
 
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public GetObjectAclRequest withRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
+        if (getVersionId() != null)
+            sb.append("VersionId: " + getVersionId() + ",");
+        if (getRequestPayer() != null)
+            sb.append("RequestPayer: " + getRequestPayer());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
+        hashCode = prime * hashCode + ((getVersionId() == null) ? 0 : getVersionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestPayer() == null) ? 0 : getRequestPayer().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof GetObjectAclRequest == false)
+            return false;
+        GetObjectAclRequest other = (GetObjectAclRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+            return false;
+        if (other.getVersionId() == null ^ this.getVersionId() == null)
+            return false;
+        if (other.getVersionId() != null
+                && other.getVersionId().equals(this.getVersionId()) == false)
+            return false;
+        if (other.getRequestPayer() == null ^ this.getRequestPayer() == null)
+            return false;
+        if (other.getRequestPayer() != null
+                && other.getRequestPayer().equals(this.getRequestPayer()) == false)
+            return false;
+        return true;
+    }
 }

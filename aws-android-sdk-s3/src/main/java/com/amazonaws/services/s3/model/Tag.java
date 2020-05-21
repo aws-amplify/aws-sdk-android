@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -12,104 +12,181 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
 import java.io.Serializable;
 
 /**
- * Represents a tag on a resource.
+ * <p>
+ * A container of a key value name pair.
+ * </p>
  */
 public class Tag implements Serializable {
+    /**
+     * <p>
+     * Name of the tag.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     */
     private String key;
+
+    /**
+     * <p>
+     * Value of the tag.
+     * </p>
+     */
     private String value;
 
     /**
-     * Constructs an instance of this object.
+     * <p>
+     * Name of the tag.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key The tag key.
-     * @param value The tag value.
-     */
-    public Tag(String key, String value) {
-        this.key = key;
-        this.value = value;
-    }
-
-    /**
-     * @return The tag key.
+     * @return <p>
+     *         Name of the tag.
+     *         </p>
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * Set the tag key.
+     * <p>
+     * Name of the tag.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key The tag key.
+     * @param key <p>
+     *            Name of the tag.
+     *            </p>
      */
     public void setKey(String key) {
         this.key = key;
     }
 
     /**
-     * Set the tag key.
+     * <p>
+     * Name of the tag.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key The tag key.
-     * @return This object for chaining.
+     * @param key <p>
+     *            Name of the tag.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public Tag withKey(String key) {
-        setKey(key);
+        this.key = key;
         return this;
     }
 
     /**
-     * @return The tag value.
+     * <p>
+     * Value of the tag.
+     * </p>
+     *
+     * @return <p>
+     *         Value of the tag.
+     *         </p>
      */
     public String getValue() {
         return value;
     }
 
     /**
-     * Set the tag value.
+     * <p>
+     * Value of the tag.
+     * </p>
      *
-     * @param value The tag value.
+     * @param value <p>
+     *            Value of the tag.
+     *            </p>
      */
     public void setValue(String value) {
         this.value = value;
     }
 
     /**
-     * Set the tag value.
+     * <p>
+     * Value of the tag.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param value The tag value.
-     * @return This object for chaining.
+     * @param value <p>
+     *            Value of the tag.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public Tag withValue(String value) {
-        setValue(value);
+        this.value = value;
         return this;
     }
 
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        final Tag tag = (Tag) o;
-
-        if (key != null ? !key.equals(tag.key) : tag.key != null) {
-            return false;
-        }
-        return value != null ? value.equals(tag.value) : tag.value == null;
-
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
+        if (getValue() != null)
+            sb.append("Value: " + getValue());
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override
     public int hashCode() {
-        int result = key != null ? key.hashCode() : 0;
-        result = 31 * result + (value != null ? value.hashCode() : 0);
-        return result;
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
+        hashCode = prime * hashCode + ((getValue() == null) ? 0 : getValue().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof Tag == false)
+            return false;
+        Tag other = (Tag) obj;
+
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+            return false;
+        if (other.getValue() == null ^ this.getValue() == null)
+            return false;
+        if (other.getValue() != null && other.getValue().equals(this.getValue()) == false)
+            return false;
+        return true;
     }
 }

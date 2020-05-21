@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -12,113 +12,150 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
+
 import java.io.Serializable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 /**
- * Filter criteria that allows for event notification filtering based on an S3 Object's key name
+ * <p>
+ * A container for object key name prefix and suffix filtering rules.
+ * </p>
  */
 public class S3KeyFilter implements Serializable {
+    /**
+     * <p>
+     * A list of containers for the key-value pair that defines the criteria for
+     * the filter rule.
+     * </p>
+     */
+    private java.util.List<FilterRule> filterRules;
 
     /**
-     * Allowable values for the name of a {@link FilterRule} for an {@link S3KeyFilter}
+     * <p>
+     * A list of containers for the key-value pair that defines the criteria for
+     * the filter rule.
+     * </p>
+     *
+     * @return <p>
+     *         A list of containers for the key-value pair that defines the
+     *         criteria for the filter rule.
+     *         </p>
      */
-    public enum FilterRuleName {
-        Prefix,
-        Suffix,
-        ;
+    public java.util.List<FilterRule> getFilterRules() {
+        return filterRules;
+    }
 
-        /**
-         * Convenience factory method to create a new {@link FilterRule} with name initialized to
-         * this {@link FilterRuleName}
-         * 
-         * <pre>
-         * FilterRule prefixRule = FilterRuleName.Prefix.newRule().withValue(&quot;prefix-value&quot;);
-         * </pre>
-         * 
-         * @return New {@link FilterRule} with name initialized to this {@link FilterRuleName}
-         */
-        public FilterRule newRule() {
-            return new FilterRule().withName(this.toString());
+    /**
+     * <p>
+     * A list of containers for the key-value pair that defines the criteria for
+     * the filter rule.
+     * </p>
+     *
+     * @param filterRules <p>
+     *            A list of containers for the key-value pair that defines the
+     *            criteria for the filter rule.
+     *            </p>
+     */
+    public void setFilterRules(java.util.Collection<FilterRule> filterRules) {
+        if (filterRules == null) {
+            this.filterRules = null;
+            return;
         }
 
-        /**
-         * Convenience factory method to create a new {@link FilterRule} with name initialized to
-         * this {@link FilterRuleName} and value initialized to {@code value}
-         * 
-         * <pre>
-         * FilterRule prefixRule = FilterRuleName.Prefix.newRule(&quot;prefix-value&quot;);
-         * </pre>
-         * 
-         * @return New {@link FilterRule} with name initialized to this {@link FilterRuleName}
-         */
-        public FilterRule newRule(String value) {
-            return newRule().withValue(value);
+        this.filterRules = new java.util.ArrayList<FilterRule>(filterRules);
+    }
+
+    /**
+     * <p>
+     * A list of containers for the key-value pair that defines the criteria for
+     * the filter rule.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterRules <p>
+     *            A list of containers for the key-value pair that defines the
+     *            criteria for the filter rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public S3KeyFilter withFilterRules(FilterRule... filterRules) {
+        if (getFilterRules() == null) {
+            this.filterRules = new java.util.ArrayList<FilterRule>(filterRules.length);
         }
-    }
-
-    private List<FilterRule> filterRules;
-
-    public S3KeyFilter() {
-        filterRules = new ArrayList<FilterRule>();
-    }
-
-    /**
-     * @return The list of {@link FilterRule}s for this {@link S3KeyFilter}
-     */
-    public List<FilterRule> getFilterRules() {
-        return Collections.unmodifiableList(filterRules);
+        for (FilterRule value : filterRules) {
+            this.filterRules.add(value);
+        }
+        return this;
     }
 
     /**
-     * Set the list of {@link FilterRule}s for this {@link S3KeyFilter}
-     * 
-     * @param filterRules
-     *            New list of {@link FilterRule}s
+     * <p>
+     * A list of containers for the key-value pair that defines the criteria for
+     * the filter rule.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filterRules <p>
+     *            A list of containers for the key-value pair that defines the
+     *            criteria for the filter rule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public void setFilterRules(List<FilterRule> filterRules) {
-        this.filterRules = new ArrayList<FilterRule>(filterRules);
-    }
-
-    /**
-     * Set the list of {@link FilterRule}s for this {@link S3KeyFilter} and returns this object for
-     * method chaining
-     * 
-     * @param filterRules
-     *            New List of {@link FilterRule}s
-     * @return This object for method chaining
-     */
-    public S3KeyFilter withFilterRules(List<FilterRule> filterRules) {
+    public S3KeyFilter withFilterRules(java.util.Collection<FilterRule> filterRules) {
         setFilterRules(filterRules);
         return this;
     }
 
     /**
-     * Convenience varargs method to set the list of {@link FilterRule}s for this
-     * {@link S3KeyFilter} and returns this object for method chaining
-     * 
-     * @param filterRules
-     *            New {@link FilterRule}s for this {@link S3KeyFilter}
-     * @return This object for method chaining
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
      */
-    public S3KeyFilter withFilterRules(FilterRule... filterRules) {
-        setFilterRules(Arrays.asList(filterRules));
-        return this;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getFilterRules() != null)
+            sb.append("FilterRules: " + getFilterRules());
+        sb.append("}");
+        return sb.toString();
     }
 
-    /**
-     * Append a {@link FilterRule} to the list of {@link FilterRule}s for this {@link S3KeyFilter}
-     * 
-     * @param filterRule
-     *            New {@link FilterRule} to append
-     */
-    public void addFilterRule(FilterRule filterRule) {
-        this.filterRules.add(filterRule);
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode
+                + ((getFilterRules() == null) ? 0 : getFilterRules().hashCode());
+        return hashCode;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof S3KeyFilter == false)
+            return false;
+        S3KeyFilter other = (S3KeyFilter) obj;
+
+        if (other.getFilterRules() == null ^ this.getFilterRules() == null)
+            return false;
+        if (other.getFilterRules() != null
+                && other.getFilterRules().equals(this.getFilterRules()) == false)
+            return false;
+        return true;
+    }
 }

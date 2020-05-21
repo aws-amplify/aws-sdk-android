@@ -1,137 +1,182 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ *  http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.services.s3.internal.SSEResultBase;
-
 import java.io.Serializable;
-import java.util.Date;
 
 /**
- * Result of the copy part operation.
+ * <p>
+ * Container for all response elements.
+ * </p>
  */
-public class CopyPartResult extends SSEResultBase implements Serializable {
-
-    /** The ETag value of the new part */
-    private String etag;
-
-    /** The last modified date for the new part */
-    private Date lastModifiedDate;
-
+public class CopyPartResult implements Serializable {
     /**
-     * The version ID of the source object. This field will only be present if
-     * object versioning has been enabled for the bucket from which the object
-     * was copied.
+     * <p>
+     * Entity tag of the object.
+     * </p>
      */
-    private String versionId;
+    private String eTag;
 
     /**
-     * The part number of the copied part
+     * <p>
+     * Date and time at which the object was uploaded.
+     * </p>
      */
-    private int partNumber;
+    private java.util.Date lastModified;
 
     /**
-     * Gets the part number of the newly copied part.
-     */
-    public int getPartNumber() {
-        return partNumber;
-    }
-
-    /**
-     * Sets the part number of the newly copied part.
+     * <p>
+     * Entity tag of the object.
+     * </p>
      *
-     * @param partNumber the part number of the newly uploaded part.
-     */
-    public void setPartNumber(int partNumber) {
-        this.partNumber = partNumber;
-    }
-
-    /**
-     * Gets the ETag value for the new part that was created in the associated
-     * {@link CopyPartRequest}.
-     *
-     * @return The ETag value for the new part.
-     * @see CopyPartResult#setETag(String)
+     * @return <p>
+     *         Entity tag of the object.
+     *         </p>
      */
     public String getETag() {
-        return etag;
+        return eTag;
     }
 
     /**
-     * Sets the ETag value for the new part that was created from the associated
-     * copy object request.
+     * <p>
+     * Entity tag of the object.
+     * </p>
      *
-     * @param etag The ETag value for the new part.
-     * @see CopyPartResult#getETag()
+     * @param eTag <p>
+     *            Entity tag of the object.
+     *            </p>
      */
-    public void setETag(String etag) {
-        this.etag = etag;
+    public void setETag(String eTag) {
+        this.eTag = eTag;
     }
 
     /**
-     * Returns an identifier which identifies the copy part by its part number
-     * and the entity tag computed from the part's data. This information is
-     * later needed to complete a multipart copy.
+     * <p>
+     * Entity tag of the object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return An identifier which identifies the copy part by its part number
-     *         and the entity tag computed from the part's data.
+     * @param eTag <p>
+     *            Entity tag of the object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public PartETag getPartETag() {
-        return new PartETag(partNumber, etag);
+    public CopyPartResult withETag(String eTag) {
+        this.eTag = eTag;
+        return this;
     }
 
     /**
-     * Gets the date the newly copied part was last modified.
+     * <p>
+     * Date and time at which the object was uploaded.
+     * </p>
      *
-     * @return The date the newly copied part was last modified.
-     * @see CopyPartResult#setLastModifiedDate(Date)
+     * @return <p>
+     *         Date and time at which the object was uploaded.
+     *         </p>
      */
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
+    public java.util.Date getLastModified() {
+        return lastModified;
     }
 
     /**
-     * Sets the date the newly copied part was last modified.
+     * <p>
+     * Date and time at which the object was uploaded.
+     * </p>
      *
-     * @param lastModifiedDate The date the new, copied part was last modified.
-     * @see CopyPartResult#getLastModifiedDate()
+     * @param lastModified <p>
+     *            Date and time at which the object was uploaded.
+     *            </p>
      */
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModified(java.util.Date lastModified) {
+        this.lastModified = lastModified;
     }
 
     /**
-     * Gets the version ID of the source object. This field is only present if
-     * object versioning has been enabled for the bucket the object was copied
-     * from.
+     * <p>
+     * Date and time at which the object was uploaded.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The version ID of the newly copied object.
-     * @see CopyPartResult#setVersionId(String)
+     * @param lastModified <p>
+     *            Date and time at which the object was uploaded.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getVersionId() {
-        return versionId;
+    public CopyPartResult withLastModified(java.util.Date lastModified) {
+        this.lastModified = lastModified;
+        return this;
     }
 
     /**
-     * Sets the version ID of the source object.
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
      *
-     * @param versionId The version ID of the source object.
-     * @see CopyPartResult#getVersionId()
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
      */
-    public void setVersionId(String versionId) {
-        this.versionId = versionId;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getETag() != null)
+            sb.append("ETag: " + getETag() + ",");
+        if (getLastModified() != null)
+            sb.append("LastModified: " + getLastModified());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getETag() == null) ? 0 : getETag().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastModified() == null) ? 0 : getLastModified().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof CopyPartResult == false)
+            return false;
+        CopyPartResult other = (CopyPartResult) obj;
+
+        if (other.getETag() == null ^ this.getETag() == null)
+            return false;
+        if (other.getETag() != null && other.getETag().equals(this.getETag()) == false)
+            return false;
+        if (other.getLastModified() == null ^ this.getLastModified() == null)
+            return false;
+        if (other.getLastModified() != null
+                && other.getLastModified().equals(this.getLastModified()) == false)
+            return false;
+        return true;
     }
 }

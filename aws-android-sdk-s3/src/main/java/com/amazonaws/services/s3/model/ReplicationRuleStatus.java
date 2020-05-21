@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,21 +15,48 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * A enum class for status of a Amazon S3 bucket replication rule.
+ * Replication Rule Status
  */
 public enum ReplicationRuleStatus {
-    Enabled("Enabled"),
 
+    Enabled("Enabled"),
     Disabled("Disabled");
 
-    private final String status;
+    private String value;
 
-    private ReplicationRuleStatus(String status) {
-        this.status = status;
+    private ReplicationRuleStatus(String value) {
+        this.value = value;
     }
 
-    public String getStatus() {
-        return this.status;
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    private static final Map<String, ReplicationRuleStatus> enumMap;
+    static {
+        enumMap = new HashMap<String, ReplicationRuleStatus>();
+        enumMap.put("Enabled", Enabled);
+        enumMap.put("Disabled", Disabled);
+    }
+
+    /**
+     * Use this in place of valueOf.
+     *
+     * @param value real value
+     * @return ReplicationRuleStatus corresponding to the value
+     */
+    public static ReplicationRuleStatus fromValue(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Value cannot be null or empty!");
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
+        } else {
+            throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
+        }
     }
 }

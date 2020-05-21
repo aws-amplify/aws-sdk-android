@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,258 +15,522 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.event.ProgressListener;
-
-import java.io.File;
-import java.io.InputStream;
 import java.io.Serializable;
 
+import com.amazonaws.AmazonWebServiceRequest;
+
 /**
- * Contains the parameters used for the UploadPart operation on Amazon S3.
  * <p>
- * If you are uploading parts for <a
- * href="http://aws.amazon.com/kms/">KMS</a>-encrypted objects, you need to
- * specify the correct region of the bucket on your client and configure AWS
- * Signature Version 4 for added security. For more information on how to do
- * this, see
- * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify
- * -signature-version
+ * Uploads a part in a multipart upload.
+ * </p>
+ * <note>
+ * <p>
+ * In this operation, you provide part data in your request. However, you have
+ * an option to specify your existing Amazon S3 object as a data source for the
+ * part you are uploading. To upload a part from an existing object, you use the
+ * <a>UploadPartCopy</a> operation.
+ * </p>
+ * </note>
+ * <p>
+ * You must initiate a multipart upload (see <a>CreateMultipartUpload</a>)
+ * before you can upload any part. In response to your initiate request, Amazon
+ * S3 returns an upload ID, a unique identifier, that you must include in your
+ * upload part request.
  * </p>
  * <p>
- * Required Parameters: BucketName, Key, UploadId, PartNumber
+ * Part numbers can be any number from 1 to 10,000, inclusive. A part number
+ * uniquely identifies a part and also defines its position within the object
+ * being created. If you upload a new part using the same part number that was
+ * used with a previous part, the previously uploaded part is overwritten. Each
+ * part must be at least 5 MB in size, except the last part. There is no size
+ * limit on the last part of your multipart upload.
+ * </p>
+ * <p>
+ * To ensure that data is not corrupted when traversing the network, specify the
+ * <code>Content-MD5</code> header in the upload part request. Amazon S3 checks
+ * the part data against the provided MD5 value. If they do not match, Amazon S3
+ * returns an error.
+ * </p>
+ * <p>
+ * <b>Note:</b> After you initiate multipart upload and upload one or more
+ * parts, you must either complete or abort multipart upload in order to stop
+ * getting charged for storage of the uploaded parts. Only after you either
+ * complete or abort multipart upload, Amazon S3 frees up the parts storage and
+ * stops charging you for the parts storage.
+ * </p>
+ * <p>
+ * For more information on multipart uploads, go to <a
+ * href="https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html"
+ * >Multipart Upload Overview</a> in the <i>Amazon Simple Storage Service
+ * Developer Guide </i>.
+ * </p>
+ * <p>
+ * For information on the permissions required to use the multipart upload API,
+ * go to <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuAndPermissions.html"
+ * >Multipart Upload API and Permissions</a> in the <i>Amazon Simple Storage
+ * Service Developer Guide</i>.
+ * </p>
+ * <p>
+ * You can optionally request server-side encryption where Amazon S3 encrypts
+ * your data as it writes it to disks in its data centers and decrypts it for
+ * you when you access it. You have the option of providing your own encryption
+ * key, or you can use the AWS managed encryption keys. If you choose to provide
+ * your own encryption key, the request headers you provide in the request must
+ * match the headers you used in the request to initiate the upload by using
+ * <a>CreateMultipartUpload</a>. For more information, go to <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html"
+ * >Using Server-Side Encryption</a> in the <i>Amazon Simple Storage Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * Server-side encryption is supported by the S3 Multipart Upload actions.
+ * Unless you are using a customer-provided encryption key, you don't need to
+ * specify the encryption parameters in each UploadPart request. Instead, you
+ * only need to specify the server-side encryption parameters in the initial
+ * Initiate Multipart request. For more information, see
+ * <a>CreateMultipartUpload</a>.
+ * </p>
+ * <p>
+ * If you requested server-side encryption using a customer-provided encryption
+ * key in your initiate multipart upload request, you must provide identical
+ * encryption information in each part upload using the following headers.
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * x-amz-server-side​-encryption​-customer-algorithm
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * x-amz-server-side​-encryption​-customer-key
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * x-amz-server-side​-encryption​-customer-key-MD5
+ * </p>
+ * </li>
+ * </ul>
+ * <p class="title">
+ * <b>Special Errors</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p class="title">
+ * <b/>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <i>Code: NoSuchUpload</i>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i>Cause: The specified multipart upload does not exist. The upload ID might
+ * be invalid, or the multipart upload might have been aborted or completed.</i>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i> HTTP Status Code: 404 Not Found </i>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i>SOAP Fault Code Prefix: Client</i>
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * </ul>
+ * <p class="title">
+ * <b>Related Resources</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CompleteMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>AbortMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListParts</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListMultipartUploads</a>
+ * </p>
+ * </li>
+ * </ul>
  */
-public class UploadPartRequest extends AmazonWebServiceRequest implements
-        SSECustomerKeyProvider, S3DataSource, Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class UploadPartRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Additional information about the part being uploaded, such as
-     * referrer.
+     * <p>
+     * Object data.
+     * </p>
      */
-    private ObjectMetadata objectMetadata;
+    private java.nio.ByteBuffer body;
 
     /**
-     * The transfer id of this upload part
+     * <p>
+     * Name of the bucket to which the multipart upload was initiated.
+     * </p>
      */
-    private int id;
+    private String bucket;
 
     /**
-     * The transfer id of the main upload record of this upload part
+     * <p>
+     * Size of the body in bytes. This parameter is useful when the size of the
+     * body cannot be determined automatically.
+     * </p>
      */
-    private int mainUploadId;
+    private Long contentLength;
 
     /**
-     * The name of the bucket containing the initiated multipart upload with
-     * which this new part will be associated.
+     * <p>
+     * The base64-encoded 128-bit MD5 digest of the part data. This parameter is
+     * auto-populated when using the command from the CLI. This parameter is
+     * required if object lock parameters are specified.
+     * </p>
      */
-    private String bucketName;
+    private String contentMD5;
 
-    /** The key of the initiated multipart upload */
+    /**
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
+     */
     private String key;
 
     /**
-     * The ID of an existing, initiated multipart upload, with which this new
-     * part will be associated.
+     * <p>
+     * Part number of part being uploaded. This is a positive integer between 1
+     * and 10,000.
+     * </p>
+     */
+    private Integer partNumber;
+
+    /**
+     * <p>
+     * Upload ID identifying the multipart upload whose part is being uploaded.
+     * </p>
      */
     private String uploadId;
 
     /**
-     * The part number describing this part's position relative to the other
-     * parts in the multipart upload. Part number must be between 1 and 10,000
-     * (inclusive).
+     * <p>
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
+     * </p>
      */
-    private int partNumber;
-
-    /** The size of this part, in bytes. */
-    private long partSize;
+    private String sSECustomerAlgorithm;
 
     /**
-     * The optional, but recommended, MD5 hash of the content of this part. If
-     * specified, this value will be sent to Amazon S3 to verify the data
-     * integrity when the data reaches Amazon S3.
+     * <p>
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm header</code>.
+     * This must be the same encryption key specified in the initiate multipart
+     * upload request.
+     * </p>
      */
-    private String md5Digest;
+    private String sSECustomerKey;
 
     /**
-     * The stream containing the data to upload for the new part. Exactly one
-     * File or InputStream must be specified as the input to this operation.
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
      */
-    private transient InputStream inputStream;
+    private String sSECustomerKeyMD5;
 
     /**
-     * The file containing the data to upload. Exactly one File or InputStream
-     * must be specified as the input to this operation.
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      */
-    private File file;
+    private String requestPayer;
 
     /**
-     * The optional offset in the specified file, at which to begin uploading
-     * data for this part. If not specified, data will be read from the
-     * beginning of the file.
+     * <p>
+     * Object data.
+     * </p>
+     *
+     * @return <p>
+     *         Object data.
+     *         </p>
      */
-    private long fileOffset;
-
-    /**
-     * Allows the caller to indicate if this is the last part being uploaded in
-     * a multipart upload.
-     */
-    private boolean isLastPart;
-
-    /**
-     * The optional customer-provided server-side encryption key to use to
-     * encrypt the object part being uploaded.
-     */
-    private SSECustomerKey sseCustomerKey;
-
-    /**
-     * If enabled, the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
-     */
-    private boolean isRequesterPays;
-    /**
-     * @param id the transfer id of the upload part
-     */
-    public void setId(int id) {
-        this.id = id;
+    public java.nio.ByteBuffer getBody() {
+        return body;
     }
 
     /**
-     * @return the transfer id of the upload part
+     * <p>
+     * Object data.
+     * </p>
+     *
+     * @param body <p>
+     *            Object data.
+     *            </p>
      */
-    public int getId() {
-        return id;
+    public void setBody(java.nio.ByteBuffer body) {
+        this.body = body;
     }
 
     /**
-     * @param id the transfer id of the upload part
-     * @return the updated UploadPartRequest object
+     * <p>
+     * Object data.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param body <p>
+     *            Object data.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UploadPartRequest withId(int id) {
-        this.id = id;
+    public UploadPartRequest withBody(java.nio.ByteBuffer body) {
+        this.body = body;
         return this;
     }
 
     /**
-     * @param id The transfer id of the main upload record of this upload part
+     * <p>
+     * Name of the bucket to which the multipart upload was initiated.
+     * </p>
+     *
+     * @return <p>
+     *         Name of the bucket to which the multipart upload was initiated.
+     *         </p>
      */
-    public void setMainUploadId(int id) {
-        this.mainUploadId = id;
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * @return The transfer id of the main upload record of this upload part
+     * <p>
+     * Name of the bucket to which the multipart upload was initiated.
+     * </p>
+     *
+     * @param bucket <p>
+     *            Name of the bucket to which the multipart upload was
+     *            initiated.
+     *            </p>
      */
-    public int getMainUploadId() {
-        return mainUploadId;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * @param id The transfer id of the main upload record of this upload part
-     * @return the updated UploadPartRequest object
+     * <p>
+     * Name of the bucket to which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param bucket <p>
+     *            Name of the bucket to which the multipart upload was
+     *            initiated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UploadPartRequest withMainUploadId(int id) {
-        this.mainUploadId = id;
+    public UploadPartRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
 
     /**
-     * Sets the stream containing the data to upload for the new part.
+     * <p>
+     * Size of the body in bytes. This parameter is useful when the size of the
+     * body cannot be determined automatically.
+     * </p>
      *
-     * @param inputStream the stream containing the data to upload for the new
-     *            part.
+     * @return <p>
+     *         Size of the body in bytes. This parameter is useful when the size
+     *         of the body cannot be determined automatically.
+     *         </p>
      */
-    @Override
-    public void setInputStream(InputStream inputStream) {
-        this.inputStream = inputStream;
+    public Long getContentLength() {
+        return contentLength;
     }
 
     /**
-     * Returns the stream containing the data to upload for the new part.
+     * <p>
+     * Size of the body in bytes. This parameter is useful when the size of the
+     * body cannot be determined automatically.
+     * </p>
      *
-     * @return the stream containing the data to upload for the new part.
+     * @param contentLength <p>
+     *            Size of the body in bytes. This parameter is useful when the
+     *            size of the body cannot be determined automatically.
+     *            </p>
      */
-    @Override
-    public InputStream getInputStream() {
-        return inputStream;
+    public void setContentLength(Long contentLength) {
+        this.contentLength = contentLength;
     }
 
     /**
-     * Sets the stream containing the data to upload for the new part, and
-     * returns this updated object so that additional method calls can be
-     * chained together.
+     * <p>
+     * Size of the body in bytes. This parameter is useful when the size of the
+     * body cannot be determined automatically.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param inputStream the stream containing the data to upload for the new
-     *            part.
-     * @return The updated UploadPartRequest object.
+     * @param contentLength <p>
+     *            Size of the body in bytes. This parameter is useful when the
+     *            size of the body cannot be determined automatically.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UploadPartRequest withInputStream(InputStream inputStream) {
-        setInputStream(inputStream);
+    public UploadPartRequest withContentLength(Long contentLength) {
+        this.contentLength = contentLength;
         return this;
     }
 
     /**
-     * Returns the name of the bucket containing the existing, initiated
-     * multipart upload, with which this new part will be associated.
+     * <p>
+     * The base64-encoded 128-bit MD5 digest of the part data. This parameter is
+     * auto-populated when using the command from the CLI. This parameter is
+     * required if object lock parameters are specified.
+     * </p>
      *
-     * @return the name of the bucket containing the existing, initiated
-     *         multipart upload, with which this new part will be associated.
+     * @return <p>
+     *         The base64-encoded 128-bit MD5 digest of the part data. This
+     *         parameter is auto-populated when using the command from the CLI.
+     *         This parameter is required if object lock parameters are
+     *         specified.
+     *         </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public String getContentMD5() {
+        return contentMD5;
     }
 
     /**
-     * Sets the name of the bucket containing the existing, initiated multipart
-     * upload, with which this new part will be associated.
+     * <p>
+     * The base64-encoded 128-bit MD5 digest of the part data. This parameter is
+     * auto-populated when using the command from the CLI. This parameter is
+     * required if object lock parameters are specified.
+     * </p>
      *
-     * @param bucketName the name of the bucket containing the existing,
-     *            initiated multipart upload, with which this new part will be
-     *            associated.
+     * @param contentMD5 <p>
+     *            The base64-encoded 128-bit MD5 digest of the part data. This
+     *            parameter is auto-populated when using the command from the
+     *            CLI. This parameter is required if object lock parameters are
+     *            specified.
+     *            </p>
      */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public void setContentMD5(String contentMD5) {
+        this.contentMD5 = contentMD5;
     }
 
     /**
-     * Sets the name of the bucket containing the existing, initiated multipart
-     * upload, with which this new part will be associated, and returns this
-     * updated object so that additional method calls can be chained together.
+     * <p>
+     * The base64-encoded 128-bit MD5 digest of the part data. This parameter is
+     * auto-populated when using the command from the CLI. This parameter is
+     * required if object lock parameters are specified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param bucketName the name of the bucket containing the existing,
-     *            initiated multipart upload, with which this new part will be
-     *            associated.
-     * @return This updated UploadPartRequest object.
+     * @param contentMD5 <p>
+     *            The base64-encoded 128-bit MD5 digest of the part data. This
+     *            parameter is auto-populated when using the command from the
+     *            CLI. This parameter is required if object lock parameters are
+     *            specified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UploadPartRequest withBucketName(String bucketName) {
-        this.bucketName = bucketName;
+    public UploadPartRequest withContentMD5(String contentMD5) {
+        this.contentMD5 = contentMD5;
         return this;
     }
 
     /**
-     * Returns the key of the initiated multipart upload.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @return the key of the initiated multipart upload.
+     * @return <p>
+     *         Object key for which the multipart upload was initiated.
+     *         </p>
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * Sets the key of the initiated multipart upload.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key the key of the initiated multipart upload.
+     * @param key <p>
+     *            Object key for which the multipart upload was initiated.
+     *            </p>
      */
     public void setKey(String key) {
         this.key = key;
     }
 
     /**
-     * Sets the key of the initiated multipart upload, and returns this updated
-     * object so that additional method calls can be chained together.
+     * <p>
+     * Object key for which the multipart upload was initiated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
-     * @param key the key of the initiated multipart upload.
-     * @return This updated UploadPartRequest object.
+     * @param key <p>
+     *            Object key for which the multipart upload was initiated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UploadPartRequest withKey(String key) {
         this.key = key;
@@ -274,35 +538,98 @@ public class UploadPartRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the ID of the existing, initiated multipart upload with which
-     * this new part will be associated.
+     * <p>
+     * Part number of part being uploaded. This is a positive integer between 1
+     * and 10,000.
+     * </p>
      *
-     * @return the ID of the existing, initiated multipart upload with which
-     *         this new part will be associated.
+     * @return <p>
+     *         Part number of part being uploaded. This is a positive integer
+     *         between 1 and 10,000.
+     *         </p>
+     */
+    public Integer getPartNumber() {
+        return partNumber;
+    }
+
+    /**
+     * <p>
+     * Part number of part being uploaded. This is a positive integer between 1
+     * and 10,000.
+     * </p>
+     *
+     * @param partNumber <p>
+     *            Part number of part being uploaded. This is a positive integer
+     *            between 1 and 10,000.
+     *            </p>
+     */
+    public void setPartNumber(Integer partNumber) {
+        this.partNumber = partNumber;
+    }
+
+    /**
+     * <p>
+     * Part number of part being uploaded. This is a positive integer between 1
+     * and 10,000.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param partNumber <p>
+     *            Part number of part being uploaded. This is a positive integer
+     *            between 1 and 10,000.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadPartRequest withPartNumber(Integer partNumber) {
+        this.partNumber = partNumber;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Upload ID identifying the multipart upload whose part is being uploaded.
+     * </p>
+     *
+     * @return <p>
+     *         Upload ID identifying the multipart upload whose part is being
+     *         uploaded.
+     *         </p>
      */
     public String getUploadId() {
         return uploadId;
     }
 
     /**
-     * Sets the ID of the existing, initiated multipart upload with which this
-     * new part will be associated.
+     * <p>
+     * Upload ID identifying the multipart upload whose part is being uploaded.
+     * </p>
      *
-     * @param uploadId the ID of the existing, initiated multipart upload with
-     *            which this new part will be associated.
+     * @param uploadId <p>
+     *            Upload ID identifying the multipart upload whose part is being
+     *            uploaded.
+     *            </p>
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
     }
 
     /**
-     * Sets the ID of the existing, initiated multipart upload with which this
-     * new part will be associated, and returns this updated UploadPartRequest
-     * object so that additional method calls can be chained together.
+     * <p>
+     * Upload ID identifying the multipart upload whose part is being uploaded.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param uploadId the ID of the existing, initiated multipart upload with
-     *            which this new part will be associated.
-     * @return This updated UploadPartRequest object.
+     * @param uploadId <p>
+     *            Upload ID identifying the multipart upload whose part is being
+     *            uploaded.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public UploadPartRequest withUploadId(String uploadId) {
         this.uploadId = uploadId;
@@ -310,410 +637,480 @@ public class UploadPartRequest extends AmazonWebServiceRequest implements
     }
 
     /**
-     * Returns the part number describing this part's position relative to the
-     * other parts in the multipart upload. Part number must be between 1 and
-     * 10,000 (inclusive).
-     *
-     * @return the part number describing this part's position relative to the
-     *         other parts in the multipart upload. Part number must be between
-     *         1 and 10,000 (inclusive).
-     */
-    public int getPartNumber() {
-        return partNumber;
-    }
-
-    /**
-     * Sets the part number describing this part's position relative to the
-     * other parts in the multipart upload. Part number must be between 1 and
-     * 10,000 (inclusive).
-     *
-     * @param partNumber the part number describing this part's position
-     *            relative to the other parts in the multipart upload. Part
-     *            number must be between 1 and 10,000 (inclusive).
-     */
-    public void setPartNumber(int partNumber) {
-        this.partNumber = partNumber;
-    }
-
-    /**
-     * Sets the part number describing this part's position relative to the
-     * other parts in the multipart upload. Part number must be between 1 and
-     * 10,000 (inclusive).
      * <p>
-     * Returns this updated UploadPartRequest object so that additional method
-     * calls can be chained together.
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
+     * </p>
      *
-     * @param partNumber the part number describing this part's position
-     *            relative to the other parts in the multipart upload. Part
-     *            number must be between 1 and 10,000 (inclusive).
-     * @return This updated UploadPartRequest object.
+     * @return <p>
+     *         Specifies the algorithm to use to when encrypting the object (for
+     *         example, AES256).
+     *         </p>
      */
-    public UploadPartRequest withPartNumber(int partNumber) {
-        this.partNumber = partNumber;
-        return this;
+    public String getSSECustomerAlgorithm() {
+        return sSECustomerAlgorithm;
     }
 
     /**
-     * Returns the size of this part, in bytes.
+     * <p>
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
+     * </p>
      *
-     * @return the size of this part, in bytes.
+     * @param sSECustomerAlgorithm <p>
+     *            Specifies the algorithm to use to when encrypting the object
+     *            (for example, AES256).
+     *            </p>
      */
-    public long getPartSize() {
-        return partSize;
+    public void setSSECustomerAlgorithm(String sSECustomerAlgorithm) {
+        this.sSECustomerAlgorithm = sSECustomerAlgorithm;
     }
 
     /**
-     * Sets the size of this part, in bytes.
-     *
-     * @param partSize the size of this part, in bytes.
-     */
-    public void setPartSize(long partSize) {
-        this.partSize = partSize;
-    }
-
-    /**
-     * Sets the size of this part, in bytes, and returns this updated
-     * UploadPartRequest object so that additional method calls can be chained
+     * <p>
+     * Specifies the algorithm to use to when encrypting the object (for
+     * example, AES256).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param partSize the size of this part, in bytes.
-     * @return This updated UploadPartRequest object.
+     * @param sSECustomerAlgorithm <p>
+     *            Specifies the algorithm to use to when encrypting the object
+     *            (for example, AES256).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public UploadPartRequest withPartSize(long partSize) {
-        this.partSize = partSize;
+    public UploadPartRequest withSSECustomerAlgorithm(String sSECustomerAlgorithm) {
+        this.sSECustomerAlgorithm = sSECustomerAlgorithm;
         return this;
     }
 
     /**
-     * Returns the optional, but recommended, MD5 hash of the content of this
-     * part. If specified, this value will be sent to Amazon S3 to verify the
-     * data integrity when the data reaches Amazon S3.
-     *
-     * @return The optional, but recommended, MD5 hash of the content of this
-     *         part. If specified, this value will be sent to Amazon S3 to
-     *         verify the data integrity when the data reaches Amazon S3.
-     */
-    public String getMd5Digest() {
-        return md5Digest;
-    }
-
-    /**
-     * Sets the optional, but recommended, MD5 hash of the content of this part.
-     * If specified, this value will be sent to Amazon S3 to verify the data
-     * integrity when the data reaches Amazon S3.
-     *
-     * @param md5Digest The optional, but recommended, MD5 hash of the content
-     *            of this part. If specified, this value will be sent to Amazon
-     *            S3 to verify the data integrity when the data reaches Amazon
-     *            S3.
-     */
-    public void setMd5Digest(String md5Digest) {
-        this.md5Digest = md5Digest;
-    }
-
-    /**
-     * Sets the optional, but recommended, MD5 hash of the content of this part.
-     * If specified, this value will be sent to Amazon S3 to verify the data
-     * integrity when the data reaches Amazon S3.
      * <p>
-     * Returns this updated UploadPartRequest object so that additional method
-     * calls can be chained together.
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm header</code>.
+     * This must be the same encryption key specified in the initiate multipart
+     * upload request.
+     * </p>
      *
-     * @param md5Digest The optional, but recommended, MD5 hash of the content
-     *            of this part. If specified, this value will be sent to Amazon
-     *            S3 to verify the data integrity when the data reaches Amazon
-     *            S3.
-     * @return This updated UploadPartRequest object.
+     * @return <p>
+     *         Specifies the customer-provided encryption key for Amazon S3 to
+     *         use in encrypting data. This value is used to store the object
+     *         and then it is discarded; Amazon S3 does not store the encryption
+     *         key. The key must be appropriate for use with the algorithm
+     *         specified in the
+     *         <code>x-amz-server-side​-encryption​-customer-algorithm header</code>
+     *         . This must be the same encryption key specified in the initiate
+     *         multipart upload request.
+     *         </p>
      */
-    public UploadPartRequest withMD5Digest(String md5Digest) {
-        this.md5Digest = md5Digest;
+    public String getSSECustomerKey() {
+        return sSECustomerKey;
+    }
+
+    /**
+     * <p>
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm header</code>.
+     * This must be the same encryption key specified in the initiate multipart
+     * upload request.
+     * </p>
+     *
+     * @param sSECustomerKey <p>
+     *            Specifies the customer-provided encryption key for Amazon S3
+     *            to use in encrypting data. This value is used to store the
+     *            object and then it is discarded; Amazon S3 does not store the
+     *            encryption key. The key must be appropriate for use with the
+     *            algorithm specified in the
+     *            <code>x-amz-server-side​-encryption​-customer-algorithm header</code>
+     *            . This must be the same encryption key specified in the
+     *            initiate multipart upload request.
+     *            </p>
+     */
+    public void setSSECustomerKey(String sSECustomerKey) {
+        this.sSECustomerKey = sSECustomerKey;
+    }
+
+    /**
+     * <p>
+     * Specifies the customer-provided encryption key for Amazon S3 to use in
+     * encrypting data. This value is used to store the object and then it is
+     * discarded; Amazon S3 does not store the encryption key. The key must be
+     * appropriate for use with the algorithm specified in the
+     * <code>x-amz-server-side​-encryption​-customer-algorithm header</code>.
+     * This must be the same encryption key specified in the initiate multipart
+     * upload request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSECustomerKey <p>
+     *            Specifies the customer-provided encryption key for Amazon S3
+     *            to use in encrypting data. This value is used to store the
+     *            object and then it is discarded; Amazon S3 does not store the
+     *            encryption key. The key must be appropriate for use with the
+     *            algorithm specified in the
+     *            <code>x-amz-server-side​-encryption​-customer-algorithm header</code>
+     *            . This must be the same encryption key specified in the
+     *            initiate multipart upload request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadPartRequest withSSECustomerKey(String sSECustomerKey) {
+        this.sSECustomerKey = sSECustomerKey;
         return this;
     }
 
     /**
-     * Returns the file containing the data to upload. Exactly one File or
-     * InputStream must be specified as the input to this operation.
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
      *
-     * @return The file containing the data to upload. Exactly one File or
-     *         InputStream must be specified as the input to this operation.
+     * @return <p>
+     *         Specifies the 128-bit MD5 digest of the encryption key according
+     *         to RFC 1321. Amazon S3 uses this header for a message integrity
+     *         check to ensure that the encryption key was transmitted without
+     *         error.
+     *         </p>
      */
-    @Override
-    public File getFile() {
-        return file;
+    public String getSSECustomerKeyMD5() {
+        return sSECustomerKeyMD5;
     }
 
     /**
-     * Sets the file containing the data to upload. Exactly one File or
-     * InputStream must be specified as the input to this operation.
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
      *
-     * @param file The file containing the data to upload. Exactly one File or
-     *            InputStream must be specified as the input to this operation.
+     * @param sSECustomerKeyMD5 <p>
+     *            Specifies the 128-bit MD5 digest of the encryption key
+     *            according to RFC 1321. Amazon S3 uses this header for a
+     *            message integrity check to ensure that the encryption key was
+     *            transmitted without error.
+     *            </p>
      */
-    @Override
-    public void setFile(File file) {
-        this.file = file;
+    public void setSSECustomerKeyMD5(String sSECustomerKeyMD5) {
+        this.sSECustomerKeyMD5 = sSECustomerKeyMD5;
     }
 
     /**
-     * Sets the file containing the data to upload, and returns this updated
-     * UploadPartRequest object so that additional method calls can be chained
+     * <p>
+     * Specifies the 128-bit MD5 digest of the encryption key according to RFC
+     * 1321. Amazon S3 uses this header for a message integrity check to ensure
+     * that the encryption key was transmitted without error.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sSECustomerKeyMD5 <p>
+     *            Specifies the 128-bit MD5 digest of the encryption key
+     *            according to RFC 1321. Amazon S3 uses this header for a
+     *            message integrity check to ensure that the encryption key was
+     *            transmitted without error.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UploadPartRequest withSSECustomerKeyMD5(String sSECustomerKeyMD5) {
+        this.sSECustomerKeyMD5 = sSECustomerKeyMD5;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @return <p>
+     *         Confirms that the requester knows that they will be charged for
+     *         the request. Bucket owners need not specify this parameter in
+     *         their requests. For information about downloading objects from
+     *         requester pays buckets, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *         >Downloading Objects in Requestor Pays Buckets</a> in the
+     *         <i>Amazon S3 Developer Guide</i>.
+     *         </p>
+     * @see RequestPayer
+     */
+    public String getRequestPayer() {
+        return requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
-     * Exactly one File or InputStream must be specified as the input to this
-     * operation.
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      *
-     * @param file The file containing the data to upload. Exactly one File or
-     *            InputStream must be specified as the input to this operation.
-     * @return This updated UploadPartRequest object.
-     */
-    public UploadPartRequest withFile(File file) {
-        setFile(file);
-        return this;
-    }
-
-    /**
-     * Returns the optional offset in the specified file, at which to begin
-     * uploading data for this part. If not specified, data will be read from
-     * the beginning of the file.
-     *
-     * @return The optional offset in the specified file, at which to begin
-     *         uploading data for this part. If not specified, data will be read
-     *         from the beginning of the file.
-     */
-    public long getFileOffset() {
-        return fileOffset;
-    }
-
-    /**
-     * Sets the optional offset in the specified file, at which to begin
-     * uploading data for this part. If not specified, data will be read from
-     * the beginning of the file.
-     *
-     * @param fileOffset The optional offset in the specified file, at which to
-     *            begin uploading data for this part. If not specified, data
-     *            will be read from the beginning of the file.
-     */
-    public void setFileOffset(long fileOffset) {
-        this.fileOffset = fileOffset;
-    }
-
-    /**
-     * Sets the optional offset in the specified file, at which to begin
-     * uploading data for this part, and returns this updated UploadPartRequest
-     * object so that additional method calls can be chained together.
-     * <p>
-     * If not specified, data will be read from the beginning of the file.
-     *
-     * @param fileOffset The optional offset in the specified file, at which to
-     *            begin uploading data for this part. If not specified, data
-     *            will be read from the beginning of the file.
-     * @return This updated UploadPartRequest object.
-     */
-    public UploadPartRequest withFileOffset(long fileOffset) {
-        setFileOffset(fileOffset);
-        return this;
-    }
-
-    /**
-     * Sets the optional progress listener for receiving updates about object
-     * upload status.
-     *
-     * @param progressListener The legacy progress listener that is used
-     *            exclusively for Amazon S3 client.
-     * @deprecated use {@link #setGeneralProgressListener(ProgressListener)}
-     *             instead.
-     */
-    @Deprecated
-    public void setProgressListener(com.amazonaws.services.s3.model.ProgressListener progressListener) {
-        setGeneralProgressListener(new LegacyS3ProgressListener(progressListener));
-    }
-
-    /**
-     * Returns the optional progress listener for receiving updates about object
-     * upload status.
-     *
-     * @return the optional progress listener for receiving updates about object
-     *         upload status.
-     * @deprecated use {@link #getGeneralProgressListener()} instead.
-     */
-    @Deprecated
-    public com.amazonaws.services.s3.model.ProgressListener getProgressListener() {
-        final ProgressListener generalProgressListener = getGeneralProgressListener();
-        if (generalProgressListener instanceof LegacyS3ProgressListener) {
-            return ((LegacyS3ProgressListener) generalProgressListener).unwrap();
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Sets the optional progress listener for receiving updates about object
-     * upload status, and returns this updated object so that additional method
-     * calls can be chained together.
-     *
-     * @param progressListener The legacy progress listener that is used
-     *            exclusively for Amazon S3 client.
-     * @return This updated UploadPartRequest object.
-     * @deprecated use {@link #withGeneralProgressListener(ProgressListener)}
-     *             instead.
-     */
-    @Deprecated
-    public UploadPartRequest withProgressListener(
-            com.amazonaws.services.s3.model.ProgressListener progressListener) {
-        setProgressListener(progressListener);
-        return this;
-    }
-
-    /**
-     * Returns true if the creator of this request has indicated this part is
-     * the last part being uploaded in a multipart upload.
-     *
-     * @return True if the creator of this request has indicated this part is
-     *         the last part being uploaded in a multipart upload.
-     */
-    public boolean isLastPart() {
-        return isLastPart;
-    }
-
-    /**
-     * Marks this part as the last part being uploaded in a multipart upload.
-     *
-     * @param isLastPart Whether or not this is the last part being uploaded in
-     *            a multipart upload.
-     */
-    public void setLastPart(boolean isLastPart) {
-        this.isLastPart = isLastPart;
-    }
-
-    /**
-     * Marks this part as the last part being uploaded in a multipart upload,
-     * and returns this updated request object so that additional method calls
-     * can be chained together.
-     *
-     * @param isLastPart Whether or not this is the last part being uploaded in
-     *            a multipart upload.
-     * @return This updated request object so that additional method calls can be
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
      *         chained together.
+     * @see RequestPayer
      */
-    public UploadPartRequest withLastPart(boolean isLastPart) {
-        setLastPart(isLastPart);
+    public UploadPartRequest withRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
         return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public UploadPartRequest withRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBody() != null)
+            sb.append("Body: " + getBody() + ",");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getContentLength() != null)
+            sb.append("ContentLength: " + getContentLength() + ",");
+        if (getContentMD5() != null)
+            sb.append("ContentMD5: " + getContentMD5() + ",");
+        if (getKey() != null)
+            sb.append("Key: " + getKey() + ",");
+        if (getPartNumber() != null)
+            sb.append("PartNumber: " + getPartNumber() + ",");
+        if (getUploadId() != null)
+            sb.append("UploadId: " + getUploadId() + ",");
+        if (getSSECustomerAlgorithm() != null)
+            sb.append("SSECustomerAlgorithm: " + getSSECustomerAlgorithm() + ",");
+        if (getSSECustomerKey() != null)
+            sb.append("SSECustomerKey: " + getSSECustomerKey() + ",");
+        if (getSSECustomerKeyMD5() != null)
+            sb.append("SSECustomerKeyMD5: " + getSSECustomerKeyMD5() + ",");
+        if (getRequestPayer() != null)
+            sb.append("RequestPayer: " + getRequestPayer());
+        sb.append("}");
+        return sb.toString();
     }
 
     @Override
-    public SSECustomerKey getSSECustomerKey() {
-        return sseCustomerKey;
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBody() == null) ? 0 : getBody().hashCode());
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode
+                + ((getContentLength() == null) ? 0 : getContentLength().hashCode());
+        hashCode = prime * hashCode + ((getContentMD5() == null) ? 0 : getContentMD5().hashCode());
+        hashCode = prime * hashCode + ((getKey() == null) ? 0 : getKey().hashCode());
+        hashCode = prime * hashCode + ((getPartNumber() == null) ? 0 : getPartNumber().hashCode());
+        hashCode = prime * hashCode + ((getUploadId() == null) ? 0 : getUploadId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerAlgorithm() == null) ? 0 : getSSECustomerAlgorithm().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerKey() == null) ? 0 : getSSECustomerKey().hashCode());
+        hashCode = prime * hashCode
+                + ((getSSECustomerKeyMD5() == null) ? 0 : getSSECustomerKeyMD5().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestPayer() == null) ? 0 : getRequestPayer().hashCode());
+        return hashCode;
     }
 
-    /**
-     * Sets the optional customer-provided server-side encryption key to use to
-     * encrypt the object part being uploaded.
-     *
-     * @param sseKey The optional customer-provided server-side encryption key
-     *            to use to encrypt the object part being uploaded.
-     */
-    public void setSSECustomerKey(SSECustomerKey sseKey) {
-        this.sseCustomerKey = sseKey;
-    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-    /**
-     * Sets the optional customer-provided server-side encryption key to use to
-     * encrypt the object part being uploaded, and returns the updated request
-     * object so that additional method calls can be chained together.
-     *
-     * @param sseKey The optional customer-provided server-side encryption key
-     *            to use to encrypt the object part being uploaded.
-     * @return This updated request object so that additional method calls can be
-     *         chained together.
-     */
-    public UploadPartRequest withSSECustomerKey(SSECustomerKey sseKey) {
-        setSSECustomerKey(sseKey);
-        return this;
-    }
-    /**
-     * Returns the additional information about the part being uploaded.
-     */
-    public ObjectMetadata getObjectMetadata() {
-        return objectMetadata;
-    }
+        if (obj instanceof UploadPartRequest == false)
+            return false;
+        UploadPartRequest other = (UploadPartRequest) obj;
 
-    /**
-     * Sets the additional information about the part being uploaded.
-     */
-    public void setObjectMetadata(ObjectMetadata objectMetadata) {
-        this.objectMetadata = objectMetadata;
-    }
-
-    /**
-     * Fluent API for {@link #setObjectMetadata(ObjectMetadata)}.
-     */
-    public UploadPartRequest withObjectMetadata(ObjectMetadata objectMetadata) {
-        setObjectMetadata(objectMetadata);
-        return this;
-    }
-
-    /**
-     * Returns true if the user has enabled Requester Pays option when
-     * conducting this operation from Requester Pays Bucket; else false.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
-     *
-     * @return true if the user has enabled Requester Pays option for
-     *         conducting this operation from Requester Pays Bucket.
-     */
-    public boolean isRequesterPays() {
-        return isRequesterPays;
-    }
-
-    /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     */
-    public void setRequesterPays(boolean isRequesterPays) {
-        this.isRequesterPays = isRequesterPays;
-    }
-
-    /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket. It returns this
-     * updated UploadPartRequest object so that additional method calls can be
-     * chained together.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     *
-     * @return The updated UploadPartRequest object.
-     */
-    public UploadPartRequest withRequesterPays(boolean isRequesterPays) {
-        setRequesterPays(isRequesterPays);
-        return this;
+        if (other.getBody() == null ^ this.getBody() == null)
+            return false;
+        if (other.getBody() != null && other.getBody().equals(this.getBody()) == false)
+            return false;
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getContentLength() == null ^ this.getContentLength() == null)
+            return false;
+        if (other.getContentLength() != null
+                && other.getContentLength().equals(this.getContentLength()) == false)
+            return false;
+        if (other.getContentMD5() == null ^ this.getContentMD5() == null)
+            return false;
+        if (other.getContentMD5() != null
+                && other.getContentMD5().equals(this.getContentMD5()) == false)
+            return false;
+        if (other.getKey() == null ^ this.getKey() == null)
+            return false;
+        if (other.getKey() != null && other.getKey().equals(this.getKey()) == false)
+            return false;
+        if (other.getPartNumber() == null ^ this.getPartNumber() == null)
+            return false;
+        if (other.getPartNumber() != null
+                && other.getPartNumber().equals(this.getPartNumber()) == false)
+            return false;
+        if (other.getUploadId() == null ^ this.getUploadId() == null)
+            return false;
+        if (other.getUploadId() != null && other.getUploadId().equals(this.getUploadId()) == false)
+            return false;
+        if (other.getSSECustomerAlgorithm() == null ^ this.getSSECustomerAlgorithm() == null)
+            return false;
+        if (other.getSSECustomerAlgorithm() != null
+                && other.getSSECustomerAlgorithm().equals(this.getSSECustomerAlgorithm()) == false)
+            return false;
+        if (other.getSSECustomerKey() == null ^ this.getSSECustomerKey() == null)
+            return false;
+        if (other.getSSECustomerKey() != null
+                && other.getSSECustomerKey().equals(this.getSSECustomerKey()) == false)
+            return false;
+        if (other.getSSECustomerKeyMD5() == null ^ this.getSSECustomerKeyMD5() == null)
+            return false;
+        if (other.getSSECustomerKeyMD5() != null
+                && other.getSSECustomerKeyMD5().equals(this.getSSECustomerKeyMD5()) == false)
+            return false;
+        if (other.getRequestPayer() == null ^ this.getRequestPayer() == null)
+            return false;
+        if (other.getRequestPayer() != null
+                && other.getRequestPayer().equals(this.getRequestPayer()) == false)
+            return false;
+        return true;
     }
 }

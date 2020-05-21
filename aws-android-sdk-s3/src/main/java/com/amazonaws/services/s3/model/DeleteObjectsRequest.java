@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,338 +15,679 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.services.s3.AmazonS3;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Provides options for deleting multiple objects in a specified bucket. Once
- * deleted, the object(s) can only be restored if versioning was enabled when
- * the object(s) was deleted.You may specify up to <a href=
- * "http://docs.aws.amazon.com/AmazonS3/latest/API/multiobjectdeleteapi.html"
- * >1000 keys</a>. </p>
- *
- * @see AmazonS3#deleteObjects(DeleteObjectsRequest)
+ * <p>
+ * This operation enables you to delete multiple objects from a bucket using a
+ * single HTTP request. If you know the object keys that you want to delete,
+ * then this operation provides a suitable alternative to sending individual
+ * delete requests, reducing per-request overhead.
+ * </p>
+ * <p>
+ * The request contains a list of up to 1000 keys that you want to delete. In
+ * the XML, you provide the object key names, and optionally, version IDs if you
+ * want to delete a specific version of the object from a versioning-enabled
+ * bucket. For each key, Amazon S3 performs a delete operation and returns the
+ * result of that delete, success, or failure, in the response. Note that if the
+ * object specified in the request is not found, Amazon S3 returns the result as
+ * deleted.
+ * </p>
+ * <p>
+ * The operation supports two modes for the response: verbose and quiet. By
+ * default, the operation uses verbose mode in which the response includes the
+ * result of deletion of each key in your request. In quiet mode the response
+ * includes only keys where the delete operation encountered an error. For a
+ * successful deletion, the operation does not return any information about the
+ * delete in the response body.
+ * </p>
+ * <p>
+ * When performing this operation on an MFA Delete enabled bucket, that attempts
+ * to delete any versioned objects, you must include an MFA token. If you do not
+ * provide one, the entire request will fail, even if there are non-versioned
+ * objects you are trying to delete. If you provide an invalid token, whether
+ * there are versioned keys in the request or not, the entire Multi-Object
+ * Delete request will fail. For information about MFA Delete, see <a href=
+ * "https://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html#MultiFactorAuthenticationDelete"
+ * > MFA Delete</a>.
+ * </p>
+ * <p>
+ * Finally, the Content-MD5 header is required for all Multi-Object Delete
+ * requests. Amazon S3 uses the header value to ensure that your request body
+ * has not been altered in transit.
+ * </p>
+ * <p>
+ * The following operations are related to <code>DeleteObjects</code>:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>UploadPart</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CompleteMultipartUpload</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListParts</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>AbortMultipartUpload</a>
+ * </p>
+ * </li>
+ * </ul>
  */
-public class DeleteObjectsRequest extends AmazonWebServiceRequest {
-
+public class DeleteObjectsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The name of the Amazon S3 bucket containing the object(s) to delete.
+     * <p>
+     * The bucket name containing the objects to delete.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      */
-    private String bucketName;
+    private String bucket;
 
     /**
-     * Whether to enable quiet mode for the response. In quiet mode, only errors
-     * are reported. Defaults to false.
+     * <p>
+     * Container for the request.
+     * </p>
      */
-    private boolean quiet;
+    private Delete delete;
 
     /**
-     * The optional Multi-Factor Authentication information to include with this
-     * request. Multi-Factor Authentication is required when deleting a version
-     * from a bucket that has enabled MFA Delete in its bucket versioning
-     * configuration. See
-     * {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)} for
-     * more information on MFA Delete.
+     * <p>
+     * The concatenation of the authentication device's serial number, a space,
+     * and the value that is displayed on your authentication device. Required
+     * to permanently delete a versioned object if versioning is configured with
+     * MFA delete enabled.
+     * </p>
      */
-    private MultiFactorAuthentication mfa;
+    private String mFA;
 
     /**
-     * List of keys to delete, with optional versions.
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
      */
-    private final List<KeyVersion> keys = new ArrayList<KeyVersion>();
+    private String requestPayer;
 
     /**
-     * If enabled, the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
+     * <p>
+     * Specifies whether you want to delete this object even if it has a
+     * Governance-type Object Lock in place. You must have sufficient
+     * permissions to perform this operation.
+     * </p>
      */
-    private boolean isRequesterPays;
+    private Boolean bypassGovernanceRetention;
 
     /**
-     * Constructs a new {@link DeleteObjectsRequest}, specifying the objects'
-     * bucket name.
+     * <p>
+     * The bucket name containing the objects to delete.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      *
-     * @param bucketName The name of the Amazon S3 bucket containing the
-     *            object(s) to delete.
+     * @return <p>
+     *         The bucket name containing the objects to delete.
+     *         </p>
+     *         <p>
+     *         When using this API with an access point, you must direct
+     *         requests to the access point hostname. The access point hostname
+     *         takes the form
+     *         <i>AccessPointName</i>-<i>AccountId</i>.s3-accesspoint
+     *         .<i>Region</i>.amazonaws.com. When using this operation using an
+     *         access point through the AWS SDKs, you provide the access point
+     *         ARN in place of the bucket name. For more information about
+     *         access point ARNs, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *         >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     *         Developer Guide</i>.
+     *         </p>
      */
-    public DeleteObjectsRequest(String bucketName) {
-        setBucketName(bucketName);
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Gets the name of the Amazon S3 bucket containing the object(s) to delete.
+     * <p>
+     * The bucket name containing the objects to delete.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
      *
-     * @return The name of the Amazon S3 bucket containing the object(s) to
-     *         delete.
-     * @see DeleteObjectsRequest#setBucketName(String)
+     * @param bucket <p>
+     *            The bucket name containing the objects to delete.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Sets the name of the Amazon S3 bucket containing the object(s) to delete.
-     *
-     * @param bucketName The name of the Amazon S3 bucket containing the
-     *            object(s) to delete.
-     * @see DeleteObjectsRequest#getBucketName()
-     */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
-
-    /**
-     * Sets the name of the Amazon S3 bucket containing the object(s) to delete
-     * and returns this object, enabling additional method calls to be chained
+     * <p>
+     * The bucket name containing the objects to delete.
+     * </p>
+     * <p>
+     * When using this API with an access point, you must direct requests to the
+     * access point hostname. The access point hostname takes the form
+     * <i>AccessPointName
+     * </i>-<i>AccountId</i>.s3-accesspoint.<i>Region</i>.amazonaws.com. When
+     * using this operation using an access point through the AWS SDKs, you
+     * provide the access point ARN in place of the bucket name. For more
+     * information about access point ARNs, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     * >Using Access Points</a> in the <i>Amazon Simple Storage Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param bucketName The name of the Amazon S3 bucket containing the
-     *            object(s) to delete.
-     * @return The updated {@link DeleteObjectsRequest} object, enabling
-     *         additional method calls to be chained together.
+     * @param bucket <p>
+     *            The bucket name containing the objects to delete.
+     *            </p>
+     *            <p>
+     *            When using this API with an access point, you must direct
+     *            requests to the access point hostname. The access point
+     *            hostname takes the form
+     *            <i>AccessPointName</i>-<i>AccountId</i>
+     *            .s3-accesspoint.<i>Region</i>.amazonaws.com. When using this
+     *            operation using an access point through the AWS SDKs, you
+     *            provide the access point ARN in place of the bucket name. For
+     *            more information about access point ARNs, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html"
+     *            >Using Access Points</a> in the <i>Amazon Simple Storage
+     *            Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DeleteObjectsRequest withBucketName(String bucketName) {
-        setBucketName(bucketName);
+    public DeleteObjectsRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
 
     /**
      * <p>
-     * Gets the optional Multi-Factor Authentication information included with
-     * this request.
-     * </p>
-     * <p>
-     * Multi-Factor Authentication is required when deleting an object version
-     * from a bucket which has MFADelete enabled in its bucket versioning
-     * configuration.
-     * </p>
-     * <p>
-     * See {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)}
-     * for more information on MFADelete.
+     * Container for the request.
      * </p>
      *
-     * @return The optional Multi-Factor Authentication information included
-     *         with this request.
+     * @return <p>
+     *         Container for the request.
+     *         </p>
      */
-    public MultiFactorAuthentication getMfa() {
-        return mfa;
+    public Delete getDelete() {
+        return delete;
     }
 
     /**
      * <p>
-     * Sets the optional Multi-Factor Authentication information to include with
-     * this request.
-     * </p>
-     * <p>
-     * Multi-Factor Authentication is required when deleting an object version
-     * from a bucket which has MFADelete enabled in its bucket versioning
-     * configuration.
-     * </p>
-     * <p>
-     * See {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)}
-     * for more information on MFADelete.
+     * Container for the request.
      * </p>
      *
-     * @param mfa The optional Multi-Factor Authentication information to
-     *            include with this request.
+     * @param delete <p>
+     *            Container for the request.
+     *            </p>
      */
-    public void setMfa(MultiFactorAuthentication mfa) {
-        this.mfa = mfa;
+    public void setDelete(Delete delete) {
+        this.delete = delete;
     }
 
     /**
      * <p>
-     * Sets the optional Multi-Factor Authentication information to include with
-     * this request Returns this, enabling additional method calls to be chained
+     * Container for the request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
      * together.
+     *
+     * @param delete <p>
+     *            Container for the request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteObjectsRequest withDelete(Delete delete) {
+        this.delete = delete;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The concatenation of the authentication device's serial number, a space,
+     * and the value that is displayed on your authentication device. Required
+     * to permanently delete a versioned object if versioning is configured with
+     * MFA delete enabled.
+     * </p>
+     *
+     * @return <p>
+     *         The concatenation of the authentication device's serial number, a
+     *         space, and the value that is displayed on your authentication
+     *         device. Required to permanently delete a versioned object if
+     *         versioning is configured with MFA delete enabled.
+     *         </p>
+     */
+    public String getMFA() {
+        return mFA;
+    }
+
+    /**
+     * <p>
+     * The concatenation of the authentication device's serial number, a space,
+     * and the value that is displayed on your authentication device. Required
+     * to permanently delete a versioned object if versioning is configured with
+     * MFA delete enabled.
+     * </p>
+     *
+     * @param mFA <p>
+     *            The concatenation of the authentication device's serial
+     *            number, a space, and the value that is displayed on your
+     *            authentication device. Required to permanently delete a
+     *            versioned object if versioning is configured with MFA delete
+     *            enabled.
+     *            </p>
+     */
+    public void setMFA(String mFA) {
+        this.mFA = mFA;
+    }
+
+    /**
+     * <p>
+     * The concatenation of the authentication device's serial number, a space,
+     * and the value that is displayed on your authentication device. Required
+     * to permanently delete a versioned object if versioning is configured with
+     * MFA delete enabled.
      * </p>
      * <p>
-     * Multi-Factor Authentication is required when deleting an object version
-     * from a bucket which has MFADelete enabled in its bucket versioning
-     * configuration
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mFA <p>
+     *            The concatenation of the authentication device's serial
+     *            number, a space, and the value that is displayed on your
+     *            authentication device. Required to permanently delete a
+     *            versioned object if versioning is configured with MFA delete
+     *            enabled.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteObjectsRequest withMFA(String mFA) {
+        this.mFA = mFA;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
      * </p>
      * <p>
-     * See {@link BucketVersioningConfiguration#setMfaDeleteEnabled(Boolean)}
-     * for more information on MFADelete.
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @return <p>
+     *         Confirms that the requester knows that they will be charged for
+     *         the request. Bucket owners need not specify this parameter in
+     *         their requests. For information about downloading objects from
+     *         requester pays buckets, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *         >Downloading Objects in Requestor Pays Buckets</a> in the
+     *         <i>Amazon S3 Developer Guide</i>.
+     *         </p>
+     * @see RequestPayer
+     */
+    public String getRequestPayer() {
+        return requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public DeleteObjectsRequest withRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that they will be charged for the
+     * request. Bucket owners need not specify this parameter in their requests.
+     * For information about downloading objects from requester pays buckets,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     * >Downloading Objects in Requestor Pays Buckets</a> in the <i>Amazon S3
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that they will be charged
+     *            for the request. Bucket owners need not specify this parameter
+     *            in their requests. For information about downloading objects
+     *            from requester pays buckets, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectsinRequesterPaysBuckets.html"
+     *            >Downloading Objects in Requestor Pays Buckets</a> in the
+     *            <i>Amazon S3 Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public DeleteObjectsRequest withRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether you want to delete this object even if it has a
+     * Governance-type Object Lock in place. You must have sufficient
+     * permissions to perform this operation.
      * </p>
      *
-     * @param mfa The optional Multi-Factor Authentication information to
-     *            include with this request.
-     * @return this, enabling additional method calls to be chained together.
+     * @return <p>
+     *         Specifies whether you want to delete this object even if it has a
+     *         Governance-type Object Lock in place. You must have sufficient
+     *         permissions to perform this operation.
+     *         </p>
      */
-    public DeleteObjectsRequest withMfa(MultiFactorAuthentication mfa) {
-        setMfa(mfa);
+    public Boolean isBypassGovernanceRetention() {
+        return bypassGovernanceRetention;
+    }
+
+    /**
+     * <p>
+     * Specifies whether you want to delete this object even if it has a
+     * Governance-type Object Lock in place. You must have sufficient
+     * permissions to perform this operation.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether you want to delete this object even if it has a
+     *         Governance-type Object Lock in place. You must have sufficient
+     *         permissions to perform this operation.
+     *         </p>
+     */
+    public Boolean getBypassGovernanceRetention() {
+        return bypassGovernanceRetention;
+    }
+
+    /**
+     * <p>
+     * Specifies whether you want to delete this object even if it has a
+     * Governance-type Object Lock in place. You must have sufficient
+     * permissions to perform this operation.
+     * </p>
+     *
+     * @param bypassGovernanceRetention <p>
+     *            Specifies whether you want to delete this object even if it
+     *            has a Governance-type Object Lock in place. You must have
+     *            sufficient permissions to perform this operation.
+     *            </p>
+     */
+    public void setBypassGovernanceRetention(Boolean bypassGovernanceRetention) {
+        this.bypassGovernanceRetention = bypassGovernanceRetention;
+    }
+
+    /**
+     * <p>
+     * Specifies whether you want to delete this object even if it has a
+     * Governance-type Object Lock in place. You must have sufficient
+     * permissions to perform this operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param bypassGovernanceRetention <p>
+     *            Specifies whether you want to delete this object even if it
+     *            has a Governance-type Object Lock in place. You must have
+     *            sufficient permissions to perform this operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteObjectsRequest withBypassGovernanceRetention(Boolean bypassGovernanceRetention) {
+        this.bypassGovernanceRetention = bypassGovernanceRetention;
         return this;
     }
 
     /**
-     * Sets the quiet element for this request. When true, only errors will be
-     * returned in the service response.
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
      */
-    public void setQuiet(boolean quiet) {
-        this.quiet = quiet;
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getDelete() != null)
+            sb.append("Delete: " + getDelete() + ",");
+        if (getMFA() != null)
+            sb.append("MFA: " + getMFA() + ",");
+        if (getRequestPayer() != null)
+            sb.append("RequestPayer: " + getRequestPayer() + ",");
+        if (getBypassGovernanceRetention() != null)
+            sb.append("BypassGovernanceRetention: " + getBypassGovernanceRetention());
+        sb.append("}");
+        return sb.toString();
     }
 
-    /**
-     * Returns the quiet element for this request. When true, only errors will
-     * be returned in the service response.
-     */
-    public boolean getQuiet() {
-        return quiet;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getDelete() == null) ? 0 : getDelete().hashCode());
+        hashCode = prime * hashCode + ((getMFA() == null) ? 0 : getMFA().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestPayer() == null) ? 0 : getRequestPayer().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getBypassGovernanceRetention() == null) ? 0 : getBypassGovernanceRetention()
+                        .hashCode());
+        return hashCode;
     }
 
-    /**
-     * Sets the quiet element for this request. When true, only errors will be
-     * returned in the service response.
-     *
-     * @return this, to chain multiple calls together.
-     */
-    public DeleteObjectsRequest withQuiet(boolean quiet) {
-        this.setQuiet(quiet);
-        return this;
-    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-    /**
-     * Sets the list of keys to delete from this bucket, clearing any existing
-     * list of keys.
-     *
-     * @param keys The list of keys to delete from this bucket
-     */
-    public void setKeys(List<KeyVersion> keys) {
-        this.keys.clear();
-        this.keys.addAll(keys);
-    }
+        if (obj instanceof DeleteObjectsRequest == false)
+            return false;
+        DeleteObjectsRequest other = (DeleteObjectsRequest) obj;
 
-    /**
-     * Sets the list of keys to delete from this bucket, clearing any existing
-     * list of keys.
-     *
-     * @param keys The list of keys to delete from this bucket
-     * @return this, to chain multiple calls togethers.
-     */
-    public DeleteObjectsRequest withKeys(List<KeyVersion> keys) {
-        setKeys(keys);
-        return this;
-    }
-
-    /**
-     * Returns the list of keys to delete from this bucket.
-     */
-    public List<KeyVersion> getKeys() {
-        return keys;
-    }
-
-    /**
-     * Convenience method to specify a set of keys without versions.
-     *
-     * @see DeleteObjectsRequest#withKeys(List)
-     */
-    public DeleteObjectsRequest withKeys(String... keys) {
-        final List<KeyVersion> keyVersions = new ArrayList<KeyVersion>(keys.length);
-        for (final String key : keys) {
-            keyVersions.add(new KeyVersion(key));
-        }
-        setKeys(keyVersions);
-        return this;
-    }
-
-    /**
-     * Returns true if the user has enabled Requester Pays option when
-     * conducting this operation from Requester Pays Bucket; else false.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
-     *
-     * @return true if the user has enabled Requester Pays option for
-     *         conducting this operation from Requester Pays Bucket.
-     */
-    public boolean isRequesterPays() {
-        return isRequesterPays;
-    }
-
-    /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     */
-    public void setRequesterPays(boolean isRequesterPays) {
-        this.isRequesterPays = isRequesterPays;
-    }
-
-    /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket. It returns this
-     * updated DeleteObjectsRequest object so that additional method calls can be
-     * chained together.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     *
-     * @return The updated DeleteObjectsRequest object.
-     */
-    public DeleteObjectsRequest withRequesterPays(boolean isRequesterPays) {
-        setRequesterPays(isRequesterPays);
-        return this;
-    }
-
-    /**
-     * A key to delete, with an optional version attribute.
-     */
-    public static class KeyVersion implements Serializable {
-
-        private final String key;
-        private final String version;
-
-        /**
-         * Constructs a key without a version.
-         */
-        public KeyVersion(String key) {
-            this(key, null);
-        }
-
-        /**
-         * Constructs a key-version pair.
-         */
-        public KeyVersion(String key, String version) {
-            this.key = key;
-            this.version = version;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public String getVersion() {
-            return version;
-        }
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getDelete() == null ^ this.getDelete() == null)
+            return false;
+        if (other.getDelete() != null && other.getDelete().equals(this.getDelete()) == false)
+            return false;
+        if (other.getMFA() == null ^ this.getMFA() == null)
+            return false;
+        if (other.getMFA() != null && other.getMFA().equals(this.getMFA()) == false)
+            return false;
+        if (other.getRequestPayer() == null ^ this.getRequestPayer() == null)
+            return false;
+        if (other.getRequestPayer() != null
+                && other.getRequestPayer().equals(this.getRequestPayer()) == false)
+            return false;
+        if (other.getBypassGovernanceRetention() == null
+                ^ this.getBypassGovernanceRetention() == null)
+            return false;
+        if (other.getBypassGovernanceRetention() != null
+                && other.getBypassGovernanceRetention().equals(this.getBypassGovernanceRetention()) == false)
+            return false;
+        return true;
     }
 }

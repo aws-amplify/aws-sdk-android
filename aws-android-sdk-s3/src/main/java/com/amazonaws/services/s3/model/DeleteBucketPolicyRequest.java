@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,73 +15,148 @@
 
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.services.s3.AmazonS3;
-
 import java.io.Serializable;
 
+import com.amazonaws.AmazonWebServiceRequest;
+
 /**
- * Deletes the policy associated with the specified bucket. Only the owner of
- * the bucket can delete the bucket policy. </p>
  * <p>
- * Bucket policies provide access control management at the bucket level for
- * both the bucket resource and contained object resources. Only one policy can
- * be specified per-bucket.
+ * This implementation of the DELETE operation uses the policy subresource to
+ * delete the policy of a specified bucket. If you are using an identity other
+ * than the root user of the AWS account that owns the bucket, the calling
+ * identity must have the <code>DeleteBucketPolicy</code> permissions on the
+ * specified bucket and belong to the bucket owner's account to use this
+ * operation.
  * </p>
  * <p>
- * See the <a href="http://docs.amazonwebservices.com/AmazonS3/latest/dev/">
- * Amazon S3 developer guide</a> for more information on forming bucket polices.
+ * If you don't have <code>DeleteBucketPolicy</code> permissions, Amazon S3
+ * returns a <code>403 Access Denied</code> error. If you have the correct
+ * permissions, but you're not using an identity that belongs to the bucket
+ * owner's account, Amazon S3 returns a <code>405 Method Not Allowed</code>
+ * error.
  * </p>
- *
- * @see AmazonS3#deleteBucketPolicy(DeleteBucketPolicyRequest)
+ * <important>
+ * <p>
+ * As a security precaution, the root user of the AWS account that owns a bucket
+ * can always use this operation, even if the policy explicitly denies the root
+ * user the ability to perform this action.
+ * </p>
+ * </important>
+ * <p>
+ * For more information about bucket policies, see <a href=
+ * " https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html"
+ * >Using Bucket Policies and UserPolicies</a>.
+ * </p>
+ * <p>
+ * The following operations are related to <code>DeleteBucketPolicy</code>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateBucket</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteObject</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class DeleteBucketPolicyRequest extends AmazonWebServiceRequest implements Serializable {
-
-    /** The name of the Amazon S3 bucket whose policy is being deleted. */
-    private String bucketName;
+    /**
+     * <p>
+     * The bucket name.
+     * </p>
+     */
+    private String bucket;
 
     /**
-     * Creates a new request object, ready to be executed to delete the bucket
-     * policy of an Amazon S3 bucket.
+     * <p>
+     * The bucket name.
+     * </p>
      *
-     * @param bucketName The name of the Amazon S3 bucket whose policy is being
-     *            deleted.
+     * @return <p>
+     *         The bucket name.
+     *         </p>
      */
-    public DeleteBucketPolicyRequest(String bucketName) {
-        this.bucketName = bucketName;
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Returns the name of the Amazon S3 bucket whose policy is being deleted.
+     * <p>
+     * The bucket name.
+     * </p>
      *
-     * @return The name of the Amazon S3 bucket whose policy is being deleted.
+     * @param bucket <p>
+     *            The bucket name.
+     *            </p>
      */
-    public String getBucketName() {
-        return bucketName;
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Sets the name of the Amazon S3 bucket whose policy is being deleted.
+     * <p>
+     * The bucket name.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param bucketName The name of the Amazon S3 bucket whose policy is being
-     *            deleted.
-     */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
-
-    /**
-     * Sets the name of the Amazon S3 bucket whose policy is being deleted, and
-     * returns the updated request object so that additional method calls can be
-     * chained together.
-     *
-     * @param bucketName The name of the Amazon S3 bucket whose policy is being
-     *            deleted.
-     * @return The updated request object so that additional method calls can be
+     * @param bucket <p>
+     *            The bucket name.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteBucketPolicyRequest withBucketName(String bucketName) {
-        setBucketName(bucketName);
+    public DeleteBucketPolicyRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof DeleteBucketPolicyRequest == false)
+            return false;
+        DeleteBucketPolicyRequest other = (DeleteBucketPolicyRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        return true;
     }
 }

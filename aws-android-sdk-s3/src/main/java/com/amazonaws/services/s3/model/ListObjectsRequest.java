@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,490 +15,719 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.services.s3.AmazonS3Client;
 
 /**
  * <p>
- * Contains options to return a list of summary information about the objects in
- * the specified bucket. Depending on the request parameters, additional
- * information is returned, such as common prefixes if a delimiter was
- * specified. List results are <i>always</i> returned in lexicographic
- * (alphabetical) order.
+ * Returns some or all (up to 1,000) of the objects in a bucket. You can use the
+ * request parameters as selection criteria to return a subset of the objects in
+ * a bucket. A 200 OK response can contain valid or invalid XML. Be sure to
+ * design your application to parse the contents of the response and handle it
+ * appropriately.
  * </p>
+ * <important>
  * <p>
- * Buckets can contain a virtually unlimited number of keys, and the complete
- * results of a list query can be extremely large. To manage large result sets,
- * Amazon S3 uses pagination to split them into multiple responses. Always check
- * the {@link ObjectListing#isTruncated()} method to see if the returned listing
- * is complete, or if callers need to make additional calls to get more results.
- * Alternatively, use the
- * {@link AmazonS3Client#listNextBatchOfObjects(ObjectListing)} method as an
- * easy way to get the next page of object listings.
+ * This API has been revised. We recommend that you use the newer version,
+ * <a>ListObjectsV2</a>, when developing applications. For backward
+ * compatibility, Amazon S3 continues to support <code>ListObjects</code>.
  * </p>
+ * </important>
  * <p>
- * Calling {@link ListObjectsRequest#setDelimiter(String)} sets the delimiter,
- * allowing groups of keys that share the delimiter-terminated prefix to be
- * included in the returned listing. This allows applications to organize and
- * browse their keys hierarchically, similar to how a file system organizes
- * files into directories. These common prefixes can be retrieved through the
- * {@link ObjectListing#getCommonPrefixes()} method.
+ * The following operations are related to <code>ListObjects</code>:
  * </p>
- * <p>
- * For example, consider a bucket that contains the following keys:
  * <ul>
- * <li>"foo/bar/baz"</li>
- * <li>"foo/bar/bash"</li>
- * <li>"foo/bar/bang"</li>
- * <li>"foo/boo"</li>
- * </ul>
- * If calling <code>listObjects</code> with a prefix value of "foo/" and a
- * delimiter value of "/" on this bucket, an <code>ObjectListing</code> is
- * returned that contains one key ("foo/boo") and one entry in the common
- * prefixes list ("foo/bar/"). To see deeper into the virtual hierarchy, make
- * another call to <code>listObjects</code> setting the prefix parameter to any
- * interesting common prefix to list the individual keys under that prefix.
- * </p>
+ * <li>
  * <p>
- * The total number of keys in a bucket doesn't substantially affect list
- * performance, nor does the presence or absence of additional request
- * parameters.
+ * <a>ListObjectsV2</a>
  * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GetObject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>PutObject</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CreateBucket</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListBuckets</a>
+ * </p>
+ * </li>
+ * </ul>
  */
-public class ListObjectsRequest extends AmazonWebServiceRequest {
-
-    /** The name of the Amazon S3 bucket to list. */
-    private String bucketName;
-
+public class ListObjectsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Optional parameter restricting the response to keys which begin with the
-     * specified prefix. You can use prefixes to separate a bucket into
-     * different sets of keys in a way similar to how a file system uses
-     * folders.
+     * <p>
+     * The name of the bucket containing the objects.
+     * </p>
      */
-    private String prefix;
+    private String bucket;
 
     /**
-     * Optional parameter indicating where in the bucket to begin listing. The
-     * list will only include keys that occur lexicographically after the
-     * marker. This enables pagination; to get the next page of results use the
-     * current value from {@link ObjectListing#getNextMarker()} as the marker
-     * for the next request to list objects.
-     */
-    private String marker;
-
-    /**
-     * Optional parameter that causes keys that contain the same string between
-     * the prefix and the first occurrence of the delimiter to be rolled up into
-     * a single result element in the {@link ObjectListing#getCommonPrefixes()}
-     * list. These rolled-up keys are not returned elsewhere in the response.
-     * The most commonly used delimiter is "/", which simulates a hierarchical
-     * organization similar to a file system directory structure.
+     * <p>
+     * A delimiter is a character you use to group keys.
+     * </p>
      */
     private String delimiter;
 
     /**
-     * Optional parameter indicating the maximum number of keys to include in
-     * the response. Amazon S3 might return fewer than this, but will not return
-     * more. Even if maxKeys is not specified, Amazon S3 will limit the number
-     * of results in the response.
-     */
-    private Integer maxKeys;
-
-    /**
-     * Optional parameter indicating the encoding method to be applied on the
-     * response. An object key can contain any Unicode character; however, XML
-     * 1.0 parser cannot parse some characters, such as characters with an ASCII
-     * value from 0 to 10. For characters that are not supported in XML 1.0, you
-     * can add this parameter to request that Amazon S3 encode the keys in the
-     * response.
+     * <p>
+     * Requests Amazon S3 to encode the object keys in the response and
+     * specifies the encoding method to use. An object key may contain any
+     * Unicode character; however, XML 1.0 parser cannot parse some characters,
+     * such as characters with an ASCII value from 0 to 10. For characters that
+     * are not supported in XML 1.0, you can add this parameter to request that
+     * Amazon S3 encode the keys in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      */
     private String encodingType;
 
     /**
-     * If enabled, the requester is charged for conducting this operation from
-     * Requester Pays Buckets.
+     * <p>
+     * Specifies the key to start with when listing objects in a bucket.
+     * </p>
      */
-    private boolean isRequesterPays;
+    private String marker;
 
     /**
-     * Constructs a new {@link ListObjectsRequest} object. The caller must
-     * populate the object fields before the request is ready to be executed.
-     *
-     * @see ListObjectsRequest#ListObjectsRequest(String, String, String,
-     *      String, Integer)
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
      */
-    public ListObjectsRequest() {
+    private Integer maxKeys;
+
+    /**
+     * <p>
+     * Limits the response to keys that begin with the specified prefix.
+     * </p>
+     */
+    private String prefix;
+
+    /**
+     * <p>
+     * Confirms that the requester knows that she or he will be charged for the
+     * list objects request. Bucket owners need not specify this parameter in
+     * their requests.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     */
+    private String requestPayer;
+
+    /**
+     * <p>
+     * The name of the bucket containing the objects.
+     * </p>
+     *
+     * @return <p>
+     *         The name of the bucket containing the objects.
+     *         </p>
+     */
+    public String getBucket() {
+        return bucket;
     }
 
     /**
-     * Constructs a new {@link ListObjectsRequest} object and initializes all
-     * required and optional object fields.
+     * <p>
+     * The name of the bucket containing the objects.
+     * </p>
      *
-     * @param bucketName The name of the bucket whose objects are to be listed.
-     * @param prefix The prefix restricting what keys will be listed.
-     * @param marker The key marker indicating where listing results should
-     *            begin.
-     * @param delimiter The delimiter for condensing common prefixes in the
-     *            returned listing results.
-     * @param maxKeys The maximum number of results to return.
-     * @see ListObjectsRequest#ListObjectsRequest()
+     * @param bucket <p>
+     *            The name of the bucket containing the objects.
+     *            </p>
      */
-    public ListObjectsRequest(String bucketName, String prefix, String marker, String delimiter,
-            Integer maxKeys) {
-        setBucketName(bucketName);
-        setPrefix(prefix);
-        setMarker(marker);
-        setDelimiter(delimiter);
-        setMaxKeys(maxKeys);
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
     }
 
     /**
-     * Gets the name of the Amazon S3 bucket whose objects are to be listed.
+     * <p>
+     * The name of the bucket containing the objects.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The name of the Amazon S3 bucket whose objects are to be listed.
-     * @see ListObjectsRequest#setBucketName(String)
-     * @see ListObjectsRequest#withBucketName(String)
+     * @param bucket <p>
+     *            The name of the bucket containing the objects.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public String getBucketName() {
-        return bucketName;
-    }
-
-    /**
-     * Sets the name of the Amazon S3 bucket whose objects are to be listed.
-     *
-     * @param bucketName The name of the Amazon S3 bucket whose objects are to
-     *            be listed.
-     * @see ListObjectsRequest#getBucketName()
-     * @see ListObjectsRequest#withBucketName(String)
-     */
-    public void setBucketName(String bucketName) {
-        this.bucketName = bucketName;
-    }
-
-    /**
-     * Sets the name of the Amazon S3 bucket whose objects are to be listed.
-     * Returns this {@link ListObjectsRequest}, enabling additional method calls
-     * to be chained together.
-     *
-     * @param bucketName The name of the Amazon S3 bucket whose objects are to
-     *            be listed.
-     * @return This {@link ListObjectsRequest}, enabling additional method calls
-     *         to be chained together.
-     * @see ListObjectsRequest#getBucketName()
-     * @see ListObjectsRequest#setBucketName(String)
-     */
-    public ListObjectsRequest withBucketName(String bucketName) {
-        setBucketName(bucketName);
+    public ListObjectsRequest withBucket(String bucket) {
+        this.bucket = bucket;
         return this;
     }
 
     /**
-     * Gets the optional prefix parameter and restricts the response to keys
-     * that begin with the specified prefix. Use prefixes to separate a bucket
-     * into different sets of keys, similar to how a file system organizes files
-     * into directories.
+     * <p>
+     * A delimiter is a character you use to group keys.
+     * </p>
      *
-     * @return The optional prefix parameter restricting the response to keys
-     *         that begin with the specified prefix.
-     * @see ListObjectsRequest#setPrefix(String)
-     */
-    public String getPrefix() {
-        return prefix;
-    }
-
-    /**
-     * Sets the optional prefix parameter, restricting the response to keys that
-     * begin with the specified prefix.
-     *
-     * @param prefix The optional prefix parameter, restricting the response to
-     *            keys that begin with the specified prefix.
-     * @see ListObjectsRequest#getPrefix()
-     */
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    /**
-     * Sets the optional prefix parameter restricting the response to keys that
-     * begin with the specified prefix. Returns this {@link ListObjectsRequest},
-     * enabling additional method calls to be chained together.
-     *
-     * @param prefix The optional prefix parameter restricting the response to
-     *            keys that begin with the specified prefix.
-     * @return This {@link ListObjectsRequest}, enabling additional method calls
-     *         to be chained together.
-     * @see ListObjectsRequest#getPrefix()
-     * @see ListObjectsRequest#setPrefix(String)
-     */
-    public ListObjectsRequest withPrefix(String prefix) {
-        setPrefix(prefix);
-        return this;
-    }
-
-    /**
-     * Gets the optional marker parameter indicating where in the bucket to
-     * begin listing. The list will only include keys that occur
-     * lexicographically after the marker.
-     *
-     * @return The optional marker parameter indicating where in the bucket to
-     *         begin listing. The list will only include keys that occur
-     *         lexicographically after the marker.
-     * @see ListObjectsRequest#setMarker(String)
-     * @see ListObjectsRequest#withMarker(String)
-     */
-    public String getMarker() {
-        return marker;
-    }
-
-    /**
-     * Sets the optional marker parameter indicating where in the bucket to
-     * begin listing. The list will only include keys that occur
-     * lexicographically after the marker.
-     *
-     * @param marker The optional marker parameter indicating where in the
-     *            bucket to begin listing. The list will only include keys that
-     *            occur lexicographically after the marker.
-     * @see ListObjectsRequest#getMarker()
-     * @see ListObjectsRequest#withMarker(String)
-     */
-    public void setMarker(String marker) {
-        this.marker = marker;
-    }
-
-    /**
-     * Sets the optional marker parameter indicating where in the bucket to
-     * begin listing. Returns this {@link ListObjectsRequest}, enabling
-     * additional method calls to be chained together. The list will only
-     * include keys that occur lexicographically after the marker.
-     *
-     * @param marker The optional parameter indicating where in the bucket to
-     *            begin listing. The list will only include keys that occur
-     *            lexicographically after the marker.
-     * @return This {@link ListObjectsRequest}, enabling additional method calls
-     *         to be chained together.
-     * @see ListObjectsRequest#getMarker()
-     * @see ListObjectsRequest#setMarker(String)
-     */
-    public ListObjectsRequest withMarker(String marker) {
-        setMarker(marker);
-        return this;
-    }
-
-    /**
-     * Gets the optional delimiter parameter that causes keys that contain the
-     * same string between the prefix and the first occurrence of the delimiter
-     * to be combined into a single result element in the
-     * {@link ObjectListing#getCommonPrefixes()} list. These combined keys are
-     * not returned elsewhere in the response. The most commonly used delimiter
-     * is "/", which simulates a hierarchical organization similar to a file
-     * system directory structure.
-     *
-     * @return The optional delimiter parameter that causes keys that contain
-     *         the same string between the prefix and the first occurrence of
-     *         the delimiter to be combined into a single result element in the
-     *         {@link ObjectListing#getCommonPrefixes()} list.
-     * @see ListObjectsRequest#setDelimiter(String)
-     * @see ListObjectsRequest#withDelimiter(String)
+     * @return <p>
+     *         A delimiter is a character you use to group keys.
+     *         </p>
      */
     public String getDelimiter() {
         return delimiter;
     }
 
     /**
-     * Sets the optional delimiter parameter that causes keys that contain the
-     * same string between the prefix and the first occurrence of the delimiter
-     * to be combined into a single result element in the
-     * {@link ObjectListing#getCommonPrefixes()} list.
+     * <p>
+     * A delimiter is a character you use to group keys.
+     * </p>
      *
-     * @param delimiter The optional delimiter parameter that causes keys that
-     *            contain the same string between the prefix and the first
-     *            occurrence of the delimiter to be combined into a single
-     *            result element in the
-     *            {@link ObjectListing#getCommonPrefixes()} list.
-     * @see ListObjectsRequest#getDelimiter()
-     * @see ListObjectsRequest#withDelimiter(String)
+     * @param delimiter <p>
+     *            A delimiter is a character you use to group keys.
+     *            </p>
      */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
     }
 
     /**
-     * Sets the optional delimiter parameter that causes keys that contain the
-     * same string between the prefix and the first occurrence of the delimiter
-     * to be rolled up into a single result element in the
-     * {@link ObjectListing#getCommonPrefixes()} list. Returns this
-     * {@link ListObjectsRequest}, enabling additional method calls to be
-     * chained together.
+     * <p>
+     * A delimiter is a character you use to group keys.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param delimiter The optional delimiter parameter that causes keys that
-     *            contain the same string between the prefix and the first
-     *            occurrence of the delimiter to be rolled up into a single
-     *            result element in the
-     *            {@link ObjectListing#getCommonPrefixes()} list.
-     * @return This {@link ListObjectsRequest}, enabling additional method calls
-     *         to be chained together.
-     * @see ListObjectsRequest#getDelimiter()
-     * @see ListObjectsRequest#setDelimiter(String)
+     * @param delimiter <p>
+     *            A delimiter is a character you use to group keys.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ListObjectsRequest withDelimiter(String delimiter) {
-        setDelimiter(delimiter);
+        this.delimiter = delimiter;
         return this;
     }
 
     /**
-     * Gets the optional <code>maxKeys</code> parameter indicating the maximum
-     * number of keys to include in the response. Amazon S3 might return fewer
-     * keys than specified, but will never return more. Even if the optional
-     * parameter is not specified, Amazon S3 will limit the number of results in
-     * the response.
+     * <p>
+     * Requests Amazon S3 to encode the object keys in the response and
+     * specifies the encoding method to use. An object key may contain any
+     * Unicode character; however, XML 1.0 parser cannot parse some characters,
+     * such as characters with an ASCII value from 0 to 10. For characters that
+     * are not supported in XML 1.0, you can add this parameter to request that
+     * Amazon S3 encode the keys in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @return The optional parameter indicating the maximum number of keys to
-     *         include in the response.
-     * @see ListObjectsRequest#setMaxKeys(Integer)
-     * @see ListObjectsRequest#withMaxKeys(Integer)
-     */
-    public Integer getMaxKeys() {
-        return maxKeys;
-    }
-
-    /**
-     * Sets the optional <code>maxKeys</code> parameter indicating the maximum
-     * number of keys to include in the response.
-     *
-     * @param maxKeys The optional parameter indicating the maximum number of
-     *            keys to include in the response.
-     * @see ListObjectsRequest#getMaxKeys()
-     * @see ListObjectsRequest#withMaxKeys(Integer)
-     */
-    public void setMaxKeys(Integer maxKeys) {
-        this.maxKeys = maxKeys;
-    }
-
-    /**
-     * Sets the optional <code>maxKeys</code> parameter indicating the maximum
-     * number of keys to include in the response. Returns this
-     * {@link ListObjectsRequest}, enabling additional method calls to be
-     * chained together.
-     *
-     * @param maxKeys The optional parameter indicating the maximum number of
-     *            keys to include in the response.
-     * @return This {@link ListObjectsRequest}, enabling additional method calls
-     *         to be chained together.
-     * @see ListObjectsRequest#getMaxKeys()
-     * @see ListObjectsRequest#setMaxKeys(Integer)
-     */
-    public ListObjectsRequest withMaxKeys(Integer maxKeys) {
-        setMaxKeys(maxKeys);
-        return this;
-    }
-
-    /**
-     * Gets the optional <code>encodingType</code> parameter indicating the
-     * encoding method to be applied on the response.
-     *
-     * @return The encoding method to be applied on the response.
+     * @return <p>
+     *         Requests Amazon S3 to encode the object keys in the response and
+     *         specifies the encoding method to use. An object key may contain
+     *         any Unicode character; however, XML 1.0 parser cannot parse some
+     *         characters, such as characters with an ASCII value from 0 to 10.
+     *         For characters that are not supported in XML 1.0, you can add
+     *         this parameter to request that Amazon S3 encode the keys in the
+     *         response.
+     *         </p>
+     * @see EncodingType
      */
     public String getEncodingType() {
         return encodingType;
     }
 
     /**
-     * Sets the optional <code>encodingType</code> parameter indicating the
-     * encoding method to be applied on the response. An object key can contain
-     * any Unicode character; however, XML 1.0 parser cannot parse some
-     * characters, such as characters with an ASCII value from 0 to 10. For
-     * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Amazon S3 encode the keys in the response.
+     * <p>
+     * Requests Amazon S3 to encode the object keys in the response and
+     * specifies the encoding method to use. An object key may contain any
+     * Unicode character; however, XML 1.0 parser cannot parse some characters,
+     * such as characters with an ASCII value from 0 to 10. For characters that
+     * are not supported in XML 1.0, you can add this parameter to request that
+     * Amazon S3 encode the keys in the response.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @param encodingType The encoding method to be applied on the response.
-     *            Valid values: null (not encoded) or "url".
+     * @param encodingType <p>
+     *            Requests Amazon S3 to encode the object keys in the response
+     *            and specifies the encoding method to use. An object key may
+     *            contain any Unicode character; however, XML 1.0 parser cannot
+     *            parse some characters, such as characters with an ASCII value
+     *            from 0 to 10. For characters that are not supported in XML
+     *            1.0, you can add this parameter to request that Amazon S3
+     *            encode the keys in the response.
+     *            </p>
+     * @see EncodingType
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
     }
 
     /**
-     * Sets the optional <code>encodingType</code> parameter indicating the
-     * encoding method to be applied on the response. An object key can contain
-     * any Unicode character; however, XML 1.0 parser cannot parse some
-     * characters, such as characters with an ASCII value from 0 to 10. For
-     * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Amazon S3 encode the keys in the response. Returns this
-     * {@link ListObjectsRequest}, enabling additional method calls to be
-     * chained together.
+     * <p>
+     * Requests Amazon S3 to encode the object keys in the response and
+     * specifies the encoding method to use. An object key may contain any
+     * Unicode character; however, XML 1.0 parser cannot parse some characters,
+     * such as characters with an ASCII value from 0 to 10. For characters that
+     * are not supported in XML 1.0, you can add this parameter to request that
+     * Amazon S3 encode the keys in the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @param encodingType The encoding method to be applied on the response.
-     *            Valid values: null (not encoded) or "url".
+     * @param encodingType <p>
+     *            Requests Amazon S3 to encode the object keys in the response
+     *            and specifies the encoding method to use. An object key may
+     *            contain any Unicode character; however, XML 1.0 parser cannot
+     *            parse some characters, such as characters with an ASCII value
+     *            from 0 to 10. For characters that are not supported in XML
+     *            1.0, you can add this parameter to request that Amazon S3
+     *            encode the keys in the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncodingType
      */
     public ListObjectsRequest withEncodingType(String encodingType) {
-        setEncodingType(encodingType);
+        this.encodingType = encodingType;
         return this;
     }
 
     /**
-     * Returns true if the user has enabled Requester Pays option when
-     * conducting this operation from Requester Pays Bucket; else false.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Requests Amazon S3 to encode the object keys in the response and
+     * specifies the encoding method to use. An object key may contain any
+     * Unicode character; however, XML 1.0 parser cannot parse some characters,
+     * such as characters with an ASCII value from 0 to 10. For characters that
+     * are not supported in XML 1.0, you can add this parameter to request that
+     * Amazon S3 encode the keys in the response.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @return true if the user has enabled Requester Pays option for
-     *         conducting this operation from Requester Pays Bucket.
+     * @param encodingType <p>
+     *            Requests Amazon S3 to encode the object keys in the response
+     *            and specifies the encoding method to use. An object key may
+     *            contain any Unicode character; however, XML 1.0 parser cannot
+     *            parse some characters, such as characters with an ASCII value
+     *            from 0 to 10. For characters that are not supported in XML
+     *            1.0, you can add this parameter to request that Amazon S3
+     *            encode the keys in the response.
+     *            </p>
+     * @see EncodingType
      */
-    public boolean isRequesterPays() {
-        return isRequesterPays;
+    public void setEncodingType(EncodingType encodingType) {
+        this.encodingType = encodingType.toString();
     }
 
     /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket.
-     *
      * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
+     * Requests Amazon S3 to encode the object keys in the response and
+     * specifies the encoding method to use. An object key may contain any
+     * Unicode character; however, XML 1.0 parser cannot parse some characters,
+     * such as characters with an ASCII value from 0 to 10. For characters that
+     * are not supported in XML 1.0, you can add this parameter to request that
+     * Amazon S3 encode the keys in the response.
+     * </p>
      * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>url
      *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
+     * @param encodingType <p>
+     *            Requests Amazon S3 to encode the object keys in the response
+     *            and specifies the encoding method to use. An object key may
+     *            contain any Unicode character; however, XML 1.0 parser cannot
+     *            parse some characters, such as characters with an ASCII value
+     *            from 0 to 10. For characters that are not supported in XML
+     *            1.0, you can add this parameter to request that Amazon S3
+     *            encode the keys in the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see EncodingType
      */
-    public void setRequesterPays(boolean isRequesterPays) {
-        this.isRequesterPays = isRequesterPays;
-    }
-
-    /**
-     * Used for conducting this operation from a Requester Pays Bucket. If
-     * set the requester is charged for requests from the bucket. It returns this
-     * updated ListObjectsRequest object so that additional method calls can be
-     * chained together.
-     *
-     * <p>
-     * If a bucket is enabled for Requester Pays, then any attempt to upload or
-     * download an object from it without Requester Pays enabled will result in
-     * a 403 error and the bucket owner will be charged for the request.
-     *
-     * <p>
-     * Enabling Requester Pays disables the ability to have anonymous access to
-     * this bucket.
-     *
-     * @param isRequesterPays
-     *            Enable Requester Pays option for the operation.
-     *
-     * @return The updated ListObjectsRequest object.
-     */
-    public ListObjectsRequest withRequesterPays(boolean isRequesterPays) {
-        setRequesterPays(isRequesterPays);
+    public ListObjectsRequest withEncodingType(EncodingType encodingType) {
+        this.encodingType = encodingType.toString();
         return this;
     }
 
+    /**
+     * <p>
+     * Specifies the key to start with when listing objects in a bucket.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the key to start with when listing objects in a bucket.
+     *         </p>
+     */
+    public String getMarker() {
+        return marker;
+    }
+
+    /**
+     * <p>
+     * Specifies the key to start with when listing objects in a bucket.
+     * </p>
+     *
+     * @param marker <p>
+     *            Specifies the key to start with when listing objects in a
+     *            bucket.
+     *            </p>
+     */
+    public void setMarker(String marker) {
+        this.marker = marker;
+    }
+
+    /**
+     * <p>
+     * Specifies the key to start with when listing objects in a bucket.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param marker <p>
+     *            Specifies the key to start with when listing objects in a
+     *            bucket.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsRequest withMarker(String marker) {
+        this.marker = marker;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
+     *
+     * @return <p>
+     *         Sets the maximum number of keys returned in the response. By
+     *         default the API returns up to 1,000 key names. The response might
+     *         contain fewer keys but will never contain more.
+     *         </p>
+     */
+    public Integer getMaxKeys() {
+        return maxKeys;
+    }
+
+    /**
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
+     *
+     * @param maxKeys <p>
+     *            Sets the maximum number of keys returned in the response. By
+     *            default the API returns up to 1,000 key names. The response
+     *            might contain fewer keys but will never contain more.
+     *            </p>
+     */
+    public void setMaxKeys(Integer maxKeys) {
+        this.maxKeys = maxKeys;
+    }
+
+    /**
+     * <p>
+     * Sets the maximum number of keys returned in the response. By default the
+     * API returns up to 1,000 key names. The response might contain fewer keys
+     * but will never contain more.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maxKeys <p>
+     *            Sets the maximum number of keys returned in the response. By
+     *            default the API returns up to 1,000 key names. The response
+     *            might contain fewer keys but will never contain more.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsRequest withMaxKeys(Integer maxKeys) {
+        this.maxKeys = maxKeys;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Limits the response to keys that begin with the specified prefix.
+     * </p>
+     *
+     * @return <p>
+     *         Limits the response to keys that begin with the specified prefix.
+     *         </p>
+     */
+    public String getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * <p>
+     * Limits the response to keys that begin with the specified prefix.
+     * </p>
+     *
+     * @param prefix <p>
+     *            Limits the response to keys that begin with the specified
+     *            prefix.
+     *            </p>
+     */
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    /**
+     * <p>
+     * Limits the response to keys that begin with the specified prefix.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param prefix <p>
+     *            Limits the response to keys that begin with the specified
+     *            prefix.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListObjectsRequest withPrefix(String prefix) {
+        this.prefix = prefix;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that she or he will be charged for the
+     * list objects request. Bucket owners need not specify this parameter in
+     * their requests.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @return <p>
+     *         Confirms that the requester knows that she or he will be charged
+     *         for the list objects request. Bucket owners need not specify this
+     *         parameter in their requests.
+     *         </p>
+     * @see RequestPayer
+     */
+    public String getRequestPayer() {
+        return requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that she or he will be charged for the
+     * list objects request. Bucket owners need not specify this parameter in
+     * their requests.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that she or he will be
+     *            charged for the list objects request. Bucket owners need not
+     *            specify this parameter in their requests.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that she or he will be charged for the
+     * list objects request. Bucket owners need not specify this parameter in
+     * their requests.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that she or he will be
+     *            charged for the list objects request. Bucket owners need not
+     *            specify this parameter in their requests.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public ListObjectsRequest withRequestPayer(String requestPayer) {
+        this.requestPayer = requestPayer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that she or he will be charged for the
+     * list objects request. Bucket owners need not specify this parameter in
+     * their requests.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that she or he will be
+     *            charged for the list objects request. Bucket owners need not
+     *            specify this parameter in their requests.
+     *            </p>
+     * @see RequestPayer
+     */
+    public void setRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+    }
+
+    /**
+     * <p>
+     * Confirms that the requester knows that she or he will be charged for the
+     * list objects request. Bucket owners need not specify this parameter in
+     * their requests.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>requester
+     *
+     * @param requestPayer <p>
+     *            Confirms that the requester knows that she or he will be
+     *            charged for the list objects request. Bucket owners need not
+     *            specify this parameter in their requests.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see RequestPayer
+     */
+    public ListObjectsRequest withRequestPayer(RequestPayer requestPayer) {
+        this.requestPayer = requestPayer.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getDelimiter() != null)
+            sb.append("Delimiter: " + getDelimiter() + ",");
+        if (getEncodingType() != null)
+            sb.append("EncodingType: " + getEncodingType() + ",");
+        if (getMarker() != null)
+            sb.append("Marker: " + getMarker() + ",");
+        if (getMaxKeys() != null)
+            sb.append("MaxKeys: " + getMaxKeys() + ",");
+        if (getPrefix() != null)
+            sb.append("Prefix: " + getPrefix() + ",");
+        if (getRequestPayer() != null)
+            sb.append("RequestPayer: " + getRequestPayer());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getDelimiter() == null) ? 0 : getDelimiter().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncodingType() == null) ? 0 : getEncodingType().hashCode());
+        hashCode = prime * hashCode + ((getMarker() == null) ? 0 : getMarker().hashCode());
+        hashCode = prime * hashCode + ((getMaxKeys() == null) ? 0 : getMaxKeys().hashCode());
+        hashCode = prime * hashCode + ((getPrefix() == null) ? 0 : getPrefix().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequestPayer() == null) ? 0 : getRequestPayer().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof ListObjectsRequest == false)
+            return false;
+        ListObjectsRequest other = (ListObjectsRequest) obj;
+
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getDelimiter() == null ^ this.getDelimiter() == null)
+            return false;
+        if (other.getDelimiter() != null
+                && other.getDelimiter().equals(this.getDelimiter()) == false)
+            return false;
+        if (other.getEncodingType() == null ^ this.getEncodingType() == null)
+            return false;
+        if (other.getEncodingType() != null
+                && other.getEncodingType().equals(this.getEncodingType()) == false)
+            return false;
+        if (other.getMarker() == null ^ this.getMarker() == null)
+            return false;
+        if (other.getMarker() != null && other.getMarker().equals(this.getMarker()) == false)
+            return false;
+        if (other.getMaxKeys() == null ^ this.getMaxKeys() == null)
+            return false;
+        if (other.getMaxKeys() != null && other.getMaxKeys().equals(this.getMaxKeys()) == false)
+            return false;
+        if (other.getPrefix() == null ^ this.getPrefix() == null)
+            return false;
+        if (other.getPrefix() != null && other.getPrefix().equals(this.getPrefix()) == false)
+            return false;
+        if (other.getRequestPayer() == null ^ this.getRequestPayer() == null)
+            return false;
+        if (other.getRequestPayer() != null
+                && other.getRequestPayer().equals(this.getRequestPayer()) == false)
+            return false;
+        return true;
+    }
 }

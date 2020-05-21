@@ -1,8 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
- * Portions copyright 2006-2009 James Murty. Please see LICENSE.txt
- * for applicable license terms and NOTICE.txt for applicable notices.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,90 +15,222 @@
 
 package com.amazonaws.services.s3.model;
 
+import java.io.Serializable;
+
 /**
- * Specifies a grant, consisting of one grantee and one permission.
- *
- * @see Grant#Grant(Grantee, Permission)
+ * <p>
+ * Container for grant information.
+ * </p>
  */
-public class Grant {
-    private Grantee grantee = null;
-    private Permission permission = null;
-
+public class Grant implements Serializable {
     /**
-     * Constructs a new {@link Grant} object using the specified grantee and
-     * permission objects.
-     *
-     * @param grantee The grantee being granted a permission by this grant.
-     * @param permission The permission being granted to the grantee by this
-     *            grant.
+     * <p>
+     * The person being granted permissions.
+     * </p>
      */
-    public Grant(Grantee grantee, Permission permission) {
-        this.grantee = grantee;
-        this.permission = permission;
-    }
+    private Grantee grantee;
 
     /**
-     * Gets the grantee being granted a permission by this grant.
+     * <p>
+     * Specifies the permission given to the grantee.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL_CONTROL, WRITE, WRITE_ACP, READ, READ_ACP
+     */
+    private String permission;
+
+    /**
+     * <p>
+     * The person being granted permissions.
+     * </p>
      *
-     * @return The grantee being granted a permission by this grant.
-     * @see Grant#getPermission()
+     * @return <p>
+     *         The person being granted permissions.
+     *         </p>
      */
     public Grantee getGrantee() {
         return grantee;
     }
 
     /**
-     * Gets the permission being granted to the grantee by this grant.
+     * <p>
+     * The person being granted permissions.
+     * </p>
      *
-     * @return The permission being granted to the grantee by this grant.
-     * @see Grant#getGrantee()
+     * @param grantee <p>
+     *            The person being granted permissions.
+     *            </p>
      */
-    public Permission getPermission() {
+    public void setGrantee(Grantee grantee) {
+        this.grantee = grantee;
+    }
+
+    /**
+     * <p>
+     * The person being granted permissions.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param grantee <p>
+     *            The person being granted permissions.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Grant withGrantee(Grantee grantee) {
+        this.grantee = grantee;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the permission given to the grantee.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL_CONTROL, WRITE, WRITE_ACP, READ, READ_ACP
+     *
+     * @return <p>
+     *         Specifies the permission given to the grantee.
+     *         </p>
+     * @see Permission
+     */
+    public String getPermission() {
         return permission;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see java.lang.Object#hashCode()
+    /**
+     * <p>
+     * Specifies the permission given to the grantee.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL_CONTROL, WRITE, WRITE_ACP, READ, READ_ACP
+     *
+     * @param permission <p>
+     *            Specifies the permission given to the grantee.
+     *            </p>
+     * @see Permission
      */
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    /**
+     * <p>
+     * Specifies the permission given to the grantee.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL_CONTROL, WRITE, WRITE_ACP, READ, READ_ACP
+     *
+     * @param permission <p>
+     *            Specifies the permission given to the grantee.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Permission
+     */
+    public Grant withPermission(String permission) {
+        this.permission = permission;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the permission given to the grantee.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL_CONTROL, WRITE, WRITE_ACP, READ, READ_ACP
+     *
+     * @param permission <p>
+     *            Specifies the permission given to the grantee.
+     *            </p>
+     * @see Permission
+     */
+    public void setPermission(Permission permission) {
+        this.permission = permission.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies the permission given to the grantee.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL_CONTROL, WRITE, WRITE_ACP, READ, READ_ACP
+     *
+     * @param permission <p>
+     *            Specifies the permission given to the grantee.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Permission
+     */
+    public Grant withPermission(Permission permission) {
+        this.permission = permission.toString();
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getGrantee() != null)
+            sb.append("Grantee: " + getGrantee() + ",");
+        if (getPermission() != null)
+            sb.append("Permission: " + getPermission());
+        sb.append("}");
+        return sb.toString();
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + ((grantee == null) ? 0 : grantee.hashCode());
-        result = prime * result + ((permission == null) ? 0 : permission.hashCode());
-        return result;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getGrantee() == null) ? 0 : getGrantee().hashCode());
+        hashCode = prime * hashCode + ((getPermission() == null) ? 0 : getPermission().hashCode());
+        return hashCode;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
             return false;
-        if (getClass() != obj.getClass())
+
+        if (obj instanceof Grant == false)
             return false;
         Grant other = (Grant) obj;
-        if (grantee == null) {
-            if (other.grantee != null)
-                return false;
-        } else if (!grantee.equals(other.grantee))
+
+        if (other.getGrantee() == null ^ this.getGrantee() == null)
             return false;
-        if (permission != other.permission)
+        if (other.getGrantee() != null && other.getGrantee().equals(this.getGrantee()) == false)
+            return false;
+        if (other.getPermission() == null ^ this.getPermission() == null)
+            return false;
+        if (other.getPermission() != null
+                && other.getPermission().equals(this.getPermission()) == false)
             return false;
         return true;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return "Grant [grantee=" + grantee + ", permission=" + permission + "]";
     }
 }

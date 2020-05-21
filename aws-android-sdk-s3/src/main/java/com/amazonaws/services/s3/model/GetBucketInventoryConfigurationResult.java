@@ -1,51 +1,121 @@
 /*
- * Copyright 2011-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
  *
- *    http://aws.amazon.com/apache2.0
+ *  http://aws.amazon.com/apache2.0
  *
- * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
- * OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and
- * limitations under the License.
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
-import com.amazonaws.services.s3.model.inventory.InventoryConfiguration;
+import java.io.Serializable;
 
-/**
- * Result object to contain the response returned from
- * {@link com.amazonaws.services.s3.AmazonS3Client#getBucketInventoryConfiguration(GetBucketInventoryConfigurationRequest)}
- * operation.
- */
-public class GetBucketInventoryConfigurationResult {
-
+public class GetBucketInventoryConfigurationResult implements Serializable {
+    /**
+     * <p>
+     * Specifies the inventory configuration.
+     * </p>
+     */
     private InventoryConfiguration inventoryConfiguration;
 
     /**
-     * Returns the requested inventory configuration.
+     * <p>
+     * Specifies the inventory configuration.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the inventory configuration.
+     *         </p>
      */
     public InventoryConfiguration getInventoryConfiguration() {
         return inventoryConfiguration;
     }
 
     /**
-     * Sets the inventory configuration.
+     * <p>
+     * Specifies the inventory configuration.
+     * </p>
+     *
+     * @param inventoryConfiguration <p>
+     *            Specifies the inventory configuration.
+     *            </p>
      */
     public void setInventoryConfiguration(InventoryConfiguration inventoryConfiguration) {
         this.inventoryConfiguration = inventoryConfiguration;
     }
 
     /**
-     * Sets the inventory configuration and returns the
-     * {@link GetBucketInventoryConfigurationResult} object
-     * for method chaining.
+     * <p>
+     * Specifies the inventory configuration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param inventoryConfiguration <p>
+     *            Specifies the inventory configuration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public GetBucketInventoryConfigurationResult withInventoryConfiguration(InventoryConfiguration inventoryConfiguration) {
-        setInventoryConfiguration(inventoryConfiguration);
+    public GetBucketInventoryConfigurationResult withInventoryConfiguration(
+            InventoryConfiguration inventoryConfiguration) {
+        this.inventoryConfiguration = inventoryConfiguration;
         return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getInventoryConfiguration() != null)
+            sb.append("InventoryConfiguration: " + getInventoryConfiguration());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime
+                * hashCode
+                + ((getInventoryConfiguration() == null) ? 0 : getInventoryConfiguration()
+                        .hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof GetBucketInventoryConfigurationResult == false)
+            return false;
+        GetBucketInventoryConfigurationResult other = (GetBucketInventoryConfigurationResult) obj;
+
+        if (other.getInventoryConfiguration() == null ^ this.getInventoryConfiguration() == null)
+            return false;
+        if (other.getInventoryConfiguration() != null
+                && other.getInventoryConfiguration().equals(this.getInventoryConfiguration()) == false)
+            return false;
+        return true;
     }
 }

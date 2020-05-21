@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -12,187 +12,364 @@
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.s3.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.Serializable;
 
 /**
- * An abstract class for all the notification configurations associated with an Amazon S3 bucket.
+ * <p>
+ * A container for specifying the notification configuration of the bucket. If
+ * this element is empty, notifications are turned off for the bucket.
+ * </p>
  */
-public abstract class NotificationConfiguration {
+public class NotificationConfiguration implements Serializable {
+    /**
+     * <p>
+     * The topic to which notifications are sent and the events for which
+     * notifications are generated.
+     * </p>
+     */
+    private java.util.List<TopicConfiguration> topicConfigurations;
 
     /**
-     * Set of events for a notification configuration.
+     * <p>
+     * The Amazon Simple Queue Service queues to publish messages to and the
+     * events for which to publish messages.
+     * </p>
      */
-    private Set<String> events = new HashSet<String>();
+    private java.util.List<QueueConfiguration> queueConfigurations;
 
     /**
-     * @deprecated This field is not used by S3. It will be removed in the next major version of the
-     *             SDK
+     * <p>
+     * Describes the AWS Lambda functions to invoke and the events for which to
+     * invoke them.
+     * </p>
      */
-    @Deprecated
-    private List<String> objectPrefixes = new ArrayList<String>();
-
-    private Filter filter;
+    private java.util.List<LambdaFunctionConfiguration> lambdaFunctionConfigurations;
 
     /**
-     * Creates a NotificationConfiguration with empty events and prefixes.
+     * <p>
+     * The topic to which notifications are sent and the events for which
+     * notifications are generated.
+     * </p>
+     *
+     * @return <p>
+     *         The topic to which notifications are sent and the events for
+     *         which notifications are generated.
+     *         </p>
      */
-    protected NotificationConfiguration() {
+    public java.util.List<TopicConfiguration> getTopicConfigurations() {
+        return topicConfigurations;
     }
 
     /**
-     * Creates a notification configuration with the given set of events.
+     * <p>
+     * The topic to which notifications are sent and the events for which
+     * notifications are generated.
+     * </p>
      *
-     * @param events
-     *            the list of events for the notification configuration.
+     * @param topicConfigurations <p>
+     *            The topic to which notifications are sent and the events for
+     *            which notifications are generated.
+     *            </p>
      */
-    protected NotificationConfiguration(EnumSet<S3Event> events) {
-        if (events != null) {
-            for (S3Event s3Event : events) {
-                this.events.add(s3Event.toString());
-            }
+    public void setTopicConfigurations(java.util.Collection<TopicConfiguration> topicConfigurations) {
+        if (topicConfigurations == null) {
+            this.topicConfigurations = null;
+            return;
         }
+
+        this.topicConfigurations = new java.util.ArrayList<TopicConfiguration>(topicConfigurations);
     }
 
     /**
-     * Creates a notification configuration with the given set of events.
+     * <p>
+     * The topic to which notifications are sent and the events for which
+     * notifications are generated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param events
-     *            the list of events for the notification configuration.
+     * @param topicConfigurations <p>
+     *            The topic to which notifications are sent and the events for
+     *            which notifications are generated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    protected NotificationConfiguration(String... events) {
-        if (events != null) {
-            for (String event : events) {
-                this.events.add(event);
-            }
+    public NotificationConfiguration withTopicConfigurations(
+            TopicConfiguration... topicConfigurations) {
+        if (getTopicConfigurations() == null) {
+            this.topicConfigurations = new java.util.ArrayList<TopicConfiguration>(
+                    topicConfigurations.length);
         }
-    }
-
-    /**
-     * Returns the set of events associated with this notification configuration.
-     */
-    public Set<String> getEvents() {
-        return events;
-    }
-
-    /**
-     * Sets the given events in this {@link NotificationConfiguration} object.
-     *
-     * @param events
-     *            the set of events for the notification configuration.
-     */
-    public void setEvents(Set<String> events) {
-        this.events = events;
-    }
-
-    /**
-     * @deprecated This field is not used by S3. It will be removed in the next major version of the
-     *             SDK. See {@link #getFilter()} for the correct way to filter notifications.
-     */
-    @Deprecated
-    public List<String> getObjectPrefixes() {
-        return objectPrefixes;
-    }
-
-    /**
-     * @deprecated This field is not used by S3. It will be removed in the next major version of the
-     *             SDK. See {@link #setFilter(Filter)} for the correct way to filter notifications.
-     */
-    @Deprecated
-    public void setObjectPrefixes(List<String> objectPrefixes) {
-        this.objectPrefixes = objectPrefixes;
-    }
-
-    /**
-     * Sets the given events in this {@link NotificationConfiguration} object and returns this
-     * object.
-     *
-     * @param events
-     *            the set of events for the notification configuration.
-     */
-    public NotificationConfiguration withEvents(Set<String> events) {
-        this.events.clear();
-        this.events.addAll(events);
+        for (TopicConfiguration value : topicConfigurations) {
+            this.topicConfigurations.add(value);
+        }
         return this;
     }
 
     /**
-     * @deprecated This field is not used by S3. It will be removed in the next major version of the
-     *             SDK. See {@link #withFilter(Filter)} for the correct way to filter notifications.
+     * <p>
+     * The topic to which notifications are sent and the events for which
+     * notifications are generated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param topicConfigurations <p>
+     *            The topic to which notifications are sent and the events for
+     *            which notifications are generated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    @Deprecated
-    public NotificationConfiguration withObjectPrefixes(String... objectPrefixes) {
-        this.objectPrefixes.clear();
-        if (objectPrefixes != null && objectPrefixes.length > 0)
-            this.objectPrefixes.addAll(Arrays.asList(objectPrefixes));
+    public NotificationConfiguration withTopicConfigurations(
+            java.util.Collection<TopicConfiguration> topicConfigurations) {
+        setTopicConfigurations(topicConfigurations);
         return this;
     }
 
     /**
-     * Adds the given event to the set of events for this {@link NotificationConfiguration} object.
+     * <p>
+     * The Amazon Simple Queue Service queues to publish messages to and the
+     * events for which to publish messages.
+     * </p>
      *
-     * @param event
-     *            the event to add to this notification configuration
+     * @return <p>
+     *         The Amazon Simple Queue Service queues to publish messages to and
+     *         the events for which to publish messages.
+     *         </p>
      */
-    public void addEvent(String event) {
-        this.events.add(event);
+    public java.util.List<QueueConfiguration> getQueueConfigurations() {
+        return queueConfigurations;
     }
 
     /**
-     * Adds the given event to the set of events for this {@link NotificationConfiguration} object.
+     * <p>
+     * The Amazon Simple Queue Service queues to publish messages to and the
+     * events for which to publish messages.
+     * </p>
      *
-     * @param event
-     *            the event to add to this notification configuration
+     * @param queueConfigurations <p>
+     *            The Amazon Simple Queue Service queues to publish messages to
+     *            and the events for which to publish messages.
+     *            </p>
      */
-    public void addEvent(S3Event event) {
-        this.events.add(event.toString());
+    public void setQueueConfigurations(java.util.Collection<QueueConfiguration> queueConfigurations) {
+        if (queueConfigurations == null) {
+            this.queueConfigurations = null;
+            return;
+        }
+
+        this.queueConfigurations = new java.util.ArrayList<QueueConfiguration>(queueConfigurations);
     }
 
     /**
-     * @deprecated This field is not used by S3. It will be removed in the next major version of the
-     *             SDK
-     */
-    @Deprecated
-    public void addObjectPrefix(String prefix) {
-        this.objectPrefixes.add(prefix);
-    }
-
-    /**
-     * Filter criteria for determining which S3 objects trigger event notifications.
+     * <p>
+     * The Amazon Simple Queue Service queues to publish messages to and the
+     * events for which to publish messages.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return {@link Filter} object associated with this {@link NotificationConfiguration}
+     * @param queueConfigurations <p>
+     *            The Amazon Simple Queue Service queues to publish messages to
+     *            and the events for which to publish messages.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public Filter getFilter() {
-        return filter;
-    }
-
-    /**
-     * Sets the filter criteria for this {@link NotificationConfiguration}.
-     *
-     * @param filter
-     *            New {@link Filter}
-     */
-    public void setFilter(Filter filter) {
-        this.filter = filter;
-    }
-
-    /**
-     * Sets the filter criteria for this {@link NotificationConfiguration} and returns this object
-     * for method chaining.
-     *
-     * @param filter
-     *            New {@link Filter}
-     * @return This object for method chaining
-     */
-    public NotificationConfiguration withFilter(Filter filter) {
-        setFilter(filter);
+    public NotificationConfiguration withQueueConfigurations(
+            QueueConfiguration... queueConfigurations) {
+        if (getQueueConfigurations() == null) {
+            this.queueConfigurations = new java.util.ArrayList<QueueConfiguration>(
+                    queueConfigurations.length);
+        }
+        for (QueueConfiguration value : queueConfigurations) {
+            this.queueConfigurations.add(value);
+        }
         return this;
     }
 
+    /**
+     * <p>
+     * The Amazon Simple Queue Service queues to publish messages to and the
+     * events for which to publish messages.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param queueConfigurations <p>
+     *            The Amazon Simple Queue Service queues to publish messages to
+     *            and the events for which to publish messages.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public NotificationConfiguration withQueueConfigurations(
+            java.util.Collection<QueueConfiguration> queueConfigurations) {
+        setQueueConfigurations(queueConfigurations);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Describes the AWS Lambda functions to invoke and the events for which to
+     * invoke them.
+     * </p>
+     *
+     * @return <p>
+     *         Describes the AWS Lambda functions to invoke and the events for
+     *         which to invoke them.
+     *         </p>
+     */
+    public java.util.List<LambdaFunctionConfiguration> getLambdaFunctionConfigurations() {
+        return lambdaFunctionConfigurations;
+    }
+
+    /**
+     * <p>
+     * Describes the AWS Lambda functions to invoke and the events for which to
+     * invoke them.
+     * </p>
+     *
+     * @param lambdaFunctionConfigurations <p>
+     *            Describes the AWS Lambda functions to invoke and the events
+     *            for which to invoke them.
+     *            </p>
+     */
+    public void setLambdaFunctionConfigurations(
+            java.util.Collection<LambdaFunctionConfiguration> lambdaFunctionConfigurations) {
+        if (lambdaFunctionConfigurations == null) {
+            this.lambdaFunctionConfigurations = null;
+            return;
+        }
+
+        this.lambdaFunctionConfigurations = new java.util.ArrayList<LambdaFunctionConfiguration>(
+                lambdaFunctionConfigurations);
+    }
+
+    /**
+     * <p>
+     * Describes the AWS Lambda functions to invoke and the events for which to
+     * invoke them.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lambdaFunctionConfigurations <p>
+     *            Describes the AWS Lambda functions to invoke and the events
+     *            for which to invoke them.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public NotificationConfiguration withLambdaFunctionConfigurations(
+            LambdaFunctionConfiguration... lambdaFunctionConfigurations) {
+        if (getLambdaFunctionConfigurations() == null) {
+            this.lambdaFunctionConfigurations = new java.util.ArrayList<LambdaFunctionConfiguration>(
+                    lambdaFunctionConfigurations.length);
+        }
+        for (LambdaFunctionConfiguration value : lambdaFunctionConfigurations) {
+            this.lambdaFunctionConfigurations.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Describes the AWS Lambda functions to invoke and the events for which to
+     * invoke them.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lambdaFunctionConfigurations <p>
+     *            Describes the AWS Lambda functions to invoke and the events
+     *            for which to invoke them.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public NotificationConfiguration withLambdaFunctionConfigurations(
+            java.util.Collection<LambdaFunctionConfiguration> lambdaFunctionConfigurations) {
+        setLambdaFunctionConfigurations(lambdaFunctionConfigurations);
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getTopicConfigurations() != null)
+            sb.append("TopicConfigurations: " + getTopicConfigurations() + ",");
+        if (getQueueConfigurations() != null)
+            sb.append("QueueConfigurations: " + getQueueConfigurations() + ",");
+        if (getLambdaFunctionConfigurations() != null)
+            sb.append("LambdaFunctionConfigurations: " + getLambdaFunctionConfigurations());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode
+                + ((getTopicConfigurations() == null) ? 0 : getTopicConfigurations().hashCode());
+        hashCode = prime * hashCode
+                + ((getQueueConfigurations() == null) ? 0 : getQueueConfigurations().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getLambdaFunctionConfigurations() == null) ? 0
+                        : getLambdaFunctionConfigurations().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof NotificationConfiguration == false)
+            return false;
+        NotificationConfiguration other = (NotificationConfiguration) obj;
+
+        if (other.getTopicConfigurations() == null ^ this.getTopicConfigurations() == null)
+            return false;
+        if (other.getTopicConfigurations() != null
+                && other.getTopicConfigurations().equals(this.getTopicConfigurations()) == false)
+            return false;
+        if (other.getQueueConfigurations() == null ^ this.getQueueConfigurations() == null)
+            return false;
+        if (other.getQueueConfigurations() != null
+                && other.getQueueConfigurations().equals(this.getQueueConfigurations()) == false)
+            return false;
+        if (other.getLambdaFunctionConfigurations() == null
+                ^ this.getLambdaFunctionConfigurations() == null)
+            return false;
+        if (other.getLambdaFunctionConfigurations() != null
+                && other.getLambdaFunctionConfigurations().equals(
+                        this.getLambdaFunctionConfigurations()) == false)
+            return false;
+        return true;
+    }
 }
