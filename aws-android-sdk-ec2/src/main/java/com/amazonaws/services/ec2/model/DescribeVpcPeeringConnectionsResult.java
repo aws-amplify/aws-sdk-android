@@ -1,98 +1,167 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output of DescribeVpcPeeringConnections.
- * </p>
- */
 public class DescribeVpcPeeringConnectionsResult implements Serializable {
-
     /**
+     * <p>
      * Information about the VPC peering connections.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<VpcPeeringConnection> vpcPeeringConnections;
+    private java.util.List<VpcPeeringConnection> vpcPeeringConnections;
 
     /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
      * Information about the VPC peering connections.
+     * </p>
      *
-     * @return Information about the VPC peering connections.
+     * @return <p>
+     *         Information about the VPC peering connections.
+     *         </p>
      */
     public java.util.List<VpcPeeringConnection> getVpcPeeringConnections() {
-        if (vpcPeeringConnections == null) {
-              vpcPeeringConnections = new com.amazonaws.internal.ListWithAutoConstructFlag<VpcPeeringConnection>();
-              vpcPeeringConnections.setAutoConstruct(true);
-        }
         return vpcPeeringConnections;
     }
-    
+
     /**
+     * <p>
      * Information about the VPC peering connections.
+     * </p>
      *
-     * @param vpcPeeringConnections Information about the VPC peering connections.
+     * @param vpcPeeringConnections <p>
+     *            Information about the VPC peering connections.
+     *            </p>
      */
-    public void setVpcPeeringConnections(java.util.Collection<VpcPeeringConnection> vpcPeeringConnections) {
+    public void setVpcPeeringConnections(
+            java.util.Collection<VpcPeeringConnection> vpcPeeringConnections) {
         if (vpcPeeringConnections == null) {
             this.vpcPeeringConnections = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<VpcPeeringConnection> vpcPeeringConnectionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<VpcPeeringConnection>(vpcPeeringConnections.size());
-        vpcPeeringConnectionsCopy.addAll(vpcPeeringConnections);
-        this.vpcPeeringConnections = vpcPeeringConnectionsCopy;
+
+        this.vpcPeeringConnections = new java.util.ArrayList<VpcPeeringConnection>(
+                vpcPeeringConnections);
     }
-    
+
     /**
-     * Information about the VPC peering connections.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the VPC peering connections.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param vpcPeeringConnections Information about the VPC peering connections.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param vpcPeeringConnections <p>
+     *            Information about the VPC peering connections.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DescribeVpcPeeringConnectionsResult withVpcPeeringConnections(VpcPeeringConnection... vpcPeeringConnections) {
-        if (getVpcPeeringConnections() == null) setVpcPeeringConnections(new java.util.ArrayList<VpcPeeringConnection>(vpcPeeringConnections.length));
+    public DescribeVpcPeeringConnectionsResult withVpcPeeringConnections(
+            VpcPeeringConnection... vpcPeeringConnections) {
+        if (getVpcPeeringConnections() == null) {
+            this.vpcPeeringConnections = new java.util.ArrayList<VpcPeeringConnection>(
+                    vpcPeeringConnections.length);
+        }
         for (VpcPeeringConnection value : vpcPeeringConnections) {
-            getVpcPeeringConnections().add(value);
+            this.vpcPeeringConnections.add(value);
         }
         return this;
     }
-    
-    /**
-     * Information about the VPC peering connections.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param vpcPeeringConnections Information about the VPC peering connections.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeVpcPeeringConnectionsResult withVpcPeeringConnections(java.util.Collection<VpcPeeringConnection> vpcPeeringConnections) {
-        if (vpcPeeringConnections == null) {
-            this.vpcPeeringConnections = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<VpcPeeringConnection> vpcPeeringConnectionsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<VpcPeeringConnection>(vpcPeeringConnections.size());
-            vpcPeeringConnectionsCopy.addAll(vpcPeeringConnections);
-            this.vpcPeeringConnections = vpcPeeringConnectionsCopy;
-        }
 
+    /**
+     * <p>
+     * Information about the VPC peering connections.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcPeeringConnections <p>
+     *            Information about the VPC peering connections.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeVpcPeeringConnectionsResult withVpcPeeringConnections(
+            java.util.Collection<VpcPeeringConnection> vpcPeeringConnections) {
+        setVpcPeeringConnections(vpcPeeringConnections);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @return <p>
+     *         The token to use to retrieve the next page of results. This value
+     *         is <code>null</code> when there are no more results to return.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeVpcPeeringConnectionsResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -101,39 +170,53 @@ public class DescribeVpcPeeringConnectionsResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getVpcPeeringConnections() != null) sb.append("VpcPeeringConnections: " + getVpcPeeringConnections() );
+        if (getVpcPeeringConnections() != null)
+            sb.append("VpcPeeringConnections: " + getVpcPeeringConnections() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getVpcPeeringConnections() == null) ? 0 : getVpcPeeringConnections().hashCode()); 
+
+        hashCode = prime
+                * hashCode
+                + ((getVpcPeeringConnections() == null) ? 0 : getVpcPeeringConnections().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeVpcPeeringConnectionsResult == false) return false;
-        DescribeVpcPeeringConnectionsResult other = (DescribeVpcPeeringConnectionsResult)obj;
-        
-        if (other.getVpcPeeringConnections() == null ^ this.getVpcPeeringConnections() == null) return false;
-        if (other.getVpcPeeringConnections() != null && other.getVpcPeeringConnections().equals(this.getVpcPeeringConnections()) == false) return false; 
+        if (obj instanceof DescribeVpcPeeringConnectionsResult == false)
+            return false;
+        DescribeVpcPeeringConnectionsResult other = (DescribeVpcPeeringConnectionsResult) obj;
+
+        if (other.getVpcPeeringConnections() == null ^ this.getVpcPeeringConnections() == null)
+            return false;
+        if (other.getVpcPeeringConnections() != null
+                && other.getVpcPeeringConnections().equals(this.getVpcPeeringConnections()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    
