@@ -27,15 +27,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * If you suspend either the <code>Launch</code> or <code>Terminate</code>
  * process types, it can prevent other process types from functioning properly.
- * </p>
- * <p>
- * To resume processes that have been suspended, use <a>ResumeProcesses</a>.
- * </p>
- * <p>
  * For more information, see <a href=
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-suspend-resume-processes.html"
  * >Suspending and Resuming Scaling Processes</a> in the <i>Amazon EC2 Auto
  * Scaling User Guide</i>.
+ * </p>
+ * <p>
+ * To resume processes that have been suspended, call the <a>ResumeProcesses</a>
+ * API.
  * </p>
  */
 public class SuspendProcessesRequest extends AmazonWebServiceRequest implements Serializable {

@@ -20,18 +20,21 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <note>
+ * <p>
+ * To attach an Application Load Balancer or a Network Load Balancer, use the
+ * <a>AttachLoadBalancerTargetGroups</a> API operation instead.
+ * </p>
+ * </note>
  * <p>
  * Attaches one or more Classic Load Balancers to the specified Auto Scaling
- * group.
+ * group. Amazon EC2 Auto Scaling registers the running instances with these
+ * Classic Load Balancers.
  * </p>
  * <p>
- * To attach an Application Load Balancer or a Network Load Balancer instead,
- * see <a>AttachLoadBalancerTargetGroups</a>.
- * </p>
- * <p>
- * To describe the load balancers for an Auto Scaling group, use
- * <a>DescribeLoadBalancers</a>. To detach the load balancer from the Auto
- * Scaling group, use <a>DetachLoadBalancers</a>.
+ * To describe the load balancers for an Auto Scaling group, call the
+ * <a>DescribeLoadBalancers</a> API. To detach the load balancer from the Auto
+ * Scaling group, call the <a>DetachLoadBalancers</a> API.
  * </p>
  * <p>
  * For more information, see <a href=

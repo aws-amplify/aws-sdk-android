@@ -68,6 +68,31 @@ public class EnabledMetric implements Serializable {
      * <code>GroupTotalInstances</code>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -135,6 +160,31 @@ public class EnabledMetric implements Serializable {
      * <code>GroupTotalInstances</code>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -184,6 +234,31 @@ public class EnabledMetric implements Serializable {
      *         <li>
      *         <p>
      *         <code>GroupTotalInstances</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupInServiceCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupPendingCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupStandbyCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupTerminatingCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupTotalCapacity</code>
      *         </p>
      *         </li>
      *         </ul>
@@ -237,6 +312,31 @@ public class EnabledMetric implements Serializable {
      * <code>GroupTotalInstances</code>
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -288,6 +388,31 @@ public class EnabledMetric implements Serializable {
      *            <code>GroupTotalInstances</code>
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupInServiceCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupPendingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupStandbyCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTerminatingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTotalCapacity</code>
+     *            </p>
+     *            </li>
      *            </ul>
      */
     public void setMetric(String metric) {
@@ -337,6 +462,31 @@ public class EnabledMetric implements Serializable {
      * <li>
      * <p>
      * <code>GroupTotalInstances</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
      * </p>
      * </li>
      * </ul>
@@ -391,6 +541,31 @@ public class EnabledMetric implements Serializable {
      *            <li>
      *            <p>
      *            <code>GroupTotalInstances</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupInServiceCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupPendingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupStandbyCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTerminatingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTotalCapacity</code>
      *            </p>
      *            </li>
      *            </ul>

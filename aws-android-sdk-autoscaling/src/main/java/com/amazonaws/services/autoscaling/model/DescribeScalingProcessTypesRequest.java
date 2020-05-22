@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Describes the scaling process types for use with <a>ResumeProcesses</a> and
- * <a>SuspendProcesses</a>.
+ * Describes the scaling process types for use with the <a>ResumeProcesses</a>
+ * and <a>SuspendProcesses</a> APIs.
  * </p>
  */
 public class DescribeScalingProcessTypesRequest extends AmazonWebServiceRequest implements

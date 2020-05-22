@@ -19,9 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes one or more scheduled scaling action updates for a specified Auto
- * Scaling group. Used in combination with
- * <a>BatchPutScheduledUpdateGroupAction</a>.
+ * Describes information used for one or more scheduled scaling action updates
+ * in a <a>BatchPutScheduledUpdateGroupAction</a> operation.
  * </p>
  * <p>
  * When updating a scheduled scaling action, all optional parameters are left
@@ -90,21 +89,22 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      */
     private Integer minSize;
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      */
     private Integer maxSize;
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
      * </p>
      */
     private Integer desiredCapacity;
@@ -452,11 +452,11 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The minimum number of instances in the Auto Scaling group.
+     *         The minimum size of the Auto Scaling group.
      *         </p>
      */
     public Integer getMinSize() {
@@ -465,11 +465,11 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      *
      * @param minSize <p>
-     *            The minimum number of instances in the Auto Scaling group.
+     *            The minimum size of the Auto Scaling group.
      *            </p>
      */
     public void setMinSize(Integer minSize) {
@@ -478,14 +478,14 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minSize <p>
-     *            The minimum number of instances in the Auto Scaling group.
+     *            The minimum size of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -497,11 +497,11 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The maximum number of instances in the Auto Scaling group.
+     *         The maximum size of the Auto Scaling group.
      *         </p>
      */
     public Integer getMaxSize() {
@@ -510,11 +510,11 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      *
      * @param maxSize <p>
-     *            The maximum number of instances in the Auto Scaling group.
+     *            The maximum size of the Auto Scaling group.
      *            </p>
      */
     public void setMaxSize(Integer maxSize) {
@@ -523,14 +523,14 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxSize <p>
-     *            The maximum number of instances in the Auto Scaling group.
+     *            The maximum size of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -542,11 +542,14 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
      * </p>
      *
      * @return <p>
-     *         The number of EC2 instances that should be running in the group.
+     *         The desired capacity is the initial capacity of the Auto Scaling
+     *         group after the scheduled action runs and the capacity it
+     *         attempts to maintain.
      *         </p>
      */
     public Integer getDesiredCapacity() {
@@ -555,12 +558,14 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
      * </p>
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the
-     *            group.
+     *            The desired capacity is the initial capacity of the Auto
+     *            Scaling group after the scheduled action runs and the capacity
+     *            it attempts to maintain.
      *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
@@ -569,15 +574,17 @@ public class ScheduledUpdateGroupActionRequest implements Serializable {
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the
-     *            group.
+     *            The desired capacity is the initial capacity of the Auto
+     *            Scaling group after the scheduled action runs and the capacity
+     *            it attempts to maintain.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

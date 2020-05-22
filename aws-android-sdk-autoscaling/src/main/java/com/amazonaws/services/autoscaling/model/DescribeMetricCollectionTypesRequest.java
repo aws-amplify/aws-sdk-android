@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The <code>GroupStandbyInstances</code> metric is not returned by default. You
- * must explicitly request this metric when calling
- * <a>EnableMetricsCollection</a>.
+ * must explicitly request this metric when calling the
+ * <a>EnableMetricsCollection</a> API.
  * </p>
  */
 public class DescribeMetricCollectionTypesRequest extends AmazonWebServiceRequest implements

@@ -113,22 +113,23 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      */
     private Integer minSize;
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      */
     private Integer maxSize;
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
+     * It can scale beyond this capacity if you add more scaling conditions.
      * </p>
      */
     private Integer desiredCapacity;
@@ -581,11 +582,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The minimum number of instances in the Auto Scaling group.
+     *         The minimum size of the Auto Scaling group.
      *         </p>
      */
     public Integer getMinSize() {
@@ -594,11 +595,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      *
      * @param minSize <p>
-     *            The minimum number of instances in the Auto Scaling group.
+     *            The minimum size of the Auto Scaling group.
      *            </p>
      */
     public void setMinSize(Integer minSize) {
@@ -607,14 +608,14 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The minimum number of instances in the Auto Scaling group.
+     * The minimum size of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minSize <p>
-     *            The minimum number of instances in the Auto Scaling group.
+     *            The minimum size of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -626,11 +627,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      *
      * @return <p>
-     *         The maximum number of instances in the Auto Scaling group.
+     *         The maximum size of the Auto Scaling group.
      *         </p>
      */
     public Integer getMaxSize() {
@@ -639,11 +640,11 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      *
      * @param maxSize <p>
-     *            The maximum number of instances in the Auto Scaling group.
+     *            The maximum size of the Auto Scaling group.
      *            </p>
      */
     public void setMaxSize(Integer maxSize) {
@@ -652,14 +653,14 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The maximum number of instances in the Auto Scaling group.
+     * The maximum size of the Auto Scaling group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param maxSize <p>
-     *            The maximum number of instances in the Auto Scaling group.
+     *            The maximum size of the Auto Scaling group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -671,13 +672,16 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
+     * It can scale beyond this capacity if you add more scaling conditions.
      * </p>
      *
      * @return <p>
-     *         The number of EC2 instances that should be running in the Auto
-     *         Scaling group.
+     *         The desired capacity is the initial capacity of the Auto Scaling
+     *         group after the scheduled action runs and the capacity it
+     *         attempts to maintain. It can scale beyond this capacity if you
+     *         add more scaling conditions.
      *         </p>
      */
     public Integer getDesiredCapacity() {
@@ -686,13 +690,16 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
+     * It can scale beyond this capacity if you add more scaling conditions.
      * </p>
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the Auto
-     *            Scaling group.
+     *            The desired capacity is the initial capacity of the Auto
+     *            Scaling group after the scheduled action runs and the capacity
+     *            it attempts to maintain. It can scale beyond this capacity if
+     *            you add more scaling conditions.
      *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
@@ -701,16 +708,19 @@ public class PutScheduledUpdateGroupActionRequest extends AmazonWebServiceReques
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after the scheduled action runs and the capacity it attempts to maintain.
+     * It can scale beyond this capacity if you add more scaling conditions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the Auto
-     *            Scaling group.
+     *            The desired capacity is the initial capacity of the Auto
+     *            Scaling group after the scheduled action runs and the capacity
+     *            it attempts to maintain. It can scale beyond this capacity if
+     *            you add more scaling conditions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
