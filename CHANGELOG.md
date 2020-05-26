@@ -1,3 +1,16 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-elasticache
+---aws-android-sdk-quicksight
+---aws-android-sdk-ssm
+---aws-android-sdk-macie
+---aws-android-sdk-ec2
+---aws-android-sdk-dlm
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
