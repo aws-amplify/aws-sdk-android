@@ -1,98 +1,163 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output of DescribeSecurityGroups.
- * </p>
- */
 public class DescribeSecurityGroupsResult implements Serializable {
-
     /**
-     * Information about one or more security groups.
+     * <p>
+     * Information about the security groups.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<SecurityGroup> securityGroups;
+    private java.util.List<SecurityGroup> securityGroups;
 
     /**
-     * Information about one or more security groups.
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
+     * Information about the security groups.
+     * </p>
      *
-     * @return Information about one or more security groups.
+     * @return <p>
+     *         Information about the security groups.
+     *         </p>
      */
     public java.util.List<SecurityGroup> getSecurityGroups() {
-        if (securityGroups == null) {
-              securityGroups = new com.amazonaws.internal.ListWithAutoConstructFlag<SecurityGroup>();
-              securityGroups.setAutoConstruct(true);
-        }
         return securityGroups;
     }
-    
+
     /**
-     * Information about one or more security groups.
+     * <p>
+     * Information about the security groups.
+     * </p>
      *
-     * @param securityGroups Information about one or more security groups.
+     * @param securityGroups <p>
+     *            Information about the security groups.
+     *            </p>
      */
     public void setSecurityGroups(java.util.Collection<SecurityGroup> securityGroups) {
         if (securityGroups == null) {
             this.securityGroups = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<SecurityGroup> securityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<SecurityGroup>(securityGroups.size());
-        securityGroupsCopy.addAll(securityGroups);
-        this.securityGroups = securityGroupsCopy;
+
+        this.securityGroups = new java.util.ArrayList<SecurityGroup>(securityGroups);
     }
-    
+
     /**
-     * Information about one or more security groups.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the security groups.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param securityGroups Information about one or more security groups.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param securityGroups <p>
+     *            Information about the security groups.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeSecurityGroupsResult withSecurityGroups(SecurityGroup... securityGroups) {
-        if (getSecurityGroups() == null) setSecurityGroups(new java.util.ArrayList<SecurityGroup>(securityGroups.length));
+        if (getSecurityGroups() == null) {
+            this.securityGroups = new java.util.ArrayList<SecurityGroup>(securityGroups.length);
+        }
         for (SecurityGroup value : securityGroups) {
-            getSecurityGroups().add(value);
+            this.securityGroups.add(value);
         }
         return this;
     }
-    
-    /**
-     * Information about one or more security groups.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param securityGroups Information about one or more security groups.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeSecurityGroupsResult withSecurityGroups(java.util.Collection<SecurityGroup> securityGroups) {
-        if (securityGroups == null) {
-            this.securityGroups = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<SecurityGroup> securityGroupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<SecurityGroup>(securityGroups.size());
-            securityGroupsCopy.addAll(securityGroups);
-            this.securityGroups = securityGroupsCopy;
-        }
 
+    /**
+     * <p>
+     * Information about the security groups.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param securityGroups <p>
+     *            Information about the security groups.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeSecurityGroupsResult withSecurityGroups(
+            java.util.Collection<SecurityGroup> securityGroups) {
+        setSecurityGroups(securityGroups);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @return <p>
+     *         The token to use to retrieve the next page of results. This value
+     *         is <code>null</code> when there are no more results to return.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeSecurityGroupsResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -101,39 +166,52 @@ public class DescribeSecurityGroupsResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getSecurityGroups() != null) sb.append("SecurityGroups: " + getSecurityGroups() );
+        if (getSecurityGroups() != null)
+            sb.append("SecurityGroups: " + getSecurityGroups() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getSecurityGroups() == null) ? 0 : getSecurityGroups().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getSecurityGroups() == null) ? 0 : getSecurityGroups().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeSecurityGroupsResult == false) return false;
-        DescribeSecurityGroupsResult other = (DescribeSecurityGroupsResult)obj;
-        
-        if (other.getSecurityGroups() == null ^ this.getSecurityGroups() == null) return false;
-        if (other.getSecurityGroups() != null && other.getSecurityGroups().equals(this.getSecurityGroups()) == false) return false; 
+        if (obj instanceof DescribeSecurityGroupsResult == false)
+            return false;
+        DescribeSecurityGroupsResult other = (DescribeSecurityGroupsResult) obj;
+
+        if (other.getSecurityGroups() == null ^ this.getSecurityGroups() == null)
+            return false;
+        if (other.getSecurityGroups() != null
+                && other.getSecurityGroups().equals(this.getSecurityGroups()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    

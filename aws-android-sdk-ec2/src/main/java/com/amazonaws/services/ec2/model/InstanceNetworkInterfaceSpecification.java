@@ -1,17 +1,18 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
@@ -22,383 +23,320 @@ import java.io.Serializable;
  * </p>
  */
 public class InstanceNetworkInterfaceSpecification implements Serializable {
-
     /**
-     * The ID of the network interface.
-     */
-    private String networkInterfaceId;
-
-    /**
-     * The index of the device on the instance for the network interface
-     * attachment. If you are specifying a network interface in a
-     * <a>RunInstances</a> request, you must provide the device index.
-     */
-    private Integer deviceIndex;
-
-    /**
-     * The ID of the subnet associated with the network string. Applies only
-     * if creating a network interface when launching an instance.
-     */
-    private String subnetId;
-
-    /**
-     * The description of the network interface. Applies only if creating a
-     * network interface when launching an instance.
-     */
-    private String description;
-
-    /**
-     * The private IP address of the network interface. Applies only if
-     * creating a network interface when launching an instance.
-     */
-    private String privateIpAddress;
-
-    /**
-     * The IDs of the security groups for the network interface. Applies only
-     * if creating a network interface when launching an instance.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> groups;
-
-    /**
-     * If set to <code>true</code>, the interface is deleted when the
-     * instance is terminated. You can specify <code>true</code> only if
-     * creating a new network interface when launching an instance.
-     */
-    private Boolean deleteOnTermination;
-
-    /**
-     * One or more private IP addresses to assign to the network interface.
-     * Only one private IP address can be designated as primary.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<PrivateIpAddressSpecification> privateIpAddresses;
-
-    /**
-     * The number of secondary private IP addresses. You can't specify this
-     * option and specify more than one private IP address using the private
-     * IP addresses option.
-     */
-    private Integer secondaryPrivateIpAddressCount;
-
-    /**
-     * Indicates whether to assign a public IP address to an instance you
-     * launch in a VPC. The public IP address can only be assigned to a
-     * network interface for eth0, and can only be assigned to a new network
-     * interface, not an existing one. You cannot specify more than one
-     * network interface in the request. If launching into a default subnet,
-     * the default value is <code>true</code>.
+     * <p>
+     * Indicates whether to assign a public IPv4 address to an instance you
+     * launch in a VPC. The public IP address can only be assigned to a network
+     * interface for eth0, and can only be assigned to a new network interface,
+     * not an existing one. You cannot specify more than one network interface
+     * in the request. If launching into a default subnet, the default value is
+     * <code>true</code>.
+     * </p>
      */
     private Boolean associatePublicIpAddress;
 
     /**
-     * The ID of the network interface.
-     *
-     * @return The ID of the network interface.
-     */
-    public String getNetworkInterfaceId() {
-        return networkInterfaceId;
-    }
-    
-    /**
-     * The ID of the network interface.
-     *
-     * @param networkInterfaceId The ID of the network interface.
-     */
-    public void setNetworkInterfaceId(String networkInterfaceId) {
-        this.networkInterfaceId = networkInterfaceId;
-    }
-    
-    /**
-     * The ID of the network interface.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param networkInterfaceId The ID of the network interface.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * If set to <code>true</code>, the interface is deleted when the instance
+     * is terminated. You can specify <code>true</code> only if creating a new
+     * network interface when launching an instance.
+     * </p>
      */
-    public InstanceNetworkInterfaceSpecification withNetworkInterfaceId(String networkInterfaceId) {
-        this.networkInterfaceId = networkInterfaceId;
-        return this;
-    }
+    private Boolean deleteOnTermination;
 
     /**
-     * The index of the device on the instance for the network interface
-     * attachment. If you are specifying a network interface in a
-     * <a>RunInstances</a> request, you must provide the device index.
-     *
-     * @return The index of the device on the instance for the network interface
-     *         attachment. If you are specifying a network interface in a
-     *         <a>RunInstances</a> request, you must provide the device index.
-     */
-    public Integer getDeviceIndex() {
-        return deviceIndex;
-    }
-    
-    /**
-     * The index of the device on the instance for the network interface
-     * attachment. If you are specifying a network interface in a
-     * <a>RunInstances</a> request, you must provide the device index.
-     *
-     * @param deviceIndex The index of the device on the instance for the network interface
-     *         attachment. If you are specifying a network interface in a
-     *         <a>RunInstances</a> request, you must provide the device index.
-     */
-    public void setDeviceIndex(Integer deviceIndex) {
-        this.deviceIndex = deviceIndex;
-    }
-    
-    /**
-     * The index of the device on the instance for the network interface
-     * attachment. If you are specifying a network interface in a
-     * <a>RunInstances</a> request, you must provide the device index.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param deviceIndex The index of the device on the instance for the network interface
-     *         attachment. If you are specifying a network interface in a
-     *         <a>RunInstances</a> request, you must provide the device index.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public InstanceNetworkInterfaceSpecification withDeviceIndex(Integer deviceIndex) {
-        this.deviceIndex = deviceIndex;
-        return this;
-    }
-
-    /**
-     * The ID of the subnet associated with the network string. Applies only
-     * if creating a network interface when launching an instance.
-     *
-     * @return The ID of the subnet associated with the network string. Applies only
-     *         if creating a network interface when launching an instance.
-     */
-    public String getSubnetId() {
-        return subnetId;
-    }
-    
-    /**
-     * The ID of the subnet associated with the network string. Applies only
-     * if creating a network interface when launching an instance.
-     *
-     * @param subnetId The ID of the subnet associated with the network string. Applies only
-     *         if creating a network interface when launching an instance.
-     */
-    public void setSubnetId(String subnetId) {
-        this.subnetId = subnetId;
-    }
-    
-    /**
-     * The ID of the subnet associated with the network string. Applies only
-     * if creating a network interface when launching an instance.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param subnetId The ID of the subnet associated with the network string. Applies only
-     *         if creating a network interface when launching an instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public InstanceNetworkInterfaceSpecification withSubnetId(String subnetId) {
-        this.subnetId = subnetId;
-        return this;
-    }
-
-    /**
      * The description of the network interface. Applies only if creating a
      * network interface when launching an instance.
-     *
-     * @return The description of the network interface. Applies only if creating a
-     *         network interface when launching an instance.
+     * </p>
      */
-    public String getDescription() {
-        return description;
-    }
-    
+    private String description;
+
     /**
-     * The description of the network interface. Applies only if creating a
+     * <p>
+     * The position of the network interface in the attachment order. A primary
+     * network interface has a device index of 0.
+     * </p>
+     * <p>
+     * If you specify a network interface when launching an instance, you must
+     * specify the device index.
+     * </p>
+     */
+    private Integer deviceIndex;
+
+    /**
+     * <p>
+     * The IDs of the security groups for the network interface. Applies only if
+     * creating a network interface when launching an instance.
+     * </p>
+     */
+    private java.util.List<String> groups;
+
+    /**
+     * <p>
+     * A number of IPv6 addresses to assign to the network interface. Amazon EC2
+     * chooses the IPv6 addresses from the range of the subnet. You cannot
+     * specify this option and the option to assign specific IPv6 addresses in
+     * the same request. You can specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     */
+    private Integer ipv6AddressCount;
+
+    /**
+     * <p>
+     * One or more IPv6 addresses to assign to the network interface. You cannot
+     * specify this option and the option to assign a number of IPv6 addresses
+     * in the same request. You cannot specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     */
+    private java.util.List<InstanceIpv6Address> ipv6Addresses;
+
+    /**
+     * <p>
+     * The ID of the network interface.
+     * </p>
+     * <p>
+     * If you are creating a Spot Fleet, omit this parameter because you can’t
+     * specify a network interface ID in a launch specification.
+     * </p>
+     */
+    private String networkInterfaceId;
+
+    /**
+     * <p>
+     * The private IPv4 address of the network interface. Applies only if
+     * creating a network interface when launching an instance. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     */
+    private String privateIpAddress;
+
+    /**
+     * <p>
+     * One or more private IPv4 addresses to assign to the network interface.
+     * Only one private IPv4 address can be designated as primary. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     */
+    private java.util.List<PrivateIpAddressSpecification> privateIpAddresses;
+
+    /**
+     * <p>
+     * The number of secondary private IPv4 addresses. You can't specify this
+     * option and specify more than one private IP address using the private IP
+     * addresses option. You cannot specify this option if you're launching more
+     * than one instance in a <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     */
+    private Integer secondaryPrivateIpAddressCount;
+
+    /**
+     * <p>
+     * The ID of the subnet associated with the network interface. Applies only
+     * if creating a network interface when launching an instance.
+     * </p>
+     */
+    private String subnetId;
+
+    /**
+     * <p>
+     * The type of network interface. To create an Elastic Fabric Adapter (EFA),
+     * specify <code>efa</code>. For more information, see <a
+     * href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     * >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * If you are not creating an EFA, specify <code>interface</code> or omit
+     * this parameter.
+     * </p>
+     * <p>
+     * Valid values: <code>interface</code> | <code>efa</code>
+     * </p>
+     */
+    private String interfaceType;
+
+    /**
+     * <p>
+     * Indicates whether to assign a public IPv4 address to an instance you
+     * launch in a VPC. The public IP address can only be assigned to a network
+     * interface for eth0, and can only be assigned to a new network interface,
+     * not an existing one. You cannot specify more than one network interface
+     * in the request. If launching into a default subnet, the default value is
+     * <code>true</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether to assign a public IPv4 address to an instance
+     *         you launch in a VPC. The public IP address can only be assigned
+     *         to a network interface for eth0, and can only be assigned to a
+     *         new network interface, not an existing one. You cannot specify
+     *         more than one network interface in the request. If launching into
+     *         a default subnet, the default value is <code>true</code>.
+     *         </p>
+     */
+    public Boolean isAssociatePublicIpAddress() {
+        return associatePublicIpAddress;
+    }
+
+    /**
+     * <p>
+     * Indicates whether to assign a public IPv4 address to an instance you
+     * launch in a VPC. The public IP address can only be assigned to a network
+     * interface for eth0, and can only be assigned to a new network interface,
+     * not an existing one. You cannot specify more than one network interface
+     * in the request. If launching into a default subnet, the default value is
+     * <code>true</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether to assign a public IPv4 address to an instance
+     *         you launch in a VPC. The public IP address can only be assigned
+     *         to a network interface for eth0, and can only be assigned to a
+     *         new network interface, not an existing one. You cannot specify
+     *         more than one network interface in the request. If launching into
+     *         a default subnet, the default value is <code>true</code>.
+     *         </p>
+     */
+    public Boolean getAssociatePublicIpAddress() {
+        return associatePublicIpAddress;
+    }
+
+    /**
+     * <p>
+     * Indicates whether to assign a public IPv4 address to an instance you
+     * launch in a VPC. The public IP address can only be assigned to a network
+     * interface for eth0, and can only be assigned to a new network interface,
+     * not an existing one. You cannot specify more than one network interface
+     * in the request. If launching into a default subnet, the default value is
+     * <code>true</code>.
+     * </p>
+     *
+     * @param associatePublicIpAddress <p>
+     *            Indicates whether to assign a public IPv4 address to an
+     *            instance you launch in a VPC. The public IP address can only
+     *            be assigned to a network interface for eth0, and can only be
+     *            assigned to a new network interface, not an existing one. You
+     *            cannot specify more than one network interface in the request.
+     *            If launching into a default subnet, the default value is
+     *            <code>true</code>.
+     *            </p>
+     */
+    public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
+        this.associatePublicIpAddress = associatePublicIpAddress;
+    }
+
+    /**
+     * <p>
+     * Indicates whether to assign a public IPv4 address to an instance you
+     * launch in a VPC. The public IP address can only be assigned to a network
+     * interface for eth0, and can only be assigned to a new network interface,
+     * not an existing one. You cannot specify more than one network interface
+     * in the request. If launching into a default subnet, the default value is
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param associatePublicIpAddress <p>
+     *            Indicates whether to assign a public IPv4 address to an
+     *            instance you launch in a VPC. The public IP address can only
+     *            be assigned to a network interface for eth0, and can only be
+     *            assigned to a new network interface, not an existing one. You
+     *            cannot specify more than one network interface in the request.
+     *            If launching into a default subnet, the default value is
+     *            <code>true</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withAssociatePublicIpAddress(
+            Boolean associatePublicIpAddress) {
+        this.associatePublicIpAddress = associatePublicIpAddress;
+        return this;
+    }
+
+    /**
+     * <p>
+     * If set to <code>true</code>, the interface is deleted when the instance
+     * is terminated. You can specify <code>true</code> only if creating a new
      * network interface when launching an instance.
+     * </p>
      *
-     * @param description The description of the network interface. Applies only if creating a
-     *         network interface when launching an instance.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    /**
-     * The description of the network interface. Applies only if creating a
-     * network interface when launching an instance.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param description The description of the network interface. Applies only if creating a
-     *         network interface when launching an instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public InstanceNetworkInterfaceSpecification withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * The private IP address of the network interface. Applies only if
-     * creating a network interface when launching an instance.
-     *
-     * @return The private IP address of the network interface. Applies only if
-     *         creating a network interface when launching an instance.
-     */
-    public String getPrivateIpAddress() {
-        return privateIpAddress;
-    }
-    
-    /**
-     * The private IP address of the network interface. Applies only if
-     * creating a network interface when launching an instance.
-     *
-     * @param privateIpAddress The private IP address of the network interface. Applies only if
-     *         creating a network interface when launching an instance.
-     */
-    public void setPrivateIpAddress(String privateIpAddress) {
-        this.privateIpAddress = privateIpAddress;
-    }
-    
-    /**
-     * The private IP address of the network interface. Applies only if
-     * creating a network interface when launching an instance.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param privateIpAddress The private IP address of the network interface. Applies only if
-     *         creating a network interface when launching an instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public InstanceNetworkInterfaceSpecification withPrivateIpAddress(String privateIpAddress) {
-        this.privateIpAddress = privateIpAddress;
-        return this;
-    }
-
-    /**
-     * The IDs of the security groups for the network interface. Applies only
-     * if creating a network interface when launching an instance.
-     *
-     * @return The IDs of the security groups for the network interface. Applies only
-     *         if creating a network interface when launching an instance.
-     */
-    public java.util.List<String> getGroups() {
-        if (groups == null) {
-              groups = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              groups.setAutoConstruct(true);
-        }
-        return groups;
-    }
-    
-    /**
-     * The IDs of the security groups for the network interface. Applies only
-     * if creating a network interface when launching an instance.
-     *
-     * @param groups The IDs of the security groups for the network interface. Applies only
-     *         if creating a network interface when launching an instance.
-     */
-    public void setGroups(java.util.Collection<String> groups) {
-        if (groups == null) {
-            this.groups = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> groupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groups.size());
-        groupsCopy.addAll(groups);
-        this.groups = groupsCopy;
-    }
-    
-    /**
-     * The IDs of the security groups for the network interface. Applies only
-     * if creating a network interface when launching an instance.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param groups The IDs of the security groups for the network interface. Applies only
-     *         if creating a network interface when launching an instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public InstanceNetworkInterfaceSpecification withGroups(String... groups) {
-        if (getGroups() == null) setGroups(new java.util.ArrayList<String>(groups.length));
-        for (String value : groups) {
-            getGroups().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * The IDs of the security groups for the network interface. Applies only
-     * if creating a network interface when launching an instance.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param groups The IDs of the security groups for the network interface. Applies only
-     *         if creating a network interface when launching an instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public InstanceNetworkInterfaceSpecification withGroups(java.util.Collection<String> groups) {
-        if (groups == null) {
-            this.groups = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> groupsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groups.size());
-            groupsCopy.addAll(groups);
-            this.groups = groupsCopy;
-        }
-
-        return this;
-    }
-
-    /**
-     * If set to <code>true</code>, the interface is deleted when the
-     * instance is terminated. You can specify <code>true</code> only if
-     * creating a new network interface when launching an instance.
-     *
-     * @return If set to <code>true</code>, the interface is deleted when the
+     * @return <p>
+     *         If set to <code>true</code>, the interface is deleted when the
      *         instance is terminated. You can specify <code>true</code> only if
      *         creating a new network interface when launching an instance.
+     *         </p>
      */
     public Boolean isDeleteOnTermination() {
         return deleteOnTermination;
     }
-    
+
     /**
-     * If set to <code>true</code>, the interface is deleted when the
-     * instance is terminated. You can specify <code>true</code> only if
-     * creating a new network interface when launching an instance.
+     * <p>
+     * If set to <code>true</code>, the interface is deleted when the instance
+     * is terminated. You can specify <code>true</code> only if creating a new
+     * network interface when launching an instance.
+     * </p>
      *
-     * @param deleteOnTermination If set to <code>true</code>, the interface is deleted when the
+     * @return <p>
+     *         If set to <code>true</code>, the interface is deleted when the
      *         instance is terminated. You can specify <code>true</code> only if
      *         creating a new network interface when launching an instance.
+     *         </p>
+     */
+    public Boolean getDeleteOnTermination() {
+        return deleteOnTermination;
+    }
+
+    /**
+     * <p>
+     * If set to <code>true</code>, the interface is deleted when the instance
+     * is terminated. You can specify <code>true</code> only if creating a new
+     * network interface when launching an instance.
+     * </p>
+     *
+     * @param deleteOnTermination <p>
+     *            If set to <code>true</code>, the interface is deleted when the
+     *            instance is terminated. You can specify <code>true</code> only
+     *            if creating a new network interface when launching an
+     *            instance.
+     *            </p>
      */
     public void setDeleteOnTermination(Boolean deleteOnTermination) {
         this.deleteOnTermination = deleteOnTermination;
     }
-    
+
     /**
-     * If set to <code>true</code>, the interface is deleted when the
-     * instance is terminated. You can specify <code>true</code> only if
-     * creating a new network interface when launching an instance.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * If set to <code>true</code>, the interface is deleted when the instance
+     * is terminated. You can specify <code>true</code> only if creating a new
+     * network interface when launching an instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param deleteOnTermination If set to <code>true</code>, the interface is deleted when the
-     *         instance is terminated. You can specify <code>true</code> only if
-     *         creating a new network interface when launching an instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param deleteOnTermination <p>
+     *            If set to <code>true</code>, the interface is deleted when the
+     *            instance is terminated. You can specify <code>true</code> only
+     *            if creating a new network interface when launching an
+     *            instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public InstanceNetworkInterfaceSpecification withDeleteOnTermination(Boolean deleteOnTermination) {
         this.deleteOnTermination = deleteOnTermination;
@@ -406,219 +344,901 @@ public class InstanceNetworkInterfaceSpecification implements Serializable {
     }
 
     /**
-     * If set to <code>true</code>, the interface is deleted when the
-     * instance is terminated. You can specify <code>true</code> only if
-     * creating a new network interface when launching an instance.
+     * <p>
+     * The description of the network interface. Applies only if creating a
+     * network interface when launching an instance.
+     * </p>
      *
-     * @return If set to <code>true</code>, the interface is deleted when the
-     *         instance is terminated. You can specify <code>true</code> only if
-     *         creating a new network interface when launching an instance.
+     * @return <p>
+     *         The description of the network interface. Applies only if
+     *         creating a network interface when launching an instance.
+     *         </p>
      */
-    public Boolean getDeleteOnTermination() {
-        return deleteOnTermination;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * One or more private IP addresses to assign to the network interface.
-     * Only one private IP address can be designated as primary.
+     * <p>
+     * The description of the network interface. Applies only if creating a
+     * network interface when launching an instance.
+     * </p>
      *
-     * @return One or more private IP addresses to assign to the network interface.
-     *         Only one private IP address can be designated as primary.
+     * @param description <p>
+     *            The description of the network interface. Applies only if
+     *            creating a network interface when launching an instance.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The description of the network interface. Applies only if creating a
+     * network interface when launching an instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param description <p>
+     *            The description of the network interface. Applies only if
+     *            creating a network interface when launching an instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The position of the network interface in the attachment order. A primary
+     * network interface has a device index of 0.
+     * </p>
+     * <p>
+     * If you specify a network interface when launching an instance, you must
+     * specify the device index.
+     * </p>
+     *
+     * @return <p>
+     *         The position of the network interface in the attachment order. A
+     *         primary network interface has a device index of 0.
+     *         </p>
+     *         <p>
+     *         If you specify a network interface when launching an instance,
+     *         you must specify the device index.
+     *         </p>
+     */
+    public Integer getDeviceIndex() {
+        return deviceIndex;
+    }
+
+    /**
+     * <p>
+     * The position of the network interface in the attachment order. A primary
+     * network interface has a device index of 0.
+     * </p>
+     * <p>
+     * If you specify a network interface when launching an instance, you must
+     * specify the device index.
+     * </p>
+     *
+     * @param deviceIndex <p>
+     *            The position of the network interface in the attachment order.
+     *            A primary network interface has a device index of 0.
+     *            </p>
+     *            <p>
+     *            If you specify a network interface when launching an instance,
+     *            you must specify the device index.
+     *            </p>
+     */
+    public void setDeviceIndex(Integer deviceIndex) {
+        this.deviceIndex = deviceIndex;
+    }
+
+    /**
+     * <p>
+     * The position of the network interface in the attachment order. A primary
+     * network interface has a device index of 0.
+     * </p>
+     * <p>
+     * If you specify a network interface when launching an instance, you must
+     * specify the device index.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param deviceIndex <p>
+     *            The position of the network interface in the attachment order.
+     *            A primary network interface has a device index of 0.
+     *            </p>
+     *            <p>
+     *            If you specify a network interface when launching an instance,
+     *            you must specify the device index.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withDeviceIndex(Integer deviceIndex) {
+        this.deviceIndex = deviceIndex;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The IDs of the security groups for the network interface. Applies only if
+     * creating a network interface when launching an instance.
+     * </p>
+     *
+     * @return <p>
+     *         The IDs of the security groups for the network interface. Applies
+     *         only if creating a network interface when launching an instance.
+     *         </p>
+     */
+    public java.util.List<String> getGroups() {
+        return groups;
+    }
+
+    /**
+     * <p>
+     * The IDs of the security groups for the network interface. Applies only if
+     * creating a network interface when launching an instance.
+     * </p>
+     *
+     * @param groups <p>
+     *            The IDs of the security groups for the network interface.
+     *            Applies only if creating a network interface when launching an
+     *            instance.
+     *            </p>
+     */
+    public void setGroups(java.util.Collection<String> groups) {
+        if (groups == null) {
+            this.groups = null;
+            return;
+        }
+
+        this.groups = new java.util.ArrayList<String>(groups);
+    }
+
+    /**
+     * <p>
+     * The IDs of the security groups for the network interface. Applies only if
+     * creating a network interface when launching an instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groups <p>
+     *            The IDs of the security groups for the network interface.
+     *            Applies only if creating a network interface when launching an
+     *            instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withGroups(String... groups) {
+        if (getGroups() == null) {
+            this.groups = new java.util.ArrayList<String>(groups.length);
+        }
+        for (String value : groups) {
+            this.groups.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The IDs of the security groups for the network interface. Applies only if
+     * creating a network interface when launching an instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groups <p>
+     *            The IDs of the security groups for the network interface.
+     *            Applies only if creating a network interface when launching an
+     *            instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withGroups(java.util.Collection<String> groups) {
+        setGroups(groups);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A number of IPv6 addresses to assign to the network interface. Amazon EC2
+     * chooses the IPv6 addresses from the range of the subnet. You cannot
+     * specify this option and the option to assign specific IPv6 addresses in
+     * the same request. You can specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     *
+     * @return <p>
+     *         A number of IPv6 addresses to assign to the network interface.
+     *         Amazon EC2 chooses the IPv6 addresses from the range of the
+     *         subnet. You cannot specify this option and the option to assign
+     *         specific IPv6 addresses in the same request. You can specify this
+     *         option if you've specified a minimum number of instances to
+     *         launch.
+     *         </p>
+     */
+    public Integer getIpv6AddressCount() {
+        return ipv6AddressCount;
+    }
+
+    /**
+     * <p>
+     * A number of IPv6 addresses to assign to the network interface. Amazon EC2
+     * chooses the IPv6 addresses from the range of the subnet. You cannot
+     * specify this option and the option to assign specific IPv6 addresses in
+     * the same request. You can specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     *
+     * @param ipv6AddressCount <p>
+     *            A number of IPv6 addresses to assign to the network interface.
+     *            Amazon EC2 chooses the IPv6 addresses from the range of the
+     *            subnet. You cannot specify this option and the option to
+     *            assign specific IPv6 addresses in the same request. You can
+     *            specify this option if you've specified a minimum number of
+     *            instances to launch.
+     *            </p>
+     */
+    public void setIpv6AddressCount(Integer ipv6AddressCount) {
+        this.ipv6AddressCount = ipv6AddressCount;
+    }
+
+    /**
+     * <p>
+     * A number of IPv6 addresses to assign to the network interface. Amazon EC2
+     * chooses the IPv6 addresses from the range of the subnet. You cannot
+     * specify this option and the option to assign specific IPv6 addresses in
+     * the same request. You can specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ipv6AddressCount <p>
+     *            A number of IPv6 addresses to assign to the network interface.
+     *            Amazon EC2 chooses the IPv6 addresses from the range of the
+     *            subnet. You cannot specify this option and the option to
+     *            assign specific IPv6 addresses in the same request. You can
+     *            specify this option if you've specified a minimum number of
+     *            instances to launch.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withIpv6AddressCount(Integer ipv6AddressCount) {
+        this.ipv6AddressCount = ipv6AddressCount;
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more IPv6 addresses to assign to the network interface. You cannot
+     * specify this option and the option to assign a number of IPv6 addresses
+     * in the same request. You cannot specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     *
+     * @return <p>
+     *         One or more IPv6 addresses to assign to the network interface.
+     *         You cannot specify this option and the option to assign a number
+     *         of IPv6 addresses in the same request. You cannot specify this
+     *         option if you've specified a minimum number of instances to
+     *         launch.
+     *         </p>
+     */
+    public java.util.List<InstanceIpv6Address> getIpv6Addresses() {
+        return ipv6Addresses;
+    }
+
+    /**
+     * <p>
+     * One or more IPv6 addresses to assign to the network interface. You cannot
+     * specify this option and the option to assign a number of IPv6 addresses
+     * in the same request. You cannot specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     *
+     * @param ipv6Addresses <p>
+     *            One or more IPv6 addresses to assign to the network interface.
+     *            You cannot specify this option and the option to assign a
+     *            number of IPv6 addresses in the same request. You cannot
+     *            specify this option if you've specified a minimum number of
+     *            instances to launch.
+     *            </p>
+     */
+    public void setIpv6Addresses(java.util.Collection<InstanceIpv6Address> ipv6Addresses) {
+        if (ipv6Addresses == null) {
+            this.ipv6Addresses = null;
+            return;
+        }
+
+        this.ipv6Addresses = new java.util.ArrayList<InstanceIpv6Address>(ipv6Addresses);
+    }
+
+    /**
+     * <p>
+     * One or more IPv6 addresses to assign to the network interface. You cannot
+     * specify this option and the option to assign a number of IPv6 addresses
+     * in the same request. You cannot specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ipv6Addresses <p>
+     *            One or more IPv6 addresses to assign to the network interface.
+     *            You cannot specify this option and the option to assign a
+     *            number of IPv6 addresses in the same request. You cannot
+     *            specify this option if you've specified a minimum number of
+     *            instances to launch.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withIpv6Addresses(
+            InstanceIpv6Address... ipv6Addresses) {
+        if (getIpv6Addresses() == null) {
+            this.ipv6Addresses = new java.util.ArrayList<InstanceIpv6Address>(ipv6Addresses.length);
+        }
+        for (InstanceIpv6Address value : ipv6Addresses) {
+            this.ipv6Addresses.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more IPv6 addresses to assign to the network interface. You cannot
+     * specify this option and the option to assign a number of IPv6 addresses
+     * in the same request. You cannot specify this option if you've specified a
+     * minimum number of instances to launch.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param ipv6Addresses <p>
+     *            One or more IPv6 addresses to assign to the network interface.
+     *            You cannot specify this option and the option to assign a
+     *            number of IPv6 addresses in the same request. You cannot
+     *            specify this option if you've specified a minimum number of
+     *            instances to launch.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withIpv6Addresses(
+            java.util.Collection<InstanceIpv6Address> ipv6Addresses) {
+        setIpv6Addresses(ipv6Addresses);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ID of the network interface.
+     * </p>
+     * <p>
+     * If you are creating a Spot Fleet, omit this parameter because you can’t
+     * specify a network interface ID in a launch specification.
+     * </p>
+     *
+     * @return <p>
+     *         The ID of the network interface.
+     *         </p>
+     *         <p>
+     *         If you are creating a Spot Fleet, omit this parameter because you
+     *         can’t specify a network interface ID in a launch specification.
+     *         </p>
+     */
+    public String getNetworkInterfaceId() {
+        return networkInterfaceId;
+    }
+
+    /**
+     * <p>
+     * The ID of the network interface.
+     * </p>
+     * <p>
+     * If you are creating a Spot Fleet, omit this parameter because you can’t
+     * specify a network interface ID in a launch specification.
+     * </p>
+     *
+     * @param networkInterfaceId <p>
+     *            The ID of the network interface.
+     *            </p>
+     *            <p>
+     *            If you are creating a Spot Fleet, omit this parameter because
+     *            you can’t specify a network interface ID in a launch
+     *            specification.
+     *            </p>
+     */
+    public void setNetworkInterfaceId(String networkInterfaceId) {
+        this.networkInterfaceId = networkInterfaceId;
+    }
+
+    /**
+     * <p>
+     * The ID of the network interface.
+     * </p>
+     * <p>
+     * If you are creating a Spot Fleet, omit this parameter because you can’t
+     * specify a network interface ID in a launch specification.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param networkInterfaceId <p>
+     *            The ID of the network interface.
+     *            </p>
+     *            <p>
+     *            If you are creating a Spot Fleet, omit this parameter because
+     *            you can’t specify a network interface ID in a launch
+     *            specification.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withNetworkInterfaceId(String networkInterfaceId) {
+        this.networkInterfaceId = networkInterfaceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The private IPv4 address of the network interface. Applies only if
+     * creating a network interface when launching an instance. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     *
+     * @return <p>
+     *         The private IPv4 address of the network interface. Applies only
+     *         if creating a network interface when launching an instance. You
+     *         cannot specify this option if you're launching more than one
+     *         instance in a <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *         >RunInstances</a> request.
+     *         </p>
+     */
+    public String getPrivateIpAddress() {
+        return privateIpAddress;
+    }
+
+    /**
+     * <p>
+     * The private IPv4 address of the network interface. Applies only if
+     * creating a network interface when launching an instance. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     *
+     * @param privateIpAddress <p>
+     *            The private IPv4 address of the network interface. Applies
+     *            only if creating a network interface when launching an
+     *            instance. You cannot specify this option if you're launching
+     *            more than one instance in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
+     */
+    public void setPrivateIpAddress(String privateIpAddress) {
+        this.privateIpAddress = privateIpAddress;
+    }
+
+    /**
+     * <p>
+     * The private IPv4 address of the network interface. Applies only if
+     * creating a network interface when launching an instance. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param privateIpAddress <p>
+     *            The private IPv4 address of the network interface. Applies
+     *            only if creating a network interface when launching an
+     *            instance. You cannot specify this option if you're launching
+     *            more than one instance in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withPrivateIpAddress(String privateIpAddress) {
+        this.privateIpAddress = privateIpAddress;
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more private IPv4 addresses to assign to the network interface.
+     * Only one private IPv4 address can be designated as primary. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     *
+     * @return <p>
+     *         One or more private IPv4 addresses to assign to the network
+     *         interface. Only one private IPv4 address can be designated as
+     *         primary. You cannot specify this option if you're launching more
+     *         than one instance in a <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *         >RunInstances</a> request.
+     *         </p>
      */
     public java.util.List<PrivateIpAddressSpecification> getPrivateIpAddresses() {
-        if (privateIpAddresses == null) {
-              privateIpAddresses = new com.amazonaws.internal.ListWithAutoConstructFlag<PrivateIpAddressSpecification>();
-              privateIpAddresses.setAutoConstruct(true);
-        }
         return privateIpAddresses;
     }
-    
+
     /**
-     * One or more private IP addresses to assign to the network interface.
-     * Only one private IP address can be designated as primary.
+     * <p>
+     * One or more private IPv4 addresses to assign to the network interface.
+     * Only one private IPv4 address can be designated as primary. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
      *
-     * @param privateIpAddresses One or more private IP addresses to assign to the network interface.
-     *         Only one private IP address can be designated as primary.
+     * @param privateIpAddresses <p>
+     *            One or more private IPv4 addresses to assign to the network
+     *            interface. Only one private IPv4 address can be designated as
+     *            primary. You cannot specify this option if you're launching
+     *            more than one instance in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
      */
-    public void setPrivateIpAddresses(java.util.Collection<PrivateIpAddressSpecification> privateIpAddresses) {
+    public void setPrivateIpAddresses(
+            java.util.Collection<PrivateIpAddressSpecification> privateIpAddresses) {
         if (privateIpAddresses == null) {
             this.privateIpAddresses = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<PrivateIpAddressSpecification> privateIpAddressesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<PrivateIpAddressSpecification>(privateIpAddresses.size());
-        privateIpAddressesCopy.addAll(privateIpAddresses);
-        this.privateIpAddresses = privateIpAddressesCopy;
+
+        this.privateIpAddresses = new java.util.ArrayList<PrivateIpAddressSpecification>(
+                privateIpAddresses);
     }
-    
+
     /**
-     * One or more private IP addresses to assign to the network interface.
-     * Only one private IP address can be designated as primary.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more private IPv4 addresses to assign to the network interface.
+     * Only one private IPv4 address can be designated as primary. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param privateIpAddresses One or more private IP addresses to assign to the network interface.
-     *         Only one private IP address can be designated as primary.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param privateIpAddresses <p>
+     *            One or more private IPv4 addresses to assign to the network
+     *            interface. Only one private IPv4 address can be designated as
+     *            primary. You cannot specify this option if you're launching
+     *            more than one instance in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public InstanceNetworkInterfaceSpecification withPrivateIpAddresses(PrivateIpAddressSpecification... privateIpAddresses) {
-        if (getPrivateIpAddresses() == null) setPrivateIpAddresses(new java.util.ArrayList<PrivateIpAddressSpecification>(privateIpAddresses.length));
+    public InstanceNetworkInterfaceSpecification withPrivateIpAddresses(
+            PrivateIpAddressSpecification... privateIpAddresses) {
+        if (getPrivateIpAddresses() == null) {
+            this.privateIpAddresses = new java.util.ArrayList<PrivateIpAddressSpecification>(
+                    privateIpAddresses.length);
+        }
         for (PrivateIpAddressSpecification value : privateIpAddresses) {
-            getPrivateIpAddresses().add(value);
+            this.privateIpAddresses.add(value);
         }
         return this;
     }
-    
+
     /**
-     * One or more private IP addresses to assign to the network interface.
-     * Only one private IP address can be designated as primary.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more private IPv4 addresses to assign to the network interface.
+     * Only one private IPv4 address can be designated as primary. You cannot
+     * specify this option if you're launching more than one instance in a <a
+     * href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param privateIpAddresses One or more private IP addresses to assign to the network interface.
-     *         Only one private IP address can be designated as primary.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param privateIpAddresses <p>
+     *            One or more private IPv4 addresses to assign to the network
+     *            interface. Only one private IPv4 address can be designated as
+     *            primary. You cannot specify this option if you're launching
+     *            more than one instance in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public InstanceNetworkInterfaceSpecification withPrivateIpAddresses(java.util.Collection<PrivateIpAddressSpecification> privateIpAddresses) {
-        if (privateIpAddresses == null) {
-            this.privateIpAddresses = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<PrivateIpAddressSpecification> privateIpAddressesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<PrivateIpAddressSpecification>(privateIpAddresses.size());
-            privateIpAddressesCopy.addAll(privateIpAddresses);
-            this.privateIpAddresses = privateIpAddressesCopy;
-        }
-
+    public InstanceNetworkInterfaceSpecification withPrivateIpAddresses(
+            java.util.Collection<PrivateIpAddressSpecification> privateIpAddresses) {
+        setPrivateIpAddresses(privateIpAddresses);
         return this;
     }
 
     /**
-     * The number of secondary private IP addresses. You can't specify this
-     * option and specify more than one private IP address using the private
-     * IP addresses option.
+     * <p>
+     * The number of secondary private IPv4 addresses. You can't specify this
+     * option and specify more than one private IP address using the private IP
+     * addresses option. You cannot specify this option if you're launching more
+     * than one instance in a <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
      *
-     * @return The number of secondary private IP addresses. You can't specify this
-     *         option and specify more than one private IP address using the private
-     *         IP addresses option.
+     * @return <p>
+     *         The number of secondary private IPv4 addresses. You can't specify
+     *         this option and specify more than one private IP address using
+     *         the private IP addresses option. You cannot specify this option
+     *         if you're launching more than one instance in a <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *         >RunInstances</a> request.
+     *         </p>
      */
     public Integer getSecondaryPrivateIpAddressCount() {
         return secondaryPrivateIpAddressCount;
     }
-    
+
     /**
-     * The number of secondary private IP addresses. You can't specify this
-     * option and specify more than one private IP address using the private
-     * IP addresses option.
+     * <p>
+     * The number of secondary private IPv4 addresses. You can't specify this
+     * option and specify more than one private IP address using the private IP
+     * addresses option. You cannot specify this option if you're launching more
+     * than one instance in a <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
      *
-     * @param secondaryPrivateIpAddressCount The number of secondary private IP addresses. You can't specify this
-     *         option and specify more than one private IP address using the private
-     *         IP addresses option.
+     * @param secondaryPrivateIpAddressCount <p>
+     *            The number of secondary private IPv4 addresses. You can't
+     *            specify this option and specify more than one private IP
+     *            address using the private IP addresses option. You cannot
+     *            specify this option if you're launching more than one instance
+     *            in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
      */
     public void setSecondaryPrivateIpAddressCount(Integer secondaryPrivateIpAddressCount) {
         this.secondaryPrivateIpAddressCount = secondaryPrivateIpAddressCount;
     }
-    
+
     /**
-     * The number of secondary private IP addresses. You can't specify this
-     * option and specify more than one private IP address using the private
-     * IP addresses option.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of secondary private IPv4 addresses. You can't specify this
+     * option and specify more than one private IP address using the private IP
+     * addresses option. You cannot specify this option if you're launching more
+     * than one instance in a <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     * >RunInstances</a> request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param secondaryPrivateIpAddressCount The number of secondary private IP addresses. You can't specify this
-     *         option and specify more than one private IP address using the private
-     *         IP addresses option.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param secondaryPrivateIpAddressCount <p>
+     *            The number of secondary private IPv4 addresses. You can't
+     *            specify this option and specify more than one private IP
+     *            address using the private IP addresses option. You cannot
+     *            specify this option if you're launching more than one instance
+     *            in a <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html"
+     *            >RunInstances</a> request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public InstanceNetworkInterfaceSpecification withSecondaryPrivateIpAddressCount(Integer secondaryPrivateIpAddressCount) {
+    public InstanceNetworkInterfaceSpecification withSecondaryPrivateIpAddressCount(
+            Integer secondaryPrivateIpAddressCount) {
         this.secondaryPrivateIpAddressCount = secondaryPrivateIpAddressCount;
         return this;
     }
 
     /**
-     * Indicates whether to assign a public IP address to an instance you
-     * launch in a VPC. The public IP address can only be assigned to a
-     * network interface for eth0, and can only be assigned to a new network
-     * interface, not an existing one. You cannot specify more than one
-     * network interface in the request. If launching into a default subnet,
-     * the default value is <code>true</code>.
-     *
-     * @return Indicates whether to assign a public IP address to an instance you
-     *         launch in a VPC. The public IP address can only be assigned to a
-     *         network interface for eth0, and can only be assigned to a new network
-     *         interface, not an existing one. You cannot specify more than one
-     *         network interface in the request. If launching into a default subnet,
-     *         the default value is <code>true</code>.
-     */
-    public Boolean isAssociatePublicIpAddress() {
-        return associatePublicIpAddress;
-    }
-    
-    /**
-     * Indicates whether to assign a public IP address to an instance you
-     * launch in a VPC. The public IP address can only be assigned to a
-     * network interface for eth0, and can only be assigned to a new network
-     * interface, not an existing one. You cannot specify more than one
-     * network interface in the request. If launching into a default subnet,
-     * the default value is <code>true</code>.
-     *
-     * @param associatePublicIpAddress Indicates whether to assign a public IP address to an instance you
-     *         launch in a VPC. The public IP address can only be assigned to a
-     *         network interface for eth0, and can only be assigned to a new network
-     *         interface, not an existing one. You cannot specify more than one
-     *         network interface in the request. If launching into a default subnet,
-     *         the default value is <code>true</code>.
-     */
-    public void setAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
-        this.associatePublicIpAddress = associatePublicIpAddress;
-    }
-    
-    /**
-     * Indicates whether to assign a public IP address to an instance you
-     * launch in a VPC. The public IP address can only be assigned to a
-     * network interface for eth0, and can only be assigned to a new network
-     * interface, not an existing one. You cannot specify more than one
-     * network interface in the request. If launching into a default subnet,
-     * the default value is <code>true</code>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the subnet associated with the network interface. Applies only
+     * if creating a network interface when launching an instance.
+     * </p>
      *
-     * @param associatePublicIpAddress Indicates whether to assign a public IP address to an instance you
-     *         launch in a VPC. The public IP address can only be assigned to a
-     *         network interface for eth0, and can only be assigned to a new network
-     *         interface, not an existing one. You cannot specify more than one
-     *         network interface in the request. If launching into a default subnet,
-     *         the default value is <code>true</code>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @return <p>
+     *         The ID of the subnet associated with the network interface.
+     *         Applies only if creating a network interface when launching an
+     *         instance.
+     *         </p>
      */
-    public InstanceNetworkInterfaceSpecification withAssociatePublicIpAddress(Boolean associatePublicIpAddress) {
-        this.associatePublicIpAddress = associatePublicIpAddress;
+    public String getSubnetId() {
+        return subnetId;
+    }
+
+    /**
+     * <p>
+     * The ID of the subnet associated with the network interface. Applies only
+     * if creating a network interface when launching an instance.
+     * </p>
+     *
+     * @param subnetId <p>
+     *            The ID of the subnet associated with the network interface.
+     *            Applies only if creating a network interface when launching an
+     *            instance.
+     *            </p>
+     */
+    public void setSubnetId(String subnetId) {
+        this.subnetId = subnetId;
+    }
+
+    /**
+     * <p>
+     * The ID of the subnet associated with the network interface. Applies only
+     * if creating a network interface when launching an instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param subnetId <p>
+     *            The ID of the subnet associated with the network interface.
+     *            Applies only if creating a network interface when launching an
+     *            instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withSubnetId(String subnetId) {
+        this.subnetId = subnetId;
         return this;
     }
 
     /**
-     * Indicates whether to assign a public IP address to an instance you
-     * launch in a VPC. The public IP address can only be assigned to a
-     * network interface for eth0, and can only be assigned to a new network
-     * interface, not an existing one. You cannot specify more than one
-     * network interface in the request. If launching into a default subnet,
-     * the default value is <code>true</code>.
+     * <p>
+     * The type of network interface. To create an Elastic Fabric Adapter (EFA),
+     * specify <code>efa</code>. For more information, see <a
+     * href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     * >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * If you are not creating an EFA, specify <code>interface</code> or omit
+     * this parameter.
+     * </p>
+     * <p>
+     * Valid values: <code>interface</code> | <code>efa</code>
+     * </p>
      *
-     * @return Indicates whether to assign a public IP address to an instance you
-     *         launch in a VPC. The public IP address can only be assigned to a
-     *         network interface for eth0, and can only be assigned to a new network
-     *         interface, not an existing one. You cannot specify more than one
-     *         network interface in the request. If launching into a default subnet,
-     *         the default value is <code>true</code>.
+     * @return <p>
+     *         The type of network interface. To create an Elastic Fabric
+     *         Adapter (EFA), specify <code>efa</code>. For more information,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     *         >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute
+     *         Cloud User Guide</i>.
+     *         </p>
+     *         <p>
+     *         If you are not creating an EFA, specify <code>interface</code> or
+     *         omit this parameter.
+     *         </p>
+     *         <p>
+     *         Valid values: <code>interface</code> | <code>efa</code>
+     *         </p>
      */
-    public Boolean getAssociatePublicIpAddress() {
-        return associatePublicIpAddress;
+    public String getInterfaceType() {
+        return interfaceType;
+    }
+
+    /**
+     * <p>
+     * The type of network interface. To create an Elastic Fabric Adapter (EFA),
+     * specify <code>efa</code>. For more information, see <a
+     * href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     * >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * If you are not creating an EFA, specify <code>interface</code> or omit
+     * this parameter.
+     * </p>
+     * <p>
+     * Valid values: <code>interface</code> | <code>efa</code>
+     * </p>
+     *
+     * @param interfaceType <p>
+     *            The type of network interface. To create an Elastic Fabric
+     *            Adapter (EFA), specify <code>efa</code>. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     *            >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you are not creating an EFA, specify <code>interface</code>
+     *            or omit this parameter.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>interface</code> | <code>efa</code>
+     *            </p>
+     */
+    public void setInterfaceType(String interfaceType) {
+        this.interfaceType = interfaceType;
+    }
+
+    /**
+     * <p>
+     * The type of network interface. To create an Elastic Fabric Adapter (EFA),
+     * specify <code>efa</code>. For more information, see <a
+     * href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     * >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * If you are not creating an EFA, specify <code>interface</code> or omit
+     * this parameter.
+     * </p>
+     * <p>
+     * Valid values: <code>interface</code> | <code>efa</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param interfaceType <p>
+     *            The type of network interface. To create an Elastic Fabric
+     *            Adapter (EFA), specify <code>efa</code>. For more information,
+     *            see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html"
+     *            >Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     *            <p>
+     *            If you are not creating an EFA, specify <code>interface</code>
+     *            or omit this parameter.
+     *            </p>
+     *            <p>
+     *            Valid values: <code>interface</code> | <code>efa</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InstanceNetworkInterfaceSpecification withInterfaceType(String interfaceType) {
+        this.interfaceType = interfaceType;
+        return this;
     }
 
     /**
@@ -626,75 +1246,156 @@ public class InstanceNetworkInterfaceSpecification implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getNetworkInterfaceId() != null) sb.append("NetworkInterfaceId: " + getNetworkInterfaceId() + ",");
-        if (getDeviceIndex() != null) sb.append("DeviceIndex: " + getDeviceIndex() + ",");
-        if (getSubnetId() != null) sb.append("SubnetId: " + getSubnetId() + ",");
-        if (getDescription() != null) sb.append("Description: " + getDescription() + ",");
-        if (getPrivateIpAddress() != null) sb.append("PrivateIpAddress: " + getPrivateIpAddress() + ",");
-        if (getGroups() != null) sb.append("Groups: " + getGroups() + ",");
-        if (isDeleteOnTermination() != null) sb.append("DeleteOnTermination: " + isDeleteOnTermination() + ",");
-        if (getPrivateIpAddresses() != null) sb.append("PrivateIpAddresses: " + getPrivateIpAddresses() + ",");
-        if (getSecondaryPrivateIpAddressCount() != null) sb.append("SecondaryPrivateIpAddressCount: " + getSecondaryPrivateIpAddressCount() + ",");
-        if (isAssociatePublicIpAddress() != null) sb.append("AssociatePublicIpAddress: " + isAssociatePublicIpAddress() );
+        if (getAssociatePublicIpAddress() != null)
+            sb.append("AssociatePublicIpAddress: " + getAssociatePublicIpAddress() + ",");
+        if (getDeleteOnTermination() != null)
+            sb.append("DeleteOnTermination: " + getDeleteOnTermination() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getDeviceIndex() != null)
+            sb.append("DeviceIndex: " + getDeviceIndex() + ",");
+        if (getGroups() != null)
+            sb.append("Groups: " + getGroups() + ",");
+        if (getIpv6AddressCount() != null)
+            sb.append("Ipv6AddressCount: " + getIpv6AddressCount() + ",");
+        if (getIpv6Addresses() != null)
+            sb.append("Ipv6Addresses: " + getIpv6Addresses() + ",");
+        if (getNetworkInterfaceId() != null)
+            sb.append("NetworkInterfaceId: " + getNetworkInterfaceId() + ",");
+        if (getPrivateIpAddress() != null)
+            sb.append("PrivateIpAddress: " + getPrivateIpAddress() + ",");
+        if (getPrivateIpAddresses() != null)
+            sb.append("PrivateIpAddresses: " + getPrivateIpAddresses() + ",");
+        if (getSecondaryPrivateIpAddressCount() != null)
+            sb.append("SecondaryPrivateIpAddressCount: " + getSecondaryPrivateIpAddressCount()
+                    + ",");
+        if (getSubnetId() != null)
+            sb.append("SubnetId: " + getSubnetId() + ",");
+        if (getInterfaceType() != null)
+            sb.append("InterfaceType: " + getInterfaceType());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getNetworkInterfaceId() == null) ? 0 : getNetworkInterfaceId().hashCode()); 
-        hashCode = prime * hashCode + ((getDeviceIndex() == null) ? 0 : getDeviceIndex().hashCode()); 
-        hashCode = prime * hashCode + ((getSubnetId() == null) ? 0 : getSubnetId().hashCode()); 
-        hashCode = prime * hashCode + ((getDescription() == null) ? 0 : getDescription().hashCode()); 
-        hashCode = prime * hashCode + ((getPrivateIpAddress() == null) ? 0 : getPrivateIpAddress().hashCode()); 
-        hashCode = prime * hashCode + ((getGroups() == null) ? 0 : getGroups().hashCode()); 
-        hashCode = prime * hashCode + ((isDeleteOnTermination() == null) ? 0 : isDeleteOnTermination().hashCode()); 
-        hashCode = prime * hashCode + ((getPrivateIpAddresses() == null) ? 0 : getPrivateIpAddresses().hashCode()); 
-        hashCode = prime * hashCode + ((getSecondaryPrivateIpAddressCount() == null) ? 0 : getSecondaryPrivateIpAddressCount().hashCode()); 
-        hashCode = prime * hashCode + ((isAssociatePublicIpAddress() == null) ? 0 : isAssociatePublicIpAddress().hashCode()); 
+
+        hashCode = prime
+                * hashCode
+                + ((getAssociatePublicIpAddress() == null) ? 0 : getAssociatePublicIpAddress()
+                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getDeleteOnTermination() == null) ? 0 : getDeleteOnTermination().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getDeviceIndex() == null) ? 0 : getDeviceIndex().hashCode());
+        hashCode = prime * hashCode + ((getGroups() == null) ? 0 : getGroups().hashCode());
+        hashCode = prime * hashCode
+                + ((getIpv6AddressCount() == null) ? 0 : getIpv6AddressCount().hashCode());
+        hashCode = prime * hashCode
+                + ((getIpv6Addresses() == null) ? 0 : getIpv6Addresses().hashCode());
+        hashCode = prime * hashCode
+                + ((getNetworkInterfaceId() == null) ? 0 : getNetworkInterfaceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getPrivateIpAddress() == null) ? 0 : getPrivateIpAddress().hashCode());
+        hashCode = prime * hashCode
+                + ((getPrivateIpAddresses() == null) ? 0 : getPrivateIpAddresses().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getSecondaryPrivateIpAddressCount() == null) ? 0
+                        : getSecondaryPrivateIpAddressCount().hashCode());
+        hashCode = prime * hashCode + ((getSubnetId() == null) ? 0 : getSubnetId().hashCode());
+        hashCode = prime * hashCode
+                + ((getInterfaceType() == null) ? 0 : getInterfaceType().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof InstanceNetworkInterfaceSpecification == false) return false;
-        InstanceNetworkInterfaceSpecification other = (InstanceNetworkInterfaceSpecification)obj;
-        
-        if (other.getNetworkInterfaceId() == null ^ this.getNetworkInterfaceId() == null) return false;
-        if (other.getNetworkInterfaceId() != null && other.getNetworkInterfaceId().equals(this.getNetworkInterfaceId()) == false) return false; 
-        if (other.getDeviceIndex() == null ^ this.getDeviceIndex() == null) return false;
-        if (other.getDeviceIndex() != null && other.getDeviceIndex().equals(this.getDeviceIndex()) == false) return false; 
-        if (other.getSubnetId() == null ^ this.getSubnetId() == null) return false;
-        if (other.getSubnetId() != null && other.getSubnetId().equals(this.getSubnetId()) == false) return false; 
-        if (other.getDescription() == null ^ this.getDescription() == null) return false;
-        if (other.getDescription() != null && other.getDescription().equals(this.getDescription()) == false) return false; 
-        if (other.getPrivateIpAddress() == null ^ this.getPrivateIpAddress() == null) return false;
-        if (other.getPrivateIpAddress() != null && other.getPrivateIpAddress().equals(this.getPrivateIpAddress()) == false) return false; 
-        if (other.getGroups() == null ^ this.getGroups() == null) return false;
-        if (other.getGroups() != null && other.getGroups().equals(this.getGroups()) == false) return false; 
-        if (other.isDeleteOnTermination() == null ^ this.isDeleteOnTermination() == null) return false;
-        if (other.isDeleteOnTermination() != null && other.isDeleteOnTermination().equals(this.isDeleteOnTermination()) == false) return false; 
-        if (other.getPrivateIpAddresses() == null ^ this.getPrivateIpAddresses() == null) return false;
-        if (other.getPrivateIpAddresses() != null && other.getPrivateIpAddresses().equals(this.getPrivateIpAddresses()) == false) return false; 
-        if (other.getSecondaryPrivateIpAddressCount() == null ^ this.getSecondaryPrivateIpAddressCount() == null) return false;
-        if (other.getSecondaryPrivateIpAddressCount() != null && other.getSecondaryPrivateIpAddressCount().equals(this.getSecondaryPrivateIpAddressCount()) == false) return false; 
-        if (other.isAssociatePublicIpAddress() == null ^ this.isAssociatePublicIpAddress() == null) return false;
-        if (other.isAssociatePublicIpAddress() != null && other.isAssociatePublicIpAddress().equals(this.isAssociatePublicIpAddress()) == false) return false; 
+        if (obj instanceof InstanceNetworkInterfaceSpecification == false)
+            return false;
+        InstanceNetworkInterfaceSpecification other = (InstanceNetworkInterfaceSpecification) obj;
+
+        if (other.getAssociatePublicIpAddress() == null
+                ^ this.getAssociatePublicIpAddress() == null)
+            return false;
+        if (other.getAssociatePublicIpAddress() != null
+                && other.getAssociatePublicIpAddress().equals(this.getAssociatePublicIpAddress()) == false)
+            return false;
+        if (other.getDeleteOnTermination() == null ^ this.getDeleteOnTermination() == null)
+            return false;
+        if (other.getDeleteOnTermination() != null
+                && other.getDeleteOnTermination().equals(this.getDeleteOnTermination()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getDeviceIndex() == null ^ this.getDeviceIndex() == null)
+            return false;
+        if (other.getDeviceIndex() != null
+                && other.getDeviceIndex().equals(this.getDeviceIndex()) == false)
+            return false;
+        if (other.getGroups() == null ^ this.getGroups() == null)
+            return false;
+        if (other.getGroups() != null && other.getGroups().equals(this.getGroups()) == false)
+            return false;
+        if (other.getIpv6AddressCount() == null ^ this.getIpv6AddressCount() == null)
+            return false;
+        if (other.getIpv6AddressCount() != null
+                && other.getIpv6AddressCount().equals(this.getIpv6AddressCount()) == false)
+            return false;
+        if (other.getIpv6Addresses() == null ^ this.getIpv6Addresses() == null)
+            return false;
+        if (other.getIpv6Addresses() != null
+                && other.getIpv6Addresses().equals(this.getIpv6Addresses()) == false)
+            return false;
+        if (other.getNetworkInterfaceId() == null ^ this.getNetworkInterfaceId() == null)
+            return false;
+        if (other.getNetworkInterfaceId() != null
+                && other.getNetworkInterfaceId().equals(this.getNetworkInterfaceId()) == false)
+            return false;
+        if (other.getPrivateIpAddress() == null ^ this.getPrivateIpAddress() == null)
+            return false;
+        if (other.getPrivateIpAddress() != null
+                && other.getPrivateIpAddress().equals(this.getPrivateIpAddress()) == false)
+            return false;
+        if (other.getPrivateIpAddresses() == null ^ this.getPrivateIpAddresses() == null)
+            return false;
+        if (other.getPrivateIpAddresses() != null
+                && other.getPrivateIpAddresses().equals(this.getPrivateIpAddresses()) == false)
+            return false;
+        if (other.getSecondaryPrivateIpAddressCount() == null
+                ^ this.getSecondaryPrivateIpAddressCount() == null)
+            return false;
+        if (other.getSecondaryPrivateIpAddressCount() != null
+                && other.getSecondaryPrivateIpAddressCount().equals(
+                        this.getSecondaryPrivateIpAddressCount()) == false)
+            return false;
+        if (other.getSubnetId() == null ^ this.getSubnetId() == null)
+            return false;
+        if (other.getSubnetId() != null && other.getSubnetId().equals(this.getSubnetId()) == false)
+            return false;
+        if (other.getInterfaceType() == null ^ this.getInterfaceType() == null)
+            return false;
+        if (other.getInterfaceType() != null
+                && other.getInterfaceType().equals(this.getInterfaceType()) == false)
+            return false;
         return true;
     }
-    
 }
-    

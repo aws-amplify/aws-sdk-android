@@ -1,153 +1,108 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Import Instance Request Marshaller
+ * JSON request marshaller for ImportInstanceRequest
  */
-public class ImportInstanceRequestMarshaller implements Marshaller<Request<ImportInstanceRequest>, ImportInstanceRequest> {
+public class ImportInstanceRequestMarshaller implements
+        Marshaller<Request<ImportInstanceRequest>, ImportInstanceRequest> {
 
     public Request<ImportInstanceRequest> marshall(ImportInstanceRequest importInstanceRequest) {
-
         if (importInstanceRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(ImportInstanceRequest)");
         }
 
-        Request<ImportInstanceRequest> request = new DefaultRequest<ImportInstanceRequest>(importInstanceRequest, "AmazonEC2");
-        request.addParameter("Action", "ImportInstance");
-        request.addParameter("Version", "2015-10-01");
+        Request<ImportInstanceRequest> request = new DefaultRequest<ImportInstanceRequest>(
+                importInstanceRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        if (importInstanceRequest.getDescription() != null) {
-            request.addParameter("Description", StringUtils.fromString(importInstanceRequest.getDescription()));
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (importInstanceRequest.getDescription() != null) {
+                String description = importInstanceRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
+            }
+            if (importInstanceRequest.getDiskImages() != null) {
+                java.util.List<DiskImage> diskImages = importInstanceRequest.getDiskImages();
+                jsonWriter.name("DiskImages");
+                jsonWriter.beginArray();
+                for (DiskImage diskImagesItem : diskImages) {
+                    if (diskImagesItem != null) {
+                        DiskImageJsonMarshaller.getInstance().marshall(diskImagesItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (importInstanceRequest.getDryRun() != null) {
+                Boolean dryRun = importInstanceRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
+            if (importInstanceRequest.getLaunchSpecification() != null) {
+                ImportInstanceLaunchSpecification launchSpecification = importInstanceRequest
+                        .getLaunchSpecification();
+                jsonWriter.name("LaunchSpecification");
+                ImportInstanceLaunchSpecificationJsonMarshaller.getInstance().marshall(
+                        launchSpecification, jsonWriter);
+            }
+            if (importInstanceRequest.getPlatform() != null) {
+                String platform = importInstanceRequest.getPlatform();
+                jsonWriter.name("Platform");
+                jsonWriter.value(platform);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
-        ImportInstanceLaunchSpecification importInstanceLaunchSpecificationLaunchSpecification = importInstanceRequest.getLaunchSpecification();
-        if (importInstanceLaunchSpecificationLaunchSpecification != null) {
-            if (importInstanceLaunchSpecificationLaunchSpecification.getArchitecture() != null) {
-                request.addParameter("LaunchSpecification.Architecture", StringUtils.fromString(importInstanceLaunchSpecificationLaunchSpecification.getArchitecture()));
-            }
-
-            java.util.List<String> groupNamesList = importInstanceLaunchSpecificationLaunchSpecification.getGroupNames();
-            int groupNamesListIndex = 1;
-
-            for (String groupNamesListValue : groupNamesList) {
-                if (groupNamesListValue != null) {
-                    request.addParameter("LaunchSpecification.GroupName." + groupNamesListIndex, StringUtils.fromString(groupNamesListValue));
-                }
-
-                groupNamesListIndex++;
-            }
-
-            java.util.List<String> groupIdsList = importInstanceLaunchSpecificationLaunchSpecification.getGroupIds();
-            int groupIdsListIndex = 1;
-
-            for (String groupIdsListValue : groupIdsList) {
-                if (groupIdsListValue != null) {
-                    request.addParameter("LaunchSpecification.GroupId." + groupIdsListIndex, StringUtils.fromString(groupIdsListValue));
-                }
-
-                groupIdsListIndex++;
-            }
-            if (importInstanceLaunchSpecificationLaunchSpecification.getAdditionalInfo() != null) {
-                request.addParameter("LaunchSpecification.AdditionalInfo", StringUtils.fromString(importInstanceLaunchSpecificationLaunchSpecification.getAdditionalInfo()));
-            }
-            UserData userDataUserData = importInstanceLaunchSpecificationLaunchSpecification.getUserData();
-            if (userDataUserData != null) {
-                if (userDataUserData.getData() != null) {
-                    request.addParameter("LaunchSpecification.UserData.Data", StringUtils.fromString(userDataUserData.getData()));
-                }
-            }
-            if (importInstanceLaunchSpecificationLaunchSpecification.getInstanceType() != null) {
-                request.addParameter("LaunchSpecification.InstanceType", StringUtils.fromString(importInstanceLaunchSpecificationLaunchSpecification.getInstanceType()));
-            }
-            Placement placementPlacement = importInstanceLaunchSpecificationLaunchSpecification.getPlacement();
-            if (placementPlacement != null) {
-                if (placementPlacement.getAvailabilityZone() != null) {
-                    request.addParameter("LaunchSpecification.Placement.AvailabilityZone", StringUtils.fromString(placementPlacement.getAvailabilityZone()));
-                }
-                if (placementPlacement.getGroupName() != null) {
-                    request.addParameter("LaunchSpecification.Placement.GroupName", StringUtils.fromString(placementPlacement.getGroupName()));
-                }
-                if (placementPlacement.getTenancy() != null) {
-                    request.addParameter("LaunchSpecification.Placement.Tenancy", StringUtils.fromString(placementPlacement.getTenancy()));
-                }
-                if (placementPlacement.getHostId() != null) {
-                    request.addParameter("LaunchSpecification.Placement.HostId", StringUtils.fromString(placementPlacement.getHostId()));
-                }
-                if (placementPlacement.getAffinity() != null) {
-                    request.addParameter("LaunchSpecification.Placement.Affinity", StringUtils.fromString(placementPlacement.getAffinity()));
-                }
-            }
-            if (importInstanceLaunchSpecificationLaunchSpecification.isMonitoring() != null) {
-                request.addParameter("LaunchSpecification.Monitoring.Enabled", StringUtils.fromBoolean(importInstanceLaunchSpecificationLaunchSpecification.isMonitoring()));
-            }
-            if (importInstanceLaunchSpecificationLaunchSpecification.getSubnetId() != null) {
-                request.addParameter("LaunchSpecification.SubnetId", StringUtils.fromString(importInstanceLaunchSpecificationLaunchSpecification.getSubnetId()));
-            }
-            if (importInstanceLaunchSpecificationLaunchSpecification.getInstanceInitiatedShutdownBehavior() != null) {
-                request.addParameter("LaunchSpecification.InstanceInitiatedShutdownBehavior", StringUtils.fromString(importInstanceLaunchSpecificationLaunchSpecification.getInstanceInitiatedShutdownBehavior()));
-            }
-            if (importInstanceLaunchSpecificationLaunchSpecification.getPrivateIpAddress() != null) {
-                request.addParameter("LaunchSpecification.PrivateIpAddress", StringUtils.fromString(importInstanceLaunchSpecificationLaunchSpecification.getPrivateIpAddress()));
-            }
-        }
-
-        java.util.List<DiskImage> diskImagesList = importInstanceRequest.getDiskImages();
-        int diskImagesListIndex = 1;
-
-        for (DiskImage diskImagesListValue : diskImagesList) {
-            DiskImage diskImageMember = diskImagesListValue;
-            if (diskImageMember != null) {
-                DiskImageDetail diskImageDetailImage = diskImageMember.getImage();
-                if (diskImageDetailImage != null) {
-                    if (diskImageDetailImage.getFormat() != null) {
-                        request.addParameter("DiskImage." + diskImagesListIndex + ".Image.Format", StringUtils.fromString(diskImageDetailImage.getFormat()));
-                    }
-                    if (diskImageDetailImage.getBytes() != null) {
-                        request.addParameter("DiskImage." + diskImagesListIndex + ".Image.Bytes", StringUtils.fromLong(diskImageDetailImage.getBytes()));
-                    }
-                    if (diskImageDetailImage.getImportManifestUrl() != null) {
-                        request.addParameter("DiskImage." + diskImagesListIndex + ".Image.ImportManifestUrl", StringUtils.fromString(diskImageDetailImage.getImportManifestUrl()));
-                    }
-                }
-                if (diskImageMember.getDescription() != null) {
-                    request.addParameter("DiskImage." + diskImagesListIndex + ".Description", StringUtils.fromString(diskImageMember.getDescription()));
-                }
-                VolumeDetail volumeDetailVolume = diskImageMember.getVolume();
-                if (volumeDetailVolume != null) {
-                    if (volumeDetailVolume.getSize() != null) {
-                        request.addParameter("DiskImage." + diskImagesListIndex + ".Volume.Size", StringUtils.fromLong(volumeDetailVolume.getSize()));
-                    }
-                }
-            }
-
-            diskImagesListIndex++;
-        }
-        if (importInstanceRequest.getPlatform() != null) {
-            request.addParameter("Platform", StringUtils.fromString(importInstanceRequest.getPlatform()));
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;
