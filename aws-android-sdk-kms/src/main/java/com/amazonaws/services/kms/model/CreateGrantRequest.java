@@ -26,8 +26,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * When setting permissions, grants are an alternative to key policies.
  * </p>
  * <p>
- * To create a grant that allows a cryptographic operation only when the request
- * includes a particular <a href=
+ * To create a grant that allows a <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operation</a> only when the request includes a particular <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >encryption context</a>, use the <code>Constraints</code> parameter. For
  * details, see <a>GrantConstraints</a>.
@@ -192,8 +194,10 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
@@ -783,8 +787,10 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
@@ -792,7 +798,9 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      *
      * @return <p>
-     *         Allows a cryptographic operation only when the encryption context
+     *         Allows a <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operation</a> only when the encryption context
      *         matches or includes the encryption context specified in this
      *         structure. For more information about encryption context, see <a
      *         href=
@@ -807,8 +815,10 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
@@ -816,10 +826,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      *
      * @param constraints <p>
-     *            Allows a cryptographic operation only when the encryption
-     *            context matches or includes the encryption context specified
-     *            in this structure. For more information about encryption
-     *            context, see <a href=
+     *            Allows a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> only when the encryption context
+     *            matches or includes the encryption context specified in this
+     *            structure. For more information about encryption context, see
+     *            <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a> in the <i> <i>AWS Key Management
      *            Service Developer Guide</i> </i>.
@@ -831,8 +843,10 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
@@ -843,10 +857,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * together.
      *
      * @param constraints <p>
-     *            Allows a cryptographic operation only when the encryption
-     *            context matches or includes the encryption context specified
-     *            in this structure. For more information about encryption
-     *            context, see <a href=
+     *            Allows a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> only when the encryption context
+     *            matches or includes the encryption context specified in this
+     *            structure. For more information about encryption context, see
+     *            <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a> in the <i> <i>AWS Key Management
      *            Service Developer Guide</i> </i>.

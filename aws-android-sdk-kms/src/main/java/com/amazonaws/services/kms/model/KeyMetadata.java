@@ -84,7 +84,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK.
+     * The <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -94,14 +96,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the CMK.
+     * The current status of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
      * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
-     * Key Management Service Developer Guide</i>.
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -212,8 +214,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of encryption algorithms that the CMK supports. You cannot use the
-     * CMK with other encryption algorithms within AWS KMS.
+     * The encryption algorithms that the CMK supports. You cannot use the CMK
+     * with other encryption algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -224,8 +226,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of signing algorithms that the CMK supports. You cannot use the
-     * CMK with other signing algorithms within AWS KMS.
+     * The signing algorithms that the CMK supports. You cannot use the CMK with
+     * other signing algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -581,14 +583,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK.
+     * The <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @return <p>
-     *         The cryptographic operations for which you can use the CMK.
+     *         The <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operations</a> for which you can use the CMK.
      *         </p>
      * @see KeyUsageType
      */
@@ -598,14 +604,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK.
+     * The <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the CMK.
+     *            The <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
      *            </p>
      * @see KeyUsageType
      */
@@ -615,7 +625,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK.
+     * The <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -625,7 +637,9 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the CMK.
+     *            The <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -638,14 +652,18 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK.
+     * The <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the CMK.
+     *            The <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
      *            </p>
      * @see KeyUsageType
      */
@@ -655,7 +673,9 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The cryptographic operations for which you can use the CMK.
+     * The <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -665,7 +685,9 @@ public class KeyMetadata implements Serializable {
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            The cryptographic operations for which you can use the CMK.
+     *            The <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -678,14 +700,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the CMK.
+     * The current status of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
      * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
-     * Key Management Service Developer Guide</i>.
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -693,14 +715,14 @@ public class KeyMetadata implements Serializable {
      * Unavailable
      *
      * @return <p>
-     *         The state of the CMK.
+     *         The current status of the CMK.
      *         </p>
      *         <p>
      *         For more information about how key state affects the use of a
      *         CMK, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *         >How Key State Affects the Use of a Customer Master Key</a> in
-     *         the <i>AWS Key Management Service Developer Guide</i>.
+     *         >Key state: Effect on your CMK</a> in the <i>AWS Key Management
+     *         Service Developer Guide</i>.
      *         </p>
      * @see KeyState
      */
@@ -710,14 +732,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the CMK.
+     * The current status of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
      * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
-     * Key Management Service Developer Guide</i>.
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -725,14 +747,14 @@ public class KeyMetadata implements Serializable {
      * Unavailable
      *
      * @param keyState <p>
-     *            The state of the CMK.
+     *            The current status of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >How Key State Affects the Use of a Customer Master Key</a> in
-     *            the <i>AWS Key Management Service Developer Guide</i>.
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      * @see KeyState
      */
@@ -742,14 +764,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the CMK.
+     * The current status of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
      * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
-     * Key Management Service Developer Guide</i>.
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -760,14 +782,14 @@ public class KeyMetadata implements Serializable {
      * Unavailable
      *
      * @param keyState <p>
-     *            The state of the CMK.
+     *            The current status of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >How Key State Affects the Use of a Customer Master Key</a> in
-     *            the <i>AWS Key Management Service Developer Guide</i>.
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -780,14 +802,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the CMK.
+     * The current status of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
      * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
-     * Key Management Service Developer Guide</i>.
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -795,14 +817,14 @@ public class KeyMetadata implements Serializable {
      * Unavailable
      *
      * @param keyState <p>
-     *            The state of the CMK.
+     *            The current status of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >How Key State Affects the Use of a Customer Master Key</a> in
-     *            the <i>AWS Key Management Service Developer Guide</i>.
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      * @see KeyState
      */
@@ -812,14 +834,14 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * The state of the CMK.
+     * The current status of the CMK.
      * </p>
      * <p>
      * For more information about how key state affects the use of a CMK, see <a
      * href
      * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >How Key State Affects the Use of a Customer Master Key</a> in the <i>AWS
-     * Key Management Service Developer Guide</i>.
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -830,14 +852,14 @@ public class KeyMetadata implements Serializable {
      * Unavailable
      *
      * @param keyState <p>
-     *            The state of the CMK.
+     *            The current status of the CMK.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
      *            CMK, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >How Key State Affects the Use of a Customer Master Key</a> in
-     *            the <i>AWS Key Management Service Developer Guide</i>.
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1652,8 +1674,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of encryption algorithms that the CMK supports. You cannot use the
-     * CMK with other encryption algorithms within AWS KMS.
+     * The encryption algorithms that the CMK supports. You cannot use the CMK
+     * with other encryption algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1661,8 +1683,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      *
      * @return <p>
-     *         A list of encryption algorithms that the CMK supports. You cannot
-     *         use the CMK with other encryption algorithms within AWS KMS.
+     *         The encryption algorithms that the CMK supports. You cannot use
+     *         the CMK with other encryption algorithms within AWS KMS.
      *         </p>
      *         <p>
      *         This field appears only when the <code>KeyUsage</code> of the CMK
@@ -1675,8 +1697,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of encryption algorithms that the CMK supports. You cannot use the
-     * CMK with other encryption algorithms within AWS KMS.
+     * The encryption algorithms that the CMK supports. You cannot use the CMK
+     * with other encryption algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1684,9 +1706,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      *
      * @param encryptionAlgorithms <p>
-     *            A list of encryption algorithms that the CMK supports. You
-     *            cannot use the CMK with other encryption algorithms within AWS
-     *            KMS.
+     *            The encryption algorithms that the CMK supports. You cannot
+     *            use the CMK with other encryption algorithms within AWS KMS.
      *            </p>
      *            <p>
      *            This field appears only when the <code>KeyUsage</code> of the
@@ -1704,8 +1725,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of encryption algorithms that the CMK supports. You cannot use the
-     * CMK with other encryption algorithms within AWS KMS.
+     * The encryption algorithms that the CMK supports. You cannot use the CMK
+     * with other encryption algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1716,9 +1737,8 @@ public class KeyMetadata implements Serializable {
      * together.
      *
      * @param encryptionAlgorithms <p>
-     *            A list of encryption algorithms that the CMK supports. You
-     *            cannot use the CMK with other encryption algorithms within AWS
-     *            KMS.
+     *            The encryption algorithms that the CMK supports. You cannot
+     *            use the CMK with other encryption algorithms within AWS KMS.
      *            </p>
      *            <p>
      *            This field appears only when the <code>KeyUsage</code> of the
@@ -1739,8 +1759,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of encryption algorithms that the CMK supports. You cannot use the
-     * CMK with other encryption algorithms within AWS KMS.
+     * The encryption algorithms that the CMK supports. You cannot use the CMK
+     * with other encryption algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1751,9 +1771,8 @@ public class KeyMetadata implements Serializable {
      * together.
      *
      * @param encryptionAlgorithms <p>
-     *            A list of encryption algorithms that the CMK supports. You
-     *            cannot use the CMK with other encryption algorithms within AWS
-     *            KMS.
+     *            The encryption algorithms that the CMK supports. You cannot
+     *            use the CMK with other encryption algorithms within AWS KMS.
      *            </p>
      *            <p>
      *            This field appears only when the <code>KeyUsage</code> of the
@@ -1769,8 +1788,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of signing algorithms that the CMK supports. You cannot use the
-     * CMK with other signing algorithms within AWS KMS.
+     * The signing algorithms that the CMK supports. You cannot use the CMK with
+     * other signing algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1778,8 +1797,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      *
      * @return <p>
-     *         A list of signing algorithms that the CMK supports. You cannot
-     *         use the CMK with other signing algorithms within AWS KMS.
+     *         The signing algorithms that the CMK supports. You cannot use the
+     *         CMK with other signing algorithms within AWS KMS.
      *         </p>
      *         <p>
      *         This field appears only when the <code>KeyUsage</code> of the CMK
@@ -1792,8 +1811,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of signing algorithms that the CMK supports. You cannot use the
-     * CMK with other signing algorithms within AWS KMS.
+     * The signing algorithms that the CMK supports. You cannot use the CMK with
+     * other signing algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1801,8 +1820,8 @@ public class KeyMetadata implements Serializable {
      * </p>
      *
      * @param signingAlgorithms <p>
-     *            A list of signing algorithms that the CMK supports. You cannot
-     *            use the CMK with other signing algorithms within AWS KMS.
+     *            The signing algorithms that the CMK supports. You cannot use
+     *            the CMK with other signing algorithms within AWS KMS.
      *            </p>
      *            <p>
      *            This field appears only when the <code>KeyUsage</code> of the
@@ -1820,8 +1839,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of signing algorithms that the CMK supports. You cannot use the
-     * CMK with other signing algorithms within AWS KMS.
+     * The signing algorithms that the CMK supports. You cannot use the CMK with
+     * other signing algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1832,8 +1851,8 @@ public class KeyMetadata implements Serializable {
      * together.
      *
      * @param signingAlgorithms <p>
-     *            A list of signing algorithms that the CMK supports. You cannot
-     *            use the CMK with other signing algorithms within AWS KMS.
+     *            The signing algorithms that the CMK supports. You cannot use
+     *            the CMK with other signing algorithms within AWS KMS.
      *            </p>
      *            <p>
      *            This field appears only when the <code>KeyUsage</code> of the
@@ -1854,8 +1873,8 @@ public class KeyMetadata implements Serializable {
 
     /**
      * <p>
-     * A list of signing algorithms that the CMK supports. You cannot use the
-     * CMK with other signing algorithms within AWS KMS.
+     * The signing algorithms that the CMK supports. You cannot use the CMK with
+     * other signing algorithms within AWS KMS.
      * </p>
      * <p>
      * This field appears only when the <code>KeyUsage</code> of the CMK is
@@ -1866,8 +1885,8 @@ public class KeyMetadata implements Serializable {
      * together.
      *
      * @param signingAlgorithms <p>
-     *            A list of signing algorithms that the CMK supports. You cannot
-     *            use the CMK with other signing algorithms within AWS KMS.
+     *            The signing algorithms that the CMK supports. You cannot use
+     *            the CMK with other signing algorithms within AWS KMS.
      *            </p>
      *            <p>
      *            This field appears only when the <code>KeyUsage</code> of the

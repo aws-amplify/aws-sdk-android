@@ -31,7 +31,9 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The ID of the key used during encryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -115,14 +117,18 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The ID of the key used during encryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The ID of the key used during encryption.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the CMK that was used to encrypt the plaintext.
      *         </p>
      */
     public String getKeyId() {
@@ -131,14 +137,19 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The ID of the key used during encryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The ID of the key used during encryption.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that was used to encrypt the
+     *            plaintext.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -147,7 +158,9 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The ID of the key used during encryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -157,7 +170,10 @@ public class EncryptResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The ID of the key used during encryption.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that was used to encrypt the
+     *            plaintext.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

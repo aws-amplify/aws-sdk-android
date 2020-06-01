@@ -42,8 +42,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * To generate a data key pair, you must specify a symmetric customer master key
  * (CMK) to encrypt the private key in a data key pair. You cannot use an
- * asymmetric CMK. To get the type of your CMK, use the <a>DescribeKey</a>
- * operation.
+ * asymmetric CMK or a CMK in a custom key store. To get the type and origin of
+ * your CMK, use the <a>DescribeKey</a> operation.
  * </p>
  * <p>
  * If you are using the data key pair to encrypt data, or for any operation
@@ -60,7 +60,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * encryption operation. If you specify an <code>EncryptionContext</code>, you
  * must specify the same encryption context (a case-sensitive exact match) when
  * decrypting the encrypted data key. Otherwise, the request to decrypt fails
- * with an InvalidCiphertextException. For more information, see <a href=
+ * with an <code>InvalidCiphertextException</code>. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >Encryption Context</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
@@ -99,7 +100,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
@@ -369,7 +372,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
@@ -415,7 +420,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *
      * @return <p>
      *         Specifies the symmetric CMK that encrypts the private key in the
-     *         data key pair. You cannot specify an asymmetric CMKs.
+     *         data key pair. You cannot specify an asymmetric CMK or a CMK in a
+     *         custom key store. To get the type and origin of your CMK, use the
+     *         <a>DescribeKey</a> operation.
      *         </p>
      *         <p>
      *         To specify a CMK, use its key ID, Amazon Resource Name (ARN),
@@ -463,7 +470,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
@@ -509,7 +518,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *
      * @param keyId <p>
      *            Specifies the symmetric CMK that encrypts the private key in
-     *            the data key pair. You cannot specify an asymmetric CMKs.
+     *            the data key pair. You cannot specify an asymmetric CMK or a
+     *            CMK in a custom key store. To get the type and origin of your
+     *            CMK, use the <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),
@@ -557,7 +568,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
     /**
      * <p>
      * Specifies the symmetric CMK that encrypts the private key in the data key
-     * pair. You cannot specify an asymmetric CMKs.
+     * pair. You cannot specify an asymmetric CMK or a CMK in a custom key
+     * store. To get the type and origin of your CMK, use the <a>DescribeKey</a>
+     * operation.
      * </p>
      * <p>
      * To specify a CMK, use its key ID, Amazon Resource Name (ARN), alias name,
@@ -606,7 +619,9 @@ public class GenerateDataKeyPairRequest extends AmazonWebServiceRequest implemen
      *
      * @param keyId <p>
      *            Specifies the symmetric CMK that encrypts the private key in
-     *            the data key pair. You cannot specify an asymmetric CMKs.
+     *            the data key pair. You cannot specify an asymmetric CMK or a
+     *            CMK in a custom key store. To get the type and origin of your
+     *            CMK, use the <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
      *            To specify a CMK, use its key ID, Amazon Resource Name (ARN),

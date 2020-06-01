@@ -20,7 +20,9 @@ import java.io.Serializable;
 public class GetPublicKeyResult implements Serializable {
     /**
      * <p>
-     * The identifier of the asymmetric CMK from which the public key was
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -103,7 +105,9 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the asymmetric CMK from which the public key was
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -111,8 +115,10 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the asymmetric CMK from which the public key
-     *         was downloaded.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the asymmetric CMK from which the public key was
+     *         downloaded.
      *         </p>
      */
     public String getKeyId() {
@@ -121,7 +127,9 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the asymmetric CMK from which the public key was
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -129,7 +137,9 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the asymmetric CMK from which the public key
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the asymmetric CMK from which the public key
      *            was downloaded.
      *            </p>
      */
@@ -139,7 +149,9 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the asymmetric CMK from which the public key was
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -150,7 +162,9 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the asymmetric CMK from which the public key
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the asymmetric CMK from which the public key
      *            was downloaded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
