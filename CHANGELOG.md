@@ -1,3 +1,15 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-mediapackagevod
+---aws-android-sdk-ec2
+---aws-android-sdk-marketplacemetering
+---aws-android-sdk-lightsail
+---aws-android-sdk-ssm
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
