@@ -1,154 +1,191 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.Request;
-import com.amazonaws.services.ec2.model.transform.ImportSnapshotRequestMarshaller;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#importSnapshot(ImportSnapshotRequest) ImportSnapshot operation}.
  * <p>
  * Imports a disk into an EBS snapshot.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#importSnapshot(ImportSnapshotRequest)
  */
-public class ImportSnapshotRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<ImportSnapshotRequest> {
-
+public class ImportSnapshotRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The description string for the import snapshot task.
-     */
-    private String description;
-
-    /**
-     * Information about the disk container.
-     */
-    private SnapshotDiskContainer diskContainer;
-
-    /**
+     * <p>
      * The client-specific data.
+     * </p>
      */
     private ClientData clientData;
 
     /**
+     * <p>
      * Token to enable idempotency for VM import requests.
+     * </p>
      */
     private String clientToken;
 
     /**
-     * The name of the role to use when not using the default role,
-     * 'vmimport'.
+     * <p>
+     * The description string for the import snapshot task.
+     * </p>
+     */
+    private String description;
+
+    /**
+     * <p>
+     * Information about the disk container.
+     * </p>
+     */
+    private SnapshotDiskContainer diskContainer;
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
+     * Specifies whether the destination snapshot of the imported image should
+     * be encrypted. The default CMK for EBS is used unless you specify a
+     * non-default AWS Key Management Service (AWS KMS) CMK using
+     * <code>KmsKeyId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     * >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     */
+    private Boolean encrypted;
+
+    /**
+     * <p>
+     * An identifier for the symmetric AWS Key Management Service (AWS KMS)
+     * customer master key (CMK) to use when creating the encrypted snapshot.
+     * This parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. If a
+     * <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must
+     * also be set.
+     * </p>
+     * <p>
+     * The CMK identifier may be provided in any of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace,
+     * followed by the Region of the CMK, the AWS account ID of the CMK owner,
+     * the <code>alias</code> namespace, and then the CMK alias. For example,
+     * arn
+     * :aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>key</code> namespace, and then the CMK ID. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-
+     * a123-456a-a12b-a123b4cd56ef</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>alias</code> namespace, and then the CMK alias. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias
+     * </i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action
+     * you call may appear to complete even though you provided an invalid
+     * identifier. This action will eventually report failure.
+     * </p>
+     * <p>
+     * The specified CMK must exist in the Region that the snapshot is being
+     * copied to.
+     * </p>
+     * <p>
+     * Amazon EBS does not support asymmetric CMKs.
+     * </p>
+     */
+    private String kmsKeyId;
+
+    /**
+     * <p>
+     * The name of the role to use when not using the default role, 'vmimport'.
+     * </p>
      */
     private String roleName;
 
     /**
-     * The description string for the import snapshot task.
-     *
-     * @return The description string for the import snapshot task.
-     */
-    public String getDescription() {
-        return description;
-    }
-    
-    /**
-     * The description string for the import snapshot task.
-     *
-     * @param description The description string for the import snapshot task.
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    
-    /**
-     * The description string for the import snapshot task.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param description The description string for the import snapshot task.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ImportSnapshotRequest withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * Information about the disk container.
-     *
-     * @return Information about the disk container.
-     */
-    public SnapshotDiskContainer getDiskContainer() {
-        return diskContainer;
-    }
-    
-    /**
-     * Information about the disk container.
-     *
-     * @param diskContainer Information about the disk container.
-     */
-    public void setDiskContainer(SnapshotDiskContainer diskContainer) {
-        this.diskContainer = diskContainer;
-    }
-    
-    /**
-     * Information about the disk container.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param diskContainer Information about the disk container.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ImportSnapshotRequest withDiskContainer(SnapshotDiskContainer diskContainer) {
-        this.diskContainer = diskContainer;
-        return this;
-    }
-
-    /**
      * The client-specific data.
+     * </p>
      *
-     * @return The client-specific data.
+     * @return <p>
+     *         The client-specific data.
+     *         </p>
      */
     public ClientData getClientData() {
         return clientData;
     }
-    
+
     /**
+     * <p>
      * The client-specific data.
+     * </p>
      *
-     * @param clientData The client-specific data.
+     * @param clientData <p>
+     *            The client-specific data.
+     *            </p>
      */
     public void setClientData(ClientData clientData) {
         this.clientData = clientData;
     }
-    
+
     /**
-     * The client-specific data.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The client-specific data.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param clientData The client-specific data.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param clientData <p>
+     *            The client-specific data.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ImportSnapshotRequest withClientData(ClientData clientData) {
         this.clientData = clientData;
@@ -156,32 +193,44 @@ public class ImportSnapshotRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
      * Token to enable idempotency for VM import requests.
+     * </p>
      *
-     * @return Token to enable idempotency for VM import requests.
+     * @return <p>
+     *         Token to enable idempotency for VM import requests.
+     *         </p>
      */
     public String getClientToken() {
         return clientToken;
     }
-    
+
     /**
+     * <p>
      * Token to enable idempotency for VM import requests.
+     * </p>
      *
-     * @param clientToken Token to enable idempotency for VM import requests.
+     * @param clientToken <p>
+     *            Token to enable idempotency for VM import requests.
+     *            </p>
      */
     public void setClientToken(String clientToken) {
         this.clientToken = clientToken;
     }
-    
+
     /**
-     * Token to enable idempotency for VM import requests.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Token to enable idempotency for VM import requests.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param clientToken Token to enable idempotency for VM import requests.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param clientToken <p>
+     *            Token to enable idempotency for VM import requests.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ImportSnapshotRequest withClientToken(String clientToken) {
         this.clientToken = clientToken;
@@ -189,38 +238,732 @@ public class ImportSnapshotRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * The name of the role to use when not using the default role,
-     * 'vmimport'.
+     * <p>
+     * The description string for the import snapshot task.
+     * </p>
      *
-     * @return The name of the role to use when not using the default role,
+     * @return <p>
+     *         The description string for the import snapshot task.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * The description string for the import snapshot task.
+     * </p>
+     *
+     * @param description <p>
+     *            The description string for the import snapshot task.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The description string for the import snapshot task.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param description <p>
+     *            The description string for the import snapshot task.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportSnapshotRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the disk container.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the disk container.
+     *         </p>
+     */
+    public SnapshotDiskContainer getDiskContainer() {
+        return diskContainer;
+    }
+
+    /**
+     * <p>
+     * Information about the disk container.
+     * </p>
+     *
+     * @param diskContainer <p>
+     *            Information about the disk container.
+     *            </p>
+     */
+    public void setDiskContainer(SnapshotDiskContainer diskContainer) {
+        this.diskContainer = diskContainer;
+    }
+
+    /**
+     * <p>
+     * Information about the disk container.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param diskContainer <p>
+     *            Information about the disk container.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportSnapshotRequest withDiskContainer(SnapshotDiskContainer diskContainer) {
+        this.diskContainer = diskContainer;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportSnapshotRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the destination snapshot of the imported image should
+     * be encrypted. The default CMK for EBS is used unless you specify a
+     * non-default AWS Key Management Service (AWS KMS) CMK using
+     * <code>KmsKeyId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     * >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether the destination snapshot of the imported image
+     *         should be encrypted. The default CMK for EBS is used unless you
+     *         specify a non-default AWS Key Management Service (AWS KMS) CMK
+     *         using <code>KmsKeyId</code>. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     *         >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud
+     *         User Guide</i>.
+     *         </p>
+     */
+    public Boolean isEncrypted() {
+        return encrypted;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the destination snapshot of the imported image should
+     * be encrypted. The default CMK for EBS is used unless you specify a
+     * non-default AWS Key Management Service (AWS KMS) CMK using
+     * <code>KmsKeyId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     * >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies whether the destination snapshot of the imported image
+     *         should be encrypted. The default CMK for EBS is used unless you
+     *         specify a non-default AWS Key Management Service (AWS KMS) CMK
+     *         using <code>KmsKeyId</code>. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     *         >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud
+     *         User Guide</i>.
+     *         </p>
+     */
+    public Boolean getEncrypted() {
+        return encrypted;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the destination snapshot of the imported image should
+     * be encrypted. The default CMK for EBS is used unless you specify a
+     * non-default AWS Key Management Service (AWS KMS) CMK using
+     * <code>KmsKeyId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     * >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     *
+     * @param encrypted <p>
+     *            Specifies whether the destination snapshot of the imported
+     *            image should be encrypted. The default CMK for EBS is used
+     *            unless you specify a non-default AWS Key Management Service
+     *            (AWS KMS) CMK using <code>KmsKeyId</code>. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     *            >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     */
+    public void setEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
+    }
+
+    /**
+     * <p>
+     * Specifies whether the destination snapshot of the imported image should
+     * be encrypted. The default CMK for EBS is used unless you specify a
+     * non-default AWS Key Management Service (AWS KMS) CMK using
+     * <code>KmsKeyId</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     * >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute Cloud User
+     * Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param encrypted <p>
+     *            Specifies whether the destination snapshot of the imported
+     *            image should be encrypted. The default CMK for EBS is used
+     *            unless you specify a non-default AWS Key Management Service
+     *            (AWS KMS) CMK using <code>KmsKeyId</code>. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html"
+     *            >Amazon EBS Encryption</a> in the <i>Amazon Elastic Compute
+     *            Cloud User Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportSnapshotRequest withEncrypted(Boolean encrypted) {
+        this.encrypted = encrypted;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An identifier for the symmetric AWS Key Management Service (AWS KMS)
+     * customer master key (CMK) to use when creating the encrypted snapshot.
+     * This parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. If a
+     * <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must
+     * also be set.
+     * </p>
+     * <p>
+     * The CMK identifier may be provided in any of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace,
+     * followed by the Region of the CMK, the AWS account ID of the CMK owner,
+     * the <code>alias</code> namespace, and then the CMK alias. For example,
+     * arn
+     * :aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>key</code> namespace, and then the CMK ID. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-
+     * a123-456a-a12b-a123b4cd56ef</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>alias</code> namespace, and then the CMK alias. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias
+     * </i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action
+     * you call may appear to complete even though you provided an invalid
+     * identifier. This action will eventually report failure.
+     * </p>
+     * <p>
+     * The specified CMK must exist in the Region that the snapshot is being
+     * copied to.
+     * </p>
+     * <p>
+     * Amazon EBS does not support asymmetric CMKs.
+     * </p>
+     *
+     * @return <p>
+     *         An identifier for the symmetric AWS Key Management Service (AWS
+     *         KMS) customer master key (CMK) to use when creating the encrypted
+     *         snapshot. This parameter is only required if you want to use a
+     *         non-default CMK; if this parameter is not specified, the default
+     *         CMK for EBS is used. If a <code>KmsKeyId</code> is specified, the
+     *         <code>Encrypted</code> flag must also be set.
+     *         </p>
+     *         <p>
+     *         The CMK identifier may be provided in any of the following
+     *         formats:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Key ID
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     *         namespace, followed by the Region of the CMK, the AWS account ID
+     *         of the CMK owner, the <code>alias</code> namespace, and then the
+     *         CMK alias. For example,
+     *         arn:aws:kms:<i>us-east-1</i>:<i>012345678910
+     *         </i>:alias/<i>ExampleAlias</i>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         ARN using key ID. The ID ARN contains the
+     *         <code>arn:aws:kms</code> namespace, followed by the Region of the
+     *         CMK, the AWS account ID of the CMK owner, the <code>key</code>
+     *         namespace, and then the CMK ID. For example,
+     *         arn:aws:kms:<i>us-east
+     *         -1</i>:<i>012345678910</i>:key/<i>abcd1234-a123
+     *         -456a-a12b-a123b4cd56ef</i>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         ARN using key alias. The alias ARN contains the
+     *         <code>arn:aws:kms</code> namespace, followed by the Region of the
+     *         CMK, the AWS account ID of the CMK owner, the <code>alias</code>
+     *         namespace, and then the CMK alias. For example,
+     *         arn:aws:kms:<i>us-
+     *         east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         AWS parses <code>KmsKeyId</code> asynchronously, meaning that the
+     *         action you call may appear to complete even though you provided
+     *         an invalid identifier. This action will eventually report
+     *         failure.
+     *         </p>
+     *         <p>
+     *         The specified CMK must exist in the Region that the snapshot is
+     *         being copied to.
+     *         </p>
+     *         <p>
+     *         Amazon EBS does not support asymmetric CMKs.
+     *         </p>
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * An identifier for the symmetric AWS Key Management Service (AWS KMS)
+     * customer master key (CMK) to use when creating the encrypted snapshot.
+     * This parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. If a
+     * <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must
+     * also be set.
+     * </p>
+     * <p>
+     * The CMK identifier may be provided in any of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace,
+     * followed by the Region of the CMK, the AWS account ID of the CMK owner,
+     * the <code>alias</code> namespace, and then the CMK alias. For example,
+     * arn
+     * :aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>key</code> namespace, and then the CMK ID. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-
+     * a123-456a-a12b-a123b4cd56ef</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>alias</code> namespace, and then the CMK alias. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias
+     * </i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action
+     * you call may appear to complete even though you provided an invalid
+     * identifier. This action will eventually report failure.
+     * </p>
+     * <p>
+     * The specified CMK must exist in the Region that the snapshot is being
+     * copied to.
+     * </p>
+     * <p>
+     * Amazon EBS does not support asymmetric CMKs.
+     * </p>
+     *
+     * @param kmsKeyId <p>
+     *            An identifier for the symmetric AWS Key Management Service
+     *            (AWS KMS) customer master key (CMK) to use when creating the
+     *            encrypted snapshot. This parameter is only required if you
+     *            want to use a non-default CMK; if this parameter is not
+     *            specified, the default CMK for EBS is used. If a
+     *            <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     *            flag must also be set.
+     *            </p>
+     *            <p>
+     *            The CMK identifier may be provided in any of the following
+     *            formats:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Key ID
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     *            namespace, followed by the Region of the CMK, the AWS account
+     *            ID of the CMK owner, the <code>alias</code> namespace, and
+     *            then the CMK alias. For example,
+     *            arn:aws:kms:<i>us-east-1</i>:<
+     *            i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARN using key ID. The ID ARN contains the
+     *            <code>arn:aws:kms</code> namespace, followed by the Region of
+     *            the CMK, the AWS account ID of the CMK owner, the
+     *            <code>key</code> namespace, and then the CMK ID. For example,
+     *            arn
+     *            :aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234
+     *            -a123-456a-a12b-a123b4cd56ef</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARN using key alias. The alias ARN contains the
+     *            <code>arn:aws:kms</code> namespace, followed by the Region of
+     *            the CMK, the AWS account ID of the CMK owner, the
+     *            <code>alias</code> namespace, and then the CMK alias. For
+     *            example,
+     *            arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias
+     *            /<i>ExampleAlias</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            AWS parses <code>KmsKeyId</code> asynchronously, meaning that
+     *            the action you call may appear to complete even though you
+     *            provided an invalid identifier. This action will eventually
+     *            report failure.
+     *            </p>
+     *            <p>
+     *            The specified CMK must exist in the Region that the snapshot
+     *            is being copied to.
+     *            </p>
+     *            <p>
+     *            Amazon EBS does not support asymmetric CMKs.
+     *            </p>
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * An identifier for the symmetric AWS Key Management Service (AWS KMS)
+     * customer master key (CMK) to use when creating the encrypted snapshot.
+     * This parameter is only required if you want to use a non-default CMK; if
+     * this parameter is not specified, the default CMK for EBS is used. If a
+     * <code>KmsKeyId</code> is specified, the <code>Encrypted</code> flag must
+     * also be set.
+     * </p>
+     * <p>
+     * The CMK identifier may be provided in any of the following formats:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key alias. The alias ARN contains the <code>arn:aws:kms</code> namespace,
+     * followed by the Region of the CMK, the AWS account ID of the CMK owner,
+     * the <code>alias</code> namespace, and then the CMK alias. For example,
+     * arn
+     * :aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key ID. The ID ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>key</code> namespace, and then the CMK ID. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-
+     * a123-456a-a12b-a123b4cd56ef</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * ARN using key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     * namespace, followed by the Region of the CMK, the AWS account ID of the
+     * CMK owner, the <code>alias</code> namespace, and then the CMK alias. For
+     * example,
+     * arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias/<i>ExampleAlias
+     * </i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * AWS parses <code>KmsKeyId</code> asynchronously, meaning that the action
+     * you call may appear to complete even though you provided an invalid
+     * identifier. This action will eventually report failure.
+     * </p>
+     * <p>
+     * The specified CMK must exist in the Region that the snapshot is being
+     * copied to.
+     * </p>
+     * <p>
+     * Amazon EBS does not support asymmetric CMKs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kmsKeyId <p>
+     *            An identifier for the symmetric AWS Key Management Service
+     *            (AWS KMS) customer master key (CMK) to use when creating the
+     *            encrypted snapshot. This parameter is only required if you
+     *            want to use a non-default CMK; if this parameter is not
+     *            specified, the default CMK for EBS is used. If a
+     *            <code>KmsKeyId</code> is specified, the <code>Encrypted</code>
+     *            flag must also be set.
+     *            </p>
+     *            <p>
+     *            The CMK identifier may be provided in any of the following
+     *            formats:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Key ID
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Key alias. The alias ARN contains the <code>arn:aws:kms</code>
+     *            namespace, followed by the Region of the CMK, the AWS account
+     *            ID of the CMK owner, the <code>alias</code> namespace, and
+     *            then the CMK alias. For example,
+     *            arn:aws:kms:<i>us-east-1</i>:<
+     *            i>012345678910</i>:alias/<i>ExampleAlias</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARN using key ID. The ID ARN contains the
+     *            <code>arn:aws:kms</code> namespace, followed by the Region of
+     *            the CMK, the AWS account ID of the CMK owner, the
+     *            <code>key</code> namespace, and then the CMK ID. For example,
+     *            arn
+     *            :aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234
+     *            -a123-456a-a12b-a123b4cd56ef</i>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            ARN using key alias. The alias ARN contains the
+     *            <code>arn:aws:kms</code> namespace, followed by the Region of
+     *            the CMK, the AWS account ID of the CMK owner, the
+     *            <code>alias</code> namespace, and then the CMK alias. For
+     *            example,
+     *            arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:alias
+     *            /<i>ExampleAlias</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            AWS parses <code>KmsKeyId</code> asynchronously, meaning that
+     *            the action you call may appear to complete even though you
+     *            provided an invalid identifier. This action will eventually
+     *            report failure.
+     *            </p>
+     *            <p>
+     *            The specified CMK must exist in the Region that the snapshot
+     *            is being copied to.
+     *            </p>
+     *            <p>
+     *            Amazon EBS does not support asymmetric CMKs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportSnapshotRequest withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the role to use when not using the default role, 'vmimport'.
+     * </p>
+     *
+     * @return <p>
+     *         The name of the role to use when not using the default role,
      *         'vmimport'.
+     *         </p>
      */
     public String getRoleName() {
         return roleName;
     }
-    
+
     /**
-     * The name of the role to use when not using the default role,
-     * 'vmimport'.
+     * <p>
+     * The name of the role to use when not using the default role, 'vmimport'.
+     * </p>
      *
-     * @param roleName The name of the role to use when not using the default role,
-     *         'vmimport'.
+     * @param roleName <p>
+     *            The name of the role to use when not using the default role,
+     *            'vmimport'.
+     *            </p>
      */
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
-    
+
     /**
-     * The name of the role to use when not using the default role,
-     * 'vmimport'.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The name of the role to use when not using the default role, 'vmimport'.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param roleName The name of the role to use when not using the default role,
-     *         'vmimport'.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param roleName <p>
+     *            The name of the role to use when not using the default role,
+     *            'vmimport'.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ImportSnapshotRequest withRoleName(String roleName) {
         this.roleName = roleName;
@@ -228,71 +971,103 @@ public class ImportSnapshotRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
-     */
-    @Override
-    public Request<ImportSnapshotRequest> getDryRunRequest() {
-        Request<ImportSnapshotRequest> request = new ImportSnapshotRequestMarshaller().marshall(this);
-        request.addParameter("DryRun", Boolean.toString(true));
-        return request;
-    }
-    
-    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDescription() != null) sb.append("Description: " + getDescription() + ",");
-        if (getDiskContainer() != null) sb.append("DiskContainer: " + getDiskContainer() + ",");
-        if (getClientData() != null) sb.append("ClientData: " + getClientData() + ",");
-        if (getClientToken() != null) sb.append("ClientToken: " + getClientToken() + ",");
-        if (getRoleName() != null) sb.append("RoleName: " + getRoleName() );
+        if (getClientData() != null)
+            sb.append("ClientData: " + getClientData() + ",");
+        if (getClientToken() != null)
+            sb.append("ClientToken: " + getClientToken() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription() + ",");
+        if (getDiskContainer() != null)
+            sb.append("DiskContainer: " + getDiskContainer() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun() + ",");
+        if (getEncrypted() != null)
+            sb.append("Encrypted: " + getEncrypted() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
+        if (getRoleName() != null)
+            sb.append("RoleName: " + getRoleName());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getDescription() == null) ? 0 : getDescription().hashCode()); 
-        hashCode = prime * hashCode + ((getDiskContainer() == null) ? 0 : getDiskContainer().hashCode()); 
-        hashCode = prime * hashCode + ((getClientData() == null) ? 0 : getClientData().hashCode()); 
-        hashCode = prime * hashCode + ((getClientToken() == null) ? 0 : getClientToken().hashCode()); 
-        hashCode = prime * hashCode + ((getRoleName() == null) ? 0 : getRoleName().hashCode()); 
+
+        hashCode = prime * hashCode + ((getClientData() == null) ? 0 : getClientData().hashCode());
+        hashCode = prime * hashCode
+                + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getDiskContainer() == null) ? 0 : getDiskContainer().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
+        hashCode = prime * hashCode + ((getEncrypted() == null) ? 0 : getEncrypted().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
+        hashCode = prime * hashCode + ((getRoleName() == null) ? 0 : getRoleName().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ImportSnapshotRequest == false) return false;
-        ImportSnapshotRequest other = (ImportSnapshotRequest)obj;
-        
-        if (other.getDescription() == null ^ this.getDescription() == null) return false;
-        if (other.getDescription() != null && other.getDescription().equals(this.getDescription()) == false) return false; 
-        if (other.getDiskContainer() == null ^ this.getDiskContainer() == null) return false;
-        if (other.getDiskContainer() != null && other.getDiskContainer().equals(this.getDiskContainer()) == false) return false; 
-        if (other.getClientData() == null ^ this.getClientData() == null) return false;
-        if (other.getClientData() != null && other.getClientData().equals(this.getClientData()) == false) return false; 
-        if (other.getClientToken() == null ^ this.getClientToken() == null) return false;
-        if (other.getClientToken() != null && other.getClientToken().equals(this.getClientToken()) == false) return false; 
-        if (other.getRoleName() == null ^ this.getRoleName() == null) return false;
-        if (other.getRoleName() != null && other.getRoleName().equals(this.getRoleName()) == false) return false; 
+        if (obj instanceof ImportSnapshotRequest == false)
+            return false;
+        ImportSnapshotRequest other = (ImportSnapshotRequest) obj;
+
+        if (other.getClientData() == null ^ this.getClientData() == null)
+            return false;
+        if (other.getClientData() != null
+                && other.getClientData().equals(this.getClientData()) == false)
+            return false;
+        if (other.getClientToken() == null ^ this.getClientToken() == null)
+            return false;
+        if (other.getClientToken() != null
+                && other.getClientToken().equals(this.getClientToken()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getDiskContainer() == null ^ this.getDiskContainer() == null)
+            return false;
+        if (other.getDiskContainer() != null
+                && other.getDiskContainer().equals(this.getDiskContainer()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
+        if (other.getEncrypted() == null ^ this.getEncrypted() == null)
+            return false;
+        if (other.getEncrypted() != null
+                && other.getEncrypted().equals(this.getEncrypted()) == false)
+            return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
+        if (other.getRoleName() == null ^ this.getRoleName() == null)
+            return false;
+        if (other.getRoleName() != null && other.getRoleName().equals(this.getRoleName()) == false)
+            return false;
         return true;
     }
-    
 }
-    

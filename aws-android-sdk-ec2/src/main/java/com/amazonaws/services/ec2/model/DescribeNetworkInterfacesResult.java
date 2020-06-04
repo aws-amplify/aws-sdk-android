@@ -1,17 +1,18 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
@@ -22,77 +23,148 @@ import java.io.Serializable;
  * </p>
  */
 public class DescribeNetworkInterfacesResult implements Serializable {
-
     /**
+     * <p>
      * Information about one or more network interfaces.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<NetworkInterface> networkInterfaces;
+    private java.util.List<NetworkInterface> networkInterfaces;
 
     /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
      * Information about one or more network interfaces.
+     * </p>
      *
-     * @return Information about one or more network interfaces.
+     * @return <p>
+     *         Information about one or more network interfaces.
+     *         </p>
      */
     public java.util.List<NetworkInterface> getNetworkInterfaces() {
-        if (networkInterfaces == null) {
-              networkInterfaces = new com.amazonaws.internal.ListWithAutoConstructFlag<NetworkInterface>();
-              networkInterfaces.setAutoConstruct(true);
-        }
         return networkInterfaces;
     }
-    
+
     /**
+     * <p>
      * Information about one or more network interfaces.
+     * </p>
      *
-     * @param networkInterfaces Information about one or more network interfaces.
+     * @param networkInterfaces <p>
+     *            Information about one or more network interfaces.
+     *            </p>
      */
     public void setNetworkInterfaces(java.util.Collection<NetworkInterface> networkInterfaces) {
         if (networkInterfaces == null) {
             this.networkInterfaces = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<NetworkInterface> networkInterfacesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<NetworkInterface>(networkInterfaces.size());
-        networkInterfacesCopy.addAll(networkInterfaces);
-        this.networkInterfaces = networkInterfacesCopy;
+
+        this.networkInterfaces = new java.util.ArrayList<NetworkInterface>(networkInterfaces);
     }
-    
+
     /**
-     * Information about one or more network interfaces.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about one or more network interfaces.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param networkInterfaces Information about one or more network interfaces.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param networkInterfaces <p>
+     *            Information about one or more network interfaces.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DescribeNetworkInterfacesResult withNetworkInterfaces(NetworkInterface... networkInterfaces) {
-        if (getNetworkInterfaces() == null) setNetworkInterfaces(new java.util.ArrayList<NetworkInterface>(networkInterfaces.length));
+    public DescribeNetworkInterfacesResult withNetworkInterfaces(
+            NetworkInterface... networkInterfaces) {
+        if (getNetworkInterfaces() == null) {
+            this.networkInterfaces = new java.util.ArrayList<NetworkInterface>(
+                    networkInterfaces.length);
+        }
         for (NetworkInterface value : networkInterfaces) {
-            getNetworkInterfaces().add(value);
+            this.networkInterfaces.add(value);
         }
         return this;
     }
-    
-    /**
-     * Information about one or more network interfaces.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param networkInterfaces Information about one or more network interfaces.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeNetworkInterfacesResult withNetworkInterfaces(java.util.Collection<NetworkInterface> networkInterfaces) {
-        if (networkInterfaces == null) {
-            this.networkInterfaces = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<NetworkInterface> networkInterfacesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<NetworkInterface>(networkInterfaces.size());
-            networkInterfacesCopy.addAll(networkInterfaces);
-            this.networkInterfaces = networkInterfacesCopy;
-        }
 
+    /**
+     * <p>
+     * Information about one or more network interfaces.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param networkInterfaces <p>
+     *            Information about one or more network interfaces.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeNetworkInterfacesResult withNetworkInterfaces(
+            java.util.Collection<NetworkInterface> networkInterfaces) {
+        setNetworkInterfaces(networkInterfaces);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @return <p>
+     *         The token to use to retrieve the next page of results. This value
+     *         is <code>null</code> when there are no more results to return.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeNetworkInterfacesResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -101,39 +173,52 @@ public class DescribeNetworkInterfacesResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getNetworkInterfaces() != null) sb.append("NetworkInterfaces: " + getNetworkInterfaces() );
+        if (getNetworkInterfaces() != null)
+            sb.append("NetworkInterfaces: " + getNetworkInterfaces() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getNetworkInterfaces() == null) ? 0 : getNetworkInterfaces().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getNetworkInterfaces() == null) ? 0 : getNetworkInterfaces().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeNetworkInterfacesResult == false) return false;
-        DescribeNetworkInterfacesResult other = (DescribeNetworkInterfacesResult)obj;
-        
-        if (other.getNetworkInterfaces() == null ^ this.getNetworkInterfaces() == null) return false;
-        if (other.getNetworkInterfaces() != null && other.getNetworkInterfaces().equals(this.getNetworkInterfaces()) == false) return false; 
+        if (obj instanceof DescribeNetworkInterfacesResult == false)
+            return false;
+        DescribeNetworkInterfacesResult other = (DescribeNetworkInterfacesResult) obj;
+
+        if (other.getNetworkInterfaces() == null ^ this.getNetworkInterfaces() == null)
+            return false;
+        if (other.getNetworkInterfaces() != null
+                && other.getNetworkInterfaces().equals(this.getNetworkInterfaces()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    
