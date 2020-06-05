@@ -1,3 +1,18 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-apigateway
+---aws-android-sdk-servicecatalog
+---aws-android-sdk-elasticbeanstalk
+---aws-android-sdk-sagemakerruntime
+---aws-android-sdk-personalizeruntime
+---aws-android-sdk-personalize
+---aws-android-sdk-cloudfront
+---aws-android-sdk-pinpoint
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
