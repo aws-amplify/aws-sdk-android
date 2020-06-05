@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,8 +24,10 @@ import java.util.Map;
 public enum JobStatus {
 
     CREATED("CREATED"),
+    PREPARING_FOR_INITIALIZATION("PREPARING_FOR_INITIALIZATION"),
     INITIALIZING("INITIALIZING"),
     PROCESSING("PROCESSING"),
+    PENDING_JOB("PENDING_JOB"),
     COMPLETING("COMPLETING"),
     COMPLETED("COMPLETED"),
     FAILING("FAILING"),
@@ -46,8 +48,10 @@ public enum JobStatus {
     static {
         enumMap = new HashMap<String, JobStatus>();
         enumMap.put("CREATED", CREATED);
+        enumMap.put("PREPARING_FOR_INITIALIZATION", PREPARING_FOR_INITIALIZATION);
         enumMap.put("INITIALIZING", INITIALIZING);
         enumMap.put("PROCESSING", PROCESSING);
+        enumMap.put("PENDING_JOB", PENDING_JOB);
         enumMap.put("COMPLETING", COMPLETING);
         enumMap.put("COMPLETED", COMPLETED);
         enumMap.put("FAILING", FAILING);

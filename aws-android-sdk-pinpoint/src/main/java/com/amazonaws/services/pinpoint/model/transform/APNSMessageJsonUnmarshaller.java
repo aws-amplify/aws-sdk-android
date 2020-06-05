@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,10 @@ class APNSMessageJsonUnmarshaller implements Unmarshaller<APNSMessage, JsonUnmar
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Action")) {
+            if (name.equals("APNSPushType")) {
+                aPNSMessage.setAPNSPushType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Action")) {
                 aPNSMessage.setAction(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Badge")) {

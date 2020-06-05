@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,13 +18,22 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * State of the Campaign
+ * <p>
+ * Provides information about the status of a campaign.
+ * </p>
  */
 public class CampaignState implements Serializable {
     /**
-     * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * <p>
+     * The current status of the campaign, or the current status of a treatment
+     * that belongs to an A/B test campaign.
+     * </p>
+     * <p>
+     * If a campaign uses A/B testing, the campaign has a status of COMPLETED
+     * only if all campaign treatments have a status of COMPLETED. If you delete
+     * the segment that's associated with a campaign, the campaign fails and has
+     * a status of DELETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
@@ -33,17 +42,31 @@ public class CampaignState implements Serializable {
     private String campaignStatus;
 
     /**
-     * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * <p>
+     * The current status of the campaign, or the current status of a treatment
+     * that belongs to an A/B test campaign.
+     * </p>
+     * <p>
+     * If a campaign uses A/B testing, the campaign has a status of COMPLETED
+     * only if all campaign treatments have a status of COMPLETED. If you delete
+     * the segment that's associated with a campaign, the campaign fails and has
+     * a status of DELETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @return The status of the campaign, or the status of a treatment that
-     *         belongs to an A/B test campaign. Valid values: SCHEDULED,
-     *         EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @return <p>
+     *         The current status of the campaign, or the current status of a
+     *         treatment that belongs to an A/B test campaign.
+     *         </p>
+     *         <p>
+     *         If a campaign uses A/B testing, the campaign has a status of
+     *         COMPLETED only if all campaign treatments have a status of
+     *         COMPLETED. If you delete the segment that's associated with a
+     *         campaign, the campaign fails and has a status of DELETED.
+     *         </p>
      * @see CampaignStatus
      */
     public String getCampaignStatus() {
@@ -51,17 +74,31 @@ public class CampaignState implements Serializable {
     }
 
     /**
-     * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * <p>
+     * The current status of the campaign, or the current status of a treatment
+     * that belongs to an A/B test campaign.
+     * </p>
+     * <p>
+     * If a campaign uses A/B testing, the campaign has a status of COMPLETED
+     * only if all campaign treatments have a status of COMPLETED. If you delete
+     * the segment that's associated with a campaign, the campaign fails and has
+     * a status of DELETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The current status of the campaign, or the current status of a
+     *            treatment that belongs to an A/B test campaign.
+     *            </p>
+     *            <p>
+     *            If a campaign uses A/B testing, the campaign has a status of
+     *            COMPLETED only if all campaign treatments have a status of
+     *            COMPLETED. If you delete the segment that's associated with a
+     *            campaign, the campaign fails and has a status of DELETED.
+     *            </p>
      * @see CampaignStatus
      */
     public void setCampaignStatus(String campaignStatus) {
@@ -69,9 +106,16 @@ public class CampaignState implements Serializable {
     }
 
     /**
-     * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * <p>
+     * The current status of the campaign, or the current status of a treatment
+     * that belongs to an A/B test campaign.
+     * </p>
+     * <p>
+     * If a campaign uses A/B testing, the campaign has a status of COMPLETED
+     * only if all campaign treatments have a status of COMPLETED. If you delete
+     * the segment that's associated with a campaign, the campaign fails and has
+     * a status of DELETED.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -80,9 +124,16 @@ public class CampaignState implements Serializable {
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The current status of the campaign, or the current status of a
+     *            treatment that belongs to an A/B test campaign.
+     *            </p>
+     *            <p>
+     *            If a campaign uses A/B testing, the campaign has a status of
+     *            COMPLETED only if all campaign treatments have a status of
+     *            COMPLETED. If you delete the segment that's associated with a
+     *            campaign, the campaign fails and has a status of DELETED.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CampaignStatus
@@ -93,17 +144,31 @@ public class CampaignState implements Serializable {
     }
 
     /**
-     * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * <p>
+     * The current status of the campaign, or the current status of a treatment
+     * that belongs to an A/B test campaign.
+     * </p>
+     * <p>
+     * If a campaign uses A/B testing, the campaign has a status of COMPLETED
+     * only if all campaign treatments have a status of COMPLETED. If you delete
+     * the segment that's associated with a campaign, the campaign fails and has
+     * a status of DELETED.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The current status of the campaign, or the current status of a
+     *            treatment that belongs to an A/B test campaign.
+     *            </p>
+     *            <p>
+     *            If a campaign uses A/B testing, the campaign has a status of
+     *            COMPLETED only if all campaign treatments have a status of
+     *            COMPLETED. If you delete the segment that's associated with a
+     *            campaign, the campaign fails and has a status of DELETED.
+     *            </p>
      * @see CampaignStatus
      */
     public void setCampaignStatus(CampaignStatus campaignStatus) {
@@ -111,9 +176,16 @@ public class CampaignState implements Serializable {
     }
 
     /**
-     * The status of the campaign, or the status of a treatment that belongs to
-     * an A/B test campaign. Valid values: SCHEDULED, EXECUTING,
-     * PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * <p>
+     * The current status of the campaign, or the current status of a treatment
+     * that belongs to an A/B test campaign.
+     * </p>
+     * <p>
+     * If a campaign uses A/B testing, the campaign has a status of COMPLETED
+     * only if all campaign treatments have a status of COMPLETED. If you delete
+     * the segment that's associated with a campaign, the campaign fails and has
+     * a status of DELETED.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -122,9 +194,16 @@ public class CampaignState implements Serializable {
      * <b>Allowed Values: </b>SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED,
      * PAUSED, DELETED
      *
-     * @param campaignStatus The status of the campaign, or the status of a
-     *            treatment that belongs to an A/B test campaign. Valid values:
-     *            SCHEDULED, EXECUTING, PENDING_NEXT_RUN, COMPLETED, PAUSED
+     * @param campaignStatus <p>
+     *            The current status of the campaign, or the current status of a
+     *            treatment that belongs to an A/B test campaign.
+     *            </p>
+     *            <p>
+     *            If a campaign uses A/B testing, the campaign has a status of
+     *            COMPLETED only if all campaign treatments have a status of
+     *            COMPLETED. If you delete the segment that's associated with a
+     *            campaign, the campaign fails and has a status of DELETED.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see CampaignStatus

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,35 +19,58 @@ import java.io.Serializable;
 
 public class GetCampaignsResult implements Serializable {
     /**
-     * List of available campaigns.
+     * <p>
+     * Provides information about the configuration and other settings for all
+     * the campaigns that are associated with an application.
+     * </p>
      */
     private CampaignsResponse campaignsResponse;
 
     /**
-     * List of available campaigns.
+     * <p>
+     * Provides information about the configuration and other settings for all
+     * the campaigns that are associated with an application.
+     * </p>
      *
-     * @return List of available campaigns.
+     * @return <p>
+     *         Provides information about the configuration and other settings
+     *         for all the campaigns that are associated with an application.
+     *         </p>
      */
     public CampaignsResponse getCampaignsResponse() {
         return campaignsResponse;
     }
 
     /**
-     * List of available campaigns.
+     * <p>
+     * Provides information about the configuration and other settings for all
+     * the campaigns that are associated with an application.
+     * </p>
      *
-     * @param campaignsResponse List of available campaigns.
+     * @param campaignsResponse <p>
+     *            Provides information about the configuration and other
+     *            settings for all the campaigns that are associated with an
+     *            application.
+     *            </p>
      */
     public void setCampaignsResponse(CampaignsResponse campaignsResponse) {
         this.campaignsResponse = campaignsResponse;
     }
 
     /**
-     * List of available campaigns.
+     * <p>
+     * Provides information about the configuration and other settings for all
+     * the campaigns that are associated with an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param campaignsResponse List of available campaigns.
+     * @param campaignsResponse <p>
+     *            Provides information about the configuration and other
+     *            settings for all the campaigns that are associated with an
+     *            application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

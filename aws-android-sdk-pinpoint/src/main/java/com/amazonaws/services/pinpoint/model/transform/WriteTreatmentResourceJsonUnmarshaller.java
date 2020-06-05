@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,12 @@ class WriteTreatmentResourceJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("MessageConfiguration")) {
+            if (name.equals("CustomDeliveryConfiguration")) {
+                writeTreatmentResource
+                        .setCustomDeliveryConfiguration(CustomDeliveryConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("MessageConfiguration")) {
                 writeTreatmentResource.setMessageConfiguration(MessageConfigurationJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
@@ -46,6 +51,11 @@ class WriteTreatmentResourceJsonUnmarshaller implements
             } else if (name.equals("SizePercent")) {
                 writeTreatmentResource.setSizePercent(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TemplateConfiguration")) {
+                writeTreatmentResource
+                        .setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 writeTreatmentResource.setTreatmentDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

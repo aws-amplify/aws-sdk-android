@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,37 +19,56 @@ import java.io.Serializable;
 
 public class DeleteApnsChannelResult implements Serializable {
     /**
-     * Apple Distribution Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) channel for an application.
+     * </p>
      */
     private APNSChannelResponse aPNSChannelResponse;
 
     /**
-     * Apple Distribution Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) channel for an application.
+     * </p>
      *
-     * @return Apple Distribution Push Notification Service channel definition.
+     * @return <p>
+     *         Provides information about the status and settings of the APNs
+     *         (Apple Push Notification service) channel for an application.
+     *         </p>
      */
     public APNSChannelResponse getAPNSChannelResponse() {
         return aPNSChannelResponse;
     }
 
     /**
-     * Apple Distribution Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) channel for an application.
+     * </p>
      *
-     * @param aPNSChannelResponse Apple Distribution Push Notification Service
-     *            channel definition.
+     * @param aPNSChannelResponse <p>
+     *            Provides information about the status and settings of the APNs
+     *            (Apple Push Notification service) channel for an application.
+     *            </p>
      */
     public void setAPNSChannelResponse(APNSChannelResponse aPNSChannelResponse) {
         this.aPNSChannelResponse = aPNSChannelResponse;
     }
 
     /**
-     * Apple Distribution Push Notification Service channel definition.
+     * <p>
+     * Provides information about the status and settings of the APNs (Apple
+     * Push Notification service) channel for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param aPNSChannelResponse Apple Distribution Push Notification Service
-     *            channel definition.
+     * @param aPNSChannelResponse <p>
+     *            Provides information about the status and settings of the APNs
+     *            (Apple Push Notification service) channel for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

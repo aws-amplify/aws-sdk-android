@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class GetEndpointResult implements Serializable {
     /**
-     * Endpoint response
+     * <p>
+     * Provides information about the channel type and other settings for an
+     * endpoint.
+     * </p>
      */
     private EndpointResponse endpointResponse;
 
     /**
-     * Endpoint response
+     * <p>
+     * Provides information about the channel type and other settings for an
+     * endpoint.
+     * </p>
      *
-     * @return Endpoint response
+     * @return <p>
+     *         Provides information about the channel type and other settings
+     *         for an endpoint.
+     *         </p>
      */
     public EndpointResponse getEndpointResponse() {
         return endpointResponse;
     }
 
     /**
-     * Endpoint response
+     * <p>
+     * Provides information about the channel type and other settings for an
+     * endpoint.
+     * </p>
      *
-     * @param endpointResponse Endpoint response
+     * @param endpointResponse <p>
+     *            Provides information about the channel type and other settings
+     *            for an endpoint.
+     *            </p>
      */
     public void setEndpointResponse(EndpointResponse endpointResponse) {
         this.endpointResponse = endpointResponse;
     }
 
     /**
-     * Endpoint response
+     * <p>
+     * Provides information about the channel type and other settings for an
+     * endpoint.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param endpointResponse Endpoint response
+     * @param endpointResponse <p>
+     *            Provides information about the channel type and other settings
+     *            for an endpoint.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

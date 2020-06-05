@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,44 +18,62 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * GPS coordinates
+ * <p>
+ * Specifies the GPS coordinates of a location.
+ * </p>
  */
 public class GPSCoordinates implements Serializable {
     /**
-     * Latitude
+     * <p>
+     * The latitude coordinate of the location.
+     * </p>
      */
     private Double latitude;
 
     /**
-     * Longitude
+     * <p>
+     * The longitude coordinate of the location.
+     * </p>
      */
     private Double longitude;
 
     /**
-     * Latitude
+     * <p>
+     * The latitude coordinate of the location.
+     * </p>
      *
-     * @return Latitude
+     * @return <p>
+     *         The latitude coordinate of the location.
+     *         </p>
      */
     public Double getLatitude() {
         return latitude;
     }
 
     /**
-     * Latitude
+     * <p>
+     * The latitude coordinate of the location.
+     * </p>
      *
-     * @param latitude Latitude
+     * @param latitude <p>
+     *            The latitude coordinate of the location.
+     *            </p>
      */
     public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
     /**
-     * Latitude
+     * <p>
+     * The latitude coordinate of the location.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param latitude Latitude
+     * @param latitude <p>
+     *            The latitude coordinate of the location.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,30 +83,42 @@ public class GPSCoordinates implements Serializable {
     }
 
     /**
-     * Longitude
+     * <p>
+     * The longitude coordinate of the location.
+     * </p>
      *
-     * @return Longitude
+     * @return <p>
+     *         The longitude coordinate of the location.
+     *         </p>
      */
     public Double getLongitude() {
         return longitude;
     }
 
     /**
-     * Longitude
+     * <p>
+     * The longitude coordinate of the location.
+     * </p>
      *
-     * @param longitude Longitude
+     * @param longitude <p>
+     *            The longitude coordinate of the location.
+     *            </p>
      */
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
     /**
-     * Longitude
+     * <p>
+     * The longitude coordinate of the location.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param longitude Longitude
+     * @param longitude <p>
+     *            The longitude coordinate of the location.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

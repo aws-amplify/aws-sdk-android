@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,39 +20,62 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Creates or updates an app.
+ * <p>
+ * Creates an application.
+ * </p>
  */
 public class CreateAppRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * Application Request.
+     * <p>
+     * Specifies the display name of an application and the tags to associate
+     * with the application.
+     * </p>
      */
     private CreateApplicationRequest createApplicationRequest;
 
     /**
-     * Application Request.
+     * <p>
+     * Specifies the display name of an application and the tags to associate
+     * with the application.
+     * </p>
      *
-     * @return Application Request.
+     * @return <p>
+     *         Specifies the display name of an application and the tags to
+     *         associate with the application.
+     *         </p>
      */
     public CreateApplicationRequest getCreateApplicationRequest() {
         return createApplicationRequest;
     }
 
     /**
-     * Application Request.
+     * <p>
+     * Specifies the display name of an application and the tags to associate
+     * with the application.
+     * </p>
      *
-     * @param createApplicationRequest Application Request.
+     * @param createApplicationRequest <p>
+     *            Specifies the display name of an application and the tags to
+     *            associate with the application.
+     *            </p>
      */
     public void setCreateApplicationRequest(CreateApplicationRequest createApplicationRequest) {
         this.createApplicationRequest = createApplicationRequest;
     }
 
     /**
-     * Application Request.
+     * <p>
+     * Specifies the display name of an application and the tags to associate
+     * with the application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param createApplicationRequest Application Request.
+     * @param createApplicationRequest <p>
+     *            Specifies the display name of an application and the tags to
+     *            associate with the application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

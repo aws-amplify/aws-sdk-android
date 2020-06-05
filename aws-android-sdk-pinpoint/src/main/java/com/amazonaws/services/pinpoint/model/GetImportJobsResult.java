@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,35 +19,66 @@ import java.io.Serializable;
 
 public class GetImportJobsResult implements Serializable {
     /**
-     * Import job list.
+     * <p>
+     * Provides information about the status and settings of all the import jobs
+     * that are associated with an application or segment. An import job is a
+     * job that imports endpoint definitions from one or more files.
+     * </p>
      */
     private ImportJobsResponse importJobsResponse;
 
     /**
-     * Import job list.
+     * <p>
+     * Provides information about the status and settings of all the import jobs
+     * that are associated with an application or segment. An import job is a
+     * job that imports endpoint definitions from one or more files.
+     * </p>
      *
-     * @return Import job list.
+     * @return <p>
+     *         Provides information about the status and settings of all the
+     *         import jobs that are associated with an application or segment.
+     *         An import job is a job that imports endpoint definitions from one
+     *         or more files.
+     *         </p>
      */
     public ImportJobsResponse getImportJobsResponse() {
         return importJobsResponse;
     }
 
     /**
-     * Import job list.
+     * <p>
+     * Provides information about the status and settings of all the import jobs
+     * that are associated with an application or segment. An import job is a
+     * job that imports endpoint definitions from one or more files.
+     * </p>
      *
-     * @param importJobsResponse Import job list.
+     * @param importJobsResponse <p>
+     *            Provides information about the status and settings of all the
+     *            import jobs that are associated with an application or
+     *            segment. An import job is a job that imports endpoint
+     *            definitions from one or more files.
+     *            </p>
      */
     public void setImportJobsResponse(ImportJobsResponse importJobsResponse) {
         this.importJobsResponse = importJobsResponse;
     }
 
     /**
-     * Import job list.
+     * <p>
+     * Provides information about the status and settings of all the import jobs
+     * that are associated with an application or segment. An import job is a
+     * job that imports endpoint definitions from one or more files.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param importJobsResponse Import job list.
+     * @param importJobsResponse <p>
+     *            Provides information about the status and settings of all the
+     *            import jobs that are associated with an application or
+     *            segment. An import job is a job that imports endpoint
+     *            definitions from one or more files.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

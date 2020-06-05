@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,44 +18,62 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Segment reference.
+ * <p>
+ * Specifies the segment identifier and version of a segment.
+ * </p>
  */
 public class SegmentReference implements Serializable {
     /**
-     * A unique identifier for the segment.
+     * <p>
+     * The unique identifier for the segment.
+     * </p>
      */
     private String id;
 
     /**
-     * If specified contains a specific version of the segment included.
+     * <p>
+     * The version number of the segment.
+     * </p>
      */
     private Integer version;
 
     /**
-     * A unique identifier for the segment.
+     * <p>
+     * The unique identifier for the segment.
+     * </p>
      *
-     * @return A unique identifier for the segment.
+     * @return <p>
+     *         The unique identifier for the segment.
+     *         </p>
      */
     public String getId() {
         return id;
     }
 
     /**
-     * A unique identifier for the segment.
+     * <p>
+     * The unique identifier for the segment.
+     * </p>
      *
-     * @param id A unique identifier for the segment.
+     * @param id <p>
+     *            The unique identifier for the segment.
+     *            </p>
      */
     public void setId(String id) {
         this.id = id;
     }
 
     /**
-     * A unique identifier for the segment.
+     * <p>
+     * The unique identifier for the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param id A unique identifier for the segment.
+     * @param id <p>
+     *            The unique identifier for the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -65,32 +83,42 @@ public class SegmentReference implements Serializable {
     }
 
     /**
-     * If specified contains a specific version of the segment included.
+     * <p>
+     * The version number of the segment.
+     * </p>
      *
-     * @return If specified contains a specific version of the segment included.
+     * @return <p>
+     *         The version number of the segment.
+     *         </p>
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * If specified contains a specific version of the segment included.
+     * <p>
+     * The version number of the segment.
+     * </p>
      *
-     * @param version If specified contains a specific version of the segment
-     *            included.
+     * @param version <p>
+     *            The version number of the segment.
+     *            </p>
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * If specified contains a specific version of the segment included.
+     * <p>
+     * The version number of the segment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param version If specified contains a specific version of the segment
-     *            included.
+     * @param version <p>
+     *            The version number of the segment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,9 @@ class SMSMessageJsonUnmarshaller implements Unmarshaller<SMSMessage, JsonUnmarsh
                         .unmarshall(context));
             } else if (name.equals("Keyword")) {
                 sMSMessage.setKeyword(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MediaUrl")) {
+                sMSMessage.setMediaUrl(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("MessageType")) {
                 sMSMessage.setMessageType(StringJsonUnmarshaller.getInstance()

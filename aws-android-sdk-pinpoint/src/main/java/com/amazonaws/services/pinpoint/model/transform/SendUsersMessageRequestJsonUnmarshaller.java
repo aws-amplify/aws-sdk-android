@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,6 +44,11 @@ class SendUsersMessageRequestJsonUnmarshaller implements
             } else if (name.equals("MessageConfiguration")) {
                 sendUsersMessageRequest
                         .setMessageConfiguration(DirectMessageConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("TemplateConfiguration")) {
+                sendUsersMessageRequest
+                        .setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
             } else if (name.equals("TraceId")) {

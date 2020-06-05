@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,6 +25,11 @@ class APNSMessageJsonMarshaller {
 
     public void marshall(APNSMessage aPNSMessage, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (aPNSMessage.getAPNSPushType() != null) {
+            String aPNSPushType = aPNSMessage.getAPNSPushType();
+            jsonWriter.name("APNSPushType");
+            jsonWriter.value(aPNSPushType);
+        }
         if (aPNSMessage.getAction() != null) {
             String action = aPNSMessage.getAction();
             jsonWriter.name("Action");

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class GetSegmentsResult implements Serializable {
     /**
-     * Segments in your account.
+     * <p>
+     * Provides information about all the segments that are associated with an
+     * application.
+     * </p>
      */
     private SegmentsResponse segmentsResponse;
 
     /**
-     * Segments in your account.
+     * <p>
+     * Provides information about all the segments that are associated with an
+     * application.
+     * </p>
      *
-     * @return Segments in your account.
+     * @return <p>
+     *         Provides information about all the segments that are associated
+     *         with an application.
+     *         </p>
      */
     public SegmentsResponse getSegmentsResponse() {
         return segmentsResponse;
     }
 
     /**
-     * Segments in your account.
+     * <p>
+     * Provides information about all the segments that are associated with an
+     * application.
+     * </p>
      *
-     * @param segmentsResponse Segments in your account.
+     * @param segmentsResponse <p>
+     *            Provides information about all the segments that are
+     *            associated with an application.
+     *            </p>
      */
     public void setSegmentsResponse(SegmentsResponse segmentsResponse) {
         this.segmentsResponse = segmentsResponse;
     }
 
     /**
-     * Segments in your account.
+     * <p>
+     * Provides information about all the segments that are associated with an
+     * application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param segmentsResponse Segments in your account.
+     * @param segmentsResponse <p>
+     *            Provides information about all the segments that are
+     *            associated with an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

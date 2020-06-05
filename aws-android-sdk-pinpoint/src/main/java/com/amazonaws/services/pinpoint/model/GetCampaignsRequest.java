@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,50 +20,83 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Returns information about your campaigns.
+ * <p>
+ * Retrieves information about the status, configuration, and other settings for
+ * all the campaigns that are associated with an application.
+ * </p>
  */
 public class GetCampaignsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      */
     private String applicationId;
 
     /**
-     * The number of entries you want on each page in the response.
+     * <p>
+     * The maximum number of items to include in each page of a paginated
+     * response. This parameter is not supported for application, campaign, and
+     * journey metrics.
+     * </p>
      */
     private String pageSize;
 
     /**
-     * The NextToken string returned on a previous page that you use to get the
-     * next page of results in a paginated response.
+     * <p>
+     * The NextToken string that specifies which page of results to return in a
+     * paginated response.
+     * </p>
      */
     private String token;
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @return The unique ID of your Amazon Pinpoint application.
+     * @return <p>
+     *         The unique identifier for the application. This identifier is
+     *         displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *         console.
+     *         </p>
      */
     public String getApplicationId() {
         return applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      */
     public void setApplicationId(String applicationId) {
         this.applicationId = applicationId;
     }
 
     /**
-     * The unique ID of your Amazon Pinpoint application.
+     * <p>
+     * The unique identifier for the application. This identifier is displayed
+     * as the <b>Project ID</b> on the Amazon Pinpoint console.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param applicationId The unique ID of your Amazon Pinpoint application.
+     * @param applicationId <p>
+     *            The unique identifier for the application. This identifier is
+     *            displayed as the <b>Project ID</b> on the Amazon Pinpoint
+     *            console.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -73,32 +106,54 @@ public class GetCampaignsRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The number of entries you want on each page in the response.
+     * <p>
+     * The maximum number of items to include in each page of a paginated
+     * response. This parameter is not supported for application, campaign, and
+     * journey metrics.
+     * </p>
      *
-     * @return The number of entries you want on each page in the response.
+     * @return <p>
+     *         The maximum number of items to include in each page of a
+     *         paginated response. This parameter is not supported for
+     *         application, campaign, and journey metrics.
+     *         </p>
      */
     public String getPageSize() {
         return pageSize;
     }
 
     /**
-     * The number of entries you want on each page in the response.
+     * <p>
+     * The maximum number of items to include in each page of a paginated
+     * response. This parameter is not supported for application, campaign, and
+     * journey metrics.
+     * </p>
      *
-     * @param pageSize The number of entries you want on each page in the
-     *            response.
+     * @param pageSize <p>
+     *            The maximum number of items to include in each page of a
+     *            paginated response. This parameter is not supported for
+     *            application, campaign, and journey metrics.
+     *            </p>
      */
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;
     }
 
     /**
-     * The number of entries you want on each page in the response.
+     * <p>
+     * The maximum number of items to include in each page of a paginated
+     * response. This parameter is not supported for application, campaign, and
+     * journey metrics.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param pageSize The number of entries you want on each page in the
-     *            response.
+     * @param pageSize <p>
+     *            The maximum number of items to include in each page of a
+     *            paginated response. This parameter is not supported for
+     *            application, campaign, and journey metrics.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -108,36 +163,48 @@ public class GetCampaignsRequest extends AmazonWebServiceRequest implements Seri
     }
 
     /**
-     * The NextToken string returned on a previous page that you use to get the
-     * next page of results in a paginated response.
+     * <p>
+     * The NextToken string that specifies which page of results to return in a
+     * paginated response.
+     * </p>
      *
-     * @return The NextToken string returned on a previous page that you use to
-     *         get the next page of results in a paginated response.
+     * @return <p>
+     *         The NextToken string that specifies which page of results to
+     *         return in a paginated response.
+     *         </p>
      */
     public String getToken() {
         return token;
     }
 
     /**
-     * The NextToken string returned on a previous page that you use to get the
-     * next page of results in a paginated response.
+     * <p>
+     * The NextToken string that specifies which page of results to return in a
+     * paginated response.
+     * </p>
      *
-     * @param token The NextToken string returned on a previous page that you
-     *            use to get the next page of results in a paginated response.
+     * @param token <p>
+     *            The NextToken string that specifies which page of results to
+     *            return in a paginated response.
+     *            </p>
      */
     public void setToken(String token) {
         this.token = token;
     }
 
     /**
-     * The NextToken string returned on a previous page that you use to get the
-     * next page of results in a paginated response.
+     * <p>
+     * The NextToken string that specifies which page of results to return in a
+     * paginated response.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param token The NextToken string returned on a previous page that you
-     *            use to get the next page of results in a paginated response.
+     * @param token <p>
+     *            The NextToken string that specifies which page of results to
+     *            return in a paginated response.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

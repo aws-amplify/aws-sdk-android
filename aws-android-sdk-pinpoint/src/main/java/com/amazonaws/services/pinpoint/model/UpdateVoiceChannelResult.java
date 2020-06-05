@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,35 +19,56 @@ import java.io.Serializable;
 
 public class UpdateVoiceChannelResult implements Serializable {
     /**
-     * Voice Channel Response.
+     * <p>
+     * Provides information about the status and settings of the voice channel
+     * for an application.
+     * </p>
      */
     private VoiceChannelResponse voiceChannelResponse;
 
     /**
-     * Voice Channel Response.
+     * <p>
+     * Provides information about the status and settings of the voice channel
+     * for an application.
+     * </p>
      *
-     * @return Voice Channel Response.
+     * @return <p>
+     *         Provides information about the status and settings of the voice
+     *         channel for an application.
+     *         </p>
      */
     public VoiceChannelResponse getVoiceChannelResponse() {
         return voiceChannelResponse;
     }
 
     /**
-     * Voice Channel Response.
+     * <p>
+     * Provides information about the status and settings of the voice channel
+     * for an application.
+     * </p>
      *
-     * @param voiceChannelResponse Voice Channel Response.
+     * @param voiceChannelResponse <p>
+     *            Provides information about the status and settings of the
+     *            voice channel for an application.
+     *            </p>
      */
     public void setVoiceChannelResponse(VoiceChannelResponse voiceChannelResponse) {
         this.voiceChannelResponse = voiceChannelResponse;
     }
 
     /**
-     * Voice Channel Response.
+     * <p>
+     * Provides information about the status and settings of the voice channel
+     * for an application.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param voiceChannelResponse Voice Channel Response.
+     * @param voiceChannelResponse <p>
+     *            Provides information about the status and settings of the
+     *            voice channel for an application.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

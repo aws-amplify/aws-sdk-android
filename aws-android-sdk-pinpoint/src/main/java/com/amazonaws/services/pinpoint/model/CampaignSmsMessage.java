@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,16 +18,26 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * SMS message configuration.
+ * <p>
+ * Specifies the content and settings for an SMS message that's sent to
+ * recipients of a campaign.
+ * </p>
  */
 public class CampaignSmsMessage implements Serializable {
     /**
-     * The SMS text body.
+     * <p>
+     * The body of the SMS message.
+     * </p>
      */
     private String body;
 
     /**
-     * Is this is a transactional SMS message, otherwise a promotional message.
+     * <p>
+     * The SMS message type. Valid values are TRANSACTIONAL (for messages that
+     * are critical or time-sensitive, such as a one-time passwords) and
+     * PROMOTIONAL (for messsages that aren't critical or time-sensitive, such
+     * as marketing messages).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
@@ -35,35 +45,50 @@ public class CampaignSmsMessage implements Serializable {
     private String messageType;
 
     /**
-     * Sender ID of sent message.
+     * <p>
+     * The sender ID to display on recipients' devices when they receive the SMS
+     * message.
+     * </p>
      */
     private String senderId;
 
     /**
-     * The SMS text body.
+     * <p>
+     * The body of the SMS message.
+     * </p>
      *
-     * @return The SMS text body.
+     * @return <p>
+     *         The body of the SMS message.
+     *         </p>
      */
     public String getBody() {
         return body;
     }
 
     /**
-     * The SMS text body.
+     * <p>
+     * The body of the SMS message.
+     * </p>
      *
-     * @param body The SMS text body.
+     * @param body <p>
+     *            The body of the SMS message.
+     *            </p>
      */
     public void setBody(String body) {
         this.body = body;
     }
 
     /**
-     * The SMS text body.
+     * <p>
+     * The body of the SMS message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param body The SMS text body.
+     * @param body <p>
+     *            The body of the SMS message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -73,13 +98,22 @@ public class CampaignSmsMessage implements Serializable {
     }
 
     /**
-     * Is this is a transactional SMS message, otherwise a promotional message.
+     * <p>
+     * The SMS message type. Valid values are TRANSACTIONAL (for messages that
+     * are critical or time-sensitive, such as a one-time passwords) and
+     * PROMOTIONAL (for messsages that aren't critical or time-sensitive, such
+     * as marketing messages).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @return Is this is a transactional SMS message, otherwise a promotional
-     *         message.
+     * @return <p>
+     *         The SMS message type. Valid values are TRANSACTIONAL (for
+     *         messages that are critical or time-sensitive, such as a one-time
+     *         passwords) and PROMOTIONAL (for messsages that aren't critical or
+     *         time-sensitive, such as marketing messages).
+     *         </p>
      * @see MessageType
      */
     public String getMessageType() {
@@ -87,13 +121,22 @@ public class CampaignSmsMessage implements Serializable {
     }
 
     /**
-     * Is this is a transactional SMS message, otherwise a promotional message.
+     * <p>
+     * The SMS message type. Valid values are TRANSACTIONAL (for messages that
+     * are critical or time-sensitive, such as a one-time passwords) and
+     * PROMOTIONAL (for messsages that aren't critical or time-sensitive, such
+     * as marketing messages).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType Is this is a transactional SMS message, otherwise a
-     *            promotional message.
+     * @param messageType <p>
+     *            The SMS message type. Valid values are TRANSACTIONAL (for
+     *            messages that are critical or time-sensitive, such as a
+     *            one-time passwords) and PROMOTIONAL (for messsages that aren't
+     *            critical or time-sensitive, such as marketing messages).
+     *            </p>
      * @see MessageType
      */
     public void setMessageType(String messageType) {
@@ -101,7 +144,12 @@ public class CampaignSmsMessage implements Serializable {
     }
 
     /**
-     * Is this is a transactional SMS message, otherwise a promotional message.
+     * <p>
+     * The SMS message type. Valid values are TRANSACTIONAL (for messages that
+     * are critical or time-sensitive, such as a one-time passwords) and
+     * PROMOTIONAL (for messsages that aren't critical or time-sensitive, such
+     * as marketing messages).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -109,8 +157,12 @@ public class CampaignSmsMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType Is this is a transactional SMS message, otherwise a
-     *            promotional message.
+     * @param messageType <p>
+     *            The SMS message type. Valid values are TRANSACTIONAL (for
+     *            messages that are critical or time-sensitive, such as a
+     *            one-time passwords) and PROMOTIONAL (for messsages that aren't
+     *            critical or time-sensitive, such as marketing messages).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see MessageType
@@ -121,13 +173,22 @@ public class CampaignSmsMessage implements Serializable {
     }
 
     /**
-     * Is this is a transactional SMS message, otherwise a promotional message.
+     * <p>
+     * The SMS message type. Valid values are TRANSACTIONAL (for messages that
+     * are critical or time-sensitive, such as a one-time passwords) and
+     * PROMOTIONAL (for messsages that aren't critical or time-sensitive, such
+     * as marketing messages).
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType Is this is a transactional SMS message, otherwise a
-     *            promotional message.
+     * @param messageType <p>
+     *            The SMS message type. Valid values are TRANSACTIONAL (for
+     *            messages that are critical or time-sensitive, such as a
+     *            one-time passwords) and PROMOTIONAL (for messsages that aren't
+     *            critical or time-sensitive, such as marketing messages).
+     *            </p>
      * @see MessageType
      */
     public void setMessageType(MessageType messageType) {
@@ -135,7 +196,12 @@ public class CampaignSmsMessage implements Serializable {
     }
 
     /**
-     * Is this is a transactional SMS message, otherwise a promotional message.
+     * <p>
+     * The SMS message type. Valid values are TRANSACTIONAL (for messages that
+     * are critical or time-sensitive, such as a one-time passwords) and
+     * PROMOTIONAL (for messsages that aren't critical or time-sensitive, such
+     * as marketing messages).
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -143,8 +209,12 @@ public class CampaignSmsMessage implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TRANSACTIONAL, PROMOTIONAL
      *
-     * @param messageType Is this is a transactional SMS message, otherwise a
-     *            promotional message.
+     * @param messageType <p>
+     *            The SMS message type. Valid values are TRANSACTIONAL (for
+     *            messages that are critical or time-sensitive, such as a
+     *            one-time passwords) and PROMOTIONAL (for messsages that aren't
+     *            critical or time-sensitive, such as marketing messages).
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see MessageType
@@ -155,30 +225,48 @@ public class CampaignSmsMessage implements Serializable {
     }
 
     /**
-     * Sender ID of sent message.
+     * <p>
+     * The sender ID to display on recipients' devices when they receive the SMS
+     * message.
+     * </p>
      *
-     * @return Sender ID of sent message.
+     * @return <p>
+     *         The sender ID to display on recipients' devices when they receive
+     *         the SMS message.
+     *         </p>
      */
     public String getSenderId() {
         return senderId;
     }
 
     /**
-     * Sender ID of sent message.
+     * <p>
+     * The sender ID to display on recipients' devices when they receive the SMS
+     * message.
+     * </p>
      *
-     * @param senderId Sender ID of sent message.
+     * @param senderId <p>
+     *            The sender ID to display on recipients' devices when they
+     *            receive the SMS message.
+     *            </p>
      */
     public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
 
     /**
-     * Sender ID of sent message.
+     * <p>
+     * The sender ID to display on recipients' devices when they receive the SMS
+     * message.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param senderId Sender ID of sent message.
+     * @param senderId <p>
+     *            The sender ID to display on recipients' devices when they
+     *            receive the SMS message.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

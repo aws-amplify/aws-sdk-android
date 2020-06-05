@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,6 +42,11 @@ class WriteCampaignRequestJsonUnmarshaller implements
                                 WriteTreatmentResourceJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("CustomDeliveryConfiguration")) {
+                writeCampaignRequest
+                        .setCustomDeliveryConfiguration(CustomDeliveryConfigurationJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("Description")) {
                 writeCampaignRequest.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -72,6 +77,15 @@ class WriteCampaignRequestJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("SegmentVersion")) {
                 writeCampaignRequest.setSegmentVersion(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("tags")) {
+                writeCampaignRequest.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("TemplateConfiguration")) {
+                writeCampaignRequest.setTemplateConfiguration(TemplateConfigurationJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("TreatmentDescription")) {
                 writeCampaignRequest.setTreatmentDescription(StringJsonUnmarshaller.getInstance()

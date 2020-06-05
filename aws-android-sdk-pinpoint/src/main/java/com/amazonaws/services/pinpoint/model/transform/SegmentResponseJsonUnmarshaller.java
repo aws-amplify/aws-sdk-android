@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,6 +39,9 @@ class SegmentResponseJsonUnmarshaller implements
             if (name.equals("ApplicationId")) {
                 segmentResponse.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Arn")) {
+                segmentResponse.setArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("CreationDate")) {
                 segmentResponse.setCreationDate(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -64,6 +67,11 @@ class SegmentResponseJsonUnmarshaller implements
             } else if (name.equals("SegmentType")) {
                 segmentResponse.setSegmentType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("tags")) {
+                segmentResponse.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Version")) {
                 segmentResponse.setVersion(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

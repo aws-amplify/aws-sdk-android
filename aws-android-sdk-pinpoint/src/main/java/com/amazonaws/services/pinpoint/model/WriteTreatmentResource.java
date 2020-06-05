@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,59 +18,163 @@ package com.amazonaws.services.pinpoint.model;
 import java.io.Serializable;
 
 /**
- * Used to create a campaign treatment.
+ * <p>
+ * Specifies the settings for a campaign treatment. A <i>treatment</i> is a
+ * variation of a campaign that's used for A/B testing of a campaign.
+ * </p>
  */
 public class WriteTreatmentResource implements Serializable {
     /**
-     * The message configuration settings.
+     * <p>
+     * The delivery configuration settings for sending the treatment through a
+     * custom channel. This object is required if the MessageConfiguration
+     * object for the treatment specifies a CustomMessage object.
+     * </p>
+     */
+    private CustomDeliveryConfiguration customDeliveryConfiguration;
+
+    /**
+     * <p>
+     * The message configuration settings for the treatment.
+     * </p>
      */
     private MessageConfiguration messageConfiguration;
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the treatment.
+     * </p>
      */
     private Schedule schedule;
 
     /**
-     * The allocated percentage of users for this treatment.
+     * <p>
+     * The allocated percentage of users (segment members) to send the treatment
+     * to.
+     * </p>
      */
     private Integer sizePercent;
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * The message template to use for the treatment.
+     * </p>
+     */
+    private TemplateConfiguration templateConfiguration;
+
+    /**
+     * <p>
+     * A custom description of the treatment.
+     * </p>
      */
     private String treatmentDescription;
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * A custom name for the treatment.
+     * </p>
      */
     private String treatmentName;
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The delivery configuration settings for sending the treatment through a
+     * custom channel. This object is required if the MessageConfiguration
+     * object for the treatment specifies a CustomMessage object.
+     * </p>
      *
-     * @return The message configuration settings.
+     * @return <p>
+     *         The delivery configuration settings for sending the treatment
+     *         through a custom channel. This object is required if the
+     *         MessageConfiguration object for the treatment specifies a
+     *         CustomMessage object.
+     *         </p>
+     */
+    public CustomDeliveryConfiguration getCustomDeliveryConfiguration() {
+        return customDeliveryConfiguration;
+    }
+
+    /**
+     * <p>
+     * The delivery configuration settings for sending the treatment through a
+     * custom channel. This object is required if the MessageConfiguration
+     * object for the treatment specifies a CustomMessage object.
+     * </p>
+     *
+     * @param customDeliveryConfiguration <p>
+     *            The delivery configuration settings for sending the treatment
+     *            through a custom channel. This object is required if the
+     *            MessageConfiguration object for the treatment specifies a
+     *            CustomMessage object.
+     *            </p>
+     */
+    public void setCustomDeliveryConfiguration(
+            CustomDeliveryConfiguration customDeliveryConfiguration) {
+        this.customDeliveryConfiguration = customDeliveryConfiguration;
+    }
+
+    /**
+     * <p>
+     * The delivery configuration settings for sending the treatment through a
+     * custom channel. This object is required if the MessageConfiguration
+     * object for the treatment specifies a CustomMessage object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customDeliveryConfiguration <p>
+     *            The delivery configuration settings for sending the treatment
+     *            through a custom channel. This object is required if the
+     *            MessageConfiguration object for the treatment specifies a
+     *            CustomMessage object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteTreatmentResource withCustomDeliveryConfiguration(
+            CustomDeliveryConfiguration customDeliveryConfiguration) {
+        this.customDeliveryConfiguration = customDeliveryConfiguration;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The message configuration settings for the treatment.
+     * </p>
+     *
+     * @return <p>
+     *         The message configuration settings for the treatment.
+     *         </p>
      */
     public MessageConfiguration getMessageConfiguration() {
         return messageConfiguration;
     }
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The message configuration settings for the treatment.
+     * </p>
      *
-     * @param messageConfiguration The message configuration settings.
+     * @param messageConfiguration <p>
+     *            The message configuration settings for the treatment.
+     *            </p>
      */
     public void setMessageConfiguration(MessageConfiguration messageConfiguration) {
         this.messageConfiguration = messageConfiguration;
     }
 
     /**
-     * The message configuration settings.
+     * <p>
+     * The message configuration settings for the treatment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param messageConfiguration The message configuration settings.
+     * @param messageConfiguration <p>
+     *            The message configuration settings for the treatment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -80,30 +184,42 @@ public class WriteTreatmentResource implements Serializable {
     }
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the treatment.
+     * </p>
      *
-     * @return The campaign schedule.
+     * @return <p>
+     *         The schedule settings for the treatment.
+     *         </p>
      */
     public Schedule getSchedule() {
         return schedule;
     }
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the treatment.
+     * </p>
      *
-     * @param schedule The campaign schedule.
+     * @param schedule <p>
+     *            The schedule settings for the treatment.
+     *            </p>
      */
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
 
     /**
-     * The campaign schedule.
+     * <p>
+     * The schedule settings for the treatment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param schedule The campaign schedule.
+     * @param schedule <p>
+     *            The schedule settings for the treatment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -113,30 +229,48 @@ public class WriteTreatmentResource implements Serializable {
     }
 
     /**
-     * The allocated percentage of users for this treatment.
+     * <p>
+     * The allocated percentage of users (segment members) to send the treatment
+     * to.
+     * </p>
      *
-     * @return The allocated percentage of users for this treatment.
+     * @return <p>
+     *         The allocated percentage of users (segment members) to send the
+     *         treatment to.
+     *         </p>
      */
     public Integer getSizePercent() {
         return sizePercent;
     }
 
     /**
-     * The allocated percentage of users for this treatment.
+     * <p>
+     * The allocated percentage of users (segment members) to send the treatment
+     * to.
+     * </p>
      *
-     * @param sizePercent The allocated percentage of users for this treatment.
+     * @param sizePercent <p>
+     *            The allocated percentage of users (segment members) to send
+     *            the treatment to.
+     *            </p>
      */
     public void setSizePercent(Integer sizePercent) {
         this.sizePercent = sizePercent;
     }
 
     /**
-     * The allocated percentage of users for this treatment.
+     * <p>
+     * The allocated percentage of users (segment members) to send the treatment
+     * to.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param sizePercent The allocated percentage of users for this treatment.
+     * @param sizePercent <p>
+     *            The allocated percentage of users (segment members) to send
+     *            the treatment to.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -146,30 +280,88 @@ public class WriteTreatmentResource implements Serializable {
     }
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * The message template to use for the treatment.
+     * </p>
      *
-     * @return A custom description for the treatment.
+     * @return <p>
+     *         The message template to use for the treatment.
+     *         </p>
+     */
+    public TemplateConfiguration getTemplateConfiguration() {
+        return templateConfiguration;
+    }
+
+    /**
+     * <p>
+     * The message template to use for the treatment.
+     * </p>
+     *
+     * @param templateConfiguration <p>
+     *            The message template to use for the treatment.
+     *            </p>
+     */
+    public void setTemplateConfiguration(TemplateConfiguration templateConfiguration) {
+        this.templateConfiguration = templateConfiguration;
+    }
+
+    /**
+     * <p>
+     * The message template to use for the treatment.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param templateConfiguration <p>
+     *            The message template to use for the treatment.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public WriteTreatmentResource withTemplateConfiguration(
+            TemplateConfiguration templateConfiguration) {
+        this.templateConfiguration = templateConfiguration;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A custom description of the treatment.
+     * </p>
+     *
+     * @return <p>
+     *         A custom description of the treatment.
+     *         </p>
      */
     public String getTreatmentDescription() {
         return treatmentDescription;
     }
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * A custom description of the treatment.
+     * </p>
      *
-     * @param treatmentDescription A custom description for the treatment.
+     * @param treatmentDescription <p>
+     *            A custom description of the treatment.
+     *            </p>
      */
     public void setTreatmentDescription(String treatmentDescription) {
         this.treatmentDescription = treatmentDescription;
     }
 
     /**
-     * A custom description for the treatment.
+     * <p>
+     * A custom description of the treatment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param treatmentDescription A custom description for the treatment.
+     * @param treatmentDescription <p>
+     *            A custom description of the treatment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -179,33 +371,42 @@ public class WriteTreatmentResource implements Serializable {
     }
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * A custom name for the treatment.
+     * </p>
      *
-     * @return The custom name of a variation of the campaign used for A/B
-     *         testing.
+     * @return <p>
+     *         A custom name for the treatment.
+     *         </p>
      */
     public String getTreatmentName() {
         return treatmentName;
     }
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * A custom name for the treatment.
+     * </p>
      *
-     * @param treatmentName The custom name of a variation of the campaign used
-     *            for A/B testing.
+     * @param treatmentName <p>
+     *            A custom name for the treatment.
+     *            </p>
      */
     public void setTreatmentName(String treatmentName) {
         this.treatmentName = treatmentName;
     }
 
     /**
-     * The custom name of a variation of the campaign used for A/B testing.
+     * <p>
+     * A custom name for the treatment.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param treatmentName The custom name of a variation of the campaign used
-     *            for A/B testing.
+     * @param treatmentName <p>
+     *            A custom name for the treatment.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -225,12 +426,16 @@ public class WriteTreatmentResource implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getCustomDeliveryConfiguration() != null)
+            sb.append("CustomDeliveryConfiguration: " + getCustomDeliveryConfiguration() + ",");
         if (getMessageConfiguration() != null)
             sb.append("MessageConfiguration: " + getMessageConfiguration() + ",");
         if (getSchedule() != null)
             sb.append("Schedule: " + getSchedule() + ",");
         if (getSizePercent() != null)
             sb.append("SizePercent: " + getSizePercent() + ",");
+        if (getTemplateConfiguration() != null)
+            sb.append("TemplateConfiguration: " + getTemplateConfiguration() + ",");
         if (getTreatmentDescription() != null)
             sb.append("TreatmentDescription: " + getTreatmentDescription() + ",");
         if (getTreatmentName() != null)
@@ -244,11 +449,18 @@ public class WriteTreatmentResource implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime
+                * hashCode
+                + ((getCustomDeliveryConfiguration() == null) ? 0
+                        : getCustomDeliveryConfiguration().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageConfiguration() == null) ? 0 : getMessageConfiguration().hashCode());
         hashCode = prime * hashCode + ((getSchedule() == null) ? 0 : getSchedule().hashCode());
         hashCode = prime * hashCode
                 + ((getSizePercent() == null) ? 0 : getSizePercent().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTemplateConfiguration() == null) ? 0 : getTemplateConfiguration().hashCode());
         hashCode = prime * hashCode
                 + ((getTreatmentDescription() == null) ? 0 : getTreatmentDescription().hashCode());
         hashCode = prime * hashCode
@@ -267,6 +479,13 @@ public class WriteTreatmentResource implements Serializable {
             return false;
         WriteTreatmentResource other = (WriteTreatmentResource) obj;
 
+        if (other.getCustomDeliveryConfiguration() == null
+                ^ this.getCustomDeliveryConfiguration() == null)
+            return false;
+        if (other.getCustomDeliveryConfiguration() != null
+                && other.getCustomDeliveryConfiguration().equals(
+                        this.getCustomDeliveryConfiguration()) == false)
+            return false;
         if (other.getMessageConfiguration() == null ^ this.getMessageConfiguration() == null)
             return false;
         if (other.getMessageConfiguration() != null
@@ -280,6 +499,11 @@ public class WriteTreatmentResource implements Serializable {
             return false;
         if (other.getSizePercent() != null
                 && other.getSizePercent().equals(this.getSizePercent()) == false)
+            return false;
+        if (other.getTemplateConfiguration() == null ^ this.getTemplateConfiguration() == null)
+            return false;
+        if (other.getTemplateConfiguration() != null
+                && other.getTemplateConfiguration().equals(this.getTemplateConfiguration()) == false)
             return false;
         if (other.getTreatmentDescription() == null ^ this.getTreatmentDescription() == null)
             return false;

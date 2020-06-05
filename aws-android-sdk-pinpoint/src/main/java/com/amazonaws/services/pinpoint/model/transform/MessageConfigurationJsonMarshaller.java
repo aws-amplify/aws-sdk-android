@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,11 @@ class MessageConfigurationJsonMarshaller {
             Message baiduMessage = messageConfiguration.getBaiduMessage();
             jsonWriter.name("BaiduMessage");
             MessageJsonMarshaller.getInstance().marshall(baiduMessage, jsonWriter);
+        }
+        if (messageConfiguration.getCustomMessage() != null) {
+            CampaignCustomMessage customMessage = messageConfiguration.getCustomMessage();
+            jsonWriter.name("CustomMessage");
+            CampaignCustomMessageJsonMarshaller.getInstance().marshall(customMessage, jsonWriter);
         }
         if (messageConfiguration.getDefaultMessage() != null) {
             Message defaultMessage = messageConfiguration.getDefaultMessage();

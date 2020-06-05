@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,6 +26,13 @@ class WriteTreatmentResourceJsonMarshaller {
     public void marshall(WriteTreatmentResource writeTreatmentResource, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (writeTreatmentResource.getCustomDeliveryConfiguration() != null) {
+            CustomDeliveryConfiguration customDeliveryConfiguration = writeTreatmentResource
+                    .getCustomDeliveryConfiguration();
+            jsonWriter.name("CustomDeliveryConfiguration");
+            CustomDeliveryConfigurationJsonMarshaller.getInstance().marshall(
+                    customDeliveryConfiguration, jsonWriter);
+        }
         if (writeTreatmentResource.getMessageConfiguration() != null) {
             MessageConfiguration messageConfiguration = writeTreatmentResource
                     .getMessageConfiguration();
@@ -42,6 +49,13 @@ class WriteTreatmentResourceJsonMarshaller {
             Integer sizePercent = writeTreatmentResource.getSizePercent();
             jsonWriter.name("SizePercent");
             jsonWriter.value(sizePercent);
+        }
+        if (writeTreatmentResource.getTemplateConfiguration() != null) {
+            TemplateConfiguration templateConfiguration = writeTreatmentResource
+                    .getTemplateConfiguration();
+            jsonWriter.name("TemplateConfiguration");
+            TemplateConfigurationJsonMarshaller.getInstance().marshall(templateConfiguration,
+                    jsonWriter);
         }
         if (writeTreatmentResource.getTreatmentDescription() != null) {
             String treatmentDescription = writeTreatmentResource.getTreatmentDescription();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,13 +18,17 @@ package com.amazonaws.services.pinpoint.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * Simple message object.
+ * <p>
+ * Provides information about an API request or response.
+ * </p>
  */
 public class ForbiddenException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The unique message body ID.
+     * <p>
+     * The unique identifier for the request or response.
+     * </p>
      */
     private String requestID;
 
@@ -38,18 +42,26 @@ public class ForbiddenException extends AmazonServiceException {
     }
 
     /**
-     * The unique message body ID.
+     * <p>
+     * The unique identifier for the request or response.
+     * </p>
      *
-     * @return The unique message body ID.
+     * @return <p>
+     *         The unique identifier for the request or response.
+     *         </p>
      */
     public String getRequestID() {
         return requestID;
     }
 
     /**
-     * The unique message body ID.
+     * <p>
+     * The unique identifier for the request or response.
+     * </p>
      *
-     * @param requestID The unique message body ID.
+     * @param requestID <p>
+     *            The unique identifier for the request or response.
+     *            </p>
      */
     public void setRequestID(String requestID) {
         this.requestID = requestID;
