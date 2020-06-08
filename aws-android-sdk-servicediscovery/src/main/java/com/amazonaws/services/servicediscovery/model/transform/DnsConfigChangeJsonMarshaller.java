@@ -1,0 +1,50 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.servicediscovery.model.transform;
+
+import com.amazonaws.services.servicediscovery.model.*;
+import com.amazonaws.util.json.AwsJsonWriter;
+
+/**
+ * JSON marshaller for POJO DnsConfigChange
+ */
+class DnsConfigChangeJsonMarshaller {
+
+    public void marshall(DnsConfigChange dnsConfigChange, AwsJsonWriter jsonWriter)
+            throws Exception {
+        jsonWriter.beginObject();
+        if (dnsConfigChange.getDnsRecords() != null) {
+            java.util.List<DnsRecord> dnsRecords = dnsConfigChange.getDnsRecords();
+            jsonWriter.name("DnsRecords");
+            jsonWriter.beginArray();
+            for (DnsRecord dnsRecordsItem : dnsRecords) {
+                if (dnsRecordsItem != null) {
+                    DnsRecordJsonMarshaller.getInstance().marshall(dnsRecordsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        jsonWriter.endObject();
+    }
+
+    private static DnsConfigChangeJsonMarshaller instance;
+
+    public static DnsConfigChangeJsonMarshaller getInstance() {
+        if (instance == null)
+            instance = new DnsConfigChangeJsonMarshaller();
+        return instance;
+    }
+}
