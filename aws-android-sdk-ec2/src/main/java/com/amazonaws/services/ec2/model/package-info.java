@@ -1,6 +1,6 @@
-
 /**
- * Classes modeling the various types represented by AmazonEC2.
+ * Classes modeling the various types represented by AmazonElasticComputeCloud
  */
- package com.amazonaws.services.ec2.model;
-        
+
+package com.amazonaws.services.ec2.model;
+

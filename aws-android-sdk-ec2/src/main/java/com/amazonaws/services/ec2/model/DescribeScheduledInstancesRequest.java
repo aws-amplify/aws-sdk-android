@@ -1,249 +1,535 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.Request;
-import com.amazonaws.services.ec2.model.transform.DescribeScheduledInstancesRequestMarshaller;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeScheduledInstances(DescribeScheduledInstancesRequest) DescribeScheduledInstances operation}.
  * <p>
- * Describes one or more of your Scheduled Instances.
+ * Describes the specified Scheduled Instances or all your Scheduled Instances.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#describeScheduledInstances(DescribeScheduledInstancesRequest)
  */
-public class DescribeScheduledInstancesRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<DescribeScheduledInstancesRequest> {
-
+public class DescribeScheduledInstancesRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
-     * One or more Scheduled Instance IDs.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> scheduledInstanceIds;
+    private Boolean dryRun;
 
     /**
-     * The time period for the first schedule to start.
+     * <p>
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>availability-zone</code> - The Availability Zone (for example,
+     * <code>us-west-2a</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>instance-type</code> - The instance type (for example,
+     * <code>c4.large</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>network-platform</code> - The network platform (
+     * <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>platform</code> - The platform (<code>Linux/UNIX</code> or
+     * <code>Windows</code>).
+     * </p>
+     * </li>
+     * </ul>
      */
-    private SlotStartTimeRangeRequest slotStartTimeRange;
+    private java.util.List<Filter> filters;
 
     /**
-     * The token for the next set of results.
-     */
-    private String nextToken;
-
-    /**
-     * The maximum number of results to return in a single call. This value
-     * can be between 5 and 300. The default value is 100. To retrieve the
-     * remaining results, make another call with the returned
-     * <code>NextToken</code> value.
+     * <p>
+     * The maximum number of results to return in a single call. This value can
+     * be between 5 and 300. The default value is 100. To retrieve the remaining
+     * results, make another call with the returned <code>NextToken</code>
+     * value.
+     * </p>
      */
     private Integer maxResults;
 
     /**
-     * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     * Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     * <p><code>instance-type</code> - The instance type (for example,
-     * <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     * platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     * </ul>
+     * <p>
+     * The token for the next set of results.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filters;
+    private String nextToken;
 
     /**
-     * One or more Scheduled Instance IDs.
-     *
-     * @return One or more Scheduled Instance IDs.
+     * <p>
+     * The Scheduled Instance IDs.
+     * </p>
      */
-    public java.util.List<String> getScheduledInstanceIds() {
-        if (scheduledInstanceIds == null) {
-              scheduledInstanceIds = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              scheduledInstanceIds.setAutoConstruct(true);
-        }
-        return scheduledInstanceIds;
-    }
-    
+    private java.util.List<String> scheduledInstanceIds;
+
     /**
-     * One or more Scheduled Instance IDs.
-     *
-     * @param scheduledInstanceIds One or more Scheduled Instance IDs.
+     * <p>
+     * The time period for the first schedule to start.
+     * </p>
      */
-    public void setScheduledInstanceIds(java.util.Collection<String> scheduledInstanceIds) {
-        if (scheduledInstanceIds == null) {
-            this.scheduledInstanceIds = null;
+    private SlotStartTimeRangeRequest slotStartTimeRange;
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeScheduledInstancesRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>availability-zone</code> - The Availability Zone (for example,
+     * <code>us-west-2a</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>instance-type</code> - The instance type (for example,
+     * <code>c4.large</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>network-platform</code> - The network platform (
+     * <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>platform</code> - The platform (<code>Linux/UNIX</code> or
+     * <code>Windows</code>).
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         The filters.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>availability-zone</code> - The Availability Zone (for
+     *         example, <code>us-west-2a</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>instance-type</code> - The instance type (for example,
+     *         <code>c4.large</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>network-platform</code> - The network platform (
+     *         <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>platform</code> - The platform (<code>Linux/UNIX</code> or
+     *         <code>Windows</code>).
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public java.util.List<Filter> getFilters() {
+        return filters;
+    }
+
+    /**
+     * <p>
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>availability-zone</code> - The Availability Zone (for example,
+     * <code>us-west-2a</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>instance-type</code> - The instance type (for example,
+     * <code>c4.large</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>network-platform</code> - The network platform (
+     * <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>platform</code> - The platform (<code>Linux/UNIX</code> or
+     * <code>Windows</code>).
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param filters <p>
+     *            The filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>availability-zone</code> - The Availability Zone (for
+     *            example, <code>us-west-2a</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>instance-type</code> - The instance type (for example,
+     *            <code>c4.large</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>network-platform</code> - The network platform (
+     *            <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>platform</code> - The platform (<code>Linux/UNIX</code>
+     *            or <code>Windows</code>).
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setFilters(java.util.Collection<Filter> filters) {
+        if (filters == null) {
+            this.filters = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> scheduledInstanceIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(scheduledInstanceIds.size());
-        scheduledInstanceIdsCopy.addAll(scheduledInstanceIds);
-        this.scheduledInstanceIds = scheduledInstanceIdsCopy;
+
+        this.filters = new java.util.ArrayList<Filter>(filters);
     }
-    
+
     /**
-     * One or more Scheduled Instance IDs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>availability-zone</code> - The Availability Zone (for example,
+     * <code>us-west-2a</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>instance-type</code> - The instance type (for example,
+     * <code>c4.large</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>network-platform</code> - The network platform (
+     * <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>platform</code> - The platform (<code>Linux/UNIX</code> or
+     * <code>Windows</code>).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param scheduledInstanceIds One or more Scheduled Instance IDs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param filters <p>
+     *            The filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>availability-zone</code> - The Availability Zone (for
+     *            example, <code>us-west-2a</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>instance-type</code> - The instance type (for example,
+     *            <code>c4.large</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>network-platform</code> - The network platform (
+     *            <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>platform</code> - The platform (<code>Linux/UNIX</code>
+     *            or <code>Windows</code>).
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DescribeScheduledInstancesRequest withScheduledInstanceIds(String... scheduledInstanceIds) {
-        if (getScheduledInstanceIds() == null) setScheduledInstanceIds(new java.util.ArrayList<String>(scheduledInstanceIds.length));
-        for (String value : scheduledInstanceIds) {
-            getScheduledInstanceIds().add(value);
+    public DescribeScheduledInstancesRequest withFilters(Filter... filters) {
+        if (getFilters() == null) {
+            this.filters = new java.util.ArrayList<Filter>(filters.length);
+        }
+        for (Filter value : filters) {
+            this.filters.add(value);
         }
         return this;
     }
-    
-    /**
-     * One or more Scheduled Instance IDs.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param scheduledInstanceIds One or more Scheduled Instance IDs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeScheduledInstancesRequest withScheduledInstanceIds(java.util.Collection<String> scheduledInstanceIds) {
-        if (scheduledInstanceIds == null) {
-            this.scheduledInstanceIds = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> scheduledInstanceIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(scheduledInstanceIds.size());
-            scheduledInstanceIdsCopy.addAll(scheduledInstanceIds);
-            this.scheduledInstanceIds = scheduledInstanceIdsCopy;
-        }
 
+    /**
+     * <p>
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>availability-zone</code> - The Availability Zone (for example,
+     * <code>us-west-2a</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>instance-type</code> - The instance type (for example,
+     * <code>c4.large</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>network-platform</code> - The network platform (
+     * <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>platform</code> - The platform (<code>Linux/UNIX</code> or
+     * <code>Windows</code>).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param filters <p>
+     *            The filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>availability-zone</code> - The Availability Zone (for
+     *            example, <code>us-west-2a</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>instance-type</code> - The instance type (for example,
+     *            <code>c4.large</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>network-platform</code> - The network platform (
+     *            <code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>platform</code> - The platform (<code>Linux/UNIX</code>
+     *            or <code>Windows</code>).
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeScheduledInstancesRequest withFilters(java.util.Collection<Filter> filters) {
+        setFilters(filters);
         return this;
     }
 
     /**
-     * The time period for the first schedule to start.
-     *
-     * @return The time period for the first schedule to start.
-     */
-    public SlotStartTimeRangeRequest getSlotStartTimeRange() {
-        return slotStartTimeRange;
-    }
-    
-    /**
-     * The time period for the first schedule to start.
-     *
-     * @param slotStartTimeRange The time period for the first schedule to start.
-     */
-    public void setSlotStartTimeRange(SlotStartTimeRangeRequest slotStartTimeRange) {
-        this.slotStartTimeRange = slotStartTimeRange;
-    }
-    
-    /**
-     * The time period for the first schedule to start.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum number of results to return in a single call. This value can
+     * be between 5 and 300. The default value is 100. To retrieve the remaining
+     * results, make another call with the returned <code>NextToken</code>
+     * value.
+     * </p>
      *
-     * @param slotStartTimeRange The time period for the first schedule to start.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeScheduledInstancesRequest withSlotStartTimeRange(SlotStartTimeRangeRequest slotStartTimeRange) {
-        this.slotStartTimeRange = slotStartTimeRange;
-        return this;
-    }
-
-    /**
-     * The token for the next set of results.
-     *
-     * @return The token for the next set of results.
-     */
-    public String getNextToken() {
-        return nextToken;
-    }
-    
-    /**
-     * The token for the next set of results.
-     *
-     * @param nextToken The token for the next set of results.
-     */
-    public void setNextToken(String nextToken) {
-        this.nextToken = nextToken;
-    }
-    
-    /**
-     * The token for the next set of results.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param nextToken The token for the next set of results.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeScheduledInstancesRequest withNextToken(String nextToken) {
-        this.nextToken = nextToken;
-        return this;
-    }
-
-    /**
-     * The maximum number of results to return in a single call. This value
-     * can be between 5 and 300. The default value is 100. To retrieve the
-     * remaining results, make another call with the returned
-     * <code>NextToken</code> value.
-     *
-     * @return The maximum number of results to return in a single call. This value
-     *         can be between 5 and 300. The default value is 100. To retrieve the
-     *         remaining results, make another call with the returned
-     *         <code>NextToken</code> value.
+     * @return <p>
+     *         The maximum number of results to return in a single call. This
+     *         value can be between 5 and 300. The default value is 100. To
+     *         retrieve the remaining results, make another call with the
+     *         returned <code>NextToken</code> value.
+     *         </p>
      */
     public Integer getMaxResults() {
         return maxResults;
     }
-    
+
     /**
-     * The maximum number of results to return in a single call. This value
-     * can be between 5 and 300. The default value is 100. To retrieve the
-     * remaining results, make another call with the returned
-     * <code>NextToken</code> value.
+     * <p>
+     * The maximum number of results to return in a single call. This value can
+     * be between 5 and 300. The default value is 100. To retrieve the remaining
+     * results, make another call with the returned <code>NextToken</code>
+     * value.
+     * </p>
      *
-     * @param maxResults The maximum number of results to return in a single call. This value
-     *         can be between 5 and 300. The default value is 100. To retrieve the
-     *         remaining results, make another call with the returned
-     *         <code>NextToken</code> value.
+     * @param maxResults <p>
+     *            The maximum number of results to return in a single call. This
+     *            value can be between 5 and 300. The default value is 100. To
+     *            retrieve the remaining results, make another call with the
+     *            returned <code>NextToken</code> value.
+     *            </p>
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
-    
+
     /**
-     * The maximum number of results to return in a single call. This value
-     * can be between 5 and 300. The default value is 100. To retrieve the
-     * remaining results, make another call with the returned
-     * <code>NextToken</code> value.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum number of results to return in a single call. This value can
+     * be between 5 and 300. The default value is 100. To retrieve the remaining
+     * results, make another call with the returned <code>NextToken</code>
+     * value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param maxResults The maximum number of results to return in a single call. This value
-     *         can be between 5 and 300. The default value is 100. To retrieve the
-     *         remaining results, make another call with the returned
-     *         <code>NextToken</code> value.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param maxResults <p>
+     *            The maximum number of results to return in a single call. This
+     *            value can be between 5 and 300. The default value is 100. To
+     *            retrieve the remaining results, make another call with the
+     *            returned <code>NextToken</code> value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeScheduledInstancesRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
@@ -251,195 +537,254 @@ public class DescribeScheduledInstancesRequest extends AmazonWebServiceRequest i
     }
 
     /**
-     * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     * Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     * <p><code>instance-type</code> - The instance type (for example,
-     * <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     * platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     * </ul>
+     * <p>
+     * The token for the next set of results.
+     * </p>
      *
-     * @return One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     *         Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     *         <p><code>instance-type</code> - The instance type (for example,
-     *         <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     *         The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     *         platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     *         </ul>
+     * @return <p>
+     *         The token for the next set of results.
+     *         </p>
      */
-    public java.util.List<Filter> getFilters() {
-        if (filters == null) {
-              filters = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>();
-              filters.setAutoConstruct(true);
-        }
-        return filters;
+    public String getNextToken() {
+        return nextToken;
     }
-    
+
     /**
-     * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     * Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     * <p><code>instance-type</code> - The instance type (for example,
-     * <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     * platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     * </ul>
+     * <p>
+     * The token for the next set of results.
+     * </p>
      *
-     * @param filters One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     *         Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     *         <p><code>instance-type</code> - The instance type (for example,
-     *         <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     *         The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     *         platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     *         </ul>
+     * @param nextToken <p>
+     *            The token for the next set of results.
+     *            </p>
      */
-    public void setFilters(java.util.Collection<Filter> filters) {
-        if (filters == null) {
-            this.filters = null;
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token for the next set of results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token for the next set of results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeScheduledInstancesRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Scheduled Instance IDs.
+     * </p>
+     *
+     * @return <p>
+     *         The Scheduled Instance IDs.
+     *         </p>
+     */
+    public java.util.List<String> getScheduledInstanceIds() {
+        return scheduledInstanceIds;
+    }
+
+    /**
+     * <p>
+     * The Scheduled Instance IDs.
+     * </p>
+     *
+     * @param scheduledInstanceIds <p>
+     *            The Scheduled Instance IDs.
+     *            </p>
+     */
+    public void setScheduledInstanceIds(java.util.Collection<String> scheduledInstanceIds) {
+        if (scheduledInstanceIds == null) {
+            this.scheduledInstanceIds = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filtersCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>(filters.size());
-        filtersCopy.addAll(filters);
-        this.filters = filtersCopy;
-    }
-    
-    /**
-     * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     * Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     * <p><code>instance-type</code> - The instance type (for example,
-     * <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     * platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param filters One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     *         Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     *         <p><code>instance-type</code> - The instance type (for example,
-     *         <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     *         The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     *         platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     *         </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeScheduledInstancesRequest withFilters(Filter... filters) {
-        if (getFilters() == null) setFilters(new java.util.ArrayList<Filter>(filters.length));
-        for (Filter value : filters) {
-            getFilters().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     * Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     * <p><code>instance-type</code> - The instance type (for example,
-     * <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     * platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     * </ul>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param filters One or more filters. <ul> <li> <p><code>availability-zone</code> - The
-     *         Availability Zone (for example, <code>us-west-2a</code>). </li> <li>
-     *         <p><code>instance-type</code> - The instance type (for example,
-     *         <code>c4.large</code>). </li> <li> <p><code>network-platform</code> -
-     *         The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>). </li> <li> <p><code>platform</code> - The
-     *         platform (<code>Linux/UNIX</code> or <code>Windows</code>). </li>
-     *         </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeScheduledInstancesRequest withFilters(java.util.Collection<Filter> filters) {
-        if (filters == null) {
-            this.filters = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filtersCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>(filters.size());
-            filtersCopy.addAll(filters);
-            this.filters = filtersCopy;
-        }
 
+        this.scheduledInstanceIds = new java.util.ArrayList<String>(scheduledInstanceIds);
+    }
+
+    /**
+     * <p>
+     * The Scheduled Instance IDs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param scheduledInstanceIds <p>
+     *            The Scheduled Instance IDs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeScheduledInstancesRequest withScheduledInstanceIds(
+            String... scheduledInstanceIds) {
+        if (getScheduledInstanceIds() == null) {
+            this.scheduledInstanceIds = new java.util.ArrayList<String>(scheduledInstanceIds.length);
+        }
+        for (String value : scheduledInstanceIds) {
+            this.scheduledInstanceIds.add(value);
+        }
         return this;
     }
 
     /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
+     * <p>
+     * The Scheduled Instance IDs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param scheduledInstanceIds <p>
+     *            The Scheduled Instance IDs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    @Override
-    public Request<DescribeScheduledInstancesRequest> getDryRunRequest() {
-        Request<DescribeScheduledInstancesRequest> request = new DescribeScheduledInstancesRequestMarshaller().marshall(this);
-        request.addParameter("DryRun", Boolean.toString(true));
-        return request;
+    public DescribeScheduledInstancesRequest withScheduledInstanceIds(
+            java.util.Collection<String> scheduledInstanceIds) {
+        setScheduledInstanceIds(scheduledInstanceIds);
+        return this;
     }
-    
+
+    /**
+     * <p>
+     * The time period for the first schedule to start.
+     * </p>
+     *
+     * @return <p>
+     *         The time period for the first schedule to start.
+     *         </p>
+     */
+    public SlotStartTimeRangeRequest getSlotStartTimeRange() {
+        return slotStartTimeRange;
+    }
+
+    /**
+     * <p>
+     * The time period for the first schedule to start.
+     * </p>
+     *
+     * @param slotStartTimeRange <p>
+     *            The time period for the first schedule to start.
+     *            </p>
+     */
+    public void setSlotStartTimeRange(SlotStartTimeRangeRequest slotStartTimeRange) {
+        this.slotStartTimeRange = slotStartTimeRange;
+    }
+
+    /**
+     * <p>
+     * The time period for the first schedule to start.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param slotStartTimeRange <p>
+     *            The time period for the first schedule to start.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeScheduledInstancesRequest withSlotStartTimeRange(
+            SlotStartTimeRangeRequest slotStartTimeRange) {
+        this.slotStartTimeRange = slotStartTimeRange;
+        return this;
+    }
+
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getScheduledInstanceIds() != null) sb.append("ScheduledInstanceIds: " + getScheduledInstanceIds() + ",");
-        if (getSlotStartTimeRange() != null) sb.append("SlotStartTimeRange: " + getSlotStartTimeRange() + ",");
-        if (getNextToken() != null) sb.append("NextToken: " + getNextToken() + ",");
-        if (getMaxResults() != null) sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getFilters() != null) sb.append("Filters: " + getFilters() );
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun() + ",");
+        if (getFilters() != null)
+            sb.append("Filters: " + getFilters() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getScheduledInstanceIds() != null)
+            sb.append("ScheduledInstanceIds: " + getScheduledInstanceIds() + ",");
+        if (getSlotStartTimeRange() != null)
+            sb.append("SlotStartTimeRange: " + getSlotStartTimeRange());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getScheduledInstanceIds() == null) ? 0 : getScheduledInstanceIds().hashCode()); 
-        hashCode = prime * hashCode + ((getSlotStartTimeRange() == null) ? 0 : getSlotStartTimeRange().hashCode()); 
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode()); 
-        hashCode = prime * hashCode + ((getFilters() == null) ? 0 : getFilters().hashCode()); 
+
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
+        hashCode = prime * hashCode + ((getFilters() == null) ? 0 : getFilters().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getScheduledInstanceIds() == null) ? 0 : getScheduledInstanceIds().hashCode());
+        hashCode = prime * hashCode
+                + ((getSlotStartTimeRange() == null) ? 0 : getSlotStartTimeRange().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeScheduledInstancesRequest == false) return false;
-        DescribeScheduledInstancesRequest other = (DescribeScheduledInstancesRequest)obj;
-        
-        if (other.getScheduledInstanceIds() == null ^ this.getScheduledInstanceIds() == null) return false;
-        if (other.getScheduledInstanceIds() != null && other.getScheduledInstanceIds().equals(this.getScheduledInstanceIds()) == false) return false; 
-        if (other.getSlotStartTimeRange() == null ^ this.getSlotStartTimeRange() == null) return false;
-        if (other.getSlotStartTimeRange() != null && other.getSlotStartTimeRange().equals(this.getSlotStartTimeRange()) == false) return false; 
-        if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
-        if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null) return false;
-        if (other.getMaxResults() != null && other.getMaxResults().equals(this.getMaxResults()) == false) return false; 
-        if (other.getFilters() == null ^ this.getFilters() == null) return false;
-        if (other.getFilters() != null && other.getFilters().equals(this.getFilters()) == false) return false; 
+        if (obj instanceof DescribeScheduledInstancesRequest == false)
+            return false;
+        DescribeScheduledInstancesRequest other = (DescribeScheduledInstancesRequest) obj;
+
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
+        if (other.getFilters() == null ^ this.getFilters() == null)
+            return false;
+        if (other.getFilters() != null && other.getFilters().equals(this.getFilters()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getScheduledInstanceIds() == null ^ this.getScheduledInstanceIds() == null)
+            return false;
+        if (other.getScheduledInstanceIds() != null
+                && other.getScheduledInstanceIds().equals(this.getScheduledInstanceIds()) == false)
+            return false;
+        if (other.getSlotStartTimeRange() == null ^ this.getSlotStartTimeRange() == null)
+            return false;
+        if (other.getSlotStartTimeRange() != null
+                && other.getSlotStartTimeRange().equals(this.getSlotStartTimeRange()) == false)
+            return false;
         return true;
     }
-    
 }
-    

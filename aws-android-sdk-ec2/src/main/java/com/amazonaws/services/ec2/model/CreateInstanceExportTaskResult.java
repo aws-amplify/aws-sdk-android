@@ -1,60 +1,69 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output for CreateInstanceExportTask.
- * </p>
- */
 public class CreateInstanceExportTaskResult implements Serializable {
-
     /**
+     * <p>
      * Information about the instance export task.
+     * </p>
      */
     private ExportTask exportTask;
 
     /**
+     * <p>
      * Information about the instance export task.
+     * </p>
      *
-     * @return Information about the instance export task.
+     * @return <p>
+     *         Information about the instance export task.
+     *         </p>
      */
     public ExportTask getExportTask() {
         return exportTask;
     }
-    
+
     /**
+     * <p>
      * Information about the instance export task.
+     * </p>
      *
-     * @param exportTask Information about the instance export task.
+     * @param exportTask <p>
+     *            Information about the instance export task.
+     *            </p>
      */
     public void setExportTask(ExportTask exportTask) {
         this.exportTask = exportTask;
     }
-    
+
     /**
-     * Information about the instance export task.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the instance export task.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param exportTask Information about the instance export task.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param exportTask <p>
+     *            Information about the instance export task.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public CreateInstanceExportTaskResult withExportTask(ExportTask exportTask) {
         this.exportTask = exportTask;
@@ -66,39 +75,43 @@ public class CreateInstanceExportTaskResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getExportTask() != null) sb.append("ExportTask: " + getExportTask() );
+        if (getExportTask() != null)
+            sb.append("ExportTask: " + getExportTask());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getExportTask() == null) ? 0 : getExportTask().hashCode()); 
+
+        hashCode = prime * hashCode + ((getExportTask() == null) ? 0 : getExportTask().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof CreateInstanceExportTaskResult == false) return false;
-        CreateInstanceExportTaskResult other = (CreateInstanceExportTaskResult)obj;
-        
-        if (other.getExportTask() == null ^ this.getExportTask() == null) return false;
-        if (other.getExportTask() != null && other.getExportTask().equals(this.getExportTask()) == false) return false; 
+        if (obj instanceof CreateInstanceExportTaskResult == false)
+            return false;
+        CreateInstanceExportTaskResult other = (CreateInstanceExportTaskResult) obj;
+
+        if (other.getExportTask() == null ^ this.getExportTask() == null)
+            return false;
+        if (other.getExportTask() != null
+                && other.getExportTask().equals(this.getExportTask()) == false)
+            return false;
         return true;
     }
-    
 }
-    
