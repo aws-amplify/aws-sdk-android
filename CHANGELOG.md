@@ -1,3 +1,19 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-ec2
+---aws-android-sdk-macie2
+---aws-android-sdk-servicecatalog
+---aws-android-sdk-appconfig
+---aws-android-sdk-dlm
+---aws-android-sdk-shield
+---aws-android-sdk-codeartifact
+---aws-android-sdk-lightsail
+---aws-android-sdk-computeoptimizer
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
