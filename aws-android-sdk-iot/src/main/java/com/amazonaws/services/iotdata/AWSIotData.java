@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,8 +26,20 @@ import com.amazonaws.services.iotdata.model.*;
  * Internet-connected things (such as sensors, actuators, embedded devices, or
  * smart appliances) and the AWS cloud. It implements a broker for applications
  * and things to publish messages over HTTP (Publish) and retrieve, update, and
- * delete thing shadows. A thing shadow is a persistent representation of your
- * things and their state in the AWS cloud.
+ * delete shadows. A shadow is a persistent representation of your things and
+ * their state in the AWS cloud.
+ * </p>
+ * <p>
+ * Find the endpoint address for actions in the AWS IoT data plane by running
+ * this CLI command:
+ * </p>
+ * <p>
+ * <code>aws iot describe-endpoint --endpoint-type iot:Data-ATS</code>
+ * </p>
+ * <p>
+ * The service name used by <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">AWS
+ * Signature Version 4</a> to sign requests is: <i>iotdevicegateway</i>.
  * </p>
  **/
 public interface AWSIotData {
@@ -92,12 +104,12 @@ public interface AWSIotData {
 
     /**
      * <p>
-     * Deletes the thing shadow for the specified thing.
+     * Deletes the shadow for the specified thing.
      * </p>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html"
-     * >DeleteThingShadow</a> in the <i>AWS IoT Developer Guide</i>.
+     * >DeleteThingShadow</a> in the AWS IoT Developer Guide.
      * </p>
      * 
      * @param deleteThingShadowRequest <p>
@@ -126,12 +138,12 @@ public interface AWSIotData {
 
     /**
      * <p>
-     * Gets the thing shadow for the specified thing.
+     * Gets the shadow for the specified thing.
      * </p>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html"
-     * >GetThingShadow</a> in the <i>AWS IoT Developer Guide</i>.
+     * >GetThingShadow</a> in the AWS IoT Developer Guide.
      * </p>
      * 
      * @param getThingShadowRequest <p>
@@ -160,12 +172,40 @@ public interface AWSIotData {
 
     /**
      * <p>
+     * Lists the shadows for the specified thing.
+     * </p>
+     * 
+     * @param listNamedShadowsForThingRequest
+     * @return listNamedShadowsForThingResult The response from the
+     *         ListNamedShadowsForThing service method, as returned by AWS IoT
+     *         Data.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws MethodNotAllowedException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT Data indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListNamedShadowsForThingResult listNamedShadowsForThing(
+            ListNamedShadowsForThingRequest listNamedShadowsForThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Publishes state information.
      * </p>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http"
-     * >HTTP Protocol</a> in the <i>AWS IoT Developer Guide</i>.
+     * >HTTP Protocol</a> in the AWS IoT Developer Guide.
      * </p>
      * 
      * @param publishRequest <p>
@@ -188,12 +228,12 @@ public interface AWSIotData {
 
     /**
      * <p>
-     * Updates the thing shadow for the specified thing.
+     * Updates the shadow for the specified thing.
      * </p>
      * <p>
      * For more information, see <a href=
      * "http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html"
-     * >UpdateThingShadow</a> in the <i>AWS IoT Developer Guide</i>.
+     * >UpdateThingShadow</a> in the AWS IoT Developer Guide.
      * </p>
      * 
      * @param updateThingShadowRequest <p>

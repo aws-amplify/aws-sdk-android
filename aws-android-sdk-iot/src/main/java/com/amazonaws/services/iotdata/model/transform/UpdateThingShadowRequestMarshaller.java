@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -56,6 +56,10 @@ public class UpdateThingShadowRequestMarshaller implements
                 "{thingName}",
                 (updateThingShadowRequest.getThingName() == null) ? "" : StringUtils
                         .fromString(updateThingShadowRequest.getThingName()));
+        if (updateThingShadowRequest.getShadowName() != null) {
+            request.addParameter("name",
+                    StringUtils.fromString(updateThingShadowRequest.getShadowName()));
+        }
         request.setResourcePath(uriResourcePath);
         request.addHeader("Content-Length",
                 Integer.toString(updateThingShadowRequest.getPayload().remaining()));
