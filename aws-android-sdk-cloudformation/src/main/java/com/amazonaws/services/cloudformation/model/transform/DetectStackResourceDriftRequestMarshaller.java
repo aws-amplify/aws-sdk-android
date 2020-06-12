@@ -1,0 +1,57 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.cloudformation.model.transform;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.Request;
+import com.amazonaws.DefaultRequest;
+import com.amazonaws.services.cloudformation.model.*;
+import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.StringUtils;
+
+/**
+ * StAX request marshaller for DetectStackResourceDriftRequest
+ */
+public class DetectStackResourceDriftRequestMarshaller implements
+        Marshaller<Request<DetectStackResourceDriftRequest>, DetectStackResourceDriftRequest> {
+
+    public Request<DetectStackResourceDriftRequest> marshall(
+            DetectStackResourceDriftRequest detectStackResourceDriftRequest) {
+        if (detectStackResourceDriftRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(DetectStackResourceDriftRequest)");
+        }
+
+        Request<DetectStackResourceDriftRequest> request = new DefaultRequest<DetectStackResourceDriftRequest>(
+                detectStackResourceDriftRequest, "AWSCloudFormation");
+        request.addParameter("Action", "DetectStackResourceDrift");
+        request.addParameter("Version", "2010-05-15");
+
+        String prefix;
+        if (detectStackResourceDriftRequest.getStackName() != null) {
+            prefix = "StackName";
+            String stackName = detectStackResourceDriftRequest.getStackName();
+            request.addParameter(prefix, StringUtils.fromString(stackName));
+        }
+        if (detectStackResourceDriftRequest.getLogicalResourceId() != null) {
+            prefix = "LogicalResourceId";
+            String logicalResourceId = detectStackResourceDriftRequest.getLogicalResourceId();
+            request.addParameter(prefix, StringUtils.fromString(logicalResourceId));
+        }
+
+        return request;
+    }
+}
