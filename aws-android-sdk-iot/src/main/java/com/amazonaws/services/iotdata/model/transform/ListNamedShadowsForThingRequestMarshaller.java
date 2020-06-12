@@ -35,29 +35,34 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for GetThingShadowRequest
+ * JSON request marshaller for ListNamedShadowsForThingRequest
  */
-public class GetThingShadowRequestMarshaller implements
-        Marshaller<Request<GetThingShadowRequest>, GetThingShadowRequest> {
+public class ListNamedShadowsForThingRequestMarshaller implements
+        Marshaller<Request<ListNamedShadowsForThingRequest>, ListNamedShadowsForThingRequest> {
 
-    public Request<GetThingShadowRequest> marshall(GetThingShadowRequest getThingShadowRequest) {
-        if (getThingShadowRequest == null) {
+    public Request<ListNamedShadowsForThingRequest> marshall(
+            ListNamedShadowsForThingRequest listNamedShadowsForThingRequest) {
+        if (listNamedShadowsForThingRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(GetThingShadowRequest)");
+                    "Invalid argument passed to marshall(ListNamedShadowsForThingRequest)");
         }
 
-        Request<GetThingShadowRequest> request = new DefaultRequest<GetThingShadowRequest>(
-                getThingShadowRequest, "AWSIotData");
+        Request<ListNamedShadowsForThingRequest> request = new DefaultRequest<ListNamedShadowsForThingRequest>(
+                listNamedShadowsForThingRequest, "AWSIotData");
         request.setHttpMethod(HttpMethodName.GET);
 
-        String uriResourcePath = "/things/{thingName}/shadow";
+        String uriResourcePath = "/api/things/shadow/ListNamedShadowsForThing/{thingName}";
         uriResourcePath = uriResourcePath.replace(
                 "{thingName}",
-                (getThingShadowRequest.getThingName() == null) ? "" : StringUtils
-                        .fromString(getThingShadowRequest.getThingName()));
-        if (getThingShadowRequest.getShadowName() != null) {
-            request.addParameter("name",
-                    StringUtils.fromString(getThingShadowRequest.getShadowName()));
+                (listNamedShadowsForThingRequest.getThingName() == null) ? "" : StringUtils
+                        .fromString(listNamedShadowsForThingRequest.getThingName()));
+        if (listNamedShadowsForThingRequest.getNextToken() != null) {
+            request.addParameter("nextToken",
+                    StringUtils.fromString(listNamedShadowsForThingRequest.getNextToken()));
+        }
+        if (listNamedShadowsForThingRequest.getPageSize() != null) {
+            request.addParameter("pageSize",
+                    StringUtils.fromInteger(listNamedShadowsForThingRequest.getPageSize()));
         }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {

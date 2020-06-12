@@ -21,15 +21,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Updates the shadow for the specified thing.
- * </p>
- * <p>
- * For more information, see <a href=
- * "http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html"
- * >UpdateThingShadow</a> in the AWS IoT Developer Guide.
+ * Lists the shadows for the specified thing.
  * </p>
  */
-public class UpdateThingShadowRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListNamedShadowsForThingRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
      * The name of the thing.
@@ -43,21 +39,20 @@ public class UpdateThingShadowRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the shadow.
+     * The token to retrieve the next set of results.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
-    private String shadowName;
+    private String nextToken;
 
     /**
      * <p>
-     * The state information, in JSON format.
+     * The result page size.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
      */
-    private java.nio.ByteBuffer payload;
+    private Integer pageSize;
 
     /**
      * <p>
@@ -111,110 +106,107 @@ public class UpdateThingShadowRequest extends AmazonWebServiceRequest implements
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateThingShadowRequest withThingName(String thingName) {
+    public ListNamedShadowsForThingRequest withThingName(String thingName) {
         this.thingName = thingName;
         return this;
     }
 
     /**
      * <p>
-     * The name of the shadow.
+     * The token to retrieve the next set of results.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name of the shadow.
+     *         The token to retrieve the next set of results.
      *         </p>
      */
-    public String getShadowName() {
-        return shadowName;
+    public String getNextToken() {
+        return nextToken;
     }
 
     /**
      * <p>
-     * The name of the shadow.
+     * The token to retrieve the next set of results.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
-     * @param shadowName <p>
-     *            The name of the shadow.
+     * @param nextToken <p>
+     *            The token to retrieve the next set of results.
      *            </p>
      */
-    public void setShadowName(String shadowName) {
-        this.shadowName = shadowName;
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
     }
 
     /**
      * <p>
-     * The name of the shadow.
+     * The token to retrieve the next set of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 64<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
-     * @param shadowName <p>
-     *            The name of the shadow.
+     * @param nextToken <p>
+     *            The token to retrieve the next set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateThingShadowRequest withShadowName(String shadowName) {
-        this.shadowName = shadowName;
+    public ListNamedShadowsForThingRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
     /**
      * <p>
-     * The state information, in JSON format.
+     * The result page size.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The state information, in JSON format.
+     *         The result page size.
      *         </p>
      */
-    public java.nio.ByteBuffer getPayload() {
-        return payload;
+    public Integer getPageSize() {
+        return pageSize;
     }
 
     /**
      * <p>
-     * The state information, in JSON format.
+     * The result page size.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
      *
-     * @param payload <p>
-     *            The state information, in JSON format.
+     * @param pageSize <p>
+     *            The result page size.
      *            </p>
      */
-    public void setPayload(java.nio.ByteBuffer payload) {
-        this.payload = payload;
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
     /**
      * <p>
-     * The state information, in JSON format.
+     * The result page size.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 100<br/>
      *
-     * @param payload <p>
-     *            The state information, in JSON format.
+     * @param pageSize <p>
+     *            The result page size.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateThingShadowRequest withPayload(java.nio.ByteBuffer payload) {
-        this.payload = payload;
+    public ListNamedShadowsForThingRequest withPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
         return this;
     }
 
@@ -231,10 +223,10 @@ public class UpdateThingShadowRequest extends AmazonWebServiceRequest implements
         sb.append("{");
         if (getThingName() != null)
             sb.append("thingName: " + getThingName() + ",");
-        if (getShadowName() != null)
-            sb.append("shadowName: " + getShadowName() + ",");
-        if (getPayload() != null)
-            sb.append("payload: " + getPayload());
+        if (getNextToken() != null)
+            sb.append("nextToken: " + getNextToken() + ",");
+        if (getPageSize() != null)
+            sb.append("pageSize: " + getPageSize());
         sb.append("}");
         return sb.toString();
     }
@@ -245,8 +237,8 @@ public class UpdateThingShadowRequest extends AmazonWebServiceRequest implements
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
-        hashCode = prime * hashCode + ((getShadowName() == null) ? 0 : getShadowName().hashCode());
-        hashCode = prime * hashCode + ((getPayload() == null) ? 0 : getPayload().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getPageSize() == null) ? 0 : getPageSize().hashCode());
         return hashCode;
     }
 
@@ -257,23 +249,23 @@ public class UpdateThingShadowRequest extends AmazonWebServiceRequest implements
         if (obj == null)
             return false;
 
-        if (obj instanceof UpdateThingShadowRequest == false)
+        if (obj instanceof ListNamedShadowsForThingRequest == false)
             return false;
-        UpdateThingShadowRequest other = (UpdateThingShadowRequest) obj;
+        ListNamedShadowsForThingRequest other = (ListNamedShadowsForThingRequest) obj;
 
         if (other.getThingName() == null ^ this.getThingName() == null)
             return false;
         if (other.getThingName() != null
                 && other.getThingName().equals(this.getThingName()) == false)
             return false;
-        if (other.getShadowName() == null ^ this.getShadowName() == null)
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
-        if (other.getShadowName() != null
-                && other.getShadowName().equals(this.getShadowName()) == false)
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
-        if (other.getPayload() == null ^ this.getPayload() == null)
+        if (other.getPageSize() == null ^ this.getPageSize() == null)
             return false;
-        if (other.getPayload() != null && other.getPayload().equals(this.getPayload()) == false)
+        if (other.getPageSize() != null && other.getPageSize().equals(this.getPageSize()) == false)
             return false;
         return true;
     }
