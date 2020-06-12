@@ -1,0 +1,2255 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.storagegateway.model;
+
+import java.io.Serializable;
+
+import com.amazonaws.AmazonWebServiceRequest;
+
+/**
+ * <p>
+ * Creates a Server Message Block (SMB) file share on an existing file gateway.
+ * In Storage Gateway, a file share is a file system mount point backed by
+ * Amazon S3 cloud storage. Storage Gateway expose file shares using an SMB
+ * interface. This operation is only supported for file gateways.
+ * </p>
+ * <important>
+ * <p>
+ * File gateways require AWS Security Token Service (AWS STS) to be activated to
+ * enable you to create a file share. Make sure that AWS STS is activated in the
+ * AWS Region you are creating your file gateway in. If AWS STS is not activated
+ * in this AWS Region, activate it. For information about how to activate AWS
+ * STS, see <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html"
+ * >Activating and deactivating AWS STS in an AWS Region</a> in the <i>AWS
+ * Identity and Access Management User Guide</i>.
+ * </p>
+ * <p>
+ * File gateways don't support creating hard or symbolic links on a file share.
+ * </p>
+ * </important>
+ */
+public class CreateSMBFileShareRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * A unique string value that you supply that is used by file gateway to
+     * ensure idempotent file share creation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 100<br/>
+     */
+    private String clientToken;
+
+    /**
+     * <p>
+     * The ARN of the file gateway on which you want to create a file share.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>50 - 500<br/>
+     */
+    private String gatewayARN;
+
+    /**
+     * <p>
+     * Set to <code>true</code> to use Amazon S3 server-side encryption with
+     * your own AWS KMS key, or <code>false</code> to use a key managed by
+     * Amazon S3. Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     */
+    private Boolean kMSEncrypted;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of a symmetric customer master key (CMK)
+     * used for Amazon S3 server-side encryption. Storage Gateway does not
+     * support asymmetric CMKs. This value can only be set when
+     * <code>KMSEncrypted</code> is <code>true</code>. Optional.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>7 - 2048<br/>
+     */
+    private String kMSKey;
+
+    /**
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that a file
+     * gateway assumes when it accesses the underlying storage.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     */
+    private String role;
+
+    /**
+     * <p>
+     * The ARN of the backed storage used for storing file data.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>16 - 310<br/>
+     */
+    private String locationARN;
+
+    /**
+     * <p>
+     * The default storage class for objects put into an Amazon S3 bucket by the
+     * file gateway. The default value is <code>S3_INTELLIGENT_TIERING</code>.
+     * Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>S3_STANDARD</code> |
+     * <code>S3_INTELLIGENT_TIERING</code> | <code>S3_STANDARD_IA</code> |
+     * <code>S3_ONEZONE_IA</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 50<br/>
+     */
+    private String defaultStorageClass;
+
+    /**
+     * <p>
+     * A value that sets the access control list (ACL) permission for objects in
+     * the S3 bucket that a file gateway puts objects into. The default value is
+     * <code>private</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>private, public-read, public-read-write,
+     * authenticated-read, bucket-owner-read, bucket-owner-full-control,
+     * aws-exec-read
+     */
+    private String objectACL;
+
+    /**
+     * <p>
+     * A value that sets the write status of a file share. Set this value to
+     * <code>true</code> to set the write status to read-only, otherwise set to
+     * <code>false</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     */
+    private Boolean readOnly;
+
+    /**
+     * <p>
+     * A value that enables guessing of the MIME type for uploaded objects based
+     * on file extensions. Set this value to <code>true</code> to enable MIME
+     * type guessing, otherwise set to <code>false</code>. The default value is
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     */
+    private Boolean guessMIMETypeEnabled;
+
+    /**
+     * <p>
+     * A value that sets who pays the cost of the request and the cost
+     * associated with data download from the S3 bucket. If this value is set to
+     * <code>true</code>, the requester pays the costs; otherwise, the S3 bucket
+     * owner pays. However, the S3 bucket owner always pays the cost of storing
+     * data.
+     * </p>
+     * <note>
+     * <p>
+     * <code>RequesterPays</code> is a configuration for the S3 bucket that
+     * backs the file share, so make sure that the configuration on the file
+     * share is the same as the S3 bucket configuration.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     */
+    private Boolean requesterPays;
+
+    /**
+     * <p>
+     * Set this value to <code>true</code> to enable access control list (ACL)
+     * on the SMB file share. Set it to <code>false</code> to map file and
+     * directory permissions to the POSIX permissions.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     * >Using Microsoft Windows ACLs to control access to an SMB file share</a>
+     * in the <i>AWS Storage Gateway User Guide</i>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     */
+    private Boolean sMBACLEnabled;
+
+    /**
+     * <p>
+     * A list of users in the Active Directory that will be granted
+     * administrator privileges on the file share. These users can do all file
+     * operations as the super-user.
+     * </p>
+     * <important>
+     * <p>
+     * Use this option very carefully, because any user in this list can do
+     * anything they like on the file share, regardless of file permissions.
+     * </p>
+     * </important>
+     */
+    private java.util.List<String> adminUserList;
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     */
+    private java.util.List<String> validUserList;
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are not allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     */
+    private java.util.List<String> invalidUserList;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the storage used for the audit logs.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     */
+    private String auditDestinationARN;
+
+    /**
+     * <p>
+     * The authentication method that users use to access the file share. The
+     * default is <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>ActiveDirectory</code> | <code>GuestAccess</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 15<br/>
+     */
+    private String authentication;
+
+    /**
+     * <p>
+     * A list of up to 50 tags that can be assigned to the NFS file share. Each
+     * tag is a key-value pair.
+     * </p>
+     * <note>
+     * <p>
+     * Valid characters for key and value are letters, spaces, and numbers
+     * representable in UTF-8 format, and the following special characters: + -
+     * = . _ : / @. The maximum length of a tag's key is 128 characters, and the
+     * maximum length for a tag's value is 256.
+     * </p>
+     * </note>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * A unique string value that you supply that is used by file gateway to
+     * ensure idempotent file share creation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 100<br/>
+     *
+     * @return <p>
+     *         A unique string value that you supply that is used by file
+     *         gateway to ensure idempotent file share creation.
+     *         </p>
+     */
+    public String getClientToken() {
+        return clientToken;
+    }
+
+    /**
+     * <p>
+     * A unique string value that you supply that is used by file gateway to
+     * ensure idempotent file share creation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 100<br/>
+     *
+     * @param clientToken <p>
+     *            A unique string value that you supply that is used by file
+     *            gateway to ensure idempotent file share creation.
+     *            </p>
+     */
+    public void setClientToken(String clientToken) {
+        this.clientToken = clientToken;
+    }
+
+    /**
+     * <p>
+     * A unique string value that you supply that is used by file gateway to
+     * ensure idempotent file share creation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 100<br/>
+     *
+     * @param clientToken <p>
+     *            A unique string value that you supply that is used by file
+     *            gateway to ensure idempotent file share creation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withClientToken(String clientToken) {
+        this.clientToken = clientToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARN of the file gateway on which you want to create a file share.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>50 - 500<br/>
+     *
+     * @return <p>
+     *         The ARN of the file gateway on which you want to create a file
+     *         share.
+     *         </p>
+     */
+    public String getGatewayARN() {
+        return gatewayARN;
+    }
+
+    /**
+     * <p>
+     * The ARN of the file gateway on which you want to create a file share.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>50 - 500<br/>
+     *
+     * @param gatewayARN <p>
+     *            The ARN of the file gateway on which you want to create a file
+     *            share.
+     *            </p>
+     */
+    public void setGatewayARN(String gatewayARN) {
+        this.gatewayARN = gatewayARN;
+    }
+
+    /**
+     * <p>
+     * The ARN of the file gateway on which you want to create a file share.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>50 - 500<br/>
+     *
+     * @param gatewayARN <p>
+     *            The ARN of the file gateway on which you want to create a file
+     *            share.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withGatewayARN(String gatewayARN) {
+        this.gatewayARN = gatewayARN;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to use Amazon S3 server-side encryption with
+     * your own AWS KMS key, or <code>false</code> to use a key managed by
+     * Amazon S3. Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         Set to <code>true</code> to use Amazon S3 server-side encryption
+     *         with your own AWS KMS key, or <code>false</code> to use a key
+     *         managed by Amazon S3. Optional.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean isKMSEncrypted() {
+        return kMSEncrypted;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to use Amazon S3 server-side encryption with
+     * your own AWS KMS key, or <code>false</code> to use a key managed by
+     * Amazon S3. Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         Set to <code>true</code> to use Amazon S3 server-side encryption
+     *         with your own AWS KMS key, or <code>false</code> to use a key
+     *         managed by Amazon S3. Optional.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean getKMSEncrypted() {
+        return kMSEncrypted;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to use Amazon S3 server-side encryption with
+     * your own AWS KMS key, or <code>false</code> to use a key managed by
+     * Amazon S3. Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @param kMSEncrypted <p>
+     *            Set to <code>true</code> to use Amazon S3 server-side
+     *            encryption with your own AWS KMS key, or <code>false</code> to
+     *            use a key managed by Amazon S3. Optional.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     */
+    public void setKMSEncrypted(Boolean kMSEncrypted) {
+        this.kMSEncrypted = kMSEncrypted;
+    }
+
+    /**
+     * <p>
+     * Set to <code>true</code> to use Amazon S3 server-side encryption with
+     * your own AWS KMS key, or <code>false</code> to use a key managed by
+     * Amazon S3. Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kMSEncrypted <p>
+     *            Set to <code>true</code> to use Amazon S3 server-side
+     *            encryption with your own AWS KMS key, or <code>false</code> to
+     *            use a key managed by Amazon S3. Optional.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withKMSEncrypted(Boolean kMSEncrypted) {
+        this.kMSEncrypted = kMSEncrypted;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of a symmetric customer master key (CMK)
+     * used for Amazon S3 server-side encryption. Storage Gateway does not
+     * support asymmetric CMKs. This value can only be set when
+     * <code>KMSEncrypted</code> is <code>true</code>. Optional.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>7 - 2048<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of a symmetric customer master key
+     *         (CMK) used for Amazon S3 server-side encryption. Storage Gateway
+     *         does not support asymmetric CMKs. This value can only be set when
+     *         <code>KMSEncrypted</code> is <code>true</code>. Optional.
+     *         </p>
+     */
+    public String getKMSKey() {
+        return kMSKey;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of a symmetric customer master key (CMK)
+     * used for Amazon S3 server-side encryption. Storage Gateway does not
+     * support asymmetric CMKs. This value can only be set when
+     * <code>KMSEncrypted</code> is <code>true</code>. Optional.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>7 - 2048<br/>
+     *
+     * @param kMSKey <p>
+     *            The Amazon Resource Name (ARN) of a symmetric customer master
+     *            key (CMK) used for Amazon S3 server-side encryption. Storage
+     *            Gateway does not support asymmetric CMKs. This value can only
+     *            be set when <code>KMSEncrypted</code> is <code>true</code>.
+     *            Optional.
+     *            </p>
+     */
+    public void setKMSKey(String kMSKey) {
+        this.kMSKey = kMSKey;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of a symmetric customer master key (CMK)
+     * used for Amazon S3 server-side encryption. Storage Gateway does not
+     * support asymmetric CMKs. This value can only be set when
+     * <code>KMSEncrypted</code> is <code>true</code>. Optional.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>7 - 2048<br/>
+     *
+     * @param kMSKey <p>
+     *            The Amazon Resource Name (ARN) of a symmetric customer master
+     *            key (CMK) used for Amazon S3 server-side encryption. Storage
+     *            Gateway does not support asymmetric CMKs. This value can only
+     *            be set when <code>KMSEncrypted</code> is <code>true</code>.
+     *            Optional.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withKMSKey(String kMSKey) {
+        this.kMSKey = kMSKey;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that a file
+     * gateway assumes when it accesses the underlying storage.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @return <p>
+     *         The ARN of the AWS Identity and Access Management (IAM) role that
+     *         a file gateway assumes when it accesses the underlying storage.
+     *         </p>
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that a file
+     * gateway assumes when it accesses the underlying storage.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @param role <p>
+     *            The ARN of the AWS Identity and Access Management (IAM) role
+     *            that a file gateway assumes when it accesses the underlying
+     *            storage.
+     *            </p>
+     */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    /**
+     * <p>
+     * The ARN of the AWS Identity and Access Management (IAM) role that a file
+     * gateway assumes when it accesses the underlying storage.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     *
+     * @param role <p>
+     *            The ARN of the AWS Identity and Access Management (IAM) role
+     *            that a file gateway assumes when it accesses the underlying
+     *            storage.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withRole(String role) {
+        this.role = role;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The ARN of the backed storage used for storing file data.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>16 - 310<br/>
+     *
+     * @return <p>
+     *         The ARN of the backed storage used for storing file data.
+     *         </p>
+     */
+    public String getLocationARN() {
+        return locationARN;
+    }
+
+    /**
+     * <p>
+     * The ARN of the backed storage used for storing file data.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>16 - 310<br/>
+     *
+     * @param locationARN <p>
+     *            The ARN of the backed storage used for storing file data.
+     *            </p>
+     */
+    public void setLocationARN(String locationARN) {
+        this.locationARN = locationARN;
+    }
+
+    /**
+     * <p>
+     * The ARN of the backed storage used for storing file data.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>16 - 310<br/>
+     *
+     * @param locationARN <p>
+     *            The ARN of the backed storage used for storing file data.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withLocationARN(String locationARN) {
+        this.locationARN = locationARN;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The default storage class for objects put into an Amazon S3 bucket by the
+     * file gateway. The default value is <code>S3_INTELLIGENT_TIERING</code>.
+     * Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>S3_STANDARD</code> |
+     * <code>S3_INTELLIGENT_TIERING</code> | <code>S3_STANDARD_IA</code> |
+     * <code>S3_ONEZONE_IA</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 50<br/>
+     *
+     * @return <p>
+     *         The default storage class for objects put into an Amazon S3
+     *         bucket by the file gateway. The default value is
+     *         <code>S3_INTELLIGENT_TIERING</code>. Optional.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>S3_STANDARD</code> |
+     *         <code>S3_INTELLIGENT_TIERING</code> | <code>S3_STANDARD_IA</code>
+     *         | <code>S3_ONEZONE_IA</code>
+     *         </p>
+     */
+    public String getDefaultStorageClass() {
+        return defaultStorageClass;
+    }
+
+    /**
+     * <p>
+     * The default storage class for objects put into an Amazon S3 bucket by the
+     * file gateway. The default value is <code>S3_INTELLIGENT_TIERING</code>.
+     * Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>S3_STANDARD</code> |
+     * <code>S3_INTELLIGENT_TIERING</code> | <code>S3_STANDARD_IA</code> |
+     * <code>S3_ONEZONE_IA</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 50<br/>
+     *
+     * @param defaultStorageClass <p>
+     *            The default storage class for objects put into an Amazon S3
+     *            bucket by the file gateway. The default value is
+     *            <code>S3_INTELLIGENT_TIERING</code>. Optional.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>S3_STANDARD</code> |
+     *            <code>S3_INTELLIGENT_TIERING</code> |
+     *            <code>S3_STANDARD_IA</code> | <code>S3_ONEZONE_IA</code>
+     *            </p>
+     */
+    public void setDefaultStorageClass(String defaultStorageClass) {
+        this.defaultStorageClass = defaultStorageClass;
+    }
+
+    /**
+     * <p>
+     * The default storage class for objects put into an Amazon S3 bucket by the
+     * file gateway. The default value is <code>S3_INTELLIGENT_TIERING</code>.
+     * Optional.
+     * </p>
+     * <p>
+     * Valid Values: <code>S3_STANDARD</code> |
+     * <code>S3_INTELLIGENT_TIERING</code> | <code>S3_STANDARD_IA</code> |
+     * <code>S3_ONEZONE_IA</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 50<br/>
+     *
+     * @param defaultStorageClass <p>
+     *            The default storage class for objects put into an Amazon S3
+     *            bucket by the file gateway. The default value is
+     *            <code>S3_INTELLIGENT_TIERING</code>. Optional.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>S3_STANDARD</code> |
+     *            <code>S3_INTELLIGENT_TIERING</code> |
+     *            <code>S3_STANDARD_IA</code> | <code>S3_ONEZONE_IA</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withDefaultStorageClass(String defaultStorageClass) {
+        this.defaultStorageClass = defaultStorageClass;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A value that sets the access control list (ACL) permission for objects in
+     * the S3 bucket that a file gateway puts objects into. The default value is
+     * <code>private</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>private, public-read, public-read-write,
+     * authenticated-read, bucket-owner-read, bucket-owner-full-control,
+     * aws-exec-read
+     *
+     * @return <p>
+     *         A value that sets the access control list (ACL) permission for
+     *         objects in the S3 bucket that a file gateway puts objects into.
+     *         The default value is <code>private</code>.
+     *         </p>
+     * @see ObjectACL
+     */
+    public String getObjectACL() {
+        return objectACL;
+    }
+
+    /**
+     * <p>
+     * A value that sets the access control list (ACL) permission for objects in
+     * the S3 bucket that a file gateway puts objects into. The default value is
+     * <code>private</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>private, public-read, public-read-write,
+     * authenticated-read, bucket-owner-read, bucket-owner-full-control,
+     * aws-exec-read
+     *
+     * @param objectACL <p>
+     *            A value that sets the access control list (ACL) permission for
+     *            objects in the S3 bucket that a file gateway puts objects
+     *            into. The default value is <code>private</code>.
+     *            </p>
+     * @see ObjectACL
+     */
+    public void setObjectACL(String objectACL) {
+        this.objectACL = objectACL;
+    }
+
+    /**
+     * <p>
+     * A value that sets the access control list (ACL) permission for objects in
+     * the S3 bucket that a file gateway puts objects into. The default value is
+     * <code>private</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>private, public-read, public-read-write,
+     * authenticated-read, bucket-owner-read, bucket-owner-full-control,
+     * aws-exec-read
+     *
+     * @param objectACL <p>
+     *            A value that sets the access control list (ACL) permission for
+     *            objects in the S3 bucket that a file gateway puts objects
+     *            into. The default value is <code>private</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ObjectACL
+     */
+    public CreateSMBFileShareRequest withObjectACL(String objectACL) {
+        this.objectACL = objectACL;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A value that sets the access control list (ACL) permission for objects in
+     * the S3 bucket that a file gateway puts objects into. The default value is
+     * <code>private</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>private, public-read, public-read-write,
+     * authenticated-read, bucket-owner-read, bucket-owner-full-control,
+     * aws-exec-read
+     *
+     * @param objectACL <p>
+     *            A value that sets the access control list (ACL) permission for
+     *            objects in the S3 bucket that a file gateway puts objects
+     *            into. The default value is <code>private</code>.
+     *            </p>
+     * @see ObjectACL
+     */
+    public void setObjectACL(ObjectACL objectACL) {
+        this.objectACL = objectACL.toString();
+    }
+
+    /**
+     * <p>
+     * A value that sets the access control list (ACL) permission for objects in
+     * the S3 bucket that a file gateway puts objects into. The default value is
+     * <code>private</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>private, public-read, public-read-write,
+     * authenticated-read, bucket-owner-read, bucket-owner-full-control,
+     * aws-exec-read
+     *
+     * @param objectACL <p>
+     *            A value that sets the access control list (ACL) permission for
+     *            objects in the S3 bucket that a file gateway puts objects
+     *            into. The default value is <code>private</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ObjectACL
+     */
+    public CreateSMBFileShareRequest withObjectACL(ObjectACL objectACL) {
+        this.objectACL = objectACL.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * A value that sets the write status of a file share. Set this value to
+     * <code>true</code> to set the write status to read-only, otherwise set to
+     * <code>false</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         A value that sets the write status of a file share. Set this
+     *         value to <code>true</code> to set the write status to read-only,
+     *         otherwise set to <code>false</code>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean isReadOnly() {
+        return readOnly;
+    }
+
+    /**
+     * <p>
+     * A value that sets the write status of a file share. Set this value to
+     * <code>true</code> to set the write status to read-only, otherwise set to
+     * <code>false</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         A value that sets the write status of a file share. Set this
+     *         value to <code>true</code> to set the write status to read-only,
+     *         otherwise set to <code>false</code>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean getReadOnly() {
+        return readOnly;
+    }
+
+    /**
+     * <p>
+     * A value that sets the write status of a file share. Set this value to
+     * <code>true</code> to set the write status to read-only, otherwise set to
+     * <code>false</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @param readOnly <p>
+     *            A value that sets the write status of a file share. Set this
+     *            value to <code>true</code> to set the write status to
+     *            read-only, otherwise set to <code>false</code>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     */
+    public void setReadOnly(Boolean readOnly) {
+        this.readOnly = readOnly;
+    }
+
+    /**
+     * <p>
+     * A value that sets the write status of a file share. Set this value to
+     * <code>true</code> to set the write status to read-only, otherwise set to
+     * <code>false</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param readOnly <p>
+     *            A value that sets the write status of a file share. Set this
+     *            value to <code>true</code> to set the write status to
+     *            read-only, otherwise set to <code>false</code>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withReadOnly(Boolean readOnly) {
+        this.readOnly = readOnly;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A value that enables guessing of the MIME type for uploaded objects based
+     * on file extensions. Set this value to <code>true</code> to enable MIME
+     * type guessing, otherwise set to <code>false</code>. The default value is
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         A value that enables guessing of the MIME type for uploaded
+     *         objects based on file extensions. Set this value to
+     *         <code>true</code> to enable MIME type guessing, otherwise set to
+     *         <code>false</code>. The default value is <code>true</code>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean isGuessMIMETypeEnabled() {
+        return guessMIMETypeEnabled;
+    }
+
+    /**
+     * <p>
+     * A value that enables guessing of the MIME type for uploaded objects based
+     * on file extensions. Set this value to <code>true</code> to enable MIME
+     * type guessing, otherwise set to <code>false</code>. The default value is
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         A value that enables guessing of the MIME type for uploaded
+     *         objects based on file extensions. Set this value to
+     *         <code>true</code> to enable MIME type guessing, otherwise set to
+     *         <code>false</code>. The default value is <code>true</code>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean getGuessMIMETypeEnabled() {
+        return guessMIMETypeEnabled;
+    }
+
+    /**
+     * <p>
+     * A value that enables guessing of the MIME type for uploaded objects based
+     * on file extensions. Set this value to <code>true</code> to enable MIME
+     * type guessing, otherwise set to <code>false</code>. The default value is
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @param guessMIMETypeEnabled <p>
+     *            A value that enables guessing of the MIME type for uploaded
+     *            objects based on file extensions. Set this value to
+     *            <code>true</code> to enable MIME type guessing, otherwise set
+     *            to <code>false</code>. The default value is <code>true</code>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     */
+    public void setGuessMIMETypeEnabled(Boolean guessMIMETypeEnabled) {
+        this.guessMIMETypeEnabled = guessMIMETypeEnabled;
+    }
+
+    /**
+     * <p>
+     * A value that enables guessing of the MIME type for uploaded objects based
+     * on file extensions. Set this value to <code>true</code> to enable MIME
+     * type guessing, otherwise set to <code>false</code>. The default value is
+     * <code>true</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param guessMIMETypeEnabled <p>
+     *            A value that enables guessing of the MIME type for uploaded
+     *            objects based on file extensions. Set this value to
+     *            <code>true</code> to enable MIME type guessing, otherwise set
+     *            to <code>false</code>. The default value is <code>true</code>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withGuessMIMETypeEnabled(Boolean guessMIMETypeEnabled) {
+        this.guessMIMETypeEnabled = guessMIMETypeEnabled;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A value that sets who pays the cost of the request and the cost
+     * associated with data download from the S3 bucket. If this value is set to
+     * <code>true</code>, the requester pays the costs; otherwise, the S3 bucket
+     * owner pays. However, the S3 bucket owner always pays the cost of storing
+     * data.
+     * </p>
+     * <note>
+     * <p>
+     * <code>RequesterPays</code> is a configuration for the S3 bucket that
+     * backs the file share, so make sure that the configuration on the file
+     * share is the same as the S3 bucket configuration.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         A value that sets who pays the cost of the request and the cost
+     *         associated with data download from the S3 bucket. If this value
+     *         is set to <code>true</code>, the requester pays the costs;
+     *         otherwise, the S3 bucket owner pays. However, the S3 bucket owner
+     *         always pays the cost of storing data.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         <code>RequesterPays</code> is a configuration for the S3 bucket
+     *         that backs the file share, so make sure that the configuration on
+     *         the file share is the same as the S3 bucket configuration.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean isRequesterPays() {
+        return requesterPays;
+    }
+
+    /**
+     * <p>
+     * A value that sets who pays the cost of the request and the cost
+     * associated with data download from the S3 bucket. If this value is set to
+     * <code>true</code>, the requester pays the costs; otherwise, the S3 bucket
+     * owner pays. However, the S3 bucket owner always pays the cost of storing
+     * data.
+     * </p>
+     * <note>
+     * <p>
+     * <code>RequesterPays</code> is a configuration for the S3 bucket that
+     * backs the file share, so make sure that the configuration on the file
+     * share is the same as the S3 bucket configuration.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         A value that sets who pays the cost of the request and the cost
+     *         associated with data download from the S3 bucket. If this value
+     *         is set to <code>true</code>, the requester pays the costs;
+     *         otherwise, the S3 bucket owner pays. However, the S3 bucket owner
+     *         always pays the cost of storing data.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         <code>RequesterPays</code> is a configuration for the S3 bucket
+     *         that backs the file share, so make sure that the configuration on
+     *         the file share is the same as the S3 bucket configuration.
+     *         </p>
+     *         </note>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean getRequesterPays() {
+        return requesterPays;
+    }
+
+    /**
+     * <p>
+     * A value that sets who pays the cost of the request and the cost
+     * associated with data download from the S3 bucket. If this value is set to
+     * <code>true</code>, the requester pays the costs; otherwise, the S3 bucket
+     * owner pays. However, the S3 bucket owner always pays the cost of storing
+     * data.
+     * </p>
+     * <note>
+     * <p>
+     * <code>RequesterPays</code> is a configuration for the S3 bucket that
+     * backs the file share, so make sure that the configuration on the file
+     * share is the same as the S3 bucket configuration.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @param requesterPays <p>
+     *            A value that sets who pays the cost of the request and the
+     *            cost associated with data download from the S3 bucket. If this
+     *            value is set to <code>true</code>, the requester pays the
+     *            costs; otherwise, the S3 bucket owner pays. However, the S3
+     *            bucket owner always pays the cost of storing data.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            <code>RequesterPays</code> is a configuration for the S3
+     *            bucket that backs the file share, so make sure that the
+     *            configuration on the file share is the same as the S3 bucket
+     *            configuration.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     */
+    public void setRequesterPays(Boolean requesterPays) {
+        this.requesterPays = requesterPays;
+    }
+
+    /**
+     * <p>
+     * A value that sets who pays the cost of the request and the cost
+     * associated with data download from the S3 bucket. If this value is set to
+     * <code>true</code>, the requester pays the costs; otherwise, the S3 bucket
+     * owner pays. However, the S3 bucket owner always pays the cost of storing
+     * data.
+     * </p>
+     * <note>
+     * <p>
+     * <code>RequesterPays</code> is a configuration for the S3 bucket that
+     * backs the file share, so make sure that the configuration on the file
+     * share is the same as the S3 bucket configuration.
+     * </p>
+     * </note>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param requesterPays <p>
+     *            A value that sets who pays the cost of the request and the
+     *            cost associated with data download from the S3 bucket. If this
+     *            value is set to <code>true</code>, the requester pays the
+     *            costs; otherwise, the S3 bucket owner pays. However, the S3
+     *            bucket owner always pays the cost of storing data.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            <code>RequesterPays</code> is a configuration for the S3
+     *            bucket that backs the file share, so make sure that the
+     *            configuration on the file share is the same as the S3 bucket
+     *            configuration.
+     *            </p>
+     *            </note>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withRequesterPays(Boolean requesterPays) {
+        this.requesterPays = requesterPays;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Set this value to <code>true</code> to enable access control list (ACL)
+     * on the SMB file share. Set it to <code>false</code> to map file and
+     * directory permissions to the POSIX permissions.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     * >Using Microsoft Windows ACLs to control access to an SMB file share</a>
+     * in the <i>AWS Storage Gateway User Guide</i>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         Set this value to <code>true</code> to enable access control list
+     *         (ACL) on the SMB file share. Set it to <code>false</code> to map
+     *         file and directory permissions to the POSIX permissions.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     *         >Using Microsoft Windows ACLs to control access to an SMB file
+     *         share</a> in the <i>AWS Storage Gateway User Guide</i>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean isSMBACLEnabled() {
+        return sMBACLEnabled;
+    }
+
+    /**
+     * <p>
+     * Set this value to <code>true</code> to enable access control list (ACL)
+     * on the SMB file share. Set it to <code>false</code> to map file and
+     * directory permissions to the POSIX permissions.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     * >Using Microsoft Windows ACLs to control access to an SMB file share</a>
+     * in the <i>AWS Storage Gateway User Guide</i>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @return <p>
+     *         Set this value to <code>true</code> to enable access control list
+     *         (ACL) on the SMB file share. Set it to <code>false</code> to map
+     *         file and directory permissions to the POSIX permissions.
+     *         </p>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     *         >Using Microsoft Windows ACLs to control access to an SMB file
+     *         share</a> in the <i>AWS Storage Gateway User Guide</i>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>true</code> | <code>false</code>
+     *         </p>
+     */
+    public Boolean getSMBACLEnabled() {
+        return sMBACLEnabled;
+    }
+
+    /**
+     * <p>
+     * Set this value to <code>true</code> to enable access control list (ACL)
+     * on the SMB file share. Set it to <code>false</code> to map file and
+     * directory permissions to the POSIX permissions.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     * >Using Microsoft Windows ACLs to control access to an SMB file share</a>
+     * in the <i>AWS Storage Gateway User Guide</i>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     *
+     * @param sMBACLEnabled <p>
+     *            Set this value to <code>true</code> to enable access control
+     *            list (ACL) on the SMB file share. Set it to <code>false</code>
+     *            to map file and directory permissions to the POSIX
+     *            permissions.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     *            >Using Microsoft Windows ACLs to control access to an SMB file
+     *            share</a> in the <i>AWS Storage Gateway User Guide</i>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     */
+    public void setSMBACLEnabled(Boolean sMBACLEnabled) {
+        this.sMBACLEnabled = sMBACLEnabled;
+    }
+
+    /**
+     * <p>
+     * Set this value to <code>true</code> to enable access control list (ACL)
+     * on the SMB file share. Set it to <code>false</code> to map file and
+     * directory permissions to the POSIX permissions.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     * >Using Microsoft Windows ACLs to control access to an SMB file share</a>
+     * in the <i>AWS Storage Gateway User Guide</i>.
+     * </p>
+     * <p>
+     * Valid Values: <code>true</code> | <code>false</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sMBACLEnabled <p>
+     *            Set this value to <code>true</code> to enable access control
+     *            list (ACL) on the SMB file share. Set it to <code>false</code>
+     *            to map file and directory permissions to the POSIX
+     *            permissions.
+     *            </p>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html"
+     *            >Using Microsoft Windows ACLs to control access to an SMB file
+     *            share</a> in the <i>AWS Storage Gateway User Guide</i>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>true</code> | <code>false</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withSMBACLEnabled(Boolean sMBACLEnabled) {
+        this.sMBACLEnabled = sMBACLEnabled;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of users in the Active Directory that will be granted
+     * administrator privileges on the file share. These users can do all file
+     * operations as the super-user.
+     * </p>
+     * <important>
+     * <p>
+     * Use this option very carefully, because any user in this list can do
+     * anything they like on the file share, regardless of file permissions.
+     * </p>
+     * </important>
+     *
+     * @return <p>
+     *         A list of users in the Active Directory that will be granted
+     *         administrator privileges on the file share. These users can do
+     *         all file operations as the super-user.
+     *         </p>
+     *         <important>
+     *         <p>
+     *         Use this option very carefully, because any user in this list can
+     *         do anything they like on the file share, regardless of file
+     *         permissions.
+     *         </p>
+     *         </important>
+     */
+    public java.util.List<String> getAdminUserList() {
+        return adminUserList;
+    }
+
+    /**
+     * <p>
+     * A list of users in the Active Directory that will be granted
+     * administrator privileges on the file share. These users can do all file
+     * operations as the super-user.
+     * </p>
+     * <important>
+     * <p>
+     * Use this option very carefully, because any user in this list can do
+     * anything they like on the file share, regardless of file permissions.
+     * </p>
+     * </important>
+     *
+     * @param adminUserList <p>
+     *            A list of users in the Active Directory that will be granted
+     *            administrator privileges on the file share. These users can do
+     *            all file operations as the super-user.
+     *            </p>
+     *            <important>
+     *            <p>
+     *            Use this option very carefully, because any user in this list
+     *            can do anything they like on the file share, regardless of
+     *            file permissions.
+     *            </p>
+     *            </important>
+     */
+    public void setAdminUserList(java.util.Collection<String> adminUserList) {
+        if (adminUserList == null) {
+            this.adminUserList = null;
+            return;
+        }
+
+        this.adminUserList = new java.util.ArrayList<String>(adminUserList);
+    }
+
+    /**
+     * <p>
+     * A list of users in the Active Directory that will be granted
+     * administrator privileges on the file share. These users can do all file
+     * operations as the super-user.
+     * </p>
+     * <important>
+     * <p>
+     * Use this option very carefully, because any user in this list can do
+     * anything they like on the file share, regardless of file permissions.
+     * </p>
+     * </important>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param adminUserList <p>
+     *            A list of users in the Active Directory that will be granted
+     *            administrator privileges on the file share. These users can do
+     *            all file operations as the super-user.
+     *            </p>
+     *            <important>
+     *            <p>
+     *            Use this option very carefully, because any user in this list
+     *            can do anything they like on the file share, regardless of
+     *            file permissions.
+     *            </p>
+     *            </important>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withAdminUserList(String... adminUserList) {
+        if (getAdminUserList() == null) {
+            this.adminUserList = new java.util.ArrayList<String>(adminUserList.length);
+        }
+        for (String value : adminUserList) {
+            this.adminUserList.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of users in the Active Directory that will be granted
+     * administrator privileges on the file share. These users can do all file
+     * operations as the super-user.
+     * </p>
+     * <important>
+     * <p>
+     * Use this option very carefully, because any user in this list can do
+     * anything they like on the file share, regardless of file permissions.
+     * </p>
+     * </important>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param adminUserList <p>
+     *            A list of users in the Active Directory that will be granted
+     *            administrator privileges on the file share. These users can do
+     *            all file operations as the super-user.
+     *            </p>
+     *            <important>
+     *            <p>
+     *            Use this option very carefully, because any user in this list
+     *            can do anything they like on the file share, regardless of
+     *            file permissions.
+     *            </p>
+     *            </important>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withAdminUserList(java.util.Collection<String> adminUserList) {
+        setAdminUserList(adminUserList);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     *
+     * @return <p>
+     *         A list of users or groups in the Active Directory that are
+     *         allowed to access the file share. A group must be prefixed with
+     *         the @ character. For example, <code>@group1</code>. Can only be
+     *         set if Authentication is set to <code>ActiveDirectory</code>.
+     *         </p>
+     */
+    public java.util.List<String> getValidUserList() {
+        return validUserList;
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     *
+     * @param validUserList <p>
+     *            A list of users or groups in the Active Directory that are
+     *            allowed to access the file share. A group must be prefixed
+     *            with the @ character. For example, <code>@group1</code>. Can
+     *            only be set if Authentication is set to
+     *            <code>ActiveDirectory</code>.
+     *            </p>
+     */
+    public void setValidUserList(java.util.Collection<String> validUserList) {
+        if (validUserList == null) {
+            this.validUserList = null;
+            return;
+        }
+
+        this.validUserList = new java.util.ArrayList<String>(validUserList);
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param validUserList <p>
+     *            A list of users or groups in the Active Directory that are
+     *            allowed to access the file share. A group must be prefixed
+     *            with the @ character. For example, <code>@group1</code>. Can
+     *            only be set if Authentication is set to
+     *            <code>ActiveDirectory</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withValidUserList(String... validUserList) {
+        if (getValidUserList() == null) {
+            this.validUserList = new java.util.ArrayList<String>(validUserList.length);
+        }
+        for (String value : validUserList) {
+            this.validUserList.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param validUserList <p>
+     *            A list of users or groups in the Active Directory that are
+     *            allowed to access the file share. A group must be prefixed
+     *            with the @ character. For example, <code>@group1</code>. Can
+     *            only be set if Authentication is set to
+     *            <code>ActiveDirectory</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withValidUserList(java.util.Collection<String> validUserList) {
+        setValidUserList(validUserList);
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are not allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     *
+     * @return <p>
+     *         A list of users or groups in the Active Directory that are not
+     *         allowed to access the file share. A group must be prefixed with
+     *         the @ character. For example, <code>@group1</code>. Can only be
+     *         set if Authentication is set to <code>ActiveDirectory</code>.
+     *         </p>
+     */
+    public java.util.List<String> getInvalidUserList() {
+        return invalidUserList;
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are not allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     *
+     * @param invalidUserList <p>
+     *            A list of users or groups in the Active Directory that are not
+     *            allowed to access the file share. A group must be prefixed
+     *            with the @ character. For example, <code>@group1</code>. Can
+     *            only be set if Authentication is set to
+     *            <code>ActiveDirectory</code>.
+     *            </p>
+     */
+    public void setInvalidUserList(java.util.Collection<String> invalidUserList) {
+        if (invalidUserList == null) {
+            this.invalidUserList = null;
+            return;
+        }
+
+        this.invalidUserList = new java.util.ArrayList<String>(invalidUserList);
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are not allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param invalidUserList <p>
+     *            A list of users or groups in the Active Directory that are not
+     *            allowed to access the file share. A group must be prefixed
+     *            with the @ character. For example, <code>@group1</code>. Can
+     *            only be set if Authentication is set to
+     *            <code>ActiveDirectory</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withInvalidUserList(String... invalidUserList) {
+        if (getInvalidUserList() == null) {
+            this.invalidUserList = new java.util.ArrayList<String>(invalidUserList.length);
+        }
+        for (String value : invalidUserList) {
+            this.invalidUserList.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of users or groups in the Active Directory that are not allowed to
+     * access the file share. A group must be prefixed with the @ character. For
+     * example, <code>@group1</code>. Can only be set if Authentication is set
+     * to <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param invalidUserList <p>
+     *            A list of users or groups in the Active Directory that are not
+     *            allowed to access the file share. A group must be prefixed
+     *            with the @ character. For example, <code>@group1</code>. Can
+     *            only be set if Authentication is set to
+     *            <code>ActiveDirectory</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withInvalidUserList(
+            java.util.Collection<String> invalidUserList) {
+        setInvalidUserList(invalidUserList);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the storage used for the audit logs.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the storage used for the audit
+     *         logs.
+     *         </p>
+     */
+    public String getAuditDestinationARN() {
+        return auditDestinationARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the storage used for the audit logs.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     *
+     * @param auditDestinationARN <p>
+     *            The Amazon Resource Name (ARN) of the storage used for the
+     *            audit logs.
+     *            </p>
+     */
+    public void setAuditDestinationARN(String auditDestinationARN) {
+        this.auditDestinationARN = auditDestinationARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the storage used for the audit logs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     *
+     * @param auditDestinationARN <p>
+     *            The Amazon Resource Name (ARN) of the storage used for the
+     *            audit logs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withAuditDestinationARN(String auditDestinationARN) {
+        this.auditDestinationARN = auditDestinationARN;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The authentication method that users use to access the file share. The
+     * default is <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>ActiveDirectory</code> | <code>GuestAccess</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 15<br/>
+     *
+     * @return <p>
+     *         The authentication method that users use to access the file
+     *         share. The default is <code>ActiveDirectory</code>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>ActiveDirectory</code> |
+     *         <code>GuestAccess</code>
+     *         </p>
+     */
+    public String getAuthentication() {
+        return authentication;
+    }
+
+    /**
+     * <p>
+     * The authentication method that users use to access the file share. The
+     * default is <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>ActiveDirectory</code> | <code>GuestAccess</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 15<br/>
+     *
+     * @param authentication <p>
+     *            The authentication method that users use to access the file
+     *            share. The default is <code>ActiveDirectory</code>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>ActiveDirectory</code> |
+     *            <code>GuestAccess</code>
+     *            </p>
+     */
+    public void setAuthentication(String authentication) {
+        this.authentication = authentication;
+    }
+
+    /**
+     * <p>
+     * The authentication method that users use to access the file share. The
+     * default is <code>ActiveDirectory</code>.
+     * </p>
+     * <p>
+     * Valid Values: <code>ActiveDirectory</code> | <code>GuestAccess</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>5 - 15<br/>
+     *
+     * @param authentication <p>
+     *            The authentication method that users use to access the file
+     *            share. The default is <code>ActiveDirectory</code>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>ActiveDirectory</code> |
+     *            <code>GuestAccess</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withAuthentication(String authentication) {
+        this.authentication = authentication;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of up to 50 tags that can be assigned to the NFS file share. Each
+     * tag is a key-value pair.
+     * </p>
+     * <note>
+     * <p>
+     * Valid characters for key and value are letters, spaces, and numbers
+     * representable in UTF-8 format, and the following special characters: + -
+     * = . _ : / @. The maximum length of a tag's key is 128 characters, and the
+     * maximum length for a tag's value is 256.
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         A list of up to 50 tags that can be assigned to the NFS file
+     *         share. Each tag is a key-value pair.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         Valid characters for key and value are letters, spaces, and
+     *         numbers representable in UTF-8 format, and the following special
+     *         characters: + - = . _ : / @. The maximum length of a tag's key is
+     *         128 characters, and the maximum length for a tag's value is 256.
+     *         </p>
+     *         </note>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * A list of up to 50 tags that can be assigned to the NFS file share. Each
+     * tag is a key-value pair.
+     * </p>
+     * <note>
+     * <p>
+     * Valid characters for key and value are letters, spaces, and numbers
+     * representable in UTF-8 format, and the following special characters: + -
+     * = . _ : / @. The maximum length of a tag's key is 128 characters, and the
+     * maximum length for a tag's value is 256.
+     * </p>
+     * </note>
+     *
+     * @param tags <p>
+     *            A list of up to 50 tags that can be assigned to the NFS file
+     *            share. Each tag is a key-value pair.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Valid characters for key and value are letters, spaces, and
+     *            numbers representable in UTF-8 format, and the following
+     *            special characters: + - = . _ : / @. The maximum length of a
+     *            tag's key is 128 characters, and the maximum length for a
+     *            tag's value is 256.
+     *            </p>
+     *            </note>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * A list of up to 50 tags that can be assigned to the NFS file share. Each
+     * tag is a key-value pair.
+     * </p>
+     * <note>
+     * <p>
+     * Valid characters for key and value are letters, spaces, and numbers
+     * representable in UTF-8 format, and the following special characters: + -
+     * = . _ : / @. The maximum length of a tag's key is 128 characters, and the
+     * maximum length for a tag's value is 256.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A list of up to 50 tags that can be assigned to the NFS file
+     *            share. Each tag is a key-value pair.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Valid characters for key and value are letters, spaces, and
+     *            numbers representable in UTF-8 format, and the following
+     *            special characters: + - = . _ : / @. The maximum length of a
+     *            tag's key is 128 characters, and the maximum length for a
+     *            tag's value is 256.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of up to 50 tags that can be assigned to the NFS file share. Each
+     * tag is a key-value pair.
+     * </p>
+     * <note>
+     * <p>
+     * Valid characters for key and value are letters, spaces, and numbers
+     * representable in UTF-8 format, and the following special characters: + -
+     * = . _ : / @. The maximum length of a tag's key is 128 characters, and the
+     * maximum length for a tag's value is 256.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A list of up to 50 tags that can be assigned to the NFS file
+     *            share. Each tag is a key-value pair.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            Valid characters for key and value are letters, spaces, and
+     *            numbers representable in UTF-8 format, and the following
+     *            special characters: + - = . _ : / @. The maximum length of a
+     *            tag's key is 128 characters, and the maximum length for a
+     *            tag's value is 256.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSMBFileShareRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getClientToken() != null)
+            sb.append("ClientToken: " + getClientToken() + ",");
+        if (getGatewayARN() != null)
+            sb.append("GatewayARN: " + getGatewayARN() + ",");
+        if (getKMSEncrypted() != null)
+            sb.append("KMSEncrypted: " + getKMSEncrypted() + ",");
+        if (getKMSKey() != null)
+            sb.append("KMSKey: " + getKMSKey() + ",");
+        if (getRole() != null)
+            sb.append("Role: " + getRole() + ",");
+        if (getLocationARN() != null)
+            sb.append("LocationARN: " + getLocationARN() + ",");
+        if (getDefaultStorageClass() != null)
+            sb.append("DefaultStorageClass: " + getDefaultStorageClass() + ",");
+        if (getObjectACL() != null)
+            sb.append("ObjectACL: " + getObjectACL() + ",");
+        if (getReadOnly() != null)
+            sb.append("ReadOnly: " + getReadOnly() + ",");
+        if (getGuessMIMETypeEnabled() != null)
+            sb.append("GuessMIMETypeEnabled: " + getGuessMIMETypeEnabled() + ",");
+        if (getRequesterPays() != null)
+            sb.append("RequesterPays: " + getRequesterPays() + ",");
+        if (getSMBACLEnabled() != null)
+            sb.append("SMBACLEnabled: " + getSMBACLEnabled() + ",");
+        if (getAdminUserList() != null)
+            sb.append("AdminUserList: " + getAdminUserList() + ",");
+        if (getValidUserList() != null)
+            sb.append("ValidUserList: " + getValidUserList() + ",");
+        if (getInvalidUserList() != null)
+            sb.append("InvalidUserList: " + getInvalidUserList() + ",");
+        if (getAuditDestinationARN() != null)
+            sb.append("AuditDestinationARN: " + getAuditDestinationARN() + ",");
+        if (getAuthentication() != null)
+            sb.append("Authentication: " + getAuthentication() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode
+                + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
+        hashCode = prime * hashCode + ((getGatewayARN() == null) ? 0 : getGatewayARN().hashCode());
+        hashCode = prime * hashCode
+                + ((getKMSEncrypted() == null) ? 0 : getKMSEncrypted().hashCode());
+        hashCode = prime * hashCode + ((getKMSKey() == null) ? 0 : getKMSKey().hashCode());
+        hashCode = prime * hashCode + ((getRole() == null) ? 0 : getRole().hashCode());
+        hashCode = prime * hashCode
+                + ((getLocationARN() == null) ? 0 : getLocationARN().hashCode());
+        hashCode = prime * hashCode
+                + ((getDefaultStorageClass() == null) ? 0 : getDefaultStorageClass().hashCode());
+        hashCode = prime * hashCode + ((getObjectACL() == null) ? 0 : getObjectACL().hashCode());
+        hashCode = prime * hashCode + ((getReadOnly() == null) ? 0 : getReadOnly().hashCode());
+        hashCode = prime * hashCode
+                + ((getGuessMIMETypeEnabled() == null) ? 0 : getGuessMIMETypeEnabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getRequesterPays() == null) ? 0 : getRequesterPays().hashCode());
+        hashCode = prime * hashCode
+                + ((getSMBACLEnabled() == null) ? 0 : getSMBACLEnabled().hashCode());
+        hashCode = prime * hashCode
+                + ((getAdminUserList() == null) ? 0 : getAdminUserList().hashCode());
+        hashCode = prime * hashCode
+                + ((getValidUserList() == null) ? 0 : getValidUserList().hashCode());
+        hashCode = prime * hashCode
+                + ((getInvalidUserList() == null) ? 0 : getInvalidUserList().hashCode());
+        hashCode = prime * hashCode
+                + ((getAuditDestinationARN() == null) ? 0 : getAuditDestinationARN().hashCode());
+        hashCode = prime * hashCode
+                + ((getAuthentication() == null) ? 0 : getAuthentication().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof CreateSMBFileShareRequest == false)
+            return false;
+        CreateSMBFileShareRequest other = (CreateSMBFileShareRequest) obj;
+
+        if (other.getClientToken() == null ^ this.getClientToken() == null)
+            return false;
+        if (other.getClientToken() != null
+                && other.getClientToken().equals(this.getClientToken()) == false)
+            return false;
+        if (other.getGatewayARN() == null ^ this.getGatewayARN() == null)
+            return false;
+        if (other.getGatewayARN() != null
+                && other.getGatewayARN().equals(this.getGatewayARN()) == false)
+            return false;
+        if (other.getKMSEncrypted() == null ^ this.getKMSEncrypted() == null)
+            return false;
+        if (other.getKMSEncrypted() != null
+                && other.getKMSEncrypted().equals(this.getKMSEncrypted()) == false)
+            return false;
+        if (other.getKMSKey() == null ^ this.getKMSKey() == null)
+            return false;
+        if (other.getKMSKey() != null && other.getKMSKey().equals(this.getKMSKey()) == false)
+            return false;
+        if (other.getRole() == null ^ this.getRole() == null)
+            return false;
+        if (other.getRole() != null && other.getRole().equals(this.getRole()) == false)
+            return false;
+        if (other.getLocationARN() == null ^ this.getLocationARN() == null)
+            return false;
+        if (other.getLocationARN() != null
+                && other.getLocationARN().equals(this.getLocationARN()) == false)
+            return false;
+        if (other.getDefaultStorageClass() == null ^ this.getDefaultStorageClass() == null)
+            return false;
+        if (other.getDefaultStorageClass() != null
+                && other.getDefaultStorageClass().equals(this.getDefaultStorageClass()) == false)
+            return false;
+        if (other.getObjectACL() == null ^ this.getObjectACL() == null)
+            return false;
+        if (other.getObjectACL() != null
+                && other.getObjectACL().equals(this.getObjectACL()) == false)
+            return false;
+        if (other.getReadOnly() == null ^ this.getReadOnly() == null)
+            return false;
+        if (other.getReadOnly() != null && other.getReadOnly().equals(this.getReadOnly()) == false)
+            return false;
+        if (other.getGuessMIMETypeEnabled() == null ^ this.getGuessMIMETypeEnabled() == null)
+            return false;
+        if (other.getGuessMIMETypeEnabled() != null
+                && other.getGuessMIMETypeEnabled().equals(this.getGuessMIMETypeEnabled()) == false)
+            return false;
+        if (other.getRequesterPays() == null ^ this.getRequesterPays() == null)
+            return false;
+        if (other.getRequesterPays() != null
+                && other.getRequesterPays().equals(this.getRequesterPays()) == false)
+            return false;
+        if (other.getSMBACLEnabled() == null ^ this.getSMBACLEnabled() == null)
+            return false;
+        if (other.getSMBACLEnabled() != null
+                && other.getSMBACLEnabled().equals(this.getSMBACLEnabled()) == false)
+            return false;
+        if (other.getAdminUserList() == null ^ this.getAdminUserList() == null)
+            return false;
+        if (other.getAdminUserList() != null
+                && other.getAdminUserList().equals(this.getAdminUserList()) == false)
+            return false;
+        if (other.getValidUserList() == null ^ this.getValidUserList() == null)
+            return false;
+        if (other.getValidUserList() != null
+                && other.getValidUserList().equals(this.getValidUserList()) == false)
+            return false;
+        if (other.getInvalidUserList() == null ^ this.getInvalidUserList() == null)
+            return false;
+        if (other.getInvalidUserList() != null
+                && other.getInvalidUserList().equals(this.getInvalidUserList()) == false)
+            return false;
+        if (other.getAuditDestinationARN() == null ^ this.getAuditDestinationARN() == null)
+            return false;
+        if (other.getAuditDestinationARN() != null
+                && other.getAuditDestinationARN().equals(this.getAuditDestinationARN()) == false)
+            return false;
+        if (other.getAuthentication() == null ^ this.getAuthentication() == null)
+            return false;
+        if (other.getAuthentication() != null
+                && other.getAuthentication().equals(this.getAuthentication()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        return true;
+    }
+}
