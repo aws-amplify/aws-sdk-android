@@ -1,16 +1,15 @@
----
-
-MOVE THIS SECTION TO THE CORRECT LOCATION
-
-### Misc. Updates
-
-- Model updates for the following services
----aws-android-sdk-alexaforbusiness
----aws-android-sdk-appconfig
----aws-android-sdk-chime
----aws-android-sdk-cognitoidentityprovider
----aws-android-sdk-iot
 # Change Log - AWS SDK for Android
+
+## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
+
+### New Features
+
+* **AWS Mobile Client**
+  * Updated the Cognito APIs to accept client meta data. See [PR #1547](https://github.com/aws-amplify/aws-sdk-android/pull/1547) for details.
+  * Fixed a NullPointerException when clientMetadata is null for `confirmSignIn` api. See [PR #1612](https://github.com/aws-amplify/aws-sdk-android/pull/1612) for details.
+
+* Model updates for the following services
+  * AWS IoT
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
 
