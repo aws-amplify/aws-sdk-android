@@ -66,6 +66,17 @@ public class CreatePolicyRequestMarshaller implements
                 jsonWriter.name("policyDocument");
                 jsonWriter.value(policyDocument);
             }
+            if (createPolicyRequest.getTags() != null) {
+                java.util.List<Tag> tags = createPolicyRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

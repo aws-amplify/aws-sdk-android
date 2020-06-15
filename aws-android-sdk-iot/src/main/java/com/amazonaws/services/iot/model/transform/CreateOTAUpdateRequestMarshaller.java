@@ -107,6 +107,19 @@ public class CreateOTAUpdateRequestMarshaller implements
                 AwsJobPresignedUrlConfigJsonMarshaller.getInstance().marshall(
                         awsJobPresignedUrlConfig, jsonWriter);
             }
+            if (createOTAUpdateRequest.getAwsJobAbortConfig() != null) {
+                AwsJobAbortConfig awsJobAbortConfig = createOTAUpdateRequest.getAwsJobAbortConfig();
+                jsonWriter.name("awsJobAbortConfig");
+                AwsJobAbortConfigJsonMarshaller.getInstance().marshall(awsJobAbortConfig,
+                        jsonWriter);
+            }
+            if (createOTAUpdateRequest.getAwsJobTimeoutConfig() != null) {
+                AwsJobTimeoutConfig awsJobTimeoutConfig = createOTAUpdateRequest
+                        .getAwsJobTimeoutConfig();
+                jsonWriter.name("awsJobTimeoutConfig");
+                AwsJobTimeoutConfigJsonMarshaller.getInstance().marshall(awsJobTimeoutConfig,
+                        jsonWriter);
+            }
             if (createOTAUpdateRequest.getFiles() != null) {
                 java.util.List<OTAUpdateFile> files = createOTAUpdateRequest.getFiles();
                 jsonWriter.name("files");

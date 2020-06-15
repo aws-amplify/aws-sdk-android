@@ -84,6 +84,13 @@ public class CreateProvisioningTemplateRequestMarshaller implements
                 jsonWriter.name("provisioningRoleArn");
                 jsonWriter.value(provisioningRoleArn);
             }
+            if (createProvisioningTemplateRequest.getPreProvisioningHook() != null) {
+                ProvisioningHook preProvisioningHook = createProvisioningTemplateRequest
+                        .getPreProvisioningHook();
+                jsonWriter.name("preProvisioningHook");
+                ProvisioningHookJsonMarshaller.getInstance().marshall(preProvisioningHook,
+                        jsonWriter);
+            }
             if (createProvisioningTemplateRequest.getTags() != null) {
                 java.util.List<Tag> tags = createProvisioningTemplateRequest.getTags();
                 jsonWriter.name("tags");

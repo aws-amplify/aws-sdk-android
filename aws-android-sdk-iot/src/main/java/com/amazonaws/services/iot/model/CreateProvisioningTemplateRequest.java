@@ -75,6 +75,13 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
+     * Creates a pre-provisioning hook template.
+     * </p>
+     */
+    private ProvisioningHook preProvisioningHook;
+
+    /**
+     * <p>
      * Metadata which can be used to manage the fleet provisioning template.
      * </p>
      * <note>
@@ -378,6 +385,52 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
+     * Creates a pre-provisioning hook template.
+     * </p>
+     *
+     * @return <p>
+     *         Creates a pre-provisioning hook template.
+     *         </p>
+     */
+    public ProvisioningHook getPreProvisioningHook() {
+        return preProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Creates a pre-provisioning hook template.
+     * </p>
+     *
+     * @param preProvisioningHook <p>
+     *            Creates a pre-provisioning hook template.
+     *            </p>
+     */
+    public void setPreProvisioningHook(ProvisioningHook preProvisioningHook) {
+        this.preProvisioningHook = preProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Creates a pre-provisioning hook template.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param preProvisioningHook <p>
+     *            Creates a pre-provisioning hook template.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateProvisioningTemplateRequest withPreProvisioningHook(
+            ProvisioningHook preProvisioningHook) {
+        this.preProvisioningHook = preProvisioningHook;
+        return this;
+    }
+
+    /**
+     * <p>
      * Metadata which can be used to manage the fleet provisioning template.
      * </p>
      * <note>
@@ -583,6 +636,8 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
             sb.append("enabled: " + getEnabled() + ",");
         if (getProvisioningRoleArn() != null)
             sb.append("provisioningRoleArn: " + getProvisioningRoleArn() + ",");
+        if (getPreProvisioningHook() != null)
+            sb.append("preProvisioningHook: " + getPreProvisioningHook() + ",");
         if (getTags() != null)
             sb.append("tags: " + getTags());
         sb.append("}");
@@ -603,6 +658,8 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode
                 + ((getProvisioningRoleArn() == null) ? 0 : getProvisioningRoleArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getPreProvisioningHook() == null) ? 0 : getPreProvisioningHook().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -641,6 +698,11 @@ public class CreateProvisioningTemplateRequest extends AmazonWebServiceRequest i
             return false;
         if (other.getProvisioningRoleArn() != null
                 && other.getProvisioningRoleArn().equals(this.getProvisioningRoleArn()) == false)
+            return false;
+        if (other.getPreProvisioningHook() == null ^ this.getPreProvisioningHook() == null)
+            return false;
+        if (other.getPreProvisioningHook() != null
+                && other.getPreProvisioningHook().equals(this.getPreProvisioningHook()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

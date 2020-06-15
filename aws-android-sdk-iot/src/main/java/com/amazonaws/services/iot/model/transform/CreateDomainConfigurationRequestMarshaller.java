@@ -97,6 +97,17 @@ public class CreateDomainConfigurationRequestMarshaller implements
                 jsonWriter.name("serviceType");
                 jsonWriter.value(serviceType);
             }
+            if (createDomainConfigurationRequest.getTags() != null) {
+                java.util.List<Tag> tags = createDomainConfigurationRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

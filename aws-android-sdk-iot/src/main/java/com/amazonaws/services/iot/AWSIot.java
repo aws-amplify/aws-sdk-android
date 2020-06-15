@@ -2314,6 +2314,7 @@ public interface AWSIot {
      *         IoT.
      * @throws ResourceNotFoundException
      * @throws ThrottlingException
+     * @throws InvalidRequestException
      * @throws UnauthorizedException
      * @throws ServiceUnavailableException
      * @throws InternalFailureException
@@ -4576,6 +4577,35 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Register a certificate that does not have a certificate authority (CA).
+     * </p>
+     * 
+     * @param registerCertificateWithoutCARequest
+     * @return registerCertificateWithoutCAResult The response from the
+     *         RegisterCertificateWithoutCA service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws CertificateStateException
+     * @throws CertificateValidationException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    RegisterCertificateWithoutCAResult registerCertificateWithoutCA(
+            RegisterCertificateWithoutCARequest registerCertificateWithoutCARequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provisions a thing in the device registry. RegisterThing calls other AWS
      * IoT control plane APIs. These calls might exceed your account level <a
      * href=
@@ -4671,6 +4701,12 @@ public interface AWSIot {
     /**
      * <p>
      * Remove the specified thing from the specified group.
+     * </p>
+     * <p>
+     * You must specify either a <code>thingGroupArn</code> or a
+     * <code>thingGroupName</code> to identify the thing group and either a
+     * <code>thingArn</code> or a <code>thingName</code> to identify the thing
+     * to remove from the thing group.
      * </p>
      * 
      * @param removeThingFromThingGroupRequest

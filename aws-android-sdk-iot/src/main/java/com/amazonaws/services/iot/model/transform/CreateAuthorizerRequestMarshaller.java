@@ -91,6 +91,17 @@ public class CreateAuthorizerRequestMarshaller implements
                 jsonWriter.name("status");
                 jsonWriter.value(status);
             }
+            if (createAuthorizerRequest.getTags() != null) {
+                java.util.List<Tag> tags = createAuthorizerRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (createAuthorizerRequest.getSigningDisabled() != null) {
                 Boolean signingDisabled = createAuthorizerRequest.getSigningDisabled();
                 jsonWriter.name("signingDisabled");

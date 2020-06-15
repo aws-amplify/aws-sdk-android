@@ -4597,6 +4597,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      *         IoT.
      * @throws ResourceNotFoundException
      * @throws ThrottlingException
+     * @throws InvalidRequestException
      * @throws UnauthorizedException
      * @throws ServiceUnavailableException
      * @throws InternalFailureException
@@ -9166,6 +9167,62 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Register a certificate that does not have a certificate authority (CA).
+     * </p>
+     * 
+     * @param registerCertificateWithoutCARequest
+     * @return registerCertificateWithoutCAResult The response from the
+     *         RegisterCertificateWithoutCA service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws CertificateStateException
+     * @throws CertificateValidationException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public RegisterCertificateWithoutCAResult registerCertificateWithoutCA(
+            RegisterCertificateWithoutCARequest registerCertificateWithoutCARequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(registerCertificateWithoutCARequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RegisterCertificateWithoutCARequest> request = null;
+        Response<RegisterCertificateWithoutCAResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RegisterCertificateWithoutCARequestMarshaller()
+                        .marshall(registerCertificateWithoutCARequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RegisterCertificateWithoutCAResult, JsonUnmarshallerContext> unmarshaller = new RegisterCertificateWithoutCAResultJsonUnmarshaller();
+            JsonResponseHandler<RegisterCertificateWithoutCAResult> responseHandler = new JsonResponseHandler<RegisterCertificateWithoutCAResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Provisions a thing in the device registry. RegisterThing calls other AWS
      * IoT control plane APIs. These calls might exceed your account level <a
      * href=
@@ -9337,6 +9394,12 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Remove the specified thing from the specified group.
+     * </p>
+     * <p>
+     * You must specify either a <code>thingGroupArn</code> or a
+     * <code>thingGroupName</code> to identify the thing group and either a
+     * <code>thingArn</code> or a <code>thingName</code> to identify the thing
+     * to remove from the thing group.
      * </p>
      * 
      * @param removeThingFromThingGroupRequest
