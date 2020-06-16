@@ -53,6 +53,7 @@ public enum VoiceId {
     Justin("Justin"),
     Karl("Karl"),
     Kendra("Kendra"),
+    Kevin("Kevin"),
     Kimberly("Kimberly"),
     Lea("Lea"),
     Liv("Liv"),
@@ -128,6 +129,7 @@ public enum VoiceId {
         enumMap.put("Justin", Justin);
         enumMap.put("Karl", Karl);
         enumMap.put("Kendra", Kendra);
+        enumMap.put("Kevin", Kevin);
         enumMap.put("Kimberly", Kimberly);
         enumMap.put("Lea", Lea);
         enumMap.put("Liv", Liv);
