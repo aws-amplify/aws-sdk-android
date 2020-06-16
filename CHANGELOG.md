@@ -1,3 +1,16 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-lambda
+---aws-android-sdk-polly
+---aws-android-sdk-cloudfront
+---aws-android-sdk-dataexchange
+---aws-android-sdk-autoscaling
+---aws-android-sdk-qldb
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
