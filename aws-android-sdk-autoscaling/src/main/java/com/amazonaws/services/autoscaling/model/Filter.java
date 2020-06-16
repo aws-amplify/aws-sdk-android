@@ -19,15 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a filter.
+ * Describes a filter that is used to return a more specific list of results
+ * when describing tags.
+ * </p>
+ * <p>
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html"
+ * >Tagging Auto Scaling Groups and Instances</a> in the <i>Amazon EC2 Auto
+ * Scaling User Guide</i>.
  * </p>
  */
 public class Filter implements Serializable {
     /**
      * <p>
      * The name of the filter. The valid values are:
-     * <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     * <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     * <code>auto-scaling-group</code>, <code>key</code>, <code>value</code>,
+     * and <code>propagate-at-launch</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +45,7 @@ public class Filter implements Serializable {
 
     /**
      * <p>
-     * The value of the filter.
+     * One or more filter values. Filter values are case-sensitive.
      * </p>
      */
     private java.util.List<String> values = new java.util.ArrayList<String>();
@@ -46,8 +53,8 @@ public class Filter implements Serializable {
     /**
      * <p>
      * The name of the filter. The valid values are:
-     * <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     * <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     * <code>auto-scaling-group</code>, <code>key</code>, <code>value</code>,
+     * and <code>propagate-at-launch</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,8 +63,8 @@ public class Filter implements Serializable {
      *
      * @return <p>
      *         The name of the filter. The valid values are:
-     *         <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     *         <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     *         <code>auto-scaling-group</code>, <code>key</code>,
+     *         <code>value</code>, and <code>propagate-at-launch</code>.
      *         </p>
      */
     public String getName() {
@@ -67,8 +74,8 @@ public class Filter implements Serializable {
     /**
      * <p>
      * The name of the filter. The valid values are:
-     * <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     * <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     * <code>auto-scaling-group</code>, <code>key</code>, <code>value</code>,
+     * and <code>propagate-at-launch</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -77,8 +84,8 @@ public class Filter implements Serializable {
      *
      * @param name <p>
      *            The name of the filter. The valid values are:
-     *            <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     *            <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     *            <code>auto-scaling-group</code>, <code>key</code>,
+     *            <code>value</code>, and <code>propagate-at-launch</code>.
      *            </p>
      */
     public void setName(String name) {
@@ -88,8 +95,8 @@ public class Filter implements Serializable {
     /**
      * <p>
      * The name of the filter. The valid values are:
-     * <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     * <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     * <code>auto-scaling-group</code>, <code>key</code>, <code>value</code>,
+     * and <code>propagate-at-launch</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -101,8 +108,8 @@ public class Filter implements Serializable {
      *
      * @param name <p>
      *            The name of the filter. The valid values are:
-     *            <code>"auto-scaling-group"</code>, <code>"key"</code>,
-     *            <code>"value"</code>, and <code>"propagate-at-launch"</code>.
+     *            <code>auto-scaling-group</code>, <code>key</code>,
+     *            <code>value</code>, and <code>propagate-at-launch</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -114,11 +121,11 @@ public class Filter implements Serializable {
 
     /**
      * <p>
-     * The value of the filter.
+     * One or more filter values. Filter values are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The value of the filter.
+     *         One or more filter values. Filter values are case-sensitive.
      *         </p>
      */
     public java.util.List<String> getValues() {
@@ -127,11 +134,11 @@ public class Filter implements Serializable {
 
     /**
      * <p>
-     * The value of the filter.
+     * One or more filter values. Filter values are case-sensitive.
      * </p>
      *
      * @param values <p>
-     *            The value of the filter.
+     *            One or more filter values. Filter values are case-sensitive.
      *            </p>
      */
     public void setValues(java.util.Collection<String> values) {
@@ -145,14 +152,14 @@ public class Filter implements Serializable {
 
     /**
      * <p>
-     * The value of the filter.
+     * One or more filter values. Filter values are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param values <p>
-     *            The value of the filter.
+     *            One or more filter values. Filter values are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,14 +176,14 @@ public class Filter implements Serializable {
 
     /**
      * <p>
-     * The value of the filter.
+     * One or more filter values. Filter values are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param values <p>
-     *            The value of the filter.
+     *            One or more filter values. Filter values are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

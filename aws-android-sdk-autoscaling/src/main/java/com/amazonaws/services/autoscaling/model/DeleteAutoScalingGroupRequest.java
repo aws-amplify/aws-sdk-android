@@ -33,15 +33,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * action.
  * </p>
  * <p>
- * To remove instances from the Auto Scaling group before deleting it, call
- * <a>DetachInstances</a> with the list of instances and the option to decrement
- * the desired capacity. This ensures that Amazon EC2 Auto Scaling does not
- * launch replacement instances.
+ * To remove instances from the Auto Scaling group before deleting it, call the
+ * <a>DetachInstances</a> API with the list of instances and the option to
+ * decrement the desired capacity. This ensures that Amazon EC2 Auto Scaling
+ * does not launch replacement instances.
  * </p>
  * <p>
- * To terminate all instances before deleting the Auto Scaling group, call
- * <a>UpdateAutoScalingGroup</a> and set the minimum size and desired capacity
- * of the Auto Scaling group to zero.
+ * To terminate all instances before deleting the Auto Scaling group, call the
+ * <a>UpdateAutoScalingGroup</a> API and set the minimum size and desired
+ * capacity of the Auto Scaling group to zero.
  * </p>
  */
 public class DeleteAutoScalingGroupRequest extends AmazonWebServiceRequest implements Serializable {

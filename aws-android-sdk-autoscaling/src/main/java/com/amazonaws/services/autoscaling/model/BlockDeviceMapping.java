@@ -28,6 +28,10 @@ public class BlockDeviceMapping implements Serializable {
      * The name of the virtual device (for example, <code>ephemeral0</code>).
      * </p>
      * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 255<br/>
      * <b>Pattern: </b>[ -\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\r\n\t]*
@@ -54,19 +58,29 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * The information about the Amazon EBS volume.
+     * Parameters used to automatically set up EBS volumes when an instance is
+     * launched.
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      */
     private Ebs ebs;
 
     /**
      * <p>
-     * Suppresses a device mapping.
+     * Setting this value to <code>true</code> suppresses the specified device
+     * included in the block device mapping of the AMI.
      * </p>
      * <p>
-     * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. In that case, Amazon EC2 Auto Scaling launches a
-     * replacement instance.
+     * If <code>NoDevice</code> is <code>true</code> for the root device,
+     * instances might fail the EC2 health check. In that case, Amazon EC2 Auto
+     * Scaling launches replacement instances.
+     * </p>
+     * <p>
+     * If you specify <code>NoDevice</code>, you cannot specify <code>Ebs</code>
+     * .
      * </p>
      */
     private Boolean noDevice;
@@ -74,6 +88,10 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The name of the virtual device (for example, <code>ephemeral0</code>).
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -85,6 +103,10 @@ public class BlockDeviceMapping implements Serializable {
      *         The name of the virtual device (for example,
      *         <code>ephemeral0</code>).
      *         </p>
+     *         <p>
+     *         You can specify either <code>VirtualName</code> or
+     *         <code>Ebs</code>, but not both.
+     *         </p>
      */
     public String getVirtualName() {
         return virtualName;
@@ -93,6 +115,10 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The name of the virtual device (for example, <code>ephemeral0</code>).
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,6 +130,10 @@ public class BlockDeviceMapping implements Serializable {
      *            The name of the virtual device (for example,
      *            <code>ephemeral0</code>).
      *            </p>
+     *            <p>
+     *            You can specify either <code>VirtualName</code> or
+     *            <code>Ebs</code>, but not both.
+     *            </p>
      */
     public void setVirtualName(String virtualName) {
         this.virtualName = virtualName;
@@ -112,6 +142,10 @@ public class BlockDeviceMapping implements Serializable {
     /**
      * <p>
      * The name of the virtual device (for example, <code>ephemeral0</code>).
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -125,6 +159,10 @@ public class BlockDeviceMapping implements Serializable {
      * @param virtualName <p>
      *            The name of the virtual device (for example,
      *            <code>ephemeral0</code>).
+     *            </p>
+     *            <p>
+     *            You can specify either <code>VirtualName</code> or
+     *            <code>Ebs</code>, but not both.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -226,11 +264,21 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * The information about the Amazon EBS volume.
+     * Parameters used to automatically set up EBS volumes when an instance is
+     * launched.
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      *
      * @return <p>
-     *         The information about the Amazon EBS volume.
+     *         Parameters used to automatically set up EBS volumes when an
+     *         instance is launched.
+     *         </p>
+     *         <p>
+     *         You can specify either <code>VirtualName</code> or
+     *         <code>Ebs</code>, but not both.
      *         </p>
      */
     public Ebs getEbs() {
@@ -239,11 +287,21 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * The information about the Amazon EBS volume.
+     * Parameters used to automatically set up EBS volumes when an instance is
+     * launched.
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      *
      * @param ebs <p>
-     *            The information about the Amazon EBS volume.
+     *            Parameters used to automatically set up EBS volumes when an
+     *            instance is launched.
+     *            </p>
+     *            <p>
+     *            You can specify either <code>VirtualName</code> or
+     *            <code>Ebs</code>, but not both.
      *            </p>
      */
     public void setEbs(Ebs ebs) {
@@ -252,14 +310,24 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * The information about the Amazon EBS volume.
+     * Parameters used to automatically set up EBS volumes when an instance is
+     * launched.
+     * </p>
+     * <p>
+     * You can specify either <code>VirtualName</code> or <code>Ebs</code>, but
+     * not both.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param ebs <p>
-     *            The information about the Amazon EBS volume.
+     *            Parameters used to automatically set up EBS volumes when an
+     *            instance is launched.
+     *            </p>
+     *            <p>
+     *            You can specify either <code>VirtualName</code> or
+     *            <code>Ebs</code>, but not both.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -271,21 +339,31 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * Suppresses a device mapping.
+     * Setting this value to <code>true</code> suppresses the specified device
+     * included in the block device mapping of the AMI.
      * </p>
      * <p>
-     * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. In that case, Amazon EC2 Auto Scaling launches a
-     * replacement instance.
+     * If <code>NoDevice</code> is <code>true</code> for the root device,
+     * instances might fail the EC2 health check. In that case, Amazon EC2 Auto
+     * Scaling launches replacement instances.
+     * </p>
+     * <p>
+     * If you specify <code>NoDevice</code>, you cannot specify <code>Ebs</code>
+     * .
      * </p>
      *
      * @return <p>
-     *         Suppresses a device mapping.
+     *         Setting this value to <code>true</code> suppresses the specified
+     *         device included in the block device mapping of the AMI.
      *         </p>
      *         <p>
-     *         If this parameter is true for the root device, the instance might
-     *         fail the EC2 health check. In that case, Amazon EC2 Auto Scaling
-     *         launches a replacement instance.
+     *         If <code>NoDevice</code> is <code>true</code> for the root
+     *         device, instances might fail the EC2 health check. In that case,
+     *         Amazon EC2 Auto Scaling launches replacement instances.
+     *         </p>
+     *         <p>
+     *         If you specify <code>NoDevice</code>, you cannot specify
+     *         <code>Ebs</code>.
      *         </p>
      */
     public Boolean isNoDevice() {
@@ -294,21 +372,31 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * Suppresses a device mapping.
+     * Setting this value to <code>true</code> suppresses the specified device
+     * included in the block device mapping of the AMI.
      * </p>
      * <p>
-     * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. In that case, Amazon EC2 Auto Scaling launches a
-     * replacement instance.
+     * If <code>NoDevice</code> is <code>true</code> for the root device,
+     * instances might fail the EC2 health check. In that case, Amazon EC2 Auto
+     * Scaling launches replacement instances.
+     * </p>
+     * <p>
+     * If you specify <code>NoDevice</code>, you cannot specify <code>Ebs</code>
+     * .
      * </p>
      *
      * @return <p>
-     *         Suppresses a device mapping.
+     *         Setting this value to <code>true</code> suppresses the specified
+     *         device included in the block device mapping of the AMI.
      *         </p>
      *         <p>
-     *         If this parameter is true for the root device, the instance might
-     *         fail the EC2 health check. In that case, Amazon EC2 Auto Scaling
-     *         launches a replacement instance.
+     *         If <code>NoDevice</code> is <code>true</code> for the root
+     *         device, instances might fail the EC2 health check. In that case,
+     *         Amazon EC2 Auto Scaling launches replacement instances.
+     *         </p>
+     *         <p>
+     *         If you specify <code>NoDevice</code>, you cannot specify
+     *         <code>Ebs</code>.
      *         </p>
      */
     public Boolean getNoDevice() {
@@ -317,21 +405,32 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * Suppresses a device mapping.
+     * Setting this value to <code>true</code> suppresses the specified device
+     * included in the block device mapping of the AMI.
      * </p>
      * <p>
-     * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. In that case, Amazon EC2 Auto Scaling launches a
-     * replacement instance.
+     * If <code>NoDevice</code> is <code>true</code> for the root device,
+     * instances might fail the EC2 health check. In that case, Amazon EC2 Auto
+     * Scaling launches replacement instances.
+     * </p>
+     * <p>
+     * If you specify <code>NoDevice</code>, you cannot specify <code>Ebs</code>
+     * .
      * </p>
      *
      * @param noDevice <p>
-     *            Suppresses a device mapping.
+     *            Setting this value to <code>true</code> suppresses the
+     *            specified device included in the block device mapping of the
+     *            AMI.
      *            </p>
      *            <p>
-     *            If this parameter is true for the root device, the instance
-     *            might fail the EC2 health check. In that case, Amazon EC2 Auto
-     *            Scaling launches a replacement instance.
+     *            If <code>NoDevice</code> is <code>true</code> for the root
+     *            device, instances might fail the EC2 health check. In that
+     *            case, Amazon EC2 Auto Scaling launches replacement instances.
+     *            </p>
+     *            <p>
+     *            If you specify <code>NoDevice</code>, you cannot specify
+     *            <code>Ebs</code>.
      *            </p>
      */
     public void setNoDevice(Boolean noDevice) {
@@ -340,24 +439,35 @@ public class BlockDeviceMapping implements Serializable {
 
     /**
      * <p>
-     * Suppresses a device mapping.
+     * Setting this value to <code>true</code> suppresses the specified device
+     * included in the block device mapping of the AMI.
      * </p>
      * <p>
-     * If this parameter is true for the root device, the instance might fail
-     * the EC2 health check. In that case, Amazon EC2 Auto Scaling launches a
-     * replacement instance.
+     * If <code>NoDevice</code> is <code>true</code> for the root device,
+     * instances might fail the EC2 health check. In that case, Amazon EC2 Auto
+     * Scaling launches replacement instances.
+     * </p>
+     * <p>
+     * If you specify <code>NoDevice</code>, you cannot specify <code>Ebs</code>
+     * .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param noDevice <p>
-     *            Suppresses a device mapping.
+     *            Setting this value to <code>true</code> suppresses the
+     *            specified device included in the block device mapping of the
+     *            AMI.
      *            </p>
      *            <p>
-     *            If this parameter is true for the root device, the instance
-     *            might fail the EC2 health check. In that case, Amazon EC2 Auto
-     *            Scaling launches a replacement instance.
+     *            If <code>NoDevice</code> is <code>true</code> for the root
+     *            device, instances might fail the EC2 health check. In that
+     *            case, Amazon EC2 Auto Scaling launches replacement instances.
+     *            </p>
+     *            <p>
+     *            If you specify <code>NoDevice</code>, you cannot specify
+     *            <code>Ebs</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

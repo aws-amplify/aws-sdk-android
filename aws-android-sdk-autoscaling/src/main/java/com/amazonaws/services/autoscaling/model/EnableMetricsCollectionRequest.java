@@ -43,8 +43,8 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * One or more of the following metrics. If you omit this parameter, all
-     * metrics are enabled.
+     * Specifies which group-level metrics to start collecting. You can specify
+     * one or more of the following metrics:
      * </p>
      * <ul>
      * <li>
@@ -88,6 +88,39 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The instance weighting feature supports the following additional metrics:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you omit this parameter, all metrics are enabled.
+     * </p>
      */
     private java.util.List<String> metrics = new java.util.ArrayList<String>();
 
@@ -166,8 +199,8 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * One or more of the following metrics. If you omit this parameter, all
-     * metrics are enabled.
+     * Specifies which group-level metrics to start collecting. You can specify
+     * one or more of the following metrics:
      * </p>
      * <ul>
      * <li>
@@ -211,10 +244,43 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The instance weighting feature supports the following additional metrics:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you omit this parameter, all metrics are enabled.
+     * </p>
      *
      * @return <p>
-     *         One or more of the following metrics. If you omit this parameter,
-     *         all metrics are enabled.
+     *         Specifies which group-level metrics to start collecting. You can
+     *         specify one or more of the following metrics:
      *         </p>
      *         <ul>
      *         <li>
@@ -258,6 +324,40 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         The instance weighting feature supports the following additional
+     *         metrics:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>GroupInServiceCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupPendingCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupStandbyCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupTerminatingCapacity</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>GroupTotalCapacity</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         If you omit this parameter, all metrics are enabled.
+     *         </p>
      */
     public java.util.List<String> getMetrics() {
         return metrics;
@@ -265,8 +365,8 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * One or more of the following metrics. If you omit this parameter, all
-     * metrics are enabled.
+     * Specifies which group-level metrics to start collecting. You can specify
+     * one or more of the following metrics:
      * </p>
      * <ul>
      * <li>
@@ -310,10 +410,43 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The instance weighting feature supports the following additional metrics:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you omit this parameter, all metrics are enabled.
+     * </p>
      *
      * @param metrics <p>
-     *            One or more of the following metrics. If you omit this
-     *            parameter, all metrics are enabled.
+     *            Specifies which group-level metrics to start collecting. You
+     *            can specify one or more of the following metrics:
      *            </p>
      *            <ul>
      *            <li>
@@ -357,6 +490,40 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            The instance weighting feature supports the following
+     *            additional metrics:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>GroupInServiceCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupPendingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupStandbyCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTerminatingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTotalCapacity</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you omit this parameter, all metrics are enabled.
+     *            </p>
      */
     public void setMetrics(java.util.Collection<String> metrics) {
         if (metrics == null) {
@@ -369,8 +536,8 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * One or more of the following metrics. If you omit this parameter, all
-     * metrics are enabled.
+     * Specifies which group-level metrics to start collecting. You can specify
+     * one or more of the following metrics:
      * </p>
      * <ul>
      * <li>
@@ -415,12 +582,45 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </li>
      * </ul>
      * <p>
+     * The instance weighting feature supports the following additional metrics:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you omit this parameter, all metrics are enabled.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metrics <p>
-     *            One or more of the following metrics. If you omit this
-     *            parameter, all metrics are enabled.
+     *            Specifies which group-level metrics to start collecting. You
+     *            can specify one or more of the following metrics:
      *            </p>
      *            <ul>
      *            <li>
@@ -464,6 +664,40 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            The instance weighting feature supports the following
+     *            additional metrics:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>GroupInServiceCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupPendingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupStandbyCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTerminatingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTotalCapacity</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you omit this parameter, all metrics are enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -479,8 +713,8 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * One or more of the following metrics. If you omit this parameter, all
-     * metrics are enabled.
+     * Specifies which group-level metrics to start collecting. You can specify
+     * one or more of the following metrics:
      * </p>
      * <ul>
      * <li>
@@ -525,12 +759,45 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      * </li>
      * </ul>
      * <p>
+     * The instance weighting feature supports the following additional metrics:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>GroupInServiceCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupPendingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupStandbyCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTerminatingCapacity</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>GroupTotalCapacity</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you omit this parameter, all metrics are enabled.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metrics <p>
-     *            One or more of the following metrics. If you omit this
-     *            parameter, all metrics are enabled.
+     *            Specifies which group-level metrics to start collecting. You
+     *            can specify one or more of the following metrics:
      *            </p>
      *            <ul>
      *            <li>
@@ -574,6 +841,40 @@ public class EnableMetricsCollectionRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            The instance weighting feature supports the following
+     *            additional metrics:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>GroupInServiceCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupPendingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupStandbyCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTerminatingCapacity</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>GroupTotalCapacity</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you omit this parameter, all metrics are enabled.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

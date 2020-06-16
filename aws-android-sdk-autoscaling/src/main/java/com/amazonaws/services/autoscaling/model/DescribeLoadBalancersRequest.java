@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * This operation describes only Classic Load Balancers. If you have Application
- * Load Balancers or Network Load Balancers, use
- * <a>DescribeLoadBalancerTargetGroups</a> instead.
+ * Load Balancers or Network Load Balancers, use the
+ * <a>DescribeLoadBalancerTargetGroups</a> API instead.
  * </p>
  */
 public class DescribeLoadBalancersRequest extends AmazonWebServiceRequest implements Serializable {

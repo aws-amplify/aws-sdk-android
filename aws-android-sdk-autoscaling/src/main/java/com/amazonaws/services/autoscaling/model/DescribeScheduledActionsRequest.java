@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Describes the actions scheduled for your Auto Scaling group that haven't run
  * or that have not reached their end time. To describe the actions that have
- * already run, use <a>DescribeScalingActivities</a>.
+ * already run, call the <a>DescribeScalingActivities</a> API.
  * </p>
  */
 public class DescribeScheduledActionsRequest extends AmazonWebServiceRequest implements

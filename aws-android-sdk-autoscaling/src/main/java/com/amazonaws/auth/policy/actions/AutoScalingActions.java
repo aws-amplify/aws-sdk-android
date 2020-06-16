@@ -39,6 +39,9 @@ public enum AutoScalingActions implements Action {
     /** Action for the BatchPutScheduledUpdateGroupAction operation. */
     BatchPutScheduledUpdateGroupAction("autoscaling:BatchPutScheduledUpdateGroupAction"),
 
+    /** Action for the CancelInstanceRefresh operation. */
+    CancelInstanceRefresh("autoscaling:CancelInstanceRefresh"),
+
     /** Action for the CompleteLifecycleAction operation. */
     CompleteLifecycleAction("autoscaling:CompleteLifecycleAction"),
 
@@ -86,6 +89,9 @@ public enum AutoScalingActions implements Action {
 
     /** Action for the DescribeAutoScalingNotificationTypes operation. */
     DescribeAutoScalingNotificationTypes("autoscaling:DescribeAutoScalingNotificationTypes"),
+
+    /** Action for the DescribeInstanceRefreshes operation. */
+    DescribeInstanceRefreshes("autoscaling:DescribeInstanceRefreshes"),
 
     /** Action for the DescribeLaunchConfigurations operation. */
     DescribeLaunchConfigurations("autoscaling:DescribeLaunchConfigurations"),
@@ -176,6 +182,9 @@ public enum AutoScalingActions implements Action {
 
     /** Action for the SetInstanceProtection operation. */
     SetInstanceProtection("autoscaling:SetInstanceProtection"),
+
+    /** Action for the StartInstanceRefresh operation. */
+    StartInstanceRefresh("autoscaling:StartInstanceRefresh"),
 
     /** Action for the SuspendProcesses operation. */
     SuspendProcesses("autoscaling:SuspendProcesses"),

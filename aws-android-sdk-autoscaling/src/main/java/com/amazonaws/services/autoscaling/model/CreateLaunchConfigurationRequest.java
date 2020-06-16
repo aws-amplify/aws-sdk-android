@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a launch configuration.
  * </p>
  * <p>
- * If you exceed your maximum limit of launch configurations, the call fails.
- * For information about viewing this limit, see <a>DescribeAccountLimits</a>.
- * For information about updating this limit, see <a href=
+ * If you exceed your maximum limit of launch configurations, the call fails. To
+ * query this limit, call the <a>DescribeAccountLimits</a> API. For information
+ * about updating this limit, see <a href=
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html"
  * >Amazon EC2 Auto Scaling Service Quotas</a> in the <i>Amazon EC2 Auto Scaling
  * User Guide</i>.

@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an instances distribution for an Auto Scaling group with
+ * Describes an instances distribution for an Auto Scaling group with a
  * <a>MixedInstancesPolicy</a>.
  * </p>
  * <p>

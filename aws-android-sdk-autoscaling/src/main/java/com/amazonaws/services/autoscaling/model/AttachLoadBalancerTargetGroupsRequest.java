@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Attaches one or more target groups to the specified Auto Scaling group.
  * </p>
  * <p>
- * To describe the target groups for an Auto Scaling group, use
- * <a>DescribeLoadBalancerTargetGroups</a>. To detach the target group from the
- * Auto Scaling group, use <a>DetachLoadBalancerTargetGroups</a>.
+ * To describe the target groups for an Auto Scaling group, call the
+ * <a>DescribeLoadBalancerTargetGroups</a> API. To detach the target group from
+ * the Auto Scaling group, call the <a>DetachLoadBalancerTargetGroups</a> API.
  * </p>
  * <p>
  * With Application Load Balancers and Network Load Balancers, instances are
