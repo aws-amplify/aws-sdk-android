@@ -1,4 +1,0 @@
-<resources>
-    <string name="app_name">aws-android-sdk-sns-test</string>
-    <string name="package_name">sns</string>
-</resources>

@@ -17,7 +17,7 @@ package com.amazonaws.mobileconnectors.apigateway;
 
 import android.support.test.InstrumentationRegistry;
 
-import com.amazonaws.apigatewaytest.R;
+import com.amazonaws.mobileconnectors.apigateway.test.R;
 import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONObject;
