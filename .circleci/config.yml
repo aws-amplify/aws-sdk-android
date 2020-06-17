@@ -716,6 +716,9 @@ jobs:
             sudo apt-get update
             sudo apt-get -y install python3-pip
       - run:
+          name: install python3-venv
+          command: sudo apt-get install python3-venv
+      - run:
           name: Install json parser
           command: sudo pip3 install demjson
       - run:
@@ -1168,6 +1171,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -1178,6 +1182,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: cognitoidentityprovider
           testmodule: aws-android-sdk-cognitoidentityprovider-test
@@ -1188,6 +1193,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: core
           testmodule: aws-android-sdk-core-test
@@ -1198,6 +1204,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: iot
           testmodule: aws-android-sdk-iot-test
@@ -1208,6 +1215,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client-test
@@ -1218,6 +1226,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: pinpoint
           testmodule: aws-android-sdk-pinpoint-test
@@ -1228,6 +1237,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - integrationtest:
           name: s3
           testmodule: aws-android-sdk-s3-test
@@ -1238,6 +1248,7 @@ workflows:
               only:
                 - master
                 - develop
+                - circleCI
       - post_integrationtest:
           requires:
             - apigateway
