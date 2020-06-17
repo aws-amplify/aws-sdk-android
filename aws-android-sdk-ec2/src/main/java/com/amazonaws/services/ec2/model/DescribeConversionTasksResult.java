@@ -1,98 +1,102 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output for DescribeConversionTasks.
- * </p>
- */
 public class DescribeConversionTasksResult implements Serializable {
-
     /**
+     * <p>
      * Information about the conversion tasks.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<ConversionTask> conversionTasks;
+    private java.util.List<ConversionTask> conversionTasks;
 
     /**
+     * <p>
      * Information about the conversion tasks.
+     * </p>
      *
-     * @return Information about the conversion tasks.
+     * @return <p>
+     *         Information about the conversion tasks.
+     *         </p>
      */
     public java.util.List<ConversionTask> getConversionTasks() {
-        if (conversionTasks == null) {
-              conversionTasks = new com.amazonaws.internal.ListWithAutoConstructFlag<ConversionTask>();
-              conversionTasks.setAutoConstruct(true);
-        }
         return conversionTasks;
     }
-    
+
     /**
+     * <p>
      * Information about the conversion tasks.
+     * </p>
      *
-     * @param conversionTasks Information about the conversion tasks.
+     * @param conversionTasks <p>
+     *            Information about the conversion tasks.
+     *            </p>
      */
     public void setConversionTasks(java.util.Collection<ConversionTask> conversionTasks) {
         if (conversionTasks == null) {
             this.conversionTasks = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<ConversionTask> conversionTasksCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ConversionTask>(conversionTasks.size());
-        conversionTasksCopy.addAll(conversionTasks);
-        this.conversionTasks = conversionTasksCopy;
+
+        this.conversionTasks = new java.util.ArrayList<ConversionTask>(conversionTasks);
     }
-    
+
     /**
-     * Information about the conversion tasks.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the conversion tasks.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param conversionTasks Information about the conversion tasks.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param conversionTasks <p>
+     *            Information about the conversion tasks.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeConversionTasksResult withConversionTasks(ConversionTask... conversionTasks) {
-        if (getConversionTasks() == null) setConversionTasks(new java.util.ArrayList<ConversionTask>(conversionTasks.length));
+        if (getConversionTasks() == null) {
+            this.conversionTasks = new java.util.ArrayList<ConversionTask>(conversionTasks.length);
+        }
         for (ConversionTask value : conversionTasks) {
-            getConversionTasks().add(value);
+            this.conversionTasks.add(value);
         }
         return this;
     }
-    
-    /**
-     * Information about the conversion tasks.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param conversionTasks Information about the conversion tasks.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeConversionTasksResult withConversionTasks(java.util.Collection<ConversionTask> conversionTasks) {
-        if (conversionTasks == null) {
-            this.conversionTasks = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<ConversionTask> conversionTasksCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<ConversionTask>(conversionTasks.size());
-            conversionTasksCopy.addAll(conversionTasks);
-            this.conversionTasks = conversionTasksCopy;
-        }
 
+    /**
+     * <p>
+     * Information about the conversion tasks.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param conversionTasks <p>
+     *            Information about the conversion tasks.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeConversionTasksResult withConversionTasks(
+            java.util.Collection<ConversionTask> conversionTasks) {
+        setConversionTasks(conversionTasks);
         return this;
     }
 
@@ -101,39 +105,44 @@ public class DescribeConversionTasksResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getConversionTasks() != null) sb.append("ConversionTasks: " + getConversionTasks() );
+        if (getConversionTasks() != null)
+            sb.append("ConversionTasks: " + getConversionTasks());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getConversionTasks() == null) ? 0 : getConversionTasks().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getConversionTasks() == null) ? 0 : getConversionTasks().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeConversionTasksResult == false) return false;
-        DescribeConversionTasksResult other = (DescribeConversionTasksResult)obj;
-        
-        if (other.getConversionTasks() == null ^ this.getConversionTasks() == null) return false;
-        if (other.getConversionTasks() != null && other.getConversionTasks().equals(this.getConversionTasks()) == false) return false; 
+        if (obj instanceof DescribeConversionTasksResult == false)
+            return false;
+        DescribeConversionTasksResult other = (DescribeConversionTasksResult) obj;
+
+        if (other.getConversionTasks() == null ^ this.getConversionTasks() == null)
+            return false;
+        if (other.getConversionTasks() != null
+                && other.getConversionTasks().equals(this.getConversionTasks()) == false)
+            return false;
         return true;
     }
-    
 }
-    

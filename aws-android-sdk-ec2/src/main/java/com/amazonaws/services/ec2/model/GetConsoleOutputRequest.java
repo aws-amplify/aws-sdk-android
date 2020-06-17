@@ -1,107 +1,118 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.Request;
-import com.amazonaws.services.ec2.model.transform.GetConsoleOutputRequestMarshaller;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#getConsoleOutput(GetConsoleOutputRequest) GetConsoleOutput operation}.
  * <p>
- * Gets the console output for the specified instance.
+ * Gets the console output for the specified instance. For Linux instances, the
+ * instance console output displays the exact console output that would normally
+ * be displayed on a physical monitor attached to a computer. For Windows
+ * instances, the instance console output includes the last three system event
+ * log errors.
  * </p>
  * <p>
- * Instances do not have a physical monitor through which you can view
- * their console output. They also lack physical controls that allow you
- * to power up, reboot, or shut them down. To allow these actions, we
- * provide them through the Amazon EC2 API and command line interface.
+ * By default, the console output returns buffered information that was posted
+ * shortly after an instance transition state (start, stop, reboot, or
+ * terminate). This information is available for at least one hour after the
+ * most recent post. Only the most recent 64 KB of console output is available.
  * </p>
  * <p>
- * Instance console output is buffered and posted shortly after instance
- * boot, reboot, and termination. Amazon EC2 preserves the most recent 64
- * KB output which is available for at least one hour after the most
- * recent post.
+ * You can optionally retrieve the latest serial console output at any time
+ * during the instance lifecycle. This option is supported on instance types
+ * that use the Nitro hypervisor.
  * </p>
  * <p>
- * For Linux instances, the instance console output displays the exact
- * console output that would normally be displayed on a physical monitor
- * attached to a computer. This output is buffered because the instance
- * produces it and then posts it to a store where the instance's owner
- * can retrieve it.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-console.html#instance-console-console-output"
+ * >Instance Console Output</a> in the <i>Amazon Elastic Compute Cloud User
+ * Guide</i>.
  * </p>
- * <p>
- * For Windows instances, the instance console output includes output
- * from the EC2Config service.
- * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#getConsoleOutput(GetConsoleOutputRequest)
  */
-public class GetConsoleOutputRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<GetConsoleOutputRequest> {
-
+public class GetConsoleOutputRequest extends AmazonWebServiceRequest implements Serializable {
     /**
+     * <p>
      * The ID of the instance.
+     * </p>
      */
     private String instanceId;
 
     /**
-     * Default constructor for a new GetConsoleOutputRequest object.  Callers should use the
-     * setter or fluent setter (with...) methods to initialize this object after creating it.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
      */
-    public GetConsoleOutputRequest() {}
-    
-    /**
-     * Constructs a new GetConsoleOutputRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
-     * 
-     * @param instanceId The ID of the instance.
-     */
-    public GetConsoleOutputRequest(String instanceId) {
-        setInstanceId(instanceId);
-    }
+    private Boolean dryRun;
 
     /**
+     * <p>
+     * When enabled, retrieves the latest console output for the instance.
+     * </p>
+     * <p>
+     * Default: disabled (<code>false</code>)
+     * </p>
+     */
+    private Boolean latest;
+
+    /**
+     * <p>
      * The ID of the instance.
+     * </p>
      *
-     * @return The ID of the instance.
+     * @return <p>
+     *         The ID of the instance.
+     *         </p>
      */
     public String getInstanceId() {
         return instanceId;
     }
-    
+
     /**
+     * <p>
      * The ID of the instance.
+     * </p>
      *
-     * @param instanceId The ID of the instance.
+     * @param instanceId <p>
+     *            The ID of the instance.
+     *            </p>
      */
     public void setInstanceId(String instanceId) {
         this.instanceId = instanceId;
     }
-    
+
     /**
-     * The ID of the instance.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param instanceId The ID of the instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param instanceId <p>
+     *            The ID of the instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public GetConsoleOutputRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
@@ -109,55 +120,237 @@ public class GetConsoleOutputRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
      */
-    @Override
-    public Request<GetConsoleOutputRequest> getDryRunRequest() {
-        Request<GetConsoleOutputRequest> request = new GetConsoleOutputRequestMarshaller().marshall(this);
-        request.addParameter("DryRun", Boolean.toString(true));
-        return request;
+    public Boolean isDryRun() {
+        return dryRun;
     }
-    
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetConsoleOutputRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
+     * <p>
+     * When enabled, retrieves the latest console output for the instance.
+     * </p>
+     * <p>
+     * Default: disabled (<code>false</code>)
+     * </p>
+     *
+     * @return <p>
+     *         When enabled, retrieves the latest console output for the
+     *         instance.
+     *         </p>
+     *         <p>
+     *         Default: disabled (<code>false</code>)
+     *         </p>
+     */
+    public Boolean isLatest() {
+        return latest;
+    }
+
+    /**
+     * <p>
+     * When enabled, retrieves the latest console output for the instance.
+     * </p>
+     * <p>
+     * Default: disabled (<code>false</code>)
+     * </p>
+     *
+     * @return <p>
+     *         When enabled, retrieves the latest console output for the
+     *         instance.
+     *         </p>
+     *         <p>
+     *         Default: disabled (<code>false</code>)
+     *         </p>
+     */
+    public Boolean getLatest() {
+        return latest;
+    }
+
+    /**
+     * <p>
+     * When enabled, retrieves the latest console output for the instance.
+     * </p>
+     * <p>
+     * Default: disabled (<code>false</code>)
+     * </p>
+     *
+     * @param latest <p>
+     *            When enabled, retrieves the latest console output for the
+     *            instance.
+     *            </p>
+     *            <p>
+     *            Default: disabled (<code>false</code>)
+     *            </p>
+     */
+    public void setLatest(Boolean latest) {
+        this.latest = latest;
+    }
+
+    /**
+     * <p>
+     * When enabled, retrieves the latest console output for the instance.
+     * </p>
+     * <p>
+     * Default: disabled (<code>false</code>)
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param latest <p>
+     *            When enabled, retrieves the latest console output for the
+     *            instance.
+     *            </p>
+     *            <p>
+     *            Default: disabled (<code>false</code>)
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetConsoleOutputRequest withLatest(Boolean latest) {
+        this.latest = latest;
+        return this;
+    }
+
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getInstanceId() != null) sb.append("InstanceId: " + getInstanceId() );
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun() + ",");
+        if (getLatest() != null)
+            sb.append("Latest: " + getLatest());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode()); 
+
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
+        hashCode = prime * hashCode + ((getLatest() == null) ? 0 : getLatest().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof GetConsoleOutputRequest == false) return false;
-        GetConsoleOutputRequest other = (GetConsoleOutputRequest)obj;
-        
-        if (other.getInstanceId() == null ^ this.getInstanceId() == null) return false;
-        if (other.getInstanceId() != null && other.getInstanceId().equals(this.getInstanceId()) == false) return false; 
+        if (obj instanceof GetConsoleOutputRequest == false)
+            return false;
+        GetConsoleOutputRequest other = (GetConsoleOutputRequest) obj;
+
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+            return false;
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
+        if (other.getLatest() == null ^ this.getLatest() == null)
+            return false;
+        if (other.getLatest() != null && other.getLatest().equals(this.getLatest()) == false)
+            return false;
         return true;
     }
-    
 }
-    

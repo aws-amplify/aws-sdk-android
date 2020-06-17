@@ -1,24 +1,28 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Event Code
  */
 public enum EventCode {
-    
+
     InstanceReboot("instance-reboot"),
     SystemReboot("system-reboot"),
     SystemMaintenance("system-maintenance"),
@@ -33,33 +37,32 @@ public enum EventCode {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
+    }
+
+    private static final Map<String, EventCode> enumMap;
+    static {
+        enumMap = new HashMap<String, EventCode>();
+        enumMap.put("instance-reboot", InstanceReboot);
+        enumMap.put("system-reboot", SystemReboot);
+        enumMap.put("system-maintenance", SystemMaintenance);
+        enumMap.put("instance-retirement", InstanceRetirement);
+        enumMap.put("instance-stop", InstanceStop);
     }
 
     /**
      * Use this in place of valueOf.
      *
-     * @param value
-     *            real value
+     * @param value real value
      * @return EventCode corresponding to the value
      */
     public static EventCode fromValue(String value) {
-        if (value == null || "".equals(value)) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        
-        } else if ("instance-reboot".equals(value)) {
-            return EventCode.InstanceReboot;
-        } else if ("system-reboot".equals(value)) {
-            return EventCode.SystemReboot;
-        } else if ("system-maintenance".equals(value)) {
-            return EventCode.SystemMaintenance;
-        } else if ("instance-retirement".equals(value)) {
-            return EventCode.InstanceRetirement;
-        } else if ("instance-stop".equals(value)) {
-            return EventCode.InstanceStop;
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
     }
 }
-    
