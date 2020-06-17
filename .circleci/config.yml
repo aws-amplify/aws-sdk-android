@@ -721,9 +721,9 @@ jobs:
             ./configure --enable-optimizations
             sudo make -j8 build_all
             sudo make -j8 altinstall
-      - run:
-          name: install python3-venv
-          command: sudo apt-get install python3-venv
+            sudo rm /usr/bin/python3
+            sudo ln -s /usr/local/bin/python3.7 /usr/local/bin/python3
+            sudo ln -s /usr/local/bin/pip3.7 /usr/local/bin/pip3
       - run:
           name: Install json parser
           command: sudo pip3 install demjson

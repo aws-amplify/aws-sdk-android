@@ -5,15 +5,15 @@
 ##################################################
 # CANONICAL SOURCE OF THIS FILE IS
 #   https://github.com/aws-amplify/amplify-ci-support/blob/master/src/integ_test_resources/common/scripts/generate-test-config.sh
-# 
+#
 # As of this writing (06-May-2020), we manually copy this file into the CI
 # support directories for the projects that use it:
 # - https://github.com/aws-amplify/aws-sdk-ios/tree/master/Scripts/generate-test-config.sh
 # - https://github.com/aws-amplify/aws-sdk-android/tree/master/build-support/generate-test-config.sh
-# 
+#
 # From there, this script will be invoked by the CircleCI build process during
 # test setup, or it may be invoked manually for local integration test runs
-# 
+#
 
 
 ##################################################
@@ -101,7 +101,7 @@ REQUIREMENTS
     and available on your PATH:
         - Python - v3.7 or higher, accessible as 'python3'
           (https://www.python.org/)
-    
+
     If you use the -a option to assume the test execution role prior to
     generating the test configuration file, you must also have the following
     utilities installed:
