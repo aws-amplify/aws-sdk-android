@@ -1,3 +1,15 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-route53
+---aws-android-sdk-ec2
+---aws-android-sdk-snowball
+---aws-android-sdk-appmesh
+---aws-android-sdk-macie2
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
