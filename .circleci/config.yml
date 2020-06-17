@@ -699,6 +699,7 @@ jobs:
     docker:
       # Android the primary container
       - image: circleci/android@sha256:5cdc8626cc6f13efe5ed982cdcdb432b0472f8740fed8743a6461e025ad6cdfc
+    resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -713,14 +714,13 @@ jobs:
       - run:
           name: install python3.7
           command: |
-            sudo apt update
             sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
             curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
             tar -xf Python-3.7.3.tar.xz
             cd Python-3.7.3
             ./configure --enable-optimizations
-            make -j 2
-            sudo make altinstall
+            sudo make -j8 build_all
+            sudo make -j8 altinstall
       - run:
           name: install python3-venv
           command: sudo apt-get install python3-venv
