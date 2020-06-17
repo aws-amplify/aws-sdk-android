@@ -711,12 +711,16 @@ jobs:
       - setup_android_platform23
       - setup_android_platform18
       - run:
-          name: install python3-pip
+          name: install python3.7
           command: |
-            sudo apt-get install software-properties-common
-            sudo add-apt-repository ppa:deadsnakes/ppa
-            sudo apt-get update
-            sudo apt-get install python3.7
+            sudo apt update
+            sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+            curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
+            tar -xf Python-3.7.3.tar.xz
+            cd Python-3.7.3
+            ./configure --enable-optimizations
+            make -j 2
+            sudo make altinstall
       - run:
           name: install python3-venv
           command: sudo apt-get install python3-venv
