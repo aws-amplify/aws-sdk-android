@@ -739,6 +739,8 @@ jobs:
           name: Generate testconfiguration.json
           command: |
             bash build-support/generate-test-config.sh -p android -v
+            mkdir -p aws-android-sdk-testutils/src/main/res/raw
+            mkdir -p aws-android-sdk-mobile-client/src/androidTest/res/raw
             ln -s /home/circleci/.aws-amplify/aws-sdk-android/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
             ln -s /home/circleci/.aws-amplify/aws-sdk-android/testconfiguration.json aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json
       - run:
