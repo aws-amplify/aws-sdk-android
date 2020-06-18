@@ -737,7 +737,10 @@ jobs:
       - setup_emulator
       - run:
           name: Generate testconfiguration.json
-          command: bash build-support/generate-test-config.sh -p android -v
+          command: |
+            bash build-support/generate-test-config.sh -p android -v
+            ln -s /home/circleci/.aws-amplify/aws-sdk-android/testconfiguration.json aws-android-sdk-testutils/src/main/res/raw/testconfiguration.json
+            ln -s /home/circleci/.aws-amplify/aws-sdk-android/testconfiguration.json aws-android-sdk-mobile-client/src/androidTest/res/raw/awsconfiguration.json
       - run:
           name: run integration tests
           command: |
