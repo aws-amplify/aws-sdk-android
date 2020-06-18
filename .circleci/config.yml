@@ -1195,17 +1195,6 @@ workflows:
                 - develop
                 - circleCI2
       - integrationtest:
-          name: cloudwatch
-          testmodule: aws-android-sdk-cloudwatch-test
-          requires:
-            - pre_integrationtest
-          filters:
-            branches:
-              only:
-                - master
-                - develop
-                - circleCI2
-      - integrationtest:
           name: iot
           testmodule: aws-android-sdk-iot
           requires:
