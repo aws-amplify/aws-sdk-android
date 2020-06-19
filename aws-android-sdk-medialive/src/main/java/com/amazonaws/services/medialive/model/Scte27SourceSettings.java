@@ -1,0 +1,162 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.medialive.model;
+
+import java.io.Serializable;
+
+/**
+ * Scte27 Source Settings
+ */
+public class Scte27SourceSettings implements Serializable {
+    /**
+     * The pid field is used in conjunction with the caption selector
+     * languageCode field as follows: - Specify PID and Language: Extracts
+     * captions from that PID; the language is "informational". - Specify PID
+     * and omit Language: Extracts the specified PID. - Omit PID and specify
+     * Language: Extracts the specified language, whichever PID that happens to
+     * be. - Omit PID and omit Language: Valid only if source is DVB-Sub that is
+     * being passed through; all languages will be passed through.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     */
+    private Integer pid;
+
+    /**
+     * The pid field is used in conjunction with the caption selector
+     * languageCode field as follows: - Specify PID and Language: Extracts
+     * captions from that PID; the language is "informational". - Specify PID
+     * and omit Language: Extracts the specified PID. - Omit PID and specify
+     * Language: Extracts the specified language, whichever PID that happens to
+     * be. - Omit PID and omit Language: Valid only if source is DVB-Sub that is
+     * being passed through; all languages will be passed through.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @return The pid field is used in conjunction with the caption selector
+     *         languageCode field as follows: - Specify PID and Language:
+     *         Extracts captions from that PID; the language is "informational".
+     *         - Specify PID and omit Language: Extracts the specified PID. -
+     *         Omit PID and specify Language: Extracts the specified language,
+     *         whichever PID that happens to be. - Omit PID and omit Language:
+     *         Valid only if source is DVB-Sub that is being passed through; all
+     *         languages will be passed through.
+     */
+    public Integer getPid() {
+        return pid;
+    }
+
+    /**
+     * The pid field is used in conjunction with the caption selector
+     * languageCode field as follows: - Specify PID and Language: Extracts
+     * captions from that PID; the language is "informational". - Specify PID
+     * and omit Language: Extracts the specified PID. - Omit PID and specify
+     * Language: Extracts the specified language, whichever PID that happens to
+     * be. - Omit PID and omit Language: Valid only if source is DVB-Sub that is
+     * being passed through; all languages will be passed through.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param pid The pid field is used in conjunction with the caption selector
+     *            languageCode field as follows: - Specify PID and Language:
+     *            Extracts captions from that PID; the language is
+     *            "informational". - Specify PID and omit Language: Extracts the
+     *            specified PID. - Omit PID and specify Language: Extracts the
+     *            specified language, whichever PID that happens to be. - Omit
+     *            PID and omit Language: Valid only if source is DVB-Sub that is
+     *            being passed through; all languages will be passed through.
+     */
+    public void setPid(Integer pid) {
+        this.pid = pid;
+    }
+
+    /**
+     * The pid field is used in conjunction with the caption selector
+     * languageCode field as follows: - Specify PID and Language: Extracts
+     * captions from that PID; the language is "informational". - Specify PID
+     * and omit Language: Extracts the specified PID. - Omit PID and specify
+     * Language: Extracts the specified language, whichever PID that happens to
+     * be. - Omit PID and omit Language: Valid only if source is DVB-Sub that is
+     * being passed through; all languages will be passed through.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - <br/>
+     *
+     * @param pid The pid field is used in conjunction with the caption selector
+     *            languageCode field as follows: - Specify PID and Language:
+     *            Extracts captions from that PID; the language is
+     *            "informational". - Specify PID and omit Language: Extracts the
+     *            specified PID. - Omit PID and specify Language: Extracts the
+     *            specified language, whichever PID that happens to be. - Omit
+     *            PID and omit Language: Valid only if source is DVB-Sub that is
+     *            being passed through; all languages will be passed through.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Scte27SourceSettings withPid(Integer pid) {
+        this.pid = pid;
+        return this;
+    }
+
+    /**
+     * Returns a string representation of this object; useful for testing and
+     * debugging.
+     *
+     * @return A string representation of this object.
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (getPid() != null)
+            sb.append("Pid: " + getPid());
+        sb.append("}");
+        return sb.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int hashCode = 1;
+
+        hashCode = prime * hashCode + ((getPid() == null) ? 0 : getPid().hashCode());
+        return hashCode;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+
+        if (obj instanceof Scte27SourceSettings == false)
+            return false;
+        Scte27SourceSettings other = (Scte27SourceSettings) obj;
+
+        if (other.getPid() == null ^ this.getPid() == null)
+            return false;
+        if (other.getPid() != null && other.getPid().equals(this.getPid()) == false)
+            return false;
+        return true;
+    }
+}
