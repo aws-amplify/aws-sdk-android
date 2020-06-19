@@ -1,24 +1,28 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Availability Zone State
  */
 public enum AvailabilityZoneState {
-    
+
     Available("available"),
     Information("information"),
     Impaired("impaired"),
@@ -32,31 +36,31 @@ public enum AvailabilityZoneState {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
+    }
+
+    private static final Map<String, AvailabilityZoneState> enumMap;
+    static {
+        enumMap = new HashMap<String, AvailabilityZoneState>();
+        enumMap.put("available", Available);
+        enumMap.put("information", Information);
+        enumMap.put("impaired", Impaired);
+        enumMap.put("unavailable", Unavailable);
     }
 
     /**
      * Use this in place of valueOf.
      *
-     * @param value
-     *            real value
+     * @param value real value
      * @return AvailabilityZoneState corresponding to the value
      */
     public static AvailabilityZoneState fromValue(String value) {
-        if (value == null || "".equals(value)) {
+        if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
-        
-        } else if ("available".equals(value)) {
-            return AvailabilityZoneState.Available;
-        } else if ("information".equals(value)) {
-            return AvailabilityZoneState.Information;
-        } else if ("impaired".equals(value)) {
-            return AvailabilityZoneState.Impaired;
-        } else if ("unavailable".equals(value)) {
-            return AvailabilityZoneState.Unavailable;
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
         } else {
             throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
         }
     }
 }
-    

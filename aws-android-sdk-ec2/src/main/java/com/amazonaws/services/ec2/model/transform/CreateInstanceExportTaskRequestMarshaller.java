@@ -1,69 +1,98 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Create Instance Export Task Request Marshaller
+ * JSON request marshaller for CreateInstanceExportTaskRequest
  */
-public class CreateInstanceExportTaskRequestMarshaller implements Marshaller<Request<CreateInstanceExportTaskRequest>, CreateInstanceExportTaskRequest> {
+public class CreateInstanceExportTaskRequestMarshaller implements
+        Marshaller<Request<CreateInstanceExportTaskRequest>, CreateInstanceExportTaskRequest> {
 
-    public Request<CreateInstanceExportTaskRequest> marshall(CreateInstanceExportTaskRequest createInstanceExportTaskRequest) {
-
+    public Request<CreateInstanceExportTaskRequest> marshall(
+            CreateInstanceExportTaskRequest createInstanceExportTaskRequest) {
         if (createInstanceExportTaskRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(CreateInstanceExportTaskRequest)");
         }
 
-        Request<CreateInstanceExportTaskRequest> request = new DefaultRequest<CreateInstanceExportTaskRequest>(createInstanceExportTaskRequest, "AmazonEC2");
-        request.addParameter("Action", "CreateInstanceExportTask");
-        request.addParameter("Version", "2015-10-01");
+        Request<CreateInstanceExportTaskRequest> request = new DefaultRequest<CreateInstanceExportTaskRequest>(
+                createInstanceExportTaskRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        if (createInstanceExportTaskRequest.getDescription() != null) {
-            request.addParameter("Description", StringUtils.fromString(createInstanceExportTaskRequest.getDescription()));
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (createInstanceExportTaskRequest.getDescription() != null) {
+                String description = createInstanceExportTaskRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
+            }
+            if (createInstanceExportTaskRequest.getExportToS3Task() != null) {
+                ExportToS3TaskSpecification exportToS3Task = createInstanceExportTaskRequest
+                        .getExportToS3Task();
+                jsonWriter.name("ExportToS3Task");
+                ExportToS3TaskSpecificationJsonMarshaller.getInstance().marshall(exportToS3Task,
+                        jsonWriter);
+            }
+            if (createInstanceExportTaskRequest.getInstanceId() != null) {
+                String instanceId = createInstanceExportTaskRequest.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
+            }
+            if (createInstanceExportTaskRequest.getTargetEnvironment() != null) {
+                String targetEnvironment = createInstanceExportTaskRequest.getTargetEnvironment();
+                jsonWriter.name("TargetEnvironment");
+                jsonWriter.value(targetEnvironment);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
-        if (createInstanceExportTaskRequest.getInstanceId() != null) {
-            request.addParameter("InstanceId", StringUtils.fromString(createInstanceExportTaskRequest.getInstanceId()));
-        }
-        if (createInstanceExportTaskRequest.getTargetEnvironment() != null) {
-            request.addParameter("TargetEnvironment", StringUtils.fromString(createInstanceExportTaskRequest.getTargetEnvironment()));
-        }
-        ExportToS3TaskSpecification exportToS3TaskSpecificationExportToS3Task = createInstanceExportTaskRequest.getExportToS3Task();
-        if (exportToS3TaskSpecificationExportToS3Task != null) {
-            if (exportToS3TaskSpecificationExportToS3Task.getDiskImageFormat() != null) {
-                request.addParameter("ExportToS3.DiskImageFormat", StringUtils.fromString(exportToS3TaskSpecificationExportToS3Task.getDiskImageFormat()));
-            }
-            if (exportToS3TaskSpecificationExportToS3Task.getContainerFormat() != null) {
-                request.addParameter("ExportToS3.ContainerFormat", StringUtils.fromString(exportToS3TaskSpecificationExportToS3Task.getContainerFormat()));
-            }
-            if (exportToS3TaskSpecificationExportToS3Task.getS3Bucket() != null) {
-                request.addParameter("ExportToS3.S3Bucket", StringUtils.fromString(exportToS3TaskSpecificationExportToS3Task.getS3Bucket()));
-            }
-            if (exportToS3TaskSpecificationExportToS3Task.getS3Prefix() != null) {
-                request.addParameter("ExportToS3.S3Prefix", StringUtils.fromString(exportToS3TaskSpecificationExportToS3Task.getS3Prefix()));
-            }
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;
