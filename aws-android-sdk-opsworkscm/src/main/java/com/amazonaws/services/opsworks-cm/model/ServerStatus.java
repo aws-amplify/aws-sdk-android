@@ -1,0 +1,84 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+package com.amazonaws.services.opsworks-cm.model;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Server Status
+ */
+public enum ServerStatus {
+
+    BACKING_UP("BACKING_UP"),
+    CONNECTION_LOST("CONNECTION_LOST"),
+    CREATING("CREATING"),
+    DELETING("DELETING"),
+    MODIFYING("MODIFYING"),
+    FAILED("FAILED"),
+    HEALTHY("HEALTHY"),
+    RUNNING("RUNNING"),
+    RESTORING("RESTORING"),
+    SETUP("SETUP"),
+    UNDER_MAINTENANCE("UNDER_MAINTENANCE"),
+    UNHEALTHY("UNHEALTHY"),
+    TERMINATED("TERMINATED");
+
+    private String value;
+
+    private ServerStatus(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
+
+    private static final Map<String, ServerStatus> enumMap;
+    static {
+        enumMap = new HashMap<String, ServerStatus>();
+        enumMap.put("BACKING_UP", BACKING_UP);
+        enumMap.put("CONNECTION_LOST", CONNECTION_LOST);
+        enumMap.put("CREATING", CREATING);
+        enumMap.put("DELETING", DELETING);
+        enumMap.put("MODIFYING", MODIFYING);
+        enumMap.put("FAILED", FAILED);
+        enumMap.put("HEALTHY", HEALTHY);
+        enumMap.put("RUNNING", RUNNING);
+        enumMap.put("RESTORING", RESTORING);
+        enumMap.put("SETUP", SETUP);
+        enumMap.put("UNDER_MAINTENANCE", UNDER_MAINTENANCE);
+        enumMap.put("UNHEALTHY", UNHEALTHY);
+        enumMap.put("TERMINATED", TERMINATED);
+    }
+
+    /**
+     * Use this in place of valueOf.
+     *
+     * @param value
+     *            real value
+     * @return ServerStatus corresponding to the value
+     */
+    public static ServerStatus fromValue(String value) {
+        if (value == null || value.isEmpty()) {
+            throw new IllegalArgumentException("Value cannot be null or empty!");
+        } else if (enumMap.containsKey(value)) {
+            return enumMap.get(value);
+        } else {
+            throw new IllegalArgumentException("Cannot create enum from " + value + " value!");
+        }
+    }
+}
