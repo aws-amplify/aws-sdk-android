@@ -21,48 +21,56 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the text detection results of a Amazon Rekognition Video analysis
- * started by <a>StartTextDetection</a>.
+ * Gets the segment detection results of a Amazon Rekognition Video analysis
+ * started by <a>StartSegmentDetection</a>.
  * </p>
  * <p>
- * Text detection with Amazon Rekognition Video is an asynchronous operation.
- * You start text detection by calling <a>StartTextDetection</a> which returns a
- * job identifier (<code>JobId</code>) When the text detection operation
- * finishes, Amazon Rekognition publishes a completion status to the Amazon
- * Simple Notification Service topic registered in the initial call to
- * <code>StartTextDetection</code>. To get the results of the text detection
- * operation, first check that the status value published to the Amazon SNS
- * topic is <code>SUCCEEDED</code>. if so, call <code>GetTextDetection</code>
- * and pass the job identifier (<code>JobId</code>) from the initial call of
- * <code>StartLabelDetection</code>.
+ * Segment detection with Amazon Rekognition Video is an asynchronous operation.
+ * You start segment detection by calling <a>StartSegmentDetection</a> which
+ * returns a job identifier (<code>JobId</code>). When the segment detection
+ * operation finishes, Amazon Rekognition publishes a completion status to the
+ * Amazon Simple Notification Service topic registered in the initial call to
+ * <code>StartSegmentDetection</code>. To get the results of the segment
+ * detection operation, first check that the status value published to the
+ * Amazon SNS topic is <code>SUCCEEDED</code>. if so, call
+ * <code>GetSegmentDetection</code> and pass the job identifier (
+ * <code>JobId</code>) from the initial call of
+ * <code>StartSegmentDetection</code>.
  * </p>
  * <p>
- * <code>GetTextDetection</code> returns an array of detected text (
- * <code>TextDetections</code>) sorted by the time the text was detected, up to
- * 50 words per frame of video.
+ * <code>GetSegmentDetection</code> returns detected segments in an array (
+ * <code>Segments</code>) of <a>SegmentDetection</a> objects.
+ * <code>Segments</code> is sorted by the segment types specified in the
+ * <code>SegmentTypes</code> input parameter of
+ * <code>StartSegmentDetection</code>. Each element of the array includes the
+ * detected segment, the precentage confidence in the acuracy of the detected
+ * segment, the type of the segment, and the frame in which the segment was
+ * detected.
  * </p>
  * <p>
- * Each element of the array includes the detected text, the precentage
- * confidence in the acuracy of the detected text, the time the text was
- * detected, bounding box information for where the text was located, and unique
- * identifiers for words and their lines.
+ * Use <code>SelectedSegmentTypes</code> to find out the type of segment
+ * detection requested in the call to <code>StartSegmentDetection</code>.
  * </p>
  * <p>
- * Use MaxResults parameter to limit the number of text detections returned. If
- * there are more results than specified in <code>MaxResults</code>, the value
- * of <code>NextToken</code> in the operation response contains a pagination
- * token for getting the next set of results. To get the next page of results,
- * call <code>GetTextDetection</code> and populate the <code>NextToken</code>
- * request parameter with the token value returned from the previous call to
- * <code>GetTextDetection</code>.
+ * Use the <code>MaxResults</code> parameter to limit the number of segment
+ * detections returned. If there are more results than specified in
+ * <code>MaxResults</code>, the value of <code>NextToken</code> in the operation
+ * response contains a pagination token for getting the next set of results. To
+ * get the next page of results, call <code>GetSegmentDetection</code> and
+ * populate the <code>NextToken</code> request parameter with the token value
+ * returned from the previous call to <code>GetSegmentDetection</code>.
+ * </p>
+ * <p>
+ * For more information, see Detecting Video Segments in Stored Video in the
+ * Amazon Rekognition Developer Guide.
  * </p>
  */
-public class GetTextDetectionRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetSegmentDetectionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
-     * <code>StartTextDetection</code>.
+     * <code>StartSegmentDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,9 +92,8 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * If the previous response was incomplete (because there are more labels to
-     * retrieve), Amazon Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * text.
      * </p>
      * <p>
@@ -99,7 +106,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <p>
      * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
-     * <code>StartTextDetection</code>.
+     * <code>StartSegmentDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,7 +116,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         Job identifier for the text detection operation for which you
      *         want results returned. You get the job identifer from an initial
-     *         call to <code>StartTextDetection</code>.
+     *         call to <code>StartSegmentDetection</code>.
      *         </p>
      */
     public String getJobId() {
@@ -120,7 +127,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <p>
      * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
-     * <code>StartTextDetection</code>.
+     * <code>StartSegmentDetection</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,7 +137,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * @param jobId <p>
      *            Job identifier for the text detection operation for which you
      *            want results returned. You get the job identifer from an
-     *            initial call to <code>StartTextDetection</code>.
+     *            initial call to <code>StartSegmentDetection</code>.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -141,7 +148,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <p>
      * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
-     * <code>StartTextDetection</code>.
+     * <code>StartSegmentDetection</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -154,12 +161,12 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * @param jobId <p>
      *            Job identifier for the text detection operation for which you
      *            want results returned. You get the job identifer from an
-     *            initial call to <code>StartTextDetection</code>.
+     *            initial call to <code>StartSegmentDetection</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetTextDetectionRequest withJobId(String jobId) {
+    public GetSegmentDetectionRequest withJobId(String jobId) {
         this.jobId = jobId;
         return this;
     }
@@ -219,16 +226,15 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetTextDetectionRequest withMaxResults(Integer maxResults) {
+    public GetSegmentDetectionRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }
 
     /**
      * <p>
-     * If the previous response was incomplete (because there are more labels to
-     * retrieve), Amazon Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * text.
      * </p>
      * <p>
@@ -236,10 +242,9 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 255<br/>
      *
      * @return <p>
-     *         If the previous response was incomplete (because there are more
-     *         labels to retrieve), Amazon Rekognition Video returns a
-     *         pagination token in the response. You can use this pagination
-     *         token to retrieve the next set of text.
+     *         If the response is truncated, Amazon Rekognition Video returns
+     *         this token that you can use in the subsequent request to retrieve
+     *         the next set of text.
      *         </p>
      */
     public String getNextToken() {
@@ -248,9 +253,8 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * If the previous response was incomplete (because there are more labels to
-     * retrieve), Amazon Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * text.
      * </p>
      * <p>
@@ -258,10 +262,9 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the previous response was incomplete (because there are
-     *            more labels to retrieve), Amazon Rekognition Video returns a
-     *            pagination token in the response. You can use this pagination
-     *            token to retrieve the next set of text.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of text.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -270,9 +273,8 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * If the previous response was incomplete (because there are more labels to
-     * retrieve), Amazon Rekognition Video returns a pagination token in the
-     * response. You can use this pagination token to retrieve the next set of
+     * If the response is truncated, Amazon Rekognition Video returns this token
+     * that you can use in the subsequent request to retrieve the next set of
      * text.
      * </p>
      * <p>
@@ -283,15 +285,14 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 255<br/>
      *
      * @param nextToken <p>
-     *            If the previous response was incomplete (because there are
-     *            more labels to retrieve), Amazon Rekognition Video returns a
-     *            pagination token in the response. You can use this pagination
-     *            token to retrieve the next set of text.
+     *            If the response is truncated, Amazon Rekognition Video returns
+     *            this token that you can use in the subsequent request to
+     *            retrieve the next set of text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public GetTextDetectionRequest withNextToken(String nextToken) {
+    public GetSegmentDetectionRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
@@ -335,9 +336,9 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
         if (obj == null)
             return false;
 
-        if (obj instanceof GetTextDetectionRequest == false)
+        if (obj instanceof GetSegmentDetectionRequest == false)
             return false;
-        GetTextDetectionRequest other = (GetTextDetectionRequest) obj;
+        GetSegmentDetectionRequest other = (GetSegmentDetectionRequest) obj;
 
         if (other.getJobId() == null ^ this.getJobId() == null)
             return false;
