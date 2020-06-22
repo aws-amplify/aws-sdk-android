@@ -81,6 +81,7 @@ class SocketTimeoutMockS3Client extends AmazonS3Client {
     }
 }
 
+@Ignore("Flakey on CircleCI")
 public class SocketTimeoutIntegrationTest extends S3IntegrationTestBase {
     /** The bucket created and used by these tests */
     private static final String BUCKET_NAME = "android-sdk-transfer-util-integ-test-" + System.currentTimeMillis();
@@ -189,7 +190,6 @@ public class SocketTimeoutIntegrationTest extends S3IntegrationTestBase {
     }
 
     @Test
-    @Ignore("Flakey on CircleCI")
     public void testMultiPartUploadTimeout() throws Exception {
         TransferObserver observer;
 
