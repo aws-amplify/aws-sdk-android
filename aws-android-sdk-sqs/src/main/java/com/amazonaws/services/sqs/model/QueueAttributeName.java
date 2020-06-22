@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -38,7 +38,9 @@ public enum QueueAttributeName {
     ReceiveMessageWaitTimeSeconds("ReceiveMessageWaitTimeSeconds"),
     RedrivePolicy("RedrivePolicy"),
     FifoQueue("FifoQueue"),
-    ContentBasedDeduplication("ContentBasedDeduplication");
+    ContentBasedDeduplication("ContentBasedDeduplication"),
+    KmsMasterKeyId("KmsMasterKeyId"),
+    KmsDataKeyReusePeriodSeconds("KmsDataKeyReusePeriodSeconds");
 
     private String value;
 
@@ -70,6 +72,8 @@ public enum QueueAttributeName {
         enumMap.put("RedrivePolicy", RedrivePolicy);
         enumMap.put("FifoQueue", FifoQueue);
         enumMap.put("ContentBasedDeduplication", ContentBasedDeduplication);
+        enumMap.put("KmsMasterKeyId", KmsMasterKeyId);
+        enumMap.put("KmsDataKeyReusePeriodSeconds", KmsDataKeyReusePeriodSeconds);
     }
 
     /**

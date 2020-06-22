@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,32 +20,37 @@ import java.io.Serializable;
 /**
  * <p>
  * For each message in the batch, the response contains a
- * <a>ChangeMessageVisibilityBatchResultEntry</a> tag if the message succeeds or
- * a <a>BatchResultErrorEntry</a> tag if the message fails.
+ * <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code> tag if the
+ * message succeeds or a <code> <a>BatchResultErrorEntry</a> </code> tag if the
+ * message fails.
  * </p>
  */
 public class ChangeMessageVisibilityBatchResult implements Serializable {
     /**
      * <p>
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * A list of <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
+     * items.
      * </p>
      */
-    private java.util.List<ChangeMessageVisibilityBatchResultEntry> successful = new java.util.ArrayList<ChangeMessageVisibilityBatchResultEntry>();
+    private java.util.List<ChangeMessageVisibilityBatchResultEntry> successful;
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      */
-    private java.util.List<BatchResultErrorEntry> failed = new java.util.ArrayList<BatchResultErrorEntry>();
+    private java.util.List<BatchResultErrorEntry> failed;
 
     /**
      * <p>
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * A list of <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
+     * items.
      * </p>
      *
      * @return <p>
-     *         A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     *         A list of
+     *         <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
+     *         items.
      *         </p>
      */
     public java.util.List<ChangeMessageVisibilityBatchResultEntry> getSuccessful() {
@@ -54,11 +59,13 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * A list of <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
+     * items.
      * </p>
      *
      * @param successful <p>
-     *            A list of <a>ChangeMessageVisibilityBatchResultEntry</a>
+     *            A list of
+     *            <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
      *            items.
      *            </p>
      */
@@ -75,14 +82,16 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * A list of <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
+     * items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param successful <p>
-     *            A list of <a>ChangeMessageVisibilityBatchResultEntry</a>
+     *            A list of
+     *            <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
      *            items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -102,14 +111,16 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>ChangeMessageVisibilityBatchResultEntry</a> items.
+     * A list of <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
+     * items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param successful <p>
-     *            A list of <a>ChangeMessageVisibilityBatchResultEntry</a>
+     *            A list of
+     *            <code> <a>ChangeMessageVisibilityBatchResultEntry</a> </code>
      *            items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -123,11 +134,11 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      *
      * @return <p>
-     *         A list of <a>BatchResultErrorEntry</a> items.
+     *         A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *         </p>
      */
     public java.util.List<BatchResultErrorEntry> getFailed() {
@@ -136,11 +147,11 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *            </p>
      */
     public void setFailed(java.util.Collection<BatchResultErrorEntry> failed) {
@@ -154,14 +165,14 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,14 +189,14 @@ public class ChangeMessageVisibilityBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

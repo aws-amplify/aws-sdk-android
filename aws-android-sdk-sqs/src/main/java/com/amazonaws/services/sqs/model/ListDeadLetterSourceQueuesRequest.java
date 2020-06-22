@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,65 +21,55 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a list of your queues that have the RedrivePolicy queue attribute
- * configured with a dead letter queue.
+ * Returns a list of your queues that have the <code>RedrivePolicy</code> queue
+ * attribute configured with a dead-letter queue.
  * </p>
  * <p>
- * For more information about using dead letter queues, see <a href=
- * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
- * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
- * Guide</i>.
+ * For more information about using dead-letter queues, see <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+ * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+ * Service Developer Guide</i>.
  * </p>
  */
 public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The queue URL of a dead letter queue.
+     * The URL of a dead-letter queue.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueUrl;
 
     /**
-     * Default constructor for ListDeadLetterSourceQueuesRequest object. Callers
-     * should use the setter or fluent setter (with...) methods to initialize
-     * any additional object members.
+     * <p>
+     * Pagination token to request the next set of results.
+     * </p>
      */
-    public ListDeadLetterSourceQueuesRequest() {
-    }
-
-    /**
-     * Constructs a new ListDeadLetterSourceQueuesRequest object. Callers should
-     * use the setter or fluent setter (with...) methods to initialize any
-     * additional object members.
-     * 
-     * @param queueUrl <p>
-     *            The queue URL of a dead letter queue.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     */
-    public ListDeadLetterSourceQueuesRequest(String queueUrl) {
-        setQueueUrl(queueUrl);
-    }
+    private String nextToken;
 
     /**
      * <p>
-     * The queue URL of a dead letter queue.
+     * Maximum number of results to include in the response.
+     * </p>
+     */
+    private Integer maxResults;
+
+    /**
+     * <p>
+     * The URL of a dead-letter queue.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The queue URL of a dead letter queue.
+     *         The URL of a dead-letter queue.
      *         </p>
      *         <p>
-     *         Queue URLs are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueUrl() {
@@ -88,17 +78,17 @@ public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The queue URL of a dead letter queue.
+     * The URL of a dead-letter queue.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueUrl <p>
-     *            The queue URL of a dead letter queue.
+     *            The URL of a dead-letter queue.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -107,26 +97,116 @@ public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
-     * The queue URL of a dead letter queue.
+     * The URL of a dead-letter queue.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The queue URL of a dead letter queue.
+     *            The URL of a dead-letter queue.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListDeadLetterSourceQueuesRequest withQueueUrl(String queueUrl) {
         this.queueUrl = queueUrl;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Pagination token to request the next set of results.
+     * </p>
+     *
+     * @return <p>
+     *         Pagination token to request the next set of results.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * Pagination token to request the next set of results.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            Pagination token to request the next set of results.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * Pagination token to request the next set of results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            Pagination token to request the next set of results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListDeadLetterSourceQueuesRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Maximum number of results to include in the response.
+     * </p>
+     *
+     * @return <p>
+     *         Maximum number of results to include in the response.
+     *         </p>
+     */
+    public Integer getMaxResults() {
+        return maxResults;
+    }
+
+    /**
+     * <p>
+     * Maximum number of results to include in the response.
+     * </p>
+     *
+     * @param maxResults <p>
+     *            Maximum number of results to include in the response.
+     *            </p>
+     */
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * Maximum number of results to include in the response.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param maxResults <p>
+     *            Maximum number of results to include in the response.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListDeadLetterSourceQueuesRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
         return this;
     }
 
@@ -142,7 +222,11 @@ public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest i
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getQueueUrl() != null)
-            sb.append("QueueUrl: " + getQueueUrl());
+            sb.append("QueueUrl: " + getQueueUrl() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults());
         sb.append("}");
         return sb.toString();
     }
@@ -153,6 +237,8 @@ public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest i
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getQueueUrl() == null) ? 0 : getQueueUrl().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         return hashCode;
     }
 
@@ -170,6 +256,16 @@ public class ListDeadLetterSourceQueuesRequest extends AmazonWebServiceRequest i
         if (other.getQueueUrl() == null ^ this.getQueueUrl() == null)
             return false;
         if (other.getQueueUrl() != null && other.getQueueUrl().equals(this.getQueueUrl()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
             return false;
         return true;
     }

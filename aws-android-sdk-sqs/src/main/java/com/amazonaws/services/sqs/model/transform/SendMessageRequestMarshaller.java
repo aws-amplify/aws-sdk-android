@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public class SendMessageRequestMarshaller implements
         }
 
         Request<SendMessageRequest> request = new DefaultRequest<SendMessageRequest>(
-                sendMessageRequest, "AmazonSQS");
+                sendMessageRequest, "AmazonSimpleQueueService");
         request.addParameter("Action", "SendMessage");
         request.addParameter("Version", "2012-11-05");
 
@@ -78,6 +78,30 @@ public class SendMessageRequestMarshaller implements
                 messageAttributesIndex++;
             }
             prefix = messageAttributesPrefix;
+        }
+        if (sendMessageRequest.getMessageSystemAttributes() != null) {
+            prefix = "MessageSystemAttribute";
+            java.util.Map<String, MessageSystemAttributeValue> messageSystemAttributes = sendMessageRequest
+                    .getMessageSystemAttributes();
+            int messageSystemAttributesIndex = 1;
+            String messageSystemAttributesPrefix = prefix + ".";
+            for (java.util.Map.Entry<String, MessageSystemAttributeValue> messageSystemAttributesEntry : messageSystemAttributes
+                    .entrySet()) {
+                prefix = messageSystemAttributesPrefix + messageSystemAttributesIndex;
+                if (messageSystemAttributesEntry.getKey() != null) {
+                    request.addParameter(prefix + ".Name",
+                            StringUtils.fromString(messageSystemAttributesEntry.getKey()));
+                }
+                prefix += ".Value";
+                if (messageSystemAttributesEntry.getValue() != null) {
+                    MessageSystemAttributeValue messageSystemAttributesValue = messageSystemAttributesEntry
+                            .getValue();
+                    MessageSystemAttributeValueStaxMarshaller.getInstance().marshall(
+                            messageSystemAttributesValue, request, prefix + ".");
+                }
+                messageSystemAttributesIndex++;
+            }
+            prefix = messageSystemAttributesPrefix;
         }
         if (sendMessageRequest.getMessageDeduplicationId() != null) {
             prefix = "MessageDeduplicationId";

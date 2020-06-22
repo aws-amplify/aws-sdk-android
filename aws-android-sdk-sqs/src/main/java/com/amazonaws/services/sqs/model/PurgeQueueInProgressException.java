@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Indicates that the specified queue previously received a
- * <code>PurgeQueue</code> request within the last 60 seconds, the time it can
- * take to delete the messages in the queue.
+ * <code>PurgeQueue</code> request within the last 60 seconds (the time it can
+ * take to delete the messages in the queue).
  * </p>
  */
 public class PurgeQueueInProgressException extends AmazonServiceException {

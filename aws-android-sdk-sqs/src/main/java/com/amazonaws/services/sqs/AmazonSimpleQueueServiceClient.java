@@ -1,0 +1,1870 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://aws.amazon.com/apache2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
+package com.amazonaws.services.sqs;
+
+import org.w3c.dom.*;
+
+import java.util.*;
+
+import com.amazonaws.*;
+import com.amazonaws.auth.*;
+import com.amazonaws.handlers.*;
+import com.amazonaws.http.*;
+import com.amazonaws.internal.*;
+import com.amazonaws.metrics.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.*;
+import com.amazonaws.util.AWSRequestMetrics.Field;
+
+import com.amazonaws.services.sqs.model.*;
+import com.amazonaws.services.sqs.model.transform.*;
+
+/**
+ * Client for accessing Amazon Simple Queue Service. All service calls made
+ * using this client are blocking, and will not return until the service call
+ * completes.
+ * <p>
+ * <p>
+ * Welcome to the <i>Amazon Simple Queue Service API Reference</i>.
+ * </p>
+ * <p>
+ * Amazon Simple Queue Service (Amazon SQS) is a reliable, highly-scalable
+ * hosted queue for storing messages as they travel between applications or
+ * microservices. Amazon SQS moves data between distributed application
+ * components and helps you decouple these components.
+ * </p>
+ * <p>
+ * You can use <a href="http://aws.amazon.com/tools/#sdk">AWS SDKs</a> to access
+ * Amazon SQS using your favorite programming language. The SDKs perform tasks
+ * such as the following automatically:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * Cryptographically sign your service requests
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Retry requests
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Handle error responses
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * <b>Additional Information</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href="http://aws.amazon.com/sqs/">Amazon SQS Product Page</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i>Amazon Simple Queue Service Developer Guide</i>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-making-api-requests.html"
+ * >Making API Requests</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+ * >Amazon SQS Message Attributes</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+ * >Amazon SQS Dead-Letter Queues</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * <li>
+ * <p>
+ * <a href="http://docs.aws.amazon.com/cli/latest/reference/sqs/index.html">
+ * Amazon SQS in the <i>AWS CLI Command Reference</i> </a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <i>Amazon Web Services General Reference</i>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region">
+ * Regions and Endpoints</a>
+ * </p>
+ * </li>
+ * </ul>
+ * </li>
+ * </ul>
+ */
+public class AmazonSimpleQueueServiceClient extends AmazonWebServiceClient implements
+        AmazonSimpleQueueService {
+    /** Provider for AWS credentials. */
+    private AWSCredentialsProvider awsCredentialsProvider;
+
+    /**
+     * List of exception unmarshallers for all Amazon Simple Queue Service
+     * exceptions.
+     */
+    protected final List<Unmarshaller<AmazonServiceException, Node>> exceptionUnmarshallers = new ArrayList<Unmarshaller<AmazonServiceException, Node>>();
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService. A credentials provider chain will be used that
+     * searches for credentials in this order:
+     * <ul>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance profile credentials delivered through the Amazon EC2
+     * metadata service</li>
+     * </ul>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @see DefaultAWSCredentialsProviderChain
+     */
+    @Deprecated
+    public AmazonSimpleQueueServiceClient() {
+        this(new DefaultAWSCredentialsProviderChain(), new ClientConfiguration());
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService. A credentials provider chain will be used that
+     * searches for credentials in this order:
+     * <ul>
+     * <li>Environment Variables - AWS_ACCESS_KEY_ID and AWS_SECRET_KEY</li>
+     * <li>Java System Properties - aws.accessKeyId and aws.secretKey</li>
+     * <li>Instance profile credentials delivered through the Amazon EC2
+     * metadata service</li>
+     * </ul>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AmazonSimpleQueueService (ex:
+     *            proxy settings, retry counts, etc.).
+     * @see DefaultAWSCredentialsProviderChain
+     */
+    @Deprecated
+    public AmazonSimpleQueueServiceClient(ClientConfiguration clientConfiguration) {
+        this(new DefaultAWSCredentialsProviderChain(), clientConfiguration);
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService using the specified AWS account credentials.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided in this constructor. Static AWSCredentials can be passed for
+     * quick testing. However, it is strongly recommended to use Amazon Cognito
+     * vended temporary credentials for use in production. This can be achieved
+     * by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonSimpleQueueServiceClient client = new AmazonSimpleQueueServiceClient(AWSMobileClient
+     *                 .getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param awsCredentials The AWS credentials (access key ID and secret key)
+     *            to use when authenticating with AWS services.
+     */
+    public AmazonSimpleQueueServiceClient(AWSCredentials awsCredentials) {
+        this(awsCredentials, new ClientConfiguration());
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService using the specified AWS account credentials and
+     * client configuration options.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided in this constructor. Static AWSCredentials can be passed for
+     * quick testing. However, it is strongly recommended to use Amazon Cognito
+     * vended temporary credentials for use in production. This can be achieved
+     * by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonSimpleQueueServiceClient client = new AmazonSimpleQueueServiceClient(AWSMobileClient
+     *                 .getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param awsCredentials The AWS credentials (access key ID and secret key)
+     *            to use when authenticating with AWS services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AmazonSimpleQueueService (ex:
+     *            proxy settings, retry counts, etc.).
+     */
+    public AmazonSimpleQueueServiceClient(AWSCredentials awsCredentials,
+            ClientConfiguration clientConfiguration) {
+        this(new StaticCredentialsProvider(awsCredentials), clientConfiguration);
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService using the specified AWS account credentials
+     * provider.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonSimpleQueueServiceClient client = new AmazonSimpleQueueServiceClient(AWSMobileClient
+     *                 .getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     */
+    public AmazonSimpleQueueServiceClient(AWSCredentialsProvider awsCredentialsProvider) {
+        this(awsCredentialsProvider, new ClientConfiguration());
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService using the specified AWS account credentials
+     * provider and client configuration options.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonSimpleQueueServiceClient client = new AmazonSimpleQueueServiceClient(AWSMobileClient
+     *                 .getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AmazonSimpleQueueService (ex:
+     *            proxy settings, retry counts, etc.).
+     */
+    public AmazonSimpleQueueServiceClient(AWSCredentialsProvider awsCredentialsProvider,
+            ClientConfiguration clientConfiguration) {
+        this(awsCredentialsProvider, clientConfiguration, new UrlHttpClient(clientConfiguration));
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService using the specified AWS account credentials
+     * provider, client configuration options and request metric collector.
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AmazonSimpleQueueService (ex:
+     *            proxy settings, retry counts, etc.).
+     * @param requestMetricCollector optional request metric collector
+     */
+    @Deprecated
+    public AmazonSimpleQueueServiceClient(AWSCredentialsProvider awsCredentialsProvider,
+            ClientConfiguration clientConfiguration,
+            RequestMetricCollector requestMetricCollector) {
+        super(adjustClientConfiguration(clientConfiguration), requestMetricCollector);
+
+        this.awsCredentialsProvider = awsCredentialsProvider;
+
+        init();
+    }
+
+    /**
+     * Constructs a new client to invoke service methods on
+     * AmazonSimpleQueueService using the specified AWS account credentials
+     * provider, client configuration options and request metric collector.
+     * <p>
+     * The client requests are authenticated using the {@link AWSCredentials}
+     * provided by the {@link AWSCredentialsProvider}. Static AWSCredentials can
+     * be passed for quick testing. However, it is strongly recommended to use
+     * Amazon Cognito vended temporary credentials for use in production. This
+     * can be achieved by using {@link AWSMobileClient}. Please see
+     * https://aws-amplify.github.io/docs/android/authentication for
+     * instructions on how to enable {@link AWSMobileClient}.
+     *
+     * <pre>
+     * AWSMobileClient.getInstance().initialize(getApplicationContext(), new Callback&lt;UserStateDetails&gt;() {
+     *     &#064;Override
+     *     public void onResult(final UserStateDetails details) {
+     *         AmazonSimpleQueueServiceClient client = new AmazonSimpleQueueServiceClient(AWSMobileClient
+     *                 .getInstance());
+     *     }
+     * 
+     *     &#064;Override
+     *     public void onError(final Exception e) {
+     *         e.printStackTrace();
+     *     }
+     * });
+     * </pre>
+     * <p>
+     * All service calls made using this new client object are blocking, and
+     * will not return until the service call completes.
+     *
+     * @param awsCredentialsProvider The AWS credentials provider which will
+     *            provide credentials to authenticate requests with AWS
+     *            services.
+     * @param clientConfiguration The client configuration options controlling
+     *            how this client connects to AmazonSimpleQueueService (ex:
+     *            proxy settings, retry counts, etc.).
+     * @param httpClient A http client
+     */
+    public AmazonSimpleQueueServiceClient(AWSCredentialsProvider awsCredentialsProvider,
+            ClientConfiguration clientConfiguration, HttpClient httpClient) {
+        super(adjustClientConfiguration(clientConfiguration), httpClient);
+
+        this.awsCredentialsProvider = awsCredentialsProvider;
+
+        init();
+    }
+
+    private void init() {
+        exceptionUnmarshallers.add(new BatchEntryIdsNotDistinctExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new BatchRequestTooLongExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new EmptyBatchRequestExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidAttributeNameExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidBatchEntryIdExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidIdFormatExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidMessageContentsExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new MessageNotInflightExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new OverLimitExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new PurgeQueueInProgressExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new QueueDeletedRecentlyExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new QueueDoesNotExistExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new QueueNameExistsExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new ReceiptHandleIsInvalidExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new TooManyEntriesInBatchRequestExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new UnsupportedOperationExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new StandardErrorUnmarshaller());
+
+        // calling this.setEndPoint(...) will also modify the signer accordingly
+        this.setEndpoint("sqs.us-east-1.amazonaws.com");
+        this.endpointPrefix = "sqs";
+
+        HandlerChainFactory chainFactory = new HandlerChainFactory();
+        requestHandler2s.addAll(chainFactory.newRequestHandlerChain(
+                "/com/amazonaws/services/sqs/request.handlers"));
+        requestHandler2s.addAll(chainFactory.newRequestHandler2Chain(
+                "/com/amazonaws/services/sqs/request.handler2s"));
+    }
+
+    private static ClientConfiguration adjustClientConfiguration(ClientConfiguration orig) {
+        ClientConfiguration config = orig;
+
+        return config;
+    }
+
+    /**
+     * <p>
+     * Adds a permission to a queue for a specific <a
+     * href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html#P"
+     * >principal</a>. This allows sharing access to the queue.
+     * </p>
+     * <p>
+     * When you create a queue, you have full control access rights for the
+     * queue. Only you, the owner of the queue, can grant or deny permissions to
+     * the queue. For more information about these permissions, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-writing-an-sqs-policy.html#write-messages-to-shared-queue"
+     * >Allow Developers to Write Messages to a Shared Queue</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * <note>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>AddPermission</code> generates a policy for you. You can use
+     * <code> <a>SetQueueAttributes</a> </code> to upload your policy. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-creating-custom-policies.html"
+     * >Using Custom Policies with the Amazon SQS Access Policy Language</a> in
+     * the <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * An Amazon SQS policy can have a maximum of 7 actions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * To remove the ability to change queue permissions, you must deny
+     * permission to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetQueueAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * <p>
+     * Some actions take lists of parameters. These lists are specified using
+     * the <code>param.n</code> notation. Values of <code>n</code> are integers
+     * starting from 1. For example, a parameter list with two elements looks
+     * like this:
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.1=first</code>
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.2=second</code>
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param addPermissionRequest <p/>
+     * @throws OverLimitException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void addPermission(AddPermissionRequest addPermissionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(addPermissionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AddPermissionRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new AddPermissionRequestMarshaller().marshall(addPermissionRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Changes the visibility timeout of a specified message in a queue to a new
+     * value. The default visibility timeout for a message is 30 seconds. The
+     * minimum is 0 seconds. The maximum is 12 hours. For more information, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * For example, you have a message with a visibility timeout of 5 minutes.
+     * After 3 minutes, you call <code>ChangeMessageVisibility</code> with a
+     * timeout of 10 minutes. You can continue to call
+     * <code>ChangeMessageVisibility</code> to extend the visibility timeout to
+     * the maximum allowed time. If you try to extend the visibility timeout
+     * beyond the maximum, your request is rejected.
+     * </p>
+     * <p>
+     * An Amazon SQS message has three basic states:
+     * </p>
+     * <ol>
+     * <li>
+     * <p>
+     * Sent to a queue by a producer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Received from the queue by a consumer.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Deleted from the queue.
+     * </p>
+     * </li>
+     * </ol>
+     * <p>
+     * A message is considered to be <i>stored</i> after it is sent to a queue
+     * by a producer, but not yet received from the queue by a consumer (that
+     * is, between states 1 and 2). There is no limit to the number of stored
+     * messages. A message is considered to be <i>in flight</i> after it is
+     * received from a queue by a consumer, but not yet deleted from the queue
+     * (that is, between states 2 and 3). There is a limit to the number of
+     * inflight messages.
+     * </p>
+     * <p>
+     * Limits that apply to inflight messages are unrelated to the
+     * <i>unlimited</i> number of stored messages.
+     * </p>
+     * <p>
+     * For most standard queues (depending on queue traffic and message
+     * backlog), there can be a maximum of approximately 120,000 inflight
+     * messages (received from a queue by a consumer, but not yet deleted from
+     * the queue). If you reach this limit, Amazon SQS returns the
+     * <code>OverLimit</code> error message. To avoid reaching the limit, you
+     * should delete messages from the queue after they're processed. You can
+     * also increase the number of queues you use to process your messages. To
+     * request a limit increase, <a href=
+     * "https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&amp;limitType=service-code-sqs"
+     * >file a support request</a>.
+     * </p>
+     * <p>
+     * For FIFO queues, there can be a maximum of 20,000 inflight messages
+     * (received from a queue by a consumer, but not yet deleted from the
+     * queue). If you reach this limit, Amazon SQS returns no error messages.
+     * </p>
+     * <important>
+     * <p>
+     * If you attempt to set the <code>VisibilityTimeout</code> to a value
+     * greater than the maximum time left, Amazon SQS returns an error. Amazon
+     * SQS doesn't automatically recalculate and increase the timeout to the
+     * maximum remaining time.
+     * </p>
+     * <p>
+     * Unlike with a queue, when you change the visibility timeout for a
+     * specific message the timeout value is applied immediately but isn't saved
+     * in memory for that message. If you don't delete a message after it is
+     * received, the visibility timeout for the message reverts to the original
+     * timeout value (not to the value you set using the
+     * <code>ChangeMessageVisibility</code> action) the next time the message is
+     * received.
+     * </p>
+     * </important>
+     * 
+     * @param changeMessageVisibilityRequest
+     * @throws MessageNotInflightException
+     * @throws ReceiptHandleIsInvalidException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void changeMessageVisibility(
+            ChangeMessageVisibilityRequest changeMessageVisibilityRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(changeMessageVisibilityRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ChangeMessageVisibilityRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new ChangeMessageVisibilityRequestMarshaller()
+                    .marshall(changeMessageVisibilityRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Changes the visibility timeout of multiple messages. This is a batch
+     * version of <code> <a>ChangeMessageVisibility</a>.</code> The result of
+     * the action on each message is reported individually in the response. You
+     * can send up to 10 <code> <a>ChangeMessageVisibility</a> </code> requests
+     * with each <code>ChangeMessageVisibilityBatch</code> action.
+     * </p>
+     * <important>
+     * <p>
+     * Because the batch request can result in a combination of successful and
+     * unsuccessful actions, you should check for batch errors even when the
+     * call returns an HTTP status code of <code>200</code>.
+     * </p>
+     * </important>
+     * <p>
+     * Some actions take lists of parameters. These lists are specified using
+     * the <code>param.n</code> notation. Values of <code>n</code> are integers
+     * starting from 1. For example, a parameter list with two elements looks
+     * like this:
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.1=first</code>
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.2=second</code>
+     * </p>
+     * 
+     * @param changeMessageVisibilityBatchRequest <p/>
+     * @return changeMessageVisibilityBatchResult The response from the
+     *         ChangeMessageVisibilityBatch service method, as returned by
+     *         Amazon Simple Queue Service.
+     * @throws TooManyEntriesInBatchRequestException
+     * @throws EmptyBatchRequestException
+     * @throws BatchEntryIdsNotDistinctException
+     * @throws InvalidBatchEntryIdException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ChangeMessageVisibilityBatchResult changeMessageVisibilityBatch(
+            ChangeMessageVisibilityBatchRequest changeMessageVisibilityBatchRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(changeMessageVisibilityBatchRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ChangeMessageVisibilityBatchRequest> request = null;
+        Response<ChangeMessageVisibilityBatchResult> response = null;
+        try {
+            request = new ChangeMessageVisibilityBatchRequestMarshaller()
+                    .marshall(changeMessageVisibilityBatchRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ChangeMessageVisibilityBatchResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new standard or FIFO queue. You can pass one or more attributes
+     * in the request. Keep the following in mind:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you don't specify the <code>FifoQueue</code> attribute, Amazon SQS
+     * creates a standard queue.
+     * </p>
+     * <note>
+     * <p>
+     * You can't change the queue type after you create it and you can't convert
+     * an existing standard queue into a FIFO queue. You must either create a
+     * new FIFO queue for your application or delete your existing standard
+     * queue and recreate it as a FIFO queue. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-moving"
+     * >Moving From a Standard Queue to a FIFO Queue</a> in the <i>Amazon Simple
+     * Queue Service Developer Guide</i>.
+     * </p>
+     * </note></li>
+     * <li>
+     * <p>
+     * If you don't provide a value for an attribute, the queue is created with
+     * the default value for the attribute.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If you delete a queue, you must wait at least 60 seconds before creating
+     * a queue with the same name.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * To successfully create a new queue, you must provide a queue name that
+     * adheres to the <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/limits-queues.html"
+     * >limits related to queues</a> and is unique within the scope of your
+     * queues.
+     * </p>
+     * <note>
+     * <p>
+     * After you create a queue, you must wait at least one second after the
+     * queue is created to be able to use the queue.
+     * </p>
+     * </note>
+     * <p>
+     * To get the queue URL, use the <code> <a>GetQueueUrl</a> </code> action.
+     * <code> <a>GetQueueUrl</a> </code> requires only the
+     * <code>QueueName</code> parameter. be aware of existing queue names:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * If you provide the name of an existing queue along with the exact names
+     * and values of all the queue's attributes, <code>CreateQueue</code>
+     * returns the queue URL for the existing queue.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * If the queue name, attribute names, or attribute values don't match an
+     * existing queue, <code>CreateQueue</code> returns an error.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Some actions take lists of parameters. These lists are specified using
+     * the <code>param.n</code> notation. Values of <code>n</code> are integers
+     * starting from 1. For example, a parameter list with two elements looks
+     * like this:
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.1=first</code>
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.2=second</code>
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param createQueueRequest <p/>
+     * @return createQueueResult The response from the CreateQueue service
+     *         method, as returned by Amazon Simple Queue Service.
+     * @throws QueueDeletedRecentlyException
+     * @throws QueueNameExistsException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public CreateQueueResult createQueue(CreateQueueRequest createQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createQueueRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateQueueRequest> request = null;
+        Response<CreateQueueResult> response = null;
+        try {
+            request = new CreateQueueRequestMarshaller().marshall(createQueueRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new CreateQueueResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified message from the specified queue. To select the
+     * message to delete, use the <code>ReceiptHandle</code> of the message
+     * (<i>not</i> the <code>MessageId</code> which you receive when you send
+     * the message). Amazon SQS can delete a message from a queue even if a
+     * visibility timeout setting causes the message to be locked by another
+     * consumer. Amazon SQS automatically deletes messages left in a queue
+     * longer than the retention period configured for the queue.
+     * </p>
+     * <note>
+     * <p>
+     * The <code>ReceiptHandle</code> is associated with a <i>specific
+     * instance</i> of receiving a message. If you receive a message more than
+     * once, the <code>ReceiptHandle</code> is different each time you receive a
+     * message. When you use the <code>DeleteMessage</code> action, you must
+     * provide the most recently received <code>ReceiptHandle</code> for the
+     * message (otherwise, the request succeeds, but the message might not be
+     * deleted).
+     * </p>
+     * <p>
+     * For standard queues, it is possible to receive a message even after you
+     * delete it. This might happen on rare occasions if one of the servers
+     * which stores a copy of the message is unavailable when you send the
+     * request to delete the message. The copy remains on the server and might
+     * be returned to you during a subsequent receive request. You should ensure
+     * that your application is idempotent, so that receiving a message more
+     * than once does not cause issues.
+     * </p>
+     * </note>
+     * 
+     * @param deleteMessageRequest <p/>
+     * @throws InvalidIdFormatException
+     * @throws ReceiptHandleIsInvalidException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void deleteMessage(DeleteMessageRequest deleteMessageRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteMessageRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteMessageRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new DeleteMessageRequestMarshaller().marshall(deleteMessageRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes up to ten messages from the specified queue. This is a batch
+     * version of <code> <a>DeleteMessage</a>.</code> The result of the action
+     * on each message is reported individually in the response.
+     * </p>
+     * <important>
+     * <p>
+     * Because the batch request can result in a combination of successful and
+     * unsuccessful actions, you should check for batch errors even when the
+     * call returns an HTTP status code of <code>200</code>.
+     * </p>
+     * </important>
+     * <p>
+     * Some actions take lists of parameters. These lists are specified using
+     * the <code>param.n</code> notation. Values of <code>n</code> are integers
+     * starting from 1. For example, a parameter list with two elements looks
+     * like this:
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.1=first</code>
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.2=second</code>
+     * </p>
+     * 
+     * @param deleteMessageBatchRequest <p/>
+     * @return deleteMessageBatchResult The response from the DeleteMessageBatch
+     *         service method, as returned by Amazon Simple Queue Service.
+     * @throws TooManyEntriesInBatchRequestException
+     * @throws EmptyBatchRequestException
+     * @throws BatchEntryIdsNotDistinctException
+     * @throws InvalidBatchEntryIdException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public DeleteMessageBatchResult deleteMessageBatch(
+            DeleteMessageBatchRequest deleteMessageBatchRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteMessageBatchRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteMessageBatchRequest> request = null;
+        Response<DeleteMessageBatchResult> response = null;
+        try {
+            request = new DeleteMessageBatchRequestMarshaller().marshall(deleteMessageBatchRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DeleteMessageBatchResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the queue specified by the <code>QueueUrl</code>, regardless of
+     * the queue's contents.
+     * </p>
+     * <important>
+     * <p>
+     * Be careful with the <code>DeleteQueue</code> action: When you delete a
+     * queue, any messages in the queue are no longer available.
+     * </p>
+     * </important>
+     * <p>
+     * When you delete a queue, the deletion process takes up to 60 seconds.
+     * Requests you send involving that queue during the 60 seconds might
+     * succeed. For example, a <code> <a>SendMessage</a> </code> request might
+     * succeed, but after 60 seconds the queue and the message you sent no
+     * longer exist.
+     * </p>
+     * <p>
+     * When you delete a queue, you must wait at least 60 seconds before
+     * creating a queue with the same name.
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param deleteQueueRequest <p/>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void deleteQueue(DeleteQueueRequest deleteQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteQueueRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteQueueRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new DeleteQueueRequestMarshaller().marshall(deleteQueueRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets attributes for the specified queue.
+     * </p>
+     * <note>
+     * <p>
+     * To determine whether a queue is <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * </note>
+     * 
+     * @param getQueueAttributesRequest <p/>
+     * @return getQueueAttributesResult The response from the GetQueueAttributes
+     *         service method, as returned by Amazon Simple Queue Service.
+     * @throws InvalidAttributeNameException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GetQueueAttributesResult getQueueAttributes(
+            GetQueueAttributesRequest getQueueAttributesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getQueueAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetQueueAttributesRequest> request = null;
+        Response<GetQueueAttributesResult> response = null;
+        try {
+            request = new GetQueueAttributesRequestMarshaller().marshall(getQueueAttributesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetQueueAttributesResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the URL of an existing Amazon SQS queue.
+     * </p>
+     * <p>
+     * To access a queue that belongs to another AWS account, use the
+     * <code>QueueOwnerAWSAccountId</code> parameter to specify the account ID
+     * of the queue's owner. The queue's owner must grant you permission to
+     * access the queue. For more information about shared queue access, see
+     * <code> <a>AddPermission</a> </code> or see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-writing-an-sqs-policy.html#write-messages-to-shared-queue"
+     * >Allow Developers to Write Messages to a Shared Queue</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * 
+     * @param getQueueUrlRequest <p/>
+     * @return getQueueUrlResult The response from the GetQueueUrl service
+     *         method, as returned by Amazon Simple Queue Service.
+     * @throws QueueDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public GetQueueUrlResult getQueueUrl(GetQueueUrlRequest getQueueUrlRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getQueueUrlRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetQueueUrlRequest> request = null;
+        Response<GetQueueUrlResult> response = null;
+        try {
+            request = new GetQueueUrlRequestMarshaller().marshall(getQueueUrlRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetQueueUrlResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns a list of your queues that have the <code>RedrivePolicy</code>
+     * queue attribute configured with a dead-letter queue.
+     * </p>
+     * <p>
+     * For more information about using dead-letter queues, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+     * Service Developer Guide</i>.
+     * </p>
+     * 
+     * @param listDeadLetterSourceQueuesRequest <p/>
+     * @return listDeadLetterSourceQueuesResult The response from the
+     *         ListDeadLetterSourceQueues service method, as returned by Amazon
+     *         Simple Queue Service.
+     * @throws QueueDoesNotExistException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListDeadLetterSourceQueuesResult listDeadLetterSourceQueues(
+            ListDeadLetterSourceQueuesRequest listDeadLetterSourceQueuesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDeadLetterSourceQueuesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDeadLetterSourceQueuesRequest> request = null;
+        Response<ListDeadLetterSourceQueuesResult> response = null;
+        try {
+            request = new ListDeadLetterSourceQueuesRequestMarshaller()
+                    .marshall(listDeadLetterSourceQueuesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ListDeadLetterSourceQueuesResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * List all cost allocation tags added to the specified Amazon SQS queue.
+     * For an overview, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-tags.html"
+     * >Tagging Your Amazon SQS Queues</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param listQueueTagsRequest
+     * @return listQueueTagsResult The response from the ListQueueTags service
+     *         method, as returned by Amazon Simple Queue Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListQueueTagsResult listQueueTags(ListQueueTagsRequest listQueueTagsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listQueueTagsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListQueueTagsRequest> request = null;
+        Response<ListQueueTagsResult> response = null;
+        try {
+            request = new ListQueueTagsRequestMarshaller().marshall(listQueueTagsRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ListQueueTagsResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns a list of your queues. The maximum number of queues that can be
+     * returned is 1,000. If you specify a value for the optional
+     * <code>QueueNamePrefix</code> parameter, only queues with a name that
+     * begins with the specified value are returned.
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param listQueuesRequest <p/>
+     * @return listQueuesResult The response from the ListQueues service method,
+     *         as returned by Amazon Simple Queue Service.
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ListQueuesResult listQueues(ListQueuesRequest listQueuesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listQueuesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListQueuesRequest> request = null;
+        Response<ListQueuesResult> response = null;
+        try {
+            request = new ListQueuesRequestMarshaller().marshall(listQueuesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ListQueuesResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the messages in a queue specified by the <code>QueueURL</code>
+     * parameter.
+     * </p>
+     * <important>
+     * <p>
+     * When you use the <code>PurgeQueue</code> action, you can't retrieve any
+     * messages deleted from a queue.
+     * </p>
+     * <p>
+     * The message deletion process takes up to 60 seconds. We recommend waiting
+     * for 60 seconds regardless of your queue's size.
+     * </p>
+     * </important>
+     * <p>
+     * Messages sent to the queue <i>before</i> you call <code>PurgeQueue</code>
+     * might be received but are deleted within the next minute.
+     * </p>
+     * <p>
+     * Messages sent to the queue <i>after</i> you call <code>PurgeQueue</code>
+     * might be deleted while the queue is being purged.
+     * </p>
+     * 
+     * @param purgeQueueRequest <p/>
+     * @throws QueueDoesNotExistException
+     * @throws PurgeQueueInProgressException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void purgeQueue(PurgeQueueRequest purgeQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(purgeQueueRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PurgeQueueRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new PurgeQueueRequestMarshaller().marshall(purgeQueueRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves one or more messages (up to 10), from the specified queue.
+     * Using the <code>WaitTimeSeconds</code> parameter enables long-poll
+     * support. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-long-polling.html"
+     * >Amazon SQS Long Polling</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Short poll is the default behavior where a weighted random set of
+     * machines is sampled on a <code>ReceiveMessage</code> call. Thus, only the
+     * messages on the sampled machines are returned. If the number of messages
+     * in the queue is small (fewer than 1,000), you most likely get fewer
+     * messages than you requested per <code>ReceiveMessage</code> call. If the
+     * number of messages in the queue is extremely small, you might not receive
+     * any messages in a particular <code>ReceiveMessage</code> response. If
+     * this happens, repeat the request.
+     * </p>
+     * <p>
+     * For each message returned, the response includes the following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The message body.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * An MD5 digest of the message body. For information about MD5, see <a
+     * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>MessageId</code> you received when you sent the message to the
+     * queue.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The receipt handle.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The message attributes.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * An MD5 digest of the message attributes.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The receipt handle is the identifier you must provide when deleting the
+     * message. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-message-identifiers.html"
+     * >Queue and Message Identifiers</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * You can provide the <code>VisibilityTimeout</code> parameter in your
+     * request. The parameter is applied to the messages that Amazon SQS returns
+     * in the response. If you don't include the parameter, the overall
+     * visibility timeout for the queue is used for the returned messages. For
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
+     * A message that isn't deleted or a message whose visibility isn't extended
+     * before the visibility timeout expires counts as a failed receive.
+     * Depending on the configuration of the queue, the message might be sent to
+     * the dead-letter queue.
+     * </p>
+     * <note>
+     * <p>
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
+     * </p>
+     * </note>
+     * 
+     * @param receiveMessageRequest <p/>
+     * @return receiveMessageResult The response from the ReceiveMessage service
+     *         method, as returned by Amazon Simple Queue Service.
+     * @throws OverLimitException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public ReceiveMessageResult receiveMessage(ReceiveMessageRequest receiveMessageRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(receiveMessageRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ReceiveMessageRequest> request = null;
+        Response<ReceiveMessageResult> response = null;
+        try {
+            request = new ReceiveMessageRequestMarshaller().marshall(receiveMessageRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ReceiveMessageResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Revokes any permissions in the queue policy that matches the specified
+     * <code>Label</code> parameter.
+     * </p>
+     * <note>
+     * <ul>
+     * <li>
+     * <p>
+     * Only the owner of a queue can remove permissions from it.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * To remove the ability to change queue permissions, you must deny
+     * permission to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetQueueAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param removePermissionRequest <p/>
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void removePermission(RemovePermissionRequest removePermissionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(removePermissionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RemovePermissionRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new RemovePermissionRequestMarshaller().marshall(removePermissionRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Delivers a message to the specified queue.
+     * </p>
+     * <important>
+     * <p>
+     * A message can include only XML, JSON, and unformatted text. The following
+     * Unicode characters are allowed:
+     * </p>
+     * <p>
+     * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>
+     * </p>
+     * <p>
+     * Any characters not included in this list will be rejected. For more
+     * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     * specification for characters</a>.
+     * </p>
+     * </important>
+     * 
+     * @param sendMessageRequest <p/>
+     * @return sendMessageResult The response from the SendMessage service
+     *         method, as returned by Amazon Simple Queue Service.
+     * @throws InvalidMessageContentsException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public SendMessageResult sendMessage(SendMessageRequest sendMessageRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(sendMessageRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SendMessageRequest> request = null;
+        Response<SendMessageResult> response = null;
+        try {
+            request = new SendMessageRequestMarshaller().marshall(sendMessageRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new SendMessageResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Delivers up to ten messages to the specified queue. This is a batch
+     * version of <code> <a>SendMessage</a>.</code> For a FIFO queue, multiple
+     * messages within a single batch are enqueued in the order they are sent.
+     * </p>
+     * <p>
+     * The result of sending each message is reported individually in the
+     * response. Because the batch request can result in a combination of
+     * successful and unsuccessful actions, you should check for batch errors
+     * even when the call returns an HTTP status code of <code>200</code>.
+     * </p>
+     * <p>
+     * The maximum allowed individual message size and the maximum total payload
+     * size (the sum of the individual lengths of all of the batched messages)
+     * are both 256 KB (262,144 bytes).
+     * </p>
+     * <important>
+     * <p>
+     * A message can include only XML, JSON, and unformatted text. The following
+     * Unicode characters are allowed:
+     * </p>
+     * <p>
+     * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>
+     * </p>
+     * <p>
+     * Any characters not included in this list will be rejected. For more
+     * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     * specification for characters</a>.
+     * </p>
+     * </important>
+     * <p>
+     * If you don't specify the <code>DelaySeconds</code> parameter for an
+     * entry, Amazon SQS uses the default value for the queue.
+     * </p>
+     * <p>
+     * Some actions take lists of parameters. These lists are specified using
+     * the <code>param.n</code> notation. Values of <code>n</code> are integers
+     * starting from 1. For example, a parameter list with two elements looks
+     * like this:
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.1=first</code>
+     * </p>
+     * <p>
+     * <code>&amp;AttributeName.2=second</code>
+     * </p>
+     * 
+     * @param sendMessageBatchRequest <p/>
+     * @return sendMessageBatchResult The response from the SendMessageBatch
+     *         service method, as returned by Amazon Simple Queue Service.
+     * @throws TooManyEntriesInBatchRequestException
+     * @throws EmptyBatchRequestException
+     * @throws BatchEntryIdsNotDistinctException
+     * @throws BatchRequestTooLongException
+     * @throws InvalidBatchEntryIdException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public SendMessageBatchResult sendMessageBatch(SendMessageBatchRequest sendMessageBatchRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(sendMessageBatchRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SendMessageBatchRequest> request = null;
+        Response<SendMessageBatchResult> response = null;
+        try {
+            request = new SendMessageBatchRequestMarshaller().marshall(sendMessageBatchRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new SendMessageBatchResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Sets the value of one or more queue attributes. When you change a queue's
+     * attributes, the change can take up to 60 seconds for most of the
+     * attributes to propagate throughout the Amazon SQS system. Changes made to
+     * the <code>MessageRetentionPeriod</code> attribute can take up to 15
+     * minutes.
+     * </p>
+     * <note>
+     * <ul>
+     * <li>
+     * <p>
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * To remove the ability to change queue permissions, you must deny
+     * permission to the <code>AddPermission</code>,
+     * <code>RemovePermission</code>, and <code>SetQueueAttributes</code>
+     * actions in your IAM policy.
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param setQueueAttributesRequest <p/>
+     * @throws InvalidAttributeNameException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void setQueueAttributes(SetQueueAttributesRequest setQueueAttributesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(setQueueAttributesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetQueueAttributesRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new SetQueueAttributesRequestMarshaller().marshall(setQueueAttributesRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Add cost allocation tags to the specified Amazon SQS queue. For an
+     * overview, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-tags.html"
+     * >Tagging Your Amazon SQS Queues</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * When you use queue tags, keep the following guidelines in mind:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Adding more than 50 tags to a queue isn't recommended.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Tags don't have any semantic meaning. Amazon SQS interprets tags as
+     * character strings.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Tags are case-sensitive.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * A new tag with a key identical to that of an existing tag overwrites the
+     * existing tag.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For a full list of tag restrictions, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-limits.html#limits-queues"
+     * >Limits Related to Queues</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param tagQueueRequest
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void tagQueue(TagQueueRequest tagQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagQueueRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagQueueRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new TagQueueRequestMarshaller().marshall(tagQueueRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Remove cost allocation tags from the specified Amazon SQS queue. For an
+     * overview, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-queue-tags.html"
+     * >Tagging Your Amazon SQS Queues</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * Cross-account permissions don't apply to this action. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+     * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+     * <i>Amazon Simple Queue Service Developer Guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param untagQueueRequest
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Queue Service indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public void untagQueue(UntagQueueRequest untagQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagQueueRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagQueueRequest> request = null;
+        Response<Void> response = null;
+        try {
+            request = new UntagQueueRequestMarshaller().marshall(untagQueueRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * Returns additional metadata for a previously executed successful,
+     * request, typically used for debugging issues where a service isn't acting
+     * as expected. This data isn't considered part of the result data returned
+     * by an operation, so it's available through this separate, diagnostic
+     * interface.
+     * <p>
+     * Response metadata is only cached for a limited period of time, so if you
+     * need to access this extra diagnostic information for an executed request,
+     * you should use this method to retrieve it as soon as possible after
+     * executing the request.
+     *
+     * @param request The originally executed request
+     * @return The response metadata for the specified request, or null if none
+     *         is available.
+     * @deprecated ResponseMetadata cache can hold up to 50 requests and
+     *             responses in memory and will cause memory issue. This method
+     *             now always returns null.
+     */
+    @Deprecated
+    public ResponseMetadata getCachedResponseMetadata(AmazonWebServiceRequest request) {
+        return client.getResponseMetadataForRequest(request);
+    }
+
+    private <X, Y extends AmazonWebServiceRequest> Response<X> invoke(Request<Y> request,
+            Unmarshaller<X, StaxUnmarshallerContext> unmarshaller,
+            ExecutionContext executionContext) {
+        request.setEndpoint(endpoint);
+        request.setTimeOffset(timeOffset);
+        AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
+
+        AWSCredentials credentials = awsCredentialsProvider.getCredentials();
+        if (originalRequest.getRequestCredentials() != null) {
+            credentials = originalRequest.getRequestCredentials();
+        }
+
+        executionContext.setCredentials(credentials);
+
+        StaxResponseHandler<X> responseHandler = new StaxResponseHandler<X>(unmarshaller);
+        DefaultErrorResponseHandler errorResponseHandler = new DefaultErrorResponseHandler(
+                exceptionUnmarshallers);
+        return client.execute(request, responseHandler, errorResponseHandler, executionContext);
+    }
+}

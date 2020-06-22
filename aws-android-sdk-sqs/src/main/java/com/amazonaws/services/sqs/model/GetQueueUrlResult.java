@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,25 +20,26 @@ import java.io.Serializable;
 /**
  * <p>
  * For more information, see <a href=
- * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/UnderstandingResponses.html"
- * >Responses</a> in the <i>Amazon SQS Developer Guide</i>.
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-responses.html"
+ * >Interpreting Responses</a> in the <i>Amazon Simple Queue Service Developer
+ * Guide</i>.
  * </p>
  */
 public class GetQueueUrlResult implements Serializable {
     /**
      * <p>
-     * The URL for the queue.
+     * The URL of the queue.
      * </p>
      */
     private String queueUrl;
 
     /**
      * <p>
-     * The URL for the queue.
+     * The URL of the queue.
      * </p>
      *
      * @return <p>
-     *         The URL for the queue.
+     *         The URL of the queue.
      *         </p>
      */
     public String getQueueUrl() {
@@ -47,11 +48,11 @@ public class GetQueueUrlResult implements Serializable {
 
     /**
      * <p>
-     * The URL for the queue.
+     * The URL of the queue.
      * </p>
      *
      * @param queueUrl <p>
-     *            The URL for the queue.
+     *            The URL of the queue.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -60,14 +61,14 @@ public class GetQueueUrlResult implements Serializable {
 
     /**
      * <p>
-     * The URL for the queue.
+     * The URL of the queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The URL for the queue.
+     *            The URL of the queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

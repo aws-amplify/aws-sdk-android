@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,18 +25,28 @@ import java.io.Serializable;
 public class ListQueuesResult implements Serializable {
     /**
      * <p>
-     * A list of queue URLs, up to 1000 entries.
+     * A list of queue URLs, up to 1,000 entries, or the value of MaxResults
+     * that you sent in the request.
      * </p>
      */
-    private java.util.List<String> queueUrls = new java.util.ArrayList<String>();
+    private java.util.List<String> queueUrls;
 
     /**
      * <p>
-     * A list of queue URLs, up to 1000 entries.
+     * Pagination token to include in the next request.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
+     * A list of queue URLs, up to 1,000 entries, or the value of MaxResults
+     * that you sent in the request.
      * </p>
      *
      * @return <p>
-     *         A list of queue URLs, up to 1000 entries.
+     *         A list of queue URLs, up to 1,000 entries, or the value of
+     *         MaxResults that you sent in the request.
      *         </p>
      */
     public java.util.List<String> getQueueUrls() {
@@ -45,11 +55,13 @@ public class ListQueuesResult implements Serializable {
 
     /**
      * <p>
-     * A list of queue URLs, up to 1000 entries.
+     * A list of queue URLs, up to 1,000 entries, or the value of MaxResults
+     * that you sent in the request.
      * </p>
      *
      * @param queueUrls <p>
-     *            A list of queue URLs, up to 1000 entries.
+     *            A list of queue URLs, up to 1,000 entries, or the value of
+     *            MaxResults that you sent in the request.
      *            </p>
      */
     public void setQueueUrls(java.util.Collection<String> queueUrls) {
@@ -63,14 +75,16 @@ public class ListQueuesResult implements Serializable {
 
     /**
      * <p>
-     * A list of queue URLs, up to 1000 entries.
+     * A list of queue URLs, up to 1,000 entries, or the value of MaxResults
+     * that you sent in the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrls <p>
-     *            A list of queue URLs, up to 1000 entries.
+     *            A list of queue URLs, up to 1,000 entries, or the value of
+     *            MaxResults that you sent in the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -87,20 +101,67 @@ public class ListQueuesResult implements Serializable {
 
     /**
      * <p>
-     * A list of queue URLs, up to 1000 entries.
+     * A list of queue URLs, up to 1,000 entries, or the value of MaxResults
+     * that you sent in the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrls <p>
-     *            A list of queue URLs, up to 1000 entries.
+     *            A list of queue URLs, up to 1,000 entries, or the value of
+     *            MaxResults that you sent in the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListQueuesResult withQueueUrls(java.util.Collection<String> queueUrls) {
         setQueueUrls(queueUrls);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Pagination token to include in the next request.
+     * </p>
+     *
+     * @return <p>
+     *         Pagination token to include in the next request.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * Pagination token to include in the next request.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            Pagination token to include in the next request.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * Pagination token to include in the next request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            Pagination token to include in the next request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListQueuesResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -116,7 +177,9 @@ public class ListQueuesResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getQueueUrls() != null)
-            sb.append("QueueUrls: " + getQueueUrls());
+            sb.append("QueueUrls: " + getQueueUrls() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -127,6 +190,7 @@ public class ListQueuesResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getQueueUrls() == null) ? 0 : getQueueUrls().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -145,6 +209,11 @@ public class ListQueuesResult implements Serializable {
             return false;
         if (other.getQueueUrls() != null
                 && other.getQueueUrls().equals(this.getQueueUrls()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
         return true;
     }

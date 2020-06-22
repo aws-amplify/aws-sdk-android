@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The action that you requested would violate a limit. For example,
- * ReceiveMessage returns this error if the maximum number of messages inflight
- * has already been reached. <a>AddPermission</a> returns this error if the
- * maximum number of permissions for the queue has already been reached.
+ * The specified action violates a limit. For example,
+ * <code>ReceiveMessage</code> returns this error if the maximum number of
+ * inflight messages is reached and <code>AddPermission</code> returns this
+ * error if the maximum number of permissions for the queue is reached.
  * </p>
  */
 public class OverLimitException extends AmazonServiceException {

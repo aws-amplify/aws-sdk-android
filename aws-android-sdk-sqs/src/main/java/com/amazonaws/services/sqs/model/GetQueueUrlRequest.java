@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,27 +21,28 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the URL of an existing queue. This action provides a simple way to
- * retrieve the URL of an Amazon SQS queue.
+ * Returns the URL of an existing Amazon SQS queue.
  * </p>
  * <p>
  * To access a queue that belongs to another AWS account, use the
  * <code>QueueOwnerAWSAccountId</code> parameter to specify the account ID of
  * the queue's owner. The queue's owner must grant you permission to access the
  * queue. For more information about shared queue access, see
- * <a>AddPermission</a> or see <a href=
- * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/acp-overview.html"
- * >Shared Queues</a> in the <i>Amazon SQS Developer Guide</i>.
+ * <code> <a>AddPermission</a> </code> or see <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-writing-an-sqs-policy.html#write-messages-to-shared-queue"
+ * >Allow Developers to Write Messages to a Shared Queue</a> in the <i>Amazon
+ * Simple Queue Service Developer Guide</i>.
  * </p>
  */
 public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the queue whose URL must be fetched. Maximum 80 characters;
-     * alphanumeric characters, hyphens (-), and underscores (_) are allowed.
+     * The name of the queue whose URL must be fetched. Maximum 80 characters.
+     * Valid values: alphanumeric characters, hyphens (<code>-</code>), and
+     * underscores (<code>_</code>).
      * </p>
      * <p>
-     * Queue names are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueName;
@@ -54,47 +55,22 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
     private String queueOwnerAWSAccountId;
 
     /**
-     * Default constructor for GetQueueUrlRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     */
-    public GetQueueUrlRequest() {
-    }
-
-    /**
-     * Constructs a new GetQueueUrlRequest object. Callers should use the setter
-     * or fluent setter (with...) methods to initialize any additional object
-     * members.
-     * 
-     * @param queueName <p>
-     *            The name of the queue whose URL must be fetched. Maximum 80
-     *            characters; alphanumeric characters, hyphens (-), and
-     *            underscores (_) are allowed.
-     *            </p>
-     *            <p>
-     *            Queue names are case-sensitive.
-     *            </p>
-     */
-    public GetQueueUrlRequest(String queueName) {
-        setQueueName(queueName);
-    }
-
-    /**
      * <p>
-     * The name of the queue whose URL must be fetched. Maximum 80 characters;
-     * alphanumeric characters, hyphens (-), and underscores (_) are allowed.
+     * The name of the queue whose URL must be fetched. Maximum 80 characters.
+     * Valid values: alphanumeric characters, hyphens (<code>-</code>), and
+     * underscores (<code>_</code>).
      * </p>
      * <p>
-     * Queue names are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
      *         The name of the queue whose URL must be fetched. Maximum 80
-     *         characters; alphanumeric characters, hyphens (-), and underscores
-     *         (_) are allowed.
+     *         characters. Valid values: alphanumeric characters, hyphens (
+     *         <code>-</code>), and underscores (<code>_</code>).
      *         </p>
      *         <p>
-     *         Queue names are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueName() {
@@ -103,20 +79,21 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The name of the queue whose URL must be fetched. Maximum 80 characters;
-     * alphanumeric characters, hyphens (-), and underscores (_) are allowed.
+     * The name of the queue whose URL must be fetched. Maximum 80 characters.
+     * Valid values: alphanumeric characters, hyphens (<code>-</code>), and
+     * underscores (<code>_</code>).
      * </p>
      * <p>
-     * Queue names are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueName <p>
      *            The name of the queue whose URL must be fetched. Maximum 80
-     *            characters; alphanumeric characters, hyphens (-), and
-     *            underscores (_) are allowed.
+     *            characters. Valid values: alphanumeric characters, hyphens (
+     *            <code>-</code>), and underscores (<code>_</code>).
      *            </p>
      *            <p>
-     *            Queue names are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueName(String queueName) {
@@ -125,11 +102,12 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The name of the queue whose URL must be fetched. Maximum 80 characters;
-     * alphanumeric characters, hyphens (-), and underscores (_) are allowed.
+     * The name of the queue whose URL must be fetched. Maximum 80 characters.
+     * Valid values: alphanumeric characters, hyphens (<code>-</code>), and
+     * underscores (<code>_</code>).
      * </p>
      * <p>
-     * Queue names are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -137,11 +115,11 @@ public class GetQueueUrlRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param queueName <p>
      *            The name of the queue whose URL must be fetched. Maximum 80
-     *            characters; alphanumeric characters, hyphens (-), and
-     *            underscores (_) are allowed.
+     *            characters. Valid values: alphanumeric characters, hyphens (
+     *            <code>-</code>), and underscores (<code>_</code>).
      *            </p>
      *            <p>
-     *            Queue names are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Encloses the id an entry in <a>DeleteMessageBatch</a>.
+ * Encloses the <code>Id</code> of an entry in
+ * <code> <a>DeleteMessageBatch</a>.</code>
  * </p>
  */
 public class DeleteMessageBatchResultEntry implements Serializable {

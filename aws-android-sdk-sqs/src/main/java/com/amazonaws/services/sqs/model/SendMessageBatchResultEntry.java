@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Encloses a message ID for successfully enqueued message of a
- * <a>SendMessageBatch</a>.
+ * Encloses a <code>MessageId</code> for a successfully-enqueued message in a
+ * <code> <a>SendMessageBatch</a>.</code>
  * </p>
  */
 public class SendMessageBatchResultEntry implements Serializable {
@@ -40,10 +40,10 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message body string. This can be
-     * used to verify that Amazon SQS received the message correctly. Amazon SQS
-     * first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      */
@@ -51,10 +51,10 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message batch correctly.
-     * Amazon SQS first URL decodes the message before creating the MD5 digest.
-     * For information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      */
@@ -62,10 +62,22 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * <i>This element applies only to FIFO (first-in-first-out) queues.</i>
+     * An MD5 digest of the non-URL-encoded message system attribute string. You
+     * can use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
+     * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     * </p>
+     */
+    private String mD5OfMessageSystemAttributes;
+
+    /**
+     * <p>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
      * </p>
      * <p>
-     * A large, non-consecutive number that Amazon SQS assigns to each message.
+     * The large, non-consecutive number that Amazon SQS assigns to each
+     * message.
      * </p>
      * <p>
      * The length of <code>SequenceNumber</code> is 128 bits. As
@@ -167,17 +179,17 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message body string. This can be
-     * used to verify that Amazon SQS received the message correctly. Amazon SQS
-     * first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      *
      * @return <p>
-     *         An MD5 digest of the non-URL-encoded message body string. This
-     *         can be used to verify that Amazon SQS received the message
-     *         correctly. Amazon SQS first URL decodes the message before
+     *         An MD5 digest of the non-URL-encoded message attribute string.
+     *         You can use this attribute to verify that Amazon SQS received the
+     *         message correctly. Amazon SQS URL-decodes the message before
      *         creating the MD5 digest. For information about MD5, see <a
      *         href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *         </p>
@@ -188,19 +200,19 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message body string. This can be
-     * used to verify that Amazon SQS received the message correctly. Amazon SQS
-     * first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      *
      * @param mD5OfMessageBody <p>
-     *            An MD5 digest of the non-URL-encoded message body string. This
-     *            can be used to verify that Amazon SQS received the message
-     *            correctly. Amazon SQS first URL decodes the message before
-     *            creating the MD5 digest. For information about MD5, see <a
-     *            href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *            An MD5 digest of the non-URL-encoded message attribute string.
+     *            You can use this attribute to verify that Amazon SQS received
+     *            the message correctly. Amazon SQS URL-decodes the message
+     *            before creating the MD5 digest. For information about MD5, see
+     *            <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *            </p>
      */
     public void setMD5OfMessageBody(String mD5OfMessageBody) {
@@ -209,10 +221,10 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message body string. This can be
-     * used to verify that Amazon SQS received the message correctly. Amazon SQS
-     * first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      * <p>
@@ -220,11 +232,11 @@ public class SendMessageBatchResultEntry implements Serializable {
      * together.
      *
      * @param mD5OfMessageBody <p>
-     *            An MD5 digest of the non-URL-encoded message body string. This
-     *            can be used to verify that Amazon SQS received the message
-     *            correctly. Amazon SQS first URL decodes the message before
-     *            creating the MD5 digest. For information about MD5, see <a
-     *            href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *            An MD5 digest of the non-URL-encoded message attribute string.
+     *            You can use this attribute to verify that Amazon SQS received
+     *            the message correctly. Amazon SQS URL-decodes the message
+     *            before creating the MD5 digest. For information about MD5, see
+     *            <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -236,17 +248,17 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message batch correctly.
-     * Amazon SQS first URL decodes the message before creating the MD5 digest.
-     * For information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      *
      * @return <p>
      *         An MD5 digest of the non-URL-encoded message attribute string.
-     *         This can be used to verify that Amazon SQS received the message
-     *         batch correctly. Amazon SQS first URL decodes the message before
+     *         You can use this attribute to verify that Amazon SQS received the
+     *         message correctly. Amazon SQS URL-decodes the message before
      *         creating the MD5 digest. For information about MD5, see <a
      *         href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *         </p>
@@ -257,20 +269,19 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message batch correctly.
-     * Amazon SQS first URL decodes the message before creating the MD5 digest.
-     * For information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      *
      * @param mD5OfMessageAttributes <p>
      *            An MD5 digest of the non-URL-encoded message attribute string.
-     *            This can be used to verify that Amazon SQS received the
-     *            message batch correctly. Amazon SQS first URL decodes the
-     *            message before creating the MD5 digest. For information about
-     *            MD5, see <a
-     *            href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *            You can use this attribute to verify that Amazon SQS received
+     *            the message correctly. Amazon SQS URL-decodes the message
+     *            before creating the MD5 digest. For information about MD5, see
+     *            <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *            </p>
      */
     public void setMD5OfMessageAttributes(String mD5OfMessageAttributes) {
@@ -279,10 +290,10 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message batch correctly.
-     * Amazon SQS first URL decodes the message before creating the MD5 digest.
-     * For information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      * <p>
@@ -291,11 +302,10 @@ public class SendMessageBatchResultEntry implements Serializable {
      *
      * @param mD5OfMessageAttributes <p>
      *            An MD5 digest of the non-URL-encoded message attribute string.
-     *            This can be used to verify that Amazon SQS received the
-     *            message batch correctly. Amazon SQS first URL decodes the
-     *            message before creating the MD5 digest. For information about
-     *            MD5, see <a
-     *            href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *            You can use this attribute to verify that Amazon SQS received
+     *            the message correctly. Amazon SQS URL-decodes the message
+     *            before creating the MD5 digest. For information about MD5, see
+     *            <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -307,10 +317,84 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * <i>This element applies only to FIFO (first-in-first-out) queues.</i>
+     * An MD5 digest of the non-URL-encoded message system attribute string. You
+     * can use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
+     * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     * </p>
+     *
+     * @return <p>
+     *         An MD5 digest of the non-URL-encoded message system attribute
+     *         string. You can use this attribute to verify that Amazon SQS
+     *         received the message correctly. Amazon SQS URL-decodes the
+     *         message before creating the MD5 digest. For information about
+     *         MD5, see <a
+     *         href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *         </p>
+     */
+    public String getMD5OfMessageSystemAttributes() {
+        return mD5OfMessageSystemAttributes;
+    }
+
+    /**
+     * <p>
+     * An MD5 digest of the non-URL-encoded message system attribute string. You
+     * can use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
+     * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     * </p>
+     *
+     * @param mD5OfMessageSystemAttributes <p>
+     *            An MD5 digest of the non-URL-encoded message system attribute
+     *            string. You can use this attribute to verify that Amazon SQS
+     *            received the message correctly. Amazon SQS URL-decodes the
+     *            message before creating the MD5 digest. For information about
+     *            MD5, see <a
+     *            href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *            </p>
+     */
+    public void setMD5OfMessageSystemAttributes(String mD5OfMessageSystemAttributes) {
+        this.mD5OfMessageSystemAttributes = mD5OfMessageSystemAttributes;
+    }
+
+    /**
+     * <p>
+     * An MD5 digest of the non-URL-encoded message system attribute string. You
+     * can use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
+     * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      * <p>
-     * A large, non-consecutive number that Amazon SQS assigns to each message.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mD5OfMessageSystemAttributes <p>
+     *            An MD5 digest of the non-URL-encoded message system attribute
+     *            string. You can use this attribute to verify that Amazon SQS
+     *            received the message correctly. Amazon SQS URL-decodes the
+     *            message before creating the MD5 digest. For information about
+     *            MD5, see <a
+     *            href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendMessageBatchResultEntry withMD5OfMessageSystemAttributes(
+            String mD5OfMessageSystemAttributes) {
+        this.mD5OfMessageSystemAttributes = mD5OfMessageSystemAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
+     * </p>
+     * <p>
+     * The large, non-consecutive number that Amazon SQS assigns to each
+     * message.
      * </p>
      * <p>
      * The length of <code>SequenceNumber</code> is 128 bits. As
@@ -319,11 +403,10 @@ public class SendMessageBatchResultEntry implements Serializable {
      * </p>
      *
      * @return <p>
-     *         <i>This element applies only to FIFO (first-in-first-out)
-     *         queues.</i>
+     *         This parameter applies only to FIFO (first-in-first-out) queues.
      *         </p>
      *         <p>
-     *         A large, non-consecutive number that Amazon SQS assigns to each
+     *         The large, non-consecutive number that Amazon SQS assigns to each
      *         message.
      *         </p>
      *         <p>
@@ -338,10 +421,11 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * <i>This element applies only to FIFO (first-in-first-out) queues.</i>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
      * </p>
      * <p>
-     * A large, non-consecutive number that Amazon SQS assigns to each message.
+     * The large, non-consecutive number that Amazon SQS assigns to each
+     * message.
      * </p>
      * <p>
      * The length of <code>SequenceNumber</code> is 128 bits. As
@@ -350,11 +434,11 @@ public class SendMessageBatchResultEntry implements Serializable {
      * </p>
      *
      * @param sequenceNumber <p>
-     *            <i>This element applies only to FIFO (first-in-first-out)
-     *            queues.</i>
+     *            This parameter applies only to FIFO (first-in-first-out)
+     *            queues.
      *            </p>
      *            <p>
-     *            A large, non-consecutive number that Amazon SQS assigns to
+     *            The large, non-consecutive number that Amazon SQS assigns to
      *            each message.
      *            </p>
      *            <p>
@@ -369,10 +453,11 @@ public class SendMessageBatchResultEntry implements Serializable {
 
     /**
      * <p>
-     * <i>This element applies only to FIFO (first-in-first-out) queues.</i>
+     * This parameter applies only to FIFO (first-in-first-out) queues.
      * </p>
      * <p>
-     * A large, non-consecutive number that Amazon SQS assigns to each message.
+     * The large, non-consecutive number that Amazon SQS assigns to each
+     * message.
      * </p>
      * <p>
      * The length of <code>SequenceNumber</code> is 128 bits. As
@@ -384,11 +469,11 @@ public class SendMessageBatchResultEntry implements Serializable {
      * together.
      *
      * @param sequenceNumber <p>
-     *            <i>This element applies only to FIFO (first-in-first-out)
-     *            queues.</i>
+     *            This parameter applies only to FIFO (first-in-first-out)
+     *            queues.
      *            </p>
      *            <p>
-     *            A large, non-consecutive number that Amazon SQS assigns to
+     *            The large, non-consecutive number that Amazon SQS assigns to
      *            each message.
      *            </p>
      *            <p>
@@ -423,6 +508,8 @@ public class SendMessageBatchResultEntry implements Serializable {
             sb.append("MD5OfMessageBody: " + getMD5OfMessageBody() + ",");
         if (getMD5OfMessageAttributes() != null)
             sb.append("MD5OfMessageAttributes: " + getMD5OfMessageAttributes() + ",");
+        if (getMD5OfMessageSystemAttributes() != null)
+            sb.append("MD5OfMessageSystemAttributes: " + getMD5OfMessageSystemAttributes() + ",");
         if (getSequenceNumber() != null)
             sb.append("SequenceNumber: " + getSequenceNumber());
         sb.append("}");
@@ -442,6 +529,10 @@ public class SendMessageBatchResultEntry implements Serializable {
                 * hashCode
                 + ((getMD5OfMessageAttributes() == null) ? 0 : getMD5OfMessageAttributes()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getMD5OfMessageSystemAttributes() == null) ? 0
+                        : getMD5OfMessageSystemAttributes().hashCode());
         hashCode = prime * hashCode
                 + ((getSequenceNumber() == null) ? 0 : getSequenceNumber().hashCode());
         return hashCode;
@@ -476,6 +567,13 @@ public class SendMessageBatchResultEntry implements Serializable {
             return false;
         if (other.getMD5OfMessageAttributes() != null
                 && other.getMD5OfMessageAttributes().equals(this.getMD5OfMessageAttributes()) == false)
+            return false;
+        if (other.getMD5OfMessageSystemAttributes() == null
+                ^ this.getMD5OfMessageSystemAttributes() == null)
+            return false;
+        if (other.getMD5OfMessageSystemAttributes() != null
+                && other.getMD5OfMessageSystemAttributes().equals(
+                        this.getMD5OfMessageSystemAttributes()) == false)
             return false;
         if (other.getSequenceNumber() == null ^ this.getSequenceNumber() == null)
             return false;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,21 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * This is used in the responses of batch API to give a detailed description of
- * the result of an action on each entry in the request.
+ * Gives a detailed description of the result of an action on each entry in the
+ * request.
  * </p>
  */
 public class BatchResultErrorEntry implements Serializable {
     /**
      * <p>
-     * The id of an entry in a batch request.
+     * The <code>Id</code> of an entry in a batch request.
      * </p>
      */
     private String id;
 
     /**
      * <p>
-     * Whether the error happened due to the sender's fault.
+     * Specifies whether the error happened due to the caller of the batch API
+     * action.
      * </p>
      */
     private Boolean senderFault;
@@ -54,11 +55,11 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * The id of an entry in a batch request.
+     * The <code>Id</code> of an entry in a batch request.
      * </p>
      *
      * @return <p>
-     *         The id of an entry in a batch request.
+     *         The <code>Id</code> of an entry in a batch request.
      *         </p>
      */
     public String getId() {
@@ -67,11 +68,11 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * The id of an entry in a batch request.
+     * The <code>Id</code> of an entry in a batch request.
      * </p>
      *
      * @param id <p>
-     *            The id of an entry in a batch request.
+     *            The <code>Id</code> of an entry in a batch request.
      *            </p>
      */
     public void setId(String id) {
@@ -80,14 +81,14 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * The id of an entry in a batch request.
+     * The <code>Id</code> of an entry in a batch request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param id <p>
-     *            The id of an entry in a batch request.
+     *            The <code>Id</code> of an entry in a batch request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -99,11 +100,13 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * Whether the error happened due to the sender's fault.
+     * Specifies whether the error happened due to the caller of the batch API
+     * action.
      * </p>
      *
      * @return <p>
-     *         Whether the error happened due to the sender's fault.
+     *         Specifies whether the error happened due to the caller of the
+     *         batch API action.
      *         </p>
      */
     public Boolean isSenderFault() {
@@ -112,11 +115,13 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * Whether the error happened due to the sender's fault.
+     * Specifies whether the error happened due to the caller of the batch API
+     * action.
      * </p>
      *
      * @return <p>
-     *         Whether the error happened due to the sender's fault.
+     *         Specifies whether the error happened due to the caller of the
+     *         batch API action.
      *         </p>
      */
     public Boolean getSenderFault() {
@@ -125,11 +130,13 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * Whether the error happened due to the sender's fault.
+     * Specifies whether the error happened due to the caller of the batch API
+     * action.
      * </p>
      *
      * @param senderFault <p>
-     *            Whether the error happened due to the sender's fault.
+     *            Specifies whether the error happened due to the caller of the
+     *            batch API action.
      *            </p>
      */
     public void setSenderFault(Boolean senderFault) {
@@ -138,14 +145,16 @@ public class BatchResultErrorEntry implements Serializable {
 
     /**
      * <p>
-     * Whether the error happened due to the sender's fault.
+     * Specifies whether the error happened due to the caller of the batch API
+     * action.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param senderFault <p>
-     *            Whether the error happened due to the sender's fault.
+     *            Specifies whether the error happened due to the caller of the
+     *            batch API action.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

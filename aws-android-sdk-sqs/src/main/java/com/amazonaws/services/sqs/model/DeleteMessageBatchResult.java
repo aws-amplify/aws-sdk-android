@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,32 +20,34 @@ import java.io.Serializable;
 /**
  * <p>
  * For each message in the batch, the response contains a
- * <a>DeleteMessageBatchResultEntry</a> tag if the message is deleted or a
- * <a>BatchResultErrorEntry</a> tag if the message can't be deleted.
+ * <code> <a>DeleteMessageBatchResultEntry</a> </code> tag if the message is
+ * deleted or a <code> <a>BatchResultErrorEntry</a> </code> tag if the message
+ * can't be deleted.
  * </p>
  */
 public class DeleteMessageBatchResult implements Serializable {
     /**
      * <p>
-     * A list of <a>DeleteMessageBatchResultEntry</a> items.
+     * A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.
      * </p>
      */
-    private java.util.List<DeleteMessageBatchResultEntry> successful = new java.util.ArrayList<DeleteMessageBatchResultEntry>();
+    private java.util.List<DeleteMessageBatchResultEntry> successful;
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      */
-    private java.util.List<BatchResultErrorEntry> failed = new java.util.ArrayList<BatchResultErrorEntry>();
+    private java.util.List<BatchResultErrorEntry> failed;
 
     /**
      * <p>
-     * A list of <a>DeleteMessageBatchResultEntry</a> items.
+     * A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.
      * </p>
      *
      * @return <p>
-     *         A list of <a>DeleteMessageBatchResultEntry</a> items.
+     *         A list of <code> <a>DeleteMessageBatchResultEntry</a> </code>
+     *         items.
      *         </p>
      */
     public java.util.List<DeleteMessageBatchResultEntry> getSuccessful() {
@@ -54,11 +56,12 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>DeleteMessageBatchResultEntry</a> items.
+     * A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.
      * </p>
      *
      * @param successful <p>
-     *            A list of <a>DeleteMessageBatchResultEntry</a> items.
+     *            A list of <code> <a>DeleteMessageBatchResultEntry</a> </code>
+     *            items.
      *            </p>
      */
     public void setSuccessful(java.util.Collection<DeleteMessageBatchResultEntry> successful) {
@@ -72,14 +75,15 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>DeleteMessageBatchResultEntry</a> items.
+     * A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param successful <p>
-     *            A list of <a>DeleteMessageBatchResultEntry</a> items.
+     *            A list of <code> <a>DeleteMessageBatchResultEntry</a> </code>
+     *            items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -97,14 +101,15 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>DeleteMessageBatchResultEntry</a> items.
+     * A list of <code> <a>DeleteMessageBatchResultEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param successful <p>
-     *            A list of <a>DeleteMessageBatchResultEntry</a> items.
+     *            A list of <code> <a>DeleteMessageBatchResultEntry</a> </code>
+     *            items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -117,11 +122,11 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      *
      * @return <p>
-     *         A list of <a>BatchResultErrorEntry</a> items.
+     *         A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *         </p>
      */
     public java.util.List<BatchResultErrorEntry> getFailed() {
@@ -130,11 +135,11 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *            </p>
      */
     public void setFailed(java.util.Collection<BatchResultErrorEntry> failed) {
@@ -148,14 +153,14 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -172,14 +177,14 @@ public class DeleteMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public class ListQueuesRequestMarshaller implements
         }
 
         Request<ListQueuesRequest> request = new DefaultRequest<ListQueuesRequest>(
-                listQueuesRequest, "AmazonSQS");
+                listQueuesRequest, "AmazonSimpleQueueService");
         request.addParameter("Action", "ListQueues");
         request.addParameter("Version", "2012-11-05");
 
@@ -44,6 +44,16 @@ public class ListQueuesRequestMarshaller implements
             prefix = "QueueNamePrefix";
             String queueNamePrefix = listQueuesRequest.getQueueNamePrefix();
             request.addParameter(prefix, StringUtils.fromString(queueNamePrefix));
+        }
+        if (listQueuesRequest.getNextToken() != null) {
+            prefix = "NextToken";
+            String nextToken = listQueuesRequest.getNextToken();
+            request.addParameter(prefix, StringUtils.fromString(nextToken));
+        }
+        if (listQueuesRequest.getMaxResults() != null) {
+            prefix = "MaxResults";
+            Integer maxResults = listQueuesRequest.getMaxResults();
+            request.addParameter(prefix, StringUtils.fromInteger(maxResults));
         }
 
         return request;

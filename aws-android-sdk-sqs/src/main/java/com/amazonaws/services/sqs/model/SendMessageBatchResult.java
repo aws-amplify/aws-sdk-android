@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,33 +20,34 @@ import java.io.Serializable;
 /**
  * <p>
  * For each message in the batch, the response contains a
- * <a>SendMessageBatchResultEntry</a> tag if the message succeeds or a
- * <a>BatchResultErrorEntry</a> tag if the message fails.
+ * <code> <a>SendMessageBatchResultEntry</a> </code> tag if the message succeeds
+ * or a <code> <a>BatchResultErrorEntry</a> </code> tag if the message fails.
  * </p>
  */
 public class SendMessageBatchResult implements Serializable {
     /**
      * <p>
-     * A list of <a>SendMessageBatchResultEntry</a> items.
+     * A list of <code> <a>SendMessageBatchResultEntry</a> </code> items.
      * </p>
      */
-    private java.util.List<SendMessageBatchResultEntry> successful = new java.util.ArrayList<SendMessageBatchResultEntry>();
+    private java.util.List<SendMessageBatchResultEntry> successful;
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items with the error detail about
-     * each message that could not be enqueued.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items with error
+     * details about each message that can't be enqueued.
      * </p>
      */
-    private java.util.List<BatchResultErrorEntry> failed = new java.util.ArrayList<BatchResultErrorEntry>();
+    private java.util.List<BatchResultErrorEntry> failed;
 
     /**
      * <p>
-     * A list of <a>SendMessageBatchResultEntry</a> items.
+     * A list of <code> <a>SendMessageBatchResultEntry</a> </code> items.
      * </p>
      *
      * @return <p>
-     *         A list of <a>SendMessageBatchResultEntry</a> items.
+     *         A list of <code> <a>SendMessageBatchResultEntry</a> </code>
+     *         items.
      *         </p>
      */
     public java.util.List<SendMessageBatchResultEntry> getSuccessful() {
@@ -55,11 +56,12 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>SendMessageBatchResultEntry</a> items.
+     * A list of <code> <a>SendMessageBatchResultEntry</a> </code> items.
      * </p>
      *
      * @param successful <p>
-     *            A list of <a>SendMessageBatchResultEntry</a> items.
+     *            A list of <code> <a>SendMessageBatchResultEntry</a> </code>
+     *            items.
      *            </p>
      */
     public void setSuccessful(java.util.Collection<SendMessageBatchResultEntry> successful) {
@@ -73,14 +75,15 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>SendMessageBatchResultEntry</a> items.
+     * A list of <code> <a>SendMessageBatchResultEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param successful <p>
-     *            A list of <a>SendMessageBatchResultEntry</a> items.
+     *            A list of <code> <a>SendMessageBatchResultEntry</a> </code>
+     *            items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -98,14 +101,15 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>SendMessageBatchResultEntry</a> items.
+     * A list of <code> <a>SendMessageBatchResultEntry</a> </code> items.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param successful <p>
-     *            A list of <a>SendMessageBatchResultEntry</a> items.
+     *            A list of <code> <a>SendMessageBatchResultEntry</a> </code>
+     *            items.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -118,13 +122,13 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items with the error detail about
-     * each message that could not be enqueued.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items with error
+     * details about each message that can't be enqueued.
      * </p>
      *
      * @return <p>
-     *         A list of <a>BatchResultErrorEntry</a> items with the error
-     *         detail about each message that could not be enqueued.
+     *         A list of <code> <a>BatchResultErrorEntry</a> </code> items with
+     *         error details about each message that can't be enqueued.
      *         </p>
      */
     public java.util.List<BatchResultErrorEntry> getFailed() {
@@ -133,13 +137,13 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items with the error detail about
-     * each message that could not be enqueued.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items with error
+     * details about each message that can't be enqueued.
      * </p>
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items with the error
-     *            detail about each message that could not be enqueued.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items
+     *            with error details about each message that can't be enqueued.
      *            </p>
      */
     public void setFailed(java.util.Collection<BatchResultErrorEntry> failed) {
@@ -153,16 +157,16 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items with the error detail about
-     * each message that could not be enqueued.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items with error
+     * details about each message that can't be enqueued.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items with the error
-     *            detail about each message that could not be enqueued.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items
+     *            with error details about each message that can't be enqueued.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -179,16 +183,16 @@ public class SendMessageBatchResult implements Serializable {
 
     /**
      * <p>
-     * A list of <a>BatchResultErrorEntry</a> items with the error detail about
-     * each message that could not be enqueued.
+     * A list of <code> <a>BatchResultErrorEntry</a> </code> items with error
+     * details about each message that can't be enqueued.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param failed <p>
-     *            A list of <a>BatchResultErrorEntry</a> items with the error
-     *            detail about each message that could not be enqueued.
+     *            A list of <code> <a>BatchResultErrorEntry</a> </code> items
+     *            with error details about each message that can't be enqueued.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

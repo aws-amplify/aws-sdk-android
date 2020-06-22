@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,22 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The user-specified message attribute value. For string data types, the value
- * attribute has the same restrictions on the content as the message body. For
- * more information, see <a>SendMessage</a>.
+ * The user-specified message attribute value. For string data types, the
+ * <code>Value</code> attribute has the same restrictions on the content as the
+ * message body. For more information, see <code> <a>SendMessage</a>.</code>
  * </p>
  * <p>
- * Name, type, and value must not be empty or null. In addition, the message
- * body should not be empty or null. All parts of the message attribute,
- * including name, type, and value, are included in the message size
- * restriction, which is currently 256 KB (262,144 bytes).
+ * <code>Name</code>, <code>type</code>, <code>value</code> and the message body
+ * must not be empty or null. All parts of the message attribute, including
+ * <code>Name</code>, <code>Type</code>, and <code>Value</code>, are part of the
+ * message size restriction (256 KB or 262,144 bytes).
  * </p>
  */
 public class MessageAttributeValue implements Serializable {
     /**
      * <p>
-     * Strings are Unicode with UTF8 binary encoding. For a list of code values,
-     * see <a
+     * Strings are Unicode with UTF-8 binary encoding. For a list of code
+     * values, see <a
      * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      * >ASCII Printable Characters</a>.
      * </p>
@@ -43,7 +43,7 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Binary type attributes can store any binary data, for example, compressed
+     * Binary type attributes can store any binary data, such as compressed
      * data, encrypted data, or images.
      * </p>
      */
@@ -54,40 +54,40 @@ public class MessageAttributeValue implements Serializable {
      * Not implemented. Reserved for future use.
      * </p>
      */
-    private java.util.List<String> stringListValues = new java.util.ArrayList<String>();
+    private java.util.List<String> stringListValues;
 
     /**
      * <p>
      * Not implemented. Reserved for future use.
      * </p>
      */
-    private java.util.List<java.nio.ByteBuffer> binaryListValues = new java.util.ArrayList<java.nio.ByteBuffer>();
+    private java.util.List<java.nio.ByteBuffer> binaryListValues;
 
     /**
      * <p>
-     * Amazon SQS supports the following logical data types: String, Number, and
-     * Binary. For the Number data type, you must use StringValue.
+     * Amazon SQS supports the following logical data types: <code>String</code>, <code>Number</code>, and <code>Binary</code>. For the
+     * <code>Number</code> data type, you must use <code>StringValue</code>.
      * </p>
      * <p>
      * You can also append custom labels. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     * >Message Attribute Data Types</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      */
     private String dataType;
 
     /**
      * <p>
-     * Strings are Unicode with UTF8 binary encoding. For a list of code values,
-     * see <a
+     * Strings are Unicode with UTF-8 binary encoding. For a list of code
+     * values, see <a
      * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      * >ASCII Printable Characters</a>.
      * </p>
      *
      * @return <p>
-     *         Strings are Unicode with UTF8 binary encoding. For a list of code
-     *         values, see <a href=
+     *         Strings are Unicode with UTF-8 binary encoding. For a list of
+     *         code values, see <a href=
      *         "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      *         >ASCII Printable Characters</a>.
      *         </p>
@@ -98,14 +98,14 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Strings are Unicode with UTF8 binary encoding. For a list of code values,
-     * see <a
+     * Strings are Unicode with UTF-8 binary encoding. For a list of code
+     * values, see <a
      * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      * >ASCII Printable Characters</a>.
      * </p>
      *
      * @param stringValue <p>
-     *            Strings are Unicode with UTF8 binary encoding. For a list of
+     *            Strings are Unicode with UTF-8 binary encoding. For a list of
      *            code values, see <a href=
      *            "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      *            >ASCII Printable Characters</a>.
@@ -117,8 +117,8 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Strings are Unicode with UTF8 binary encoding. For a list of code values,
-     * see <a
+     * Strings are Unicode with UTF-8 binary encoding. For a list of code
+     * values, see <a
      * href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      * >ASCII Printable Characters</a>.
      * </p>
@@ -127,7 +127,7 @@ public class MessageAttributeValue implements Serializable {
      * together.
      *
      * @param stringValue <p>
-     *            Strings are Unicode with UTF8 binary encoding. For a list of
+     *            Strings are Unicode with UTF-8 binary encoding. For a list of
      *            code values, see <a href=
      *            "http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters"
      *            >ASCII Printable Characters</a>.
@@ -142,12 +142,12 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Binary type attributes can store any binary data, for example, compressed
+     * Binary type attributes can store any binary data, such as compressed
      * data, encrypted data, or images.
      * </p>
      *
      * @return <p>
-     *         Binary type attributes can store any binary data, for example,
+     *         Binary type attributes can store any binary data, such as
      *         compressed data, encrypted data, or images.
      *         </p>
      */
@@ -157,12 +157,12 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Binary type attributes can store any binary data, for example, compressed
+     * Binary type attributes can store any binary data, such as compressed
      * data, encrypted data, or images.
      * </p>
      *
      * @param binaryValue <p>
-     *            Binary type attributes can store any binary data, for example,
+     *            Binary type attributes can store any binary data, such as
      *            compressed data, encrypted data, or images.
      *            </p>
      */
@@ -172,7 +172,7 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Binary type attributes can store any binary data, for example, compressed
+     * Binary type attributes can store any binary data, such as compressed
      * data, encrypted data, or images.
      * </p>
      * <p>
@@ -180,7 +180,7 @@ public class MessageAttributeValue implements Serializable {
      * together.
      *
      * @param binaryValue <p>
-     *            Binary type attributes can store any binary data, for example,
+     *            Binary type attributes can store any binary data, such as
      *            compressed data, encrypted data, or images.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -343,27 +343,28 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Amazon SQS supports the following logical data types: String, Number, and
-     * Binary. For the Number data type, you must use StringValue.
+     * Amazon SQS supports the following logical data types: <code>String</code>, <code>Number</code>, and <code>Binary</code>. For the
+     * <code>Number</code> data type, you must use <code>StringValue</code>.
      * </p>
      * <p>
      * You can also append custom labels. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     * >Message Attribute Data Types</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      *
      * @return <p>
-     *         Amazon SQS supports the following logical data types: String,
-     *         Number, and Binary. For the Number data type, you must use
-     *         StringValue.
+     *         Amazon SQS supports the following logical data types:
+     *         <code>String</code>, <code>Number</code>, and <code>Binary</code>
+     *         . For the <code>Number</code> data type, you must use
+     *         <code>StringValue</code>.
      *         </p>
      *         <p>
      *         You can also append custom labels. For more information, see <a
      *         href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     *         >Message Attribute Data Types</a> in the <i>Amazon SQS Developer
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *         >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue
+     *         Service Developer Guide</i>.
      *         </p>
      */
     public String getDataType() {
@@ -372,27 +373,28 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Amazon SQS supports the following logical data types: String, Number, and
-     * Binary. For the Number data type, you must use StringValue.
+     * Amazon SQS supports the following logical data types: <code>String</code>, <code>Number</code>, and <code>Binary</code>. For the
+     * <code>Number</code> data type, you must use <code>StringValue</code>.
      * </p>
      * <p>
      * You can also append custom labels. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     * >Message Attribute Data Types</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      *
      * @param dataType <p>
-     *            Amazon SQS supports the following logical data types: String,
-     *            Number, and Binary. For the Number data type, you must use
-     *            StringValue.
+     *            Amazon SQS supports the following logical data types:
+     *            <code>String</code>, <code>Number</code>, and
+     *            <code>Binary</code>. For the <code>Number</code> data type,
+     *            you must use <code>StringValue</code>.
      *            </p>
      *            <p>
      *            You can also append custom labels. For more information, see
      *            <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     *            >Message Attribute Data Types</a> in the <i>Amazon SQS
-     *            Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *            >Amazon SQS Message Attributes</a> in the <i>Amazon Simple
+     *            Queue Service Developer Guide</i>.
      *            </p>
      */
     public void setDataType(String dataType) {
@@ -401,30 +403,31 @@ public class MessageAttributeValue implements Serializable {
 
     /**
      * <p>
-     * Amazon SQS supports the following logical data types: String, Number, and
-     * Binary. For the Number data type, you must use StringValue.
+     * Amazon SQS supports the following logical data types: <code>String</code>, <code>Number</code>, and <code>Binary</code>. For the
+     * <code>Number</code> data type, you must use <code>StringValue</code>.
      * </p>
      * <p>
      * You can also append custom labels. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     * >Message Attribute Data Types</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param dataType <p>
-     *            Amazon SQS supports the following logical data types: String,
-     *            Number, and Binary. For the Number data type, you must use
-     *            StringValue.
+     *            Amazon SQS supports the following logical data types:
+     *            <code>String</code>, <code>Number</code>, and
+     *            <code>Binary</code>. For the <code>Number</code> data type,
+     *            you must use <code>StringValue</code>.
      *            </p>
      *            <p>
      *            You can also append custom labels. For more information, see
      *            <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributes.DataTypes"
-     *            >Message Attribute Data Types</a> in the <i>Amazon SQS
-     *            Developer Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *            >Amazon SQS Message Attributes</a> in the <i>Amazon Simple
+     *            Queue Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

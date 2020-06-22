@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,24 +19,24 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Returns the QueueUrl element of the created queue.
+ * Returns the <code>QueueUrl</code> attribute of the created queue.
  * </p>
  */
 public class CreateQueueResult implements Serializable {
     /**
      * <p>
-     * The URL for the created Amazon SQS queue.
+     * The URL of the created Amazon SQS queue.
      * </p>
      */
     private String queueUrl;
 
     /**
      * <p>
-     * The URL for the created Amazon SQS queue.
+     * The URL of the created Amazon SQS queue.
      * </p>
      *
      * @return <p>
-     *         The URL for the created Amazon SQS queue.
+     *         The URL of the created Amazon SQS queue.
      *         </p>
      */
     public String getQueueUrl() {
@@ -45,11 +45,11 @@ public class CreateQueueResult implements Serializable {
 
     /**
      * <p>
-     * The URL for the created Amazon SQS queue.
+     * The URL of the created Amazon SQS queue.
      * </p>
      *
      * @param queueUrl <p>
-     *            The URL for the created Amazon SQS queue.
+     *            The URL of the created Amazon SQS queue.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -58,14 +58,14 @@ public class CreateQueueResult implements Serializable {
 
     /**
      * <p>
-     * The URL for the created Amazon SQS queue.
+     * The URL of the created Amazon SQS queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The URL for the created Amazon SQS queue.
+     *            The URL of the created Amazon SQS queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

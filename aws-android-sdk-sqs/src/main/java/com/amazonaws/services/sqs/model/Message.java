@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.io.Serializable;
 public class Message implements Serializable {
     /**
      * <p>
-     * A unique identifier for the message. Message IDs are considered unique
-     * across all AWS accounts for an extended period of time.
+     * A unique identifier for the message. A <code>MessageId</code>is
+     * considered unique across all AWS accounts for an extended period of time.
      * </p>
      */
     private String messageId;
@@ -57,23 +57,61 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * <code>SenderId</code>, <code>SentTimestamp</code>,
-     * <code>ApproximateReceiveCount</code>, and/or
-     * <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code>
-     * and <code>ApproximateFirstReceiveTimestamp</code> are each returned as an
-     * integer representing the <a
-     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
+     * A map of the attributes requested in <code> <a>ReceiveMessage</a> </code>
+     * to their respective values. Supported attributes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateReceiveCount</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SenderId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code> and
+     * <code>SentTimestamp</code> are each returned as an integer representing
+     * the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
      * milliseconds.
      * </p>
      */
-    private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
+    private java.util.Map<String, String> attributes;
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message correctly. Amazon
-     * SQS first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      */
@@ -81,23 +119,25 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      */
-    private java.util.Map<String, MessageAttributeValue> messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
+    private java.util.Map<String, MessageAttributeValue> messageAttributes;
 
     /**
      * <p>
-     * A unique identifier for the message. Message IDs are considered unique
-     * across all AWS accounts for an extended period of time.
+     * A unique identifier for the message. A <code>MessageId</code>is
+     * considered unique across all AWS accounts for an extended period of time.
      * </p>
      *
      * @return <p>
-     *         A unique identifier for the message. Message IDs are considered
-     *         unique across all AWS accounts for an extended period of time.
+     *         A unique identifier for the message. A <code>MessageId</code>is
+     *         considered unique across all AWS accounts for an extended period
+     *         of time.
      *         </p>
      */
     public String getMessageId() {
@@ -106,13 +146,13 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * A unique identifier for the message. Message IDs are considered unique
-     * across all AWS accounts for an extended period of time.
+     * A unique identifier for the message. A <code>MessageId</code>is
+     * considered unique across all AWS accounts for an extended period of time.
      * </p>
      *
      * @param messageId <p>
-     *            A unique identifier for the message. Message IDs are
-     *            considered unique across all AWS accounts for an extended
+     *            A unique identifier for the message. A <code>MessageId</code>
+     *            is considered unique across all AWS accounts for an extended
      *            period of time.
      *            </p>
      */
@@ -122,16 +162,16 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * A unique identifier for the message. Message IDs are considered unique
-     * across all AWS accounts for an extended period of time.
+     * A unique identifier for the message. A <code>MessageId</code>is
+     * considered unique across all AWS accounts for an extended period of time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param messageId <p>
-     *            A unique identifier for the message. Message IDs are
-     *            considered unique across all AWS accounts for an extended
+     *            A unique identifier for the message. A <code>MessageId</code>
+     *            is considered unique across all AWS accounts for an extended
      *            period of time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -297,22 +337,99 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * <code>SenderId</code>, <code>SentTimestamp</code>,
-     * <code>ApproximateReceiveCount</code>, and/or
-     * <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code>
-     * and <code>ApproximateFirstReceiveTimestamp</code> are each returned as an
-     * integer representing the <a
-     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
+     * A map of the attributes requested in <code> <a>ReceiveMessage</a> </code>
+     * to their respective values. Supported attributes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateReceiveCount</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SenderId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code> and
+     * <code>SentTimestamp</code> are each returned as an integer representing
+     * the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
      * milliseconds.
      * </p>
      *
      * @return <p>
-     *         <code>SenderId</code>, <code>SentTimestamp</code>,
-     *         <code>ApproximateReceiveCount</code>, and/or
-     *         <code>ApproximateFirstReceiveTimestamp</code>.
-     *         <code>SentTimestamp</code> and
-     *         <code>ApproximateFirstReceiveTimestamp</code> are each returned
-     *         as an integer representing the <a
+     *         A map of the attributes requested in
+     *         <code> <a>ReceiveMessage</a> </code> to their respective values.
+     *         Supported attributes:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>ApproximateReceiveCount</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ApproximateFirstReceiveTimestamp</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MessageDeduplicationId</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MessageGroupId</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SenderId</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SentTimestamp</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SequenceNumber</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         <code>ApproximateFirstReceiveTimestamp</code> and
+     *         <code>SentTimestamp</code> are each returned as an integer
+     *         representing the <a
      *         href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
      *         milliseconds.
      *         </p>
@@ -323,22 +440,99 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * <code>SenderId</code>, <code>SentTimestamp</code>,
-     * <code>ApproximateReceiveCount</code>, and/or
-     * <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code>
-     * and <code>ApproximateFirstReceiveTimestamp</code> are each returned as an
-     * integer representing the <a
-     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
+     * A map of the attributes requested in <code> <a>ReceiveMessage</a> </code>
+     * to their respective values. Supported attributes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateReceiveCount</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SenderId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code> and
+     * <code>SentTimestamp</code> are each returned as an integer representing
+     * the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
      * milliseconds.
      * </p>
      *
      * @param attributes <p>
-     *            <code>SenderId</code>, <code>SentTimestamp</code>,
-     *            <code>ApproximateReceiveCount</code>, and/or
-     *            <code>ApproximateFirstReceiveTimestamp</code>.
-     *            <code>SentTimestamp</code> and
-     *            <code>ApproximateFirstReceiveTimestamp</code> are each
-     *            returned as an integer representing the <a
+     *            A map of the attributes requested in
+     *            <code> <a>ReceiveMessage</a> </code> to their respective
+     *            values. Supported attributes:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateReceiveCount</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateFirstReceiveTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageDeduplicationId</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageGroupId</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SenderId</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SentTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SequenceNumber</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            <code>ApproximateFirstReceiveTimestamp</code> and
+     *            <code>SentTimestamp</code> are each returned as an integer
+     *            representing the <a
      *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>
      *            in milliseconds.
      *            </p>
@@ -349,12 +543,50 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * <code>SenderId</code>, <code>SentTimestamp</code>,
-     * <code>ApproximateReceiveCount</code>, and/or
-     * <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code>
-     * and <code>ApproximateFirstReceiveTimestamp</code> are each returned as an
-     * integer representing the <a
-     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
+     * A map of the attributes requested in <code> <a>ReceiveMessage</a> </code>
+     * to their respective values. Supported attributes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateReceiveCount</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SenderId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code> and
+     * <code>SentTimestamp</code> are each returned as an integer representing
+     * the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
      * milliseconds.
      * </p>
      * <p>
@@ -362,12 +594,51 @@ public class Message implements Serializable {
      * together.
      *
      * @param attributes <p>
-     *            <code>SenderId</code>, <code>SentTimestamp</code>,
-     *            <code>ApproximateReceiveCount</code>, and/or
-     *            <code>ApproximateFirstReceiveTimestamp</code>.
-     *            <code>SentTimestamp</code> and
-     *            <code>ApproximateFirstReceiveTimestamp</code> are each
-     *            returned as an integer representing the <a
+     *            A map of the attributes requested in
+     *            <code> <a>ReceiveMessage</a> </code> to their respective
+     *            values. Supported attributes:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateReceiveCount</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ApproximateFirstReceiveTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageDeduplicationId</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MessageGroupId</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SenderId</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SentTimestamp</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SequenceNumber</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            <code>ApproximateFirstReceiveTimestamp</code> and
+     *            <code>SentTimestamp</code> are each returned as an integer
+     *            representing the <a
      *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>
      *            in milliseconds.
      *            </p>
@@ -381,12 +652,50 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * <code>SenderId</code>, <code>SentTimestamp</code>,
-     * <code>ApproximateReceiveCount</code>, and/or
-     * <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code>
-     * and <code>ApproximateFirstReceiveTimestamp</code> are each returned as an
-     * integer representing the <a
-     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
+     * A map of the attributes requested in <code> <a>ReceiveMessage</a> </code>
+     * to their respective values. Supported attributes:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ApproximateReceiveCount</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageDeduplicationId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MessageGroupId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SenderId</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SentTimestamp</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SequenceNumber</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <code>ApproximateFirstReceiveTimestamp</code> and
+     * <code>SentTimestamp</code> are each returned as an integer representing
+     * the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in
      * milliseconds.
      * </p>
      * <p>
@@ -424,17 +733,17 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message correctly. Amazon
-     * SQS first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      *
      * @return <p>
      *         An MD5 digest of the non-URL-encoded message attribute string.
-     *         This can be used to verify that Amazon SQS received the message
-     *         correctly. Amazon SQS first URL decodes the message before
+     *         You can use this attribute to verify that Amazon SQS received the
+     *         message correctly. Amazon SQS URL-decodes the message before
      *         creating the MD5 digest. For information about MD5, see <a
      *         href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *         </p>
@@ -445,17 +754,17 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message correctly. Amazon
-     * SQS first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      *
      * @param mD5OfMessageAttributes <p>
      *            An MD5 digest of the non-URL-encoded message attribute string.
-     *            This can be used to verify that Amazon SQS received the
-     *            message correctly. Amazon SQS first URL decodes the message
+     *            You can use this attribute to verify that Amazon SQS received
+     *            the message correctly. Amazon SQS URL-decodes the message
      *            before creating the MD5 digest. For information about MD5, see
      *            <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *            </p>
@@ -466,10 +775,10 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * An MD5 digest of the non-URL-encoded message attribute string. This can
-     * be used to verify that Amazon SQS received the message correctly. Amazon
-     * SQS first URL decodes the message before creating the MD5 digest. For
-     * information about MD5, see <a
+     * An MD5 digest of the non-URL-encoded message attribute string. You can
+     * use this attribute to verify that Amazon SQS received the message
+     * correctly. Amazon SQS URL-decodes the message before creating the MD5
+     * digest. For information about MD5, see <a
      * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      * </p>
      * <p>
@@ -478,8 +787,8 @@ public class Message implements Serializable {
      *
      * @param mD5OfMessageAttributes <p>
      *            An MD5 digest of the non-URL-encoded message attribute string.
-     *            This can be used to verify that Amazon SQS received the
-     *            message correctly. Amazon SQS first URL decodes the message
+     *            You can use this attribute to verify that Amazon SQS received
+     *            the message correctly. Amazon SQS URL-decodes the message
      *            before creating the MD5 digest. For information about MD5, see
      *            <a href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>.
      *            </p>
@@ -493,18 +802,20 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      *
      * @return <p>
-     *         Each message attribute consists of a Name, Type, and Value. For
-     *         more information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     *         >Message Attribute Items</a> in the <i>Amazon SQS Developer
-     *         Guide</i>.
+     *         Each message attribute consists of a <code>Name</code>,
+     *         <code>Type</code>, and <code>Value</code>. For more information,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *         >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue
+     *         Service Developer Guide</i>.
      *         </p>
      */
     public java.util.Map<String, MessageAttributeValue> getMessageAttributes() {
@@ -513,18 +824,20 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      *
      * @param messageAttributes <p>
-     *            Each message attribute consists of a Name, Type, and Value.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     *            >Message Attribute Items</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            Each message attribute consists of a <code>Name</code>,
+     *            <code>Type</code>, and <code>Value</code>. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *            >Amazon SQS Message Attributes</a> in the <i>Amazon Simple
+     *            Queue Service Developer Guide</i>.
      *            </p>
      */
     public void setMessageAttributes(java.util.Map<String, MessageAttributeValue> messageAttributes) {
@@ -533,21 +846,23 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param messageAttributes <p>
-     *            Each message attribute consists of a Name, Type, and Value.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     *            >Message Attribute Items</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            Each message attribute consists of a <code>Name</code>,
+     *            <code>Type</code>, and <code>Value</code>. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *            >Amazon SQS Message Attributes</a> in the <i>Amazon Simple
+     *            Queue Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -560,10 +875,11 @@ public class Message implements Serializable {
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * The method adds a new key-value pair into MessageAttributes parameter,

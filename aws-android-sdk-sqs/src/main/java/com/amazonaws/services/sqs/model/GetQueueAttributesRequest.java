@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,26 +25,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * Some API actions take lists of parameters. These lists are specified using
- * the <code>param.n</code> notation. Values of <code>n</code> are integers
- * starting from 1. For example, a parameter list with two elements looks like
- * this:
+ * To determine whether a queue is <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+ * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+ * <code>.fifo</code> suffix.
  * </p>
  * </note>
- * <p>
- * <code>&amp;amp;Attribute.1=this</code>
- * </p>
- * <p>
- * <code>&amp;amp;Attribute.2=that</code>
- * </p>
  */
 public class GetQueueAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue whose attribute information is retrieved.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueUrl;
@@ -55,335 +49,218 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * Going forward, new attributes might be added. If you are writing code
-     * that calls this action, we recommend that you structure your code so that
-     * it can handle new attributes gracefully.
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
      * </p>
      * </note>
      * <p>
      * The following attributes are supported:
      * </p>
+     * <important>
+     * <p>
+     * The <code>ApproximateNumberOfMessagesDelayed</code>,
+     * <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     * <code>ApproximateNumberOfMessagesVisible</code> metrics may not achieve
+     * consistency until at least 1 minute after the producers stop sending
+     * messages. This period is required for the queue metadata to reach
+     * eventual consistency.
+     * </p>
+     * </important>
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - Returns all values.
+     * <code>All</code> – Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessages</code> - Returns the approximate number
-     * of visible messages in a queue. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessages</code> – Returns the approximate number
+     * of messages available for retrieval from the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesDelayed</code> - Returns the approximate
-     * number of messages that are waiting to be added to the queue.
+     * <code>ApproximateNumberOfMessagesDelayed</code> – Returns the approximate
+     * number of messages in the queue that are delayed and not available for
+     * reading immediately. This can happen when the queue is configured as a
+     * delay queue or when a message has been sent with a delay parameter.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesNotVisible</code> - Returns the
-     * approximate number of messages that have not timed-out and are not
-     * deleted. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessagesNotVisible</code> – Returns the
+     * approximate number of messages that are in flight. Messages are
+     * considered to be <i>in flight</i> if they have been sent to a client but
+     * have not yet been deleted or have not yet reached the end of their
+     * visibility window.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>CreatedTimestamp</code> - Returns the time when the queue was
-     * created in seconds (epoch time).
+     * <code>CreatedTimestamp</code> – Returns the time when the queue was
+     * created in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DelaySeconds</code> - Returns the default delay on the queue in
+     * <code>DelaySeconds</code> – Returns the default delay on the queue in
      * seconds.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>LastModifiedTimestamp</code> - Returns the time when the queue was
-     * last changed in seconds (epoch time).
+     * <code>LastModifiedTimestamp</code> – Returns the time when the queue was
+     * last changed in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MaximumMessageSize</code> - Returns the limit of how many bytes a
+     * <code>MaximumMessageSize</code> – Returns the limit of how many bytes a
      * message can contain before Amazon SQS rejects it.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MessageRetentionPeriod</code> - Returns the number of seconds for
-     * which Amazon SQS retains a message.
+     * <code>MessageRetentionPeriod</code> – Returns the length of time, in
+     * seconds, for which Amazon SQS retains a message.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Policy</code> - Returns the policy of the queue.
+     * <code>Policy</code> – Returns the policy of the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>QueueArn</code> - Returns the Amazon resource name (ARN) of the
+     * <code>QueueArn</code> – Returns the Amazon resource name (ARN) of the
      * queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReceiveMessageWaitTimeSeconds</code> - Returns the number of
-     * seconds for which ReceiveMessage call will wait for a message to arrive.
+     * <code>ReceiveMessageWaitTimeSeconds</code> – Returns the length of time,
+     * in seconds, for which the <code>ReceiveMessage</code> action waits for a
+     * message to arrive.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>RedrivePolicy</code> - Returns the parameters for dead letter queue
-     * functionality of the source queue. For more information about the redrive
-     * policy and dead letter queues, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * <code>RedrivePolicy</code> – The string that includes the parameters for
+     * the dead-letter queue functionality of the source queue as a JSON object.
+     * For more information about the redrive policy and dead-letter queues, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+     * Service Developer Guide</i>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deadLetterTargetArn</code> – The Amazon Resource Name (ARN) of the
+     * dead-letter queue to which Amazon SQS moves messages after the value of
+     * <code>maxReceiveCount</code> is exceeded.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>VisibilityTimeout</code> - Returns the visibility timeout for the
+     * <code>maxReceiveCount</code> – The number of times a message is delivered
+     * to the source queue before being moved to the dead-letter queue. When the
+     * <code>ReceiveCount</code> for a message exceeds the
+     * <code>maxReceiveCount</code> for a queue, Amazon SQS moves the message to
+     * the dead-letter-queue.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code> – Returns the visibility timeout for the
      * queue. For more information about the visibility timeout, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     * >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * The following attributes apply only to <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed customer
+     * master key (CMK) for Amazon SQS or a custom CMK. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     * >Key Terms</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length of time,
+     * in seconds, for which Amazon SQS can reuse a data key to encrypt or
+     * decrypt messages before calling AWS KMS again. For more information, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     * >How Does the Data Key Reuse Period Work?</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      * >FIFO (first-in-first-out) queues</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FifoQueue</code> - Returns whether the queue is FIFO. For more
+     * <code>FifoQueue</code> – Returns whether the queue is FIFO. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     * >FIFO Queue Logic</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     * >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * To determine whether a queue is <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
-     * <code>ContentBasedDeduplication</code> - Returns whether content-based
+     * <code>ContentBasedDeduplication</code> – Returns whether content-based
      * deduplication is enabled for the queue. For more information, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * >Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * >Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * </li>
      * </ul>
      */
-    private java.util.List<String> attributeNames = new java.util.ArrayList<String>();
-
-    /**
-     * Default constructor for GetQueueAttributesRequest object. Callers should
-     * use the setter or fluent setter (with...) methods to initialize any
-     * additional object members.
-     */
-    public GetQueueAttributesRequest() {
-    }
-
-    /**
-     * Constructs a new GetQueueAttributesRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     * 
-     * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     */
-    public GetQueueAttributesRequest(String queueUrl) {
-        setQueueUrl(queueUrl);
-    }
-
-    /**
-     * Constructs a new GetQueueAttributesRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     * 
-     * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     * @param attributeNames <p>
-     *            A list of attributes for which to retrieve information.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            Going forward, new attributes might be added. If you are
-     *            writing code that calls this action, we recommend that you
-     *            structure your code so that it can handle new attributes
-     *            gracefully.
-     *            </p>
-     *            </note>
-     *            <p>
-     *            The following attributes are supported:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>All</code> - Returns all values.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ApproximateNumberOfMessages</code> - Returns the
-     *            approximate number of visible messages in a queue. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ApproximateNumberOfMessagesDelayed</code> - Returns the
-     *            approximate number of messages that are waiting to be added to
-     *            the queue.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ApproximateNumberOfMessagesNotVisible</code> - Returns
-     *            the approximate number of messages that have not timed-out and
-     *            are not deleted. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>CreatedTimestamp</code> - Returns the time when the
-     *            queue was created in seconds (epoch time).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>DelaySeconds</code> - Returns the default delay on the
-     *            queue in seconds.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>LastModifiedTimestamp</code> - Returns the time when the
-     *            queue was last changed in seconds (epoch time).
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MaximumMessageSize</code> - Returns the limit of how
-     *            many bytes a message can contain before Amazon SQS rejects it.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MessageRetentionPeriod</code> - Returns the number of
-     *            seconds for which Amazon SQS retains a message.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>Policy</code> - Returns the policy of the queue.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>QueueArn</code> - Returns the Amazon resource name (ARN)
-     *            of the queue.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ReceiveMessageWaitTimeSeconds</code> - Returns the
-     *            number of seconds for which ReceiveMessage call will wait for
-     *            a message to arrive.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>RedrivePolicy</code> - Returns the parameters for dead
-     *            letter queue functionality of the source queue. For more
-     *            information about the redrive policy and dead letter queues,
-     *            see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     *            >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS
-     *            Developer Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>VisibilityTimeout</code> - Returns the visibility
-     *            timeout for the queue. For more information about the
-     *            visibility timeout, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     *            >Visibility Timeout</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            The following attributes apply only to <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
-     *            >FIFO (first-in-first-out) queues</a>:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>FifoQueue</code> - Returns whether the queue is FIFO.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     *            >FIFO Queue Logic</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ContentBasedDeduplication</code> - Returns whether
-     *            content-based deduplication is enabled for the queue. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *            >Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
-     *            </p>
-     *            </li>
-     *            </ul>
-     */
-    public GetQueueAttributesRequest(String queueUrl, java.util.List<String> attributeNames) {
-        setQueueUrl(queueUrl);
-        setAttributeNames(attributeNames);
-    }
+    private java.util.List<String> attributeNames;
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue whose attribute information is retrieved.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The URL of the Amazon SQS queue to take action on.
+     *         The URL of the Amazon SQS queue whose attribute information is
+     *         retrieved.
      *         </p>
      *         <p>
-     *         Queue URLs are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueUrl() {
@@ -392,17 +269,18 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue whose attribute information is retrieved.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue whose attribute information is
+     *            retrieved.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -411,20 +289,21 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue whose attribute information is retrieved.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue whose attribute information is
+     *            retrieved.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -440,132 +319,198 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * Going forward, new attributes might be added. If you are writing code
-     * that calls this action, we recommend that you structure your code so that
-     * it can handle new attributes gracefully.
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
      * </p>
      * </note>
      * <p>
      * The following attributes are supported:
      * </p>
+     * <important>
+     * <p>
+     * The <code>ApproximateNumberOfMessagesDelayed</code>,
+     * <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     * <code>ApproximateNumberOfMessagesVisible</code> metrics may not achieve
+     * consistency until at least 1 minute after the producers stop sending
+     * messages. This period is required for the queue metadata to reach
+     * eventual consistency.
+     * </p>
+     * </important>
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - Returns all values.
+     * <code>All</code> – Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessages</code> - Returns the approximate number
-     * of visible messages in a queue. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessages</code> – Returns the approximate number
+     * of messages available for retrieval from the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesDelayed</code> - Returns the approximate
-     * number of messages that are waiting to be added to the queue.
+     * <code>ApproximateNumberOfMessagesDelayed</code> – Returns the approximate
+     * number of messages in the queue that are delayed and not available for
+     * reading immediately. This can happen when the queue is configured as a
+     * delay queue or when a message has been sent with a delay parameter.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesNotVisible</code> - Returns the
-     * approximate number of messages that have not timed-out and are not
-     * deleted. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessagesNotVisible</code> – Returns the
+     * approximate number of messages that are in flight. Messages are
+     * considered to be <i>in flight</i> if they have been sent to a client but
+     * have not yet been deleted or have not yet reached the end of their
+     * visibility window.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>CreatedTimestamp</code> - Returns the time when the queue was
-     * created in seconds (epoch time).
+     * <code>CreatedTimestamp</code> – Returns the time when the queue was
+     * created in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DelaySeconds</code> - Returns the default delay on the queue in
+     * <code>DelaySeconds</code> – Returns the default delay on the queue in
      * seconds.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>LastModifiedTimestamp</code> - Returns the time when the queue was
-     * last changed in seconds (epoch time).
+     * <code>LastModifiedTimestamp</code> – Returns the time when the queue was
+     * last changed in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MaximumMessageSize</code> - Returns the limit of how many bytes a
+     * <code>MaximumMessageSize</code> – Returns the limit of how many bytes a
      * message can contain before Amazon SQS rejects it.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MessageRetentionPeriod</code> - Returns the number of seconds for
-     * which Amazon SQS retains a message.
+     * <code>MessageRetentionPeriod</code> – Returns the length of time, in
+     * seconds, for which Amazon SQS retains a message.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Policy</code> - Returns the policy of the queue.
+     * <code>Policy</code> – Returns the policy of the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>QueueArn</code> - Returns the Amazon resource name (ARN) of the
+     * <code>QueueArn</code> – Returns the Amazon resource name (ARN) of the
      * queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReceiveMessageWaitTimeSeconds</code> - Returns the number of
-     * seconds for which ReceiveMessage call will wait for a message to arrive.
+     * <code>ReceiveMessageWaitTimeSeconds</code> – Returns the length of time,
+     * in seconds, for which the <code>ReceiveMessage</code> action waits for a
+     * message to arrive.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>RedrivePolicy</code> - Returns the parameters for dead letter queue
-     * functionality of the source queue. For more information about the redrive
-     * policy and dead letter queues, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * <code>RedrivePolicy</code> – The string that includes the parameters for
+     * the dead-letter queue functionality of the source queue as a JSON object.
+     * For more information about the redrive policy and dead-letter queues, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+     * Service Developer Guide</i>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deadLetterTargetArn</code> – The Amazon Resource Name (ARN) of the
+     * dead-letter queue to which Amazon SQS moves messages after the value of
+     * <code>maxReceiveCount</code> is exceeded.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>VisibilityTimeout</code> - Returns the visibility timeout for the
+     * <code>maxReceiveCount</code> – The number of times a message is delivered
+     * to the source queue before being moved to the dead-letter queue. When the
+     * <code>ReceiveCount</code> for a message exceeds the
+     * <code>maxReceiveCount</code> for a queue, Amazon SQS moves the message to
+     * the dead-letter-queue.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code> – Returns the visibility timeout for the
      * queue. For more information about the visibility timeout, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     * >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * The following attributes apply only to <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed customer
+     * master key (CMK) for Amazon SQS or a custom CMK. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     * >Key Terms</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length of time,
+     * in seconds, for which Amazon SQS can reuse a data key to encrypt or
+     * decrypt messages before calling AWS KMS again. For more information, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     * >How Does the Data Key Reuse Period Work?</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      * >FIFO (first-in-first-out) queues</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FifoQueue</code> - Returns whether the queue is FIFO. For more
+     * <code>FifoQueue</code> – Returns whether the queue is FIFO. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     * >FIFO Queue Logic</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     * >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * To determine whether a queue is <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
-     * <code>ContentBasedDeduplication</code> - Returns whether content-based
+     * <code>ContentBasedDeduplication</code> – Returns whether content-based
      * deduplication is enabled for the queue. For more information, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * >Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * >Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -575,138 +520,201 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      *         </p>
      *         <note>
      *         <p>
-     *         Going forward, new attributes might be added. If you are writing
-     *         code that calls this action, we recommend that you structure your
-     *         code so that it can handle new attributes gracefully.
+     *         In the future, new attributes might be added. If you write code
+     *         that calls this action, we recommend that you structure your code
+     *         so that it can handle new attributes gracefully.
      *         </p>
      *         </note>
      *         <p>
      *         The following attributes are supported:
      *         </p>
+     *         <important>
+     *         <p>
+     *         The <code>ApproximateNumberOfMessagesDelayed</code>,
+     *         <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     *         <code>ApproximateNumberOfMessagesVisible</code> metrics may not
+     *         achieve consistency until at least 1 minute after the producers
+     *         stop sending messages. This period is required for the queue
+     *         metadata to reach eventual consistency.
+     *         </p>
+     *         </important>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>All</code> - Returns all values.
+     *         <code>All</code> – Returns all values.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ApproximateNumberOfMessages</code> - Returns the
-     *         approximate number of visible messages in a queue. For more
-     *         information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *         >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     *         Developer Guide</i>.
+     *         <code>ApproximateNumberOfMessages</code> – Returns the
+     *         approximate number of messages available for retrieval from the
+     *         queue.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ApproximateNumberOfMessagesDelayed</code> - Returns the
-     *         approximate number of messages that are waiting to be added to
-     *         the queue.
+     *         <code>ApproximateNumberOfMessagesDelayed</code> – Returns the
+     *         approximate number of messages in the queue that are delayed and
+     *         not available for reading immediately. This can happen when the
+     *         queue is configured as a delay queue or when a message has been
+     *         sent with a delay parameter.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ApproximateNumberOfMessagesNotVisible</code> - Returns the
-     *         approximate number of messages that have not timed-out and are
-     *         not deleted. For more information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *         >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     *         Developer Guide</i>.
+     *         <code>ApproximateNumberOfMessagesNotVisible</code> – Returns the
+     *         approximate number of messages that are in flight. Messages are
+     *         considered to be <i>in flight</i> if they have been sent to a
+     *         client but have not yet been deleted or have not yet reached the
+     *         end of their visibility window.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>CreatedTimestamp</code> - Returns the time when the queue
-     *         was created in seconds (epoch time).
+     *         <code>CreatedTimestamp</code> – Returns the time when the queue
+     *         was created in seconds (<a
+     *         href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>DelaySeconds</code> - Returns the default delay on the
+     *         <code>DelaySeconds</code> – Returns the default delay on the
      *         queue in seconds.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>LastModifiedTimestamp</code> - Returns the time when the
-     *         queue was last changed in seconds (epoch time).
+     *         <code>LastModifiedTimestamp</code> – Returns the time when the
+     *         queue was last changed in seconds (<a
+     *         href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>MaximumMessageSize</code> - Returns the limit of how many
+     *         <code>MaximumMessageSize</code> – Returns the limit of how many
      *         bytes a message can contain before Amazon SQS rejects it.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>MessageRetentionPeriod</code> - Returns the number of
-     *         seconds for which Amazon SQS retains a message.
+     *         <code>MessageRetentionPeriod</code> – Returns the length of time,
+     *         in seconds, for which Amazon SQS retains a message.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Policy</code> - Returns the policy of the queue.
+     *         <code>Policy</code> – Returns the policy of the queue.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>QueueArn</code> - Returns the Amazon resource name (ARN) of
+     *         <code>QueueArn</code> – Returns the Amazon resource name (ARN) of
      *         the queue.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>ReceiveMessageWaitTimeSeconds</code> - Returns the number
-     *         of seconds for which ReceiveMessage call will wait for a message
-     *         to arrive.
+     *         <code>ReceiveMessageWaitTimeSeconds</code> – Returns the length
+     *         of time, in seconds, for which the <code>ReceiveMessage</code>
+     *         action waits for a message to arrive.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>RedrivePolicy</code> - Returns the parameters for dead
-     *         letter queue functionality of the source queue. For more
-     *         information about the redrive policy and dead letter queues, see
-     *         <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     *         >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS
-     *         Developer Guide</i>.
+     *         <code>RedrivePolicy</code> – The string that includes the
+     *         parameters for the dead-letter queue functionality of the source
+     *         queue as a JSON object. For more information about the redrive
+     *         policy and dead-letter queues, see <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     *         >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple
+     *         Queue Service Developer Guide</i>.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>deadLetterTargetArn</code> – The Amazon Resource Name (ARN)
+     *         of the dead-letter queue to which Amazon SQS moves messages after
+     *         the value of <code>maxReceiveCount</code> is exceeded.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>VisibilityTimeout</code> - Returns the visibility timeout
+     *         <code>maxReceiveCount</code> – The number of times a message is
+     *         delivered to the source queue before being moved to the
+     *         dead-letter queue. When the <code>ReceiveCount</code> for a
+     *         message exceeds the <code>maxReceiveCount</code> for a queue,
+     *         Amazon SQS moves the message to the dead-letter-queue.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>VisibilityTimeout</code> – Returns the visibility timeout
      *         for the queue. For more information about the visibility timeout,
      *         see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     *         >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     *         >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *         Developer Guide</i>.
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
      *         The following attributes apply only to <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     *         >server-side-encryption</a>:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed
+     *         customer master key (CMK) for Amazon SQS or a custom CMK. For
+     *         more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     *         >Key Terms</a>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length of
+     *         time, in seconds, for which Amazon SQS can reuse a data key to
+     *         encrypt or decrypt messages before calling AWS KMS again. For
+     *         more information, see <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     *         >How Does the Data Key Reuse Period Work?</a>.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The following attributes apply only to <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      *         >FIFO (first-in-first-out) queues</a>:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>FifoQueue</code> - Returns whether the queue is FIFO. For
+     *         <code>FifoQueue</code> – Returns whether the queue is FIFO. For
      *         more information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     *         >FIFO Queue Logic</a> in the <i>Amazon SQS Developer Guide</i>.
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     *         >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service
+     *         Developer Guide</i>.
      *         </p>
-     *         </li>
+     *         <note>
+     *         <p>
+     *         To determine whether a queue is <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *         >FIFO</a>, you can check whether <code>QueueName</code> ends with
+     *         the <code>.fifo</code> suffix.
+     *         </p>
+     *         </note></li>
      *         <li>
      *         <p>
-     *         <code>ContentBasedDeduplication</code> - Returns whether
+     *         <code>ContentBasedDeduplication</code> – Returns whether
      *         content-based deduplication is enabled for the queue. For more
      *         information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *         >Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *         >Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *         Service Developer Guide</i>.
      *         </p>
      *         </li>
      *         </ul>
@@ -721,132 +729,198 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * Going forward, new attributes might be added. If you are writing code
-     * that calls this action, we recommend that you structure your code so that
-     * it can handle new attributes gracefully.
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
      * </p>
      * </note>
      * <p>
      * The following attributes are supported:
      * </p>
+     * <important>
+     * <p>
+     * The <code>ApproximateNumberOfMessagesDelayed</code>,
+     * <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     * <code>ApproximateNumberOfMessagesVisible</code> metrics may not achieve
+     * consistency until at least 1 minute after the producers stop sending
+     * messages. This period is required for the queue metadata to reach
+     * eventual consistency.
+     * </p>
+     * </important>
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - Returns all values.
+     * <code>All</code> – Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessages</code> - Returns the approximate number
-     * of visible messages in a queue. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessages</code> – Returns the approximate number
+     * of messages available for retrieval from the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesDelayed</code> - Returns the approximate
-     * number of messages that are waiting to be added to the queue.
+     * <code>ApproximateNumberOfMessagesDelayed</code> – Returns the approximate
+     * number of messages in the queue that are delayed and not available for
+     * reading immediately. This can happen when the queue is configured as a
+     * delay queue or when a message has been sent with a delay parameter.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesNotVisible</code> - Returns the
-     * approximate number of messages that have not timed-out and are not
-     * deleted. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessagesNotVisible</code> – Returns the
+     * approximate number of messages that are in flight. Messages are
+     * considered to be <i>in flight</i> if they have been sent to a client but
+     * have not yet been deleted or have not yet reached the end of their
+     * visibility window.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>CreatedTimestamp</code> - Returns the time when the queue was
-     * created in seconds (epoch time).
+     * <code>CreatedTimestamp</code> – Returns the time when the queue was
+     * created in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DelaySeconds</code> - Returns the default delay on the queue in
+     * <code>DelaySeconds</code> – Returns the default delay on the queue in
      * seconds.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>LastModifiedTimestamp</code> - Returns the time when the queue was
-     * last changed in seconds (epoch time).
+     * <code>LastModifiedTimestamp</code> – Returns the time when the queue was
+     * last changed in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MaximumMessageSize</code> - Returns the limit of how many bytes a
+     * <code>MaximumMessageSize</code> – Returns the limit of how many bytes a
      * message can contain before Amazon SQS rejects it.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MessageRetentionPeriod</code> - Returns the number of seconds for
-     * which Amazon SQS retains a message.
+     * <code>MessageRetentionPeriod</code> – Returns the length of time, in
+     * seconds, for which Amazon SQS retains a message.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Policy</code> - Returns the policy of the queue.
+     * <code>Policy</code> – Returns the policy of the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>QueueArn</code> - Returns the Amazon resource name (ARN) of the
+     * <code>QueueArn</code> – Returns the Amazon resource name (ARN) of the
      * queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReceiveMessageWaitTimeSeconds</code> - Returns the number of
-     * seconds for which ReceiveMessage call will wait for a message to arrive.
+     * <code>ReceiveMessageWaitTimeSeconds</code> – Returns the length of time,
+     * in seconds, for which the <code>ReceiveMessage</code> action waits for a
+     * message to arrive.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>RedrivePolicy</code> - Returns the parameters for dead letter queue
-     * functionality of the source queue. For more information about the redrive
-     * policy and dead letter queues, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * <code>RedrivePolicy</code> – The string that includes the parameters for
+     * the dead-letter queue functionality of the source queue as a JSON object.
+     * For more information about the redrive policy and dead-letter queues, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+     * Service Developer Guide</i>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deadLetterTargetArn</code> – The Amazon Resource Name (ARN) of the
+     * dead-letter queue to which Amazon SQS moves messages after the value of
+     * <code>maxReceiveCount</code> is exceeded.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>VisibilityTimeout</code> - Returns the visibility timeout for the
+     * <code>maxReceiveCount</code> – The number of times a message is delivered
+     * to the source queue before being moved to the dead-letter queue. When the
+     * <code>ReceiveCount</code> for a message exceeds the
+     * <code>maxReceiveCount</code> for a queue, Amazon SQS moves the message to
+     * the dead-letter-queue.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code> – Returns the visibility timeout for the
      * queue. For more information about the visibility timeout, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     * >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * The following attributes apply only to <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed customer
+     * master key (CMK) for Amazon SQS or a custom CMK. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     * >Key Terms</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length of time,
+     * in seconds, for which Amazon SQS can reuse a data key to encrypt or
+     * decrypt messages before calling AWS KMS again. For more information, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     * >How Does the Data Key Reuse Period Work?</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      * >FIFO (first-in-first-out) queues</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FifoQueue</code> - Returns whether the queue is FIFO. For more
+     * <code>FifoQueue</code> – Returns whether the queue is FIFO. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     * >FIFO Queue Logic</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     * >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * To determine whether a queue is <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
-     * <code>ContentBasedDeduplication</code> - Returns whether content-based
+     * <code>ContentBasedDeduplication</code> – Returns whether content-based
      * deduplication is enabled for the queue. For more information, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * >Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * >Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -856,141 +930,203 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      *            </p>
      *            <note>
      *            <p>
-     *            Going forward, new attributes might be added. If you are
-     *            writing code that calls this action, we recommend that you
-     *            structure your code so that it can handle new attributes
-     *            gracefully.
+     *            In the future, new attributes might be added. If you write
+     *            code that calls this action, we recommend that you structure
+     *            your code so that it can handle new attributes gracefully.
      *            </p>
      *            </note>
      *            <p>
      *            The following attributes are supported:
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>ApproximateNumberOfMessagesDelayed</code>,
+     *            <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     *            <code>ApproximateNumberOfMessagesVisible</code> metrics may
+     *            not achieve consistency until at least 1 minute after the
+     *            producers stop sending messages. This period is required for
+     *            the queue metadata to reach eventual consistency.
+     *            </p>
+     *            </important>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>All</code> - Returns all values.
+     *            <code>All</code> – Returns all values.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateNumberOfMessages</code> - Returns the
-     *            approximate number of visible messages in a queue. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ApproximateNumberOfMessagesDelayed</code> - Returns the
-     *            approximate number of messages that are waiting to be added to
+     *            <code>ApproximateNumberOfMessages</code> – Returns the
+     *            approximate number of messages available for retrieval from
      *            the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateNumberOfMessagesNotVisible</code> - Returns
-     *            the approximate number of messages that have not timed-out and
-     *            are not deleted. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
+     *            <code>ApproximateNumberOfMessagesDelayed</code> – Returns the
+     *            approximate number of messages in the queue that are delayed
+     *            and not available for reading immediately. This can happen
+     *            when the queue is configured as a delay queue or when a
+     *            message has been sent with a delay parameter.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>CreatedTimestamp</code> - Returns the time when the
-     *            queue was created in seconds (epoch time).
+     *            <code>ApproximateNumberOfMessagesNotVisible</code> – Returns
+     *            the approximate number of messages that are in flight.
+     *            Messages are considered to be <i>in flight</i> if they have
+     *            been sent to a client but have not yet been deleted or have
+     *            not yet reached the end of their visibility window.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DelaySeconds</code> - Returns the default delay on the
+     *            <code>CreatedTimestamp</code> – Returns the time when the
+     *            queue was created in seconds (<a
+     *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DelaySeconds</code> – Returns the default delay on the
      *            queue in seconds.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>LastModifiedTimestamp</code> - Returns the time when the
-     *            queue was last changed in seconds (epoch time).
+     *            <code>LastModifiedTimestamp</code> – Returns the time when the
+     *            queue was last changed in seconds (<a
+     *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MaximumMessageSize</code> - Returns the limit of how
+     *            <code>MaximumMessageSize</code> – Returns the limit of how
      *            many bytes a message can contain before Amazon SQS rejects it.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MessageRetentionPeriod</code> - Returns the number of
-     *            seconds for which Amazon SQS retains a message.
+     *            <code>MessageRetentionPeriod</code> – Returns the length of
+     *            time, in seconds, for which Amazon SQS retains a message.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Policy</code> - Returns the policy of the queue.
+     *            <code>Policy</code> – Returns the policy of the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>QueueArn</code> - Returns the Amazon resource name (ARN)
+     *            <code>QueueArn</code> – Returns the Amazon resource name (ARN)
      *            of the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReceiveMessageWaitTimeSeconds</code> - Returns the
-     *            number of seconds for which ReceiveMessage call will wait for
-     *            a message to arrive.
+     *            <code>ReceiveMessageWaitTimeSeconds</code> – Returns the
+     *            length of time, in seconds, for which the
+     *            <code>ReceiveMessage</code> action waits for a message to
+     *            arrive.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>RedrivePolicy</code> - Returns the parameters for dead
-     *            letter queue functionality of the source queue. For more
-     *            information about the redrive policy and dead letter queues,
-     *            see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     *            >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS
-     *            Developer Guide</i>.
+     *            <code>RedrivePolicy</code> – The string that includes the
+     *            parameters for the dead-letter queue functionality of the
+     *            source queue as a JSON object. For more information about the
+     *            redrive policy and dead-letter queues, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     *            >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon
+     *            Simple Queue Service Developer Guide</i>.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>deadLetterTargetArn</code> – The Amazon Resource Name
+     *            (ARN) of the dead-letter queue to which Amazon SQS moves
+     *            messages after the value of <code>maxReceiveCount</code> is
+     *            exceeded.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VisibilityTimeout</code> - Returns the visibility
+     *            <code>maxReceiveCount</code> – The number of times a message
+     *            is delivered to the source queue before being moved to the
+     *            dead-letter queue. When the <code>ReceiveCount</code> for a
+     *            message exceeds the <code>maxReceiveCount</code> for a queue,
+     *            Amazon SQS moves the message to the dead-letter-queue.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>VisibilityTimeout</code> – Returns the visibility
      *            timeout for the queue. For more information about the
      *            visibility timeout, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     *            >Visibility Timeout</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     *            >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
      *            The following attributes apply only to <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     *            >server-side-encryption</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed
+     *            customer master key (CMK) for Amazon SQS or a custom CMK. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     *            >Key Terms</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length
+     *            of time, in seconds, for which Amazon SQS can reuse a data key
+     *            to encrypt or decrypt messages before calling AWS KMS again.
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     *            >How Does the Data Key Reuse Period Work?</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      *            >FIFO (first-in-first-out) queues</a>:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>FifoQueue</code> - Returns whether the queue is FIFO.
+     *            <code>FifoQueue</code> – Returns whether the queue is FIFO.
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     *            >FIFO Queue Logic</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     *            >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            To determine whether a queue is <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *            >FIFO</a>, you can check whether <code>QueueName</code> ends
+     *            with the <code>.fifo</code> suffix.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
-     *            <code>ContentBasedDeduplication</code> - Returns whether
+     *            <code>ContentBasedDeduplication</code> – Returns whether
      *            content-based deduplication is enabled for the queue. For more
      *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *            >Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *            >Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *            Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1010,132 +1146,198 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * Going forward, new attributes might be added. If you are writing code
-     * that calls this action, we recommend that you structure your code so that
-     * it can handle new attributes gracefully.
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
      * </p>
      * </note>
      * <p>
      * The following attributes are supported:
      * </p>
+     * <important>
+     * <p>
+     * The <code>ApproximateNumberOfMessagesDelayed</code>,
+     * <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     * <code>ApproximateNumberOfMessagesVisible</code> metrics may not achieve
+     * consistency until at least 1 minute after the producers stop sending
+     * messages. This period is required for the queue metadata to reach
+     * eventual consistency.
+     * </p>
+     * </important>
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - Returns all values.
+     * <code>All</code> – Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessages</code> - Returns the approximate number
-     * of visible messages in a queue. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessages</code> – Returns the approximate number
+     * of messages available for retrieval from the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesDelayed</code> - Returns the approximate
-     * number of messages that are waiting to be added to the queue.
+     * <code>ApproximateNumberOfMessagesDelayed</code> – Returns the approximate
+     * number of messages in the queue that are delayed and not available for
+     * reading immediately. This can happen when the queue is configured as a
+     * delay queue or when a message has been sent with a delay parameter.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesNotVisible</code> - Returns the
-     * approximate number of messages that have not timed-out and are not
-     * deleted. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessagesNotVisible</code> – Returns the
+     * approximate number of messages that are in flight. Messages are
+     * considered to be <i>in flight</i> if they have been sent to a client but
+     * have not yet been deleted or have not yet reached the end of their
+     * visibility window.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>CreatedTimestamp</code> - Returns the time when the queue was
-     * created in seconds (epoch time).
+     * <code>CreatedTimestamp</code> – Returns the time when the queue was
+     * created in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DelaySeconds</code> - Returns the default delay on the queue in
+     * <code>DelaySeconds</code> – Returns the default delay on the queue in
      * seconds.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>LastModifiedTimestamp</code> - Returns the time when the queue was
-     * last changed in seconds (epoch time).
+     * <code>LastModifiedTimestamp</code> – Returns the time when the queue was
+     * last changed in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MaximumMessageSize</code> - Returns the limit of how many bytes a
+     * <code>MaximumMessageSize</code> – Returns the limit of how many bytes a
      * message can contain before Amazon SQS rejects it.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MessageRetentionPeriod</code> - Returns the number of seconds for
-     * which Amazon SQS retains a message.
+     * <code>MessageRetentionPeriod</code> – Returns the length of time, in
+     * seconds, for which Amazon SQS retains a message.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Policy</code> - Returns the policy of the queue.
+     * <code>Policy</code> – Returns the policy of the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>QueueArn</code> - Returns the Amazon resource name (ARN) of the
+     * <code>QueueArn</code> – Returns the Amazon resource name (ARN) of the
      * queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReceiveMessageWaitTimeSeconds</code> - Returns the number of
-     * seconds for which ReceiveMessage call will wait for a message to arrive.
+     * <code>ReceiveMessageWaitTimeSeconds</code> – Returns the length of time,
+     * in seconds, for which the <code>ReceiveMessage</code> action waits for a
+     * message to arrive.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>RedrivePolicy</code> - Returns the parameters for dead letter queue
-     * functionality of the source queue. For more information about the redrive
-     * policy and dead letter queues, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * <code>RedrivePolicy</code> – The string that includes the parameters for
+     * the dead-letter queue functionality of the source queue as a JSON object.
+     * For more information about the redrive policy and dead-letter queues, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+     * Service Developer Guide</i>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deadLetterTargetArn</code> – The Amazon Resource Name (ARN) of the
+     * dead-letter queue to which Amazon SQS moves messages after the value of
+     * <code>maxReceiveCount</code> is exceeded.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>VisibilityTimeout</code> - Returns the visibility timeout for the
+     * <code>maxReceiveCount</code> – The number of times a message is delivered
+     * to the source queue before being moved to the dead-letter queue. When the
+     * <code>ReceiveCount</code> for a message exceeds the
+     * <code>maxReceiveCount</code> for a queue, Amazon SQS moves the message to
+     * the dead-letter-queue.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code> – Returns the visibility timeout for the
      * queue. For more information about the visibility timeout, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     * >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * The following attributes apply only to <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed customer
+     * master key (CMK) for Amazon SQS or a custom CMK. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     * >Key Terms</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length of time,
+     * in seconds, for which Amazon SQS can reuse a data key to encrypt or
+     * decrypt messages before calling AWS KMS again. For more information, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     * >How Does the Data Key Reuse Period Work?</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      * >FIFO (first-in-first-out) queues</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FifoQueue</code> - Returns whether the queue is FIFO. For more
+     * <code>FifoQueue</code> – Returns whether the queue is FIFO. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     * >FIFO Queue Logic</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     * >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * To determine whether a queue is <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
-     * <code>ContentBasedDeduplication</code> - Returns whether content-based
+     * <code>ContentBasedDeduplication</code> – Returns whether content-based
      * deduplication is enabled for the queue. For more information, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * >Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * >Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -1148,141 +1350,203 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      *            </p>
      *            <note>
      *            <p>
-     *            Going forward, new attributes might be added. If you are
-     *            writing code that calls this action, we recommend that you
-     *            structure your code so that it can handle new attributes
-     *            gracefully.
+     *            In the future, new attributes might be added. If you write
+     *            code that calls this action, we recommend that you structure
+     *            your code so that it can handle new attributes gracefully.
      *            </p>
      *            </note>
      *            <p>
      *            The following attributes are supported:
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>ApproximateNumberOfMessagesDelayed</code>,
+     *            <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     *            <code>ApproximateNumberOfMessagesVisible</code> metrics may
+     *            not achieve consistency until at least 1 minute after the
+     *            producers stop sending messages. This period is required for
+     *            the queue metadata to reach eventual consistency.
+     *            </p>
+     *            </important>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>All</code> - Returns all values.
+     *            <code>All</code> – Returns all values.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateNumberOfMessages</code> - Returns the
-     *            approximate number of visible messages in a queue. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ApproximateNumberOfMessagesDelayed</code> - Returns the
-     *            approximate number of messages that are waiting to be added to
+     *            <code>ApproximateNumberOfMessages</code> – Returns the
+     *            approximate number of messages available for retrieval from
      *            the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateNumberOfMessagesNotVisible</code> - Returns
-     *            the approximate number of messages that have not timed-out and
-     *            are not deleted. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
+     *            <code>ApproximateNumberOfMessagesDelayed</code> – Returns the
+     *            approximate number of messages in the queue that are delayed
+     *            and not available for reading immediately. This can happen
+     *            when the queue is configured as a delay queue or when a
+     *            message has been sent with a delay parameter.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>CreatedTimestamp</code> - Returns the time when the
-     *            queue was created in seconds (epoch time).
+     *            <code>ApproximateNumberOfMessagesNotVisible</code> – Returns
+     *            the approximate number of messages that are in flight.
+     *            Messages are considered to be <i>in flight</i> if they have
+     *            been sent to a client but have not yet been deleted or have
+     *            not yet reached the end of their visibility window.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DelaySeconds</code> - Returns the default delay on the
+     *            <code>CreatedTimestamp</code> – Returns the time when the
+     *            queue was created in seconds (<a
+     *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DelaySeconds</code> – Returns the default delay on the
      *            queue in seconds.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>LastModifiedTimestamp</code> - Returns the time when the
-     *            queue was last changed in seconds (epoch time).
+     *            <code>LastModifiedTimestamp</code> – Returns the time when the
+     *            queue was last changed in seconds (<a
+     *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MaximumMessageSize</code> - Returns the limit of how
+     *            <code>MaximumMessageSize</code> – Returns the limit of how
      *            many bytes a message can contain before Amazon SQS rejects it.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MessageRetentionPeriod</code> - Returns the number of
-     *            seconds for which Amazon SQS retains a message.
+     *            <code>MessageRetentionPeriod</code> – Returns the length of
+     *            time, in seconds, for which Amazon SQS retains a message.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Policy</code> - Returns the policy of the queue.
+     *            <code>Policy</code> – Returns the policy of the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>QueueArn</code> - Returns the Amazon resource name (ARN)
+     *            <code>QueueArn</code> – Returns the Amazon resource name (ARN)
      *            of the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReceiveMessageWaitTimeSeconds</code> - Returns the
-     *            number of seconds for which ReceiveMessage call will wait for
-     *            a message to arrive.
+     *            <code>ReceiveMessageWaitTimeSeconds</code> – Returns the
+     *            length of time, in seconds, for which the
+     *            <code>ReceiveMessage</code> action waits for a message to
+     *            arrive.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>RedrivePolicy</code> - Returns the parameters for dead
-     *            letter queue functionality of the source queue. For more
-     *            information about the redrive policy and dead letter queues,
-     *            see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     *            >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS
-     *            Developer Guide</i>.
+     *            <code>RedrivePolicy</code> – The string that includes the
+     *            parameters for the dead-letter queue functionality of the
+     *            source queue as a JSON object. For more information about the
+     *            redrive policy and dead-letter queues, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     *            >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon
+     *            Simple Queue Service Developer Guide</i>.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>deadLetterTargetArn</code> – The Amazon Resource Name
+     *            (ARN) of the dead-letter queue to which Amazon SQS moves
+     *            messages after the value of <code>maxReceiveCount</code> is
+     *            exceeded.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VisibilityTimeout</code> - Returns the visibility
+     *            <code>maxReceiveCount</code> – The number of times a message
+     *            is delivered to the source queue before being moved to the
+     *            dead-letter queue. When the <code>ReceiveCount</code> for a
+     *            message exceeds the <code>maxReceiveCount</code> for a queue,
+     *            Amazon SQS moves the message to the dead-letter-queue.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>VisibilityTimeout</code> – Returns the visibility
      *            timeout for the queue. For more information about the
      *            visibility timeout, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     *            >Visibility Timeout</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     *            >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
      *            The following attributes apply only to <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     *            >server-side-encryption</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed
+     *            customer master key (CMK) for Amazon SQS or a custom CMK. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     *            >Key Terms</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length
+     *            of time, in seconds, for which Amazon SQS can reuse a data key
+     *            to encrypt or decrypt messages before calling AWS KMS again.
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     *            >How Does the Data Key Reuse Period Work?</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      *            >FIFO (first-in-first-out) queues</a>:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>FifoQueue</code> - Returns whether the queue is FIFO.
+     *            <code>FifoQueue</code> – Returns whether the queue is FIFO.
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     *            >FIFO Queue Logic</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     *            >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            To determine whether a queue is <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *            >FIFO</a>, you can check whether <code>QueueName</code> ends
+     *            with the <code>.fifo</code> suffix.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
-     *            <code>ContentBasedDeduplication</code> - Returns whether
+     *            <code>ContentBasedDeduplication</code> – Returns whether
      *            content-based deduplication is enabled for the queue. For more
      *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *            >Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *            >Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *            Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1305,132 +1569,198 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      * </p>
      * <note>
      * <p>
-     * Going forward, new attributes might be added. If you are writing code
-     * that calls this action, we recommend that you structure your code so that
-     * it can handle new attributes gracefully.
+     * In the future, new attributes might be added. If you write code that
+     * calls this action, we recommend that you structure your code so that it
+     * can handle new attributes gracefully.
      * </p>
      * </note>
      * <p>
      * The following attributes are supported:
      * </p>
+     * <important>
+     * <p>
+     * The <code>ApproximateNumberOfMessagesDelayed</code>,
+     * <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     * <code>ApproximateNumberOfMessagesVisible</code> metrics may not achieve
+     * consistency until at least 1 minute after the producers stop sending
+     * messages. This period is required for the queue metadata to reach
+     * eventual consistency.
+     * </p>
+     * </important>
      * <ul>
      * <li>
      * <p>
-     * <code>All</code> - Returns all values.
+     * <code>All</code> – Returns all values.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessages</code> - Returns the approximate number
-     * of visible messages in a queue. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessages</code> – Returns the approximate number
+     * of messages available for retrieval from the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesDelayed</code> - Returns the approximate
-     * number of messages that are waiting to be added to the queue.
+     * <code>ApproximateNumberOfMessagesDelayed</code> – Returns the approximate
+     * number of messages in the queue that are delayed and not available for
+     * reading immediately. This can happen when the queue is configured as a
+     * delay queue or when a message has been sent with a delay parameter.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ApproximateNumberOfMessagesNotVisible</code> - Returns the
-     * approximate number of messages that have not timed-out and are not
-     * deleted. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     * >Resources Required to Process Messages</a> in the <i>Amazon SQS
-     * Developer Guide</i>.
+     * <code>ApproximateNumberOfMessagesNotVisible</code> – Returns the
+     * approximate number of messages that are in flight. Messages are
+     * considered to be <i>in flight</i> if they have been sent to a client but
+     * have not yet been deleted or have not yet reached the end of their
+     * visibility window.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>CreatedTimestamp</code> - Returns the time when the queue was
-     * created in seconds (epoch time).
+     * <code>CreatedTimestamp</code> – Returns the time when the queue was
+     * created in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>DelaySeconds</code> - Returns the default delay on the queue in
+     * <code>DelaySeconds</code> – Returns the default delay on the queue in
      * seconds.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>LastModifiedTimestamp</code> - Returns the time when the queue was
-     * last changed in seconds (epoch time).
+     * <code>LastModifiedTimestamp</code> – Returns the time when the queue was
+     * last changed in seconds (<a
+     * href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MaximumMessageSize</code> - Returns the limit of how many bytes a
+     * <code>MaximumMessageSize</code> – Returns the limit of how many bytes a
      * message can contain before Amazon SQS rejects it.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>MessageRetentionPeriod</code> - Returns the number of seconds for
-     * which Amazon SQS retains a message.
+     * <code>MessageRetentionPeriod</code> – Returns the length of time, in
+     * seconds, for which Amazon SQS retains a message.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Policy</code> - Returns the policy of the queue.
+     * <code>Policy</code> – Returns the policy of the queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>QueueArn</code> - Returns the Amazon resource name (ARN) of the
+     * <code>QueueArn</code> – Returns the Amazon resource name (ARN) of the
      * queue.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>ReceiveMessageWaitTimeSeconds</code> - Returns the number of
-     * seconds for which ReceiveMessage call will wait for a message to arrive.
+     * <code>ReceiveMessageWaitTimeSeconds</code> – Returns the length of time,
+     * in seconds, for which the <code>ReceiveMessage</code> action waits for a
+     * message to arrive.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>RedrivePolicy</code> - Returns the parameters for dead letter queue
-     * functionality of the source queue. For more information about the redrive
-     * policy and dead letter queues, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     * >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS Developer
-     * Guide</i>.
+     * <code>RedrivePolicy</code> – The string that includes the parameters for
+     * the dead-letter queue functionality of the source queue as a JSON object.
+     * For more information about the redrive policy and dead-letter queues, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     * >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon Simple Queue
+     * Service Developer Guide</i>.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deadLetterTargetArn</code> – The Amazon Resource Name (ARN) of the
+     * dead-letter queue to which Amazon SQS moves messages after the value of
+     * <code>maxReceiveCount</code> is exceeded.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>VisibilityTimeout</code> - Returns the visibility timeout for the
+     * <code>maxReceiveCount</code> – The number of times a message is delivered
+     * to the source queue before being moved to the dead-letter queue. When the
+     * <code>ReceiveCount</code> for a message exceeds the
+     * <code>maxReceiveCount</code> for a queue, Amazon SQS moves the message to
+     * the dead-letter-queue.
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * <code>VisibilityTimeout</code> – Returns the visibility timeout for the
      * queue. For more information about the visibility timeout, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     * >Visibility Timeout</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     * >Visibility Timeout</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
      * </li>
      * </ul>
      * <p>
      * The following attributes apply only to <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     * >server-side-encryption</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed customer
+     * master key (CMK) for Amazon SQS or a custom CMK. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     * >Key Terms</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length of time,
+     * in seconds, for which Amazon SQS can reuse a data key to encrypt or
+     * decrypt messages before calling AWS KMS again. For more information, see
+     * <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     * >How Does the Data Key Reuse Period Work?</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      * >FIFO (first-in-first-out) queues</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>FifoQueue</code> - Returns whether the queue is FIFO. For more
+     * <code>FifoQueue</code> – Returns whether the queue is FIFO. For more
      * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     * >FIFO Queue Logic</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     * >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service Developer
+     * Guide</i>.
      * </p>
-     * </li>
+     * <note>
+     * <p>
+     * To determine whether a queue is <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     * >FIFO</a>, you can check whether <code>QueueName</code> ends with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * </note></li>
      * <li>
      * <p>
-     * <code>ContentBasedDeduplication</code> - Returns whether content-based
+     * <code>ContentBasedDeduplication</code> – Returns whether content-based
      * deduplication is enabled for the queue. For more information, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * >Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * >Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * </li>
      * </ul>
@@ -1443,141 +1773,203 @@ public class GetQueueAttributesRequest extends AmazonWebServiceRequest implement
      *            </p>
      *            <note>
      *            <p>
-     *            Going forward, new attributes might be added. If you are
-     *            writing code that calls this action, we recommend that you
-     *            structure your code so that it can handle new attributes
-     *            gracefully.
+     *            In the future, new attributes might be added. If you write
+     *            code that calls this action, we recommend that you structure
+     *            your code so that it can handle new attributes gracefully.
      *            </p>
      *            </note>
      *            <p>
      *            The following attributes are supported:
      *            </p>
+     *            <important>
+     *            <p>
+     *            The <code>ApproximateNumberOfMessagesDelayed</code>,
+     *            <code>ApproximateNumberOfMessagesNotVisible</code>, and
+     *            <code>ApproximateNumberOfMessagesVisible</code> metrics may
+     *            not achieve consistency until at least 1 minute after the
+     *            producers stop sending messages. This period is required for
+     *            the queue metadata to reach eventual consistency.
+     *            </p>
+     *            </important>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>All</code> - Returns all values.
+     *            <code>All</code> – Returns all values.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateNumberOfMessages</code> - Returns the
-     *            approximate number of visible messages in a queue. For more
-     *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>ApproximateNumberOfMessagesDelayed</code> - Returns the
-     *            approximate number of messages that are waiting to be added to
+     *            <code>ApproximateNumberOfMessages</code> – Returns the
+     *            approximate number of messages available for retrieval from
      *            the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ApproximateNumberOfMessagesNotVisible</code> - Returns
-     *            the approximate number of messages that have not timed-out and
-     *            are not deleted. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ApproximateNumber.html"
-     *            >Resources Required to Process Messages</a> in the <i>Amazon
-     *            SQS Developer Guide</i>.
+     *            <code>ApproximateNumberOfMessagesDelayed</code> – Returns the
+     *            approximate number of messages in the queue that are delayed
+     *            and not available for reading immediately. This can happen
+     *            when the queue is configured as a delay queue or when a
+     *            message has been sent with a delay parameter.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>CreatedTimestamp</code> - Returns the time when the
-     *            queue was created in seconds (epoch time).
+     *            <code>ApproximateNumberOfMessagesNotVisible</code> – Returns
+     *            the approximate number of messages that are in flight.
+     *            Messages are considered to be <i>in flight</i> if they have
+     *            been sent to a client but have not yet been deleted or have
+     *            not yet reached the end of their visibility window.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>DelaySeconds</code> - Returns the default delay on the
+     *            <code>CreatedTimestamp</code> – Returns the time when the
+     *            queue was created in seconds (<a
+     *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DelaySeconds</code> – Returns the default delay on the
      *            queue in seconds.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>LastModifiedTimestamp</code> - Returns the time when the
-     *            queue was last changed in seconds (epoch time).
+     *            <code>LastModifiedTimestamp</code> – Returns the time when the
+     *            queue was last changed in seconds (<a
+     *            href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a>).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MaximumMessageSize</code> - Returns the limit of how
+     *            <code>MaximumMessageSize</code> – Returns the limit of how
      *            many bytes a message can contain before Amazon SQS rejects it.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>MessageRetentionPeriod</code> - Returns the number of
-     *            seconds for which Amazon SQS retains a message.
+     *            <code>MessageRetentionPeriod</code> – Returns the length of
+     *            time, in seconds, for which Amazon SQS retains a message.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Policy</code> - Returns the policy of the queue.
+     *            <code>Policy</code> – Returns the policy of the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>QueueArn</code> - Returns the Amazon resource name (ARN)
+     *            <code>QueueArn</code> – Returns the Amazon resource name (ARN)
      *            of the queue.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>ReceiveMessageWaitTimeSeconds</code> - Returns the
-     *            number of seconds for which ReceiveMessage call will wait for
-     *            a message to arrive.
+     *            <code>ReceiveMessageWaitTimeSeconds</code> – Returns the
+     *            length of time, in seconds, for which the
+     *            <code>ReceiveMessage</code> action waits for a message to
+     *            arrive.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>RedrivePolicy</code> - Returns the parameters for dead
-     *            letter queue functionality of the source queue. For more
-     *            information about the redrive policy and dead letter queues,
-     *            see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html"
-     *            >Using Amazon SQS Dead Letter Queues</a> in the <i>Amazon SQS
-     *            Developer Guide</i>.
+     *            <code>RedrivePolicy</code> – The string that includes the
+     *            parameters for the dead-letter queue functionality of the
+     *            source queue as a JSON object. For more information about the
+     *            redrive policy and dead-letter queues, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
+     *            >Using Amazon SQS Dead-Letter Queues</a> in the <i>Amazon
+     *            Simple Queue Service Developer Guide</i>.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>deadLetterTargetArn</code> – The Amazon Resource Name
+     *            (ARN) of the dead-letter queue to which Amazon SQS moves
+     *            messages after the value of <code>maxReceiveCount</code> is
+     *            exceeded.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>VisibilityTimeout</code> - Returns the visibility
+     *            <code>maxReceiveCount</code> – The number of times a message
+     *            is delivered to the source queue before being moved to the
+     *            dead-letter queue. When the <code>ReceiveCount</code> for a
+     *            message exceeds the <code>maxReceiveCount</code> for a queue,
+     *            Amazon SQS moves the message to the dead-letter-queue.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>VisibilityTimeout</code> – Returns the visibility
      *            timeout for the queue. For more information about the
      *            visibility timeout, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/AboutVT.html"
-     *            >Visibility Timeout</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html"
+     *            >Visibility Timeout</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
      *            The following attributes apply only to <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html"
+     *            >server-side-encryption</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>KmsMasterKeyId</code> – Returns the ID of an AWS-managed
+     *            customer master key (CMK) for Amazon SQS or a custom CMK. For
+     *            more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-sse-key-terms"
+     *            >Key Terms</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>KmsDataKeyReusePeriodSeconds</code> – Returns the length
+     *            of time, in seconds, for which Amazon SQS can reuse a data key
+     *            to encrypt or decrypt messages before calling AWS KMS again.
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html#sqs-how-does-the-data-key-reuse-period-work"
+     *            >How Does the Data Key Reuse Period Work?</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
      *            >FIFO (first-in-first-out) queues</a>:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>FifoQueue</code> - Returns whether the queue is FIFO.
+     *            <code>FifoQueue</code> – Returns whether the queue is FIFO.
      *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
-     *            >FIFO Queue Logic</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic"
+     *            >FIFO Queue Logic</a> in the <i>Amazon Simple Queue Service
+     *            Developer Guide</i>.
      *            </p>
-     *            </li>
+     *            <note>
+     *            <p>
+     *            To determine whether a queue is <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html"
+     *            >FIFO</a>, you can check whether <code>QueueName</code> ends
+     *            with the <code>.fifo</code> suffix.
+     *            </p>
+     *            </note></li>
      *            <li>
      *            <p>
-     *            <code>ContentBasedDeduplication</code> - Returns whether
+     *            <code>ContentBasedDeduplication</code> – Returns whether
      *            content-based deduplication is enabled for the queue. For more
      *            information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *            >Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *            >Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *            Service Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,6 +47,12 @@ class SendMessageBatchResultEntryStaxMarshaller {
             String mD5OfMessageAttributes = _sendMessageBatchResultEntry
                     .getMD5OfMessageAttributes();
             request.addParameter(prefix, StringUtils.fromString(mD5OfMessageAttributes));
+        }
+        if (_sendMessageBatchResultEntry.getMD5OfMessageSystemAttributes() != null) {
+            prefix = _prefix + "MD5OfMessageSystemAttributes";
+            String mD5OfMessageSystemAttributes = _sendMessageBatchResultEntry
+                    .getMD5OfMessageSystemAttributes();
+            request.addParameter(prefix, StringUtils.fromString(mD5OfMessageSystemAttributes));
         }
         if (_sendMessageBatchResultEntry.getSequenceNumber() != null) {
             prefix = _prefix + "SequenceNumber";

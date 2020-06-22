@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,17 +22,41 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Revokes any permissions in the queue policy that matches the specified
- * <code>Label</code> parameter. Only the owner of the queue can remove
- * permissions.
+ * <code>Label</code> parameter.
  * </p>
+ * <note>
+ * <ul>
+ * <li>
+ * <p>
+ * Only the owner of a queue can remove permissions from it.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * Cross-account permissions don't apply to this action. For more information,
+ * see <a href=
+ * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-customer-managed-policy-examples.html#grant-cross-account-permissions-to-role-and-user-name"
+ * >Grant Cross-Account Permissions to a Role and a User Name</a> in the
+ * <i>Amazon Simple Queue Service Developer Guide</i>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * To remove the ability to change queue permissions, you must deny permission
+ * to the <code>AddPermission</code>, <code>RemovePermission</code>, and
+ * <code>SetQueueAttributes</code> actions in your IAM policy.
+ * </p>
+ * </li>
+ * </ul>
+ * </note>
  */
 public class RemovePermissionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which permissions are removed.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueUrl;
@@ -40,53 +64,25 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identification of the permission to remove. This is the label added
-     * with the <a>AddPermission</a> action.
+     * using the <code> <a>AddPermission</a> </code> action.
      * </p>
      */
     private String label;
 
     /**
-     * Default constructor for RemovePermissionRequest object. Callers should
-     * use the setter or fluent setter (with...) methods to initialize any
-     * additional object members.
-     */
-    public RemovePermissionRequest() {
-    }
-
-    /**
-     * Constructs a new RemovePermissionRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     * 
-     * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     * @param label <p>
-     *            The identification of the permission to remove. This is the
-     *            label added with the <a>AddPermission</a> action.
-     *            </p>
-     */
-    public RemovePermissionRequest(String queueUrl, String label) {
-        setQueueUrl(queueUrl);
-        setLabel(label);
-    }
-
-    /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which permissions are removed.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The URL of the Amazon SQS queue to take action on.
+     *         The URL of the Amazon SQS queue from which permissions are
+     *         removed.
      *         </p>
      *         <p>
-     *         Queue URLs are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueUrl() {
@@ -95,17 +91,18 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which permissions are removed.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue from which permissions are
+     *            removed.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -114,20 +111,21 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which permissions are removed.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue from which permissions are
+     *            removed.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -140,12 +138,12 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identification of the permission to remove. This is the label added
-     * with the <a>AddPermission</a> action.
+     * using the <code> <a>AddPermission</a> </code> action.
      * </p>
      *
      * @return <p>
      *         The identification of the permission to remove. This is the label
-     *         added with the <a>AddPermission</a> action.
+     *         added using the <code> <a>AddPermission</a> </code> action.
      *         </p>
      */
     public String getLabel() {
@@ -155,12 +153,13 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identification of the permission to remove. This is the label added
-     * with the <a>AddPermission</a> action.
+     * using the <code> <a>AddPermission</a> </code> action.
      * </p>
      *
      * @param label <p>
      *            The identification of the permission to remove. This is the
-     *            label added with the <a>AddPermission</a> action.
+     *            label added using the <code> <a>AddPermission</a> </code>
+     *            action.
      *            </p>
      */
     public void setLabel(String label) {
@@ -170,7 +169,7 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The identification of the permission to remove. This is the label added
-     * with the <a>AddPermission</a> action.
+     * using the <code> <a>AddPermission</a> </code> action.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -178,7 +177,8 @@ public class RemovePermissionRequest extends AmazonWebServiceRequest implements 
      *
      * @param label <p>
      *            The identification of the permission to remove. This is the
-     *            label added with the <a>AddPermission</a> action.
+     *            label added using the <code> <a>AddPermission</a> </code>
+     *            action.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

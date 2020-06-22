@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,6 +65,30 @@ class SendMessageBatchRequestEntryStaxMarshaller {
                 messageAttributesIndex++;
             }
             prefix = messageAttributesPrefix;
+        }
+        if (_sendMessageBatchRequestEntry.getMessageSystemAttributes() != null) {
+            prefix = _prefix + "MessageSystemAttribute";
+            java.util.Map<String, MessageSystemAttributeValue> messageSystemAttributes = _sendMessageBatchRequestEntry
+                    .getMessageSystemAttributes();
+            int messageSystemAttributesIndex = 1;
+            String messageSystemAttributesPrefix = prefix + ".";
+            for (java.util.Map.Entry<String, MessageSystemAttributeValue> messageSystemAttributesEntry : messageSystemAttributes
+                    .entrySet()) {
+                prefix = messageSystemAttributesPrefix + messageSystemAttributesIndex;
+                if (messageSystemAttributesEntry.getKey() != null) {
+                    request.addParameter(prefix + ".Name",
+                            StringUtils.fromString(messageSystemAttributesEntry.getKey()));
+                }
+                prefix += ".Value";
+                if (messageSystemAttributesEntry.getValue() != null) {
+                    MessageSystemAttributeValue messageSystemAttributesValue = messageSystemAttributesEntry
+                            .getValue();
+                    MessageSystemAttributeValueStaxMarshaller.getInstance().marshall(
+                            messageSystemAttributesValue, request, prefix + ".");
+                }
+                messageSystemAttributesIndex++;
+            }
+            prefix = messageSystemAttributesPrefix;
         }
         if (_sendMessageBatchRequestEntry.getMessageDeduplicationId() != null) {
             prefix = _prefix + "MessageDeduplicationId";

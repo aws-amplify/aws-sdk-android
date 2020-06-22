@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,21 +25,29 @@ import java.io.Serializable;
 public class ListDeadLetterSourceQueuesResult implements Serializable {
     /**
      * <p>
-     * A list of source queue URLs that have the RedrivePolicy queue attribute
-     * configured with a dead letter queue.
+     * A list of source queue URLs that have the <code>RedrivePolicy</code>
+     * queue attribute configured with a dead-letter queue.
      * </p>
      */
-    private java.util.List<String> queueUrls = new java.util.ArrayList<String>();
+    private java.util.List<String> queueUrls;
 
     /**
      * <p>
-     * A list of source queue URLs that have the RedrivePolicy queue attribute
-     * configured with a dead letter queue.
+     * Pagination token to include in the next request.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
+     * A list of source queue URLs that have the <code>RedrivePolicy</code>
+     * queue attribute configured with a dead-letter queue.
      * </p>
      *
      * @return <p>
-     *         A list of source queue URLs that have the RedrivePolicy queue
-     *         attribute configured with a dead letter queue.
+     *         A list of source queue URLs that have the
+     *         <code>RedrivePolicy</code> queue attribute configured with a
+     *         dead-letter queue.
      *         </p>
      */
     public java.util.List<String> getQueueUrls() {
@@ -48,13 +56,14 @@ public class ListDeadLetterSourceQueuesResult implements Serializable {
 
     /**
      * <p>
-     * A list of source queue URLs that have the RedrivePolicy queue attribute
-     * configured with a dead letter queue.
+     * A list of source queue URLs that have the <code>RedrivePolicy</code>
+     * queue attribute configured with a dead-letter queue.
      * </p>
      *
      * @param queueUrls <p>
-     *            A list of source queue URLs that have the RedrivePolicy queue
-     *            attribute configured with a dead letter queue.
+     *            A list of source queue URLs that have the
+     *            <code>RedrivePolicy</code> queue attribute configured with a
+     *            dead-letter queue.
      *            </p>
      */
     public void setQueueUrls(java.util.Collection<String> queueUrls) {
@@ -68,16 +77,17 @@ public class ListDeadLetterSourceQueuesResult implements Serializable {
 
     /**
      * <p>
-     * A list of source queue URLs that have the RedrivePolicy queue attribute
-     * configured with a dead letter queue.
+     * A list of source queue URLs that have the <code>RedrivePolicy</code>
+     * queue attribute configured with a dead-letter queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrls <p>
-     *            A list of source queue URLs that have the RedrivePolicy queue
-     *            attribute configured with a dead letter queue.
+     *            A list of source queue URLs that have the
+     *            <code>RedrivePolicy</code> queue attribute configured with a
+     *            dead-letter queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,22 +104,68 @@ public class ListDeadLetterSourceQueuesResult implements Serializable {
 
     /**
      * <p>
-     * A list of source queue URLs that have the RedrivePolicy queue attribute
-     * configured with a dead letter queue.
+     * A list of source queue URLs that have the <code>RedrivePolicy</code>
+     * queue attribute configured with a dead-letter queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrls <p>
-     *            A list of source queue URLs that have the RedrivePolicy queue
-     *            attribute configured with a dead letter queue.
+     *            A list of source queue URLs that have the
+     *            <code>RedrivePolicy</code> queue attribute configured with a
+     *            dead-letter queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListDeadLetterSourceQueuesResult withQueueUrls(java.util.Collection<String> queueUrls) {
         setQueueUrls(queueUrls);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Pagination token to include in the next request.
+     * </p>
+     *
+     * @return <p>
+     *         Pagination token to include in the next request.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * Pagination token to include in the next request.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            Pagination token to include in the next request.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * Pagination token to include in the next request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            Pagination token to include in the next request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListDeadLetterSourceQueuesResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -125,7 +181,9 @@ public class ListDeadLetterSourceQueuesResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getQueueUrls() != null)
-            sb.append("queueUrls: " + getQueueUrls());
+            sb.append("queueUrls: " + getQueueUrls() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -136,6 +194,7 @@ public class ListDeadLetterSourceQueuesResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getQueueUrls() == null) ? 0 : getQueueUrls().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -154,6 +213,11 @@ public class ListDeadLetterSourceQueuesResult implements Serializable {
             return false;
         if (other.getQueueUrls() != null
                 && other.getQueueUrls().equals(this.getQueueUrls()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
         return true;
     }

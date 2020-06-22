@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,18 +25,18 @@ import java.io.Serializable;
 public class GetQueueAttributesResult implements Serializable {
     /**
      * <p>
-     * A map of attributes to the respective values.
+     * A map of attributes to their respective values.
      * </p>
      */
-    private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
+    private java.util.Map<String, String> attributes;
 
     /**
      * <p>
-     * A map of attributes to the respective values.
+     * A map of attributes to their respective values.
      * </p>
      *
      * @return <p>
-     *         A map of attributes to the respective values.
+     *         A map of attributes to their respective values.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -45,11 +45,11 @@ public class GetQueueAttributesResult implements Serializable {
 
     /**
      * <p>
-     * A map of attributes to the respective values.
+     * A map of attributes to their respective values.
      * </p>
      *
      * @param attributes <p>
-     *            A map of attributes to the respective values.
+     *            A map of attributes to their respective values.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -58,14 +58,14 @@ public class GetQueueAttributesResult implements Serializable {
 
     /**
      * <p>
-     * A map of attributes to the respective values.
+     * A map of attributes to their respective values.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param attributes <p>
-     *            A map of attributes to the respective values.
+     *            A map of attributes to their respective values.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -77,7 +77,7 @@ public class GetQueueAttributesResult implements Serializable {
 
     /**
      * <p>
-     * A map of attributes to the respective values.
+     * A map of attributes to their respective values.
      * </p>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and

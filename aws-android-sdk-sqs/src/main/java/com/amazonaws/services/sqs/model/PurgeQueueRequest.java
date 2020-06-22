@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,75 +21,55 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the messages in a queue specified by the <b>queue URL</b>.
+ * Deletes the messages in a queue specified by the <code>QueueURL</code>
+ * parameter.
  * </p>
  * <important>
  * <p>
- * When you use the <code>PurgeQueue</code> API, the deleted messages in the
- * queue can't be retrieved.
+ * When you use the <code>PurgeQueue</code> action, you can't retrieve any
+ * messages deleted from a queue.
+ * </p>
+ * <p>
+ * The message deletion process takes up to 60 seconds. We recommend waiting for
+ * 60 seconds regardless of your queue's size.
  * </p>
  * </important>
  * <p>
- * When you purge a queue, the message deletion process takes up to 60 seconds.
- * All messages sent to the queue before calling <code>PurgeQueue</code> will be
- * deleted; messages sent to the queue while it is being purged might be
- * deleted. While the queue is being purged, messages sent to the queue before
- * <code>PurgeQueue</code> was called might be received, but will be deleted
- * within the next minute.
+ * Messages sent to the queue <i>before</i> you call <code>PurgeQueue</code>
+ * might be received but are deleted within the next minute.
+ * </p>
+ * <p>
+ * Messages sent to the queue <i>after</i> you call <code>PurgeQueue</code>
+ * might be deleted while the queue is being purged.
  * </p>
  */
 public class PurgeQueueRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * The URL of the queue from which the <code>PurgeQueue</code> action
+     * deletes messages.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueUrl;
 
     /**
-     * Default constructor for PurgeQueueRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     */
-    public PurgeQueueRequest() {
-    }
-
-    /**
-     * Constructs a new PurgeQueueRequest object. Callers should use the setter
-     * or fluent setter (with...) methods to initialize any additional object
-     * members.
-     * 
-     * @param queueUrl <p>
-     *            The queue URL of the queue to delete the messages from when
-     *            using the <code>PurgeQueue</code> API.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     */
-    public PurgeQueueRequest(String queueUrl) {
-        setQueueUrl(queueUrl);
-    }
-
-    /**
      * <p>
-     * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * The URL of the queue from which the <code>PurgeQueue</code> action
+     * deletes messages.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The queue URL of the queue to delete the messages from when using
-     *         the <code>PurgeQueue</code> API.
+     *         The URL of the queue from which the <code>PurgeQueue</code>
+     *         action deletes messages.
      *         </p>
      *         <p>
-     *         Queue URLs are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueUrl() {
@@ -98,19 +78,19 @@ public class PurgeQueueRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * The URL of the queue from which the <code>PurgeQueue</code> action
+     * deletes messages.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueUrl <p>
-     *            The queue URL of the queue to delete the messages from when
-     *            using the <code>PurgeQueue</code> API.
+     *            The URL of the queue from which the <code>PurgeQueue</code>
+     *            action deletes messages.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -119,22 +99,22 @@ public class PurgeQueueRequest extends AmazonWebServiceRequest implements Serial
 
     /**
      * <p>
-     * The queue URL of the queue to delete the messages from when using the
-     * <code>PurgeQueue</code> API.
+     * The URL of the queue from which the <code>PurgeQueue</code> action
+     * deletes messages.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The queue URL of the queue to delete the messages from when
-     *            using the <code>PurgeQueue</code> API.
+     *            The URL of the queue from which the <code>PurgeQueue</code>
+     *            action deletes messages.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

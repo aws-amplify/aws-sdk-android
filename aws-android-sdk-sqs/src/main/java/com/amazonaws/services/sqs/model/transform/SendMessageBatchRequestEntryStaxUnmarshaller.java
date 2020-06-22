@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -74,6 +74,48 @@ class SendMessageBatchRequestEntryStaxUnmarshaller implements
 
     }
 
+    private static class MessageSystemAttributesMapEntryUnmarshaller implements
+            Unmarshaller<Map.Entry<String, MessageSystemAttributeValue>, StaxUnmarshallerContext> {
+        @Override
+        public Entry<String, MessageSystemAttributeValue> unmarshall(StaxUnmarshallerContext context)
+                throws Exception {
+            int originalDepth = context.getCurrentDepth();
+            int targetDepth = originalDepth + 1;
+
+            MapEntry<String, MessageSystemAttributeValue> entry = new MapEntry<String, MessageSystemAttributeValue>();
+
+            while (true) {
+                int xmlEvent = context.nextEvent();
+                if (xmlEvent == XmlPullParser.END_DOCUMENT)
+                    return entry;
+
+                if (xmlEvent == XmlPullParser.START_TAG) {
+                    if (context.testExpression("Name", targetDepth)) {
+                        entry.setKey(StringStaxUnmarshaller.getInstance().unmarshall(context));
+                        continue;
+                    }
+                    if (context.testExpression("Value", targetDepth)) {
+                        entry.setValue(MessageSystemAttributeValueStaxUnmarshaller.getInstance()
+                                .unmarshall(context));
+                        continue;
+                    }
+                } else if (xmlEvent == XmlPullParser.END_TAG) {
+                    if (context.getCurrentDepth() < originalDepth)
+                        return entry;
+                }
+            }
+        }
+
+        private static MessageSystemAttributesMapEntryUnmarshaller instance;
+
+        public static MessageSystemAttributesMapEntryUnmarshaller getInstance() {
+            if (instance == null)
+                instance = new MessageSystemAttributesMapEntryUnmarshaller();
+            return instance;
+        }
+
+    }
+
     public SendMessageBatchRequestEntry unmarshall(StaxUnmarshallerContext context)
             throws Exception {
         SendMessageBatchRequestEntry sendMessageBatchRequestEntry = new SendMessageBatchRequestEntry();
@@ -109,6 +151,13 @@ class SendMessageBatchRequestEntryStaxUnmarshaller implements
                     Entry<String, MessageAttributeValue> entry = MessageAttributesMapEntryUnmarshaller
                             .getInstance().unmarshall(context);
                     sendMessageBatchRequestEntry.addMessageAttributesEntry(entry.getKey(),
+                            entry.getValue());
+                    continue;
+                }
+                if (context.testExpression("MessageSystemAttribute", targetDepth)) {
+                    Entry<String, MessageSystemAttributeValue> entry = MessageSystemAttributesMapEntryUnmarshaller
+                            .getInstance().unmarshall(context);
+                    sendMessageBatchRequestEntry.addMessageSystemAttributesEntry(entry.getKey(),
                             entry.getValue());
                     continue;
                 }

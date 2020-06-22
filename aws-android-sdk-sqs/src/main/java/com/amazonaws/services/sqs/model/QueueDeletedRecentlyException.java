@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * You must wait 60 seconds after deleting a queue before you can create another
- * with the same name.
+ * queue with the same name.
  * </p>
  */
 public class QueueDeletedRecentlyException extends AmazonServiceException {

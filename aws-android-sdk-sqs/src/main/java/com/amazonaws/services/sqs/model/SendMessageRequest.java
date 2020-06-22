@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,46 +25,62 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <important>
  * <p>
- * The following list shows the characters (in Unicode) that are allowed in your
- * message, according to the W3C XML specification:
+ * A message can include only XML, JSON, and unformatted text. The following
+ * Unicode characters are allowed:
  * </p>
  * <p>
- * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> | [<code>#x20</code>
- * to <code>#xD7FF</code>] | [<code>#xE000</code> to <code>#xFFFD</code>] | [
- * <code>#x10000</code> to <code>#x10FFFF</code>]
+ * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> | <code>#x20</code> to
+ * <code>#xD7FF</code> | <code>#xE000</code> to <code>#xFFFD</code> |
+ * <code>#x10000</code> to <code>#x10FFFF</code>
  * </p>
  * <p>
- * For more information, see <a
- * href="https://www.ietf.org/rfc/rfc1321.txt">RFC1321</a>. If you send any
- * characters that aren't included in this list, your request will be rejected.
+ * Any characters not included in this list will be rejected. For more
+ * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+ * specification for characters</a>.
  * </p>
  * </important>
  */
 public class SendMessageRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to which a message is sent.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueUrl;
 
     /**
      * <p>
-     * The message to send. String maximum 256 KB in size. For a list of allowed
-     * characters, see the preceding note.
+     * The message to send. The maximum string size is 256 KB.
      * </p>
+     * <important>
+     * <p>
+     * A message can include only XML, JSON, and unformatted text. The following
+     * Unicode characters are allowed:
+     * </p>
+     * <p>
+     * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>
+     * </p>
+     * <p>
+     * Any characters not included in this list will be rejected. For more
+     * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     * specification for characters</a>.
+     * </p>
+     * </important>
      */
     private String messageBody;
 
     /**
      * <p>
-     * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value become
-     * available for processing after the delay time is finished. If you don't
-     * specify a value, the default value for the queue applies.
+     * The length of time, in seconds, for which to delay a specific message.
+     * Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the
+     * delay period is finished. If you don't specify a value, the default value
+     * for the queue applies.
      * </p>
      * <note>
      * <p>
@@ -78,13 +94,40 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      */
-    private java.util.Map<String, MessageAttributeValue> messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
+    private java.util.Map<String, MessageAttributeValue> messageAttributes;
+
+    /**
+     * <p>
+     * The message system attribute to send. Each message system attribute
+     * consists of a <code>Name</code>, <code>Type</code>, and
+     * <code>Value</code>.
+     * </p>
+     * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * Currently, the only supported message system attribute is
+     * <code>AWSTraceHeader</code>. Its type must be <code>String</code> and its
+     * value must be a correctly formatted AWS X-Ray trace header string.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The size of a message system attribute doesn't count towards the total
+     * size of a message.
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
+     */
+    private java.util.Map<String, MessageSystemAttributeValue> messageSystemAttributes;
 
     /**
      * <p>
@@ -96,8 +139,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * messages sent with the same <code>MessageDeduplicationId</code> are
      * accepted successfully but aren't delivered during the 5-minute
      * deduplication interval. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * > Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * > Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <ul>
      * <li>
@@ -143,12 +187,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * You can also use <code>ContentBasedDeduplication</code> for messages with
-     * identical content to be treated as duplicates.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * If you send one message with <code>ContentBasedDeduplication</code>
      * enabled and then another message with a
      * <code>MessageDeduplicationId</code> that is the same as the one generated
@@ -159,25 +197,29 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </ul>
      * <note>
      * <p>
-     * The <code>MessageDeduplicationId</code> is available to the recipient of
+     * The <code>MessageDeduplicationId</code> is available to the consumer of
      * the message (this can be useful for troubleshooting delivery issues).
      * </p>
      * <p>
-     * If a message is sent successfully but the acknowledgdment is lost and the
+     * If a message is sent successfully but the acknowledgement is lost and the
      * message is resent with the same <code>MessageDeduplicationId</code> after
      * the deduplication interval, Amazon SQS can't detect duplicate messages.
      * </p>
+     * <p>
+     * Amazon SQS continues to keep track of the message deduplication ID even
+     * after the message is received and deleted.
+     * </p>
      * </note>
      * <p>
-     * The length of <code>MessageDeduplicationId</code> is 128 characters.
-     * <code>MessageDeduplicationId</code> can contain alphanumeric characters (
-     * <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
-     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * The maximum length of <code>MessageDeduplicationId</code> is 128
+     * characters. <code>MessageDeduplicationId</code> can contain alphanumeric
+     * characters (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and
+     * punctuation (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
      * </p>
      * <p>
      * For best practices of using <code>MessageDeduplicationId</code>, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      * >Using the MessageDeduplicationId Property</a> in the <i>Amazon Simple
      * Queue Service Developer Guide</i>.
      * </p>
@@ -194,9 +236,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * FIFO manner (however, messages in different message groups might be
      * processed out of order). To interleave multiple ordered streams within a
      * single queue, use <code>MessageGroupId</code> values (for example,
-     * session data for multiple users). In this scenario, multiple readers can
-     * process the queue, but the session data of each user is processed in a
-     * FIFO fashion.
+     * session data for multiple users). In this scenario, multiple consumers
+     * can process the queue, but the session data of each user is processed in
+     * a FIFO fashion.
      * </p>
      * <ul>
      * <li>
@@ -216,61 +258,38 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * The length of <code>MessageGroupId</code> is 128 characters. Valid values
-     * are alphanumeric characters and punctuation
+     * The length of <code>MessageGroupId</code> is 128 characters. Valid
+     * values: alphanumeric characters and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
      * For best practices of using <code>MessageGroupId</code>, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      * >Using the MessageGroupId Property</a> in the <i>Amazon Simple Queue
      * Service Developer Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <code>MessageGroupId</code> is required for FIFO queues. You can't use it
+     * for Standard queues.
+     * </p>
+     * </important>
      */
     private String messageGroupId;
 
     /**
-     * Default constructor for SendMessageRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     */
-    public SendMessageRequest() {
-    }
-
-    /**
-     * Constructs a new SendMessageRequest object. Callers should use the setter
-     * or fluent setter (with...) methods to initialize any additional object
-     * members.
-     * 
-     * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     * @param messageBody <p>
-     *            The message to send. String maximum 256 KB in size. For a list
-     *            of allowed characters, see the preceding note.
-     *            </p>
-     */
-    public SendMessageRequest(String queueUrl, String messageBody) {
-        setQueueUrl(queueUrl);
-        setMessageBody(messageBody);
-    }
-
-    /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to which a message is sent.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The URL of the Amazon SQS queue to take action on.
+     *         The URL of the Amazon SQS queue to which a message is sent.
      *         </p>
      *         <p>
-     *         Queue URLs are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueUrl() {
@@ -279,17 +298,17 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to which a message is sent.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue to which a message is sent.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -298,20 +317,20 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue to which a message is sent.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue to which a message is sent.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -323,14 +342,46 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The message to send. String maximum 256 KB in size. For a list of allowed
-     * characters, see the preceding note.
+     * The message to send. The maximum string size is 256 KB.
      * </p>
+     * <important>
+     * <p>
+     * A message can include only XML, JSON, and unformatted text. The following
+     * Unicode characters are allowed:
+     * </p>
+     * <p>
+     * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>
+     * </p>
+     * <p>
+     * Any characters not included in this list will be rejected. For more
+     * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     * specification for characters</a>.
+     * </p>
+     * </important>
      *
      * @return <p>
-     *         The message to send. String maximum 256 KB in size. For a list of
-     *         allowed characters, see the preceding note.
+     *         The message to send. The maximum string size is 256 KB.
      *         </p>
+     *         <important>
+     *         <p>
+     *         A message can include only XML, JSON, and unformatted text. The
+     *         following Unicode characters are allowed:
+     *         </p>
+     *         <p>
+     *         <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     *         <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     *         <code>#xFFFD</code> | <code>#x10000</code> to
+     *         <code>#x10FFFF</code>
+     *         </p>
+     *         <p>
+     *         Any characters not included in this list will be rejected. For
+     *         more information, see the <a
+     *         href="http://www.w3.org/TR/REC-xml/#charsets">W3C specification
+     *         for characters</a>.
+     *         </p>
+     *         </important>
      */
     public String getMessageBody() {
         return messageBody;
@@ -338,14 +389,46 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The message to send. String maximum 256 KB in size. For a list of allowed
-     * characters, see the preceding note.
+     * The message to send. The maximum string size is 256 KB.
      * </p>
+     * <important>
+     * <p>
+     * A message can include only XML, JSON, and unformatted text. The following
+     * Unicode characters are allowed:
+     * </p>
+     * <p>
+     * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>
+     * </p>
+     * <p>
+     * Any characters not included in this list will be rejected. For more
+     * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     * specification for characters</a>.
+     * </p>
+     * </important>
      *
      * @param messageBody <p>
-     *            The message to send. String maximum 256 KB in size. For a list
-     *            of allowed characters, see the preceding note.
+     *            The message to send. The maximum string size is 256 KB.
      *            </p>
+     *            <important>
+     *            <p>
+     *            A message can include only XML, JSON, and unformatted text.
+     *            The following Unicode characters are allowed:
+     *            </p>
+     *            <p>
+     *            <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     *            <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code>
+     *            to <code>#xFFFD</code> | <code>#x10000</code> to
+     *            <code>#x10FFFF</code>
+     *            </p>
+     *            <p>
+     *            Any characters not included in this list will be rejected. For
+     *            more information, see the <a
+     *            href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     *            specification for characters</a>.
+     *            </p>
+     *            </important>
      */
     public void setMessageBody(String messageBody) {
         this.messageBody = messageBody;
@@ -353,17 +436,49 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The message to send. String maximum 256 KB in size. For a list of allowed
-     * characters, see the preceding note.
+     * The message to send. The maximum string size is 256 KB.
      * </p>
+     * <important>
+     * <p>
+     * A message can include only XML, JSON, and unformatted text. The following
+     * Unicode characters are allowed:
+     * </p>
+     * <p>
+     * <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     * <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code> to
+     * <code>#xFFFD</code> | <code>#x10000</code> to <code>#x10FFFF</code>
+     * </p>
+     * <p>
+     * Any characters not included in this list will be rejected. For more
+     * information, see the <a href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     * specification for characters</a>.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param messageBody <p>
-     *            The message to send. String maximum 256 KB in size. For a list
-     *            of allowed characters, see the preceding note.
+     *            The message to send. The maximum string size is 256 KB.
      *            </p>
+     *            <important>
+     *            <p>
+     *            A message can include only XML, JSON, and unformatted text.
+     *            The following Unicode characters are allowed:
+     *            </p>
+     *            <p>
+     *            <code>#x9</code> | <code>#xA</code> | <code>#xD</code> |
+     *            <code>#x20</code> to <code>#xD7FF</code> | <code>#xE000</code>
+     *            to <code>#xFFFD</code> | <code>#x10000</code> to
+     *            <code>#x10FFFF</code>
+     *            </p>
+     *            <p>
+     *            Any characters not included in this list will be rejected. For
+     *            more information, see the <a
+     *            href="http://www.w3.org/TR/REC-xml/#charsets">W3C
+     *            specification for characters</a>.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -374,10 +489,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value become
-     * available for processing after the delay time is finished. If you don't
-     * specify a value, the default value for the queue applies.
+     * The length of time, in seconds, for which to delay a specific message.
+     * Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the
+     * delay period is finished. If you don't specify a value, the default value
+     * for the queue applies.
      * </p>
      * <note>
      * <p>
@@ -388,11 +504,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      *
      * @return <p>
-     *         The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     *         message. Messages with a positive <code>DelaySeconds</code> value
-     *         become available for processing after the delay time is finished.
-     *         If you don't specify a value, the default value for the queue
-     *         applies.
+     *         The length of time, in seconds, for which to delay a specific
+     *         message. Valid values: 0 to 900. Maximum: 15 minutes. Messages
+     *         with a positive <code>DelaySeconds</code> value become available
+     *         for processing after the delay period is finished. If you don't
+     *         specify a value, the default value for the queue applies.
      *         </p>
      *         <note>
      *         <p>
@@ -408,10 +524,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value become
-     * available for processing after the delay time is finished. If you don't
-     * specify a value, the default value for the queue applies.
+     * The length of time, in seconds, for which to delay a specific message.
+     * Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the
+     * delay period is finished. If you don't specify a value, the default value
+     * for the queue applies.
      * </p>
      * <note>
      * <p>
@@ -422,11 +539,12 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </note>
      *
      * @param delaySeconds <p>
-     *            The number of seconds (0 to 900 - 15 minutes) to delay a
-     *            specific message. Messages with a positive
-     *            <code>DelaySeconds</code> value become available for
-     *            processing after the delay time is finished. If you don't
-     *            specify a value, the default value for the queue applies.
+     *            The length of time, in seconds, for which to delay a specific
+     *            message. Valid values: 0 to 900. Maximum: 15 minutes. Messages
+     *            with a positive <code>DelaySeconds</code> value become
+     *            available for processing after the delay period is finished.
+     *            If you don't specify a value, the default value for the queue
+     *            applies.
      *            </p>
      *            <note>
      *            <p>
@@ -442,10 +560,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The number of seconds (0 to 900 - 15 minutes) to delay a specific
-     * message. Messages with a positive <code>DelaySeconds</code> value become
-     * available for processing after the delay time is finished. If you don't
-     * specify a value, the default value for the queue applies.
+     * The length of time, in seconds, for which to delay a specific message.
+     * Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive
+     * <code>DelaySeconds</code> value become available for processing after the
+     * delay period is finished. If you don't specify a value, the default value
+     * for the queue applies.
      * </p>
      * <note>
      * <p>
@@ -459,11 +578,12 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * together.
      *
      * @param delaySeconds <p>
-     *            The number of seconds (0 to 900 - 15 minutes) to delay a
-     *            specific message. Messages with a positive
-     *            <code>DelaySeconds</code> value become available for
-     *            processing after the delay time is finished. If you don't
-     *            specify a value, the default value for the queue applies.
+     *            The length of time, in seconds, for which to delay a specific
+     *            message. Valid values: 0 to 900. Maximum: 15 minutes. Messages
+     *            with a positive <code>DelaySeconds</code> value become
+     *            available for processing after the delay period is finished.
+     *            If you don't specify a value, the default value for the queue
+     *            applies.
      *            </p>
      *            <note>
      *            <p>
@@ -482,18 +602,20 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      *
      * @return <p>
-     *         Each message attribute consists of a Name, Type, and Value. For
-     *         more information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     *         >Message Attribute Items</a> in the <i>Amazon SQS Developer
-     *         Guide</i>.
+     *         Each message attribute consists of a <code>Name</code>,
+     *         <code>Type</code>, and <code>Value</code>. For more information,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *         >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue
+     *         Service Developer Guide</i>.
      *         </p>
      */
     public java.util.Map<String, MessageAttributeValue> getMessageAttributes() {
@@ -502,18 +624,20 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      *
      * @param messageAttributes <p>
-     *            Each message attribute consists of a Name, Type, and Value.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     *            >Message Attribute Items</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            Each message attribute consists of a <code>Name</code>,
+     *            <code>Type</code>, and <code>Value</code>. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *            >Amazon SQS Message Attributes</a> in the <i>Amazon Simple
+     *            Queue Service Developer Guide</i>.
      *            </p>
      */
     public void setMessageAttributes(java.util.Map<String, MessageAttributeValue> messageAttributes) {
@@ -522,21 +646,23 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param messageAttributes <p>
-     *            Each message attribute consists of a Name, Type, and Value.
-     *            For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     *            >Message Attribute Items</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            Each message attribute consists of a <code>Name</code>,
+     *            <code>Type</code>, and <code>Value</code>. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     *            >Amazon SQS Message Attributes</a> in the <i>Amazon Simple
+     *            Queue Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -549,10 +675,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Each message attribute consists of a Name, Type, and Value. For more
-     * information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html#SQSMessageAttributesNTV"
-     * >Message Attribute Items</a> in the <i>Amazon SQS Developer Guide</i>.
+     * Each message attribute consists of a <code>Name</code>, <code>Type</code>
+     * , and <code>Value</code>. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-attributes.html"
+     * >Amazon SQS Message Attributes</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <p>
      * The method adds a new key-value pair into MessageAttributes parameter,
@@ -589,6 +716,227 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
+     * The message system attribute to send. Each message system attribute
+     * consists of a <code>Name</code>, <code>Type</code>, and
+     * <code>Value</code>.
+     * </p>
+     * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * Currently, the only supported message system attribute is
+     * <code>AWSTraceHeader</code>. Its type must be <code>String</code> and its
+     * value must be a correctly formatted AWS X-Ray trace header string.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The size of a message system attribute doesn't count towards the total
+     * size of a message.
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
+     *
+     * @return <p>
+     *         The message system attribute to send. Each message system
+     *         attribute consists of a <code>Name</code>, <code>Type</code>, and
+     *         <code>Value</code>.
+     *         </p>
+     *         <important>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Currently, the only supported message system attribute is
+     *         <code>AWSTraceHeader</code>. Its type must be <code>String</code>
+     *         and its value must be a correctly formatted AWS X-Ray trace
+     *         header string.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         The size of a message system attribute doesn't count towards the
+     *         total size of a message.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </important>
+     */
+    public java.util.Map<String, MessageSystemAttributeValue> getMessageSystemAttributes() {
+        return messageSystemAttributes;
+    }
+
+    /**
+     * <p>
+     * The message system attribute to send. Each message system attribute
+     * consists of a <code>Name</code>, <code>Type</code>, and
+     * <code>Value</code>.
+     * </p>
+     * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * Currently, the only supported message system attribute is
+     * <code>AWSTraceHeader</code>. Its type must be <code>String</code> and its
+     * value must be a correctly formatted AWS X-Ray trace header string.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The size of a message system attribute doesn't count towards the total
+     * size of a message.
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
+     *
+     * @param messageSystemAttributes <p>
+     *            The message system attribute to send. Each message system
+     *            attribute consists of a <code>Name</code>, <code>Type</code>,
+     *            and <code>Value</code>.
+     *            </p>
+     *            <important>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Currently, the only supported message system attribute is
+     *            <code>AWSTraceHeader</code>. Its type must be
+     *            <code>String</code> and its value must be a correctly
+     *            formatted AWS X-Ray trace header string.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The size of a message system attribute doesn't count towards
+     *            the total size of a message.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </important>
+     */
+    public void setMessageSystemAttributes(
+            java.util.Map<String, MessageSystemAttributeValue> messageSystemAttributes) {
+        this.messageSystemAttributes = messageSystemAttributes;
+    }
+
+    /**
+     * <p>
+     * The message system attribute to send. Each message system attribute
+     * consists of a <code>Name</code>, <code>Type</code>, and
+     * <code>Value</code>.
+     * </p>
+     * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * Currently, the only supported message system attribute is
+     * <code>AWSTraceHeader</code>. Its type must be <code>String</code> and its
+     * value must be a correctly formatted AWS X-Ray trace header string.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The size of a message system attribute doesn't count towards the total
+     * size of a message.
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageSystemAttributes <p>
+     *            The message system attribute to send. Each message system
+     *            attribute consists of a <code>Name</code>, <code>Type</code>,
+     *            and <code>Value</code>.
+     *            </p>
+     *            <important>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Currently, the only supported message system attribute is
+     *            <code>AWSTraceHeader</code>. Its type must be
+     *            <code>String</code> and its value must be a correctly
+     *            formatted AWS X-Ray trace header string.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            The size of a message system attribute doesn't count towards
+     *            the total size of a message.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </important>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendMessageRequest withMessageSystemAttributes(
+            java.util.Map<String, MessageSystemAttributeValue> messageSystemAttributes) {
+        this.messageSystemAttributes = messageSystemAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The message system attribute to send. Each message system attribute
+     * consists of a <code>Name</code>, <code>Type</code>, and
+     * <code>Value</code>.
+     * </p>
+     * <important>
+     * <ul>
+     * <li>
+     * <p>
+     * Currently, the only supported message system attribute is
+     * <code>AWSTraceHeader</code>. Its type must be <code>String</code> and its
+     * value must be a correctly formatted AWS X-Ray trace header string.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The size of a message system attribute doesn't count towards the total
+     * size of a message.
+     * </p>
+     * </li>
+     * </ul>
+     * </important>
+     * <p>
+     * The method adds a new key-value pair into MessageSystemAttributes
+     * parameter, and returns a reference to this object so that method calls
+     * can be chained together.
+     *
+     * @param key The key of the entry to be added into MessageSystemAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            MessageSystemAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendMessageRequest addMessageSystemAttributesEntry(String key,
+            MessageSystemAttributeValue value) {
+        if (null == this.messageSystemAttributes) {
+            this.messageSystemAttributes = new java.util.HashMap<String, MessageSystemAttributeValue>();
+        }
+        if (this.messageSystemAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.messageSystemAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into MessageSystemAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public SendMessageRequest clearMessageSystemAttributesEntries() {
+        this.messageSystemAttributes = null;
+        return this;
+    }
+
+    /**
+     * <p>
      * This parameter applies only to FIFO (first-in-first-out) queues.
      * </p>
      * <p>
@@ -597,8 +945,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * messages sent with the same <code>MessageDeduplicationId</code> are
      * accepted successfully but aren't delivered during the 5-minute
      * deduplication interval. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * > Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * > Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <ul>
      * <li>
@@ -644,12 +993,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * You can also use <code>ContentBasedDeduplication</code> for messages with
-     * identical content to be treated as duplicates.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * If you send one message with <code>ContentBasedDeduplication</code>
      * enabled and then another message with a
      * <code>MessageDeduplicationId</code> that is the same as the one generated
@@ -660,25 +1003,29 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </ul>
      * <note>
      * <p>
-     * The <code>MessageDeduplicationId</code> is available to the recipient of
+     * The <code>MessageDeduplicationId</code> is available to the consumer of
      * the message (this can be useful for troubleshooting delivery issues).
      * </p>
      * <p>
-     * If a message is sent successfully but the acknowledgdment is lost and the
+     * If a message is sent successfully but the acknowledgement is lost and the
      * message is resent with the same <code>MessageDeduplicationId</code> after
      * the deduplication interval, Amazon SQS can't detect duplicate messages.
      * </p>
+     * <p>
+     * Amazon SQS continues to keep track of the message deduplication ID even
+     * after the message is received and deleted.
+     * </p>
      * </note>
      * <p>
-     * The length of <code>MessageDeduplicationId</code> is 128 characters.
-     * <code>MessageDeduplicationId</code> can contain alphanumeric characters (
-     * <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
-     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * The maximum length of <code>MessageDeduplicationId</code> is 128
+     * characters. <code>MessageDeduplicationId</code> can contain alphanumeric
+     * characters (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and
+     * punctuation (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
      * </p>
      * <p>
      * For best practices of using <code>MessageDeduplicationId</code>, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      * >Using the MessageDeduplicationId Property</a> in the <i>Amazon Simple
      * Queue Service Developer Guide</i>.
      * </p>
@@ -693,9 +1040,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *         <code>MessageDeduplicationId</code> are accepted successfully but
      *         aren't delivered during the 5-minute deduplication interval. For
      *         more information, see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *         > Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *         > Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *         Service Developer Guide</i>.
      *         </p>
      *         <ul>
      *         <li>
@@ -744,12 +1091,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         <li>
      *         <p>
-     *         You can also use <code>ContentBasedDeduplication</code> for
-     *         messages with identical content to be treated as duplicates.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
      *         If you send one message with
      *         <code>ContentBasedDeduplication</code> enabled and then another
      *         message with a <code>MessageDeduplicationId</code> that is the
@@ -762,18 +1103,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *         <note>
      *         <p>
      *         The <code>MessageDeduplicationId</code> is available to the
-     *         recipient of the message (this can be useful for troubleshooting
+     *         consumer of the message (this can be useful for troubleshooting
      *         delivery issues).
      *         </p>
      *         <p>
-     *         If a message is sent successfully but the acknowledgdment is lost
+     *         If a message is sent successfully but the acknowledgement is lost
      *         and the message is resent with the same
      *         <code>MessageDeduplicationId</code> after the deduplication
      *         interval, Amazon SQS can't detect duplicate messages.
      *         </p>
+     *         <p>
+     *         Amazon SQS continues to keep track of the message deduplication
+     *         ID even after the message is received and deleted.
+     *         </p>
      *         </note>
      *         <p>
-     *         The length of <code>MessageDeduplicationId</code> is 128
+     *         The maximum length of <code>MessageDeduplicationId</code> is 128
      *         characters. <code>MessageDeduplicationId</code> can contain
      *         alphanumeric characters (<code>a-z</code>, <code>A-Z</code>,
      *         <code>0-9</code>) and punctuation (
@@ -782,7 +1127,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *         <p>
      *         For best practices of using <code>MessageDeduplicationId</code>,
      *         see <a href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      *         >Using the MessageDeduplicationId Property</a> in the <i>Amazon
      *         Simple Queue Service Developer Guide</i>.
      *         </p>
@@ -801,8 +1146,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * messages sent with the same <code>MessageDeduplicationId</code> are
      * accepted successfully but aren't delivered during the 5-minute
      * deduplication interval. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * > Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * > Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <ul>
      * <li>
@@ -848,12 +1194,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * You can also use <code>ContentBasedDeduplication</code> for messages with
-     * identical content to be treated as duplicates.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * If you send one message with <code>ContentBasedDeduplication</code>
      * enabled and then another message with a
      * <code>MessageDeduplicationId</code> that is the same as the one generated
@@ -864,25 +1204,29 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </ul>
      * <note>
      * <p>
-     * The <code>MessageDeduplicationId</code> is available to the recipient of
+     * The <code>MessageDeduplicationId</code> is available to the consumer of
      * the message (this can be useful for troubleshooting delivery issues).
      * </p>
      * <p>
-     * If a message is sent successfully but the acknowledgdment is lost and the
+     * If a message is sent successfully but the acknowledgement is lost and the
      * message is resent with the same <code>MessageDeduplicationId</code> after
      * the deduplication interval, Amazon SQS can't detect duplicate messages.
      * </p>
+     * <p>
+     * Amazon SQS continues to keep track of the message deduplication ID even
+     * after the message is received and deleted.
+     * </p>
      * </note>
      * <p>
-     * The length of <code>MessageDeduplicationId</code> is 128 characters.
-     * <code>MessageDeduplicationId</code> can contain alphanumeric characters (
-     * <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
-     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * The maximum length of <code>MessageDeduplicationId</code> is 128
+     * characters. <code>MessageDeduplicationId</code> can contain alphanumeric
+     * characters (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and
+     * punctuation (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
      * </p>
      * <p>
      * For best practices of using <code>MessageDeduplicationId</code>, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      * >Using the MessageDeduplicationId Property</a> in the <i>Amazon Simple
      * Queue Service Developer Guide</i>.
      * </p>
@@ -898,9 +1242,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            <code>MessageDeduplicationId</code> are accepted successfully
      *            but aren't delivered during the 5-minute deduplication
      *            interval. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *            > Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *            > Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *            Service Developer Guide</i>.
      *            </p>
      *            <ul>
      *            <li>
@@ -951,12 +1295,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            You can also use <code>ContentBasedDeduplication</code> for
-     *            messages with identical content to be treated as duplicates.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
      *            If you send one message with
      *            <code>ContentBasedDeduplication</code> enabled and then
      *            another message with a <code>MessageDeduplicationId</code>
@@ -970,27 +1308,32 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            <note>
      *            <p>
      *            The <code>MessageDeduplicationId</code> is available to the
-     *            recipient of the message (this can be useful for
+     *            consumer of the message (this can be useful for
      *            troubleshooting delivery issues).
      *            </p>
      *            <p>
-     *            If a message is sent successfully but the acknowledgdment is
+     *            If a message is sent successfully but the acknowledgement is
      *            lost and the message is resent with the same
      *            <code>MessageDeduplicationId</code> after the deduplication
      *            interval, Amazon SQS can't detect duplicate messages.
      *            </p>
+     *            <p>
+     *            Amazon SQS continues to keep track of the message
+     *            deduplication ID even after the message is received and
+     *            deleted.
+     *            </p>
      *            </note>
      *            <p>
-     *            The length of <code>MessageDeduplicationId</code> is 128
-     *            characters. <code>MessageDeduplicationId</code> can contain
-     *            alphanumeric characters (<code>a-z</code>, <code>A-Z</code>,
-     *            <code>0-9</code>) and punctuation (
+     *            The maximum length of <code>MessageDeduplicationId</code> is
+     *            128 characters. <code>MessageDeduplicationId</code> can
+     *            contain alphanumeric characters (<code>a-z</code>,
+     *            <code>A-Z</code>, <code>0-9</code>) and punctuation (
      *            <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
      *            </p>
      *            <p>
      *            For best practices of using
      *            <code>MessageDeduplicationId</code>, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      *            >Using the MessageDeduplicationId Property</a> in the
      *            <i>Amazon Simple Queue Service Developer Guide</i>.
      *            </p>
@@ -1009,8 +1352,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * messages sent with the same <code>MessageDeduplicationId</code> are
      * accepted successfully but aren't delivered during the 5-minute
      * deduplication interval. For more information, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     * > Exactly-Once Processing</a> in the <i>Amazon SQS Developer Guide</i>.
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     * > Exactly-Once Processing</a> in the <i>Amazon Simple Queue Service
+     * Developer Guide</i>.
      * </p>
      * <ul>
      * <li>
@@ -1056,12 +1400,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
-     * You can also use <code>ContentBasedDeduplication</code> for messages with
-     * identical content to be treated as duplicates.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
      * If you send one message with <code>ContentBasedDeduplication</code>
      * enabled and then another message with a
      * <code>MessageDeduplicationId</code> that is the same as the one generated
@@ -1072,25 +1410,29 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </ul>
      * <note>
      * <p>
-     * The <code>MessageDeduplicationId</code> is available to the recipient of
+     * The <code>MessageDeduplicationId</code> is available to the consumer of
      * the message (this can be useful for troubleshooting delivery issues).
      * </p>
      * <p>
-     * If a message is sent successfully but the acknowledgdment is lost and the
+     * If a message is sent successfully but the acknowledgement is lost and the
      * message is resent with the same <code>MessageDeduplicationId</code> after
      * the deduplication interval, Amazon SQS can't detect duplicate messages.
      * </p>
+     * <p>
+     * Amazon SQS continues to keep track of the message deduplication ID even
+     * after the message is received and deleted.
+     * </p>
      * </note>
      * <p>
-     * The length of <code>MessageDeduplicationId</code> is 128 characters.
-     * <code>MessageDeduplicationId</code> can contain alphanumeric characters (
-     * <code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and punctuation (
-     * <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
+     * The maximum length of <code>MessageDeduplicationId</code> is 128
+     * characters. <code>MessageDeduplicationId</code> can contain alphanumeric
+     * characters (<code>a-z</code>, <code>A-Z</code>, <code>0-9</code>) and
+     * punctuation (<code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
      * </p>
      * <p>
      * For best practices of using <code>MessageDeduplicationId</code>, see <a
      * href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      * >Using the MessageDeduplicationId Property</a> in the <i>Amazon Simple
      * Queue Service Developer Guide</i>.
      * </p>
@@ -1109,9 +1451,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            <code>MessageDeduplicationId</code> are accepted successfully
      *            but aren't delivered during the 5-minute deduplication
      *            interval. For more information, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
-     *            > Exactly-Once Processing</a> in the <i>Amazon SQS Developer
-     *            Guide</i>.
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing"
+     *            > Exactly-Once Processing</a> in the <i>Amazon Simple Queue
+     *            Service Developer Guide</i>.
      *            </p>
      *            <ul>
      *            <li>
@@ -1162,12 +1504,6 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
-     *            You can also use <code>ContentBasedDeduplication</code> for
-     *            messages with identical content to be treated as duplicates.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
      *            If you send one message with
      *            <code>ContentBasedDeduplication</code> enabled and then
      *            another message with a <code>MessageDeduplicationId</code>
@@ -1181,27 +1517,32 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            <note>
      *            <p>
      *            The <code>MessageDeduplicationId</code> is available to the
-     *            recipient of the message (this can be useful for
+     *            consumer of the message (this can be useful for
      *            troubleshooting delivery issues).
      *            </p>
      *            <p>
-     *            If a message is sent successfully but the acknowledgdment is
+     *            If a message is sent successfully but the acknowledgement is
      *            lost and the message is resent with the same
      *            <code>MessageDeduplicationId</code> after the deduplication
      *            interval, Amazon SQS can't detect duplicate messages.
      *            </p>
+     *            <p>
+     *            Amazon SQS continues to keep track of the message
+     *            deduplication ID even after the message is received and
+     *            deleted.
+     *            </p>
      *            </note>
      *            <p>
-     *            The length of <code>MessageDeduplicationId</code> is 128
-     *            characters. <code>MessageDeduplicationId</code> can contain
-     *            alphanumeric characters (<code>a-z</code>, <code>A-Z</code>,
-     *            <code>0-9</code>) and punctuation (
+     *            The maximum length of <code>MessageDeduplicationId</code> is
+     *            128 characters. <code>MessageDeduplicationId</code> can
+     *            contain alphanumeric characters (<code>a-z</code>,
+     *            <code>A-Z</code>, <code>0-9</code>) and punctuation (
      *            <code>!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</code>).
      *            </p>
      *            <p>
      *            For best practices of using
      *            <code>MessageDeduplicationId</code>, see <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagededuplicationid-property"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagededuplicationid-property.html"
      *            >Using the MessageDeduplicationId Property</a> in the
      *            <i>Amazon Simple Queue Service Developer Guide</i>.
      *            </p>
@@ -1223,9 +1564,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * FIFO manner (however, messages in different message groups might be
      * processed out of order). To interleave multiple ordered streams within a
      * single queue, use <code>MessageGroupId</code> values (for example,
-     * session data for multiple users). In this scenario, multiple readers can
-     * process the queue, but the session data of each user is processed in a
-     * FIFO fashion.
+     * session data for multiple users). In this scenario, multiple consumers
+     * can process the queue, but the session data of each user is processed in
+     * a FIFO fashion.
      * </p>
      * <ul>
      * <li>
@@ -1245,16 +1586,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * The length of <code>MessageGroupId</code> is 128 characters. Valid values
-     * are alphanumeric characters and punctuation
+     * The length of <code>MessageGroupId</code> is 128 characters. Valid
+     * values: alphanumeric characters and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
      * For best practices of using <code>MessageGroupId</code>, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      * >Using the MessageGroupId Property</a> in the <i>Amazon Simple Queue
      * Service Developer Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <code>MessageGroupId</code> is required for FIFO queues. You can't use it
+     * for Standard queues.
+     * </p>
+     * </important>
      *
      * @return <p>
      *         This parameter applies only to FIFO (first-in-first-out) queues.
@@ -1266,7 +1613,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *         message groups might be processed out of order). To interleave
      *         multiple ordered streams within a single queue, use
      *         <code>MessageGroupId</code> values (for example, session data for
-     *         multiple users). In this scenario, multiple readers can process
+     *         multiple users). In this scenario, multiple consumers can process
      *         the queue, but the session data of each user is processed in a
      *         FIFO fashion.
      *         </p>
@@ -1289,16 +1636,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *         </ul>
      *         <p>
      *         The length of <code>MessageGroupId</code> is 128 characters.
-     *         Valid values are alphanumeric characters and punctuation
+     *         Valid values: alphanumeric characters and punctuation
      *         <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *         </p>
      *         <p>
      *         For best practices of using <code>MessageGroupId</code>, see <a
      *         href=
-     *         "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     *         "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      *         >Using the MessageGroupId Property</a> in the <i>Amazon Simple
      *         Queue Service Developer Guide</i>.
      *         </p>
+     *         <important>
+     *         <p>
+     *         <code>MessageGroupId</code> is required for FIFO queues. You
+     *         can't use it for Standard queues.
+     *         </p>
+     *         </important>
      */
     public String getMessageGroupId() {
         return messageGroupId;
@@ -1314,9 +1667,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * FIFO manner (however, messages in different message groups might be
      * processed out of order). To interleave multiple ordered streams within a
      * single queue, use <code>MessageGroupId</code> values (for example,
-     * session data for multiple users). In this scenario, multiple readers can
-     * process the queue, but the session data of each user is processed in a
-     * FIFO fashion.
+     * session data for multiple users). In this scenario, multiple consumers
+     * can process the queue, but the session data of each user is processed in
+     * a FIFO fashion.
      * </p>
      * <ul>
      * <li>
@@ -1336,16 +1689,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * The length of <code>MessageGroupId</code> is 128 characters. Valid values
-     * are alphanumeric characters and punctuation
+     * The length of <code>MessageGroupId</code> is 128 characters. Valid
+     * values: alphanumeric characters and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
      * For best practices of using <code>MessageGroupId</code>, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      * >Using the MessageGroupId Property</a> in the <i>Amazon Simple Queue
      * Service Developer Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <code>MessageGroupId</code> is required for FIFO queues. You can't use it
+     * for Standard queues.
+     * </p>
+     * </important>
      *
      * @param messageGroupId <p>
      *            This parameter applies only to FIFO (first-in-first-out)
@@ -1358,7 +1717,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            message groups might be processed out of order). To interleave
      *            multiple ordered streams within a single queue, use
      *            <code>MessageGroupId</code> values (for example, session data
-     *            for multiple users). In this scenario, multiple readers can
+     *            for multiple users). In this scenario, multiple consumers can
      *            process the queue, but the session data of each user is
      *            processed in a FIFO fashion.
      *            </p>
@@ -1381,16 +1740,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            </ul>
      *            <p>
      *            The length of <code>MessageGroupId</code> is 128 characters.
-     *            Valid values are alphanumeric characters and punctuation
+     *            Valid values: alphanumeric characters and punctuation
      *            <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *            </p>
      *            <p>
      *            For best practices of using <code>MessageGroupId</code>, see
      *            <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      *            >Using the MessageGroupId Property</a> in the <i>Amazon Simple
      *            Queue Service Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            <code>MessageGroupId</code> is required for FIFO queues. You
+     *            can't use it for Standard queues.
+     *            </p>
+     *            </important>
      */
     public void setMessageGroupId(String messageGroupId) {
         this.messageGroupId = messageGroupId;
@@ -1406,9 +1771,9 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * FIFO manner (however, messages in different message groups might be
      * processed out of order). To interleave multiple ordered streams within a
      * single queue, use <code>MessageGroupId</code> values (for example,
-     * session data for multiple users). In this scenario, multiple readers can
-     * process the queue, but the session data of each user is processed in a
-     * FIFO fashion.
+     * session data for multiple users). In this scenario, multiple consumers
+     * can process the queue, but the session data of each user is processed in
+     * a FIFO fashion.
      * </p>
      * <ul>
      * <li>
@@ -1428,16 +1793,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * The length of <code>MessageGroupId</code> is 128 characters. Valid values
-     * are alphanumeric characters and punctuation
+     * The length of <code>MessageGroupId</code> is 128 characters. Valid
+     * values: alphanumeric characters and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
      * For best practices of using <code>MessageGroupId</code>, see <a href=
-     * "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     * "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      * >Using the MessageGroupId Property</a> in the <i>Amazon Simple Queue
      * Service Developer Guide</i>.
      * </p>
+     * <important>
+     * <p>
+     * <code>MessageGroupId</code> is required for FIFO queues. You can't use it
+     * for Standard queues.
+     * </p>
+     * </important>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1453,7 +1824,7 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            message groups might be processed out of order). To interleave
      *            multiple ordered streams within a single queue, use
      *            <code>MessageGroupId</code> values (for example, session data
-     *            for multiple users). In this scenario, multiple readers can
+     *            for multiple users). In this scenario, multiple consumers can
      *            process the queue, but the session data of each user is
      *            processed in a FIFO fashion.
      *            </p>
@@ -1476,16 +1847,22 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
      *            </ul>
      *            <p>
      *            The length of <code>MessageGroupId</code> is 128 characters.
-     *            Valid values are alphanumeric characters and punctuation
+     *            Valid values: alphanumeric characters and punctuation
      *            <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *            </p>
      *            <p>
      *            For best practices of using <code>MessageGroupId</code>, see
      *            <a href=
-     *            "http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queue-recommendations.html#using-messagegroupid-property"
+     *            "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/using-messagegroupid-property.html"
      *            >Using the MessageGroupId Property</a> in the <i>Amazon Simple
      *            Queue Service Developer Guide</i>.
      *            </p>
+     *            <important>
+     *            <p>
+     *            <code>MessageGroupId</code> is required for FIFO queues. You
+     *            can't use it for Standard queues.
+     *            </p>
+     *            </important>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1513,6 +1890,8 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
             sb.append("DelaySeconds: " + getDelaySeconds() + ",");
         if (getMessageAttributes() != null)
             sb.append("MessageAttributes: " + getMessageAttributes() + ",");
+        if (getMessageSystemAttributes() != null)
+            sb.append("MessageSystemAttributes: " + getMessageSystemAttributes() + ",");
         if (getMessageDeduplicationId() != null)
             sb.append("MessageDeduplicationId: " + getMessageDeduplicationId() + ",");
         if (getMessageGroupId() != null)
@@ -1533,6 +1912,10 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
                 + ((getDelaySeconds() == null) ? 0 : getDelaySeconds().hashCode());
         hashCode = prime * hashCode
                 + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getMessageSystemAttributes() == null) ? 0 : getMessageSystemAttributes()
+                        .hashCode());
         hashCode = prime
                 * hashCode
                 + ((getMessageDeduplicationId() == null) ? 0 : getMessageDeduplicationId()
@@ -1571,6 +1954,11 @@ public class SendMessageRequest extends AmazonWebServiceRequest implements Seria
             return false;
         if (other.getMessageAttributes() != null
                 && other.getMessageAttributes().equals(this.getMessageAttributes()) == false)
+            return false;
+        if (other.getMessageSystemAttributes() == null ^ this.getMessageSystemAttributes() == null)
+            return false;
+        if (other.getMessageSystemAttributes() != null
+                && other.getMessageSystemAttributes().equals(this.getMessageSystemAttributes()) == false)
             return false;
         if (other.getMessageDeduplicationId() == null ^ this.getMessageDeduplicationId() == null)
             return false;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ public class ListDeadLetterSourceQueuesRequestMarshaller implements
         }
 
         Request<ListDeadLetterSourceQueuesRequest> request = new DefaultRequest<ListDeadLetterSourceQueuesRequest>(
-                listDeadLetterSourceQueuesRequest, "AmazonSQS");
+                listDeadLetterSourceQueuesRequest, "AmazonSimpleQueueService");
         request.addParameter("Action", "ListDeadLetterSourceQueues");
         request.addParameter("Version", "2012-11-05");
 
@@ -45,6 +45,16 @@ public class ListDeadLetterSourceQueuesRequestMarshaller implements
             prefix = "QueueUrl";
             String queueUrl = listDeadLetterSourceQueuesRequest.getQueueUrl();
             request.addParameter(prefix, StringUtils.fromString(queueUrl));
+        }
+        if (listDeadLetterSourceQueuesRequest.getNextToken() != null) {
+            prefix = "NextToken";
+            String nextToken = listDeadLetterSourceQueuesRequest.getNextToken();
+            request.addParameter(prefix, StringUtils.fromString(nextToken));
+        }
+        if (listDeadLetterSourceQueuesRequest.getMaxResults() != null) {
+            prefix = "MaxResults";
+            Integer maxResults = listDeadLetterSourceQueuesRequest.getMaxResults();
+            request.addParameter(prefix, StringUtils.fromInteger(maxResults));
         }
 
         return request;

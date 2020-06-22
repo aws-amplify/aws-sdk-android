@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,33 +20,42 @@ import java.io.Serializable;
 /**
  * <p>
  * Encloses a receipt handle and an entry id for each message in
- * <a>ChangeMessageVisibilityBatch</a>.
+ * <code> <a>ChangeMessageVisibilityBatch</a>.</code>
  * </p>
  * <important>
  * <p>
- * All of the following parameters are list parameters that must be prefixed
- * with <code>ChangeMessageVisibilityBatchRequestEntry.n</code>, where
- * <code>n</code> is an integer value starting with 1. For example, a parameter
+ * All of the following list parameters must be prefixed with
+ * <code>ChangeMessageVisibilityBatchRequestEntry.n</code>, where <code>n</code>
+ * is an integer value starting with <code>1</code>. For example, a parameter
  * list for this action might look like this:
  * </p>
  * </important>
  * <p>
- * <code>&amp;amp;ChangeMessageVisibilityBatchRequestEntry.1.Id=change_visibility_msg_2</code>
+ * <code>&amp;ChangeMessageVisibilityBatchRequestEntry.1.Id=change_visibility_msg_2</code>
  * </p>
  * <p>
- * <code>&amp;amp;ChangeMessageVisibilityBatchRequestEntry.1.ReceiptHandle=&lt;replaceable&gt;Your_Receipt_Handle&lt;/replaceable&gt;</code>
+ * <code>&amp;ChangeMessageVisibilityBatchRequestEntry.1.ReceiptHandle=your_receipt_handle</code>
  * </p>
  * <p>
- * <code>&amp;amp;ChangeMessageVisibilityBatchRequestEntry.1.VisibilityTimeout=45</code>
+ * <code>&amp;ChangeMessageVisibilityBatchRequestEntry.1.VisibilityTimeout=45</code>
  * </p>
  */
 public class ChangeMessageVisibilityBatchRequestEntry implements Serializable {
     /**
      * <p>
-     * An identifier for this particular receipt handle. This is used to
-     * communicate the result. Note that the <code>Id</code>s of a batch request
-     * need to be unique within the request.
+     * An identifier for this particular receipt handle used to communicate the
+     * result.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Id</code>s of a batch request need to be unique within a
+     * request.
+     * </p>
+     * <p>
+     * This identifier can have up to 80 characters. The following characters
+     * are accepted: alphanumeric characters, hyphens(-), and underscores (_).
+     * </p>
+     * </note>
      */
     private String id;
 
@@ -65,44 +74,36 @@ public class ChangeMessageVisibilityBatchRequestEntry implements Serializable {
     private Integer visibilityTimeout;
 
     /**
-     * Default constructor for ChangeMessageVisibilityBatchRequestEntry object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
-     */
-    public ChangeMessageVisibilityBatchRequestEntry() {
-    }
-
-    /**
-     * Constructs a new ChangeMessageVisibilityBatchRequestEntry object. Callers
-     * should use the setter or fluent setter (with...) methods to initialize
-     * any additional object members.
-     * 
-     * @param id <p>
-     *            An identifier for this particular receipt handle. This is used
-     *            to communicate the result. Note that the <code>Id</code>s of a
-     *            batch request need to be unique within the request.
-     *            </p>
-     * @param receiptHandle <p>
-     *            A receipt handle.
-     *            </p>
-     */
-    public ChangeMessageVisibilityBatchRequestEntry(String id, String receiptHandle) {
-        setId(id);
-        setReceiptHandle(receiptHandle);
-    }
-
-    /**
      * <p>
-     * An identifier for this particular receipt handle. This is used to
-     * communicate the result. Note that the <code>Id</code>s of a batch request
-     * need to be unique within the request.
+     * An identifier for this particular receipt handle used to communicate the
+     * result.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Id</code>s of a batch request need to be unique within a
+     * request.
+     * </p>
+     * <p>
+     * This identifier can have up to 80 characters. The following characters
+     * are accepted: alphanumeric characters, hyphens(-), and underscores (_).
+     * </p>
+     * </note>
      *
      * @return <p>
-     *         An identifier for this particular receipt handle. This is used to
-     *         communicate the result. Note that the <code>Id</code>s of a batch
-     *         request need to be unique within the request.
+     *         An identifier for this particular receipt handle used to
+     *         communicate the result.
      *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>Id</code>s of a batch request need to be unique within
+     *         a request.
+     *         </p>
+     *         <p>
+     *         This identifier can have up to 80 characters. The following
+     *         characters are accepted: alphanumeric characters, hyphens(-), and
+     *         underscores (_).
+     *         </p>
+     *         </note>
      */
     public String getId() {
         return id;
@@ -110,16 +111,35 @@ public class ChangeMessageVisibilityBatchRequestEntry implements Serializable {
 
     /**
      * <p>
-     * An identifier for this particular receipt handle. This is used to
-     * communicate the result. Note that the <code>Id</code>s of a batch request
-     * need to be unique within the request.
+     * An identifier for this particular receipt handle used to communicate the
+     * result.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Id</code>s of a batch request need to be unique within a
+     * request.
+     * </p>
+     * <p>
+     * This identifier can have up to 80 characters. The following characters
+     * are accepted: alphanumeric characters, hyphens(-), and underscores (_).
+     * </p>
+     * </note>
      *
      * @param id <p>
-     *            An identifier for this particular receipt handle. This is used
-     *            to communicate the result. Note that the <code>Id</code>s of a
-     *            batch request need to be unique within the request.
+     *            An identifier for this particular receipt handle used to
+     *            communicate the result.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>Id</code>s of a batch request need to be unique
+     *            within a request.
+     *            </p>
+     *            <p>
+     *            This identifier can have up to 80 characters. The following
+     *            characters are accepted: alphanumeric characters, hyphens(-),
+     *            and underscores (_).
+     *            </p>
+     *            </note>
      */
     public void setId(String id) {
         this.id = id;
@@ -127,19 +147,38 @@ public class ChangeMessageVisibilityBatchRequestEntry implements Serializable {
 
     /**
      * <p>
-     * An identifier for this particular receipt handle. This is used to
-     * communicate the result. Note that the <code>Id</code>s of a batch request
-     * need to be unique within the request.
+     * An identifier for this particular receipt handle used to communicate the
+     * result.
      * </p>
+     * <note>
+     * <p>
+     * The <code>Id</code>s of a batch request need to be unique within a
+     * request.
+     * </p>
+     * <p>
+     * This identifier can have up to 80 characters. The following characters
+     * are accepted: alphanumeric characters, hyphens(-), and underscores (_).
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param id <p>
-     *            An identifier for this particular receipt handle. This is used
-     *            to communicate the result. Note that the <code>Id</code>s of a
-     *            batch request need to be unique within the request.
+     *            An identifier for this particular receipt handle used to
+     *            communicate the result.
      *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>Id</code>s of a batch request need to be unique
+     *            within a request.
+     *            </p>
+     *            <p>
+     *            This identifier can have up to 80 characters. The following
+     *            characters are accepted: alphanumeric characters, hyphens(-),
+     *            and underscores (_).
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

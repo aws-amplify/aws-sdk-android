@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,41 +21,41 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified message from the specified queue. You specify the
- * message by using the message's <code>receipt handle</code> and not the
- * <code>message ID</code> you received when you sent the message. Even if the
- * message is locked by another reader due to the visibility timeout setting, it
- * is still deleted from the queue. If you leave a message in the queue for
- * longer than the queue's configured retention period, Amazon SQS automatically
- * deletes it.
+ * Deletes the specified message from the specified queue. To select the message
+ * to delete, use the <code>ReceiptHandle</code> of the message (<i>not</i> the
+ * <code>MessageId</code> which you receive when you send the message). Amazon
+ * SQS can delete a message from a queue even if a visibility timeout setting
+ * causes the message to be locked by another consumer. Amazon SQS automatically
+ * deletes messages left in a queue longer than the retention period configured
+ * for the queue.
  * </p>
  * <note>
  * <p>
- * The receipt handle is associated with a specific instance of receiving the
- * message. If you receive a message more than once, the receipt handle you get
- * each time you receive the message is different. When you request
- * <code>DeleteMessage</code>, if you don't provide the most recently received
- * receipt handle for the message, the request will still succeed, but the
- * message might not be deleted.
+ * The <code>ReceiptHandle</code> is associated with a <i>specific instance</i>
+ * of receiving a message. If you receive a message more than once, the
+ * <code>ReceiptHandle</code> is different each time you receive a message. When
+ * you use the <code>DeleteMessage</code> action, you must provide the most
+ * recently received <code>ReceiptHandle</code> for the message (otherwise, the
+ * request succeeds, but the message might not be deleted).
  * </p>
- * </note> <important>
  * <p>
- * It is possible you will receive a message even after you have deleted it.
- * This might happen on rare occasions if one of the servers storing a copy of
- * the message is unavailable when you request to delete the message. The copy
- * remains on the server and might be returned to you again on a subsequent
- * receive request. You should create your system to be idempotent so that
- * receiving a particular message more than once is not a problem.
+ * For standard queues, it is possible to receive a message even after you
+ * delete it. This might happen on rare occasions if one of the servers which
+ * stores a copy of the message is unavailable when you send the request to
+ * delete the message. The copy remains on the server and might be returned to
+ * you during a subsequent receive request. You should ensure that your
+ * application is idempotent, so that receiving a message more than once does
+ * not cause issues.
  * </p>
- * </important>
+ * </note>
  */
 public class DeleteMessageRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which messages are deleted.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      */
     private String queueUrl;
@@ -68,46 +68,18 @@ public class DeleteMessageRequest extends AmazonWebServiceRequest implements Ser
     private String receiptHandle;
 
     /**
-     * Default constructor for DeleteMessageRequest object. Callers should use
-     * the setter or fluent setter (with...) methods to initialize any
-     * additional object members.
-     */
-    public DeleteMessageRequest() {
-    }
-
-    /**
-     * Constructs a new DeleteMessageRequest object. Callers should use the
-     * setter or fluent setter (with...) methods to initialize any additional
-     * object members.
-     * 
-     * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
-     *            </p>
-     *            <p>
-     *            Queue URLs are case-sensitive.
-     *            </p>
-     * @param receiptHandle <p>
-     *            The receipt handle associated with the message to delete.
-     *            </p>
-     */
-    public DeleteMessageRequest(String queueUrl, String receiptHandle) {
-        setQueueUrl(queueUrl);
-        setReceiptHandle(receiptHandle);
-    }
-
-    /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which messages are deleted.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @return <p>
-     *         The URL of the Amazon SQS queue to take action on.
+     *         The URL of the Amazon SQS queue from which messages are deleted.
      *         </p>
      *         <p>
-     *         Queue URLs are case-sensitive.
+     *         Queue URLs and names are case-sensitive.
      *         </p>
      */
     public String getQueueUrl() {
@@ -116,17 +88,18 @@ public class DeleteMessageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which messages are deleted.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue from which messages are
+     *            deleted.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      */
     public void setQueueUrl(String queueUrl) {
@@ -135,20 +108,21 @@ public class DeleteMessageRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The URL of the Amazon SQS queue to take action on.
+     * The URL of the Amazon SQS queue from which messages are deleted.
      * </p>
      * <p>
-     * Queue URLs are case-sensitive.
+     * Queue URLs and names are case-sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueUrl <p>
-     *            The URL of the Amazon SQS queue to take action on.
+     *            The URL of the Amazon SQS queue from which messages are
+     *            deleted.
      *            </p>
      *            <p>
-     *            Queue URLs are case-sensitive.
+     *            Queue URLs and names are case-sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
