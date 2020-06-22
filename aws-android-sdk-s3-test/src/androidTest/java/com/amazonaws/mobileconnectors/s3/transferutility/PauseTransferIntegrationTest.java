@@ -91,7 +91,6 @@ public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
     }
 
     @Test
-    @Ignore("Thread issue")
     public void testMultiPartUploadPause() throws Exception {
         // Large (10MB) file upload
         file = getRandomSparseFile("large", 10L * 1024 * 1024);

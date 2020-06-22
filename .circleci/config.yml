@@ -1182,7 +1182,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -1193,7 +1192,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: iot
           testmodule: aws-android-sdk-iot
@@ -1204,7 +1202,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: pinpoint
           testmodule: aws-android-sdk-pinpoint-test
@@ -1215,7 +1212,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: s3
           testmodule: aws-android-sdk-s3-test
@@ -1226,7 +1222,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client
@@ -1237,7 +1232,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: cognitoidentityprovider
           testmodule: aws-android-sdk-cognitoidentityprovider-test
@@ -1248,7 +1242,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - integrationtest:
           name: core
           testmodule: aws-android-sdk-core-test
@@ -1259,7 +1252,6 @@ workflows:
               only:
                 - master
                 - develop
-                - circleCI2
       - post_integrationtest:
           requires:
             - mobile-client
