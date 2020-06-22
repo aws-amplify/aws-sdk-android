@@ -1,17 +1,18 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
@@ -22,248 +23,150 @@ import java.io.Serializable;
  * </p>
  */
 public class ScheduledInstance implements Serializable {
-
     /**
-     * The Scheduled Instance ID.
-     */
-    private String scheduledInstanceId;
-
-    /**
-     * The instance type.
-     */
-    private String instanceType;
-
-    /**
-     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
-     */
-    private String platform;
-
-    /**
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>).
-     */
-    private String networkPlatform;
-
-    /**
+     * <p>
      * The Availability Zone.
+     * </p>
      */
     private String availabilityZone;
 
     /**
-     * The number of hours in the schedule.
-     */
-    private Integer slotDurationInHours;
-
-    /**
-     * The schedule recurrence.
-     */
-    private ScheduledInstanceRecurrence recurrence;
-
-    /**
-     * The time that the previous schedule ended or will end.
-     */
-    private java.util.Date previousSlotEndTime;
-
-    /**
-     * The time for the next schedule to start.
-     */
-    private java.util.Date nextSlotStartTime;
-
-    /**
-     * The hourly price for a single instance.
-     */
-    private String hourlyPrice;
-
-    /**
-     * The total number of hours for a single instance for the entire term.
-     */
-    private Integer totalScheduledInstanceHours;
-
-    /**
-     * The number of instances.
-     */
-    private Integer instanceCount;
-
-    /**
-     * The start date for the Scheduled Instance.
-     */
-    private java.util.Date termStartDate;
-
-    /**
-     * The end date for the Scheduled Instance.
-     */
-    private java.util.Date termEndDate;
-
-    /**
+     * <p>
      * The date when the Scheduled Instance was purchased.
+     * </p>
      */
     private java.util.Date createDate;
 
     /**
-     * The Scheduled Instance ID.
-     *
-     * @return The Scheduled Instance ID.
-     */
-    public String getScheduledInstanceId() {
-        return scheduledInstanceId;
-    }
-    
-    /**
-     * The Scheduled Instance ID.
-     *
-     * @param scheduledInstanceId The Scheduled Instance ID.
-     */
-    public void setScheduledInstanceId(String scheduledInstanceId) {
-        this.scheduledInstanceId = scheduledInstanceId;
-    }
-    
-    /**
-     * The Scheduled Instance ID.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param scheduledInstanceId The Scheduled Instance ID.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * The hourly price for a single instance.
+     * </p>
      */
-    public ScheduledInstance withScheduledInstanceId(String scheduledInstanceId) {
-        this.scheduledInstanceId = scheduledInstanceId;
-        return this;
-    }
+    private String hourlyPrice;
 
     /**
+     * <p>
+     * The number of instances.
+     * </p>
+     */
+    private Integer instanceCount;
+
+    /**
+     * <p>
      * The instance type.
-     *
-     * @return The instance type.
+     * </p>
      */
-    public String getInstanceType() {
-        return instanceType;
-    }
-    
-    /**
-     * The instance type.
-     *
-     * @param instanceType The instance type.
-     */
-    public void setInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-    }
-    
-    /**
-     * The instance type.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param instanceType The instance type.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ScheduledInstance withInstanceType(String instanceType) {
-        this.instanceType = instanceType;
-        return this;
-    }
+    private String instanceType;
 
     /**
-     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
-     *
-     * @return The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
-     */
-    public String getPlatform() {
-        return platform;
-    }
-    
-    /**
-     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
-     *
-     * @param platform The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
-     */
-    public void setPlatform(String platform) {
-        this.platform = platform;
-    }
-    
-    /**
-     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param platform The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
      */
-    public ScheduledInstance withPlatform(String platform) {
-        this.platform = platform;
-        return this;
-    }
+    private String networkPlatform;
 
     /**
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>).
-     *
-     * @return The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>).
-     */
-    public String getNetworkPlatform() {
-        return networkPlatform;
-    }
-    
-    /**
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>).
-     *
-     * @param networkPlatform The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>).
-     */
-    public void setNetworkPlatform(String networkPlatform) {
-        this.networkPlatform = networkPlatform;
-    }
-    
-    /**
-     * The network platform (<code>EC2-Classic</code> or
-     * <code>EC2-VPC</code>).
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param networkPlatform The network platform (<code>EC2-Classic</code> or
-     *         <code>EC2-VPC</code>).
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * The time for the next schedule to start.
+     * </p>
      */
-    public ScheduledInstance withNetworkPlatform(String networkPlatform) {
-        this.networkPlatform = networkPlatform;
-        return this;
-    }
+    private java.util.Date nextSlotStartTime;
 
     /**
+     * <p>
+     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+     * </p>
+     */
+    private String platform;
+
+    /**
+     * <p>
+     * The time that the previous schedule ended or will end.
+     * </p>
+     */
+    private java.util.Date previousSlotEndTime;
+
+    /**
+     * <p>
+     * The schedule recurrence.
+     * </p>
+     */
+    private ScheduledInstanceRecurrence recurrence;
+
+    /**
+     * <p>
+     * The Scheduled Instance ID.
+     * </p>
+     */
+    private String scheduledInstanceId;
+
+    /**
+     * <p>
+     * The number of hours in the schedule.
+     * </p>
+     */
+    private Integer slotDurationInHours;
+
+    /**
+     * <p>
+     * The end date for the Scheduled Instance.
+     * </p>
+     */
+    private java.util.Date termEndDate;
+
+    /**
+     * <p>
+     * The start date for the Scheduled Instance.
+     * </p>
+     */
+    private java.util.Date termStartDate;
+
+    /**
+     * <p>
+     * The total number of hours for a single instance for the entire term.
+     * </p>
+     */
+    private Integer totalScheduledInstanceHours;
+
+    /**
+     * <p>
      * The Availability Zone.
+     * </p>
      *
-     * @return The Availability Zone.
+     * @return <p>
+     *         The Availability Zone.
+     *         </p>
      */
     public String getAvailabilityZone() {
         return availabilityZone;
     }
-    
+
     /**
+     * <p>
      * The Availability Zone.
+     * </p>
      *
-     * @param availabilityZone The Availability Zone.
+     * @param availabilityZone <p>
+     *            The Availability Zone.
+     *            </p>
      */
     public void setAvailabilityZone(String availabilityZone) {
         this.availabilityZone = availabilityZone;
     }
-    
+
     /**
-     * The Availability Zone.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The Availability Zone.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param availabilityZone The Availability Zone.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param availabilityZone <p>
+     *            The Availability Zone.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ScheduledInstance withAvailabilityZone(String availabilityZone) {
         this.availabilityZone = availabilityZone;
@@ -271,164 +174,89 @@ public class ScheduledInstance implements Serializable {
     }
 
     /**
-     * The number of hours in the schedule.
-     *
-     * @return The number of hours in the schedule.
-     */
-    public Integer getSlotDurationInHours() {
-        return slotDurationInHours;
-    }
-    
-    /**
-     * The number of hours in the schedule.
-     *
-     * @param slotDurationInHours The number of hours in the schedule.
-     */
-    public void setSlotDurationInHours(Integer slotDurationInHours) {
-        this.slotDurationInHours = slotDurationInHours;
-    }
-    
-    /**
-     * The number of hours in the schedule.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The date when the Scheduled Instance was purchased.
+     * </p>
      *
-     * @param slotDurationInHours The number of hours in the schedule.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @return <p>
+     *         The date when the Scheduled Instance was purchased.
+     *         </p>
      */
-    public ScheduledInstance withSlotDurationInHours(Integer slotDurationInHours) {
-        this.slotDurationInHours = slotDurationInHours;
+    public java.util.Date getCreateDate() {
+        return createDate;
+    }
+
+    /**
+     * <p>
+     * The date when the Scheduled Instance was purchased.
+     * </p>
+     *
+     * @param createDate <p>
+     *            The date when the Scheduled Instance was purchased.
+     *            </p>
+     */
+    public void setCreateDate(java.util.Date createDate) {
+        this.createDate = createDate;
+    }
+
+    /**
+     * <p>
+     * The date when the Scheduled Instance was purchased.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param createDate <p>
+     *            The date when the Scheduled Instance was purchased.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withCreateDate(java.util.Date createDate) {
+        this.createDate = createDate;
         return this;
     }
 
     /**
-     * The schedule recurrence.
-     *
-     * @return The schedule recurrence.
-     */
-    public ScheduledInstanceRecurrence getRecurrence() {
-        return recurrence;
-    }
-    
-    /**
-     * The schedule recurrence.
-     *
-     * @param recurrence The schedule recurrence.
-     */
-    public void setRecurrence(ScheduledInstanceRecurrence recurrence) {
-        this.recurrence = recurrence;
-    }
-    
-    /**
-     * The schedule recurrence.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param recurrence The schedule recurrence.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ScheduledInstance withRecurrence(ScheduledInstanceRecurrence recurrence) {
-        this.recurrence = recurrence;
-        return this;
-    }
-
-    /**
-     * The time that the previous schedule ended or will end.
-     *
-     * @return The time that the previous schedule ended or will end.
-     */
-    public java.util.Date getPreviousSlotEndTime() {
-        return previousSlotEndTime;
-    }
-    
-    /**
-     * The time that the previous schedule ended or will end.
-     *
-     * @param previousSlotEndTime The time that the previous schedule ended or will end.
-     */
-    public void setPreviousSlotEndTime(java.util.Date previousSlotEndTime) {
-        this.previousSlotEndTime = previousSlotEndTime;
-    }
-    
-    /**
-     * The time that the previous schedule ended or will end.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param previousSlotEndTime The time that the previous schedule ended or will end.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ScheduledInstance withPreviousSlotEndTime(java.util.Date previousSlotEndTime) {
-        this.previousSlotEndTime = previousSlotEndTime;
-        return this;
-    }
-
-    /**
-     * The time for the next schedule to start.
-     *
-     * @return The time for the next schedule to start.
-     */
-    public java.util.Date getNextSlotStartTime() {
-        return nextSlotStartTime;
-    }
-    
-    /**
-     * The time for the next schedule to start.
-     *
-     * @param nextSlotStartTime The time for the next schedule to start.
-     */
-    public void setNextSlotStartTime(java.util.Date nextSlotStartTime) {
-        this.nextSlotStartTime = nextSlotStartTime;
-    }
-    
-    /**
-     * The time for the next schedule to start.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param nextSlotStartTime The time for the next schedule to start.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ScheduledInstance withNextSlotStartTime(java.util.Date nextSlotStartTime) {
-        this.nextSlotStartTime = nextSlotStartTime;
-        return this;
-    }
-
-    /**
      * The hourly price for a single instance.
+     * </p>
      *
-     * @return The hourly price for a single instance.
+     * @return <p>
+     *         The hourly price for a single instance.
+     *         </p>
      */
     public String getHourlyPrice() {
         return hourlyPrice;
     }
-    
+
     /**
+     * <p>
      * The hourly price for a single instance.
+     * </p>
      *
-     * @param hourlyPrice The hourly price for a single instance.
+     * @param hourlyPrice <p>
+     *            The hourly price for a single instance.
+     *            </p>
      */
     public void setHourlyPrice(String hourlyPrice) {
         this.hourlyPrice = hourlyPrice;
     }
-    
+
     /**
-     * The hourly price for a single instance.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The hourly price for a single instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param hourlyPrice The hourly price for a single instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param hourlyPrice <p>
+     *            The hourly price for a single instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ScheduledInstance withHourlyPrice(String hourlyPrice) {
         this.hourlyPrice = hourlyPrice;
@@ -436,65 +264,44 @@ public class ScheduledInstance implements Serializable {
     }
 
     /**
-     * The total number of hours for a single instance for the entire term.
-     *
-     * @return The total number of hours for a single instance for the entire term.
-     */
-    public Integer getTotalScheduledInstanceHours() {
-        return totalScheduledInstanceHours;
-    }
-    
-    /**
-     * The total number of hours for a single instance for the entire term.
-     *
-     * @param totalScheduledInstanceHours The total number of hours for a single instance for the entire term.
-     */
-    public void setTotalScheduledInstanceHours(Integer totalScheduledInstanceHours) {
-        this.totalScheduledInstanceHours = totalScheduledInstanceHours;
-    }
-    
-    /**
-     * The total number of hours for a single instance for the entire term.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param totalScheduledInstanceHours The total number of hours for a single instance for the entire term.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public ScheduledInstance withTotalScheduledInstanceHours(Integer totalScheduledInstanceHours) {
-        this.totalScheduledInstanceHours = totalScheduledInstanceHours;
-        return this;
-    }
-
-    /**
      * The number of instances.
+     * </p>
      *
-     * @return The number of instances.
+     * @return <p>
+     *         The number of instances.
+     *         </p>
      */
     public Integer getInstanceCount() {
         return instanceCount;
     }
-    
+
     /**
+     * <p>
      * The number of instances.
+     * </p>
      *
-     * @param instanceCount The number of instances.
+     * @param instanceCount <p>
+     *            The number of instances.
+     *            </p>
      */
     public void setInstanceCount(Integer instanceCount) {
         this.instanceCount = instanceCount;
     }
-    
+
     /**
-     * The number of instances.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The number of instances.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param instanceCount The number of instances.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param instanceCount <p>
+     *            The number of instances.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ScheduledInstance withInstanceCount(Integer instanceCount) {
         this.instanceCount = instanceCount;
@@ -502,65 +309,409 @@ public class ScheduledInstance implements Serializable {
     }
 
     /**
-     * The start date for the Scheduled Instance.
-     *
-     * @return The start date for the Scheduled Instance.
-     */
-    public java.util.Date getTermStartDate() {
-        return termStartDate;
-    }
-    
-    /**
-     * The start date for the Scheduled Instance.
-     *
-     * @param termStartDate The start date for the Scheduled Instance.
-     */
-    public void setTermStartDate(java.util.Date termStartDate) {
-        this.termStartDate = termStartDate;
-    }
-    
-    /**
-     * The start date for the Scheduled Instance.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The instance type.
+     * </p>
      *
-     * @param termStartDate The start date for the Scheduled Instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @return <p>
+     *         The instance type.
+     *         </p>
      */
-    public ScheduledInstance withTermStartDate(java.util.Date termStartDate) {
-        this.termStartDate = termStartDate;
+    public String getInstanceType() {
+        return instanceType;
+    }
+
+    /**
+     * <p>
+     * The instance type.
+     * </p>
+     *
+     * @param instanceType <p>
+     *            The instance type.
+     *            </p>
+     */
+    public void setInstanceType(String instanceType) {
+        this.instanceType = instanceType;
+    }
+
+    /**
+     * <p>
+     * The instance type.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param instanceType <p>
+     *            The instance type.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withInstanceType(String instanceType) {
+        this.instanceType = instanceType;
         return this;
     }
 
     /**
-     * The end date for the Scheduled Instance.
+     * <p>
+     * The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
      *
-     * @return The end date for the Scheduled Instance.
+     * @return <p>
+     *         The network platform (<code>EC2-Classic</code> or
+     *         <code>EC2-VPC</code>).
+     *         </p>
+     */
+    public String getNetworkPlatform() {
+        return networkPlatform;
+    }
+
+    /**
+     * <p>
+     * The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     *
+     * @param networkPlatform <p>
+     *            The network platform (<code>EC2-Classic</code> or
+     *            <code>EC2-VPC</code>).
+     *            </p>
+     */
+    public void setNetworkPlatform(String networkPlatform) {
+        this.networkPlatform = networkPlatform;
+    }
+
+    /**
+     * <p>
+     * The network platform (<code>EC2-Classic</code> or <code>EC2-VPC</code>).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param networkPlatform <p>
+     *            The network platform (<code>EC2-Classic</code> or
+     *            <code>EC2-VPC</code>).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withNetworkPlatform(String networkPlatform) {
+        this.networkPlatform = networkPlatform;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The time for the next schedule to start.
+     * </p>
+     *
+     * @return <p>
+     *         The time for the next schedule to start.
+     *         </p>
+     */
+    public java.util.Date getNextSlotStartTime() {
+        return nextSlotStartTime;
+    }
+
+    /**
+     * <p>
+     * The time for the next schedule to start.
+     * </p>
+     *
+     * @param nextSlotStartTime <p>
+     *            The time for the next schedule to start.
+     *            </p>
+     */
+    public void setNextSlotStartTime(java.util.Date nextSlotStartTime) {
+        this.nextSlotStartTime = nextSlotStartTime;
+    }
+
+    /**
+     * <p>
+     * The time for the next schedule to start.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextSlotStartTime <p>
+     *            The time for the next schedule to start.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withNextSlotStartTime(java.util.Date nextSlotStartTime) {
+        this.nextSlotStartTime = nextSlotStartTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+     * </p>
+     *
+     * @return <p>
+     *         The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+     *         </p>
+     */
+    public String getPlatform() {
+        return platform;
+    }
+
+    /**
+     * <p>
+     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+     * </p>
+     *
+     * @param platform <p>
+     *            The platform (<code>Linux/UNIX</code> or <code>Windows</code>
+     *            ).
+     *            </p>
+     */
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    /**
+     * <p>
+     * The platform (<code>Linux/UNIX</code> or <code>Windows</code>).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param platform <p>
+     *            The platform (<code>Linux/UNIX</code> or <code>Windows</code>
+     *            ).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withPlatform(String platform) {
+        this.platform = platform;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The time that the previous schedule ended or will end.
+     * </p>
+     *
+     * @return <p>
+     *         The time that the previous schedule ended or will end.
+     *         </p>
+     */
+    public java.util.Date getPreviousSlotEndTime() {
+        return previousSlotEndTime;
+    }
+
+    /**
+     * <p>
+     * The time that the previous schedule ended or will end.
+     * </p>
+     *
+     * @param previousSlotEndTime <p>
+     *            The time that the previous schedule ended or will end.
+     *            </p>
+     */
+    public void setPreviousSlotEndTime(java.util.Date previousSlotEndTime) {
+        this.previousSlotEndTime = previousSlotEndTime;
+    }
+
+    /**
+     * <p>
+     * The time that the previous schedule ended or will end.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param previousSlotEndTime <p>
+     *            The time that the previous schedule ended or will end.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withPreviousSlotEndTime(java.util.Date previousSlotEndTime) {
+        this.previousSlotEndTime = previousSlotEndTime;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The schedule recurrence.
+     * </p>
+     *
+     * @return <p>
+     *         The schedule recurrence.
+     *         </p>
+     */
+    public ScheduledInstanceRecurrence getRecurrence() {
+        return recurrence;
+    }
+
+    /**
+     * <p>
+     * The schedule recurrence.
+     * </p>
+     *
+     * @param recurrence <p>
+     *            The schedule recurrence.
+     *            </p>
+     */
+    public void setRecurrence(ScheduledInstanceRecurrence recurrence) {
+        this.recurrence = recurrence;
+    }
+
+    /**
+     * <p>
+     * The schedule recurrence.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param recurrence <p>
+     *            The schedule recurrence.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withRecurrence(ScheduledInstanceRecurrence recurrence) {
+        this.recurrence = recurrence;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Scheduled Instance ID.
+     * </p>
+     *
+     * @return <p>
+     *         The Scheduled Instance ID.
+     *         </p>
+     */
+    public String getScheduledInstanceId() {
+        return scheduledInstanceId;
+    }
+
+    /**
+     * <p>
+     * The Scheduled Instance ID.
+     * </p>
+     *
+     * @param scheduledInstanceId <p>
+     *            The Scheduled Instance ID.
+     *            </p>
+     */
+    public void setScheduledInstanceId(String scheduledInstanceId) {
+        this.scheduledInstanceId = scheduledInstanceId;
+    }
+
+    /**
+     * <p>
+     * The Scheduled Instance ID.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param scheduledInstanceId <p>
+     *            The Scheduled Instance ID.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withScheduledInstanceId(String scheduledInstanceId) {
+        this.scheduledInstanceId = scheduledInstanceId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The number of hours in the schedule.
+     * </p>
+     *
+     * @return <p>
+     *         The number of hours in the schedule.
+     *         </p>
+     */
+    public Integer getSlotDurationInHours() {
+        return slotDurationInHours;
+    }
+
+    /**
+     * <p>
+     * The number of hours in the schedule.
+     * </p>
+     *
+     * @param slotDurationInHours <p>
+     *            The number of hours in the schedule.
+     *            </p>
+     */
+    public void setSlotDurationInHours(Integer slotDurationInHours) {
+        this.slotDurationInHours = slotDurationInHours;
+    }
+
+    /**
+     * <p>
+     * The number of hours in the schedule.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param slotDurationInHours <p>
+     *            The number of hours in the schedule.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withSlotDurationInHours(Integer slotDurationInHours) {
+        this.slotDurationInHours = slotDurationInHours;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The end date for the Scheduled Instance.
+     * </p>
+     *
+     * @return <p>
+     *         The end date for the Scheduled Instance.
+     *         </p>
      */
     public java.util.Date getTermEndDate() {
         return termEndDate;
     }
-    
+
     /**
+     * <p>
      * The end date for the Scheduled Instance.
+     * </p>
      *
-     * @param termEndDate The end date for the Scheduled Instance.
+     * @param termEndDate <p>
+     *            The end date for the Scheduled Instance.
+     *            </p>
      */
     public void setTermEndDate(java.util.Date termEndDate) {
         this.termEndDate = termEndDate;
     }
-    
+
     /**
-     * The end date for the Scheduled Instance.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The end date for the Scheduled Instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param termEndDate The end date for the Scheduled Instance.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param termEndDate <p>
+     *            The end date for the Scheduled Instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public ScheduledInstance withTermEndDate(java.util.Date termEndDate) {
         this.termEndDate = termEndDate;
@@ -568,35 +719,95 @@ public class ScheduledInstance implements Serializable {
     }
 
     /**
-     * The date when the Scheduled Instance was purchased.
-     *
-     * @return The date when the Scheduled Instance was purchased.
-     */
-    public java.util.Date getCreateDate() {
-        return createDate;
-    }
-    
-    /**
-     * The date when the Scheduled Instance was purchased.
-     *
-     * @param createDate The date when the Scheduled Instance was purchased.
-     */
-    public void setCreateDate(java.util.Date createDate) {
-        this.createDate = createDate;
-    }
-    
-    /**
-     * The date when the Scheduled Instance was purchased.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The start date for the Scheduled Instance.
+     * </p>
      *
-     * @param createDate The date when the Scheduled Instance was purchased.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @return <p>
+     *         The start date for the Scheduled Instance.
+     *         </p>
      */
-    public ScheduledInstance withCreateDate(java.util.Date createDate) {
-        this.createDate = createDate;
+    public java.util.Date getTermStartDate() {
+        return termStartDate;
+    }
+
+    /**
+     * <p>
+     * The start date for the Scheduled Instance.
+     * </p>
+     *
+     * @param termStartDate <p>
+     *            The start date for the Scheduled Instance.
+     *            </p>
+     */
+    public void setTermStartDate(java.util.Date termStartDate) {
+        this.termStartDate = termStartDate;
+    }
+
+    /**
+     * <p>
+     * The start date for the Scheduled Instance.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param termStartDate <p>
+     *            The start date for the Scheduled Instance.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withTermStartDate(java.util.Date termStartDate) {
+        this.termStartDate = termStartDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The total number of hours for a single instance for the entire term.
+     * </p>
+     *
+     * @return <p>
+     *         The total number of hours for a single instance for the entire
+     *         term.
+     *         </p>
+     */
+    public Integer getTotalScheduledInstanceHours() {
+        return totalScheduledInstanceHours;
+    }
+
+    /**
+     * <p>
+     * The total number of hours for a single instance for the entire term.
+     * </p>
+     *
+     * @param totalScheduledInstanceHours <p>
+     *            The total number of hours for a single instance for the entire
+     *            term.
+     *            </p>
+     */
+    public void setTotalScheduledInstanceHours(Integer totalScheduledInstanceHours) {
+        this.totalScheduledInstanceHours = totalScheduledInstanceHours;
+    }
+
+    /**
+     * <p>
+     * The total number of hours for a single instance for the entire term.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param totalScheduledInstanceHours <p>
+     *            The total number of hours for a single instance for the entire
+     *            term.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduledInstance withTotalScheduledInstanceHours(Integer totalScheduledInstanceHours) {
+        this.totalScheduledInstanceHours = totalScheduledInstanceHours;
         return this;
     }
 
@@ -605,95 +816,170 @@ public class ScheduledInstance implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getScheduledInstanceId() != null) sb.append("ScheduledInstanceId: " + getScheduledInstanceId() + ",");
-        if (getInstanceType() != null) sb.append("InstanceType: " + getInstanceType() + ",");
-        if (getPlatform() != null) sb.append("Platform: " + getPlatform() + ",");
-        if (getNetworkPlatform() != null) sb.append("NetworkPlatform: " + getNetworkPlatform() + ",");
-        if (getAvailabilityZone() != null) sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
-        if (getSlotDurationInHours() != null) sb.append("SlotDurationInHours: " + getSlotDurationInHours() + ",");
-        if (getRecurrence() != null) sb.append("Recurrence: " + getRecurrence() + ",");
-        if (getPreviousSlotEndTime() != null) sb.append("PreviousSlotEndTime: " + getPreviousSlotEndTime() + ",");
-        if (getNextSlotStartTime() != null) sb.append("NextSlotStartTime: " + getNextSlotStartTime() + ",");
-        if (getHourlyPrice() != null) sb.append("HourlyPrice: " + getHourlyPrice() + ",");
-        if (getTotalScheduledInstanceHours() != null) sb.append("TotalScheduledInstanceHours: " + getTotalScheduledInstanceHours() + ",");
-        if (getInstanceCount() != null) sb.append("InstanceCount: " + getInstanceCount() + ",");
-        if (getTermStartDate() != null) sb.append("TermStartDate: " + getTermStartDate() + ",");
-        if (getTermEndDate() != null) sb.append("TermEndDate: " + getTermEndDate() + ",");
-        if (getCreateDate() != null) sb.append("CreateDate: " + getCreateDate() );
+        if (getAvailabilityZone() != null)
+            sb.append("AvailabilityZone: " + getAvailabilityZone() + ",");
+        if (getCreateDate() != null)
+            sb.append("CreateDate: " + getCreateDate() + ",");
+        if (getHourlyPrice() != null)
+            sb.append("HourlyPrice: " + getHourlyPrice() + ",");
+        if (getInstanceCount() != null)
+            sb.append("InstanceCount: " + getInstanceCount() + ",");
+        if (getInstanceType() != null)
+            sb.append("InstanceType: " + getInstanceType() + ",");
+        if (getNetworkPlatform() != null)
+            sb.append("NetworkPlatform: " + getNetworkPlatform() + ",");
+        if (getNextSlotStartTime() != null)
+            sb.append("NextSlotStartTime: " + getNextSlotStartTime() + ",");
+        if (getPlatform() != null)
+            sb.append("Platform: " + getPlatform() + ",");
+        if (getPreviousSlotEndTime() != null)
+            sb.append("PreviousSlotEndTime: " + getPreviousSlotEndTime() + ",");
+        if (getRecurrence() != null)
+            sb.append("Recurrence: " + getRecurrence() + ",");
+        if (getScheduledInstanceId() != null)
+            sb.append("ScheduledInstanceId: " + getScheduledInstanceId() + ",");
+        if (getSlotDurationInHours() != null)
+            sb.append("SlotDurationInHours: " + getSlotDurationInHours() + ",");
+        if (getTermEndDate() != null)
+            sb.append("TermEndDate: " + getTermEndDate() + ",");
+        if (getTermStartDate() != null)
+            sb.append("TermStartDate: " + getTermStartDate() + ",");
+        if (getTotalScheduledInstanceHours() != null)
+            sb.append("TotalScheduledInstanceHours: " + getTotalScheduledInstanceHours());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getScheduledInstanceId() == null) ? 0 : getScheduledInstanceId().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode()); 
-        hashCode = prime * hashCode + ((getPlatform() == null) ? 0 : getPlatform().hashCode()); 
-        hashCode = prime * hashCode + ((getNetworkPlatform() == null) ? 0 : getNetworkPlatform().hashCode()); 
-        hashCode = prime * hashCode + ((getAvailabilityZone() == null) ? 0 : getAvailabilityZone().hashCode()); 
-        hashCode = prime * hashCode + ((getSlotDurationInHours() == null) ? 0 : getSlotDurationInHours().hashCode()); 
-        hashCode = prime * hashCode + ((getRecurrence() == null) ? 0 : getRecurrence().hashCode()); 
-        hashCode = prime * hashCode + ((getPreviousSlotEndTime() == null) ? 0 : getPreviousSlotEndTime().hashCode()); 
-        hashCode = prime * hashCode + ((getNextSlotStartTime() == null) ? 0 : getNextSlotStartTime().hashCode()); 
-        hashCode = prime * hashCode + ((getHourlyPrice() == null) ? 0 : getHourlyPrice().hashCode()); 
-        hashCode = prime * hashCode + ((getTotalScheduledInstanceHours() == null) ? 0 : getTotalScheduledInstanceHours().hashCode()); 
-        hashCode = prime * hashCode + ((getInstanceCount() == null) ? 0 : getInstanceCount().hashCode()); 
-        hashCode = prime * hashCode + ((getTermStartDate() == null) ? 0 : getTermStartDate().hashCode()); 
-        hashCode = prime * hashCode + ((getTermEndDate() == null) ? 0 : getTermEndDate().hashCode()); 
-        hashCode = prime * hashCode + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getAvailabilityZone() == null) ? 0 : getAvailabilityZone().hashCode());
+        hashCode = prime * hashCode + ((getCreateDate() == null) ? 0 : getCreateDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getHourlyPrice() == null) ? 0 : getHourlyPrice().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceCount() == null) ? 0 : getInstanceCount().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceType() == null) ? 0 : getInstanceType().hashCode());
+        hashCode = prime * hashCode
+                + ((getNetworkPlatform() == null) ? 0 : getNetworkPlatform().hashCode());
+        hashCode = prime * hashCode
+                + ((getNextSlotStartTime() == null) ? 0 : getNextSlotStartTime().hashCode());
+        hashCode = prime * hashCode + ((getPlatform() == null) ? 0 : getPlatform().hashCode());
+        hashCode = prime * hashCode
+                + ((getPreviousSlotEndTime() == null) ? 0 : getPreviousSlotEndTime().hashCode());
+        hashCode = prime * hashCode + ((getRecurrence() == null) ? 0 : getRecurrence().hashCode());
+        hashCode = prime * hashCode
+                + ((getScheduledInstanceId() == null) ? 0 : getScheduledInstanceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSlotDurationInHours() == null) ? 0 : getSlotDurationInHours().hashCode());
+        hashCode = prime * hashCode
+                + ((getTermEndDate() == null) ? 0 : getTermEndDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getTermStartDate() == null) ? 0 : getTermStartDate().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getTotalScheduledInstanceHours() == null) ? 0
+                        : getTotalScheduledInstanceHours().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof ScheduledInstance == false) return false;
-        ScheduledInstance other = (ScheduledInstance)obj;
-        
-        if (other.getScheduledInstanceId() == null ^ this.getScheduledInstanceId() == null) return false;
-        if (other.getScheduledInstanceId() != null && other.getScheduledInstanceId().equals(this.getScheduledInstanceId()) == false) return false; 
-        if (other.getInstanceType() == null ^ this.getInstanceType() == null) return false;
-        if (other.getInstanceType() != null && other.getInstanceType().equals(this.getInstanceType()) == false) return false; 
-        if (other.getPlatform() == null ^ this.getPlatform() == null) return false;
-        if (other.getPlatform() != null && other.getPlatform().equals(this.getPlatform()) == false) return false; 
-        if (other.getNetworkPlatform() == null ^ this.getNetworkPlatform() == null) return false;
-        if (other.getNetworkPlatform() != null && other.getNetworkPlatform().equals(this.getNetworkPlatform()) == false) return false; 
-        if (other.getAvailabilityZone() == null ^ this.getAvailabilityZone() == null) return false;
-        if (other.getAvailabilityZone() != null && other.getAvailabilityZone().equals(this.getAvailabilityZone()) == false) return false; 
-        if (other.getSlotDurationInHours() == null ^ this.getSlotDurationInHours() == null) return false;
-        if (other.getSlotDurationInHours() != null && other.getSlotDurationInHours().equals(this.getSlotDurationInHours()) == false) return false; 
-        if (other.getRecurrence() == null ^ this.getRecurrence() == null) return false;
-        if (other.getRecurrence() != null && other.getRecurrence().equals(this.getRecurrence()) == false) return false; 
-        if (other.getPreviousSlotEndTime() == null ^ this.getPreviousSlotEndTime() == null) return false;
-        if (other.getPreviousSlotEndTime() != null && other.getPreviousSlotEndTime().equals(this.getPreviousSlotEndTime()) == false) return false; 
-        if (other.getNextSlotStartTime() == null ^ this.getNextSlotStartTime() == null) return false;
-        if (other.getNextSlotStartTime() != null && other.getNextSlotStartTime().equals(this.getNextSlotStartTime()) == false) return false; 
-        if (other.getHourlyPrice() == null ^ this.getHourlyPrice() == null) return false;
-        if (other.getHourlyPrice() != null && other.getHourlyPrice().equals(this.getHourlyPrice()) == false) return false; 
-        if (other.getTotalScheduledInstanceHours() == null ^ this.getTotalScheduledInstanceHours() == null) return false;
-        if (other.getTotalScheduledInstanceHours() != null && other.getTotalScheduledInstanceHours().equals(this.getTotalScheduledInstanceHours()) == false) return false; 
-        if (other.getInstanceCount() == null ^ this.getInstanceCount() == null) return false;
-        if (other.getInstanceCount() != null && other.getInstanceCount().equals(this.getInstanceCount()) == false) return false; 
-        if (other.getTermStartDate() == null ^ this.getTermStartDate() == null) return false;
-        if (other.getTermStartDate() != null && other.getTermStartDate().equals(this.getTermStartDate()) == false) return false; 
-        if (other.getTermEndDate() == null ^ this.getTermEndDate() == null) return false;
-        if (other.getTermEndDate() != null && other.getTermEndDate().equals(this.getTermEndDate()) == false) return false; 
-        if (other.getCreateDate() == null ^ this.getCreateDate() == null) return false;
-        if (other.getCreateDate() != null && other.getCreateDate().equals(this.getCreateDate()) == false) return false; 
+        if (obj instanceof ScheduledInstance == false)
+            return false;
+        ScheduledInstance other = (ScheduledInstance) obj;
+
+        if (other.getAvailabilityZone() == null ^ this.getAvailabilityZone() == null)
+            return false;
+        if (other.getAvailabilityZone() != null
+                && other.getAvailabilityZone().equals(this.getAvailabilityZone()) == false)
+            return false;
+        if (other.getCreateDate() == null ^ this.getCreateDate() == null)
+            return false;
+        if (other.getCreateDate() != null
+                && other.getCreateDate().equals(this.getCreateDate()) == false)
+            return false;
+        if (other.getHourlyPrice() == null ^ this.getHourlyPrice() == null)
+            return false;
+        if (other.getHourlyPrice() != null
+                && other.getHourlyPrice().equals(this.getHourlyPrice()) == false)
+            return false;
+        if (other.getInstanceCount() == null ^ this.getInstanceCount() == null)
+            return false;
+        if (other.getInstanceCount() != null
+                && other.getInstanceCount().equals(this.getInstanceCount()) == false)
+            return false;
+        if (other.getInstanceType() == null ^ this.getInstanceType() == null)
+            return false;
+        if (other.getInstanceType() != null
+                && other.getInstanceType().equals(this.getInstanceType()) == false)
+            return false;
+        if (other.getNetworkPlatform() == null ^ this.getNetworkPlatform() == null)
+            return false;
+        if (other.getNetworkPlatform() != null
+                && other.getNetworkPlatform().equals(this.getNetworkPlatform()) == false)
+            return false;
+        if (other.getNextSlotStartTime() == null ^ this.getNextSlotStartTime() == null)
+            return false;
+        if (other.getNextSlotStartTime() != null
+                && other.getNextSlotStartTime().equals(this.getNextSlotStartTime()) == false)
+            return false;
+        if (other.getPlatform() == null ^ this.getPlatform() == null)
+            return false;
+        if (other.getPlatform() != null && other.getPlatform().equals(this.getPlatform()) == false)
+            return false;
+        if (other.getPreviousSlotEndTime() == null ^ this.getPreviousSlotEndTime() == null)
+            return false;
+        if (other.getPreviousSlotEndTime() != null
+                && other.getPreviousSlotEndTime().equals(this.getPreviousSlotEndTime()) == false)
+            return false;
+        if (other.getRecurrence() == null ^ this.getRecurrence() == null)
+            return false;
+        if (other.getRecurrence() != null
+                && other.getRecurrence().equals(this.getRecurrence()) == false)
+            return false;
+        if (other.getScheduledInstanceId() == null ^ this.getScheduledInstanceId() == null)
+            return false;
+        if (other.getScheduledInstanceId() != null
+                && other.getScheduledInstanceId().equals(this.getScheduledInstanceId()) == false)
+            return false;
+        if (other.getSlotDurationInHours() == null ^ this.getSlotDurationInHours() == null)
+            return false;
+        if (other.getSlotDurationInHours() != null
+                && other.getSlotDurationInHours().equals(this.getSlotDurationInHours()) == false)
+            return false;
+        if (other.getTermEndDate() == null ^ this.getTermEndDate() == null)
+            return false;
+        if (other.getTermEndDate() != null
+                && other.getTermEndDate().equals(this.getTermEndDate()) == false)
+            return false;
+        if (other.getTermStartDate() == null ^ this.getTermStartDate() == null)
+            return false;
+        if (other.getTermStartDate() != null
+                && other.getTermStartDate().equals(this.getTermStartDate()) == false)
+            return false;
+        if (other.getTotalScheduledInstanceHours() == null
+                ^ this.getTotalScheduledInstanceHours() == null)
+            return false;
+        if (other.getTotalScheduledInstanceHours() != null
+                && other.getTotalScheduledInstanceHours().equals(
+                        this.getTotalScheduledInstanceHours()) == false)
+            return false;
         return true;
     }
-    
 }
-    

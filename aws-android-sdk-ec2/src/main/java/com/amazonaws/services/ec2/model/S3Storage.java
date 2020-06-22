@@ -1,17 +1,18 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
@@ -23,169 +24,108 @@ import java.io.Serializable;
  * </p>
  */
 public class S3Storage implements Serializable {
-
     /**
-     * The bucket in which to store the AMI. You can specify a bucket that
-     * you already own or a new bucket that Amazon EC2 creates on your
-     * behalf. If you specify a bucket that belongs to someone else, Amazon
-     * EC2 returns an error.
-     */
-    private String bucket;
-
-    /**
-     * The beginning of the file name of the AMI.
-     */
-    private String prefix;
-
-    /**
-     * The access key ID of the owner of the bucket. Before you specify a
-     * value for your access key ID, review and follow the guidance in <a
-     * href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     * Practices for Managing AWS Access Keys</a>.
+     * <p>
+     * The access key ID of the owner of the bucket. Before you specify a value
+     * for your access key ID, review and follow the guidance in <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     * >Best Practices for Managing AWS Access Keys</a>.
+     * </p>
      */
     private String aWSAccessKeyId;
 
     /**
-     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf. For command
-     * line tools, base64 encoding is performed for you.
+     * <p>
+     * The bucket in which to store the AMI. You can specify a bucket that you
+     * already own or a new bucket that Amazon EC2 creates on your behalf. If
+     * you specify a bucket that belongs to someone else, Amazon EC2 returns an
+     * error.
+     * </p>
      */
-    private String uploadPolicy;
+    private String bucket;
 
     /**
-     * The signature of the Base64 encoded JSON document.
+     * <p>
+     * The beginning of the file name of the AMI.
+     * </p>
+     */
+    private String prefix;
+
+    /**
+     * <p>
+     * An Amazon S3 upload policy that gives Amazon EC2 permission to upload
+     * items into Amazon S3 on your behalf.
+     * </p>
+     */
+    private java.nio.ByteBuffer uploadPolicy;
+
+    /**
+     * <p>
+     * The signature of the JSON document.
+     * </p>
      */
     private String uploadPolicySignature;
 
     /**
-     * The bucket in which to store the AMI. You can specify a bucket that
-     * you already own or a new bucket that Amazon EC2 creates on your
-     * behalf. If you specify a bucket that belongs to someone else, Amazon
-     * EC2 returns an error.
-     *
-     * @return The bucket in which to store the AMI. You can specify a bucket that
-     *         you already own or a new bucket that Amazon EC2 creates on your
-     *         behalf. If you specify a bucket that belongs to someone else, Amazon
-     *         EC2 returns an error.
-     */
-    public String getBucket() {
-        return bucket;
-    }
-    
-    /**
-     * The bucket in which to store the AMI. You can specify a bucket that
-     * you already own or a new bucket that Amazon EC2 creates on your
-     * behalf. If you specify a bucket that belongs to someone else, Amazon
-     * EC2 returns an error.
-     *
-     * @param bucket The bucket in which to store the AMI. You can specify a bucket that
-     *         you already own or a new bucket that Amazon EC2 creates on your
-     *         behalf. If you specify a bucket that belongs to someone else, Amazon
-     *         EC2 returns an error.
-     */
-    public void setBucket(String bucket) {
-        this.bucket = bucket;
-    }
-    
-    /**
-     * The bucket in which to store the AMI. You can specify a bucket that
-     * you already own or a new bucket that Amazon EC2 creates on your
-     * behalf. If you specify a bucket that belongs to someone else, Amazon
-     * EC2 returns an error.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The access key ID of the owner of the bucket. Before you specify a value
+     * for your access key ID, review and follow the guidance in <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     * >Best Practices for Managing AWS Access Keys</a>.
+     * </p>
      *
-     * @param bucket The bucket in which to store the AMI. You can specify a bucket that
-     *         you already own or a new bucket that Amazon EC2 creates on your
-     *         behalf. If you specify a bucket that belongs to someone else, Amazon
-     *         EC2 returns an error.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public S3Storage withBucket(String bucket) {
-        this.bucket = bucket;
-        return this;
-    }
-
-    /**
-     * The beginning of the file name of the AMI.
-     *
-     * @return The beginning of the file name of the AMI.
-     */
-    public String getPrefix() {
-        return prefix;
-    }
-    
-    /**
-     * The beginning of the file name of the AMI.
-     *
-     * @param prefix The beginning of the file name of the AMI.
-     */
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-    
-    /**
-     * The beginning of the file name of the AMI.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param prefix The beginning of the file name of the AMI.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public S3Storage withPrefix(String prefix) {
-        this.prefix = prefix;
-        return this;
-    }
-
-    /**
-     * The access key ID of the owner of the bucket. Before you specify a
-     * value for your access key ID, review and follow the guidance in <a
-     * href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     * Practices for Managing AWS Access Keys</a>.
-     *
-     * @return The access key ID of the owner of the bucket. Before you specify a
-     *         value for your access key ID, review and follow the guidance in <a
-     *         href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     *         Practices for Managing AWS Access Keys</a>.
+     * @return <p>
+     *         The access key ID of the owner of the bucket. Before you specify
+     *         a value for your access key ID, review and follow the guidance in
+     *         <a href=
+     *         "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     *         >Best Practices for Managing AWS Access Keys</a>.
+     *         </p>
      */
     public String getAWSAccessKeyId() {
         return aWSAccessKeyId;
     }
-    
+
     /**
-     * The access key ID of the owner of the bucket. Before you specify a
-     * value for your access key ID, review and follow the guidance in <a
-     * href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     * Practices for Managing AWS Access Keys</a>.
+     * <p>
+     * The access key ID of the owner of the bucket. Before you specify a value
+     * for your access key ID, review and follow the guidance in <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     * >Best Practices for Managing AWS Access Keys</a>.
+     * </p>
      *
-     * @param aWSAccessKeyId The access key ID of the owner of the bucket. Before you specify a
-     *         value for your access key ID, review and follow the guidance in <a
-     *         href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     *         Practices for Managing AWS Access Keys</a>.
+     * @param aWSAccessKeyId <p>
+     *            The access key ID of the owner of the bucket. Before you
+     *            specify a value for your access key ID, review and follow the
+     *            guidance in <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     *            >Best Practices for Managing AWS Access Keys</a>.
+     *            </p>
      */
     public void setAWSAccessKeyId(String aWSAccessKeyId) {
         this.aWSAccessKeyId = aWSAccessKeyId;
     }
-    
+
     /**
-     * The access key ID of the owner of the bucket. Before you specify a
-     * value for your access key ID, review and follow the guidance in <a
-     * href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     * Practices for Managing AWS Access Keys</a>.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The access key ID of the owner of the bucket. Before you specify a value
+     * for your access key ID, review and follow the guidance in <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     * >Best Practices for Managing AWS Access Keys</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param aWSAccessKeyId The access key ID of the owner of the bucket. Before you specify a
-     *         value for your access key ID, review and follow the guidance in <a
-     *         href="http://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html">Best
-     *         Practices for Managing AWS Access Keys</a>.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param aWSAccessKeyId <p>
+     *            The access key ID of the owner of the bucket. Before you
+     *            specify a value for your access key ID, review and follow the
+     *            guidance in <a href=
+     *            "https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html"
+     *            >Best Practices for Managing AWS Access Keys</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public S3Storage withAWSAccessKeyId(String aWSAccessKeyId) {
         this.aWSAccessKeyId = aWSAccessKeyId;
@@ -193,77 +133,203 @@ public class S3Storage implements Serializable {
     }
 
     /**
-     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf. For command
-     * line tools, base64 encoding is performed for you.
+     * <p>
+     * The bucket in which to store the AMI. You can specify a bucket that you
+     * already own or a new bucket that Amazon EC2 creates on your behalf. If
+     * you specify a bucket that belongs to someone else, Amazon EC2 returns an
+     * error.
+     * </p>
      *
-     * @return A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     *         permission to upload items into Amazon S3 on your behalf. For command
-     *         line tools, base64 encoding is performed for you.
+     * @return <p>
+     *         The bucket in which to store the AMI. You can specify a bucket
+     *         that you already own or a new bucket that Amazon EC2 creates on
+     *         your behalf. If you specify a bucket that belongs to someone
+     *         else, Amazon EC2 returns an error.
+     *         </p>
      */
-    public String getUploadPolicy() {
+    public String getBucket() {
+        return bucket;
+    }
+
+    /**
+     * <p>
+     * The bucket in which to store the AMI. You can specify a bucket that you
+     * already own or a new bucket that Amazon EC2 creates on your behalf. If
+     * you specify a bucket that belongs to someone else, Amazon EC2 returns an
+     * error.
+     * </p>
+     *
+     * @param bucket <p>
+     *            The bucket in which to store the AMI. You can specify a bucket
+     *            that you already own or a new bucket that Amazon EC2 creates
+     *            on your behalf. If you specify a bucket that belongs to
+     *            someone else, Amazon EC2 returns an error.
+     *            </p>
+     */
+    public void setBucket(String bucket) {
+        this.bucket = bucket;
+    }
+
+    /**
+     * <p>
+     * The bucket in which to store the AMI. You can specify a bucket that you
+     * already own or a new bucket that Amazon EC2 creates on your behalf. If
+     * you specify a bucket that belongs to someone else, Amazon EC2 returns an
+     * error.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param bucket <p>
+     *            The bucket in which to store the AMI. You can specify a bucket
+     *            that you already own or a new bucket that Amazon EC2 creates
+     *            on your behalf. If you specify a bucket that belongs to
+     *            someone else, Amazon EC2 returns an error.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public S3Storage withBucket(String bucket) {
+        this.bucket = bucket;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The beginning of the file name of the AMI.
+     * </p>
+     *
+     * @return <p>
+     *         The beginning of the file name of the AMI.
+     *         </p>
+     */
+    public String getPrefix() {
+        return prefix;
+    }
+
+    /**
+     * <p>
+     * The beginning of the file name of the AMI.
+     * </p>
+     *
+     * @param prefix <p>
+     *            The beginning of the file name of the AMI.
+     *            </p>
+     */
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    /**
+     * <p>
+     * The beginning of the file name of the AMI.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param prefix <p>
+     *            The beginning of the file name of the AMI.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public S3Storage withPrefix(String prefix) {
+        this.prefix = prefix;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An Amazon S3 upload policy that gives Amazon EC2 permission to upload
+     * items into Amazon S3 on your behalf.
+     * </p>
+     *
+     * @return <p>
+     *         An Amazon S3 upload policy that gives Amazon EC2 permission to
+     *         upload items into Amazon S3 on your behalf.
+     *         </p>
+     */
+    public java.nio.ByteBuffer getUploadPolicy() {
         return uploadPolicy;
     }
-    
+
     /**
-     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf. For command
-     * line tools, base64 encoding is performed for you.
+     * <p>
+     * An Amazon S3 upload policy that gives Amazon EC2 permission to upload
+     * items into Amazon S3 on your behalf.
+     * </p>
      *
-     * @param uploadPolicy A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     *         permission to upload items into Amazon S3 on your behalf. For command
-     *         line tools, base64 encoding is performed for you.
+     * @param uploadPolicy <p>
+     *            An Amazon S3 upload policy that gives Amazon EC2 permission to
+     *            upload items into Amazon S3 on your behalf.
+     *            </p>
      */
-    public void setUploadPolicy(String uploadPolicy) {
+    public void setUploadPolicy(java.nio.ByteBuffer uploadPolicy) {
         this.uploadPolicy = uploadPolicy;
     }
-    
+
     /**
-     * A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     * permission to upload items into Amazon S3 on your behalf. For command
-     * line tools, base64 encoding is performed for you.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * An Amazon S3 upload policy that gives Amazon EC2 permission to upload
+     * items into Amazon S3 on your behalf.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param uploadPolicy A base64-encoded Amazon S3 upload policy that gives Amazon EC2
-     *         permission to upload items into Amazon S3 on your behalf. For command
-     *         line tools, base64 encoding is performed for you.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param uploadPolicy <p>
+     *            An Amazon S3 upload policy that gives Amazon EC2 permission to
+     *            upload items into Amazon S3 on your behalf.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public S3Storage withUploadPolicy(String uploadPolicy) {
+    public S3Storage withUploadPolicy(java.nio.ByteBuffer uploadPolicy) {
         this.uploadPolicy = uploadPolicy;
         return this;
     }
 
     /**
-     * The signature of the Base64 encoded JSON document.
+     * <p>
+     * The signature of the JSON document.
+     * </p>
      *
-     * @return The signature of the Base64 encoded JSON document.
+     * @return <p>
+     *         The signature of the JSON document.
+     *         </p>
      */
     public String getUploadPolicySignature() {
         return uploadPolicySignature;
     }
-    
+
     /**
-     * The signature of the Base64 encoded JSON document.
+     * <p>
+     * The signature of the JSON document.
+     * </p>
      *
-     * @param uploadPolicySignature The signature of the Base64 encoded JSON document.
+     * @param uploadPolicySignature <p>
+     *            The signature of the JSON document.
+     *            </p>
      */
     public void setUploadPolicySignature(String uploadPolicySignature) {
         this.uploadPolicySignature = uploadPolicySignature;
     }
-    
+
     /**
-     * The signature of the Base64 encoded JSON document.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The signature of the JSON document.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param uploadPolicySignature The signature of the Base64 encoded JSON document.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param uploadPolicySignature <p>
+     *            The signature of the JSON document.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public S3Storage withUploadPolicySignature(String uploadPolicySignature) {
         this.uploadPolicySignature = uploadPolicySignature;
@@ -275,55 +341,77 @@ public class S3Storage implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getBucket() != null) sb.append("Bucket: " + getBucket() + ",");
-        if (getPrefix() != null) sb.append("Prefix: " + getPrefix() + ",");
-        if (getAWSAccessKeyId() != null) sb.append("AWSAccessKeyId: " + getAWSAccessKeyId() + ",");
-        if (getUploadPolicy() != null) sb.append("UploadPolicy: " + getUploadPolicy() + ",");
-        if (getUploadPolicySignature() != null) sb.append("UploadPolicySignature: " + getUploadPolicySignature() );
+        if (getAWSAccessKeyId() != null)
+            sb.append("AWSAccessKeyId: " + getAWSAccessKeyId() + ",");
+        if (getBucket() != null)
+            sb.append("Bucket: " + getBucket() + ",");
+        if (getPrefix() != null)
+            sb.append("Prefix: " + getPrefix() + ",");
+        if (getUploadPolicy() != null)
+            sb.append("UploadPolicy: " + getUploadPolicy() + ",");
+        if (getUploadPolicySignature() != null)
+            sb.append("UploadPolicySignature: " + getUploadPolicySignature());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode()); 
-        hashCode = prime * hashCode + ((getPrefix() == null) ? 0 : getPrefix().hashCode()); 
-        hashCode = prime * hashCode + ((getAWSAccessKeyId() == null) ? 0 : getAWSAccessKeyId().hashCode()); 
-        hashCode = prime * hashCode + ((getUploadPolicy() == null) ? 0 : getUploadPolicy().hashCode()); 
-        hashCode = prime * hashCode + ((getUploadPolicySignature() == null) ? 0 : getUploadPolicySignature().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getAWSAccessKeyId() == null) ? 0 : getAWSAccessKeyId().hashCode());
+        hashCode = prime * hashCode + ((getBucket() == null) ? 0 : getBucket().hashCode());
+        hashCode = prime * hashCode + ((getPrefix() == null) ? 0 : getPrefix().hashCode());
+        hashCode = prime * hashCode
+                + ((getUploadPolicy() == null) ? 0 : getUploadPolicy().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getUploadPolicySignature() == null) ? 0 : getUploadPolicySignature().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof S3Storage == false) return false;
-        S3Storage other = (S3Storage)obj;
-        
-        if (other.getBucket() == null ^ this.getBucket() == null) return false;
-        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false) return false; 
-        if (other.getPrefix() == null ^ this.getPrefix() == null) return false;
-        if (other.getPrefix() != null && other.getPrefix().equals(this.getPrefix()) == false) return false; 
-        if (other.getAWSAccessKeyId() == null ^ this.getAWSAccessKeyId() == null) return false;
-        if (other.getAWSAccessKeyId() != null && other.getAWSAccessKeyId().equals(this.getAWSAccessKeyId()) == false) return false; 
-        if (other.getUploadPolicy() == null ^ this.getUploadPolicy() == null) return false;
-        if (other.getUploadPolicy() != null && other.getUploadPolicy().equals(this.getUploadPolicy()) == false) return false; 
-        if (other.getUploadPolicySignature() == null ^ this.getUploadPolicySignature() == null) return false;
-        if (other.getUploadPolicySignature() != null && other.getUploadPolicySignature().equals(this.getUploadPolicySignature()) == false) return false; 
+        if (obj instanceof S3Storage == false)
+            return false;
+        S3Storage other = (S3Storage) obj;
+
+        if (other.getAWSAccessKeyId() == null ^ this.getAWSAccessKeyId() == null)
+            return false;
+        if (other.getAWSAccessKeyId() != null
+                && other.getAWSAccessKeyId().equals(this.getAWSAccessKeyId()) == false)
+            return false;
+        if (other.getBucket() == null ^ this.getBucket() == null)
+            return false;
+        if (other.getBucket() != null && other.getBucket().equals(this.getBucket()) == false)
+            return false;
+        if (other.getPrefix() == null ^ this.getPrefix() == null)
+            return false;
+        if (other.getPrefix() != null && other.getPrefix().equals(this.getPrefix()) == false)
+            return false;
+        if (other.getUploadPolicy() == null ^ this.getUploadPolicy() == null)
+            return false;
+        if (other.getUploadPolicy() != null
+                && other.getUploadPolicy().equals(this.getUploadPolicy()) == false)
+            return false;
+        if (other.getUploadPolicySignature() == null ^ this.getUploadPolicySignature() == null)
+            return false;
+        if (other.getUploadPolicySignature() != null
+                && other.getUploadPolicySignature().equals(this.getUploadPolicySignature()) == false)
+            return false;
         return true;
     }
-    
 }
-    
