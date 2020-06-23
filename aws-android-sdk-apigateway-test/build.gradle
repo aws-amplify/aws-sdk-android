@@ -20,15 +20,12 @@ android {
 }
 
 dependencies {
+    api (project(':aws-android-sdk-apigateway-core')) {
+        exclude group: 'com.google.android', module: 'android'
+    }
+
+    androidTestImplementation project(':aws-android-sdk-testutils')
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'org.mockito:mockito-android:2.7.22'
-    androidTestImplementation project(':aws-android-sdk-apigateway-core')
-    androidTestImplementation project(':aws-android-sdk-testutils')
-}
-
-configurations {
-    all {
-        exclude group: 'xpp3', module: 'xpp3'
-    }
 }
 
