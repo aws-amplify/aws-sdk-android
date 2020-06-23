@@ -247,7 +247,7 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
         metaData.setContentLength(dataBytes.length);
 
         AmazonS3Client amazonS3Client = new AmazonS3Client(credentials,
-                Region.getRegion(Regions.US_WEST_2));
+                Region.getRegion(Regions.US_EAST_1));
         PutObjectRequest putObjectRequest = new PutObjectRequest(
                 bucketWithSSEKMSEnabled,
                 "test",
