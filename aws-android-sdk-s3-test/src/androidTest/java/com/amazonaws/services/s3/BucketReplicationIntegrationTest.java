@@ -40,6 +40,9 @@ import org.junit.Test;
 
 import java.io.File;
 
+@Ignore("This test requires an IAM role with the ability to replicate data between S3 buckets. Previously it " +
+        "was hard-coded (ROLE), but the original account was deactivated. Since this test covers an uncommon" +
+        "use-case for users of the Android SDK and is testing generated code, we're disabling it.")
 public class BucketReplicationIntegrationTest extends
         S3IntegrationTestBase {
 
@@ -113,9 +116,6 @@ public class BucketReplicationIntegrationTest extends
         }
     }
 
-    @Ignore("This test requires an IAM role with the ability to replicate data between S3 buckets. Previously it " +
-            "was hard-coded (ROLE), but the original account was deactivated. Since this test covers an uncommon" +
-            "use-case for users of the Android SDK and is testing generated code, we're disabling it.")
     public void testBucketReplication() {
         testSetAndRetrieveReplicationConfiguration();
         testDeleteConfiguration();
