@@ -1,3 +1,19 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-organizations
+---aws-android-sdk-iam
+---aws-android-sdk-autoscaling
+---aws-android-sdk-fsx
+---aws-android-sdk-backup
+---aws-android-sdk-amplify
+---aws-android-sdk-codecommit
+---aws-android-sdk-emr
+---aws-android-sdk-honeycode
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
