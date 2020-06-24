@@ -34,6 +34,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * particular tag only if it matches all the filters. If there's no match, no
  * special message is returned.
  * </p>
+ * <p>
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-tagging.html"
+ * >Tagging Auto Scaling Groups and Instances</a> in the <i>Amazon EC2 Auto
+ * Scaling User Guide</i>.
+ * </p>
  */
 public class DescribeTagsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

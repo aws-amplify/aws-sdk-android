@@ -61,7 +61,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      */
     private Boolean honorCooldown;
@@ -79,8 +80,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * adjustment for the policy, the call returns an error.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      */
     private Double metricValue;
@@ -90,8 +91,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * The breach threshold for the alarm.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      */
     private Double breachThreshold;
@@ -228,7 +229,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
@@ -242,8 +244,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *         >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *         Guide</i>.
+     *         >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Boolean isHonorCooldown() {
@@ -262,7 +264,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
@@ -276,8 +279,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *         >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *         Guide</i>.
+     *         >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Boolean getHonorCooldown() {
@@ -296,7 +299,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      *
      * @param honorCooldown <p>
@@ -311,8 +315,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
+     *            >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setHonorCooldown(Boolean honorCooldown) {
@@ -331,7 +335,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -349,8 +354,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
+     *            >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -373,8 +378,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * adjustment for the policy, the call returns an error.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      *
      * @return <p>
@@ -390,8 +395,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *         adjustment for the policy, the call returns an error.
      *         </p>
      *         <p>
-     *         Conditional: This parameter is required if the policy type is
-     *         <code>StepScaling</code> and not supported otherwise.
+     *         Required if the policy type is <code>StepScaling</code> and not
+     *         supported otherwise.
      *         </p>
      */
     public Double getMetricValue() {
@@ -411,8 +416,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * adjustment for the policy, the call returns an error.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      *
      * @param metricValue <p>
@@ -428,8 +433,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            step adjustment for the policy, the call returns an error.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required if the policy type is
-     *            <code>StepScaling</code> and not supported otherwise.
+     *            Required if the policy type is <code>StepScaling</code> and
+     *            not supported otherwise.
      *            </p>
      */
     public void setMetricValue(Double metricValue) {
@@ -449,8 +454,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * adjustment for the policy, the call returns an error.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -469,8 +474,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            step adjustment for the policy, the call returns an error.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required if the policy type is
-     *            <code>StepScaling</code> and not supported otherwise.
+     *            Required if the policy type is <code>StepScaling</code> and
+     *            not supported otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -485,16 +490,16 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * The breach threshold for the alarm.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      *
      * @return <p>
      *         The breach threshold for the alarm.
      *         </p>
      *         <p>
-     *         Conditional: This parameter is required if the policy type is
-     *         <code>StepScaling</code> and not supported otherwise.
+     *         Required if the policy type is <code>StepScaling</code> and not
+     *         supported otherwise.
      *         </p>
      */
     public Double getBreachThreshold() {
@@ -506,16 +511,16 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * The breach threshold for the alarm.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      *
      * @param breachThreshold <p>
      *            The breach threshold for the alarm.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required if the policy type is
-     *            <code>StepScaling</code> and not supported otherwise.
+     *            Required if the policy type is <code>StepScaling</code> and
+     *            not supported otherwise.
      *            </p>
      */
     public void setBreachThreshold(Double breachThreshold) {
@@ -527,8 +532,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      * The breach threshold for the alarm.
      * </p>
      * <p>
-     * Conditional: This parameter is required if the policy type is
-     * <code>StepScaling</code> and not supported otherwise.
+     * Required if the policy type is <code>StepScaling</code> and not supported
+     * otherwise.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -538,8 +543,8 @@ public class ExecutePolicyRequest extends AmazonWebServiceRequest implements Ser
      *            The breach threshold for the alarm.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required if the policy type is
-     *            <code>StepScaling</code> and not supported otherwise.
+     *            Required if the policy type is <code>StepScaling</code> and
+     *            not supported otherwise.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

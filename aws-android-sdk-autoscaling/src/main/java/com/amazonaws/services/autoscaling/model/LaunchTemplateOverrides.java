@@ -19,13 +19,19 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an override for a launch template.
+ * Describes an override for a launch template. Currently, the only supported
+ * override is instance type.
+ * </p>
+ * <p>
+ * The maximum number of instance type overrides that can be associated with an
+ * Auto Scaling group is 20.
  * </p>
  */
 public class LaunchTemplateOverrides implements Serializable {
     /**
      * <p>
-     * The instance type.
+     * The instance type. You must use an instance type that is supported in
+     * your requested Region and Availability Zones.
      * </p>
      * <p>
      * For information about available instance types, see <a href=
@@ -68,7 +74,8 @@ public class LaunchTemplateOverrides implements Serializable {
 
     /**
      * <p>
-     * The instance type.
+     * The instance type. You must use an instance type that is supported in
+     * your requested Region and Availability Zones.
      * </p>
      * <p>
      * For information about available instance types, see <a href=
@@ -83,7 +90,8 @@ public class LaunchTemplateOverrides implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The instance type.
+     *         The instance type. You must use an instance type that is
+     *         supported in your requested Region and Availability Zones.
      *         </p>
      *         <p>
      *         For information about available instance types, see <a href=
@@ -98,7 +106,8 @@ public class LaunchTemplateOverrides implements Serializable {
 
     /**
      * <p>
-     * The instance type.
+     * The instance type. You must use an instance type that is supported in
+     * your requested Region and Availability Zones.
      * </p>
      * <p>
      * For information about available instance types, see <a href=
@@ -113,7 +122,8 @@ public class LaunchTemplateOverrides implements Serializable {
      * <br/>
      *
      * @param instanceType <p>
-     *            The instance type.
+     *            The instance type. You must use an instance type that is
+     *            supported in your requested Region and Availability Zones.
      *            </p>
      *            <p>
      *            For information about available instance types, see <a href=
@@ -128,7 +138,8 @@ public class LaunchTemplateOverrides implements Serializable {
 
     /**
      * <p>
-     * The instance type.
+     * The instance type. You must use an instance type that is supported in
+     * your requested Region and Availability Zones.
      * </p>
      * <p>
      * For information about available instance types, see <a href=
@@ -146,7 +157,8 @@ public class LaunchTemplateOverrides implements Serializable {
      * <br/>
      *
      * @param instanceType <p>
-     *            The instance type.
+     *            The instance type. You must use an instance type that is
+     *            supported in your requested Region and Availability Zones.
      *            </p>
      *            <p>
      *            For information about available instance types, see <a href=

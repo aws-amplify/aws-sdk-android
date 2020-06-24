@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a lifecycle hook. Used in combination with
- * <a>CreateAutoScalingGroup</a>.
+ * Describes information used to specify a lifecycle hook for an Auto Scaling
+ * group.
  * </p>
  * <p>
  * A lifecycle hook tells Amazon EC2 Auto Scaling to perform an action on an
@@ -55,13 +55,12 @@ import java.io.Serializable;
  * <li>
  * <p>
  * If you need more time, record the lifecycle action heartbeat to keep the
- * instance in a pending state using <a>RecordLifecycleActionHeartbeat</a>.
+ * instance in a pending state.
  * </p>
  * </li>
  * <li>
  * <p>
- * If you finish before the timeout period ends, complete the lifecycle action
- * using <a>CompleteLifecycleAction</a>.
+ * If you finish before the timeout period ends, complete the lifecycle action.
  * </p>
  * </li>
  * </ol>
@@ -70,13 +69,6 @@ import java.io.Serializable;
  * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/lifecycle-hooks.html"
  * >Amazon EC2 Auto Scaling Lifecycle Hooks</a> in the <i>Amazon EC2 Auto
  * Scaling User Guide</i>.
- * </p>
- * <p>
- * You can view the lifecycle hooks for an Auto Scaling group using
- * <a>DescribeLifecycleHooks</a>. You can modify an existing lifecycle hook or
- * create new lifecycle hooks using <a>PutLifecycleHook</a>. If you are no
- * longer using a lifecycle hook, you can delete it using
- * <a>DeleteLifecycleHook</a>.
  * </p>
  */
 public class LifecycleHookSpecification implements Serializable {

@@ -96,8 +96,7 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * another scaling activity can start.
+     * The duration of the default cooldown period, in seconds.
      * </p>
      */
     private Integer defaultCooldown;
@@ -202,8 +201,8 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The current state of the group when <a>DeleteAutoScalingGroup</a> is in
-     * progress.
+     * The current state of the group when the <a>DeleteAutoScalingGroup</a>
+     * operation is in progress.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -254,7 +253,7 @@ public class AutoScalingGroup implements Serializable {
      * service.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      */
     private Integer maxInstanceLifetime;
@@ -666,13 +665,11 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * another scaling activity can start.
+     * The duration of the default cooldown period, in seconds.
      * </p>
      *
      * @return <p>
-     *         The amount of time, in seconds, after a scaling activity
-     *         completes before another scaling activity can start.
+     *         The duration of the default cooldown period, in seconds.
      *         </p>
      */
     public Integer getDefaultCooldown() {
@@ -681,13 +678,11 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * another scaling activity can start.
+     * The duration of the default cooldown period, in seconds.
      * </p>
      *
      * @param defaultCooldown <p>
-     *            The amount of time, in seconds, after a scaling activity
-     *            completes before another scaling activity can start.
+     *            The duration of the default cooldown period, in seconds.
      *            </p>
      */
     public void setDefaultCooldown(Integer defaultCooldown) {
@@ -696,16 +691,14 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * another scaling activity can start.
+     * The duration of the default cooldown period, in seconds.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param defaultCooldown <p>
-     *            The amount of time, in seconds, after a scaling activity
-     *            completes before another scaling activity can start.
+     *            The duration of the default cooldown period, in seconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1477,8 +1470,8 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The current state of the group when <a>DeleteAutoScalingGroup</a> is in
-     * progress.
+     * The current state of the group when the <a>DeleteAutoScalingGroup</a>
+     * operation is in progress.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1487,8 +1480,8 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The current state of the group when <a>DeleteAutoScalingGroup</a>
-     *         is in progress.
+     *         The current state of the group when the
+     *         <a>DeleteAutoScalingGroup</a> operation is in progress.
      *         </p>
      */
     public String getStatus() {
@@ -1497,8 +1490,8 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The current state of the group when <a>DeleteAutoScalingGroup</a> is in
-     * progress.
+     * The current state of the group when the <a>DeleteAutoScalingGroup</a>
+     * operation is in progress.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1507,8 +1500,8 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @param status <p>
-     *            The current state of the group when
-     *            <a>DeleteAutoScalingGroup</a> is in progress.
+     *            The current state of the group when the
+     *            <a>DeleteAutoScalingGroup</a> operation is in progress.
      *            </p>
      */
     public void setStatus(String status) {
@@ -1517,8 +1510,8 @@ public class AutoScalingGroup implements Serializable {
 
     /**
      * <p>
-     * The current state of the group when <a>DeleteAutoScalingGroup</a> is in
-     * progress.
+     * The current state of the group when the <a>DeleteAutoScalingGroup</a>
+     * operation is in progress.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1530,8 +1523,8 @@ public class AutoScalingGroup implements Serializable {
      * <br/>
      *
      * @param status <p>
-     *            The current state of the group when
-     *            <a>DeleteAutoScalingGroup</a> is in progress.
+     *            The current state of the group when the
+     *            <a>DeleteAutoScalingGroup</a> operation is in progress.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1831,7 +1824,7 @@ public class AutoScalingGroup implements Serializable {
      * service.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      *
      * @return <p>
@@ -1839,7 +1832,7 @@ public class AutoScalingGroup implements Serializable {
      *         in service.
      *         </p>
      *         <p>
-     *         Valid Range: Minimum value of 604800.
+     *         Valid Range: Minimum value of 0.
      *         </p>
      */
     public Integer getMaxInstanceLifetime() {
@@ -1852,7 +1845,7 @@ public class AutoScalingGroup implements Serializable {
      * service.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      *
      * @param maxInstanceLifetime <p>
@@ -1860,7 +1853,7 @@ public class AutoScalingGroup implements Serializable {
      *            be in service.
      *            </p>
      *            <p>
-     *            Valid Range: Minimum value of 604800.
+     *            Valid Range: Minimum value of 0.
      *            </p>
      */
     public void setMaxInstanceLifetime(Integer maxInstanceLifetime) {
@@ -1873,7 +1866,7 @@ public class AutoScalingGroup implements Serializable {
      * service.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1884,7 +1877,7 @@ public class AutoScalingGroup implements Serializable {
      *            be in service.
      *            </p>
      *            <p>
-     *            Valid Range: Minimum value of 604800.
+     *            Valid Range: Minimum value of 0.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

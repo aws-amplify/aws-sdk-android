@@ -31,7 +31,7 @@ import java.io.Serializable;
  * You can create a mixed instances policy for a new Auto Scaling group, or you
  * can create it for an existing group by updating the group to specify
  * <code>MixedInstancesPolicy</code> as the top-level parameter instead of a
- * launch configuration or template. For more information, see
+ * launch configuration or launch template. For more information, see
  * <a>CreateAutoScalingGroup</a> and <a>UpdateAutoScalingGroup</a>.
  * </p>
  */
@@ -41,7 +41,7 @@ public class MixedInstancesPolicy implements Serializable {
      * The launch template and instance types (overrides).
      * </p>
      * <p>
-     * This parameter must be specified when creating a mixed instances policy.
+     * Required when creating a mixed instances policy.
      * </p>
      */
     private LaunchTemplate launchTemplate;
@@ -62,15 +62,14 @@ public class MixedInstancesPolicy implements Serializable {
      * The launch template and instance types (overrides).
      * </p>
      * <p>
-     * This parameter must be specified when creating a mixed instances policy.
+     * Required when creating a mixed instances policy.
      * </p>
      *
      * @return <p>
      *         The launch template and instance types (overrides).
      *         </p>
      *         <p>
-     *         This parameter must be specified when creating a mixed instances
-     *         policy.
+     *         Required when creating a mixed instances policy.
      *         </p>
      */
     public LaunchTemplate getLaunchTemplate() {
@@ -82,15 +81,14 @@ public class MixedInstancesPolicy implements Serializable {
      * The launch template and instance types (overrides).
      * </p>
      * <p>
-     * This parameter must be specified when creating a mixed instances policy.
+     * Required when creating a mixed instances policy.
      * </p>
      *
      * @param launchTemplate <p>
      *            The launch template and instance types (overrides).
      *            </p>
      *            <p>
-     *            This parameter must be specified when creating a mixed
-     *            instances policy.
+     *            Required when creating a mixed instances policy.
      *            </p>
      */
     public void setLaunchTemplate(LaunchTemplate launchTemplate) {
@@ -102,7 +100,7 @@ public class MixedInstancesPolicy implements Serializable {
      * The launch template and instance types (overrides).
      * </p>
      * <p>
-     * This parameter must be specified when creating a mixed instances policy.
+     * Required when creating a mixed instances policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -112,8 +110,7 @@ public class MixedInstancesPolicy implements Serializable {
      *            The launch template and instance types (overrides).
      *            </p>
      *            <p>
-     *            This parameter must be specified when creating a mixed
-     *            instances policy.
+     *            Required when creating a mixed instances policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

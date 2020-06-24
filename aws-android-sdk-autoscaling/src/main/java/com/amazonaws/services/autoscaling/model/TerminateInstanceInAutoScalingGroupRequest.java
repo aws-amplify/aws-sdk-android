@@ -22,10 +22,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Terminates the specified instance and optionally adjusts the desired group
- * size. This call simply makes a termination request. The instance is not
- * terminated immediately. When an instance is terminated, the instance status
- * changes to <code>terminated</code>. You can't connect to or start an instance
- * after you've terminated it.
+ * size.
+ * </p>
+ * <p>
+ * This call simply makes a termination request. The instance is not terminated
+ * immediately. When an instance is terminated, the instance status changes to
+ * <code>terminated</code>. You can't connect to or start an instance after
+ * you've terminated it.
  * </p>
  * <p>
  * If you do not specify the option to decrement the desired capacity, Amazon

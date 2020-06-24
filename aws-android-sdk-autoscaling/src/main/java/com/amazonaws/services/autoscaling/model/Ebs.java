@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an Amazon EBS volume. Used in combination with
- * <a>BlockDeviceMapping</a>.
+ * Describes information used to set up an Amazon EBS volume specified in a
+ * block device mapping.
  * </p>
  */
 public class Ebs implements Serializable {
@@ -29,10 +29,9 @@ public class Ebs implements Serializable {
      * The snapshot ID of the volume to use.
      * </p>
      * <p>
-     * Conditional: This parameter is optional if you specify a volume size. If
-     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal or greater than the size of the
-     * snapshot.
+     * <code>SnapshotId</code> is optional if you specify a volume size. If you
+     * specify both <code>SnapshotId</code> and <code>VolumeSize</code>, the
+     * volume size must be equal or greater than the size of the snapshot.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +57,8 @@ public class Ebs implements Serializable {
      * </p>
      * <note>
      * <p>
-     * At least one of VolumeSize or SnapshotId is required.
+     * At least one of <code>VolumeSize</code> or <code>SnapshotId</code> is
+     * required.
      * </p>
      * </note>
      * <p>
@@ -105,9 +105,9 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required when the volume type is
-     * <code>io1</code>. (Not used with <code>standard</code>, <code>gp2</code>,
-     * <code>st1</code>, or <code>sc1</code> volumes.)
+     * Required when the volume type is <code>io1</code>. (Not used with
+     * <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
+     * <code>sc1</code> volumes.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -161,10 +161,9 @@ public class Ebs implements Serializable {
      * The snapshot ID of the volume to use.
      * </p>
      * <p>
-     * Conditional: This parameter is optional if you specify a volume size. If
-     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal or greater than the size of the
-     * snapshot.
+     * <code>SnapshotId</code> is optional if you specify a volume size. If you
+     * specify both <code>SnapshotId</code> and <code>VolumeSize</code>, the
+     * volume size must be equal or greater than the size of the snapshot.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -176,10 +175,10 @@ public class Ebs implements Serializable {
      *         The snapshot ID of the volume to use.
      *         </p>
      *         <p>
-     *         Conditional: This parameter is optional if you specify a volume
-     *         size. If you specify both <code>SnapshotId</code> and
-     *         <code>VolumeSize</code>, <code>VolumeSize</code> must be equal or
-     *         greater than the size of the snapshot.
+     *         <code>SnapshotId</code> is optional if you specify a volume size.
+     *         If you specify both <code>SnapshotId</code> and
+     *         <code>VolumeSize</code>, the volume size must be equal or greater
+     *         than the size of the snapshot.
      *         </p>
      */
     public String getSnapshotId() {
@@ -191,10 +190,9 @@ public class Ebs implements Serializable {
      * The snapshot ID of the volume to use.
      * </p>
      * <p>
-     * Conditional: This parameter is optional if you specify a volume size. If
-     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal or greater than the size of the
-     * snapshot.
+     * <code>SnapshotId</code> is optional if you specify a volume size. If you
+     * specify both <code>SnapshotId</code> and <code>VolumeSize</code>, the
+     * volume size must be equal or greater than the size of the snapshot.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -206,10 +204,10 @@ public class Ebs implements Serializable {
      *            The snapshot ID of the volume to use.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is optional if you specify a
-     *            volume size. If you specify both <code>SnapshotId</code> and
-     *            <code>VolumeSize</code>, <code>VolumeSize</code> must be equal
-     *            or greater than the size of the snapshot.
+     *            <code>SnapshotId</code> is optional if you specify a volume
+     *            size. If you specify both <code>SnapshotId</code> and
+     *            <code>VolumeSize</code>, the volume size must be equal or
+     *            greater than the size of the snapshot.
      *            </p>
      */
     public void setSnapshotId(String snapshotId) {
@@ -221,10 +219,9 @@ public class Ebs implements Serializable {
      * The snapshot ID of the volume to use.
      * </p>
      * <p>
-     * Conditional: This parameter is optional if you specify a volume size. If
-     * you specify both <code>SnapshotId</code> and <code>VolumeSize</code>,
-     * <code>VolumeSize</code> must be equal or greater than the size of the
-     * snapshot.
+     * <code>SnapshotId</code> is optional if you specify a volume size. If you
+     * specify both <code>SnapshotId</code> and <code>VolumeSize</code>, the
+     * volume size must be equal or greater than the size of the snapshot.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -239,10 +236,10 @@ public class Ebs implements Serializable {
      *            The snapshot ID of the volume to use.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is optional if you specify a
-     *            volume size. If you specify both <code>SnapshotId</code> and
-     *            <code>VolumeSize</code>, <code>VolumeSize</code> must be equal
-     *            or greater than the size of the snapshot.
+     *            <code>SnapshotId</code> is optional if you specify a volume
+     *            size. If you specify both <code>SnapshotId</code> and
+     *            <code>VolumeSize</code>, the volume size must be equal or
+     *            greater than the size of the snapshot.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -268,7 +265,8 @@ public class Ebs implements Serializable {
      * </p>
      * <note>
      * <p>
-     * At least one of VolumeSize or SnapshotId is required.
+     * At least one of <code>VolumeSize</code> or <code>SnapshotId</code> is
+     * required.
      * </p>
      * </note>
      * <p>
@@ -291,7 +289,8 @@ public class Ebs implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         At least one of VolumeSize or SnapshotId is required.
+     *         At least one of <code>VolumeSize</code> or
+     *         <code>SnapshotId</code> is required.
      *         </p>
      *         </note>
      */
@@ -315,7 +314,8 @@ public class Ebs implements Serializable {
      * </p>
      * <note>
      * <p>
-     * At least one of VolumeSize or SnapshotId is required.
+     * At least one of <code>VolumeSize</code> or <code>SnapshotId</code> is
+     * required.
      * </p>
      * </note>
      * <p>
@@ -338,7 +338,8 @@ public class Ebs implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            At least one of VolumeSize or SnapshotId is required.
+     *            At least one of <code>VolumeSize</code> or
+     *            <code>SnapshotId</code> is required.
      *            </p>
      *            </note>
      */
@@ -362,7 +363,8 @@ public class Ebs implements Serializable {
      * </p>
      * <note>
      * <p>
-     * At least one of VolumeSize or SnapshotId is required.
+     * At least one of <code>VolumeSize</code> or <code>SnapshotId</code> is
+     * required.
      * </p>
      * </note>
      * <p>
@@ -388,7 +390,8 @@ public class Ebs implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            At least one of VolumeSize or SnapshotId is required.
+     *            At least one of <code>VolumeSize</code> or
+     *            <code>SnapshotId</code> is required.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -596,9 +599,9 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required when the volume type is
-     * <code>io1</code>. (Not used with <code>standard</code>, <code>gp2</code>,
-     * <code>st1</code>, or <code>sc1</code> volumes.)
+     * Required when the volume type is <code>io1</code>. (Not used with
+     * <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
+     * <code>sc1</code> volumes.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -613,9 +616,9 @@ public class Ebs implements Serializable {
      *         Linux Instances</i>.
      *         </p>
      *         <p>
-     *         Conditional: This parameter is required when the volume type is
-     *         <code>io1</code>. (Not used with <code>standard</code>,
-     *         <code>gp2</code>, <code>st1</code>, or <code>sc1</code> volumes.)
+     *         Required when the volume type is <code>io1</code>. (Not used with
+     *         <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
+     *         <code>sc1</code> volumes.)
      *         </p>
      */
     public Integer getIops() {
@@ -632,9 +635,9 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required when the volume type is
-     * <code>io1</code>. (Not used with <code>standard</code>, <code>gp2</code>,
-     * <code>st1</code>, or <code>sc1</code> volumes.)
+     * Required when the volume type is <code>io1</code>. (Not used with
+     * <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
+     * <code>sc1</code> volumes.)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -649,10 +652,9 @@ public class Ebs implements Serializable {
      *            for Linux Instances</i>.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required when the volume type
-     *            is <code>io1</code>. (Not used with <code>standard</code>,
-     *            <code>gp2</code>, <code>st1</code>, or <code>sc1</code>
-     *            volumes.)
+     *            Required when the volume type is <code>io1</code>. (Not used
+     *            with <code>standard</code>, <code>gp2</code>, <code>st1</code>
+     *            , or <code>sc1</code> volumes.)
      *            </p>
      */
     public void setIops(Integer iops) {
@@ -669,9 +671,9 @@ public class Ebs implements Serializable {
      * Instances</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required when the volume type is
-     * <code>io1</code>. (Not used with <code>standard</code>, <code>gp2</code>,
-     * <code>st1</code>, or <code>sc1</code> volumes.)
+     * Required when the volume type is <code>io1</code>. (Not used with
+     * <code>standard</code>, <code>gp2</code>, <code>st1</code>, or
+     * <code>sc1</code> volumes.)
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -689,10 +691,9 @@ public class Ebs implements Serializable {
      *            for Linux Instances</i>.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required when the volume type
-     *            is <code>io1</code>. (Not used with <code>standard</code>,
-     *            <code>gp2</code>, <code>st1</code>, or <code>sc1</code>
-     *            volumes.)
+     *            Required when the volume type is <code>io1</code>. (Not used
+     *            with <code>standard</code>, <code>gp2</code>, <code>st1</code>
+     *            , or <code>sc1</code> volumes.)
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

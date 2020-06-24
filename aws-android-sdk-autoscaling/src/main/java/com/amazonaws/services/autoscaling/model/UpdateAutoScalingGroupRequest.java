@@ -50,9 +50,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * If a scale-in event occurs as a result of a new <code>DesiredCapacity</code>
- * value that is lower than the current size of the group, the Auto Scaling
- * group uses its termination policy to determine which instances to terminate.
+ * If a scale-in activity occurs as a result of a new
+ * <code>DesiredCapacity</code> value that is lower than the current size of the
+ * group, the Auto Scaling group uses its termination policy to determine which
+ * instances to terminate.
  * </p>
  * </li>
  * <li>
@@ -73,10 +74,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * To see which parameters have been set, use <a>DescribeAutoScalingGroups</a>.
- * You can also view the scaling policies for an Auto Scaling group using
- * <a>DescribePolicies</a>. If the group has scaling policies, you can update
- * them using <a>PutScalingPolicy</a>.
+ * To see which parameters have been set, call the
+ * <a>DescribeAutoScalingGroups</a> API. To view the scaling policies for an
+ * Auto Scaling group, call the <a>DescribePolicies</a> API. If the group has
+ * scaling policies, you can update them by calling the <a>PutScalingPolicy</a>
+ * API.
  * </p>
  */
 public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest implements Serializable {
@@ -154,14 +156,27 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The maximum size of the Auto Scaling group.
      * </p>
+     * <note>
+     * <p>
+     * With a mixed instances policy that uses instance weighting, Amazon EC2
+     * Auto Scaling may need to go above <code>MaxSize</code> to meet your
+     * capacity requirements. In this event, Amazon EC2 Auto Scaling will never
+     * go above <code>MaxSize</code> by more than your maximum instance weight
+     * (weights that define how many capacity units each instance contributes to
+     * the capacity of the group).
+     * </p>
+     * </note>
      */
     private Integer maxSize;
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size of
-     * the group and less than or equal to the maximum size of the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after this operation completes and the capacity it attempts to maintain.
+     * </p>
+     * <p>
+     * This number must be greater than or equal to the minimum size of the
+     * group and less than or equal to the maximum size of the group.
      * </p>
      */
     private Integer desiredCapacity;
@@ -170,15 +185,15 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
      * another scaling activity can start. The default value is <code>300</code>
-     * . This cooldown period is not used when a scaling-specific cooldown is
-     * specified.
+     * .
      * </p>
      * <p>
-     * Cooldown periods are not supported for target tracking scaling policies,
-     * step scaling policies, or scheduled scaling. For more information, see <a
-     * href
-     * ="https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * This setting applies when using simple scaling policies, but not when
+     * using other scaling policies or scheduled scaling. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      */
     private Integer defaultCooldown;
@@ -218,8 +233,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Guide</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required if you are adding an
-     * <code>ELB</code> health check.
+     * Required if you are adding an <code>ELB</code> health check.
      * </p>
      */
     private Integer healthCheckGracePeriod;
@@ -309,7 +323,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The maximum amount of time, in seconds, that an instance can be in
-     * service.
+     * service. The default is null.
+     * </p>
+     * <p>
+     * This parameter is optional, but if you specify a value for it, you must
+     * specify a value of at least 604,800 seconds (7 days). To clear a
+     * previously set value, specify a new value of 0.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -318,7 +337,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      */
     private Integer maxInstanceLifetime;
@@ -739,10 +758,31 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The maximum size of the Auto Scaling group.
      * </p>
+     * <note>
+     * <p>
+     * With a mixed instances policy that uses instance weighting, Amazon EC2
+     * Auto Scaling may need to go above <code>MaxSize</code> to meet your
+     * capacity requirements. In this event, Amazon EC2 Auto Scaling will never
+     * go above <code>MaxSize</code> by more than your maximum instance weight
+     * (weights that define how many capacity units each instance contributes to
+     * the capacity of the group).
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The maximum size of the Auto Scaling group.
      *         </p>
+     *         <note>
+     *         <p>
+     *         With a mixed instances policy that uses instance weighting,
+     *         Amazon EC2 Auto Scaling may need to go above <code>MaxSize</code>
+     *         to meet your capacity requirements. In this event, Amazon EC2
+     *         Auto Scaling will never go above <code>MaxSize</code> by more
+     *         than your maximum instance weight (weights that define how many
+     *         capacity units each instance contributes to the capacity of the
+     *         group).
+     *         </p>
+     *         </note>
      */
     public Integer getMaxSize() {
         return maxSize;
@@ -752,10 +792,31 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The maximum size of the Auto Scaling group.
      * </p>
+     * <note>
+     * <p>
+     * With a mixed instances policy that uses instance weighting, Amazon EC2
+     * Auto Scaling may need to go above <code>MaxSize</code> to meet your
+     * capacity requirements. In this event, Amazon EC2 Auto Scaling will never
+     * go above <code>MaxSize</code> by more than your maximum instance weight
+     * (weights that define how many capacity units each instance contributes to
+     * the capacity of the group).
+     * </p>
+     * </note>
      *
      * @param maxSize <p>
      *            The maximum size of the Auto Scaling group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            With a mixed instances policy that uses instance weighting,
+     *            Amazon EC2 Auto Scaling may need to go above
+     *            <code>MaxSize</code> to meet your capacity requirements. In
+     *            this event, Amazon EC2 Auto Scaling will never go above
+     *            <code>MaxSize</code> by more than your maximum instance weight
+     *            (weights that define how many capacity units each instance
+     *            contributes to the capacity of the group).
+     *            </p>
+     *            </note>
      */
     public void setMaxSize(Integer maxSize) {
         this.maxSize = maxSize;
@@ -765,6 +826,16 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The maximum size of the Auto Scaling group.
      * </p>
+     * <note>
+     * <p>
+     * With a mixed instances policy that uses instance weighting, Amazon EC2
+     * Auto Scaling may need to go above <code>MaxSize</code> to meet your
+     * capacity requirements. In this event, Amazon EC2 Auto Scaling will never
+     * go above <code>MaxSize</code> by more than your maximum instance weight
+     * (weights that define how many capacity units each instance contributes to
+     * the capacity of the group).
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -772,6 +843,17 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @param maxSize <p>
      *            The maximum size of the Auto Scaling group.
      *            </p>
+     *            <note>
+     *            <p>
+     *            With a mixed instances policy that uses instance weighting,
+     *            Amazon EC2 Auto Scaling may need to go above
+     *            <code>MaxSize</code> to meet your capacity requirements. In
+     *            this event, Amazon EC2 Auto Scaling will never go above
+     *            <code>MaxSize</code> by more than your maximum instance weight
+     *            (weights that define how many capacity units each instance
+     *            contributes to the capacity of the group).
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -782,16 +864,23 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size of
-     * the group and less than or equal to the maximum size of the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after this operation completes and the capacity it attempts to maintain.
+     * </p>
+     * <p>
+     * This number must be greater than or equal to the minimum size of the
+     * group and less than or equal to the maximum size of the group.
      * </p>
      *
      * @return <p>
-     *         The number of EC2 instances that should be running in the Auto
-     *         Scaling group. This number must be greater than or equal to the
-     *         minimum size of the group and less than or equal to the maximum
-     *         size of the group.
+     *         The desired capacity is the initial capacity of the Auto Scaling
+     *         group after this operation completes and the capacity it attempts
+     *         to maintain.
+     *         </p>
+     *         <p>
+     *         This number must be greater than or equal to the minimum size of
+     *         the group and less than or equal to the maximum size of the
+     *         group.
      *         </p>
      */
     public Integer getDesiredCapacity() {
@@ -800,16 +889,23 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size of
-     * the group and less than or equal to the maximum size of the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after this operation completes and the capacity it attempts to maintain.
+     * </p>
+     * <p>
+     * This number must be greater than or equal to the minimum size of the
+     * group and less than or equal to the maximum size of the group.
      * </p>
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the Auto
-     *            Scaling group. This number must be greater than or equal to
-     *            the minimum size of the group and less than or equal to the
-     *            maximum size of the group.
+     *            The desired capacity is the initial capacity of the Auto
+     *            Scaling group after this operation completes and the capacity
+     *            it attempts to maintain.
+     *            </p>
+     *            <p>
+     *            This number must be greater than or equal to the minimum size
+     *            of the group and less than or equal to the maximum size of the
+     *            group.
      *            </p>
      */
     public void setDesiredCapacity(Integer desiredCapacity) {
@@ -818,19 +914,26 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The number of EC2 instances that should be running in the Auto Scaling
-     * group. This number must be greater than or equal to the minimum size of
-     * the group and less than or equal to the maximum size of the group.
+     * The desired capacity is the initial capacity of the Auto Scaling group
+     * after this operation completes and the capacity it attempts to maintain.
+     * </p>
+     * <p>
+     * This number must be greater than or equal to the minimum size of the
+     * group and less than or equal to the maximum size of the group.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param desiredCapacity <p>
-     *            The number of EC2 instances that should be running in the Auto
-     *            Scaling group. This number must be greater than or equal to
-     *            the minimum size of the group and less than or equal to the
-     *            maximum size of the group.
+     *            The desired capacity is the initial capacity of the Auto
+     *            Scaling group after this operation completes and the capacity
+     *            it attempts to maintain.
+     *            </p>
+     *            <p>
+     *            This number must be greater than or equal to the minimum size
+     *            of the group and less than or equal to the maximum size of the
+     *            group.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -844,30 +947,29 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
      * another scaling activity can start. The default value is <code>300</code>
-     * . This cooldown period is not used when a scaling-specific cooldown is
-     * specified.
+     * .
      * </p>
      * <p>
-     * Cooldown periods are not supported for target tracking scaling policies,
-     * step scaling policies, or scheduled scaling. For more information, see <a
-     * href
-     * ="https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * This setting applies when using simple scaling policies, but not when
+     * using other scaling policies or scheduled scaling. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      *
      * @return <p>
      *         The amount of time, in seconds, after a scaling activity
      *         completes before another scaling activity can start. The default
-     *         value is <code>300</code>. This cooldown period is not used when
-     *         a scaling-specific cooldown is specified.
+     *         value is <code>300</code>.
      *         </p>
      *         <p>
-     *         Cooldown periods are not supported for target tracking scaling
-     *         policies, step scaling policies, or scheduled scaling. For more
+     *         This setting applies when using simple scaling policies, but not
+     *         when using other scaling policies or scheduled scaling. For more
      *         information, see <a href=
      *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *         >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *         Guide</i>.
+     *         >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *         <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      */
     public Integer getDefaultCooldown() {
@@ -878,30 +980,29 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
      * another scaling activity can start. The default value is <code>300</code>
-     * . This cooldown period is not used when a scaling-specific cooldown is
-     * specified.
+     * .
      * </p>
      * <p>
-     * Cooldown periods are not supported for target tracking scaling policies,
-     * step scaling policies, or scheduled scaling. For more information, see <a
-     * href
-     * ="https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * This setting applies when using simple scaling policies, but not when
+     * using other scaling policies or scheduled scaling. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      *
      * @param defaultCooldown <p>
      *            The amount of time, in seconds, after a scaling activity
      *            completes before another scaling activity can start. The
-     *            default value is <code>300</code>. This cooldown period is not
-     *            used when a scaling-specific cooldown is specified.
+     *            default value is <code>300</code>.
      *            </p>
      *            <p>
-     *            Cooldown periods are not supported for target tracking scaling
-     *            policies, step scaling policies, or scheduled scaling. For
-     *            more information, see <a href=
+     *            This setting applies when using simple scaling policies, but
+     *            not when using other scaling policies or scheduled scaling.
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
+     *            >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setDefaultCooldown(Integer defaultCooldown) {
@@ -912,15 +1013,15 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * <p>
      * The amount of time, in seconds, after a scaling activity completes before
      * another scaling activity can start. The default value is <code>300</code>
-     * . This cooldown period is not used when a scaling-specific cooldown is
-     * specified.
+     * .
      * </p>
      * <p>
-     * Cooldown periods are not supported for target tracking scaling policies,
-     * step scaling policies, or scheduled scaling. For more information, see <a
-     * href
-     * ="https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     * >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
+     * This setting applies when using simple scaling policies, but not when
+     * using other scaling policies or scheduled scaling. For more information,
+     * see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
+     * >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the <i>Amazon EC2
+     * Auto Scaling User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -929,16 +1030,15 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * @param defaultCooldown <p>
      *            The amount of time, in seconds, after a scaling activity
      *            completes before another scaling activity can start. The
-     *            default value is <code>300</code>. This cooldown period is not
-     *            used when a scaling-specific cooldown is specified.
+     *            default value is <code>300</code>.
      *            </p>
      *            <p>
-     *            Cooldown periods are not supported for target tracking scaling
-     *            policies, step scaling policies, or scheduled scaling. For
-     *            more information, see <a href=
+     *            This setting applies when using simple scaling policies, but
+     *            not when using other scaling policies or scheduled scaling.
+     *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/Cooldown.html"
-     *            >Scaling Cooldowns</a> in the <i>Amazon EC2 Auto Scaling User
-     *            Guide</i>.
+     *            >Scaling Cooldowns for Amazon EC2 Auto Scaling</a> in the
+     *            <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1117,8 +1217,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Guide</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required if you are adding an
-     * <code>ELB</code> health check.
+     * Required if you are adding an <code>ELB</code> health check.
      * </p>
      *
      * @return <p>
@@ -1133,8 +1232,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         User Guide</i>.
      *         </p>
      *         <p>
-     *         Conditional: This parameter is required if you are adding an
-     *         <code>ELB</code> health check.
+     *         Required if you are adding an <code>ELB</code> health check.
      *         </p>
      */
     public Integer getHealthCheckGracePeriod() {
@@ -1154,8 +1252,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Guide</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required if you are adding an
-     * <code>ELB</code> health check.
+     * Required if you are adding an <code>ELB</code> health check.
      * </p>
      *
      * @param healthCheckGracePeriod <p>
@@ -1171,8 +1268,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            Scaling User Guide</i>.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required if you are adding an
-     *            <code>ELB</code> health check.
+     *            Required if you are adding an <code>ELB</code> health check.
      *            </p>
      */
     public void setHealthCheckGracePeriod(Integer healthCheckGracePeriod) {
@@ -1192,8 +1288,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * Guide</i>.
      * </p>
      * <p>
-     * Conditional: This parameter is required if you are adding an
-     * <code>ELB</code> health check.
+     * Required if you are adding an <code>ELB</code> health check.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1212,8 +1307,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            Scaling User Guide</i>.
      *            </p>
      *            <p>
-     *            Conditional: This parameter is required if you are adding an
-     *            <code>ELB</code> health check.
+     *            Required if you are adding an <code>ELB</code> health check.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1770,7 +1864,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The maximum amount of time, in seconds, that an instance can be in
-     * service.
+     * service. The default is null.
+     * </p>
+     * <p>
+     * This parameter is optional, but if you specify a value for it, you must
+     * specify a value of at least 604,800 seconds (7 days). To clear a
+     * previously set value, specify a new value of 0.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1779,12 +1878,17 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      *
      * @return <p>
      *         The maximum amount of time, in seconds, that an instance can be
-     *         in service.
+     *         in service. The default is null.
+     *         </p>
+     *         <p>
+     *         This parameter is optional, but if you specify a value for it,
+     *         you must specify a value of at least 604,800 seconds (7 days). To
+     *         clear a previously set value, specify a new value of 0.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -1793,7 +1897,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *         Lifetime</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *         </p>
      *         <p>
-     *         Valid Range: Minimum value of 604800.
+     *         Valid Range: Minimum value of 0.
      *         </p>
      */
     public Integer getMaxInstanceLifetime() {
@@ -1803,7 +1907,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The maximum amount of time, in seconds, that an instance can be in
-     * service.
+     * service. The default is null.
+     * </p>
+     * <p>
+     * This parameter is optional, but if you specify a value for it, you must
+     * specify a value of at least 604,800 seconds (7 days). To clear a
+     * previously set value, specify a new value of 0.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1812,12 +1921,17 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      *
      * @param maxInstanceLifetime <p>
      *            The maximum amount of time, in seconds, that an instance can
-     *            be in service.
+     *            be in service. The default is null.
+     *            </p>
+     *            <p>
+     *            This parameter is optional, but if you specify a value for it,
+     *            you must specify a value of at least 604,800 seconds (7 days).
+     *            To clear a previously set value, specify a new value of 0.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1826,7 +1940,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            Lifetime</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
-     *            Valid Range: Minimum value of 604800.
+     *            Valid Range: Minimum value of 0.
      *            </p>
      */
     public void setMaxInstanceLifetime(Integer maxInstanceLifetime) {
@@ -1836,7 +1950,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The maximum amount of time, in seconds, that an instance can be in
-     * service.
+     * service. The default is null.
+     * </p>
+     * <p>
+     * This parameter is optional, but if you specify a value for it, you must
+     * specify a value of at least 604,800 seconds (7 days). To clear a
+     * previously set value, specify a new value of 0.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -1845,7 +1964,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      * in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      * </p>
      * <p>
-     * Valid Range: Minimum value of 604800.
+     * Valid Range: Minimum value of 0.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1853,7 +1972,12 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *
      * @param maxInstanceLifetime <p>
      *            The maximum amount of time, in seconds, that an instance can
-     *            be in service.
+     *            be in service. The default is null.
+     *            </p>
+     *            <p>
+     *            This parameter is optional, but if you specify a value for it,
+     *            you must specify a value of at least 604,800 seconds (7 days).
+     *            To clear a previously set value, specify a new value of 0.
      *            </p>
      *            <p>
      *            For more information, see <a href=
@@ -1862,7 +1986,7 @@ public class UpdateAutoScalingGroupRequest extends AmazonWebServiceRequest imple
      *            Lifetime</a> in the <i>Amazon EC2 Auto Scaling User Guide</i>.
      *            </p>
      *            <p>
-     *            Valid Range: Minimum value of 604800.
+     *            Valid Range: Minimum value of 0.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

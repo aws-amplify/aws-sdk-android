@@ -61,8 +61,32 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code>,
-     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+     * One of the following policy types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TargetTrackingScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>StepScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SimpleScaling</code> (default)
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     * >Target Tracking Scaling Policies</a> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     * >Step and Simple Scaling Policies</a> in the <i>Amazon EC2 Auto Scaling
+     * User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -74,9 +98,10 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
-     * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
+     * Specifies how the scaling adjustment is interpreted (either an absolute
+     * number or a percentage). The valid values are
+     * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,11 +121,8 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances to scale. If the value of
-     * <code>AdjustmentType</code> is <code>PercentChangeInCapacity</code>, the
-     * scaling policy changes the <code>DesiredCapacity</code> of the Auto
-     * Scaling group by at least this many instances. Otherwise, the error is
-     * <code>ValidationError</code>.
+     * The minimum value to scale by when the adjustment type is
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      */
     private Integer minAdjustmentMagnitude;
@@ -116,8 +138,7 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * any further dynamic scaling activities can start.
+     * The duration of the policy's cooldown period, in seconds.
      * </p>
      */
     private Integer cooldown;
@@ -355,8 +376,32 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code>,
-     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+     * One of the following policy types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TargetTrackingScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>StepScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SimpleScaling</code> (default)
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     * >Target Tracking Scaling Policies</a> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     * >Step and Simple Scaling Policies</a> in the <i>Amazon EC2 Auto Scaling
+     * User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -365,8 +410,32 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The policy type. The valid values are <code>SimpleScaling</code>,
-     *         <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+     *         One of the following policy types:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>TargetTrackingScaling</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>StepScaling</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>SimpleScaling</code> (default)
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         For more information, see <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     *         >Target Tracking Scaling Policies</a> and <a href=
+     *         "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     *         >Step and Simple Scaling Policies</a> in the <i>Amazon EC2 Auto
+     *         Scaling User Guide</i>.
      *         </p>
      */
     public String getPolicyType() {
@@ -375,8 +444,32 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code>,
-     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+     * One of the following policy types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TargetTrackingScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>StepScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SimpleScaling</code> (default)
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     * >Target Tracking Scaling Policies</a> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     * >Step and Simple Scaling Policies</a> in the <i>Amazon EC2 Auto Scaling
+     * User Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -385,9 +478,32 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param policyType <p>
-     *            The policy type. The valid values are
-     *            <code>SimpleScaling</code>, <code>StepScaling</code>, and
-     *            <code>TargetTrackingScaling</code>.
+     *            One of the following policy types:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TargetTrackingScaling</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>StepScaling</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SimpleScaling</code> (default)
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     *            >Target Tracking Scaling Policies</a> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     *            >Step and Simple Scaling Policies</a> in the <i>Amazon EC2
+     *            Auto Scaling User Guide</i>.
      *            </p>
      */
     public void setPolicyType(String policyType) {
@@ -396,8 +512,32 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The policy type. The valid values are <code>SimpleScaling</code>,
-     * <code>StepScaling</code>, and <code>TargetTrackingScaling</code>.
+     * One of the following policy types:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TargetTrackingScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>StepScaling</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SimpleScaling</code> (default)
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     * >Target Tracking Scaling Policies</a> and <a href=
+     * "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     * >Step and Simple Scaling Policies</a> in the <i>Amazon EC2 Auto Scaling
+     * User Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -409,9 +549,32 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param policyType <p>
-     *            The policy type. The valid values are
-     *            <code>SimpleScaling</code>, <code>StepScaling</code>, and
-     *            <code>TargetTrackingScaling</code>.
+     *            One of the following policy types:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TargetTrackingScaling</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>StepScaling</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>SimpleScaling</code> (default)
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For more information, see <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html"
+     *            >Target Tracking Scaling Policies</a> and <a href=
+     *            "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-simple-step.html"
+     *            >Step and Simple Scaling Policies</a> in the <i>Amazon EC2
+     *            Auto Scaling User Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -423,9 +586,10 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
-     * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
+     * Specifies how the scaling adjustment is interpreted (either an absolute
+     * number or a percentage). The valid values are
+     * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -434,10 +598,10 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @return <p>
-     *         The adjustment type, which specifies how
-     *         <code>ScalingAdjustment</code> is interpreted. The valid values
-     *         are <code>ChangeInCapacity</code>, <code>ExactCapacity</code>,
-     *         and <code>PercentChangeInCapacity</code>.
+     *         Specifies how the scaling adjustment is interpreted (either an
+     *         absolute number or a percentage). The valid values are
+     *         <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
+     *         <code>PercentChangeInCapacity</code>.
      *         </p>
      */
     public String getAdjustmentType() {
@@ -446,9 +610,10 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
-     * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
+     * Specifies how the scaling adjustment is interpreted (either an absolute
+     * number or a percentage). The valid values are
+     * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -457,10 +622,9 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param adjustmentType <p>
-     *            The adjustment type, which specifies how
-     *            <code>ScalingAdjustment</code> is interpreted. The valid
-     *            values are <code>ChangeInCapacity</code>,
-     *            <code>ExactCapacity</code>, and
+     *            Specifies how the scaling adjustment is interpreted (either an
+     *            absolute number or a percentage). The valid values are
+     *            <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *            <code>PercentChangeInCapacity</code>.
      *            </p>
      */
@@ -470,9 +634,10 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The adjustment type, which specifies how <code>ScalingAdjustment</code>
-     * is interpreted. The valid values are <code>ChangeInCapacity</code>,
-     * <code>ExactCapacity</code>, and <code>PercentChangeInCapacity</code>.
+     * Specifies how the scaling adjustment is interpreted (either an absolute
+     * number or a percentage). The valid values are
+     * <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -484,10 +649,9 @@ public class ScalingPolicy implements Serializable {
      * <br/>
      *
      * @param adjustmentType <p>
-     *            The adjustment type, which specifies how
-     *            <code>ScalingAdjustment</code> is interpreted. The valid
-     *            values are <code>ChangeInCapacity</code>,
-     *            <code>ExactCapacity</code>, and
+     *            Specifies how the scaling adjustment is interpreted (either an
+     *            absolute number or a percentage). The valid values are
+     *            <code>ChangeInCapacity</code>, <code>ExactCapacity</code>, and
      *            <code>PercentChangeInCapacity</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -551,20 +715,13 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances to scale. If the value of
-     * <code>AdjustmentType</code> is <code>PercentChangeInCapacity</code>, the
-     * scaling policy changes the <code>DesiredCapacity</code> of the Auto
-     * Scaling group by at least this many instances. Otherwise, the error is
-     * <code>ValidationError</code>.
+     * The minimum value to scale by when the adjustment type is
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      *
      * @return <p>
-     *         The minimum number of instances to scale. If the value of
-     *         <code>AdjustmentType</code> is
-     *         <code>PercentChangeInCapacity</code>, the scaling policy changes
-     *         the <code>DesiredCapacity</code> of the Auto Scaling group by at
-     *         least this many instances. Otherwise, the error is
-     *         <code>ValidationError</code>.
+     *         The minimum value to scale by when the adjustment type is
+     *         <code>PercentChangeInCapacity</code>.
      *         </p>
      */
     public Integer getMinAdjustmentMagnitude() {
@@ -573,20 +730,13 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances to scale. If the value of
-     * <code>AdjustmentType</code> is <code>PercentChangeInCapacity</code>, the
-     * scaling policy changes the <code>DesiredCapacity</code> of the Auto
-     * Scaling group by at least this many instances. Otherwise, the error is
-     * <code>ValidationError</code>.
+     * The minimum value to scale by when the adjustment type is
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      *
      * @param minAdjustmentMagnitude <p>
-     *            The minimum number of instances to scale. If the value of
-     *            <code>AdjustmentType</code> is
-     *            <code>PercentChangeInCapacity</code>, the scaling policy
-     *            changes the <code>DesiredCapacity</code> of the Auto Scaling
-     *            group by at least this many instances. Otherwise, the error is
-     *            <code>ValidationError</code>.
+     *            The minimum value to scale by when the adjustment type is
+     *            <code>PercentChangeInCapacity</code>.
      *            </p>
      */
     public void setMinAdjustmentMagnitude(Integer minAdjustmentMagnitude) {
@@ -595,23 +745,16 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The minimum number of instances to scale. If the value of
-     * <code>AdjustmentType</code> is <code>PercentChangeInCapacity</code>, the
-     * scaling policy changes the <code>DesiredCapacity</code> of the Auto
-     * Scaling group by at least this many instances. Otherwise, the error is
-     * <code>ValidationError</code>.
+     * The minimum value to scale by when the adjustment type is
+     * <code>PercentChangeInCapacity</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param minAdjustmentMagnitude <p>
-     *            The minimum number of instances to scale. If the value of
-     *            <code>AdjustmentType</code> is
-     *            <code>PercentChangeInCapacity</code>, the scaling policy
-     *            changes the <code>DesiredCapacity</code> of the Auto Scaling
-     *            group by at least this many instances. Otherwise, the error is
-     *            <code>ValidationError</code>.
+     *            The minimum value to scale by when the adjustment type is
+     *            <code>PercentChangeInCapacity</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -680,14 +823,11 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * any further dynamic scaling activities can start.
+     * The duration of the policy's cooldown period, in seconds.
      * </p>
      *
      * @return <p>
-     *         The amount of time, in seconds, after a scaling activity
-     *         completes before any further dynamic scaling activities can
-     *         start.
+     *         The duration of the policy's cooldown period, in seconds.
      *         </p>
      */
     public Integer getCooldown() {
@@ -696,14 +836,11 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * any further dynamic scaling activities can start.
+     * The duration of the policy's cooldown period, in seconds.
      * </p>
      *
      * @param cooldown <p>
-     *            The amount of time, in seconds, after a scaling activity
-     *            completes before any further dynamic scaling activities can
-     *            start.
+     *            The duration of the policy's cooldown period, in seconds.
      *            </p>
      */
     public void setCooldown(Integer cooldown) {
@@ -712,17 +849,14 @@ public class ScalingPolicy implements Serializable {
 
     /**
      * <p>
-     * The amount of time, in seconds, after a scaling activity completes before
-     * any further dynamic scaling activities can start.
+     * The duration of the policy's cooldown period, in seconds.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param cooldown <p>
-     *            The amount of time, in seconds, after a scaling activity
-     *            completes before any further dynamic scaling activities can
-     *            start.
+     *            The duration of the policy's cooldown period, in seconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
