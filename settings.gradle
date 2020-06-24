@@ -49,9 +49,9 @@ include ':aws-android-sdk-testutils'
 include ':aws-android-sdk-apigateway-test'
 include ':aws-android-sdk-cognitoidentityprovider-test'
 include ':aws-android-sdk-core-test'
+include ':aws-android-sdk-iot-test'
+// Mobile client tests are housed inside the main source module.
+// include ':aws-android-sdk-mobile-client-test'
 include ':aws-android-sdk-pinpoint-test'
 include ':aws-android-sdk-s3-test'
-// Tests for these modules are already included above - not in separate modules
-// include ':aws-android-sdk-mobile-client-test'
-// include ':aws-android-sdk-iot-test'
 
