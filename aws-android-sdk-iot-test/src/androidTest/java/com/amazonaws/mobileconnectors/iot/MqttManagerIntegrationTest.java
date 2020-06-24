@@ -16,7 +16,6 @@
 package com.amazonaws.mobileconnectors.iot;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.support.test.InstrumentationRegistry;
 import android.util.Log;
 
@@ -31,7 +30,6 @@ import com.amazonaws.services.iot.model.CertificateStatus;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateRequest;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateResult;
 import com.amazonaws.services.iot.model.CreatePolicyRequest;
-import com.amazonaws.services.iot.model.CreatePolicyResult;
 import com.amazonaws.services.iot.model.DeleteCertificateRequest;
 import com.amazonaws.services.iot.model.DeletePolicyRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointRequest;
@@ -39,80 +37,78 @@ import com.amazonaws.services.iot.model.DescribeEndpointResult;
 import com.amazonaws.services.iot.model.DetachPolicyRequest;
 import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
+import com.amazonaws.testutils.AWSTestBase;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
 import java.security.KeyStore;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
+public class MqttManagerIntegrationTest extends AWSTestBase {
+    private static final String TAG = MqttManagerIntegrationTest.class.getSimpleName();
 
-    private static final Integer ONE_TWENTY_KB = 120000;
-
-    private static String KEYSTORE_PATH = "./";
+    private static final int ONE_TWENTY_KB = 120_000;
     private static final String KEYSTORE_NAME = "integration_test.bks";
     private static final String KEYSTORE_PASSWORD = "test password";
     private static final String IOT_POLICY_NAME = "android-integration-test";
     private static final String CUSTOM_DOMAIN = "www.amplify-android-test.com";
 
-    private static boolean initCompleted = false;
-
+    private static String keyStorePath = "./";
     private static AWSCredentialsProvider credentialsProvider;
     private static String endpointPrefix;
     private static String betaEndpoint;
     private static String endpoint;
     private static AWSIotClient iotClient;
+    private static CreateKeysAndCertificateResult certResult;
 
-    private static Random r;
-    private static final String TAG = MqttManagerIntegrationTest.class.getSimpleName();
+    @BeforeClass
+    public static void beforeSuite() throws Exception {
+        Context appContext = InstrumentationRegistry.getTargetContext();
+        keyStorePath = appContext.getFilesDir().toString() + "/";
+        System.out.println(keyStorePath);
+        credentialsProvider = new CognitoCachingCredentialsProvider(
+            appContext,
+            getPackageConfigure("iot").getString(ConfigKey.IDENTITY_POOL_ID.toString()),
+            Regions.US_EAST_1
+        );
 
-    private CreateKeysAndCertificateResult certResult;
-    private CreatePolicyResult createPolicyResult;
+        iotClient = new AWSIotClient(credentialsProvider);
+
+        DescribeEndpointRequest request = new DescribeEndpointRequest();
+        DescribeEndpointResult result = iotClient.describeEndpoint(request);
+        endpoint = result.getEndpointAddress();
+        endpointPrefix = endpoint.split("\\.")[0];
+
+        request.setEndpointType("iot:Data-Beta");
+        result = iotClient.describeEndpoint(request);
+        betaEndpoint = result.getEndpointAddress();
+    }
 
     @Before
-    public void setUp() throws Exception {
-        if (!initCompleted) {
-
-            r = new Random();
-            Context appContext = InstrumentationRegistry.getTargetContext();
-            KEYSTORE_PATH = appContext.getFilesDir().toString() + "/";
-            System.out.println(KEYSTORE_PATH);
-            credentialsProvider = new CognitoCachingCredentialsProvider(appContext,
-                    getPackageConfigure().getString(ConfigKey.IDENTITY_POOL_ID.toString()), Regions.US_EAST_1);
-
-            iotClient = new AWSIotClient(credentialsProvider);
-
-            DescribeEndpointRequest request = new DescribeEndpointRequest();
-            DescribeEndpointResult result = iotClient.describeEndpoint(request);
-            endpoint = result.getEndpointAddress();
-            endpointPrefix = endpoint.split("\\.")[0];
-
-            request.setEndpointType("iot:Data-Beta");
-            result = iotClient.describeEndpoint(request);
-            betaEndpoint = result.getEndpointAddress();
-            initCompleted = true;
-        }
+    public void beforeEach() {
         createAndAttachPolicy();
     }
 
     @After
-    public void tearDown() {
+    public void afterEach() {
         deletePolicyAndCertificate();
-        File keystoreFile = new File(KEYSTORE_PATH, KEYSTORE_NAME);
+        File keystoreFile = new File(keyStorePath, KEYSTORE_NAME);
         if (keystoreFile.exists()) {
+            //noinspection ResultOfMethodCallIgnored
             keystoreFile.delete();
         }
     }
@@ -131,7 +127,6 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
         mqttConnect(mqttManager);
     }
-
 
     @Test
     public void mqttConnect_USEast1_Endpoint() throws Exception {
@@ -155,15 +150,15 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         DescribeEndpointResult result = iotClient.describeEndpoint(request);
         endpointPrefix = result.getEndpointAddress().split("\\.")[0];
         System.out.println("Endpoint prefix: " + endpointPrefix);
-        
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", 
-            Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix);
-        mqttConnect(mqttManager);
+        mqttConnect(new AWSIotMqttManager(
+            "int-test-w-certs",
+            Region.getRegion(Regions.US_EAST_1),
+            endpointPrefix
+        ));
     }
 
     @Test
-    public void mqttConnectMalformedEndpoints() throws Exception {
+    public void mqttConnectMalformedEndpoints() {
         DescribeEndpointRequest request = new DescribeEndpointRequest();
         request.setEndpointType("iot:Data");
         DescribeEndpointResult result = iotClient.describeEndpoint(request);
@@ -197,37 +192,40 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 System.out.println("Trying to connect to endpoint: " + endpoint);
                 AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
                 mqttConnect(mqttManager);
-            } catch (Exception ex) {
+            } catch (Exception exception) {
                 System.out.println("Received Exception for endpoint: " + 
-                    endpoint + "; exception: " + ex.getMessage());
+                    endpoint + "; exception: " + exception.getMessage());
                 continue;
             }
-            assertTrue("Exception not thrown for a malformed endpoint while connecting.", false);
+            fail("Exception not thrown for a malformed endpoint while connecting.");
         }
     }
 
     private void mqttConnect(final AWSIotMqttManager mqttManager) throws Exception {
-
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
-        final ArrayList<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
+        final List<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<>();
 
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(this.certResult.getCertificateId(),
-                certResult.getCertificatePem(),
-                certResult.getKeyPair().getPrivateKey(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
+            certResult.getCertificateId(),
+            certResult.getCertificatePem(),
+            certResult.getKeyPair().getPrivateKey(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
+            certResult.getCertificateId(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // connect to AWS IoT using keystore
-        mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(keyStore, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -235,7 +233,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
 
         // wait for connection
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // subscribe to MQTT topic, new messages are captured in list
         mqttManager.subscribeToTopic("sdk/test/integration/cert", AWSIotMqttQos.QOS1, new AWSIotMqttNewMessageCallback() {
@@ -246,29 +244,32 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
 
         // ensure subscribe propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
-        final HashMap<String, Integer> tokenTable = new HashMap<String, Integer>();
+        final Map<String, Integer> tokenTable = new HashMap<>();
 
         // publish 20 messages
-        for (int i=0; i<20; ++i) {
-            tokenTable.put("integration-test-" + i, 0);
-            mqttManager.publishString("integration-test-" + i, "sdk/test/integration/cert",
-                    AWSIotMqttQos.QOS1,
-                    new AWSIotMqttMessageDeliveryCallback() {
-                        @Override
-                        public void statusChanged(MessageDeliveryStatus status, Object userData) {
-                            cbStatuses.add(status);
-                            if (userData instanceof String) {
-                                tokenTable.put((String)userData, 1);
-                            }
+        for (int index = 0; index < 20; ++index) {
+            tokenTable.put("integration-test-" + index, 0);
+            mqttManager.publishString(
+                "integration-test-" + index,
+                "sdk/test/integration/cert",
+                AWSIotMqttQos.QOS1,
+                new AWSIotMqttMessageDeliveryCallback() {
+                    @Override
+                    public void statusChanged(MessageDeliveryStatus status, Object userData) {
+                        cbStatuses.add(status);
+                        if (userData instanceof String) {
+                            tokenTable.put((String)userData, 1);
                         }
-                    },
-                    "integration-test-" + i);
+                    }
+                },
+                "integration-test-" + index
+            );
             Thread.sleep(250);
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
 
         // disconnect
         mqttManager.disconnect();
@@ -279,13 +280,13 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // verify messages arrived on subscribed topic
         assertEquals(20, messages.size());
-        int msgnum[] = new int[20];
-        for (String m : messages) {
-            assertTrue(m.contains("integration-test-"));
-            ++msgnum[Integer.parseInt(m.split("-")[2])];
+        int[] msgnum = new int[20];
+        for (String message : messages) {
+            assertTrue(message.contains("integration-test-"));
+            ++msgnum[Integer.parseInt(message.split("-")[2])];
         }
-        for (int i : msgnum) {
-            assertEquals(1, i);
+        for (int messageValue : msgnum) {
+            assertEquals(1, messageValue);
         }
 
         // verify callbacks
@@ -294,8 +295,8 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         }
 
         // verify all tokens were received
-        for (int i : tokenTable.values()) {
-            assertEquals(1, i);
+        for (int wasReceived : tokenTable.values()) {
+            assertEquals(1, wasReceived);
         }
     }
 
@@ -320,38 +321,50 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     public void testMqttCertificateConnection(final boolean alpnFlag, final String customEndpoint) throws Exception {
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
 
         AWSIotMqttManager mqttManager;
         if (customEndpoint != null) {
-            mqttManager = AWSIotMqttManager.from(Region.getRegion(Regions.US_EAST_1),
-                    AWSIotMqttManager.ClientId.fromString("int-test-w-certs"), AWSIotMqttManager.Endpoint.fromString(customEndpoint));
+            mqttManager = AWSIotMqttManager.from(
+                Region.getRegion(Regions.US_EAST_1),
+                AWSIotMqttManager.ClientId.fromString("int-test-w-certs"),
+                AWSIotMqttManager.Endpoint.fromString(customEndpoint)
+            );
         } else {
-            mqttManager = new AWSIotMqttManager("int-test-w-certs",
-                    Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+            mqttManager = new AWSIotMqttManager(
+                "int-test-w-certs",
+                Region.getRegion(Regions.US_EAST_1),
+                endpointPrefix
+            );
         }
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
-                certResult.getCertificatePem(),
-                certResult.getKeyPair().getPrivateKey(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
+            certResult.getCertificateId(),
+            certResult.getCertificatePem(),
+            certResult.getKeyPair().getPrivateKey(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(),
-                KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
+            certResult.getCertificateId(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
         // connect to AWS IoT using keystore
         if (alpnFlag) {
-            mqttManager.connectUsingALPN(ks, new AWSIotMqttClientStatusCallback() {
+            mqttManager.connectUsingALPN(keyStore, new AWSIotMqttClientStatusCallback() {
                 @Override
                 public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                     statuses.add(status);
                 }
             });
         } else {
-            mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
+            mqttManager.connect(keyStore, new AWSIotMqttClientStatusCallback() {
                 @Override
                 public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                     statuses.add(status);
@@ -360,7 +373,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         }
 
         // wait for connection
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // subscribe to MQTT topic, new messages are captured in list
         mqttManager.subscribeToTopic("sdk/test/integration/cert", AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
@@ -371,7 +384,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
 
         // ensure subscribe propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
         // publish 20 messages
         for (int i = 0; i < 20; i++) {
@@ -379,7 +392,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             Thread.sleep(250);
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
 
         // disconnect
         mqttManager.disconnect();
@@ -390,35 +403,44 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // verify messages arrived on subscribed topic
         assertEquals(20, messages.size());
-        int msgnum[] = new int[20];
-        for (String m : messages) {
-            assertTrue(m.contains("integration test "));
-            ++msgnum[Integer.parseInt(m.split(" ")[2])];
+        int[] msgnum = new int[20];
+        for (String message : messages) {
+            assertTrue(message.contains("integration test "));
+            ++msgnum[Integer.parseInt(message.split(" ")[2])];
         }
-        for (int i : msgnum) {
-            assertEquals(1, i);
+        for (int messageValue : msgnum) {
+            assertEquals(1, messageValue);
         }
     }
 
     @Test
     public void mqttCertConnectDisconnectConnectWithALPN() throws Exception {
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
 
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
-
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-c-reconnect", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager(
+            "int-test-c-reconnect",
+            Region.getRegion(Regions.US_EAST_1),
+            endpointPrefix
+        );
         mqttManager.setAutoReconnect(true);
 
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(this.certResult.getCertificateId(),
-                this.certResult.getCertificatePem(),
-                this.certResult.getKeyPair().getPrivateKey(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
+            certResult.getCertificateId(),
+            certResult.getCertificatePem(),
+            certResult.getKeyPair().getPrivateKey(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(this.certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
+            certResult.getCertificateId(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
         AWSIotMqttClientStatusCallback callback = new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
@@ -427,22 +449,22 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         };
 
         // Connect
-        mqttManager.connectUsingALPN(ks, callback);
+        mqttManager.connectUsingALPN(keyStore, callback);
 
         // Wait for the operation
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // Disconnect
         mqttManager.disconnect();
 
         // Wait for the operation
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // Connect
-        mqttManager.connectUsingALPN(ks, callback);
+        mqttManager.connectUsingALPN(keyStore, callback);
 
         // Wait for the operation
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // verify connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -450,7 +472,6 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost, statuses.get(2));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(3));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(4));
-
     }
 
     @Test
@@ -460,26 +481,27 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     @Test
     public void mqttCertificateQos1WithCallbacks() throws Exception {
-
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
-        final ArrayList<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
+        final List<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<>();
 
         String endpoint = endpointPrefix + ".iot." + Region.getRegion(Regions.US_EAST_1).getName() + ".amazonaws.com";
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
 
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
-                certResult.getCertificatePem(),
-                certResult.getKeyPair().getPrivateKey(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
+            certResult.getCertificateId(),
+            certResult.getCertificatePem(),
+            certResult.getKeyPair().getPrivateKey(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), keyStorePath, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
-        mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(keyStore, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
@@ -487,7 +509,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
 
         // wait for connection
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // subscribe to MQTT topic, new messages are captured in list
         mqttManager.subscribeToTopic("sdk/test/integration/cert", AWSIotMqttQos.QOS1, new AWSIotMqttNewMessageCallback() {
@@ -498,29 +520,32 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
 
         // ensure subscribe propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
-        final HashMap<String, Integer> tokenTable = new HashMap<String, Integer>();
+        final Map<String, Integer> tokenTable = new HashMap<>();
 
         // publish 20 messages
-        for (int i=0; i<20; ++i) {
-            tokenTable.put("integration-test-" + i, 0);
-            mqttManager.publishString("integration-test-" + i, "sdk/test/integration/cert",
-                    AWSIotMqttQos.QOS1,
-                    new AWSIotMqttMessageDeliveryCallback() {
-                        @Override
-                        public void statusChanged(MessageDeliveryStatus status, Object userData) {
-                            cbStatuses.add(status);
-                            if (userData instanceof String) {
-                                tokenTable.put((String)userData, 1);
-                            }
+        for (int index = 0; index < 20; ++index) {
+            tokenTable.put("integration-test-" + index, 0);
+            mqttManager.publishString(
+                "integration-test-" + index,
+                "sdk/test/integration/cert",
+                AWSIotMqttQos.QOS1,
+                new AWSIotMqttMessageDeliveryCallback() {
+                    @Override
+                    public void statusChanged(MessageDeliveryStatus status, Object userData) {
+                        cbStatuses.add(status);
+                        if (userData instanceof String) {
+                            tokenTable.put((String)userData, 1);
                         }
-                    },
-                    "integration-test-" + i);
+                    }
+                },
+                "integration-test-" + index
+            );
             Thread.sleep(250);
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
 
         // disconnect
         mqttManager.disconnect();
@@ -531,13 +556,13 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         // verify messages arrived on subscribed topic
         assertEquals(20, messages.size());
-        int msgnum[] = new int[20];
+        int[] msgnum = new int[20];
         for (String m : messages) {
             assertTrue(m.contains("integration-test-"));
             ++msgnum[Integer.parseInt(m.split("-")[2])];
         }
-        for (int i : msgnum) {
-            assertEquals(1, i);
+        for (int messageValue : msgnum) {
+            assertEquals(1, messageValue);
         }
 
         // verify callbacks
@@ -546,8 +571,8 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         }
 
         // verify all tokens were received
-        for (int i : tokenTable.values()) {
-            assertEquals(1, i);
+        for (int messageWasReceived : tokenTable.values()) {
+            assertEquals(1, messageWasReceived);
         }
     }
 
@@ -557,23 +582,33 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
     }
 
     public void mqttCertReconnect(final boolean alpnFlag) throws Exception {
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
 
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
-
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-c-reconnect", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager(
+            "int-test-c-reconnect",
+            Region.getRegion(Regions.US_EAST_1),
+            endpointPrefix
+        );
         mqttManager.setAutoReconnect(true);
 
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(this.certResult.getCertificateId(),
-                this.certResult.getCertificatePem(),
-                this.certResult.getKeyPair().getPrivateKey(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
+            certResult.getCertificateId(),
+            certResult.getCertificatePem(),
+            certResult.getKeyPair().getPrivateKey(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(this.certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
+            certResult.getCertificateId(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
         AWSIotMqttClientStatusCallback callback = new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
@@ -582,38 +617,42 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         };
         // connect to AWS IoT using keystore
         if (alpnFlag) {
-            mqttManager.connectUsingALPN(ks, callback);
+            mqttManager.connectUsingALPN(keyStore, callback);
         } else {
-            mqttManager.connect(ks, callback);
+            mqttManager.connect(keyStore, callback);
         }
 
         // wait for connection
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // subscribe to MQTT topic, new messages are captured in list
-        mqttManager.subscribeToTopic("sdk/test/integration/cert/reconnect", AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
-            @Override
-            public void onMessageArrived(String topic, byte[] data) {
-                messages.add(new String(data));
+        mqttManager.subscribeToTopic(
+            "sdk/test/integration/cert/reconnect",
+            AWSIotMqttQos.QOS0,
+            new AWSIotMqttNewMessageCallback() {
+                @Override
+                public void onMessageArrived(String topic, byte[] data) {
+                    messages.add(new String(data));
+                }
             }
-        });
+        );
 
         // ensure subscribe propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
         // publish a message
         mqttManager.publishString("message 0", "sdk/test/integration/cert/reconnect", AWSIotMqttQos.QOS0);
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
         // verify messages arrived on subscribed topic
         assertEquals("message 0", messages.get(0));
 
         // publish on $aws will cause a disconnect
         mqttManager.publishString("please kill me", "$aws", AWSIotMqttQos.QOS0);
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting, statuses.get(2));
 
         // disconnect
@@ -622,40 +661,45 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     @Test
     public void mqttCertificateLargeMessage() throws Exception {
-
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
 
         // create large message
-        byte largeMessageBytes[] = new byte[ONE_TWENTY_KB];
-        for(int i=0; i<ONE_TWENTY_KB; ++i) {
-            largeMessageBytes[i] = getAlphaChar();
+        byte[] largeMessageBytes = new byte[ONE_TWENTY_KB];
+        for(int index = 0; index < ONE_TWENTY_KB; ++index) {
+            largeMessageBytes[index] = getAlphaChar();
         }
         String largeMessageString = new String(largeMessageBytes);
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-cert-lm", Region.getRegion(Regions.US_EAST_1), endpointPrefix);
+        AWSIotMqttManager mqttManager =new AWSIotMqttManager(
+            "int-test-cert-lm",
+            Region.getRegion(Regions.US_EAST_1),
+            endpointPrefix
+        );
 
         mqttManager.setAutoReconnect(false);
 
         // save certificate and private key in a keystore
-        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(certResult.getCertificateId(),
-                certResult.getCertificatePem(),
-                certResult.getKeyPair().getPrivateKey(),
-                KEYSTORE_PATH,
-                KEYSTORE_NAME,
-                KEYSTORE_PASSWORD);
+        AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
+            certResult.getCertificateId(),
+            certResult.getCertificatePem(),
+            certResult.getKeyPair().getPrivateKey(),
+            keyStorePath,
+            KEYSTORE_NAME,
+            KEYSTORE_PASSWORD
+        );
 
         // retrieve the keystore
-        KeyStore ks = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), keyStorePath, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
-        mqttManager.connect(ks, new AWSIotMqttClientStatusCallback() {
+        mqttManager.connect(keyStore, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 statuses.add(status);
             }
         });
 
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // subscribe to MQTT topic
         mqttManager.subscribeToTopic("sdk/test/integration/cert/large", AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
@@ -665,11 +709,11 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             }
         });
         // ensure subscription propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
         // publish large message
         mqttManager.publishString(largeMessageString, "sdk/test/integration/cert/large", AWSIotMqttQos.QOS0);
 
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
         // disconnect
         mqttManager.disconnect();
@@ -681,13 +725,13 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         // verify messages arrived on topic
         assertEquals(1, messages.size());
         assertEquals(largeMessageString, messages.get(0));
-        assertEquals((int)ONE_TWENTY_KB, messages.get(0).length());
+        assertEquals(ONE_TWENTY_KB, messages.get(0).length());
     }
 
     /**
      * Test Subscribe status callback
      */
-    private class TestSubscriptionStatusCallback implements AWSIotMqttSubscriptionStatusCallback {
+    private static class TestSubscriptionStatusCallback implements AWSIotMqttSubscriptionStatusCallback {
         String subscriptionStatus = null;
 
         @Override
@@ -713,38 +757,36 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
     @Test
     public void testWebSocketWithConnectionUsernamePassword() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD,
-                betaEndpoint);
+        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
     }
 
     @Test
     public void testWebSocketWithConnectionIamAuthAndCustomDomain() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.IAM,
-                CUSTOM_DOMAIN);
+        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.IAM, CUSTOM_DOMAIN);
     }
 
-    @Ignore
     @Test
     public void testWebSocketConnectionWithCustomAuthAndCustomDomain() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH,
-                CUSTOM_DOMAIN);
+        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH, CUSTOM_DOMAIN);
     }
 
-    @Ignore
     @Test
     public void testWebSocketConnectionWithUsernamePasswordAndCustomDomain() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD,
-                CUSTOM_DOMAIN);
+        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD, CUSTOM_DOMAIN);
     }
 
-    private void testWebsocketConnection(final AWSIotMqttManager.AuthenticationMode authMode,
-                                         final String endpoint)
+    private void testWebsocketConnection(
+            final AWSIotMqttManager.AuthenticationMode authMode,
+            final String endpoint)
             throws InterruptedException, JSONException {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final List<String> messages = new ArrayList<String>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
 
-        AWSIotMqttManager mqttManager = AWSIotMqttManager.from(Region.getRegion(Regions.US_EAST_1),
-                AWSIotMqttManager.ClientId.fromString("int-test-w-ws"), AWSIotMqttManager.Endpoint.fromString(endpoint));
+        AWSIotMqttManager mqttManager = AWSIotMqttManager.from(
+            Region.getRegion(Regions.US_EAST_1),
+            AWSIotMqttManager.ClientId.fromString("int-test-w-ws"),
+            AWSIotMqttManager.Endpoint.fromString(endpoint)
+        );
         mqttManager.setAutoReconnect(false);
 
         switch (authMode) {
@@ -759,7 +801,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 break;
         }
 
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // ensure connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -775,20 +817,20 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             }
         });
         // ensure subscription propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
         assertEquals("Subscription successful", sscb.subscriptionStatus);
         // publish 20 messages
-        for (int i=0; i<20; ++i) {
-            mqttManager.publishString("integration test " + i, "sdk/test/integration/ws", AWSIotMqttQos.QOS0);
+        for (int index = 0; index < 20; ++index) {
+            mqttManager.publishString("integration test " + index, "sdk/test/integration/ws", AWSIotMqttQos.QOS0);
             Thread.sleep(250);
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
         // disconnect
         mqttManager.disconnect();
         // verify messages arrived on topic
         assertEquals(20, messages.size());
-        int msgnum[] = new int[20];
+        int[] msgnum = new int[20];
         for (String m : messages) {
             assertTrue(m.contains("integration test "));
             ++msgnum[Integer.parseInt(m.split(" ")[2])];
@@ -798,8 +840,9 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         }
     }
 
-    private void connectWithIam(final AWSIotMqttManager mqttManager,
-                                final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) {
+    private void connectWithIam(
+            final AWSIotMqttManager mqttManager,
+            final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) {
         // connect using WebSockets and IAM credentials
         mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
             @Override
@@ -809,25 +852,29 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         });
     }
 
-    private void connectWithCustomAuth(final AWSIotMqttManager mqttManager,
-                                       final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) throws JSONException {
-        ConnectionParams connectionParams = ConnectionParams.fromPackageConfig(getPackageConfigure());
+    private void connectWithCustomAuth(
+            final AWSIotMqttManager mqttManager,
+            final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses)
+            throws JSONException {
+        ConnectionParams connectionParams = ConnectionParams.fromPackageConfig(getPackageConfigure("iot"));
         // connect using WebSockets and custom authentication token
         mqttManager.connect(
-                connectionParams.getTokenKeyName(),
-                connectionParams.getToken(),
-                connectionParams.getTokenSignature(),
-                connectionParams.getCustomerAuthorizerName(),
-                new AWSIotMqttClientStatusCallback() {
-                    @Override
-                    public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                        statuses.add(status);
-                    }
-                });
+            connectionParams.getTokenKeyName(),
+            connectionParams.getToken(),
+            connectionParams.getTokenSignature(),
+            connectionParams.getCustomAuthorizerName(),
+            new AWSIotMqttClientStatusCallback() {
+                @Override
+                public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                    statuses.add(status);
+                }
+            }
+        );
     }
 
-    private void connectWithUsernamePassword(final AWSIotMqttManager mqttManager,
-                                             final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) {
+    private void connectWithUsernamePassword(
+            final AWSIotMqttManager mqttManager,
+            final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) {
         // connect using username and password
         mqttManager.connect("user", "pass", new AWSIotMqttClientStatusCallback() {
             @Override
@@ -852,15 +899,18 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         testWebsocketReconnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
     }
 
-    private void testWebsocketReconnection(final AWSIotMqttManager.AuthenticationMode authMode,
-                                           final String endpoint)
+    private void testWebsocketReconnection(
+            final AWSIotMqttManager.AuthenticationMode authMode,
+            final String endpoint)
             throws InterruptedException, JSONException {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final List<String> messages = new ArrayList<String>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
 
-        AWSIotMqttManager mqttManager = AWSIotMqttManager.from(Region.getRegion(Regions.US_EAST_1),
-                AWSIotMqttManager.ClientId.fromString("int-test-w-ws"),
-                AWSIotMqttManager.Endpoint.fromString(endpoint));
+        AWSIotMqttManager mqttManager = AWSIotMqttManager.from(
+            Region.getRegion(Regions.US_EAST_1),
+            AWSIotMqttManager.ClientId.fromString("int-test-w-ws"),
+            AWSIotMqttManager.Endpoint.fromString(endpoint)
+        );
         mqttManager.setAutoReconnect(true);
 
         switch (authMode) {
@@ -875,7 +925,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 break;
         }
 
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // ensure connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
@@ -889,12 +939,12 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             }
         });
         // ensure subscription propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
         // publish a message
         mqttManager.publishString("message 0", "sdk/test/integration/ws/reconnect", AWSIotMqttQos.QOS0);
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
         // verify messages arrived on subscribed topic
         assertEquals(1, messages.size());
         assertEquals("message 0", messages.get(0));
@@ -902,7 +952,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         // publish on $aws will cause a disconnect
         mqttManager.publishString("please kill me", "$aws", AWSIotMqttQos.QOS0);
 
-        Thread.sleep(1000);
+        Thread.sleep(1_000);
         // verify connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting, statuses.get(2));
 
@@ -918,15 +968,17 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
      */
     @Test
     public void mqttCleanSession() throws Exception {
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final ArrayList<String> messages = new ArrayList<String>();
+        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final ArrayList<String> messages = new ArrayList<>();
 
-        String largeMessageString = new String("largeMessageBytes");
+        String largeMessageString = "largeMessageBytes";
         final String topic = "sdk/test/integration/ws/reconnect";
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("client-id-1", 
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager(
+            "client-id-1",
             Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix);
+            endpointPrefix
+        );
 
         mqttManager.setCleanSession(true);
         mqttManager.setAutoReconnect(true);
@@ -945,37 +997,35 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 }
             }
         });
-
         try {
             countDownLatch.await();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // subscribe to MQTT topic
         System.out.println("Subscribing to topic: " + topic);
-        mqttManager.subscribeToTopic(topic, 
-            AWSIotMqttQos.QOS0, 
-            new AWSIotMqttNewMessageCallback() {
-                @Override
-                public void onMessageArrived(String topic, byte[] data) {
-                    messages.add(new String(data));
-                }
-            });
-        Thread.sleep(2000);
+        mqttManager.subscribeToTopic(topic, AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
+            @Override
+            public void onMessageArrived(String topic, byte[] data) {
+                messages.add(new String(data));
+            }
+        });
+        Thread.sleep(2_000);
 
         // disconnect
         mqttManager.disconnect();
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // ensure connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
 
-        AWSIotMqttManager mqttManager2 = new AWSIotMqttManager("client-id-2", 
+        AWSIotMqttManager mqttManager2 = new AWSIotMqttManager(
+            "client-id-2",
             Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix);
-
+            endpointPrefix
+        );
         mqttManager2.setCleanSession(true);
         mqttManager.setAutoReconnect(true);
 
@@ -996,20 +1046,20 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         try {
             countDownLatch2.await();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // publish large message
-        mqttManager2.publishString(largeMessageString, 
-            topic, 
-            AWSIotMqttQos.QOS0);
+        mqttManager2.publishString(largeMessageString, topic, AWSIotMqttQos.QOS0);
 
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
-        mqttManager = new AWSIotMqttManager("client-id-1", 
+        mqttManager = new AWSIotMqttManager(
+            "client-id-1",
             Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix);
+            endpointPrefix
+        );
 
         mqttManager.setCleanSession(true);
         mqttManager.setAutoReconnect(true);
@@ -1028,27 +1078,24 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 }
             }
         });
-
         try {
             countDownLatch3.await();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic(topic, 
-            AWSIotMqttQos.QOS0, 
-            new AWSIotMqttNewMessageCallback() {
-                @Override
-                public void onMessageArrived(String topic, byte[] data) {
-                    messages.add(new String(data));
-                }
-            });
+        mqttManager.subscribeToTopic(topic, AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
+            @Override
+            public void onMessageArrived(String topic, byte[] data) {
+                messages.add(new String(data));
+            }
+        });
         
-        Thread.sleep(10000);
+        Thread.sleep(10_000);
 
         // verify messages arrived on topic
-        assertEquals(0, messages.size());
+        assertTrue(messages.isEmpty());
     }
 
     /**
@@ -1060,15 +1107,17 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
      */
     @Test
     public void mqttPersistentSession() throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus>();
-        final List<String> messages = new ArrayList<String>();
+        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<String> messages = new ArrayList<>();
 
-        String largeMessageString = new String("largeMessageBytes");
+        String largeMessageString = "largeMessageBytes";
         final String topic = "sdk/test/integration/ws/reconnect";
 
-        AWSIotMqttManager mqttManager = new AWSIotMqttManager("persistent-client-id-1",
+        AWSIotMqttManager mqttManager = new AWSIotMqttManager(
+            "persistent-client-id-1",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix);
+            endpointPrefix
+        );
 
         mqttManager.setCleanSession(false);
         mqttManager.setAutoReconnect(true);
@@ -1090,35 +1139,35 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
 
         try {
             countDownLatch.await();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic(topic,
-            AWSIotMqttQos.QOS1,
-            new AWSIotMqttNewMessageCallback() {
-                @Override
-                public void onMessageArrived(String topic, byte[] data) {
-                    System.out.println("Client persistent-client-id-1 received a message on topic:" + topic);
-                    messages.add(new String(data));
-                }
-            });
+        mqttManager.subscribeToTopic(topic, AWSIotMqttQos.QOS1, new AWSIotMqttNewMessageCallback() {
+            @Override
+            public void onMessageArrived(String topic, byte[] data) {
+                System.out.println("Client persistent-client-id-1 received a message on topic:" + topic);
+                messages.add(new String(data));
+            }
+        });
 
         // ensure subscription propagates
-        Thread.sleep(2000);
+        Thread.sleep(2_000);
 
         // disconnect
         mqttManager.disconnect();
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // ensure connection events emitted
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
         assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
 
-        AWSIotMqttManager mqttManager2 = new AWSIotMqttManager("persistent-client-id-2",
+        AWSIotMqttManager mqttManager2 = new AWSIotMqttManager(
+            "persistent-client-id-2",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix);
+            endpointPrefix
+        );
 
         // connect to AWS IoT using keystore
         final CountDownLatch countDownLatch2 = new CountDownLatch(1);
@@ -1134,29 +1183,31 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 }
             }
         });
-
         try {
             countDownLatch2.await();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // publish large message
-        mqttManager2.publishString(largeMessageString,
-                topic,
-                AWSIotMqttQos.QOS1,
-                new AWSIotMqttMessageDeliveryCallback() {
-                    @Override
-                    public void statusChanged(MessageDeliveryStatus status, Object userData) {
-                        System.out.println("Client persistent-client-id-2 published a message. Status :" + status);
-                    }
-                }, null);
+        mqttManager2.publishString(
+            largeMessageString,
+            topic,
+            AWSIotMqttQos.QOS1,
+            new AWSIotMqttMessageDeliveryCallback() {
+                @Override
+                public void statusChanged(MessageDeliveryStatus status, Object userData) {
+                    System.out.println("Client persistent-client-id-2 published a message. Status :" + status);
+                }
+            },
+            null
+        );
 
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // disconenct client 2
         mqttManager2.disconnect();
-        Thread.sleep(3000);
+        Thread.sleep(3_000);
 
         // connect to AWS IoT using credentials provider
         final CountDownLatch countDownLatch3 = new CountDownLatch(1);
@@ -1172,33 +1223,30 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
                 }
             }
         });
-
         try {
             countDownLatch3.await();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
 
         // subscribe to MQTT topic
-        mqttManager.subscribeToTopic(topic,
-                AWSIotMqttQos.QOS1,
-                new AWSIotMqttNewMessageCallback() {
-                    @Override
-                    public void onMessageArrived(String topic, byte[] data) {
-                        System.out.println("Client persistent-client-id-1 received a message on topic:" + topic);
-                        messages.add(new String(data));
-                    }
-                });
+        mqttManager.subscribeToTopic(topic, AWSIotMqttQos.QOS1, new AWSIotMqttNewMessageCallback() {
+            @Override
+            public void onMessageArrived(String topic, byte[] data) {
+                System.out.println("Client persistent-client-id-1 received a message on topic:" + topic);
+                messages.add(new String(data));
+            }
+        });
 
         // ensure subscription propagates
-        Thread.sleep(10000);
+        Thread.sleep(10_000);
 
         // verify messages arrived on topic
         assertEquals(1, messages.size());
     }
 
     private static byte getAlphaChar() {
-        return (byte)(0x41 + r.nextInt(57));
+        return (byte) (0x41 + new SecureRandom().nextInt(57));
     }
 
     /**
@@ -1211,7 +1259,7 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         // create a new certificate and private key
         CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
         certRequest.setSetAsActive(true);
-        this.certResult = iotClient.createKeysAndCertificate(certRequest);
+        certResult = iotClient.createKeysAndCertificate(certRequest);
 
         // create an IoT policy allowing all actions in IoT
         String policyDocument;
@@ -1223,14 +1271,14 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             createPolicyRequest = new CreatePolicyRequest();
             createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
             createPolicyRequest.setPolicyDocument(policyDocument);
-            this.createPolicyResult = iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception ex) {
-            assertEquals(ex.getClass(), ResourceAlreadyExistsException.class);
+            iotClient.createPolicy(createPolicyRequest);
+        }  catch (Exception exception) {
+            assertEquals(exception.getClass(), ResourceAlreadyExistsException.class);
         }
 
         AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
         attachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-        attachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        attachPolicyRequest.setTarget(certResult.getCertificateArn());
         iotClient.attachPolicy(attachPolicyRequest);
     }
 
@@ -1244,8 +1292,8 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
         Log.d(TAG, "Detaching the policy from the certificate.");
         DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
         detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-        if (this.certResult != null) {
-            detachPolicyRequest.setTarget(this.certResult.getCertificateArn());
+        if (certResult != null) {
+            detachPolicyRequest.setTarget(certResult.getCertificateArn());
         }
         iotClient.detachPolicy(detachPolicyRequest);
 
@@ -1255,115 +1303,22 @@ public class MqttManagerIntegrationTest extends IoTIntegrationTestBase {
             DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
             deletePolicyRequest.setPolicyName(IOT_POLICY_NAME);
             iotClient.deletePolicy(deletePolicyRequest);
-        } catch (AmazonClientException e) {
+        } catch (AmazonClientException amazonClientException) {
             // TODO Ignore failures in tearDown, but this needs to be fixed.
-            e.printStackTrace();
+            amazonClientException.printStackTrace();
         }
 
         // set cert inactive
         Log.d(TAG, "Make the certificate inactive.");
         UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(this.certResult.getCertificateId());
+        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
         updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
         iotClient.updateCertificate(updateCertificateRequest);
 
         // delete cert
         Log.d(TAG, "Delete the certificate.");
         DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(this.certResult.getCertificateId());
+        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
         iotClient.deleteCertificate(deleteCertificateRequest);
-    }
-
-    static final class ConnectionParams {
-        private final String tokenKeyName;
-        private final String token;
-        private final String tokenSignature;
-        private final String customerAuthorizerName;
-
-        ConnectionParams(final String tokenKeyName,
-                         final String token,
-                         final String tokenSignature,
-                         final String customerAuthorizerName) {
-            this.tokenKeyName = tokenKeyName;
-            this.token = token;
-            this.tokenSignature = tokenSignature;
-            this.customerAuthorizerName = customerAuthorizerName;
-        }
-
-
-        String getTokenKeyName() {
-            return tokenKeyName;
-        }
-
-        String getToken() {
-            return token;
-        }
-
-        String getTokenSignature() {
-            return tokenSignature;
-        }
-
-        public String getCustomerAuthorizerName() {
-            return customerAuthorizerName;
-        }
-
-        static ConnectionParams fromPackageConfig(JSONObject config) throws JSONException {
-            return new ConnectionParams(
-                    config.getString(ConfigKey.TOKEN_KEY_NAME.toString()),
-                    config.getString(ConfigKey.TOKEN.toString()),
-                    config.getString(ConfigKey.TOKEN_SIGNATURE.toString()),
-                    config.getString(ConfigKey.CUSTOM_AUTHORIZER_NAME.toString())
-            );
-        }
-    }
-
-    /**
-     * Iot instrumented tests need following configuration values.
-     */
-    enum ConfigKey {
-        /**
-         * HTTP request header key for the custom authorization token.
-         */
-        TOKEN_KEY_NAME("token_key_name"),
-
-        /**
-         * Custom authorization token used to connect via IoT custom authorizer.
-         */
-        TOKEN("token"),
-
-        /**
-         * Custom authorization token signature.
-         */
-        TOKEN_SIGNATURE("token_signature"),
-
-        /**
-         * Name of the AWS IoT custom authorizer to be used.
-         */
-        CUSTOM_AUTHORIZER_NAME("custom_authorizer_name"),
-
-        /**
-         * Identity pool id used to authorize connection via IAM.
-         */
-        IDENTITY_POOL_ID("identity_pool_id");
-
-        private final String configKey;
-
-        ConfigKey(String configKey) {
-            this.configKey = configKey;
-        }
-
-        @Override
-        public String toString() {
-            return configKey;
-        }
-
-        public static ConfigKey fromString(@Nullable String value) {
-            for (ConfigKey configKey : values()) {
-                if (configKey.toString().equals(value)) {
-                    return configKey;
-                }
-            }
-            throw new IllegalArgumentException("No config key with value = " + value);
-        }
     }
 }
