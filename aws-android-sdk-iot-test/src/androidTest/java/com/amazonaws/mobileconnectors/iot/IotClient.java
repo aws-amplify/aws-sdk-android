@@ -1,0 +1,279 @@
+/*
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ *    http://aws.amazon.com/apache2.0
+ *
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+ * OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.amazonaws.mobileconnectors.iot;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
+
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.services.iot.AWSIot;
+import com.amazonaws.services.iot.AWSIotClient;
+import com.amazonaws.services.iot.model.AttachPolicyRequest;
+import com.amazonaws.services.iot.model.Certificate;
+import com.amazonaws.services.iot.model.CertificateStatus;
+import com.amazonaws.services.iot.model.CreateKeysAndCertificateRequest;
+import com.amazonaws.services.iot.model.CreateKeysAndCertificateResult;
+import com.amazonaws.services.iot.model.CreatePolicyRequest;
+import com.amazonaws.services.iot.model.DeleteCertificateRequest;
+import com.amazonaws.services.iot.model.DeletePolicyRequest;
+import com.amazonaws.services.iot.model.DescribeEndpointRequest;
+import com.amazonaws.services.iot.model.DescribeEndpointResult;
+import com.amazonaws.services.iot.model.DetachPolicyRequest;
+import com.amazonaws.services.iot.model.ListCertificatesRequest;
+import com.amazonaws.services.iot.model.ListCertificatesResult;
+import com.amazonaws.services.iot.model.ListTargetsForPolicyRequest;
+import com.amazonaws.services.iot.model.ListTargetsForPolicyResult;
+import com.amazonaws.services.iot.model.ResourceNotFoundException;
+import com.amazonaws.services.iot.model.UpdateCertificateRequest;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
+/**
+ * Wrapper for the {@link AWSIot} client, to reduce boilerplate in test.
+ * This class should only import classes beginning com.amazonaws.services.iot,
+ * and the methods here should stick to the script wrt IoT service APIs.
+ */
+@SuppressWarnings("SameParameterValue")
+final class IotClient {
+    private static final String TAG = IotClient.class.getSimpleName();
+
+    private final AWSIot iot;
+    private final Map<String, String> endpointsCache;
+
+    IotClient(AWSCredentialsProvider credentialsProvider) {
+        this.iot = new AWSIotClient(credentialsProvider);
+        this.endpointsCache = new HashMap<>();
+    }
+
+    String getEndpointAddress() {
+        return getEndpointAddress(null);
+    }
+
+    String getEndpointAddress(@Nullable String endpointType) {
+        String cachedValue = endpointsCache.get(endpointType);
+        if (cachedValue != null) {
+            Log.d(TAG, "Retrieved cached endpoint = " + cachedValue + " for type = " + endpointType);
+            return cachedValue;
+        }
+        Log.d(TAG, "No cached endpoint of type " + endpointType + ", retrieving now.");
+
+        DescribeEndpointRequest request = new DescribeEndpointRequest();
+        if (endpointType != null) {
+            request.setEndpointType(endpointType);
+        }
+        DescribeEndpointResult result = iot.describeEndpoint(request);
+        String endpointAddress = result.getEndpointAddress();
+        endpointsCache.put(endpointType, endpointAddress);
+        return endpointAddress;
+    }
+
+    String getEndpointPrefix() {
+        return getEndpointPrefix(null);
+    }
+
+    String getEndpointPrefix(@Nullable String endpointType) {
+        return getEndpointAddress(endpointType).split("\\.")[0];
+    }
+
+    void deleteCertificate(@NonNull String certificateId) {
+        Objects.requireNonNull(certificateId);
+
+        Log.d(TAG, "Deleting certificate with ID = " + certificateId);
+
+        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
+        deleteCertificateRequest.setCertificateId(certificateId);
+        iot.deleteCertificate(deleteCertificateRequest);
+    }
+
+    private void updateCertificate(
+            @NonNull String certificateId, @NonNull CertificateStatus certificateStatus) {
+        Objects.requireNonNull(certificateId);
+        Objects.requireNonNull(certificateStatus);
+
+        Log.d(TAG, "Updating certificate status for = " + certificateId + ", to " + certificateStatus);
+
+        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
+        updateCertificateRequest.setCertificateId(certificateId);
+        updateCertificateRequest.setNewStatus(certificateStatus);
+        iot.updateCertificate(updateCertificateRequest);
+    }
+
+    @NonNull
+    private KeysAndCertificateInfo createActiveKeysAndCertificate() {
+        Log.d(TAG, "Creating keys & certificate info.");
+        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
+        certRequest.setSetAsActive(true);
+        CreateKeysAndCertificateResult result = iot.createKeysAndCertificate(certRequest);
+        return new KeysAndCertificateInfo(result);
+    }
+
+    /**
+     * Detach the policy from the certificate.
+     * Delete the policy.
+     * Update certificate status as inactive.
+     * Delete the certificate.
+     */
+    void deletePolicyAndCertificate(
+            @NonNull String policyName, @NonNull KeysAndCertificateInfo keysAndCertificateInfo) {
+        Objects.requireNonNull(policyName);
+        Objects.requireNonNull(keysAndCertificateInfo);
+
+        String certificateArn = keysAndCertificateInfo.getCertificateArn();
+        String certificateId = keysAndCertificateInfo.getCertificateId();
+
+        Log.d(TAG, "Deleting policy named = " + policyName + ", and certificate with ARN = " + certificateArn);
+
+        // Detach and delete the policy.
+        detachPolicy(policyName, certificateArn);
+        deletePolicy(policyName);
+
+        // set cert inactive & delete it
+        updateCertificate(certificateId, CertificateStatus.INACTIVE);
+        deleteCertificate(certificateId);
+    }
+
+    @NonNull
+    KeysAndCertificateInfo createAndAttachPolicy(
+            @NonNull String policyName, @NonNull String policyDocument) {
+        Objects.requireNonNull(policyName);
+        Objects.requireNonNull(policyDocument);
+
+        Log.d(TAG, "Creating & attaching policy, name = " + policyName + ", document = " + policyDocument);
+
+        KeysAndCertificateInfo keysAndCertificateInfo = createActiveKeysAndCertificate();
+        createPolicy(policyName, policyDocument);
+        attachPolicy(policyName, keysAndCertificateInfo.getCertificateArn());
+        return Objects.requireNonNull(keysAndCertificateInfo);
+    }
+
+    private List<Certificate> listCertificates() {
+        Log.d(TAG, "Listing certificates...");
+        ListCertificatesRequest request = new ListCertificatesRequest();
+        ListCertificatesResult result = iot.listCertificates(request);
+        return result.getCertificates();
+    }
+
+    List<String> getCertificateIdsFromArns(List<String> targetArns) {
+        Log.d(TAG, "Finding IDs of certificates with ARNs = " + targetArns.toString());
+        List<String> certificateIds = new ArrayList<>();
+        List<Certificate> certificates = listCertificates();
+        for (Certificate certificate : certificates) {
+            if (targetArns.contains(certificate.getCertificateArn())) {
+                certificateIds.add(certificate.getCertificateId());
+            }
+        }
+        return certificateIds;
+    }
+
+    // Deletes any associated certificates, and detaches/deletes the policy.
+    void cleanupPolicy(String policyName) {
+        Log.d(TAG, "Cleaning up policy " + policyName + ". Will remove any/all certificates/documents.");
+        List<String> certificateArns = listTargetsForPolicy(policyName);
+        for (String certificateArn : certificateArns) {
+            detachPolicy(policyName, certificateArn);
+        }
+        for (String certificateId : getCertificateIdsFromArns(certificateArns)) {
+            deleteCertificate(certificateId);
+        }
+        deletePolicy(policyName);
+    }
+
+    List<String> listTargetsForPolicy(String policyName) {
+        Log.d(TAG, "Listing all targets for policy named = " + policyName);
+        ListTargetsForPolicyRequest request = new ListTargetsForPolicyRequest();
+        request.setPolicyName(policyName);
+        ListTargetsForPolicyResult result;
+        try {
+            result = iot.listTargetsForPolicy(request);
+        } catch (ResourceNotFoundException noSuchPolicyException) {
+            return Collections.emptyList();
+        }
+        return result.getTargets();
+    }
+
+    private void createPolicy(String policyName, String policyDocument) {
+        Log.d(TAG, "Creating policy " + policyName + " with document = " + policyDocument);
+        CreatePolicyRequest createPolicyRequest;
+        createPolicyRequest = new CreatePolicyRequest();
+        createPolicyRequest.setPolicyName(policyName);
+        createPolicyRequest.setPolicyDocument(policyDocument);
+        iot.createPolicy(createPolicyRequest);
+    }
+
+    private void attachPolicy(String policyName, String certificateArn) {
+        Log.d(TAG, "Attaching policy " + policyName + " from certificate ARN = " + certificateArn);
+        AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
+        attachPolicyRequest.setPolicyName(policyName);
+        attachPolicyRequest.setTarget(certificateArn);
+        iot.attachPolicy(attachPolicyRequest);
+    }
+
+    void detachPolicy(@NonNull String policyName, @Nullable String certificateArn) {
+        Objects.requireNonNull(policyName);
+        Log.d(TAG, "Detaching policy " + policyName + " from certificate ARN = " + certificateArn);
+        DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
+        detachPolicyRequest.setPolicyName(policyName);
+        if (certificateArn != null) {
+            detachPolicyRequest.setTarget(certificateArn);
+        }
+        iot.detachPolicy(detachPolicyRequest);
+    }
+
+    private void deletePolicy(String policyName) {
+        Log.d(TAG, "Deleting policy: " + policyName);
+        DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
+        deletePolicyRequest.setPolicyName(policyName);
+        try {
+            iot.deletePolicy(deletePolicyRequest);
+        } catch (ResourceNotFoundException noSuchPolicy) {
+            // Hey, cool. It doesn't exist.
+        }
+    }
+
+    /**
+     * A wrapper around the {@link CreateKeysAndCertificateResult}, so that we
+     * fully encapsulate interactions with the {@link AWSIotClient} and its input/output types.
+     */
+    static final class KeysAndCertificateInfo {
+        private CreateKeysAndCertificateResult result;
+
+        KeysAndCertificateInfo(CreateKeysAndCertificateResult result) {
+            this.result = Objects.requireNonNull(result);
+        }
+
+        String getCertificatePem() {
+            return result.getCertificatePem();
+        }
+
+        String getCertificateArn() {
+            return result.getCertificateArn();
+        }
+
+        String getCertificateId() {
+            return result.getCertificateId();
+        }
+
+        String getPrivateKey() {
+            return result.getKeyPair().getPrivateKey();
+        }
+    }
+}
