@@ -26,6 +26,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.tokens.CognitoRefr
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -33,6 +34,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+@Ignore("These tests require significant hand crafting of backend infrastructure that isn't documented. TODO: Rewrite these tests to arrange more of their state themselves, and add the base infrastructure to amplify-ci-support.")
 public class SignInPersistenceIntegrationTest extends CognitoUserPoolsIntegrationTestBase {
 
     private CognitoUserPool cognitoUserPool;
