@@ -52,7 +52,7 @@ import java.util.Objects;
  * This class should only import classes beginning com.amazonaws.services.iot,
  * and the methods here should stick to the script wrt IoT service APIs.
  */
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({"SameParameterValue", "UnusedReturnValue"})
 final class IotClient {
     private static final String TAG = IotClient.class.getSimpleName();
 
@@ -104,7 +104,7 @@ final class IotClient {
         iot.deleteCertificate(deleteCertificateRequest);
     }
 
-    private void updateCertificate(
+    void updateCertificate(
             @NonNull String certificateId, @NonNull CertificateStatus certificateStatus) {
         Objects.requireNonNull(certificateId);
         Objects.requireNonNull(certificateStatus);
@@ -118,7 +118,7 @@ final class IotClient {
     }
 
     @NonNull
-    private KeysAndCertificateInfo createActiveKeysAndCertificate() {
+    KeysAndCertificateInfo createActiveKeysAndCertificate() {
         Log.d(TAG, "Creating keys & certificate info.");
         CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
         certRequest.setSetAsActive(true);
@@ -165,7 +165,7 @@ final class IotClient {
         return Objects.requireNonNull(keysAndCertificateInfo);
     }
 
-    private List<Certificate> listCertificates() {
+    List<Certificate> listCertificates() {
         Log.d(TAG, "Listing certificates...");
         ListCertificatesRequest request = new ListCertificatesRequest();
         ListCertificatesResult result = iot.listCertificates(request);
@@ -210,7 +210,7 @@ final class IotClient {
         return result.getTargets();
     }
 
-    private void createPolicy(String policyName, String policyDocument) {
+    void createPolicy(String policyName, String policyDocument) {
         Log.d(TAG, "Creating policy " + policyName + " with document = " + policyDocument);
         CreatePolicyRequest createPolicyRequest;
         createPolicyRequest = new CreatePolicyRequest();
@@ -219,7 +219,7 @@ final class IotClient {
         iot.createPolicy(createPolicyRequest);
     }
 
-    private void attachPolicy(String policyName, String certificateArn) {
+    void attachPolicy(String policyName, String certificateArn) {
         Log.d(TAG, "Attaching policy " + policyName + " from certificate ARN = " + certificateArn);
         AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
         attachPolicyRequest.setPolicyName(policyName);
@@ -238,14 +238,19 @@ final class IotClient {
         iot.detachPolicy(detachPolicyRequest);
     }
 
-    private void deletePolicy(String policyName) {
+    // Returns true if there was a policy and it was deleted;
+    // returns false if there was not a policy and so there was nothing to delete
+    // throws exceptions in other cases where there was something to delete, but
+    // that process failed for some reason.
+    boolean deletePolicy(String policyName) {
         Log.d(TAG, "Deleting policy: " + policyName);
         DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
         deletePolicyRequest.setPolicyName(policyName);
         try {
             iot.deletePolicy(deletePolicyRequest);
+            return true;
         } catch (ResourceNotFoundException noSuchPolicy) {
-            // Hey, cool. It doesn't exist.
+            return false;
         }
     }
 
