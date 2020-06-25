@@ -1,60 +1,108 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model.transform;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static com.amazonaws.util.StringUtils.UTF8;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
-import com.amazonaws.internal.ListWithAutoConstructFlag;
+import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.ec2.model.*;
 import com.amazonaws.transform.Marshaller;
+import com.amazonaws.util.BinaryUtils;
 import com.amazonaws.util.StringUtils;
+import com.amazonaws.util.StringInputStream;
+import com.amazonaws.util.json.AwsJsonWriter;
+import com.amazonaws.util.json.JsonUtils;
 
 /**
- * Describe Spot Fleet Request History Request Marshaller
+ * JSON request marshaller for DescribeSpotFleetRequestHistoryRequest
  */
-public class DescribeSpotFleetRequestHistoryRequestMarshaller implements Marshaller<Request<DescribeSpotFleetRequestHistoryRequest>, DescribeSpotFleetRequestHistoryRequest> {
+public class DescribeSpotFleetRequestHistoryRequestMarshaller
+        implements
+        Marshaller<Request<DescribeSpotFleetRequestHistoryRequest>, DescribeSpotFleetRequestHistoryRequest> {
 
-    public Request<DescribeSpotFleetRequestHistoryRequest> marshall(DescribeSpotFleetRequestHistoryRequest describeSpotFleetRequestHistoryRequest) {
-
+    public Request<DescribeSpotFleetRequestHistoryRequest> marshall(
+            DescribeSpotFleetRequestHistoryRequest describeSpotFleetRequestHistoryRequest) {
         if (describeSpotFleetRequestHistoryRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(...)");
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(DescribeSpotFleetRequestHistoryRequest)");
         }
 
-        Request<DescribeSpotFleetRequestHistoryRequest> request = new DefaultRequest<DescribeSpotFleetRequestHistoryRequest>(describeSpotFleetRequestHistoryRequest, "AmazonEC2");
-        request.addParameter("Action", "DescribeSpotFleetRequestHistory");
-        request.addParameter("Version", "2015-10-01");
+        Request<DescribeSpotFleetRequestHistoryRequest> request = new DefaultRequest<DescribeSpotFleetRequestHistoryRequest>(
+                describeSpotFleetRequestHistoryRequest, "AmazonElasticComputeCloud");
+        request.setHttpMethod(HttpMethodName.POST);
 
-        if (describeSpotFleetRequestHistoryRequest.getSpotFleetRequestId() != null) {
-            request.addParameter("SpotFleetRequestId", StringUtils.fromString(describeSpotFleetRequestHistoryRequest.getSpotFleetRequestId()));
+        String uriResourcePath = "/";
+        request.setResourcePath(uriResourcePath);
+        try {
+            StringWriter stringWriter = new StringWriter();
+            AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
+            jsonWriter.beginObject();
+
+            if (describeSpotFleetRequestHistoryRequest.getDryRun() != null) {
+                Boolean dryRun = describeSpotFleetRequestHistoryRequest.getDryRun();
+                jsonWriter.name("DryRun");
+                jsonWriter.value(dryRun);
+            }
+            if (describeSpotFleetRequestHistoryRequest.getEventType() != null) {
+                String eventType = describeSpotFleetRequestHistoryRequest.getEventType();
+                jsonWriter.name("EventType");
+                jsonWriter.value(eventType);
+            }
+            if (describeSpotFleetRequestHistoryRequest.getMaxResults() != null) {
+                Integer maxResults = describeSpotFleetRequestHistoryRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
+            }
+            if (describeSpotFleetRequestHistoryRequest.getNextToken() != null) {
+                String nextToken = describeSpotFleetRequestHistoryRequest.getNextToken();
+                jsonWriter.name("NextToken");
+                jsonWriter.value(nextToken);
+            }
+            if (describeSpotFleetRequestHistoryRequest.getSpotFleetRequestId() != null) {
+                String spotFleetRequestId = describeSpotFleetRequestHistoryRequest
+                        .getSpotFleetRequestId();
+                jsonWriter.name("SpotFleetRequestId");
+                jsonWriter.value(spotFleetRequestId);
+            }
+            if (describeSpotFleetRequestHistoryRequest.getStartTime() != null) {
+                java.util.Date startTime = describeSpotFleetRequestHistoryRequest.getStartTime();
+                jsonWriter.name("StartTime");
+                jsonWriter.value(startTime);
+            }
+
+            jsonWriter.endObject();
+            jsonWriter.close();
+            String snippet = stringWriter.toString();
+            byte[] content = snippet.getBytes(UTF8);
+            request.setContent(new StringInputStream(snippet));
+            request.addHeader("Content-Length", Integer.toString(content.length));
+        } catch (Throwable t) {
+            throw new AmazonClientException(
+                    "Unable to marshall request to JSON: " + t.getMessage(), t);
         }
-        if (describeSpotFleetRequestHistoryRequest.getEventType() != null) {
-            request.addParameter("EventType", StringUtils.fromString(describeSpotFleetRequestHistoryRequest.getEventType()));
-        }
-        if (describeSpotFleetRequestHistoryRequest.getStartTime() != null) {
-            request.addParameter("StartTime", StringUtils.fromDate(describeSpotFleetRequestHistoryRequest.getStartTime()));
-        }
-        if (describeSpotFleetRequestHistoryRequest.getNextToken() != null) {
-            request.addParameter("NextToken", StringUtils.fromString(describeSpotFleetRequestHistoryRequest.getNextToken()));
-        }
-        if (describeSpotFleetRequestHistoryRequest.getMaxResults() != null) {
-            request.addParameter("MaxResults", StringUtils.fromInteger(describeSpotFleetRequestHistoryRequest.getMaxResults()));
+        if (!request.getHeaders().containsKey("Content-Type")) {
+            request.addHeader("Content-Type", "application/x-amz-json-1.0");
         }
 
         return request;

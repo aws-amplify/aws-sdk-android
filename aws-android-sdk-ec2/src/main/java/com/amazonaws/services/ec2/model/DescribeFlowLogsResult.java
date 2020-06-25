@@ -1,140 +1,159 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output of DescribeFlowLogs.
- * </p>
- */
 public class DescribeFlowLogsResult implements Serializable {
-
     /**
+     * <p>
      * Information about the flow logs.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<FlowLog> flowLogs;
+    private java.util.List<FlowLog> flowLogs;
 
     /**
+     * <p>
      * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
+     * </p>
      */
     private String nextToken;
 
     /**
+     * <p>
      * Information about the flow logs.
+     * </p>
      *
-     * @return Information about the flow logs.
+     * @return <p>
+     *         Information about the flow logs.
+     *         </p>
      */
     public java.util.List<FlowLog> getFlowLogs() {
-        if (flowLogs == null) {
-              flowLogs = new com.amazonaws.internal.ListWithAutoConstructFlag<FlowLog>();
-              flowLogs.setAutoConstruct(true);
-        }
         return flowLogs;
     }
-    
+
     /**
+     * <p>
      * Information about the flow logs.
+     * </p>
      *
-     * @param flowLogs Information about the flow logs.
+     * @param flowLogs <p>
+     *            Information about the flow logs.
+     *            </p>
      */
     public void setFlowLogs(java.util.Collection<FlowLog> flowLogs) {
         if (flowLogs == null) {
             this.flowLogs = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<FlowLog> flowLogsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<FlowLog>(flowLogs.size());
-        flowLogsCopy.addAll(flowLogs);
-        this.flowLogs = flowLogsCopy;
+
+        this.flowLogs = new java.util.ArrayList<FlowLog>(flowLogs);
     }
-    
+
     /**
-     * Information about the flow logs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the flow logs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param flowLogs Information about the flow logs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param flowLogs <p>
+     *            Information about the flow logs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeFlowLogsResult withFlowLogs(FlowLog... flowLogs) {
-        if (getFlowLogs() == null) setFlowLogs(new java.util.ArrayList<FlowLog>(flowLogs.length));
+        if (getFlowLogs() == null) {
+            this.flowLogs = new java.util.ArrayList<FlowLog>(flowLogs.length);
+        }
         for (FlowLog value : flowLogs) {
-            getFlowLogs().add(value);
+            this.flowLogs.add(value);
         }
         return this;
     }
-    
+
     /**
-     * Information about the flow logs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about the flow logs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param flowLogs Information about the flow logs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param flowLogs <p>
+     *            Information about the flow logs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeFlowLogsResult withFlowLogs(java.util.Collection<FlowLog> flowLogs) {
-        if (flowLogs == null) {
-            this.flowLogs = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<FlowLog> flowLogsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<FlowLog>(flowLogs.size());
-            flowLogsCopy.addAll(flowLogs);
-            this.flowLogs = flowLogsCopy;
-        }
-
+        setFlowLogs(flowLogs);
         return this;
     }
 
     /**
+     * <p>
      * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
+     * </p>
      *
-     * @return The token to use to retrieve the next page of results. This value is
-     *         <code>null</code> when there are no more results to return.
+     * @return <p>
+     *         The token to use to retrieve the next page of results. This value
+     *         is <code>null</code> when there are no more results to return.
+     *         </p>
      */
     public String getNextToken() {
         return nextToken;
     }
-    
+
     /**
+     * <p>
      * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
+     * </p>
      *
-     * @param nextToken The token to use to retrieve the next page of results. This value is
-     *         <code>null</code> when there are no more results to return.
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
      */
     public void setNextToken(String nextToken) {
         this.nextToken = nextToken;
     }
-    
+
     /**
+     * <p>
      * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
+     * </p>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param nextToken The token to use to retrieve the next page of results. This value is
-     *         <code>null</code> when there are no more results to return.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeFlowLogsResult withNextToken(String nextToken) {
         this.nextToken = nextToken;
@@ -146,43 +165,50 @@ public class DescribeFlowLogsResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getFlowLogs() != null) sb.append("FlowLogs: " + getFlowLogs() + ",");
-        if (getNextToken() != null) sb.append("NextToken: " + getNextToken() );
+        if (getFlowLogs() != null)
+            sb.append("FlowLogs: " + getFlowLogs() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getFlowLogs() == null) ? 0 : getFlowLogs().hashCode()); 
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
+
+        hashCode = prime * hashCode + ((getFlowLogs() == null) ? 0 : getFlowLogs().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeFlowLogsResult == false) return false;
-        DescribeFlowLogsResult other = (DescribeFlowLogsResult)obj;
-        
-        if (other.getFlowLogs() == null ^ this.getFlowLogs() == null) return false;
-        if (other.getFlowLogs() != null && other.getFlowLogs().equals(this.getFlowLogs()) == false) return false; 
-        if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
-        if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
+        if (obj instanceof DescribeFlowLogsResult == false)
+            return false;
+        DescribeFlowLogsResult other = (DescribeFlowLogsResult) obj;
+
+        if (other.getFlowLogs() == null ^ this.getFlowLogs() == null)
+            return false;
+        if (other.getFlowLogs() != null && other.getFlowLogs().equals(this.getFlowLogs()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    

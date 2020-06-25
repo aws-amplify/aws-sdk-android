@@ -1,89 +1,91 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.Request;
-import com.amazonaws.services.ec2.model.transform.DeleteVpcRequestMarshaller;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#deleteVpc(DeleteVpcRequest) DeleteVpc operation}.
  * <p>
  * Deletes the specified VPC. You must detach or delete all gateways and
- * resources that are associated with the VPC before you can delete it.
- * For example, you must terminate all instances running in the VPC,
- * delete all security groups associated with the VPC (except the default
- * one), delete all route tables associated with the VPC (except the
- * default one), and so on.
+ * resources that are associated with the VPC before you can delete it. For
+ * example, you must terminate all instances running in the VPC, delete all
+ * security groups associated with the VPC (except the default one), delete all
+ * route tables associated with the VPC (except the default one), and so on.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#deleteVpc(DeleteVpcRequest)
  */
-public class DeleteVpcRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<DeleteVpcRequest> {
-
+public class DeleteVpcRequest extends AmazonWebServiceRequest implements Serializable {
     /**
+     * <p>
      * The ID of the VPC.
+     * </p>
      */
     private String vpcId;
 
     /**
-     * Default constructor for a new DeleteVpcRequest object.  Callers should use the
-     * setter or fluent setter (with...) methods to initialize this object after creating it.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
      */
-    public DeleteVpcRequest() {}
-    
-    /**
-     * Constructs a new DeleteVpcRequest object.
-     * Callers should use the setter or fluent setter (with...) methods to
-     * initialize any additional object members.
-     * 
-     * @param vpcId The ID of the VPC.
-     */
-    public DeleteVpcRequest(String vpcId) {
-        setVpcId(vpcId);
-    }
+    private Boolean dryRun;
 
     /**
+     * <p>
      * The ID of the VPC.
+     * </p>
      *
-     * @return The ID of the VPC.
+     * @return <p>
+     *         The ID of the VPC.
+     *         </p>
      */
     public String getVpcId() {
         return vpcId;
     }
-    
+
     /**
+     * <p>
      * The ID of the VPC.
+     * </p>
      *
-     * @param vpcId The ID of the VPC.
+     * @param vpcId <p>
+     *            The ID of the VPC.
+     *            </p>
      */
     public void setVpcId(String vpcId) {
         this.vpcId = vpcId;
     }
-    
+
     /**
-     * The ID of the VPC.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The ID of the VPC.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param vpcId The ID of the VPC.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param vpcId <p>
+     *            The ID of the VPC.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DeleteVpcRequest withVpcId(String vpcId) {
         this.vpcId = vpcId;
@@ -91,55 +93,143 @@ public class DeleteVpcRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
      */
-    @Override
-    public Request<DeleteVpcRequest> getDryRunRequest() {
-        Request<DeleteVpcRequest> request = new DeleteVpcRequestMarshaller().marshall(this);
-        request.addParameter("DryRun", Boolean.toString(true));
-        return request;
+    public Boolean isDryRun() {
+        return dryRun;
     }
-    
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteVpcRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getVpcId() != null) sb.append("VpcId: " + getVpcId() );
+        if (getVpcId() != null)
+            sb.append("VpcId: " + getVpcId() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getVpcId() == null) ? 0 : getVpcId().hashCode()); 
+
+        hashCode = prime * hashCode + ((getVpcId() == null) ? 0 : getVpcId().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DeleteVpcRequest == false) return false;
-        DeleteVpcRequest other = (DeleteVpcRequest)obj;
-        
-        if (other.getVpcId() == null ^ this.getVpcId() == null) return false;
-        if (other.getVpcId() != null && other.getVpcId().equals(this.getVpcId()) == false) return false; 
+        if (obj instanceof DeleteVpcRequest == false)
+            return false;
+        DeleteVpcRequest other = (DeleteVpcRequest) obj;
+
+        if (other.getVpcId() == null ^ this.getVpcId() == null)
+            return false;
+        if (other.getVpcId() != null && other.getVpcId().equals(this.getVpcId()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
         return true;
     }
-    
 }
-    

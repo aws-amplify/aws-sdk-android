@@ -1,17 +1,18 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
@@ -19,343 +20,907 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describeFlowLogs(DescribeFlowLogsRequest) DescribeFlowLogs operation}.
  * <p>
- * Describes one or more flow logs. To view the information in your flow
- * logs (the log streams for the network interfaces), you must use the
- * CloudWatch Logs console or the CloudWatch Logs API.
+ * Describes one or more flow logs. To view the information in your flow logs
+ * (the log streams for the network interfaces), you must use the CloudWatch
+ * Logs console or the CloudWatch Logs API.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#describeFlowLogs(DescribeFlowLogsRequest)
  */
 public class DescribeFlowLogsRequest extends AmazonWebServiceRequest implements Serializable {
-
     /**
-     * One or more flow log IDs.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> flowLogIds;
+    private Boolean dryRun;
 
     /**
-     * One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     * status of the logs delivery (<code>SUCCESS</code> |
-     * <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     * the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     * the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     * VPC, subnet, or network interface.</li>
-     * <li><p><code>traffic-type</code> - The type of traffic
-     * (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
+     * <p>
+     * One or more filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deliver-log-status</code> - The status of the logs delivery (
+     * <code>SUCCESS</code> | <code>FAILED</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-destination-type</code> - The type of destination to which the
+     * flow log publishes data. Possible destination types include
+     * <code>cloud-watch-logs</code> and <code>S3</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>flow-log-id</code> - The ID of the flow log.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-group-name</code> - The name of the log group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>resource-id</code> - The ID of the VPC, subnet, or network
+     * interface.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> |
+     * <code>REJECT</code> | <code>ALL</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources assigned a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
      * </ul>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filter;
+    private java.util.List<Filter> filter;
 
     /**
-     * The token to retrieve the next page of results.
+     * <p>
+     * One or more flow log IDs.
+     * </p>
+     * <p>
+     * Constraint: Maximum of 1000 flow log IDs.
+     * </p>
      */
-    private String nextToken;
+    private java.util.List<String> flowLogIds;
 
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results can be seen by sending another request
-     * with the returned <code>NextToken</code> value. This value can be
-     * between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     * than 1000, only 1000 results are returned. You cannot specify this
-     * parameter and the flow log IDs parameter in the same request.
+     * <p>
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
      */
     private Integer maxResults;
 
     /**
-     * One or more flow log IDs.
-     *
-     * @return One or more flow log IDs.
-     */
-    public java.util.List<String> getFlowLogIds() {
-        if (flowLogIds == null) {
-              flowLogIds = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              flowLogIds.setAutoConstruct(true);
-        }
-        return flowLogIds;
-    }
-    
-    /**
-     * One or more flow log IDs.
-     *
-     * @param flowLogIds One or more flow log IDs.
-     */
-    public void setFlowLogIds(java.util.Collection<String> flowLogIds) {
-        if (flowLogIds == null) {
-            this.flowLogIds = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> flowLogIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(flowLogIds.size());
-        flowLogIdsCopy.addAll(flowLogIds);
-        this.flowLogIds = flowLogIdsCopy;
-    }
-    
-    /**
-     * One or more flow log IDs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param flowLogIds One or more flow log IDs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * The token for the next page of results.
+     * </p>
      */
-    public DescribeFlowLogsRequest withFlowLogIds(String... flowLogIds) {
-        if (getFlowLogIds() == null) setFlowLogIds(new java.util.ArrayList<String>(flowLogIds.length));
-        for (String value : flowLogIds) {
-            getFlowLogIds().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * One or more flow log IDs.
-     * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param flowLogIds One or more flow log IDs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribeFlowLogsRequest withFlowLogIds(java.util.Collection<String> flowLogIds) {
-        if (flowLogIds == null) {
-            this.flowLogIds = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> flowLogIdsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(flowLogIds.size());
-            flowLogIdsCopy.addAll(flowLogIds);
-            this.flowLogIds = flowLogIdsCopy;
-        }
+    private String nextToken;
 
-        return this;
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean isDryRun() {
+        return dryRun;
     }
 
     /**
-     * One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     * status of the logs delivery (<code>SUCCESS</code> |
-     * <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     * the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     * the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     * VPC, subnet, or network interface.</li>
-     * <li><p><code>traffic-type</code> - The type of traffic
-     * (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeFlowLogsRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deliver-log-status</code> - The status of the logs delivery (
+     * <code>SUCCESS</code> | <code>FAILED</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-destination-type</code> - The type of destination to which the
+     * flow log publishes data. Possible destination types include
+     * <code>cloud-watch-logs</code> and <code>S3</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>flow-log-id</code> - The ID of the flow log.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-group-name</code> - The name of the log group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>resource-id</code> - The ID of the VPC, subnet, or network
+     * interface.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> |
+     * <code>REJECT</code> | <code>ALL</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources assigned a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
      * </ul>
      *
-     * @return One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     *         status of the logs delivery (<code>SUCCESS</code> |
-     *         <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     *         the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     *         the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     *         VPC, subnet, or network interface.</li>
-     *         <li><p><code>traffic-type</code> - The type of traffic
-     *         (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
+     * @return <p>
+     *         One or more filters.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>deliver-log-status</code> - The status of the logs delivery
+     *         (<code>SUCCESS</code> | <code>FAILED</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>log-destination-type</code> - The type of destination to
+     *         which the flow log publishes data. Possible destination types
+     *         include <code>cloud-watch-logs</code> and <code>S3</code>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>flow-log-id</code> - The ID of the flow log.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>log-group-name</code> - The name of the log group.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>resource-id</code> - The ID of the VPC, subnet, or network
+     *         interface.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>traffic-type</code> - The type of traffic (
+     *         <code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     *         assigned to the resource. Use the tag key in the filter name and
+     *         the tag value as the filter value. For example, to find all
+     *         resources that have a tag with the key <code>Owner</code> and the
+     *         value <code>TeamA</code>, specify <code>tag:Owner</code> for the
+     *         filter name and <code>TeamA</code> for the filter value.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>tag-key</code> - The key of a tag assigned to the resource.
+     *         Use this filter to find all resources assigned a tag with a
+     *         specific key, regardless of the tag value.
+     *         </p>
+     *         </li>
      *         </ul>
      */
     public java.util.List<Filter> getFilter() {
-        if (filter == null) {
-              filter = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>();
-              filter.setAutoConstruct(true);
-        }
         return filter;
     }
-    
+
     /**
-     * One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     * status of the logs delivery (<code>SUCCESS</code> |
-     * <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     * the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     * the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     * VPC, subnet, or network interface.</li>
-     * <li><p><code>traffic-type</code> - The type of traffic
-     * (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
+     * <p>
+     * One or more filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deliver-log-status</code> - The status of the logs delivery (
+     * <code>SUCCESS</code> | <code>FAILED</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-destination-type</code> - The type of destination to which the
+     * flow log publishes data. Possible destination types include
+     * <code>cloud-watch-logs</code> and <code>S3</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>flow-log-id</code> - The ID of the flow log.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-group-name</code> - The name of the log group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>resource-id</code> - The ID of the VPC, subnet, or network
+     * interface.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> |
+     * <code>REJECT</code> | <code>ALL</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources assigned a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
      * </ul>
      *
-     * @param filter One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     *         status of the logs delivery (<code>SUCCESS</code> |
-     *         <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     *         the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     *         the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     *         VPC, subnet, or network interface.</li>
-     *         <li><p><code>traffic-type</code> - The type of traffic
-     *         (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
-     *         </ul>
+     * @param filter <p>
+     *            One or more filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>deliver-log-status</code> - The status of the logs
+     *            delivery (<code>SUCCESS</code> | <code>FAILED</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>log-destination-type</code> - The type of destination to
+     *            which the flow log publishes data. Possible destination types
+     *            include <code>cloud-watch-logs</code> and <code>S3</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>flow-log-id</code> - The ID of the flow log.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>log-group-name</code> - The name of the log group.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>resource-id</code> - The ID of the VPC, subnet, or
+     *            network interface.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>traffic-type</code> - The type of traffic (
+     *            <code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag</code>:&lt;key&gt; - The key/value combination of a
+     *            tag assigned to the resource. Use the tag key in the filter
+     *            name and the tag value as the filter value. For example, to
+     *            find all resources that have a tag with the key
+     *            <code>Owner</code> and the value <code>TeamA</code>, specify
+     *            <code>tag:Owner</code> for the filter name and
+     *            <code>TeamA</code> for the filter value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag-key</code> - The key of a tag assigned to the
+     *            resource. Use this filter to find all resources assigned a tag
+     *            with a specific key, regardless of the tag value.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setFilter(java.util.Collection<Filter> filter) {
         if (filter == null) {
             this.filter = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filterCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>(filter.size());
-        filterCopy.addAll(filter);
-        this.filter = filterCopy;
+
+        this.filter = new java.util.ArrayList<Filter>(filter);
     }
-    
+
     /**
-     * One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     * status of the logs delivery (<code>SUCCESS</code> |
-     * <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     * the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     * the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     * VPC, subnet, or network interface.</li>
-     * <li><p><code>traffic-type</code> - The type of traffic
-     * (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
+     * <p>
+     * One or more filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deliver-log-status</code> - The status of the logs delivery (
+     * <code>SUCCESS</code> | <code>FAILED</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-destination-type</code> - The type of destination to which the
+     * flow log publishes data. Possible destination types include
+     * <code>cloud-watch-logs</code> and <code>S3</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>flow-log-id</code> - The ID of the flow log.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-group-name</code> - The name of the log group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>resource-id</code> - The ID of the VPC, subnet, or network
+     * interface.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> |
+     * <code>REJECT</code> | <code>ALL</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources assigned a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
      * </ul>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param filter One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     *         status of the logs delivery (<code>SUCCESS</code> |
-     *         <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     *         the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     *         the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     *         VPC, subnet, or network interface.</li>
-     *         <li><p><code>traffic-type</code> - The type of traffic
-     *         (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
-     *         </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param filter <p>
+     *            One or more filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>deliver-log-status</code> - The status of the logs
+     *            delivery (<code>SUCCESS</code> | <code>FAILED</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>log-destination-type</code> - The type of destination to
+     *            which the flow log publishes data. Possible destination types
+     *            include <code>cloud-watch-logs</code> and <code>S3</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>flow-log-id</code> - The ID of the flow log.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>log-group-name</code> - The name of the log group.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>resource-id</code> - The ID of the VPC, subnet, or
+     *            network interface.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>traffic-type</code> - The type of traffic (
+     *            <code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag</code>:&lt;key&gt; - The key/value combination of a
+     *            tag assigned to the resource. Use the tag key in the filter
+     *            name and the tag value as the filter value. For example, to
+     *            find all resources that have a tag with the key
+     *            <code>Owner</code> and the value <code>TeamA</code>, specify
+     *            <code>tag:Owner</code> for the filter name and
+     *            <code>TeamA</code> for the filter value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag-key</code> - The key of a tag assigned to the
+     *            resource. Use this filter to find all resources assigned a tag
+     *            with a specific key, regardless of the tag value.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeFlowLogsRequest withFilter(Filter... filter) {
-        if (getFilter() == null) setFilter(new java.util.ArrayList<Filter>(filter.length));
+        if (getFilter() == null) {
+            this.filter = new java.util.ArrayList<Filter>(filter.length);
+        }
         for (Filter value : filter) {
-            getFilter().add(value);
+            this.filter.add(value);
         }
         return this;
     }
-    
+
     /**
-     * One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     * status of the logs delivery (<code>SUCCESS</code> |
-     * <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     * the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     * the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     * VPC, subnet, or network interface.</li>
-     * <li><p><code>traffic-type</code> - The type of traffic
-     * (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
+     * <p>
+     * One or more filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>deliver-log-status</code> - The status of the logs delivery (
+     * <code>SUCCESS</code> | <code>FAILED</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-destination-type</code> - The type of destination to which the
+     * flow log publishes data. Possible destination types include
+     * <code>cloud-watch-logs</code> and <code>S3</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>flow-log-id</code> - The ID of the flow log.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>log-group-name</code> - The name of the log group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>resource-id</code> - The ID of the VPC, subnet, or network
+     * interface.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>traffic-type</code> - The type of traffic (<code>ACCEPT</code> |
+     * <code>REJECT</code> | <code>ALL</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources assigned a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
      * </ul>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param filter One or more filters. <ul> <li><p><code>deliver-log-status</code> - The
-     *         status of the logs delivery (<code>SUCCESS</code> |
-     *         <code>FAILED</code>).</li> <li><p><code>flow-log-id</code> - The ID of
-     *         the flow log.</li> <li><p><code>log-group-name</code> - The name of
-     *         the log group.</li> <li><p><code>resource-id</code> - The ID of the
-     *         VPC, subnet, or network interface.</li>
-     *         <li><p><code>traffic-type</code> - The type of traffic
-     *         (<code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>)</li>
-     *         </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param filter <p>
+     *            One or more filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>deliver-log-status</code> - The status of the logs
+     *            delivery (<code>SUCCESS</code> | <code>FAILED</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>log-destination-type</code> - The type of destination to
+     *            which the flow log publishes data. Possible destination types
+     *            include <code>cloud-watch-logs</code> and <code>S3</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>flow-log-id</code> - The ID of the flow log.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>log-group-name</code> - The name of the log group.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>resource-id</code> - The ID of the VPC, subnet, or
+     *            network interface.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>traffic-type</code> - The type of traffic (
+     *            <code>ACCEPT</code> | <code>REJECT</code> | <code>ALL</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag</code>:&lt;key&gt; - The key/value combination of a
+     *            tag assigned to the resource. Use the tag key in the filter
+     *            name and the tag value as the filter value. For example, to
+     *            find all resources that have a tag with the key
+     *            <code>Owner</code> and the value <code>TeamA</code>, specify
+     *            <code>tag:Owner</code> for the filter name and
+     *            <code>TeamA</code> for the filter value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag-key</code> - The key of a tag assigned to the
+     *            resource. Use this filter to find all resources assigned a tag
+     *            with a specific key, regardless of the tag value.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeFlowLogsRequest withFilter(java.util.Collection<Filter> filter) {
-        if (filter == null) {
-            this.filter = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filterCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>(filter.size());
-            filterCopy.addAll(filter);
-            this.filter = filterCopy;
+        setFilter(filter);
+        return this;
+    }
+
+    /**
+     * <p>
+     * One or more flow log IDs.
+     * </p>
+     * <p>
+     * Constraint: Maximum of 1000 flow log IDs.
+     * </p>
+     *
+     * @return <p>
+     *         One or more flow log IDs.
+     *         </p>
+     *         <p>
+     *         Constraint: Maximum of 1000 flow log IDs.
+     *         </p>
+     */
+    public java.util.List<String> getFlowLogIds() {
+        return flowLogIds;
+    }
+
+    /**
+     * <p>
+     * One or more flow log IDs.
+     * </p>
+     * <p>
+     * Constraint: Maximum of 1000 flow log IDs.
+     * </p>
+     *
+     * @param flowLogIds <p>
+     *            One or more flow log IDs.
+     *            </p>
+     *            <p>
+     *            Constraint: Maximum of 1000 flow log IDs.
+     *            </p>
+     */
+    public void setFlowLogIds(java.util.Collection<String> flowLogIds) {
+        if (flowLogIds == null) {
+            this.flowLogIds = null;
+            return;
         }
 
-        return this;
+        this.flowLogIds = new java.util.ArrayList<String>(flowLogIds);
     }
 
     /**
-     * The token to retrieve the next page of results.
-     *
-     * @return The token to retrieve the next page of results.
-     */
-    public String getNextToken() {
-        return nextToken;
-    }
-    
-    /**
-     * The token to retrieve the next page of results.
-     *
-     * @param nextToken The token to retrieve the next page of results.
-     */
-    public void setNextToken(String nextToken) {
-        this.nextToken = nextToken;
-    }
-    
-    /**
-     * The token to retrieve the next page of results.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * One or more flow log IDs.
+     * </p>
+     * <p>
+     * Constraint: Maximum of 1000 flow log IDs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param nextToken The token to retrieve the next page of results.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param flowLogIds <p>
+     *            One or more flow log IDs.
+     *            </p>
+     *            <p>
+     *            Constraint: Maximum of 1000 flow log IDs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
-    public DescribeFlowLogsRequest withNextToken(String nextToken) {
-        this.nextToken = nextToken;
+    public DescribeFlowLogsRequest withFlowLogIds(String... flowLogIds) {
+        if (getFlowLogIds() == null) {
+            this.flowLogIds = new java.util.ArrayList<String>(flowLogIds.length);
+        }
+        for (String value : flowLogIds) {
+            this.flowLogIds.add(value);
+        }
         return this;
     }
 
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results can be seen by sending another request
-     * with the returned <code>NextToken</code> value. This value can be
-     * between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     * than 1000, only 1000 results are returned. You cannot specify this
-     * parameter and the flow log IDs parameter in the same request.
+     * <p>
+     * One or more flow log IDs.
+     * </p>
+     * <p>
+     * Constraint: Maximum of 1000 flow log IDs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @return The maximum number of results to return for the request in a single
-     *         page. The remaining results can be seen by sending another request
-     *         with the returned <code>NextToken</code> value. This value can be
-     *         between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     *         than 1000, only 1000 results are returned. You cannot specify this
-     *         parameter and the flow log IDs parameter in the same request.
+     * @param flowLogIds <p>
+     *            One or more flow log IDs.
+     *            </p>
+     *            <p>
+     *            Constraint: Maximum of 1000 flow log IDs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeFlowLogsRequest withFlowLogIds(java.util.Collection<String> flowLogIds) {
+        setFlowLogIds(flowLogIds);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
+     *
+     * @return <p>
+     *         The maximum number of results to return with a single call. To
+     *         retrieve the remaining results, make another call with the
+     *         returned <code>nextToken</code> value.
+     *         </p>
      */
     public Integer getMaxResults() {
         return maxResults;
     }
-    
+
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results can be seen by sending another request
-     * with the returned <code>NextToken</code> value. This value can be
-     * between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     * than 1000, only 1000 results are returned. You cannot specify this
-     * parameter and the flow log IDs parameter in the same request.
+     * <p>
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
      *
-     * @param maxResults The maximum number of results to return for the request in a single
-     *         page. The remaining results can be seen by sending another request
-     *         with the returned <code>NextToken</code> value. This value can be
-     *         between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     *         than 1000, only 1000 results are returned. You cannot specify this
-     *         parameter and the flow log IDs parameter in the same request.
+     * @param maxResults <p>
+     *            The maximum number of results to return with a single call. To
+     *            retrieve the remaining results, make another call with the
+     *            returned <code>nextToken</code> value.
+     *            </p>
      */
     public void setMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
     }
-    
+
     /**
-     * The maximum number of results to return for the request in a single
-     * page. The remaining results can be seen by sending another request
-     * with the returned <code>NextToken</code> value. This value can be
-     * between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     * than 1000, only 1000 results are returned. You cannot specify this
-     * parameter and the flow log IDs parameter in the same request.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The maximum number of results to return with a single call. To retrieve
+     * the remaining results, make another call with the returned
+     * <code>nextToken</code> value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param maxResults The maximum number of results to return for the request in a single
-     *         page. The remaining results can be seen by sending another request
-     *         with the returned <code>NextToken</code> value. This value can be
-     *         between 5 and 1000; if <code>MaxResults</code> is given a value larger
-     *         than 1000, only 1000 results are returned. You cannot specify this
-     *         parameter and the flow log IDs parameter in the same request.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param maxResults <p>
+     *            The maximum number of results to return with a single call. To
+     *            retrieve the remaining results, make another call with the
+     *            returned <code>nextToken</code> value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeFlowLogsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The token for the next page of results.
+     * </p>
+     *
+     * @return <p>
+     *         The token for the next page of results.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token for the next page of results.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            The token for the next page of results.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token for the next page of results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token for the next page of results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeFlowLogsRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -364,51 +929,73 @@ public class DescribeFlowLogsRequest extends AmazonWebServiceRequest implements 
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getFlowLogIds() != null) sb.append("FlowLogIds: " + getFlowLogIds() + ",");
-        if (getFilter() != null) sb.append("Filter: " + getFilter() + ",");
-        if (getNextToken() != null) sb.append("NextToken: " + getNextToken() + ",");
-        if (getMaxResults() != null) sb.append("MaxResults: " + getMaxResults() );
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun() + ",");
+        if (getFilter() != null)
+            sb.append("Filter: " + getFilter() + ",");
+        if (getFlowLogIds() != null)
+            sb.append("FlowLogIds: " + getFlowLogIds() + ",");
+        if (getMaxResults() != null)
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getFlowLogIds() == null) ? 0 : getFlowLogIds().hashCode()); 
-        hashCode = prime * hashCode + ((getFilter() == null) ? 0 : getFilter().hashCode()); 
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode()); 
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode()); 
+
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
+        hashCode = prime * hashCode + ((getFilter() == null) ? 0 : getFilter().hashCode());
+        hashCode = prime * hashCode + ((getFlowLogIds() == null) ? 0 : getFlowLogIds().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeFlowLogsRequest == false) return false;
-        DescribeFlowLogsRequest other = (DescribeFlowLogsRequest)obj;
-        
-        if (other.getFlowLogIds() == null ^ this.getFlowLogIds() == null) return false;
-        if (other.getFlowLogIds() != null && other.getFlowLogIds().equals(this.getFlowLogIds()) == false) return false; 
-        if (other.getFilter() == null ^ this.getFilter() == null) return false;
-        if (other.getFilter() != null && other.getFilter().equals(this.getFilter()) == false) return false; 
-        if (other.getNextToken() == null ^ this.getNextToken() == null) return false;
-        if (other.getNextToken() != null && other.getNextToken().equals(this.getNextToken()) == false) return false; 
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null) return false;
-        if (other.getMaxResults() != null && other.getMaxResults().equals(this.getMaxResults()) == false) return false; 
+        if (obj instanceof DescribeFlowLogsRequest == false)
+            return false;
+        DescribeFlowLogsRequest other = (DescribeFlowLogsRequest) obj;
+
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
+        if (other.getFilter() == null ^ this.getFilter() == null)
+            return false;
+        if (other.getFilter() != null && other.getFilter().equals(this.getFilter()) == false)
+            return false;
+        if (other.getFlowLogIds() == null ^ this.getFlowLogIds() == null)
+            return false;
+        if (other.getFlowLogIds() != null
+                && other.getFlowLogIds().equals(this.getFlowLogIds()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    

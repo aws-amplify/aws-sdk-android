@@ -1,292 +1,816 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
 import com.amazonaws.AmazonWebServiceRequest;
-import com.amazonaws.Request;
-import com.amazonaws.services.ec2.model.transform.DescribePlacementGroupsRequestMarshaller;
 
 /**
- * Container for the parameters to the {@link com.amazonaws.services.ec2.AmazonEC2#describePlacementGroups(DescribePlacementGroupsRequest) DescribePlacementGroups operation}.
  * <p>
- * Describes one or more of your placement groups. For more information
- * about placement groups and cluster instances, see
- * <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html"> Cluster Instances </a>
- * in the <i>Amazon Elastic Compute Cloud User Guide</i> .
+ * Describes the specified placement groups or all of your placement groups. For
+ * more information, see <a href=
+ * "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html"
+ * >Placement groups</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
  * </p>
- *
- * @see com.amazonaws.services.ec2.AmazonEC2#describePlacementGroups(DescribePlacementGroupsRequest)
  */
-public class DescribePlacementGroupsRequest extends AmazonWebServiceRequest implements Serializable, DryRunSupportedRequest<DescribePlacementGroupsRequest> {
-
+public class DescribePlacementGroupsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
-     * One or more placement group names. <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<String> groupNames;
-
-    /**
-     * One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     * of the placement group. </li> <li> <p><code>state</code> - The state
-     * of the placement group (<code>pending</code> | <code>available</code>
-     * | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     * <p><code>strategy</code> - The strategy of the placement group
-     * (<code>cluster</code>). </li> </ul>
-     */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filters;
-
-    /**
-     * One or more placement group names. <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.
-     *
-     * @return One or more placement group names. <p>Default: Describes all your
-     *         placement groups, or only those otherwise specified.
-     */
-    public java.util.List<String> getGroupNames() {
-        if (groupNames == null) {
-              groupNames = new com.amazonaws.internal.ListWithAutoConstructFlag<String>();
-              groupNames.setAutoConstruct(true);
-        }
-        return groupNames;
-    }
-    
-    /**
-     * One or more placement group names. <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.
-     *
-     * @param groupNames One or more placement group names. <p>Default: Describes all your
-     *         placement groups, or only those otherwise specified.
-     */
-    public void setGroupNames(java.util.Collection<String> groupNames) {
-        if (groupNames == null) {
-            this.groupNames = null;
-            return;
-        }
-        com.amazonaws.internal.ListWithAutoConstructFlag<String> groupNamesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groupNames.size());
-        groupNamesCopy.addAll(groupNames);
-        this.groupNames = groupNamesCopy;
-    }
-    
-    /**
-     * One or more placement group names. <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param groupNames One or more placement group names. <p>Default: Describes all your
-     *         placement groups, or only those otherwise specified.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
-     */
-    public DescribePlacementGroupsRequest withGroupNames(String... groupNames) {
-        if (getGroupNames() == null) setGroupNames(new java.util.ArrayList<String>(groupNames.length));
-        for (String value : groupNames) {
-            getGroupNames().add(value);
-        }
-        return this;
-    }
-    
-    /**
-     * One or more placement group names. <p>Default: Describes all your
-     * placement groups, or only those otherwise specified.
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
-     *
-     * @param groupNames One or more placement group names. <p>Default: Describes all your
-     *         placement groups, or only those otherwise specified.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * <code>group-name</code> - The name of the placement group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>state</code> - The state of the placement group (
+     * <code>pending</code> | <code>available</code> | <code>deleting</code> |
+     * <code>deleted</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>strategy</code> - The strategy of the placement group (
+     * <code>cluster</code> | <code>spread</code> | <code>partition</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources that have a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
+     * </ul>
      */
-    public DescribePlacementGroupsRequest withGroupNames(java.util.Collection<String> groupNames) {
-        if (groupNames == null) {
-            this.groupNames = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<String> groupNamesCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<String>(groupNames.size());
-            groupNamesCopy.addAll(groupNames);
-            this.groupNames = groupNamesCopy;
-        }
-
-        return this;
-    }
+    private java.util.List<Filter> filters;
 
     /**
-     * One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     * of the placement group. </li> <li> <p><code>state</code> - The state
-     * of the placement group (<code>pending</code> | <code>available</code>
-     * | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     * <p><code>strategy</code> - The strategy of the placement group
-     * (<code>cluster</code>). </li> </ul>
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     */
+    private Boolean dryRun;
+
+    /**
+     * <p>
+     * The names of the placement groups.
+     * </p>
+     * <p>
+     * Default: Describes all your placement groups, or only those otherwise
+     * specified.
+     * </p>
+     */
+    private java.util.List<String> groupNames;
+
+    /**
+     * <p>
+     * The IDs of the placement groups.
+     * </p>
+     */
+    private java.util.List<String> groupIds;
+
+    /**
+     * <p>
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>group-name</code> - The name of the placement group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>state</code> - The state of the placement group (
+     * <code>pending</code> | <code>available</code> | <code>deleting</code> |
+     * <code>deleted</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>strategy</code> - The strategy of the placement group (
+     * <code>cluster</code> | <code>spread</code> | <code>partition</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources that have a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
+     * </ul>
      *
-     * @return One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     *         of the placement group. </li> <li> <p><code>state</code> - The state
-     *         of the placement group (<code>pending</code> | <code>available</code>
-     *         | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     *         <p><code>strategy</code> - The strategy of the placement group
-     *         (<code>cluster</code>). </li> </ul>
+     * @return <p>
+     *         The filters.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>group-name</code> - The name of the placement group.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>state</code> - The state of the placement group (
+     *         <code>pending</code> | <code>available</code> |
+     *         <code>deleting</code> | <code>deleted</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>strategy</code> - The strategy of the placement group (
+     *         <code>cluster</code> | <code>spread</code> |
+     *         <code>partition</code>).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     *         assigned to the resource. Use the tag key in the filter name and
+     *         the tag value as the filter value. For example, to find all
+     *         resources that have a tag with the key <code>Owner</code> and the
+     *         value <code>TeamA</code>, specify <code>tag:Owner</code> for the
+     *         filter name and <code>TeamA</code> for the filter value.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>tag-key</code> - The key of a tag assigned to the resource.
+     *         Use this filter to find all resources that have a tag with a
+     *         specific key, regardless of the tag value.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.List<Filter> getFilters() {
-        if (filters == null) {
-              filters = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>();
-              filters.setAutoConstruct(true);
-        }
         return filters;
     }
-    
+
     /**
-     * One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     * of the placement group. </li> <li> <p><code>state</code> - The state
-     * of the placement group (<code>pending</code> | <code>available</code>
-     * | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     * <p><code>strategy</code> - The strategy of the placement group
-     * (<code>cluster</code>). </li> </ul>
+     * <p>
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>group-name</code> - The name of the placement group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>state</code> - The state of the placement group (
+     * <code>pending</code> | <code>available</code> | <code>deleting</code> |
+     * <code>deleted</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>strategy</code> - The strategy of the placement group (
+     * <code>cluster</code> | <code>spread</code> | <code>partition</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources that have a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
+     * </ul>
      *
-     * @param filters One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     *         of the placement group. </li> <li> <p><code>state</code> - The state
-     *         of the placement group (<code>pending</code> | <code>available</code>
-     *         | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     *         <p><code>strategy</code> - The strategy of the placement group
-     *         (<code>cluster</code>). </li> </ul>
+     * @param filters <p>
+     *            The filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>group-name</code> - The name of the placement group.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>state</code> - The state of the placement group (
+     *            <code>pending</code> | <code>available</code> |
+     *            <code>deleting</code> | <code>deleted</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>strategy</code> - The strategy of the placement group (
+     *            <code>cluster</code> | <code>spread</code> |
+     *            <code>partition</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag</code>:&lt;key&gt; - The key/value combination of a
+     *            tag assigned to the resource. Use the tag key in the filter
+     *            name and the tag value as the filter value. For example, to
+     *            find all resources that have a tag with the key
+     *            <code>Owner</code> and the value <code>TeamA</code>, specify
+     *            <code>tag:Owner</code> for the filter name and
+     *            <code>TeamA</code> for the filter value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag-key</code> - The key of a tag assigned to the
+     *            resource. Use this filter to find all resources that have a
+     *            tag with a specific key, regardless of the tag value.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setFilters(java.util.Collection<Filter> filters) {
         if (filters == null) {
             this.filters = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filtersCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>(filters.size());
-        filtersCopy.addAll(filters);
-        this.filters = filtersCopy;
+
+        this.filters = new java.util.ArrayList<Filter>(filters);
     }
-    
+
     /**
-     * One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     * of the placement group. </li> <li> <p><code>state</code> - The state
-     * of the placement group (<code>pending</code> | <code>available</code>
-     * | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     * <p><code>strategy</code> - The strategy of the placement group
-     * (<code>cluster</code>). </li> </ul>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>group-name</code> - The name of the placement group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>state</code> - The state of the placement group (
+     * <code>pending</code> | <code>available</code> | <code>deleting</code> |
+     * <code>deleted</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>strategy</code> - The strategy of the placement group (
+     * <code>cluster</code> | <code>spread</code> | <code>partition</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources that have a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param filters One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     *         of the placement group. </li> <li> <p><code>state</code> - The state
-     *         of the placement group (<code>pending</code> | <code>available</code>
-     *         | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     *         <p><code>strategy</code> - The strategy of the placement group
-     *         (<code>cluster</code>). </li> </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param filters <p>
+     *            The filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>group-name</code> - The name of the placement group.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>state</code> - The state of the placement group (
+     *            <code>pending</code> | <code>available</code> |
+     *            <code>deleting</code> | <code>deleted</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>strategy</code> - The strategy of the placement group (
+     *            <code>cluster</code> | <code>spread</code> |
+     *            <code>partition</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag</code>:&lt;key&gt; - The key/value combination of a
+     *            tag assigned to the resource. Use the tag key in the filter
+     *            name and the tag value as the filter value. For example, to
+     *            find all resources that have a tag with the key
+     *            <code>Owner</code> and the value <code>TeamA</code>, specify
+     *            <code>tag:Owner</code> for the filter name and
+     *            <code>TeamA</code> for the filter value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag-key</code> - The key of a tag assigned to the
+     *            resource. Use this filter to find all resources that have a
+     *            tag with a specific key, regardless of the tag value.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribePlacementGroupsRequest withFilters(Filter... filters) {
-        if (getFilters() == null) setFilters(new java.util.ArrayList<Filter>(filters.length));
+        if (getFilters() == null) {
+            this.filters = new java.util.ArrayList<Filter>(filters.length);
+        }
         for (Filter value : filters) {
-            getFilters().add(value);
+            this.filters.add(value);
         }
         return this;
     }
-    
+
     /**
-     * One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     * of the placement group. </li> <li> <p><code>state</code> - The state
-     * of the placement group (<code>pending</code> | <code>available</code>
-     * | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     * <p><code>strategy</code> - The strategy of the placement group
-     * (<code>cluster</code>). </li> </ul>
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * The filters.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>group-name</code> - The name of the placement group.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>state</code> - The state of the placement group (
+     * <code>pending</code> | <code>available</code> | <code>deleting</code> |
+     * <code>deleted</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>strategy</code> - The strategy of the placement group (
+     * <code>cluster</code> | <code>spread</code> | <code>partition</code>).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag</code>:&lt;key&gt; - The key/value combination of a tag
+     * assigned to the resource. Use the tag key in the filter name and the tag
+     * value as the filter value. For example, to find all resources that have a
+     * tag with the key <code>Owner</code> and the value <code>TeamA</code>,
+     * specify <code>tag:Owner</code> for the filter name and <code>TeamA</code>
+     * for the filter value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>tag-key</code> - The key of a tag assigned to the resource. Use
+     * this filter to find all resources that have a tag with a specific key,
+     * regardless of the tag value.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param filters One or more filters. <ul> <li> <p><code>group-name</code> - The name
-     *         of the placement group. </li> <li> <p><code>state</code> - The state
-     *         of the placement group (<code>pending</code> | <code>available</code>
-     *         | <code>deleting</code> | <code>deleted</code>). </li> <li>
-     *         <p><code>strategy</code> - The strategy of the placement group
-     *         (<code>cluster</code>). </li> </ul>
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param filters <p>
+     *            The filters.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>group-name</code> - The name of the placement group.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>state</code> - The state of the placement group (
+     *            <code>pending</code> | <code>available</code> |
+     *            <code>deleting</code> | <code>deleted</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>strategy</code> - The strategy of the placement group (
+     *            <code>cluster</code> | <code>spread</code> |
+     *            <code>partition</code>).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag</code>:&lt;key&gt; - The key/value combination of a
+     *            tag assigned to the resource. Use the tag key in the filter
+     *            name and the tag value as the filter value. For example, to
+     *            find all resources that have a tag with the key
+     *            <code>Owner</code> and the value <code>TeamA</code>, specify
+     *            <code>tag:Owner</code> for the filter name and
+     *            <code>TeamA</code> for the filter value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>tag-key</code> - The key of a tag assigned to the
+     *            resource. Use this filter to find all resources that have a
+     *            tag with a specific key, regardless of the tag value.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribePlacementGroupsRequest withFilters(java.util.Collection<Filter> filters) {
-        if (filters == null) {
-            this.filters = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<Filter> filtersCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<Filter>(filters.size());
-            filtersCopy.addAll(filters);
-            this.filters = filtersCopy;
-        }
-
+        setFilters(filters);
         return this;
     }
 
     /**
-     * This method is intended for internal use only.
-     * Returns the marshaled request configured with additional parameters to
-     * enable operation dry-run.
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
      */
-    @Override
-    public Request<DescribePlacementGroupsRequest> getDryRunRequest() {
-        Request<DescribePlacementGroupsRequest> request = new DescribePlacementGroupsRequestMarshaller().marshall(this);
-        request.addParameter("DryRun", Boolean.toString(true));
-        return request;
+    public Boolean isDryRun() {
+        return dryRun;
     }
-    
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Checks whether you have the required permissions for the action,
+     *         without actually making the request, and provides an error
+     *         response. If you have the required permissions, the error
+     *         response is <code>DryRunOperation</code>. Otherwise, it is
+     *         <code>UnauthorizedOperation</code>.
+     *         </p>
+     */
+    public Boolean getDryRun() {
+        return dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     */
+    public void setDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+    }
+
+    /**
+     * <p>
+     * Checks whether you have the required permissions for the action, without
+     * actually making the request, and provides an error response. If you have
+     * the required permissions, the error response is
+     * <code>DryRunOperation</code>. Otherwise, it is
+     * <code>UnauthorizedOperation</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param dryRun <p>
+     *            Checks whether you have the required permissions for the
+     *            action, without actually making the request, and provides an
+     *            error response. If you have the required permissions, the
+     *            error response is <code>DryRunOperation</code>. Otherwise, it
+     *            is <code>UnauthorizedOperation</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlacementGroupsRequest withDryRun(Boolean dryRun) {
+        this.dryRun = dryRun;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The names of the placement groups.
+     * </p>
+     * <p>
+     * Default: Describes all your placement groups, or only those otherwise
+     * specified.
+     * </p>
+     *
+     * @return <p>
+     *         The names of the placement groups.
+     *         </p>
+     *         <p>
+     *         Default: Describes all your placement groups, or only those
+     *         otherwise specified.
+     *         </p>
+     */
+    public java.util.List<String> getGroupNames() {
+        return groupNames;
+    }
+
+    /**
+     * <p>
+     * The names of the placement groups.
+     * </p>
+     * <p>
+     * Default: Describes all your placement groups, or only those otherwise
+     * specified.
+     * </p>
+     *
+     * @param groupNames <p>
+     *            The names of the placement groups.
+     *            </p>
+     *            <p>
+     *            Default: Describes all your placement groups, or only those
+     *            otherwise specified.
+     *            </p>
+     */
+    public void setGroupNames(java.util.Collection<String> groupNames) {
+        if (groupNames == null) {
+            this.groupNames = null;
+            return;
+        }
+
+        this.groupNames = new java.util.ArrayList<String>(groupNames);
+    }
+
+    /**
+     * <p>
+     * The names of the placement groups.
+     * </p>
+     * <p>
+     * Default: Describes all your placement groups, or only those otherwise
+     * specified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groupNames <p>
+     *            The names of the placement groups.
+     *            </p>
+     *            <p>
+     *            Default: Describes all your placement groups, or only those
+     *            otherwise specified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlacementGroupsRequest withGroupNames(String... groupNames) {
+        if (getGroupNames() == null) {
+            this.groupNames = new java.util.ArrayList<String>(groupNames.length);
+        }
+        for (String value : groupNames) {
+            this.groupNames.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The names of the placement groups.
+     * </p>
+     * <p>
+     * Default: Describes all your placement groups, or only those otherwise
+     * specified.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groupNames <p>
+     *            The names of the placement groups.
+     *            </p>
+     *            <p>
+     *            Default: Describes all your placement groups, or only those
+     *            otherwise specified.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlacementGroupsRequest withGroupNames(java.util.Collection<String> groupNames) {
+        setGroupNames(groupNames);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The IDs of the placement groups.
+     * </p>
+     *
+     * @return <p>
+     *         The IDs of the placement groups.
+     *         </p>
+     */
+    public java.util.List<String> getGroupIds() {
+        return groupIds;
+    }
+
+    /**
+     * <p>
+     * The IDs of the placement groups.
+     * </p>
+     *
+     * @param groupIds <p>
+     *            The IDs of the placement groups.
+     *            </p>
+     */
+    public void setGroupIds(java.util.Collection<String> groupIds) {
+        if (groupIds == null) {
+            this.groupIds = null;
+            return;
+        }
+
+        this.groupIds = new java.util.ArrayList<String>(groupIds);
+    }
+
+    /**
+     * <p>
+     * The IDs of the placement groups.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groupIds <p>
+     *            The IDs of the placement groups.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlacementGroupsRequest withGroupIds(String... groupIds) {
+        if (getGroupIds() == null) {
+            this.groupIds = new java.util.ArrayList<String>(groupIds.length);
+        }
+        for (String value : groupIds) {
+            this.groupIds.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The IDs of the placement groups.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param groupIds <p>
+     *            The IDs of the placement groups.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlacementGroupsRequest withGroupIds(java.util.Collection<String> groupIds) {
+        setGroupIds(groupIds);
+        return this;
+    }
+
     /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getGroupNames() != null) sb.append("GroupNames: " + getGroupNames() + ",");
-        if (getFilters() != null) sb.append("Filters: " + getFilters() );
+        if (getFilters() != null)
+            sb.append("Filters: " + getFilters() + ",");
+        if (getDryRun() != null)
+            sb.append("DryRun: " + getDryRun() + ",");
+        if (getGroupNames() != null)
+            sb.append("GroupNames: " + getGroupNames() + ",");
+        if (getGroupIds() != null)
+            sb.append("GroupIds: " + getGroupIds());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getGroupNames() == null) ? 0 : getGroupNames().hashCode()); 
-        hashCode = prime * hashCode + ((getFilters() == null) ? 0 : getFilters().hashCode()); 
+
+        hashCode = prime * hashCode + ((getFilters() == null) ? 0 : getFilters().hashCode());
+        hashCode = prime * hashCode + ((getDryRun() == null) ? 0 : getDryRun().hashCode());
+        hashCode = prime * hashCode + ((getGroupNames() == null) ? 0 : getGroupNames().hashCode());
+        hashCode = prime * hashCode + ((getGroupIds() == null) ? 0 : getGroupIds().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribePlacementGroupsRequest == false) return false;
-        DescribePlacementGroupsRequest other = (DescribePlacementGroupsRequest)obj;
-        
-        if (other.getGroupNames() == null ^ this.getGroupNames() == null) return false;
-        if (other.getGroupNames() != null && other.getGroupNames().equals(this.getGroupNames()) == false) return false; 
-        if (other.getFilters() == null ^ this.getFilters() == null) return false;
-        if (other.getFilters() != null && other.getFilters().equals(this.getFilters()) == false) return false; 
+        if (obj instanceof DescribePlacementGroupsRequest == false)
+            return false;
+        DescribePlacementGroupsRequest other = (DescribePlacementGroupsRequest) obj;
+
+        if (other.getFilters() == null ^ this.getFilters() == null)
+            return false;
+        if (other.getFilters() != null && other.getFilters().equals(this.getFilters()) == false)
+            return false;
+        if (other.getDryRun() == null ^ this.getDryRun() == null)
+            return false;
+        if (other.getDryRun() != null && other.getDryRun().equals(this.getDryRun()) == false)
+            return false;
+        if (other.getGroupNames() == null ^ this.getGroupNames() == null)
+            return false;
+        if (other.getGroupNames() != null
+                && other.getGroupNames().equals(this.getGroupNames()) == false)
+            return false;
+        if (other.getGroupIds() == null ^ this.getGroupIds() == null)
+            return false;
+        if (other.getGroupIds() != null && other.getGroupIds().equals(this.getGroupIds()) == false)
+            return false;
         return true;
     }
-    
 }
-    

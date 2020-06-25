@@ -1,98 +1,162 @@
 /*
- * Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- * 
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
  * A copy of the License is located at
- * 
+ *
  *  http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
  */
+
 package com.amazonaws.services.ec2.model;
 
 import java.io.Serializable;
 
-/**
- * <p>
- * Contains the output of DescribeNetworkAcls.
- * </p>
- */
 public class DescribeNetworkAclsResult implements Serializable {
-
     /**
+     * <p>
      * Information about one or more network ACLs.
+     * </p>
      */
-    private com.amazonaws.internal.ListWithAutoConstructFlag<NetworkAcl> networkAcls;
+    private java.util.List<NetworkAcl> networkAcls;
 
     /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
      * Information about one or more network ACLs.
+     * </p>
      *
-     * @return Information about one or more network ACLs.
+     * @return <p>
+     *         Information about one or more network ACLs.
+     *         </p>
      */
     public java.util.List<NetworkAcl> getNetworkAcls() {
-        if (networkAcls == null) {
-              networkAcls = new com.amazonaws.internal.ListWithAutoConstructFlag<NetworkAcl>();
-              networkAcls.setAutoConstruct(true);
-        }
         return networkAcls;
     }
-    
+
     /**
+     * <p>
      * Information about one or more network ACLs.
+     * </p>
      *
-     * @param networkAcls Information about one or more network ACLs.
+     * @param networkAcls <p>
+     *            Information about one or more network ACLs.
+     *            </p>
      */
     public void setNetworkAcls(java.util.Collection<NetworkAcl> networkAcls) {
         if (networkAcls == null) {
             this.networkAcls = null;
             return;
         }
-        com.amazonaws.internal.ListWithAutoConstructFlag<NetworkAcl> networkAclsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<NetworkAcl>(networkAcls.size());
-        networkAclsCopy.addAll(networkAcls);
-        this.networkAcls = networkAclsCopy;
+
+        this.networkAcls = new java.util.ArrayList<NetworkAcl>(networkAcls);
     }
-    
+
     /**
-     * Information about one or more network ACLs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about one or more network ACLs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param networkAcls Information about one or more network ACLs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param networkAcls <p>
+     *            Information about one or more network ACLs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeNetworkAclsResult withNetworkAcls(NetworkAcl... networkAcls) {
-        if (getNetworkAcls() == null) setNetworkAcls(new java.util.ArrayList<NetworkAcl>(networkAcls.length));
+        if (getNetworkAcls() == null) {
+            this.networkAcls = new java.util.ArrayList<NetworkAcl>(networkAcls.length);
+        }
         for (NetworkAcl value : networkAcls) {
-            getNetworkAcls().add(value);
+            this.networkAcls.add(value);
         }
         return this;
     }
-    
+
     /**
-     * Information about one or more network ACLs.
      * <p>
-     * Returns a reference to this object so that method calls can be chained together.
+     * Information about one or more network ACLs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
      *
-     * @param networkAcls Information about one or more network ACLs.
-     *
-     * @return A reference to this updated object so that method calls can be chained
-     *         together.
+     * @param networkAcls <p>
+     *            Information about one or more network ACLs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
      */
     public DescribeNetworkAclsResult withNetworkAcls(java.util.Collection<NetworkAcl> networkAcls) {
-        if (networkAcls == null) {
-            this.networkAcls = null;
-        } else {
-            com.amazonaws.internal.ListWithAutoConstructFlag<NetworkAcl> networkAclsCopy = new com.amazonaws.internal.ListWithAutoConstructFlag<NetworkAcl>(networkAcls.size());
-            networkAclsCopy.addAll(networkAcls);
-            this.networkAcls = networkAclsCopy;
-        }
+        setNetworkAcls(networkAcls);
+        return this;
+    }
 
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @return <p>
+     *         The token to use to retrieve the next page of results. This value
+     *         is <code>null</code> when there are no more results to return.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to retrieve the next page of results. This value is
+     * <code>null</code> when there are no more results to return.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token to use to retrieve the next page of results. This
+     *            value is <code>null</code> when there are no more results to
+     *            return.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeNetworkAclsResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
         return this;
     }
 
@@ -101,39 +165,52 @@ public class DescribeNetworkAclsResult implements Serializable {
      * debugging.
      *
      * @return A string representation of this object.
-     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getNetworkAcls() != null) sb.append("NetworkAcls: " + getNetworkAcls() );
+        if (getNetworkAcls() != null)
+            sb.append("NetworkAcls: " + getNetworkAcls() + ",");
+        if (getNextToken() != null)
+            sb.append("NextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int hashCode = 1;
-        
-        hashCode = prime * hashCode + ((getNetworkAcls() == null) ? 0 : getNetworkAcls().hashCode()); 
+
+        hashCode = prime * hashCode
+                + ((getNetworkAcls() == null) ? 0 : getNetworkAcls().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
 
-        if (obj instanceof DescribeNetworkAclsResult == false) return false;
-        DescribeNetworkAclsResult other = (DescribeNetworkAclsResult)obj;
-        
-        if (other.getNetworkAcls() == null ^ this.getNetworkAcls() == null) return false;
-        if (other.getNetworkAcls() != null && other.getNetworkAcls().equals(this.getNetworkAcls()) == false) return false; 
+        if (obj instanceof DescribeNetworkAclsResult == false)
+            return false;
+        DescribeNetworkAclsResult other = (DescribeNetworkAclsResult) obj;
+
+        if (other.getNetworkAcls() == null ^ this.getNetworkAcls() == null)
+            return false;
+        if (other.getNetworkAcls() != null
+                && other.getNetworkAcls().equals(this.getNetworkAcls()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
         return true;
     }
-    
 }
-    
