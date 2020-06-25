@@ -17,29 +17,20 @@ package com.amazonaws.mobileconnectors.iot;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
-import android.util.Log;
 
-import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.ClientId;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.Endpoint;
+import com.amazonaws.mobileconnectors.iot.IotClient.KeysAndCertificateInfo;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
-import com.amazonaws.services.iot.AWSIotClient;
-import com.amazonaws.services.iot.model.AttachPolicyRequest;
-import com.amazonaws.services.iot.model.CertificateStatus;
-import com.amazonaws.services.iot.model.CreateKeysAndCertificateRequest;
-import com.amazonaws.services.iot.model.CreateKeysAndCertificateResult;
-import com.amazonaws.services.iot.model.CreatePolicyRequest;
-import com.amazonaws.services.iot.model.DeleteCertificateRequest;
-import com.amazonaws.services.iot.model.DeletePolicyRequest;
-import com.amazonaws.services.iot.model.DescribeEndpointRequest;
-import com.amazonaws.services.iot.model.DescribeEndpointResult;
-import com.amazonaws.services.iot.model.DetachPolicyRequest;
-import com.amazonaws.services.iot.model.ResourceAlreadyExistsException;
-import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 import com.amazonaws.testutils.AWSTestBase;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -49,6 +40,7 @@ import java.io.File;
 import java.security.KeyStore;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,8 +51,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 public class MqttManagerIntegrationTest extends AWSTestBase {
-    private static final String TAG = MqttManagerIntegrationTest.class.getSimpleName();
-
     private static final int ONE_TWENTY_KB = 120_000;
     private static final String KEYSTORE_NAME = "integration_test.bks";
     private static final String KEYSTORE_PASSWORD = "test password";
@@ -69,11 +59,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     private static String keyStorePath = "./";
     private static AWSCredentialsProvider credentialsProvider;
-    private static String endpointPrefix;
-    private static String betaEndpoint;
-    private static String endpoint;
-    private static AWSIotClient iotClient;
-    private static CreateKeysAndCertificateResult certResult;
+    private static IotClient iotClient;
+    private KeysAndCertificateInfo keysAndCertificateInfo;
 
     @BeforeClass
     public static void beforeSuite() throws Exception {
@@ -85,27 +72,26 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
             getPackageConfigure("iot").getString(ConfigKey.IDENTITY_POOL_ID.toString()),
             Regions.US_EAST_1
         );
-
-        iotClient = new AWSIotClient(credentialsProvider);
-
-        DescribeEndpointRequest request = new DescribeEndpointRequest();
-        DescribeEndpointResult result = iotClient.describeEndpoint(request);
-        endpoint = result.getEndpointAddress();
-        endpointPrefix = endpoint.split("\\.")[0];
-
-        request.setEndpointType("iot:Data-Beta");
-        result = iotClient.describeEndpoint(request);
-        betaEndpoint = result.getEndpointAddress();
+        iotClient = new IotClient(credentialsProvider);
     }
 
     @Before
-    public void beforeEach() {
-        createAndAttachPolicy();
+    public void beforeEach() throws JSONException {
+        iotClient.cleanupPolicy(IOT_POLICY_NAME);
+        keysAndCertificateInfo = iotClient.createAndAttachPolicy(IOT_POLICY_NAME, new JSONObject()
+            .put("Version", "2012-10-17")
+            .put("Statement", new JSONArray(Collections.singletonList(new JSONObject()
+                .put("Action", "iot:*")
+                .put("Resource", "*")
+                .put("Effect", "Allow")
+            )))
+            .toString()
+        );
     }
 
     @After
     public void afterEach() {
-        deletePolicyAndCertificate();
+        iotClient.deletePolicyAndCertificate(IOT_POLICY_NAME, keysAndCertificateInfo);
         File keystoreFile = new File(keyStorePath, KEYSTORE_NAME);
         if (keystoreFile.exists()) {
             //noinspection ResultOfMethodCallIgnored
@@ -115,13 +101,9 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttConnect_USEast1_ATS_Endpoint() throws Exception {
-        DescribeEndpointRequest request = new DescribeEndpointRequest();
-        request.setEndpointType("iot:Data-ATS");
-        DescribeEndpointResult result = iotClient.describeEndpoint(request);
-        endpointPrefix = result.getEndpointAddress().split("\\.")[0];
-        System.out.println("Endpoint prefix: " + endpointPrefix);
-        
-        String endpoint = endpointPrefix + ".iot." + Region.getRegion(Regions.US_EAST_1).getName() + ".amazonaws.com";
+        String prefix = iotClient.getEndpointPrefix("iot:Data-ATS");
+        String region = Regions.US_EAST_1.getName();
+        String endpoint = String.format("%s.iot.%s.amazonaws.com", prefix, region);
         System.out.println("Endpoint: " + endpoint);
         
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
@@ -130,13 +112,9 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttConnect_USEast1_Endpoint() throws Exception {
-        DescribeEndpointRequest request = new DescribeEndpointRequest();
-        request.setEndpointType("iot:Data");
-        DescribeEndpointResult result = iotClient.describeEndpoint(request);
-        endpointPrefix = result.getEndpointAddress().split("\\.")[0];
-        System.out.println("Endpoint prefix: " + endpointPrefix);
-        
-        String endpoint = endpointPrefix + ".iot." + Region.getRegion(Regions.US_EAST_1).getName() + ".amazonaws.com";
+        String prefix = iotClient.getEndpointPrefix("iot:Data");
+        String region = Regions.US_EAST_1.getName();
+        String endpoint = String.format("%s.iot.%s.amazonaws.com", prefix, region);
         System.out.println("Endpoint: " + endpoint);
         
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
@@ -145,10 +123,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttConnect_USEast1_EndpointPrefix_Region() throws Exception {
-        DescribeEndpointRequest request = new DescribeEndpointRequest();
-        request.setEndpointType("iot:Data");
-        DescribeEndpointResult result = iotClient.describeEndpoint(request);
-        endpointPrefix = result.getEndpointAddress().split("\\.")[0];
+        String endpointPrefix = iotClient.getEndpointPrefix("iot:Data");
         System.out.println("Endpoint prefix: " + endpointPrefix);
         mqttConnect(new AWSIotMqttManager(
             "int-test-w-certs",
@@ -159,16 +134,10 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttConnectMalformedEndpoints() {
-        DescribeEndpointRequest request = new DescribeEndpointRequest();
-        request.setEndpointType("iot:Data");
-        DescribeEndpointResult result = iotClient.describeEndpoint(request);
-        endpointPrefix = result.getEndpointAddress().split("\\.")[0];
+        String endpointPrefix = iotClient.getEndpointPrefix("iot:Data");
         System.out.println("Endpoint prefix: " + endpointPrefix);
 
-        DescribeEndpointRequest atsRequest = new DescribeEndpointRequest();
-        atsRequest.setEndpointType("iot:Data-ATS");
-        DescribeEndpointResult atsResult = iotClient.describeEndpoint(atsRequest);
-        String atsEndpointPrefix = atsResult.getEndpointAddress().split("\\.")[0];
+        String atsEndpointPrefix = iotClient.getEndpointPrefix("iot:Data-ATS");
         String atsEndpointPrefixWithDot = atsEndpointPrefix.replaceAll("-", ".");
         System.out.println("ATS Endpoint prefix: " + atsEndpointPrefix);
 
@@ -208,9 +177,9 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
-            certResult.getCertificateId(),
-            certResult.getCertificatePem(),
-            certResult.getKeyPair().getPrivateKey(),
+            keysAndCertificateInfo.getCertificateId(),
+            keysAndCertificateInfo.getCertificatePem(),
+            keysAndCertificateInfo.getPrivateKey(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -218,7 +187,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         // retrieve the keystore
         KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
-            certResult.getCertificateId(),
+            keysAndCertificateInfo.getCertificateId(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -328,21 +297,21 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         if (customEndpoint != null) {
             mqttManager = AWSIotMqttManager.from(
                 Region.getRegion(Regions.US_EAST_1),
-                AWSIotMqttManager.ClientId.fromString("int-test-w-certs"),
-                AWSIotMqttManager.Endpoint.fromString(customEndpoint)
+                ClientId.fromString("int-test-w-certs"),
+                Endpoint.fromString(customEndpoint)
             );
         } else {
             mqttManager = new AWSIotMqttManager(
                 "int-test-w-certs",
                 Region.getRegion(Regions.US_EAST_1),
-                endpointPrefix
+                iotClient.getEndpointPrefix()
             );
         }
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
-            certResult.getCertificateId(),
-            certResult.getCertificatePem(),
-            certResult.getKeyPair().getPrivateKey(),
+            keysAndCertificateInfo.getCertificateId(),
+            keysAndCertificateInfo.getCertificatePem(),
+            keysAndCertificateInfo.getPrivateKey(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -350,7 +319,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         // retrieve the keystore
         KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
-            certResult.getCertificateId(),
+            keysAndCertificateInfo.getCertificateId(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -420,15 +389,15 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager = new AWSIotMqttManager(
             "int-test-c-reconnect",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
         mqttManager.setAutoReconnect(true);
 
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
-            certResult.getCertificateId(),
-            certResult.getCertificatePem(),
-            certResult.getKeyPair().getPrivateKey(),
+            keysAndCertificateInfo.getCertificateId(),
+            keysAndCertificateInfo.getCertificatePem(),
+            keysAndCertificateInfo.getPrivateKey(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -436,7 +405,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         // retrieve the keystore
         KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
-            certResult.getCertificateId(),
+            keysAndCertificateInfo.getCertificateId(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -485,21 +454,24 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         final List<String> messages = new ArrayList<>();
         final List<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<>();
 
-        String endpoint = endpointPrefix + ".iot." + Region.getRegion(Regions.US_EAST_1).getName() + ".amazonaws.com";
+        String prefix = iotClient.getEndpointPrefix();
+        String region = Regions.US_EAST_1.getName();
+        String endpoint = String.format("%s.iot.%s.amazonaws.com", prefix, region);
+
         AWSIotMqttManager mqttManager = new AWSIotMqttManager("int-test-w-certs", endpoint);
 
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
-            certResult.getCertificateId(),
-            certResult.getCertificatePem(),
-            certResult.getKeyPair().getPrivateKey(),
+            keysAndCertificateInfo.getCertificateId(),
+            keysAndCertificateInfo.getCertificatePem(),
+            keysAndCertificateInfo.getPrivateKey(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
         );
 
         // retrieve the keystore
-        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), keyStorePath, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(keysAndCertificateInfo.getCertificateId(), keyStorePath, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
         mqttManager.connect(keyStore, new AWSIotMqttClientStatusCallback() {
             @Override
@@ -588,15 +560,15 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager = new AWSIotMqttManager(
             "int-test-c-reconnect",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
         mqttManager.setAutoReconnect(true);
 
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
-            certResult.getCertificateId(),
-            certResult.getCertificatePem(),
-            certResult.getKeyPair().getPrivateKey(),
+            keysAndCertificateInfo.getCertificateId(),
+            keysAndCertificateInfo.getCertificatePem(),
+            keysAndCertificateInfo.getPrivateKey(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -604,7 +576,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         // retrieve the keystore
         KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(
-            certResult.getCertificateId(),
+            keysAndCertificateInfo.getCertificateId(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
@@ -674,23 +646,23 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager =new AWSIotMqttManager(
             "int-test-cert-lm",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
 
         mqttManager.setAutoReconnect(false);
 
         // save certificate and private key in a keystore
         AWSIotKeystoreHelper.saveCertificateAndPrivateKey(
-            certResult.getCertificateId(),
-            certResult.getCertificatePem(),
-            certResult.getKeyPair().getPrivateKey(),
+            keysAndCertificateInfo.getCertificateId(),
+            keysAndCertificateInfo.getCertificatePem(),
+            keysAndCertificateInfo.getPrivateKey(),
             keyStorePath,
             KEYSTORE_NAME,
             KEYSTORE_PASSWORD
         );
 
         // retrieve the keystore
-        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(certResult.getCertificateId(), keyStorePath, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        KeyStore keyStore = AWSIotKeystoreHelper.getIotKeystore(keysAndCertificateInfo.getCertificateId(), keyStorePath, KEYSTORE_NAME, KEYSTORE_PASSWORD);
         // connect to AWS IoT using keystore
         mqttManager.connect(keyStore, new AWSIotMqttClientStatusCallback() {
             @Override
@@ -747,36 +719,37 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void testWebSocketConnectionWithIamAuth() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.IAM, endpoint);
+        testWebsocketConnection(AuthenticationMode.IAM, iotClient.getEndpointAddress());
     }
 
     @Test
     public void testWebSocketConnectionWithCustomAuth() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH, endpoint);
+        testWebsocketConnection(AuthenticationMode.CUSTOM_AUTH, iotClient.getEndpointAddress());
     }
 
     @Test
     public void testWebSocketWithConnectionUsernamePassword() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
+        String betaEndpoint = iotClient.getEndpointAddress("iot:Data-Beta");
+        testWebsocketConnection(AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
     }
 
     @Test
     public void testWebSocketWithConnectionIamAuthAndCustomDomain() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.IAM, CUSTOM_DOMAIN);
+        testWebsocketConnection(AuthenticationMode.IAM, CUSTOM_DOMAIN);
     }
 
     @Test
     public void testWebSocketConnectionWithCustomAuthAndCustomDomain() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH, CUSTOM_DOMAIN);
+        testWebsocketConnection(AuthenticationMode.CUSTOM_AUTH, CUSTOM_DOMAIN);
     }
 
     @Test
     public void testWebSocketConnectionWithUsernamePasswordAndCustomDomain() throws Exception {
-        testWebsocketConnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD, CUSTOM_DOMAIN);
+        testWebsocketConnection(AuthenticationMode.USERNAME_PASSWORD, CUSTOM_DOMAIN);
     }
 
     private void testWebsocketConnection(
-            final AWSIotMqttManager.AuthenticationMode authMode,
+            final AuthenticationMode authMode,
             final String endpoint)
             throws InterruptedException, JSONException {
         final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
@@ -784,8 +757,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         AWSIotMqttManager mqttManager = AWSIotMqttManager.from(
             Region.getRegion(Regions.US_EAST_1),
-            AWSIotMqttManager.ClientId.fromString("int-test-w-ws"),
-            AWSIotMqttManager.Endpoint.fromString(endpoint)
+            ClientId.fromString("int-test-w-ws"),
+            Endpoint.fromString(endpoint)
         );
         mqttManager.setAutoReconnect(false);
 
@@ -886,21 +859,22 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void testWebsocketReconnectionWithIam() throws Exception {
-        testWebsocketReconnection(AWSIotMqttManager.AuthenticationMode.IAM, endpoint);
+        testWebsocketReconnection(AuthenticationMode.IAM, iotClient.getEndpointAddress());
     }
 
     @Test
     public void testWebsocketReconnectionWithCustomAuth() throws Exception {
-        testWebsocketReconnection(AWSIotMqttManager.AuthenticationMode.CUSTOM_AUTH, endpoint);
+        testWebsocketReconnection(AuthenticationMode.CUSTOM_AUTH, iotClient.getEndpointAddress());
     }
 
     @Test
     public void testWebsocketReconnectionWithUsernameAndPassword() throws Exception {
-        testWebsocketReconnection(AWSIotMqttManager.AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
+        String betaEndpoint = iotClient.getEndpointAddress("iot:Data-Beta");
+        testWebsocketReconnection(AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
     }
 
     private void testWebsocketReconnection(
-            final AWSIotMqttManager.AuthenticationMode authMode,
+            final AuthenticationMode authMode,
             final String endpoint)
             throws InterruptedException, JSONException {
         final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
@@ -908,8 +882,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         AWSIotMqttManager mqttManager = AWSIotMqttManager.from(
             Region.getRegion(Regions.US_EAST_1),
-            AWSIotMqttManager.ClientId.fromString("int-test-w-ws"),
-            AWSIotMqttManager.Endpoint.fromString(endpoint)
+            ClientId.fromString("int-test-w-ws"),
+            Endpoint.fromString(endpoint)
         );
         mqttManager.setAutoReconnect(true);
 
@@ -977,7 +951,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager = new AWSIotMqttManager(
             "client-id-1",
             Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
 
         mqttManager.setCleanSession(true);
@@ -1024,7 +998,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager2 = new AWSIotMqttManager(
             "client-id-2",
             Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
         mqttManager2.setCleanSession(true);
         mqttManager.setAutoReconnect(true);
@@ -1058,7 +1032,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         mqttManager = new AWSIotMqttManager(
             "client-id-1",
             Region.getRegion(Regions.US_EAST_1), 
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
 
         mqttManager.setCleanSession(true);
@@ -1116,7 +1090,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager = new AWSIotMqttManager(
             "persistent-client-id-1",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
 
         mqttManager.setCleanSession(false);
@@ -1166,7 +1140,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         AWSIotMqttManager mqttManager2 = new AWSIotMqttManager(
             "persistent-client-id-2",
             Region.getRegion(Regions.US_EAST_1),
-            endpointPrefix
+            iotClient.getEndpointPrefix()
         );
 
         // connect to AWS IoT using keystore
@@ -1247,78 +1221,5 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     private static byte getAlphaChar() {
         return (byte) (0x41 + new SecureRandom().nextInt(57));
-    }
-
-    /**
-     * Create an IoT policy allowing all actions in IoT
-     * Then attaching the created policy to the certificate.
-     *
-     * Warning: This policy is used repeatedly throughout the test
-     */
-    private void createAndAttachPolicy() {
-        // create a new certificate and private key
-        CreateKeysAndCertificateRequest certRequest = new CreateKeysAndCertificateRequest();
-        certRequest.setSetAsActive(true);
-        certResult = iotClient.createKeysAndCertificate(certRequest);
-
-        // create an IoT policy allowing all actions in IoT
-        String policyDocument;
-        CreatePolicyRequest createPolicyRequest;
-
-        try {
-            // create an IoT policy allowing all actions in IoT
-            policyDocument = "{\"Version\":\"2012-10-17\",\"Statement\":[{\"Action\":\"iot:*\",\"Resource\":\"*\",\"Effect\":\"Allow\"}]}";
-            createPolicyRequest = new CreatePolicyRequest();
-            createPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            createPolicyRequest.setPolicyDocument(policyDocument);
-            iotClient.createPolicy(createPolicyRequest);
-        }  catch (Exception exception) {
-            assertEquals(exception.getClass(), ResourceAlreadyExistsException.class);
-        }
-
-        AttachPolicyRequest attachPolicyRequest = new AttachPolicyRequest();
-        attachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-        attachPolicyRequest.setTarget(certResult.getCertificateArn());
-        iotClient.attachPolicy(attachPolicyRequest);
-    }
-
-    /**
-     * Detach the policy from the certificate.
-     * Delete the policy.
-     * Update certificate status as inactive.
-     * Delete the certificate.
-     */
-    private void deletePolicyAndCertificate() {
-        Log.d(TAG, "Detaching the policy from the certificate.");
-        DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
-        detachPolicyRequest.setPolicyName(IOT_POLICY_NAME);
-        if (certResult != null) {
-            detachPolicyRequest.setTarget(certResult.getCertificateArn());
-        }
-        iotClient.detachPolicy(detachPolicyRequest);
-
-        // delete policy
-        Log.d(TAG, "Deleting the policy.");
-        try {
-            DeletePolicyRequest deletePolicyRequest = new DeletePolicyRequest();
-            deletePolicyRequest.setPolicyName(IOT_POLICY_NAME);
-            iotClient.deletePolicy(deletePolicyRequest);
-        } catch (AmazonClientException amazonClientException) {
-            // TODO Ignore failures in tearDown, but this needs to be fixed.
-            amazonClientException.printStackTrace();
-        }
-
-        // set cert inactive
-        Log.d(TAG, "Make the certificate inactive.");
-        UpdateCertificateRequest updateCertificateRequest = new UpdateCertificateRequest();
-        updateCertificateRequest.setCertificateId(certResult.getCertificateId());
-        updateCertificateRequest.setNewStatus(CertificateStatus.INACTIVE);
-        iotClient.updateCertificate(updateCertificateRequest);
-
-        // delete cert
-        Log.d(TAG, "Delete the certificate.");
-        DeleteCertificateRequest deleteCertificateRequest = new DeleteCertificateRequest();
-        deleteCertificateRequest.setCertificateId(certResult.getCertificateId());
-        iotClient.deleteCertificate(deleteCertificateRequest);
     }
 }
