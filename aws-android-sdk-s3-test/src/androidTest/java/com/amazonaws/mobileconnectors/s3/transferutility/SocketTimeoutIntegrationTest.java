@@ -31,6 +31,7 @@ import com.amazonaws.services.s3.model.UploadPartRequest;
 import com.amazonaws.services.s3.model.UploadPartResult;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -106,12 +107,6 @@ public class SocketTimeoutIntegrationTest extends S3IntegrationTestBase {
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         setUp();
-        mockS3 = new SocketTimeoutMockS3Client(credentials,
-                Region.getRegion(Regions.US_WEST_1));
-        util = TransferUtility.builder()
-                .context(context)
-                .s3Client(mockS3)
-                .build();
 
         try {
             s3.createBucket(BUCKET_NAME);
@@ -120,6 +115,17 @@ public class SocketTimeoutIntegrationTest extends S3IntegrationTestBase {
             System.out.println("Error in creating the bucket. "
                     + "Please manually create the bucket " + BUCKET_NAME);
         }
+    }
+
+    @Before
+    public void setUpBeforeTest() {
+        mockS3 = new SocketTimeoutMockS3Client(credentials,
+                Region.getRegion(Regions.US_WEST_1));
+
+        util = TransferUtility.builder()
+                .context(context)
+                .s3Client(mockS3)
+                .build();
     }
 
     @AfterClass

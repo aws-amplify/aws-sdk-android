@@ -25,6 +25,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.Authentic
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+@Ignore("This test requires significant hand crafting of backend infrastructure that isn't documented. TODO: Rewrite this test to arrange more of its state itself, and add the base infrastructure to amplify-ci-support.")
 public class CognitoUserIntegrationTest extends CognitoUserPoolsIntegrationTestBase {
 
     private CognitoUserPool cognitoUserPool;
