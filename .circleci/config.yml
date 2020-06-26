@@ -122,7 +122,7 @@ commands:
           command: |
             if [ -z "$target_branch" ]
             then
-              target_branch="master"
+              target_branch="main"
             fi
 
             git config --local user.name "${GITHUB_BUMPVERSION_USER}"
@@ -166,7 +166,7 @@ commands:
           command: |
             if [ -z "$target_branch" ]
             then
-              target_branch="master"
+              target_branch="main"
             fi
             cd ${bumpversion_repo_name}
             git status
@@ -228,9 +228,9 @@ commands:
       - run:
           name: skip the test job if this is merged from develop by circleci
           command: |
-            skipflag=$(echo "${SKIPTEST_FOR_MASTER}") |  tr '[:upper:]' '[:lower:]'
+            skipflag=$(echo "${SKIPTEST_FOR_MAIN}") |  tr '[:upper:]' '[:lower:]'
             commitmessage=$(git log --format=%B -n 1 ${CIRCLE_SHA1})
-            if [ "$skipflag" == "true" ] && [[ "$commitmessage" =~ .*"[Merge develop to master by circleci]".* ]]
+            if [ "$skipflag" == "true" ] && [[ "$commitmessage" =~ .*"[Merge develop to main by circleci]".* ]]
             then
                echo "This is merged from develop by circleci. skip the test job"
                circleci step halt
@@ -241,12 +241,12 @@ commands:
       skip the test job is project variabe OVERRIDE_TEST is set with TRUE
     steps:
       - run:
-          name: skip test in master
+          name: skip test in main
           command: |
-              notskipflag=$(echo "${NOT_SKIPTESTINMASTER}" |  tr '[:upper:]' '[:lower:]')
-              if [ "${notskipflag}" != "true" ]  &&  [ "${CIRCLE_BRANCH}" == "master" ]
+              notskipflag=$(echo "${NOT_SKIPTESTINMAIN}" |  tr '[:upper:]' '[:lower:]')
+              if [ "${notskipflag}" != "true" ]  &&  [ "${CIRCLE_BRANCH}" == "main" ]
               then
-                echo "bypass test job in master"
+                echo "bypass test job in main"
                 circleci step halt
               fi
       - run:
@@ -281,7 +281,7 @@ commands:
           command: |
             echo "check if job can be skipped"
             # # we can add script here to halt a job for circleci script test
-            # declare -a jobs=("prepare_release_sdk" "merge_to_master" "bump_sdk_version")
+            # declare -a jobs=("prepare_release_sdk" "merge_to_main" "bump_sdk_version")
             # for i in "${jobs[@]}"
             # do
             #   echo "$i":"${CIRCLE_JOB}"
@@ -474,7 +474,7 @@ jobs:
           command: |
             git config --local user.name "${GITHUB_USER}"
             git checkout  gh-pages
-            git checkout master CircleciScripts/preserve_olddocument.sh
+            git checkout main CircleciScripts/preserve_olddocument.sh
             bash CircleciScripts/preserve_olddocument.sh
       - run:
           name: copy new document
@@ -892,7 +892,7 @@ jobs:
             python3 CircleciScripts/bump_sdk_version.py "$(pwd)/${bumpversion_repo_name}" $release_version
       - bump_version_post
 
-  merge_to_master:
+  merge_to_main:
     docker:
       - image: circleci/android:api-27-alpha
     environment:
@@ -902,11 +902,11 @@ jobs:
       - checkout
       - set_enviroment_variables
       - run:
-          name: merge change to master
+          name: merge change to main
           command: |
             git config --local user.name "${GITHUB_USER}"
             git status
-            git checkout master
+            git checkout main
             git status
             git fetch origin
             git status
@@ -916,7 +916,7 @@ jobs:
             git status
             git push https://${GITHUB_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
             git status
-            commitlog=$(git log master -20)
+            commitlog=$(git log main -20)
             currentcommit="${CIRCLE_SHA1}"
             echo "currentcommit=$currentcommit"
             echo "$commitlog"
@@ -924,7 +924,7 @@ jobs:
             then
                echo "The change is already merged"
             else
-              echo "merge change from devlop to master"
+              echo "merge change from devlop to main"
               currentcommit="${CIRCLE_SHA1}"
               lastcommitmessage=$(git log --format=%B -n 1 ${currentcommit})
               git status
@@ -1121,7 +1121,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - check_sdk_on_maven
   run_integrationtest_on_devicefarm:
@@ -1132,7 +1132,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - run_integrationtest_on_devicefarm
 
@@ -1144,7 +1144,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
     jobs:
       - check_testresult_on_devicefarm
   bump_sdk_version:
@@ -1180,7 +1180,7 @@ workflows:
            filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: apigateway
@@ -1190,7 +1190,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: iot
@@ -1200,7 +1200,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: pinpoint
@@ -1210,7 +1210,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: s3
@@ -1220,7 +1220,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: mobile-client
@@ -1230,7 +1230,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: cognitoidentityprovider
@@ -1240,7 +1240,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - integrationtest:
           name: core
@@ -1250,7 +1250,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
                 - develop
       - post_integrationtest:
           requires:
@@ -1261,7 +1261,7 @@ workflows:
             - apigateway
             - cognitoidentityprovider
             - core
-      - merge_to_master:
+      - merge_to_main:
           requires:
             - build_api10
             - build_api18
@@ -1282,7 +1282,7 @@ workflows:
           filters:
             branches:
               only:
-                - master
+                - main
   release_sdk:
     jobs:
       - build:
