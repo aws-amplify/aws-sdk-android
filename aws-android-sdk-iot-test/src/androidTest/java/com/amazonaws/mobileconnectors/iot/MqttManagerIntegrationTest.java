@@ -60,7 +60,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
     private static final String KEYSTORE_NAME = "integration_test.bks";
     private static final String KEYSTORE_PASSWORD = "test password";
     private static final String IOT_POLICY_NAME = "android-integration-test";
-    private static final String CUSTOM_DOMAIN = "www.amplify-android-test.com";
 
     private static String keyStorePath = "./";
     private static AWSCredentialsProvider credentialsProvider;
@@ -293,16 +292,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
     @Test
     public void testMqttCertificateConnectionWithAlpn() throws Exception {
         testMqttCertificateConnection(true, null);
-    }
-
-    @Test
-    public void testMqttCertificateConnectionWithCustomDomain() throws Exception {
-        testMqttCertificateConnection(false, CUSTOM_DOMAIN);
-    }
-
-    @Test
-    public void testMqttCertificateConnectionAlpnWithCustomDomain() throws Exception {
-        testMqttCertificateConnection(true, CUSTOM_DOMAIN);
     }
 
     public void testMqttCertificateConnection(final boolean alpnFlag, final String customEndpoint) throws Exception {
@@ -747,21 +736,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
     public void testWebSocketWithConnectionUsernamePassword() throws Exception {
         String betaEndpoint = iotClient.getEndpointAddress("iot:Data-Beta");
         testWebsocketConnection(AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
-    }
-
-    @Test
-    public void testWebSocketWithConnectionIamAuthAndCustomDomain() throws Exception {
-        testWebsocketConnection(AuthenticationMode.IAM, CUSTOM_DOMAIN);
-    }
-
-    @Test
-    public void testWebSocketConnectionWithCustomAuthAndCustomDomain() throws Exception {
-        testWebsocketConnection(AuthenticationMode.CUSTOM_AUTH, CUSTOM_DOMAIN);
-    }
-
-    @Test
-    public void testWebSocketConnectionWithUsernamePasswordAndCustomDomain() throws Exception {
-        testWebsocketConnection(AuthenticationMode.USERNAME_PASSWORD, CUSTOM_DOMAIN);
     }
 
     private void testWebsocketConnection(
