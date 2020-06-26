@@ -732,12 +732,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
         testWebsocketConnection(AuthenticationMode.CUSTOM_AUTH, iotClient.getEndpointAddress());
     }
 
-    @Test
-    public void testWebSocketWithConnectionUsernamePassword() throws Exception {
-        String betaEndpoint = iotClient.getEndpointAddress("iot:Data-Beta");
-        testWebsocketConnection(AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
-    }
-
     private void testWebsocketConnection(
             final AuthenticationMode authMode,
             final String endpoint)
@@ -758,9 +752,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
                 break;
             case CUSTOM_AUTH:
                 connectWithCustomAuth(mqttManager, statuses);
-                break;
-            case USERNAME_PASSWORD:
-                connectWithUsernamePassword(mqttManager, statuses);
                 break;
         }
 
@@ -833,18 +824,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
         );
     }
 
-    private void connectWithUsernamePassword(
-            final AWSIotMqttManager mqttManager,
-            final List<AWSIotMqttClientStatus> statuses) {
-        // connect using username and password
-        mqttManager.connect("user", "pass", new AWSIotMqttClientStatusCallback() {
-            @Override
-            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                statuses.add(status);
-            }
-        });
-    }
-
     @Test
     public void testWebsocketReconnectionWithIam() throws Exception {
         testWebsocketReconnection(AuthenticationMode.IAM, iotClient.getEndpointAddress());
@@ -853,12 +832,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
     @Test
     public void testWebsocketReconnectionWithCustomAuth() throws Exception {
         testWebsocketReconnection(AuthenticationMode.CUSTOM_AUTH, iotClient.getEndpointAddress());
-    }
-
-    @Test
-    public void testWebsocketReconnectionWithUsernameAndPassword() throws Exception {
-        String betaEndpoint = iotClient.getEndpointAddress("iot:Data-Beta");
-        testWebsocketReconnection(AuthenticationMode.USERNAME_PASSWORD, betaEndpoint);
     }
 
     private void testWebsocketReconnection(
@@ -881,9 +854,6 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
                 break;
             case CUSTOM_AUTH:
                 connectWithCustomAuth(mqttManager, statuses);
-                break;
-            case USERNAME_PASSWORD:
-                connectWithUsernamePassword(mqttManager, statuses);
                 break;
         }
 
