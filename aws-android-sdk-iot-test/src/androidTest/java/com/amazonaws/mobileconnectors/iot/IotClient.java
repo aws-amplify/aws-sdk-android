@@ -23,11 +23,14 @@ import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.iot.AWSIot;
 import com.amazonaws.services.iot.AWSIotClient;
 import com.amazonaws.services.iot.model.AttachPolicyRequest;
+import com.amazonaws.services.iot.model.AuthorizerStatus;
 import com.amazonaws.services.iot.model.Certificate;
 import com.amazonaws.services.iot.model.CertificateStatus;
+import com.amazonaws.services.iot.model.CreateAuthorizerRequest;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateRequest;
 import com.amazonaws.services.iot.model.CreateKeysAndCertificateResult;
 import com.amazonaws.services.iot.model.CreatePolicyRequest;
+import com.amazonaws.services.iot.model.DeleteAuthorizerRequest;
 import com.amazonaws.services.iot.model.DeleteCertificateRequest;
 import com.amazonaws.services.iot.model.DeletePolicyRequest;
 import com.amazonaws.services.iot.model.DescribeEndpointRequest;
@@ -38,6 +41,7 @@ import com.amazonaws.services.iot.model.ListCertificatesResult;
 import com.amazonaws.services.iot.model.ListTargetsForPolicyRequest;
 import com.amazonaws.services.iot.model.ListTargetsForPolicyResult;
 import com.amazonaws.services.iot.model.ResourceNotFoundException;
+import com.amazonaws.services.iot.model.UpdateAuthorizerRequest;
 import com.amazonaws.services.iot.model.UpdateCertificateRequest;
 
 import java.util.ArrayList;
@@ -126,31 +130,6 @@ final class IotClient {
         return new KeysAndCertificateInfo(result);
     }
 
-    /**
-     * Detach the policy from the certificate.
-     * Delete the policy.
-     * Update certificate status as inactive.
-     * Delete the certificate.
-     */
-    void deletePolicyAndCertificate(
-            @NonNull String policyName, @NonNull KeysAndCertificateInfo keysAndCertificateInfo) {
-        Objects.requireNonNull(policyName);
-        Objects.requireNonNull(keysAndCertificateInfo);
-
-        String certificateArn = keysAndCertificateInfo.getCertificateArn();
-        String certificateId = keysAndCertificateInfo.getCertificateId();
-
-        Log.d(TAG, "Deleting policy named = " + policyName + ", and certificate with ARN = " + certificateArn);
-
-        // Detach and delete the policy.
-        detachPolicy(policyName, certificateArn);
-        deletePolicy(policyName);
-
-        // set cert inactive & delete it
-        updateCertificate(certificateId, CertificateStatus.INACTIVE);
-        deleteCertificate(certificateId);
-    }
-
     @NonNull
     KeysAndCertificateInfo createAndAttachPolicy(
             @NonNull String policyName, @NonNull String policyDocument) {
@@ -192,6 +171,7 @@ final class IotClient {
             detachPolicy(policyName, certificateArn);
         }
         for (String certificateId : getCertificateIdsFromArns(certificateArns)) {
+            updateCertificate(certificateId, CertificateStatus.INACTIVE);
             deleteCertificate(certificateId);
         }
         deletePolicy(policyName);
@@ -254,6 +234,52 @@ final class IotClient {
         }
     }
 
+    void createAuthorizer(
+            @NonNull String authorizerName,
+            @NonNull String authorizerFunctionArn,
+            @NonNull String tokenKeyName,
+            @NonNull String publicKey) {
+        Objects.requireNonNull(authorizerName);
+        Objects.requireNonNull(authorizerFunctionArn);
+        Objects.requireNonNull(tokenKeyName);
+        Objects.requireNonNull(publicKey);
+
+        CreateAuthorizerRequest request = new CreateAuthorizerRequest();
+        request.setSigningDisabled(false);
+        request.setAuthorizerName(authorizerName);
+        request.setAuthorizerFunctionArn(authorizerFunctionArn);
+        request.setTokenKeyName(tokenKeyName);
+        request.setStatus(AuthorizerStatus.ACTIVE);
+        request.setTokenSigningPublicKeys(Collections.singletonMap("FIRST_KEY", publicKey));
+        iot.createAuthorizer(request);
+    }
+
+    // Returns true if the authorizer existed and was cleaned up.
+    // Returns false if there was no such authorizer.
+    // Throws an exception if there was an authorizer, but cleanup failed.
+    boolean cleanupAuthorizer(String authorizerName) {
+        try {
+            updateAuthorizer(authorizerName, AuthorizerStatus.INACTIVE);
+            deleteAuthorizer(authorizerName);
+            return true;
+        } catch (ResourceNotFoundException noSuchAuthorizer) {
+            return false;
+        }
+    }
+
+    private void updateAuthorizer(String authorizerName, AuthorizerStatus status) {
+        UpdateAuthorizerRequest request = new UpdateAuthorizerRequest();
+        request.setAuthorizerName(authorizerName);
+        request.setStatus(status);
+        iot.updateAuthorizer(request);
+    }
+
+    private void deleteAuthorizer(String authorizerName) {
+        DeleteAuthorizerRequest request = new DeleteAuthorizerRequest();
+        request.setAuthorizerName(authorizerName);
+        iot.deleteAuthorizer(request);
+    }
+
     /**
      * A wrapper around the {@link CreateKeysAndCertificateResult}, so that we
      * fully encapsulate interactions with the {@link AWSIotClient} and its input/output types.
@@ -279,6 +305,10 @@ final class IotClient {
 
         String getPrivateKey() {
             return result.getKeyPair().getPrivateKey();
+        }
+
+        String getPublicKey() {
+            return result.getKeyPair().getPublicKey();
         }
     }
 }

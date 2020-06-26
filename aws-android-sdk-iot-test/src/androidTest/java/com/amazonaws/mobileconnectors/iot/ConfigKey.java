@@ -20,29 +20,30 @@ package com.amazonaws.mobileconnectors.iot;
  */
 enum ConfigKey {
     /**
-     * HTTP request header key for the custom authorization token.
-     */
-    TOKEN_KEY_NAME("token_key_name"),
-
-    /**
-     * Custom authorization token used to connect via IoT custom authorizer.
-     */
-    TOKEN("token"),
-
-    /**
-     * Custom authorization token signature.
-     */
-    TOKEN_SIGNATURE("token_signature"),
-
-    /**
-     * Name of the AWS IoT custom authorizer to be used.
-     */
-    CUSTOM_AUTHORIZER_NAME("custom_authorizer_name"),
-
-    /**
      * Identity pool id used to authorize connection via IAM.
      */
-    IDENTITY_POOL_ID("identity_pool_id");
+    IDENTITY_POOL_ID("identity_pool_id"),
+
+    /**
+     * The name of the key in the key-value pair that the client sends in its header,
+     * while the client is using custom authorization. e.g., if Authorization=123123123,
+     * this *config* key would store a value of "Authorization".
+     */
+    CUSTOM_AUTHORIZER_TOKEN_KEY_NAME("custom_authorizer_token_key_name"),
+
+    /**
+     * A value to associate to the token key above, that the custom authorizer will evaluate
+     * as having access. e.g., if Authorization=123 and Authorization=345 are possible headers,
+     * 123 might be an authorized value, while 345 may not be. In this case, the value associated
+     * to this config key might be "123".
+     */
+    CUSTOM_AUTHORIZER_TOKEN_VALUE("custom_authorizer_token_value"),
+
+    /**
+     * ARN for a Lambda function which will be used to evaluate custom authorizaztion rules.
+     * This is created by CDK scripts in amplify-ci-support, iot_stack.py.
+     */
+    CUSTOM_AUTHORIZER_LAMBDA_ARN("custom_authorizer_lambda_arn");
 
     private final String configKey;
 

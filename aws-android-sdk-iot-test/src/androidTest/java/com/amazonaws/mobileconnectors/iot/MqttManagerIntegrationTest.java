@@ -20,6 +20,7 @@ import android.support.test.InstrumentationRegistry;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus;
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.AuthenticationMode;
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.ClientId;
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager.Endpoint;
@@ -32,7 +33,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -50,7 +51,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-public class MqttManagerIntegrationTest extends AWSTestBase {
+/**
+ * This blog explains howto setup and use custom authorizers:
+ * https://aws.amazon.com/blogs/security/how-to-use-your-own-identity-and-access-management-systems-to-control-access-to-aws-iot-resources/
+ */
+public final class MqttManagerIntegrationTest extends AWSTestBase {
     private static final int ONE_TWENTY_KB = 120_000;
     private static final String KEYSTORE_NAME = "integration_test.bks";
     private static final String KEYSTORE_PASSWORD = "test password";
@@ -60,10 +65,11 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
     private static String keyStorePath = "./";
     private static AWSCredentialsProvider credentialsProvider;
     private static IotClient iotClient;
-    private KeysAndCertificateInfo keysAndCertificateInfo;
+    private static KeysAndCertificateInfo keysAndCertificateInfo;
+    private static CustomAuthorization customAuthorization;
 
     @BeforeClass
-    public static void beforeSuite() throws Exception {
+    public static void beforeSuite() throws JSONException {
         Context appContext = InstrumentationRegistry.getTargetContext();
         keyStorePath = appContext.getFilesDir().toString() + "/";
         System.out.println(keyStorePath);
@@ -73,11 +79,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
             Regions.US_EAST_1
         );
         iotClient = new IotClient(credentialsProvider);
-    }
 
-    @Before
-    public void beforeEach() throws JSONException {
-        iotClient.cleanupPolicy(IOT_POLICY_NAME);
         keysAndCertificateInfo = iotClient.createAndAttachPolicy(IOT_POLICY_NAME, new JSONObject()
             .put("Version", "2012-10-17")
             .put("Statement", new JSONArray(Collections.singletonList(new JSONObject()
@@ -87,16 +89,30 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
             )))
             .toString()
         );
+        customAuthorization =
+            CustomAuthorization.from(getPackageConfigure("iot"), keysAndCertificateInfo);
+        iotClient.cleanupAuthorizer(customAuthorization.getCustomAuthorizerName());
+        iotClient.createAuthorizer(
+            customAuthorization.getCustomAuthorizerName(),
+            customAuthorization.getCustomAuthorizerLamdbaArn(),
+            customAuthorization.getTokenKeyName(),
+            keysAndCertificateInfo.getPublicKey()
+        );
     }
 
     @After
-    public void afterEach() {
-        iotClient.deletePolicyAndCertificate(IOT_POLICY_NAME, keysAndCertificateInfo);
+    public void cleanup() {
         File keystoreFile = new File(keyStorePath, KEYSTORE_NAME);
         if (keystoreFile.exists()) {
             //noinspection ResultOfMethodCallIgnored
             keystoreFile.delete();
         }
+    }
+    
+    @AfterClass
+    public static void afterClass() {
+        iotClient.cleanupAuthorizer(customAuthorization.getCustomAuthorizerName());
+        iotClient.cleanupPolicy(IOT_POLICY_NAME);
     }
 
     @Test
@@ -171,7 +187,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
     }
 
     private void mqttConnect(final AWSIotMqttManager mqttManager) throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
         final List<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<>();
 
@@ -244,8 +260,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         mqttManager.disconnect();
 
         // verify connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // verify messages arrived on subscribed topic
         assertEquals(20, messages.size());
@@ -290,7 +306,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
     }
 
     public void testMqttCertificateConnection(final boolean alpnFlag, final String customEndpoint) throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
 
         AWSIotMqttManager mqttManager;
@@ -367,8 +383,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         mqttManager.disconnect();
 
         // verify connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // verify messages arrived on subscribed topic
         assertEquals(20, messages.size());
@@ -384,7 +400,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttCertConnectDisconnectConnectWithALPN() throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
 
         AWSIotMqttManager mqttManager = new AWSIotMqttManager(
             "int-test-c-reconnect",
@@ -436,11 +452,11 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         Thread.sleep(3_000);
 
         // verify connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost, statuses.get(2));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(3));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(4));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.ConnectionLost, statuses.get(2));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(3));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(4));
     }
 
     @Test
@@ -450,7 +466,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttCertificateQos1WithCallbacks() throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
         final List<AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus> cbStatuses = new ArrayList<>();
 
@@ -523,8 +539,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         mqttManager.disconnect();
 
         // verify connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // verify messages arrived on subscribed topic
         assertEquals(20, messages.size());
@@ -554,7 +570,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
     }
 
     public void mqttCertReconnect(final boolean alpnFlag) throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
 
         AWSIotMqttManager mqttManager = new AWSIotMqttManager(
@@ -597,8 +613,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         // wait for connection
         Thread.sleep(3_000);
 
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // subscribe to MQTT topic, new messages are captured in list
         mqttManager.subscribeToTopic(
@@ -625,7 +641,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         mqttManager.publishString("please kill me", "$aws", AWSIotMqttQos.QOS0);
 
         Thread.sleep(1_000);
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting, statuses.get(2));
+        assertEquals(AWSIotMqttClientStatus.Reconnecting, statuses.get(2));
 
         // disconnect
         mqttManager.disconnect();
@@ -633,7 +649,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     @Test
     public void mqttCertificateLargeMessage() throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
 
         // create large message
@@ -691,8 +707,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         mqttManager.disconnect();
 
         // ensure connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // verify messages arrived on topic
         assertEquals(1, messages.size());
@@ -751,8 +767,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
     private void testWebsocketConnection(
             final AuthenticationMode authMode,
             final String endpoint)
-            throws InterruptedException, JSONException {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+            throws InterruptedException {
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
 
         AWSIotMqttManager mqttManager = AWSIotMqttManager.from(
@@ -777,8 +793,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         Thread.sleep(3_000);
 
         // ensure connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         TestSubscriptionStatusCallback sscb = new TestSubscriptionStatusCallback();
 
@@ -815,7 +831,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     private void connectWithIam(
             final AWSIotMqttManager mqttManager,
-            final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) {
+            final List<AWSIotMqttClientStatus> statuses) {
         // connect using WebSockets and IAM credentials
         mqttManager.connect(credentialsProvider, new AWSIotMqttClientStatusCallback() {
             @Override
@@ -827,15 +843,13 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     private void connectWithCustomAuth(
             final AWSIotMqttManager mqttManager,
-            final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses)
-            throws JSONException {
-        ConnectionParams connectionParams = ConnectionParams.fromPackageConfig(getPackageConfigure("iot"));
-        // connect using WebSockets and custom authentication token
+            final List<AWSIotMqttClientStatus> statuses) {
+        // Connect using WebSockets and custom authentication token
         mqttManager.connect(
-            connectionParams.getTokenKeyName(),
-            connectionParams.getToken(),
-            connectionParams.getTokenSignature(),
-            connectionParams.getCustomAuthorizerName(),
+            customAuthorization.getTokenKeyName(),
+            customAuthorization.getTokenValue(),
+            customAuthorization.getTokenSignature(),
+            customAuthorization.getCustomAuthorizerName(),
             new AWSIotMqttClientStatusCallback() {
                 @Override
                 public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
@@ -847,7 +861,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
     private void connectWithUsernamePassword(
             final AWSIotMqttManager mqttManager,
-            final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses) {
+            final List<AWSIotMqttClientStatus> statuses) {
         // connect using username and password
         mqttManager.connect("user", "pass", new AWSIotMqttClientStatusCallback() {
             @Override
@@ -876,8 +890,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
     private void testWebsocketReconnection(
             final AuthenticationMode authMode,
             final String endpoint)
-            throws InterruptedException, JSONException {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+            throws InterruptedException {
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
 
         AWSIotMqttManager mqttManager = AWSIotMqttManager.from(
@@ -902,8 +916,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         Thread.sleep(3_000);
 
         // ensure connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         // subscribe to MQTT topic
         mqttManager.subscribeToTopic("sdk/test/integration/ws/reconnect", AWSIotMqttQos.QOS0, new AWSIotMqttNewMessageCallback() {
@@ -928,7 +942,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
 
         Thread.sleep(1_000);
         // verify connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting, statuses.get(2));
+        assertEquals(AWSIotMqttClientStatus.Reconnecting, statuses.get(2));
 
         // disconnect
         mqttManager.disconnect();
@@ -942,7 +956,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
      */
     @Test
     public void mqttCleanSession() throws Exception {
-        final ArrayList<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final ArrayList<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final ArrayList<String> messages = new ArrayList<>();
 
         String largeMessageString = "largeMessageBytes";
@@ -992,8 +1006,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         Thread.sleep(3_000);
 
         // ensure connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         AWSIotMqttManager mqttManager2 = new AWSIotMqttManager(
             "client-id-2",
@@ -1081,7 +1095,7 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
      */
     @Test
     public void mqttPersistentSession() throws Exception {
-        final List<AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus> statuses = new ArrayList<>();
+        final List<AWSIotMqttClientStatus> statuses = new ArrayList<>();
         final List<String> messages = new ArrayList<>();
 
         String largeMessageString = "largeMessageBytes";
@@ -1134,8 +1148,8 @@ public class MqttManagerIntegrationTest extends AWSTestBase {
         Thread.sleep(3_000);
 
         // ensure connection events emitted
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting, statuses.get(0));
-        assertEquals(AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected, statuses.get(1));
+        assertEquals(AWSIotMqttClientStatus.Connecting, statuses.get(0));
+        assertEquals(AWSIotMqttClientStatus.Connected, statuses.get(1));
 
         AWSIotMqttManager mqttManager2 = new AWSIotMqttManager(
             "persistent-client-id-2",
