@@ -61,8 +61,9 @@ import static org.junit.Assert.fail;
  */
 @RunWith(AndroidJUnit4.class)
 public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
-    private static final String TAG = AWSMobileClientNetworkIssueTest.class.getSimpleName();
+    private static final String EMAIL = "success+user@simulator.amazonses.com";
     private static final String USERNAME = "somebody";
+    public static final String PASSWORD = "1234Password!";
 
     private Context appContext;
     private AWSMobileClient auth;
@@ -214,7 +215,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     @Test
     public void testNetworkExceptionPropagation_getTokens_federationStep1() throws Exception {
         reinitialize();
-        auth.signIn(USERNAME, "1234Password!", null);
+        auth.signIn(USERNAME, PASSWORD, null);
 
         Object originalCib = getField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "cib");
         setField(auth.provider, AWSAbstractCognitoIdentityProvider.class, "cib", mockIdentityLowLevelGetId);
@@ -237,7 +238,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     @Test
     public void testNetworkExceptionPropagation_getTokens_federationStep2() throws Exception {
         reinitialize();
-        auth.signIn(USERNAME, "1234Password!", null);
+        auth.signIn(USERNAME, PASSWORD, null);
 
         Object originalCib = getField(auth.cognitoIdentity, CognitoCredentialsProvider.class, "cib");
         setField(auth.cognitoIdentity, CognitoCredentialsProvider.class, "cib", mockIdentityLowLevelGetIdAndGetCredentials);

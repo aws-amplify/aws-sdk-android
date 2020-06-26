@@ -48,9 +48,6 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
     /** The key of the object these tests will create, test on and delete */
     private static final String KEY = "key";
 
-    /** The key of the object these tests will create, test on and delete */
-    private static final String DISPLAY_NAME = "aws-dr-mobile-test-android";
-
     /** Releases all test resources */
     @After
     public void tearDown() {
@@ -141,7 +138,6 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
         assertEquals(bucketOwner, bucketAcl.getOwner());
         assertEquals(bucketOwner, objectAcl.getOwner());
         assertTrue(doesAclContainGroupGrant(objectAcl, GroupGrantee.AllUsers, Permission.Read));
-        assertTrue(doesAclContainsCanonicalGrant(objectAcl, DISPLAY_NAME, Permission.FullControl));
         assertEquals(2, objectAcl.getGrantsAsList().size());
         assertEquals(1, bucketAcl.getGrantsAsList().size());
 
@@ -193,8 +189,8 @@ public class AclIntegrationTest extends S3IntegrationTestBase {
      * @return True if the specified ACL contains a canonical grant with the
      *         specified display name and permission, otherwise false.
      */
-    private boolean doesAclContainsCanonicalGrant(AccessControlList acl, 
-        String expectedDisplayName, 
+    private boolean doesAclContainsCanonicalGrant(AccessControlList acl,
+        String expectedDisplayName,
         Permission expectedPermission) {
 
         for (final java.util.Iterator iterator = acl.getGrantsAsList().iterator(); iterator.hasNext();) {

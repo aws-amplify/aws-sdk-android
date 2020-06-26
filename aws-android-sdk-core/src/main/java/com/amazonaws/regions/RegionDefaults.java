@@ -25,6 +25,20 @@ class RegionDefaults {
         final List<Region> ret = new ArrayList<Region>();
         Region region;
 
+        region = new Region("af-south-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.af-south-1.amazonaws.com", false, true);
+
         region = new Region("ap-northeast-1", "amazonaws.com");
         ret.add(region);
         updateRegion(region, "autoscaling", "autoscaling.ap-northeast-1.amazonaws.com", false, true);
@@ -186,6 +200,19 @@ class RegionDefaults {
         updateRegion(region, "sns", "sns.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+
+        region = new Region("eu-south-1", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.eu-south-1.amazonaws.com", false, true);
 
         region = new Region("eu-west-1", "amazonaws.com");
         ret.add(region);

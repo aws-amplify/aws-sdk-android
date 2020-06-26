@@ -1,11 +1,26 @@
 # Change Log - AWS SDK for Android
 
-## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
+## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
+
+### New Features
+
+- **AWS Mobile Client**
+  - Added client metadata as optional parameter to various methods
+- **AWS IoT**
+  - Model updates
 
 ### Bug Fixes
 
 - **AWS IoT**
   - `AWSIoTMqttManager` is now compatible with Android < 7. See [Issue#1259](https://github.com/aws-amplify/aws-sdk-android/issues/1259) for details.
+
+## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
+
+### New Features
+
+* **AWS Core Runtime**
+  * Added support for `af-south-1` - Africa (Cape Town) region.
+  * Added support for `eu-south-1` - Europe (Milan) region.
 
 ## [Release 2.16.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.11)
 

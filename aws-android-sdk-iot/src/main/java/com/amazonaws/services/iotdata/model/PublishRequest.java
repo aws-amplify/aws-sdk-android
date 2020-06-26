@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http"
- * >HTTP Protocol</a> in the <i>AWS IoT Developer Guide</i>.
+ * >HTTP Protocol</a> in the AWS IoT Developer Guide.
  * </p>
  */
 public class PublishRequest extends AmazonWebServiceRequest implements Serializable {

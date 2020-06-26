@@ -52,7 +52,7 @@ public class ApiClientFactoryIntegrationTest extends ApiGatewayIntegrationTestBa
     public void setup() throws JSONException {
         client = new ApiClientFactory()
                 // override the fake endpoint in the generated client
-                .endpoint(getPackageConfigure().getString("endpoint_us_east_1"))
+                .endpoint(getPackageConfigure().getString("endpoint"))
                 .build(EchoClient.class);
         data = getData();
     }
@@ -118,7 +118,7 @@ public class ApiClientFactoryIntegrationTest extends ApiGatewayIntegrationTestBa
         final AWSCredentialsProvider provider = new StaticCredentialsProvider(
                 new BasicAWSCredentials("access_key", "secret_key"));
         final EchoClient client = new ApiClientFactory()
-                .endpoint(getPackageConfigure().getString("endpoint_us_east_1"))
+                .endpoint(getPackageConfigure().getString("endpoint"))
                 .credentialsProvider(provider)
                 .build(EchoClient.class);
         // with credentials provider set, request will be signed
@@ -149,7 +149,7 @@ public class ApiClientFactoryIntegrationTest extends ApiGatewayIntegrationTestBa
     public void testApiKey() throws JSONException {
         final String apiKey = getPackageConfigure().getString("api_key");
         final EchoClient client = new ApiClientFactory()
-                .endpoint(getPackageConfigure().getString("endpoint_us_east_1"))
+                .endpoint(getPackageConfigure().getString("endpoint"))
                 .apiKey(apiKey)
                 .build(EchoClient.class);
         client.apikeyGet();
@@ -170,7 +170,7 @@ public class ApiClientFactoryIntegrationTest extends ApiGatewayIntegrationTestBa
         final AWSCredentialsProvider provider = new StaticCredentialsProvider(
                 new BasicAWSCredentials("access_key", "secret_key"));
         final EchoClient client = new ApiClientFactory()
-                .endpoint(getPackageConfigure().getString("endpoint_us_east_2"))
+                .endpoint(getPackageConfigure().getString("endpoint"))
                 .credentialsProvider(provider)
                 .build(EchoClient.class);
         // with credentials provider set, request will be signed
@@ -190,11 +190,12 @@ public class ApiClientFactoryIntegrationTest extends ApiGatewayIntegrationTestBa
     public void testRegionOverride() throws JSONException {
         final AWSCredentialsProvider provider = new StaticCredentialsProvider(
                 new BasicAWSCredentials("access_key", "secret_key"));
-        final String region = "us-east-1";
+        final String pretendRegion = "antarctica-central-1";
+        final String endpoint = getPackageConfigure().getString("endpoint");
         final EchoClient client = new ApiClientFactory()
                 .credentialsProvider(provider)
-                .endpoint(getPackageConfigure().getString("endpoint_us_east_2"))
-                .region(region)
+                .endpoint(endpoint)
+                .region(pretendRegion)
                 .build(EchoClient.class);
         // Manually overriding the region causes a mismatch between the endpoint
         // and the region. Signing will fail as a result.
@@ -204,7 +205,7 @@ public class ApiClientFactoryIntegrationTest extends ApiGatewayIntegrationTestBa
         } catch (final ApiClientException ace) {
             assertTrue("status code 403", ace.getStatusCode() == 403);
             assertTrue(ace.getErrorMessage().contains(
-                    "Credential should be scoped to a valid region, not 'us-east-1'."));
+                    "Credential should be scoped to a valid region, not '" + pretendRegion + "'."));
         }
     }
 

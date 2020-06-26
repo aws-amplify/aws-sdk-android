@@ -25,7 +25,8 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSCredentialsProviderChain;
-import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.internal.keyvaluestore.KeyNotFoundException;
 import com.amazonaws.util.StringUtils;
 
 import org.json.JSONException;
@@ -48,80 +49,77 @@ import java.util.Enumeration;
 import java.util.Scanner;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
+import android.support.annotation.RawRes;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
 
 @RunWith(AndroidJUnit4.class)
 public abstract class AWSTestBase {
-
     protected static final String TEST_CONFIGURATION_FILENAME = "testconfiguration.json";
 
-    public static class JSONConfiguration  {
-        private JSONObject mJSONObject ;
-        public JSONConfiguration(JSONObject mJSONObject) {
+    public static final class JSONConfiguration {
+        private JSONObject mJSONObject;
+
+        private JSONConfiguration(JSONObject mJSONObject) {
             this.mJSONObject = mJSONObject ;
         }
-        JSONObject getCredentials() {
-            try {
-                return mJSONObject.getJSONObject("Credentials");
-            }
-            catch (JSONException je) {
-                throw new RuntimeException(
-                        "Failed to get credentials from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
-                        je);
-            }
-        }
-        JSONObject getPackages()  {
-            try {
-                return mJSONObject.getJSONObject("Packages");
-            }
-            catch (JSONException je) {
-                throw new RuntimeException(
-                        "Failed to get Packages from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
-                        je);
-            }
-         }
+
         public JSONObject getPackageConfigure(String packageName) {
             try {
-                return getPackages().getJSONObject(packageName);
+                return mJSONObject.getJSONObject("packages")
+                    .getJSONObject(packageName);
             }
-            catch (JSONException je) {
+            catch (JSONException | NullPointerException configurationFileError) {
                 throw new RuntimeException(
-                        "Failed to get package configuration from " + TEST_CONFIGURATION_FILENAME + " + packageName",
-                        je);
+                    "Failed to get configuration for package = " + packageName + " from  " +
+                        TEST_CONFIGURATION_FILENAME + ".", configurationFileError
+                );
             }
         }
 
-        public String getAccessKey() {
-            try {
-                return getCredentials().getString("accessKey");
-            }
-            catch (JSONException je) {
-                throw new RuntimeException(
-                        "Failed to get accessKey from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
-                        je);
-            }
+        String getAccessKey() throws KeyNotFoundException {
+            return extractStringByPath("credentials.accessKey");
         }
-        public String getSecretKey() {
+
+        String getSecretKey() throws KeyNotFoundException {
+            return extractStringByPath("credentials.secretKey");
+        }
+
+        String getSessionToken() throws KeyNotFoundException {
+            return extractStringByPath("credentials.sessionToken");
+        }
+
+        String getAccountId() throws KeyNotFoundException {
+            return extractStringByPath("credentials.accountId");
+        }
+
+        private String extractStringByPath(String path) throws KeyNotFoundException {
+            return extractStringByPath(mJSONObject, path);
+        }
+
+        // This is a poor man's implementation of JSONPath, that just handles literals,
+        // with the '.' meaning "down one more level." This will break if your key contains a period.
+        private String extractStringByPath(JSONObject container, String path) throws KeyNotFoundException {
+            int indexOfFirstPeriod = path.indexOf(".");
+            if (indexOfFirstPeriod != -1) {
+                String firstPortion = path.substring(0, indexOfFirstPeriod);
+                String rest = path.substring(indexOfFirstPeriod + 1);
+
+                try {
+                    return extractStringByPath(container.getJSONObject(firstPortion), rest);
+                } catch(JSONException e) {
+                    throw new KeyNotFoundException("could not find " + path);
+                }
+            }
             try {
-                return getCredentials().getString("secretKey");
-            }
-            catch (JSONException je) {
+                return container.getString(path);
+            } catch (JSONException jsonException) {
                 throw new RuntimeException(
-                        "Failed to get secretKey from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
-                        je);
-            }
-        }  
-        public String getAccountId() {
-            try {
-                return getCredentials().getString("accountId");
-            }
-            catch (JSONException je) {
-                throw new RuntimeException(
-                        "Failed to get accountId from " + TEST_CONFIGURATION_FILENAME + ", please check that it is correctly formed.",
-                        je);
+                    "Failed to get key " + path + " from " + TEST_CONFIGURATION_FILENAME +
+                        ", please check that it is correctly formed.", jsonException
+                );
             }
         }
     }
@@ -130,101 +128,85 @@ public abstract class AWSTestBase {
      * An implementation of AWSCredentialProvider that fetches the credentials
      * from test configuration json file.
      */
-    static class JSONCredentialProvider implements AWSCredentialsProvider {
-
+    final static class JSONCredentialProvider implements AWSCredentialsProvider {
         @Override
-        public AWSCredentials getCredentials()  {
-            String accessKey = "";
-            String secretAccessKey = "";
-
+        public AWSCredentials getCredentials() {
             try {
-                accessKey =  getAccessKey();
-                secretAccessKey = getSecretKey();
-            } catch (Exception e) {
-                Log.e(TAG, "Failed to get credentials");
-                e.printStackTrace();
+                return new BasicSessionCredentials(getAccessKey(), getSecretKey(), getSessionToken());
+            } catch (KeyNotFoundException e) {
+                throw new RuntimeException(e);
             }
-            return new BasicAWSCredentials(accessKey , secretAccessKey );
         }
 
         @Override
         public void refresh() {
-            getCredentials();
         }
-
     }
 
     public static final String TAG = AWSTestBase.class.getSimpleName();
     /** Shared AWS credentials, loaded from a properties file */
     public static AWSCredentials credentials;
-    private static JSONConfiguration mJSONConfiguration; 
-    
+    private static JSONConfiguration mJSONConfiguration;
 
-
-    public static JSONConfiguration getJSONConfiguration()
-    {
-        Context context = getContext() ;
-        if(mJSONConfiguration == null ) {
-            try {
-                android.content.res.Resources resource = context.getResources();
-                final InputStream inputStream = resource.openRawResource(
-                        R.raw.testconfiguration);
-                final Scanner in = new Scanner(inputStream);
-                final StringBuilder sb = new StringBuilder();
-                while (in.hasNextLine()) {
-                    sb.append(in.nextLine());
-                }
-                in.close();
-
-                mJSONConfiguration  = new JSONConfiguration(new JSONObject(sb.toString()));
-            } catch (Exception je) {
-                throw new RuntimeException(
-                        "Failed to read " + TEST_CONFIGURATION_FILENAME + " please check that it is correctly formed.",
-                        je);
-            }
+    public static JSONConfiguration getJSONConfiguration() {
+        if (mJSONConfiguration != null) {
+            return mJSONConfiguration;
         }
-        return mJSONConfiguration;
+        try {
+            int periodIndex = TEST_CONFIGURATION_FILENAME.indexOf(".");
+            String resourceName = TEST_CONFIGURATION_FILENAME.substring(0, periodIndex);
+            String fileContents = readRawResourceContents(resourceName);
+            mJSONConfiguration  = new JSONConfiguration(new JSONObject(fileContents));
+            return mJSONConfiguration;
+        } catch (JSONException configurationFileError) {
+            throw new RuntimeException(
+                "Failed to read " + TEST_CONFIGURATION_FILENAME + " please check that it is correctly formed.",
+                configurationFileError
+            );
+        }
     }
-    public static String getAccessKey() {
+
+    @SuppressWarnings("SameParameterValue")
+    private static String readRawResourceContents(String rawResourceName) {
+        Context context = InstrumentationRegistry.getContext();
+        Resources resources = context.getResources();
+        String packageName = context.getPackageName();
+        @RawRes int resourceId =
+            resources.getIdentifier(rawResourceName, "raw", packageName);
+        InputStream inputStream = resources.openRawResource(resourceId);
+        Scanner in = new Scanner(inputStream);
+        StringBuilder sb = new StringBuilder();
+        while (in.hasNextLine()) {
+            sb.append(in.nextLine());
+        }
+        in.close();
+        return sb.toString();
+    }
+
+    public static String getAccessKey() throws KeyNotFoundException {
         return getJSONConfiguration().getAccessKey();
     }
-    public static String  getSecretKey() {
+
+    public static String getSecretKey() throws KeyNotFoundException {
         return getJSONConfiguration().getSecretKey();
     }
-    public static String getAccountId() {
+
+    public static String getSessionToken() throws KeyNotFoundException {
+        return getJSONConfiguration().getSessionToken();
+    }
+
+    public static String getAccountId() throws KeyNotFoundException {
         return getJSONConfiguration().getAccountId();
     }
+
     public static JSONObject  getPackageConfigure(String packageName) {
         return getJSONConfiguration().getPackageConfigure(packageName);
     }
 
-    private  static Context getContext() {
-
-        return InstrumentationRegistry.getContext();
-    }
- 
-    private  static JSONCredentialProvider getJSONCredentialProvider() {
-        try
-        {
-            JSONCredentialProvider provider = new JSONCredentialProvider();
-            return provider ;
-        }
-        catch (Exception e) {
-
-            throw e;
-
-        }
-    }
-
-    /**
-     * Use provider chain for getting credentials.
-     */
-    private static final AWSCredentialsProviderChain chain = new AWSCredentialsProviderChain(
-            getJSONCredentialProvider()
-    );
-
     public static void setUpCredentials() {
         if (credentials == null) {
+            AWSCredentialsProvider provider = new JSONCredentialProvider();
+            AWSCredentialsProviderChain chain = new AWSCredentialsProviderChain(provider);
             credentials = chain.getCredentials();
         }
     }

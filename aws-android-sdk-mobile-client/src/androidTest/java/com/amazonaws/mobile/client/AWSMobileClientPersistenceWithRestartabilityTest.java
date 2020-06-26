@@ -77,7 +77,7 @@ import static org.junit.Assert.fail;
 public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientPersistenceTest.class.getSimpleName();
 
-    private static final String EMAIL = "somebody@email.com";
+    private static final String EMAIL = "success+user@simulator.amazonses.com";
     private static final String USERNAME = "somebody";
     private static final String PASSWORD = "1234Password!";
 

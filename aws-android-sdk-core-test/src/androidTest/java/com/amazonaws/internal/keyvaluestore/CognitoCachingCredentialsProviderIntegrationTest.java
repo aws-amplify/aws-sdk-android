@@ -184,7 +184,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
     public void testMultipleCognitoCachingCredentialsProviders() throws Exception {
         CognitoCachingCredentialsProvider credentialsProvider1 = new CognitoCachingCredentialsProvider(
                 InstrumentationRegistry.getTargetContext(),
-                getPackageConfigure("kinesis").getString("identity_pool_id"),
+                getPackageConfigure().getString("other_identity_pool_id"),
                 Regions.US_EAST_1);
 
         credentialsProviders.add(credentialsProvider1);
@@ -219,7 +219,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
     public void testMultipleCognitoCachingCredentialsProvidersWithRefresh() throws Exception {
         CognitoCachingCredentialsProvider credentialsProvider1 = new CognitoCachingCredentialsProvider(
                 InstrumentationRegistry.getTargetContext(),
-                getPackageConfigure("kinesis").getString("identity_pool_id"),
+                getPackageConfigure().getString("other_identity_pool_id"),
                 Regions.US_EAST_1);
         credentialsProvider1.setPersistenceEnabled(false);
 

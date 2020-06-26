@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the thing shadow for the specified thing.
+ * Deletes the shadow for the specified thing.
  * </p>
  * <p>
  * For more information, see <a href=
  * "http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html"
- * >DeleteThingShadow</a> in the <i>AWS IoT Developer Guide</i>.
+ * >DeleteThingShadow</a> in the AWS IoT Developer Guide.
  * </p>
  */
 public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements Serializable {
@@ -37,9 +37,20 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
+
+    /**
+     * <p>
+     * The name of the shadow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String shadowName;
 
     /**
      * <p>
@@ -48,7 +59,7 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
      *         The name of the thing.
@@ -65,7 +76,7 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -85,7 +96,7 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param thingName <p>
      *            The name of the thing.
@@ -95,6 +106,63 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
      */
     public DeleteThingShadowRequest withThingName(String thingName) {
         this.thingName = thingName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the shadow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The name of the shadow.
+     *         </p>
+     */
+    public String getShadowName() {
+        return shadowName;
+    }
+
+    /**
+     * <p>
+     * The name of the shadow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param shadowName <p>
+     *            The name of the shadow.
+     *            </p>
+     */
+    public void setShadowName(String shadowName) {
+        this.shadowName = shadowName;
+    }
+
+    /**
+     * <p>
+     * The name of the shadow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param shadowName <p>
+     *            The name of the shadow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DeleteThingShadowRequest withShadowName(String shadowName) {
+        this.shadowName = shadowName;
         return this;
     }
 
@@ -110,7 +178,9 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getThingName() != null)
-            sb.append("thingName: " + getThingName());
+            sb.append("thingName: " + getThingName() + ",");
+        if (getShadowName() != null)
+            sb.append("shadowName: " + getShadowName());
         sb.append("}");
         return sb.toString();
     }
@@ -121,6 +191,7 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
+        hashCode = prime * hashCode + ((getShadowName() == null) ? 0 : getShadowName().hashCode());
         return hashCode;
     }
 
@@ -139,6 +210,11 @@ public class DeleteThingShadowRequest extends AmazonWebServiceRequest implements
             return false;
         if (other.getThingName() != null
                 && other.getThingName().equals(this.getThingName()) == false)
+            return false;
+        if (other.getShadowName() == null ^ this.getShadowName() == null)
+            return false;
+        if (other.getShadowName() != null
+                && other.getShadowName().equals(this.getShadowName()) == false)
             return false;
         return true;
     }
