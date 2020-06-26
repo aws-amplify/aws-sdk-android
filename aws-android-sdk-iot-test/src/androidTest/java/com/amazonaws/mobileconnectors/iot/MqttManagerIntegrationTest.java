@@ -79,6 +79,7 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
         );
         iotClient = new IotClient(credentialsProvider);
 
+        iotClient.cleanupPolicy(IOT_POLICY_NAME);
         keysAndCertificateInfo = iotClient.createAndAttachPolicy(IOT_POLICY_NAME, new JSONObject()
             .put("Version", "2012-10-17")
             .put("Statement", new JSONArray(Collections.singletonList(new JSONObject()
