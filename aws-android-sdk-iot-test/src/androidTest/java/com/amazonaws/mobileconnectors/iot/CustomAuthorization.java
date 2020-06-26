@@ -95,11 +95,11 @@ final class CustomAuthorization {
         return tokenSignature;
     }
 
-    public String getCustomAuthorizerName() {
+    String getCustomAuthorizerName() {
         return customAuthorizerName;
     }
 
-    public String getCustomAuthorizerLamdbaArn() {
+    String getCustomAuthorizerLamdbaArn() {
         return customAuthorizerLambdaArn;
     }
 

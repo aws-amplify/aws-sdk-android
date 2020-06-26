@@ -254,12 +254,16 @@ final class IotClient {
         iot.createAuthorizer(request);
     }
 
-    void cleanupAuthorizer(String authorizerName) {
+    // Returns true if the authorizer existed and was cleaned up.
+    // Returns false if there was no such authorizer.
+    // Throws an exception if there was an authorizer, but cleanup failed.
+    boolean cleanupAuthorizer(String authorizerName) {
         try {
             updateAuthorizer(authorizerName, AuthorizerStatus.INACTIVE);
             deleteAuthorizer(authorizerName);
+            return true;
         } catch (ResourceNotFoundException noSuchAuthorizer) {
-            // Oh well.
+            return false;
         }
     }
 
