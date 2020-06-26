@@ -313,7 +313,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
         final UserCodeDeliveryDetails details = signUpResult.getUserCodeDeliveryDetails();
         if (details != null) {
-            assertEquals("s***@e***.com", details.getDestination());
+            assertEquals("s***@s***.com", details.getDestination());
             assertEquals("email", details.getAttributeName());
             assertEquals("EMAIL", details.getDeliveryMedium());
         }
@@ -583,6 +583,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertFalse(triggered.get());
     }
 
+    @Ignore("Developer authentication is an undocumented edge case so ignoring this for now. Needs resource setup.")
     @Test
     public void testFederatedSignInWithDeveloperAuthenticatedIdentities() throws Exception {
         AmazonCognitoIdentity identityClient = new AmazonCognitoIdentityClient(credentials);
