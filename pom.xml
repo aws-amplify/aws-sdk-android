@@ -125,9 +125,7 @@
             <excludePackageNames>*.internal:*.transform</excludePackageNames>
             <minmemory>128m</minmemory>
             <maxmemory>1024m</maxmemory>
-            <additionalOptions>
-		<additionalOption>-Xdoclint:none</additionalOption>
-	    </additionalOptions>
+            <doclint>none</doclint>
           </configuration>
         </plugin>
         <plugin>
