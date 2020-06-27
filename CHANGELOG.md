@@ -1,3 +1,11 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---aws-android-sdk-cognitoidentityprovider
 # Change Log - AWS SDK for Android
 
 ## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
