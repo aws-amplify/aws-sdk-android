@@ -613,6 +613,7 @@ public interface AmazonCognitoIdentityProvider {
      * @throws NotAuthorizedException
      * @throws UserNotFoundException
      * @throws AliasExistsException
+     * @throws LimitExceededException
      * @throws InternalErrorException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
