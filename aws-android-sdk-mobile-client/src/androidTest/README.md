@@ -205,6 +205,8 @@ Press enter to continue
 }
 ```
 
+**testconfiguration.json**
+
 ```json
 {
   "credentials": {
