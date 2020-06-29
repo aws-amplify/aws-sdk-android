@@ -125,9 +125,9 @@ Press enter to continue
 6. Use the same commands above to add a user named “customAuthTestUser” - it doesn’t matter what email or password is given to this user but they are required fields.
    
 7. Modify the generated awsconfiguration.json file as follows:
-    a. For each section which has a “Default” section, duplicate the “Default” block but rename the key from “Default” to “Auth1”
-    b. For the “Auth1” duplicate under “Auth” remove all content except, "authenticationFlowType": "CUSTOM_AUTH"
-    c. For the “Default” section under “Auth” change the value of “authenticationFlowType” to “USER_SRP_AUTH”
+    - For each section which has a “Default” section, duplicate the “Default” block but rename the key from “Default” to “Auth1”
+    - For the “Auth1” duplicate under “Auth” remove all content except, "authenticationFlowType": "CUSTOM_AUTH"
+    - For the “Default” section under “Auth” change the value of “authenticationFlowType” to “USER_SRP_AUTH”
       
 8. Put the awsconfiguration.json file inside aws-android-sdk-mobile-client/src/androidTest/res/raw/
    
