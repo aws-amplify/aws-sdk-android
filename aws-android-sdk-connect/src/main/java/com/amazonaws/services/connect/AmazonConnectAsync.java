@@ -39,14 +39,26 @@ import com.amazonaws.services.connect.model.*;
  * create and limits to the number of requests that you can make per second. For
  * more information, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
- * >Amazon Connect Service Limits</a> in the <i>Amazon Connect Administrator
+ * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
+ * </p>
+ * <p>
+ * To connect programmatically to an AWS service, you use an endpoint. For a
+ * list of Amazon Connect endpoints, see <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
+ * >Amazon Connect Endpoints</a>.
  * </p>
  **/
 public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Creates a user account for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * For information about how to create user accounts using the Amazon
+     * Connect console, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html"
+     * >Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param createUserRequest
@@ -73,6 +85,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Creates a user account for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * For information about how to create user accounts using the Amazon
+     * Connect console, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html"
+     * >Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param createUserRequest
@@ -105,6 +123,13 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Deletes a user account from the specified Amazon Connect instance.
      * </p>
+     * <p>
+     * For information about what happens to a user's data when their account is
+     * deleted, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html"
+     * >Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param deleteUserRequest
      * @return A Java Future object containing the response from the DeleteUser
@@ -128,6 +153,13 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Deletes a user account from the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * For information about what happens to a user's data when their account is
+     * deleted, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html"
+     * >Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
      * </p>
      * 
      * @param deleteUserRequest
@@ -388,9 +420,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * instance.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html"
-     * >Real-time Metrics Reports</a> in the <i>Amazon Connect Administrator
+     * For a description of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
      * 
@@ -421,9 +453,9 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * instance.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html"
-     * >Real-time Metrics Reports</a> in the <i>Amazon Connect Administrator
+     * For a description of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
      * 
@@ -515,10 +547,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Gets historical metric data from the specified Amazon Connect instance.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
-     * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * For a description of each historical metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * 
      * @param getMetricDataRequest
@@ -545,10 +577,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Gets historical metric data from the specified Amazon Connect instance.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
-     * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * For a description of each historical metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * 
      * @param getMetricDataRequest
@@ -580,6 +612,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides information about the contact flows for the specified Amazon
      * Connect instance.
      * </p>
+     * <p>
+     * For more information about contact flows, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html"
+     * >Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listContactFlowsRequest
      * @return A Java Future object containing the response from the
@@ -605,6 +642,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides information about the contact flows for the specified Amazon
      * Connect instance.
+     * </p>
+     * <p>
+     * For more information about contact flows, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html"
+     * >Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listContactFlowsRequest
@@ -637,6 +679,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides information about the hours of operation for the specified
      * Amazon Connect instance.
      * </p>
+     * <p>
+     * For more information about hours of operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html"
+     * >Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
      * 
      * @param listHoursOfOperationsRequest
      * @return A Java Future object containing the response from the
@@ -663,6 +711,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides information about the hours of operation for the specified
      * Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about hours of operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html"
+     * >Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * 
      * @param listHoursOfOperationsRequest
@@ -696,6 +750,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides information about the phone numbers for the specified Amazon
      * Connect instance.
      * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listPhoneNumbersRequest
      * @return A Java Future object containing the response from the
@@ -721,6 +781,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides information about the phone numbers for the specified Amazon
      * Connect instance.
+     * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listPhoneNumbersRequest
@@ -753,6 +819,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides information about the queues for the specified Amazon Connect
      * instance.
      * </p>
+     * <p>
+     * For more information about queues, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
+     * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
      * 
      * @param listQueuesRequest
      * @return A Java Future object containing the response from the ListQueues
@@ -777,6 +849,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides information about the queues for the specified Amazon Connect
      * instance.
+     * </p>
+     * <p>
+     * For more information about queues, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
+     * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param listQueuesRequest
@@ -808,6 +886,14 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides summary information about the routing profiles for the specified
      * Amazon Connect instance.
      * </p>
+     * <p>
+     * For more information about routing profiles, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html"
+     * >Routing Profiles</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html"
+     * >Create a Routing Profile</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
      * 
      * @param listRoutingProfilesRequest
      * @return A Java Future object containing the response from the
@@ -834,6 +920,14 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides summary information about the routing profiles for the specified
      * Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about routing profiles, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html"
+     * >Routing Profiles</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html"
+     * >Create a Routing Profile</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param listRoutingProfilesRequest
@@ -867,6 +961,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides summary information about the security profiles for the
      * specified Amazon Connect instance.
      * </p>
+     * <p>
+     * For more information about security profiles, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html"
+     * >Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listSecurityProfilesRequest
      * @return A Java Future object containing the response from the
@@ -893,6 +992,11 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides summary information about the security profiles for the
      * specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about security profiles, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html"
+     * >Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listSecurityProfilesRequest
@@ -925,6 +1029,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Lists the tags for the specified resource.
      * </p>
+     * <p>
+     * For sample policies that use tags, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+     * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listTagsForResourceRequest
      * @return A Java Future object containing the response from the
@@ -950,6 +1060,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
     /**
      * <p>
      * Lists the tags for the specified resource.
+     * </p>
+     * <p>
+     * For sample policies that use tags, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+     * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listTagsForResourceRequest
@@ -983,6 +1099,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Provides summary information about the hierarchy groups for the specified
      * Amazon Connect instance.
      * </p>
+     * <p>
+     * For more information about agent hierarchies, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html"
+     * >Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
      * 
      * @param listUserHierarchyGroupsRequest
      * @return A Java Future object containing the response from the
@@ -1009,6 +1131,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides summary information about the hierarchy groups for the specified
      * Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about agent hierarchies, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html"
+     * >Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param listUserHierarchyGroupsRequest
@@ -1109,6 +1237,30 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * >CreateParticipantConnection</a> with WEBSOCKET and
      * CONNECTION_CREDENTIALS.
      * </p>
+     * <p>
+     * A 429 error occurs in two situations:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * API rate limit is exceeded. API TPS throttling returns a
+     * <code>TooManyRequests</code> exception from the API Gateway.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >quota for concurrent active chats</a> is exceeded. Active chat
+     * throttling returns a <code>LimitExceededException</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat works, see <a
+     * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
+     * >Chat</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param startChatContactRequest
      * @return A Java Future object containing the response from the
@@ -1147,6 +1299,30 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * >CreateParticipantConnection</a> with WEBSOCKET and
      * CONNECTION_CREDENTIALS.
      * </p>
+     * <p>
+     * A 429 error occurs in two situations:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * API rate limit is exceeded. API TPS throttling returns a
+     * <code>TooManyRequests</code> exception from the API Gateway.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >quota for concurrent active chats</a> is exceeded. Active chat
+     * throttling returns a <code>LimitExceededException</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat works, see <a
+     * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
+     * >Chat</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param startChatContactRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -1175,12 +1351,30 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to place an outbound call to a customer.
+     * This API places an outbound call to a contact, and then initiates the
+     * contact flow. It performs the actions in the contact flow that's
+     * specified (in <code>ContactFlowId</code>).
+     * </p>
+     * <p>
+     * Agents are not involved in initiating the outbound API (that is, dialing
+     * the contact). If the contact flow places an outbound call to a contact,
+     * and then puts the contact in queue, that's when the call is routed to the
+     * agent, like any other inbound case.
      * </p>
      * <p>
      * There is a 60 second dialing timeout for this operation. If the call is
      * not connected after 60 seconds, it fails.
      * </p>
+     * <note>
+     * <p>
+     * UK numbers with a 447 prefix are not allowed by default. Before you can
+     * dial these UK mobile numbers, you must submit a service quota increase
+     * request. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
+     * </note>
      * 
      * @param startOutboundVoiceContactRequest
      * @return A Java Future object containing the response from the
@@ -1207,12 +1401,30 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to place an outbound call to a customer.
+     * This API places an outbound call to a contact, and then initiates the
+     * contact flow. It performs the actions in the contact flow that's
+     * specified (in <code>ContactFlowId</code>).
+     * </p>
+     * <p>
+     * Agents are not involved in initiating the outbound API (that is, dialing
+     * the contact). If the contact flow places an outbound call to a contact,
+     * and then puts the contact in queue, that's when the call is routed to the
+     * agent, like any other inbound case.
      * </p>
      * <p>
      * There is a 60 second dialing timeout for this operation. If the call is
      * not connected after 60 seconds, it fails.
      * </p>
+     * <note>
+     * <p>
+     * UK numbers with a 447 prefix are not allowed by default. Before you can
+     * dial these UK mobile numbers, you must submit a service quota increase
+     * request. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
+     * </note>
      * 
      * @param startOutboundVoiceContactRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -1302,6 +1514,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * The supported resource type is users.
      * </p>
+     * <p>
+     * For sample policies that use tags, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+     * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param tagResourceRequest
      * @return A Java Future object containing the response from the TagResource
@@ -1328,6 +1546,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * </p>
      * <p>
      * The supported resource type is users.
+     * </p>
+     * <p>
+     * For sample policies that use tags, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+     * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
      * </p>
      * 
      * @param tagResourceRequest
@@ -1569,6 +1793,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Updates the identity information for the specified user.
      * </p>
+     * <important>
+     * <p>
+     * Someone with the ability to invoke <code>UpdateUserIndentityInfo</code>
+     * can change the login credentials of other users by changing their email
+     * address. This poses a security risk to your organization. They can change
+     * the email address of a user to the attacker's email address, and then
+     * reset the password through email. We strongly recommend limiting who has
+     * the ability to invoke <code>UpdateUserIndentityInfo</code>. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html"
+     * >Best Practices for Security Profiles</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </important>
      * 
      * @param updateUserIdentityInfoRequest
      * @return A Java Future object containing the response from the
@@ -1595,6 +1833,20 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Updates the identity information for the specified user.
      * </p>
+     * <important>
+     * <p>
+     * Someone with the ability to invoke <code>UpdateUserIndentityInfo</code>
+     * can change the login credentials of other users by changing their email
+     * address. This poses a security risk to your organization. They can change
+     * the email address of a user to the attacker's email address, and then
+     * reset the password through email. We strongly recommend limiting who has
+     * the ability to invoke <code>UpdateUserIndentityInfo</code>. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html"
+     * >Best Practices for Security Profiles</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </important>
      * 
      * @param updateUserIdentityInfoRequest
      * @param asyncHandler Asynchronous callback handler for events in the

@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets historical metric data from the specified Amazon Connect instance.
  * </p>
  * <p>
- * For more information, see <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
- * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
+ * For a description of each historical metric, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+ * >Historical Metrics Definitions</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
  * </p>
  */
@@ -98,7 +98,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The metrics to retrieve. Specify the name, unit, and statistic for each
-     * metric. The following historical metrics are available:
+     * metric. The following historical metrics are available. For a description
+     * of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * <dl>
      * <dt>ABANDON_TIME</dt>
@@ -809,7 +813,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The metrics to retrieve. Specify the name, unit, and statistic for each
-     * metric. The following historical metrics are available:
+     * metric. The following historical metrics are available. For a description
+     * of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * <dl>
      * <dt>ABANDON_TIME</dt>
@@ -1046,7 +1054,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *
      * @return <p>
      *         The metrics to retrieve. Specify the name, unit, and statistic
-     *         for each metric. The following historical metrics are available:
+     *         for each metric. The following historical metrics are available.
+     *         For a description of each metric, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     *         >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     *         Administrator Guide</i>.
      *         </p>
      *         <dl>
      *         <dt>ABANDON_TIME</dt>
@@ -1288,7 +1300,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The metrics to retrieve. Specify the name, unit, and statistic for each
-     * metric. The following historical metrics are available:
+     * metric. The following historical metrics are available. For a description
+     * of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * <dl>
      * <dt>ABANDON_TIME</dt>
@@ -1526,7 +1542,10 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * @param historicalMetrics <p>
      *            The metrics to retrieve. Specify the name, unit, and statistic
      *            for each metric. The following historical metrics are
-     *            available:
+     *            available. For a description of each metric, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     *            >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     *            Administrator Guide</i>.
      *            </p>
      *            <dl>
      *            <dt>ABANDON_TIME</dt>
@@ -1773,7 +1792,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The metrics to retrieve. Specify the name, unit, and statistic for each
-     * metric. The following historical metrics are available:
+     * metric. The following historical metrics are available. For a description
+     * of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * <dl>
      * <dt>ABANDON_TIME</dt>
@@ -2014,7 +2037,10 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * @param historicalMetrics <p>
      *            The metrics to retrieve. Specify the name, unit, and statistic
      *            for each metric. The following historical metrics are
-     *            available:
+     *            available. For a description of each metric, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     *            >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     *            Administrator Guide</i>.
      *            </p>
      *            <dl>
      *            <dt>ABANDON_TIME</dt>
@@ -2265,7 +2291,11 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The metrics to retrieve. Specify the name, unit, and statistic for each
-     * metric. The following historical metrics are available:
+     * metric. The following historical metrics are available. For a description
+     * of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * <dl>
      * <dt>ABANDON_TIME</dt>
@@ -2506,7 +2536,10 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * @param historicalMetrics <p>
      *            The metrics to retrieve. Specify the name, unit, and statistic
      *            for each metric. The following historical metrics are
-     *            available:
+     *            available. For a description of each metric, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     *            >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     *            Administrator Guide</i>.
      *            </p>
      *            <dl>
      *            <dt>ABANDON_TIME</dt>
