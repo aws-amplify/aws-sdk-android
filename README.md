@@ -101,6 +101,13 @@ The Android SDK is versioned like `2.x.y`. `2` is a product identifier that neve
 ### Pre-requisites
 The AWS Core Runtime (`aws-android-sdk-core`) module builds against Android API Level 23. Please download and install Android API Level 23 through SDK Manager in Android Studio, before building the SDK.
 
+Set the `ANDROID_HOME` environment variable, to the root directory of your Android SDK installation.
+
+_For example_, on a Mac OS X where Android Studio has been installed, the SDK comes bundled with it.
+```shell
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+```
+
 ### Build
 ```shell
 ./gradlew build
