@@ -99,7 +99,7 @@ The Android SDK is versioned like `2.x.y`. `2` is a product identifier that neve
 
 ## Building the SDK
 ### Pre-requisites
-The AWS Core Runtime (`aws-android-sdk-core`) module builds against the Android API 23 APIs. Please download and install Android API Level 23 through SDK Manager in Android Studio, before building the SDK.
+The AWS Core Runtime (`aws-android-sdk-core`) module builds against Android API Level 23. Please download and install Android API Level 23 through SDK Manager in Android Studio, before building the SDK.
 
 ### Build
 ```shell
