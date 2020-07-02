@@ -27,12 +27,12 @@ Above, SERVICE might be `s3`, `ddb`, `pinpoint`, etc. A full list is provided be
 
 You can also download a `.zip` file containg `.jar` files for each of the SDK modules, [here](https://sdk-for-android.amazonwebservices.com/latest/aws-android-sdk.zip).
 
-Add the jar files to a folder in your project called 'libs' (create one if it doesn't already exist).
+Add the jar files to a folder in your project called `libs` (create one if it doesn't already exist).
 
 Ensure that the `libs` directory is included in your module-level `build.gradle`, under the `dependencies` block:
 ```groovy
 dependencies {
-    fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
 ```
 
