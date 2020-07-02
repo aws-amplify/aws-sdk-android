@@ -95,7 +95,7 @@ There are a few fundamentals that are helpful to know when developing against th
 
 ## Versioning
 
-The Android SDK is versioned like "2.<x>.<y>". 2 is a product identifier that never changes. <x> is bumped when there are breaking changes. <y> is bumped for not-breaking bugfixes, or for the introduction of new features/capabilities.
+The Android SDK is versioned like `2.x.y`. `2` is a product identifier that never changes. `x` is bumped when there are breaking changes. `y` is bumped for not-breaking bugfixes, or for the introduction of new features/capabilities.
 
 ## Building the SDK
 ```shell
