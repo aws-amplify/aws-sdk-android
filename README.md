@@ -104,7 +104,9 @@ The Android SDK is versioned like `2.x.y`. `2` is a product identifier that neve
 
 ## Talk to Us
 
-Visit our GitHub [Issues](https://github.com/aws-amplify/aws-sdk-android/issues) to leave feedback and to connect with other users of the SDK.
+[Come chat with us on our Discord Channel](https://discord.gg/U5XyRx).
+
+Report bugs to our [GitHub Issues](https://github.com/aws-amplify/aws-sdk-android/issues) page.
 
 ## Author
 
