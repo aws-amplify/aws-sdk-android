@@ -98,6 +98,10 @@ There are a few fundamentals that are helpful to know when developing against th
 The Android SDK is versioned like `2.x.y`. `2` is a product identifier that never changes. `x` is bumped when there are breaking changes. `y` is bumped for not-breaking bugfixes, or for the introduction of new features/capabilities.
 
 ## Building the SDK
+### Pre-requisites
+The AWS Core Runtime (`aws-android-sdk-core`) module builds against the Android API 23 APIs. Please download and install Android API Level 23 through SDK Manager in Android Studio, before building the SDK.
+
+### Build
 ```shell
 ./gradlew build
 ```
