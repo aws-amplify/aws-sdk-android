@@ -9,11 +9,6 @@
 - **AWS IoT**
   - Model updates
 
-### Bug Fixes
-
-- **AWS IoT**
-  - `AWSIoTMqttManager` is now compatible with Android < 7. See [Issue#1259](https://github.com/aws-amplify/aws-sdk-android/issues/1259) for details.
-
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
 
 ### New Features

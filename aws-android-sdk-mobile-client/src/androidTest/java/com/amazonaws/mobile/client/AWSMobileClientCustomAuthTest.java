@@ -216,8 +216,8 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
     private void confirmSignIn() {
         final Map<String, String> res = new HashMap<String, String>();
         final Map<String, String> clientMetaData = new HashMap<String, String>();
-        clientMetaData.put("challengeResponseAnswer", "1134");
-        res.put(CognitoServiceConstants.CHLG_RESP_ANSWER, "1134");
+        clientMetaData.put("challengeResponseAnswer", "1133");
+        res.put(CognitoServiceConstants.CHLG_RESP_ANSWER, "1133");
         auth.confirmSignIn(res, clientMetaData, new Callback<SignInResult>() {
             @Override
             public void onResult(final SignInResult signInResult) {

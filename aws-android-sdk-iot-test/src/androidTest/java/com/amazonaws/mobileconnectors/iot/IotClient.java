@@ -59,6 +59,7 @@ import java.util.Objects;
 @SuppressWarnings({"SameParameterValue", "UnusedReturnValue"})
 final class IotClient {
     private static final String TAG = IotClient.class.getSimpleName();
+    private static final int PAGE_SIZE = 100;
 
     private final AWSIot iot;
     private final Map<String, String> endpointsCache;
@@ -146,21 +147,19 @@ final class IotClient {
 
     List<Certificate> listCertificates() {
         Log.d(TAG, "Listing certificates...");
-        ListCertificatesRequest request = new ListCertificatesRequest();
-        ListCertificatesResult result = iot.listCertificates(request);
-        return result.getCertificates();
-    }
-
-    List<String> getCertificateIdsFromArns(List<String> targetArns) {
-        Log.d(TAG, "Finding IDs of certificates with ARNs = " + targetArns.toString());
-        List<String> certificateIds = new ArrayList<>();
-        List<Certificate> certificates = listCertificates();
-        for (Certificate certificate : certificates) {
-            if (targetArns.contains(certificate.getCertificateArn())) {
-                certificateIds.add(certificate.getCertificateId());
-            }
-        }
-        return certificateIds;
+        List<Certificate> certificates = new ArrayList<>();
+        String nextToken = null;
+        int pageNum = 0;
+        do {
+            Log.d(TAG, "Processing page " + pageNum++ + " of certificates.");
+            ListCertificatesRequest request = new ListCertificatesRequest();
+            request.setMarker(nextToken);
+            request.setPageSize(PAGE_SIZE);
+            ListCertificatesResult result = iot.listCertificates(request);
+            certificates.addAll(result.getCertificates());
+            nextToken = result.getNextMarker();
+        } while (nextToken != null);
+        return certificates;
     }
 
     // Deletes any associated certificates, and detaches/deletes the policy.
@@ -170,24 +169,34 @@ final class IotClient {
         for (String certificateArn : certificateArns) {
             detachPolicy(policyName, certificateArn);
         }
-        for (String certificateId : getCertificateIdsFromArns(certificateArns)) {
-            updateCertificate(certificateId, CertificateStatus.INACTIVE);
-            deleteCertificate(certificateId);
+        for (Certificate certificate : listCertificates()) {
+            updateCertificate(certificate.getCertificateId(), CertificateStatus.INACTIVE);
+            deleteCertificate(certificate.getCertificateId());
         }
         deletePolicy(policyName);
     }
 
     List<String> listTargetsForPolicy(String policyName) {
         Log.d(TAG, "Listing all targets for policy named = " + policyName);
-        ListTargetsForPolicyRequest request = new ListTargetsForPolicyRequest();
-        request.setPolicyName(policyName);
-        ListTargetsForPolicyResult result;
-        try {
-            result = iot.listTargetsForPolicy(request);
-        } catch (ResourceNotFoundException noSuchPolicyException) {
-            return Collections.emptyList();
-        }
-        return result.getTargets();
+        List<String> targets = new ArrayList<>();
+        String nextToken = null;
+        int pageNum = 0;
+        do {
+            ListTargetsForPolicyRequest request = new ListTargetsForPolicyRequest();
+            request.setPolicyName(policyName);
+            request.setPageSize(PAGE_SIZE);
+            request.setMarker(nextToken);
+            ListTargetsForPolicyResult result;
+            try {
+                Log.d(TAG, "Processing page " + pageNum++ + " of policy targets.");
+                result = iot.listTargetsForPolicy(request);
+                targets.addAll(result.getTargets());
+                nextToken = result.getNextMarker();
+            } catch (ResourceNotFoundException noSuchPolicyException) {
+                nextToken = null;
+            }
+        } while (nextToken != null);
+        return targets;
     }
 
     void createPolicy(String policyName, String policyDocument) {
@@ -207,14 +216,12 @@ final class IotClient {
         iot.attachPolicy(attachPolicyRequest);
     }
 
-    void detachPolicy(@NonNull String policyName, @Nullable String certificateArn) {
+    void detachPolicy(@NonNull String policyName, @NonNull String certificateArn) {
         Objects.requireNonNull(policyName);
         Log.d(TAG, "Detaching policy " + policyName + " from certificate ARN = " + certificateArn);
         DetachPolicyRequest detachPolicyRequest = new DetachPolicyRequest();
         detachPolicyRequest.setPolicyName(policyName);
-        if (certificateArn != null) {
-            detachPolicyRequest.setTarget(certificateArn);
-        }
+        detachPolicyRequest.setTarget(certificateArn);
         iot.detachPolicy(detachPolicyRequest);
     }
 

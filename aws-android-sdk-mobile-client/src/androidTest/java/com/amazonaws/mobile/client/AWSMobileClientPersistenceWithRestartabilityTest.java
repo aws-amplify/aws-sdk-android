@@ -492,12 +492,12 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
                 "CognitoIdentityProviderCache",
                 true);
 
-        final Set<String> scopes = new HashSet<String>(Arrays.asList("profile", "openid", "email"));
+        final Set<String> scopes = new HashSet<String>(Arrays.asList("aws.cognito.signin.user.admin", "phone", "openid", "profile", "email"));
 
         LocalDataManager.cacheSession(storeForHostedUI,
                 targetContext,
-                getPackageConfigure("cognitoauth").getString("AppClientId"),
-                getPackageConfigure("cognitoauth").getString("Username"),
+                getPackageConfigure().getString("app_client_id"),
+                getPackageConfigure().getString("username"),
                 authUserSession,
                 scopes);
 
