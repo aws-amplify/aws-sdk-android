@@ -114,4 +114,4 @@ Amazon Web Services
 
 ## License
 
-See the [**LICENSE** file](https://github.com/aws-amplify/aws-sdk-android/blob/main/LICENSE.txt) for more info.
+See the [`LICENSE.txt`](https://github.com/aws-amplify/aws-sdk-android/blob/main/LICENSE.txt) for more info.
