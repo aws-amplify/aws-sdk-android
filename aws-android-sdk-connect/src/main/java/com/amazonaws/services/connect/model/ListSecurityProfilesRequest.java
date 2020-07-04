@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides summary information about the security profiles for the specified
  * Amazon Connect instance.
  * </p>
+ * <p>
+ * For more information about security profiles, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html"
+ * >Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.
+ * </p>
  */
 public class ListSecurityProfilesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
