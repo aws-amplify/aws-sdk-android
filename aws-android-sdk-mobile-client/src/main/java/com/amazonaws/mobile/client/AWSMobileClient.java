@@ -1115,23 +1115,41 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                        final String password,
                        final Map<String, String> validationData,
                        final Callback<SignInResult> callback) {
+        signIn(username, password, validationData, Collections.<String, String>emptyMap(), callback);
+    }
+
+    @AnyThread
+    public void signIn(final String username,
+                       final String password,
+                       final Map<String, String> validationData,
+                       final Map<String, String> clientMetadata,
+                       final Callback<SignInResult> callback) {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_signIn(username, password, validationData, internalCallback));
+        internalCallback.async(_signIn(username, password, validationData, clientMetadata, internalCallback));
     }
 
     @WorkerThread
     public SignInResult signIn(final String username,
                                final String password,
                                final Map<String, String> validationData) throws Exception {
+        return signIn(username, password, validationData, Collections.<String, String>emptyMap());
+    }
+
+    @WorkerThread
+    public SignInResult signIn(final String username,
+                               final String password,
+                               final Map<String, String> validationData,
+                               final Map<String, String> clientMetadata) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_signIn(username, password, validationData, internalCallback));
+        return internalCallback.await(_signIn(username, password, validationData, clientMetadata, internalCallback));
     }
 
     private Runnable _signIn(final String username,
                              final String password,
                              final Map<String, String> validationData,
+                             final Map<String, String> clientMetadata,
                              final Callback<SignInResult> callback) {
 
         this.signInCallback = callback;
@@ -1142,85 +1160,90 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             @Override
             public void run() {
                 try {
-                    userpool.getUser(username).getSession(new AuthenticationHandler() {
-
-                        @Override
-                        public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
-                            try {
-                                mCognitoUserSession = userSession;
-                                signInState = SignInState.DONE;
-                            } catch (Exception e) {
-                                signInCallback.onError(e);
-                                signInCallback = null;
-                            }
-
-                            try {
-                                if (isFederationEnabled()) {
-                                    federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken());
+                    userpool.getUser(username).getSession(
+                        clientMetadata,
+                        new AuthenticationHandler() {
+                            @Override
+                            public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+                                try {
+                                    mCognitoUserSession = userSession;
+                                    signInState = SignInState.DONE;
+                                } catch (Exception e) {
+                                    signInCallback.onError(e);
+                                    signInCallback = null;
                                 }
 
-                                releaseSignInWait();
-                            } catch (Exception e) {
-                                Log.w(TAG, "Failed to federate tokens during sign-in", e);
-                            } finally {
-                                setUserState(new UserStateDetails(UserState.SIGNED_IN, getSignInDetailsMap()));
-                            }
+                                try {
+                                    if (isFederationEnabled()) {
+                                        federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken());
+                                    }
 
-                            signInCallback.onResult(SignInResult.DONE);
-                        }
-
-                        @Override
-                        public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
-                            Log.d(TAG, "Sending password.");
-                            try {
-                                if (awsConfiguration.optJsonObject("Auth") != null && awsConfiguration.optJsonObject("Auth").has("authenticationFlowType") && awsConfiguration.optJsonObject("Auth").getString("authenticationFlowType").equals("CUSTOM_AUTH")) {
-                                    final HashMap<String, String> authParameters = new HashMap<String,String>();
-                                    authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
-                                } else {
-                                    authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
+                                    releaseSignInWait();
+                                } catch (Exception e) {
+                                    Log.w(TAG, "Failed to federate tokens during sign-in", e);
+                                } finally {
+                                    setUserState(new UserStateDetails(UserState.SIGNED_IN, getSignInDetailsMap()));
                                 }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+
+                                signInCallback.onResult(SignInResult.DONE);
                             }
-                            authenticationContinuation.continueTask();
-                        }
 
-                        @Override
-                        public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
-                            signInMfaContinuation = continuation;
-                            CognitoUserCodeDeliveryDetails parameters = continuation.getParameters();
-                            signInState = SignInState.SMS_MFA;
-                            signInCallback.onResult(
-                                    new SignInResult(
-                                            SignInState.SMS_MFA,
-                                            new UserCodeDeliveryDetails(
-                                                    parameters.getDestination(),
-                                                    parameters.getDeliveryMedium(),
-                                                    parameters.getAttributeName()
-                                            )
-                                    )
-                            );
-                        }
+                            @Override
+                            public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
+                                Log.d(TAG, "Sending password.");
+                                try {
+                                    if (awsConfiguration.optJsonObject("Auth") != null &&
+                                            awsConfiguration.optJsonObject("Auth").has("authenticationFlowType") &&
+                                            awsConfiguration.optJsonObject("Auth").getString("authenticationFlowType").equals("CUSTOM_AUTH")
+                                    ) {
+                                        final HashMap<String, String> authParameters = new HashMap<String,String>();
+                                        authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
+                                    } else {
+                                        authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                authenticationContinuation.continueTask();
+                            }
 
-                        @Override
-                        public void authenticationChallenge(ChallengeContinuation continuation) {
-                            try {
-                                signInState = SignInState.valueOf(continuation.getChallengeName());
-                                signInChallengeContinuation = continuation;
+                            @Override
+                            public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
+                                signInMfaContinuation = continuation;
+                                CognitoUserCodeDeliveryDetails parameters = continuation.getParameters();
+                                signInState = SignInState.SMS_MFA;
+                                signInCallback.onResult(
+                                        new SignInResult(
+                                                SignInState.SMS_MFA,
+                                                new UserCodeDeliveryDetails(
+                                                        parameters.getDestination(),
+                                                        parameters.getDeliveryMedium(),
+                                                        parameters.getAttributeName()
+                                                )
+                                        )
+                                );
+                            }
 
-                                signInCallback.onResult(new SignInResult(
-                                        signInState,
-                                        continuation.getParameters()));
-                            } catch (IllegalArgumentException e) {
-                                signInCallback.onError(e);
+                            @Override
+                            public void authenticationChallenge(ChallengeContinuation continuation) {
+                                try {
+                                    signInState = SignInState.valueOf(continuation.getChallengeName());
+                                    signInChallengeContinuation = continuation;
+
+                                    signInCallback.onResult(new SignInResult(
+                                            signInState,
+                                            continuation.getParameters()));
+                                } catch (IllegalArgumentException e) {
+                                    signInCallback.onError(e);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                signInCallback.onError(exception);
                             }
                         }
-
-                        @Override
-                        public void onFailure(Exception exception) {
-                            signInCallback.onError(exception);
-                        }
-                    });
+                    );
                 } catch (Exception e) {
                     callback.onError(e);
                 }
@@ -1231,19 +1254,33 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     @AnyThread
     public void confirmSignIn(final String signInChallengeResponse,
                               final Callback<SignInResult> callback) {
+        confirmSignIn(signInChallengeResponse, Collections.<String, String>emptyMap(), callback);
+    }
+
+    @AnyThread
+    public void confirmSignIn(final String signInChallengeResponse,
+                              final Map<String, String> clientMetadata,
+                              final Callback<SignInResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_confirmSignIn(signInChallengeResponse, internalCallback));
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, internalCallback));
     }
 
     @WorkerThread
     public SignInResult confirmSignIn(final String signInChallengeResponse) throws Exception {
+        return confirmSignIn(signInChallengeResponse, Collections.<String, String>emptyMap());
+    }
+
+    @WorkerThread
+    public SignInResult confirmSignIn(final String signInChallengeResponse,
+                                      final Map<String, String> clientMetadata) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_confirmSignIn(signInChallengeResponse, internalCallback));
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, internalCallback));
     }
 
     private Runnable _confirmSignIn(final String signInChallengeResponse,
+                                    final Map<String, String> clientMetadata,
                                     final Callback<SignInResult> callback) {
 
         return new Runnable() {
@@ -1260,12 +1297,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 switch (signInState) {
                     case SMS_MFA:
                         signInMfaContinuation.setMfaCode(signInChallengeResponse);
+                        signInMfaContinuation.setClientMetaData(clientMetadata);
                         detectedContinuation = signInMfaContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
                         break;
                     case NEW_PASSWORD_REQUIRED:
                         ((NewPasswordContinuation) signInChallengeContinuation)
                                 .setPassword(signInChallengeResponse);
+                        signInChallengeContinuation.setClientMetaData(clientMetadata);
                         detectedContinuation = signInChallengeContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
                         break;
@@ -1760,47 +1799,49 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
 
                 try {
-                    userpool.getCurrentUser().getSession(new AuthenticationHandler() {
+                    userpool.getCurrentUser().getSession(
+                        Collections.<String, String>emptyMap(),
+                        new AuthenticationHandler() {
+                            @Override
+                            public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+                                try {
+                                    mCognitoUserSession = userSession;
+                                    callback.onResult(new Tokens(
+                                            userSession.getAccessToken().getJWTToken(),
+                                            userSession.getIdToken().getJWTToken(),
+                                            userSession.getRefreshToken().getToken()
+                                    ));
+                                } catch (Exception e) {
+                                    callback.onError(e);
+                                }
+                            }
 
-                        @Override
-                        public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
-                            try {
-                                mCognitoUserSession = userSession;
-                                callback.onResult(new Tokens(
-                                        userSession.getAccessToken().getJWTToken(),
-                                        userSession.getIdToken().getJWTToken(),
-                                        userSession.getRefreshToken().getToken()
-                                ));
-                            } catch (Exception e) {
-                                callback.onError(e);
+                            @Override
+                            public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
+                                signalTokensNotAvailable(null);
+                            }
+
+                            @Override
+                            public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
+                                signalTokensNotAvailable(null);
+                            }
+
+                            @Override
+                            public void authenticationChallenge(ChallengeContinuation continuation) {
+                                signalTokensNotAvailable(null);
+                            }
+
+                            @Override
+                            public void onFailure(Exception exception) {
+                                signalTokensNotAvailable(exception);
+                            }
+
+                            private void signalTokensNotAvailable(final Exception e) {
+                                Log.w(TAG, "signalTokensNotAvailable");
+                                callback.onError(new Exception("No cached session.", e));
                             }
                         }
-
-                        @Override
-                        public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
-                            signalTokensNotAvailable(null);
-                        }
-
-                        @Override
-                        public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
-                            signalTokensNotAvailable(null);
-                        }
-
-                        @Override
-                        public void authenticationChallenge(ChallengeContinuation continuation) {
-                            signalTokensNotAvailable(null);
-                        }
-
-                        @Override
-                        public void onFailure(Exception exception) {
-                            signalTokensNotAvailable(exception);
-                        }
-
-                        private void signalTokensNotAvailable(final Exception e) {
-                            Log.w(TAG, "signalTokensNotAvailable");
-                            callback.onError(new Exception("No cached session.", e));
-                        }
-                    });
+                    );
                 } catch (Exception e) {
                     callback.onError(e);
                 }
@@ -2090,10 +2131,29 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param callback
      */
     @AnyThread
-    public void resendSignUp(final String username,
-                             final Callback<SignUpResult> callback) {
+    public void resendSignUp(
+            final String username,
+            final Callback<SignUpResult> callback) {
+        resendSignUp(username, Collections.<String, String>emptyMap(), callback);
+    }
+
+    /**
+     * Used when a user has attempted sign-up previously and wants to continue the process.
+     * Note: If the user tries through the normal process with the same username, then it will
+     * fail and this method is required.
+     *
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
+     * @param username
+     * @param callback
+     */
+    @AnyThread
+    public void resendSignUp(
+            final String username,
+            final Map<String, String> clientMetadata,
+            final Callback<SignUpResult> callback) {
         final InternalCallback internalCallback = new InternalCallback<SignUpResult>(callback);
-        internalCallback.async(_resendSignUp(username, internalCallback));
+        internalCallback.async(_resendSignUp(username, clientMetadata, internalCallback));
     }
 
     /**
@@ -2105,35 +2165,54 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      */
     @WorkerThread
     public SignUpResult resendSignUp(final String username) throws Exception {
-        final InternalCallback<SignUpResult> internalCallback = new InternalCallback<SignUpResult>();
-        return internalCallback.await(_resendSignUp(username, internalCallback));
+        return resendSignUp(username, Collections.<String, String>emptyMap());
     }
 
-    private Runnable _resendSignUp(final String username,
-                                   final Callback<SignUpResult> callback) {
+    /**
+     * Used when a user has attempted sign-up previously and wants to continue the process.
+     * Note: If the user tries through the normal process with the same username, then it will
+     * fail and this method is required.
+     *
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
+     * @param username
+     */
+    @WorkerThread
+    public SignUpResult resendSignUp(final String username, final Map<String, String> clientMetadata) throws Exception {
+        final InternalCallback<SignUpResult> internalCallback = new InternalCallback<SignUpResult>();
+        return internalCallback.await(_resendSignUp(username, clientMetadata, internalCallback));
+    }
+
+    private Runnable _resendSignUp(
+            final String username,
+            final Map<String, String> clientMetadata,
+            final Callback<SignUpResult> callback) {
         return new Runnable() {
             @Override
             public void run() {
-                userpool.getUser(username).resendConfirmationCodeInBackground(new VerificationHandler() {
-                    @Override
-                    public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
-                        UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
-                                verificationCodeDeliveryMedium.getDestination(),
-                                verificationCodeDeliveryMedium.getDeliveryMedium(),
-                                verificationCodeDeliveryMedium.getAttributeName()
-                        );
-                        callback.onResult(new SignUpResult(
-                                false,
-                                userCodeDeliveryDetails,
-                                null
-                        ));
-                    }
+                userpool.getUser(username).resendConfirmationCodeInBackground(
+                        clientMetadata,
+                        new VerificationHandler() {
+                            @Override
+                            public void onSuccess(CognitoUserCodeDeliveryDetails verificationCodeDeliveryMedium) {
+                                UserCodeDeliveryDetails userCodeDeliveryDetails = new UserCodeDeliveryDetails(
+                                        verificationCodeDeliveryMedium.getDestination(),
+                                        verificationCodeDeliveryMedium.getDeliveryMedium(),
+                                        verificationCodeDeliveryMedium.getAttributeName()
+                                );
+                                callback.onResult(new SignUpResult(
+                                        false,
+                                        userCodeDeliveryDetails,
+                                        null
+                                ));
+                            }
 
-                    @Override
-                    public void onFailure(Exception exception) {
-                        callback.onError(exception);
-                    }
-                });
+                            @Override
+                            public void onFailure(Exception exception) {
+                                callback.onError(exception);
+                            }
+                        }
+                );
             }
         };
     }
@@ -2152,7 +2231,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                final Callback<ForgotPasswordResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<ForgotPasswordResult>(callback);
-        internalCallback.async(_forgotPassword(username, internalCallback, clientMetadata));
+        internalCallback.async(_forgotPassword(username, clientMetadata, internalCallback));
     }
 
     /**
@@ -2165,7 +2244,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                                final Map<String, String> clientMetadata) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
-        return internalCallback.await(_forgotPassword(username, internalCallback, clientMetadata));
+        return internalCallback.await(_forgotPassword(username, clientMetadata, internalCallback));
     }
 
     /**
@@ -2180,8 +2259,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                final Callback<ForgotPasswordResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<ForgotPasswordResult>(callback);
-        internalCallback.async(_forgotPassword(username, internalCallback,
-                Collections.<String, String>emptyMap()));
+        internalCallback.async(_forgotPassword(username, Collections.<String, String>emptyMap(), internalCallback));
     }
 
     /**
@@ -2193,12 +2271,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     public ForgotPasswordResult forgotPassword(final String username) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
-        return internalCallback.await(_forgotPassword(username, internalCallback, Collections.<String, String>emptyMap()));
+        return internalCallback.await(_forgotPassword(username, Collections.<String, String>emptyMap(), internalCallback));
     }
 
     private Runnable _forgotPassword(final String username,
-                                     final Callback<ForgotPasswordResult> callback,
-                                     final Map<String, String> clientMetadata) {
+                                     final Map<String, String> clientMetadata,
+                                     final Callback<ForgotPasswordResult> callback) {
 
         return new Runnable() {
             @Override
@@ -2414,11 +2492,28 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @param callback verification delivery information
      */
     @AnyThread
-    public void updateUserAttributes(final Map<String, String> userAttributes,
-                                     final Callback<List<UserCodeDeliveryDetails>> callback) {
+    public void updateUserAttributes(
+            final Map<String, String> userAttributes,
+            final Callback<List<UserCodeDeliveryDetails>> callback) {
+        updateUserAttributes(userAttributes, Collections.<String, String>emptyMap(), callback);
+    }
+
+    /**
+     * Sends a map of user attributes to update. If an attribute needs to
+     * be verified, then the verification delivery information is returned.
+     * @param userAttributes the attributes i.e. email
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
+     * @param callback verification delivery information
+     */
+    @AnyThread
+    public void updateUserAttributes(
+            final Map<String, String> userAttributes,
+            final Map<String, String> clientMetadata,
+            final Callback<List<UserCodeDeliveryDetails>> callback) {
 
         InternalCallback internalCallback = new InternalCallback<List<UserCodeDeliveryDetails>>(callback);
-        internalCallback.async(_updateUserAttributes(userAttributes, internalCallback));
+        internalCallback.async(_updateUserAttributes(userAttributes, clientMetadata, internalCallback));
     }
 
     /**
@@ -2429,14 +2524,33 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @throws Exception
      */
     @WorkerThread
-    public List<UserCodeDeliveryDetails> updateUserAttributes(final Map<String, String> userAttributes) throws Exception {
-
-        InternalCallback<List<UserCodeDeliveryDetails>> internalCallback = new InternalCallback<List<UserCodeDeliveryDetails>>();
-        return internalCallback.await(_updateUserAttributes(userAttributes, internalCallback));
+    public List<UserCodeDeliveryDetails> updateUserAttributes(
+            final Map<String, String> userAttributes) throws Exception {
+        return updateUserAttributes(userAttributes, Collections.<String, String>emptyMap());
     }
 
-    private Runnable _updateUserAttributes(final Map<String, String> userAttributes,
-                                           final Callback<List<UserCodeDeliveryDetails>> callback) {
+    /**
+     * Sends a map of user attributes to update. If an attribute needs to
+     * be verified, then the verification delivery information is returned.
+     * @param userAttributes the attributes i.e. email
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       custom workflow.
+     * @return verification delivery information
+     * @throws Exception
+     */
+    @WorkerThread
+    public List<UserCodeDeliveryDetails> updateUserAttributes(
+            final Map<String, String> userAttributes,
+            final Map<String, String> clientMetadata) throws Exception {
+
+        InternalCallback<List<UserCodeDeliveryDetails>> internalCallback = new InternalCallback<List<UserCodeDeliveryDetails>>();
+        return internalCallback.await(_updateUserAttributes(userAttributes, clientMetadata, internalCallback));
+    }
+
+    private Runnable _updateUserAttributes(
+            final Map<String, String> userAttributes,
+            final Map<String, String> clientMetadata,
+            final Callback<List<UserCodeDeliveryDetails>> callback) {
 
         return new Runnable() {
             @Override
@@ -2453,25 +2567,29 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     }
                 }
 
-                userpool.getCurrentUser().updateAttributes(cognitoUserAttributes, new UpdateAttributesHandler() {
-                    @Override
-                    public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
-                        final List<UserCodeDeliveryDetails> list = new LinkedList<UserCodeDeliveryDetails>();
-                        for (CognitoUserCodeDeliveryDetails details : attributesVerificationList) {
-                            list.add(new UserCodeDeliveryDetails(
-                                    details.getDestination(),
-                                    details.getDeliveryMedium(),
-                                    details.getAttributeName()
-                            ));
-                        }
-                        callback.onResult(list);
-                    }
+                userpool.getCurrentUser().updateAttributes(
+                        cognitoUserAttributes,
+                        clientMetadata,
+                        new UpdateAttributesHandler() {
+                            @Override
+                            public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
+                                final List<UserCodeDeliveryDetails> list = new LinkedList<UserCodeDeliveryDetails>();
+                                for (CognitoUserCodeDeliveryDetails details : attributesVerificationList) {
+                                    list.add(new UserCodeDeliveryDetails(
+                                            details.getDestination(),
+                                            details.getDeliveryMedium(),
+                                            details.getAttributeName()
+                                    ));
+                                }
+                                callback.onResult(list);
+                            }
 
-                    @Override
-                    public void onFailure(Exception exception) {
-                        callback.onError(exception);
-                    }
-                });
+                            @Override
+                            public void onFailure(Exception exception) {
+                                callback.onError(exception);
+                            }
+                        }
+                );
             }
         };
     }
@@ -2484,9 +2602,23 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     @AnyThread
     public void verifyUserAttribute(final String attributeName,
                                     final Callback<UserCodeDeliveryDetails> callback) {
+        verifyUserAttribute(attributeName, Collections.<String, String>emptyMap(), callback);
+    }
+
+    /**
+     * Verify an attribute like email.
+     * @param attributeName i.e. email
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       lambda functions triggered by forgot password.
+     * @param callback verification delivery information
+     */
+    @AnyThread
+    public void verifyUserAttribute(final String attributeName,
+                                    final Map<String, String> clientMetadata,
+                                    final Callback<UserCodeDeliveryDetails> callback) {
 
         InternalCallback internalCallback = new InternalCallback<UserCodeDeliveryDetails>(callback);
-        internalCallback.async(_verifyUserAttribute(attributeName, internalCallback));
+        internalCallback.async(_verifyUserAttribute(attributeName, clientMetadata, internalCallback));
     }
 
     /**
@@ -2497,12 +2629,27 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      */
     @WorkerThread
     public UserCodeDeliveryDetails verifyUserAttribute(final String attributeName) throws Exception {
+        return verifyUserAttribute(attributeName, Collections.<String, String>emptyMap());
+    }
+
+    /**
+     * Verify an attribute like email.
+     * @param attributeName i.e. email
+     * @param clientMetadata A map of custom key-value pairs that is passed to the lambda function for
+     *                       lambda functions triggered by forgot password.
+     * @return verification delivery information
+     * @throws Exception
+     */
+    @WorkerThread
+    public UserCodeDeliveryDetails verifyUserAttribute(final String attributeName,
+                                                       final Map<String, String> clientMetadata) throws Exception {
 
         InternalCallback<UserCodeDeliveryDetails> internalCallback = new InternalCallback<UserCodeDeliveryDetails>();
-        return internalCallback.await(_verifyUserAttribute(attributeName, internalCallback));
+        return internalCallback.await(_verifyUserAttribute(attributeName, clientMetadata, internalCallback));
     }
 
     private Runnable _verifyUserAttribute(final String attributeName,
+                                          final Map<String, String> clientMetadata,
                                           final Callback<UserCodeDeliveryDetails> callback) {
 
         return new Runnable() {
@@ -2514,6 +2661,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
 
                 userpool.getCurrentUser().getAttributeVerificationCodeInBackground(
+                        clientMetadata,
                         attributeName,
                         new VerificationHandler() {
                             @Override

@@ -23,6 +23,9 @@ import android.os.Handler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 
+import java.util.Collections;
+import java.util.Map;
+
 /**
  * Defines Continuation for authentication. This Continuation is used when user log-in details
  * are required to continue to authenticate the user and get tokens.
@@ -46,6 +49,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
     private final boolean runInBackground;
 
     private AuthenticationDetails authenticationDetails = null;
+    private Map<String, String> clientMetadata;
 
     /**
      * Constructs a new continuation in the authentication process.
@@ -70,6 +74,27 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
         this.context = context;
         this.runInBackground = runInBackground;
         this.callback = callback;
+        this.clientMetadata = Collections.emptyMap();
+    }
+
+    /**
+     * <p>
+     * <code>clientMetadata</code> is a map of custom key-value pairs that you can provide as input for any
+     * custom work flows. Accessor method for <code>clientMetadata</code>.
+     * </p>
+     * @return ClientMetadata
+     */
+    public Map<String, String> getClientMetaData() {
+        return clientMetadata;
+    }
+
+    /**
+     * Mutator for <code>clientMetadata</code>.
+     * @param clientMetadata Metadata to be passed as input to the lambda triggers.
+     */
+    public void setClientMetaData(Map<String, String> clientMetadata) {
+        this.clientMetadata.clear();
+        this.clientMetadata.putAll(clientMetadata);
     }
 
     /**
@@ -97,7 +122,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
                     final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
-                        nextStep = user.initiateUserAuthentication(authenticationDetails, callback, RUN_IN_BACKGROUND);
+                        nextStep = user.initiateUserAuthentication(clientMetadata, authenticationDetails, callback, RUN_IN_BACKGROUND);
                     } catch (final Exception e) {
                         nextStep = new Runnable() {
                             @Override
@@ -112,7 +137,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
         } else {
             Runnable nextStep;
             try {
-                nextStep = user.initiateUserAuthentication(authenticationDetails, callback, RUN_IN_CURRENT);
+                nextStep = user.initiateUserAuthentication(clientMetadata, authenticationDetails, callback, RUN_IN_CURRENT);
             } catch (final Exception e) {
                 nextStep = new Runnable() {
                     @Override

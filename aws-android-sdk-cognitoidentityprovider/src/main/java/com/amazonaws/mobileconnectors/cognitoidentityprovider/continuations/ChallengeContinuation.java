@@ -86,7 +86,8 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
         this.username = username;
         this.callback = callback;
         this.runInBackground = runInBackground;
-        challengeResponses = new HashMap<String, String>();
+        challengeResponses = new HashMap<>();
+        clientMetaData = new HashMap<>();
     }
 
     /**
@@ -171,7 +172,7 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
                     final Handler handler = new Handler(context.getMainLooper());
                     Runnable nextStep;
                     try {
-                        nextStep = user.respondToChallenge(respondToAuthChallengeRequest, callback, RUN_IN_BACKGROUND);
+                        nextStep = user.respondToChallenge(clientMetaData, respondToAuthChallengeRequest, callback, RUN_IN_BACKGROUND);
                     } catch (final Exception e) {
                         nextStep = new Runnable() {
                             @Override
@@ -186,7 +187,7 @@ public class ChallengeContinuation implements CognitoIdentityProviderContinuatio
         } else {
             Runnable nextStep;
             try {
-                nextStep = user.respondToChallenge(respondToAuthChallengeRequest, callback, RUN_IN_CURRENT);
+                nextStep = user.respondToChallenge(clientMetaData, respondToAuthChallengeRequest, callback, RUN_IN_CURRENT);
             } catch (final Exception e) {
                 nextStep = new Runnable() {
                     @Override
