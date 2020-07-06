@@ -2334,14 +2334,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     /**
      * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
      * that the service may request.
+     *
      * @param password new password.
-     * @param forgotPasswordChallengeResponse response to the forgot password challenge posted.
      * @param clientMetadata metadata to be passed to the lambda invoked by this operation.
+     * @param forgotPasswordChallengeResponse response to the forgot password challenge posted.
      */
     @WorkerThread
     public ForgotPasswordResult confirmForgotPassword(final String password,
-                                                      final String forgotPasswordChallengeResponse,
-                                                      final Map<String, String> clientMetadata) throws Exception {
+                                                      final Map<String, String> clientMetadata,
+                                                      final String forgotPasswordChallengeResponse) throws Exception {
 
         final InternalCallback<ForgotPasswordResult> internalCallback = new InternalCallback<ForgotPasswordResult>();
         return internalCallback.await(_confirmForgotPassword(password, forgotPasswordChallengeResponse, clientMetadata, internalCallback));
