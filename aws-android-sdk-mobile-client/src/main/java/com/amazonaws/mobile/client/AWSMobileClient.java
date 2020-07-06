@@ -2334,7 +2334,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     /**
      * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
      * that the service may request.
-     *  @param password new password.
+     * @param password new password.
      * @param forgotPasswordChallengeResponse response to the forgot password challenge posted.
      * @param clientMetadata metadata to be passed to the lambda invoked by this operation.
      */
@@ -2570,24 +2570,24 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         cognitoUserAttributes,
                         clientMetadata,
                         new UpdateAttributesHandler() {
-                        @Override
-                        public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
-                            final List<UserCodeDeliveryDetails> list = new LinkedList<UserCodeDeliveryDetails>();
-                            for (CognitoUserCodeDeliveryDetails details : attributesVerificationList) {
-                                list.add(new UserCodeDeliveryDetails(
-                                        details.getDestination(),
-                                        details.getDeliveryMedium(),
-                                        details.getAttributeName()
-                                ));
+                            @Override
+                            public void onSuccess(List<CognitoUserCodeDeliveryDetails> attributesVerificationList) {
+                                final List<UserCodeDeliveryDetails> list = new LinkedList<UserCodeDeliveryDetails>();
+                                for (CognitoUserCodeDeliveryDetails details : attributesVerificationList) {
+                                    list.add(new UserCodeDeliveryDetails(
+                                            details.getDestination(),
+                                            details.getDeliveryMedium(),
+                                            details.getAttributeName()
+                                    ));
+                                }
+                                callback.onResult(list);
                             }
-                            callback.onResult(list);
-                        }
 
-                        @Override
-                        public void onFailure(Exception exception) {
-                            callback.onError(exception);
+                            @Override
+                            public void onFailure(Exception exception) {
+                                callback.onError(exception);
+                            }
                         }
-                    }
                 );
             }
         };

@@ -517,7 +517,8 @@ public class CognitoUser {
                 new ResendConfirmationCodeRequest()
                         .withUsername(userId)
                         .withClientId(clientId)
-                        .withSecretHash(secretHash);
+                        .withSecretHash(secretHash)
+                        .withClientMetadata(clientMetadata);
         final String pinpointEndpointId = pool.getPinpointEndpointId();
         resendConfirmationCodeRequest.setUserContextData(getUserContextData());
         if (pinpointEndpointId != null) {
