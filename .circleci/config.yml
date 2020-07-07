@@ -22,7 +22,7 @@ commands:
     parameters:
       gradle_version:
         description: "The version of Gradle to install"
-        default: "6.3"
+        default: "6.5.1"
         type: string
     steps:
       - run:
