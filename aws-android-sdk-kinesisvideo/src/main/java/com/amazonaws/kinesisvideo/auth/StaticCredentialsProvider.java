@@ -20,7 +20,7 @@ package com.amazonaws.kinesisvideo.auth;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Empty credentials provider

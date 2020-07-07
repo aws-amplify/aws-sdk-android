@@ -15,7 +15,7 @@
 
 package com.amazonaws.services.s3;
 
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -62,7 +62,7 @@ public class BucketPolicyIntegrationTest extends S3IntegrationTestBase {
     /** Tests that we can get/put/delete bucket policies. */
     @Test
     public void testBucketPolicies() throws Exception {
-        InputStream policyInputStream = InstrumentationRegistry.getContext().getResources().getAssets().open(POLICY_FILE);
+        InputStream policyInputStream = ApplicationProvider.getApplicationContext().getResources().getAssets().open(POLICY_FILE);
         String policyText = IOUtils.toString(policyInputStream);
         policyText = replace(policyText, "@BUCKET_NAME@", BUCKET_NAME);
 

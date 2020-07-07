@@ -19,7 +19,7 @@ package com.amazonaws.mobileconnectors.kinesisvideo.auth;
 
 import java.util.Date;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;

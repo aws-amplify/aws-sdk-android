@@ -19,7 +19,7 @@ package com.amazonaws.kinesisvideo.util;
 
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class VersionUtil {
 

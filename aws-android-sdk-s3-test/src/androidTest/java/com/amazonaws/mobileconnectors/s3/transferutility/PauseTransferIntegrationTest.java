@@ -16,18 +16,16 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.services.s3.S3IntegrationTestBase;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +33,7 @@ public final class PauseTransferIntegrationTest extends S3IntegrationTestBase {
 
     private static final String BUCKET_NAME = "android-sdk-transfer-util-integ-test-" + System.currentTimeMillis();
     private static TransferUtility util;
-    private static Context context = InstrumentationRegistry.getContext();
+    private static Context context = ApplicationProvider.getApplicationContext();
 
     private File file;
     private CountDownLatch started;

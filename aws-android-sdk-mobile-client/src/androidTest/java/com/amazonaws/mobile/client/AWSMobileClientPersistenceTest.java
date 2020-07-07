@@ -18,9 +18,9 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.mobile.client.results.SignInResult;
@@ -44,7 +44,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -62,7 +61,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-@RunWith(AndroidJUnit4.class)
 public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientPersistenceTest.class.getSimpleName();
 
@@ -146,7 +144,7 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
     @BeforeClass
     public static void beforeClass() throws Exception {
         setUpCredentials();
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
         AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
@@ -179,7 +177,7 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
 
     @Before
     public void before() throws Exception {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
         auth = AWSMobileClient.getInstance();
         auth.signOut();
 

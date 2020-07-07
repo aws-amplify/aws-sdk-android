@@ -18,7 +18,7 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Log;
 
 
@@ -54,7 +54,7 @@ public class AWSMobileClientCustomAuthTest extends AWSMobileClientTestBase {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
         final CountDownLatch latch = new CountDownLatch(1);
         final AWSConfiguration awsConfiguration = new AWSConfiguration(appContext);
         awsConfiguration.setConfiguration("Auth1");

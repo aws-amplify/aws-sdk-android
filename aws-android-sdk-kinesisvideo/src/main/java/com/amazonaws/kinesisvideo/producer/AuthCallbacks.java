@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.producer;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  *

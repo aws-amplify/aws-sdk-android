@@ -17,9 +17,9 @@ package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
@@ -31,7 +31,6 @@ import com.amazonaws.testutils.AWSTestBase;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -46,7 +45,6 @@ import static org.junit.Assert.assertNotNull;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(AndroidJUnit4.class)
 public class SubmitEventsIntegrationTest extends AWSTestBase {
 
     private static Context appContext;
@@ -63,11 +61,11 @@ public class SubmitEventsIntegrationTest extends AWSTestBase {
 
     @Before
     public void setUp() throws Exception {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
         appContext.deleteDatabase("awspinpoint.db");
 
-        wifiManager = (WifiManager) InstrumentationRegistry
-                .getContext().getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) ApplicationProvider.getApplicationContext()
+                .getSystemService(Context.WIFI_SERVICE);
         assertTrue(wifiManager.setWifiEnabled(true));
 
         appId = getPackageConfigure("pinpoint")

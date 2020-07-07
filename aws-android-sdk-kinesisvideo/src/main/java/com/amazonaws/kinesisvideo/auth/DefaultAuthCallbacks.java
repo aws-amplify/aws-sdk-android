@@ -25,8 +25,8 @@ import com.amazonaws.kinesisvideo.producer.AuthInfo;
 import com.amazonaws.kinesisvideo.producer.AuthInfoType;
 import com.amazonaws.kinesisvideo.producer.Time;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 
 import java.io.*;
 import java.util.concurrent.*;

@@ -16,7 +16,7 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -33,12 +33,10 @@ import com.amazonaws.services.s3.model.UploadPartResult;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
 import java.net.SocketTimeoutException;
-import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -87,7 +85,7 @@ public class SocketTimeoutIntegrationTest extends S3IntegrationTestBase {
     private static final String BUCKET_NAME = "android-sdk-transfer-util-integ-test-" + System.currentTimeMillis();
 
     /** Instrumentation test context */
-    private static Context context = InstrumentationRegistry.getContext();
+    private static Context context = ApplicationProvider.getApplicationContext();
 
     /** Mock S3 client to artificially throw socket timeout exception */
     private static SocketTimeoutMockS3Client mockS3;

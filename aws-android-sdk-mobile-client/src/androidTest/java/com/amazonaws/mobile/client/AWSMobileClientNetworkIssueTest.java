@@ -18,8 +18,7 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -28,7 +27,6 @@ import com.amazonaws.auth.CognitoCredentialsProvider;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
 import com.amazonaws.services.cognitoidentity.model.GetCredentialsForIdentityRequest;
 import com.amazonaws.services.cognitoidentity.model.GetCredentialsForIdentityResult;
@@ -44,7 +42,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.lang.reflect.Field;
 import java.net.UnknownHostException;
@@ -59,7 +56,6 @@ import static org.junit.Assert.fail;
 /**
  * Userpool and identity pool were create with Amplify CLI 0.1.23 Default configuration
  */
-@RunWith(AndroidJUnit4.class)
 public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     private static final String EMAIL = "success+user@simulator.amazonses.com";
     private static final String USERNAME = "somebody";
@@ -72,7 +68,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
 
         // Initialize
         final CountDownLatch latch = new CountDownLatch(1);
@@ -102,7 +98,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
 
     @Before
     public void before() throws InterruptedException {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
         auth = AWSMobileClient.getInstance();
         auth.signOut();
 
@@ -144,7 +140,7 @@ public class AWSMobileClientNetworkIssueTest extends AWSMobileClientTestBase {
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
 
         final AWSConfiguration awsConfiguration = new AWSConfiguration(appContext);
 
