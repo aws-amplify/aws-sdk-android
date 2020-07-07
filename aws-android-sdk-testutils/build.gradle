@@ -19,8 +19,8 @@ dependencies {
     api (project(':aws-android-sdk-core')) {
         exclude group: 'com.google.android', module: 'android'
     }
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.test.ext:junit:1.1.1'
-
-    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.test:core:1.2.0'
 }
 

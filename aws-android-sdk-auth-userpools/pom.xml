@@ -29,28 +29,27 @@
   <dependencies>
     <dependency>
       <groupId>com.amazonaws</groupId>
-      <artifactId>aws-android-sdk-cognitoidentityprovider</artifactId>
-      <optional>false</optional>
-      <version>2.16.13</version>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-auth-core</artifactId>
       <optional>false</optional>
       <version>2.16.13</version>
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>4.1.1.4</version>
-      <scope>provided</scope>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-android-sdk-cognitoidentityprovider</artifactId>
+      <optional>false</optional>
+      <version>2.16.13</version>
     </dependency>
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-v4</artifactId>
-      <optional>true</optional>
-      <version>23.0.1</version>
+      <groupId>androidx.appcompat</groupId>
+      <artifactId>appcompat</artifactId>
+      <version>1.1.0</version>
+      <type>aar</type>
+    </dependency>
+    <dependency>
+      <groupId>androidx.annotation</groupId>
+      <artifactId>annotation</artifactId>
+      <version>1.1.0</version>
       <type>aar</type>
     </dependency>
   </dependencies>

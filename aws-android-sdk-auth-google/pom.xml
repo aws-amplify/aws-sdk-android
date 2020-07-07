@@ -35,24 +35,27 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>4.1.1.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-v4</artifactId>
-      <version>23.0.1</version>
-      <optional>true</optional>
-      <type>aar</type>
-    </dependency>
-    <dependency>
       <groupId>com.google.android.gms</groupId>
       <artifactId>play-services-auth</artifactId>
-      <version>9.8.0</version>
+      <version>18.0.0</version>
       <optional>false</optional>
       <type>aar</type>
+    </dependency>
+    <dependency>
+      <groupId>androidx.annotation</groupId>
+      <artifactId>annotation</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>androidx.appcompat</groupId>
+      <artifactId>appcompat</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>

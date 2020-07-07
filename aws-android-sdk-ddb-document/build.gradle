@@ -8,13 +8,12 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
 
 dependencies {
     api project(':aws-android-sdk-core')
-    implementation 'com.google.guava:guava:20.0'
     implementation project(':aws-android-sdk-ddb')
+    implementation 'com.google.guava:guava:29.0-android'
 }
 

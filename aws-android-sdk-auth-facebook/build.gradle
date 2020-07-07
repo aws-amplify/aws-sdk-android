@@ -18,8 +18,6 @@ android {
 dependencies {
     api project(':aws-android-sdk-auth-core')
     api 'com.facebook.android:facebook-android-sdk:4.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-    testImplementation 'junit:junit:4.12'
+    implementation 'androidx.annotation:annotation:1.1.0'
 }
 

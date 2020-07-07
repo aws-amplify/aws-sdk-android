@@ -9,15 +9,14 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
 
 dependencies {
     api project(':aws-android-sdk-core')
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-all:1.10.5'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
     testRuntimeOnly 'org.apache.httpcomponents:httpclient:4.5.12'
 }
 

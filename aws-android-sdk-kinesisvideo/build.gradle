@@ -24,8 +24,8 @@ dependencies {
     api (project(':aws-android-sdk-core')) {
         exclude group: 'com.google.android', module: 'android'
     }
-    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
     //noinspection DuplicatePlatformClasses
-    compileOnly 'org.apache.httpcomponents:httpclient:4.5.3'
+    compileOnly 'org.apache.httpcomponents:httpclient:4.5.12'
 }
 

@@ -41,14 +41,14 @@
       <version>2.16.13</version>
     </dependency>
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-annotations</artifactId>
-      <version>24.2.0</version>
+      <groupId>androidx.annotation</groupId>
+      <artifactId>annotation</artifactId>
+      <version>1.1.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>4.5.3</version>
+      <version>4.5.12</version>
     </dependency>
   </dependencies>
   <build>

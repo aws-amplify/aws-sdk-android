@@ -16,20 +16,15 @@
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
 @RunWith(RobolectricTestRunner.class)
-@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*" })
-@Config(manifest = Config.NONE, sdk=23)
 public abstract class MobileAnalyticsTestBase {
-
     static {
         // redirect the Log.x output to stdout. Stdout will be recorded in the
         // test result report
         ShadowLog.stream = System.out;
     }
-
 }
+

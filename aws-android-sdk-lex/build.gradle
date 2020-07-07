@@ -17,8 +17,6 @@ android {
 
 dependencies {
     api project(':aws-android-sdk-core')
-    implementation 'com.google.guava:guava:20.0'
-
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.guava:guava:29.0-android'
 }
 
