@@ -19,7 +19,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_ENCRYPTION_KEY_NAMESPACE_SUFFIX;
 import static junit.framework.Assert.assertFalse;
@@ -31,15 +30,13 @@ import static org.junit.Assert.assertNull;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.auth.AWSSessionCredentials;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.regions.Regions;
 
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoCachingCredentialsProviderDataCorruptionIntegrationTest extends CoreIntegrationTestBase {
 
     private static String TAG = CognitoCachingCredentialsProviderDataCorruptionIntegrationTest.class.getSimpleName();
@@ -52,16 +49,16 @@ public class CognitoCachingCredentialsProviderDataCorruptionIntegrationTest exte
 
     @BeforeClass
     public static void setupBeforeClass() {
-        sharedPreferencesForAuth = InstrumentationRegistry.getTargetContext()
+        sharedPreferencesForAuth = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-        sharedPreferencesForEncryptionMaterials = InstrumentationRegistry.getTargetContext()
+        sharedPreferencesForEncryptionMaterials = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences(SHARED_PREFERENCES_NAME + SHARED_PREFERENCES_ENCRYPTION_KEY_NAMESPACE_SUFFIX, Context.MODE_PRIVATE);
     }
 
     @Before
     public void setUp() throws Exception {
         credentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
     }
@@ -101,7 +98,7 @@ public class CognitoCachingCredentialsProviderDataCorruptionIntegrationTest exte
 
         // Repeat getCredentials() for an other credentials provider
         CognitoCachingCredentialsProvider credentialsProvider1 = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
 
@@ -156,7 +153,7 @@ public class CognitoCachingCredentialsProviderDataCorruptionIntegrationTest exte
 
         // Repeat getCredentials() for an other credentials provider
         CognitoCachingCredentialsProvider credentialsProvider1 = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
 
@@ -182,7 +179,7 @@ public class CognitoCachingCredentialsProviderDataCorruptionIntegrationTest exte
         deleteAllEncryptionKeys();
 
         CognitoCachingCredentialsProvider credentialsProviderAfterKeyDeleted = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         assertNull(credentialsProviderAfterKeyDeleted.getCachedIdentityId());

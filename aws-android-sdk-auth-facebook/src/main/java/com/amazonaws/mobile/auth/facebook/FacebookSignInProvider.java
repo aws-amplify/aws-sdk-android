@@ -20,11 +20,9 @@ package com.amazonaws.mobile.auth.facebook;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
-import android.support.annotation.NonNull;
-import android.util.Base64;
+
+import androidx.annotation.NonNull;
+
 import android.util.Log;
 import android.view.View;
 
@@ -46,7 +44,6 @@ import com.facebook.login.LoginResult;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.Locale;
 
 /**
  * Sign-in provider for Facebook.

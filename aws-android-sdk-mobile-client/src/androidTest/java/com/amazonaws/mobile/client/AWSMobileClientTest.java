@@ -18,8 +18,7 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -63,7 +62,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,7 +90,6 @@ import static org.junit.Assert.fail;
  * Amazon Cognito UserPools and Amazon Cognito Identity Pools
  * were created with Amplify CLI 0.1.23 - Default configuration.
  */
-@RunWith(AndroidJUnit4.class)
 public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientTest.class.getSimpleName();
 
@@ -207,7 +204,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @BeforeClass
     public static void beforeClass() throws Exception {
         setUpCredentials();
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
         AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
@@ -242,7 +239,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
 
     @Before
     public void before() throws Exception {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
         auth = AWSMobileClient.getInstance();
         auth.signOut();
 
@@ -267,7 +264,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     @Test
     public void testAWSConfigurationForCognitoUserPool() throws Exception {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
 
         final AWSConfiguration awsConfiguration = new AWSConfiguration(appContext);
 

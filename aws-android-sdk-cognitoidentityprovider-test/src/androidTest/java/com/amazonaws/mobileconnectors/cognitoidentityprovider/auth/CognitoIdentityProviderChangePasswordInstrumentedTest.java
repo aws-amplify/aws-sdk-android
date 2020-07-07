@@ -23,9 +23,9 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Base64;
 
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
@@ -42,12 +42,10 @@ import com.amazonaws.util.StringUtils;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderChangePasswordInstrumentedTest extends CognitoIdentityProviderUnitTestBase {
 	private CognitoUserPool				   	testPool;
     private CognitoUser					   	testUser;

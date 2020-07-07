@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName '1.0'
     }
@@ -25,7 +25,7 @@ android {
 dependencies {
     api project(':aws-android-sdk-auth-core')
     api 'com.facebook.android:facebook-android-sdk:4.1.0'
-    implementation 'com.android.support:support-v4:23.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.12'
 }

@@ -35,8 +35,8 @@ import com.amazonaws.kinesisvideo.producer.StreamInfo;
 import com.amazonaws.kinesisvideo.producer.Tag;
 //import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 //import javax.annotation.concurrent.ThreadSafe;
 import java.util.Collection;
 import java.util.HashMap;

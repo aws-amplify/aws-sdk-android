@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName '1.0'
     }
@@ -27,7 +27,7 @@ dependencies {
         exclude group: 'com.google.android', module: 'android'
     }
     implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0'
-    implementation 'com.android.support:customtabs:25.4.0'
+    implementation 'androidx.browser:browser:1.0.0'
 
     testImplementation 'junit:junit:4.12'
 }

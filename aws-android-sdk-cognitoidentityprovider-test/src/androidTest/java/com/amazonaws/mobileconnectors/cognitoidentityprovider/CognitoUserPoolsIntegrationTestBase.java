@@ -16,7 +16,7 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
@@ -51,7 +51,7 @@ public abstract class CognitoUserPoolsIntegrationTestBase extends AWSTestBase {
 
     void setUp() {
         try {
-            appContext = InstrumentationRegistry.getTargetContext();
+            appContext = ApplicationProvider.getApplicationContext();
             userName = getPackageConfigure().getString("UserName");
             password = getPackageConfigure().getString("Password");
             userEmail = getPackageConfigure().getString("UserEmail");

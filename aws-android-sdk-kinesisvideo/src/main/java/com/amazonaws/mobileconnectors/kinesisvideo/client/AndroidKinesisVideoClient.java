@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledExecutorService;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.amazonaws.kinesisvideo.client.KinesisVideoClientConfiguration;
 import com.amazonaws.kinesisvideo.internal.client.NativeKinesisVideoClient;

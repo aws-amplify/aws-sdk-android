@@ -19,8 +19,8 @@ package com.amazonaws.kinesisvideo.auth;
 
 //import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 

@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName '1.0'
     }
@@ -26,7 +26,7 @@ dependencies {
     api (project(':aws-android-sdk-core')) {
         exclude group: 'com.google.android', module: 'android'
     }
-    implementation 'com.android.support.test:runner:1.0.2'
+    implementation 'androidx.test.ext:junit:1.1.1'
 
     testImplementation 'junit:junit:4.12'
 }

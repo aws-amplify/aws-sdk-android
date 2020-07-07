@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.client;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.entity.ContentType;
 

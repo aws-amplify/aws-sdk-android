@@ -19,15 +19,13 @@ package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceSink;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 import com.amazonaws.kinesisvideo.internal.producer.KinesisVideoProducerStream;
-
-import android.support.annotation.NonNull;
 
 /**
  * Implementation of the MediaSourceSink interface that pushes frames and stream configuration
