@@ -37,7 +37,7 @@ import com.amazonaws.kinesisvideo.common.function.Consumer;
 import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.socket.SocketFactory;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class ParallelSimpleHttpClient implements HttpClient {
     private static final String SPACE = " ";

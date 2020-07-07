@@ -4,8 +4,8 @@ import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 import com.amazonaws.kinesisvideo.internal.producer.KinesisVideoProducerStream;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Acts as a media source sink

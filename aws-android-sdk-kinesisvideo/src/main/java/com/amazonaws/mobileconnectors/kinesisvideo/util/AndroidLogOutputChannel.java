@@ -19,7 +19,7 @@ package com.amazonaws.mobileconnectors.kinesisvideo.util;
 
 import com.amazonaws.kinesisvideo.common.logging.OutputChannel;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 /**

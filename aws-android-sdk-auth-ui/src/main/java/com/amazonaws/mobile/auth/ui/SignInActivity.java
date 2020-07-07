@@ -19,20 +19,14 @@ package com.amazonaws.mobile.auth.ui;
 
 import android.content.Intent;
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.amazonaws.mobile.auth.core.IdentityManager;
 import com.amazonaws.mobile.auth.core.IdentityProvider;
 import com.amazonaws.mobile.auth.core.SignInResultHandler;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProviderResultHandler;
-
-import com.amazonaws.mobile.auth.core.signin.ui.buttons.SignInButton;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 /**
  * Activity for handling Sign-in with an Identity Provider.

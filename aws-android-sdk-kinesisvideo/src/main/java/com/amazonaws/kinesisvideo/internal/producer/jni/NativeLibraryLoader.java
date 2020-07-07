@@ -20,7 +20,7 @@ package com.amazonaws.kinesisvideo.internal.producer.jni;
 import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 //import javax.annotation.concurrent.ThreadSafe;
 
 /**

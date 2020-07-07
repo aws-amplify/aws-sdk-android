@@ -22,7 +22,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;

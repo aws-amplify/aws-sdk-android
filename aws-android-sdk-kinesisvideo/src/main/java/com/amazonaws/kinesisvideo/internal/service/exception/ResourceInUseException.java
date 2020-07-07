@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.internal.service.exception;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class ResourceInUseException extends RuntimeException {
     public ResourceInUseException(@NonNull final String message) {

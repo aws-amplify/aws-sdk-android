@@ -21,7 +21,7 @@ import com.amazonaws.kinesisvideo.producer.KinesisVideoFragmentAck;
 import com.amazonaws.kinesisvideo.producer.ProducerException;
 import com.amazonaws.kinesisvideo.producer.StreamCallbacks;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class DefaultStreamCallbacks implements StreamCallbacks {
     @Override

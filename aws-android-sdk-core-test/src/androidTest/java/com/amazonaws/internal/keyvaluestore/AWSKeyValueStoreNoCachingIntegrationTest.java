@@ -28,7 +28,7 @@ import static org.junit.Assert.assertNull;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSSessionCredentials;
@@ -50,7 +50,7 @@ public class AWSKeyValueStoreNoCachingIntegrationTest extends CoreIntegrationTes
 
     @BeforeClass
     public static void setupBeforeClass() {
-        sharedPreferencesForAuth = InstrumentationRegistry.getTargetContext()
+        sharedPreferencesForAuth = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences("com.amazonaws.android.auth", Context.MODE_PRIVATE);
     }
 
@@ -73,7 +73,7 @@ public class AWSKeyValueStoreNoCachingIntegrationTest extends CoreIntegrationTes
 
         credentialsProviders = new ArrayList<CognitoCachingCredentialsProvider>();
         credentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         credentialsProvider.setPersistenceEnabled(false);

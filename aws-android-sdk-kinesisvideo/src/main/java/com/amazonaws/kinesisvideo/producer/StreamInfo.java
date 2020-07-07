@@ -22,8 +22,8 @@ import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 
 //import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Stream information class.

@@ -16,7 +16,7 @@
 package com.amazonaws.mobileconnectors.iot;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
@@ -69,7 +69,7 @@ public final class MqttManagerIntegrationTest extends AWSTestBase {
 
     @BeforeClass
     public static void beforeSuite() throws JSONException {
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
         keyStorePath = appContext.getFilesDir().toString() + "/";
         System.out.println(keyStorePath);
         credentialsProvider = new CognitoCachingCredentialsProvider(

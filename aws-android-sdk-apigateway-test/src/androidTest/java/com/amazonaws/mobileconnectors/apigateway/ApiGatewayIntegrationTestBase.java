@@ -15,7 +15,7 @@
 
 package com.amazonaws.mobileconnectors.apigateway;
 
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.apigatewaytest.R;
 import com.amazonaws.testutils.AWSTestBase;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 public abstract class ApiGatewayIntegrationTestBase extends AWSTestBase {
 
     /** Package name in testconfiguration.json */
-    protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().
+    protected static final String PACKAGE_NAME = ApplicationProvider.getApplicationContext().
                                                     getResources().getString(R.string.package_name);
 
     public static JSONObject getPackageConfigure()  {

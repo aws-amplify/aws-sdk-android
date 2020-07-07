@@ -24,7 +24,7 @@ import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfigu
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.producer.DeviceInfo;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import java.util.List;
 
 /**

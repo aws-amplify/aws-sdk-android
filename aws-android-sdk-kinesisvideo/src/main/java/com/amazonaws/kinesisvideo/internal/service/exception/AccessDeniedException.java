@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.internal.service.exception;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class AccessDeniedException extends RuntimeException {
     public AccessDeniedException(@NonNull final String message) {
