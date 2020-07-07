@@ -37,6 +37,16 @@ commands:
             cd ~/code # This is a pre-defined location
             ~/gradle-<< parameters.gradle_version >>/bin/gradle wrapper
 
+  prepare_sdkmanager:
+    description: Accept SDK license and update SDK
+    steps:
+      - run:
+          name: Accept SDK license
+          command: sudo yes | sdkmanager --licenses
+      - run:
+          name: Update SDK
+          command: sudo yes | sdkmanager --update
+
   configure_aws:
     description: >-
       install aws cli and configure android aws release profile
@@ -178,26 +188,6 @@ commands:
             echo "title:$title"
             echo "content:$content"
             python3 ../CircleciScripts/create_pullrequest.py  "${GITHUB_BUMPVERSION_USER}" "${GITHUB_BUMPVERSION_TOKEN}" "$title" "$content" "$target_branch" "${GITHUB_BUMPVERSION_USER}:bump_version" ${bumpversion_repo_user} ${bumpversion_repo_name}
-  setup_android_platform23:
-    description: >-
-      setup android platform 23
-    steps:
-      - run:
-          name: download android platform 23
-          command: |
-            # This is required becaused AWSCore has a compileOnly
-            # dependency on API Level 23.
-            sudo yes | sdkmanager "platforms;android-23"
-  setup_android_platform18:
-    description: >-
-      setup android platform 18
-    steps:
-      - run:
-          name: download android platform 18
-          command: |
-            # This is required becaused AWSCore has a compileOnly
-            # dependency on API Level 18.
-            sudo yes | sdkmanager "platforms;android-18"
   skip_test_job:
     description: >-
       check if the test job can be skipped
@@ -297,14 +287,14 @@ jobs:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
+    resource_class: xlarge
     environment:
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx8192m
     steps:
       - skip_job_if_required
       - checkout
       - generate_gradle_wrapper
-      - setup_android_platform23
-      - setup_android_platform18
+      - prepare_sdkmanager
       - run:
           name: build the whole project
           command: |
@@ -319,79 +309,13 @@ jobs:
           paths:
             - lib
 
-  build_api10:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-27-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - skip_job_if_required
-      - checkout
-      - generate_gradle_wrapper
-      - run:
-          name: download android-10
-          command:
-            sudo yes | sdkmanager "platforms;android-10"
-      - run:
-          name: install python3-pip
-          command: |
-            sudo apt-get update
-            sudo apt-get -y install python3-pip
-      - run:
-          name: install json parser
-          command: sudo pip3 install demjson
-      - run:
-          name: update code for api10
-          command: |
-            python3 CircleciScripts/replace_android10.py "$(pwd)"
-            rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider18.java
-            rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider23.java
-            cat aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/AWSKeyValueStore.java
-      - run:
-          name: build the whole project
-          command: |
-            bash gradlew :aws-android-sdk-core:build  -x test
-
-  build_api18:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-27-alpha
-    environment:
-      JVM_OPTS: -Xmx3200m
-    steps:
-      - skip_job_if_required
-      - checkout
-      - generate_gradle_wrapper
-      - run:
-          name: download android-18
-          command:
-            sudo yes | sdkmanager "platforms;android-18"
-      - run:
-          name: install python3-pip
-          command: |
-            sudo apt-get update
-            sudo apt-get -y install python3-pip
-      - run:
-          name: install json parser
-          command: sudo pip3 install demjson
-      - run:
-          name: update code for API 18
-          command: |
-            python3 CircleciScripts/replace_android18.py "$(pwd)"
-            rm aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/KeyProvider23.java
-            cat aws-android-sdk-core/src/main/java/com/amazonaws/internal/keyvaluestore/AWSKeyValueStore.java
-      - run:
-          name: build the whole project
-          command: |
-            export ANDROID_API_LEVEL=18; bash gradlew :aws-android-sdk-core:build -x test
-
   unittest:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
+    resource_class: xlarge
     environment:
-      JVM_OPTS: -Xmx1024m
+      JVM_OPTS: -Xmx8192m
     steps:
       - set_enviroment_variables
       - override_test_job
@@ -399,8 +323,7 @@ jobs:
       - checkout
       - skip_test_job
       - generate_gradle_wrapper
-      - setup_android_platform23
-      - setup_android_platform18
+      - prepare_sdkmanager
       - run:
           name: run unit tests
           command: |
@@ -440,8 +363,9 @@ jobs:
   release_javadoc:
     docker:
       - image: circleci/android:api-27-alpha
+    resource_class: xlarge
     environment:
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx8192m
     steps:
       - skip_job_if_required
       - checkout
@@ -522,6 +446,7 @@ jobs:
     steps:
       - skip_job_if_required
       - checkout
+      - prepare_sdkmanager
       - configure_aws
       - set_enviroment_variables
       - run:
@@ -539,8 +464,7 @@ jobs:
       - run:
           name: Install Android build tools
           command: |
-            sudo yes | /usr/local/bin/sdkmanager "platforms;android-18" "platforms;android-21" "platforms;android-23" "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
-            /usr/local/bin/sdkmanager --update
+            sudo yes | sdkmanager "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
       - run:
           name: Install GPG
           command: |
@@ -701,7 +625,7 @@ jobs:
       - image: circleci/android@sha256:5cdc8626cc6f13efe5ed982cdcdb432b0472f8740fed8743a6461e025ad6cdfc
     resource_class: xlarge
     environment:
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx8192m
     steps:
       - skip_job_if_required
       - set_enviroment_variables
@@ -709,8 +633,7 @@ jobs:
       - checkout
       - skip_test_job
       - configure_aws
-      - setup_android_platform23
-      - setup_android_platform18
+      - prepare_sdkmanager
       - run:
           name: install python3.7
           command: |
@@ -767,8 +690,9 @@ jobs:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
+    resource_class: xlarge
     environment:
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx8192m
     steps:
       - skip_job_if_required
       - set_enviroment_variables
@@ -800,8 +724,9 @@ jobs:
     working_directory: ~/code
     docker:
       - image: circleci/android:api-27-alpha
+    resource_class: xlarge
     environment:
-      JVM_OPTS: -Xmx3200m
+      JVM_OPTS: -Xmx8192m
     steps:
       - skip_job_if_required
       - set_enviroment_variables
@@ -1030,8 +955,7 @@ jobs:
       - checkout
       - skip_test_job
       - configure_aws
-      - setup_android_platform23
-      - setup_android_platform18
+      - prepare_sdkmanager
       - run:
           name: install python3-pip
           command: |
@@ -1159,14 +1083,6 @@ workflows:
           filters:
             branches:
               ignore: bump_sdk_version
-      - build_api10:
-          filters:
-            branches:
-              ignore: bump_sdk_version
-      - build_api18:
-          filters:
-            branches:
-              ignore: bump_sdk_version
       - unittest:
           filters:
             branches:
@@ -1263,8 +1179,6 @@ workflows:
             - core
       - merge_to_main:
           requires:
-            - build_api10
-            - build_api18
             - build
             - unittest
             - post_integrationtest
@@ -1274,8 +1188,6 @@ workflows:
                 - develop
       - prepare_release_sdk:
           requires:
-            - build_api10
-            - build_api18
             - build
             - unittest
             - post_integrationtest
@@ -1286,18 +1198,6 @@ workflows:
   release_sdk:
     jobs:
       - build:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-      - build_api10:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^(release|beta)_v[0-9]+.[0-9]+.[0-9]+$/
-      - build_api18:
           filters:
             branches:
               ignore: /.*/
@@ -1404,8 +1304,7 @@ workflows:
           requires:
             - unittest
             - post_integrationtest
-            - build_api10
-            - build_api18
+            - build
           filters:
             branches:
               ignore: /.*/
