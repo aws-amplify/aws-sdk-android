@@ -3,6 +3,4 @@
            xmlns:amazon="http://schemas.amazon.com/apk/res/android"
            package="com.amazonaws.mobileconnectors.cognitoauth">
  
-     <application android:allowBackup="true"/>
-
  </manifest>
