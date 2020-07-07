@@ -21,56 +21,33 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
-import android.support.test.runner.AndroidJUnit4;
+
 import android.util.Base64;
 
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoIdentityProviderUnitTestBase;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.NewPasswordContinuation;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.*;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GenericHandler;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.utils.FlowTracker;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
-import com.amazonaws.services.cognitoidentityprovider.model.AttributeType;
 import com.amazonaws.services.cognitoidentityprovider.model.AuthenticationResultType;
-import com.amazonaws.services.cognitoidentityprovider.model.ChangePasswordRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.ChangePasswordResult;
-import com.amazonaws.services.cognitoidentityprovider.model.ConfirmSignUpResult;
-import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserAttributesRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.DeleteUserAttributesResult;
-import com.amazonaws.services.cognitoidentityprovider.model.GetUserRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.GetUserResult;
 import com.amazonaws.services.cognitoidentityprovider.model.InitiateAuthRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.InitiateAuthResult;
-import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterException;
-import com.amazonaws.services.cognitoidentityprovider.model.InternalErrorException;
-import com.amazonaws.services.cognitoidentityprovider.model.InvalidPasswordException;
 import com.amazonaws.services.cognitoidentityprovider.model.NewDeviceMetadataType;
-import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
-import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.UpdateUserAttributesResult;
 import com.amazonaws.util.StringUtils;
 
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -81,7 +58,6 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderSignInUserTest extends CognitoIdentityProviderUnitTestBase {
     private CognitoUserPool                       testPool;
     private CognitoUser                           testUser;

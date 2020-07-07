@@ -23,8 +23,8 @@ import com.amazonaws.kinesisvideo.producer.StreamCallbacks;
 import com.amazonaws.kinesisvideo.producer.StreamDescription;
 import com.amazonaws.kinesisvideo.producer.StreamInfo;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * Interface to the Kinesis Video Producer functionality

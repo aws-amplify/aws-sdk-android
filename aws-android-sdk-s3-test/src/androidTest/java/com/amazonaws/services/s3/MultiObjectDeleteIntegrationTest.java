@@ -15,7 +15,7 @@
 
 package com.amazonaws.services.s3;
 
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -148,7 +148,7 @@ public class MultiObjectDeleteIntegrationTest extends S3IntegrationTestBase {
 
         DeleteObjectsResultUnmarshaller unmarshaller = new Unmarshallers.DeleteObjectsResultUnmarshaller();
         DeleteObjectsResponse response = unmarshaller
-                .unmarshall(InstrumentationRegistry.getContext().getResources().getAssets().open("errorResponse.xml"));
+                .unmarshall(ApplicationProvider.getApplicationContext().getResources().getAssets().open("errorResponse.xml"));
 
         assertEquals(1, response.getDeletedObjects().size());
         assertEquals(1, response.getErrors().size());
@@ -169,7 +169,7 @@ public class MultiObjectDeleteIntegrationTest extends S3IntegrationTestBase {
     public void testFullServiceResponse() throws Exception {
         DeleteObjectsResultUnmarshaller unmarshaller = new Unmarshallers.DeleteObjectsResultUnmarshaller();
         DeleteObjectsResponse response = unmarshaller
-                .unmarshall(InstrumentationRegistry.getContext().getResources().getAssets().open("fullResponse.xml"));
+                .unmarshall(ApplicationProvider.getApplicationContext().getResources().getAssets().open("fullResponse.xml"));
 
         assertEquals(2, response.getDeletedObjects().size());
         assertEquals(1, response.getErrors().size());

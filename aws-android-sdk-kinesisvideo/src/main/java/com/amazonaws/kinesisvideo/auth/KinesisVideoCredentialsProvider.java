@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.auth;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 

@@ -17,24 +17,17 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.unauth;
 
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoIdentityProviderUnitTestBase;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions.*;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.*;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.utils.*;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
-import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidentityprovider.model.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import android.support.test.runner.AndroidJUnit4;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -45,7 +38,6 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderConfirmUserTest extends CognitoIdentityProviderUnitTestBase {
 	private ConfirmSignUpResult	   			TEST_CONFIRM_USER_RESPONSE = null;
 	private ResendConfirmationCodeResult    TEST_RESEND_CONFIRM_CODE_RESPONSE = null;

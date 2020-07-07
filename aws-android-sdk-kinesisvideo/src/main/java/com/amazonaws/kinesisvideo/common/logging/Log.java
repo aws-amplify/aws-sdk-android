@@ -20,7 +20,7 @@ package com.amazonaws.kinesisvideo.common.logging;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 

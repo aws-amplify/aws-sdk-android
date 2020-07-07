@@ -17,16 +17,14 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider.unauth;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoIdentityProviderUnitTestBase;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserAttributes;
-import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
@@ -36,16 +34,12 @@ import com.amazonaws.services.cognitoidentityprovider.model.SignUpRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SignUpResult;
 import com.amazonaws.services.cognitoidentityprovider.model.UnexpectedLambdaException;
 
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.security.KeyStore;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,7 +53,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProviderUnitTestBase {
 	// Constants
 	private CognitoUserAttributes          	TEST_IN_USER_ATTRIBUTES_LIST;
@@ -175,7 +168,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 		
 		// Test shared Pinpoint context
 		awsKeyValueStorageUtility = new AWSKeyValueStore(
-				InstrumentationRegistry.getTargetContext(),
+				ApplicationProvider.getApplicationContext(),
 				TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX,
 				true);
 		awsKeyValueStorageUtility.put("UNIQUE_ID_KEY", TEST_PP_ENDPOINT_1);
@@ -253,7 +246,7 @@ public class CognitoIdentityProviderUserPoolTest extends CognitoIdentityProvider
 	@Test
     public void signUpUserWithPPInCurrentThread() throws Exception {
 	    // Test shared Pinpoint context
-		InstrumentationRegistry.getTargetContext()
+		ApplicationProvider.getApplicationContext()
 				.getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE)
 				.edit()
 				.putString(PP_UNIQUE_ID_KEY, TEST_PP_ENDPOINT_1)

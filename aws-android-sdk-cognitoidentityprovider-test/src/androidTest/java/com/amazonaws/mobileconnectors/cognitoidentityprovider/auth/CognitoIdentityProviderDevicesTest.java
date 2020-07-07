@@ -22,7 +22,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
-import android.support.test.runner.AndroidJUnit4;
+
 import android.util.Base64;
 import android.util.Log;
 
@@ -47,7 +47,6 @@ import com.amazonaws.util.StringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -56,7 +55,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderDevicesTest extends CognitoIdentityProviderUnitTestBase {
 	private CognitoUserPool				   	testPool;
     private CognitoUser					   	testUser;

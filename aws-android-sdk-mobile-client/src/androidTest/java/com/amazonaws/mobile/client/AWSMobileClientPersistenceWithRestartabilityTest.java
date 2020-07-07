@@ -18,9 +18,9 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
@@ -51,7 +51,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -73,7 +72,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-@RunWith(AndroidJUnit4.class)
 public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileClientTestBase {
     private static final String TAG = AWSMobileClientPersistenceTest.class.getSimpleName();
 
@@ -157,7 +155,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
     @BeforeClass
     public static void beforeClass() throws Exception {
         setUpCredentials();
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
 
         final CountDownLatch latch = new CountDownLatch(1);
         AWSMobileClient.getInstance().initialize(appContext, new Callback<UserStateDetails>() {
@@ -190,7 +188,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
 
     @Before
     public void before() throws Exception {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
         auth = AWSMobileClient.getInstance();
         auth.signOut();
 
@@ -485,7 +483,7 @@ public class AWSMobileClientPersistenceWithRestartabilityTest extends AWSMobileC
                 new AccessToken(getValidJWT(3600L)),
                 new RefreshToken(getValidJWT(360000L)));
 
-        Context targetContext = InstrumentationRegistry.getTargetContext();
+        Context targetContext = ApplicationProvider.getApplicationContext();
 
         AWSKeyValueStore storeForHostedUI = new AWSKeyValueStore(
                 targetContext,

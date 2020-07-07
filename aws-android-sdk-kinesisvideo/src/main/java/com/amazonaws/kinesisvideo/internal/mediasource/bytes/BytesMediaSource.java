@@ -42,8 +42,8 @@ import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VERSION_ZERO;
 
 import java.nio.ByteBuffer;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSource;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
