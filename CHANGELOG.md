@@ -1,5 +1,14 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
+
+### New Features
+
+- **AWS Mobile Client**
+  - Added client metadata as optional parameter to various methods
+- **AWS IoT**
+  - Model updates
+
 ## [Release 2.16.12](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.12)
 
 ### New Features
