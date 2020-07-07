@@ -1,10 +1,8 @@
 # Using ProGuard with the AWS SDK for Android
 
-* R8 users receive ProGuard rules automatically.
-  See [the `aws-android-sdk-core` package](aws-android-sdk-core/src/main/resources/META-INF/proguard/amazon-sdk.pro) and
-  [R8 conventions](https://developer.android.com/studio/build/shrink-code).
-* ProGuard users should include [rules](aws-android-sdk-core/src/main/resources/META-INF/proguard/amazon-sdk.pro)
-  on their own.
+Users should receive ProGuard rules automatically.
+See [the `aws-android-sdk-core` package](aws-android-sdk-core/consumer-proguard-rules.pro) and
+[Android considerations](https://developer.android.com/studio/projects/android-library#Considerations).
 
 **Note:** The ProGuard configuration mentioned above applies to the AWS SDK for Android.
 If you are using other third-party libraries, you need to consult the documentation
