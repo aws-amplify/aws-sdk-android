@@ -20,6 +20,8 @@ import static org.junit.Assert.assertNull;
 import com.amazonaws.AmazonClientException;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -27,6 +29,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.StringReader;
 
+@RunWith(RobolectricTestRunner.class)
 public class VoidStaxUnmarshallerTest {
 
     /** Shared factory for creating XML event readers */

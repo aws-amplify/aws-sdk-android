@@ -22,6 +22,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -31,6 +33,7 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
+@RunWith(RobolectricTestRunner.class)
 public class StaxUnmarshallerContextTest {
     private static final XmlPullParserFactory factory;
     static {

@@ -23,9 +23,12 @@ import com.amazonaws.transform.Unmarshaller;
 import com.amazonaws.util.StringUtils;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.io.ByteArrayInputStream;
 
+@RunWith(RobolectricTestRunner.class)
 public class StaxResponseHandlerTest {
 
     @Test

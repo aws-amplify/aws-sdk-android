@@ -22,10 +22,6 @@ android {
     lintOptions {
         abortOnError false
     }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_6
-    }
 }
 
 devicefarm {
