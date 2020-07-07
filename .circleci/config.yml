@@ -96,8 +96,6 @@ commands:
             override_test_varaible_name=OVERRIDE_TEST_${pre_name}
             echo "export override_test_varaible_name='$override_test_varaible_name'" >> $BASH_ENV
 
-
-
   setup_emulator:
     description: >-
       setup emulator
@@ -105,10 +103,19 @@ commands:
       - run:
           name: Setup emulator
           command: |
-            echo y | sdkmanager "system-images;android-24;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
+            sudo yes | sdkmanager "build-tools;27.0.1"
+            sudo yes | sdkmanager "emulator"
+            sudo yes | sdkmanager "extras;android;m2repository"
+            sudo yes | sdkmanager "extras;google;m2repository"
+            sudo yes | sdkmanager "platform-tools"
+            sudo yes | sdkmanager "platforms;android-27"
+            sudo yes | sdkmanager "system-images;android-24;default;armeabi-v7a"
+            sudo echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
       - run:
           name: Launch emulator
-          command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -no-boot-anim -no-window -accel auto -verbose
+          command: |
+            export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib
+            $ANDROID_HOME/emulator/emulator -avd test -no-boot-anim -no-window -accel auto -verbose
           background: true
       - run:
           name: Launch logcat
@@ -1095,9 +1102,7 @@ workflows:
       - pre_integrationtest:
            filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: apigateway
           testmodule: aws-android-sdk-apigateway-test
@@ -1105,9 +1110,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: iot
           testmodule: aws-android-sdk-iot-test
@@ -1115,9 +1118,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: pinpoint
           testmodule: aws-android-sdk-pinpoint-test
@@ -1125,9 +1126,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: s3
           testmodule: aws-android-sdk-s3-test
@@ -1135,9 +1134,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: mobile-client
           testmodule: aws-android-sdk-mobile-client
@@ -1145,9 +1142,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: cognitoidentityprovider
           testmodule: aws-android-sdk-cognitoidentityprovider-test
@@ -1155,9 +1150,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - integrationtest:
           name: core
           testmodule: aws-android-sdk-core-test
@@ -1165,9 +1158,7 @@ workflows:
             - pre_integrationtest
           filters:
             branches:
-              only:
-                - main
-                - develop
+              ignore: bump_sdk_version
       - post_integrationtest:
           requires:
             - mobile-client
