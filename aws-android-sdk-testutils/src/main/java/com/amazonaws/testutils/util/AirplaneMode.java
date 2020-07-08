@@ -34,7 +34,7 @@ public final class AirplaneMode {
         setAirplaneMode(true);
     }
 
-    public static  void disable() {
+    public static void disable() {
         setAirplaneMode(false);
     }
 

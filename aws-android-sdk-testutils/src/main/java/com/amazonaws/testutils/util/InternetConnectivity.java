@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 public final class InternetConnectivity {
     private InternetConnectivity() {}
 
-    public static void goOnline() {
+    public synchronized static void goOnline() {
         RetryStrategies.linear(new RetryStrategies.Retryable() {
             @Override
             public void call() {
@@ -37,7 +37,7 @@ public final class InternetConnectivity {
         }, 3, 2);
     }
 
-    public static void goOffline() {
+    public synchronized static void goOffline() {
         RetryStrategies.linear(new RetryStrategies.Retryable() {
             @Override
             public void call() {
