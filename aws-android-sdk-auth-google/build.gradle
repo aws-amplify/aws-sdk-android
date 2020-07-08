@@ -17,9 +17,8 @@ android {
 
 dependencies {
     api project(':aws-android-sdk-auth-core')
-    api 'com.google.android.gms:play-services-auth:9.8.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-    testImplementation 'junit:junit:4.12'
+    api 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
 }
 

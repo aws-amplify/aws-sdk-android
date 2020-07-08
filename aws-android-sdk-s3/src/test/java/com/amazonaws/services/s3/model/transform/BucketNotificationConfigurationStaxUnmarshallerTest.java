@@ -26,13 +26,15 @@ import com.amazonaws.services.s3.model.TopicConfiguration;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.io.InputStream;
 import java.util.List;
 import java.util.Set;
 
+@RunWith(RobolectricTestRunner.class)
 public class BucketNotificationConfigurationStaxUnmarshallerTest {
-
     private static final String TOPIC_INPUT = "TopicConfiguration.xml";
     private static final String QUEUE_INPUT = "QueueConfiguration.xml";
     private static final String LAMBDA_INPUT = "LambdaConfiguration.xml";

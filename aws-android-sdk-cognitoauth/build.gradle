@@ -19,9 +19,7 @@ dependencies {
     api (project(':aws-android-sdk-core')) {
         exclude group: 'com.google.android', module: 'android'
     }
+    implementation 'androidx.browser:browser:1.2.0'
     implementation 'com.amazonaws:aws-android-sdk-cognitoidentityprovider-asf:1.0.0'
-    implementation 'androidx.browser:browser:1.0.0'
-
-    testImplementation 'junit:junit:4.12'
 }
 

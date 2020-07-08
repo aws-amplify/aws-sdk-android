@@ -9,7 +9,6 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
 
@@ -17,7 +16,7 @@ dependencies {
     api project(':aws-android-sdk-ddb')
     api project(':aws-android-sdk-s3')
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation 'org.easymock:easymock:3.1'
     testRuntimeOnly 'org.apache.httpcomponents:httpclient:4.5.12'
 }
