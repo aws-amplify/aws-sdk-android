@@ -116,8 +116,11 @@ public final class SubmitEventsIntegrationTest extends AWSTestBase {
         }
 
         // Once the device is back online, submitting the events should succeed;
-        // all should be submitted.
+        // all should be submitted. What's more, _all_ of the original events
+        // should be processed. We check this to ensure that none were lost, during
+        // the network interruption.
         InternetConnectivity.goOnline();
+        assertEventualEventCount(12);
         analyticsClient.submitEvents();
         assertEventualEventCount(0);
     }
