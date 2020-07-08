@@ -197,7 +197,13 @@ public abstract class AWSTestBase {
     }
 
     public static JSONObject  getPackageConfigure(String packageName) {
-        return getJSONConfiguration().getPackageConfigure(packageName);
+        JSONObject configuration = getJSONConfiguration().getPackageConfigure(packageName);
+        assertNotNull(
+            "No configuration for package " + packageName + ". Did you include a " +
+                "tesconfiguration.json with the test package?",
+            configuration
+        );
+        return configuration;
     }
 
     public static void setUpCredentials() {
