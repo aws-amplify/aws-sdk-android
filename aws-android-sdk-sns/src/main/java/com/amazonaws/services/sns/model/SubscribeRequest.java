@@ -21,10 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Prepares to subscribe an endpoint by sending the endpoint a confirmation
- * message. To actually create a subscription, the endpoint owner must call the
- * <code>ConfirmSubscription</code> action with the token from the confirmation
- * message. Confirmation tokens are valid for three days.
+ * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S
+ * or email, or if the endpoint and the topic are not in the same AWS account,
+ * the endpoint owner must the <code>ConfirmSubscription</code> action to
+ * confirm the subscription.
+ * </p>
+ * <p>
+ * You call the <code>ConfirmSubscription</code> action with the token from the
+ * subscription response. Confirmation tokens are valid for three days.
  * </p>
  * <p>
  * This action is throttled at 100 transactions per second (TPS).
@@ -98,14 +102,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * <code>http://</code>
+     * For the <code>http</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>http://</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>https</code> protocol, the endpoint is a URL beginning with
-     * <code>https://</code>
+     * For the <code>https</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>https://</code>
      * </p>
      * </li>
      * <li>
@@ -200,23 +204,17 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you have the subscription ARN returned, the response includes the ARN
-     * in all cases, even if the subscription is not yet confirmed.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * If you don't have the subscription ARN returned, in addition to the ARN
-     * for confirmed subscriptions, the response also includes the
-     * <code>pending subscription</code> ARN value for subscriptions that aren't
-     * yet confirmed. A subscription becomes confirmed when the subscriber calls
-     * the <code>ConfirmSubscription</code> action with a confirmation token.
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed. In
+     * addition to the ARN for confirmed subscriptions, the response also
+     * includes the <code>pending subscription</code> ARN value for
+     * subscriptions that aren't yet confirmed. A subscription becomes confirmed
+     * when the subscriber calls the <code>ConfirmSubscription</code> action
+     * with a confirmation token.
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * If you set this parameter to <code>true</code>, .
-     * </p>
+     * <p/>
      * <p>
      * The default value is <code>false</code>.
      * </p>
@@ -297,14 +295,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            For the <code>http</code> protocol, the endpoint is an URL
-     *            beginning with <code>http://</code>
+     *            For the <code>http</code> protocol, the (public) endpoint is a
+     *            URL beginning with <code>http://</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            For the <code>https</code> protocol, the endpoint is a URL
-     *            beginning with <code>https://</code>
+     *            For the <code>https</code> protocol, the (public) endpoint is
+     *            a URL beginning with <code>https://</code>
      *            </p>
      *            </li>
      *            <li>
@@ -728,14 +726,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * <code>http://</code>
+     * For the <code>http</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>http://</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>https</code> protocol, the endpoint is a URL beginning with
-     * <code>https://</code>
+     * For the <code>https</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>https://</code>
      * </p>
      * </li>
      * <li>
@@ -782,14 +780,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <ul>
      *         <li>
      *         <p>
-     *         For the <code>http</code> protocol, the endpoint is an URL
-     *         beginning with <code>http://</code>
+     *         For the <code>http</code> protocol, the (public) endpoint is a
+     *         URL beginning with <code>http://</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         For the <code>https</code> protocol, the endpoint is a URL
-     *         beginning with <code>https://</code>
+     *         For the <code>https</code> protocol, the (public) endpoint is a
+     *         URL beginning with <code>https://</code>
      *         </p>
      *         </li>
      *         <li>
@@ -842,14 +840,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * <code>http://</code>
+     * For the <code>http</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>http://</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>https</code> protocol, the endpoint is a URL beginning with
-     * <code>https://</code>
+     * For the <code>https</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>https://</code>
      * </p>
      * </li>
      * <li>
@@ -896,14 +894,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            For the <code>http</code> protocol, the endpoint is an URL
-     *            beginning with <code>http://</code>
+     *            For the <code>http</code> protocol, the (public) endpoint is a
+     *            URL beginning with <code>http://</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            For the <code>https</code> protocol, the endpoint is a URL
-     *            beginning with <code>https://</code>
+     *            For the <code>https</code> protocol, the (public) endpoint is
+     *            a URL beginning with <code>https://</code>
      *            </p>
      *            </li>
      *            <li>
@@ -956,14 +954,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * For the <code>http</code> protocol, the endpoint is an URL beginning with
-     * <code>http://</code>
+     * For the <code>http</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>http://</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>https</code> protocol, the endpoint is a URL beginning with
-     * <code>https://</code>
+     * For the <code>https</code> protocol, the (public) endpoint is a URL
+     * beginning with <code>https://</code>
      * </p>
      * </li>
      * <li>
@@ -1013,14 +1011,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            For the <code>http</code> protocol, the endpoint is an URL
-     *            beginning with <code>http://</code>
+     *            For the <code>http</code> protocol, the (public) endpoint is a
+     *            URL beginning with <code>http://</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            For the <code>https</code> protocol, the endpoint is a URL
-     *            beginning with <code>https://</code>
+     *            For the <code>https</code> protocol, the (public) endpoint is
+     *            a URL beginning with <code>https://</code>
      *            </p>
      *            </li>
      *            <li>
@@ -1426,23 +1424,17 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you have the subscription ARN returned, the response includes the ARN
-     * in all cases, even if the subscription is not yet confirmed.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * If you don't have the subscription ARN returned, in addition to the ARN
-     * for confirmed subscriptions, the response also includes the
-     * <code>pending subscription</code> ARN value for subscriptions that aren't
-     * yet confirmed. A subscription becomes confirmed when the subscriber calls
-     * the <code>ConfirmSubscription</code> action with a confirmation token.
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed. In
+     * addition to the ARN for confirmed subscriptions, the response also
+     * includes the <code>pending subscription</code> ARN value for
+     * subscriptions that aren't yet confirmed. A subscription becomes confirmed
+     * when the subscriber calls the <code>ConfirmSubscription</code> action
+     * with a confirmation token.
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * If you set this parameter to <code>true</code>, .
-     * </p>
+     * <p/>
      * <p>
      * The default value is <code>false</code>.
      * </p>
@@ -1455,25 +1447,18 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <ul>
      *         <li>
      *         <p>
-     *         If you have the subscription ARN returned, the response includes
-     *         the ARN in all cases, even if the subscription is not yet
-     *         confirmed.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         If you don't have the subscription ARN returned, in addition to
-     *         the ARN for confirmed subscriptions, the response also includes
-     *         the <code>pending subscription</code> ARN value for subscriptions
+     *         If you set this parameter to <code>true</code>, the response
+     *         includes the ARN in all cases, even if the subscription is not
+     *         yet confirmed. In addition to the ARN for confirmed
+     *         subscriptions, the response also includes the
+     *         <code>pending subscription</code> ARN value for subscriptions
      *         that aren't yet confirmed. A subscription becomes confirmed when
      *         the subscriber calls the <code>ConfirmSubscription</code> action
      *         with a confirmation token.
      *         </p>
      *         </li>
      *         </ul>
-     *         <p>
-     *         If you set this parameter to <code>true</code>, .
-     *         </p>
+     *         <p/>
      *         <p>
      *         The default value is <code>false</code>.
      *         </p>
@@ -1491,23 +1476,17 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you have the subscription ARN returned, the response includes the ARN
-     * in all cases, even if the subscription is not yet confirmed.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * If you don't have the subscription ARN returned, in addition to the ARN
-     * for confirmed subscriptions, the response also includes the
-     * <code>pending subscription</code> ARN value for subscriptions that aren't
-     * yet confirmed. A subscription becomes confirmed when the subscriber calls
-     * the <code>ConfirmSubscription</code> action with a confirmation token.
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed. In
+     * addition to the ARN for confirmed subscriptions, the response also
+     * includes the <code>pending subscription</code> ARN value for
+     * subscriptions that aren't yet confirmed. A subscription becomes confirmed
+     * when the subscriber calls the <code>ConfirmSubscription</code> action
+     * with a confirmation token.
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * If you set this parameter to <code>true</code>, .
-     * </p>
+     * <p/>
      * <p>
      * The default value is <code>false</code>.
      * </p>
@@ -1520,25 +1499,18 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <ul>
      *         <li>
      *         <p>
-     *         If you have the subscription ARN returned, the response includes
-     *         the ARN in all cases, even if the subscription is not yet
-     *         confirmed.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         If you don't have the subscription ARN returned, in addition to
-     *         the ARN for confirmed subscriptions, the response also includes
-     *         the <code>pending subscription</code> ARN value for subscriptions
+     *         If you set this parameter to <code>true</code>, the response
+     *         includes the ARN in all cases, even if the subscription is not
+     *         yet confirmed. In addition to the ARN for confirmed
+     *         subscriptions, the response also includes the
+     *         <code>pending subscription</code> ARN value for subscriptions
      *         that aren't yet confirmed. A subscription becomes confirmed when
      *         the subscriber calls the <code>ConfirmSubscription</code> action
      *         with a confirmation token.
      *         </p>
      *         </li>
      *         </ul>
-     *         <p>
-     *         If you set this parameter to <code>true</code>, .
-     *         </p>
+     *         <p/>
      *         <p>
      *         The default value is <code>false</code>.
      *         </p>
@@ -1556,23 +1528,17 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you have the subscription ARN returned, the response includes the ARN
-     * in all cases, even if the subscription is not yet confirmed.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * If you don't have the subscription ARN returned, in addition to the ARN
-     * for confirmed subscriptions, the response also includes the
-     * <code>pending subscription</code> ARN value for subscriptions that aren't
-     * yet confirmed. A subscription becomes confirmed when the subscriber calls
-     * the <code>ConfirmSubscription</code> action with a confirmation token.
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed. In
+     * addition to the ARN for confirmed subscriptions, the response also
+     * includes the <code>pending subscription</code> ARN value for
+     * subscriptions that aren't yet confirmed. A subscription becomes confirmed
+     * when the subscriber calls the <code>ConfirmSubscription</code> action
+     * with a confirmation token.
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * If you set this parameter to <code>true</code>, .
-     * </p>
+     * <p/>
      * <p>
      * The default value is <code>false</code>.
      * </p>
@@ -1585,26 +1551,18 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            If you have the subscription ARN returned, the response
+     *            If you set this parameter to <code>true</code>, the response
      *            includes the ARN in all cases, even if the subscription is not
-     *            yet confirmed.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            If you don't have the subscription ARN returned, in addition
-     *            to the ARN for confirmed subscriptions, the response also
-     *            includes the <code>pending subscription</code> ARN value for
-     *            subscriptions that aren't yet confirmed. A subscription
-     *            becomes confirmed when the subscriber calls the
-     *            <code>ConfirmSubscription</code> action with a confirmation
-     *            token.
+     *            yet confirmed. In addition to the ARN for confirmed
+     *            subscriptions, the response also includes the
+     *            <code>pending subscription</code> ARN value for subscriptions
+     *            that aren't yet confirmed. A subscription becomes confirmed
+     *            when the subscriber calls the <code>ConfirmSubscription</code>
+     *            action with a confirmation token.
      *            </p>
      *            </li>
      *            </ul>
-     *            <p>
-     *            If you set this parameter to <code>true</code>, .
-     *            </p>
+     *            <p/>
      *            <p>
      *            The default value is <code>false</code>.
      *            </p>
@@ -1622,23 +1580,17 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <ul>
      * <li>
      * <p>
-     * If you have the subscription ARN returned, the response includes the ARN
-     * in all cases, even if the subscription is not yet confirmed.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * If you don't have the subscription ARN returned, in addition to the ARN
-     * for confirmed subscriptions, the response also includes the
-     * <code>pending subscription</code> ARN value for subscriptions that aren't
-     * yet confirmed. A subscription becomes confirmed when the subscriber calls
-     * the <code>ConfirmSubscription</code> action with a confirmation token.
+     * If you set this parameter to <code>true</code>, the response includes the
+     * ARN in all cases, even if the subscription is not yet confirmed. In
+     * addition to the ARN for confirmed subscriptions, the response also
+     * includes the <code>pending subscription</code> ARN value for
+     * subscriptions that aren't yet confirmed. A subscription becomes confirmed
+     * when the subscriber calls the <code>ConfirmSubscription</code> action
+     * with a confirmation token.
      * </p>
      * </li>
      * </ul>
-     * <p>
-     * If you set this parameter to <code>true</code>, .
-     * </p>
+     * <p/>
      * <p>
      * The default value is <code>false</code>.
      * </p>
@@ -1654,26 +1606,18 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <ul>
      *            <li>
      *            <p>
-     *            If you have the subscription ARN returned, the response
+     *            If you set this parameter to <code>true</code>, the response
      *            includes the ARN in all cases, even if the subscription is not
-     *            yet confirmed.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            If you don't have the subscription ARN returned, in addition
-     *            to the ARN for confirmed subscriptions, the response also
-     *            includes the <code>pending subscription</code> ARN value for
-     *            subscriptions that aren't yet confirmed. A subscription
-     *            becomes confirmed when the subscriber calls the
-     *            <code>ConfirmSubscription</code> action with a confirmation
-     *            token.
+     *            yet confirmed. In addition to the ARN for confirmed
+     *            subscriptions, the response also includes the
+     *            <code>pending subscription</code> ARN value for subscriptions
+     *            that aren't yet confirmed. A subscription becomes confirmed
+     *            when the subscriber calls the <code>ConfirmSubscription</code>
+     *            action with a confirmation token.
      *            </p>
      *            </li>
      *            </ul>
-     *            <p>
-     *            If you set this parameter to <code>true</code>, .
-     *            </p>
+     *            <p/>
      *            <p>
      *            The default value is <code>false</code>.
      *            </p>
