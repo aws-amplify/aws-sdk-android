@@ -33,8 +33,9 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * -endpoint|entity-recognizer-endpoint)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      */
     private String endpointArn;
 
@@ -58,8 +59,9 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * -endpoint|entity-recognizer-endpoint)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @return <p>
      *         The Amazon Resource Number (ARN) of the endpoint being updated.
@@ -77,8 +79,9 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * -endpoint|entity-recognizer-endpoint)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param endpointArn <p>
      *            The Amazon Resource Number (ARN) of the endpoint being
@@ -100,8 +103,9 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * -endpoint|entity-recognizer-endpoint)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param endpointArn <p>
      *            The Amazon Resource Number (ARN) of the endpoint being

@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The specified name is already in use. Use a different name and try your
- * request again.
+ * The specified resource name is already in use. Use a different name and try
+ * your request again.
  * </p>
  */
 public class ResourceInUseException extends AmazonServiceException {
