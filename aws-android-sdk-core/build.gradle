@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion AndroidSdk.COMPILE
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion AndroidSdk.MINIMUM
+        targetSdkVersion AndroidSdk.TARGET
         versionCode 1
         versionName '1.0'
 

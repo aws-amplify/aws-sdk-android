@@ -1,11 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion AndroidSdk.COMPILE
 
     defaultConfig {
-        minSdkVersion 18 // UIAutomator, etc.
-        targetSdkVersion 28
+        minSdkVersion AndroidSdk.MINIMUM_TEST
+        targetSdkVersion AndroidSdk.TARGET
         versionCode 1
         versionName '1.0'
     }
