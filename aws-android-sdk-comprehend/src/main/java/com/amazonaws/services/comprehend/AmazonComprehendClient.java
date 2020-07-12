@@ -689,9 +689,9 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Creates a new document classifier that you can use to categorize
-     * documents. To create a classifier you provide a set of training documents
-     * that labeled with the categories that you want to use. After the
-     * classifier is trained you can use it to categorize a set of labeled
+     * documents. To create a classifier, you provide a set of training
+     * documents that labeled with the categories that you want to use. After
+     * the classifier is trained you can use it to categorize a set of labeled
      * documents into the categories. For more information, see
      * <a>how-document-classification</a>.
      * </p>
@@ -1577,6 +1577,7 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
      * @return detectEntitiesResult The response from the DetectEntities service
      *         method, as returned by Amazon Comprehend.
      * @throws InvalidRequestException
+     * @throws ResourceUnavailableException
      * @throws TextSizeLimitExceededException
      * @throws UnsupportedLanguageException
      * @throws InternalServerException

@@ -44,10 +44,36 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * same language.
      * </p>
      * <p>
+     * If your request includes the endpoint for a custom entity recognition
+     * model, Amazon Comprehend uses the language of your custom model, and it
+     * ignores any language code that you specify here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      */
     private String languageCode;
+
+    /**
+     * <p>
+     * The Amazon Resource Name of an endpoint that is associated with a custom
+     * entity recognition model. Provide an endpoint if you want to detect
+     * entities by using your own custom model instead of the default model that
+     * is used by Amazon Comprehend.
+     * </p>
+     * <p>
+     * If you specify an endpoint, Amazon Comprehend uses the language of your
+     * custom model, and it ignores any language code that you provide in your
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     */
+    private String endpointArn;
 
     /**
      * <p>
@@ -116,6 +142,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * same language.
      * </p>
      * <p>
+     * If your request includes the endpoint for a custom entity recognition
+     * model, Amazon Comprehend uses the language of your custom model, and it
+     * ignores any language code that you specify here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
@@ -123,6 +154,12 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *         The language of the input documents. You can specify any of the
      *         primary languages supported by Amazon Comprehend. All documents
      *         must be in the same language.
+     *         </p>
+     *         <p>
+     *         If your request includes the endpoint for a custom entity
+     *         recognition model, Amazon Comprehend uses the language of your
+     *         custom model, and it ignores any language code that you specify
+     *         here.
      *         </p>
      * @see LanguageCode
      */
@@ -137,6 +174,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * same language.
      * </p>
      * <p>
+     * If your request includes the endpoint for a custom entity recognition
+     * model, Amazon Comprehend uses the language of your custom model, and it
+     * ignores any language code that you specify here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
@@ -144,6 +186,12 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *            The language of the input documents. You can specify any of
      *            the primary languages supported by Amazon Comprehend. All
      *            documents must be in the same language.
+     *            </p>
+     *            <p>
+     *            If your request includes the endpoint for a custom entity
+     *            recognition model, Amazon Comprehend uses the language of your
+     *            custom model, and it ignores any language code that you
+     *            specify here.
      *            </p>
      * @see LanguageCode
      */
@@ -158,6 +206,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * same language.
      * </p>
      * <p>
+     * If your request includes the endpoint for a custom entity recognition
+     * model, Amazon Comprehend uses the language of your custom model, and it
+     * ignores any language code that you specify here.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -168,6 +221,12 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *            The language of the input documents. You can specify any of
      *            the primary languages supported by Amazon Comprehend. All
      *            documents must be in the same language.
+     *            </p>
+     *            <p>
+     *            If your request includes the endpoint for a custom entity
+     *            recognition model, Amazon Comprehend uses the language of your
+     *            custom model, and it ignores any language code that you
+     *            specify here.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -185,6 +244,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * same language.
      * </p>
      * <p>
+     * If your request includes the endpoint for a custom entity recognition
+     * model, Amazon Comprehend uses the language of your custom model, and it
+     * ignores any language code that you specify here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>en, es, fr, de, it, pt, ar, hi, ja, ko, zh, zh-TW
      *
@@ -192,6 +256,12 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *            The language of the input documents. You can specify any of
      *            the primary languages supported by Amazon Comprehend. All
      *            documents must be in the same language.
+     *            </p>
+     *            <p>
+     *            If your request includes the endpoint for a custom entity
+     *            recognition model, Amazon Comprehend uses the language of your
+     *            custom model, and it ignores any language code that you
+     *            specify here.
      *            </p>
      * @see LanguageCode
      */
@@ -206,6 +276,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      * same language.
      * </p>
      * <p>
+     * If your request includes the endpoint for a custom entity recognition
+     * model, Amazon Comprehend uses the language of your custom model, and it
+     * ignores any language code that you specify here.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -217,12 +292,131 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
      *            the primary languages supported by Amazon Comprehend. All
      *            documents must be in the same language.
      *            </p>
+     *            <p>
+     *            If your request includes the endpoint for a custom entity
+     *            recognition model, Amazon Comprehend uses the language of your
+     *            custom model, and it ignores any language code that you
+     *            specify here.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see LanguageCode
      */
     public DetectEntitiesRequest withLanguageCode(LanguageCode languageCode) {
         this.languageCode = languageCode.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name of an endpoint that is associated with a custom
+     * entity recognition model. Provide an endpoint if you want to detect
+     * entities by using your own custom model instead of the default model that
+     * is used by Amazon Comprehend.
+     * </p>
+     * <p>
+     * If you specify an endpoint, Amazon Comprehend uses the language of your
+     * custom model, and it ignores any language code that you provide in your
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name of an endpoint that is associated with a
+     *         custom entity recognition model. Provide an endpoint if you want
+     *         to detect entities by using your own custom model instead of the
+     *         default model that is used by Amazon Comprehend.
+     *         </p>
+     *         <p>
+     *         If you specify an endpoint, Amazon Comprehend uses the language
+     *         of your custom model, and it ignores any language code that you
+     *         provide in your request.
+     *         </p>
+     */
+    public String getEndpointArn() {
+        return endpointArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name of an endpoint that is associated with a custom
+     * entity recognition model. Provide an endpoint if you want to detect
+     * entities by using your own custom model instead of the default model that
+     * is used by Amazon Comprehend.
+     * </p>
+     * <p>
+     * If you specify an endpoint, Amazon Comprehend uses the language of your
+     * custom model, and it ignores any language code that you provide in your
+     * request.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param endpointArn <p>
+     *            The Amazon Resource Name of an endpoint that is associated
+     *            with a custom entity recognition model. Provide an endpoint if
+     *            you want to detect entities by using your own custom model
+     *            instead of the default model that is used by Amazon
+     *            Comprehend.
+     *            </p>
+     *            <p>
+     *            If you specify an endpoint, Amazon Comprehend uses the
+     *            language of your custom model, and it ignores any language
+     *            code that you provide in your request.
+     *            </p>
+     */
+    public void setEndpointArn(String endpointArn) {
+        this.endpointArn = endpointArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name of an endpoint that is associated with a custom
+     * entity recognition model. Provide an endpoint if you want to detect
+     * entities by using your own custom model instead of the default model that
+     * is used by Amazon Comprehend.
+     * </p>
+     * <p>
+     * If you specify an endpoint, Amazon Comprehend uses the language of your
+     * custom model, and it ignores any language code that you provide in your
+     * request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
+     * -recognizer-endpoint/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param endpointArn <p>
+     *            The Amazon Resource Name of an endpoint that is associated
+     *            with a custom entity recognition model. Provide an endpoint if
+     *            you want to detect entities by using your own custom model
+     *            instead of the default model that is used by Amazon
+     *            Comprehend.
+     *            </p>
+     *            <p>
+     *            If you specify an endpoint, Amazon Comprehend uses the
+     *            language of your custom model, and it ignores any language
+     *            code that you provide in your request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DetectEntitiesRequest withEndpointArn(String endpointArn) {
+        this.endpointArn = endpointArn;
         return this;
     }
 
@@ -240,7 +434,9 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
         if (getText() != null)
             sb.append("Text: " + getText() + ",");
         if (getLanguageCode() != null)
-            sb.append("LanguageCode: " + getLanguageCode());
+            sb.append("LanguageCode: " + getLanguageCode() + ",");
+        if (getEndpointArn() != null)
+            sb.append("EndpointArn: " + getEndpointArn());
         sb.append("}");
         return sb.toString();
     }
@@ -253,6 +449,8 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageCode() == null) ? 0 : getLanguageCode().hashCode());
+        hashCode = prime * hashCode
+                + ((getEndpointArn() == null) ? 0 : getEndpointArn().hashCode());
         return hashCode;
     }
 
@@ -275,6 +473,11 @@ public class DetectEntitiesRequest extends AmazonWebServiceRequest implements Se
             return false;
         if (other.getLanguageCode() != null
                 && other.getLanguageCode().equals(this.getLanguageCode()) == false)
+            return false;
+        if (other.getEndpointArn() == null ^ this.getEndpointArn() == null)
+            return false;
+        if (other.getEndpointArn() != null
+                && other.getEndpointArn().equals(this.getEndpointArn()) == false)
             return false;
         return true;
     }
