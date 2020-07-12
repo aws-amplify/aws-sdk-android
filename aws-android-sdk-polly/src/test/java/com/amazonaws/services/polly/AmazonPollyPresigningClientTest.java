@@ -30,11 +30,11 @@ import com.amazonaws.services.polly.model.SynthesizeSpeechPresignRequest;
 import com.amazonaws.services.polly.model.TextType;
 import com.amazonaws.services.polly.model.VoiceId;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -47,8 +47,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@RunWith(RobolectricTestRunner.class)
 public class AmazonPollyPresigningClientTest {
-
     private static final String HOST = "localhost";
     private static final String SCHEME = "http";
     private static final String RESOURCE_PATH = "/v1/speech";
@@ -125,8 +125,7 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        List<NameValuePair> params = URLEncodedUtils.parse(uri, "UTF-8");
-        for (NameValuePair pair : params) {
+        for (QueryParameters.Pair pair : QueryParameters.parse(uri)) {
             Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
                     expectedQueryParameterKeys.contains(pair.getName()));
             expectedQueryParameterKeys.remove(pair.getName());
@@ -154,8 +153,7 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        List<NameValuePair> params = URLEncodedUtils.parse(uri, "UTF-8");
-        for (NameValuePair pair : params) {
+        for (QueryParameters.Pair pair : QueryParameters.parse(uri)) {
             Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
                     expectedQueryParameterKeys.contains(pair.getName()));
             if (LEXICON_NAME_KEY.equals(pair.getName())) {
@@ -183,8 +181,7 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        List<NameValuePair> params = URLEncodedUtils.parse(uri, "UTF-8");
-        for (NameValuePair pair : params) {
+        for (QueryParameters.Pair pair : QueryParameters.parse(uri)) {
             Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
                     expectedQueryParameterKeys.contains(pair.getName()));
             expectedQueryParameterKeys.remove(pair.getName());
@@ -215,5 +212,40 @@ public class AmazonPollyPresigningClientTest {
         Assert.assertEquals(HOST, uri.getHost());
         Assert.assertEquals(PORT, uri.getPort());
         Assert.assertEquals(RESOURCE_PATH, uri.getPath());
+    }
+
+    private static final class QueryParameters {
+        private QueryParameters() {}
+
+        static List<Pair> parse(URI uri) {
+            List<Pair> list = new ArrayList<>();
+            String query = uri.getQuery();
+            if (query == null) {
+                return Collections.emptyList();
+            }
+            for (String pair : query.split("&")) {
+                if (pair != null && pair.length() > 0) {
+                    String[] parts = pair.split("=");
+                    list.add(new Pair(parts[0], parts[1]));
+                }
+            }
+            return list;
+        }
+
+        private static final class Pair {
+            private final android.util.Pair<String, String> androidPair;
+
+            private Pair(String key, String value) {
+                this.androidPair = android.util.Pair.create(key, value);
+            }
+
+            String getName() {
+                return androidPair.first;
+            }
+
+            String getValue() {
+                return androidPair.second;
+            }
+        }
     }
 }

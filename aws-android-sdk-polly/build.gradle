@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         minSdkVersion 15
@@ -17,6 +16,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-all:1.10.19'
-    testRuntimeOnly 'org.apache.httpcomponents:httpclient:4.5.12'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
 }
 
