@@ -17,7 +17,9 @@ package com.amazonaws.internal.keyvaluestore;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.security.KeyPairGeneratorSpec;
+import androidx.annotation.RequiresApi;
 
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
@@ -52,6 +54,7 @@ import javax.security.auth.x500.X500Principal;
  * in SharedPreferences. The AES key is returned in the
  * getKey call.
  */
+@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class KeyProvider18 implements KeyProvider {
 
     private static final Log logger = LogFactory.getLog(KeyProvider18.class);

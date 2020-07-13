@@ -19,6 +19,11 @@
       <version>2.8.6</version>
     </dependency>
     <dependency>
+      <groupId>androidx.annotation</groupId>
+      <artifactId>annotation</artifactId>
+      <version>1.1.0</version>
+    </dependency>
+    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
       <version>2.11.0</version>

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
            xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+           xmlns:tools="http://schemas.android.com/tools"
            package="com.amazonaws.mobile.client">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
- 
+
+    <!--
+         The hosted UI requires API 16, for Custom Tabs support in the
+         AnrdoidX Browser package. That's an optional feature, so don't
+         bump the API level just for that.
+    -->
+    <uses-sdk tools:overrideLibrary="androidx.browser, com.amazonaws.mobileconnectors.cognitoauth"  />
 </manifest>
+

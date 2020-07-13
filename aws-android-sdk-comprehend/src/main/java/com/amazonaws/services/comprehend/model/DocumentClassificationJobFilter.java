@@ -51,7 +51,7 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted after the specified time. Jobs
+     * processing. Returns only jobs submitted before the specified time. Jobs
      * are returned in ascending order, oldest to newest.
      * </p>
      */
@@ -60,7 +60,7 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted before the specified time. Jobs
+     * processing. Returns only jobs submitted after the specified time. Jobs
      * are returned in descending order, newest to oldest.
      * </p>
      */
@@ -238,13 +238,13 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted after the specified time. Jobs
+     * processing. Returns only jobs submitted before the specified time. Jobs
      * are returned in ascending order, oldest to newest.
      * </p>
      *
      * @return <p>
      *         Filters the list of jobs based on the time that the job was
-     *         submitted for processing. Returns only jobs submitted after the
+     *         submitted for processing. Returns only jobs submitted before the
      *         specified time. Jobs are returned in ascending order, oldest to
      *         newest.
      *         </p>
@@ -256,13 +256,13 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted after the specified time. Jobs
+     * processing. Returns only jobs submitted before the specified time. Jobs
      * are returned in ascending order, oldest to newest.
      * </p>
      *
      * @param submitTimeBefore <p>
      *            Filters the list of jobs based on the time that the job was
-     *            submitted for processing. Returns only jobs submitted after
+     *            submitted for processing. Returns only jobs submitted before
      *            the specified time. Jobs are returned in ascending order,
      *            oldest to newest.
      *            </p>
@@ -274,7 +274,7 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted after the specified time. Jobs
+     * processing. Returns only jobs submitted before the specified time. Jobs
      * are returned in ascending order, oldest to newest.
      * </p>
      * <p>
@@ -283,7 +283,7 @@ public class DocumentClassificationJobFilter implements Serializable {
      *
      * @param submitTimeBefore <p>
      *            Filters the list of jobs based on the time that the job was
-     *            submitted for processing. Returns only jobs submitted after
+     *            submitted for processing. Returns only jobs submitted before
      *            the specified time. Jobs are returned in ascending order,
      *            oldest to newest.
      *            </p>
@@ -298,13 +298,13 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted before the specified time. Jobs
+     * processing. Returns only jobs submitted after the specified time. Jobs
      * are returned in descending order, newest to oldest.
      * </p>
      *
      * @return <p>
      *         Filters the list of jobs based on the time that the job was
-     *         submitted for processing. Returns only jobs submitted before the
+     *         submitted for processing. Returns only jobs submitted after the
      *         specified time. Jobs are returned in descending order, newest to
      *         oldest.
      *         </p>
@@ -316,13 +316,13 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted before the specified time. Jobs
+     * processing. Returns only jobs submitted after the specified time. Jobs
      * are returned in descending order, newest to oldest.
      * </p>
      *
      * @param submitTimeAfter <p>
      *            Filters the list of jobs based on the time that the job was
-     *            submitted for processing. Returns only jobs submitted before
+     *            submitted for processing. Returns only jobs submitted after
      *            the specified time. Jobs are returned in descending order,
      *            newest to oldest.
      *            </p>
@@ -334,7 +334,7 @@ public class DocumentClassificationJobFilter implements Serializable {
     /**
      * <p>
      * Filters the list of jobs based on the time that the job was submitted for
-     * processing. Returns only jobs submitted before the specified time. Jobs
+     * processing. Returns only jobs submitted after the specified time. Jobs
      * are returned in descending order, newest to oldest.
      * </p>
      * <p>
@@ -343,7 +343,7 @@ public class DocumentClassificationJobFilter implements Serializable {
      *
      * @param submitTimeAfter <p>
      *            Filters the list of jobs based on the time that the job was
-     *            submitted for processing. Returns only jobs submitted before
+     *            submitted for processing. Returns only jobs submitted after
      *            the specified time. Jobs are returned in descending order,
      *            newest to oldest.
      *            </p>

@@ -22,9 +22,6 @@ import com.amazonaws.metrics.MetricFilterInputStream;
 import com.amazonaws.services.s3.metrics.S3ServiceMetric;
 
 import com.amazonaws.logging.LogFactory;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.conn.EofSensorInputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,31 +33,12 @@ import java.io.InputStream;
  * an HTTP connection to the S3 object.
  */
 public class S3ObjectInputStream extends SdkFilterInputStream {
-
-    private final HttpRequestBase httpRequest;
-
     private boolean eof;
 
     public S3ObjectInputStream(InputStream in) {
-        this(in, null);
-    }
-
-    @Deprecated
-    public S3ObjectInputStream(InputStream in, HttpRequestBase httpRequest) {
-        this(in, httpRequest, wrapWithByteCounting(in));
-    }
-
-    @Deprecated
-    public S3ObjectInputStream(
-            InputStream in,
-            HttpRequestBase httpRequest,
-            boolean collectMetrics) {
-
-        super(collectMetrics
+        super(wrapWithByteCounting(in)
                 ? new MetricFilterInputStream(S3ServiceMetric.S3_DOWLOAD_THROUGHPUT, in)
                 : in);
-
-        this.httpRequest = httpRequest;
     }
 
     /**
@@ -85,17 +63,6 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
     /**
      * {@inheritDoc} Aborts the underlying http request without reading any more
      * data and closes the stream.
-     * <p>
-     * By default Apache {@link HttpClient} tries to reuse http connections by
-     * reading to the end of an attached input stream on
-     * {@link InputStream#close()}. This is efficient from a socket pool
-     * management perspective, but for objects with large payloads can incur
-     * significant overhead while bytes are read from s3 and discarded. It's up
-     * to clients to decide when to take the performance hit implicit in not
-     * reusing an http connection in order to not read unnecessary information
-     * from S3.
-     *
-     * @see EofSensorInputStream
      */
     @Override
     public void abort() {
@@ -113,14 +80,6 @@ public class S3ObjectInputStream extends SdkFilterInputStream {
             // expected from some implementations because the stream is closed
             LogFactory.getLog(getClass()).debug("FYI", e);
         }
-    }
-
-    /**
-     * Returns the http request from which this input stream is derived.
-     */
-    @Deprecated
-    public HttpRequestBase getHttpRequest() {
-        return httpRequest;
     }
 
     /**

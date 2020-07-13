@@ -48,8 +48,8 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      */
     private String modelArn;
 
@@ -166,8 +166,8 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @return <p>
      *         The Amazon Resource Number (ARN) of the model to which the
@@ -187,8 +187,8 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param modelArn <p>
      *            The Amazon Resource Number (ARN) of the model to which the
@@ -211,8 +211,8 @@ public class CreateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
-     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
      *
      * @param modelArn <p>
      *            The Amazon Resource Number (ARN) of the model to which the

@@ -5,21 +5,18 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 9
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
 
         consumerProguardFiles 'consumer-proguard-rules.pro'
     }
-
-    lintOptions {
-        warning 'NewApi' // Guarding issues in KeyValueStore
-    }
 }
 
 dependencies {
     api 'com.google.code.gson:gson:2.8.6'
+    implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.11.0'
 
     testImplementation 'joda-time:joda-time:2.8.1'

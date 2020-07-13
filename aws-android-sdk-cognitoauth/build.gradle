@@ -4,14 +4,15 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16 // androidx.browser
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
     }
 
-    lintOptions {
-        abortOnError false
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 

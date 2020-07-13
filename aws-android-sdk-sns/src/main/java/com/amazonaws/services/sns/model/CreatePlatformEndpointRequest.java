@@ -22,12 +22,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates an endpoint for a device and mobile app on one of the supported push
- * notification services, such as FCM and APNS.
- * <code>CreatePlatformEndpoint</code> requires the PlatformApplicationArn that
- * is returned from <code>CreatePlatformApplication</code>. The EndpointArn that
- * is returned when using <code>CreatePlatformEndpoint</code> can then be used
- * by the <code>Publish</code> action to send a message to a mobile app or by
- * the <code>Subscribe</code> action for subscription to a topic. The
+ * notification services, such as GCM (Firebase Cloud Messaging) and APNS.
+ * <code>CreatePlatformEndpoint</code> requires the
+ * <code>PlatformApplicationArn</code> that is returned from
+ * <code>CreatePlatformApplication</code>. You can use the returned
+ * <code>EndpointArn</code> to send a message to a mobile app or by the
+ * <code>Subscribe</code> action for subscription to a topic. The
  * <code>CreatePlatformEndpoint</code> action is idempotent, so if the requester
  * already owns an endpoint with the same device token and attributes, that
  * endpoint's ARN is returned without creating a new endpoint. For more
@@ -58,8 +58,8 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using FCM or ADM, the device token equivalent is called the registration
-     * ID.
+     * using GCM (Firebase Cloud Messaging) or ADM, the device token equivalent
+     * is called the registration ID.
      * </p>
      */
     private String token;
@@ -138,8 +138,8 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using FCM or ADM, the device token equivalent is called the registration
-     * ID.
+     * using GCM (Firebase Cloud Messaging) or ADM, the device token equivalent
+     * is called the registration ID.
      * </p>
      *
      * @return <p>
@@ -147,8 +147,8 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *         on a device. The specific name for Token will vary, depending on
      *         which notification service is being used. For example, when using
      *         APNS as the notification service, you need the device token.
-     *         Alternatively, when using FCM or ADM, the device token equivalent
-     *         is called the registration ID.
+     *         Alternatively, when using GCM (Firebase Cloud Messaging) or ADM,
+     *         the device token equivalent is called the registration ID.
      *         </p>
      */
     public String getToken() {
@@ -161,8 +161,8 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using FCM or ADM, the device token equivalent is called the registration
-     * ID.
+     * using GCM (Firebase Cloud Messaging) or ADM, the device token equivalent
+     * is called the registration ID.
      * </p>
      *
      * @param token <p>
@@ -170,8 +170,9 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *            app on a device. The specific name for Token will vary,
      *            depending on which notification service is being used. For
      *            example, when using APNS as the notification service, you need
-     *            the device token. Alternatively, when using FCM or ADM, the
-     *            device token equivalent is called the registration ID.
+     *            the device token. Alternatively, when using GCM (Firebase
+     *            Cloud Messaging) or ADM, the device token equivalent is called
+     *            the registration ID.
      *            </p>
      */
     public void setToken(String token) {
@@ -184,8 +185,8 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      * device. The specific name for Token will vary, depending on which
      * notification service is being used. For example, when using APNS as the
      * notification service, you need the device token. Alternatively, when
-     * using FCM or ADM, the device token equivalent is called the registration
-     * ID.
+     * using GCM (Firebase Cloud Messaging) or ADM, the device token equivalent
+     * is called the registration ID.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -196,8 +197,9 @@ public class CreatePlatformEndpointRequest extends AmazonWebServiceRequest imple
      *            app on a device. The specific name for Token will vary,
      *            depending on which notification service is being used. For
      *            example, when using APNS as the notification service, you need
-     *            the device token. Alternatively, when using FCM or ADM, the
-     *            device token equivalent is called the registration ID.
+     *            the device token. Alternatively, when using GCM (Firebase
+     *            Cloud Messaging) or ADM, the device token equivalent is called
+     *            the registration ID.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -16,8 +16,5 @@ public class KeyNotGeneratedException extends Exception {
     public KeyNotGeneratedException(Throwable throwable) {
         super(throwable);
     }
-
-    protected KeyNotGeneratedException(String s, Throwable throwable, boolean b, boolean b1) {
-        super(s, throwable, b, b1);
-    }
 }
+

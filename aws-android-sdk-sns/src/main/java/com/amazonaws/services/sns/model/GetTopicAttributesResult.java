@@ -78,7 +78,7 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization of the
+     * <code>EffectiveDeliveryPolicy</code> – The JSON serialization of the
      * effective delivery policy, taking system defaults into account.
      * </p>
      * </li>
@@ -159,7 +159,7 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization of the
+     * <code>EffectiveDeliveryPolicy</code> – The JSON serialization of the
      * effective delivery policy, taking system defaults into account.
      * </p>
      * </li>
@@ -237,7 +237,7 @@ public class GetTopicAttributesResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization of
+     *         <code>EffectiveDeliveryPolicy</code> – The JSON serialization of
      *         the effective delivery policy, taking system defaults into
      *         account.
      *         </p>
@@ -322,7 +322,7 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization of the
+     * <code>EffectiveDeliveryPolicy</code> – The JSON serialization of the
      * effective delivery policy, taking system defaults into account.
      * </p>
      * </li>
@@ -400,7 +400,7 @@ public class GetTopicAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization
+     *            <code>EffectiveDeliveryPolicy</code> – The JSON serialization
      *            of the effective delivery policy, taking system defaults into
      *            account.
      *            </p>
@@ -485,7 +485,7 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization of the
+     * <code>EffectiveDeliveryPolicy</code> – The JSON serialization of the
      * effective delivery policy, taking system defaults into account.
      * </p>
      * </li>
@@ -566,7 +566,7 @@ public class GetTopicAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization
+     *            <code>EffectiveDeliveryPolicy</code> – The JSON serialization
      *            of the effective delivery policy, taking system defaults into
      *            account.
      *            </p>
@@ -654,7 +654,7 @@ public class GetTopicAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>EffectiveDeliveryPolicy</code> – Yhe JSON serialization of the
+     * <code>EffectiveDeliveryPolicy</code> – The JSON serialization of the
      * effective delivery policy, taking system defaults into account.
      * </p>
      * </li>
