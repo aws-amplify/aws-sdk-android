@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 14 // androidx core, for NotificationCompat
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
@@ -13,7 +13,7 @@ android {
 
 dependencies {
     api project(':aws-android-sdk-core')
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core:1.3.0'
 
     testImplementation 'androidx.test:core:1.2.0'
     testImplementation 'junit:junit:4.13'

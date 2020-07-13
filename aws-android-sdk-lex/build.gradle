@@ -4,14 +4,10 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 11
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
-    }
-
-    lintOptions {
-        abortOnError false
     }
 }
 

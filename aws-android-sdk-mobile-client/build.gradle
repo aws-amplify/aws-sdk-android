@@ -5,14 +5,15 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 14 // FB, Google, UI, UserPools all need 14, Hosted UI needs 16
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
     }
 
-    lintOptions {
-        abortOnError false
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 

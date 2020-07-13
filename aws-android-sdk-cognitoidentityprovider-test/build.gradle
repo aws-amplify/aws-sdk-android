@@ -5,11 +5,16 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 18 // UIAutomator in testutils
+        minSdkVersion 14 // junit ext
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 

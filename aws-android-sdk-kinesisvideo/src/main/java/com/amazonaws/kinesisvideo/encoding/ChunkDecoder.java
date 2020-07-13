@@ -26,7 +26,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +53,7 @@ public final class ChunkDecoder {
 
         try {
             final String headersAsString =
-                    readInputStream(inputStream, PAYLOAD_DELIMITER.getBytes(StandardCharsets.UTF_8));
+                    readInputStream(inputStream, PAYLOAD_DELIMITER.getBytes(Charset.forName("UTF-8")));
             for (final String line : headersAsString.split(LINE_DELIMITER)) {
                 headerParts = line.split(":", 2);
                 if (headerParts.length == 2) {
@@ -73,7 +73,7 @@ public final class ChunkDecoder {
 
     private static ResponseStatus parseStatusLine(final InputStream inputStream) {
         try {
-            final String statusLine = readInputStream(inputStream, LINE_DELIMITER.getBytes(StandardCharsets.UTF_8));
+            final String statusLine = readInputStream(inputStream, LINE_DELIMITER.getBytes(Charset.forName("UTF-8")));
             final String[] statusLineArray = statusLine.split("\\s");
 
             return ResponseStatus
@@ -110,7 +110,7 @@ public final class ChunkDecoder {
         do {
             result = inputStream.read(buffer, offset++, 1);
         } while (result > -1 && arrayIndexOf(buffer, 0, offset, delimiter) == -1);
-        return new String(buffer, 0 , offset, StandardCharsets.UTF_8);
+        return new String(buffer, 0 , offset, Charset.forName("UTF-8"));
     }
 
     public static int arrayIndexOf(final byte[] haystack, final int tail, final int head, final byte[] needle) {
@@ -144,7 +144,7 @@ public final class ChunkDecoder {
             System.arraycopy(buffer, tail, tmp, 0, buffer.length - tail);
             System.arraycopy(buffer, 0, tmp, buffer.length - tail, head);
         }
-        return Integer.parseInt(new String(tmp, 0, tmp.length, StandardCharsets.UTF_8).trim(), HEX_RADIX);
+        return Integer.parseInt(new String(tmp, 0, tmp.length, Charset.forName("UTF-8")).trim(), HEX_RADIX);
     }
 
     public static Response parseStatusLineAndHeaders(final InputStream inputStream) {
@@ -156,7 +156,7 @@ public final class ChunkDecoder {
     }
 
     public static Response parseEntireTextResponse(final InputStream inputStream) {
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.US_ASCII));
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("US-ASCII")));
         return Response.builder()
                 .responseStatus(parseStatusLine(inputStream))
                 .responseHeaders(parseHeaders(inputStream))
@@ -181,7 +181,7 @@ public final class ChunkDecoder {
 
     public static Integer decodeAckInResponseBody(final InputStream inputStream,
                                                   final Consumer<String> ackTimestampConsumer) {
-        final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.US_ASCII));
+        final BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("US-ASCII")));
         String line;
         int chunkSize;
         int numBytesRead, offset, ackCount = 0;
