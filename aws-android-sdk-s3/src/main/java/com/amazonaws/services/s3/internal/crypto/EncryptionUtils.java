@@ -420,8 +420,7 @@ public class EncryptionUtils {
 
         InputStream decryptedInputStream = new RepeatableCipherInputStream(objectContent,
                 instruction.getCipherFactory());
-        object.setObjectContent(new S3ObjectInputStream(decryptedInputStream, objectContent
-                .getHttpRequest()));
+        object.setObjectContent(new S3ObjectInputStream(decryptedInputStream));
         return object;
     }
 
@@ -584,8 +583,7 @@ public class EncryptionUtils {
                 S3ObjectInputStream objectContent = object.getObjectContent();
                 InputStream adjustedRangeContents = new AdjustedRangeInputStream(objectContent,
                         range[0], range[1]);
-                object.setObjectContent(new S3ObjectInputStream(adjustedRangeContents,
-                        objectContent.getHttpRequest()));
+                object.setObjectContent(new S3ObjectInputStream(adjustedRangeContents));
                 return object;
             } catch (IOException e) {
                 throw new AmazonClientException("Error adjusting output to desired byte range: "

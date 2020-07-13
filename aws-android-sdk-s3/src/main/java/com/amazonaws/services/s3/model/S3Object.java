@@ -126,8 +126,7 @@ public class S3Object implements Closeable, Serializable, S3RequesterChargedResu
      * @see S3Object#getObjectContent()
      */
     public void setObjectContent(InputStream objectContent) {
-        setObjectContent(new S3ObjectInputStream(objectContent,
-                this.objectContent != null ? this.objectContent.getHttpRequest() : null));
+        setObjectContent(new S3ObjectInputStream(objectContent));
     }
 
     /**

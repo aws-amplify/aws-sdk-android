@@ -32,14 +32,6 @@ import com.amazonaws.services.s3.util.SpecialObjectKeyNameGenerator;
 import com.amazonaws.util.BinaryUtils;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpHead;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -171,13 +163,6 @@ public class PresignedUrlIntegrationTest extends S3IntegrationTestBase {
                 s3, new GeneratePresignedUrlRequest(bucketName, key));
         assertEquals(200, connection.getResponseCode());
         assertFileEqualsStream(file, connection.getInputStream());
-
-        // Test the URL works with Apache HttpClient
-        HttpResponse response = connectToPresignUrlWithApacheHttpClient(
-                s3, new GeneratePresignedUrlRequest(bucketName, key));
-        assertEquals(200, response.getStatusLine().getStatusCode());
-        assertFileEqualsStream(file, response.getEntity().getContent());
-
     }
 
     /**
@@ -366,35 +351,6 @@ public class PresignedUrlIntegrationTest extends S3IntegrationTestBase {
         connection.connect();
 
         return connection;
-    }
-
-    private HttpResponse connectToPresignUrlWithApacheHttpClient(AmazonS3Client s3,
-            GeneratePresignedUrlRequest request) throws Exception {
-        URL url = s3.generatePresignedUrl(request);
-
-        HttpMethod httpMethod = request.getMethod();
-        HttpRequestBase httpRequest = null;
-        switch (httpMethod) {
-            case GET:
-                httpRequest = new HttpGet(URI.create(url.toExternalForm()));
-                break;
-            case PUT:
-                httpRequest = new HttpPut(URI.create(url.toExternalForm()));
-                break;
-            case HEAD:
-                httpRequest = new HttpHead(URI.create(url.toExternalForm()));
-                break;
-            case DELETE:
-                httpRequest = new HttpDelete(URI.create(url.toExternalForm()));
-                break;
-            case POST:
-                httpRequest = new HttpPost(URI.create(url.toExternalForm()));
-                break;
-            default:
-                fail("Unrecognized http method.");
-        }
-        HttpResponse response = new DefaultHttpClient().execute(httpRequest);
-        return response;
     }
 
     private HttpURLConnection connectToPresignedUrlWithHeaders(GeneratePresignedUrlRequest request)

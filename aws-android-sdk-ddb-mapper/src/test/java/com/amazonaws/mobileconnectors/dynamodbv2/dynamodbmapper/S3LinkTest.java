@@ -167,7 +167,7 @@ public class S3LinkTest
         S3Object mockObj = EasyMock.createMock(S3Object.class);
 
         ByteArrayInputStream bis = new ByteArrayInputStream(mockResponseBytes);
-        S3ObjectInputStream s3is = new S3ObjectInputStream(bis, null);
+        S3ObjectInputStream s3is = new S3ObjectInputStream(bis);
 
         EasyMock.expect(mockS3.getObject(anyObject(GetObjectRequest.class))).andReturn(mockObj);
         EasyMock.expect(mockObj.getObjectContent()).andReturn(s3is);
