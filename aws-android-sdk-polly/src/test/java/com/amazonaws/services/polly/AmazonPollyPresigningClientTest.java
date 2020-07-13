@@ -19,6 +19,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.net.UrlQuerySanitizer;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
@@ -59,6 +61,7 @@ public class AmazonPollyPresigningClientTest {
     private static final String SECRET_KEY = "secret-key";
 
     private static final String INPUT_TEXT = "<speak>Mary has a little lamb</speak>";
+    private static final String SANITIZED_TEXT = "_speak_Mary_has_a_little_lamb_/speak_";
     private static final String SSML_TEXT_TYPE = TextType.Ssml.toString();
     private static final String SALLI_VOICE_ID = VoiceId.Salli.toString();
     private static final String MP3_OUTPUT_FORMAT = OutputFormat.Mp3.toString();
@@ -94,7 +97,7 @@ public class AmazonPollyPresigningClientTest {
 
         expectedQueryParameterPairs = Collections.unmodifiableMap(new HashMap<String, String>() {
             {
-                put(TEXT_KEY, INPUT_TEXT);
+                put(TEXT_KEY, SANITIZED_TEXT);
                 put(TEXT_TYPE_KEY, SSML_TEXT_TYPE);
                 put(VOICE_ID_KEY, SALLI_VOICE_ID);
                 put(OUTPUT_FORMAT_KEY, MP3_OUTPUT_FORMAT);
@@ -125,12 +128,13 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        for (QueryParameters.Pair pair : QueryParameters.parse(uri)) {
-            Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
-                    expectedQueryParameterKeys.contains(pair.getName()));
-            expectedQueryParameterKeys.remove(pair.getName());
-            if (expectedQueryParameterPairs.containsKey(pair.getName())) {
-                Assert.assertEquals(expectedQueryParameterPairs.get(pair.getName()), pair.getValue());
+        UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(uri.toString());
+        for (UrlQuerySanitizer.ParameterValuePair pair : sanitizer.getParameterList()) {
+            Assert.assertTrue("Unexpected query parameter: " + pair.mParameter,
+                    expectedQueryParameterKeys.contains(pair.mParameter));
+            expectedQueryParameterKeys.remove(pair.mParameter);
+            if (expectedQueryParameterPairs.containsKey(pair.mParameter)) {
+                Assert.assertEquals(expectedQueryParameterPairs.get(pair.mParameter), pair.mValue);
             }
         }
         Assert.assertTrue("Missing expected parameters: " + expectedQueryParameterKeys.toString(),
@@ -153,13 +157,14 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        for (QueryParameters.Pair pair : QueryParameters.parse(uri)) {
-            Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
-                    expectedQueryParameterKeys.contains(pair.getName()));
-            if (LEXICON_NAME_KEY.equals(pair.getName())) {
-                Assert.assertTrue("Unexpected lexicon name: " + pair.getValue(),
-                        lexiconsNamesExpected.contains(pair.getValue()));
-                lexiconsNamesExpected.remove(pair.getValue());
+        UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(uri.toString());
+        for (UrlQuerySanitizer.ParameterValuePair pair : sanitizer.getParameterList()) {
+            Assert.assertTrue("Unexpected query parameter: " + pair.mParameter,
+                    expectedQueryParameterKeys.contains(pair.mParameter));
+            if (LEXICON_NAME_KEY.equals(pair.mParameter)) {
+                Assert.assertTrue("Unexpected lexicon name: " + pair.mValue,
+                        lexiconsNamesExpected.contains(pair.mValue));
+                lexiconsNamesExpected.remove(pair.mValue);
             }
         }
         Assert.assertTrue("Not all lexicons names were included " + lexiconsNamesExpected.toString(),
@@ -181,10 +186,11 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        for (QueryParameters.Pair pair : QueryParameters.parse(uri)) {
-            Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
-                    expectedQueryParameterKeys.contains(pair.getName()));
-            expectedQueryParameterKeys.remove(pair.getName());
+        UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(uri.toString());
+        for (UrlQuerySanitizer.ParameterValuePair pair : sanitizer.getParameterList()) {
+            Assert.assertTrue("Unexpected query parameter: " + pair.mParameter,
+                    expectedQueryParameterKeys.contains(pair.mParameter));
+            expectedQueryParameterKeys.remove(pair.mParameter);
         }
         Assert.assertTrue("Missing expected parameters: " + expectedQueryParameterKeys.toString(),
                 expectedQueryParameterKeys.isEmpty());
@@ -213,39 +219,5 @@ public class AmazonPollyPresigningClientTest {
         Assert.assertEquals(PORT, uri.getPort());
         Assert.assertEquals(RESOURCE_PATH, uri.getPath());
     }
-
-    private static final class QueryParameters {
-        private QueryParameters() {}
-
-        static List<Pair> parse(URI uri) {
-            List<Pair> list = new ArrayList<>();
-            String query = uri.getQuery();
-            if (query == null) {
-                return Collections.emptyList();
-            }
-            for (String pair : query.split("&")) {
-                if (pair != null && pair.length() > 0) {
-                    String[] parts = pair.split("=");
-                    list.add(new Pair(parts[0], parts[1]));
-                }
-            }
-            return list;
-        }
-
-        private static final class Pair {
-            private final android.util.Pair<String, String> androidPair;
-
-            private Pair(String key, String value) {
-                this.androidPair = android.util.Pair.create(key, value);
-            }
-
-            String getName() {
-                return androidPair.first;
-            }
-
-            String getValue() {
-                return androidPair.second;
-            }
-        }
-    }
 }
+
