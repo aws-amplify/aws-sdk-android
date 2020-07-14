@@ -59,9 +59,9 @@ public class SignatureChecker {
             TIMESTAMP, SIGNATURE, SIGNATURE_VERSION, MESSAGE_ID, SUBJECT, TOPIC, TOKEN));
 
     /**
-     * Validates the signature on a Simple Notification Service message. No
-     * Amazon-specific dependencies, just plain Java crypto and Jackson for
-     * parsing
+     * Validates the signature on a Simple Notification Service message.
+     * No Amazon-specific dependencies, just plain Java crypto and
+     * AwsJsonReader for parsing
      *
      * @param message
      *            A JSON-encoded Simple Notification Service message. Note: the

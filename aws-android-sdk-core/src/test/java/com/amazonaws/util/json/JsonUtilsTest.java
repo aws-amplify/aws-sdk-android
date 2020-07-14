@@ -22,8 +22,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import com.amazonaws.util.json.JsonUtils.JsonEngine;
-
 import org.junit.Test;
 
 import java.io.IOException;
@@ -183,21 +181,12 @@ public class JsonUtilsTest {
         }
         String json = JsonUtils.mapToString(map);
 
-        JsonUtils.setJsonEngine(JsonEngine.Jackson);
+        System.out.println("Serialize a 5000 properties map 1000 times");
         long start = System.nanoTime();
         for (int i = 0; i < 1000; i++) {
             JsonUtils.jsonToMap(json);
         }
-        System.out.println("Serialize a 5000 properties map 1000 times");
-        System.out.println("Jackson read elapsed: "
-                + (System.nanoTime() - start) / 1000000 + "ms");
-
-        JsonUtils.setJsonEngine(JsonEngine.Gson);
-        start = System.nanoTime();
-        for (int i = 0; i < 1000; i++) {
-            JsonUtils.jsonToMap(json);
-        }
-        System.out.println("Gson read elapsed: "
+        System.out.println("Read elapsed: "
                 + (System.nanoTime() - start) / 1000000 + "ms");
     }
 
@@ -209,20 +198,11 @@ public class JsonUtilsTest {
         }
 
         System.out.println("Deserialize a JSON string with a 5000 properties map 1000 times");
-        JsonUtils.setJsonEngine(JsonEngine.Jackson);
         long start = System.nanoTime();
         for (int i = 0; i < 1000; i++) {
             JsonUtils.mapToString(map);
         }
-        System.out.println("Jackson write elapsed: "
-                + (System.nanoTime() - start) / 1000000 + "ms");
-
-        JsonUtils.setJsonEngine(JsonEngine.Gson);
-        start = System.nanoTime();
-        for (int i = 0; i < 1000; i++) {
-            JsonUtils.mapToString(map);
-        }
-        System.out.println("Gson write elapsed: "
+        System.out.println("Write elapsed: "
                 + (System.nanoTime() - start) / 1000000 + "ms");
     }
 
@@ -231,21 +211,14 @@ public class JsonUtilsTest {
         Date d = new Date(1423875641895L);
         String target = "1423875641.895";
 
-        JsonUtils.setJsonEngine(JsonEngine.Gson);
         StringWriter out = new StringWriter();
-        // This is wrapped in an array so that Gson doesn't complain about
+        // This is wrapped in an array so that JsonWriter doesn't complain about
         // invalid JSON encoding
         JsonUtils.getJsonWriter(out)
                 .beginArray().value(d).endArray()
                 .close();
         assertEquals("[" + target + "]", out.toString());
         out.getBuffer().setLength(0); // clear string writer
-
-        JsonUtils.setJsonEngine(JsonEngine.Jackson);
-        JsonUtils.getJsonWriter(out)
-                .beginArray().value(d).endArray()
-                .close();
-        assertEquals("[" + target + "]", out.toString());
     }
 
     @Test
@@ -255,19 +228,12 @@ public class JsonUtilsTest {
         // byte buffer
         String target = "AAECAwQFBgcICQoLDA0ODw==";
 
-        JsonUtils.setJsonEngine(JsonEngine.Gson);
         StringWriter out = new StringWriter();
         JsonUtils.getJsonWriter(out)
                 .beginArray().value(bb).endArray()
                 .close();
         assertEquals("[\"" + target + "\"]", out.toString());
         out.getBuffer().setLength(0);
-
-        JsonUtils.setJsonEngine(JsonEngine.Jackson);
-        JsonUtils.getJsonWriter(out)
-                .beginArray().value(bb).endArray()
-                .close();
-        assertEquals("[\"" + target + "\"]", out.toString());
     }
 
     private ByteBuffer generateByteBuffer(int length) {
@@ -278,3 +244,4 @@ public class JsonUtilsTest {
         return ByteBuffer.wrap(bytes);
     }
 }
+
