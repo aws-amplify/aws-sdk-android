@@ -30,63 +30,43 @@ import java.util.Map;
  * A utility class to process JSON contents.
  */
 public class JsonUtils {
-
-    private static volatile AwsJsonFactory factory = new GsonFactory();
+    private static final AwsJsonFactory FACTORY = new GsonFactory();
 
     /**
      * JSON engine
+     * @deprecated JSON engine is no longer configurable at runtime.
      */
+    @Deprecated
     public static enum JsonEngine {
         /**
-         * An engine powered by the build-in {@link JsonReader} and
-         * {@link JsonWriter} available since Android API 11.
-         */
-        // Android,
-        /**
          * An engine powered by Gson.
-         *
+         * GSON is the only supported value.
          * @see <a href="https://code.google.com/p/google-gson/">Gson</a>
          */
         Gson,
+
         /**
-         * An engine powered by Jackson 2.x. It's the fastest engine.
-         *
-         * @see <a
-         *      href="https://github.com/FasterXML/jackson-core">jackson-core</a>
+         * An engine powered by Jackson.
+         * @see <a href="https://github.com/FasterXML/jackson-core">jackson-core</a>
          */
         Jackson
     }
 
     /**
-     * Sets the JSON engine. Default is Gson.
-     *
-     * @param jsonEngine the json engine.
+     * Deprecated.
+     * @param jsonEngine Ignored
+     * @deprecated The JSON engine is always Gson, this has no effect.
      */
-    public static void setJsonEngine(JsonEngine jsonEngine) {
-        switch (jsonEngine) {
-            case Gson:
-                factory = new GsonFactory();
-                break;
-            case Jackson:
-                factory = new JacksonFactory();
-                break;
-            default:
-                throw new RuntimeException("Unsupported json engine");
-        }
-    }
+    @Deprecated
+    public static void setJsonEngine(JsonEngine jsonEngine) {}
 
     /**
-     * Sets the JSON engine.
-     *
-     * @param factory an {@link AwsJsonFactory}
+     * Deprecated.
+     * @param awsJsonFactory Ignored
+     * @deprecated The JSON engine is always Gson, this has no effect.
      */
-    @SuppressWarnings("checkstyle:hiddenfield")
-    static void setJsonEngine(AwsJsonFactory factory) {
-        if (factory == null) {
-            throw new IllegalArgumentException("factory can't be null");
-        }
-        JsonUtils.factory = factory;
-    }
+    @Deprecated
+    static void setJsonEngine(AwsJsonFactory awsJsonFactory) {}
 
     /**
      * Gets a JSON reader. If no JSON engine is available, an
@@ -96,10 +76,7 @@ public class JsonUtils {
      * @return a JSON reader
      */
     public static AwsJsonReader getJsonReader(Reader in) {
-        if (factory == null) {
-            throw new IllegalStateException("Json engine is unavailable.");
-        }
-        return factory.getJsonReader(in);
+        return FACTORY.getJsonReader(in);
     }
 
     /**
@@ -110,10 +87,7 @@ public class JsonUtils {
      * @return a JSON writer
      */
     public static AwsJsonWriter getJsonWriter(Writer out) {
-        if (factory == null) {
-            throw new IllegalStateException("Json engine is unavailable.");
-        }
-        return factory.getJsonWriter(out);
+        return FACTORY.getJsonWriter(out);
     }
 
     /**
@@ -209,3 +183,4 @@ public class JsonUtils {
         }
     }
 }
+
