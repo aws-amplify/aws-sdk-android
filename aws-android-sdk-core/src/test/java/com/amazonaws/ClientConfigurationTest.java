@@ -90,9 +90,6 @@ public class ClientConfigurationTest {
         c.setProxyUsername("name");
         assertEquals(c.getProxyUsername(), "name");
 
-        c.withReaper(true);
-        assertTrue(c.useReaper());
-
         RetryPolicy rp = new RetryPolicy(null, null, 0, false);
         c.withRetryPolicy(rp);
         assertSame(rp, c.getRetryPolicy());
@@ -144,7 +141,6 @@ public class ClientConfigurationTest {
         c.withProxyPassword("pass");
         c.withProxyPort(1);
         c.withProxyUsername("user");
-        c.withReaper(true);
         RetryPolicy rp = new RetryPolicy(null, null, 0, false);
         c.withRetryPolicy(rp);
         c.withSignerOverride("over");
@@ -166,7 +162,6 @@ public class ClientConfigurationTest {
         assertEquals(c.getProxyPassword(), n.getProxyPassword());
         assertEquals(c.getProxyPort(), n.getProxyPort());
         assertEquals(c.getProxyUsername(), n.getProxyUsername());
-        assertEquals(c.useReaper(), n.useReaper());
         assertEquals(c.getRetryPolicy(), n.getRetryPolicy());
         assertEquals(c.getSignerOverride(), n.getSignerOverride());
         assertArrayEquals(c.getSocketBufferSizeHints(), n.getSocketBufferSizeHints());

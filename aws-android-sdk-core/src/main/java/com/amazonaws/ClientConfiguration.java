@@ -15,7 +15,6 @@
 
 package com.amazonaws;
 
-import com.amazonaws.http.IdleConnectionReaper;
 import com.amazonaws.retry.PredefinedRetryPolicies;
 import com.amazonaws.retry.RetryPolicy;
 import com.amazonaws.util.VersionInfoUtils;
@@ -56,14 +55,6 @@ public class ClientConfiguration {
      * @see PredefinedRetryPolicies#DYNAMODB_DEFAULT
      */
     public static final RetryPolicy DEFAULT_RETRY_POLICY = PredefinedRetryPolicies.DEFAULT;
-
-    /**
-     * The default on whether to use the {@link IdleConnectionReaper} to manage
-     * stale connections
-     *
-     * @see IdleConnectionReaper
-     */
-    public static final boolean DEFAULT_USE_REAPER = true;
 
     /** The HTTP user agent header passed with all HTTP requests. */
     private String userAgent = DEFAULT_USER_AGENT;
@@ -153,14 +144,6 @@ public class ClientConfiguration {
     private int socketReceiveBufferSizeHint = 0;
 
     /**
-     * Optional whether to use the {@link IdleConnectionReaper} to manage stale
-     * connections. A reason for not running the {@link IdleConnectionReaper}
-     * can be if running in an environment where the modifyThread and
-     * modifyThreadGroup permissions are not allowed.
-     */
-    private boolean useReaper = DEFAULT_USE_REAPER;
-
-    /**
      * Optional override to control which signature algorithm should be used to
      * sign requests to the service. If not explicitly set, the client will
      * determine the algorithm to use by inspecting a configuration file baked
@@ -210,7 +193,6 @@ public class ClientConfiguration {
         this.preemptiveBasicProxyAuth = other.preemptiveBasicProxyAuth;
         this.socketTimeout = other.socketTimeout;
         this.userAgent = other.userAgent;
-        this.useReaper = other.useReaper;
         this.socketReceiveBufferSizeHint = other.socketReceiveBufferSizeHint;
         this.socketSendBufferSizeHint = other.socketSendBufferSizeHint;
         this.signerOverride = other.signerOverride;
@@ -749,40 +731,6 @@ public class ClientConfiguration {
     @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withConnectionTimeout(int connectionTimeout) {
         setConnectionTimeout(connectionTimeout);
-        return this;
-    }
-
-    /**
-     * Checks if the {@link IdleConnectionReaper} is to be started
-     *
-     * @return if the {@link IdleConnectionReaper} is to be started
-     */
-    public boolean useReaper() {
-        return useReaper;
-    }
-
-    /**
-     * Sets whether the {@link IdleConnectionReaper} is to be started as a
-     * daemon thread
-     *
-     * @param use whether the {@link IdleConnectionReaper} is to be started as a
-     *            daemon thread
-     * @see IdleConnectionReaper
-     */
-    public void setUseReaper(boolean use) {
-        this.useReaper = use;
-    }
-
-    /**
-     * Sets whether the {@link IdleConnectionReaper} is to be started as a
-     * daemon thread
-     *
-     * @param use the {@link IdleConnectionReaper} is to be started as a daemon
-     *            thread
-     * @return The updated ClientConfiguration object.
-     */
-    public ClientConfiguration withReaper(boolean use) {
-        setUseReaper(use);
         return this;
     }
 

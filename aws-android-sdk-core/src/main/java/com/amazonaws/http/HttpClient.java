@@ -17,8 +17,6 @@ package com.amazonaws.http;
 
 import com.amazonaws.AmazonWebServiceRequest;
 
-import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
-
 import java.io.IOException;
 
 /**
@@ -31,9 +29,6 @@ import java.io.IOException;
  * If modified, the request is likely to be rejected by AWS service.</li>
  * <li>Disable retry logic and redirect which are handled by the service client
  * itself.</li>
- * <li>Enable {@link BrowserCompatHostnameVerifier} so that a wildcard (such as
- * "*.amazonaws.com") matches all subdomains, including "a.b.amazonaws.com".
- * This is needed for S3 virtual hosting. See <a
  * href="http://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html"
  * >Virtual Hosting of Buckets</a> for more details.</li>
  * <li>Beware of the Expect 100-continue header. Currently it's only used in <a
