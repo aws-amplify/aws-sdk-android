@@ -20,7 +20,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -28,8 +27,7 @@ import static org.junit.Assert.assertNull;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Log;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
@@ -40,8 +38,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-
-@RunWith(AndroidJUnit4.class)
 public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTestBase {
 
     private static String TAG = CognitoCachingCredentialsProviderIntegrationTest.class.getSimpleName();
@@ -57,7 +53,7 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
 
     @BeforeClass
     public static void setupBeforeClass() {
-        sharedPreferencesForAuth = InstrumentationRegistry.getTargetContext()
+        sharedPreferencesForAuth = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
     }
 
@@ -108,12 +104,12 @@ public class AWSKeyValueStoreMigrationIntegrationTest extends CoreIntegrationTes
         assertEquals(stringSet, sharedPreferencesForAuth.getStringSet("stringSet", null));
 
         credentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         credentialsProviders.add(credentialsProvider);
 
-        AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 SHARED_PREFERENCES_NAME,
                 true);
         assertNotNull(awsKeyValueStore);

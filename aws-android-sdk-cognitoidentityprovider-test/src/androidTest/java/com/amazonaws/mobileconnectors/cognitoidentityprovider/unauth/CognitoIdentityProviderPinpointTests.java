@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -19,10 +19,10 @@ public class CognitoIdentityProviderPinpointTests extends CognitoIdentityProvide
     public void getPinpointEndpointIdTestWithPPSharedContext () {
         // Test shared Pinpoint context
         SharedPreferences sharedPreferences =
-                InstrumentationRegistry.getTargetContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
+                ApplicationProvider.getApplicationContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(PP_UNIQUE_ID_KEY, TEST_PP_ENDPOINT_1).commit();
 
-        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(InstrumentationRegistry.getTargetContext(), TEST_PP_APP_ID_1);
+        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(ApplicationProvider.getApplicationContext(), TEST_PP_APP_ID_1);
         assertEquals(TEST_PP_ENDPOINT_1, pp_endpoint);
     }
 
@@ -30,10 +30,10 @@ public class CognitoIdentityProviderPinpointTests extends CognitoIdentityProvide
     public void getPinpointEndpointIdTestWithPPSharedContextWithEndpointIdentifier () {
         // Test shared Pinpoint context
         SharedPreferences sharedPreferences =
-                InstrumentationRegistry.getTargetContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
+                ApplicationProvider.getApplicationContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(PP_UNIQUE_ID_KEY, TEST_PP_ENDPOINT_2).commit();
 
-        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(InstrumentationRegistry.getTargetContext(), TEST_PP_APP_ID_1, PP_UNIQUE_ID_KEY);
+        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(ApplicationProvider.getApplicationContext(), TEST_PP_APP_ID_1, PP_UNIQUE_ID_KEY);
         assertEquals(TEST_PP_ENDPOINT_2, pp_endpoint);
     }
 
@@ -41,10 +41,10 @@ public class CognitoIdentityProviderPinpointTests extends CognitoIdentityProvide
     public void getPinpointEndpointIdTestWithNoPPSharedContext () {
         // Test shared Pinpoint context
         SharedPreferences sharedPreferences =
-                InstrumentationRegistry.getTargetContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
+                ApplicationProvider.getApplicationContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
         sharedPreferences.edit().remove(PP_UNIQUE_ID_KEY).commit();
 
-        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(InstrumentationRegistry.getTargetContext(), TEST_PP_APP_ID_1);
+        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(ApplicationProvider.getApplicationContext(), TEST_PP_APP_ID_1);
         assertNotNull(pp_endpoint);
     }
 
@@ -52,7 +52,7 @@ public class CognitoIdentityProviderPinpointTests extends CognitoIdentityProvide
     public void getPinpointEndpointIdTestNullContext () {
         // Test shared Pinpoint context
         SharedPreferences sharedPreferences =
-                InstrumentationRegistry.getTargetContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
+                ApplicationProvider.getApplicationContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(PP_UNIQUE_ID_KEY, TEST_PP_ENDPOINT_2).commit();
 
         String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(null, TEST_PP_APP_ID_1);
@@ -63,10 +63,10 @@ public class CognitoIdentityProviderPinpointTests extends CognitoIdentityProvide
     public void getPinpointEndpointIdTestNullAppId () {
         // Test shared Pinpoint context
         SharedPreferences sharedPreferences =
-                InstrumentationRegistry.getTargetContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
+                ApplicationProvider.getApplicationContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(PP_UNIQUE_ID_KEY, TEST_PP_ENDPOINT_2).commit();
 
-        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(InstrumentationRegistry.getTargetContext(), null);
+        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(ApplicationProvider.getApplicationContext(), null);
         assertNull(pp_endpoint);
     }
 
@@ -74,10 +74,10 @@ public class CognitoIdentityProviderPinpointTests extends CognitoIdentityProvide
     public void getPinpointEndpointIdTestNullEndpointIdentifier () {
         // Test shared Pinpoint context
         SharedPreferences sharedPreferences =
-                InstrumentationRegistry.getTargetContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
+                ApplicationProvider.getApplicationContext().getSharedPreferences(TEST_PP_APP_ID_1 + PP_PREFERENCES_AND_FILE_MANAGER_SUFFIX, Context.MODE_PRIVATE);
         sharedPreferences.edit().putString(PP_UNIQUE_ID_KEY, TEST_PP_ENDPOINT_2).commit();
 
-        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(InstrumentationRegistry.getTargetContext(), TEST_PP_APP_ID_1, null);
+        String pp_endpoint = CognitoPinpointSharedContext.getPinpointEndpoint(ApplicationProvider.getApplicationContext(), TEST_PP_APP_ID_1, null);
         assertNull(pp_endpoint);
     }
 

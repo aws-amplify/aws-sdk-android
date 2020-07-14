@@ -15,8 +15,10 @@
 
 package com.amazonaws.internal.keyvaluestore;
 
+import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
+import androidx.annotation.RequiresApi;
 
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
@@ -30,6 +32,7 @@ import javax.crypto.KeyGenerator;
  * This provider generates a AES 256-bit key using
  * AndroidKeyStore.
  */
+@RequiresApi(api = Build.VERSION_CODES.M)
 class KeyProvider23 implements KeyProvider {
 
     private static final Log logger = LogFactory.getLog(KeyProvider23.class);

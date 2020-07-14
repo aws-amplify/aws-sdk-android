@@ -35,15 +35,16 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-annotations</artifactId>
-      <version>27.1.1</version>
-    </dependency>
-    <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-android-sdk-cognitoidentityprovider</artifactId>
       <optional>false</optional>
       <version>2.16.13</version>
+    </dependency>
+    <dependency>
+      <groupId>androidx.core</groupId>
+      <artifactId>core</artifactId>
+      <optional>true</optional>
+      <version>1.3.0</version>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
@@ -53,22 +54,15 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>appcompat-v7</artifactId>
-      <optional>true</optional>
-      <version>23.0.1</version>
-      <type>aar</type>
-    </dependency>
-    <dependency>
       <groupId>com.amazonaws</groupId>
-      <artifactId>aws-android-sdk-auth-google</artifactId>
+      <artifactId>aws-android-sdk-auth-facebook</artifactId>
       <optional>true</optional>
       <version>2.16.13</version>
       <type>aar</type>
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
-      <artifactId>aws-android-sdk-auth-facebook</artifactId>
+      <artifactId>aws-android-sdk-auth-google</artifactId>
       <optional>true</optional>
       <version>2.16.13</version>
       <type>aar</type>
@@ -88,17 +82,9 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-v4</artifactId>
-      <optional>true</optional>
-      <version>23.0.1</version>
-      <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>4.1.1.4</version>
-      <scope>provided</scope>
+      <groupId>androidx.browser</groupId>
+      <artifactId>browser</artifactId>
+      <version>1.2.0</version>
     </dependency>
   </dependencies>
   <build>
@@ -125,3 +111,4 @@
     </plugins>
   </build>
 </project>
+

@@ -20,7 +20,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -30,8 +29,7 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Log;
 
 import com.amazonaws.auth.AWSSessionCredentials;
@@ -41,7 +39,6 @@ import com.amazonaws.regions.Regions;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegrationTestBase {
 
     private static String TAG = CognitoCachingCredentialsProviderIntegrationTest.class.getSimpleName();
@@ -54,7 +51,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
 
     @BeforeClass
     public static void setupBeforeClass() {
-        sharedPreferencesForAuth = InstrumentationRegistry.getTargetContext()
+        sharedPreferencesForAuth = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences("com.amazonaws.android.auth", Context.MODE_PRIVATE);
     }
 
@@ -77,7 +74,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
 
         credentialsProviders = new ArrayList<CognitoCachingCredentialsProvider>();
         credentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         credentialsProviders.add(credentialsProvider);
@@ -97,7 +94,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
     @Test
     public void testCachedAWSCredentials() throws Exception {
         Log.d(TAG, "SharedPreferences keys for com.amazonaws.android.auth => " +
-                InstrumentationRegistry.getTargetContext()
+                ApplicationProvider.getApplicationContext()
                         .getSharedPreferences("com.amazonaws.android.auth", Context.MODE_PRIVATE)
                         .getAll()
                         .toString());
@@ -117,7 +114,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
         Log.d(TAG, "Cached Identity Id = " + credentialsProvider.getCachedIdentityId());
 
         Log.d(TAG, "SharedPreferences keys for com.amazonaws.android.auth => " +
-                InstrumentationRegistry.getTargetContext()
+                ApplicationProvider.getApplicationContext()
                         .getSharedPreferences("com.amazonaws.android.auth", Context.MODE_PRIVATE)
                         .getAll()
                         .toString());
@@ -183,7 +180,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
     @Test
     public void testMultipleCognitoCachingCredentialsProviders() throws Exception {
         CognitoCachingCredentialsProvider credentialsProvider1 = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("other_identity_pool_id"),
                 Regions.US_EAST_1);
 
@@ -218,7 +215,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
     @Test
     public void testMultipleCognitoCachingCredentialsProvidersWithRefresh() throws Exception {
         CognitoCachingCredentialsProvider credentialsProvider1 = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("other_identity_pool_id"),
                 Regions.US_EAST_1);
         credentialsProvider1.setPersistenceEnabled(false);
@@ -293,7 +290,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
 
         // Now create a new credentials provider with the same identity pool id
         CognitoCachingCredentialsProvider persistenceCredentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         credentialsProviders.add(persistenceCredentialsProvider);
@@ -326,7 +323,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
     @Test
     public void testConstructMultipleCCCPs() throws Exception {
         CognitoCachingCredentialsProvider cccp1 = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
 
@@ -339,7 +336,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
         cccp1.getCredentials();
 
         CognitoCachingCredentialsProvider cccp2 = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         assertNotNull(cccp2.getCachedIdentityId());
@@ -406,7 +403,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
         deleteAllEncryptionKeys();
 
         CognitoCachingCredentialsProvider newCredentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
 
@@ -485,7 +482,7 @@ public class CognitoCachingCredentialsProviderIntegrationTest extends CoreIntegr
         deleteAllEncryptionKeys();
 
         CognitoCachingCredentialsProvider newCredentialsProvider = new CognitoCachingCredentialsProvider(
-                InstrumentationRegistry.getTargetContext(),
+                ApplicationProvider.getApplicationContext(),
                 getPackageConfigure().getString("identity_pool_id"),
                 Regions.US_EAST_1);
         identityIdFromCache = newCredentialsProvider.getCachedIdentityId();

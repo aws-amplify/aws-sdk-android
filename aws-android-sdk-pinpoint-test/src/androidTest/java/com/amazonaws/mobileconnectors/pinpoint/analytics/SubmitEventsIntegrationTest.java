@@ -1,5 +1,5 @@
-/**
- * Copyright 2019-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/*
+ * Copyright 2019-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -16,10 +16,9 @@
 package com.amazonaws.mobileconnectors.pinpoint.analytics;
 
 import android.content.Context;
-import android.net.wifi.WifiManager;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
@@ -27,199 +26,132 @@ import com.amazonaws.mobileconnectors.pinpoint.PinpointManager;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.pinpoint.model.ChannelType;
 import com.amazonaws.testutils.AWSTestBase;
+import com.amazonaws.testutils.util.InternetConnectivity;
+import com.amazonaws.testutils.util.RetryStrategies;
+import com.amazonaws.testutils.util.RetryStrategies.Condition;
+import com.amazonaws.testutils.util.RetryStrategies.NoOpRetryable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
-import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
-@RunWith(AndroidJUnit4.class)
-public class SubmitEventsIntegrationTest extends AWSTestBase {
+public final class SubmitEventsIntegrationTest extends AWSTestBase {
+    private static final String TAG = SubmitEventsIntegrationTest.class.getSimpleName();
+    private static final String PINPOINT_DATABASE_NAME = "awspinpoint.db";
 
-    private static Context appContext;
-
-    private PinpointManager pinpointManager;
-    private PinpointConfiguration pinpointConfiguration;
-    private CognitoCachingCredentialsProvider credentialsProvider;
-    private WifiManager wifiManager;
-
-    private String appId;
-    private Regions regions;
-
-    private static String TAG = SubmitEventsIntegrationTest.class.getSimpleName();
+    private Context context;
+    private AnalyticsClient analyticsClient;
+    private SessionClient sessionClient;
 
     @Before
-    public void setUp() throws Exception {
-        appContext = InstrumentationRegistry.getTargetContext();
-        appContext.deleteDatabase("awspinpoint.db");
+    public void setUp() throws JSONException {
+        InternetConnectivity.goOnline();
 
-        wifiManager = (WifiManager) InstrumentationRegistry
-                .getContext().getSystemService(Context.WIFI_SERVICE);
-        assertTrue(wifiManager.setWifiEnabled(true));
+        context = ApplicationProvider.getApplicationContext();
+        context.deleteDatabase(PINPOINT_DATABASE_NAME);
 
-        appId = getPackageConfigure("pinpoint")
-                .getString("AppId");
-        regions = Regions.fromName(getPackageConfigure("pinpoint")
-                        .getString("Region"));
+        PinpointManager pinpointManager = createPinpointManager();
+        this.analyticsClient = pinpointManager.getAnalyticsClient();
+        this.sessionClient = pinpointManager.getSessionClient();
+    }
 
-        credentialsProvider = new CognitoCachingCredentialsProvider(
-                appContext,
-                getPackageConfigure("pinpoint")
-                        .getString("identity_pool_id"),
-                Regions.fromName(getPackageConfigure("pinpoint")
-                        .getString("Region")));
-        pinpointConfiguration = new PinpointConfiguration(appContext,
-                appId,
-                regions,
-                ChannelType.GCM,
-                credentialsProvider);
-        pinpointManager = new PinpointManager(pinpointConfiguration);
+    private PinpointManager createPinpointManager() throws JSONException {
+        JSONObject testConfig = getPackageConfigure("pinpoint");
+        String appId = testConfig.getString("AppId");
+        Regions regions = Regions.fromName(testConfig.getString("Region"));
+        String identityPoolId = testConfig.getString("identity_pool_id");
+
+        CognitoCachingCredentialsProvider credentialsProvider =
+            new CognitoCachingCredentialsProvider(context, identityPoolId, regions);
+        PinpointConfiguration pinpointConfiguration =
+            new PinpointConfiguration(context, appId, regions, ChannelType.GCM, credentialsProvider);
+        return new PinpointManager(pinpointConfiguration);
     }
 
     @After
     public void tearDown() {
-        assertTrue(wifiManager.setWifiEnabled(true));
-        pinpointManager.getAnalyticsClient().closeDB();
-        appContext.deleteDatabase("awspinpoint.db");
-    }
-
-    @Test
-    public void testPinpointManagerInitialization() {
-        assertNotNull(pinpointManager);
-        assertNotNull(pinpointManager.getAnalyticsClient());
-        assertNotNull(pinpointManager.getNotificationClient());
-        assertNotNull(pinpointManager.getPinpointContext());
-        assertNotNull(pinpointManager.getSessionClient());
-        assertNotNull(pinpointManager.getTargetingClient());
-
-        assertEquals(0, pinpointManager.getAnalyticsClient().getAllEvents().size());
-        assertEquals(pinpointManager.getPinpointContext().getPinpointConfiguration(),
-                pinpointConfiguration);
-        assertEquals(pinpointManager.getPinpointContext().getApplicationContext(), appContext);
+        InternetConnectivity.goOnline();
+        analyticsClient.closeDB();
+        context.deleteDatabase(PINPOINT_DATABASE_NAME);
     }
 
     @Test
     public void testSubmitEvents() {
-        Log.d(TAG, "Events in database before calling recordEvent(): " +
-                pinpointManager.getAnalyticsClient().getAllEvents().size());
+        // Arrange: a session has recorded some events.
+        recordEvents(10);
+        // 12 = 10 recorded + 1 start session + 1 stop session
+        assertEventualEventCount(12);
 
-        pinpointManager.getSessionClient().startSession();
-        for (int i = 0; i < 10; i++) {
-            AnalyticsEvent analyticsEvent =
-                    pinpointManager.getAnalyticsClient().createEvent("EventName-" + UUID.randomUUID().toString())
-                            .withAttribute("DemoAttribute1", "DemoAttributeValue1")
-                            .withAttribute("DemoAttribute2", "DemoAttributeValue2")
-                            .withMetric("DemoMetric1", Math.random());
+        // Act: submit the events, and wait for them to be processed.
+        analyticsClient.submitEvents();
 
-            pinpointManager.getAnalyticsClient().recordEvent(analyticsEvent);
-        }
-        pinpointManager.getSessionClient().stopSession();
-
-        Log.d(TAG, "Events in database after calling submitEvents() before submitting: " +
-                pinpointManager.getAnalyticsClient().getAllEvents().size());
-
-        assertEquals(12, pinpointManager.getAnalyticsClient().getAllEvents().size());
-
-        pinpointManager.getAnalyticsClient().submitEvents();
-
-        long timeSleptSoFar = 0;
-        while (timeSleptSoFar < TimeUnit.SECONDS.toMillis(60)) {
-            try {
-                sleep(TimeUnit.SECONDS.toMillis(5));
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
-            }
-            timeSleptSoFar += TimeUnit.SECONDS.toMillis(5);
-            if (pinpointManager.getAnalyticsClient().getAllEvents().size() == 0) {
-                break;
-            }
-        }
-
-        Log.d(TAG, "Events in database after calling submitEvents() after submitting: " +
-                pinpointManager.getAnalyticsClient().getAllEvents().size());
-
-        assertEquals(0, pinpointManager.getAnalyticsClient().getAllEvents().size());
+        // Assert: there are 0 events left on the client.
+        assertEventualEventCount(0);
     }
 
-    public void testSubmitEventsNetworkDisconnectAndReconnect() {
-        Log.d(TAG, "Events in database before calling recordEvent(): " +
-                pinpointManager.getAnalyticsClient().getAllEvents().size());
-
-        pinpointManager.getSessionClient().startSession();
-        for (int i = 0; i < 10; i++) {
-            AnalyticsEvent analyticsEvent =
-                    pinpointManager.getAnalyticsClient().createEvent("EventName-" + UUID.randomUUID().toString())
-                            .withAttribute("DemoAttribute1", "DemoAttributeValue1")
-                            .withAttribute("DemoAttribute2", "DemoAttributeValue2")
-                            .withMetric("DemoMetric1", Math.random());
-
-            pinpointManager.getAnalyticsClient().recordEvent(analyticsEvent);
-        }
-        pinpointManager.getSessionClient().stopSession();
-
-        // All event records. Now turn off the network connectivity
-        // Set Wifi Network offline and expect submitEvents to preserve
-        // the events in the database and not delete them.
-        assertTrue(wifiManager.setWifiEnabled(false));
+    @Test
+    public void testSubmitEventsBeforeAndAfterConnectivityLoss() {
+        // When the device is offline, submitting events will fail.
+        // However, the events will be kept locally, until they can be
+        // submitted again.
+        InternetConnectivity.goOffline();
+        recordEvents(10);
+        analyticsClient.submitEvents();
         try {
-            sleep(10000);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            assertEventualEventCount(0);
+            fail("Events drained but the device was offline?");
+        } catch (IllegalStateException eventsDidNotDrain) {
+            // We EXPECT that no events drain. The original 12 should be present.
+            // 12 = 10 recorded + 1 start session + 1 stop session
+            // However, we have to try and wait anyway, in case the component
+            // does _try_ to drain them.
+            assertEquals(12, analyticsClient.getAllEvents().size());
         }
 
-        Log.d(TAG, "Events in database after calling submitEvents() before submitting: " +
-                pinpointManager.getAnalyticsClient().getAllEvents().size());
+        // Once the device is back online, submitting the events should succeed;
+        // all should be submitted. What's more, _all_ of the original events
+        // should be processed. We check this to ensure that none were lost, during
+        // the network interruption.
+        InternetConnectivity.goOnline();
+        assertEventualEventCount(12);
+        analyticsClient.submitEvents();
+        assertEventualEventCount(0);
+    }
 
-        assertEquals(12, pinpointManager.getAnalyticsClient().getAllEvents().size());
+    @SuppressWarnings("SameParameterValue")
+    private void recordEvents(int howMany) {
+        sessionClient.startSession();
 
-        pinpointManager.getAnalyticsClient().submitEvents();
-
-        // Set Wifi Network offline
-        // Once network comes back online, submitEvents again and make
-        // sure events are being removed from the local database.
-        assertTrue(wifiManager.setWifiEnabled(true));
-        try {
-            sleep(10000);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        for (int index = 0; index < howMany; index++) {
+            String eventType = String.format("EventName-%d-%s", index, UUID.randomUUID().toString());
+            AnalyticsEvent event = analyticsClient.createEvent(eventType)
+                .withAttribute("DemoAttribute" + index, "DemoAttributeValue" + index)
+                .withMetric("DemoMetric" + index, (double) index);
+            analyticsClient.recordEvent(event);
         }
 
-        pinpointManager.getAnalyticsClient().submitEvents();
-        try {
-            sleep(5000);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        sessionClient.stopSession();
+    }
 
-        long timeSleptSoFar = 0;
-        while (timeSleptSoFar < TimeUnit.SECONDS.toMillis(60)) {
-            try {
-                sleep(TimeUnit.SECONDS.toMillis(5));
-            } catch (InterruptedException ie) {
-                ie.printStackTrace();
+    // Asserts that the count of events in the Analytics Client is
+    // eventually the provided value. "Eventually" = after checking
+    // for this condition up to 10 times, with 5 seconds in between
+    // each attempt.
+    private void assertEventualEventCount(final int eventualCount) {
+        RetryStrategies.linear(NoOpRetryable.instance(), new Condition() {
+            @Override
+            public boolean isMet() {
+                int currentCount = analyticsClient.getAllEvents().size();
+                Log.d(TAG, "Current count = " + currentCount + " but want " + eventualCount);
+                return currentCount == eventualCount;
             }
-            timeSleptSoFar += TimeUnit.SECONDS.toMillis(5);
-            if (pinpointManager.getAnalyticsClient().getAllEvents().size() == 0) {
-                break;
-            }
-        }
-
-        Log.d(TAG, "Events in database after calling submitEvents() after submitting: " +
-                pinpointManager.getAnalyticsClient().getAllEvents().size());
-
-        assertEquals(0, pinpointManager.getAnalyticsClient().getAllEvents().size());
+        }, 10, 5);
     }
 }

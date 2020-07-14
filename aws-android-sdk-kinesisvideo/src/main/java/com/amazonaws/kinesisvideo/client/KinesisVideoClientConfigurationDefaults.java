@@ -20,7 +20,7 @@ package com.amazonaws.kinesisvideo.client;
 import com.amazonaws.kinesisvideo.producer.StorageCallbacks;
 import com.amazonaws.kinesisvideo.storage.DefaultStorageCallbacks;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class KinesisVideoClientConfigurationDefaults {
     static final String US_WEST_2 = "us-west-2";

@@ -15,11 +15,13 @@
 
 package com.amazonaws.mobileconnectors.lex.interactionkit.listeners;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.amazonaws.mobileconnectors.lex.interactionkit.Response;
 import com.amazonaws.mobileconnectors.lex.interactionkit.continuations.LexServiceContinuation;
 
+@SuppressLint("LongLogTag")
 public class DefaultInteractionListener implements InteractionListener {
     private static final String TAG = "DefaultInteractionListener";
 

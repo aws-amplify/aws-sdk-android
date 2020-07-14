@@ -1,32 +1,25 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion 9
+        targetSdkVersion 28
         versionCode 1
         versionName '1.0'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
     }
 }
 
 dependencies {
-    api (project(':aws-android-sdk-core')){
+    api (project(':aws-android-sdk-core')) {
         exclude group: 'com.google.android', module: 'android'
     }
-    implementation 'org.conscrypt:conscrypt-android:2.0.0'
-    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.2'
+    implementation 'org.conscrypt:conscrypt-android:2.4.0'
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.4'
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-all:1.10.5'
-    testImplementation 'org.robolectric:robolectric:3.8'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
+    testImplementation 'org.robolectric:robolectric:4.3.1'
 }
 

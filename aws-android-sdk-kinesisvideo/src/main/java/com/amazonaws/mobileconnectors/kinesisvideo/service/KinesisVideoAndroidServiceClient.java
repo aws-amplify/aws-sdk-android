@@ -24,15 +24,12 @@ import java.io.InputStream;
 import java.net.URI;
 import java.util.Date;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
@@ -46,8 +43,6 @@ import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.common.function.Consumer;
 import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
-import com.amazonaws.kinesisvideo.encoding.ChunkDecoder;
-import com.amazonaws.kinesisvideo.model.ResponseStatus;
 import com.amazonaws.kinesisvideo.producer.StreamDescription;
 import com.amazonaws.kinesisvideo.producer.StreamStatus;
 import com.amazonaws.kinesisvideo.internal.producer.client.KinesisVideoServiceClient;
@@ -64,7 +59,6 @@ import com.amazonaws.services.kinesisvideo.model.DescribeStreamRequest;
 import com.amazonaws.services.kinesisvideo.model.DescribeStreamResult;
 import com.amazonaws.services.kinesisvideo.model.GetDataEndpointRequest;
 import com.amazonaws.services.kinesisvideo.model.GetDataEndpointResult;
-import com.amazonaws.services.kinesisvideo.model.ResourceNotFoundException;
 import com.amazonaws.services.kinesisvideo.model.TagStreamRequest;
 import com.amazonaws.services.kinesisvideo.model.TagStreamResult;
 import com.amazonaws.util.StringUtils;

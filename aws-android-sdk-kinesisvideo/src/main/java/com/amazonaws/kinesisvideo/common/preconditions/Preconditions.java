@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.common.preconditions;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public final class Preconditions {
     private Preconditions() {}

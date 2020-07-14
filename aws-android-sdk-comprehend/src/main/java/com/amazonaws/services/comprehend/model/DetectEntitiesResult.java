@@ -23,7 +23,13 @@ public class DetectEntitiesResult implements Serializable {
      * A collection of entities identified in the input text. For each entity,
      * the response provides the entity text, entity type, where the entity text
      * begins and ends, and the level of confidence that Amazon Comprehend has
-     * in the detection. For a list of entity types, see <a>how-entities</a>.
+     * in the detection.
+     * </p>
+     * <p>
+     * If your request uses a custom entity recognition model, Amazon Comprehend
+     * detects the entities that the model is trained to recognize. Otherwise,
+     * it detects the default entity types. For a list of default entity types,
+     * see <a>how-entities</a>.
      * </p>
      */
     private java.util.List<Entity> entities;
@@ -33,15 +39,26 @@ public class DetectEntitiesResult implements Serializable {
      * A collection of entities identified in the input text. For each entity,
      * the response provides the entity text, entity type, where the entity text
      * begins and ends, and the level of confidence that Amazon Comprehend has
-     * in the detection. For a list of entity types, see <a>how-entities</a>.
+     * in the detection.
+     * </p>
+     * <p>
+     * If your request uses a custom entity recognition model, Amazon Comprehend
+     * detects the entities that the model is trained to recognize. Otherwise,
+     * it detects the default entity types. For a list of default entity types,
+     * see <a>how-entities</a>.
      * </p>
      *
      * @return <p>
      *         A collection of entities identified in the input text. For each
      *         entity, the response provides the entity text, entity type, where
      *         the entity text begins and ends, and the level of confidence that
-     *         Amazon Comprehend has in the detection. For a list of entity
-     *         types, see <a>how-entities</a>.
+     *         Amazon Comprehend has in the detection.
+     *         </p>
+     *         <p>
+     *         If your request uses a custom entity recognition model, Amazon
+     *         Comprehend detects the entities that the model is trained to
+     *         recognize. Otherwise, it detects the default entity types. For a
+     *         list of default entity types, see <a>how-entities</a>.
      *         </p>
      */
     public java.util.List<Entity> getEntities() {
@@ -53,15 +70,26 @@ public class DetectEntitiesResult implements Serializable {
      * A collection of entities identified in the input text. For each entity,
      * the response provides the entity text, entity type, where the entity text
      * begins and ends, and the level of confidence that Amazon Comprehend has
-     * in the detection. For a list of entity types, see <a>how-entities</a>.
+     * in the detection.
+     * </p>
+     * <p>
+     * If your request uses a custom entity recognition model, Amazon Comprehend
+     * detects the entities that the model is trained to recognize. Otherwise,
+     * it detects the default entity types. For a list of default entity types,
+     * see <a>how-entities</a>.
      * </p>
      *
      * @param entities <p>
      *            A collection of entities identified in the input text. For
      *            each entity, the response provides the entity text, entity
      *            type, where the entity text begins and ends, and the level of
-     *            confidence that Amazon Comprehend has in the detection. For a
-     *            list of entity types, see <a>how-entities</a>.
+     *            confidence that Amazon Comprehend has in the detection.
+     *            </p>
+     *            <p>
+     *            If your request uses a custom entity recognition model, Amazon
+     *            Comprehend detects the entities that the model is trained to
+     *            recognize. Otherwise, it detects the default entity types. For
+     *            a list of default entity types, see <a>how-entities</a>.
      *            </p>
      */
     public void setEntities(java.util.Collection<Entity> entities) {
@@ -78,7 +106,13 @@ public class DetectEntitiesResult implements Serializable {
      * A collection of entities identified in the input text. For each entity,
      * the response provides the entity text, entity type, where the entity text
      * begins and ends, and the level of confidence that Amazon Comprehend has
-     * in the detection. For a list of entity types, see <a>how-entities</a>.
+     * in the detection.
+     * </p>
+     * <p>
+     * If your request uses a custom entity recognition model, Amazon Comprehend
+     * detects the entities that the model is trained to recognize. Otherwise,
+     * it detects the default entity types. For a list of default entity types,
+     * see <a>how-entities</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,8 +122,13 @@ public class DetectEntitiesResult implements Serializable {
      *            A collection of entities identified in the input text. For
      *            each entity, the response provides the entity text, entity
      *            type, where the entity text begins and ends, and the level of
-     *            confidence that Amazon Comprehend has in the detection. For a
-     *            list of entity types, see <a>how-entities</a>.
+     *            confidence that Amazon Comprehend has in the detection.
+     *            </p>
+     *            <p>
+     *            If your request uses a custom entity recognition model, Amazon
+     *            Comprehend detects the entities that the model is trained to
+     *            recognize. Otherwise, it detects the default entity types. For
+     *            a list of default entity types, see <a>how-entities</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -109,7 +148,13 @@ public class DetectEntitiesResult implements Serializable {
      * A collection of entities identified in the input text. For each entity,
      * the response provides the entity text, entity type, where the entity text
      * begins and ends, and the level of confidence that Amazon Comprehend has
-     * in the detection. For a list of entity types, see <a>how-entities</a>.
+     * in the detection.
+     * </p>
+     * <p>
+     * If your request uses a custom entity recognition model, Amazon Comprehend
+     * detects the entities that the model is trained to recognize. Otherwise,
+     * it detects the default entity types. For a list of default entity types,
+     * see <a>how-entities</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -119,8 +164,13 @@ public class DetectEntitiesResult implements Serializable {
      *            A collection of entities identified in the input text. For
      *            each entity, the response provides the entity text, entity
      *            type, where the entity text begins and ends, and the level of
-     *            confidence that Amazon Comprehend has in the detection. For a
-     *            list of entity types, see <a>how-entities</a>.
+     *            confidence that Amazon Comprehend has in the detection.
+     *            </p>
+     *            <p>
+     *            If your request uses a custom entity recognition model, Amazon
+     *            Comprehend detects the entities that the model is trained to
+     *            recognize. Otherwise, it detects the default entity types. For
+     *            a list of default entity types, see <a>how-entities</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

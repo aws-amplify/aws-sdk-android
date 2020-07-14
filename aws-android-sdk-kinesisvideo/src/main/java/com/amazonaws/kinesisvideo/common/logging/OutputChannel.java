@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.common.logging;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Interface representing the actual output channel which is platform dependent.

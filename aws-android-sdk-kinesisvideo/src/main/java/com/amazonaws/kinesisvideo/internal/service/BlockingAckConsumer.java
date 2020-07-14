@@ -27,7 +27,7 @@ import com.amazonaws.kinesisvideo.internal.service.exception.AccessDeniedExcepti
 import com.amazonaws.kinesisvideo.internal.service.exception.AmazonServiceException;
 import com.amazonaws.kinesisvideo.internal.service.exception.ResourceNotFoundException;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
 

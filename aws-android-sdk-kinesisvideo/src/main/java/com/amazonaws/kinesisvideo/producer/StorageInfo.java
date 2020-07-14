@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.producer;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Storage info class.

@@ -35,38 +35,9 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-android-sdk-auth-google</artifactId>
-      <optional>true</optional>
-      <version>2.16.13</version>
-      <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-android-sdk-auth-facebook</artifactId>
-      <optional>true</optional>
-      <version>2.16.13</version>
-      <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-android-sdk-auth-userpools</artifactId>
-      <optional>true</optional>
-      <version>2.16.13</version>
-      <type>aar</type>
-    </dependency>
-    <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>4.1.1.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>appcompat-v7</artifactId>
-      <optional>true</optional>
-      <version>23.0.1</version>
-      <type>aar</type>
+      <groupId>androidx.appcompat</groupId>
+      <artifactId>appcompat</artifactId>
+      <version>1.1.0</version>
     </dependency>
   </dependencies>
   <build>

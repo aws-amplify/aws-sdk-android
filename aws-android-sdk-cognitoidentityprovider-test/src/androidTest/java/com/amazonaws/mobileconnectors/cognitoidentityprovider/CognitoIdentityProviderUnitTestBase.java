@@ -16,31 +16,22 @@
 package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
-import android.os.Build;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
 import android.util.Base64;
 
+import androidx.test.core.app.ApplicationProvider;
+
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
-import com.amazonaws.services.cognitoidentityprovider.AmazonCognitoIdentityProviderClient;
 import com.amazonaws.services.cognitoidentityprovider.model.CodeDeliveryDetailsType;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.testutils.AWSTestBase;
 import com.amazonaws.util.StringUtils;
 
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-
-import java.security.KeyStore;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Enumeration;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-@RunWith(AndroidJUnit4.class)
 public abstract class CognitoIdentityProviderUnitTestBase extends AWSTestBase {
 	// Test values
 	public static final String TEST_USER_POOL      = "alpha_DummyID";
@@ -95,7 +86,7 @@ public abstract class CognitoIdentityProviderUnitTestBase extends AWSTestBase {
     }
     
     public CognitoIdentityProviderUnitTestBase() {
-        appContext = InstrumentationRegistry.getTargetContext();
+        appContext = ApplicationProvider.getApplicationContext();
     }
 
     public AWSKeyValueStore getAWSKeyValueStorageUtility(final CognitoUserPool cognitoUserPool) {

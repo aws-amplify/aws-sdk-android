@@ -17,7 +17,7 @@
 
 package com.amazonaws.kinesisvideo.common.exception;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  *

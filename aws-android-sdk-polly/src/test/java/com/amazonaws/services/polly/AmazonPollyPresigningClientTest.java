@@ -19,6 +19,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import android.net.UrlQuerySanitizer;
+
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.regions.Region;
@@ -30,11 +32,11 @@ import com.amazonaws.services.polly.model.SynthesizeSpeechPresignRequest;
 import com.amazonaws.services.polly.model.TextType;
 import com.amazonaws.services.polly.model.VoiceId;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -47,8 +49,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@RunWith(RobolectricTestRunner.class)
 public class AmazonPollyPresigningClientTest {
-
     private static final String HOST = "localhost";
     private static final String SCHEME = "http";
     private static final String RESOURCE_PATH = "/v1/speech";
@@ -59,6 +61,7 @@ public class AmazonPollyPresigningClientTest {
     private static final String SECRET_KEY = "secret-key";
 
     private static final String INPUT_TEXT = "<speak>Mary has a little lamb</speak>";
+    private static final String SANITIZED_TEXT = "_speak_Mary_has_a_little_lamb_/speak_";
     private static final String SSML_TEXT_TYPE = TextType.Ssml.toString();
     private static final String SALLI_VOICE_ID = VoiceId.Salli.toString();
     private static final String MP3_OUTPUT_FORMAT = OutputFormat.Mp3.toString();
@@ -94,7 +97,7 @@ public class AmazonPollyPresigningClientTest {
 
         expectedQueryParameterPairs = Collections.unmodifiableMap(new HashMap<String, String>() {
             {
-                put(TEXT_KEY, INPUT_TEXT);
+                put(TEXT_KEY, SANITIZED_TEXT);
                 put(TEXT_TYPE_KEY, SSML_TEXT_TYPE);
                 put(VOICE_ID_KEY, SALLI_VOICE_ID);
                 put(OUTPUT_FORMAT_KEY, MP3_OUTPUT_FORMAT);
@@ -125,13 +128,13 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        List<NameValuePair> params = URLEncodedUtils.parse(uri, "UTF-8");
-        for (NameValuePair pair : params) {
-            Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
-                    expectedQueryParameterKeys.contains(pair.getName()));
-            expectedQueryParameterKeys.remove(pair.getName());
-            if (expectedQueryParameterPairs.containsKey(pair.getName())) {
-                Assert.assertEquals(expectedQueryParameterPairs.get(pair.getName()), pair.getValue());
+        UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(uri.toString());
+        for (UrlQuerySanitizer.ParameterValuePair pair : sanitizer.getParameterList()) {
+            Assert.assertTrue("Unexpected query parameter: " + pair.mParameter,
+                    expectedQueryParameterKeys.contains(pair.mParameter));
+            expectedQueryParameterKeys.remove(pair.mParameter);
+            if (expectedQueryParameterPairs.containsKey(pair.mParameter)) {
+                Assert.assertEquals(expectedQueryParameterPairs.get(pair.mParameter), pair.mValue);
             }
         }
         Assert.assertTrue("Missing expected parameters: " + expectedQueryParameterKeys.toString(),
@@ -154,14 +157,14 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        List<NameValuePair> params = URLEncodedUtils.parse(uri, "UTF-8");
-        for (NameValuePair pair : params) {
-            Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
-                    expectedQueryParameterKeys.contains(pair.getName()));
-            if (LEXICON_NAME_KEY.equals(pair.getName())) {
-                Assert.assertTrue("Unexpected lexicon name: " + pair.getValue(),
-                        lexiconsNamesExpected.contains(pair.getValue()));
-                lexiconsNamesExpected.remove(pair.getValue());
+        UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(uri.toString());
+        for (UrlQuerySanitizer.ParameterValuePair pair : sanitizer.getParameterList()) {
+            Assert.assertTrue("Unexpected query parameter: " + pair.mParameter,
+                    expectedQueryParameterKeys.contains(pair.mParameter));
+            if (LEXICON_NAME_KEY.equals(pair.mParameter)) {
+                Assert.assertTrue("Unexpected lexicon name: " + pair.mValue,
+                        lexiconsNamesExpected.contains(pair.mValue));
+                lexiconsNamesExpected.remove(pair.mValue);
             }
         }
         Assert.assertTrue("Not all lexicons names were included " + lexiconsNamesExpected.toString(),
@@ -183,11 +186,11 @@ public class AmazonPollyPresigningClientTest {
 
         verifyCredentialsMocks();
         assertBasicUriValues(uri);
-        List<NameValuePair> params = URLEncodedUtils.parse(uri, "UTF-8");
-        for (NameValuePair pair : params) {
-            Assert.assertTrue("Unexpected query parameter: " + pair.getName(),
-                    expectedQueryParameterKeys.contains(pair.getName()));
-            expectedQueryParameterKeys.remove(pair.getName());
+        UrlQuerySanitizer sanitizer = new UrlQuerySanitizer(uri.toString());
+        for (UrlQuerySanitizer.ParameterValuePair pair : sanitizer.getParameterList()) {
+            Assert.assertTrue("Unexpected query parameter: " + pair.mParameter,
+                    expectedQueryParameterKeys.contains(pair.mParameter));
+            expectedQueryParameterKeys.remove(pair.mParameter);
         }
         Assert.assertTrue("Missing expected parameters: " + expectedQueryParameterKeys.toString(),
                 expectedQueryParameterKeys.isEmpty());
@@ -217,3 +220,4 @@ public class AmazonPollyPresigningClientTest {
         Assert.assertEquals(RESOURCE_PATH, uri.getPath());
     }
 }
+

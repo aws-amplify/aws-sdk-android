@@ -18,14 +18,12 @@
 package com.amazonaws.mobile.auth.userpools;
 
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -34,15 +32,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import com.amazonaws.mobile.config.AWSConfiguration;
-
-import com.amazonaws.mobile.auth.core.IdentityManager;
-import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.ui.BackgroundDrawable;
 import com.amazonaws.mobile.auth.core.signin.ui.DisplayUtils;
 import com.amazonaws.mobile.auth.core.signin.ui.SplitBackgroundDrawable;
-
-import com.amazonaws.mobile.auth.userpools.R;
 
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_BUTTON_COLOR;
 import static com.amazonaws.mobile.auth.userpools.UserPoolFormConstants.FORM_BUTTON_CORNER_RADIUS;

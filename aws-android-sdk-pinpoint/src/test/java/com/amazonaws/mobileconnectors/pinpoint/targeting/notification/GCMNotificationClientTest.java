@@ -15,11 +15,13 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
-import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
+import android.os.Bundle;
+import androidx.test.core.app.ApplicationProvider;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -31,46 +33,37 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.internal.util.reflection.Whitebox;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
-import org.robolectric.annotation.Config;
+
 import com.amazonaws.mobileconnectors.pinpoint.PinpointConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsClient;
+import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.MobileAnalyticsTestBase;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockSystem;
+import com.amazonaws.mobileconnectors.pinpoint.internal.event.EventRecorder;
 import com.amazonaws.mobileconnectors.pinpoint.targeting.TargetingClient;
 import com.amazonaws.services.pinpoint.model.ChannelType;
-
-import android.app.Service;
-import android.os.Bundle;
 
 import java.util.Map;
 
 import static com.amazonaws.mobileconnectors.pinpoint.targeting.notification.NotificationClient.GCM_INTENT_ACTION;
-import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.CALLS_REAL_METHODS;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.withSettings;
 
 @RunWith(RobolectricTestRunner.class)
-//@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*" })
-//@PrepareForTest(Static.class)
-@Config(manifest = Config.NONE)
 public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
-
-//    @Rule
-//    public PowerMockRule rule = new PowerMockRule();
-
     @Mock
     AndroidPreferencesConfiguration mockConfiguration;
     private NotificationClient target;
@@ -90,8 +83,7 @@ public class GCMNotificationClientTest extends MobileAnalyticsTestBase {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        final Context roboContext = RuntimeEnvironment.application
-            .getApplicationContext();
+        Context roboContext = ApplicationProvider.getApplicationContext();
         spiedRoboContext = Mockito.spy(roboContext);
         mockPinpointContext = new AnalyticsContextBuilder()
                                                       .withSystem(new MockSystem("JIMMY_CRACKED_CORN.and"))

@@ -16,7 +16,7 @@
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.amazonaws.services.s3.S3IntegrationTestBase;
 import com.amazonaws.services.s3.model.GetObjectTaggingRequest;
@@ -28,7 +28,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -44,7 +43,7 @@ public class TaggingIntegrationTest extends S3IntegrationTestBase {
     private static final String BUCKET_NAME = "android-sdk-transfer-util-integ-test-" + System.currentTimeMillis();
 
     /** Instrumentation test context */
-    private static Context context = InstrumentationRegistry.getContext();
+    private static Context context = ApplicationProvider.getApplicationContext();
 
     /** Countdown latch for testing */
     private static CountDownLatch latch;

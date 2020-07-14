@@ -35,32 +35,18 @@
       <type>aar</type>
     </dependency>
     <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-      <version>4.1.1.4</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- import facebook-android-sdk while excluding its dependencies -->
-    <dependency>
       <groupId>com.facebook.android</groupId>
       <artifactId>facebook-android-sdk</artifactId>
       <version>4.1.0</version>
       <optional>false</optional>
       <type>aar</type>
-      <exclusions>
-        <exclusion>
-          <groupId>com.android.support</groupId>
-          <artifactId>support-v4</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
-    <!-- manually import facebook dependencies -->
     <dependency>
-      <groupId>com.android.support</groupId>
-      <artifactId>support-v4</artifactId>
-      <version>23.0.1</version>
+      <groupId>androidx.annotation</groupId>
+      <artifactId>annotation</artifactId>
+      <version>1.1.0</version>
       <type>aar</type>
-      <optional>true</optional>
+      <optional>false</optional>
     </dependency>
   </dependencies>
   <build>

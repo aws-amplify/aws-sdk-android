@@ -28,19 +28,14 @@ import com.amazonaws.services.cognitoidentityprovider.model.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import android.support.test.runner.AndroidJUnit4;
-
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 
-@RunWith(AndroidJUnit4.class)
 public class CognitoIdentityProviderForgotPasswordTest extends CognitoIdentityProviderUnitTestBase {
 	// Constants
 	private ForgotPasswordResult   			TEST_FORGOT_PASSWORD_RESPONSE = null;

@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -68,6 +70,11 @@ public class DetectEntitiesRequestMarshaller implements
                 String languageCode = detectEntitiesRequest.getLanguageCode();
                 jsonWriter.name("LanguageCode");
                 jsonWriter.value(languageCode);
+            }
+            if (detectEntitiesRequest.getEndpointArn() != null) {
+                String endpointArn = detectEntitiesRequest.getEndpointArn();
+                jsonWriter.name("EndpointArn");
+                jsonWriter.value(endpointArn);
             }
 
             jsonWriter.endObject();

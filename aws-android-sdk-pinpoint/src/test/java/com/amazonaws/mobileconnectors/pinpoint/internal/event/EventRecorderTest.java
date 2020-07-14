@@ -15,6 +15,9 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.internal.event;
 
+import android.database.Cursor;
+import android.net.Uri;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -22,17 +25,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
-import com.amazonaws.logging.Log;
-import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
-import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
-import com.amazonaws.services.pinpoint.model.BadRequestException;
-import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
-import com.amazonaws.services.pinpoint.model.Event;
-import com.amazonaws.services.pinpoint.model.EventItemResponse;
-import com.amazonaws.services.pinpoint.model.EventsResponse;
-import com.amazonaws.services.pinpoint.model.ItemResponse;
-import com.amazonaws.services.pinpoint.model.PutEventsResult;
-import com.amazonaws.services.pinpoint.model.PutEventsRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,20 +37,26 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.stubbing.OngoingStubbing;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
-import org.robolectric.annotation.Config;
+
+import com.amazonaws.logging.Log;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.AnalyticsEvent;
 import com.amazonaws.mobileconnectors.pinpoint.analytics.utils.AnalyticsContextBuilder;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.PinpointContext;
+import com.amazonaws.mobileconnectors.pinpoint.internal.core.configuration.AndroidPreferencesConfiguration;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockAppDetails;
 import com.amazonaws.mobileconnectors.pinpoint.internal.core.system.MockDeviceDetails;
+import com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile.EndpointProfile;
+import com.amazonaws.services.pinpoint.model.BadRequestException;
+import com.amazonaws.services.pinpoint.model.EndpointItemResponse;
+import com.amazonaws.services.pinpoint.model.Event;
+import com.amazonaws.services.pinpoint.model.EventItemResponse;
+import com.amazonaws.services.pinpoint.model.EventsResponse;
+import com.amazonaws.services.pinpoint.model.ItemResponse;
+import com.amazonaws.services.pinpoint.model.PutEventsRequest;
+import com.amazonaws.services.pinpoint.model.PutEventsResult;
 import com.amazonaws.services.pinpointanalytics.AmazonPinpointAnalyticsClient;
-import android.database.Cursor;
-import android.net.Uri;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -70,10 +68,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(PowerMockRunner.class)
-@PowerMockRunnerDelegate(RobolectricTestRunner.class)
-@PowerMockIgnore({"org.mockito.*", "org.robolectric.*", "android.*"})
-@Config(manifest = Config.NONE, sdk=23)
+@RunWith(RobolectricTestRunner.class)
 public class EventRecorderTest {
     private static final String SDK_NAME = "AppIntelligenceSDK-Analytics";
     private static final String SDK_VERSION = "test";

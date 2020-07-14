@@ -25,7 +25,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Environment;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.kinesisvideo.auth.KinesisVideoCredentialsProvider;

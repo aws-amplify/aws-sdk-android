@@ -32,7 +32,6 @@ import com.amazonaws.util.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
-import org.junit.runner.RunWith;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -51,11 +50,9 @@ import java.util.Scanner;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.support.annotation.RawRes;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.annotation.RawRes;
+import androidx.test.core.app.ApplicationProvider;
 
-@RunWith(AndroidJUnit4.class)
 public abstract class AWSTestBase {
     protected static final String TEST_CONFIGURATION_FILENAME = "testconfiguration.json";
 
@@ -168,7 +165,7 @@ public abstract class AWSTestBase {
 
     @SuppressWarnings("SameParameterValue")
     private static String readRawResourceContents(String rawResourceName) {
-        Context context = InstrumentationRegistry.getContext();
+        Context context = ApplicationProvider.getApplicationContext();
         Resources resources = context.getResources();
         String packageName = context.getPackageName();
         @RawRes int resourceId =
@@ -200,7 +197,13 @@ public abstract class AWSTestBase {
     }
 
     public static JSONObject  getPackageConfigure(String packageName) {
-        return getJSONConfiguration().getPackageConfigure(packageName);
+        JSONObject configuration = getJSONConfiguration().getPackageConfigure(packageName);
+        assertNotNull(
+            "No configuration for package " + packageName + ". Did you include a " +
+                "tesconfiguration.json with the test package?",
+            configuration
+        );
+        return configuration;
     }
 
     public static void setUpCredentials() {
@@ -399,7 +402,7 @@ public abstract class AWSTestBase {
     }
 
     protected void deleteAllEncryptionKeys() {
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = ApplicationProvider.getApplicationContext();
         appContext.getSharedPreferences("com.amazonaws.android.auth.encryptionkey",
                 Context.MODE_PRIVATE)
                 .edit()

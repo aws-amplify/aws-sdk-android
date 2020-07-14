@@ -21,7 +21,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.ByteBuffer;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Kinesis Video frame representation.

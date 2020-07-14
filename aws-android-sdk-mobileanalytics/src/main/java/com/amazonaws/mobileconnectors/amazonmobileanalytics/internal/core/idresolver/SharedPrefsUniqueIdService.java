@@ -15,6 +15,7 @@
 
 package com.amazonaws.mobileconnectors.amazonmobileanalytics.internal.core.idresolver;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -27,6 +28,7 @@ import java.util.UUID;
 /**
  * @deprecated The Amazon Mobile Analytics SDK for Android is deprecated as of release 2.9.0. Please use the Amazon Pinpoint SDK for Android along with Amazon Pinpoint service instead.
  */
+@SuppressLint("LongLogTag")
 @Deprecated
 public class SharedPrefsUniqueIdService implements UniqueIdService {
 

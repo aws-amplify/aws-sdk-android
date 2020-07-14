@@ -19,7 +19,7 @@ package com.amazonaws.mobile.client;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Base64;
 
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
@@ -41,7 +41,7 @@ import static org.junit.Assert.fail;
 public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
     /** Package name in testconfiguration.json */
-    protected static final String PACKAGE_NAME = InstrumentationRegistry.getTargetContext().
+    protected static final String PACKAGE_NAME = ApplicationProvider.getApplicationContext().
             getResources().getString(R.string.package_name);
 
     public static JSONObject getPackageConfigure()  {

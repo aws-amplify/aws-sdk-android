@@ -51,7 +51,10 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>FilterPolicy</code> – The filter policy JSON that is assigned to
-     * the subscription.
+     * the subscription. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     * >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -126,7 +129,10 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>FilterPolicy</code> – The filter policy JSON that is assigned to
-     * the subscription.
+     * the subscription. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     * >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -198,7 +204,10 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         <li>
      *         <p>
      *         <code>FilterPolicy</code> – The filter policy JSON that is
-     *         assigned to the subscription.
+     *         assigned to the subscription. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     *         >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
+     *         Guide</i>.
      *         </p>
      *         </li>
      *         <li>
@@ -279,7 +288,10 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>FilterPolicy</code> – The filter policy JSON that is assigned to
-     * the subscription.
+     * the subscription. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     * >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -351,7 +363,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>FilterPolicy</code> – The filter policy JSON that is
-     *            assigned to the subscription.
+     *            assigned to the subscription. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     *            >Amazon SNS Message Filtering</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -432,7 +448,10 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>FilterPolicy</code> – The filter policy JSON that is assigned to
-     * the subscription.
+     * the subscription. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     * >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * <li>
@@ -507,7 +526,11 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            <li>
      *            <p>
      *            <code>FilterPolicy</code> – The filter policy JSON that is
-     *            assigned to the subscription.
+     *            assigned to the subscription. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     *            >Amazon SNS Message Filtering</a> in the <i>Amazon SNS
+     *            Developer Guide</i>.
      *            </p>
      *            </li>
      *            <li>
@@ -591,7 +614,10 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * <li>
      * <p>
      * <code>FilterPolicy</code> – The filter policy JSON that is assigned to
-     * the subscription.
+     * the subscription. For more information, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+     * >Amazon SNS Message Filtering</a> in the <i>Amazon SNS Developer
+     * Guide</i>.
      * </p>
      * </li>
      * <li>

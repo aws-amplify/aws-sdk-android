@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The specified resource is not available. Check to see if the resource is in
- * the <code>TRAINED</code> state and try your request again.
+ * The specified resource is not available. Check the resource and try your
+ * request again.
  * </p>
  */
 public class ResourceUnavailableException extends AmazonServiceException {

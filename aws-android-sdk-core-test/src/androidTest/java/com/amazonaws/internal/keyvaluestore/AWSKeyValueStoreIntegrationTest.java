@@ -17,9 +17,7 @@ package com.amazonaws.internal.keyvaluestore;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_IV_SUFFIX;
 import static com.amazonaws.internal.keyvaluestore.AWSKeyValueStore.SHARED_PREFERENCES_STORE_VERSION_SUFFIX;
@@ -30,15 +28,13 @@ import static org.junit.Assert.fail;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.core.app.ApplicationProvider;
 import android.util.Log;
 
 import java.security.Key;
 import java.security.KeyStore;
 import java.util.Map;
 
-@RunWith(AndroidJUnit4.class)
 public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
 
     private static AWSKeyValueStore awsKeyValueStore;
@@ -47,7 +43,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
 
     @Before
     public void setUp() {
-        awsKeyValueStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        awsKeyValueStore = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
     }
@@ -160,7 +156,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         awsKeyValueStore.put(key, value);
         assertEquals(value, awsKeyValueStore.get(key));
 
-        AWSKeyValueStore keyValueStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyValueStore2 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
         assertEquals(value, keyValueStore2.get(key));
@@ -178,7 +174,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         awsKeyValueStore.put(key, value);
         assertEquals(value, awsKeyValueStore.get(key));
 
-        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
         assertEquals(value, keyStore2.get(key));
@@ -190,8 +186,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
 
-        SharedPreferences sharedPreferences = InstrumentationRegistry
-                .getTargetContext()
+        SharedPreferences sharedPreferences = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
         sharedPreferences.edit()
                 .putString(key, value)
@@ -203,7 +198,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
             Log.d(TAG, "spKey = " + spKey + "; value = " + map.get(spKey));
         }
 
-        AWSKeyValueStore keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 sharedPreferencesName,
                 true);
 
@@ -225,7 +220,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         keyStore.put(key, value);
         assertEquals(value, keyStore.get(key));
 
-        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 sharedPreferencesName,
                 true);
 
@@ -235,7 +230,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
 
     @Test
     public void testGetSetTwoStores() {
-        AWSKeyValueStore keyStore1 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore1 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
 
@@ -245,7 +240,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         keyStore1.put(key, value);
         assertEquals(value, keyStore1.get(key));
 
-        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
         assertEquals(keyStore1.get(key), keyStore2.get(key));
@@ -253,7 +248,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
 
     @Test
     public void testGetSetTwoStoresNoPersistence() {
-        AWSKeyValueStore keyStore1 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore1 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
         keyStore1.setPersistenceEnabled(false);
@@ -264,7 +259,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         keyStore1.put(key, value);
         assertEquals(value, keyStore1.get(key));
 
-        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore2 = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 DEFAULT_SHARED_PREFERENCES_NAME,
                 true);
         keyStore2.setPersistenceEnabled(false);
@@ -278,8 +273,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
 
-        SharedPreferences sharedPreferences = InstrumentationRegistry
-                .getTargetContext()
+        SharedPreferences sharedPreferences = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
         sharedPreferences.edit().clear().commit();
 
@@ -294,7 +288,7 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         }
 
         // Migrate from SharedPreferences to AWSKeyValueStore
-        AWSKeyValueStore keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 sharedPreferencesName,
                 true);
 
@@ -328,13 +322,12 @@ public class AWSKeyValueStoreIntegrationTest extends CoreIntegrationTestBase {
         final String key = "access-key";
         final String value = "a-dummy-access-key";
 
-        SharedPreferences sharedPreferences = InstrumentationRegistry
-                .getTargetContext()
+        SharedPreferences sharedPreferences = ApplicationProvider.getApplicationContext()
                 .getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
         sharedPreferences.edit().clear().commit();
 
         // Migrate from SharedPreferences to AWSKeyValueStore
-        AWSKeyValueStore keyStore = new AWSKeyValueStore(InstrumentationRegistry.getTargetContext(),
+        AWSKeyValueStore keyStore = new AWSKeyValueStore(ApplicationProvider.getApplicationContext(),
                 sharedPreferencesName,
                 false);
 

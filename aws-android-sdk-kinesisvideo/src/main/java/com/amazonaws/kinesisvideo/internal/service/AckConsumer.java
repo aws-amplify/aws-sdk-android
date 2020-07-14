@@ -23,11 +23,11 @@ import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 import com.amazonaws.kinesisvideo.internal.producer.KinesisVideoProducerStream;
 import com.amazonaws.kinesisvideo.producer.ProducerException;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -77,7 +77,7 @@ class AckConsumer implements Consumer<InputStream> {
 
                 String bytesString = null;
                 if (bytesRead > 0) {
-                    bytesString = new String(buffer, 0, bytesRead, StandardCharsets.UTF_8);
+                    bytesString = new String(buffer, 0, bytesRead, Charset.forName("UTF-8"));
                 }
 
                 // Check for end-of-stream and 0 before processing
