@@ -20,10 +20,9 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.AmazonWebServiceRequest;
 import com.amazonaws.ClientConfiguration;
 
-import org.apache.http.HttpStatus;
-
 import java.io.IOException;
 import java.io.InterruptedIOException;
+import java.net.HttpURLConnection;
 import java.util.Random;
 
 /**
@@ -173,10 +172,10 @@ public class PredefinedRetryPolicies {
                  * flood of retries.
                  */
                 int statusCode = ase.getStatusCode();
-                if (statusCode == HttpStatus.SC_INTERNAL_SERVER_ERROR
-                        || statusCode == HttpStatus.SC_SERVICE_UNAVAILABLE
-                        || statusCode == HttpStatus.SC_BAD_GATEWAY
-                        || statusCode == HttpStatus.SC_GATEWAY_TIMEOUT) {
+                if (statusCode == HttpURLConnection.HTTP_INTERNAL_ERROR
+                        || statusCode == HttpURLConnection.HTTP_UNAVAILABLE
+                        || statusCode == HttpURLConnection.HTTP_BAD_GATEWAY
+                        || statusCode == HttpURLConnection.HTTP_GATEWAY_TIMEOUT) {
                     return true;
                 }
 
