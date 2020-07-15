@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'devicefarm'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 14 // FB, Google, UI, UserPools all need 14, Hosted UI needs 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName '1.0'
     }
