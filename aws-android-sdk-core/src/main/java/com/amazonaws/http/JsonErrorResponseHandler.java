@@ -190,7 +190,7 @@ public class JsonErrorResponseHandler implements HttpResponseHandler<AmazonServi
             int statusCode = response.getStatusCode();
 
             // parse error body
-            Map<String, String> map = JsonUtils.jsonToMap(new BufferedReader(new InputStreamReader(
+            Map<String, String> map = JsonUtils.jsonToStringMapWithList(new BufferedReader(new InputStreamReader(
                     response.getContent(), StringUtils.UTF8)));
 
             /*

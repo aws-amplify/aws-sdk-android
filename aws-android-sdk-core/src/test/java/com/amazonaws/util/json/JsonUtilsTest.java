@@ -44,6 +44,24 @@ public class JsonUtilsTest {
             + "\"object\":{}"
             + "}";
 
+    private static final String JSON_STRING_WITH_ARRAYS = "{\"string\":\"string\","
+            + "\"long\":123,"
+            + "\"double\":123.45,"
+            + "\"null\":null,"
+            + "\"true\":true,"
+            + "\"false\":false,"
+            + "\"encoding\":\"Chloë\","
+            + "\"array\":[\"string\",123,123.45,null,true,false],"
+            + "\"array2\":[{\"key1\":\"string1\"},{\"key2\":\"string2\"}],"
+            + "\"array3\":[{\"key1\":123.45},{\"key2\":false}],"
+            + "\"array4\":[\"string\",123,[\"string\",123,123.45,null,true,false],123.45,null,true],"
+            + "\"array5\":[{\"key1\":\"string1\"},{\"key2\":[{\"key3\":\"string2\"}]},{\"key3\":\"string3\"}],"
+            + "\"array6\":[[],[[]]],"
+            + "\"array7\":[],"
+            + "\"array8\":[null],"
+            + "\"array9\":[\"A\",{\"B\":[[]]},\"C\",[[]],\"D\",null],"
+            + "\"object\":{}"
+            + "}";
     @Test
     public void testJsonToMap() {
         Map<String, String> map = JsonUtils.jsonToMap(JSON_STRING);
@@ -55,6 +73,28 @@ public class JsonUtilsTest {
         assertEquals("false value", "false", map.get("false"));
         assertEquals("encoding", "Chloë", map.get("encoding"));
         assertNull("array is ignored", map.get("array"));
+        assertNull("object is ignored", map.get("object"));
+    }
+
+    @Test
+    public void testJsonToMapWithList() {
+        Map<String, String> map = JsonUtils.jsonToStringMapWithList(new StringReader(JSON_STRING_WITH_ARRAYS));
+        assertEquals("string value", "string", map.get("string"));
+        assertEquals("long value", "123", map.get("long"));
+        assertEquals("double value", "123.45", map.get("double"));
+        assertEquals("null value", null, map.get("null"));
+        assertEquals("true value", "true", map.get("true"));
+        assertEquals("false value", "false", map.get("false"));
+        assertEquals("encoding", "Chloë", map.get("encoding"));
+        assertEquals("array of simple types only reads string values", "[\"string\",\"123\",\"123.45\",null,\"true\",\"false\"]", map.get("array"));
+        assertEquals("array of objects with only strings as keys and values is supported", "[{\"key1\":\"string1\"},{\"key2\":\"string2\"}]", map.get("array2"));
+        assertEquals("array of objects with values other than strings is not supported", "[{\"key1\":\"123.45\"},{\"key2\":\"false\"}]", map.get("array3"));
+        assertEquals("nested primitive arrays are not supported", "[\"string\",\"123\",\"123.45\",null,\"true\"]", map.get("array4"));
+        assertEquals("nested object arrays are not supported", "[{\"key1\":\"string1\"},{},{\"key3\":\"string3\"}]", map.get("array5"));
+        assertEquals("nested arrays are not supported", "[]", map.get("array6"));
+        assertEquals("empty array read", "[]", map.get("array7"));
+        assertEquals("array with only null read correctly", "[null]", map.get("array8"));
+        assertEquals("nested arrays are not supported", "[\"A\",{},\"C\",\"D\",null]", map.get("array9"));
         assertNull("object is ignored", map.get("object"));
     }
 
