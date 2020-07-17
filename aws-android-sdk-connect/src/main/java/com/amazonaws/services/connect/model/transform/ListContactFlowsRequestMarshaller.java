@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -58,7 +60,7 @@ public class ListContactFlowsRequestMarshaller implements
         if (listContactFlowsRequest.getContactFlowTypes() != null) {
             request.addParameter(
                     "contactFlowTypes",
-                    StringUtils.join(",",
+                    TextUtils.join(",",
                             listContactFlowsRequest.getContactFlowTypes().toArray(new String[0])));
         }
         if (listContactFlowsRequest.getNextToken() != null) {

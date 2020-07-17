@@ -576,6 +576,34 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * When a contact is being recorded, and the recording has been suspended
+     * using SuspendContactRecording, this API resumes recording the call.
+     * </p>
+     * <p>
+     * Only voice recordings are supported at this time.
+     * </p>
+     * 
+     * @param resumeContactRecordingRequest
+     * @return resumeContactRecordingResult The response from the
+     *         ResumeContactRecording service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ResumeContactRecordingResult resumeContactRecording(
+            ResumeContactRecordingRequest resumeContactRecordingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Initiates a contact flow to start a new chat for the customer. Response
      * of this API provides a token required to obtain credentials from the <a
      * href=
@@ -613,7 +641,55 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Initiates a contact flow to place an outbound call to a customer.
+     * This API starts recording the contact when the agent joins the call.
+     * StartContactRecording is a one-time action. For example, if you use
+     * StopContactRecording to stop recording an ongoing call, you can't use
+     * StartContactRecording to restart it. For scenarios where the recording
+     * has started and you want to suspend and resume it, such as when
+     * collecting sensitive information (for example, a credit card number), use
+     * SuspendContactRecording and ResumeContactRecording.
+     * </p>
+     * <p>
+     * You can use this API to override the recording behavior configured in the
+     * <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-recording-behavior.html"
+     * >Set recording behavior</a> block.
+     * </p>
+     * <p>
+     * Only voice recordings are supported at this time.
+     * </p>
+     * 
+     * @param startContactRecordingRequest
+     * @return startContactRecordingResult The response from the
+     *         StartContactRecording service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartContactRecordingResult startContactRecording(
+            StartContactRecordingRequest startContactRecordingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API places an outbound call to a contact, and then initiates the
+     * contact flow. It performs the actions in the contact flow that's
+     * specified (in <code>ContactFlowId</code>).
+     * </p>
+     * <p>
+     * Agents are not involved in initiating the outbound API (that is, dialing
+     * the contact). If the contact flow places an outbound call to a contact,
+     * and then puts the contact in queue, that's when the call is routed to the
+     * agent, like any other inbound case.
      * </p>
      * <p>
      * There is a 60 second dialing timeout for this operation. If the call is
@@ -665,6 +741,73 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     StopContactResult stopContact(StopContactRequest stopContactRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * When a contact is being recorded, this API stops recording the call.
+     * StopContactRecording is a one-time action. If you use
+     * StopContactRecording to stop recording an ongoing call, you can't use
+     * StartContactRecording to restart it. For scenarios where the recording
+     * has started and you want to suspend it for sensitive information (for
+     * example, to collect a credit card number), and then restart it, use
+     * SuspendContactRecording and ResumeContactRecording.
+     * </p>
+     * <p>
+     * Only voice recordings are supported at this time.
+     * </p>
+     * 
+     * @param stopContactRecordingRequest
+     * @return stopContactRecordingResult The response from the
+     *         StopContactRecording service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopContactRecordingResult stopContactRecording(
+            StopContactRecordingRequest stopContactRecordingRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * When a contact is being recorded, this API suspends recording the call.
+     * For example, you might suspend the call recording while collecting
+     * sensitive information, such as a credit card number. Then use
+     * ResumeContactRecording to restart recording.
+     * </p>
+     * <p>
+     * The period of time that the recording is suspended is filled with silence
+     * in the final recording.
+     * </p>
+     * <p>
+     * Only voice recordings are supported at this time.
+     * </p>
+     * 
+     * @param suspendContactRecordingRequest
+     * @return suspendContactRecordingResult The response from the
+     *         SuspendContactRecording service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    SuspendContactRecordingResult suspendContactRecording(
+            SuspendContactRecordingRequest suspendContactRecordingRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

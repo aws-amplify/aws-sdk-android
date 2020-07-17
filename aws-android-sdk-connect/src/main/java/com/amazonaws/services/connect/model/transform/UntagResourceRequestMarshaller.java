@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -57,7 +59,7 @@ public class UntagResourceRequestMarshaller implements
                         .fromString(untagResourceRequest.getResourceArn()));
         if (untagResourceRequest.getTagKeys() != null) {
             request.addParameter("tagKeys",
-                    StringUtils.join(",", untagResourceRequest.getTagKeys().toArray(new String[0])));
+                    TextUtils.join(",", untagResourceRequest.getTagKeys().toArray(new String[0])));
         }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
