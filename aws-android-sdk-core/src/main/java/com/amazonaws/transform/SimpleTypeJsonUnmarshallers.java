@@ -286,8 +286,9 @@ public class SimpleTypeJsonUnmarshallers {
          * @return the instance.
          */
         public static DateJsonUnmarshaller getInstance() {
-            if (instance == null)
+            if (instance == null) {
                 instance = new DateJsonUnmarshaller(TimestampFormat.UNIX_TIMESTAMP);
+            }
             return instance;
         }
 
@@ -296,8 +297,10 @@ public class SimpleTypeJsonUnmarshallers {
          * @return the instance.
          */
         public static DateJsonUnmarshaller getInstance(TimestampFormat format) {
-            if (instance == null || !instance.format.equals(format))
+            // Create a new on if existing singleton isn't of correct format
+            if (instance == null || !instance.format.equals(format)) {
                 instance = new DateJsonUnmarshaller(format);
+            }
             return instance;
         }
     }
