@@ -17,6 +17,7 @@ package com.amazonaws.transform;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.DateUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -244,11 +245,16 @@ public class SimpleTypeJsonUnmarshallers {
     }
 
     /**
-     * Unmarshaller for Date values - JSON dates come in as epoch seconds.
+     * Unmarshaller for Date values.
      */
     public static class DateJsonUnmarshaller implements Unmarshaller<Date, JsonUnmarshallerContext> {
-
         private static final int DATE_MULTIPLIER = 1000;
+        private final TimestampFormat format;
+
+        private DateJsonUnmarshaller(TimestampFormat format) {
+            this.format = format;
+        }
+
         @Override
         public Date unmarshall(JsonUnmarshallerContext unmarshallerContext) throws Exception {
             String dateString = unmarshallerContext.getReader().nextString();
@@ -256,9 +262,17 @@ public class SimpleTypeJsonUnmarshallers {
                 return null;
 
             try {
-                Number number = NumberFormat.getInstance(new Locale("en")).parse(dateString);
-                return new Date(number.longValue() * DATE_MULTIPLIER);
-            } catch (ParseException e) {
+                switch (format) {
+                    case ISO_8601:
+                        return DateUtils.parseISO8601Date(dateString);
+                    case RFC_822:
+                        return DateUtils.parseRFC822Date(dateString);
+                    case UNIX_TIMESTAMP:
+                    default:
+                        Number number = NumberFormat.getInstance(new Locale("en")).parse(dateString);
+                        return new Date(number.longValue() * DATE_MULTIPLIER);
+                }
+            } catch (IllegalArgumentException | ParseException e) {
                 String errorMessage = "Unable to parse date '" + dateString + "':  "
                         + e.getMessage();
                 throw new AmazonClientException(errorMessage, e);
@@ -268,12 +282,25 @@ public class SimpleTypeJsonUnmarshallers {
         private static DateJsonUnmarshaller instance;
 
         /**
-         * Constructor.
+         * Constructor. Defaults to unix timestamp format.
          * @return the instance.
          */
         public static DateJsonUnmarshaller getInstance() {
-            if (instance == null)
-                instance = new DateJsonUnmarshaller();
+            if (instance == null) {
+                instance = new DateJsonUnmarshaller(TimestampFormat.UNIX_TIMESTAMP);
+            }
+            return instance;
+        }
+
+        /**
+         * Constructor.
+         * @return the instance.
+         */
+        public static DateJsonUnmarshaller getInstance(TimestampFormat format) {
+            // Create a new on if existing singleton isn't of correct format
+            if (instance == null || !instance.format.equals(format)) {
+                instance = new DateJsonUnmarshaller(format);
+            }
             return instance;
         }
     }

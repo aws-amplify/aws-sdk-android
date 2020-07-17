@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.util.Base64;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.json.AwsJsonReader;
 import com.amazonaws.util.json.AwsJsonWriter;
@@ -176,6 +177,81 @@ public class SimpleTypeJsonUnmarshallerTest {
 
         SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller dateUnmarshaller = SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller
                 .getInstance();
+        Date unmarshalledDate = dateUnmarshaller.unmarshall(context);
+        assertEquals(unmarshalledDate.getTime(), date.getTime());
+    }
+
+    @Test
+    public void testDateUnixTimestampJsonUnmarshaller() throws Exception {
+        Date date = new Date();
+        date.setTime(1000);
+
+        StringWriter sw = new StringWriter();
+        AwsJsonWriter jw = JsonUtils.getJsonWriter(sw);
+        jw.beginObject();
+        jw.name("unix");
+        jw.value(date);
+        jw.endObject();
+        String json = sw.toString();
+
+        StringReader sr = new StringReader(json);
+        AwsJsonReader jr = JsonUtils.getJsonReader(sr);
+        JsonUnmarshallerContext context = new JsonUnmarshallerContext(jr);
+        context.getReader().beginObject();
+        context.getReader().nextName();
+
+        SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller dateUnmarshaller = SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller
+                .getInstance(TimestampFormat.UNIX_TIMESTAMP);
+        Date unmarshalledDate = dateUnmarshaller.unmarshall(context);
+        assertEquals(unmarshalledDate.getTime(), date.getTime());
+    }
+
+    @Test
+    public void testDateIso8601JsonUnmarshaller() throws Exception {
+        Date date = new Date();
+        date.setTime(1000);
+
+        StringWriter sw = new StringWriter();
+        AwsJsonWriter jw = JsonUtils.getJsonWriter(sw);
+        jw.beginObject();
+        jw.name("iso8601");
+        jw.value(DateUtils.formatISO8601Date(date));
+        jw.endObject();
+        String json = sw.toString();
+
+        StringReader sr = new StringReader(json);
+        AwsJsonReader jr = JsonUtils.getJsonReader(sr);
+        JsonUnmarshallerContext context = new JsonUnmarshallerContext(jr);
+        context.getReader().beginObject();
+        context.getReader().nextName();
+
+        SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller dateUnmarshaller = SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller
+                .getInstance(TimestampFormat.ISO_8601);
+        Date unmarshalledDate = dateUnmarshaller.unmarshall(context);
+        assertEquals(unmarshalledDate.getTime(), date.getTime());
+    }
+
+    @Test
+    public void testDateRfc822JsonUnmarshaller() throws Exception {
+        Date date = new Date();
+        date.setTime(1000);
+
+        StringWriter sw = new StringWriter();
+        AwsJsonWriter jw = JsonUtils.getJsonWriter(sw);
+        jw.beginObject();
+        jw.name("rfc822");
+        jw.value(DateUtils.formatRFC822Date(date));
+        jw.endObject();
+        String json = sw.toString();
+
+        StringReader sr = new StringReader(json);
+        AwsJsonReader jr = JsonUtils.getJsonReader(sr);
+        JsonUnmarshallerContext context = new JsonUnmarshallerContext(jr);
+        context.getReader().beginObject();
+        context.getReader().nextName();
+
+        SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller dateUnmarshaller = SimpleTypeJsonUnmarshallers.DateJsonUnmarshaller
+                .getInstance(TimestampFormat.RFC_822);
         Date unmarshalledDate = dateUnmarshaller.unmarshall(context);
         assertEquals(unmarshalledDate.getTime(), date.getTime());
     }
