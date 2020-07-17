@@ -19,7 +19,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains information about a historical metric.
+ * Contains information about a historical metric. For a description of each
+ * metric, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+ * >Historical Metrics Definitions</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
  * </p>
  */
 public class HistoricalMetric implements Serializable {

@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -57,7 +59,7 @@ public class ListQueuesRequestMarshaller implements
                         .fromString(listQueuesRequest.getInstanceId()));
         if (listQueuesRequest.getQueueTypes() != null) {
             request.addParameter("queueTypes",
-                    StringUtils.join(",", listQueuesRequest.getQueueTypes().toArray(new String[0])));
+                    TextUtils.join(",", listQueuesRequest.getQueueTypes().toArray(new String[0])));
         }
         if (listQueuesRequest.getNextToken() != null) {
             request.addParameter("nextToken",

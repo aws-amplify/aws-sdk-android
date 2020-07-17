@@ -37,41 +37,43 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for UpdateUserPhoneConfigRequest
+ * JSON request marshaller for ResumeContactRecordingRequest
  */
-public class UpdateUserPhoneConfigRequestMarshaller implements
-        Marshaller<Request<UpdateUserPhoneConfigRequest>, UpdateUserPhoneConfigRequest> {
+public class ResumeContactRecordingRequestMarshaller implements
+        Marshaller<Request<ResumeContactRecordingRequest>, ResumeContactRecordingRequest> {
 
-    public Request<UpdateUserPhoneConfigRequest> marshall(
-            UpdateUserPhoneConfigRequest updateUserPhoneConfigRequest) {
-        if (updateUserPhoneConfigRequest == null) {
+    public Request<ResumeContactRecordingRequest> marshall(
+            ResumeContactRecordingRequest resumeContactRecordingRequest) {
+        if (resumeContactRecordingRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(UpdateUserPhoneConfigRequest)");
+                    "Invalid argument passed to marshall(ResumeContactRecordingRequest)");
         }
 
-        Request<UpdateUserPhoneConfigRequest> request = new DefaultRequest<UpdateUserPhoneConfigRequest>(
-                updateUserPhoneConfigRequest, "AmazonConnect");
+        Request<ResumeContactRecordingRequest> request = new DefaultRequest<ResumeContactRecordingRequest>(
+                resumeContactRecordingRequest, "AmazonConnect");
         request.setHttpMethod(HttpMethodName.POST);
 
-        String uriResourcePath = "/users/{InstanceId}/{UserId}/phone-config";
-        uriResourcePath = uriResourcePath.replace(
-                "{UserId}",
-                (updateUserPhoneConfigRequest.getUserId() == null) ? "" : StringUtils
-                        .fromString(updateUserPhoneConfigRequest.getUserId()));
-        uriResourcePath = uriResourcePath.replace(
-                "{InstanceId}",
-                (updateUserPhoneConfigRequest.getInstanceId() == null) ? "" : StringUtils
-                        .fromString(updateUserPhoneConfigRequest.getInstanceId()));
+        String uriResourcePath = "/contact/resume-recording";
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (updateUserPhoneConfigRequest.getPhoneConfig() != null) {
-                UserPhoneConfig phoneConfig = updateUserPhoneConfigRequest.getPhoneConfig();
-                jsonWriter.name("PhoneConfig");
-                UserPhoneConfigJsonMarshaller.getInstance().marshall(phoneConfig, jsonWriter);
+            if (resumeContactRecordingRequest.getInstanceId() != null) {
+                String instanceId = resumeContactRecordingRequest.getInstanceId();
+                jsonWriter.name("InstanceId");
+                jsonWriter.value(instanceId);
+            }
+            if (resumeContactRecordingRequest.getContactId() != null) {
+                String contactId = resumeContactRecordingRequest.getContactId();
+                jsonWriter.name("ContactId");
+                jsonWriter.value(contactId);
+            }
+            if (resumeContactRecordingRequest.getInitialContactId() != null) {
+                String initialContactId = resumeContactRecordingRequest.getInitialContactId();
+                jsonWriter.name("InitialContactId");
+                jsonWriter.value(initialContactId);
             }
 
             jsonWriter.endObject();

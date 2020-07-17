@@ -70,7 +70,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available:
+     * following metrics are available. For a description of each metric, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <dl>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -445,7 +449,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available:
+     * following metrics are available. For a description of each metric, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <dl>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -530,7 +538,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The metrics to retrieve. Specify the name and unit for each
-     *         metric. The following metrics are available:
+     *         metric. The following metrics are available. For a description of
+     *         each metric, see <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     *         >Real-time Metrics Definitions</a> in the <i>Amazon Connect
+     *         Administrator Guide</i>.
      *         </p>
      *         <dl>
      *         <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -620,7 +632,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available:
+     * following metrics are available. For a description of each metric, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <dl>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -705,7 +721,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *
      * @param currentMetrics <p>
      *            The metrics to retrieve. Specify the name and unit for each
-     *            metric. The following metrics are available:
+     *            metric. The following metrics are available. For a description
+     *            of each metric, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     *            >Real-time Metrics Definitions</a> in the <i>Amazon Connect
+     *            Administrator Guide</i>.
      *            </p>
      *            <dl>
      *            <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -800,7 +820,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available:
+     * following metrics are available. For a description of each metric, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <dl>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -888,7 +912,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *
      * @param currentMetrics <p>
      *            The metrics to retrieve. Specify the name and unit for each
-     *            metric. The following metrics are available:
+     *            metric. The following metrics are available. For a description
+     *            of each metric, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     *            >Real-time Metrics Definitions</a> in the <i>Amazon Connect
+     *            Administrator Guide</i>.
      *            </p>
      *            <dl>
      *            <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -986,7 +1014,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available:
+     * following metrics are available. For a description of each metric, see <a
+     * href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <dl>
      * <dt>AGENTS_AFTER_CONTACT_WORK</dt>
@@ -1074,7 +1106,11 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *
      * @param currentMetrics <p>
      *            The metrics to retrieve. Specify the name and unit for each
-     *            metric. The following metrics are available:
+     *            metric. The following metrics are available. For a description
+     *            of each metric, see <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     *            >Real-time Metrics Definitions</a> in the <i>Amazon Connect
+     *            Administrator Guide</i>.
      *            </p>
      *            <dl>
      *            <dt>AGENTS_AFTER_CONTACT_WORK</dt>
