@@ -20,7 +20,7 @@ import com.amazonaws.util.DateUtils;
 /**
  * Simple enum to differentiate timestamp format standards.
  */
-enum TimestampFormat {
+public enum TimestampFormat {
     /**
      * In epoch seconds.
      */
