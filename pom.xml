@@ -33,7 +33,6 @@
     <module>aws-android-sdk-auth-facebook</module>
     <module>aws-android-sdk-auth-userpools</module>
     <module>aws-android-sdk-auth-ui</module>
-    <module>aws-android-sdk-autoscaling</module>
     <module>aws-android-sdk-cloudwatch</module>
     <module>aws-android-sdk-cognito</module>
     <module>aws-android-sdk-cognitoidentityprovider</module>
@@ -46,7 +45,6 @@
     <module>aws-android-sdk-ddb-document</module>
     <module>aws-android-sdk-ddb</module>
     <module>aws-android-sdk-ec2</module>
-    <module>aws-android-sdk-elb</module>
     <module>aws-android-sdk-iot</module>
     <module>aws-android-sdk-kinesis</module>
     <module>aws-android-sdk-kinesisvideo</module>
