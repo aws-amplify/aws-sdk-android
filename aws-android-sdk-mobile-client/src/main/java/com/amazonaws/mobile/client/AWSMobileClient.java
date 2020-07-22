@@ -166,8 +166,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Log Tag.
      */
     private static final String TAG = AWSMobileClient.class.getSimpleName();
-    public static final String USER_AGENT = "AWSMobileClient";
+    public static final String DEFAULT_USER_AGENT = "AWSMobileClient";
 
+    static final String AUTH_KEY = "Auth";
     static final String SHARED_PREFERENCES_KEY = "com.amazonaws.mobile.client";
     static final String PROVIDER_KEY = "provider";
     static final String TOKEN_KEY = "token";
@@ -266,6 +267,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     Auth hostedUI;
     OAuth2Client mOAuth2Client;
     String mUserPoolPoolId;
+    String userAgentOverride;
 
     enum SignInMode {
         SIGN_IN("0"),
@@ -464,10 +466,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     // Read Persistence key from the awsconfiguration.json and set the flag
                     // appropriately.
                     try {
-                        if (awsConfiguration.optJsonObject("Auth") != null &&
-                                awsConfiguration.optJsonObject("Auth").has("Persistence")) {
+                        if (awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                awsConfiguration.optJsonObject(AUTH_KEY).has("Persistence")) {
                             mIsPersistenceEnabled = awsConfiguration
-                                    .optJsonObject("Auth")
+                                    .optJsonObject(AUTH_KEY)
                                     .getBoolean("Persistence");
                         }
                     } catch (final Exception ex) {
@@ -476,6 +478,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
+                    userAgentOverride = awsConfiguration.getUserAgentOverride();
                     mContext = context.getApplicationContext();
                     mStore = new AWSMobileClientStore(AWSMobileClient.this);
 
@@ -525,15 +528,20 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             final String poolId = identityPoolJSON.getString("PoolId");
                             final String regionStr = identityPoolJSON.getString("Region");
                             final ClientConfiguration clientConfig = new ClientConfiguration();
-                            clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
+                            if (userAgentOverride != null) {
+                                clientConfig.setUserAgentOverride(userAgentOverride);
+                            }
                             AmazonCognitoIdentityClient cibClient =
-                                    new AmazonCognitoIdentityClient(new AnonymousAWSCredentials());
+                                    new AmazonCognitoIdentityClient(new AnonymousAWSCredentials(), clientConfig);
                             cibClient.setRegion(Region.getRegion(regionStr));
                             provider = new AWSMobileClientCognitoIdentityProvider(
                                     null, poolId, cibClient);
                             cognitoIdentity = new CognitoCachingCredentialsProvider(
                                     mContext, provider, Regions.fromName(regionStr));
                             cognitoIdentity.setPersistenceEnabled(mIsPersistenceEnabled);
+                            if (userAgentOverride != null) {
+                                cognitoIdentity.setUserAgentOverride(userAgentOverride);
+                            }
                         } catch (Exception e) {
                             callback.onError(new RuntimeException("Failed to initialize Cognito Identity; please check your awsconfiguration.json", e));
                             return;
@@ -549,7 +557,10 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
 
                             final ClientConfiguration clientConfig = new ClientConfiguration();
-                            clientConfig.setUserAgent(USER_AGENT + " " + awsConfiguration.getUserAgent());
+                            clientConfig.setUserAgent(DEFAULT_USER_AGENT + " " + awsConfiguration.getUserAgent());
+                            if (userAgentOverride != null) {
+                               clientConfig.setUserAgentOverride(userAgentOverride);
+                            }
                             userpoolLL =
                                     new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
                             userpoolLL.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolJSON.getString("Region"))));
@@ -575,6 +586,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 Log.d(TAG, "initialize: OAuth2 client detected");
                                 mOAuth2Client = new OAuth2Client(mContext, AWSMobileClient.this);
                                 mOAuth2Client.setPersistenceEnabled(mIsPersistenceEnabled);
+                                mOAuth2Client.setUserAgentOverride(userAgentOverride);
                             } else {
                                 _initializeHostedUI(hostedUIJSON);
                             }
@@ -638,7 +650,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     JSONObject getHostedUIJSONFromJSON(final AWSConfiguration awsConfig) {
-        final JSONObject mobileClientJSON = awsConfig.optJsonObject("Auth");
+        final JSONObject mobileClientJSON = awsConfig.optJsonObject(AUTH_KEY);
         if (mobileClientJSON != null && mobileClientJSON.has("OAuth")) {
             try {
                 JSONObject hostedUIJSONFromJSON = mobileClientJSON.getJSONObject("OAuth");
@@ -1192,19 +1204,20 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                                 Log.d(TAG, "Sending password.");
                                 try {
-                                    if (awsConfiguration.optJsonObject("Auth") != null &&
-                                            awsConfiguration.optJsonObject("Auth").has("authenticationFlowType") &&
-                                            awsConfiguration.optJsonObject("Auth").getString("authenticationFlowType").equals("CUSTOM_AUTH")
+                                    if (
+                                            awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
+                                                    awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
                                     ) {
-                                        final HashMap<String, String> authParameters = new HashMap<String,String>();
+                                        final HashMap<String, String> authParameters = new HashMap<String, String>();
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                     } else {
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
+                                    authenticationContinuation.continueTask();
                                 }
-                                authenticationContinuation.continueTask();
                             }
 
                             @Override
@@ -1451,9 +1464,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         mFederatedLoginsMap.clear();
         mStore.clear();
         String hostedUIJSON = null;
-        if (awsConfiguration.optJsonObject("Auth") != null && awsConfiguration.optJsonObject("Auth").has("OAuth")) {
+        if (awsConfiguration.optJsonObject(AUTH_KEY) != null && awsConfiguration.optJsonObject(AUTH_KEY).has("OAuth")) {
             try {
-                hostedUIJSON = awsConfiguration.optJsonObject("Auth").getJSONObject("OAuth").toString();
+                hostedUIJSON = awsConfiguration.optJsonObject(AUTH_KEY).getJSONObject("OAuth").toString();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -3821,32 +3834,6 @@ class AWSMobileClientCognitoIdentityProvider extends AWSAbstractCognitoIdentityP
      *
      * @param accountId the account id of the developer
      * @param identityPoolId the identity pool id of the app/user in question
-     */
-    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId) {
-        this(accountId, identityPoolId, new ClientConfiguration());
-    }
-
-    /**
-     * An extension of the AbstractCognitoProvider that is used to communicate
-     * with Cognito.
-     *
-     * @param accountId the account id of the developer
-     * @param identityPoolId the identity pool id of the app/user in question
-     * @param clientConfiguration the configuration to apply to service clients
-     *            created
-     */
-    public AWSMobileClientCognitoIdentityProvider(String accountId, String identityPoolId,
-                                              ClientConfiguration clientConfiguration) {
-        this(accountId, identityPoolId, new AmazonCognitoIdentityClient
-                (new AnonymousAWSCredentials(), clientConfiguration));
-    }
-
-    /**
-     * An extension of the AbstractCognitoProvider that is used to communicate
-     * with Cognito.
-     *
-     * @param accountId the account id of the developer
-     * @param identityPoolId the identity pool id of the app/user in question
      * @param cibClient the cib client which will be used to contact the cib
      *            back end
      */
@@ -3857,7 +3844,7 @@ class AWSMobileClientCognitoIdentityProvider extends AWSAbstractCognitoIdentityP
 
     @Override
     protected String getUserAgent() {
-        return "AWSMobileClient";
+        return AWSMobileClient.DEFAULT_USER_AGENT;
     }
 
     /**

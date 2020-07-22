@@ -225,7 +225,7 @@ public class IdentityManager {
         this.awsConfiguration = awsConfiguration;
         this.clientConfiguration = new ClientConfiguration().withUserAgent(awsConfiguration.getUserAgent());
         this.credentialsProviderHolder = new AWSCredentialsProviderHolder();
-        createCredentialsProvider(this.appContext, this.clientConfiguration);
+        createCredentialsProvider(this.appContext, this.clientConfiguration, awsConfiguration.getUserAgentOverride());
         this.awsKeyValueStore = new AWSKeyValueStore(appContext, SHARED_PREF_NAME, isPersistenceEnabled);
     }
 
@@ -255,7 +255,7 @@ public class IdentityManager {
         }
 
         this.credentialsProviderHolder = new AWSCredentialsProviderHolder();
-        createCredentialsProvider(this.appContext, this.clientConfiguration);
+        createCredentialsProvider(this.appContext, this.clientConfiguration, awsConfiguration.getUserAgentOverride());
         this.awsKeyValueStore = new AWSKeyValueStore(appContext, SHARED_PREF_NAME, isPersistenceEnabled);
     }
 
@@ -904,8 +904,8 @@ public class IdentityManager {
      *   only useful for unauthenticated users.
      */
     private void createCredentialsProvider(final Context context,
-                                           final ClientConfiguration clientConfiguration) {
-
+                                           final ClientConfiguration clientConfiguration,
+                                           final String userAgentOverride) {
         Log.d(LOG_TAG, "Creating the Cognito Caching Credentials Provider "
                 + "with a refreshing Cognito Identity Provider.");
 
@@ -929,9 +929,16 @@ public class IdentityManager {
             new AWSRefreshingCognitoIdentityProvider(null, poolId,
                 clientConfiguration, cognitoIdentityRegion);
 
-        final CognitoCachingCredentialsProvider cognitoCachingCredentialsProvider = new CognitoCachingCredentialsProvider(context, refreshingCredentialsProvider,
-                cognitoIdentityRegion, clientConfiguration);
+        final CognitoCachingCredentialsProvider cognitoCachingCredentialsProvider =
+                new CognitoCachingCredentialsProvider(
+                        context,
+                        refreshingCredentialsProvider,
+                        cognitoIdentityRegion,
+                        clientConfiguration);
         cognitoCachingCredentialsProvider.setPersistenceEnabled(isPersistenceEnabled);
+        if (userAgentOverride != null) {
+            cognitoCachingCredentialsProvider.setUserAgentOverride(userAgentOverride);
+        }
         credentialsProviderHolder.setUnderlyingProvider(cognitoCachingCredentialsProvider);
     }
 

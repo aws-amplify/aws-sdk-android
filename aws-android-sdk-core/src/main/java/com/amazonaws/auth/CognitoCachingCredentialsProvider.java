@@ -110,6 +110,7 @@ public class CognitoCachingCredentialsProvider
         }
     };
     private boolean isPersistenceEnabled = true;
+    private String userAgentOverride;
 
     /**
      * Constructs a new {@link CognitoCachingCredentialsProvider}, which will
@@ -694,5 +695,15 @@ public class CognitoCachingCredentialsProvider
     public void setPersistenceEnabled(boolean isPersistenceEnabled) {
         this.isPersistenceEnabled = isPersistenceEnabled;
         this.awsKeyValueStore.setPersistenceEnabled(isPersistenceEnabled);
+    }
+
+    /**
+     * The user agent string is sometimes combined with other strings. If this property is set, it instructs the
+     * client to only use this as the full user agent string.
+     *
+     * @param userAgentOverride The string to use as the full user agent when sending requests.
+     */
+    public void setUserAgentOverride(String userAgentOverride) {
+        this.userAgentOverride = userAgentOverride;
     }
 }
