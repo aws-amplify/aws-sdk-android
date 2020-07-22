@@ -528,6 +528,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             final String poolId = identityPoolJSON.getString("PoolId");
                             final String regionStr = identityPoolJSON.getString("Region");
                             final ClientConfiguration clientConfig = new ClientConfiguration();
+                            clientConfig.setUserAgent(DEFAULT_USER_AGENT + " " + awsConfiguration.getUserAgent());
                             if (userAgentOverride != null) {
                                 clientConfig.setUserAgentOverride(userAgentOverride);
                             }
@@ -1206,8 +1207,8 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 try {
                                     if (
                                             awsConfiguration.optJsonObject(AUTH_KEY) != null &&
-                                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
-                                                    awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
+                                            awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
+                                            awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
                                     ) {
                                         final HashMap<String, String> authParameters = new HashMap<String, String>();
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
@@ -1216,8 +1217,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    authenticationContinuation.continueTask();
                                 }
+
+                                authenticationContinuation.continueTask();
                             }
 
                             @Override
