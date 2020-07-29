@@ -79,23 +79,24 @@ public class JsonUtilsTest {
     @Test
     public void testJsonToMapWithList() {
         Map<String, String> map = JsonUtils.jsonToStringMapWithList(new StringReader(JSON_STRING_WITH_ARRAYS));
-        assertEquals("string value", "string", map.get("string"));
-        assertEquals("long value", "123", map.get("long"));
-        assertEquals("double value", "123.45", map.get("double"));
-        assertEquals("null value", null, map.get("null"));
-        assertEquals("true value", "true", map.get("true"));
-        assertEquals("false value", "false", map.get("false"));
-        assertEquals("encoding", "Chloë", map.get("encoding"));
-        assertEquals("array of simple types only reads string values", "[\"string\",\"123\",\"123.45\",null,\"true\",\"false\"]", map.get("array"));
-        assertEquals("array of objects with only strings as keys and values is supported", "[{\"key1\":\"string1\"},{\"key2\":\"string2\"}]", map.get("array2"));
-        assertEquals("array of objects with values other than strings is not supported", "[{\"key1\":\"123.45\"},{\"key2\":\"false\"}]", map.get("array3"));
-        assertEquals("nested primitive arrays are not supported", "[\"string\",\"123\",\"123.45\",null,\"true\"]", map.get("array4"));
-        assertEquals("nested object arrays are not supported", "[{\"key1\":\"string1\"},{},{\"key3\":\"string3\"}]", map.get("array5"));
-        assertEquals("nested arrays are not supported", "[]", map.get("array6"));
-        assertEquals("empty array read", "[]", map.get("array7"));
-        assertEquals("array with only null read correctly", "[null]", map.get("array8"));
-        assertEquals("nested arrays are not supported", "[\"A\",{},\"C\",\"D\",null]", map.get("array9"));
-        assertNull("object is ignored", map.get("object"));
+        Map<String, String> actualMap = new HashMap<>();
+        actualMap.put("string", "string");
+        actualMap.put("long", "123");
+        actualMap.put("double", "123.45");
+        actualMap.put("null", null);
+        actualMap.put("true", "true");
+        actualMap.put("false", "false");
+        actualMap.put("encoding", "Chloë");
+        actualMap.put("array", "[\"string\",\"123\",\"123.45\",null,\"true\",\"false\"]");
+        actualMap.put("array2", "[{\"key1\":\"string1\"},{\"key2\":\"string2\"}]");
+        actualMap.put("array3", "[{\"key1\":\"123.45\"},{\"key2\":\"false\"}]");
+        actualMap.put("array4", "[\"string\",\"123\",\"123.45\",null,\"true\"]");
+        actualMap.put("array5", "[{\"key1\":\"string1\"},{},{\"key3\":\"string3\"}]");
+        actualMap.put("array6", "[]");
+        actualMap.put("array7", "[]");
+        actualMap.put("array8", "[null]");
+        actualMap.put("array9", "[\"A\",{},\"C\",\"D\",null]");
+        assertEquals(actualMap, map);
     }
 
     @Test
