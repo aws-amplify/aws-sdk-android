@@ -1,5 +1,23 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
+
+### New Features
+
+- **AWS Mobile Client**
+  - Added client metadata as optional parameter to various methods
+
+- **AWS Core Runtime**
+  - Added json unmarshaller for multiple formats of timestamp
+
+### Misc. Updates
+
+- Model updates for the following services:
+  - Amazon Connect
+- Removed from the library:
+  - AWS Auto Scaling
+  - Elastic Load Balancing
+
 ## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
 
 ### New Features
@@ -13,9 +31,9 @@
 
 ### New Features
 
-* **AWS Core Runtime**
-  * Added support for `af-south-1` - Africa (Cape Town) region.
-  * Added support for `eu-south-1` - Europe (Milan) region.
+- **AWS Core Runtime**
+  - Added support for `af-south-1` - Africa (Cape Town) region.
+  - Added support for `eu-south-1` - Europe (Milan) region.
 
 ## [Release 2.16.11](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.11)
 
