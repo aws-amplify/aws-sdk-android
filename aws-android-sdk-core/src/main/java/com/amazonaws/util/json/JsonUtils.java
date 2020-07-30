@@ -142,6 +142,87 @@ public class JsonUtils {
     }
 
     /**
+     * Convenient method to convert a JSON string to a map. Arrays
+     * are not discarded, they are read into the value as a string.
+     * Number and boolean are also stored as string.
+     * Nested arrays are not supported.
+     *
+     * @param in reader
+     * @return a non null, unmodifiable, string to string map
+     */
+    @SuppressWarnings("unchecked")
+    public static Map<String, String> jsonToStringMapWithList(Reader in) {
+        AwsJsonReader reader = getJsonReader(in);
+        try {
+            // in case it's empty
+            if (reader.peek() == null) {
+                return Collections.EMPTY_MAP;
+            }
+            Map<String, String> map = new HashMap<String, String>();
+            reader.beginObject();
+            while (reader.hasNext()) {
+                String key = reader.nextName();
+                if (reader.isContainer()) {
+                    if (AwsJsonToken.BEGIN_ARRAY.equals(reader.peek())) {
+                        final StringWriter out = new StringWriter();
+                        final AwsJsonWriter writer = getJsonWriter(out);
+                        reader.beginArray();
+                        writer.beginArray();
+                        try {
+                            while (!AwsJsonToken.END_ARRAY.equals(reader.peek())) {
+                                AwsJsonToken nextToken = reader.peek();
+                                if (AwsJsonToken.BEGIN_OBJECT.equals(nextToken)){
+                                    reader.beginObject();
+                                    writer.beginObject();
+                                } else if (AwsJsonToken.FIELD_NAME.equals(nextToken)){
+                                    String name = reader.nextName();
+                                    // do not write key if the value is a nested array
+                                    if (!AwsJsonToken.BEGIN_ARRAY.equals(reader.peek())) {
+                                        writer.name(name);
+                                    }
+                                } else if (AwsJsonToken.END_OBJECT.equals(nextToken)){
+                                    reader.endObject();
+                                    writer.endObject();
+                                } else if (AwsJsonToken.END_ARRAY.equals(nextToken)) {
+                                    reader.endArray();
+                                    writer.endArray();
+                                } else if (AwsJsonToken.VALUE_STRING.equals(nextToken)
+                                        || AwsJsonToken.VALUE_NUMBER.equals(nextToken)
+                                        || AwsJsonToken.VALUE_NULL.equals(nextToken)
+                                        || AwsJsonToken.VALUE_BOOLEAN.equals(nextToken)) {
+                                    String value = reader.nextString();
+                                    writer.value(value);
+                                }
+                                else {
+                                    // skip non string nodes inside the array
+                                    reader.skipValue();
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        reader.endArray();
+                        writer.endArray();
+                        writer.flush();
+                        writer.close();
+                        map.put(key, out.toString());
+                    } else {
+                        // skip non string or non array nodes
+                        reader.skipValue();
+                    }
+                } else {
+                    map.put(key, reader.nextString());
+                }
+            }
+            reader.endObject();
+            reader.close();
+            return Collections.unmodifiableMap(map);
+        } catch (IOException e) {
+            throw new AmazonClientException("Unable to parse JSON String.", e);
+        }
+    }
+
+    /**
      * Encode a string to string map as a JSON string.
      *
      * @param map map to be encoded
