@@ -11,7 +11,7 @@ The AWS SDK for Android is a collection of low-level libraries for direct intera
 
 ## Installation
 
-The AWS SDK for Android can be directly embedded via `.jar` files, or you can download it from the Maven Central repository, by integrating it into your Android project's Gradle files.
+The AWS SDK for Android can be directly embedded via `.aar` files, or you can download it from the Maven Central repository, by integrating it into your Android project's Gradle files.
 
 ### From Maven
 We recommend obtaining the dependency from Maven. To do so, add a dependency to your app's (module-level) `build.gradle`, in the `dependencies` section:
@@ -24,16 +24,16 @@ dependencies {
 
 Above, SERVICE might be `s3`, `ddb`, `pinpoint`, etc. A full list is provided below.
 
-### Downloading SDK Jars
+### Downloading SDK libraries
 
-You can also download a `.zip` file containg `.jar` files for each of the SDK modules, [here](https://sdk-for-android.amazonwebservices.com/latest/aws-android-sdk.zip).
+You can also download a `.zip` file containg `.aar` files for each of the SDK modules, [here](https://sdk-for-android.amazonwebservices.com/latest/aws-android-sdk.zip).
 
-Add the jar files to a folder in your project called `libs` (create one if it doesn't already exist).
+Add the aar files to a folder in your project called `libs` (create one if it doesn't already exist).
 
 Ensure that the `libs` directory is included in your module-level `build.gradle`, under the `dependencies` block:
 ```groovy
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
 }
 ```
 

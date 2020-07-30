@@ -17,6 +17,7 @@
 - Removed from the library:
   - AWS Auto Scaling
   - Elastic Load Balancing
+- Modules now produce .aar files instead of .jar files
 
 ## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
 
