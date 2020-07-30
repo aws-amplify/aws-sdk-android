@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-apigateway-core/aws-android-sdk-apigateway-core.iml" filepath="$PROJECT_DIR$/aws-android-sdk-apigateway-core/aws-android-sdk-apigateway-core.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-apigateway-test/aws-android-sdk-apigateway-test.iml" filepath="$PROJECT_DIR$/aws-android-sdk-apigateway-test/aws-android-sdk-apigateway-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/aws-android-sdk-auth-core/aws-android-sdk-auth-core.iml" filepath="$PROJECT_DIR$/aws-android-sdk-auth-core/aws-android-sdk-auth-core.iml" />
