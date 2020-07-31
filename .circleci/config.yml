@@ -300,8 +300,8 @@ jobs:
     steps:
       - skip_job_if_required
       - checkout
-      - generate_gradle_wrapper
       - prepare_sdkmanager
+      - generate_gradle_wrapper
       - run:
           name: build the whole project
           command: |
@@ -329,8 +329,8 @@ jobs:
       - skip_job_if_required
       - checkout
       - skip_test_job
-      - generate_gradle_wrapper
       - prepare_sdkmanager
+      - generate_gradle_wrapper
       - run:
           name: run unit tests
           command: |
