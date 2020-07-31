@@ -2,6 +2,22 @@
 
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 
+*Version 2.17.0 introduces breaking changes against 2.16.13.*
+
+### Breaking Updates
+- Modules now produce .aar files instead of .jar files
+- Migrated to AndroidX
+- Updated all dependencies to the latest version in Maven
+- Target API 27 -> 29
+- Updated `minSDK`s to be aligned with the actual Android API usage
+- No longer dependent on:
+  - Legacy Apache HTTP Runtime
+  - Jackson library
+
+### Removed from the library:
+  - AWS Auto Scaling
+  - Elastic Load Balancing
+  
 ### New Features
 
 - **AWS Mobile Client**
@@ -13,11 +29,9 @@
 ### Misc. Updates
 
 - Model updates for the following services:
+  - Amazon Comprehend
   - Amazon Connect
-- Removed from the library:
-  - AWS Auto Scaling
-  - Elastic Load Balancing
-- Modules now produce .aar files instead of .jar files
+  - Amazon SNS
 
 ## [Release 2.16.13](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.16.13)
 
