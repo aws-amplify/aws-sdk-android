@@ -42,10 +42,10 @@ commands:
     steps:
       - run:
           name: Accept SDK license
-          command: sudo yes | sdkmanager --licenses
+          command: sudo yes | sdkmanager --licenses 2>&1 >/dev/null || true
       - run:
           name: Update SDK
-          command: sudo yes | sdkmanager --update
+          command: sudo yes | sdkmanager --update 2>&1 >/dev/null || true
 
   configure_aws:
     description: >-
@@ -293,7 +293,7 @@ jobs:
   build:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -319,7 +319,7 @@ jobs:
   unittest:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -369,7 +369,7 @@ jobs:
 
   release_javadoc:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -394,7 +394,7 @@ jobs:
           command: |
             aws --profile build_resources s3 cp  s3://android-circleci-payload/third-party/third-party.zip third-party.zip
             unzip third-party.zip
-            cp "$ANDROID_HOME/platforms/android-27/android.jar"  third-party/android.jar
+            cp "$ANDROID_HOME/platforms/android-29/android.jar"  third-party/android.jar
       - run:
           name: generate documents
           command: |
@@ -471,7 +471,7 @@ jobs:
       - run:
           name: Install Android build tools
           command: |
-            sudo yes | sdkmanager "platforms;android-27" "build-tools;27.0.1"  "extras;google;m2repository" "extras;android;m2repository"
+            sudo yes | sdkmanager "platforms;android-29" "build-tools;29.0.2"  "extras;google;m2repository" "extras;android;m2repository"
       - run:
           name: Install GPG
           command: |
@@ -491,8 +491,8 @@ jobs:
             echo "JAVA_HOME: $JAVA_HOME"
             echo "ANDROID_HOME: $ANDROID_HOME"
             echo "PATH: $PATH"
-            echo 'export ANDROID_PLATFORM="27"' >> $BASH_ENV
-            echo 'export ANDROID_BUILDTOOL_VERSION="27.0.1"' >> $BASH_ENV
+            echo 'export ANDROID_PLATFORM="29"' >> $BASH_ENV
+            echo 'export ANDROID_BUILDTOOL_VERSION="29.0.2"' >> $BASH_ENV
       - run:
           name: publish to maven
           command: |
@@ -510,7 +510,7 @@ jobs:
 
   release_s3:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -576,7 +576,7 @@ jobs:
 
   pre_integrationtest:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -611,7 +611,7 @@ jobs:
 
   post_integrationtest:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -663,7 +663,7 @@ jobs:
       - run:
           name: install sdk
           command: |
-            sudo yes | sdkmanager "platforms;android-27"
+            sudo yes | sdkmanager "platforms;android-29"
       - setup_emulator
       - run:
           name: Generate testconfiguration.json
@@ -696,7 +696,7 @@ jobs:
   bump_sampleapp_version:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -730,7 +730,7 @@ jobs:
   bump_applifydocs_version:
     working_directory: ~/code
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -762,7 +762,7 @@ jobs:
       - bump_version_post
   bump_sdk_version:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -826,7 +826,7 @@ jobs:
 
   merge_to_main:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -869,7 +869,7 @@ jobs:
 
   prepare_release_sdk:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -898,7 +898,7 @@ jobs:
 
   create_pullrequest_for_modelupdate:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -915,7 +915,7 @@ jobs:
 
   check_sdk_on_maven:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -943,7 +943,7 @@ jobs:
 
   run_integrationtest_on_devicefarm:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -983,7 +983,7 @@ jobs:
       - run:
           name: install sdk
           command: |
-            sudo yes | sdkmanager "platforms;android-27"
+            sudo yes | sdkmanager "platforms;android-29"
       - run:
           name: download devicefarm configure file
           command: |
@@ -1008,7 +1008,7 @@ jobs:
               "https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/envvar?circle-token=${CIRCLE_API_USER_TOKEN}"
   check_testresult_on_devicefarm:
     docker:
-      - image: circleci/android:api-27-alpha
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
