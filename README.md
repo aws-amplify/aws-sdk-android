@@ -2,7 +2,7 @@
 
 [![DiscordChat](https://img.shields.io/discord/308323056592486420?logo=discord)](https://discord.gg/jWVbPfC)
 [![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)](https://search.maven.org/search?q=a:aws-android-sdk-pom)
+[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-core.svg)](https://search.maven.org/search?q=a:aws-android-sdk-core)
 [![CircleCI](https://circleci.com/gh/aws-amplify/aws-sdk-android.svg?style=svg)](https://circleci.com/gh/aws-amplify/aws-sdk-android)
 
 For new projects, we recommend interacting with AWS using the [Amplify Framework](https://docs.amplify.aws/start/q/integration/android).
