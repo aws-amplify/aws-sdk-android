@@ -182,6 +182,20 @@ public class AWSConfiguration {
     }
 
     /**
+     * The user agent is sometimes combined with other strings. If this property is set, it instructs the
+     * client to only use this as the full user agent string.
+     *
+     * @return The user agent override specified in the configuration file.
+     */
+    public String getUserAgentOverride() {
+        try {
+            return this.mJSONObject.getString("UserAgentOverride");
+        } catch (JSONException je) {
+            return null;
+        }
+    }
+
+    /**
      * Change the settings that are being read in. This is "Default" by default.
      * 
      * @param configurationName the key used to differentiate between configuration settings

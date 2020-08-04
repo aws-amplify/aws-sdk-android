@@ -64,6 +64,7 @@ public class OAuth2Client {
     PKCEMode mPKCEMode;
     Callback<AuthorizeResponse> mAuthorizeCallback;
     String mState;
+    private String userAgentOverride;
     private String mClientId;
     private String mError;
     private String mErrorDescription;
@@ -116,6 +117,10 @@ public class OAuth2Client {
     public void setPersistenceEnabled(final boolean isPersistenceEnabled) {
         mIsPersistenceEnabled = isPersistenceEnabled;
         mStore.setPersistenceEnabled(isPersistenceEnabled);
+    }
+
+    public void setUserAgentOverride(String userAgentOverride) {
+        this.userAgentOverride = userAgentOverride;
     }
 
     public void signOut(final Uri signOutUri, final Callback<Void> callback) {
@@ -325,7 +330,7 @@ public class OAuth2Client {
             }
             mStore.set(TOKEN_URI_KEY, tokenUri.toString());
 
-            String response = HTTPUtil.httpPost(new URL(tokenUri.toString()), headers, body);
+            String response = HTTPUtil.httpPost(new URL(tokenUri.toString()), headers, body, userAgentOverride);
             final OAuth2Tokens tokens = HTTPUtil.parseHttpResponse(response);
             mStore.set(tokens);
             callback.onResult(tokens);
@@ -353,7 +358,7 @@ public class OAuth2Client {
                 }
                 body.put("refresh_token", refreshToken);
             }
-            final String response = HTTPUtil.httpPost(new URL(tokenUri.toString()), headers, body);
+            final String response = HTTPUtil.httpPost(new URL(tokenUri.toString()), headers, body, userAgentOverride);
             final OAuth2Tokens tokens = HTTPUtil.parseHttpResponse(response);
             mStore.set(tokens);
             callback.onResult(tokens);
@@ -483,7 +488,8 @@ class OAuth2ClientStore {
 
 class HTTPUtil {
     public static String httpPost(final URL uri, final Map<String, String> headerParams,
-                                  final Map<String, String> bodyParams) throws Exception {
+                                  final Map<String, String> bodyParams,
+                                  final String userAgentOverride) throws Exception {
         if (uri == null || bodyParams == null || bodyParams.size() < 1) {
             throw new AuthClientException("Invalid http request parameters");
         }
@@ -498,9 +504,18 @@ class HTTPUtil {
             for (Map.Entry<String, String> param : headerParams.entrySet()) {
                 httpsURLConnection.addRequestProperty(param.getKey(), param.getValue());
             }
-            httpsURLConnection.addRequestProperty("x-amz-user-agent", AWSMobileClient.USER_AGENT);
-            httpsURLConnection.setRequestProperty("User-Agent",
-                    httpsURLConnection.getRequestProperty("User-Agent") + " " + AWSMobileClient.USER_AGENT);
+            httpsURLConnection.addRequestProperty(
+                    "x-amz-user-agent",
+                    userAgentOverride != null ? userAgentOverride : AWSMobileClient.DEFAULT_USER_AGENT
+            );
+            httpsURLConnection.setRequestProperty(
+                    "User-Agent",
+                    userAgentOverride != null ?
+                            userAgentOverride :
+                            httpsURLConnection.getRequestProperty("User-Agent")
+                                    + " "
+                                    + AWSMobileClient.DEFAULT_USER_AGENT
+            );
 
             // Request body
             StringBuilder reqBuilder = new StringBuilder();
