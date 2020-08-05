@@ -350,6 +350,113 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Creates a new custom language model. Use Amazon S3 prefixes to provide
+     * the location of your input files. The time it takes to create your model
+     * depends on the size of your training data.
+     * </p>
+     * 
+     * @param createLanguageModelRequest
+     * @return createLanguageModelResult The response from the
+     *         CreateLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateLanguageModelResult createLanguageModel(
+            CreateLanguageModelRequest createLanguageModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createLanguageModelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateLanguageModelRequest> request = null;
+        Response<CreateLanguageModelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateLanguageModelRequestMarshaller()
+                        .marshall(createLanguageModelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateLanguageModelResult, JsonUnmarshallerContext> unmarshaller = new CreateLanguageModelResultJsonUnmarshaller();
+            JsonResponseHandler<CreateLanguageModelResult> responseHandler = new JsonResponseHandler<CreateLanguageModelResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Transcribe Medical transcribes your audio file.
+     * </p>
+     * 
+     * @param createMedicalVocabularyRequest
+     * @return createMedicalVocabularyResult The response from the
+     *         CreateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateMedicalVocabularyResult createMedicalVocabulary(
+            CreateMedicalVocabularyRequest createMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createMedicalVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateMedicalVocabularyRequest> request = null;
+        Response<CreateMedicalVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateMedicalVocabularyRequestMarshaller()
+                        .marshall(createMedicalVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateMedicalVocabularyResult, JsonUnmarshallerContext> unmarshaller = new CreateMedicalVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<CreateMedicalVocabularyResult> responseHandler = new JsonResponseHandler<CreateMedicalVocabularyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
      * Transcribe handles transcription of an audio file.
      * </p>
@@ -453,6 +560,48 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Deletes a custom language model using its name.
+     * </p>
+     * 
+     * @param deleteLanguageModelRequest
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteLanguageModel(DeleteLanguageModelRequest deleteLanguageModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteLanguageModelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteLanguageModelRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteLanguageModelRequestMarshaller()
+                        .marshall(deleteLanguageModelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a transcription job generated by Amazon Transcribe Medical and
      * any related information.
      * </p>
@@ -482,6 +631,50 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             try {
                 request = new DeleteMedicalTranscriptionJobRequestMarshaller()
                         .marshall(deleteMedicalTranscriptionJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a vocabulary from Amazon Transcribe Medical.
+     * </p>
+     * 
+     * @param deleteMedicalVocabularyRequest
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteMedicalVocabulary(
+            DeleteMedicalVocabularyRequest deleteMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteMedicalVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteMedicalVocabularyRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteMedicalVocabularyRequestMarshaller()
+                        .marshall(deleteMedicalVocabularyRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
@@ -625,6 +818,64 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Gets information about a single custom language model. Use this
+     * information to see details about the language model in your AWS account.
+     * You can also see whether the base language model used to create your
+     * custom language model has been updated. If Amazon Transcribe has updated
+     * the base model, you can create a new custom language model using the
+     * updated base model. If the language model wasn't created, you can use
+     * this operation to understand why Amazon Transcribe couldn't create it.
+     * </p>
+     * 
+     * @param describeLanguageModelRequest
+     * @return describeLanguageModelResult The response from the
+     *         DescribeLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeLanguageModelResult describeLanguageModel(
+            DescribeLanguageModelRequest describeLanguageModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeLanguageModelRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeLanguageModelRequest> request = null;
+        Response<DescribeLanguageModelResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeLanguageModelRequestMarshaller()
+                        .marshall(describeLanguageModelRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeLanguageModelResult, JsonUnmarshallerContext> unmarshaller = new DescribeLanguageModelResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeLanguageModelResult> responseHandler = new JsonResponseHandler<DescribeLanguageModelResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns information about a transcription job from Amazon Transcribe
      * Medical. To see the status of the job, check the
      * <code>TranscriptionJobStatus</code> field. If the status is
@@ -668,6 +919,58 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<GetMedicalTranscriptionJobResult, JsonUnmarshallerContext> unmarshaller = new GetMedicalTranscriptionJobResultJsonUnmarshaller();
             JsonResponseHandler<GetMedicalTranscriptionJobResult> responseHandler = new JsonResponseHandler<GetMedicalTranscriptionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a medical vocabulary.
+     * </p>
+     * 
+     * @param getMedicalVocabularyRequest
+     * @return getMedicalVocabularyResult The response from the
+     *         GetMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetMedicalVocabularyResult getMedicalVocabulary(
+            GetMedicalVocabularyRequest getMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getMedicalVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetMedicalVocabularyRequest> request = null;
+        Response<GetMedicalVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetMedicalVocabularyRequestMarshaller()
+                        .marshall(getMedicalVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetMedicalVocabularyResult, JsonUnmarshallerContext> unmarshaller = new GetMedicalVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<GetMedicalVocabularyResult> responseHandler = new JsonResponseHandler<GetMedicalVocabularyResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -839,6 +1142,59 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Provides more information about the custom language models you've
+     * created. You can use the information in this list to find a specific
+     * custom language model. You can then use the operation to get more
+     * information about it.
+     * </p>
+     * 
+     * @param listLanguageModelsRequest
+     * @return listLanguageModelsResult The response from the ListLanguageModels
+     *         service method, as returned by Amazon Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListLanguageModelsResult listLanguageModels(
+            ListLanguageModelsRequest listLanguageModelsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listLanguageModelsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListLanguageModelsRequest> request = null;
+        Response<ListLanguageModelsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListLanguageModelsRequestMarshaller()
+                        .marshall(listLanguageModelsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListLanguageModelsResult, JsonUnmarshallerContext> unmarshaller = new ListLanguageModelsResultJsonUnmarshaller();
+            JsonResponseHandler<ListLanguageModelsResult> responseHandler = new JsonResponseHandler<ListLanguageModelsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists medical transcription jobs with a specified status or substring
      * that matches their names.
      * </p>
@@ -878,6 +1234,59 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<ListMedicalTranscriptionJobsResult, JsonUnmarshallerContext> unmarshaller = new ListMedicalTranscriptionJobsResultJsonUnmarshaller();
             JsonResponseHandler<ListMedicalTranscriptionJobsResult> responseHandler = new JsonResponseHandler<ListMedicalTranscriptionJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns a list of vocabularies that match the specified criteria. If you
+     * don't enter a value in any of the request parameters, returns the entire
+     * list of vocabularies.
+     * </p>
+     * 
+     * @param listMedicalVocabulariesRequest
+     * @return listMedicalVocabulariesResult The response from the
+     *         ListMedicalVocabularies service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListMedicalVocabulariesResult listMedicalVocabularies(
+            ListMedicalVocabulariesRequest listMedicalVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listMedicalVocabulariesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListMedicalVocabulariesRequest> request = null;
+        Response<ListMedicalVocabulariesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListMedicalVocabulariesRequestMarshaller()
+                        .marshall(listMedicalVocabulariesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListMedicalVocabulariesResult, JsonUnmarshallerContext> unmarshaller = new ListMedicalVocabulariesResultJsonUnmarshaller();
+            JsonResponseHandler<ListMedicalVocabulariesResult> responseHandler = new JsonResponseHandler<ListMedicalVocabulariesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1042,7 +1451,7 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
-     * Start a batch job to transcribe medical speech to text.
+     * Starts a batch job to transcribe medical speech to text.
      * </p>
      * 
      * @param startMedicalTranscriptionJobRequest
@@ -1133,6 +1542,62 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<StartTranscriptionJobResult, JsonUnmarshallerContext> unmarshaller = new StartTranscriptionJobResultJsonUnmarshaller();
             JsonResponseHandler<StartTranscriptionJobResult> responseHandler = new JsonResponseHandler<StartTranscriptionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a vocabulary with new values that you provide in a different text
+     * file from the one you used to create the vocabulary. The
+     * <code>UpdateMedicalVocabulary</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateMedicalVocabularyRequest
+     * @return updateMedicalVocabularyResult The response from the
+     *         UpdateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateMedicalVocabularyResult updateMedicalVocabulary(
+            UpdateMedicalVocabularyRequest updateMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateMedicalVocabularyRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateMedicalVocabularyRequest> request = null;
+        Response<UpdateMedicalVocabularyResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateMedicalVocabularyRequestMarshaller()
+                        .marshall(updateMedicalVocabularyRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateMedicalVocabularyResult, JsonUnmarshallerContext> unmarshaller = new UpdateMedicalVocabularyResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateMedicalVocabularyResult> responseHandler = new JsonResponseHandler<UpdateMedicalVocabularyResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

@@ -27,7 +27,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary filter to update.
+     * The name of the vocabulary filter to update. If you try to update a
+     * vocabulary filter with the same name as another vocabulary filter, you
+     * get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +78,9 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the vocabulary filter to update.
+     * The name of the vocabulary filter to update. If you try to update a
+     * vocabulary filter with the same name as another vocabulary filter, you
+     * get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -84,7 +88,9 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary filter to update.
+     *         The name of the vocabulary filter to update. If you try to update
+     *         a vocabulary filter with the same name as another vocabulary
+     *         filter, you get a <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyFilterName() {
@@ -93,7 +99,9 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the vocabulary filter to update.
+     * The name of the vocabulary filter to update. If you try to update a
+     * vocabulary filter with the same name as another vocabulary filter, you
+     * get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -101,7 +109,10 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The name of the vocabulary filter to update.
+     *            The name of the vocabulary filter to update. If you try to
+     *            update a vocabulary filter with the same name as another
+     *            vocabulary filter, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      */
     public void setVocabularyFilterName(String vocabularyFilterName) {
@@ -110,7 +121,9 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The name of the vocabulary filter to update.
+     * The name of the vocabulary filter to update. If you try to update a
+     * vocabulary filter with the same name as another vocabulary filter, you
+     * get a <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -121,7 +134,10 @@ public class UpdateVocabularyFilterRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param vocabularyFilterName <p>
-     *            The name of the vocabulary filter to update.
+     *            The name of the vocabulary filter to update. If you try to
+     *            update a vocabulary filter with the same name as another
+     *            vocabulary filter, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

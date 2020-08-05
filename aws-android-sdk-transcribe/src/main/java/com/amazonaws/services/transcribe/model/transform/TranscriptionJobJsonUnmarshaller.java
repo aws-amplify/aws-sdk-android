@@ -72,6 +72,9 @@ class TranscriptionJobJsonUnmarshaller implements
             } else if (name.equals("Settings")) {
                 transcriptionJob.setSettings(SettingsJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ModelSettings")) {
+                transcriptionJob.setModelSettings(ModelSettingsJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobExecutionSettings")) {
                 transcriptionJob.setJobExecutionSettings(JobExecutionSettingsJsonUnmarshaller
                         .getInstance()

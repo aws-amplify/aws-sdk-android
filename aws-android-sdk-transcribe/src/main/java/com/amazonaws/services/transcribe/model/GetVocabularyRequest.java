@@ -27,8 +27,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetVocabularyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the vocabulary to return information about. The name is case
+     * sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,8 +39,8 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the vocabulary to return information about. The name is case
+     * sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +49,7 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
      *
      * @return <p>
      *         The name of the vocabulary to return information about. The name
-     *         is case-sensitive.
+     *         is case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -58,8 +58,8 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the vocabulary to return information about. The name is case
+     * sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +68,7 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary to return information about. The
-     *            name is case-sensitive.
+     *            name is case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -77,8 +77,8 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the vocabulary to return information about. The name is
-     * case-sensitive.
+     * The name of the vocabulary to return information about. The name is case
+     * sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +90,7 @@ public class GetVocabularyRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary to return information about. The
-     *            name is case-sensitive.
+     *            name is case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

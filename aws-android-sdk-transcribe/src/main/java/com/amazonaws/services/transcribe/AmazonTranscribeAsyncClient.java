@@ -259,6 +259,154 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Creates a new custom language model. Use Amazon S3 prefixes to provide
+     * the location of your input files. The time it takes to create your model
+     * depends on the size of your training data.
+     * </p>
+     * 
+     * @param createLanguageModelRequest
+     * @return A Java Future object containing the response from the
+     *         CreateLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateLanguageModelResult> createLanguageModelAsync(
+            final CreateLanguageModelRequest createLanguageModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateLanguageModelResult>() {
+            public CreateLanguageModelResult call() throws Exception {
+                return createLanguageModel(createLanguageModelRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new custom language model. Use Amazon S3 prefixes to provide
+     * the location of your input files. The time it takes to create your model
+     * depends on the size of your training data.
+     * </p>
+     * 
+     * @param createLanguageModelRequest
+     * @return A Java Future object containing the response from the
+     *         CreateLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateLanguageModelResult> createLanguageModelAsync(
+            final CreateLanguageModelRequest createLanguageModelRequest,
+            final AsyncHandler<CreateLanguageModelRequest, CreateLanguageModelResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateLanguageModelResult>() {
+            public CreateLanguageModelResult call() throws Exception {
+                CreateLanguageModelResult result = null;
+                try {
+                    result = createLanguageModel(createLanguageModelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createLanguageModelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Transcribe Medical transcribes your audio file.
+     * </p>
+     * 
+     * @param createMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         CreateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateMedicalVocabularyResult> createMedicalVocabularyAsync(
+            final CreateMedicalVocabularyRequest createMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateMedicalVocabularyResult>() {
+            public CreateMedicalVocabularyResult call() throws Exception {
+                return createMedicalVocabulary(createMedicalVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Transcribe Medical transcribes your audio file.
+     * </p>
+     * 
+     * @param createMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         CreateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateMedicalVocabularyResult> createMedicalVocabularyAsync(
+            final CreateMedicalVocabularyRequest createMedicalVocabularyRequest,
+            final AsyncHandler<CreateMedicalVocabularyRequest, CreateMedicalVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateMedicalVocabularyResult>() {
+            public CreateMedicalVocabularyResult call() throws Exception {
+                CreateMedicalVocabularyResult result = null;
+                try {
+                    result = createMedicalVocabulary(createMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createMedicalVocabularyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Creates a new custom vocabulary that you can use to change the way Amazon
      * Transcribe handles transcription of an audio file.
      * </p>
@@ -405,6 +553,76 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Deletes a custom language model using its name.
+     * </p>
+     * 
+     * @param deleteLanguageModelRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteLanguageModelAsync(
+            final DeleteLanguageModelRequest deleteLanguageModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteLanguageModel(deleteLanguageModelRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a custom language model using its name.
+     * </p>
+     * 
+     * @param deleteLanguageModelRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteLanguageModelAsync(
+            final DeleteLanguageModelRequest deleteLanguageModelRequest,
+            final AsyncHandler<DeleteLanguageModelRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteLanguageModel(deleteLanguageModelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteLanguageModelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Deletes a transcription job generated by Amazon Transcribe Medical and
      * any related information.
      * </p>
@@ -470,6 +688,78 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(deleteMedicalTranscriptionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a vocabulary from Amazon Transcribe Medical.
+     * </p>
+     * 
+     * @param deleteMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteMedicalVocabularyAsync(
+            final DeleteMedicalVocabularyRequest deleteMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteMedicalVocabulary(deleteMedicalVocabularyRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a vocabulary from Amazon Transcribe Medical.
+     * </p>
+     * 
+     * @param deleteMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteMedicalVocabularyAsync(
+            final DeleteMedicalVocabularyRequest deleteMedicalVocabularyRequest,
+            final AsyncHandler<DeleteMedicalVocabularyRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteMedicalVocabulary(deleteMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteMedicalVocabularyRequest, result);
                 return result;
             }
         });
@@ -692,6 +982,89 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Gets information about a single custom language model. Use this
+     * information to see details about the language model in your AWS account.
+     * You can also see whether the base language model used to create your
+     * custom language model has been updated. If Amazon Transcribe has updated
+     * the base model, you can create a new custom language model using the
+     * updated base model. If the language model wasn't created, you can use
+     * this operation to understand why Amazon Transcribe couldn't create it.
+     * </p>
+     * 
+     * @param describeLanguageModelRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeLanguageModelResult> describeLanguageModelAsync(
+            final DescribeLanguageModelRequest describeLanguageModelRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLanguageModelResult>() {
+            public DescribeLanguageModelResult call() throws Exception {
+                return describeLanguageModel(describeLanguageModelRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets information about a single custom language model. Use this
+     * information to see details about the language model in your AWS account.
+     * You can also see whether the base language model used to create your
+     * custom language model has been updated. If Amazon Transcribe has updated
+     * the base model, you can create a new custom language model using the
+     * updated base model. If the language model wasn't created, you can use
+     * this operation to understand why Amazon Transcribe couldn't create it.
+     * </p>
+     * 
+     * @param describeLanguageModelRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeLanguageModel service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeLanguageModelResult> describeLanguageModelAsync(
+            final DescribeLanguageModelRequest describeLanguageModelRequest,
+            final AsyncHandler<DescribeLanguageModelRequest, DescribeLanguageModelResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeLanguageModelResult>() {
+            public DescribeLanguageModelResult call() throws Exception {
+                DescribeLanguageModelResult result = null;
+                try {
+                    result = describeLanguageModel(describeLanguageModelRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeLanguageModelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Returns information about a transcription job from Amazon Transcribe
      * Medical. To see the status of the job, check the
      * <code>TranscriptionJobStatus</code> field. If the status is
@@ -764,6 +1137,77 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(getMedicalTranscriptionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a medical vocabulary.
+     * </p>
+     * 
+     * @param getMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         GetMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetMedicalVocabularyResult> getMedicalVocabularyAsync(
+            final GetMedicalVocabularyRequest getMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetMedicalVocabularyResult>() {
+            public GetMedicalVocabularyResult call() throws Exception {
+                return getMedicalVocabulary(getMedicalVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a medical vocabulary.
+     * </p>
+     * 
+     * @param getMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         GetMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetMedicalVocabularyResult> getMedicalVocabularyAsync(
+            final GetMedicalVocabularyRequest getMedicalVocabularyRequest,
+            final AsyncHandler<GetMedicalVocabularyRequest, GetMedicalVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetMedicalVocabularyResult>() {
+            public GetMedicalVocabularyResult call() throws Exception {
+                GetMedicalVocabularyResult result = null;
+                try {
+                    result = getMedicalVocabulary(getMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getMedicalVocabularyRequest, result);
                 return result;
             }
         });
@@ -992,6 +1436,81 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Provides more information about the custom language models you've
+     * created. You can use the information in this list to find a specific
+     * custom language model. You can then use the operation to get more
+     * information about it.
+     * </p>
+     * 
+     * @param listLanguageModelsRequest
+     * @return A Java Future object containing the response from the
+     *         ListLanguageModels service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListLanguageModelsResult> listLanguageModelsAsync(
+            final ListLanguageModelsRequest listLanguageModelsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListLanguageModelsResult>() {
+            public ListLanguageModelsResult call() throws Exception {
+                return listLanguageModels(listLanguageModelsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides more information about the custom language models you've
+     * created. You can use the information in this list to find a specific
+     * custom language model. You can then use the operation to get more
+     * information about it.
+     * </p>
+     * 
+     * @param listLanguageModelsRequest
+     * @return A Java Future object containing the response from the
+     *         ListLanguageModels service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListLanguageModelsResult> listLanguageModelsAsync(
+            final ListLanguageModelsRequest listLanguageModelsRequest,
+            final AsyncHandler<ListLanguageModelsRequest, ListLanguageModelsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListLanguageModelsResult>() {
+            public ListLanguageModelsResult call() throws Exception {
+                ListLanguageModelsResult result = null;
+                try {
+                    result = listLanguageModels(listLanguageModelsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listLanguageModelsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Lists medical transcription jobs with a specified status or substring
      * that matches their names.
      * </p>
@@ -1056,6 +1575,79 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(listMedicalTranscriptionJobsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns a list of vocabularies that match the specified criteria. If you
+     * don't enter a value in any of the request parameters, returns the entire
+     * list of vocabularies.
+     * </p>
+     * 
+     * @param listMedicalVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListMedicalVocabularies service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListMedicalVocabulariesResult> listMedicalVocabulariesAsync(
+            final ListMedicalVocabulariesRequest listMedicalVocabulariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListMedicalVocabulariesResult>() {
+            public ListMedicalVocabulariesResult call() throws Exception {
+                return listMedicalVocabularies(listMedicalVocabulariesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns a list of vocabularies that match the specified criteria. If you
+     * don't enter a value in any of the request parameters, returns the entire
+     * list of vocabularies.
+     * </p>
+     * 
+     * @param listMedicalVocabulariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListMedicalVocabularies service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListMedicalVocabulariesResult> listMedicalVocabulariesAsync(
+            final ListMedicalVocabulariesRequest listMedicalVocabulariesRequest,
+            final AsyncHandler<ListMedicalVocabulariesRequest, ListMedicalVocabulariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListMedicalVocabulariesResult>() {
+            public ListMedicalVocabulariesResult call() throws Exception {
+                ListMedicalVocabulariesResult result = null;
+                try {
+                    result = listMedicalVocabularies(listMedicalVocabulariesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listMedicalVocabulariesRequest, result);
                 return result;
             }
         });
@@ -1272,7 +1864,7 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
-     * Start a batch job to transcribe medical speech to text.
+     * Starts a batch job to transcribe medical speech to text.
      * </p>
      * 
      * @param startMedicalTranscriptionJobRequest
@@ -1303,7 +1895,7 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
-     * Start a batch job to transcribe medical speech to text.
+     * Starts a batch job to transcribe medical speech to text.
      * </p>
      * 
      * @param startMedicalTranscriptionJobRequest
@@ -1407,6 +1999,85 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(startTranscriptionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates a vocabulary with new values that you provide in a different text
+     * file from the one you used to create the vocabulary. The
+     * <code>UpdateMedicalVocabulary</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateMedicalVocabularyResult> updateMedicalVocabularyAsync(
+            final UpdateMedicalVocabularyRequest updateMedicalVocabularyRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateMedicalVocabularyResult>() {
+            public UpdateMedicalVocabularyResult call() throws Exception {
+                return updateMedicalVocabulary(updateMedicalVocabularyRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates a vocabulary with new values that you provide in a different text
+     * file from the one you used to create the vocabulary. The
+     * <code>UpdateMedicalVocabulary</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateMedicalVocabularyRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateMedicalVocabulary service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateMedicalVocabularyResult> updateMedicalVocabularyAsync(
+            final UpdateMedicalVocabularyRequest updateMedicalVocabularyRequest,
+            final AsyncHandler<UpdateMedicalVocabularyRequest, UpdateMedicalVocabularyResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateMedicalVocabularyResult>() {
+            public UpdateMedicalVocabularyResult call() throws Exception {
+                UpdateMedicalVocabularyResult result = null;
+                try {
+                    result = updateMedicalVocabulary(updateMedicalVocabularyRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateMedicalVocabularyRequest, result);
                 return result;
             }
         });
