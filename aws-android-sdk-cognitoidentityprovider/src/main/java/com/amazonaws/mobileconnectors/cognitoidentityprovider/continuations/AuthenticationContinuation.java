@@ -74,7 +74,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
         this.context = context;
         this.runInBackground = runInBackground;
         this.callback = callback;
-        this.clientMetadata = Collections.emptyMap();
+        this.clientMetadata = new HashMap<String, String>();
     }
 
     /**
