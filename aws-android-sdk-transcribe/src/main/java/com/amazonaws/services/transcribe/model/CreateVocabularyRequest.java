@@ -29,7 +29,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,10 +46,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      */
     private String languageCode;
 
@@ -63,15 +65,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * The S3 location of the text file that contains the definition of the
      * custom vocabulary. The URI must be in the same region as the API endpoint
      * that you are calling. The general form is
-     * </p>
-     * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -93,7 +86,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,7 +97,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         The name of the vocabulary. The name must be unique within an AWS
-     *         account. The name is case-sensitive.
+     *         account. The name is case sensitive. If you try to create a
+     *         vocabulary with the same name as a previous vocabulary you will
+     *         receive a <code>ConflictException</code> error.
      *         </p>
      */
     public String getVocabularyName() {
@@ -112,7 +109,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -121,7 +120,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary. The name must be unique within an
-     *            AWS account. The name is case-sensitive.
+     *            AWS account. The name is case sensitive. If you try to create
+     *            a vocabulary with the same name as a previous vocabulary you
+     *            will receive a <code>ConflictException</code> error.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -131,7 +132,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The name of the vocabulary. The name must be unique within an AWS
-     * account. The name is case-sensitive.
+     * account. The name is case sensitive. If you try to create a vocabulary
+     * with the same name as a previous vocabulary you will receive a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -143,7 +146,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary. The name must be unique within an
-     *            AWS account. The name is case-sensitive.
+     *            AWS account. The name is case sensitive. If you try to create
+     *            a vocabulary with the same name as a previous vocabulary you
+     *            will receive a <code>ConflictException</code> error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -159,10 +164,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @return <p>
      *         The language code of the vocabulary entries.
@@ -179,10 +184,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -202,10 +207,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -225,10 +230,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -248,10 +253,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries.
@@ -346,15 +351,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
-     * </p>
-     * <p>
      * For more information about S3 object names, see <a href=
      * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
@@ -373,15 +369,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         The S3 location of the text file that contains the definition of
      *         the custom vocabulary. The URI must be in the same region as the
      *         API endpoint that you are calling. The general form is
-     *         </p>
-     *         <p>
-     *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *         </p>
-     *         <p>
-     *         For example:
-     *         </p>
-     *         <p>
-     *         <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -405,15 +392,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
-     * </p>
-     * <p>
      * For more information about S3 object names, see <a href=
      * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
@@ -432,15 +410,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            The S3 location of the text file that contains the definition
      *            of the custom vocabulary. The URI must be in the same region
      *            as the API endpoint that you are calling. The general form is
-     *            </p>
-     *            <p>
-     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *            </p>
-     *            <p>
-     *            For example:
-     *            </p>
-     *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -464,15 +433,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * that you are calling. The general form is
      * </p>
      * <p>
-     * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
-     * For example:
-     * </p>
-     * <p>
-     * <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
-     * </p>
-     * <p>
      * For more information about S3 object names, see <a href=
      * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
@@ -494,15 +454,6 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            The S3 location of the text file that contains the definition
      *            of the custom vocabulary. The URI must be in the same region
      *            as the API endpoint that you are calling. The general form is
-     *            </p>
-     *            <p>
-     *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *            </p>
-     *            <p>
-     *            For example:
-     *            </p>
-     *            <p>
-     *            <code>https://s3.us-east-1.amazonaws.com/examplebucket/vocab.txt</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
