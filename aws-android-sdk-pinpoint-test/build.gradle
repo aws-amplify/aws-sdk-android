@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 18 // UIAutomator
         targetSdkVersion 29
-        versionCode 1
-        versionName '1.0'
+        versionCode 21701
+        versionName "2.17.1"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
