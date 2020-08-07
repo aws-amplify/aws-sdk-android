@@ -36,6 +36,15 @@ public class PostTextResultJsonUnmarshaller implements
             if (name.equals("intentName")) {
                 postTextResult.setIntentName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("nluIntentConfidence")) {
+                postTextResult.setNluIntentConfidence(IntentConfidenceJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("alternativeIntents")) {
+                postTextResult.setAlternativeIntents(new ListUnmarshaller<PredictedIntent>(
+                        PredictedIntentJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("slots")) {
                 postTextResult.setSlots(new MapUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()
@@ -66,6 +75,9 @@ public class PostTextResultJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("sessionId")) {
                 postTextResult.setSessionId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("botVersion")) {
+                postTextResult.setBotVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
