@@ -30,16 +30,7 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/example.mp4</code>
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -60,16 +51,7 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/example.mp4</code>
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -87,16 +69,7 @@ public class Media implements Serializable {
      *         general form is:
      *         </p>
      *         <p>
-     *         <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *         </p>
-     *         <p>
      *         For example:
-     *         </p>
-     *         <p>
-     *         <code>s3://examplebucket/example.mp4</code>
-     *         </p>
-     *         <p>
-     *         <code>s3://examplebucket/mediadocs/example.mp4</code>
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -115,16 +88,7 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/example.mp4</code>
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -142,16 +106,7 @@ public class Media implements Serializable {
      *            calling. The general form is:
      *            </p>
      *            <p>
-     *            <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *            </p>
-     *            <p>
      *            For example:
-     *            </p>
-     *            <p>
-     *            <code>s3://examplebucket/example.mp4</code>
-     *            </p>
-     *            <p>
-     *            <code>s3://examplebucket/mediadocs/example.mp4</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -170,16 +125,7 @@ public class Media implements Serializable {
      * is:
      * </p>
      * <p>
-     * <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     * </p>
-     * <p>
      * For example:
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/example.mp4</code>
-     * </p>
-     * <p>
-     * <code>s3://examplebucket/mediadocs/example.mp4</code>
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -200,16 +146,7 @@ public class Media implements Serializable {
      *            calling. The general form is:
      *            </p>
      *            <p>
-     *            <code> s3://&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
-     *            </p>
-     *            <p>
      *            For example:
-     *            </p>
-     *            <p>
-     *            <code>s3://examplebucket/example.mp4</code>
-     *            </p>
-     *            <p>
-     *            <code>s3://examplebucket/mediadocs/example.mp4</code>
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=

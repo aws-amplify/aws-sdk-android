@@ -21,6 +21,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserCodeDeliveryDetails;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.ForgotPasswordHandler;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -42,10 +43,10 @@ public class ForgotPasswordContinuation implements CognitoIdentityProviderContin
     private final CognitoUser user;
     private final CognitoUserCodeDeliveryDetails parameters;
     private final boolean runInBackground;
+    private final Map<String, String> clientMetadata;
 
     private String password = null;
     private String verificationCode = null;
-    private Map<String, String> clientMetadata;
 
     /**
      * Constructs a new Continuation for forgot password process.
@@ -63,6 +64,7 @@ public class ForgotPasswordContinuation implements CognitoIdentityProviderContin
         this.user = user;
         this.parameters = parameters;
         this.runInBackground = runInBackground;
+        this.clientMetadata = new HashMap<>();
     }
 
     /**
@@ -110,6 +112,9 @@ public class ForgotPasswordContinuation implements CognitoIdentityProviderContin
      * @param clientMetadata
      */
     public void setClientMetadata(final Map<String, String> clientMetadata) {
-        this.clientMetadata = clientMetadata;
+        this.clientMetadata.clear();
+        if (clientMetadata != null) {
+            this.clientMetadata.putAll(clientMetadata);
+        }
     }
 }

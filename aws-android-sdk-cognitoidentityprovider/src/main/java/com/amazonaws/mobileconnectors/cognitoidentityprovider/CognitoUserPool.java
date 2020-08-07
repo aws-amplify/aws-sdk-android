@@ -189,6 +189,7 @@ public class CognitoUserPool {
 
             final ClientConfiguration clientConfig = new ClientConfiguration();
             clientConfig.setUserAgent(awsConfiguration.getUserAgent());
+            clientConfig.setUserAgentOverride(awsConfiguration.getUserAgentOverride());
             this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfig);
             this.client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.fromName(userPoolConfiguration.getString("Region"))));
         } catch (Exception e) {

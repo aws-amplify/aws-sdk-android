@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class Transcript implements Serializable {
     /**
      * <p>
-     * The S3 object location of the the transcript.
+     * The S3 object location of the transcript.
      * </p>
      * <p>
      * Use this URI to access the transcript. If you specified an S3 bucket in
@@ -46,7 +46,7 @@ public class Transcript implements Serializable {
      * The S3 object location of the redacted transcript.
      * </p>
      * <p>
-     * Use this URI to access the redacated transcript. If you specified an S3
+     * Use this URI to access the redacted transcript. If you specified an S3
      * bucket in the <code>OutputBucketName</code> field when you created the
      * job, this is the URI of that bucket. If you chose to store the transcript
      * in Amazon Transcribe, this is a shareable URL that provides secure access
@@ -61,7 +61,7 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The S3 object location of the the transcript.
+     * The S3 object location of the transcript.
      * </p>
      * <p>
      * Use this URI to access the transcript. If you specified an S3 bucket in
@@ -76,7 +76,7 @@ public class Transcript implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The S3 object location of the the transcript.
+     *         The S3 object location of the transcript.
      *         </p>
      *         <p>
      *         Use this URI to access the transcript. If you specified an S3
@@ -92,7 +92,7 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The S3 object location of the the transcript.
+     * The S3 object location of the transcript.
      * </p>
      * <p>
      * Use this URI to access the transcript. If you specified an S3 bucket in
@@ -107,7 +107,7 @@ public class Transcript implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param transcriptFileUri <p>
-     *            The S3 object location of the the transcript.
+     *            The S3 object location of the transcript.
      *            </p>
      *            <p>
      *            Use this URI to access the transcript. If you specified an S3
@@ -123,7 +123,7 @@ public class Transcript implements Serializable {
 
     /**
      * <p>
-     * The S3 object location of the the transcript.
+     * The S3 object location of the transcript.
      * </p>
      * <p>
      * Use this URI to access the transcript. If you specified an S3 bucket in
@@ -141,7 +141,7 @@ public class Transcript implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param transcriptFileUri <p>
-     *            The S3 object location of the the transcript.
+     *            The S3 object location of the transcript.
      *            </p>
      *            <p>
      *            Use this URI to access the transcript. If you specified an S3
@@ -163,7 +163,7 @@ public class Transcript implements Serializable {
      * The S3 object location of the redacted transcript.
      * </p>
      * <p>
-     * Use this URI to access the redacated transcript. If you specified an S3
+     * Use this URI to access the redacted transcript. If you specified an S3
      * bucket in the <code>OutputBucketName</code> field when you created the
      * job, this is the URI of that bucket. If you chose to store the transcript
      * in Amazon Transcribe, this is a shareable URL that provides secure access
@@ -178,7 +178,7 @@ public class Transcript implements Serializable {
      *         The S3 object location of the redacted transcript.
      *         </p>
      *         <p>
-     *         Use this URI to access the redacated transcript. If you specified
+     *         Use this URI to access the redacted transcript. If you specified
      *         an S3 bucket in the <code>OutputBucketName</code> field when you
      *         created the job, this is the URI of that bucket. If you chose to
      *         store the transcript in Amazon Transcribe, this is a shareable
@@ -194,7 +194,7 @@ public class Transcript implements Serializable {
      * The S3 object location of the redacted transcript.
      * </p>
      * <p>
-     * Use this URI to access the redacated transcript. If you specified an S3
+     * Use this URI to access the redacted transcript. If you specified an S3
      * bucket in the <code>OutputBucketName</code> field when you created the
      * job, this is the URI of that bucket. If you chose to store the transcript
      * in Amazon Transcribe, this is a shareable URL that provides secure access
@@ -209,7 +209,7 @@ public class Transcript implements Serializable {
      *            The S3 object location of the redacted transcript.
      *            </p>
      *            <p>
-     *            Use this URI to access the redacated transcript. If you
+     *            Use this URI to access the redacted transcript. If you
      *            specified an S3 bucket in the <code>OutputBucketName</code>
      *            field when you created the job, this is the URI of that
      *            bucket. If you chose to store the transcript in Amazon
@@ -226,7 +226,7 @@ public class Transcript implements Serializable {
      * The S3 object location of the redacted transcript.
      * </p>
      * <p>
-     * Use this URI to access the redacated transcript. If you specified an S3
+     * Use this URI to access the redacted transcript. If you specified an S3
      * bucket in the <code>OutputBucketName</code> field when you created the
      * job, this is the URI of that bucket. If you chose to store the transcript
      * in Amazon Transcribe, this is a shareable URL that provides secure access
@@ -244,7 +244,7 @@ public class Transcript implements Serializable {
      *            The S3 object location of the redacted transcript.
      *            </p>
      *            <p>
-     *            Use this URI to access the redacated transcript. If you
+     *            Use this URI to access the redacted transcript. If you
      *            specified an S3 bucket in the <code>OutputBucketName</code>
      *            field when you created the job, this is the URI of that
      *            bucket. If you chose to store the transcript in Amazon

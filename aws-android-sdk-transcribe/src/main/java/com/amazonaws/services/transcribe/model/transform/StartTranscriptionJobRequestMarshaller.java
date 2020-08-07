@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -102,6 +104,11 @@ public class StartTranscriptionJobRequestMarshaller implements
                 Settings settings = startTranscriptionJobRequest.getSettings();
                 jsonWriter.name("Settings");
                 SettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
+            }
+            if (startTranscriptionJobRequest.getModelSettings() != null) {
+                ModelSettings modelSettings = startTranscriptionJobRequest.getModelSettings();
+                jsonWriter.name("ModelSettings");
+                ModelSettingsJsonMarshaller.getInstance().marshall(modelSettings, jsonWriter);
             }
             if (startTranscriptionJobRequest.getJobExecutionSettings() != null) {
                 JobExecutionSettings jobExecutionSettings = startTranscriptionJobRequest

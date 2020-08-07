@@ -56,6 +56,9 @@ class MedicalTranscriptionSettingJsonUnmarshaller implements
                 medicalTranscriptionSetting.setMaxAlternatives(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VocabularyName")) {
+                medicalTranscriptionSetting.setVocabularyName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

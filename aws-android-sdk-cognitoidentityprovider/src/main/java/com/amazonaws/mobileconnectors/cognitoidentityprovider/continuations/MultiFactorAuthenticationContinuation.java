@@ -27,6 +27,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServic
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,8 +50,9 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
     private final RespondToAuthChallengeResult challenge;
     private final boolean runInBackground;
     private final AuthenticationHandler callback;
+    private final Map<String, String> clientMetadata;
+
     private String mfaCode = null;
-    private Map<String, String> clientMetadata;
 
     /**
      * Constructs a multi-factor authentication continuation.
@@ -71,7 +73,7 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
         this.callback = callback;
         this.runInBackground = runInBackground;
         this.challenge = challenge;
-        this.clientMetadata = Collections.emptyMap();
+        this.clientMetadata = new HashMap<>();
     }
 
     /**
@@ -82,7 +84,7 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
      * @return ClientMetadata
      */
     public Map<String, String> getClientMetaData() {
-        return clientMetadata;
+        return Collections.unmodifiableMap(clientMetadata);
     }
 
     /**
@@ -91,7 +93,9 @@ public class MultiFactorAuthenticationContinuation implements CognitoIdentityPro
      */
     public void setClientMetaData(Map<String, String> clientMetadata) {
         this.clientMetadata.clear();
-        this.clientMetadata.putAll(clientMetadata);
+        if (clientMetadata != null) {
+            this.clientMetadata.putAll(clientMetadata);
+        }
     }
 
     /**

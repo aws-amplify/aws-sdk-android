@@ -1,0 +1,25 @@
+{
+  "UserAgent": "aws-amplify/cli",
+  "Version": "0.1.0",
+  "IdentityManager": {
+    "Default": {}
+  },
+  "CredentialsProvider": {
+    "CognitoIdentity": {
+      "Default": {
+        "__comment": "This was never a real pool. Just a random uuid.",
+        "PoolId": "us-west-2:d7dd1ff8-908d-4d46-a5e2-a33be23bdade",
+        "Region": "us-west-2"
+      }
+    }
+  },
+  "CognitoUserPool": {
+    "Default": {
+      "PoolId": "us-west-2_K00lpooL5",
+      "AppClientId": "app22client44SecretId0",
+      "AppClientSecret": "appclientsecret5500secretyes",
+      "Region": "us-west-2"
+    }
+  }
+}
+

@@ -24,19 +24,19 @@ public class ListVocabulariesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>PENDING, READY, FAILED
      */
     private String status;
 
     /**
      * <p>
      * The <code>ListVocabularies</code> operation returns a page of
-     * vocabularies at a time. The maximum size of the page is set by the
+     * vocabularies at a time. The maximum size of the page is set in the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
-     * jobs.
+     * than will fit on the page, Amazon Transcribe returns the
+     * <code>NextPage</code> token. To return in the next page of jobs, include
+     * the token in the next request to the <code>ListVocabularies</code>
+     * operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,12 +59,12 @@ public class ListVocabulariesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @return <p>
      *         The requested vocabulary state.
      *         </p>
-     * @see TranscriptionJobStatus
+     * @see VocabularyState
      */
     public String getStatus() {
         return status;
@@ -76,12 +76,12 @@ public class ListVocabulariesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
      *            The requested vocabulary state.
      *            </p>
-     * @see TranscriptionJobStatus
+     * @see VocabularyState
      */
     public void setStatus(String status) {
         this.status = status;
@@ -96,14 +96,14 @@ public class ListVocabulariesResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
      *            The requested vocabulary state.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see TranscriptionJobStatus
+     * @see VocabularyState
      */
     public ListVocabulariesResult withStatus(String status) {
         this.status = status;
@@ -116,14 +116,14 @@ public class ListVocabulariesResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
      *            The requested vocabulary state.
      *            </p>
-     * @see TranscriptionJobStatus
+     * @see VocabularyState
      */
-    public void setStatus(TranscriptionJobStatus status) {
+    public void setStatus(VocabularyState status) {
         this.status = status.toString();
     }
 
@@ -136,16 +136,16 @@ public class ListVocabulariesResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>QUEUED, IN_PROGRESS, FAILED, COMPLETED
+     * <b>Allowed Values: </b>PENDING, READY, FAILED
      *
      * @param status <p>
      *            The requested vocabulary state.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see TranscriptionJobStatus
+     * @see VocabularyState
      */
-    public ListVocabulariesResult withStatus(TranscriptionJobStatus status) {
+    public ListVocabulariesResult withStatus(VocabularyState status) {
         this.status = status.toString();
         return this;
     }
@@ -153,12 +153,12 @@ public class ListVocabulariesResult implements Serializable {
     /**
      * <p>
      * The <code>ListVocabularies</code> operation returns a page of
-     * vocabularies at a time. The maximum size of the page is set by the
+     * vocabularies at a time. The maximum size of the page is set in the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
-     * jobs.
+     * than will fit on the page, Amazon Transcribe returns the
+     * <code>NextPage</code> token. To return in the next page of jobs, include
+     * the token in the next request to the <code>ListVocabularies</code>
+     * operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,12 +167,12 @@ public class ListVocabulariesResult implements Serializable {
      *
      * @return <p>
      *         The <code>ListVocabularies</code> operation returns a page of
-     *         vocabularies at a time. The maximum size of the page is set by
+     *         vocabularies at a time. The maximum size of the page is set in
      *         the <code>MaxResults</code> parameter. If there are more jobs in
-     *         the list than the page size, Amazon Transcribe returns the
-     *         <code>NextPage</code> token. Include the token in the next
-     *         request to the <code>ListVocabularies</code> operation to return
-     *         in the next page of jobs.
+     *         the list than will fit on the page, Amazon Transcribe returns the
+     *         <code>NextPage</code> token. To return in the next page of jobs,
+     *         include the token in the next request to the
+     *         <code>ListVocabularies</code> operation.
      *         </p>
      */
     public String getNextToken() {
@@ -182,12 +182,12 @@ public class ListVocabulariesResult implements Serializable {
     /**
      * <p>
      * The <code>ListVocabularies</code> operation returns a page of
-     * vocabularies at a time. The maximum size of the page is set by the
+     * vocabularies at a time. The maximum size of the page is set in the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
-     * jobs.
+     * than will fit on the page, Amazon Transcribe returns the
+     * <code>NextPage</code> token. To return in the next page of jobs, include
+     * the token in the next request to the <code>ListVocabularies</code>
+     * operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,12 +196,12 @@ public class ListVocabulariesResult implements Serializable {
      *
      * @param nextToken <p>
      *            The <code>ListVocabularies</code> operation returns a page of
-     *            vocabularies at a time. The maximum size of the page is set by
+     *            vocabularies at a time. The maximum size of the page is set in
      *            the <code>MaxResults</code> parameter. If there are more jobs
-     *            in the list than the page size, Amazon Transcribe returns the
-     *            <code>NextPage</code> token. Include the token in the next
-     *            request to the <code>ListVocabularies</code> operation to
-     *            return in the next page of jobs.
+     *            in the list than will fit on the page, Amazon Transcribe
+     *            returns the <code>NextPage</code> token. To return in the next
+     *            page of jobs, include the token in the next request to the
+     *            <code>ListVocabularies</code> operation.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -211,12 +211,12 @@ public class ListVocabulariesResult implements Serializable {
     /**
      * <p>
      * The <code>ListVocabularies</code> operation returns a page of
-     * vocabularies at a time. The maximum size of the page is set by the
+     * vocabularies at a time. The maximum size of the page is set in the
      * <code>MaxResults</code> parameter. If there are more jobs in the list
-     * than the page size, Amazon Transcribe returns the <code>NextPage</code>
-     * token. Include the token in the next request to the
-     * <code>ListVocabularies</code> operation to return in the next page of
-     * jobs.
+     * than will fit on the page, Amazon Transcribe returns the
+     * <code>NextPage</code> token. To return in the next page of jobs, include
+     * the token in the next request to the <code>ListVocabularies</code>
+     * operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -228,12 +228,12 @@ public class ListVocabulariesResult implements Serializable {
      *
      * @param nextToken <p>
      *            The <code>ListVocabularies</code> operation returns a page of
-     *            vocabularies at a time. The maximum size of the page is set by
+     *            vocabularies at a time. The maximum size of the page is set in
      *            the <code>MaxResults</code> parameter. If there are more jobs
-     *            in the list than the page size, Amazon Transcribe returns the
-     *            <code>NextPage</code> token. Include the token in the next
-     *            request to the <code>ListVocabularies</code> operation to
-     *            return in the next page of jobs.
+     *            in the list than will fit on the page, Amazon Transcribe
+     *            returns the <code>NextPage</code> token. To return in the next
+     *            page of jobs, include the token in the next request to the
+     *            <code>ListVocabularies</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

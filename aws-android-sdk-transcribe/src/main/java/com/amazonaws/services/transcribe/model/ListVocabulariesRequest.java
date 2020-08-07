@@ -65,8 +65,8 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * When specified, the vocabularies returned in the list are limited to
-     * vocabularies whose name contains the specified string. The search is
-     * case-insensitive, <code>ListVocabularies</code> returns both
+     * vocabularies whose name contains the specified string. The search is not
+     * case sensitive, <code>ListVocabularies</code> returns both
      * "vocabularyname" and "VocabularyName" in the response list.
      * </p>
      * <p>
@@ -325,8 +325,8 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * When specified, the vocabularies returned in the list are limited to
-     * vocabularies whose name contains the specified string. The search is
-     * case-insensitive, <code>ListVocabularies</code> returns both
+     * vocabularies whose name contains the specified string. The search is not
+     * case sensitive, <code>ListVocabularies</code> returns both
      * "vocabularyname" and "VocabularyName" in the response list.
      * </p>
      * <p>
@@ -337,8 +337,9 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         When specified, the vocabularies returned in the list are limited
      *         to vocabularies whose name contains the specified string. The
-     *         search is case-insensitive, <code>ListVocabularies</code> returns
-     *         both "vocabularyname" and "VocabularyName" in the response list.
+     *         search is not case sensitive, <code>ListVocabularies</code>
+     *         returns both "vocabularyname" and "VocabularyName" in the
+     *         response list.
      *         </p>
      */
     public String getNameContains() {
@@ -348,8 +349,8 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * When specified, the vocabularies returned in the list are limited to
-     * vocabularies whose name contains the specified string. The search is
-     * case-insensitive, <code>ListVocabularies</code> returns both
+     * vocabularies whose name contains the specified string. The search is not
+     * case sensitive, <code>ListVocabularies</code> returns both
      * "vocabularyname" and "VocabularyName" in the response list.
      * </p>
      * <p>
@@ -360,7 +361,7 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * @param nameContains <p>
      *            When specified, the vocabularies returned in the list are
      *            limited to vocabularies whose name contains the specified
-     *            string. The search is case-insensitive,
+     *            string. The search is not case sensitive,
      *            <code>ListVocabularies</code> returns both "vocabularyname"
      *            and "VocabularyName" in the response list.
      *            </p>
@@ -372,8 +373,8 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * When specified, the vocabularies returned in the list are limited to
-     * vocabularies whose name contains the specified string. The search is
-     * case-insensitive, <code>ListVocabularies</code> returns both
+     * vocabularies whose name contains the specified string. The search is not
+     * case sensitive, <code>ListVocabularies</code> returns both
      * "vocabularyname" and "VocabularyName" in the response list.
      * </p>
      * <p>
@@ -387,7 +388,7 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * @param nameContains <p>
      *            When specified, the vocabularies returned in the list are
      *            limited to vocabularies whose name contains the specified
-     *            string. The search is case-insensitive,
+     *            string. The search is not case sensitive,
      *            <code>ListVocabularies</code> returns both "vocabularyname"
      *            and "VocabularyName" in the response list.
      *            </p>

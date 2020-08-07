@@ -24,6 +24,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -47,17 +48,10 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
     private final Context context;
     private final AuthenticationHandler callback;
     private final boolean runInBackground;
+    private final Map<String, String> clientMetadata;
 
     private AuthenticationDetails authenticationDetails = null;
-    private Map<String, String> clientMetadata;
 
-    /**
-     * Constructs a new continuation in the authentication process.
-     *
-     * @param user
-     * @param runInBackground
-     * @param callback
-     */
     /**
      * Constructs a new continuation in the authentication process.
      *
@@ -74,7 +68,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
         this.context = context;
         this.runInBackground = runInBackground;
         this.callback = callback;
-        this.clientMetadata = Collections.emptyMap();
+        this.clientMetadata = new HashMap<>();
     }
 
     /**
@@ -84,8 +78,9 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      * </p>
      * @return ClientMetadata
      */
+    @SuppressWarnings("unused")
     public Map<String, String> getClientMetaData() {
-        return clientMetadata;
+        return Collections.unmodifiableMap(clientMetadata);
     }
 
     /**
@@ -94,7 +89,9 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      */
     public void setClientMetaData(Map<String, String> clientMetadata) {
         this.clientMetadata.clear();
-        this.clientMetadata.putAll(clientMetadata);
+        if (clientMetadata != null) {
+            this.clientMetadata.putAll(clientMetadata);
+        }
     }
 
     /**
@@ -102,6 +99,7 @@ public class AuthenticationContinuation implements CognitoIdentityProviderContin
      *
      * @return
      */
+    @SuppressWarnings("JavaDoc")
     @Override
     public String getParameters() {
         return "AuthenticationDetails";

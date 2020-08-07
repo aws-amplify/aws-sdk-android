@@ -18,7 +18,6 @@
 package com.amazonaws.mobile.client;
 
 import android.content.Context;
-import android.net.wifi.WifiManager;
 import androidx.test.core.app.ApplicationProvider;
 import android.util.Base64;
 
@@ -46,11 +45,6 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
 
     public static JSONObject getPackageConfigure()  {
         return getPackageConfigure(PACKAGE_NAME);
-    }
-
-    public static void setWifi(final Context appContext, final boolean wifiState) {
-        WifiManager wifiManager = (WifiManager) appContext.getSystemService(Context.WIFI_SERVICE);
-        wifiManager.setWifiEnabled(wifiState);
     }
 
     public static void setTokensDirectly(final Context appContext,
@@ -110,7 +104,7 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         epoch = epoch + expiryInSecs;
         String accessToken_p1_Base64 = "eyJ0eXAiOiAiSldUIiwgImFsZyI6IlJTMjU2In0=";
         String accessToken_p3_Base64 = "e0VuY3J5cHRlZF9LZXl9";
-        String accessToken_p2_Str = "{\"iss\": \"userPoolId\",\"sub\": \"my@email.com\",\"aud\": \"https:aws.cognito.com\",\"exp\": \"" + String.valueOf(epoch) + "\"}";
+        String accessToken_p2_Str = "{\"iss\": \"userPoolId\",\"sub\": \"my@email.com\",\"aud\": \"https:aws.cognito.com\",\"exp\": \"" + epoch + "\"}";
         byte[] accessToken_p2_UTF8 = accessToken_p2_Str.getBytes(StringUtils.UTF8);
         String accessToken_p2_Base64 = new String(Base64.encode(accessToken_p2_UTF8, Base64.DEFAULT));
         return accessToken_p1_Base64 + "." + accessToken_p2_Base64 + "." + accessToken_p3_Base64;

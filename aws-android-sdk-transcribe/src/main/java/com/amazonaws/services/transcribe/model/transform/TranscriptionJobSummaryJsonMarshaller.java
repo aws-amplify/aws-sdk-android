@@ -71,6 +71,11 @@ class TranscriptionJobSummaryJsonMarshaller {
             jsonWriter.name("ContentRedaction");
             ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
         }
+        if (transcriptionJobSummary.getModelSettings() != null) {
+            ModelSettings modelSettings = transcriptionJobSummary.getModelSettings();
+            jsonWriter.name("ModelSettings");
+            ModelSettingsJsonMarshaller.getInstance().marshall(modelSettings, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
