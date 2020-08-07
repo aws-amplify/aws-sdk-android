@@ -60,6 +60,12 @@ public class ClientConfiguration {
     private String userAgent = DEFAULT_USER_AGENT;
 
     /**
+     * The {@link #userAgent} string is sometimes combined with other strings. If this property is set, it instructs the
+     * client to only use this as the full user agent string.
+     */
+    private String userAgentOverride;
+
+    /**
      * The maximum number of times that a retryable failed request (ex: a 5xx
      * response from a service) will be retried. Or -1 if the user has not
      * explicitly set this value, in which case the configured RetryPolicy will
@@ -193,6 +199,7 @@ public class ClientConfiguration {
         this.preemptiveBasicProxyAuth = other.preemptiveBasicProxyAuth;
         this.socketTimeout = other.socketTimeout;
         this.userAgent = other.userAgent;
+        this.userAgentOverride = other.userAgentOverride;
         this.socketReceiveBufferSizeHint = other.socketReceiveBufferSizeHint;
         this.socketSendBufferSizeHint = other.socketSendBufferSizeHint;
         this.signerOverride = other.signerOverride;
@@ -323,6 +330,39 @@ public class ClientConfiguration {
     @SuppressWarnings("checkstyle:hiddenfield")
     public ClientConfiguration withUserAgent(String userAgent) {
         setUserAgent(userAgent);
+        return this;
+    }
+
+    /**
+     * The {@link #userAgent} string is sometimes combined with other strings. If this property is set, it instructs the
+     * client to only use this as the full user agent string.
+     *
+     * @return The string to use as the full user agent when sending requests.
+     */
+    public String getUserAgentOverride() {
+        return userAgentOverride;
+    }
+
+    /**
+     * The {@link #userAgent} string is sometimes combined with other strings. If this property is set, it instructs the
+     * client to only use this as the full user agent string.
+     *
+     * @param userAgentOverride The string to use as the full user agent when sending requests.
+     */
+    public void setUserAgentOverride(String userAgentOverride) {
+        this.userAgentOverride = userAgentOverride;
+    }
+
+    /**
+     * The {@link #userAgent} string is sometimes combined with other strings. If this property is set, it instructs the
+     * client to only use this as the full user agent string.
+     *
+     * @param userAgentOverride The string to use as the full user agent when sending requests.
+     * @return The updated ClientConfiguration object.
+     */
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public ClientConfiguration withUserAgentOverride(String userAgentOverride) {
+        setUserAgentOverride(userAgentOverride);
         return this;
     }
 

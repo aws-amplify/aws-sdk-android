@@ -53,8 +53,10 @@ public class JobExecutionSettings implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
-     * </b>^arn:aws:iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1023}$<br/>
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      */
     private String dataAccessRoleArn;
 
@@ -206,8 +208,10 @@ public class JobExecutionSettings implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
-     * </b>^arn:aws:iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1023}$<br/>
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of a role that has access to the
@@ -239,8 +243,10 @@ public class JobExecutionSettings implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
-     * </b>^arn:aws:iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1023}$<br/>
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of a role that has access to
@@ -275,8 +281,10 @@ public class JobExecutionSettings implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
      * <b>Pattern:
-     * </b>^arn:aws:iam::[0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1023}$<br/>
+     * </b>^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):iam::
+     * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
      *            The Amazon Resource Name (ARN) of a role that has access to

@@ -27,9 +27,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the job. Note that you can't use the strings "." or ".." by
-     * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * The name of the job. You can't use the strings "<code>.</code>" or "
+     * <code>..</code>" by themselves as the job name. The name must also be
+     * unique within an AWS account. If you try to create a transcription job
+     * with the same name as a previous transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,10 +46,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      */
     private String languageCode;
 
@@ -190,6 +192,14 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * Choose the custom language model you use for your transcription job in
+     * this parameter.
+     * </p>
+     */
+    private ModelSettings modelSettings;
+
+    /**
+     * <p>
      * Provides information about how a transcription job is executed. Use this
      * field to indicate that the job can be queued for deferred execution if
      * the concurrency limit is reached and there are no slots available to
@@ -207,9 +217,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. Note that you can't use the strings "." or ".." by
-     * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * The name of the job. You can't use the strings "<code>.</code>" or "
+     * <code>..</code>" by themselves as the job name. The name must also be
+     * unique within an AWS account. If you try to create a transcription job
+     * with the same name as a previous transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -217,9 +229,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the job. Note that you can't use the strings "." or
-     *         ".." by themselves as the job name. The name must also be unique
-     *         within an AWS account.
+     *         The name of the job. You can't use the strings "<code>.</code>
+     *         " or "<code>..</code>" by themselves as the job name. The name
+     *         must also be unique within an AWS account. If you try to create a
+     *         transcription job with the same name as a previous transcription
+     *         job, you get a <code>ConflictException</code> error.
      *         </p>
      */
     public String getTranscriptionJobName() {
@@ -228,9 +242,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. Note that you can't use the strings "." or ".." by
-     * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * The name of the job. You can't use the strings "<code>.</code>" or "
+     * <code>..</code>" by themselves as the job name. The name must also be
+     * unique within an AWS account. If you try to create a transcription job
+     * with the same name as a previous transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -238,9 +254,12 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the job. Note that you can't use the strings "."
-     *            or ".." by themselves as the job name. The name must also be
-     *            unique within an AWS account.
+     *            The name of the job. You can't use the strings "<code>.</code>
+     *            " or "<code>..</code>" by themselves as the job name. The name
+     *            must also be unique within an AWS account. If you try to
+     *            create a transcription job with the same name as a previous
+     *            transcription job, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      */
     public void setTranscriptionJobName(String transcriptionJobName) {
@@ -249,9 +268,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The name of the job. Note that you can't use the strings "." or ".." by
-     * themselves as the job name. The name must also be unique within an AWS
-     * account.
+     * The name of the job. You can't use the strings "<code>.</code>" or "
+     * <code>..</code>" by themselves as the job name. The name must also be
+     * unique within an AWS account. If you try to create a transcription job
+     * with the same name as a previous transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -262,9 +283,12 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @param transcriptionJobName <p>
-     *            The name of the job. Note that you can't use the strings "."
-     *            or ".." by themselves as the job name. The name must also be
-     *            unique within an AWS account.
+     *            The name of the job. You can't use the strings "<code>.</code>
+     *            " or "<code>..</code>" by themselves as the job name. The name
+     *            must also be unique within an AWS account. If you try to
+     *            create a transcription job with the same name as a previous
+     *            transcription job, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -280,10 +304,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @return <p>
      *         The language code for the language used in the input media file.
@@ -300,10 +324,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -324,10 +348,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -348,10 +372,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -372,10 +396,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US, es-US, en-AU, fr-CA, en-GB, de-DE, pt-BR,
-     * fr-FR, it-IT, ko-KR, es-ES, en-IN, hi-IN, ar-SA, ru-RU, zh-CN, nl-NL,
-     * id-ID, ta-IN, fa-IR, en-IE, en-AB, en-WL, pt-PT, te-IN, tr-TR, de-CH,
-     * he-IL, ms-MY, ja-JP, ar-AE
+     * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
+     * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
+     * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -1256,6 +1280,57 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * Choose the custom language model you use for your transcription job in
+     * this parameter.
+     * </p>
+     *
+     * @return <p>
+     *         Choose the custom language model you use for your transcription
+     *         job in this parameter.
+     *         </p>
+     */
+    public ModelSettings getModelSettings() {
+        return modelSettings;
+    }
+
+    /**
+     * <p>
+     * Choose the custom language model you use for your transcription job in
+     * this parameter.
+     * </p>
+     *
+     * @param modelSettings <p>
+     *            Choose the custom language model you use for your
+     *            transcription job in this parameter.
+     *            </p>
+     */
+    public void setModelSettings(ModelSettings modelSettings) {
+        this.modelSettings = modelSettings;
+    }
+
+    /**
+     * <p>
+     * Choose the custom language model you use for your transcription job in
+     * this parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param modelSettings <p>
+     *            Choose the custom language model you use for your
+     *            transcription job in this parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withModelSettings(ModelSettings modelSettings) {
+        this.modelSettings = modelSettings;
+        return this;
+    }
+
+    /**
+     * <p>
      * Provides information about how a transcription job is executed. Use this
      * field to indicate that the job can be queued for deferred execution if
      * the concurrency limit is reached and there are no slots available to
@@ -1395,6 +1470,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             sb.append("OutputEncryptionKMSKeyId: " + getOutputEncryptionKMSKeyId() + ",");
         if (getSettings() != null)
             sb.append("Settings: " + getSettings() + ",");
+        if (getModelSettings() != null)
+            sb.append("ModelSettings: " + getModelSettings() + ",");
         if (getJobExecutionSettings() != null)
             sb.append("JobExecutionSettings: " + getJobExecutionSettings() + ",");
         if (getContentRedaction() != null)
@@ -1424,6 +1501,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
                 + ((getOutputEncryptionKMSKeyId() == null) ? 0 : getOutputEncryptionKMSKeyId()
                         .hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
+        hashCode = prime * hashCode
+                + ((getModelSettings() == null) ? 0 : getModelSettings().hashCode());
         hashCode = prime * hashCode
                 + ((getJobExecutionSettings() == null) ? 0 : getJobExecutionSettings().hashCode());
         hashCode = prime * hashCode
@@ -1480,6 +1559,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
         if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
+            return false;
+        if (other.getModelSettings() == null ^ this.getModelSettings() == null)
+            return false;
+        if (other.getModelSettings() != null
+                && other.getModelSettings().equals(this.getModelSettings()) == false)
             return false;
         if (other.getJobExecutionSettings() == null ^ this.getJobExecutionSettings() == null)
             return false;

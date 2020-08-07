@@ -33,6 +33,12 @@ public class PostContentResultJsonUnmarshaller implements
             postContentResult.setContentType(context.getHeader("Content-Type"));
         if (context.getHeader("x-amz-lex-intent-name") != null)
             postContentResult.setIntentName(context.getHeader("x-amz-lex-intent-name"));
+        if (context.getHeader("x-amz-lex-nlu-intent-confidence") != null)
+            postContentResult.setNluIntentConfidence(context
+                    .getHeader("x-amz-lex-nlu-intent-confidence"));
+        if (context.getHeader("x-amz-lex-alternative-intents") != null)
+            postContentResult.setAlternativeIntents(context
+                    .getHeader("x-amz-lex-alternative-intents"));
         if (context.getHeader("x-amz-lex-slots") != null)
             postContentResult.setSlots(context.getHeader("x-amz-lex-slots"));
         if (context.getHeader("x-amz-lex-session-attributes") != null)
@@ -56,6 +62,8 @@ public class PostContentResultJsonUnmarshaller implements
             java.io.ByteArrayInputStream bis = new java.io.ByteArrayInputStream(bytes);
             postContentResult.setAudioStream(bis);
         }
+        if (context.getHeader("x-amz-lex-bot-version") != null)
+            postContentResult.setBotVersion(context.getHeader("x-amz-lex-bot-version"));
         if (context.getHeader("x-amz-lex-session-id") != null)
             postContentResult.setSessionId(context.getHeader("x-amz-lex-session-id"));
         return postContentResult;

@@ -23,37 +23,42 @@ import java.util.Map;
  */
 public enum LanguageCode {
 
-    EnUS("en-US"),
-    EsUS("es-US"),
-    EnAU("en-AU"),
-    FrCA("fr-CA"),
-    EnGB("en-GB"),
-    DeDE("de-DE"),
-    PtBR("pt-BR"),
-    FrFR("fr-FR"),
-    ItIT("it-IT"),
-    KoKR("ko-KR"),
-    EsES("es-ES"),
-    EnIN("en-IN"),
-    HiIN("hi-IN"),
+    AfZA("af-ZA"),
+    ArAE("ar-AE"),
     ArSA("ar-SA"),
-    RuRU("ru-RU"),
-    ZhCN("zh-CN"),
-    NlNL("nl-NL"),
-    IdID("id-ID"),
-    TaIN("ta-IN"),
-    FaIR("fa-IR"),
-    EnIE("en-IE"),
+    CyGB("cy-GB"),
+    DaDK("da-DK"),
+    DeCH("de-CH"),
+    DeDE("de-DE"),
     EnAB("en-AB"),
+    EnAU("en-AU"),
+    EnGB("en-GB"),
+    EnIE("en-IE"),
+    EnIN("en-IN"),
+    EnUS("en-US"),
     EnWL("en-WL"),
+    EsES("es-ES"),
+    EsUS("es-US"),
+    FaIR("fa-IR"),
+    FrCA("fr-CA"),
+    FrFR("fr-FR"),
+    GaIE("ga-IE"),
+    GdGB("gd-GB"),
+    HeIL("he-IL"),
+    HiIN("hi-IN"),
+    IdID("id-ID"),
+    ItIT("it-IT"),
+    JaJP("ja-JP"),
+    KoKR("ko-KR"),
+    MsMY("ms-MY"),
+    NlNL("nl-NL"),
+    PtBR("pt-BR"),
     PtPT("pt-PT"),
+    RuRU("ru-RU"),
+    TaIN("ta-IN"),
     TeIN("te-IN"),
     TrTR("tr-TR"),
-    DeCH("de-CH"),
-    HeIL("he-IL"),
-    MsMY("ms-MY"),
-    JaJP("ja-JP"),
-    ArAE("ar-AE");
+    ZhCN("zh-CN");
 
     private String value;
 
@@ -69,37 +74,42 @@ public enum LanguageCode {
     private static final Map<String, LanguageCode> enumMap;
     static {
         enumMap = new HashMap<String, LanguageCode>();
-        enumMap.put("en-US", EnUS);
-        enumMap.put("es-US", EsUS);
-        enumMap.put("en-AU", EnAU);
-        enumMap.put("fr-CA", FrCA);
-        enumMap.put("en-GB", EnGB);
-        enumMap.put("de-DE", DeDE);
-        enumMap.put("pt-BR", PtBR);
-        enumMap.put("fr-FR", FrFR);
-        enumMap.put("it-IT", ItIT);
-        enumMap.put("ko-KR", KoKR);
-        enumMap.put("es-ES", EsES);
-        enumMap.put("en-IN", EnIN);
-        enumMap.put("hi-IN", HiIN);
+        enumMap.put("af-ZA", AfZA);
+        enumMap.put("ar-AE", ArAE);
         enumMap.put("ar-SA", ArSA);
-        enumMap.put("ru-RU", RuRU);
-        enumMap.put("zh-CN", ZhCN);
-        enumMap.put("nl-NL", NlNL);
-        enumMap.put("id-ID", IdID);
-        enumMap.put("ta-IN", TaIN);
-        enumMap.put("fa-IR", FaIR);
-        enumMap.put("en-IE", EnIE);
+        enumMap.put("cy-GB", CyGB);
+        enumMap.put("da-DK", DaDK);
+        enumMap.put("de-CH", DeCH);
+        enumMap.put("de-DE", DeDE);
         enumMap.put("en-AB", EnAB);
+        enumMap.put("en-AU", EnAU);
+        enumMap.put("en-GB", EnGB);
+        enumMap.put("en-IE", EnIE);
+        enumMap.put("en-IN", EnIN);
+        enumMap.put("en-US", EnUS);
         enumMap.put("en-WL", EnWL);
+        enumMap.put("es-ES", EsES);
+        enumMap.put("es-US", EsUS);
+        enumMap.put("fa-IR", FaIR);
+        enumMap.put("fr-CA", FrCA);
+        enumMap.put("fr-FR", FrFR);
+        enumMap.put("ga-IE", GaIE);
+        enumMap.put("gd-GB", GdGB);
+        enumMap.put("he-IL", HeIL);
+        enumMap.put("hi-IN", HiIN);
+        enumMap.put("id-ID", IdID);
+        enumMap.put("it-IT", ItIT);
+        enumMap.put("ja-JP", JaJP);
+        enumMap.put("ko-KR", KoKR);
+        enumMap.put("ms-MY", MsMY);
+        enumMap.put("nl-NL", NlNL);
+        enumMap.put("pt-BR", PtBR);
         enumMap.put("pt-PT", PtPT);
+        enumMap.put("ru-RU", RuRU);
+        enumMap.put("ta-IN", TaIN);
         enumMap.put("te-IN", TeIN);
         enumMap.put("tr-TR", TrTR);
-        enumMap.put("de-CH", DeCH);
-        enumMap.put("he-IL", HeIL);
-        enumMap.put("ms-MY", MsMY);
-        enumMap.put("ja-JP", JaJP);
-        enumMap.put("ar-AE", ArAE);
+        enumMap.put("zh-CN", ZhCN);
     }
 
     /**

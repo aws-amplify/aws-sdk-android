@@ -86,6 +86,11 @@ class TranscriptionJobJsonMarshaller {
             jsonWriter.name("Settings");
             SettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
         }
+        if (transcriptionJob.getModelSettings() != null) {
+            ModelSettings modelSettings = transcriptionJob.getModelSettings();
+            jsonWriter.name("ModelSettings");
+            ModelSettingsJsonMarshaller.getInstance().marshall(modelSettings, jsonWriter);
+        }
         if (transcriptionJob.getJobExecutionSettings() != null) {
             JobExecutionSettings jobExecutionSettings = transcriptionJob.getJobExecutionSettings();
             jsonWriter.name("JobExecutionSettings");

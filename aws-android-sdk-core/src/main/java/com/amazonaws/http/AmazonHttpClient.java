@@ -534,7 +534,8 @@ public class AmazonHttpClient {
         if (!ClientConfiguration.DEFAULT_USER_AGENT.equals(config.getUserAgent())) {
             userAgent = createUserAgentString(userAgent, config.getUserAgent());
         }
-        request.addHeader(HEADER_USER_AGENT, userAgent);
+        request.addHeader(HEADER_USER_AGENT,
+                config.getUserAgentOverride() != null ? config.getUserAgentOverride() : userAgent);
     }
 
     /**

@@ -27,6 +27,35 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
+     * Provides a score that indicates how confident Amazon Lex is that the
+     * returned intent is the one that matches the user's intent. The score is
+     * between 0.0 and 1.0. For more information, see <a
+     * href="https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     * >Confidence Scores</a>.
+     * </p>
+     * <p>
+     * The score is a relative score, not an absolute score. The score may
+     * change based on improvements to the Amazon Lex natural language
+     * understanding (NLU) model.
+     * </p>
+     */
+    private IntentConfidence nluIntentConfidence;
+
+    /**
+     * <p>
+     * One to four alternative intents that may be applicable to the user's
+     * intent.
+     * </p>
+     * <p>
+     * Each alternative includes a score that indicates how confident Amazon Lex
+     * is that the intent matches the user's intent. The intents are sorted by
+     * the confidence score.
+     * </p>
+     */
+    private java.util.List<PredictedIntent> alternativeIntents;
+
+    /**
+     * <p>
      * The intent slots that Amazon Lex detected from the user input in the
      * conversation.
      * </p>
@@ -236,6 +265,30 @@ public class PostTextResult implements Serializable {
 
     /**
      * <p>
+     * The version of the bot that responded to the conversation. You can use
+     * this information to help determine if one version of a bot is performing
+     * better than another version.
+     * </p>
+     * <p>
+     * If you have enabled the new natural language understanding (NLU) model,
+     * you can use this to determine if the improvement is due to changes to the
+     * bot or changes to the NLU.
+     * </p>
+     * <p>
+     * For more information about enabling the new NLU, see the <a href=
+     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
+     * operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
+     */
+    private String botVersion;
+
+    /**
+     * <p>
      * The current user intent that Amazon Lex is aware of.
      * </p>
      *
@@ -276,6 +329,232 @@ public class PostTextResult implements Serializable {
      */
     public PostTextResult withIntentName(String intentName) {
         this.intentName = intentName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Provides a score that indicates how confident Amazon Lex is that the
+     * returned intent is the one that matches the user's intent. The score is
+     * between 0.0 and 1.0. For more information, see <a
+     * href="https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     * >Confidence Scores</a>.
+     * </p>
+     * <p>
+     * The score is a relative score, not an absolute score. The score may
+     * change based on improvements to the Amazon Lex natural language
+     * understanding (NLU) model.
+     * </p>
+     *
+     * @return <p>
+     *         Provides a score that indicates how confident Amazon Lex is that
+     *         the returned intent is the one that matches the user's intent.
+     *         The score is between 0.0 and 1.0. For more information, see <a
+     *         href=
+     *         "https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     *         >Confidence Scores</a>.
+     *         </p>
+     *         <p>
+     *         The score is a relative score, not an absolute score. The score
+     *         may change based on improvements to the Amazon Lex natural
+     *         language understanding (NLU) model.
+     *         </p>
+     */
+    public IntentConfidence getNluIntentConfidence() {
+        return nluIntentConfidence;
+    }
+
+    /**
+     * <p>
+     * Provides a score that indicates how confident Amazon Lex is that the
+     * returned intent is the one that matches the user's intent. The score is
+     * between 0.0 and 1.0. For more information, see <a
+     * href="https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     * >Confidence Scores</a>.
+     * </p>
+     * <p>
+     * The score is a relative score, not an absolute score. The score may
+     * change based on improvements to the Amazon Lex natural language
+     * understanding (NLU) model.
+     * </p>
+     *
+     * @param nluIntentConfidence <p>
+     *            Provides a score that indicates how confident Amazon Lex is
+     *            that the returned intent is the one that matches the user's
+     *            intent. The score is between 0.0 and 1.0. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     *            >Confidence Scores</a>.
+     *            </p>
+     *            <p>
+     *            The score is a relative score, not an absolute score. The
+     *            score may change based on improvements to the Amazon Lex
+     *            natural language understanding (NLU) model.
+     *            </p>
+     */
+    public void setNluIntentConfidence(IntentConfidence nluIntentConfidence) {
+        this.nluIntentConfidence = nluIntentConfidence;
+    }
+
+    /**
+     * <p>
+     * Provides a score that indicates how confident Amazon Lex is that the
+     * returned intent is the one that matches the user's intent. The score is
+     * between 0.0 and 1.0. For more information, see <a
+     * href="https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     * >Confidence Scores</a>.
+     * </p>
+     * <p>
+     * The score is a relative score, not an absolute score. The score may
+     * change based on improvements to the Amazon Lex natural language
+     * understanding (NLU) model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nluIntentConfidence <p>
+     *            Provides a score that indicates how confident Amazon Lex is
+     *            that the returned intent is the one that matches the user's
+     *            intent. The score is between 0.0 and 1.0. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html"
+     *            >Confidence Scores</a>.
+     *            </p>
+     *            <p>
+     *            The score is a relative score, not an absolute score. The
+     *            score may change based on improvements to the Amazon Lex
+     *            natural language understanding (NLU) model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withNluIntentConfidence(IntentConfidence nluIntentConfidence) {
+        this.nluIntentConfidence = nluIntentConfidence;
+        return this;
+    }
+
+    /**
+     * <p>
+     * One to four alternative intents that may be applicable to the user's
+     * intent.
+     * </p>
+     * <p>
+     * Each alternative includes a score that indicates how confident Amazon Lex
+     * is that the intent matches the user's intent. The intents are sorted by
+     * the confidence score.
+     * </p>
+     *
+     * @return <p>
+     *         One to four alternative intents that may be applicable to the
+     *         user's intent.
+     *         </p>
+     *         <p>
+     *         Each alternative includes a score that indicates how confident
+     *         Amazon Lex is that the intent matches the user's intent. The
+     *         intents are sorted by the confidence score.
+     *         </p>
+     */
+    public java.util.List<PredictedIntent> getAlternativeIntents() {
+        return alternativeIntents;
+    }
+
+    /**
+     * <p>
+     * One to four alternative intents that may be applicable to the user's
+     * intent.
+     * </p>
+     * <p>
+     * Each alternative includes a score that indicates how confident Amazon Lex
+     * is that the intent matches the user's intent. The intents are sorted by
+     * the confidence score.
+     * </p>
+     *
+     * @param alternativeIntents <p>
+     *            One to four alternative intents that may be applicable to the
+     *            user's intent.
+     *            </p>
+     *            <p>
+     *            Each alternative includes a score that indicates how confident
+     *            Amazon Lex is that the intent matches the user's intent. The
+     *            intents are sorted by the confidence score.
+     *            </p>
+     */
+    public void setAlternativeIntents(java.util.Collection<PredictedIntent> alternativeIntents) {
+        if (alternativeIntents == null) {
+            this.alternativeIntents = null;
+            return;
+        }
+
+        this.alternativeIntents = new java.util.ArrayList<PredictedIntent>(alternativeIntents);
+    }
+
+    /**
+     * <p>
+     * One to four alternative intents that may be applicable to the user's
+     * intent.
+     * </p>
+     * <p>
+     * Each alternative includes a score that indicates how confident Amazon Lex
+     * is that the intent matches the user's intent. The intents are sorted by
+     * the confidence score.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param alternativeIntents <p>
+     *            One to four alternative intents that may be applicable to the
+     *            user's intent.
+     *            </p>
+     *            <p>
+     *            Each alternative includes a score that indicates how confident
+     *            Amazon Lex is that the intent matches the user's intent. The
+     *            intents are sorted by the confidence score.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withAlternativeIntents(PredictedIntent... alternativeIntents) {
+        if (getAlternativeIntents() == null) {
+            this.alternativeIntents = new java.util.ArrayList<PredictedIntent>(
+                    alternativeIntents.length);
+        }
+        for (PredictedIntent value : alternativeIntents) {
+            this.alternativeIntents.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * One to four alternative intents that may be applicable to the user's
+     * intent.
+     * </p>
+     * <p>
+     * Each alternative includes a score that indicates how confident Amazon Lex
+     * is that the intent matches the user's intent. The intents are sorted by
+     * the confidence score.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param alternativeIntents <p>
+     *            One to four alternative intents that may be applicable to the
+     *            user's intent.
+     *            </p>
+     *            <p>
+     *            Each alternative includes a score that indicates how confident
+     *            Amazon Lex is that the intent matches the user's intent. The
+     *            intents are sorted by the confidence score.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withAlternativeIntents(
+            java.util.Collection<PredictedIntent> alternativeIntents) {
+        setAlternativeIntents(alternativeIntents);
         return this;
     }
 
@@ -2144,6 +2423,143 @@ public class PostTextResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The version of the bot that responded to the conversation. You can use
+     * this information to help determine if one version of a bot is performing
+     * better than another version.
+     * </p>
+     * <p>
+     * If you have enabled the new natural language understanding (NLU) model,
+     * you can use this to determine if the improvement is due to changes to the
+     * bot or changes to the NLU.
+     * </p>
+     * <p>
+     * For more information about enabling the new NLU, see the <a href=
+     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
+     * operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
+     *
+     * @return <p>
+     *         The version of the bot that responded to the conversation. You
+     *         can use this information to help determine if one version of a
+     *         bot is performing better than another version.
+     *         </p>
+     *         <p>
+     *         If you have enabled the new natural language understanding (NLU)
+     *         model, you can use this to determine if the improvement is due to
+     *         changes to the bot or changes to the NLU.
+     *         </p>
+     *         <p>
+     *         For more information about enabling the new NLU, see the <a href=
+     *         "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     *         >enableModelImprovements</a> parameter of the <code>PutBot</code>
+     *         operation.
+     *         </p>
+     */
+    public String getBotVersion() {
+        return botVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the bot that responded to the conversation. You can use
+     * this information to help determine if one version of a bot is performing
+     * better than another version.
+     * </p>
+     * <p>
+     * If you have enabled the new natural language understanding (NLU) model,
+     * you can use this to determine if the improvement is due to changes to the
+     * bot or changes to the NLU.
+     * </p>
+     * <p>
+     * For more information about enabling the new NLU, see the <a href=
+     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
+     * operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
+     *
+     * @param botVersion <p>
+     *            The version of the bot that responded to the conversation. You
+     *            can use this information to help determine if one version of a
+     *            bot is performing better than another version.
+     *            </p>
+     *            <p>
+     *            If you have enabled the new natural language understanding
+     *            (NLU) model, you can use this to determine if the improvement
+     *            is due to changes to the bot or changes to the NLU.
+     *            </p>
+     *            <p>
+     *            For more information about enabling the new NLU, see the <a
+     *            href=
+     *            "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     *            >enableModelImprovements</a> parameter of the
+     *            <code>PutBot</code> operation.
+     *            </p>
+     */
+    public void setBotVersion(String botVersion) {
+        this.botVersion = botVersion;
+    }
+
+    /**
+     * <p>
+     * The version of the bot that responded to the conversation. You can use
+     * this information to help determine if one version of a bot is performing
+     * better than another version.
+     * </p>
+     * <p>
+     * If you have enabled the new natural language understanding (NLU) model,
+     * you can use this to determine if the improvement is due to changes to the
+     * bot or changes to the NLU.
+     * </p>
+     * <p>
+     * For more information about enabling the new NLU, see the <a href=
+     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
+     * operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
+     *
+     * @param botVersion <p>
+     *            The version of the bot that responded to the conversation. You
+     *            can use this information to help determine if one version of a
+     *            bot is performing better than another version.
+     *            </p>
+     *            <p>
+     *            If you have enabled the new natural language understanding
+     *            (NLU) model, you can use this to determine if the improvement
+     *            is due to changes to the bot or changes to the NLU.
+     *            </p>
+     *            <p>
+     *            For more information about enabling the new NLU, see the <a
+     *            href=
+     *            "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
+     *            >enableModelImprovements</a> parameter of the
+     *            <code>PutBot</code> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withBotVersion(String botVersion) {
+        this.botVersion = botVersion;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2156,6 +2572,10 @@ public class PostTextResult implements Serializable {
         sb.append("{");
         if (getIntentName() != null)
             sb.append("intentName: " + getIntentName() + ",");
+        if (getNluIntentConfidence() != null)
+            sb.append("nluIntentConfidence: " + getNluIntentConfidence() + ",");
+        if (getAlternativeIntents() != null)
+            sb.append("alternativeIntents: " + getAlternativeIntents() + ",");
         if (getSlots() != null)
             sb.append("slots: " + getSlots() + ",");
         if (getSessionAttributes() != null)
@@ -2173,7 +2593,9 @@ public class PostTextResult implements Serializable {
         if (getResponseCard() != null)
             sb.append("responseCard: " + getResponseCard() + ",");
         if (getSessionId() != null)
-            sb.append("sessionId: " + getSessionId());
+            sb.append("sessionId: " + getSessionId() + ",");
+        if (getBotVersion() != null)
+            sb.append("botVersion: " + getBotVersion());
         sb.append("}");
         return sb.toString();
     }
@@ -2184,6 +2606,10 @@ public class PostTextResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getIntentName() == null) ? 0 : getIntentName().hashCode());
+        hashCode = prime * hashCode
+                + ((getNluIntentConfidence() == null) ? 0 : getNluIntentConfidence().hashCode());
+        hashCode = prime * hashCode
+                + ((getAlternativeIntents() == null) ? 0 : getAlternativeIntents().hashCode());
         hashCode = prime * hashCode + ((getSlots() == null) ? 0 : getSlots().hashCode());
         hashCode = prime * hashCode
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
@@ -2199,6 +2625,7 @@ public class PostTextResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getResponseCard() == null) ? 0 : getResponseCard().hashCode());
         hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
+        hashCode = prime * hashCode + ((getBotVersion() == null) ? 0 : getBotVersion().hashCode());
         return hashCode;
     }
 
@@ -2217,6 +2644,16 @@ public class PostTextResult implements Serializable {
             return false;
         if (other.getIntentName() != null
                 && other.getIntentName().equals(this.getIntentName()) == false)
+            return false;
+        if (other.getNluIntentConfidence() == null ^ this.getNluIntentConfidence() == null)
+            return false;
+        if (other.getNluIntentConfidence() != null
+                && other.getNluIntentConfidence().equals(this.getNluIntentConfidence()) == false)
+            return false;
+        if (other.getAlternativeIntents() == null ^ this.getAlternativeIntents() == null)
+            return false;
+        if (other.getAlternativeIntents() != null
+                && other.getAlternativeIntents().equals(this.getAlternativeIntents()) == false)
             return false;
         if (other.getSlots() == null ^ this.getSlots() == null)
             return false;
@@ -2260,6 +2697,11 @@ public class PostTextResult implements Serializable {
             return false;
         if (other.getSessionId() != null
                 && other.getSessionId().equals(this.getSessionId()) == false)
+            return false;
+        if (other.getBotVersion() == null ^ this.getBotVersion() == null)
+            return false;
+        if (other.getBotVersion() != null
+                && other.getBotVersion().equals(this.getBotVersion()) == false)
             return false;
         return true;
     }
