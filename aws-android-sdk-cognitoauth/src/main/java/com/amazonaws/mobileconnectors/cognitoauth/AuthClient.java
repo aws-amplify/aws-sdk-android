@@ -650,7 +650,6 @@ public class AuthClient {
             public void onCustomTabsServiceConnected(final ComponentName name, final CustomTabsClient client) {
                 mCustomTabsClient = client;
                 mCustomTabsClient.warmup(0L);
-                // TODO: Remove customTabsCallback from code - leaving here for now to use its functionality
                 mCustomTabsSession = mCustomTabsClient.newSession(null);
             }
 
