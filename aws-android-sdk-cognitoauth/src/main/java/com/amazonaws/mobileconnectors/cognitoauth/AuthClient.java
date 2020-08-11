@@ -17,6 +17,7 @@
 
 package com.amazonaws.mobileconnectors.cognitoauth;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +33,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
+import com.amazonaws.mobileconnectors.cognitoauth.activities.CustomTabsManagerActivity;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthNavigationException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthServiceException;
@@ -59,6 +61,12 @@ import java.util.Set;
 
 @SuppressWarnings("checkstyle:javadocmethod")
 public class AuthClient {
+    /**
+     * A random code the custom tabs activity is launched under.
+     * This is needed by clients to listen for the result.
+     */
+    public static final int CUSTOM_TABS_ACTIVITY_CODE = 49281;
+
     /**
      * Android application context.
      */
@@ -153,8 +161,10 @@ public class AuthClient {
      *     state in the redirect uri to fetch the stored proof-key.
      * </p>
      * @param showSignInIfExpired true if the web UI should launch when the session is expired
+     * @param activity The activity to launch the sign in experience from.
+     *                 This must not be null when showSignInIfExpired is true.
      */
-    protected void getSession(final boolean showSignInIfExpired) {
+    protected void getSession(final boolean showSignInIfExpired, final Activity activity) {
         try {
             proofKey = Pkce.generateRandom();
             proofKeyHash = Pkce.generateHash(proofKey);
@@ -175,9 +185,15 @@ public class AuthClient {
 
         // Try refreshing the tokens
         if (session.getRefreshToken() != null && session.getRefreshToken().getToken() != null) {
-            refreshSession(session, pool.getSignInRedirectUri(), pool.getScopes(), userHandler);
+            refreshSession(
+                    session,
+                    pool.getSignInRedirectUri(),
+                    pool.getScopes(),
+                    userHandler,
+                    showSignInIfExpired,
+                    activity);
         } else if (showSignInIfExpired) {
-            launchCognitoAuth(pool.getSignInRedirectUri(), pool.getScopes());
+            launchCognitoAuth(pool.getSignInRedirectUri(), pool.getScopes(), activity);
         } else {
             userHandler.onFailure(new Exception("No cached session"));
         }
@@ -238,11 +254,16 @@ public class AuthClient {
         if (uri == null) {
             return;
         }
-        // The flag
-        LocalDataManager.cacheHasReceivedRedirect(pool.awsKeyValueStore, context, pool.getAppId(), true);
         getTokens(uri, userHandler);
     }
 
+    /**
+     * Properly handles the event where the user cancels out of the custom tabs auth flow either by closing it
+     * or navigating back away from it.
+     */
+    public void handleCustomTabsCancelled() {
+        userHandler.onFailure(new AuthNavigationException("user cancelled"));
+    }
 
     /**
      * Unbind {@link AuthClient#mCustomTabsServiceConnection}
@@ -366,19 +387,20 @@ public class AuthClient {
      * @param redirectUri Required: The redirect Uri, which will be launched after authentication.
      * @param tokenScopes Required: A {@link Set<String>} specifying all scopes for the tokens.
      * @param callback Required: {@link AuthHandler}.
+     * @param showSignInIfExpired true if the web UI should launch when the refresh token is expired
+     * @param activity The activity to launch the sign in experience from.
+     *                 This must not be null if showSignInIfExpired is true.
      */
     private void refreshSession(final AuthUserSession session,
                                 final String redirectUri,
                                 final Set<String> tokenScopes,
-                                final AuthHandler callback) {
+                                final AuthHandler callback,
+                                final boolean showSignInIfExpired,
+                                final Activity activity) {
         new Thread(new Runnable() {
             final Handler handler = new Handler(context.getMainLooper());
-            Runnable returnCallback = new Runnable() {
-                @Override
-                public void run() {
-                    launchCognitoAuth(redirectUri, tokenScopes);
-                }
-            };
+            Runnable returnCallback;
+
             @Override
             public void run() {
                 final Uri fqdn = new Uri.Builder()
@@ -414,12 +436,21 @@ public class AuthClient {
                         }
                     };
                 } catch (final AuthInvalidGrantException invg) {
-                    returnCallback = new Runnable() {
-                        @Override
-                        public void run() {
-                            launchCognitoAuth(redirectUri, tokenScopes);
-                        }
-                    };
+                    if (showSignInIfExpired) {
+                        returnCallback = new Runnable() {
+                            @Override
+                            public void run() {
+                                launchCognitoAuth(redirectUri, tokenScopes, activity);
+                            }
+                        };
+                    } else {
+                        returnCallback = new Runnable() {
+                            @Override
+                            public void run() {
+                                userHandler.onFailure(invg);
+                            }
+                        };
+                    }
                 } catch (final Exception e) {
                     returnCallback = new Runnable() {
                         @Override
@@ -495,8 +526,10 @@ public class AuthClient {
      * Creates the FQDM for Cognito's authentication endpoint and launches Cognito Auth web-domain.
      * @param redirectUri Required: The redirect Uri, which will be launched after authentication.
      * @param tokenScopes Required: A {@link Set<String>} specifying all scopes for the tokens.
+     * @param activity The activity to launch the sign in experience from.
+     *                 This must not be null if showSignInIfExpired is true.
      */
-    private void launchCognitoAuth(final String redirectUri, final Set<String> tokenScopes) {
+    private void launchCognitoAuth(final String redirectUri, final Set<String> tokenScopes, final Activity activity) {
         // Build the complete web domain to launch the login screen
         Uri.Builder builder = new Uri.Builder()
                 .scheme(ClientConstants.DOMAIN_SCHEME)
@@ -539,7 +572,7 @@ public class AuthClient {
 
         final Uri fqdn = builder.build();
         LocalDataManager.cacheState(pool.awsKeyValueStore, context, state, proofKey, tokenScopes);
-        launchCustomTabs(fqdn);
+        launchCustomTabs(fqdn, activity);
     }
 
     /**
@@ -554,28 +587,48 @@ public class AuthClient {
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_CLIENT_ID, pool.getAppId())
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_LOGOUT_URI, redirectUri);
         final Uri fqdn = builder.build();
-        launchCustomTabs(fqdn);
+        launchCustomTabsWithoutCallback(fqdn);
     }
 
     /**
-     * Launches App's Cognito webpage on Chrome Tab.
+     * Launches the HostedUI webpage on Chrome Tab.
      * @param uri Required: {@link Uri}.
+     * @param activity Activity to launch custom tabs from and which will listen for the intent completion.
      */
-    private void launchCustomTabs(final Uri uri) {
+    private void launchCustomTabs(final Uri uri, final Activity activity) {
     	try {
-            LocalDataManager.cacheHasReceivedRedirect(pool.awsKeyValueStore, context, pool.getAppId(), false);
-
 	        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
 	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
 	        mCustomTabsIntent.intent.setPackage(ClientConstants.CHROME_PACKAGE);
-	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-	        mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	        mCustomTabsIntent.launchUrl(context, uri);
+            mCustomTabsIntent.intent.setData(uri);
+            activity.startActivityForResult(
+                CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent),
+                    CUSTOM_TABS_ACTIVITY_CODE
+            );
     	} catch (final Exception e) {
     		userHandler.onFailure(e);
     	}
+    }
+
+    /**
+     * Launches the HostedUI page on Chrome Tab without paying attention to callbacks.
+     * @param uri Required: {@link Uri}.
+     */
+    private void launchCustomTabsWithoutCallback(final Uri uri) {
+        try {
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+            mCustomTabsIntent = builder.build();
+            if(pool.getCustomTabExtras() != null)
+                mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
+            mCustomTabsIntent.intent.setPackage(ClientConstants.CHROME_PACKAGE);
+            mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mCustomTabsIntent.launchUrl(context, uri);
+        } catch (final Exception e) {
+            userHandler.onFailure(e);
+        }
     }
 
     private String getUserContextData() {
@@ -597,7 +650,8 @@ public class AuthClient {
             public void onCustomTabsServiceConnected(final ComponentName name, final CustomTabsClient client) {
                 mCustomTabsClient = client;
                 mCustomTabsClient.warmup(0L);
-                mCustomTabsSession = mCustomTabsClient.newSession(customTabsCallback);
+                // TODO: Remove customTabsCallback from code - leaving here for now to use its functionality
+                mCustomTabsSession = mCustomTabsClient.newSession(null);
             }
 
             @Override
@@ -605,26 +659,5 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
-        boolean chromeState = CustomTabsClient.bindCustomTabsService(context,
-                ClientConstants.CHROME_PACKAGE, mCustomTabsServiceConnection);
     }
-
-    /**
-     * Callback for Custom Tabs to track navigation.
-     */
-    private final CustomTabsCallback customTabsCallback = new CustomTabsCallback() {
-        @Override
-        public void onNavigationEvent(final int navigationEvent, final Bundle extras) {
-            super.onNavigationEvent(navigationEvent, extras);
-            if (navigationEvent == ClientConstants.CHROME_NAVIGATION_CANCELLED) {
-                final boolean hasReceivedRedirect = LocalDataManager.hasReceivedRedirect(pool.awsKeyValueStore,
-                        context, pool.getAppId());
-                Log.i("AuthClient", "customTab hidden callback, code has already been received: " + hasReceivedRedirect);
-                if (!hasReceivedRedirect) {
-                    userHandler.onFailure(new AuthNavigationException("user cancelled"));
-                    LocalDataManager.cacheHasReceivedRedirect(pool.awsKeyValueStore, context, pool.getAppId(), false);
-                }
-            }
-        }
-    };
 }
