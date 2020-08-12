@@ -7,11 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.amazonaws.mobileconnectors.cognitoauth.AuthClient;
-
-import java.util.logging.Logger;
-
-public class CustomTabsManagerActivity extends Activity {
+public final class CustomTabsManagerActivity extends Activity {
     static final String CUSTOM_TABS_LAUNCHED_KEY = "customTabsLaunched";
     static final String CUSTOM_TABS_INTENT_KEY = "customTabsIntent";
 
@@ -46,8 +42,7 @@ public class CustomTabsManagerActivity extends Activity {
     }
 
     private static Intent createBaseIntent(Context context) {
-        Intent intent = new Intent(context, CustomTabsManagerActivity.class);
-        return intent;
+        return new Intent(context, CustomTabsManagerActivity.class);
     }
 
     @Override

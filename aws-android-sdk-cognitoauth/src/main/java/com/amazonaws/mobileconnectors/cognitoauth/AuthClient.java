@@ -22,15 +22,12 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
-import androidx.browser.customtabs.CustomTabsCallback;
 import androidx.browser.customtabs.CustomTabsClient;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
 import com.amazonaws.mobileconnectors.cognitoauth.activities.CustomTabsManagerActivity;
@@ -605,7 +602,7 @@ public class AuthClient {
             mCustomTabsIntent.intent.setData(uri);
             activity.startActivityForResult(
                 CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent),
-                    CUSTOM_TABS_ACTIVITY_CODE
+                CUSTOM_TABS_ACTIVITY_CODE
             );
     	} catch (final Exception e) {
     		userHandler.onFailure(e);

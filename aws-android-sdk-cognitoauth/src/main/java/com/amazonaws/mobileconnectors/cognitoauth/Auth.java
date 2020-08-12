@@ -649,7 +649,7 @@ public final class Auth {
      *     get tokens from the authentication code. <i>Uri</i> is the redirect uri with the
      *     authentication code.
      * </p>
-     * @param activity Activity to launch custom tabs from and which will listen for the intent completions.
+     * @param activity Activity to launch custom tabs from and to listen for the intent completions.
      */
     public void getSession(final Activity activity) {
         this.user.getSession(true, activity);

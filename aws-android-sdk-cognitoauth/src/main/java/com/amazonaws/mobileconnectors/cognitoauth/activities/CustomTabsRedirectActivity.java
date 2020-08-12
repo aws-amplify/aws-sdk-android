@@ -3,7 +3,7 @@ package com.amazonaws.mobileconnectors.cognitoauth.activities;
 import android.app.Activity;
 import android.os.Bundle;
 
-public class CustomTabsRedirectActivity extends Activity {
+public final class CustomTabsRedirectActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceBundle) {
         super.onCreate(savedInstanceBundle);

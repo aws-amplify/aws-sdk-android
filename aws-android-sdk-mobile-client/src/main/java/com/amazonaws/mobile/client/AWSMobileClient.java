@@ -2963,7 +2963,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
             return true;
         }
-        if (mOAuth2Client != null && mOAuth2Client.handleRedirect(intent.getData())) {
+        if (mOAuth2Client != null && intent != null && mOAuth2Client.handleRedirect(intent.getData())) {
             return true;
         }
         return false;

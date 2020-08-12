@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-           xmlns:amazon="http://schemas.amazon.com/apk/res/android"
-           package="com.amazonaws.mobileconnectors.cognitoauth">
-   <application>
-        <activity android:name=".activities.CustomTabsManagerActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:launchMode="singleTask" />
+     xmlns:amazon="http://schemas.amazon.com/apk/res/android"
+     package="com.amazonaws.mobileconnectors.cognitoauth">
 
-        <activity android:name=".activities.CustomTabsRedirectActivity" android:exported="true">
-           <intent-filter>
-               <action android:name="android.intent.action.VIEW"/>
-               <category android:name="android.intent.category.DEFAULT"/>
-               <category android:name="android.intent.category.BROWSABLE"/>
-               <data android:scheme="${authRedirectScheme}"/>
-           </intent-filter>
-        </activity>
-   </application>
+     <application>
+         <activity android:name=".activities.CustomTabsManagerActivity"
+             android:exported="false"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar"
+             android:launchMode="singleTask" />
+
+         <activity android:name=".activities.CustomTabsRedirectActivity" android:exported="true">
+             <intent-filter>
+                 <action android:name="android.intent.action.VIEW"/>
+                 <category android:name="android.intent.category.DEFAULT"/>
+                 <category android:name="android.intent.category.BROWSABLE"/>
+                 <data android:scheme="${authRedirectScheme}"/>
+             </intent-filter>
+         </activity>
+     </application>
  </manifest>
