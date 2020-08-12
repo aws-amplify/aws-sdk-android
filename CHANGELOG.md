@@ -5,7 +5,8 @@
 *Version 2.18.0 introduces breaking changes against 2.17.1.*
 
 ### Breaking Updates
-- aws-android-sdk-mobile-client - No breaking changes but if you followed the old documentation to set up your code for HostedUI, you'll need to make the following revisions:
+- aws-android-sdk-mobile-client:
+   - No breaking changes but if you followed the old documentation to set up your code for HostedUI, you'll need to make the following revisions:
    - Remove the intent filter from your Android Manifest talked about in [the old docs here](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app)
    - Add the value for your redirect URI scheme ("myapp" in the docs example above) to your app build.gradle file as follows:
    
@@ -22,7 +23,7 @@
    - Add this onActivityResult override to handle the HostedUI callback instead:
    
    ```java
-   @Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if (requestCode == AuthClient.CUSTOM_TABS_ACTIVITY_CODE) {
