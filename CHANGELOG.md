@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.18.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.18.0)
+
+*Version 2.18.0 introduces breaking changes against 2.17.1.*
+
+### Breaking Updates
+- aws-android-sdk-mobile-client:
+   - 
+- aws-android-sdk-cognitoauth:
+   - getSession() method has been refactored to getSession(Activity activity) - where activity is an instance of the activity the user is calling this method from so it can launch HostedUI if it needs to sign in again.
+   - getSession(boolean launchWebUIIfExpired) has been refactored to getSessionWithoutWebUI(). It will get session information if the refresh token is still valid, otherwise will throw an exception indicating the user must sign in again.
+
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 
 *Version 2.17.0 introduces breaking changes against 2.16.13.*
