@@ -1886,7 +1886,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 callback.onError(new Exception("No cached session.", e));
             }
         });
-        hostedUI.getSession(false);
+        hostedUI.getSessionWithoutWebUI();
     }
 
     /**
@@ -2955,10 +2955,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     @AnyThread
     public boolean handleAuthResponse(final Intent intent) {
         if (hostedUI != null) {
-            hostedUI.getTokens(intent.getData());
+            if (intent != null) {
+                hostedUI.getTokens(intent.getData());
+            } else {
+                hostedUI.handleFlowCancelled();
+            }
+
             return true;
         }
-        if (mOAuth2Client != null && mOAuth2Client.handleRedirect(intent.getData())) {
+        if (mOAuth2Client != null && intent != null && mOAuth2Client.handleRedirect(intent.getData())) {
             return true;
         }
         return false;
@@ -3309,7 +3314,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     hostedUIBuilder.setIdpIdentifier(idpIdentifier);
                 }
                 hostedUI = hostedUIBuilder.build();
-                hostedUI.getSession();
+                hostedUI.getSession(callingActivity);
             }
         };
     }
