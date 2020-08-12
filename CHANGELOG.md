@@ -1,5 +1,40 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.18.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.18.0)
+
+*Version 2.18.0 introduces breaking changes against 2.17.1.*
+
+### Breaking Updates
+- aws-android-sdk-mobile-client:
+   - No breaking changes but if you followed the old documentation to set up your code for HostedUI, you'll need to make the following revisions:
+   - Remove the intent filter from your Android Manifest talked about in [the old docs here](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app)
+   - Add the value for your redirect URI scheme ("myapp" in the docs example above) to your app build.gradle file as follows:
+   
+   ```gradle
+	android {
+	    defaultConfig {
+		manifestPlaceholders = [
+		    'authRedirectScheme': 'myapp'
+		]
+	    }
+	}
+   ```
+   - Remove the onResume intent callback code from your activity described in step 2 of the [the old docs here](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app)
+   - Add this onActivityResult override to handle the HostedUI callback instead:
+   
+   ```java
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == AuthClient.CUSTOM_TABS_ACTIVITY_CODE) {
+	    		AWSMobileClient.getInstance().handleAuthResponse(data);
+		}
+    }
+   ```
+- aws-android-sdk-cognitoauth:
+   - getSession() method has been refactored to getSession(Activity activity) - where activity is an instance of the activity the user is calling this method from so it can launch HostedUI if it needs to sign in again.
+   - getSession(boolean launchWebUIIfExpired) has been refactored to getSessionWithoutWebUI(). It will get session information if the refresh token is still valid, otherwise will throw an exception indicating the user must sign in again.
+
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 
 *Version 2.17.0 introduces breaking changes against 2.16.13.*

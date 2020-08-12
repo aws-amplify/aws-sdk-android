@@ -9,6 +9,10 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName '1.0'
+
+        manifestPlaceholders = [
+                'authRedirectScheme': 'FOR_LIBRARY_CONSUMER_TO_OVERRIDE'
+        ]
     }
 
     compileOptions {
