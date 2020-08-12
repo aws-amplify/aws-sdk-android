@@ -31,6 +31,13 @@ class AwsJobExecutionsRolloutConfigJsonMarshaller {
             jsonWriter.name("maximumPerMinute");
             jsonWriter.value(maximumPerMinute);
         }
+        if (awsJobExecutionsRolloutConfig.getExponentialRate() != null) {
+            AwsJobExponentialRolloutRate exponentialRate = awsJobExecutionsRolloutConfig
+                    .getExponentialRate();
+            jsonWriter.name("exponentialRate");
+            AwsJobExponentialRolloutRateJsonMarshaller.getInstance().marshall(exponentialRate,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

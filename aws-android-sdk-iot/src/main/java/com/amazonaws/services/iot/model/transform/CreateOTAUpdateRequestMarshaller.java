@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -106,6 +108,19 @@ public class CreateOTAUpdateRequestMarshaller implements
                 jsonWriter.name("awsJobPresignedUrlConfig");
                 AwsJobPresignedUrlConfigJsonMarshaller.getInstance().marshall(
                         awsJobPresignedUrlConfig, jsonWriter);
+            }
+            if (createOTAUpdateRequest.getAwsJobAbortConfig() != null) {
+                AwsJobAbortConfig awsJobAbortConfig = createOTAUpdateRequest.getAwsJobAbortConfig();
+                jsonWriter.name("awsJobAbortConfig");
+                AwsJobAbortConfigJsonMarshaller.getInstance().marshall(awsJobAbortConfig,
+                        jsonWriter);
+            }
+            if (createOTAUpdateRequest.getAwsJobTimeoutConfig() != null) {
+                AwsJobTimeoutConfig awsJobTimeoutConfig = createOTAUpdateRequest
+                        .getAwsJobTimeoutConfig();
+                jsonWriter.name("awsJobTimeoutConfig");
+                AwsJobTimeoutConfigJsonMarshaller.getInstance().marshall(awsJobTimeoutConfig,
+                        jsonWriter);
             }
             if (createOTAUpdateRequest.getFiles() != null) {
                 java.util.List<OTAUpdateFile> files = createOTAUpdateRequest.getFiles();

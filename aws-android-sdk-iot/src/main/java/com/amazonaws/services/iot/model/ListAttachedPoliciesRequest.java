@@ -27,7 +27,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The group or principal for which the policies will be listed.
+     * The group or principal for which the policies will be listed. Valid
+     * principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      */
     private String target;
@@ -61,11 +66,22 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The group or principal for which the policies will be listed.
+     * The group or principal for which the policies will be listed. Valid
+     * principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      *
      * @return <p>
      *         The group or principal for which the policies will be listed.
+     *         Valid principals are CertificateArn
+     *         (arn:aws:iot:<i>region</i>:<i>
+     *         accountId</i>:cert/<i>certificateId</i>), thingGroupArn
+     *         (arn:aws:iot
+     *         :<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and
+     *         CognitoId (<i>region</i>:<i>id</i>).
      *         </p>
      */
     public String getTarget() {
@@ -74,11 +90,21 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The group or principal for which the policies will be listed.
+     * The group or principal for which the policies will be listed. Valid
+     * principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      *
      * @param target <p>
      *            The group or principal for which the policies will be listed.
+     *            Valid principals are CertificateArn
+     *            (arn:aws:iot:<i>region</i>:
+     *            <i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn
+     *            (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>
+     *            groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).
      *            </p>
      */
     public void setTarget(String target) {
@@ -87,7 +113,12 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The group or principal for which the policies will be listed.
+     * The group or principal for which the policies will be listed. Valid
+     * principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -95,6 +126,11 @@ public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest impleme
      *
      * @param target <p>
      *            The group or principal for which the policies will be listed.
+     *            Valid principals are CertificateArn
+     *            (arn:aws:iot:<i>region</i>:
+     *            <i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn
+     *            (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>
+     *            groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

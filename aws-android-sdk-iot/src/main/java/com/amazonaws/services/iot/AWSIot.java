@@ -543,6 +543,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Creates a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param createAuditSuppressionRequest
+     * @return createAuditSuppressionResult The response from the
+     *         CreateAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateAuditSuppressionResult createAuditSuppression(
+            CreateAuditSuppressionRequest createAuditSuppressionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates an authorizer.
      * </p>
      * 
@@ -827,8 +852,12 @@ public interface AWSIot {
     /**
      * <p>
      * Defines an action that can be applied to audit findings by using
-     * StartAuditMitigationActionsTask. Each mitigation action can apply only
-     * one type of change.
+     * StartAuditMitigationActionsTask. Only certain types of mitigation actions
+     * can be applied to specific check names. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html"
+     * >Mitigation actions</a>. Each mitigation action can apply only one type
+     * of change.
      * </p>
      * 
      * @param createMitigationActionRequest
@@ -1312,6 +1341,29 @@ public interface AWSIot {
      */
     DeleteAccountAuditConfigurationResult deleteAccountAuditConfiguration(
             DeleteAccountAuditConfigurationRequest deleteAccountAuditConfigurationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param deleteAuditSuppressionRequest
+     * @return deleteAuditSuppressionResult The response from the
+     *         DeleteAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteAuditSuppressionResult deleteAuditSuppression(
+            DeleteAuditSuppressionRequest deleteAuditSuppressionRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2122,6 +2174,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets information about a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param describeAuditSuppressionRequest
+     * @return describeAuditSuppressionResult The response from the
+     *         DescribeAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeAuditSuppressionResult describeAuditSuppression(
+            DescribeAuditSuppressionRequest describeAuditSuppressionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets information about a Device Defender audit.
      * </p>
      * 
@@ -2314,6 +2390,7 @@ public interface AWSIot {
      *         IoT.
      * @throws ResourceNotFoundException
      * @throws ThrottlingException
+     * @throws InvalidRequestException
      * @throws UnauthorizedException
      * @throws ServiceUnavailableException
      * @throws InternalFailureException
@@ -3395,6 +3472,29 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists your Device Defender audit listings.
+     * </p>
+     * 
+     * @param listAuditSuppressionsRequest
+     * @return listAuditSuppressionsResult The response from the
+     *         ListAuditSuppressions service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListAuditSuppressionsResult listAuditSuppressions(
+            ListAuditSuppressionsRequest listAuditSuppressionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the Device Defender audits that have been performed during a given
      * time period.
      * </p>
@@ -4336,6 +4436,14 @@ public interface AWSIot {
      * retrieves all things in the registry that contain an attribute
      * <b>Color</b> with the value <b>Red</b>.
      * </p>
+     * <note>
+     * <p>
+     * You will not be charged for calling this API if an
+     * <code>Access denied</code> error is returned. You will also not be
+     * charged if no attributes or pagination token was provided in request and
+     * no pagination token and no results were returned.
+     * </p>
+     * </note>
      * 
      * @param listThingsRequest <p>
      *            The input for the ListThings operation.
@@ -4576,6 +4684,35 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Register a certificate that does not have a certificate authority (CA).
+     * </p>
+     * 
+     * @param registerCertificateWithoutCARequest
+     * @return registerCertificateWithoutCAResult The response from the
+     *         RegisterCertificateWithoutCA service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws CertificateStateException
+     * @throws CertificateValidationException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    RegisterCertificateWithoutCAResult registerCertificateWithoutCA(
+            RegisterCertificateWithoutCARequest registerCertificateWithoutCARequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provisions a thing in the device registry. RegisterThing calls other AWS
      * IoT control plane APIs. These calls might exceed your account level <a
      * href=
@@ -4671,6 +4808,12 @@ public interface AWSIot {
     /**
      * <p>
      * Remove the specified thing from the specified group.
+     * </p>
+     * <p>
+     * You must specify either a <code>thingGroupArn</code> or a
+     * <code>thingGroupName</code> to identify the thing group and either a
+     * <code>thingArn</code> or a <code>thingName</code> to identify the thing
+     * to remove from the thing group.
      * </p>
      * 
      * @param removeThingFromThingGroupRequest
@@ -5149,6 +5292,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param updateAuditSuppressionRequest
+     * @return updateAuditSuppressionResult The response from the
+     *         UpdateAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateAuditSuppressionResult updateAuditSuppression(
+            UpdateAuditSuppressionRequest updateAuditSuppressionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates an authorizer.
      * </p>
      * 
@@ -5228,13 +5395,14 @@ public interface AWSIot {
      * idempotent.
      * </p>
      * <p>
-     * Moving a certificate from the ACTIVE state (including REVOKED) will not
-     * disconnect currently connected devices, but these devices will be unable
-     * to reconnect.
+     * Certificates must be in the ACTIVE state to authenticate devices that use
+     * a certificate to connect to AWS IoT.
      * </p>
      * <p>
-     * The ACTIVE state is required to authenticate devices connecting to AWS
-     * IoT using a certificate.
+     * Within a few minutes of updating a certificate from the ACTIVE state to
+     * any other state, AWS IoT disconnects all devices that used that
+     * certificate to connect. Devices cannot use a certificate that is not in
+     * the ACTIVE state to reconnect.
      * </p>
      * 
      * @param updateCertificateRequest <p>

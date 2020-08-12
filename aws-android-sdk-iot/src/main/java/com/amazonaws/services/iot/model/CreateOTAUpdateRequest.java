@@ -49,7 +49,7 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The targeted devices to receive OTA updates.
+     * The devices targeted to receive OTA updates.
      * </p>
      */
     private java.util.List<String> targets;
@@ -95,6 +95,24 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * The criteria that determine when and how a job abort takes place.
+     * </p>
+     */
+    private AwsJobAbortConfig awsJobAbortConfig;
+
+    /**
+     * <p>
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
+     * </p>
+     */
+    private AwsJobTimeoutConfig awsJobTimeoutConfig;
+
+    /**
+     * <p>
      * The files to be streamed by the OTA update.
      * </p>
      */
@@ -102,7 +120,8 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that allows access to the AWS IoT Jobs service.
+     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
+     * and AWS Code Signing resources to create an OTA update job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -240,11 +259,11 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The targeted devices to receive OTA updates.
+     * The devices targeted to receive OTA updates.
      * </p>
      *
      * @return <p>
-     *         The targeted devices to receive OTA updates.
+     *         The devices targeted to receive OTA updates.
      *         </p>
      */
     public java.util.List<String> getTargets() {
@@ -253,11 +272,11 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The targeted devices to receive OTA updates.
+     * The devices targeted to receive OTA updates.
      * </p>
      *
      * @param targets <p>
-     *            The targeted devices to receive OTA updates.
+     *            The devices targeted to receive OTA updates.
      *            </p>
      */
     public void setTargets(java.util.Collection<String> targets) {
@@ -271,14 +290,14 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The targeted devices to receive OTA updates.
+     * The devices targeted to receive OTA updates.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targets <p>
-     *            The targeted devices to receive OTA updates.
+     *            The devices targeted to receive OTA updates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -295,14 +314,14 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The targeted devices to receive OTA updates.
+     * The devices targeted to receive OTA updates.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param targets <p>
-     *            The targeted devices to receive OTA updates.
+     *            The devices targeted to receive OTA updates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -659,6 +678,124 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
+     * The criteria that determine when and how a job abort takes place.
+     * </p>
+     *
+     * @return <p>
+     *         The criteria that determine when and how a job abort takes place.
+     *         </p>
+     */
+    public AwsJobAbortConfig getAwsJobAbortConfig() {
+        return awsJobAbortConfig;
+    }
+
+    /**
+     * <p>
+     * The criteria that determine when and how a job abort takes place.
+     * </p>
+     *
+     * @param awsJobAbortConfig <p>
+     *            The criteria that determine when and how a job abort takes
+     *            place.
+     *            </p>
+     */
+    public void setAwsJobAbortConfig(AwsJobAbortConfig awsJobAbortConfig) {
+        this.awsJobAbortConfig = awsJobAbortConfig;
+    }
+
+    /**
+     * <p>
+     * The criteria that determine when and how a job abort takes place.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param awsJobAbortConfig <p>
+     *            The criteria that determine when and how a job abort takes
+     *            place.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateOTAUpdateRequest withAwsJobAbortConfig(AwsJobAbortConfig awsJobAbortConfig) {
+        this.awsJobAbortConfig = awsJobAbortConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the amount of time each device has to finish its
+     *         execution of the job. A timer is started when the job execution
+     *         status is set to <code>IN_PROGRESS</code>. If the job execution
+     *         status is not set to another terminal state before the timer
+     *         expires, it will be automatically set to <code>TIMED_OUT</code>.
+     *         </p>
+     */
+    public AwsJobTimeoutConfig getAwsJobTimeoutConfig() {
+        return awsJobTimeoutConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
+     * </p>
+     *
+     * @param awsJobTimeoutConfig <p>
+     *            Specifies the amount of time each device has to finish its
+     *            execution of the job. A timer is started when the job
+     *            execution status is set to <code>IN_PROGRESS</code>. If the
+     *            job execution status is not set to another terminal state
+     *            before the timer expires, it will be automatically set to
+     *            <code>TIMED_OUT</code>.
+     *            </p>
+     */
+    public void setAwsJobTimeoutConfig(AwsJobTimeoutConfig awsJobTimeoutConfig) {
+        this.awsJobTimeoutConfig = awsJobTimeoutConfig;
+    }
+
+    /**
+     * <p>
+     * Specifies the amount of time each device has to finish its execution of
+     * the job. A timer is started when the job execution status is set to
+     * <code>IN_PROGRESS</code>. If the job execution status is not set to
+     * another terminal state before the timer expires, it will be automatically
+     * set to <code>TIMED_OUT</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param awsJobTimeoutConfig <p>
+     *            Specifies the amount of time each device has to finish its
+     *            execution of the job. A timer is started when the job
+     *            execution status is set to <code>IN_PROGRESS</code>. If the
+     *            job execution status is not set to another terminal state
+     *            before the timer expires, it will be automatically set to
+     *            <code>TIMED_OUT</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateOTAUpdateRequest withAwsJobTimeoutConfig(AwsJobTimeoutConfig awsJobTimeoutConfig) {
+        this.awsJobTimeoutConfig = awsJobTimeoutConfig;
+        return this;
+    }
+
+    /**
+     * <p>
      * The files to be streamed by the OTA update.
      * </p>
      *
@@ -733,14 +870,16 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that allows access to the AWS IoT Jobs service.
+     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
+     * and AWS Code Signing resources to create an OTA update job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The IAM role that allows access to the AWS IoT Jobs service.
+     *         The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT
+     *         jobs and AWS Code Signing resources to create an OTA update job.
      *         </p>
      */
     public String getRoleArn() {
@@ -749,14 +888,17 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that allows access to the AWS IoT Jobs service.
+     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
+     * and AWS Code Signing resources to create an OTA update job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The IAM role that allows access to the AWS IoT Jobs service.
+     *            The IAM role that grants AWS IoT access to the Amazon S3, AWS
+     *            IoT jobs and AWS Code Signing resources to create an OTA
+     *            update job.
      *            </p>
      */
     public void setRoleArn(String roleArn) {
@@ -765,7 +907,8 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that allows access to the AWS IoT Jobs service.
+     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
+     * and AWS Code Signing resources to create an OTA update job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -775,7 +918,9 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The IAM role that allows access to the AWS IoT Jobs service.
+     *            The IAM role that grants AWS IoT access to the Amazon S3, AWS
+     *            IoT jobs and AWS Code Signing resources to create an OTA
+     *            update job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -970,6 +1115,10 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
             sb.append("awsJobExecutionsRolloutConfig: " + getAwsJobExecutionsRolloutConfig() + ",");
         if (getAwsJobPresignedUrlConfig() != null)
             sb.append("awsJobPresignedUrlConfig: " + getAwsJobPresignedUrlConfig() + ",");
+        if (getAwsJobAbortConfig() != null)
+            sb.append("awsJobAbortConfig: " + getAwsJobAbortConfig() + ",");
+        if (getAwsJobTimeoutConfig() != null)
+            sb.append("awsJobTimeoutConfig: " + getAwsJobTimeoutConfig() + ",");
         if (getFiles() != null)
             sb.append("files: " + getFiles() + ",");
         if (getRoleArn() != null)
@@ -1003,6 +1152,10 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
                 * hashCode
                 + ((getAwsJobPresignedUrlConfig() == null) ? 0 : getAwsJobPresignedUrlConfig()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getAwsJobAbortConfig() == null) ? 0 : getAwsJobAbortConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getAwsJobTimeoutConfig() == null) ? 0 : getAwsJobTimeoutConfig().hashCode());
         hashCode = prime * hashCode + ((getFiles() == null) ? 0 : getFiles().hashCode());
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode
@@ -1058,6 +1211,16 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
             return false;
         if (other.getAwsJobPresignedUrlConfig() != null
                 && other.getAwsJobPresignedUrlConfig().equals(this.getAwsJobPresignedUrlConfig()) == false)
+            return false;
+        if (other.getAwsJobAbortConfig() == null ^ this.getAwsJobAbortConfig() == null)
+            return false;
+        if (other.getAwsJobAbortConfig() != null
+                && other.getAwsJobAbortConfig().equals(this.getAwsJobAbortConfig()) == false)
+            return false;
+        if (other.getAwsJobTimeoutConfig() == null ^ this.getAwsJobTimeoutConfig() == null)
+            return false;
+        if (other.getAwsJobTimeoutConfig() != null
+                && other.getAwsJobTimeoutConfig().equals(this.getAwsJobTimeoutConfig()) == false)
             return false;
         if (other.getFiles() == null ^ this.getFiles() == null)
             return false;

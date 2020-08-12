@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -82,6 +84,19 @@ public class UpdateProvisioningTemplateRequestMarshaller implements
                         .getProvisioningRoleArn();
                 jsonWriter.name("provisioningRoleArn");
                 jsonWriter.value(provisioningRoleArn);
+            }
+            if (updateProvisioningTemplateRequest.getPreProvisioningHook() != null) {
+                ProvisioningHook preProvisioningHook = updateProvisioningTemplateRequest
+                        .getPreProvisioningHook();
+                jsonWriter.name("preProvisioningHook");
+                ProvisioningHookJsonMarshaller.getInstance().marshall(preProvisioningHook,
+                        jsonWriter);
+            }
+            if (updateProvisioningTemplateRequest.getRemovePreProvisioningHook() != null) {
+                Boolean removePreProvisioningHook = updateProvisioningTemplateRequest
+                        .getRemovePreProvisioningHook();
+                jsonWriter.name("removePreProvisioningHook");
+                jsonWriter.value(removePreProvisioningHook);
             }
 
             jsonWriter.endObject();

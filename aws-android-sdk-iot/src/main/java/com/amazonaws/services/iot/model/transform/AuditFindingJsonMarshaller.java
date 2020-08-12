@@ -83,6 +83,11 @@ class AuditFindingJsonMarshaller {
             jsonWriter.name("reasonForNonComplianceCode");
             jsonWriter.value(reasonForNonComplianceCode);
         }
+        if (auditFinding.getIsSuppressed() != null) {
+            Boolean isSuppressed = auditFinding.getIsSuppressed();
+            jsonWriter.name("isSuppressed");
+            jsonWriter.value(isSuppressed);
+        }
         jsonWriter.endObject();
     }
 

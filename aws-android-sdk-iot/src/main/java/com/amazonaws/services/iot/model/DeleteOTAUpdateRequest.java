@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The OTA update ID to delete.
+     * The ID of the OTA update to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,14 +47,14 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Specifies if the AWS Job associated with the OTA update should be deleted
-     * with the OTA update is deleted.
+     * when the OTA update is deleted.
      * </p>
      */
     private Boolean forceDeleteAWSJob;
 
     /**
      * <p>
-     * The OTA update ID to delete.
+     * The ID of the OTA update to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +62,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
-     *         The OTA update ID to delete.
+     *         The ID of the OTA update to delete.
      *         </p>
      */
     public String getOtaUpdateId() {
@@ -71,7 +71,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The OTA update ID to delete.
+     * The ID of the OTA update to delete.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,7 +79,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param otaUpdateId <p>
-     *            The OTA update ID to delete.
+     *            The ID of the OTA update to delete.
      *            </p>
      */
     public void setOtaUpdateId(String otaUpdateId) {
@@ -88,7 +88,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The OTA update ID to delete.
+     * The ID of the OTA update to delete.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,7 +99,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param otaUpdateId <p>
-     *            The OTA update ID to delete.
+     *            The ID of the OTA update to delete.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,12 +178,12 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Specifies if the AWS Job associated with the OTA update should be deleted
-     * with the OTA update is deleted.
+     * when the OTA update is deleted.
      * </p>
      *
      * @return <p>
      *         Specifies if the AWS Job associated with the OTA update should be
-     *         deleted with the OTA update is deleted.
+     *         deleted when the OTA update is deleted.
      *         </p>
      */
     public Boolean isForceDeleteAWSJob() {
@@ -193,12 +193,12 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Specifies if the AWS Job associated with the OTA update should be deleted
-     * with the OTA update is deleted.
+     * when the OTA update is deleted.
      * </p>
      *
      * @return <p>
      *         Specifies if the AWS Job associated with the OTA update should be
-     *         deleted with the OTA update is deleted.
+     *         deleted when the OTA update is deleted.
      *         </p>
      */
     public Boolean getForceDeleteAWSJob() {
@@ -208,12 +208,12 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Specifies if the AWS Job associated with the OTA update should be deleted
-     * with the OTA update is deleted.
+     * when the OTA update is deleted.
      * </p>
      *
      * @param forceDeleteAWSJob <p>
      *            Specifies if the AWS Job associated with the OTA update should
-     *            be deleted with the OTA update is deleted.
+     *            be deleted when the OTA update is deleted.
      *            </p>
      */
     public void setForceDeleteAWSJob(Boolean forceDeleteAWSJob) {
@@ -223,7 +223,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Specifies if the AWS Job associated with the OTA update should be deleted
-     * with the OTA update is deleted.
+     * when the OTA update is deleted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -231,7 +231,7 @@ public class DeleteOTAUpdateRequest extends AmazonWebServiceRequest implements S
      *
      * @param forceDeleteAWSJob <p>
      *            Specifies if the AWS Job associated with the OTA update should
-     *            be deleted with the OTA update is deleted.
+     *            be deleted when the OTA update is deleted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

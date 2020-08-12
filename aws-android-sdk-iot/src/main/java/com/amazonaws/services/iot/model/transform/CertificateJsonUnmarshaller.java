@@ -44,6 +44,9 @@ class CertificateJsonUnmarshaller implements Unmarshaller<Certificate, JsonUnmar
             } else if (name.equals("status")) {
                 certificate.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("certificateMode")) {
+                certificate.setCertificateMode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("creationDate")) {
                 certificate.setCreationDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
