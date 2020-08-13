@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -80,6 +82,23 @@ public class UpdateUserPoolClientRequestMarshaller implements
                         .getRefreshTokenValidity();
                 jsonWriter.name("RefreshTokenValidity");
                 jsonWriter.value(refreshTokenValidity);
+            }
+            if (updateUserPoolClientRequest.getAccessTokenValidity() != null) {
+                Integer accessTokenValidity = updateUserPoolClientRequest.getAccessTokenValidity();
+                jsonWriter.name("AccessTokenValidity");
+                jsonWriter.value(accessTokenValidity);
+            }
+            if (updateUserPoolClientRequest.getIdTokenValidity() != null) {
+                Integer idTokenValidity = updateUserPoolClientRequest.getIdTokenValidity();
+                jsonWriter.name("IdTokenValidity");
+                jsonWriter.value(idTokenValidity);
+            }
+            if (updateUserPoolClientRequest.getTokenValidityUnits() != null) {
+                TokenValidityUnitsType tokenValidityUnits = updateUserPoolClientRequest
+                        .getTokenValidityUnits();
+                jsonWriter.name("TokenValidityUnits");
+                TokenValidityUnitsTypeJsonMarshaller.getInstance().marshall(tokenValidityUnits,
+                        jsonWriter);
             }
             if (updateUserPoolClientRequest.getReadAttributes() != null) {
                 java.util.List<String> readAttributes = updateUserPoolClientRequest

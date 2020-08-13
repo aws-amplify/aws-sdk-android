@@ -298,7 +298,9 @@ public class UserPoolType implements Serializable {
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      */
     private UsernameConfigurationType usernameConfiguration;
@@ -2259,7 +2261,9 @@ public class UserPoolType implements Serializable {
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      *
      * @return <p>
@@ -2267,7 +2271,9 @@ public class UserPoolType implements Serializable {
      *         for the selected sign-in option. For example, when this is set to
      *         <code>False</code>, users will be able to sign in using either
      *         "username" or "Username". This configuration is immutable once it
-     *         has been set. For more information, see .
+     *         has been set. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     *         >UsernameConfigurationType</a>.
      *         </p>
      */
     public UsernameConfigurationType getUsernameConfiguration() {
@@ -2280,7 +2286,9 @@ public class UserPoolType implements Serializable {
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      *
      * @param usernameConfiguration <p>
@@ -2288,7 +2296,10 @@ public class UserPoolType implements Serializable {
      *            input for the selected sign-in option. For example, when this
      *            is set to <code>False</code>, users will be able to sign in
      *            using either "username" or "Username". This configuration is
-     *            immutable once it has been set. For more information, see .
+     *            immutable once it has been set. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     *            >UsernameConfigurationType</a>.
      *            </p>
      */
     public void setUsernameConfiguration(UsernameConfigurationType usernameConfiguration) {
@@ -2301,7 +2312,9 @@ public class UserPoolType implements Serializable {
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -2312,7 +2325,10 @@ public class UserPoolType implements Serializable {
      *            input for the selected sign-in option. For example, when this
      *            is set to <code>False</code>, users will be able to sign in
      *            using either "username" or "Username". This configuration is
-     *            immutable once it has been set. For more information, see .
+     *            immutable once it has been set. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     *            >UsernameConfigurationType</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

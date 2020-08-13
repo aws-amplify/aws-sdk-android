@@ -218,7 +218,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      */
     private UsernameConfigurationType usernameConfiguration;
@@ -233,15 +235,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * absence of this setting, Cognito uses the legacy behavior to determine
      * the recovery method where SMS is preferred over email.
      * </p>
-     * <note>
-     * <p>
-     * Starting February 1, 2020, the value of
-     * <code>AccountRecoverySetting</code> will default to
-     * <code>verified_email</code> first and <code>verified_phone_number</code>
-     * as the second option for newly created user pools if no value is
-     * provided.
-     * </p>
-     * </note>
      */
     private AccountRecoverySettingType accountRecoverySetting;
 
@@ -1573,7 +1566,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      *
      * @return <p>
@@ -1581,7 +1576,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *         the selected sign-in option. For example, when this is set to
      *         <code>False</code>, users will be able to sign in using either
      *         "username" or "Username". This configuration is immutable once it
-     *         has been set. For more information, see .
+     *         has been set. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     *         >UsernameConfigurationType</a>.
      *         </p>
      */
     public UsernameConfigurationType getUsernameConfiguration() {
@@ -1594,7 +1591,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      *
      * @param usernameConfiguration <p>
@@ -1602,7 +1601,10 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            for the selected sign-in option. For example, when this is set
      *            to <code>False</code>, users will be able to sign in using
      *            either "username" or "Username". This configuration is
-     *            immutable once it has been set. For more information, see .
+     *            immutable once it has been set. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     *            >UsernameConfigurationType</a>.
      *            </p>
      */
     public void setUsernameConfiguration(UsernameConfigurationType usernameConfiguration) {
@@ -1615,7 +1617,9 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * selected sign-in option. For example, when this is set to
      * <code>False</code>, users will be able to sign in using either "username"
      * or "Username". This configuration is immutable once it has been set. For
-     * more information, see .
+     * more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     * >UsernameConfigurationType</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1626,7 +1630,10 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            for the selected sign-in option. For example, when this is set
      *            to <code>False</code>, users will be able to sign in using
      *            either "username" or "Username". This configuration is
-     *            immutable once it has been set. For more information, see .
+     *            immutable once it has been set. For more information, see <a
+     *            href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UsernameConfigurationType.html"
+     *            >UsernameConfigurationType</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1647,15 +1654,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * absence of this setting, Cognito uses the legacy behavior to determine
      * the recovery method where SMS is preferred over email.
      * </p>
-     * <note>
-     * <p>
-     * Starting February 1, 2020, the value of
-     * <code>AccountRecoverySetting</code> will default to
-     * <code>verified_email</code> first and <code>verified_phone_number</code>
-     * as the second option for newly created user pools if no value is
-     * provided.
-     * </p>
-     * </note>
      *
      * @return <p>
      *         Use this setting to define which verified available method a user
@@ -1667,15 +1665,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *         this setting, Cognito uses the legacy behavior to determine the
      *         recovery method where SMS is preferred over email.
      *         </p>
-     *         <note>
-     *         <p>
-     *         Starting February 1, 2020, the value of
-     *         <code>AccountRecoverySetting</code> will default to
-     *         <code>verified_email</code> first and
-     *         <code>verified_phone_number</code> as the second option for newly
-     *         created user pools if no value is provided.
-     *         </p>
-     *         </note>
      */
     public AccountRecoverySettingType getAccountRecoverySetting() {
         return accountRecoverySetting;
@@ -1691,15 +1680,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * absence of this setting, Cognito uses the legacy behavior to determine
      * the recovery method where SMS is preferred over email.
      * </p>
-     * <note>
-     * <p>
-     * Starting February 1, 2020, the value of
-     * <code>AccountRecoverySetting</code> will default to
-     * <code>verified_email</code> first and <code>verified_phone_number</code>
-     * as the second option for newly created user pools if no value is
-     * provided.
-     * </p>
-     * </note>
      *
      * @param accountRecoverySetting <p>
      *            Use this setting to define which verified available method a
@@ -1712,15 +1692,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            legacy behavior to determine the recovery method where SMS is
      *            preferred over email.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Starting February 1, 2020, the value of
-     *            <code>AccountRecoverySetting</code> will default to
-     *            <code>verified_email</code> first and
-     *            <code>verified_phone_number</code> as the second option for
-     *            newly created user pools if no value is provided.
-     *            </p>
-     *            </note>
      */
     public void setAccountRecoverySetting(AccountRecoverySettingType accountRecoverySetting) {
         this.accountRecoverySetting = accountRecoverySetting;
@@ -1736,15 +1707,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      * absence of this setting, Cognito uses the legacy behavior to determine
      * the recovery method where SMS is preferred over email.
      * </p>
-     * <note>
-     * <p>
-     * Starting February 1, 2020, the value of
-     * <code>AccountRecoverySetting</code> will default to
-     * <code>verified_email</code> first and <code>verified_phone_number</code>
-     * as the second option for newly created user pools if no value is
-     * provided.
-     * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1760,15 +1722,6 @@ public class CreateUserPoolRequest extends AmazonWebServiceRequest implements Se
      *            legacy behavior to determine the recovery method where SMS is
      *            preferred over email.
      *            </p>
-     *            <note>
-     *            <p>
-     *            Starting February 1, 2020, the value of
-     *            <code>AccountRecoverySetting</code> will default to
-     *            <code>verified_email</code> first and
-     *            <code>verified_phone_number</code> as the second option for
-     *            newly created user pools if no value is provided.
-     *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

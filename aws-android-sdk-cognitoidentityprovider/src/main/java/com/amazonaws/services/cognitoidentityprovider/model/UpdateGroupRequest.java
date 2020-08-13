@@ -84,7 +84,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * The new precedence value for the group. For more information about this
-     * parameter, see .
+     * parameter, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     * >CreateGroup</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -338,7 +340,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * The new precedence value for the group. For more information about this
-     * parameter, see .
+     * parameter, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     * >CreateGroup</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -346,7 +350,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         The new precedence value for the group. For more information
-     *         about this parameter, see .
+     *         about this parameter, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     *         >CreateGroup</a>.
      *         </p>
      */
     public Integer getPrecedence() {
@@ -356,7 +362,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * The new precedence value for the group. For more information about this
-     * parameter, see .
+     * parameter, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     * >CreateGroup</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -364,7 +372,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param precedence <p>
      *            The new precedence value for the group. For more information
-     *            about this parameter, see .
+     *            about this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     *            >CreateGroup</a>.
      *            </p>
      */
     public void setPrecedence(Integer precedence) {
@@ -374,7 +384,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * The new precedence value for the group. For more information about this
-     * parameter, see .
+     * parameter, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     * >CreateGroup</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -385,7 +397,9 @@ public class UpdateGroupRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param precedence <p>
      *            The new precedence value for the group. For more information
-     *            about this parameter, see .
+     *            about this parameter, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_CreateGroup.html"
+     *            >CreateGroup</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -34,7 +34,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * API links that user to a federated user identity, so that when the federated
  * user identity is used, the user signs in as the existing user account.
  * </p>
- * <important>
+ * <note>
+ * <p>
+ * The maximum number of federated identities linked to a user is 5.
+ * </p>
+ * </note> <important>
  * <p>
  * Because this API allows a user with an external federated identity to sign in
  * as an existing user in the user pool, it is critical that it only be used
@@ -42,9 +46,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * trusted by the application owner.
  * </p>
  * </important>
- * <p>
- * See also .
- * </p>
  * <p>
  * This action is enabled only for admin access and requires developer
  * credentials.
