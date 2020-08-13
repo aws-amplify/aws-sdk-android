@@ -10,8 +10,11 @@
    you'll need to follow the steps in the [updated documentation](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app)
    to properly handle the response going forward.
 - aws-android-sdk-cognitoauth:
-   - `getSession()` method has been refactored to `getSession(Activity activity)`, where `activity` is an instance of the activity the user is calling this method from. It can then launch HostedUI if it needs to sign in again.
-   - `getSession(boolean launchWebUIIfExpired)` has been refactored to `getSessionWithoutWebUI()`. It will get session information if the refresh token is still valid, otherwise will throw an exception indicating the user must sign in again.
+   - `getSession()` method has been refactored to `getSession(Activity activity)`, where `activity` is an instance of 
+   the activity the user is calling this method from. It uses this to launch HostedUI if it needs to sign in again.
+   - `getSession(boolean launchWebUIIfExpired)` has been refactored to `getSessionWithoutWebUI()`. It will get session 
+   information if the refresh token is still valid, otherwise will throw an exception indicating the user must sign in 
+   again.
 
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 
