@@ -15,6 +15,11 @@
    - `getSession(boolean launchWebUIIfExpired)` has been refactored to `getSessionWithoutWebUI()`. It will get session 
    information if the refresh token is still valid, otherwise will throw an exception indicating the user must sign in 
    again.
+   
+### Bug Fixes
+- aws-android-sdk-mobile-client:
+    - `getTokens()` was making a network call every time it was used, negating any benefit of cached tokens. Removed 
+    the unnecessary network call so it now correctly returns cached tokens when available with no network call (Issue #1722)
 
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 
