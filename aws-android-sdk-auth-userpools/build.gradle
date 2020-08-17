@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14 // setAllCaps(), 11 otherwise
         targetSdkVersion 29
-        versionCode 1
-        versionName '1.0'
+        versionCode 21800
+        versionName '2.18.0'
     }
 }
 
