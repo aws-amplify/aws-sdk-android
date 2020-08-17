@@ -180,7 +180,11 @@ public class AWSKeyValueStore {
      */
     public synchronized boolean contains(final String dataKey) {
         if (isPersistenceEnabled) {
-            return sharedPreferencesForData.contains(getDataKeyUsedInPersistentStore(dataKey));
+            if (cache.containsKey(dataKey)) {
+                return true;
+            } else {
+                return sharedPreferencesForData.contains(getDataKeyUsedInPersistentStore(dataKey));
+            }
         } else {
             return cache.containsKey(dataKey);
         }
@@ -201,7 +205,7 @@ public class AWSKeyValueStore {
             return null;
         }
 
-        if (!isPersistenceEnabled) {
+        if (cache.containsKey(dataKey) || !isPersistenceEnabled) {
             return cache.get(dataKey);
         }
 
