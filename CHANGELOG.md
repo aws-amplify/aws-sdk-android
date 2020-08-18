@@ -1,5 +1,26 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.18.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.18.0)
+
+*Version 2.18.0 introduces breaking changes against 2.17.1.*
+
+### Breaking Updates
+- aws-android-sdk-mobile-client:
+   - No breaking changes code-wise but if you already setup HostedUI for an older version of the SDK,  
+   you'll need to follow the steps in the [updated documentation](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app)
+   to properly handle the response going forward.
+- aws-android-sdk-cognitoauth:
+   - `getSession()` method has been refactored to `getSession(Activity activity)`, where `activity` is an instance of 
+   the activity the user is calling this method from. It uses this to launch HostedUI if it needs to sign in again.
+   - `getSession(boolean launchWebUIIfExpired)` has been refactored to `getSessionWithoutWebUI()`. It will get session 
+   information if the refresh token is still valid, otherwise will throw an exception indicating the user must sign in 
+   again.
+   
+### Bug Fixes
+- aws-android-sdk-mobile-client:
+    - `getTokens()` was making a network call every time it was used, negating any benefit of cached tokens. Removed 
+    the unnecessary network call so it now correctly returns cached tokens when available with no network call (Issue #1722)
+
 ## [Release 2.17.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.1)
 
 ### Bug fixes
@@ -22,7 +43,6 @@
   - Android Gradle Plugin 4.0.1
 
  - Allow override of User Agent in the AWSMobileClient
-
 
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 

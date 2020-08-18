@@ -24,12 +24,10 @@ package com.amazonaws.mobileconnectors.cognitoauth.util;
 @SuppressWarnings("checkstyle:javadocmethod")
 public abstract class ClientConstants {
     public static final String APP_LAST_AUTH_USER = "LastAuthUser";
-    public static final String APP_HAS_RECIEVED_REDIRECT = "HasReceivedRedirect";
     public static final String APP_LOCAL_CACHE = "CognitoIdentityProviderCache";
     public static final String APP_LOCAL_CACHE_KEY_PREFIX = "CognitoIdentityProvider";
     public static final String AUTH_RESPONSE_TYPE_CODE = "code";
     public static final String CHROME_PACKAGE = "com.android.chrome";
-    public static final int CHROME_NAVIGATION_CANCELLED = 6;
     public static final String DOMAIN_PATH_OAUTH2 = "oauth2";
     public static final String DOMAIN_PATH_SIGN_IN = "authorize";
     public static final String DOMAIN_PATH_SIGN_OUT = "logout";

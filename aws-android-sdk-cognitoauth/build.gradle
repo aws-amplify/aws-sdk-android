@@ -7,8 +7,12 @@ android {
     defaultConfig {
         minSdkVersion 16 // androidx.browser
         targetSdkVersion 29
-        versionCode 21701
-        versionName "2.17.1"
+        versionCode 21800
+        versionName '2.18.0'
+
+        manifestPlaceholders = [
+                'authRedirectScheme': 'FOR_LIBRARY_CONSUMER_TO_OVERRIDE'
+        ]
     }
 
     compileOptions {
