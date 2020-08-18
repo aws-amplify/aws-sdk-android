@@ -27,24 +27,22 @@ import com.amazonaws.AmazonWebServiceRequest;
  * If <code>MessageAction</code> is not set, the default is to send a welcome
  * message via email or phone (SMS).
  * </p>
- * <note>
  * <p>
- * This message is based on a template that you configured in your call to or .
- * This template includes your custom sign-up instructions and placeholders for
- * user name and temporary password.
+ * This message is based on a template that you configured in your call to
+ * create or update a user pool. This template includes your custom sign-up
+ * instructions and placeholders for user name and temporary password.
  * </p>
- * </note>
  * <p>
- * Alternatively, you can call AdminCreateUser with “SUPPRESS” for the
- * <code>MessageAction</code> parameter, and Amazon Cognito will not send any
- * email.
+ * Alternatively, you can call <code>AdminCreateUser</code> with “SUPPRESS” for
+ * the <code>MessageAction</code> parameter, and Amazon Cognito will not send
+ * any email.
  * </p>
  * <p>
  * In either case, the user will be in the <code>FORCE_CHANGE_PASSWORD</code>
  * state until they sign in and change their password.
  * </p>
  * <p>
- * AdminCreateUser requires developer credentials.
+ * <code>AdminCreateUser</code> requires developer credentials.
  * </p>
  */
 public class AdminCreateUserRequest extends AmazonWebServiceRequest implements Serializable {
@@ -77,10 +75,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * An array of name-value pairs that contain user attributes and attribute
      * values to be set for the user to be created. You can create a user
      * without specifying any attributes other than <code>Username</code>.
-     * However, any attributes that you specify as required (in or in the
-     * <b>Attributes</b> tab of the console) must be supplied either by you (in
-     * your call to <code>AdminCreateUser</code>) or by the user (when he or she
-     * signs up in response to your welcome message).
+     * However, any attributes that you specify as required (when creating a
+     * user pool or in the <b>Attributes</b> tab of the console) must be
+     * supplied either by you (in your call to <code>AdminCreateUser</code>) or
+     * by the user (when he or she signs up in response to your welcome
+     * message).
      * </p>
      * <p>
      * For custom attributes, you must prepend the <code>custom:</code> prefix
@@ -96,7 +95,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * In your call to <code>AdminCreateUser</code>, you can set the
      * <code>email_verified</code> attribute to <code>True</code>, and you can
      * set the <code>phone_number_verified</code> attribute to <code>True</code>
-     * . (You can also do this by calling .)
+     * . (You can also do this by calling <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     * >AdminUpdateUserAttributes</a>.)
      * </p>
      * <ul>
      * <li>
@@ -400,10 +401,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * An array of name-value pairs that contain user attributes and attribute
      * values to be set for the user to be created. You can create a user
      * without specifying any attributes other than <code>Username</code>.
-     * However, any attributes that you specify as required (in or in the
-     * <b>Attributes</b> tab of the console) must be supplied either by you (in
-     * your call to <code>AdminCreateUser</code>) or by the user (when he or she
-     * signs up in response to your welcome message).
+     * However, any attributes that you specify as required (when creating a
+     * user pool or in the <b>Attributes</b> tab of the console) must be
+     * supplied either by you (in your call to <code>AdminCreateUser</code>) or
+     * by the user (when he or she signs up in response to your welcome
+     * message).
      * </p>
      * <p>
      * For custom attributes, you must prepend the <code>custom:</code> prefix
@@ -419,7 +421,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * In your call to <code>AdminCreateUser</code>, you can set the
      * <code>email_verified</code> attribute to <code>True</code>, and you can
      * set the <code>phone_number_verified</code> attribute to <code>True</code>
-     * . (You can also do this by calling .)
+     * . (You can also do this by calling <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     * >AdminUpdateUserAttributes</a>.)
      * </p>
      * <ul>
      * <li>
@@ -447,10 +451,10 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *         attribute values to be set for the user to be created. You can
      *         create a user without specifying any attributes other than
      *         <code>Username</code>. However, any attributes that you specify
-     *         as required (in or in the <b>Attributes</b> tab of the console)
-     *         must be supplied either by you (in your call to
-     *         <code>AdminCreateUser</code>) or by the user (when he or she
-     *         signs up in response to your welcome message).
+     *         as required (when creating a user pool or in the
+     *         <b>Attributes</b> tab of the console) must be supplied either by
+     *         you (in your call to <code>AdminCreateUser</code>) or by the user
+     *         (when he or she signs up in response to your welcome message).
      *         </p>
      *         <p>
      *         For custom attributes, you must prepend the <code>custom:</code>
@@ -466,7 +470,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *         In your call to <code>AdminCreateUser</code>, you can set the
      *         <code>email_verified</code> attribute to <code>True</code>, and
      *         you can set the <code>phone_number_verified</code> attribute to
-     *         <code>True</code>. (You can also do this by calling .)
+     *         <code>True</code>. (You can also do this by calling <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     *         >AdminUpdateUserAttributes</a>.)
      *         </p>
      *         <ul>
      *         <li>
@@ -498,10 +504,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * An array of name-value pairs that contain user attributes and attribute
      * values to be set for the user to be created. You can create a user
      * without specifying any attributes other than <code>Username</code>.
-     * However, any attributes that you specify as required (in or in the
-     * <b>Attributes</b> tab of the console) must be supplied either by you (in
-     * your call to <code>AdminCreateUser</code>) or by the user (when he or she
-     * signs up in response to your welcome message).
+     * However, any attributes that you specify as required (when creating a
+     * user pool or in the <b>Attributes</b> tab of the console) must be
+     * supplied either by you (in your call to <code>AdminCreateUser</code>) or
+     * by the user (when he or she signs up in response to your welcome
+     * message).
      * </p>
      * <p>
      * For custom attributes, you must prepend the <code>custom:</code> prefix
@@ -517,7 +524,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * In your call to <code>AdminCreateUser</code>, you can set the
      * <code>email_verified</code> attribute to <code>True</code>, and you can
      * set the <code>phone_number_verified</code> attribute to <code>True</code>
-     * . (You can also do this by calling .)
+     * . (You can also do this by calling <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     * >AdminUpdateUserAttributes</a>.)
      * </p>
      * <ul>
      * <li>
@@ -545,10 +554,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            attribute values to be set for the user to be created. You can
      *            create a user without specifying any attributes other than
      *            <code>Username</code>. However, any attributes that you
-     *            specify as required (in or in the <b>Attributes</b> tab of the
-     *            console) must be supplied either by you (in your call to
-     *            <code>AdminCreateUser</code>) or by the user (when he or she
-     *            signs up in response to your welcome message).
+     *            specify as required (when creating a user pool or in the
+     *            <b>Attributes</b> tab of the console) must be supplied either
+     *            by you (in your call to <code>AdminCreateUser</code>) or by
+     *            the user (when he or she signs up in response to your welcome
+     *            message).
      *            </p>
      *            <p>
      *            For custom attributes, you must prepend the
@@ -566,7 +576,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            <code>email_verified</code> attribute to <code>True</code>,
      *            and you can set the <code>phone_number_verified</code>
      *            attribute to <code>True</code>. (You can also do this by
-     *            calling .)
+     *            calling <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     *            >AdminUpdateUserAttributes</a>.)
      *            </p>
      *            <ul>
      *            <li>
@@ -604,10 +616,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * An array of name-value pairs that contain user attributes and attribute
      * values to be set for the user to be created. You can create a user
      * without specifying any attributes other than <code>Username</code>.
-     * However, any attributes that you specify as required (in or in the
-     * <b>Attributes</b> tab of the console) must be supplied either by you (in
-     * your call to <code>AdminCreateUser</code>) or by the user (when he or she
-     * signs up in response to your welcome message).
+     * However, any attributes that you specify as required (when creating a
+     * user pool or in the <b>Attributes</b> tab of the console) must be
+     * supplied either by you (in your call to <code>AdminCreateUser</code>) or
+     * by the user (when he or she signs up in response to your welcome
+     * message).
      * </p>
      * <p>
      * For custom attributes, you must prepend the <code>custom:</code> prefix
@@ -623,7 +636,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * In your call to <code>AdminCreateUser</code>, you can set the
      * <code>email_verified</code> attribute to <code>True</code>, and you can
      * set the <code>phone_number_verified</code> attribute to <code>True</code>
-     * . (You can also do this by calling .)
+     * . (You can also do this by calling <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     * >AdminUpdateUserAttributes</a>.)
      * </p>
      * <ul>
      * <li>
@@ -654,10 +669,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            attribute values to be set for the user to be created. You can
      *            create a user without specifying any attributes other than
      *            <code>Username</code>. However, any attributes that you
-     *            specify as required (in or in the <b>Attributes</b> tab of the
-     *            console) must be supplied either by you (in your call to
-     *            <code>AdminCreateUser</code>) or by the user (when he or she
-     *            signs up in response to your welcome message).
+     *            specify as required (when creating a user pool or in the
+     *            <b>Attributes</b> tab of the console) must be supplied either
+     *            by you (in your call to <code>AdminCreateUser</code>) or by
+     *            the user (when he or she signs up in response to your welcome
+     *            message).
      *            </p>
      *            <p>
      *            For custom attributes, you must prepend the
@@ -675,7 +691,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            <code>email_verified</code> attribute to <code>True</code>,
      *            and you can set the <code>phone_number_verified</code>
      *            attribute to <code>True</code>. (You can also do this by
-     *            calling .)
+     *            calling <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     *            >AdminUpdateUserAttributes</a>.)
      *            </p>
      *            <ul>
      *            <li>
@@ -716,10 +734,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * An array of name-value pairs that contain user attributes and attribute
      * values to be set for the user to be created. You can create a user
      * without specifying any attributes other than <code>Username</code>.
-     * However, any attributes that you specify as required (in or in the
-     * <b>Attributes</b> tab of the console) must be supplied either by you (in
-     * your call to <code>AdminCreateUser</code>) or by the user (when he or she
-     * signs up in response to your welcome message).
+     * However, any attributes that you specify as required (when creating a
+     * user pool or in the <b>Attributes</b> tab of the console) must be
+     * supplied either by you (in your call to <code>AdminCreateUser</code>) or
+     * by the user (when he or she signs up in response to your welcome
+     * message).
      * </p>
      * <p>
      * For custom attributes, you must prepend the <code>custom:</code> prefix
@@ -735,7 +754,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      * In your call to <code>AdminCreateUser</code>, you can set the
      * <code>email_verified</code> attribute to <code>True</code>, and you can
      * set the <code>phone_number_verified</code> attribute to <code>True</code>
-     * . (You can also do this by calling .)
+     * . (You can also do this by calling <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     * >AdminUpdateUserAttributes</a>.)
      * </p>
      * <ul>
      * <li>
@@ -766,10 +787,11 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            attribute values to be set for the user to be created. You can
      *            create a user without specifying any attributes other than
      *            <code>Username</code>. However, any attributes that you
-     *            specify as required (in or in the <b>Attributes</b> tab of the
-     *            console) must be supplied either by you (in your call to
-     *            <code>AdminCreateUser</code>) or by the user (when he or she
-     *            signs up in response to your welcome message).
+     *            specify as required (when creating a user pool or in the
+     *            <b>Attributes</b> tab of the console) must be supplied either
+     *            by you (in your call to <code>AdminCreateUser</code>) or by
+     *            the user (when he or she signs up in response to your welcome
+     *            message).
      *            </p>
      *            <p>
      *            For custom attributes, you must prepend the
@@ -787,7 +809,9 @@ public class AdminCreateUserRequest extends AmazonWebServiceRequest implements S
      *            <code>email_verified</code> attribute to <code>True</code>,
      *            and you can set the <code>phone_number_verified</code>
      *            attribute to <code>True</code>. (You can also do this by
-     *            calling .)
+     *            calling <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"
+     *            >AdminUpdateUserAttributes</a>.)
      *            </p>
      *            <ul>
      *            <li>

@@ -25,11 +25,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * confirmation code that is required to change the user's password. For the
  * <code>Username</code> parameter, you can use the username or user alias. The
  * method used to send the confirmation code is sent according to the specified
- * AccountRecoverySetting. For more information, see <a href="">Recovering User
- * Accounts</a> in the <i>Amazon Cognito Developer Guide</i>. If neither a
- * verified phone number nor a verified email exists, an
+ * AccountRecoverySetting. For more information, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-recover-a-user-account.html"
+ * >Recovering User Accounts</a> in the <i>Amazon Cognito Developer Guide</i>.
+ * If neither a verified phone number nor a verified email exists, an
  * <code>InvalidParameterException</code> is thrown. To use the confirmation
- * code for resetting the password, call .
+ * code for resetting the password, call <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html"
+ * >ConfirmForgotPassword</a>.
  * </p>
  */
 public class ForgotPasswordRequest extends AmazonWebServiceRequest implements Serializable {

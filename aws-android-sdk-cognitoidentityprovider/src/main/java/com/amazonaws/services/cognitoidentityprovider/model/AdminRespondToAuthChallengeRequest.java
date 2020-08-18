@@ -53,7 +53,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     * >AdminInitiateAuth</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -314,7 +316,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     * >AdminInitiateAuth</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -323,7 +327,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @return <p>
-     *         The challenge name. For more information, see .
+     *         The challenge name. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     *         >AdminInitiateAuth</a>.
      *         </p>
      * @see ChallengeNameType
      */
@@ -333,7 +339,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     * >AdminInitiateAuth</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -342,7 +350,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     *            >AdminInitiateAuth</a>.
      *            </p>
      * @see ChallengeNameType
      */
@@ -352,7 +362,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     * >AdminInitiateAuth</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -364,7 +376,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     *            >AdminInitiateAuth</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -377,7 +391,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     * >AdminInitiateAuth</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -386,7 +402,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     *            >AdminInitiateAuth</a>.
      *            </p>
      * @see ChallengeNameType
      */
@@ -396,7 +414,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     * >AdminInitiateAuth</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -408,7 +428,9 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminInitiateAuth.html"
+     *            >AdminInitiateAuth</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

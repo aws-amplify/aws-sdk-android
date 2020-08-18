@@ -22,15 +22,6 @@ import java.io.Serializable;
  * <i>This data type is no longer supported.</i> You can use it only for SMS MFA
  * configurations. You can't use it for TOTP software token MFA configurations.
  * </p>
- * <p>
- * To set either type of MFA configuration, use the
- * <a>AdminSetUserMFAPreference</a> or <a>SetUserMFAPreference</a> actions.
- * </p>
- * <p>
- * To look up information about either type of MFA configuration, use the
- * <a>AdminGetUserResponse$UserMFASettingList</a> or
- * <a>GetUserResponse$UserMFASettingList</a> responses.
- * </p>
  */
 public class MFAOptionType implements Serializable {
     /**

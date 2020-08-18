@@ -57,6 +57,16 @@ class UserPoolClientTypeJsonUnmarshaller implements
             } else if (name.equals("RefreshTokenValidity")) {
                 userPoolClientType.setRefreshTokenValidity(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AccessTokenValidity")) {
+                userPoolClientType.setAccessTokenValidity(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("IdTokenValidity")) {
+                userPoolClientType.setIdTokenValidity(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("TokenValidityUnits")) {
+                userPoolClientType.setTokenValidityUnits(TokenValidityUnitsTypeJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("ReadAttributes")) {
                 userPoolClientType.setReadAttributes(new ListUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()
