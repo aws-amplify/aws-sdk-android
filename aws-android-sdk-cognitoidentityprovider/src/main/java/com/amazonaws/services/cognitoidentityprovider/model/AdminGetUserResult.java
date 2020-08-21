@@ -119,8 +119,8 @@ public class AdminGetUserResult implements Serializable {
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
      * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use the
-     * <a>AdminGetUserResponse$UserMFASettingList</a> response instead.
+     * information about either type of MFA configuration, use
+     * UserMFASettingList instead.
      * </p>
      */
     private java.util.List<MFAOptionType> mFAOptions;
@@ -943,8 +943,8 @@ public class AdminGetUserResult implements Serializable {
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
      * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use the
-     * <a>AdminGetUserResponse$UserMFASettingList</a> response instead.
+     * information about either type of MFA configuration, use
+     * UserMFASettingList instead.
      * </p>
      *
      * @return <p>
@@ -952,8 +952,7 @@ public class AdminGetUserResult implements Serializable {
      *         provides information only about SMS MFA configurations. It
      *         doesn't provide information about TOTP software token MFA
      *         configurations. To look up information about either type of MFA
-     *         configuration, use the
-     *         <a>AdminGetUserResponse$UserMFASettingList</a> response instead.
+     *         configuration, use UserMFASettingList instead.
      *         </p>
      */
     public java.util.List<MFAOptionType> getMFAOptions() {
@@ -965,8 +964,8 @@ public class AdminGetUserResult implements Serializable {
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
      * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use the
-     * <a>AdminGetUserResponse$UserMFASettingList</a> response instead.
+     * information about either type of MFA configuration, use
+     * UserMFASettingList instead.
      * </p>
      *
      * @param mFAOptions <p>
@@ -974,9 +973,7 @@ public class AdminGetUserResult implements Serializable {
      *            provides information only about SMS MFA configurations. It
      *            doesn't provide information about TOTP software token MFA
      *            configurations. To look up information about either type of
-     *            MFA configuration, use the
-     *            <a>AdminGetUserResponse$UserMFASettingList</a> response
-     *            instead.
+     *            MFA configuration, use UserMFASettingList instead.
      *            </p>
      */
     public void setMFAOptions(java.util.Collection<MFAOptionType> mFAOptions) {
@@ -993,8 +990,8 @@ public class AdminGetUserResult implements Serializable {
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
      * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use the
-     * <a>AdminGetUserResponse$UserMFASettingList</a> response instead.
+     * information about either type of MFA configuration, use
+     * UserMFASettingList instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1005,9 +1002,7 @@ public class AdminGetUserResult implements Serializable {
      *            provides information only about SMS MFA configurations. It
      *            doesn't provide information about TOTP software token MFA
      *            configurations. To look up information about either type of
-     *            MFA configuration, use the
-     *            <a>AdminGetUserResponse$UserMFASettingList</a> response
-     *            instead.
+     *            MFA configuration, use UserMFASettingList instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1027,8 +1022,8 @@ public class AdminGetUserResult implements Serializable {
      * <i>This response parameter is no longer supported.</i> It provides
      * information only about SMS MFA configurations. It doesn't provide
      * information about TOTP software token MFA configurations. To look up
-     * information about either type of MFA configuration, use the
-     * <a>AdminGetUserResponse$UserMFASettingList</a> response instead.
+     * information about either type of MFA configuration, use
+     * UserMFASettingList instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1039,9 +1034,7 @@ public class AdminGetUserResult implements Serializable {
      *            provides information only about SMS MFA configurations. It
      *            doesn't provide information about TOTP software token MFA
      *            configurations. To look up information about either type of
-     *            MFA configuration, use the
-     *            <a>AdminGetUserResponse$UserMFASettingList</a> response
-     *            instead.
+     *            MFA configuration, use UserMFASettingList instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

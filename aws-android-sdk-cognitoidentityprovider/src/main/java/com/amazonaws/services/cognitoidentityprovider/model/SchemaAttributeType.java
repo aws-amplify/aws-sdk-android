@@ -58,8 +58,9 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the attribute type is developer only. This attribute
      * can only be modified by an administrator. Users will not be able to
      * modify this attribute using their access token. For example,
-     * <code>DeveloperOnlyAttribute</code> can be modified using the API but
-     * cannot be updated using the API.
+     * <code>DeveloperOnlyAttribute</code> can be modified using
+     * AdminUpdateUserAttributes but cannot be updated using
+     * UpdateUserAttributes.
      * </p>
      */
     private Boolean developerOnlyAttribute;
@@ -272,8 +273,9 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the attribute type is developer only. This attribute
      * can only be modified by an administrator. Users will not be able to
      * modify this attribute using their access token. For example,
-     * <code>DeveloperOnlyAttribute</code> can be modified using the API but
-     * cannot be updated using the API.
+     * <code>DeveloperOnlyAttribute</code> can be modified using
+     * AdminUpdateUserAttributes but cannot be updated using
+     * UpdateUserAttributes.
      * </p>
      *
      * @return <note>
@@ -290,7 +292,8 @@ public class SchemaAttributeType implements Serializable {
      *         attribute can only be modified by an administrator. Users will
      *         not be able to modify this attribute using their access token.
      *         For example, <code>DeveloperOnlyAttribute</code> can be modified
-     *         using the API but cannot be updated using the API.
+     *         using AdminUpdateUserAttributes but cannot be updated using
+     *         UpdateUserAttributes.
      *         </p>
      */
     public Boolean isDeveloperOnlyAttribute() {
@@ -311,8 +314,9 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the attribute type is developer only. This attribute
      * can only be modified by an administrator. Users will not be able to
      * modify this attribute using their access token. For example,
-     * <code>DeveloperOnlyAttribute</code> can be modified using the API but
-     * cannot be updated using the API.
+     * <code>DeveloperOnlyAttribute</code> can be modified using
+     * AdminUpdateUserAttributes but cannot be updated using
+     * UpdateUserAttributes.
      * </p>
      *
      * @return <note>
@@ -329,7 +333,8 @@ public class SchemaAttributeType implements Serializable {
      *         attribute can only be modified by an administrator. Users will
      *         not be able to modify this attribute using their access token.
      *         For example, <code>DeveloperOnlyAttribute</code> can be modified
-     *         using the API but cannot be updated using the API.
+     *         using AdminUpdateUserAttributes but cannot be updated using
+     *         UpdateUserAttributes.
      *         </p>
      */
     public Boolean getDeveloperOnlyAttribute() {
@@ -350,8 +355,9 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the attribute type is developer only. This attribute
      * can only be modified by an administrator. Users will not be able to
      * modify this attribute using their access token. For example,
-     * <code>DeveloperOnlyAttribute</code> can be modified using the API but
-     * cannot be updated using the API.
+     * <code>DeveloperOnlyAttribute</code> can be modified using
+     * AdminUpdateUserAttributes but cannot be updated using
+     * UpdateUserAttributes.
      * </p>
      *
      * @param developerOnlyAttribute <note>
@@ -368,7 +374,8 @@ public class SchemaAttributeType implements Serializable {
      *            attribute can only be modified by an administrator. Users will
      *            not be able to modify this attribute using their access token.
      *            For example, <code>DeveloperOnlyAttribute</code> can be
-     *            modified using the API but cannot be updated using the API.
+     *            modified using AdminUpdateUserAttributes but cannot be updated
+     *            using UpdateUserAttributes.
      *            </p>
      */
     public void setDeveloperOnlyAttribute(Boolean developerOnlyAttribute) {
@@ -389,8 +396,9 @@ public class SchemaAttributeType implements Serializable {
      * Specifies whether the attribute type is developer only. This attribute
      * can only be modified by an administrator. Users will not be able to
      * modify this attribute using their access token. For example,
-     * <code>DeveloperOnlyAttribute</code> can be modified using the API but
-     * cannot be updated using the API.
+     * <code>DeveloperOnlyAttribute</code> can be modified using
+     * AdminUpdateUserAttributes but cannot be updated using
+     * UpdateUserAttributes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -410,7 +418,8 @@ public class SchemaAttributeType implements Serializable {
      *            attribute can only be modified by an administrator. Users will
      *            not be able to modify this attribute using their access token.
      *            For example, <code>DeveloperOnlyAttribute</code> can be
-     *            modified using the API but cannot be updated using the API.
+     *            modified using AdminUpdateUserAttributes but cannot be updated
+     *            using UpdateUserAttributes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

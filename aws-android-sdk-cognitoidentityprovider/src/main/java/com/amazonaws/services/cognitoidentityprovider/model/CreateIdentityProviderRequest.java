@@ -66,7 +66,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <ul>
      * <li>
      * <p>
-     * For Google, Facebook and Login with Amazon:
+     * For Google and Login with Amazon:
      * </p>
      * <ul>
      * <li>
@@ -82,6 +82,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Facebook:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * api_version
      * </p>
      * </li>
      * </ul>
@@ -170,11 +197,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <p>
      * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
      * key</i>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
      * </p>
      * </li>
      * </ul>
@@ -439,7 +461,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <ul>
      * <li>
      * <p>
-     * For Google, Facebook and Login with Amazon:
+     * For Google and Login with Amazon:
      * </p>
      * <ul>
      * <li>
@@ -455,6 +477,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Facebook:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * api_version
      * </p>
      * </li>
      * </ul>
@@ -545,11 +594,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -578,7 +622,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         <ul>
      *         <li>
      *         <p>
-     *         For Google, Facebook and Login with Amazon:
+     *         For Google and Login with Amazon:
      *         </p>
      *         <ul>
      *         <li>
@@ -594,6 +638,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         <li>
      *         <p>
      *         authorize_scopes
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For Facebook:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         client_id
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         client_secret
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         authorize_scopes
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         api_version
      *         </p>
      *         </li>
      *         </ul>
@@ -684,11 +755,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *         oidc_issuer key</i>
      *         </p>
      *         </li>
-     *         <li>
-     *         <p>
-     *         authorize_scopes
-     *         </p>
-     *         </li>
      *         </ul>
      *         </li>
      *         <li>
@@ -722,7 +788,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <ul>
      * <li>
      * <p>
-     * For Google, Facebook and Login with Amazon:
+     * For Google and Login with Amazon:
      * </p>
      * <ul>
      * <li>
@@ -738,6 +804,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Facebook:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * api_version
      * </p>
      * </li>
      * </ul>
@@ -828,11 +921,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -861,7 +949,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            <ul>
      *            <li>
      *            <p>
-     *            For Google, Facebook and Login with Amazon:
+     *            For Google and Login with Amazon:
      *            </p>
      *            <ul>
      *            <li>
@@ -877,6 +965,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            <li>
      *            <p>
      *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For Facebook:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            client_secret
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            api_version
      *            </p>
      *            </li>
      *            </ul>
@@ -965,11 +1080,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            jwks_uri <i>if not available from discovery URL specified by
      *            oidc_issuer key</i>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            authorize_scopes
      *            </p>
      *            </li>
      *            </ul>
@@ -1005,7 +1115,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <ul>
      * <li>
      * <p>
-     * For Google, Facebook and Login with Amazon:
+     * For Google and Login with Amazon:
      * </p>
      * <ul>
      * <li>
@@ -1021,6 +1131,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Facebook:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * api_version
      * </p>
      * </li>
      * </ul>
@@ -1111,11 +1248,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -1147,7 +1279,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            <ul>
      *            <li>
      *            <p>
-     *            For Google, Facebook and Login with Amazon:
+     *            For Google and Login with Amazon:
      *            </p>
      *            <ul>
      *            <li>
@@ -1163,6 +1295,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            <li>
      *            <p>
      *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For Facebook:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            client_id
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            client_secret
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            authorize_scopes
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            api_version
      *            </p>
      *            </li>
      *            </ul>
@@ -1251,11 +1410,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      *            <p>
      *            jwks_uri <i>if not available from discovery URL specified by
      *            oidc_issuer key</i>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            authorize_scopes
      *            </p>
      *            </li>
      *            </ul>
@@ -1295,7 +1449,7 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <ul>
      * <li>
      * <p>
-     * For Google, Facebook and Login with Amazon:
+     * For Google and Login with Amazon:
      * </p>
      * <ul>
      * <li>
@@ -1311,6 +1465,33 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <li>
      * <p>
      * authorize_scopes
+     * </p>
+     * </li>
+     * </ul>
+     * </li>
+     * <li>
+     * <p>
+     * For Facebook:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * client_id
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * client_secret
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * authorize_scopes
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * api_version
      * </p>
      * </li>
      * </ul>
@@ -1399,11 +1580,6 @@ public class CreateIdentityProviderRequest extends AmazonWebServiceRequest imple
      * <p>
      * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
      * key</i>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
      * </p>
      * </li>
      * </ul>

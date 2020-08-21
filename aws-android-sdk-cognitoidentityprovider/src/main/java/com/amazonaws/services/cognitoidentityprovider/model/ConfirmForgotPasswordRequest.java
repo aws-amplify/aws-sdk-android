@@ -64,7 +64,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The confirmation code sent by a user's request to retrieve a forgotten
-     * password. For more information, see
+     * password. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     * >ForgotPassword</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -346,7 +348,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The confirmation code sent by a user's request to retrieve a forgotten
-     * password. For more information, see
+     * password. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     * >ForgotPassword</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -355,7 +359,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *
      * @return <p>
      *         The confirmation code sent by a user's request to retrieve a
-     *         forgotten password. For more information, see
+     *         forgotten password. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     *         >ForgotPassword</a>.
      *         </p>
      */
     public String getConfirmationCode() {
@@ -365,7 +371,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The confirmation code sent by a user's request to retrieve a forgotten
-     * password. For more information, see
+     * password. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     * >ForgotPassword</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -374,7 +382,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *
      * @param confirmationCode <p>
      *            The confirmation code sent by a user's request to retrieve a
-     *            forgotten password. For more information, see
+     *            forgotten password. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     *            >ForgotPassword</a>.
      *            </p>
      */
     public void setConfirmationCode(String confirmationCode) {
@@ -384,7 +394,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * The confirmation code sent by a user's request to retrieve a forgotten
-     * password. For more information, see
+     * password. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     * >ForgotPassword</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -396,7 +408,9 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *
      * @param confirmationCode <p>
      *            The confirmation code sent by a user's request to retrieve a
-     *            forgotten password. For more information, see
+     *            forgotten password. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html"
+     *            >ForgotPassword</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
