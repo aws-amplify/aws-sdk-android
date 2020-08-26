@@ -1133,6 +1133,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
     @AnyThread
     public void signIn(final String username,
+                       final Map<String, String> validationData,
+                       final Callback<SignInResult> callback) {
+        signIn(username, validationData, Collections.<String, String>emptyMap(), callback);
+    }
+
+    @AnyThread
+    public void signIn(final String username,
                        final String password,
                        final Map<String, String> validationData,
                        final Map<String, String> clientMetadata,
@@ -1142,11 +1149,27 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         internalCallback.async(_signIn(username, password, validationData, clientMetadata, internalCallback));
     }
 
+    @AnyThread
+    public void signIn(final String username,
+                       final Map<String, String> validationData,
+                       final Map<String, String> clientMetadata,
+                       final Callback<SignInResult> callback) {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>(callback);
+        internalCallback.async(_signIn(username, validationData, clientMetadata, internalCallback));
+    }
+
     @WorkerThread
     public SignInResult signIn(final String username,
                                final String password,
                                final Map<String, String> validationData) throws Exception {
         return signIn(username, password, validationData, Collections.<String, String>emptyMap());
+    }
+
+    @WorkerThread
+    public SignInResult signIn(final String username,
+                               final Map<String, String> validationData) throws Exception {
+        return signIn(username, validationData, Collections.<String, String>emptyMap());
     }
 
     @WorkerThread
@@ -1159,6 +1182,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         return internalCallback.await(_signIn(username, password, validationData, clientMetadata, internalCallback));
     }
 
+    @WorkerThread
+    public SignInResult signIn(final String username,
+                               final Map<String, String> validationData,
+                               final Map<String, String> clientMetadata) throws Exception {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
+        return internalCallback.await(_signIn(username, validationData, clientMetadata, internalCallback));
+    }
     private Runnable _signIn(final String username,
                              final String password,
                              final Map<String, String> validationData,
@@ -1266,6 +1297,109 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
     }
 
+    private Runnable _signIn(final String username,
+                             final Map<String, String> validationData,
+                             final Map<String, String> clientMetadata,
+                             final Callback<SignInResult> callback) {
+
+        this.signInCallback = callback;
+        signInState = null;
+        mStore.set(SIGN_IN_MODE, SignInMode.SIGN_IN.toString());
+
+        return new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    userpool.getUser(username).getSession(
+                      clientMetadata,
+                      new AuthenticationHandler() {
+                          @Override
+                          public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+                              try {
+                                  mCognitoUserSession = userSession;
+                                  signInState = SignInState.DONE;
+                              } catch (Exception e) {
+                                  signInCallback.onError(e);
+                                  signInCallback = null;
+                              }
+
+                              try {
+                                  if (isFederationEnabled()) {
+                                      federatedSignInWithoutAssigningState(userpoolsLoginKey, mCognitoUserSession.getIdToken().getJWTToken());
+                                  }
+
+                                  releaseSignInWait();
+                              } catch (Exception e) {
+                                  Log.w(TAG, "Failed to federate tokens during sign-in", e);
+                              } finally {
+                                  setUserState(new UserStateDetails(UserState.SIGNED_IN, getSignInDetailsMap()));
+                              }
+
+                              signInCallback.onResult(SignInResult.DONE);
+                          }
+
+                          @Override
+                          public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
+                              Log.d(TAG, "Sending password.");
+                              try {
+                                  if (
+                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                      awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
+                                      awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
+                                  ) {
+                                      final HashMap<String, String> authParameters = new HashMap<String, String>();
+                                      authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
+                                  }
+                              } catch (JSONException e) {
+                                  e.printStackTrace();
+                              }
+
+                              authenticationContinuation.continueTask();
+                          }
+
+                          @Override
+                          public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
+                              signInMfaContinuation = continuation;
+                              CognitoUserCodeDeliveryDetails parameters = continuation.getParameters();
+                              signInState = SignInState.SMS_MFA;
+                              signInCallback.onResult(
+                                new SignInResult(
+                                  SignInState.SMS_MFA,
+                                  new UserCodeDeliveryDetails(
+                                    parameters.getDestination(),
+                                    parameters.getDeliveryMedium(),
+                                    parameters.getAttributeName()
+                                  )
+                                )
+                              );
+                          }
+
+                          @Override
+                          public void authenticationChallenge(ChallengeContinuation continuation) {
+                              try {
+                                  signInState = SignInState.valueOf(continuation.getChallengeName());
+                                  signInChallengeContinuation = continuation;
+
+                                  signInCallback.onResult(new SignInResult(
+                                    signInState,
+                                    continuation.getParameters()));
+                              } catch (IllegalArgumentException e) {
+                                  signInCallback.onError(e);
+                              }
+                          }
+
+                          @Override
+                          public void onFailure(Exception exception) {
+                              signInCallback.onError(exception);
+                          }
+                      }
+                    );
+                } catch (Exception e) {
+                    callback.onError(e);
+                }
+            }
+        };
+    }
     @AnyThread
     public void confirmSignIn(final String signInChallengeResponse,
                               final Callback<SignInResult> callback) {
