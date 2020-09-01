@@ -38,7 +38,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     * >InitiateAuth</a>.
      * </p>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -250,7 +252,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     * >InitiateAuth</a>.
      * </p>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -262,7 +266,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @return <p>
-     *         The challenge name. For more information, see .
+     *         The challenge name. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     *         >InitiateAuth</a>.
      *         </p>
      *         <p>
      *         <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -275,7 +281,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     * >InitiateAuth</a>.
      * </p>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -287,7 +295,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     *            >InitiateAuth</a>.
      *            </p>
      *            <p>
      *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -300,7 +310,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     * >InitiateAuth</a>.
      * </p>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -315,7 +327,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     *            >InitiateAuth</a>.
      *            </p>
      *            <p>
      *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -331,7 +345,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     * >InitiateAuth</a>.
      * </p>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -343,7 +359,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     *            >InitiateAuth</a>.
      *            </p>
      *            <p>
      *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -356,7 +374,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The challenge name. For more information, see .
+     * The challenge name. For more information, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     * >InitiateAuth</a>.
      * </p>
      * <p>
      * <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.
@@ -371,7 +391,9 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * DEVICE_PASSWORD_VERIFIER, ADMIN_NO_SRP_AUTH, NEW_PASSWORD_REQUIRED
      *
      * @param challengeName <p>
-     *            The challenge name. For more information, see .
+     *            The challenge name. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_InitiateAuth.html"
+     *            >InitiateAuth</a>.
      *            </p>
      *            <p>
      *            <code>ADMIN_NO_SRP_AUTH</code> is not a valid value.

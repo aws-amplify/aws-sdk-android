@@ -141,7 +141,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <p>
      * For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required if the
-     * app client is configured with a client secret), <code>DEVICE_KEY</code>
+     * app client is configured with a client secret), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -149,21 +149,23 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
      * if the app client is configured with a client secret),
-     * <code>DEVICE_KEY</code>
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>
+     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>DEVICE_KEY</code>
+     * secret), <code>DEVICE_KEY</code>. To start the authentication flow with
+     * password verification, include <code>ChallengeName: SRP_A</code> and
+     * <code>SRP_A: (The SRP_A Value)</code>.
      * </p>
      * </li>
      * </ul>
@@ -1224,7 +1226,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <p>
      * For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required if the
-     * app client is configured with a client secret), <code>DEVICE_KEY</code>
+     * app client is configured with a client secret), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1232,21 +1234,23 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
      * if the app client is configured with a client secret),
-     * <code>DEVICE_KEY</code>
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>
+     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>DEVICE_KEY</code>
+     * secret), <code>DEVICE_KEY</code>. To start the authentication flow with
+     * password verification, include <code>ChallengeName: SRP_A</code> and
+     * <code>SRP_A: (The SRP_A Value)</code>.
      * </p>
      * </li>
      * </ul>
@@ -1262,7 +1266,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *         For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required),
      *         <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required
      *         if the app client is configured with a client secret),
-     *         <code>DEVICE_KEY</code>
+     *         <code>DEVICE_KEY</code>.
      *         </p>
      *         </li>
      *         <li>
@@ -1270,7 +1274,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *         For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      *         <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code>
      *         (required if the app client is configured with a client secret),
-     *         <code>DEVICE_KEY</code>
+     *         <code>DEVICE_KEY</code>.
      *         </p>
      *         </li>
      *         <li>
@@ -1278,14 +1282,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *         For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code>
      *         (required), <code>SECRET_HASH</code> (if app client is configured
      *         with client secret), <code>PASSWORD</code> (required),
-     *         <code>DEVICE_KEY</code>
+     *         <code>DEVICE_KEY</code>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required),
      *         <code>SECRET_HASH</code> (if app client is configured with client
-     *         secret), <code>DEVICE_KEY</code>
+     *         secret), <code>DEVICE_KEY</code>. To start the authentication
+     *         flow with password verification, include
+     *         <code>ChallengeName: SRP_A</code> and
+     *         <code>SRP_A: (The SRP_A Value)</code>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1305,7 +1312,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <p>
      * For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required if the
-     * app client is configured with a client secret), <code>DEVICE_KEY</code>
+     * app client is configured with a client secret), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1313,21 +1320,23 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
      * if the app client is configured with a client secret),
-     * <code>DEVICE_KEY</code>
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>
+     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>DEVICE_KEY</code>
+     * secret), <code>DEVICE_KEY</code>. To start the authentication flow with
+     * password verification, include <code>ChallengeName: SRP_A</code> and
+     * <code>SRP_A: (The SRP_A Value)</code>.
      * </p>
      * </li>
      * </ul>
@@ -1343,7 +1352,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            For <code>USER_SRP_AUTH</code>: <code>USERNAME</code>
      *            (required), <code>SRP_A</code> (required),
      *            <code>SECRET_HASH</code> (required if the app client is
-     *            configured with a client secret), <code>DEVICE_KEY</code>
+     *            configured with a client secret), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1351,7 +1360,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      *            <code>REFRESH_TOKEN</code> (required),
      *            <code>SECRET_HASH</code> (required if the app client is
-     *            configured with a client secret), <code>DEVICE_KEY</code>
+     *            configured with a client secret), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1359,14 +1368,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code>
      *            (required), <code>SECRET_HASH</code> (if app client is
      *            configured with client secret), <code>PASSWORD</code>
-     *            (required), <code>DEVICE_KEY</code>
+     *            (required), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For <code>CUSTOM_AUTH</code>: <code>USERNAME</code>
      *            (required), <code>SECRET_HASH</code> (if app client is
-     *            configured with client secret), <code>DEVICE_KEY</code>
+     *            configured with client secret), <code>DEVICE_KEY</code>. To
+     *            start the authentication flow with password verification,
+     *            include <code>ChallengeName: SRP_A</code> and
+     *            <code>SRP_A: (The SRP_A Value)</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1386,7 +1398,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <p>
      * For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required if the
-     * app client is configured with a client secret), <code>DEVICE_KEY</code>
+     * app client is configured with a client secret), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1394,21 +1406,23 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
      * if the app client is configured with a client secret),
-     * <code>DEVICE_KEY</code>
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>
+     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>DEVICE_KEY</code>
+     * secret), <code>DEVICE_KEY</code>. To start the authentication flow with
+     * password verification, include <code>ChallengeName: SRP_A</code> and
+     * <code>SRP_A: (The SRP_A Value)</code>.
      * </p>
      * </li>
      * </ul>
@@ -1427,7 +1441,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            For <code>USER_SRP_AUTH</code>: <code>USERNAME</code>
      *            (required), <code>SRP_A</code> (required),
      *            <code>SECRET_HASH</code> (required if the app client is
-     *            configured with a client secret), <code>DEVICE_KEY</code>
+     *            configured with a client secret), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1435,7 +1449,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      *            <code>REFRESH_TOKEN</code> (required),
      *            <code>SECRET_HASH</code> (required if the app client is
-     *            configured with a client secret), <code>DEVICE_KEY</code>
+     *            configured with a client secret), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
@@ -1443,14 +1457,17 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      *            For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code>
      *            (required), <code>SECRET_HASH</code> (if app client is
      *            configured with client secret), <code>PASSWORD</code>
-     *            (required), <code>DEVICE_KEY</code>
+     *            (required), <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For <code>CUSTOM_AUTH</code>: <code>USERNAME</code>
      *            (required), <code>SECRET_HASH</code> (if app client is
-     *            configured with client secret), <code>DEVICE_KEY</code>
+     *            configured with client secret), <code>DEVICE_KEY</code>. To
+     *            start the authentication flow with password verification,
+     *            include <code>ChallengeName: SRP_A</code> and
+     *            <code>SRP_A: (The SRP_A Value)</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1473,7 +1490,7 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * <p>
      * For <code>USER_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SRP_A</code> (required), <code>SECRET_HASH</code> (required if the
-     * app client is configured with a client secret), <code>DEVICE_KEY</code>
+     * app client is configured with a client secret), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
@@ -1481,21 +1498,23 @@ public class AdminInitiateAuthRequest extends AmazonWebServiceRequest implements
      * For <code>REFRESH_TOKEN_AUTH/REFRESH_TOKEN</code>:
      * <code>REFRESH_TOKEN</code> (required), <code>SECRET_HASH</code> (required
      * if the app client is configured with a client secret),
-     * <code>DEVICE_KEY</code>
+     * <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>ADMIN_NO_SRP_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>
+     * secret), <code>PASSWORD</code> (required), <code>DEVICE_KEY</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For <code>CUSTOM_AUTH</code>: <code>USERNAME</code> (required),
      * <code>SECRET_HASH</code> (if app client is configured with client
-     * secret), <code>DEVICE_KEY</code>
+     * secret), <code>DEVICE_KEY</code>. To start the authentication flow with
+     * password verification, include <code>ChallengeName: SRP_A</code> and
+     * <code>SRP_A: (The SRP_A Value)</code>.
      * </p>
      * </li>
      * </ul>

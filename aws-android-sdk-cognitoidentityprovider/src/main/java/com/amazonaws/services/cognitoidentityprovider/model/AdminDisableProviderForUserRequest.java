@@ -28,7 +28,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * between that user and an existing user is removed. The next time the external
  * user (no longer attached to the previously linked
  * <code>DestinationUser</code>) signs in, they must create a new user account.
- * See .
+ * See <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminLinkProviderForUser.html"
+ * >AdminLinkProviderForUser</a>.
  * </p>
  * <p>
  * This action is enabled only for admin access and requires developer
@@ -56,9 +58,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * identity has not yet been used to sign-in, the
  * <code>ProviderAttributeName</code> and <code>ProviderAttributeValue</code>
  * must be the same values that were used for the <code>SourceUser</code> when
- * the identities were originally linked in the call. (If the linking was done
- * with <code>ProviderAttributeName</code> set to <code>Cognito_Subject</code>,
- * the same applies here). However, if the user has already signed in, the
+ * the identities were originally linked using
+ * <code> AdminLinkProviderForUser</code> call. (If the linking was done with
+ * <code>ProviderAttributeName</code> set to <code>Cognito_Subject</code>, the
+ * same applies here). However, if the user has already signed in, the
  * <code>ProviderAttributeName</code> must be <code>Cognito_Subject</code> and
  * <code>ProviderAttributeValue</code> must be the subject of the SAML
  * assertion.

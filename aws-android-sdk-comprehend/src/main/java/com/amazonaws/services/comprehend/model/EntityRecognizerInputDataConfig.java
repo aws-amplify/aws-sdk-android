@@ -26,7 +26,7 @@ public class EntityRecognizerInputDataConfig implements Serializable {
     /**
      * <p>
      * The entity types in the input data for an entity recognizer. A maximum of
-     * 12 entity types can be used at one time to train an entity recognizer.
+     * 25 entity types can be used at one time to train an entity recognizer.
      * </p>
      */
     private java.util.List<EntityTypesListItem> entityTypes;
@@ -55,12 +55,12 @@ public class EntityRecognizerInputDataConfig implements Serializable {
     /**
      * <p>
      * The entity types in the input data for an entity recognizer. A maximum of
-     * 12 entity types can be used at one time to train an entity recognizer.
+     * 25 entity types can be used at one time to train an entity recognizer.
      * </p>
      *
      * @return <p>
      *         The entity types in the input data for an entity recognizer. A
-     *         maximum of 12 entity types can be used at one time to train an
+     *         maximum of 25 entity types can be used at one time to train an
      *         entity recognizer.
      *         </p>
      */
@@ -71,12 +71,12 @@ public class EntityRecognizerInputDataConfig implements Serializable {
     /**
      * <p>
      * The entity types in the input data for an entity recognizer. A maximum of
-     * 12 entity types can be used at one time to train an entity recognizer.
+     * 25 entity types can be used at one time to train an entity recognizer.
      * </p>
      *
      * @param entityTypes <p>
      *            The entity types in the input data for an entity recognizer. A
-     *            maximum of 12 entity types can be used at one time to train an
+     *            maximum of 25 entity types can be used at one time to train an
      *            entity recognizer.
      *            </p>
      */
@@ -92,7 +92,7 @@ public class EntityRecognizerInputDataConfig implements Serializable {
     /**
      * <p>
      * The entity types in the input data for an entity recognizer. A maximum of
-     * 12 entity types can be used at one time to train an entity recognizer.
+     * 25 entity types can be used at one time to train an entity recognizer.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,7 +100,7 @@ public class EntityRecognizerInputDataConfig implements Serializable {
      *
      * @param entityTypes <p>
      *            The entity types in the input data for an entity recognizer. A
-     *            maximum of 12 entity types can be used at one time to train an
+     *            maximum of 25 entity types can be used at one time to train an
      *            entity recognizer.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -119,7 +119,7 @@ public class EntityRecognizerInputDataConfig implements Serializable {
     /**
      * <p>
      * The entity types in the input data for an entity recognizer. A maximum of
-     * 12 entity types can be used at one time to train an entity recognizer.
+     * 25 entity types can be used at one time to train an entity recognizer.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -127,7 +127,7 @@ public class EntityRecognizerInputDataConfig implements Serializable {
      *
      * @param entityTypes <p>
      *            The entity types in the input data for an entity recognizer. A
-     *            maximum of 12 entity types can be used at one time to train an
+     *            maximum of 25 entity types can be used at one time to train an
      *            entity recognizer.
      *            </p>
      * @return A reference to this updated object so that method calls can be
