@@ -95,6 +95,7 @@ public class AuthenticationDetails {
         if (authenticationParameters != null) {
             this.authenticationType = CognitoServiceConstants.CHLG_TYPE_CUSTOM_CHALLENGE;
             this.authenticationParameters = authenticationParameters;
+            setAuthenticationParameter(CognitoServiceConstants.AUTH_PARAM_USERNAME, userId);
             setValidationData(validationData);
         } else {
             this.authenticationType = null;

@@ -1209,7 +1209,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                             awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
                                     ) {
                                         final HashMap<String, String> authParameters = new HashMap<String, String>();
-                                        authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
+                                        if (password != null) {
+                                            authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
+                                        } else {
+                                            authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
+                                        }
                                     } else {
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
                                     }
