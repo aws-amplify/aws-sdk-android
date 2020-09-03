@@ -28,10 +28,9 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.ssl.SSLContextBuilder;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLContext;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
 
@@ -86,13 +85,18 @@ public final class KinesisVideoApacheHttpClient implements HttpClient {
     }
 
     private CloseableHttpClient buildHttpClient() {
-        final SSLContextBuilder builder = new SSLContextBuilder();
         try {
-            builder.loadTrustMaterial(new TrustAllStrategy());
-            final SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(builder.build(),
-                    new String[] {"TLSv1.2"}, // TLS protocol, use 1.2 only
-                    null, // TLS ciphers, use default
-                    new NoOpHostNameVerifier());
+            final SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
+            // Initializes context. Either of the first two parameters may be null in which case
+            // the installed security providers will be searched for the highest priority implementation
+            // of the appropriate factory. Likewise, the secure random parameter may be null in which case the default
+            // implementation will be used.
+            sslContext.init(null, null, null);
+
+            final SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(
+                    sslContext,
+                    HostnameVerifier.INSTANCE);
+
             return HttpClients.custom()
                     .setSSLSocketFactory(sslSocketFactory)
                     .setDefaultRequestConfig(RequestConfig.custom()
@@ -105,8 +109,6 @@ public final class KinesisVideoApacheHttpClient implements HttpClient {
         } catch (final KeyManagementException e) {
             throw new RuntimeException("Exception while building Apache http client", e);
         } catch (final NoSuchAlgorithmException e) {
-            throw new RuntimeException("Exception while building Apache http client", e);
-        } catch (final KeyStoreException e) {
             throw new RuntimeException("Exception while building Apache http client", e);
         }
     }
@@ -200,22 +202,6 @@ public final class KinesisVideoApacheHttpClient implements HttpClient {
         public KinesisVideoApacheHttpClient build() {
             checkNotNull(mUri);
             return new KinesisVideoApacheHttpClient(this);
-        }
-    }
-
-    private static class TrustAllStrategy implements TrustStrategy {
-
-        @Override
-        public boolean isTrusted(final X509Certificate[] chain, final String authType) throws CertificateException {
-            //Trust all certificates
-            return true;
-        }
-    }
-
-    private static class NoOpHostNameVerifier implements HostnameVerifier {
-        @Override
-        public boolean verify(String hostname, SSLSession session) {
-            return true;
         }
     }
 }
