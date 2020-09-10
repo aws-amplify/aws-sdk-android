@@ -23,14 +23,13 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.config.SocketConfig;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509ExtendedTrustManager;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
 
@@ -43,6 +42,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
@@ -87,15 +87,10 @@ public final class KinesisVideoApacheHttpClient implements HttpClient {
     private CloseableHttpClient buildHttpClient() {
         try {
             final SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
-            // Initializes context. Either of the first two parameters may be null in which case
-            // the installed security providers will be searched for the highest priority implementation
-            // of the appropriate factory. Likewise, the secure random parameter may be null in which case the default
-            // implementation will be used.
-            sslContext.init(null, null, null);
+            sslContext.init(null, new X509ExtendedTrustManager[] {
+                    new HostnameVerifyingX509ExtendedTrustManager(true)}, new SecureRandom());
 
-            final SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(
-                    sslContext,
-                    HostnameVerifier.INSTANCE);
+            final SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext);
 
             return HttpClients.custom()
                     .setSSLSocketFactory(sslSocketFactory)

@@ -45,11 +45,9 @@ public class HostnameVerifyingX509ExtendedTrustManager extends X509ExtendedTrust
             factory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
             factory.init((KeyStore) null);
         } catch (NoSuchAlgorithmException nsae) {
-            log.error("Unable to initialize default TrustManagerFactory, using no-op X509ExtendedTrustManager", nsae);
-            return getNoOpInstance();
+            throw new RuntimeException("Unable to initialize default TrustManagerFactory", nsae);
         } catch (KeyStoreException nse) {
-            log.error("Unable to initialize default TrustManagerFactory, using no-op X509ExtendedTrustManager", nse);
-            return getNoOpInstance();
+            throw new RuntimeException("Unable to initialize default TrustManagerFactory", nse);
         }
 
         for (TrustManager tm: factory.getTrustManagers()) {
@@ -58,8 +56,7 @@ public class HostnameVerifyingX509ExtendedTrustManager extends X509ExtendedTrust
             }
         }
 
-        log.debug("No default X509TrustManager found, using no-op");
-        return getNoOpInstance();
+        throw new RuntimeException("No default X509TrustManager found");
     }
 
     @Override
@@ -170,65 +167,4 @@ public class HostnameVerifyingX509ExtendedTrustManager extends X509ExtendedTrust
         log.error("Failed to verify hostname: %s", hostName);
         throw new CertificateException("Failed to verify both host address and host name");
     }
-
-
-    private X509ExtendedTrustManager getNoOpInstance() {
-        return new X509ExtendedTrustManager() {
-            @Override
-            public void checkClientTrusted(
-                    final X509Certificate[] x509Certificates,
-                    final String s,
-                    final Socket socket)
-                    throws CertificateException {
-
-            }
-
-            @Override
-            public void checkServerTrusted(
-                    final X509Certificate[] x509Certificates,
-                    final String s,
-                    final Socket socket)
-                    throws CertificateException {
-
-            }
-
-            @Override
-            public void checkClientTrusted(
-                    final X509Certificate[] x509Certificates,
-                    final String s,
-                    final SSLEngine sslEngine)
-                    throws CertificateException {
-
-            }
-
-            @Override
-            public void checkServerTrusted(
-                    final X509Certificate[] x509Certificates,
-                    final String s,
-                    final SSLEngine sslEngine)
-                    throws CertificateException {
-
-            }
-
-            @Override
-            public void checkClientTrusted(
-                    final X509Certificate[] x509Certificates,
-                    final String s) throws CertificateException {
-
-            }
-
-            @Override
-            public void checkServerTrusted(
-                    final X509Certificate[] x509Certificates,
-                    final String s) throws CertificateException {
-
-            }
-
-            @Override
-            public X509Certificate[] getAcceptedIssuers() {
-                return new X509Certificate[0];
-            }
-        };
-    }
-
 }
