@@ -21,6 +21,29 @@
     - `getTokens()` was making a network call every time it was used, negating any benefit of cached tokens. Removed 
     the unnecessary network call so it now correctly returns cached tokens when available with no network call (Issue #1722)
 
+## [Release 2.17.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.1)
+
+### Bug fixes
+ - Resolves `UnsupportedOperationException` while passing client
+   metadata to signUp and signIn auth APIs
+
+### Updated Service Models
+ - SNS
+   - Documentation updates
+ - Transcribe
+   - Support Medical use cases
+ - Lex
+   - Updates to NLU confidence
+
+### Miscellaneous Updates
+ - Update third-party dependency versions
+  - AndroidX Core 1.3.1
+  - Paho MQTT Client 1.2.5
+  - Google Play Services Auth 18.1.0
+  - Android Gradle Plugin 4.0.1
+
+ - Allow override of User Agent in the AWSMobileClient
+
 ## [Release 2.17.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.17.0)
 
 *Version 2.17.0 introduces breaking changes against 2.16.13.*

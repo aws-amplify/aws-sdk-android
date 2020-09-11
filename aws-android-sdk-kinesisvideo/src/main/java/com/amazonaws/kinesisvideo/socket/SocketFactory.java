@@ -17,16 +17,16 @@
 
 package com.amazonaws.kinesisvideo.socket;
 
+import com.amazonaws.kinesisvideo.http.HostnameVerifyingX509ExtendedTrustManager;
+
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.X509ExtendedTrustManager;
 
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URI;
 import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
 
 public class SocketFactory {
     private static final int DEFAULT_HTTP_PORT = 80;
@@ -52,27 +52,10 @@ public class SocketFactory {
 
     private Socket createSslSocket(final InetAddress address, final int port) throws Exception {
         final SSLContext context = SSLContext.getInstance("TLSv1.2");
-        context.init(NO_KEY_MANAGERS, trustAllCertificates(), new SecureRandom());
+        context.init(NO_KEY_MANAGERS, new X509ExtendedTrustManager[] {
+                                new HostnameVerifyingX509ExtendedTrustManager(true)}, new SecureRandom());
         return context.getSocketFactory().createSocket(address, port);
 
-    }
-
-    public TrustManager[] trustAllCertificates() {
-        return new TrustManager[]{
-                new X509TrustManager() {
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return new X509Certificate[0];
-                    }
-
-                    public void checkClientTrusted(final X509Certificate[] certs, final String authType) {
-
-                    }
-
-                    public void checkServerTrusted(final X509Certificate[] certs, final String authType) {
-
-                    }
-                }
-        };
     }
 
     private boolean isHttps(final URI uri) {

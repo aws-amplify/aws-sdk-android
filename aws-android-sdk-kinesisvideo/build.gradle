@@ -6,10 +6,10 @@ android {
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
-        minSdkVersion 21 // android.hardware.camera2
+        minSdkVersion 24 // https://developer.android.com/reference/javax/net/ssl/X509ExtendedTrustManager
         targetSdkVersion 29
-        versionCode 1
-        versionName '1.0'
+        versionCode 21800
+        versionName '2.18.0'
     }
 
     packagingOptions {
@@ -24,5 +24,6 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     //noinspection DuplicatePlatformClasses
     compileOnly 'org.apache.httpcomponents:httpclient:4.5.12'
+    testImplementation 'junit:junit:4.13'
 }
 
