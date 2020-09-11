@@ -6,8 +6,6 @@ android {
     defaultConfig {
         minSdkVersion 14 // junit ext
         targetSdkVersion 29
-        versionCode 21800
-        versionName '2.18.0'
     }
 }
 

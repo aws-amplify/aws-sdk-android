@@ -8,8 +8,6 @@ android {
     defaultConfig {
         minSdkVersion 24 // https://developer.android.com/reference/javax/net/ssl/X509ExtendedTrustManager
         targetSdkVersion 29
-        versionCode 21800
-        versionName '2.18.0'
     }
 
     packagingOptions {

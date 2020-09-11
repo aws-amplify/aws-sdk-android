@@ -20,3 +20,18 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+subprojects { project ->
+    afterEvaluate {
+        configureAndroidLibrary(project)
+    }
+}
+
+private void configureAndroidLibrary(Project project) {
+    project.android {
+        defaultConfig {
+            versionCode rootProject.findProperty('VERSION_CODE').toInteger()
+            versionName rootProject.findProperty('VERSION_NAME')
+        }
+    }
+}
