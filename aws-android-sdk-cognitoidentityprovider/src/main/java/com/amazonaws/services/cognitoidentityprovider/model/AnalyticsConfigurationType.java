@@ -24,9 +24,10 @@ import java.io.Serializable;
  * </p>
  * <note>
  * <p>
- * Cognito User Pools only supports sending events to Amazon Pinpoint projects
- * in the US East (N. Virginia) us-east-1 Region, regardless of the region in
- * which the user pool resides.
+ * In regions where Pinpoint is not available, Cognito User Pools only supports
+ * sending events to Amazon Pinpoint projects in us-east-1. In regions where
+ * Pinpoint is available, Cognito User Pools will support sending events to
+ * Amazon Pinpoint projects within that same region.
  * </p>
  * </note>
  */
@@ -40,6 +41,22 @@ public class AnalyticsConfigurationType implements Serializable {
      * <b>Pattern: </b>^[0-9a-fA-F]+$<br/>
      */
     private String applicationId;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
+     * the Amazon Pinpoint project for Pinpoint integration with the chosen User
+     * Pool Client. Amazon Cognito publishes events to the pinpoint project
+     * declared by the app ARN.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     */
+    private String applicationArn;
 
     /**
      * <p>
@@ -122,6 +139,89 @@ public class AnalyticsConfigurationType implements Serializable {
      */
     public AnalyticsConfigurationType withApplicationId(String applicationId) {
         this.applicationId = applicationId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
+     * the Amazon Pinpoint project for Pinpoint integration with the chosen User
+     * Pool Client. Amazon Cognito publishes events to the pinpoint project
+     * declared by the app ARN.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You
+     *         can use the Amazon Pinpoint project for Pinpoint integration with
+     *         the chosen User Pool Client. Amazon Cognito publishes events to
+     *         the pinpoint project declared by the app ARN.
+     *         </p>
+     */
+    public String getApplicationArn() {
+        return applicationArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
+     * the Amazon Pinpoint project for Pinpoint integration with the chosen User
+     * Pool Client. Amazon Cognito publishes events to the pinpoint project
+     * declared by the app ARN.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     *
+     * @param applicationArn <p>
+     *            The Amazon Resource Name (ARN) of an Amazon Pinpoint project.
+     *            You can use the Amazon Pinpoint project for Pinpoint
+     *            integration with the chosen User Pool Client. Amazon Cognito
+     *            publishes events to the pinpoint project declared by the app
+     *            ARN.
+     *            </p>
+     */
+    public void setApplicationArn(String applicationArn) {
+        this.applicationArn = applicationArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of an Amazon Pinpoint project. You can use
+     * the Amazon Pinpoint project for Pinpoint integration with the chosen User
+     * Pool Client. Amazon Cognito publishes events to the pinpoint project
+     * declared by the app ARN.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     *
+     * @param applicationArn <p>
+     *            The Amazon Resource Name (ARN) of an Amazon Pinpoint project.
+     *            You can use the Amazon Pinpoint project for Pinpoint
+     *            integration with the chosen User Pool Client. Amazon Cognito
+     *            publishes events to the pinpoint project declared by the app
+     *            ARN.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AnalyticsConfigurationType withApplicationArn(String applicationArn) {
+        this.applicationArn = applicationArn;
         return this;
     }
 
@@ -326,6 +426,8 @@ public class AnalyticsConfigurationType implements Serializable {
         sb.append("{");
         if (getApplicationId() != null)
             sb.append("ApplicationId: " + getApplicationId() + ",");
+        if (getApplicationArn() != null)
+            sb.append("ApplicationArn: " + getApplicationArn() + ",");
         if (getRoleArn() != null)
             sb.append("RoleArn: " + getRoleArn() + ",");
         if (getExternalId() != null)
@@ -343,6 +445,8 @@ public class AnalyticsConfigurationType implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getApplicationId() == null) ? 0 : getApplicationId().hashCode());
+        hashCode = prime * hashCode
+                + ((getApplicationArn() == null) ? 0 : getApplicationArn().hashCode());
         hashCode = prime * hashCode + ((getRoleArn() == null) ? 0 : getRoleArn().hashCode());
         hashCode = prime * hashCode + ((getExternalId() == null) ? 0 : getExternalId().hashCode());
         hashCode = prime * hashCode
@@ -365,6 +469,11 @@ public class AnalyticsConfigurationType implements Serializable {
             return false;
         if (other.getApplicationId() != null
                 && other.getApplicationId().equals(this.getApplicationId()) == false)
+            return false;
+        if (other.getApplicationArn() == null ^ this.getApplicationArn() == null)
+            return false;
+        if (other.getApplicationArn() != null
+                && other.getApplicationArn().equals(this.getApplicationArn()) == false)
             return false;
         if (other.getRoleArn() == null ^ this.getRoleArn() == null)
             return false;

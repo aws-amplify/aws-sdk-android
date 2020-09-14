@@ -50,7 +50,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The one time password computed using the secret code returned by
+     * The one time password computed using the secret code returned by <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     * >AssociateSoftwareToken"</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -182,7 +184,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The one time password computed using the secret code returned by
+     * The one time password computed using the secret code returned by <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     * >AssociateSoftwareToken"</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -191,6 +195,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      *
      * @return <p>
      *         The one time password computed using the secret code returned by
+     *         <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     *         >AssociateSoftwareToken"</a>.
      *         </p>
      */
     public String getUserCode() {
@@ -199,7 +206,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The one time password computed using the secret code returned by
+     * The one time password computed using the secret code returned by <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     * >AssociateSoftwareToken"</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -208,7 +217,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      *
      * @param userCode <p>
      *            The one time password computed using the secret code returned
-     *            by
+     *            by <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     *            >AssociateSoftwareToken"</a>.
      *            </p>
      */
     public void setUserCode(String userCode) {
@@ -217,7 +228,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The one time password computed using the secret code returned by
+     * The one time password computed using the secret code returned by <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     * >AssociateSoftwareToken"</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -229,7 +242,9 @@ public class VerifySoftwareTokenRequest extends AmazonWebServiceRequest implemen
      *
      * @param userCode <p>
      *            The one time password computed using the secret code returned
-     *            by
+     *            by <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html"
+     *            >AssociateSoftwareToken"</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -39,6 +39,9 @@ class AnalyticsConfigurationTypeJsonUnmarshaller implements
             if (name.equals("ApplicationId")) {
                 analyticsConfigurationType.setApplicationId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ApplicationArn")) {
+                analyticsConfigurationType.setApplicationArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RoleArn")) {
                 analyticsConfigurationType.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

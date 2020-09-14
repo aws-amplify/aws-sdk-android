@@ -31,6 +31,11 @@ class AnalyticsConfigurationTypeJsonMarshaller {
             jsonWriter.name("ApplicationId");
             jsonWriter.value(applicationId);
         }
+        if (analyticsConfigurationType.getApplicationArn() != null) {
+            String applicationArn = analyticsConfigurationType.getApplicationArn();
+            jsonWriter.name("ApplicationArn");
+            jsonWriter.value(applicationArn);
+        }
         if (analyticsConfigurationType.getRoleArn() != null) {
             String roleArn = analyticsConfigurationType.getRoleArn();
             jsonWriter.name("RoleArn");

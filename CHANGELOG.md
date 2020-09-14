@@ -1,5 +1,24 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.19.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.0)
+
+## Bug Fixes
+ - aws-android-sdk-kinesisvideo
+    - Improve TLS validation by implementing hostname verification [#2103](https://github.com/aws-amplify/aws-sdk-android/issues/2103)
+    * **Breaking API Change**
+      - Incremented minSDKVersion from 21 to 24
+ - aws-android-sdk-s3
+    - Implemented downgrade for sql transfer table [#2056](https://github.com/aws-amplify/aws-sdk-android/issues/2056)
+ - aws-android-sdk-mobile-client
+    - Fix passwordless auth [#2097](https://github.com/aws-amplify/aws-sdk-android/issues/2097)
+    - Remove unnecessary ContextCompat class lookup [#2091](https://github.com/aws-amplify/aws-sdk-android/issues/2091)
+
+### Misc. Updates
+ - Model updates for the following services
+    - AWS Cognito Identity Provider [#2080](https://github.com/aws-amplify/aws-sdk-android/issues/2080)
+    - AWS Comprehend [#2067](https://github.com/aws-amplify/aws-sdk-android/issues/2067)
+
+
 ## [Release 2.18.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.18.0)
 
 *Version 2.18.0 introduces breaking changes against 2.17.1.*

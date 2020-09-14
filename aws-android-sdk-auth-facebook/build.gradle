@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion 14 // v4 support, brought from facebook sdk
         targetSdkVersion 29
-        versionCode 21800
-        versionName '2.18.0'
     }
 }
 
