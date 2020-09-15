@@ -123,6 +123,23 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("ContentRedaction");
                 ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
             }
+            if (startTranscriptionJobRequest.getIdentifyLanguage() != null) {
+                Boolean identifyLanguage = startTranscriptionJobRequest.getIdentifyLanguage();
+                jsonWriter.name("IdentifyLanguage");
+                jsonWriter.value(identifyLanguage);
+            }
+            if (startTranscriptionJobRequest.getLanguageOptions() != null) {
+                java.util.List<String> languageOptions = startTranscriptionJobRequest
+                        .getLanguageOptions();
+                jsonWriter.name("LanguageOptions");
+                jsonWriter.beginArray();
+                for (String languageOptionsItem : languageOptions) {
+                    if (languageOptionsItem != null) {
+                        jsonWriter.value(languageOptionsItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
