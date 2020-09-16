@@ -1,3 +1,12 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---connect
+---aws-android-sdk-ssm
 # Change Log - AWS SDK for Android
 
 ## [Release 2.18.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.18.0)
