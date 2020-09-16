@@ -44,6 +44,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * The name of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      */
     private String name;
 
@@ -162,6 +165,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * The name of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @return <p>
      *         The name of the contact flow.
@@ -175,6 +181,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * The name of the contact flow.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
      *            The name of the contact flow.
@@ -191,6 +200,9 @@ public class ContactFlowSummary implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param name <p>
      *            The name of the contact flow.

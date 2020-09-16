@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets historical metric data from the specified Amazon Connect instance.
  * </p>
  * <p>
- * For more information, see <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
- * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
+ * For a description of each historical metric, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+ * >Historical Metrics Definitions</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
  * </p>
  */
@@ -72,8 +72,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      */
     private Filters filters;
@@ -590,8 +590,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      *
      * @return <p>
@@ -599,7 +599,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         returned. Metric data is retrieved only for the resources
      *         associated with the queues or channels included in the filter.
      *         You can include both queue IDs and queue ARNs in the same
-     *         request. The only supported channel is <code>VOICE</code>.
+     *         request. Both <code>VOICE</code> and <code>CHAT</code> channels
+     *         are supported.
      *         </p>
      */
     public Filters getFilters() {
@@ -611,8 +612,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      *
      * @param filters <p>
@@ -620,8 +621,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            metrics returned. Metric data is retrieved only for the
      *            resources associated with the queues or channels included in
      *            the filter. You can include both queue IDs and queue ARNs in
-     *            the same request. The only supported channel is
-     *            <code>VOICE</code>.
+     *            the same request. Both <code>VOICE</code> and
+     *            <code>CHAT</code> channels are supported.
      *            </p>
      */
     public void setFilters(Filters filters) {
@@ -633,8 +634,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -645,8 +646,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            metrics returned. Metric data is retrieved only for the
      *            resources associated with the queues or channels included in
      *            the filter. You can include both queue IDs and queue ARNs in
-     *            the same request. The only supported channel is
-     *            <code>VOICE</code>.
+     *            the same request. Both <code>VOICE</code> and
+     *            <code>CHAT</code> channels are supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

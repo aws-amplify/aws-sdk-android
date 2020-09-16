@@ -24,9 +24,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets the real-time metric data from the specified Amazon Connect instance.
  * </p>
  * <p>
- * For more information, see <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html"
- * >Real-time Metrics Reports</a> in the <i>Amazon Connect Administrator
+ * For a description of each metric, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+ * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
  * </p>
  */
@@ -46,8 +46,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      */
     private Filters filters;
@@ -57,8 +57,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
      * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. The only supported channel is
-     * <code>VOICE</code>.
+     * should include a Channels filter. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
@@ -70,8 +70,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available. For a description of each metric, see <a
-     * href=
+     * following metrics are available. For a description of all the metrics,
+     * see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
@@ -82,11 +82,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     * >ACW</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     * >Available</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ERROR</dt>
@@ -94,11 +104,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     * >Error</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_NON_PRODUCTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     * >NPT (Non-Productive Time)</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ON_CALL</dt>
@@ -106,11 +126,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_ON_CONTACT</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ONLINE</dt>
@@ -118,11 +148,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     * >Online</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_STAFFED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     * >Staffed</a>
      * </p>
      * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
@@ -130,11 +170,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     * >In queue</a>
+     * </p>
      * </dd>
      * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     * >Scheduled</a>
      * </p>
      * </dd>
      * <dt>OLDEST_CONTACT_AGE</dt>
@@ -142,17 +192,42 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: SECONDS
      * </p>
+     * <p>
+     * When you use groupings, Unit says SECONDS but the Value is returned in
+     * MILLISECONDS. For example, if you get a response like this:
+     * </p>
+     * <p>
+     * <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     * </p>
+     * <p>
+     * The actual OLDEST_CONTACT_AGE is 24 seconds.
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     * >Oldest</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_ACTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     * >Active</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     * >Availability</a>
      * </p>
      * </dd>
      * </dl>
@@ -242,8 +317,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      *
      * @return <p>
@@ -251,7 +326,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         returned. Metric data is retrieved only for the resources
      *         associated with the queues or channels included in the filter.
      *         You can include both queue IDs and queue ARNs in the same
-     *         request. The only supported channel is <code>VOICE</code>.
+     *         request. Both <code>VOICE</code> and <code>CHAT</code> channels
+     *         are supported.
      *         </p>
      */
     public Filters getFilters() {
@@ -263,8 +339,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      *
      * @param filters <p>
@@ -272,8 +348,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            metrics returned. Metric data is retrieved only for the
      *            resources associated with the queues or channels included in
      *            the filter. You can include both queue IDs and queue ARNs in
-     *            the same request. The only supported channel is
-     *            <code>VOICE</code>.
+     *            the same request. Both <code>VOICE</code> and
+     *            <code>CHAT</code> channels are supported.
      *            </p>
      */
     public void setFilters(Filters filters) {
@@ -285,8 +361,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The queues, up to 100, or channels, to use to filter the metrics
      * returned. Metric data is retrieved only for the resources associated with
      * the queues or channels included in the filter. You can include both queue
-     * IDs and queue ARNs in the same request. The only supported channel is
-     * <code>VOICE</code>.
+     * IDs and queue ARNs in the same request. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -297,8 +373,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            metrics returned. Metric data is retrieved only for the
      *            resources associated with the queues or channels included in
      *            the filter. You can include both queue IDs and queue ARNs in
-     *            the same request. The only supported channel is
-     *            <code>VOICE</code>.
+     *            the same request. Both <code>VOICE</code> and
+     *            <code>CHAT</code> channels are supported.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -313,8 +389,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
      * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. The only supported channel is
-     * <code>VOICE</code>.
+     * should include a Channels filter. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
@@ -325,8 +401,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         The grouping applied to the metrics returned. For example, when
      *         grouped by <code>QUEUE</code>, the metrics returned apply to each
      *         queue rather than aggregated for all queues. If you group by
-     *         <code>CHANNEL</code>, you should include a Channels filter. The
-     *         only supported channel is <code>VOICE</code>.
+     *         <code>CHANNEL</code>, you should include a Channels filter. Both
+     *         <code>VOICE</code> and <code>CHAT</code> channels are supported.
      *         </p>
      *         <p>
      *         If no <code>Grouping</code> is included in the request, a summary
@@ -342,8 +418,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
      * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. The only supported channel is
-     * <code>VOICE</code>.
+     * should include a Channels filter. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
@@ -355,7 +431,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            when grouped by <code>QUEUE</code>, the metrics returned apply
      *            to each queue rather than aggregated for all queues. If you
      *            group by <code>CHANNEL</code>, you should include a Channels
-     *            filter. The only supported channel is <code>VOICE</code>.
+     *            filter. Both <code>VOICE</code> and <code>CHAT</code> channels
+     *            are supported.
      *            </p>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
@@ -376,8 +453,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
      * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. The only supported channel is
-     * <code>VOICE</code>.
+     * should include a Channels filter. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
@@ -392,7 +469,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            when grouped by <code>QUEUE</code>, the metrics returned apply
      *            to each queue rather than aggregated for all queues. If you
      *            group by <code>CHANNEL</code>, you should include a Channels
-     *            filter. The only supported channel is <code>VOICE</code>.
+     *            filter. Both <code>VOICE</code> and <code>CHAT</code> channels
+     *            are supported.
      *            </p>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
@@ -416,8 +494,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * The grouping applied to the metrics returned. For example, when grouped
      * by <code>QUEUE</code>, the metrics returned apply to each queue rather
      * than aggregated for all queues. If you group by <code>CHANNEL</code>, you
-     * should include a Channels filter. The only supported channel is
-     * <code>VOICE</code>.
+     * should include a Channels filter. Both <code>VOICE</code> and
+     * <code>CHAT</code> channels are supported.
      * </p>
      * <p>
      * If no <code>Grouping</code> is included in the request, a summary of
@@ -432,7 +510,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            when grouped by <code>QUEUE</code>, the metrics returned apply
      *            to each queue rather than aggregated for all queues. If you
      *            group by <code>CHANNEL</code>, you should include a Channels
-     *            filter. The only supported channel is <code>VOICE</code>.
+     *            filter. Both <code>VOICE</code> and <code>CHAT</code> channels
+     *            are supported.
      *            </p>
      *            <p>
      *            If no <code>Grouping</code> is included in the request, a
@@ -449,8 +528,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available. For a description of each metric, see <a
-     * href=
+     * following metrics are available. For a description of all the metrics,
+     * see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
@@ -461,11 +540,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     * >ACW</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     * >Available</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ERROR</dt>
@@ -473,11 +562,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     * >Error</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_NON_PRODUCTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     * >NPT (Non-Productive Time)</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ON_CALL</dt>
@@ -485,11 +584,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_ON_CONTACT</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ONLINE</dt>
@@ -497,11 +606,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     * >Online</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_STAFFED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     * >Staffed</a>
      * </p>
      * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
@@ -509,11 +628,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     * >In queue</a>
+     * </p>
      * </dd>
      * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     * >Scheduled</a>
      * </p>
      * </dd>
      * <dt>OLDEST_CONTACT_AGE</dt>
@@ -521,11 +650,31 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: SECONDS
      * </p>
+     * <p>
+     * When you use groupings, Unit says SECONDS but the Value is returned in
+     * MILLISECONDS. For example, if you get a response like this:
+     * </p>
+     * <p>
+     * <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     * </p>
+     * <p>
+     * The actual OLDEST_CONTACT_AGE is 24 seconds.
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     * >Oldest</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_ACTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     * >Active</a>
      * </p>
      * </dd>
      * <dt>SLOTS_AVAILABLE</dt>
@@ -533,13 +682,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     * >Availability</a>
+     * </p>
      * </dd>
      * </dl>
      *
      * @return <p>
      *         The metrics to retrieve. Specify the name and unit for each
      *         metric. The following metrics are available. For a description of
-     *         each metric, see <a href=
+     *         all the metrics, see <a href=
      *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      *         >Real-time Metrics Definitions</a> in the <i>Amazon Connect
      *         Administrator Guide</i>.
@@ -550,11 +704,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         Unit: COUNT
      *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     *         >ACW</a>
+     *         </p>
      *         </dd>
      *         <dt>AGENTS_AVAILABLE</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     *         >Available</a>
      *         </p>
      *         </dd>
      *         <dt>AGENTS_ERROR</dt>
@@ -562,11 +726,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         Unit: COUNT
      *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     *         >Error</a>
+     *         </p>
      *         </dd>
      *         <dt>AGENTS_NON_PRODUCTIVE</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     *         >NPT (Non-Productive Time)</a>
      *         </p>
      *         </dd>
      *         <dt>AGENTS_ON_CALL</dt>
@@ -574,11 +748,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         Unit: COUNT
      *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *         >On contact</a>
+     *         </p>
      *         </dd>
      *         <dt>AGENTS_ON_CONTACT</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *         >On contact</a>
      *         </p>
      *         </dd>
      *         <dt>AGENTS_ONLINE</dt>
@@ -586,11 +770,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         Unit: COUNT
      *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     *         >Online</a>
+     *         </p>
      *         </dd>
      *         <dt>AGENTS_STAFFED</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     *         >Staffed</a>
      *         </p>
      *         </dd>
      *         <dt>CONTACTS_IN_QUEUE</dt>
@@ -598,11 +792,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         Unit: COUNT
      *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     *         >In queue</a>
+     *         </p>
      *         </dd>
      *         <dt>CONTACTS_SCHEDULED</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     *         >Scheduled</a>
      *         </p>
      *         </dd>
      *         <dt>OLDEST_CONTACT_AGE</dt>
@@ -610,17 +814,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *         <p>
      *         Unit: SECONDS
      *         </p>
+     *         <p>
+     *         When you use groupings, Unit says SECONDS but the Value is
+     *         returned in MILLISECONDS. For example, if you get a response like
+     *         this:
+     *         </p>
+     *         <p>
+     *         <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     *         </p>
+     *         <p>
+     *         The actual OLDEST_CONTACT_AGE is 24 seconds.
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     *         >Oldest</a>
+     *         </p>
      *         </dd>
      *         <dt>SLOTS_ACTIVE</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
      *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     *         >Active</a>
+     *         </p>
      *         </dd>
      *         <dt>SLOTS_AVAILABLE</dt>
      *         <dd>
      *         <p>
      *         Unit: COUNT
+     *         </p>
+     *         <p>
+     *         Name in real-time metrics report: <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     *         >Availability</a>
      *         </p>
      *         </dd>
      *         </dl>
@@ -632,8 +862,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available. For a description of each metric, see <a
-     * href=
+     * following metrics are available. For a description of all the metrics,
+     * see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
@@ -644,11 +874,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     * >ACW</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     * >Available</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ERROR</dt>
@@ -656,11 +896,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     * >Error</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_NON_PRODUCTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     * >NPT (Non-Productive Time)</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ON_CALL</dt>
@@ -668,11 +918,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_ON_CONTACT</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ONLINE</dt>
@@ -680,11 +940,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     * >Online</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_STAFFED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     * >Staffed</a>
      * </p>
      * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
@@ -692,11 +962,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     * >In queue</a>
+     * </p>
      * </dd>
      * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     * >Scheduled</a>
      * </p>
      * </dd>
      * <dt>OLDEST_CONTACT_AGE</dt>
@@ -704,11 +984,31 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: SECONDS
      * </p>
+     * <p>
+     * When you use groupings, Unit says SECONDS but the Value is returned in
+     * MILLISECONDS. For example, if you get a response like this:
+     * </p>
+     * <p>
+     * <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     * </p>
+     * <p>
+     * The actual OLDEST_CONTACT_AGE is 24 seconds.
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     * >Oldest</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_ACTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     * >Active</a>
      * </p>
      * </dd>
      * <dt>SLOTS_AVAILABLE</dt>
@@ -716,13 +1016,18 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     * >Availability</a>
+     * </p>
      * </dd>
      * </dl>
      *
      * @param currentMetrics <p>
      *            The metrics to retrieve. Specify the name and unit for each
      *            metric. The following metrics are available. For a description
-     *            of each metric, see <a href=
+     *            of all the metrics, see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      *            >Real-time Metrics Definitions</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
@@ -733,11 +1038,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     *            >ACW</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     *            >Available</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ERROR</dt>
@@ -745,11 +1060,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     *            >Error</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_NON_PRODUCTIVE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     *            >NPT (Non-Productive Time)</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ON_CALL</dt>
@@ -757,11 +1082,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *            >On contact</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_ON_CONTACT</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *            >On contact</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ONLINE</dt>
@@ -769,11 +1104,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     *            >Online</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_STAFFED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     *            >Staffed</a>
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_IN_QUEUE</dt>
@@ -781,11 +1126,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     *            >In queue</a>
+     *            </p>
      *            </dd>
      *            <dt>CONTACTS_SCHEDULED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     *            >Scheduled</a>
      *            </p>
      *            </dd>
      *            <dt>OLDEST_CONTACT_AGE</dt>
@@ -793,17 +1148,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: SECONDS
      *            </p>
+     *            <p>
+     *            When you use groupings, Unit says SECONDS but the Value is
+     *            returned in MILLISECONDS. For example, if you get a response
+     *            like this:
+     *            </p>
+     *            <p>
+     *            <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     *            </p>
+     *            <p>
+     *            The actual OLDEST_CONTACT_AGE is 24 seconds.
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     *            >Oldest</a>
+     *            </p>
      *            </dd>
      *            <dt>SLOTS_ACTIVE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     *            >Active</a>
+     *            </p>
      *            </dd>
      *            <dt>SLOTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     *            >Availability</a>
      *            </p>
      *            </dd>
      *            </dl>
@@ -820,8 +1201,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available. For a description of each metric, see <a
-     * href=
+     * following metrics are available. For a description of all the metrics,
+     * see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
@@ -832,11 +1213,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     * >ACW</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     * >Available</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ERROR</dt>
@@ -844,11 +1235,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     * >Error</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_NON_PRODUCTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     * >NPT (Non-Productive Time)</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ON_CALL</dt>
@@ -856,11 +1257,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_ON_CONTACT</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ONLINE</dt>
@@ -868,11 +1279,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     * >Online</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_STAFFED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     * >Staffed</a>
      * </p>
      * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
@@ -880,11 +1301,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     * >In queue</a>
+     * </p>
      * </dd>
      * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     * >Scheduled</a>
      * </p>
      * </dd>
      * <dt>OLDEST_CONTACT_AGE</dt>
@@ -892,17 +1323,42 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: SECONDS
      * </p>
+     * <p>
+     * When you use groupings, Unit says SECONDS but the Value is returned in
+     * MILLISECONDS. For example, if you get a response like this:
+     * </p>
+     * <p>
+     * <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     * </p>
+     * <p>
+     * The actual OLDEST_CONTACT_AGE is 24 seconds.
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     * >Oldest</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_ACTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     * >Active</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     * >Availability</a>
      * </p>
      * </dd>
      * </dl>
@@ -913,7 +1369,7 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * @param currentMetrics <p>
      *            The metrics to retrieve. Specify the name and unit for each
      *            metric. The following metrics are available. For a description
-     *            of each metric, see <a href=
+     *            of all the metrics, see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      *            >Real-time Metrics Definitions</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
@@ -924,11 +1380,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     *            >ACW</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     *            >Available</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ERROR</dt>
@@ -936,11 +1402,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     *            >Error</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_NON_PRODUCTIVE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     *            >NPT (Non-Productive Time)</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ON_CALL</dt>
@@ -948,11 +1424,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *            >On contact</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_ON_CONTACT</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *            >On contact</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ONLINE</dt>
@@ -960,11 +1446,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     *            >Online</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_STAFFED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     *            >Staffed</a>
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_IN_QUEUE</dt>
@@ -972,11 +1468,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     *            >In queue</a>
+     *            </p>
      *            </dd>
      *            <dt>CONTACTS_SCHEDULED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     *            >Scheduled</a>
      *            </p>
      *            </dd>
      *            <dt>OLDEST_CONTACT_AGE</dt>
@@ -984,17 +1490,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: SECONDS
      *            </p>
+     *            <p>
+     *            When you use groupings, Unit says SECONDS but the Value is
+     *            returned in MILLISECONDS. For example, if you get a response
+     *            like this:
+     *            </p>
+     *            <p>
+     *            <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     *            </p>
+     *            <p>
+     *            The actual OLDEST_CONTACT_AGE is 24 seconds.
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     *            >Oldest</a>
+     *            </p>
      *            </dd>
      *            <dt>SLOTS_ACTIVE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     *            >Active</a>
+     *            </p>
      *            </dd>
      *            <dt>SLOTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     *            >Availability</a>
      *            </p>
      *            </dd>
      *            </dl>
@@ -1014,8 +1546,8 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The metrics to retrieve. Specify the name and unit for each metric. The
-     * following metrics are available. For a description of each metric, see <a
-     * href=
+     * following metrics are available. For a description of all the metrics,
+     * see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
@@ -1026,11 +1558,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     * >ACW</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     * >Available</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ERROR</dt>
@@ -1038,11 +1580,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     * >Error</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_NON_PRODUCTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     * >NPT (Non-Productive Time)</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ON_CALL</dt>
@@ -1050,11 +1602,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_ON_CONTACT</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     * >On contact</a>
      * </p>
      * </dd>
      * <dt>AGENTS_ONLINE</dt>
@@ -1062,11 +1624,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     * >Online</a>
+     * </p>
      * </dd>
      * <dt>AGENTS_STAFFED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     * >Staffed</a>
      * </p>
      * </dd>
      * <dt>CONTACTS_IN_QUEUE</dt>
@@ -1074,11 +1646,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     * >In queue</a>
+     * </p>
      * </dd>
      * <dt>CONTACTS_SCHEDULED</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     * >Scheduled</a>
      * </p>
      * </dd>
      * <dt>OLDEST_CONTACT_AGE</dt>
@@ -1086,17 +1668,42 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * <p>
      * Unit: SECONDS
      * </p>
+     * <p>
+     * When you use groupings, Unit says SECONDS but the Value is returned in
+     * MILLISECONDS. For example, if you get a response like this:
+     * </p>
+     * <p>
+     * <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     * </p>
+     * <p>
+     * The actual OLDEST_CONTACT_AGE is 24 seconds.
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     * >Oldest</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_ACTIVE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
      * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     * >Active</a>
+     * </p>
      * </dd>
      * <dt>SLOTS_AVAILABLE</dt>
      * <dd>
      * <p>
      * Unit: COUNT
+     * </p>
+     * <p>
+     * Name in real-time metrics report: <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     * >Availability</a>
      * </p>
      * </dd>
      * </dl>
@@ -1107,7 +1714,7 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      * @param currentMetrics <p>
      *            The metrics to retrieve. Specify the name and unit for each
      *            metric. The following metrics are available. For a description
-     *            of each metric, see <a href=
+     *            of all the metrics, see <a href=
      *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
      *            >Real-time Metrics Definitions</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
@@ -1118,11 +1725,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time"
+     *            >ACW</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time"
+     *            >Available</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ERROR</dt>
@@ -1130,11 +1747,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time"
+     *            >Error</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_NON_PRODUCTIVE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time"
+     *            >NPT (Non-Productive Time)</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ON_CALL</dt>
@@ -1142,11 +1769,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *            >On contact</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_ON_CONTACT</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time"
+     *            >On contact</a>
      *            </p>
      *            </dd>
      *            <dt>AGENTS_ONLINE</dt>
@@ -1154,11 +1791,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time"
+     *            >Online</a>
+     *            </p>
      *            </dd>
      *            <dt>AGENTS_STAFFED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time"
+     *            >Staffed</a>
      *            </p>
      *            </dd>
      *            <dt>CONTACTS_IN_QUEUE</dt>
@@ -1166,11 +1813,21 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time"
+     *            >In queue</a>
+     *            </p>
      *            </dd>
      *            <dt>CONTACTS_SCHEDULED</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time"
+     *            >Scheduled</a>
      *            </p>
      *            </dd>
      *            <dt>OLDEST_CONTACT_AGE</dt>
@@ -1178,17 +1835,43 @@ public class GetCurrentMetricDataRequest extends AmazonWebServiceRequest impleme
      *            <p>
      *            Unit: SECONDS
      *            </p>
+     *            <p>
+     *            When you use groupings, Unit says SECONDS but the Value is
+     *            returned in MILLISECONDS. For example, if you get a response
+     *            like this:
+     *            </p>
+     *            <p>
+     *            <code>{ "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value": 24113.0 </code>
+     *            </p>
+     *            <p>
+     *            The actual OLDEST_CONTACT_AGE is 24 seconds.
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time"
+     *            >Oldest</a>
+     *            </p>
      *            </dd>
      *            <dt>SLOTS_ACTIVE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
      *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time"
+     *            >Active</a>
+     *            </p>
      *            </dd>
      *            <dt>SLOTS_AVAILABLE</dt>
      *            <dd>
      *            <p>
      *            Unit: COUNT
+     *            </p>
+     *            <p>
+     *            Name in real-time metrics report: <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time"
+     *            >Availability</a>
      *            </p>
      *            </dd>
      *            </dl>
