@@ -625,6 +625,32 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets the properties associated with a PII entities detection job. For
+     * example, you can use this operation to get the job status.
+     * </p>
+     * 
+     * @param describePiiEntitiesDetectionJobRequest
+     * @return describePiiEntitiesDetectionJobResult The response from the
+     *         DescribePiiEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribePiiEntitiesDetectionJobResult describePiiEntitiesDetectionJob(
+            DescribePiiEntitiesDetectionJobRequest describePiiEntitiesDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the properties associated with a sentiment detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -748,6 +774,30 @@ public interface AmazonComprehend {
      *             request, or a server side issue.
      */
     DetectKeyPhrasesResult detectKeyPhrases(DetectKeyPhrasesRequest detectKeyPhrasesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Inspects the input text for entities that contain personally identifiable
+     * information (PII) and returns information about them.
+     * </p>
+     * 
+     * @param detectPiiEntitiesRequest
+     * @return detectPiiEntitiesResult The response from the DetectPiiEntities
+     *         service method, as returned by Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DetectPiiEntitiesResult detectPiiEntities(DetectPiiEntitiesRequest detectPiiEntitiesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -983,6 +1033,31 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets a list of the PII entity detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listPiiEntitiesDetectionJobsRequest
+     * @return listPiiEntitiesDetectionJobsResult The response from the
+     *         ListPiiEntitiesDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListPiiEntitiesDetectionJobsResult listPiiEntitiesDetectionJobs(
+            ListPiiEntitiesDetectionJobsRequest listPiiEntitiesDetectionJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets a list of sentiment detection jobs that you have submitted.
      * </p>
      * 
@@ -1171,6 +1246,32 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Starts an asynchronous PII entity detection job for a collection of
+     * documents.
+     * </p>
+     * 
+     * @param startPiiEntitiesDetectionJobRequest
+     * @return startPiiEntitiesDetectionJobResult The response from the
+     *         StartPiiEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartPiiEntitiesDetectionJobResult startPiiEntitiesDetectionJob(
+            StartPiiEntitiesDetectionJobRequest startPiiEntitiesDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Starts an asynchronous sentiment detection job for a collection of
      * documents. use the operation to track the status of a job.
      * </p>
@@ -1340,6 +1441,30 @@ public interface AmazonComprehend {
      */
     StopKeyPhrasesDetectionJobResult stopKeyPhrasesDetectionJob(
             StopKeyPhrasesDetectionJobRequest stopKeyPhrasesDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Stops a PII entities detection job in progress.
+     * </p>
+     * 
+     * @param stopPiiEntitiesDetectionJobRequest
+     * @return stopPiiEntitiesDetectionJobResult The response from the
+     *         StopPiiEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopPiiEntitiesDetectionJobResult stopPiiEntitiesDetectionJob(
+            StopPiiEntitiesDetectionJobRequest stopPiiEntitiesDetectionJobRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
