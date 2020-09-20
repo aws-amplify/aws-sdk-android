@@ -16,6 +16,7 @@
 package com.amazonaws.services.comprehend.model.transform;
 
 import com.amazonaws.services.comprehend.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
