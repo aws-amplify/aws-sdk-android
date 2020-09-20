@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides information about the phone numbers for the specified Amazon Connect
  * instance.
  * </p>
+ * <p>
+ * For more information about phone numbers, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+ * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon Connect
+ * Administrator Guide</i>.
+ * </p>
  */
 public class ListPhoneNumbersRequest extends AmazonWebServiceRequest implements Serializable {
     /**

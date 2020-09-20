@@ -36,8 +36,14 @@ import com.amazonaws.services.connect.model.*;
  * create and limits to the number of requests that you can make per second. For
  * more information, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
- * >Amazon Connect Service Limits</a> in the <i>Amazon Connect Administrator
+ * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
+ * </p>
+ * <p>
+ * To connect programmatically to an AWS service, you use an endpoint. For a
+ * list of Amazon Connect endpoints, see <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
+ * >Amazon Connect Endpoints</a>.
  * </p>
  **/
 public interface AmazonConnect {
@@ -102,7 +108,91 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Associates a set of queues with a routing profile.
+     * </p>
+     * 
+     * @param associateRoutingProfileQueuesRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void associateRoutingProfileQueues(
+            AssociateRoutingProfileQueuesRequest associateRoutingProfileQueuesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a contact flow for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createContactFlowRequest
+     * @return createContactFlowResult The response from the CreateContactFlow
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidContactFlowException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateContactFlowResult createContactFlow(CreateContactFlowRequest createContactFlowRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a new routing profile.
+     * </p>
+     * 
+     * @param createRoutingProfileRequest
+     * @return createRoutingProfileResult The response from the
+     *         CreateRoutingProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateRoutingProfileResult createRoutingProfile(
+            CreateRoutingProfileRequest createRoutingProfileRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a user account for the specified Amazon Connect instance.
+     * </p>
+     * <p>
+     * For information about how to create user accounts using the Amazon
+     * Connect console, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html"
+     * >Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
      * 
      * @param createUserRequest
@@ -130,6 +220,13 @@ public interface AmazonConnect {
      * <p>
      * Deletes a user account from the specified Amazon Connect instance.
      * </p>
+     * <p>
+     * For information about what happens to a user's data when their account is
+     * deleted, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html"
+     * >Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param deleteUserRequest
      * @throws InvalidRequestException
@@ -147,6 +244,59 @@ public interface AmazonConnect {
      */
     void deleteUser(DeleteUserRequest deleteUserRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes the specified contact flow.
+     * </p>
+     * 
+     * @param describeContactFlowRequest
+     * @return describeContactFlowResult The response from the
+     *         DescribeContactFlow service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ContactFlowNotPublishedException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeContactFlowResult describeContactFlow(
+            DescribeContactFlowRequest describeContactFlowRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Describes the specified routing profile.
+     * </p>
+     * 
+     * @param describeRoutingProfileRequest
+     * @return describeRoutingProfileResult The response from the
+     *         DescribeRoutingProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeRoutingProfileResult describeRoutingProfile(
+            DescribeRoutingProfileRequest describeRoutingProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -230,6 +380,29 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Disassociates a set of queues from a routing profile.
+     * </p>
+     * 
+     * @param disassociateRoutingProfileQueuesRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void disassociateRoutingProfileQueues(
+            DisassociateRoutingProfileQueuesRequest disassociateRoutingProfileQueuesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Retrieves the contact attributes for the specified contact.
      * </p>
      * 
@@ -258,9 +431,9 @@ public interface AmazonConnect {
      * instance.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html"
-     * >Real-time Metrics Reports</a> in the <i>Amazon Connect Administrator
+     * For a description of each metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html"
+     * >Real-time Metrics Definitions</a> in the <i>Amazon Connect Administrator
      * Guide</i>.
      * </p>
      * 
@@ -315,10 +488,10 @@ public interface AmazonConnect {
      * Gets historical metric data from the specified Amazon Connect instance.
      * </p>
      * <p>
-     * For more information, see <a href=
-     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html"
-     * >Historical Metrics Reports</a> in the <i>Amazon Connect Administrator
-     * Guide</i>.
+     * For a description of each historical metric, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html"
+     * >Historical Metrics Definitions</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * 
      * @param getMetricDataRequest
@@ -345,6 +518,11 @@ public interface AmazonConnect {
      * Provides information about the contact flows for the specified Amazon
      * Connect instance.
      * </p>
+     * <p>
+     * For more information about contact flows, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html"
+     * >Contact Flows</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listContactFlowsRequest
      * @return listContactFlowsResult The response from the ListContactFlows
@@ -369,6 +547,12 @@ public interface AmazonConnect {
      * <p>
      * Provides information about the hours of operation for the specified
      * Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about hours of operation, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html"
+     * >Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
      * </p>
      * 
      * @param listHoursOfOperationsRequest
@@ -397,6 +581,12 @@ public interface AmazonConnect {
      * Provides information about the phone numbers for the specified Amazon
      * Connect instance.
      * </p>
+     * <p>
+     * For more information about phone numbers, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html"
+     * >Set Up Phone Numbers for Your Contact Center</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listPhoneNumbersRequest
      * @return listPhoneNumbersResult The response from the ListPhoneNumbers
@@ -419,8 +609,39 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Provides information about the prompts for the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param listPromptsRequest
+     * @return listPromptsResult The response from the ListPrompts service
+     *         method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListPromptsResult listPrompts(ListPromptsRequest listPromptsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides information about the queues for the specified Amazon Connect
      * instance.
+     * </p>
+     * <p>
+     * For more information about queues, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
+     * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param listQueuesRequest
@@ -444,8 +665,42 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * List the queues associated with a routing profile.
+     * </p>
+     * 
+     * @param listRoutingProfileQueuesRequest
+     * @return listRoutingProfileQueuesResult The response from the
+     *         ListRoutingProfileQueues service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListRoutingProfileQueuesResult listRoutingProfileQueues(
+            ListRoutingProfileQueuesRequest listRoutingProfileQueuesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Provides summary information about the routing profiles for the specified
      * Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about routing profiles, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html"
+     * >Routing Profiles</a> and <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html"
+     * >Create a Routing Profile</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param listRoutingProfilesRequest
@@ -474,6 +729,11 @@ public interface AmazonConnect {
      * Provides summary information about the security profiles for the
      * specified Amazon Connect instance.
      * </p>
+     * <p>
+     * For more information about security profiles, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html"
+     * >Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param listSecurityProfilesRequest
      * @return listSecurityProfilesResult The response from the
@@ -499,6 +759,12 @@ public interface AmazonConnect {
     /**
      * <p>
      * Lists the tags for the specified resource.
+     * </p>
+     * <p>
+     * For sample policies that use tags, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+     * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
      * </p>
      * 
      * @param listTagsForResourceRequest
@@ -526,6 +792,12 @@ public interface AmazonConnect {
      * <p>
      * Provides summary information about the hierarchy groups for the specified
      * Amazon Connect instance.
+     * </p>
+     * <p>
+     * For more information about agent hierarchies, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html"
+     * >Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * 
      * @param listUserHierarchyGroupsRequest
@@ -619,6 +891,30 @@ public interface AmazonConnect {
      * >CreateParticipantConnection</a> with WEBSOCKET and
      * CONNECTION_CREDENTIALS.
      * </p>
+     * <p>
+     * A 429 error occurs in two situations:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * API rate limit is exceeded. API TPS throttling returns a
+     * <code>TooManyRequests</code> exception from the API Gateway.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >quota for concurrent active chats</a> is exceeded. Active chat
+     * throttling returns a <code>LimitExceededException</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For more information about how chat works, see <a
+     * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
+     * >Chat</a> in the <i>Amazon Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param startChatContactRequest
      * @return startChatContactResult The response from the StartChatContact
@@ -695,6 +991,16 @@ public interface AmazonConnect {
      * There is a 60 second dialing timeout for this operation. If the call is
      * not connected after 60 seconds, it fails.
      * </p>
+     * <note>
+     * <p>
+     * UK numbers with a 447 prefix are not allowed by default. Before you can
+     * dial these UK mobile numbers, you must submit a service quota increase
+     * request. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
+     * </note>
      * 
      * @param startOutboundVoiceContactRequest
      * @return startOutboundVoiceContactResult The response from the
@@ -817,6 +1123,12 @@ public interface AmazonConnect {
      * <p>
      * The supported resource type is users.
      * </p>
+     * <p>
+     * For sample policies that use tags, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html"
+     * >Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon
+     * Connect Administrator Guide</i>.
+     * </p>
      * 
      * @param tagResourceRequest
      * @throws InvalidRequestException
@@ -908,6 +1220,148 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Updates the specified contact flow.
+     * </p>
+     * 
+     * @param updateContactFlowContentRequest
+     * @throws InvalidRequestException
+     * @throws InvalidContactFlowException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateContactFlowContent(UpdateContactFlowContentRequest updateContactFlowContentRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * The name of the contact flow.
+     * </p>
+     * 
+     * @param updateContactFlowNameRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateContactFlowName(UpdateContactFlowNameRequest updateContactFlowNameRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the channels that agents can handle in the Contact Control Panel
+     * (CCP) for a routing profile.
+     * </p>
+     * 
+     * @param updateRoutingProfileConcurrencyRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRoutingProfileConcurrency(
+            UpdateRoutingProfileConcurrencyRequest updateRoutingProfileConcurrencyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the default outbound queue of a routing profile.
+     * </p>
+     * 
+     * @param updateRoutingProfileDefaultOutboundQueueRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRoutingProfileDefaultOutboundQueue(
+            UpdateRoutingProfileDefaultOutboundQueueRequest updateRoutingProfileDefaultOutboundQueueRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the name and description of a routing profile. The request
+     * accepts the following data in JSON format. At least <code>Name</code> or
+     * <code>Description</code> must be provided.
+     * </p>
+     * 
+     * @param updateRoutingProfileNameRequest
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRoutingProfileName(UpdateRoutingProfileNameRequest updateRoutingProfileNameRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the properties associated with a set of queues for a routing
+     * profile.
+     * </p>
+     * 
+     * @param updateRoutingProfileQueuesRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateRoutingProfileQueues(
+            UpdateRoutingProfileQueuesRequest updateRoutingProfileQueuesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Assigns the specified hierarchy group to the specified user.
      * </p>
      * 
@@ -932,6 +1386,20 @@ public interface AmazonConnect {
      * <p>
      * Updates the identity information for the specified user.
      * </p>
+     * <important>
+     * <p>
+     * Someone with the ability to invoke <code>UpdateUserIndentityInfo</code>
+     * can change the login credentials of other users by changing their email
+     * address. This poses a security risk to your organization. They can change
+     * the email address of a user to the attacker's email address, and then
+     * reset the password through email. We strongly recommend limiting who has
+     * the ability to invoke <code>UpdateUserIndentityInfo</code>. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html"
+     * >Best Practices for Security Profiles</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * </important>
      * 
      * @param updateUserIdentityInfoRequest
      * @throws InvalidRequestException

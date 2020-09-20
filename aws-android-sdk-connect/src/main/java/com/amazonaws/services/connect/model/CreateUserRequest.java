@@ -23,6 +23,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a user account for the specified Amazon Connect instance.
  * </p>
+ * <p>
+ * For information about how to create user accounts using the Amazon Connect
+ * console, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html"
+ * >Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.
+ * </p>
  */
 public class CreateUserRequest extends AmazonWebServiceRequest implements Serializable {
     /**
