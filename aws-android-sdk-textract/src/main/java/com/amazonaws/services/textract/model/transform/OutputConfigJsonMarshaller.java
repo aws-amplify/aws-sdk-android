@@ -20,35 +20,30 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO S3Object
+ * JSON marshaller for POJO OutputConfig
  */
-class S3ObjectJsonMarshaller {
+class OutputConfigJsonMarshaller {
 
-    public void marshall(S3Object s3Object, AwsJsonWriter jsonWriter) throws Exception {
+    public void marshall(OutputConfig outputConfig, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (s3Object.getBucket() != null) {
-            String bucket = s3Object.getBucket();
-            jsonWriter.name("Bucket");
-            jsonWriter.value(bucket);
+        if (outputConfig.getS3Bucket() != null) {
+            String s3Bucket = outputConfig.getS3Bucket();
+            jsonWriter.name("S3Bucket");
+            jsonWriter.value(s3Bucket);
         }
-        if (s3Object.getName() != null) {
-            String name = s3Object.getName();
-            jsonWriter.name("Name");
-            jsonWriter.value(name);
-        }
-        if (s3Object.getVersion() != null) {
-            String version = s3Object.getVersion();
-            jsonWriter.name("Version");
-            jsonWriter.value(version);
+        if (outputConfig.getS3Prefix() != null) {
+            String s3Prefix = outputConfig.getS3Prefix();
+            jsonWriter.name("S3Prefix");
+            jsonWriter.value(s3Prefix);
         }
         jsonWriter.endObject();
     }
 
-    private static S3ObjectJsonMarshaller instance;
+    private static OutputConfigJsonMarshaller instance;
 
-    public static S3ObjectJsonMarshaller getInstance() {
+    public static OutputConfigJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new S3ObjectJsonMarshaller();
+            instance = new OutputConfigJsonMarshaller();
         return instance;
     }
 }
