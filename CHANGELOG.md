@@ -1,3 +1,12 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---transcribe
+---textract
 # Change Log - AWS SDK for Android
 
 ## [Release 2.19.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.0)
