@@ -70,6 +70,13 @@ class TranscriptionJobSummaryJsonUnmarshaller implements
                 transcriptionJobSummary.setModelSettings(ModelSettingsJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("IdentifyLanguage")) {
+                transcriptionJobSummary.setIdentifyLanguage(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("IdentifiedLanguageScore")) {
+                transcriptionJobSummary.setIdentifiedLanguageScore(FloatJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

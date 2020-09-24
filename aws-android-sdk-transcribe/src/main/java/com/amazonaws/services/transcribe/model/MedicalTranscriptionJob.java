@@ -85,7 +85,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      */
     private String mediaFormat;
 
@@ -640,7 +640,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @return <p>
      *         The format of the input media file.
@@ -657,7 +657,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -677,7 +677,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -697,7 +697,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The format of the input media file.
@@ -717,7 +717,7 @@ public class MedicalTranscriptionJob implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The format of the input media file.

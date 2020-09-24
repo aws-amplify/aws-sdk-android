@@ -16,6 +16,7 @@
 package com.amazonaws.services.transcribe.model.transform;
 
 import com.amazonaws.services.transcribe.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**

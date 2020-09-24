@@ -332,6 +332,7 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
+        setServiceNameIntern("transcribe");
         this.setEndpoint("transcribe.us-east-1.amazonaws.com");
         this.endpointPrefix = "transcribe";
 
