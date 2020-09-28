@@ -94,6 +94,7 @@ public interface AmazonTranslate {
      * @param deleteTerminologyRequest
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws InvalidParameterValueException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

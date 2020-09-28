@@ -37,13 +37,23 @@ class DocumentClassifierInputDataConfigJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("S3Uri")) {
+            if (name.equals("DataFormat")) {
+                documentClassifierInputDataConfig.setDataFormat(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("S3Uri")) {
                 documentClassifierInputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("LabelDelimiter")) {
                 documentClassifierInputDataConfig.setLabelDelimiter(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("AugmentedManifests")) {
+                documentClassifierInputDataConfig
+                        .setAugmentedManifests(new ListUnmarshaller<AugmentedManifestsListItem>(
+                                AugmentedManifestsListItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
