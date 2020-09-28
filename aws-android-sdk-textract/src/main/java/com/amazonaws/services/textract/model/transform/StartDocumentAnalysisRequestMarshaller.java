@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -94,6 +96,11 @@ public class StartDocumentAnalysisRequestMarshaller implements
                 jsonWriter.name("NotificationChannel");
                 NotificationChannelJsonMarshaller.getInstance().marshall(notificationChannel,
                         jsonWriter);
+            }
+            if (startDocumentAnalysisRequest.getOutputConfig() != null) {
+                OutputConfig outputConfig = startDocumentAnalysisRequest.getOutputConfig();
+                jsonWriter.name("OutputConfig");
+                OutputConfigJsonMarshaller.getInstance().marshall(outputConfig, jsonWriter);
             }
 
             jsonWriter.endObject();

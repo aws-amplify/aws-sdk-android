@@ -67,8 +67,8 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous text-detection operation for the
-     * document.
+     * Returns if the detection job could not be completed. Contains explanation
+     * for what error occured.
      * </p>
      */
     private String statusMessage;
@@ -459,13 +459,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous text-detection operation for the
-     * document.
+     * Returns if the detection job could not be completed. Contains explanation
+     * for what error occured.
      * </p>
      *
      * @return <p>
-     *         The current status of an asynchronous text-detection operation
-     *         for the document.
+     *         Returns if the detection job could not be completed. Contains
+     *         explanation for what error occured.
      *         </p>
      */
     public String getStatusMessage() {
@@ -474,13 +474,13 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous text-detection operation for the
-     * document.
+     * Returns if the detection job could not be completed. Contains explanation
+     * for what error occured.
      * </p>
      *
      * @param statusMessage <p>
-     *            The current status of an asynchronous text-detection operation
-     *            for the document.
+     *            Returns if the detection job could not be completed. Contains
+     *            explanation for what error occured.
      *            </p>
      */
     public void setStatusMessage(String statusMessage) {
@@ -489,16 +489,16 @@ public class GetDocumentTextDetectionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of an asynchronous text-detection operation for the
-     * document.
+     * Returns if the detection job could not be completed. Contains explanation
+     * for what error occured.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param statusMessage <p>
-     *            The current status of an asynchronous text-detection operation
-     *            for the document.
+     *            Returns if the detection job could not be completed. Contains
+     *            explanation for what error occured.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

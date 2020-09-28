@@ -16,6 +16,7 @@
 package com.amazonaws.services.textract.model.transform;
 
 import com.amazonaws.services.textract.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**

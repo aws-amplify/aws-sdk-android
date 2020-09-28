@@ -24,7 +24,8 @@ import java.util.Map;
 public enum RelationshipType {
 
     VALUE("VALUE"),
-    CHILD("CHILD");
+    CHILD("CHILD"),
+    COMPLEX_FEATURES("COMPLEX_FEATURES");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum RelationshipType {
         enumMap = new HashMap<String, RelationshipType>();
         enumMap.put("VALUE", VALUE);
         enumMap.put("CHILD", CHILD);
+        enumMap.put("COMPLEX_FEATURES", COMPLEX_FEATURES);
     }
 
     /**
