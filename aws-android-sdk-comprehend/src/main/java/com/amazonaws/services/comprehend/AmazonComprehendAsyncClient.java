@@ -1747,6 +1747,79 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Gets the properties associated with a PII entities detection job. For
+     * example, you can use this operation to get the job status.
+     * </p>
+     * 
+     * @param describePiiEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribePiiEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribePiiEntitiesDetectionJobResult> describePiiEntitiesDetectionJobAsync(
+            final DescribePiiEntitiesDetectionJobRequest describePiiEntitiesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribePiiEntitiesDetectionJobResult>() {
+            public DescribePiiEntitiesDetectionJobResult call() throws Exception {
+                return describePiiEntitiesDetectionJob(describePiiEntitiesDetectionJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets the properties associated with a PII entities detection job. For
+     * example, you can use this operation to get the job status.
+     * </p>
+     * 
+     * @param describePiiEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         DescribePiiEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribePiiEntitiesDetectionJobResult> describePiiEntitiesDetectionJobAsync(
+            final DescribePiiEntitiesDetectionJobRequest describePiiEntitiesDetectionJobRequest,
+            final AsyncHandler<DescribePiiEntitiesDetectionJobRequest, DescribePiiEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribePiiEntitiesDetectionJobResult>() {
+            public DescribePiiEntitiesDetectionJobResult call() throws Exception {
+                DescribePiiEntitiesDetectionJobResult result = null;
+                try {
+                    result = describePiiEntitiesDetectionJob(describePiiEntitiesDetectionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describePiiEntitiesDetectionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets the properties associated with a sentiment detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -2105,6 +2178,79 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(detectKeyPhrasesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Inspects the input text for entities that contain personally identifiable
+     * information (PII) and returns information about them.
+     * </p>
+     * 
+     * @param detectPiiEntitiesRequest
+     * @return A Java Future object containing the response from the
+     *         DetectPiiEntities service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DetectPiiEntitiesResult> detectPiiEntitiesAsync(
+            final DetectPiiEntitiesRequest detectPiiEntitiesRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DetectPiiEntitiesResult>() {
+            public DetectPiiEntitiesResult call() throws Exception {
+                return detectPiiEntities(detectPiiEntitiesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Inspects the input text for entities that contain personally identifiable
+     * information (PII) and returns information about them.
+     * </p>
+     * 
+     * @param detectPiiEntitiesRequest
+     * @return A Java Future object containing the response from the
+     *         DetectPiiEntities service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DetectPiiEntitiesResult> detectPiiEntitiesAsync(
+            final DetectPiiEntitiesRequest detectPiiEntitiesRequest,
+            final AsyncHandler<DetectPiiEntitiesRequest, DetectPiiEntitiesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DetectPiiEntitiesResult>() {
+            public DetectPiiEntitiesResult call() throws Exception {
+                DetectPiiEntitiesResult result = null;
+                try {
+                    result = detectPiiEntities(detectPiiEntitiesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(detectPiiEntitiesRequest, result);
                 return result;
             }
         });
@@ -2769,6 +2915,77 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Gets a list of the PII entity detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listPiiEntitiesDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListPiiEntitiesDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListPiiEntitiesDetectionJobsResult> listPiiEntitiesDetectionJobsAsync(
+            final ListPiiEntitiesDetectionJobsRequest listPiiEntitiesDetectionJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListPiiEntitiesDetectionJobsResult>() {
+            public ListPiiEntitiesDetectionJobsResult call() throws Exception {
+                return listPiiEntitiesDetectionJobs(listPiiEntitiesDetectionJobsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of the PII entity detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listPiiEntitiesDetectionJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListPiiEntitiesDetectionJobs service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListPiiEntitiesDetectionJobsResult> listPiiEntitiesDetectionJobsAsync(
+            final ListPiiEntitiesDetectionJobsRequest listPiiEntitiesDetectionJobsRequest,
+            final AsyncHandler<ListPiiEntitiesDetectionJobsRequest, ListPiiEntitiesDetectionJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListPiiEntitiesDetectionJobsResult>() {
+            public ListPiiEntitiesDetectionJobsResult call() throws Exception {
+                ListPiiEntitiesDetectionJobsResult result = null;
+                try {
+                    result = listPiiEntitiesDetectionJobs(listPiiEntitiesDetectionJobsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listPiiEntitiesDetectionJobsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets a list of sentiment detection jobs that you have submitted.
      * </p>
      * 
@@ -3292,6 +3509,79 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Starts an asynchronous PII entity detection job for a collection of
+     * documents.
+     * </p>
+     * 
+     * @param startPiiEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartPiiEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartPiiEntitiesDetectionJobResult> startPiiEntitiesDetectionJobAsync(
+            final StartPiiEntitiesDetectionJobRequest startPiiEntitiesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartPiiEntitiesDetectionJobResult>() {
+            public StartPiiEntitiesDetectionJobResult call() throws Exception {
+                return startPiiEntitiesDetectionJob(startPiiEntitiesDetectionJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Starts an asynchronous PII entity detection job for a collection of
+     * documents.
+     * </p>
+     * 
+     * @param startPiiEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartPiiEntitiesDetectionJob service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartPiiEntitiesDetectionJobResult> startPiiEntitiesDetectionJobAsync(
+            final StartPiiEntitiesDetectionJobRequest startPiiEntitiesDetectionJobRequest,
+            final AsyncHandler<StartPiiEntitiesDetectionJobRequest, StartPiiEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartPiiEntitiesDetectionJobResult>() {
+            public StartPiiEntitiesDetectionJobResult call() throws Exception {
+                StartPiiEntitiesDetectionJobResult result = null;
+                try {
+                    result = startPiiEntitiesDetectionJob(startPiiEntitiesDetectionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startPiiEntitiesDetectionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Starts an asynchronous sentiment detection job for a collection of
      * documents. use the operation to track the status of a job.
      * </p>
@@ -3736,6 +4026,75 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(stopKeyPhrasesDetectionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Stops a PII entities detection job in progress.
+     * </p>
+     * 
+     * @param stopPiiEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopPiiEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopPiiEntitiesDetectionJobResult> stopPiiEntitiesDetectionJobAsync(
+            final StopPiiEntitiesDetectionJobRequest stopPiiEntitiesDetectionJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopPiiEntitiesDetectionJobResult>() {
+            public StopPiiEntitiesDetectionJobResult call() throws Exception {
+                return stopPiiEntitiesDetectionJob(stopPiiEntitiesDetectionJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Stops a PII entities detection job in progress.
+     * </p>
+     * 
+     * @param stopPiiEntitiesDetectionJobRequest
+     * @return A Java Future object containing the response from the
+     *         StopPiiEntitiesDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopPiiEntitiesDetectionJobResult> stopPiiEntitiesDetectionJobAsync(
+            final StopPiiEntitiesDetectionJobRequest stopPiiEntitiesDetectionJobRequest,
+            final AsyncHandler<StopPiiEntitiesDetectionJobRequest, StopPiiEntitiesDetectionJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopPiiEntitiesDetectionJobResult>() {
+            public StopPiiEntitiesDetectionJobResult call() throws Exception {
+                StopPiiEntitiesDetectionJobResult result = null;
+                try {
+                    result = stopPiiEntitiesDetectionJob(stopPiiEntitiesDetectionJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(stopPiiEntitiesDetectionJobRequest, result);
                 return result;
             }
         });
