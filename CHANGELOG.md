@@ -3,7 +3,7 @@
 ## [Release TBD](https://github.com/aws/aws-sdk-android/releases/tag/TBD)
 
 - Model updates
-  - AWS Simple Token Service [#2132](https://github.com/aws-amplify/aws-sdk-android/pull/2132]
+  - AWS Simple Token Service [#2132](https://github.com/aws-amplify/aws-sdk-android/pull/2132)
   - AWS Comprehend [#2122](https://github.com/aws-amplify/aws-sdk-android/pull/2122)
   - AWS Transcribe [#2127](https://github.com/aws-amplify/aws-sdk-android/pull/2127)
   - AWS Translate [#2125](https://github.com/aws-amplify/aws-sdk-android/pull/2125)
