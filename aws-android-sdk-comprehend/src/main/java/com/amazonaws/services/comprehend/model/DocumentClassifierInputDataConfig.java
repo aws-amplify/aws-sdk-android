@@ -29,6 +29,42 @@ import java.io.Serializable;
 public class DocumentClassifierInputDataConfig implements Serializable {
     /**
      * <p>
+     * The format of your training data:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are
+     * provided in the first column, and documents are provided in the second.
+     * If you use this value, you must provide the <code>S3Uri</code> parameter
+     * in your request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by
+     * Amazon SageMaker Ground Truth. This file is in JSON lines format. Each
+     * line is a complete JSON object that contains a training document and its
+     * associated labels.
+     * </p>
+     * <p>
+     * If you use this value, you must provide the
+     * <code>AugmentedManifests</code> parameter in your request.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify a value, Amazon Comprehend uses
+     * <code>COMPREHEND_CSV</code> as the default.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>COMPREHEND_CSV, AUGMENTED_MANIFEST
+     */
+    private String dataFormat;
+
+    /**
+     * <p>
      * The Amazon S3 URI for the input data. The S3 bucket must be in the same
      * region as the API endpoint that you are calling. The URI can point to a
      * single input file or it can provide the prefix for a collection of input
@@ -39,6 +75,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * the prefix is a single file, Amazon Comprehend uses that file as input.
      * If more than one file begins with the prefix, Amazon Comprehend uses all
      * of them as input.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>COMPREHEND_CSV</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,6 +106,376 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
+     * A list of augmented manifest files that provide training data for your
+     * custom model. An augmented manifest file is a labeled dataset that is
+     * produced by Amazon SageMaker Ground Truth.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>AUGMENTED_MANIFEST</code>.
+     * </p>
+     */
+    private java.util.List<AugmentedManifestsListItem> augmentedManifests;
+
+    /**
+     * <p>
+     * The format of your training data:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are
+     * provided in the first column, and documents are provided in the second.
+     * If you use this value, you must provide the <code>S3Uri</code> parameter
+     * in your request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by
+     * Amazon SageMaker Ground Truth. This file is in JSON lines format. Each
+     * line is a complete JSON object that contains a training document and its
+     * associated labels.
+     * </p>
+     * <p>
+     * If you use this value, you must provide the
+     * <code>AugmentedManifests</code> parameter in your request.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify a value, Amazon Comprehend uses
+     * <code>COMPREHEND_CSV</code> as the default.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>COMPREHEND_CSV, AUGMENTED_MANIFEST
+     *
+     * @return <p>
+     *         The format of your training data:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels
+     *         are provided in the first column, and documents are provided in
+     *         the second. If you use this value, you must provide the
+     *         <code>S3Uri</code> parameter in your request.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is
+     *         produced by Amazon SageMaker Ground Truth. This file is in JSON
+     *         lines format. Each line is a complete JSON object that contains a
+     *         training document and its associated labels.
+     *         </p>
+     *         <p>
+     *         If you use this value, you must provide the
+     *         <code>AugmentedManifests</code> parameter in your request.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         If you don't specify a value, Amazon Comprehend uses
+     *         <code>COMPREHEND_CSV</code> as the default.
+     *         </p>
+     * @see DocumentClassifierDataFormat
+     */
+    public String getDataFormat() {
+        return dataFormat;
+    }
+
+    /**
+     * <p>
+     * The format of your training data:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are
+     * provided in the first column, and documents are provided in the second.
+     * If you use this value, you must provide the <code>S3Uri</code> parameter
+     * in your request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by
+     * Amazon SageMaker Ground Truth. This file is in JSON lines format. Each
+     * line is a complete JSON object that contains a training document and its
+     * associated labels.
+     * </p>
+     * <p>
+     * If you use this value, you must provide the
+     * <code>AugmentedManifests</code> parameter in your request.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify a value, Amazon Comprehend uses
+     * <code>COMPREHEND_CSV</code> as the default.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>COMPREHEND_CSV, AUGMENTED_MANIFEST
+     *
+     * @param dataFormat <p>
+     *            The format of your training data:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>COMPREHEND_CSV</code>: A two-column CSV file, where
+     *            labels are provided in the first column, and documents are
+     *            provided in the second. If you use this value, you must
+     *            provide the <code>S3Uri</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is
+     *            produced by Amazon SageMaker Ground Truth. This file is in
+     *            JSON lines format. Each line is a complete JSON object that
+     *            contains a training document and its associated labels.
+     *            </p>
+     *            <p>
+     *            If you use this value, you must provide the
+     *            <code>AugmentedManifests</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you don't specify a value, Amazon Comprehend uses
+     *            <code>COMPREHEND_CSV</code> as the default.
+     *            </p>
+     * @see DocumentClassifierDataFormat
+     */
+    public void setDataFormat(String dataFormat) {
+        this.dataFormat = dataFormat;
+    }
+
+    /**
+     * <p>
+     * The format of your training data:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are
+     * provided in the first column, and documents are provided in the second.
+     * If you use this value, you must provide the <code>S3Uri</code> parameter
+     * in your request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by
+     * Amazon SageMaker Ground Truth. This file is in JSON lines format. Each
+     * line is a complete JSON object that contains a training document and its
+     * associated labels.
+     * </p>
+     * <p>
+     * If you use this value, you must provide the
+     * <code>AugmentedManifests</code> parameter in your request.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify a value, Amazon Comprehend uses
+     * <code>COMPREHEND_CSV</code> as the default.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>COMPREHEND_CSV, AUGMENTED_MANIFEST
+     *
+     * @param dataFormat <p>
+     *            The format of your training data:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>COMPREHEND_CSV</code>: A two-column CSV file, where
+     *            labels are provided in the first column, and documents are
+     *            provided in the second. If you use this value, you must
+     *            provide the <code>S3Uri</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is
+     *            produced by Amazon SageMaker Ground Truth. This file is in
+     *            JSON lines format. Each line is a complete JSON object that
+     *            contains a training document and its associated labels.
+     *            </p>
+     *            <p>
+     *            If you use this value, you must provide the
+     *            <code>AugmentedManifests</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you don't specify a value, Amazon Comprehend uses
+     *            <code>COMPREHEND_CSV</code> as the default.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierDataFormat
+     */
+    public DocumentClassifierInputDataConfig withDataFormat(String dataFormat) {
+        this.dataFormat = dataFormat;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The format of your training data:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are
+     * provided in the first column, and documents are provided in the second.
+     * If you use this value, you must provide the <code>S3Uri</code> parameter
+     * in your request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by
+     * Amazon SageMaker Ground Truth. This file is in JSON lines format. Each
+     * line is a complete JSON object that contains a training document and its
+     * associated labels.
+     * </p>
+     * <p>
+     * If you use this value, you must provide the
+     * <code>AugmentedManifests</code> parameter in your request.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify a value, Amazon Comprehend uses
+     * <code>COMPREHEND_CSV</code> as the default.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>COMPREHEND_CSV, AUGMENTED_MANIFEST
+     *
+     * @param dataFormat <p>
+     *            The format of your training data:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>COMPREHEND_CSV</code>: A two-column CSV file, where
+     *            labels are provided in the first column, and documents are
+     *            provided in the second. If you use this value, you must
+     *            provide the <code>S3Uri</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is
+     *            produced by Amazon SageMaker Ground Truth. This file is in
+     *            JSON lines format. Each line is a complete JSON object that
+     *            contains a training document and its associated labels.
+     *            </p>
+     *            <p>
+     *            If you use this value, you must provide the
+     *            <code>AugmentedManifests</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you don't specify a value, Amazon Comprehend uses
+     *            <code>COMPREHEND_CSV</code> as the default.
+     *            </p>
+     * @see DocumentClassifierDataFormat
+     */
+    public void setDataFormat(DocumentClassifierDataFormat dataFormat) {
+        this.dataFormat = dataFormat.toString();
+    }
+
+    /**
+     * <p>
+     * The format of your training data:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are
+     * provided in the first column, and documents are provided in the second.
+     * If you use this value, you must provide the <code>S3Uri</code> parameter
+     * in your request.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by
+     * Amazon SageMaker Ground Truth. This file is in JSON lines format. Each
+     * line is a complete JSON object that contains a training document and its
+     * associated labels.
+     * </p>
+     * <p>
+     * If you use this value, you must provide the
+     * <code>AugmentedManifests</code> parameter in your request.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * If you don't specify a value, Amazon Comprehend uses
+     * <code>COMPREHEND_CSV</code> as the default.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>COMPREHEND_CSV, AUGMENTED_MANIFEST
+     *
+     * @param dataFormat <p>
+     *            The format of your training data:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>COMPREHEND_CSV</code>: A two-column CSV file, where
+     *            labels are provided in the first column, and documents are
+     *            provided in the second. If you use this value, you must
+     *            provide the <code>S3Uri</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is
+     *            produced by Amazon SageMaker Ground Truth. This file is in
+     *            JSON lines format. Each line is a complete JSON object that
+     *            contains a training document and its associated labels.
+     *            </p>
+     *            <p>
+     *            If you use this value, you must provide the
+     *            <code>AugmentedManifests</code> parameter in your request.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            If you don't specify a value, Amazon Comprehend uses
+     *            <code>COMPREHEND_CSV</code> as the default.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see DocumentClassifierDataFormat
+     */
+    public DocumentClassifierInputDataConfig withDataFormat(DocumentClassifierDataFormat dataFormat) {
+        this.dataFormat = dataFormat.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The Amazon S3 URI for the input data. The S3 bucket must be in the same
      * region as the API endpoint that you are calling. The URI can point to a
      * single input file or it can provide the prefix for a collection of input
@@ -76,6 +486,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * the prefix is a single file, Amazon Comprehend uses that file as input.
      * If more than one file begins with the prefix, Amazon Comprehend uses all
      * of them as input.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>COMPREHEND_CSV</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -94,6 +508,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *         file, Amazon Comprehend uses that file as input. If more than one
      *         file begins with the prefix, Amazon Comprehend uses all of them
      *         as input.
+     *         </p>
+     *         <p>
+     *         This parameter is required if you set <code>DataFormat</code> to
+     *         <code>COMPREHEND_CSV</code>.
      *         </p>
      */
     public String getS3Uri() {
@@ -114,6 +532,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * of them as input.
      * </p>
      * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>COMPREHEND_CSV</code>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
@@ -130,6 +552,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *            file, Amazon Comprehend uses that file as input. If more than
      *            one file begins with the prefix, Amazon Comprehend uses all of
      *            them as input.
+     *            </p>
+     *            <p>
+     *            This parameter is required if you set <code>DataFormat</code>
+     *            to <code>COMPREHEND_CSV</code>.
      *            </p>
      */
     public void setS3Uri(String s3Uri) {
@@ -148,6 +574,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      * the prefix is a single file, Amazon Comprehend uses that file as input.
      * If more than one file begins with the prefix, Amazon Comprehend uses all
      * of them as input.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>COMPREHEND_CSV</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -169,6 +599,10 @@ public class DocumentClassifierInputDataConfig implements Serializable {
      *            file, Amazon Comprehend uses that file as input. If more than
      *            one file begins with the prefix, Amazon Comprehend uses all of
      *            them as input.
+     *            </p>
+     *            <p>
+     *            This parameter is required if you set <code>DataFormat</code>
+     *            to <code>COMPREHEND_CSV</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -277,6 +711,133 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of augmented manifest files that provide training data for your
+     * custom model. An augmented manifest file is a labeled dataset that is
+     * produced by Amazon SageMaker Ground Truth.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>AUGMENTED_MANIFEST</code>.
+     * </p>
+     *
+     * @return <p>
+     *         A list of augmented manifest files that provide training data for
+     *         your custom model. An augmented manifest file is a labeled
+     *         dataset that is produced by Amazon SageMaker Ground Truth.
+     *         </p>
+     *         <p>
+     *         This parameter is required if you set <code>DataFormat</code> to
+     *         <code>AUGMENTED_MANIFEST</code>.
+     *         </p>
+     */
+    public java.util.List<AugmentedManifestsListItem> getAugmentedManifests() {
+        return augmentedManifests;
+    }
+
+    /**
+     * <p>
+     * A list of augmented manifest files that provide training data for your
+     * custom model. An augmented manifest file is a labeled dataset that is
+     * produced by Amazon SageMaker Ground Truth.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>AUGMENTED_MANIFEST</code>.
+     * </p>
+     *
+     * @param augmentedManifests <p>
+     *            A list of augmented manifest files that provide training data
+     *            for your custom model. An augmented manifest file is a labeled
+     *            dataset that is produced by Amazon SageMaker Ground Truth.
+     *            </p>
+     *            <p>
+     *            This parameter is required if you set <code>DataFormat</code>
+     *            to <code>AUGMENTED_MANIFEST</code>.
+     *            </p>
+     */
+    public void setAugmentedManifests(
+            java.util.Collection<AugmentedManifestsListItem> augmentedManifests) {
+        if (augmentedManifests == null) {
+            this.augmentedManifests = null;
+            return;
+        }
+
+        this.augmentedManifests = new java.util.ArrayList<AugmentedManifestsListItem>(
+                augmentedManifests);
+    }
+
+    /**
+     * <p>
+     * A list of augmented manifest files that provide training data for your
+     * custom model. An augmented manifest file is a labeled dataset that is
+     * produced by Amazon SageMaker Ground Truth.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>AUGMENTED_MANIFEST</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param augmentedManifests <p>
+     *            A list of augmented manifest files that provide training data
+     *            for your custom model. An augmented manifest file is a labeled
+     *            dataset that is produced by Amazon SageMaker Ground Truth.
+     *            </p>
+     *            <p>
+     *            This parameter is required if you set <code>DataFormat</code>
+     *            to <code>AUGMENTED_MANIFEST</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierInputDataConfig withAugmentedManifests(
+            AugmentedManifestsListItem... augmentedManifests) {
+        if (getAugmentedManifests() == null) {
+            this.augmentedManifests = new java.util.ArrayList<AugmentedManifestsListItem>(
+                    augmentedManifests.length);
+        }
+        for (AugmentedManifestsListItem value : augmentedManifests) {
+            this.augmentedManifests.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of augmented manifest files that provide training data for your
+     * custom model. An augmented manifest file is a labeled dataset that is
+     * produced by Amazon SageMaker Ground Truth.
+     * </p>
+     * <p>
+     * This parameter is required if you set <code>DataFormat</code> to
+     * <code>AUGMENTED_MANIFEST</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param augmentedManifests <p>
+     *            A list of augmented manifest files that provide training data
+     *            for your custom model. An augmented manifest file is a labeled
+     *            dataset that is produced by Amazon SageMaker Ground Truth.
+     *            </p>
+     *            <p>
+     *            This parameter is required if you set <code>DataFormat</code>
+     *            to <code>AUGMENTED_MANIFEST</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierInputDataConfig withAugmentedManifests(
+            java.util.Collection<AugmentedManifestsListItem> augmentedManifests) {
+        setAugmentedManifests(augmentedManifests);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -287,10 +848,14 @@ public class DocumentClassifierInputDataConfig implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getDataFormat() != null)
+            sb.append("DataFormat: " + getDataFormat() + ",");
         if (getS3Uri() != null)
             sb.append("S3Uri: " + getS3Uri() + ",");
         if (getLabelDelimiter() != null)
-            sb.append("LabelDelimiter: " + getLabelDelimiter());
+            sb.append("LabelDelimiter: " + getLabelDelimiter() + ",");
+        if (getAugmentedManifests() != null)
+            sb.append("AugmentedManifests: " + getAugmentedManifests());
         sb.append("}");
         return sb.toString();
     }
@@ -300,9 +865,12 @@ public class DocumentClassifierInputDataConfig implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getDataFormat() == null) ? 0 : getDataFormat().hashCode());
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
         hashCode = prime * hashCode
                 + ((getLabelDelimiter() == null) ? 0 : getLabelDelimiter().hashCode());
+        hashCode = prime * hashCode
+                + ((getAugmentedManifests() == null) ? 0 : getAugmentedManifests().hashCode());
         return hashCode;
     }
 
@@ -317,6 +885,11 @@ public class DocumentClassifierInputDataConfig implements Serializable {
             return false;
         DocumentClassifierInputDataConfig other = (DocumentClassifierInputDataConfig) obj;
 
+        if (other.getDataFormat() == null ^ this.getDataFormat() == null)
+            return false;
+        if (other.getDataFormat() != null
+                && other.getDataFormat().equals(this.getDataFormat()) == false)
+            return false;
         if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
         if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
@@ -325,6 +898,11 @@ public class DocumentClassifierInputDataConfig implements Serializable {
             return false;
         if (other.getLabelDelimiter() != null
                 && other.getLabelDelimiter().equals(this.getLabelDelimiter()) == false)
+            return false;
+        if (other.getAugmentedManifests() == null ^ this.getAugmentedManifests() == null)
+            return false;
+        if (other.getAugmentedManifests() != null
+                && other.getAugmentedManifests().equals(this.getAugmentedManifests()) == false)
             return false;
         return true;
     }
