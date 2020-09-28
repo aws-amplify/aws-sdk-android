@@ -94,6 +94,11 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("OutputBucketName");
                 jsonWriter.value(outputBucketName);
             }
+            if (startTranscriptionJobRequest.getOutputKey() != null) {
+                String outputKey = startTranscriptionJobRequest.getOutputKey();
+                jsonWriter.name("OutputKey");
+                jsonWriter.value(outputKey);
+            }
             if (startTranscriptionJobRequest.getOutputEncryptionKMSKeyId() != null) {
                 String outputEncryptionKMSKeyId = startTranscriptionJobRequest
                         .getOutputEncryptionKMSKeyId();
@@ -122,6 +127,23 @@ public class StartTranscriptionJobRequestMarshaller implements
                         .getContentRedaction();
                 jsonWriter.name("ContentRedaction");
                 ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
+            }
+            if (startTranscriptionJobRequest.getIdentifyLanguage() != null) {
+                Boolean identifyLanguage = startTranscriptionJobRequest.getIdentifyLanguage();
+                jsonWriter.name("IdentifyLanguage");
+                jsonWriter.value(identifyLanguage);
+            }
+            if (startTranscriptionJobRequest.getLanguageOptions() != null) {
+                java.util.List<String> languageOptions = startTranscriptionJobRequest
+                        .getLanguageOptions();
+                jsonWriter.name("LanguageOptions");
+                jsonWriter.beginArray();
+                for (String languageOptionsItem : languageOptions) {
+                    if (languageOptionsItem != null) {
+                        jsonWriter.value(languageOptionsItem);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();
