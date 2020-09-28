@@ -16,6 +16,7 @@
 package com.amazonaws.services.comprehend.model.transform;
 
 import com.amazonaws.services.comprehend.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -26,6 +27,11 @@ class EntityRecognizerInputDataConfigJsonMarshaller {
     public void marshall(EntityRecognizerInputDataConfig entityRecognizerInputDataConfig,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (entityRecognizerInputDataConfig.getDataFormat() != null) {
+            String dataFormat = entityRecognizerInputDataConfig.getDataFormat();
+            jsonWriter.name("DataFormat");
+            jsonWriter.value(dataFormat);
+        }
         if (entityRecognizerInputDataConfig.getEntityTypes() != null) {
             java.util.List<EntityTypesListItem> entityTypes = entityRecognizerInputDataConfig
                     .getEntityTypes();
@@ -55,6 +61,19 @@ class EntityRecognizerInputDataConfigJsonMarshaller {
             EntityRecognizerEntityList entityList = entityRecognizerInputDataConfig.getEntityList();
             jsonWriter.name("EntityList");
             EntityRecognizerEntityListJsonMarshaller.getInstance().marshall(entityList, jsonWriter);
+        }
+        if (entityRecognizerInputDataConfig.getAugmentedManifests() != null) {
+            java.util.List<AugmentedManifestsListItem> augmentedManifests = entityRecognizerInputDataConfig
+                    .getAugmentedManifests();
+            jsonWriter.name("AugmentedManifests");
+            jsonWriter.beginArray();
+            for (AugmentedManifestsListItem augmentedManifestsItem : augmentedManifests) {
+                if (augmentedManifestsItem != null) {
+                    AugmentedManifestsListItemJsonMarshaller.getInstance().marshall(
+                            augmentedManifestsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }
