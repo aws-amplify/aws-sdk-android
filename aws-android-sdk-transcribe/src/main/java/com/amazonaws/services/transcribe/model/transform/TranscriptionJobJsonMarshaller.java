@@ -16,6 +16,7 @@
 package com.amazonaws.services.transcribe.model.transform;
 
 import com.amazonaws.services.transcribe.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -101,6 +102,27 @@ class TranscriptionJobJsonMarshaller {
             ContentRedaction contentRedaction = transcriptionJob.getContentRedaction();
             jsonWriter.name("ContentRedaction");
             ContentRedactionJsonMarshaller.getInstance().marshall(contentRedaction, jsonWriter);
+        }
+        if (transcriptionJob.getIdentifyLanguage() != null) {
+            Boolean identifyLanguage = transcriptionJob.getIdentifyLanguage();
+            jsonWriter.name("IdentifyLanguage");
+            jsonWriter.value(identifyLanguage);
+        }
+        if (transcriptionJob.getLanguageOptions() != null) {
+            java.util.List<String> languageOptions = transcriptionJob.getLanguageOptions();
+            jsonWriter.name("LanguageOptions");
+            jsonWriter.beginArray();
+            for (String languageOptionsItem : languageOptions) {
+                if (languageOptionsItem != null) {
+                    jsonWriter.value(languageOptionsItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (transcriptionJob.getIdentifiedLanguageScore() != null) {
+            Float identifiedLanguageScore = transcriptionJob.getIdentifiedLanguageScore();
+            jsonWriter.name("IdentifiedLanguageScore");
+            jsonWriter.value(identifiedLanguageScore);
         }
         jsonWriter.endObject();
     }
