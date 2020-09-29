@@ -80,7 +80,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      */
     private String mediaFormat;
 
@@ -119,6 +119,37 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9]<br/>
      */
     private String outputBucketName;
+
+    /**
+     * <p>
+     * You can specify a location in an Amazon S3 bucket to store the output of
+     * your medical transcription job.
+     * </p>
+     * <p>
+     * If you don't specify an output key, Amazon Transcribe Medical stores the
+     * output of your transcription job in the Amazon S3 bucket you specified.
+     * By default, the object key is "your-transcription-job-name.json".
+     * </p>
+     * <p>
+     * You can use output keys to specify the Amazon S3 prefix and file name of
+     * the transcription output. For example, specifying the Amazon S3 prefix,
+     * "folder1/folder2/", as an output key would lead to the output being
+     * stored as "folder1/folder2/your-transcription-job-name.json". If you
+     * specify "my-other-job-name.json" as the output key, the object key is
+     * changed to "my-other-job-name.json". You can use an output key to change
+     * both the prefix and the file name, for example
+     * "folder/my-other-job-name.json".
+     * </p>
+     * <p>
+     * If you specify an output key, you must also specify an S3 bucket in the
+     * <code>OutputBucketName</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_.!*'()/]{1,1024}$<br/>
+     */
+    private String outputKey;
 
     /**
      * <p>
@@ -542,7 +573,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @return <p>
      *         The audio format of the input media file.
@@ -559,7 +590,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The audio format of the input media file.
@@ -579,7 +610,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The audio format of the input media file.
@@ -599,7 +630,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The audio format of the input media file.
@@ -619,7 +650,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>mp3, mp4, wav, flac
+     * <b>Allowed Values: </b>mp3, mp4, wav, flac, ogg, amr, webm
      *
      * @param mediaFormat <p>
      *            The audio format of the input media file.
@@ -845,6 +876,189 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      */
     public StartMedicalTranscriptionJobRequest withOutputBucketName(String outputBucketName) {
         this.outputBucketName = outputBucketName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * You can specify a location in an Amazon S3 bucket to store the output of
+     * your medical transcription job.
+     * </p>
+     * <p>
+     * If you don't specify an output key, Amazon Transcribe Medical stores the
+     * output of your transcription job in the Amazon S3 bucket you specified.
+     * By default, the object key is "your-transcription-job-name.json".
+     * </p>
+     * <p>
+     * You can use output keys to specify the Amazon S3 prefix and file name of
+     * the transcription output. For example, specifying the Amazon S3 prefix,
+     * "folder1/folder2/", as an output key would lead to the output being
+     * stored as "folder1/folder2/your-transcription-job-name.json". If you
+     * specify "my-other-job-name.json" as the output key, the object key is
+     * changed to "my-other-job-name.json". You can use an output key to change
+     * both the prefix and the file name, for example
+     * "folder/my-other-job-name.json".
+     * </p>
+     * <p>
+     * If you specify an output key, you must also specify an S3 bucket in the
+     * <code>OutputBucketName</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_.!*'()/]{1,1024}$<br/>
+     *
+     * @return <p>
+     *         You can specify a location in an Amazon S3 bucket to store the
+     *         output of your medical transcription job.
+     *         </p>
+     *         <p>
+     *         If you don't specify an output key, Amazon Transcribe Medical
+     *         stores the output of your transcription job in the Amazon S3
+     *         bucket you specified. By default, the object key is
+     *         "your-transcription-job-name.json".
+     *         </p>
+     *         <p>
+     *         You can use output keys to specify the Amazon S3 prefix and file
+     *         name of the transcription output. For example, specifying the
+     *         Amazon S3 prefix, "folder1/folder2/", as an output key would lead
+     *         to the output being stored as
+     *         "folder1/folder2/your-transcription-job-name.json". If you
+     *         specify "my-other-job-name.json" as the output key, the object
+     *         key is changed to "my-other-job-name.json". You can use an output
+     *         key to change both the prefix and the file name, for example
+     *         "folder/my-other-job-name.json".
+     *         </p>
+     *         <p>
+     *         If you specify an output key, you must also specify an S3 bucket
+     *         in the <code>OutputBucketName</code> parameter.
+     *         </p>
+     */
+    public String getOutputKey() {
+        return outputKey;
+    }
+
+    /**
+     * <p>
+     * You can specify a location in an Amazon S3 bucket to store the output of
+     * your medical transcription job.
+     * </p>
+     * <p>
+     * If you don't specify an output key, Amazon Transcribe Medical stores the
+     * output of your transcription job in the Amazon S3 bucket you specified.
+     * By default, the object key is "your-transcription-job-name.json".
+     * </p>
+     * <p>
+     * You can use output keys to specify the Amazon S3 prefix and file name of
+     * the transcription output. For example, specifying the Amazon S3 prefix,
+     * "folder1/folder2/", as an output key would lead to the output being
+     * stored as "folder1/folder2/your-transcription-job-name.json". If you
+     * specify "my-other-job-name.json" as the output key, the object key is
+     * changed to "my-other-job-name.json". You can use an output key to change
+     * both the prefix and the file name, for example
+     * "folder/my-other-job-name.json".
+     * </p>
+     * <p>
+     * If you specify an output key, you must also specify an S3 bucket in the
+     * <code>OutputBucketName</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_.!*'()/]{1,1024}$<br/>
+     *
+     * @param outputKey <p>
+     *            You can specify a location in an Amazon S3 bucket to store the
+     *            output of your medical transcription job.
+     *            </p>
+     *            <p>
+     *            If you don't specify an output key, Amazon Transcribe Medical
+     *            stores the output of your transcription job in the Amazon S3
+     *            bucket you specified. By default, the object key is
+     *            "your-transcription-job-name.json".
+     *            </p>
+     *            <p>
+     *            You can use output keys to specify the Amazon S3 prefix and
+     *            file name of the transcription output. For example, specifying
+     *            the Amazon S3 prefix, "folder1/folder2/", as an output key
+     *            would lead to the output being stored as
+     *            "folder1/folder2/your-transcription-job-name.json". If you
+     *            specify "my-other-job-name.json" as the output key, the object
+     *            key is changed to "my-other-job-name.json". You can use an
+     *            output key to change both the prefix and the file name, for
+     *            example "folder/my-other-job-name.json".
+     *            </p>
+     *            <p>
+     *            If you specify an output key, you must also specify an S3
+     *            bucket in the <code>OutputBucketName</code> parameter.
+     *            </p>
+     */
+    public void setOutputKey(String outputKey) {
+        this.outputKey = outputKey;
+    }
+
+    /**
+     * <p>
+     * You can specify a location in an Amazon S3 bucket to store the output of
+     * your medical transcription job.
+     * </p>
+     * <p>
+     * If you don't specify an output key, Amazon Transcribe Medical stores the
+     * output of your transcription job in the Amazon S3 bucket you specified.
+     * By default, the object key is "your-transcription-job-name.json".
+     * </p>
+     * <p>
+     * You can use output keys to specify the Amazon S3 prefix and file name of
+     * the transcription output. For example, specifying the Amazon S3 prefix,
+     * "folder1/folder2/", as an output key would lead to the output being
+     * stored as "folder1/folder2/your-transcription-job-name.json". If you
+     * specify "my-other-job-name.json" as the output key, the object key is
+     * changed to "my-other-job-name.json". You can use an output key to change
+     * both the prefix and the file name, for example
+     * "folder/my-other-job-name.json".
+     * </p>
+     * <p>
+     * If you specify an output key, you must also specify an S3 bucket in the
+     * <code>OutputBucketName</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9-_.!*'()/]{1,1024}$<br/>
+     *
+     * @param outputKey <p>
+     *            You can specify a location in an Amazon S3 bucket to store the
+     *            output of your medical transcription job.
+     *            </p>
+     *            <p>
+     *            If you don't specify an output key, Amazon Transcribe Medical
+     *            stores the output of your transcription job in the Amazon S3
+     *            bucket you specified. By default, the object key is
+     *            "your-transcription-job-name.json".
+     *            </p>
+     *            <p>
+     *            You can use output keys to specify the Amazon S3 prefix and
+     *            file name of the transcription output. For example, specifying
+     *            the Amazon S3 prefix, "folder1/folder2/", as an output key
+     *            would lead to the output being stored as
+     *            "folder1/folder2/your-transcription-job-name.json". If you
+     *            specify "my-other-job-name.json" as the output key, the object
+     *            key is changed to "my-other-job-name.json". You can use an
+     *            output key to change both the prefix and the file name, for
+     *            example "folder/my-other-job-name.json".
+     *            </p>
+     *            <p>
+     *            If you specify an output key, you must also specify an S3
+     *            bucket in the <code>OutputBucketName</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartMedicalTranscriptionJobRequest withOutputKey(String outputKey) {
+        this.outputKey = outputKey;
         return this;
     }
 
@@ -1492,6 +1706,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
             sb.append("Media: " + getMedia() + ",");
         if (getOutputBucketName() != null)
             sb.append("OutputBucketName: " + getOutputBucketName() + ",");
+        if (getOutputKey() != null)
+            sb.append("OutputKey: " + getOutputKey() + ",");
         if (getOutputEncryptionKMSKeyId() != null)
             sb.append("OutputEncryptionKMSKeyId: " + getOutputEncryptionKMSKeyId() + ",");
         if (getSettings() != null)
@@ -1522,6 +1738,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
         hashCode = prime * hashCode + ((getMedia() == null) ? 0 : getMedia().hashCode());
         hashCode = prime * hashCode
                 + ((getOutputBucketName() == null) ? 0 : getOutputBucketName().hashCode());
+        hashCode = prime * hashCode + ((getOutputKey() == null) ? 0 : getOutputKey().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getOutputEncryptionKMSKeyId() == null) ? 0 : getOutputEncryptionKMSKeyId()
@@ -1573,6 +1790,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
             return false;
         if (other.getOutputBucketName() != null
                 && other.getOutputBucketName().equals(this.getOutputBucketName()) == false)
+            return false;
+        if (other.getOutputKey() == null ^ this.getOutputKey() == null)
+            return false;
+        if (other.getOutputKey() != null
+                && other.getOutputKey().equals(this.getOutputKey()) == false)
             return false;
         if (other.getOutputEncryptionKMSKeyId() == null
                 ^ this.getOutputEncryptionKMSKeyId() == null)
