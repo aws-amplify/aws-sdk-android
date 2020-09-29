@@ -38,6 +38,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * then deleted.
  * </p>
  * <p>
+ * This operation is also available in the Amazon Connect Flow language. See <a
+ * href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/contact-actions-updatecontactattributes.html"
+ * >UpdateContactAttributes</a>.
+ * </p>
+ * <p>
  * <b>Important:</b> You cannot use the operation to update attributes for
  * contacts that occurred prior to the release of the API, September 12, 2018.
  * You can update attributes only for contacts that started after the release of
