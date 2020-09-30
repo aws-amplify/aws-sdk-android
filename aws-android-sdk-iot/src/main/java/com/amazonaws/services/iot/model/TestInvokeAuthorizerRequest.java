@@ -51,7 +51,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The signature made with the token and your custom authentication
-     * service's private key.
+     * service's private key. This value must be Base-64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -195,7 +195,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The signature made with the token and your custom authentication
-     * service's private key.
+     * service's private key. This value must be Base-64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -204,7 +204,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The signature made with the token and your custom authentication
-     *         service's private key.
+     *         service's private key. This value must be Base-64-encoded.
      *         </p>
      */
     public String getTokenSignature() {
@@ -214,7 +214,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The signature made with the token and your custom authentication
-     * service's private key.
+     * service's private key. This value must be Base-64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -223,7 +223,8 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      *
      * @param tokenSignature <p>
      *            The signature made with the token and your custom
-     *            authentication service's private key.
+     *            authentication service's private key. This value must be
+     *            Base-64-encoded.
      *            </p>
      */
     public void setTokenSignature(String tokenSignature) {
@@ -233,7 +234,7 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The signature made with the token and your custom authentication
-     * service's private key.
+     * service's private key. This value must be Base-64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -245,7 +246,8 @@ public class TestInvokeAuthorizerRequest extends AmazonWebServiceRequest impleme
      *
      * @param tokenSignature <p>
      *            The signature made with the token and your custom
-     *            authentication service's private key.
+     *            authentication service's private key. This value must be
+     *            Base-64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

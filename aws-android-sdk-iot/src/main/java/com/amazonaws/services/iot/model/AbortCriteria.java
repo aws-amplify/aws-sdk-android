@@ -19,14 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Details of abort criteria to define rules to abort the job.
+ * The criteria that determine when and how a job abort takes place.
  * </p>
  */
 public class AbortCriteria implements Serializable {
     /**
      * <p>
-     * The type of job execution failure to define a rule to initiate a job
-     * abort.
+     * The type of job execution failures that can initiate a job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +35,7 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of abort action to initiate a job abort.
+     * The type of job action to take to initiate the job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,8 +45,8 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The threshold as a percentage of the total number of executed things that
-     * will initiate a job abort.
+     * The minimum percentage of job execution failures that must occur to
+     * initiate the job abort.
      * </p>
      * <p>
      * AWS IoT supports up to two digits after the decimal (for example, 10.9
@@ -61,7 +60,8 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * Minimum number of executed things before evaluating an abort rule.
+     * The minimum number of things which must receive job execution
+     * notifications before the job can be aborted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,16 +71,14 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of job execution failure to define a rule to initiate a job
-     * abort.
+     * The type of job execution failures that can initiate a job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>FAILED, REJECTED, TIMED_OUT, ALL
      *
      * @return <p>
-     *         The type of job execution failure to define a rule to initiate a
-     *         job abort.
+     *         The type of job execution failures that can initiate a job abort.
      *         </p>
      * @see JobExecutionFailureType
      */
@@ -90,16 +88,15 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of job execution failure to define a rule to initiate a job
-     * abort.
+     * The type of job execution failures that can initiate a job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>FAILED, REJECTED, TIMED_OUT, ALL
      *
      * @param failureType <p>
-     *            The type of job execution failure to define a rule to initiate
-     *            a job abort.
+     *            The type of job execution failures that can initiate a job
+     *            abort.
      *            </p>
      * @see JobExecutionFailureType
      */
@@ -109,8 +106,7 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of job execution failure to define a rule to initiate a job
-     * abort.
+     * The type of job execution failures that can initiate a job abort.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -120,8 +116,8 @@ public class AbortCriteria implements Serializable {
      * <b>Allowed Values: </b>FAILED, REJECTED, TIMED_OUT, ALL
      *
      * @param failureType <p>
-     *            The type of job execution failure to define a rule to initiate
-     *            a job abort.
+     *            The type of job execution failures that can initiate a job
+     *            abort.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -134,16 +130,15 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of job execution failure to define a rule to initiate a job
-     * abort.
+     * The type of job execution failures that can initiate a job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>FAILED, REJECTED, TIMED_OUT, ALL
      *
      * @param failureType <p>
-     *            The type of job execution failure to define a rule to initiate
-     *            a job abort.
+     *            The type of job execution failures that can initiate a job
+     *            abort.
      *            </p>
      * @see JobExecutionFailureType
      */
@@ -153,8 +148,7 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of job execution failure to define a rule to initiate a job
-     * abort.
+     * The type of job execution failures that can initiate a job abort.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -164,8 +158,8 @@ public class AbortCriteria implements Serializable {
      * <b>Allowed Values: </b>FAILED, REJECTED, TIMED_OUT, ALL
      *
      * @param failureType <p>
-     *            The type of job execution failure to define a rule to initiate
-     *            a job abort.
+     *            The type of job execution failures that can initiate a job
+     *            abort.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -178,14 +172,14 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of abort action to initiate a job abort.
+     * The type of job action to take to initiate the job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CANCEL
      *
      * @return <p>
-     *         The type of abort action to initiate a job abort.
+     *         The type of job action to take to initiate the job abort.
      *         </p>
      * @see AbortAction
      */
@@ -195,14 +189,14 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of abort action to initiate a job abort.
+     * The type of job action to take to initiate the job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CANCEL
      *
      * @param action <p>
-     *            The type of abort action to initiate a job abort.
+     *            The type of job action to take to initiate the job abort.
      *            </p>
      * @see AbortAction
      */
@@ -212,7 +206,7 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of abort action to initiate a job abort.
+     * The type of job action to take to initiate the job abort.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -222,7 +216,7 @@ public class AbortCriteria implements Serializable {
      * <b>Allowed Values: </b>CANCEL
      *
      * @param action <p>
-     *            The type of abort action to initiate a job abort.
+     *            The type of job action to take to initiate the job abort.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -235,14 +229,14 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of abort action to initiate a job abort.
+     * The type of job action to take to initiate the job abort.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CANCEL
      *
      * @param action <p>
-     *            The type of abort action to initiate a job abort.
+     *            The type of job action to take to initiate the job abort.
      *            </p>
      * @see AbortAction
      */
@@ -252,7 +246,7 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The type of abort action to initiate a job abort.
+     * The type of job action to take to initiate the job abort.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -262,7 +256,7 @@ public class AbortCriteria implements Serializable {
      * <b>Allowed Values: </b>CANCEL
      *
      * @param action <p>
-     *            The type of abort action to initiate a job abort.
+     *            The type of job action to take to initiate the job abort.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -275,8 +269,8 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The threshold as a percentage of the total number of executed things that
-     * will initiate a job abort.
+     * The minimum percentage of job execution failures that must occur to
+     * initiate the job abort.
      * </p>
      * <p>
      * AWS IoT supports up to two digits after the decimal (for example, 10.9
@@ -287,8 +281,8 @@ public class AbortCriteria implements Serializable {
      * <b>Range: </b> - 100<br/>
      *
      * @return <p>
-     *         The threshold as a percentage of the total number of executed
-     *         things that will initiate a job abort.
+     *         The minimum percentage of job execution failures that must occur
+     *         to initiate the job abort.
      *         </p>
      *         <p>
      *         AWS IoT supports up to two digits after the decimal (for example,
@@ -301,8 +295,8 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The threshold as a percentage of the total number of executed things that
-     * will initiate a job abort.
+     * The minimum percentage of job execution failures that must occur to
+     * initiate the job abort.
      * </p>
      * <p>
      * AWS IoT supports up to two digits after the decimal (for example, 10.9
@@ -313,8 +307,8 @@ public class AbortCriteria implements Serializable {
      * <b>Range: </b> - 100<br/>
      *
      * @param thresholdPercentage <p>
-     *            The threshold as a percentage of the total number of executed
-     *            things that will initiate a job abort.
+     *            The minimum percentage of job execution failures that must
+     *            occur to initiate the job abort.
      *            </p>
      *            <p>
      *            AWS IoT supports up to two digits after the decimal (for
@@ -327,8 +321,8 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * The threshold as a percentage of the total number of executed things that
-     * will initiate a job abort.
+     * The minimum percentage of job execution failures that must occur to
+     * initiate the job abort.
      * </p>
      * <p>
      * AWS IoT supports up to two digits after the decimal (for example, 10.9
@@ -342,8 +336,8 @@ public class AbortCriteria implements Serializable {
      * <b>Range: </b> - 100<br/>
      *
      * @param thresholdPercentage <p>
-     *            The threshold as a percentage of the total number of executed
-     *            things that will initiate a job abort.
+     *            The minimum percentage of job execution failures that must
+     *            occur to initiate the job abort.
      *            </p>
      *            <p>
      *            AWS IoT supports up to two digits after the decimal (for
@@ -359,15 +353,16 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * Minimum number of executed things before evaluating an abort rule.
+     * The minimum number of things which must receive job execution
+     * notifications before the job can be aborted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @return <p>
-     *         Minimum number of executed things before evaluating an abort
-     *         rule.
+     *         The minimum number of things which must receive job execution
+     *         notifications before the job can be aborted.
      *         </p>
      */
     public Integer getMinNumberOfExecutedThings() {
@@ -376,15 +371,16 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * Minimum number of executed things before evaluating an abort rule.
+     * The minimum number of things which must receive job execution
+     * notifications before the job can be aborted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - <br/>
      *
      * @param minNumberOfExecutedThings <p>
-     *            Minimum number of executed things before evaluating an abort
-     *            rule.
+     *            The minimum number of things which must receive job execution
+     *            notifications before the job can be aborted.
      *            </p>
      */
     public void setMinNumberOfExecutedThings(Integer minNumberOfExecutedThings) {
@@ -393,7 +389,8 @@ public class AbortCriteria implements Serializable {
 
     /**
      * <p>
-     * Minimum number of executed things before evaluating an abort rule.
+     * The minimum number of things which must receive job execution
+     * notifications before the job can be aborted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -403,8 +400,8 @@ public class AbortCriteria implements Serializable {
      * <b>Range: </b>1 - <br/>
      *
      * @param minNumberOfExecutedThings <p>
-     *            Minimum number of executed things before evaluating an abort
-     *            rule.
+     *            The minimum number of things which must receive job execution
+     *            notifications before the job can be aborted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -69,6 +69,10 @@ public class DescribeProvisioningTemplateResultJsonUnmarshaller implements
                 describeProvisioningTemplateResult.setProvisioningRoleArn(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("preProvisioningHook")) {
+                describeProvisioningTemplateResult
+                        .setPreProvisioningHook(ProvisioningHookJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

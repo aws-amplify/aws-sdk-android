@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -82,6 +83,11 @@ class AuditFindingJsonMarshaller {
             String reasonForNonComplianceCode = auditFinding.getReasonForNonComplianceCode();
             jsonWriter.name("reasonForNonComplianceCode");
             jsonWriter.value(reasonForNonComplianceCode);
+        }
+        if (auditFinding.getIsSuppressed() != null) {
+            Boolean isSuppressed = auditFinding.getIsSuppressed();
+            jsonWriter.name("isSuppressed");
+            jsonWriter.value(isSuppressed);
         }
         jsonWriter.endObject();
     }

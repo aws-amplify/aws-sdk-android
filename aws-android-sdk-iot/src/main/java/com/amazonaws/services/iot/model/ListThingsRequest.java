@@ -27,6 +27,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * retrieves all things in the registry that contain an attribute <b>Color</b>
  * with the value <b>Red</b>.
  * </p>
+ * <note>
+ * <p>
+ * You will not be charged for calling this API if an <code>Access denied</code>
+ * error is returned. You will also not be charged if no attributes or
+ * pagination token was provided in request and no pagination token and no
+ * results were returned.
+ * </p>
+ * </note>
  */
 public class ListThingsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

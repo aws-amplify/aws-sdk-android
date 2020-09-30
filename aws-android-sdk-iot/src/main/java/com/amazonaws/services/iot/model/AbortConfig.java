@@ -19,24 +19,25 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Details of abort criteria to abort the job.
+ * The criteria that determine when and how a job abort takes place.
  * </p>
  */
 public class AbortConfig implements Serializable {
     /**
      * <p>
-     * The list of abort criteria to define rules to abort the job.
+     * The list of criteria that determine when and how to abort the job.
      * </p>
      */
     private java.util.List<AbortCriteria> criteriaList;
 
     /**
      * <p>
-     * The list of abort criteria to define rules to abort the job.
+     * The list of criteria that determine when and how to abort the job.
      * </p>
      *
      * @return <p>
-     *         The list of abort criteria to define rules to abort the job.
+     *         The list of criteria that determine when and how to abort the
+     *         job.
      *         </p>
      */
     public java.util.List<AbortCriteria> getCriteriaList() {
@@ -45,11 +46,12 @@ public class AbortConfig implements Serializable {
 
     /**
      * <p>
-     * The list of abort criteria to define rules to abort the job.
+     * The list of criteria that determine when and how to abort the job.
      * </p>
      *
      * @param criteriaList <p>
-     *            The list of abort criteria to define rules to abort the job.
+     *            The list of criteria that determine when and how to abort the
+     *            job.
      *            </p>
      */
     public void setCriteriaList(java.util.Collection<AbortCriteria> criteriaList) {
@@ -63,14 +65,15 @@ public class AbortConfig implements Serializable {
 
     /**
      * <p>
-     * The list of abort criteria to define rules to abort the job.
+     * The list of criteria that determine when and how to abort the job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param criteriaList <p>
-     *            The list of abort criteria to define rules to abort the job.
+     *            The list of criteria that determine when and how to abort the
+     *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -87,14 +90,15 @@ public class AbortConfig implements Serializable {
 
     /**
      * <p>
-     * The list of abort criteria to define rules to abort the job.
+     * The list of criteria that determine when and how to abort the job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param criteriaList <p>
-     *            The list of abort criteria to define rules to abort the job.
+     *            The list of criteria that determine when and how to abort the
+     *            job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
