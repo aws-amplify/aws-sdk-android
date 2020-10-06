@@ -16,6 +16,6 @@ dependencies {
     testImplementation 'commons-lang:commons-lang:20030203.000129'
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-all:1.10.19'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation 'org.robolectric:robolectric:4.4'
 }
 
