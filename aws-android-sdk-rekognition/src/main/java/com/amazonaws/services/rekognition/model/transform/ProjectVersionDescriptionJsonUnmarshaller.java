@@ -76,6 +76,10 @@ class ProjectVersionDescriptionJsonUnmarshaller implements
                 projectVersionDescription.setEvaluationResult(EvaluationResultJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ManifestSummary")) {
+                projectVersionDescription.setManifestSummary(GroundTruthManifestJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

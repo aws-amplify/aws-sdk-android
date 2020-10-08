@@ -19,8 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A Sagemaker Groundtruth format manifest file representing the dataset used
- * for testing.
+ * Sagemaker Groundtruth format manifest files for the input, output and
+ * validation datasets that are used and created during testing.
  * </p>
  */
 public class TestingDataResult implements Serializable {
@@ -38,6 +38,14 @@ public class TestingDataResult implements Serializable {
      * </p>
      */
     private TestingData output;
+
+    /**
+     * <p>
+     * The location of the data validation manifest. The data validation
+     * manifest is created for the test dataset during model training.
+     * </p>
+     */
+    private ValidationData validation;
 
     /**
      * <p>
@@ -139,6 +147,59 @@ public class TestingDataResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The location of the data validation manifest. The data validation
+     * manifest is created for the test dataset during model training.
+     * </p>
+     *
+     * @return <p>
+     *         The location of the data validation manifest. The data validation
+     *         manifest is created for the test dataset during model training.
+     *         </p>
+     */
+    public ValidationData getValidation() {
+        return validation;
+    }
+
+    /**
+     * <p>
+     * The location of the data validation manifest. The data validation
+     * manifest is created for the test dataset during model training.
+     * </p>
+     *
+     * @param validation <p>
+     *            The location of the data validation manifest. The data
+     *            validation manifest is created for the test dataset during
+     *            model training.
+     *            </p>
+     */
+    public void setValidation(ValidationData validation) {
+        this.validation = validation;
+    }
+
+    /**
+     * <p>
+     * The location of the data validation manifest. The data validation
+     * manifest is created for the test dataset during model training.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param validation <p>
+     *            The location of the data validation manifest. The data
+     *            validation manifest is created for the test dataset during
+     *            model training.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TestingDataResult withValidation(ValidationData validation) {
+        this.validation = validation;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -152,7 +213,9 @@ public class TestingDataResult implements Serializable {
         if (getInput() != null)
             sb.append("Input: " + getInput() + ",");
         if (getOutput() != null)
-            sb.append("Output: " + getOutput());
+            sb.append("Output: " + getOutput() + ",");
+        if (getValidation() != null)
+            sb.append("Validation: " + getValidation());
         sb.append("}");
         return sb.toString();
     }
@@ -164,6 +227,7 @@ public class TestingDataResult implements Serializable {
 
         hashCode = prime * hashCode + ((getInput() == null) ? 0 : getInput().hashCode());
         hashCode = prime * hashCode + ((getOutput() == null) ? 0 : getOutput().hashCode());
+        hashCode = prime * hashCode + ((getValidation() == null) ? 0 : getValidation().hashCode());
         return hashCode;
     }
 
@@ -185,6 +249,11 @@ public class TestingDataResult implements Serializable {
         if (other.getOutput() == null ^ this.getOutput() == null)
             return false;
         if (other.getOutput() != null && other.getOutput().equals(this.getOutput()) == false)
+            return false;
+        if (other.getValidation() == null ^ this.getValidation() == null)
+            return false;
+        if (other.getValidation() != null
+                && other.getValidation().equals(this.getValidation()) == false)
             return false;
         return true;
     }
