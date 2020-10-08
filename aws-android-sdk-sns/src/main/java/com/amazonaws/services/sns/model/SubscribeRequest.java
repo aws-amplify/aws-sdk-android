@@ -201,8 +201,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * includes the subscription ARN, even if the subscription is not yet
      * confirmed.
      * </p>
-     * <ul>
-     * <li>
      * <p>
      * If you set this parameter to <code>true</code>, the response includes the
      * ARN in all cases, even if the subscription is not yet confirmed. In
@@ -212,8 +210,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * when the subscriber calls the <code>ConfirmSubscription</code> action
      * with a confirmation token.
      * </p>
-     * </li>
-     * </ul>
      * <p/>
      * <p>
      * The default value is <code>false</code>.
@@ -1421,8 +1417,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * includes the subscription ARN, even if the subscription is not yet
      * confirmed.
      * </p>
-     * <ul>
-     * <li>
      * <p>
      * If you set this parameter to <code>true</code>, the response includes the
      * ARN in all cases, even if the subscription is not yet confirmed. In
@@ -1432,8 +1426,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * when the subscriber calls the <code>ConfirmSubscription</code> action
      * with a confirmation token.
      * </p>
-     * </li>
-     * </ul>
      * <p/>
      * <p>
      * The default value is <code>false</code>.
@@ -1444,8 +1436,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         includes the subscription ARN, even if the subscription is not
      *         yet confirmed.
      *         </p>
-     *         <ul>
-     *         <li>
      *         <p>
      *         If you set this parameter to <code>true</code>, the response
      *         includes the ARN in all cases, even if the subscription is not
@@ -1456,8 +1446,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         the subscriber calls the <code>ConfirmSubscription</code> action
      *         with a confirmation token.
      *         </p>
-     *         </li>
-     *         </ul>
      *         <p/>
      *         <p>
      *         The default value is <code>false</code>.
@@ -1473,8 +1461,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * includes the subscription ARN, even if the subscription is not yet
      * confirmed.
      * </p>
-     * <ul>
-     * <li>
      * <p>
      * If you set this parameter to <code>true</code>, the response includes the
      * ARN in all cases, even if the subscription is not yet confirmed. In
@@ -1484,8 +1470,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * when the subscriber calls the <code>ConfirmSubscription</code> action
      * with a confirmation token.
      * </p>
-     * </li>
-     * </ul>
      * <p/>
      * <p>
      * The default value is <code>false</code>.
@@ -1496,8 +1480,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         includes the subscription ARN, even if the subscription is not
      *         yet confirmed.
      *         </p>
-     *         <ul>
-     *         <li>
      *         <p>
      *         If you set this parameter to <code>true</code>, the response
      *         includes the ARN in all cases, even if the subscription is not
@@ -1508,8 +1490,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         the subscriber calls the <code>ConfirmSubscription</code> action
      *         with a confirmation token.
      *         </p>
-     *         </li>
-     *         </ul>
      *         <p/>
      *         <p>
      *         The default value is <code>false</code>.
@@ -1525,8 +1505,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * includes the subscription ARN, even if the subscription is not yet
      * confirmed.
      * </p>
-     * <ul>
-     * <li>
      * <p>
      * If you set this parameter to <code>true</code>, the response includes the
      * ARN in all cases, even if the subscription is not yet confirmed. In
@@ -1536,8 +1514,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * when the subscriber calls the <code>ConfirmSubscription</code> action
      * with a confirmation token.
      * </p>
-     * </li>
-     * </ul>
      * <p/>
      * <p>
      * The default value is <code>false</code>.
@@ -1548,8 +1524,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            request includes the subscription ARN, even if the
      *            subscription is not yet confirmed.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
      *            If you set this parameter to <code>true</code>, the response
      *            includes the ARN in all cases, even if the subscription is not
@@ -1560,8 +1534,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            when the subscriber calls the <code>ConfirmSubscription</code>
      *            action with a confirmation token.
      *            </p>
-     *            </li>
-     *            </ul>
      *            <p/>
      *            <p>
      *            The default value is <code>false</code>.
@@ -1577,8 +1549,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * includes the subscription ARN, even if the subscription is not yet
      * confirmed.
      * </p>
-     * <ul>
-     * <li>
      * <p>
      * If you set this parameter to <code>true</code>, the response includes the
      * ARN in all cases, even if the subscription is not yet confirmed. In
@@ -1588,8 +1558,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * when the subscriber calls the <code>ConfirmSubscription</code> action
      * with a confirmation token.
      * </p>
-     * </li>
-     * </ul>
      * <p/>
      * <p>
      * The default value is <code>false</code>.
@@ -1603,8 +1571,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            request includes the subscription ARN, even if the
      *            subscription is not yet confirmed.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
      *            If you set this parameter to <code>true</code>, the response
      *            includes the ARN in all cases, even if the subscription is not
@@ -1615,8 +1581,6 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            when the subscriber calls the <code>ConfirmSubscription</code>
      *            action with a confirmation token.
      *            </p>
-     *            </li>
-     *            </ul>
      *            <p/>
      *            <p>
      *            The default value is <code>false</code>.
