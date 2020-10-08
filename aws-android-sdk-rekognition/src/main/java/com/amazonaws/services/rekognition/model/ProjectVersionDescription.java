@@ -100,14 +100,14 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the training results.
+     * Contains information about the training results.
      * </p>
      */
     private TrainingDataResult trainingDataResult;
 
     /**
      * <p>
-     * The manifest file that represents the testing results.
+     * Contains information about the testing results.
      * </p>
      */
     private TestingDataResult testingDataResult;
@@ -119,6 +119,14 @@ public class ProjectVersionDescription implements Serializable {
      * </p>
      */
     private EvaluationResult evaluationResult;
+
+    /**
+     * <p>
+     * The location of the summary manifest. The summary manifest provides
+     * aggregate data validation results for the training and test datasets.
+     * </p>
+     */
+    private GroundTruthManifest manifestSummary;
 
     /**
      * <p>
@@ -594,11 +602,11 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the training results.
+     * Contains information about the training results.
      * </p>
      *
      * @return <p>
-     *         The manifest file that represents the training results.
+     *         Contains information about the training results.
      *         </p>
      */
     public TrainingDataResult getTrainingDataResult() {
@@ -607,11 +615,11 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the training results.
+     * Contains information about the training results.
      * </p>
      *
      * @param trainingDataResult <p>
-     *            The manifest file that represents the training results.
+     *            Contains information about the training results.
      *            </p>
      */
     public void setTrainingDataResult(TrainingDataResult trainingDataResult) {
@@ -620,14 +628,14 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the training results.
+     * Contains information about the training results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param trainingDataResult <p>
-     *            The manifest file that represents the training results.
+     *            Contains information about the training results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -639,11 +647,11 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the testing results.
+     * Contains information about the testing results.
      * </p>
      *
      * @return <p>
-     *         The manifest file that represents the testing results.
+     *         Contains information about the testing results.
      *         </p>
      */
     public TestingDataResult getTestingDataResult() {
@@ -652,11 +660,11 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the testing results.
+     * Contains information about the testing results.
      * </p>
      *
      * @param testingDataResult <p>
-     *            The manifest file that represents the testing results.
+     *            Contains information about the testing results.
      *            </p>
      */
     public void setTestingDataResult(TestingDataResult testingDataResult) {
@@ -665,14 +673,14 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The manifest file that represents the testing results.
+     * Contains information about the testing results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param testingDataResult <p>
-     *            The manifest file that represents the testing results.
+     *            Contains information about the testing results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -734,6 +742,60 @@ public class ProjectVersionDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The location of the summary manifest. The summary manifest provides
+     * aggregate data validation results for the training and test datasets.
+     * </p>
+     *
+     * @return <p>
+     *         The location of the summary manifest. The summary manifest
+     *         provides aggregate data validation results for the training and
+     *         test datasets.
+     *         </p>
+     */
+    public GroundTruthManifest getManifestSummary() {
+        return manifestSummary;
+    }
+
+    /**
+     * <p>
+     * The location of the summary manifest. The summary manifest provides
+     * aggregate data validation results for the training and test datasets.
+     * </p>
+     *
+     * @param manifestSummary <p>
+     *            The location of the summary manifest. The summary manifest
+     *            provides aggregate data validation results for the training
+     *            and test datasets.
+     *            </p>
+     */
+    public void setManifestSummary(GroundTruthManifest manifestSummary) {
+        this.manifestSummary = manifestSummary;
+    }
+
+    /**
+     * <p>
+     * The location of the summary manifest. The summary manifest provides
+     * aggregate data validation results for the training and test datasets.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param manifestSummary <p>
+     *            The location of the summary manifest. The summary manifest
+     *            provides aggregate data validation results for the training
+     *            and test datasets.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withManifestSummary(GroundTruthManifest manifestSummary) {
+        this.manifestSummary = manifestSummary;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -765,7 +827,9 @@ public class ProjectVersionDescription implements Serializable {
         if (getTestingDataResult() != null)
             sb.append("TestingDataResult: " + getTestingDataResult() + ",");
         if (getEvaluationResult() != null)
-            sb.append("EvaluationResult: " + getEvaluationResult());
+            sb.append("EvaluationResult: " + getEvaluationResult() + ",");
+        if (getManifestSummary() != null)
+            sb.append("ManifestSummary: " + getManifestSummary());
         sb.append("}");
         return sb.toString();
     }
@@ -798,6 +862,8 @@ public class ProjectVersionDescription implements Serializable {
                 + ((getTestingDataResult() == null) ? 0 : getTestingDataResult().hashCode());
         hashCode = prime * hashCode
                 + ((getEvaluationResult() == null) ? 0 : getEvaluationResult().hashCode());
+        hashCode = prime * hashCode
+                + ((getManifestSummary() == null) ? 0 : getManifestSummary().hashCode());
         return hashCode;
     }
 
@@ -867,6 +933,11 @@ public class ProjectVersionDescription implements Serializable {
             return false;
         if (other.getEvaluationResult() != null
                 && other.getEvaluationResult().equals(this.getEvaluationResult()) == false)
+            return false;
+        if (other.getManifestSummary() == null ^ this.getManifestSummary() == null)
+            return false;
+        if (other.getManifestSummary() != null
+                && other.getManifestSummary().equals(this.getManifestSummary()) == false)
             return false;
         return true;
     }

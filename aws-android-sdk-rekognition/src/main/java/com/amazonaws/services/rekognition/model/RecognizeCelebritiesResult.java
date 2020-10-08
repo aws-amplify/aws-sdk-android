@@ -21,7 +21,7 @@ public class RecognizeCelebritiesResult implements Serializable {
     /**
      * <p>
      * Details about each celebrity found in the image. Amazon Rekognition can
-     * detect a maximum of 15 celebrities in an image.
+     * detect a maximum of 64 celebrities in an image.
      * </p>
      */
     private java.util.List<Celebrity> celebrityFaces;
@@ -62,12 +62,12 @@ public class RecognizeCelebritiesResult implements Serializable {
     /**
      * <p>
      * Details about each celebrity found in the image. Amazon Rekognition can
-     * detect a maximum of 15 celebrities in an image.
+     * detect a maximum of 64 celebrities in an image.
      * </p>
      *
      * @return <p>
      *         Details about each celebrity found in the image. Amazon
-     *         Rekognition can detect a maximum of 15 celebrities in an image.
+     *         Rekognition can detect a maximum of 64 celebrities in an image.
      *         </p>
      */
     public java.util.List<Celebrity> getCelebrityFaces() {
@@ -77,12 +77,12 @@ public class RecognizeCelebritiesResult implements Serializable {
     /**
      * <p>
      * Details about each celebrity found in the image. Amazon Rekognition can
-     * detect a maximum of 15 celebrities in an image.
+     * detect a maximum of 64 celebrities in an image.
      * </p>
      *
      * @param celebrityFaces <p>
      *            Details about each celebrity found in the image. Amazon
-     *            Rekognition can detect a maximum of 15 celebrities in an
+     *            Rekognition can detect a maximum of 64 celebrities in an
      *            image.
      *            </p>
      */
@@ -98,7 +98,7 @@ public class RecognizeCelebritiesResult implements Serializable {
     /**
      * <p>
      * Details about each celebrity found in the image. Amazon Rekognition can
-     * detect a maximum of 15 celebrities in an image.
+     * detect a maximum of 64 celebrities in an image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -106,7 +106,7 @@ public class RecognizeCelebritiesResult implements Serializable {
      *
      * @param celebrityFaces <p>
      *            Details about each celebrity found in the image. Amazon
-     *            Rekognition can detect a maximum of 15 celebrities in an
+     *            Rekognition can detect a maximum of 64 celebrities in an
      *            image.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -125,7 +125,7 @@ public class RecognizeCelebritiesResult implements Serializable {
     /**
      * <p>
      * Details about each celebrity found in the image. Amazon Rekognition can
-     * detect a maximum of 15 celebrities in an image.
+     * detect a maximum of 64 celebrities in an image.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -133,7 +133,7 @@ public class RecognizeCelebritiesResult implements Serializable {
      *
      * @param celebrityFaces <p>
      *            Details about each celebrity found in the image. Amazon
-     *            Rekognition can detect a maximum of 15 celebrities in an
+     *            Rekognition can detect a maximum of 64 celebrities in an
      *            image.
      *            </p>
      * @return A reference to this updated object so that method calls can be

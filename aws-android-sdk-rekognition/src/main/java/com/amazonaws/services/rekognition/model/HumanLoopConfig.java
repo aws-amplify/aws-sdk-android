@@ -39,7 +39,10 @@ public class HumanLoopConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the flow definition.
+     * The Amazon Resource Name (ARN) of the flow definition. You can create a
+     * flow definition by using the Amazon Sagemaker <a href=
+     * "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     * >CreateFlowDefinition</a> Operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -119,14 +122,20 @@ public class HumanLoopConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the flow definition.
+     * The Amazon Resource Name (ARN) of the flow definition. You can create a
+     * flow definition by using the Amazon Sagemaker <a href=
+     * "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     * >CreateFlowDefinition</a> Operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the flow definition.
+     *         The Amazon Resource Name (ARN) of the flow definition. You can
+     *         create a flow definition by using the Amazon Sagemaker <a href=
+     *         "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     *         >CreateFlowDefinition</a> Operation.
      *         </p>
      */
     public String getFlowDefinitionArn() {
@@ -135,14 +144,21 @@ public class HumanLoopConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the flow definition.
+     * The Amazon Resource Name (ARN) of the flow definition. You can create a
+     * flow definition by using the Amazon Sagemaker <a href=
+     * "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     * >CreateFlowDefinition</a> Operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 256<br/>
      *
      * @param flowDefinitionArn <p>
-     *            The Amazon Resource Name (ARN) of the flow definition.
+     *            The Amazon Resource Name (ARN) of the flow definition. You can
+     *            create a flow definition by using the Amazon Sagemaker <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     *            >CreateFlowDefinition</a> Operation.
      *            </p>
      */
     public void setFlowDefinitionArn(String flowDefinitionArn) {
@@ -151,7 +167,10 @@ public class HumanLoopConfig implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the flow definition.
+     * The Amazon Resource Name (ARN) of the flow definition. You can create a
+     * flow definition by using the Amazon Sagemaker <a href=
+     * "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     * >CreateFlowDefinition</a> Operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -161,7 +180,11 @@ public class HumanLoopConfig implements Serializable {
      * <b>Length: </b> - 256<br/>
      *
      * @param flowDefinitionArn <p>
-     *            The Amazon Resource Name (ARN) of the flow definition.
+     *            The Amazon Resource Name (ARN) of the flow definition. You can
+     *            create a flow definition by using the Amazon Sagemaker <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateFlowDefinition.html"
+     *            >CreateFlowDefinition</a> Operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
