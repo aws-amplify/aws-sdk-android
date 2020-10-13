@@ -1530,7 +1530,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
                 if (signOutOptions.isInvalidateTokens()) {
                     if (hostedUI != null) {
-                        if (signOutOptions.getBrowserPackage() != null && !signOutOptions.getBrowserPackage().trim().isEmpty()) {
+                        if (signOutOptions.getBrowserPackage() != null) {
                             hostedUI.setBrowserPackage(signOutOptions.getBrowserPackage());
                         }
                         hostedUI.signOut();
@@ -3319,11 +3319,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     hostedUIBuilder.setIdpIdentifier(idpIdentifier);
                 }
                 hostedUI = hostedUIBuilder.build();
-
-                if (signInUIOptions.getBrowserPackage() != null && !signInUIOptions.getBrowserPackage().trim().isEmpty()) {
+                if (signInUIOptions.getBrowserPackage() != null) {
                     hostedUI.setBrowserPackage(signInUIOptions.getBrowserPackage());
                 }
-
                 hostedUI.getSession(callingActivity);
             }
         };

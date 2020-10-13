@@ -672,7 +672,12 @@ public final class Auth {
      * @param activity Activity to launch custom tabs from and to listen for the intent completions.
      */
     public void getSession(final Activity activity) {
-        this.user.getSession(true, activity, getBrowserPackage());
+        if (getBrowserPackage() != null) {
+            this.user.getSession(true, activity, getBrowserPackage());
+        } else {
+            this.user.getSession(true, activity);
+        }
+
     }
 
     /**
@@ -707,7 +712,11 @@ public final class Auth {
      * </p>
      */
     public void signOut() {
-        this.user.signOut(false, getBrowserPackage());
+        if (getBrowserPackage() != null) {
+            this.user.signOut(false, getBrowserPackage());
+        } else {
+            this.user.signOut(false);
+        }
     }
 
     /**
@@ -717,7 +726,11 @@ public final class Auth {
      *                             but the session may still be alive from the browser.
      */
     public void signOut(final boolean clearLocalTokensOnly) {
-        this.user.signOut(clearLocalTokensOnly, getBrowserPackage());
+        if (getBrowserPackage() != null) {
+            this.user.signOut(clearLocalTokensOnly, getBrowserPackage());
+        } else {
+            this.user.signOut(clearLocalTokensOnly);
+        }
     }
 
     /**
