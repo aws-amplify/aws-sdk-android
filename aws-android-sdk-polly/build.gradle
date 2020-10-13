@@ -7,8 +7,6 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 29
-        versionCode 21800
-        versionName '2.18.0'
     }
 }
 
@@ -17,6 +15,6 @@ dependencies {
 
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-all:1.10.19'
-    testImplementation 'org.robolectric:robolectric:4.3.1'
+    testImplementation 'org.robolectric:robolectric:4.4'
 }
 

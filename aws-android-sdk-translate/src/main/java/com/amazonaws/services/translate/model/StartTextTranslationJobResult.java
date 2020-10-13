@@ -54,7 +54,7 @@ public class StartTextTranslationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>COMPLETED_WITH_ERRORS</code> - The job was completed with errors.
+     * <code>COMPLETED_WITH_ERROR</code> - The job was completed with errors.
      * The errors can be analyzed in the job's output.
      * </p>
      * </li>
@@ -172,7 +172,7 @@ public class StartTextTranslationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>COMPLETED_WITH_ERRORS</code> - The job was completed with errors.
+     * <code>COMPLETED_WITH_ERROR</code> - The job was completed with errors.
      * The errors can be analyzed in the job's output.
      * </p>
      * </li>
@@ -223,7 +223,7 @@ public class StartTextTranslationJobResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>COMPLETED_WITH_ERRORS</code> - The job was completed with
+     *         <code>COMPLETED_WITH_ERROR</code> - The job was completed with
      *         errors. The errors can be analyzed in the job's output.
      *         </p>
      *         </li>
@@ -275,7 +275,7 @@ public class StartTextTranslationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>COMPLETED_WITH_ERRORS</code> - The job was completed with errors.
+     * <code>COMPLETED_WITH_ERROR</code> - The job was completed with errors.
      * The errors can be analyzed in the job's output.
      * </p>
      * </li>
@@ -326,8 +326,8 @@ public class StartTextTranslationJobResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>COMPLETED_WITH_ERRORS</code> - The job was completed
-     *            with errors. The errors can be analyzed in the job's output.
+     *            <code>COMPLETED_WITH_ERROR</code> - The job was completed with
+     *            errors. The errors can be analyzed in the job's output.
      *            </p>
      *            </li>
      *            <li>
@@ -378,7 +378,7 @@ public class StartTextTranslationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>COMPLETED_WITH_ERRORS</code> - The job was completed with errors.
+     * <code>COMPLETED_WITH_ERROR</code> - The job was completed with errors.
      * The errors can be analyzed in the job's output.
      * </p>
      * </li>
@@ -432,8 +432,8 @@ public class StartTextTranslationJobResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>COMPLETED_WITH_ERRORS</code> - The job was completed
-     *            with errors. The errors can be analyzed in the job's output.
+     *            <code>COMPLETED_WITH_ERROR</code> - The job was completed with
+     *            errors. The errors can be analyzed in the job's output.
      *            </p>
      *            </li>
      *            <li>
@@ -487,7 +487,7 @@ public class StartTextTranslationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>COMPLETED_WITH_ERRORS</code> - The job was completed with errors.
+     * <code>COMPLETED_WITH_ERROR</code> - The job was completed with errors.
      * The errors can be analyzed in the job's output.
      * </p>
      * </li>
@@ -538,8 +538,8 @@ public class StartTextTranslationJobResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>COMPLETED_WITH_ERRORS</code> - The job was completed
-     *            with errors. The errors can be analyzed in the job's output.
+     *            <code>COMPLETED_WITH_ERROR</code> - The job was completed with
+     *            errors. The errors can be analyzed in the job's output.
      *            </p>
      *            </li>
      *            <li>
@@ -590,7 +590,7 @@ public class StartTextTranslationJobResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>COMPLETED_WITH_ERRORS</code> - The job was completed with errors.
+     * <code>COMPLETED_WITH_ERROR</code> - The job was completed with errors.
      * The errors can be analyzed in the job's output.
      * </p>
      * </li>
@@ -644,8 +644,8 @@ public class StartTextTranslationJobResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>COMPLETED_WITH_ERRORS</code> - The job was completed
-     *            with errors. The errors can be analyzed in the job's output.
+     *            <code>COMPLETED_WITH_ERROR</code> - The job was completed with
+     *            errors. The errors can be analyzed in the job's output.
      *            </p>
      *            </li>
      *            <li>

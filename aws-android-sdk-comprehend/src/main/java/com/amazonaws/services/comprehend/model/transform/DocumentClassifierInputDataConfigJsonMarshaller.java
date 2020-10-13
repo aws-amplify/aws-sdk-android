@@ -16,6 +16,7 @@
 package com.amazonaws.services.comprehend.model.transform;
 
 import com.amazonaws.services.comprehend.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -26,6 +27,11 @@ class DocumentClassifierInputDataConfigJsonMarshaller {
     public void marshall(DocumentClassifierInputDataConfig documentClassifierInputDataConfig,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (documentClassifierInputDataConfig.getDataFormat() != null) {
+            String dataFormat = documentClassifierInputDataConfig.getDataFormat();
+            jsonWriter.name("DataFormat");
+            jsonWriter.value(dataFormat);
+        }
         if (documentClassifierInputDataConfig.getS3Uri() != null) {
             String s3Uri = documentClassifierInputDataConfig.getS3Uri();
             jsonWriter.name("S3Uri");
@@ -35,6 +41,19 @@ class DocumentClassifierInputDataConfigJsonMarshaller {
             String labelDelimiter = documentClassifierInputDataConfig.getLabelDelimiter();
             jsonWriter.name("LabelDelimiter");
             jsonWriter.value(labelDelimiter);
+        }
+        if (documentClassifierInputDataConfig.getAugmentedManifests() != null) {
+            java.util.List<AugmentedManifestsListItem> augmentedManifests = documentClassifierInputDataConfig
+                    .getAugmentedManifests();
+            jsonWriter.name("AugmentedManifests");
+            jsonWriter.beginArray();
+            for (AugmentedManifestsListItem augmentedManifestsItem : augmentedManifests) {
+                if (augmentedManifestsItem != null) {
+                    AugmentedManifestsListItemJsonMarshaller.getInstance().marshall(
+                            augmentedManifestsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

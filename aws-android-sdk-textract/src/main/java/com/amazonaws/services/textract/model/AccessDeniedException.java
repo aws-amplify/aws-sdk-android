@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * You aren't authorized to perform the action.
+ * You aren't authorized to perform the action. Use the Amazon Resource Name
+ * (ARN) of an authorized user or IAM role to perform the operation.
  * </p>
  */
 public class AccessDeniedException extends AmazonServiceException {

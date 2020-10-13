@@ -97,6 +97,15 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
 
     /**
      * <p>
+     * Sets if the output will go to a customer defined bucket. By default
+     * Amazon Textract will save the results internally to be accessed with the
+     * GetDocumentTextDetection operation.
+     * </p>
+     */
+    private OutputConfig outputConfig;
+
+    /**
+     * <p>
      * The location of the document to be processed.
      * </p>
      *
@@ -370,6 +379,63 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
     }
 
     /**
+     * <p>
+     * Sets if the output will go to a customer defined bucket. By default
+     * Amazon Textract will save the results internally to be accessed with the
+     * GetDocumentTextDetection operation.
+     * </p>
+     *
+     * @return <p>
+     *         Sets if the output will go to a customer defined bucket. By
+     *         default Amazon Textract will save the results internally to be
+     *         accessed with the GetDocumentTextDetection operation.
+     *         </p>
+     */
+    public OutputConfig getOutputConfig() {
+        return outputConfig;
+    }
+
+    /**
+     * <p>
+     * Sets if the output will go to a customer defined bucket. By default
+     * Amazon Textract will save the results internally to be accessed with the
+     * GetDocumentTextDetection operation.
+     * </p>
+     *
+     * @param outputConfig <p>
+     *            Sets if the output will go to a customer defined bucket. By
+     *            default Amazon Textract will save the results internally to be
+     *            accessed with the GetDocumentTextDetection operation.
+     *            </p>
+     */
+    public void setOutputConfig(OutputConfig outputConfig) {
+        this.outputConfig = outputConfig;
+    }
+
+    /**
+     * <p>
+     * Sets if the output will go to a customer defined bucket. By default
+     * Amazon Textract will save the results internally to be accessed with the
+     * GetDocumentTextDetection operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param outputConfig <p>
+     *            Sets if the output will go to a customer defined bucket. By
+     *            default Amazon Textract will save the results internally to be
+     *            accessed with the GetDocumentTextDetection operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDocumentTextDetectionRequest withOutputConfig(OutputConfig outputConfig) {
+        this.outputConfig = outputConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -387,7 +453,9 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
         if (getJobTag() != null)
             sb.append("JobTag: " + getJobTag() + ",");
         if (getNotificationChannel() != null)
-            sb.append("NotificationChannel: " + getNotificationChannel());
+            sb.append("NotificationChannel: " + getNotificationChannel() + ",");
+        if (getOutputConfig() != null)
+            sb.append("OutputConfig: " + getOutputConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -404,6 +472,8 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
         hashCode = prime * hashCode + ((getJobTag() == null) ? 0 : getJobTag().hashCode());
         hashCode = prime * hashCode
                 + ((getNotificationChannel() == null) ? 0 : getNotificationChannel().hashCode());
+        hashCode = prime * hashCode
+                + ((getOutputConfig() == null) ? 0 : getOutputConfig().hashCode());
         return hashCode;
     }
 
@@ -436,6 +506,11 @@ public class StartDocumentTextDetectionRequest extends AmazonWebServiceRequest i
             return false;
         if (other.getNotificationChannel() != null
                 && other.getNotificationChannel().equals(this.getNotificationChannel()) == false)
+            return false;
+        if (other.getOutputConfig() == null ^ this.getOutputConfig() == null)
+            return false;
+        if (other.getOutputConfig() != null
+                && other.getOutputConfig().equals(this.getOutputConfig()) == false)
             return false;
         return true;
     }

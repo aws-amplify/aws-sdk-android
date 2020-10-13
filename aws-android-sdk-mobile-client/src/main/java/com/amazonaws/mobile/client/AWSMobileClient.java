@@ -26,6 +26,8 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
+import android.util.Log;
 import androidx.annotation.AnyThread;
 import androidx.annotation.WorkerThread;
 import androidx.browser.customtabs.CustomTabsCallback;
@@ -34,7 +36,6 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
 import androidx.core.content.ContextCompat;
-import android.util.Log;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.ClientConfiguration;
@@ -767,15 +768,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * @return true if permission to access network state is granted and network is connected.
      */
     protected boolean isNetworkAvailable(final Context context) {
-        try {
-            Class.forName("android.support.v4.content.ContextCompat");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int hasReadExternalStoragePermission = ContextCompat.checkSelfPermission(context,
                     Manifest.permission.ACCESS_NETWORK_STATE);
             if (hasReadExternalStoragePermission != PackageManager.PERMISSION_GRANTED) {
                 return false;
             }
-        } catch (ClassNotFoundException e) {
-            Log.w(TAG, "Could not check if ACCESS_NETWORK_STATE permission is available.", e);
         }
 
         try {
@@ -1211,7 +1209,11 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                             awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
                                     ) {
                                         final HashMap<String, String> authParameters = new HashMap<String, String>();
-                                        authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
+                                        if (password != null) {
+                                            authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
+                                        } else {
+                                            authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
+                                        }
                                     } else {
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
                                     }

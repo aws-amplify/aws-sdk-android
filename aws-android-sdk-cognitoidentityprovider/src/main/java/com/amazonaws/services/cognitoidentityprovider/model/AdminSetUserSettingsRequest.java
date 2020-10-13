@@ -23,7 +23,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <i>This action is no longer supported.</i> You can use it to configure only
  * SMS MFA. You can't use it to configure TOTP software token MFA. To configure
- * either type of MFA, use the <a>AdminSetUserMFAPreference</a> action instead.
+ * either type of MFA, use <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminSetUserMFAPreference.html"
+ * >AdminSetUserMFAPreference</a> instead.
  * </p>
  */
 public class AdminSetUserSettingsRequest extends AmazonWebServiceRequest implements Serializable {

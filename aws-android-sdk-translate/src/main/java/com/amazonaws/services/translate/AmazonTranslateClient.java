@@ -339,6 +339,7 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
+        setServiceNameIntern("translate");
         this.setEndpoint("translate.us-east-1.amazonaws.com");
         this.endpointPrefix = "translate";
 
@@ -363,6 +364,7 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
      * @param deleteTerminologyRequest
      * @throws ResourceNotFoundException
      * @throws TooManyRequestsException
+     * @throws InvalidParameterValueException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

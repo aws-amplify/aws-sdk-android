@@ -95,6 +95,11 @@ public class StartMedicalTranscriptionJobRequestMarshaller
                 jsonWriter.name("OutputBucketName");
                 jsonWriter.value(outputBucketName);
             }
+            if (startMedicalTranscriptionJobRequest.getOutputKey() != null) {
+                String outputKey = startMedicalTranscriptionJobRequest.getOutputKey();
+                jsonWriter.name("OutputKey");
+                jsonWriter.value(outputKey);
+            }
             if (startMedicalTranscriptionJobRequest.getOutputEncryptionKMSKeyId() != null) {
                 String outputEncryptionKMSKeyId = startMedicalTranscriptionJobRequest
                         .getOutputEncryptionKMSKeyId();

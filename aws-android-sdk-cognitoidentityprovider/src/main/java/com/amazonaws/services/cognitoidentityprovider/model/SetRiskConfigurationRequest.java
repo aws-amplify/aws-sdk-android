@@ -29,9 +29,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To enable Amazon Cognito advanced security features, update the user pool to
  * include the <code>UserPoolAddOns</code> key<code>AdvancedSecurityMode</code>.
  * </p>
- * <p>
- * See .
- * </p>
  */
 public class SetRiskConfigurationRequest extends AmazonWebServiceRequest implements Serializable {
     /**
