@@ -663,7 +663,7 @@ public class AuthClient {
 	        if(pool.getCustomTabExtras() != null)
 	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
 	        mCustomTabsIntent.intent.setPackage(
-	                browserPackage != null ? browserPackage : ClientConstants.CHROME_PACKAGE);
+	                browserPackage != null ? browserPackage : DEFAULT_BROWSER_PACKAGE);
             mCustomTabsIntent.intent.setData(uri);
             activity.startActivityForResult(
                 CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent),
@@ -687,7 +687,7 @@ public class AuthClient {
             if(pool.getCustomTabExtras() != null)
                 mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
             mCustomTabsIntent.intent.setPackage(
-                    browserPackage != null ? browserPackage : ClientConstants.CHROME_PACKAGE);
+                    browserPackage != null ? browserPackage : DEFAULT_BROWSER_PACKAGE);
             mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mCustomTabsIntent.launchUrl(context, uri);
