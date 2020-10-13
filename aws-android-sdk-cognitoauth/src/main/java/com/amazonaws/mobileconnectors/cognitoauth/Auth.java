@@ -169,7 +169,6 @@ public final class Auth {
      * @param appSecret Required: The Cognito App/Client secret associated with the {@code appId}.
      * @param signInRedirectUri Required: The callback Uri after successful authentication.
      * @param signOutRedirectUri Required: The callback Uri after sign-out.
-     * @param browserPackage Optional: Specifies the browser to open custom tabs. Defaults to Chrome if left null.
      * @param scopes Required: Scopes requested for the tokens.
      * @param userHandler Required: An instance of the callback handler.
      * @param advancedSecurityDataCollectionFlag : Flag identifying if user context data should be collected.
@@ -182,7 +181,6 @@ public final class Auth {
                  final String appSecret,
                  final String signInRedirectUri,
                  final String signOutRedirectUri,
-                 final String browserPackage,
                  final Set<String> scopes,
                  final AuthHandler userHandler,
                  final boolean advancedSecurityDataCollectionFlag,
@@ -196,7 +194,6 @@ public final class Auth {
         this.appSecret = appSecret;
         this.signInRedirectUri = signInRedirectUri;
         this.signOutRedirectUri = signOutRedirectUri;
-        this.browserPackage = browserPackage;
         this.scopes = scopes;
         this.user = new AuthClient(context, this);
         this.user.setUserHandler(userHandler);
@@ -247,11 +244,6 @@ public final class Auth {
          * Redirect Uri for Sign Out.
          */
         private String mSignOutRedirect;
-
-        /**
-         * Optional string specifying the browser to open custom tabs. Defaults to Chrome if left null.
-         */
-        private String mBrowserPackage;
 
         /**
          * Scopes for the requested tokens.
@@ -418,21 +410,6 @@ public final class Auth {
         }
 
         /**
-         * Sets the browser package for custom tab activities.
-         * <p>
-         *     Optional. Specifies the browser to open custom tabs.
-         *     Defaults to Chrome if left blank.
-         * </p>
-         * @param mBrowserPackage Required: The package name for the browser to open custom tabs.
-         * @return A reference to this builder.
-         */
-        @SuppressWarnings("checkstyle:hiddenfield")
-        public Builder setBrowserPackage(final String mBrowserPackage) {
-            this.mBrowserPackage = mBrowserPackage;
-            return this;
-        }
-
-        /**
          * Sets the scopes for tokens.
          * <p>
          *     Optional. Set scopes when requesting tokens with specific set of permissions.
@@ -514,7 +491,6 @@ public final class Auth {
                     this.mAppSecret,
                     this.mSignInRedirect,
                     this.mSignOutRedirect,
-                    this.mBrowserPackage,
                     this.mScopes,
                     this.mUserHandler,
                     this.mAdvancedSecurityDataCollectionFlag,
@@ -650,7 +626,7 @@ public final class Auth {
     }
 
     /**
-     * @return Browser package set for this {@link Auth} instance. Defaults to Chrome if null.
+     * @return Optional browser package set for this {@link Auth} instance.
      */
     public String getBrowserPackage() {
         return browserPackage;

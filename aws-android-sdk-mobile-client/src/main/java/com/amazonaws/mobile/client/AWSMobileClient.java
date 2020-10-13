@@ -3318,10 +3318,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 if (idpIdentifier != null) {
                     hostedUIBuilder.setIdpIdentifier(idpIdentifier);
                 }
-                if (signInUIOptions.getBrowserPackage() != null && !signInUIOptions.getBrowserPackage().trim().isEmpty()) {
-                    hostedUIBuilder.setBrowserPackage(signInUIOptions.getBrowserPackage());
-                }
                 hostedUI = hostedUIBuilder.build();
+
+                if (signInUIOptions.getBrowserPackage() != null && !signInUIOptions.getBrowserPackage().trim().isEmpty()) {
+                    hostedUI.setBrowserPackage(signInUIOptions.getBrowserPackage());
+                }
+
                 hostedUI.getSession(callingActivity);
             }
         };
