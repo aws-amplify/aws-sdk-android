@@ -21,13 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a version of a model.
+ * Deletes an Amazon Rekognition Custom Labels model.
  * </p>
  * <p>
- * You must first stop the model before you can delete it. To check if a model
- * is running, use the <code>Status</code> field returned from
+ * You can't delete a model if it is running or if it is training. To check the
+ * status of a model, use the <code>Status</code> field returned from
  * <a>DescribeProjectVersions</a>. To stop a running model call
- * <a>StopProjectVersion</a>.
+ * <a>StopProjectVersion</a>. If the model is training, wait until it finishes.
  * </p>
  * <p>
  * This operation requires permissions to perform the

@@ -16,6 +16,7 @@
 package com.amazonaws.services.rekognition.model.transform;
 
 import com.amazonaws.services.rekognition.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**

@@ -20,24 +20,28 @@ import java.io.Serializable;
 /**
  * <p>
  * Assets are the images that you use to train and evaluate a model version.
- * Assets are referenced by Sagemaker GroundTruth manifest files.
+ * Assets can also contain validation information that you use to debug a failed
+ * model training.
  * </p>
  */
 public class Asset implements Serializable {
     /**
      * <p>
-     * The S3 bucket that contains the Ground Truth manifest file.
+     * The S3 bucket that contains an Amazon Sagemaker Ground Truth format
+     * manifest file.
      * </p>
      */
     private GroundTruthManifest groundTruthManifest;
 
     /**
      * <p>
-     * The S3 bucket that contains the Ground Truth manifest file.
+     * The S3 bucket that contains an Amazon Sagemaker Ground Truth format
+     * manifest file.
      * </p>
      *
      * @return <p>
-     *         The S3 bucket that contains the Ground Truth manifest file.
+     *         The S3 bucket that contains an Amazon Sagemaker Ground Truth
+     *         format manifest file.
      *         </p>
      */
     public GroundTruthManifest getGroundTruthManifest() {
@@ -46,11 +50,13 @@ public class Asset implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket that contains the Ground Truth manifest file.
+     * The S3 bucket that contains an Amazon Sagemaker Ground Truth format
+     * manifest file.
      * </p>
      *
      * @param groundTruthManifest <p>
-     *            The S3 bucket that contains the Ground Truth manifest file.
+     *            The S3 bucket that contains an Amazon Sagemaker Ground Truth
+     *            format manifest file.
      *            </p>
      */
     public void setGroundTruthManifest(GroundTruthManifest groundTruthManifest) {
@@ -59,14 +65,16 @@ public class Asset implements Serializable {
 
     /**
      * <p>
-     * The S3 bucket that contains the Ground Truth manifest file.
+     * The S3 bucket that contains an Amazon Sagemaker Ground Truth format
+     * manifest file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param groundTruthManifest <p>
-     *            The S3 bucket that contains the Ground Truth manifest file.
+     *            The S3 bucket that contains an Amazon Sagemaker Ground Truth
+     *            format manifest file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
