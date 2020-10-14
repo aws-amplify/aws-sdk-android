@@ -55,6 +55,12 @@ public class SignInUIOptions {
             return this;
         }
 
+        /**
+         * Specify which browser package to use for the sign in operation (e.g. "org.mozilla.firefox").
+         * Defaults to the Chrome package if not specified.
+         * @param browserPackage the browser package to use for the sign in operation (e.g. "org.mozilla.firefox").
+         * @return The builder object.
+         */
         public Builder browserPackage(final String browserPackage) {
             this.browserPackage = browserPackage;
             return this;

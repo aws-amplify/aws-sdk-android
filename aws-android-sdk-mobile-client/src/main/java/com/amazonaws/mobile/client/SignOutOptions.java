@@ -51,7 +51,7 @@ public class SignOutOptions {
 
         /**
          * If {@link #invalidateTokens} is true, this can optionally be used to specify which browser package should
-         * perform the sign out action. Defaults to Chrome if not specified.
+         * perform the sign out action (e.g. "org.mozilla.firefox"). Defaults to the Chrome package if not specified.
          *
          * @param browserPackage String specifying the browser to open custom tabs.
          * @return Builder object for chaining
