@@ -22,9 +22,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a display name for a customer managed customer master key (CMK). You
- * can use an alias to identify a CMK in cryptographic operations, such as
- * <a>Encrypt</a> and <a>GenerateDataKey</a>. You can change the CMK associated
- * with the alias at any time.
+ * can use an alias to identify a CMK in <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operations</a>, such as <a>Encrypt</a> and
+ * <a>GenerateDataKey</a>. You can change the CMK associated with the alias at
+ * any time.
  * </p>
  * <p>
  * Aliases are easier to remember than key IDs. They can also help to simplify
@@ -101,12 +103,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * You can use an alias name or alias ARN to identify a CMK in AWS KMS
- * cryptographic operations and in the <a>DescribeKey</a> operation. However,
- * you cannot use alias names or alias ARNs in API operations that manage CMKs,
- * such as <a>DisableKey</a> or <a>GetKeyPolicy</a>. For information about the
- * valid CMK identifiers for each AWS KMS API operation, see the descriptions of
- * the <code>KeyId</code> parameter in the API operation documentation.
+ * You can use an alias name or alias ARN to identify a CMK in AWS KMS <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operations</a> and in the <a>DescribeKey</a> operation.
+ * However, you cannot use alias names or alias ARNs in API operations that
+ * manage CMKs, such as <a>DisableKey</a> or <a>GetKeyPolicy</a>. For
+ * information about the valid CMK identifiers for each AWS KMS API operation,
+ * see the descriptions of the <code>KeyId</code> parameter in the API operation
+ * documentation.
  * </p>
  * </li>
  * </ul>

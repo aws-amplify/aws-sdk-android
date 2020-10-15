@@ -22,8 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Sets the state of a customer master key (CMK) to disabled, thereby preventing
- * its use for cryptographic operations. You cannot perform this operation on a
- * CMK in a different AWS account.
+ * its use for <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operations</a>. You cannot perform this operation on a CMK in
+ * a different AWS account.
  * </p>
  * <p>
  * For more information about how key state affects the use of a CMK, see <a

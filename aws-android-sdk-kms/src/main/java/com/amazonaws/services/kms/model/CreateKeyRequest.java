@@ -195,10 +195,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -843,10 +845,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -876,10 +880,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @return <p>
-     *         Determines the cryptographic operations for which you can use the
-     *         CMK. The default value is <code>ENCRYPT_DECRYPT</code>. This
-     *         parameter is required only for asymmetric CMKs. You can't change
-     *         the <code>KeyUsage</code> value after the CMK is created.
+     *         Determines the <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operations</a> for which you can use the CMK. The
+     *         default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
+     *         required only for asymmetric CMKs. You can't change the
+     *         <code>KeyUsage</code> value after the CMK is created.
      *         </p>
      *         <p>
      *         Select only one valid value.
@@ -912,10 +918,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -945,9 +953,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -982,10 +992,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -1018,9 +1030,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -1058,10 +1072,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -1091,9 +1107,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -1128,10 +1146,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -1164,9 +1184,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>

@@ -19,46 +19,22 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Use this structure to allow cryptographic operations in the grant only when
- * the operation request includes the specified <a href=
+ * Use this structure to allow <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operations</a> in the grant only when the operation request
+ * includes the specified <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >encryption context</a>.
  * </p>
  * <p>
- * AWS KMS applies the grant constraints only when the grant allows a
- * cryptographic operation that accepts an encryption context as input, such as
- * the following.
- * </p>
- * <ul>
- * <li>
- * <p>
- * <a>Encrypt</a>
- * </p>
- * </li>
- * <li>
- * <p>
- * <a>Decrypt</a>
- * </p>
- * </li>
- * <li>
- * <p>
- * <a>GenerateDataKey</a>
- * </p>
- * </li>
- * <li>
- * <p>
- * <a>GenerateDataKeyWithoutPlaintext</a>
- * </p>
- * </li>
- * <li>
- * <p>
- * <a>ReEncrypt</a>
- * </p>
- * </li>
- * </ul>
- * <p>
- * AWS KMS does not apply the grant constraints to other operations, such as
- * <a>DescribeKey</a> or <a>ScheduleKeyDeletion</a>.
+ * AWS KMS applies the grant constraints only to cryptographic operations that
+ * support an encryption context, that is, all cryptographic operations with a
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/symm-asymm-concepts.html#symmetric-cmks"
+ * >symmetric CMK</a>. Grant constraints are not applied to operations that do
+ * not support an encryption context, such as cryptographic operations with
+ * asymmetric CMKs and management operations, such as <a>DescribeKey</a> or
+ * <a>ScheduleKeyDeletion</a>.
  * </p>
  * <important>
  * <p>
@@ -87,10 +63,12 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must be included in the encryption context
-     * of the cryptographic operation request. The grant allows the
-     * cryptographic operation only when the encryption context in the request
-     * includes the key-value pairs specified in this constraint, although it
-     * can include additional key-value pairs.
+     * of the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the cryptographic
+     * operation only when the encryption context in the request includes the
+     * key-value pairs specified in this constraint, although it can include
+     * additional key-value pairs.
      * </p>
      */
     private java.util.Map<String, String> encryptionContextSubset = new java.util.HashMap<String, String>();
@@ -98,8 +76,10 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must match the encryption context in the
-     * cryptographic operation request. The grant allows the operation only when
-     * the encryption context in the request is the same as the encryption
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the operation only
+     * when the encryption context in the request is the same as the encryption
      * context specified in this constraint.
      * </p>
      */
@@ -108,17 +88,21 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must be included in the encryption context
-     * of the cryptographic operation request. The grant allows the
-     * cryptographic operation only when the encryption context in the request
-     * includes the key-value pairs specified in this constraint, although it
-     * can include additional key-value pairs.
+     * of the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the cryptographic
+     * operation only when the encryption context in the request includes the
+     * key-value pairs specified in this constraint, although it can include
+     * additional key-value pairs.
      * </p>
      *
      * @return <p>
      *         A list of key-value pairs that must be included in the encryption
-     *         context of the cryptographic operation request. The grant allows
-     *         the cryptographic operation only when the encryption context in
-     *         the request includes the key-value pairs specified in this
+     *         context of the <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operation</a> request. The grant allows the
+     *         cryptographic operation only when the encryption context in the
+     *         request includes the key-value pairs specified in this
      *         constraint, although it can include additional key-value pairs.
      *         </p>
      */
@@ -129,19 +113,23 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must be included in the encryption context
-     * of the cryptographic operation request. The grant allows the
-     * cryptographic operation only when the encryption context in the request
-     * includes the key-value pairs specified in this constraint, although it
-     * can include additional key-value pairs.
+     * of the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the cryptographic
+     * operation only when the encryption context in the request includes the
+     * key-value pairs specified in this constraint, although it can include
+     * additional key-value pairs.
      * </p>
      *
      * @param encryptionContextSubset <p>
      *            A list of key-value pairs that must be included in the
-     *            encryption context of the cryptographic operation request. The
-     *            grant allows the cryptographic operation only when the
-     *            encryption context in the request includes the key-value pairs
-     *            specified in this constraint, although it can include
-     *            additional key-value pairs.
+     *            encryption context of the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> request. The grant allows the
+     *            cryptographic operation only when the encryption context in
+     *            the request includes the key-value pairs specified in this
+     *            constraint, although it can include additional key-value
+     *            pairs.
      *            </p>
      */
     public void setEncryptionContextSubset(java.util.Map<String, String> encryptionContextSubset) {
@@ -151,10 +139,12 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must be included in the encryption context
-     * of the cryptographic operation request. The grant allows the
-     * cryptographic operation only when the encryption context in the request
-     * includes the key-value pairs specified in this constraint, although it
-     * can include additional key-value pairs.
+     * of the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the cryptographic
+     * operation only when the encryption context in the request includes the
+     * key-value pairs specified in this constraint, although it can include
+     * additional key-value pairs.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -162,11 +152,13 @@ public class GrantConstraints implements Serializable {
      *
      * @param encryptionContextSubset <p>
      *            A list of key-value pairs that must be included in the
-     *            encryption context of the cryptographic operation request. The
-     *            grant allows the cryptographic operation only when the
-     *            encryption context in the request includes the key-value pairs
-     *            specified in this constraint, although it can include
-     *            additional key-value pairs.
+     *            encryption context of the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> request. The grant allows the
+     *            cryptographic operation only when the encryption context in
+     *            the request includes the key-value pairs specified in this
+     *            constraint, although it can include additional key-value
+     *            pairs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -180,10 +172,12 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must be included in the encryption context
-     * of the cryptographic operation request. The grant allows the
-     * cryptographic operation only when the encryption context in the request
-     * includes the key-value pairs specified in this constraint, although it
-     * can include additional key-value pairs.
+     * of the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the cryptographic
+     * operation only when the encryption context in the request includes the
+     * key-value pairs specified in this constraint, although it can include
+     * additional key-value pairs.
      * </p>
      * <p>
      * The method adds a new key-value pair into EncryptionContextSubset
@@ -221,14 +215,18 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must match the encryption context in the
-     * cryptographic operation request. The grant allows the operation only when
-     * the encryption context in the request is the same as the encryption
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the operation only
+     * when the encryption context in the request is the same as the encryption
      * context specified in this constraint.
      * </p>
      *
      * @return <p>
      *         A list of key-value pairs that must match the encryption context
-     *         in the cryptographic operation request. The grant allows the
+     *         in the <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operation</a> request. The grant allows the
      *         operation only when the encryption context in the request is the
      *         same as the encryption context specified in this constraint.
      *         </p>
@@ -240,17 +238,21 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must match the encryption context in the
-     * cryptographic operation request. The grant allows the operation only when
-     * the encryption context in the request is the same as the encryption
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the operation only
+     * when the encryption context in the request is the same as the encryption
      * context specified in this constraint.
      * </p>
      *
      * @param encryptionContextEquals <p>
      *            A list of key-value pairs that must match the encryption
-     *            context in the cryptographic operation request. The grant
-     *            allows the operation only when the encryption context in the
-     *            request is the same as the encryption context specified in
-     *            this constraint.
+     *            context in the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> request. The grant allows the
+     *            operation only when the encryption context in the request is
+     *            the same as the encryption context specified in this
+     *            constraint.
      *            </p>
      */
     public void setEncryptionContextEquals(java.util.Map<String, String> encryptionContextEquals) {
@@ -260,8 +262,10 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must match the encryption context in the
-     * cryptographic operation request. The grant allows the operation only when
-     * the encryption context in the request is the same as the encryption
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the operation only
+     * when the encryption context in the request is the same as the encryption
      * context specified in this constraint.
      * </p>
      * <p>
@@ -270,10 +274,12 @@ public class GrantConstraints implements Serializable {
      *
      * @param encryptionContextEquals <p>
      *            A list of key-value pairs that must match the encryption
-     *            context in the cryptographic operation request. The grant
-     *            allows the operation only when the encryption context in the
-     *            request is the same as the encryption context specified in
-     *            this constraint.
+     *            context in the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> request. The grant allows the
+     *            operation only when the encryption context in the request is
+     *            the same as the encryption context specified in this
+     *            constraint.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -287,8 +293,10 @@ public class GrantConstraints implements Serializable {
     /**
      * <p>
      * A list of key-value pairs that must match the encryption context in the
-     * cryptographic operation request. The grant allows the operation only when
-     * the encryption context in the request is the same as the encryption
+     * <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> request. The grant allows the operation only
+     * when the encryption context in the request is the same as the encryption
      * context specified in this constraint.
      * </p>
      * <p>

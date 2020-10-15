@@ -22,8 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Sets the key state of a customer master key (CMK) to enabled. This allows you
- * to use the CMK for cryptographic operations. You cannot perform this
- * operation on a CMK in a different AWS account.
+ * to use the CMK for <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operations</a>. You cannot perform this operation on a CMK in
+ * a different AWS account.
  * </p>
  * <p>
  * The CMK that you use for this operation must be in a compatible key state.

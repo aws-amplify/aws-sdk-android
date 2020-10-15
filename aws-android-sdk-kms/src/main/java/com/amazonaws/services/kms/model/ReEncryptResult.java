@@ -41,7 +41,9 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to reencrypt the data.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to reencrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -192,14 +194,18 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to reencrypt the data.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to reencrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Unique identifier of the CMK used to reencrypt the data.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the CMK that was used to reencrypt the data.
      *         </p>
      */
     public String getKeyId() {
@@ -208,14 +214,18 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to reencrypt the data.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to reencrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Unique identifier of the CMK used to reencrypt the data.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that was used to reencrypt the data.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -224,7 +234,9 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to reencrypt the data.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to reencrypt the data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -234,7 +246,9 @@ public class ReEncryptResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Unique identifier of the CMK used to reencrypt the data.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that was used to reencrypt the data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

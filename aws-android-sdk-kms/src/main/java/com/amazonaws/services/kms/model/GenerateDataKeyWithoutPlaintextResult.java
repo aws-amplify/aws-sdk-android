@@ -31,7 +31,9 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the CMK that encrypted the data key.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that encrypted the data key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,14 +106,18 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the CMK that encrypted the data key.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that encrypted the data key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the CMK that encrypted the data key.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the CMK that encrypted the data key.
      *         </p>
      */
     public String getKeyId() {
@@ -120,14 +126,18 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the CMK that encrypted the data key.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that encrypted the data key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the CMK that encrypted the data key.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that encrypted the data key.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -136,7 +146,9 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
 
     /**
      * <p>
-     * The identifier of the CMK that encrypted the data key.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that encrypted the data key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -146,7 +158,9 @@ public class GenerateDataKeyWithoutPlaintextResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the CMK that encrypted the data key.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that encrypted the data key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
