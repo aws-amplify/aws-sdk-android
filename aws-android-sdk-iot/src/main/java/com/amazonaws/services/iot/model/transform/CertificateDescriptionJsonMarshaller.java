@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -90,6 +91,11 @@ class CertificateDescriptionJsonMarshaller {
             CertificateValidity validity = certificateDescription.getValidity();
             jsonWriter.name("validity");
             CertificateValidityJsonMarshaller.getInstance().marshall(validity, jsonWriter);
+        }
+        if (certificateDescription.getCertificateMode() != null) {
+            String certificateMode = certificateDescription.getCertificateMode();
+            jsonWriter.name("certificateMode");
+            jsonWriter.value(certificateMode);
         }
         jsonWriter.endObject();
     }

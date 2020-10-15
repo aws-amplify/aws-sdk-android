@@ -95,6 +95,13 @@ public class DescribeProvisioningTemplateResult implements Serializable {
 
     /**
      * <p>
+     * Gets information about a pre-provisioned hook.
+     * </p>
+     */
+    private ProvisioningHook preProvisioningHook;
+
+    /**
+     * <p>
      * The ARN of the fleet provisioning template.
      * </p>
      *
@@ -559,6 +566,52 @@ public class DescribeProvisioningTemplateResult implements Serializable {
     }
 
     /**
+     * <p>
+     * Gets information about a pre-provisioned hook.
+     * </p>
+     *
+     * @return <p>
+     *         Gets information about a pre-provisioned hook.
+     *         </p>
+     */
+    public ProvisioningHook getPreProvisioningHook() {
+        return preProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Gets information about a pre-provisioned hook.
+     * </p>
+     *
+     * @param preProvisioningHook <p>
+     *            Gets information about a pre-provisioned hook.
+     *            </p>
+     */
+    public void setPreProvisioningHook(ProvisioningHook preProvisioningHook) {
+        this.preProvisioningHook = preProvisioningHook;
+    }
+
+    /**
+     * <p>
+     * Gets information about a pre-provisioned hook.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param preProvisioningHook <p>
+     *            Gets information about a pre-provisioned hook.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeProvisioningTemplateResult withPreProvisioningHook(
+            ProvisioningHook preProvisioningHook) {
+        this.preProvisioningHook = preProvisioningHook;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -586,7 +639,9 @@ public class DescribeProvisioningTemplateResult implements Serializable {
         if (getEnabled() != null)
             sb.append("enabled: " + getEnabled() + ",");
         if (getProvisioningRoleArn() != null)
-            sb.append("provisioningRoleArn: " + getProvisioningRoleArn());
+            sb.append("provisioningRoleArn: " + getProvisioningRoleArn() + ",");
+        if (getPreProvisioningHook() != null)
+            sb.append("preProvisioningHook: " + getPreProvisioningHook());
         sb.append("}");
         return sb.toString();
     }
@@ -613,6 +668,8 @@ public class DescribeProvisioningTemplateResult implements Serializable {
         hashCode = prime * hashCode + ((getEnabled() == null) ? 0 : getEnabled().hashCode());
         hashCode = prime * hashCode
                 + ((getProvisioningRoleArn() == null) ? 0 : getProvisioningRoleArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getPreProvisioningHook() == null) ? 0 : getPreProvisioningHook().hashCode());
         return hashCode;
     }
 
@@ -670,6 +727,11 @@ public class DescribeProvisioningTemplateResult implements Serializable {
             return false;
         if (other.getProvisioningRoleArn() != null
                 && other.getProvisioningRoleArn().equals(this.getProvisioningRoleArn()) == false)
+            return false;
+        if (other.getPreProvisioningHook() == null ^ this.getPreProvisioningHook() == null)
+            return false;
+        if (other.getPreProvisioningHook() != null
+                && other.getPreProvisioningHook().equals(this.getPreProvisioningHook()) == false)
             return false;
         return true;
     }

@@ -68,6 +68,10 @@ public class DescribeDomainConfigurationResultJsonUnmarshaller implements
                 describeDomainConfigurationResult.setDomainType(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("lastStatusChangeDate")) {
+                describeDomainConfigurationResult.setLastStatusChangeDate(DateJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

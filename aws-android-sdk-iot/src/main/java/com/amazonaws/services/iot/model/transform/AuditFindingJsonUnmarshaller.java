@@ -68,6 +68,9 @@ class AuditFindingJsonUnmarshaller implements Unmarshaller<AuditFinding, JsonUnm
             } else if (name.equals("reasonForNonComplianceCode")) {
                 auditFinding.setReasonForNonComplianceCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("isSuppressed")) {
+                auditFinding.setIsSuppressed(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
