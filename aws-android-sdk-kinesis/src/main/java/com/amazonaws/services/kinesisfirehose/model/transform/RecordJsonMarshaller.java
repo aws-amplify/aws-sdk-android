@@ -16,6 +16,7 @@
 package com.amazonaws.services.kinesisfirehose.model.transform;
 
 import com.amazonaws.services.kinesisfirehose.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
