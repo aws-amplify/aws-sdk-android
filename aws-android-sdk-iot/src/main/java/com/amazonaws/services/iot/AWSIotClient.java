@@ -383,6 +383,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
+        setServiceNameIntern("execute-api");
         this.setEndpoint("iot.us-east-1.amazonaws.com");
         this.endpointPrefix = "iot";
 
@@ -1208,6 +1209,58 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Creates a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param createAuditSuppressionRequest
+     * @return createAuditSuppressionResult The response from the
+     *         CreateAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateAuditSuppressionResult createAuditSuppression(
+            CreateAuditSuppressionRequest createAuditSuppressionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createAuditSuppressionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateAuditSuppressionRequest> request = null;
+        Response<CreateAuditSuppressionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateAuditSuppressionRequestMarshaller()
+                        .marshall(createAuditSuppressionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateAuditSuppressionResult, JsonUnmarshallerContext> unmarshaller = new CreateAuditSuppressionResultJsonUnmarshaller();
+            JsonResponseHandler<CreateAuditSuppressionResult> responseHandler = new JsonResponseHandler<CreateAuditSuppressionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates an authorizer.
      * </p>
      * 
@@ -1706,8 +1759,12 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Defines an action that can be applied to audit findings by using
-     * StartAuditMitigationActionsTask. Each mitigation action can apply only
-     * one type of change.
+     * StartAuditMitigationActionsTask. Only certain types of mitigation actions
+     * can be applied to specific check names. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html"
+     * >Mitigation actions</a>. Each mitigation action can apply only one type
+     * of change.
      * </p>
      * 
      * @param createMitigationActionRequest
@@ -2628,6 +2685,56 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DeleteAccountAuditConfigurationResult, JsonUnmarshallerContext> unmarshaller = new DeleteAccountAuditConfigurationResultJsonUnmarshaller();
             JsonResponseHandler<DeleteAccountAuditConfigurationResult> responseHandler = new JsonResponseHandler<DeleteAccountAuditConfigurationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param deleteAuditSuppressionRequest
+     * @return deleteAuditSuppressionResult The response from the
+     *         DeleteAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DeleteAuditSuppressionResult deleteAuditSuppression(
+            DeleteAuditSuppressionRequest deleteAuditSuppressionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteAuditSuppressionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteAuditSuppressionRequest> request = null;
+        Response<DeleteAuditSuppressionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteAuditSuppressionRequestMarshaller()
+                        .marshall(deleteAuditSuppressionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteAuditSuppressionResult, JsonUnmarshallerContext> unmarshaller = new DeleteAuditSuppressionResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteAuditSuppressionResult> responseHandler = new JsonResponseHandler<DeleteAuditSuppressionResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -4213,6 +4320,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Gets information about a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param describeAuditSuppressionRequest
+     * @return describeAuditSuppressionResult The response from the
+     *         DescribeAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeAuditSuppressionResult describeAuditSuppression(
+            DescribeAuditSuppressionRequest describeAuditSuppressionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeAuditSuppressionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeAuditSuppressionRequest> request = null;
+        Response<DescribeAuditSuppressionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeAuditSuppressionRequestMarshaller()
+                        .marshall(describeAuditSuppressionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeAuditSuppressionResult, JsonUnmarshallerContext> unmarshaller = new DescribeAuditSuppressionResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeAuditSuppressionResult> responseHandler = new JsonResponseHandler<DescribeAuditSuppressionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets information about a Device Defender audit.
      * </p>
      * 
@@ -4597,6 +4755,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      *         IoT.
      * @throws ResourceNotFoundException
      * @throws ThrottlingException
+     * @throws InvalidRequestException
      * @throws UnauthorizedException
      * @throws ServiceUnavailableException
      * @throws InternalFailureException
@@ -6627,7 +6786,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Lists the findings (results) of a Device Defender audit or of the audits
-     * performed during a specified time period. (Findings are retained for 180
+     * performed during a specified time period. (Findings are retained for 90
      * days.)
      * </p>
      * 
@@ -6768,6 +6927,56 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<ListAuditMitigationActionsTasksResult, JsonUnmarshallerContext> unmarshaller = new ListAuditMitigationActionsTasksResultJsonUnmarshaller();
             JsonResponseHandler<ListAuditMitigationActionsTasksResult> responseHandler = new JsonResponseHandler<ListAuditMitigationActionsTasksResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists your Device Defender audit listings.
+     * </p>
+     * 
+     * @param listAuditSuppressionsRequest
+     * @return listAuditSuppressionsResult The response from the
+     *         ListAuditSuppressions service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListAuditSuppressionsResult listAuditSuppressions(
+            ListAuditSuppressionsRequest listAuditSuppressionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAuditSuppressionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAuditSuppressionsRequest> request = null;
+        Response<ListAuditSuppressionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAuditSuppressionsRequestMarshaller()
+                        .marshall(listAuditSuppressionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAuditSuppressionsResult, JsonUnmarshallerContext> unmarshaller = new ListAuditSuppressionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListAuditSuppressionsResult> responseHandler = new JsonResponseHandler<ListAuditSuppressionsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -8685,6 +8894,14 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * retrieves all things in the registry that contain an attribute
      * <b>Color</b> with the value <b>Red</b>.
      * </p>
+     * <note>
+     * <p>
+     * You will not be charged for calling this API if an
+     * <code>Access denied</code> error is returned. You will also not be
+     * charged if no attributes or pagination token was provided in request and
+     * no pagination token and no results were returned.
+     * </p>
+     * </note>
      * 
      * @param listThingsRequest <p>
      *            The input for the ListThings operation.
@@ -9166,6 +9383,62 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Register a certificate that does not have a certificate authority (CA).
+     * </p>
+     * 
+     * @param registerCertificateWithoutCARequest
+     * @return registerCertificateWithoutCAResult The response from the
+     *         RegisterCertificateWithoutCA service method, as returned by AWS
+     *         IoT.
+     * @throws ResourceAlreadyExistsException
+     * @throws InvalidRequestException
+     * @throws CertificateStateException
+     * @throws CertificateValidationException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public RegisterCertificateWithoutCAResult registerCertificateWithoutCA(
+            RegisterCertificateWithoutCARequest registerCertificateWithoutCARequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(registerCertificateWithoutCARequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RegisterCertificateWithoutCARequest> request = null;
+        Response<RegisterCertificateWithoutCAResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RegisterCertificateWithoutCARequestMarshaller()
+                        .marshall(registerCertificateWithoutCARequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RegisterCertificateWithoutCAResult, JsonUnmarshallerContext> unmarshaller = new RegisterCertificateWithoutCAResultJsonUnmarshaller();
+            JsonResponseHandler<RegisterCertificateWithoutCAResult> responseHandler = new JsonResponseHandler<RegisterCertificateWithoutCAResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Provisions a thing in the device registry. RegisterThing calls other AWS
      * IoT control plane APIs. These calls might exceed your account level <a
      * href=
@@ -9337,6 +9610,12 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
     /**
      * <p>
      * Remove the specified thing from the specified group.
+     * </p>
+     * <p>
+     * You must specify either a <code>thingGroupArn</code> or a
+     * <code>thingGroupName</code> to identify the thing group and either a
+     * <code>thingArn</code> or a <code>thingName</code> to identify the thing
+     * to remove from the thing group.
      * </p>
      * 
      * @param removeThingFromThingGroupRequest
@@ -9651,6 +9930,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * @throws NotConfiguredException
      * @throws InvalidRequestException
      * @throws ServiceUnavailableException
+     * @throws LimitExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -10274,6 +10554,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Updates a Device Defender audit suppression.
+     * </p>
+     * 
+     * @param updateAuditSuppressionRequest
+     * @return updateAuditSuppressionResult The response from the
+     *         UpdateAuditSuppression service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public UpdateAuditSuppressionResult updateAuditSuppression(
+            UpdateAuditSuppressionRequest updateAuditSuppressionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateAuditSuppressionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateAuditSuppressionRequest> request = null;
+        Response<UpdateAuditSuppressionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateAuditSuppressionRequestMarshaller()
+                        .marshall(updateAuditSuppressionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateAuditSuppressionResult, JsonUnmarshallerContext> unmarshaller = new UpdateAuditSuppressionResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateAuditSuppressionResult> responseHandler = new JsonResponseHandler<UpdateAuditSuppressionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Updates an authorizer.
      * </p>
      * 
@@ -10429,13 +10760,14 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * idempotent.
      * </p>
      * <p>
-     * Moving a certificate from the ACTIVE state (including REVOKED) will not
-     * disconnect currently connected devices, but these devices will be unable
-     * to reconnect.
+     * Certificates must be in the ACTIVE state to authenticate devices that use
+     * a certificate to connect to AWS IoT.
      * </p>
      * <p>
-     * The ACTIVE state is required to authenticate devices connecting to AWS
-     * IoT using a certificate.
+     * Within a few minutes of updating a certificate from the ACTIVE state to
+     * any other state, AWS IoT disconnects all devices that used that
+     * certificate to connect. Devices cannot use a certificate that is not in
+     * the ACTIVE state to reconnect.
      * </p>
      * 
      * @param updateCertificateRequest <p>
