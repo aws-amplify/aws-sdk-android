@@ -18,7 +18,9 @@ package com.amazonaws.services.rekognition.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * <p/>
+ * <p>
+ * The specified resource is already being used.
+ * </p>
  */
 public class ResourceInUseException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

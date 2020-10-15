@@ -59,7 +59,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Developer Guide.
  * </p>
  * <p>
- * If you provide the optional <code>ExternalImageID</code> for the input image
+ * If you provide the optional <code>ExternalImageId</code> for the input image
  * you provided, Amazon Rekognition associates this ID with all faces that it
  * detects. When you call the <a>ListFaces</a> operation, the response returns
  * the external ID. You can use this external image ID to create a client-side
