@@ -39,8 +39,14 @@ import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -595,6 +601,65 @@ public class TransferUtility {
     public TransferObserver upload(String key, File file, ObjectMetadata metadata, CannedAccessControlList cannedAcl,
             TransferListener listener) {
         return upload(getDefaultBucketOrThrow(), key, file, metadata, cannedAcl, listener);
+    }
+
+    /**
+     * Starts uploading the inputStream to the <b>default</b> bucket, using the given key.
+     *
+     * @param key           The key in the specified bucket by which to store the new object.
+     * @param inputStream   The input stream to upload.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, InputStream inputStream) throws IOException {
+        // Saves the data as a file in the temporary directory
+        File file = File.createTempFile(UUID.randomUUID().toString(), ".tmp");
+        if (inputStream != null) {
+            try {
+                OutputStream outStream = new FileOutputStream(file);
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                // Keep reading until reaches the end of the stream
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outStream.write(buffer, 0, bytesRead);
+                    outStream.flush();
+                }
+                inputStream.close();
+                outStream.close();
+            } catch (Exception e) {
+                file = null;
+            }
+        }
+        return upload(key, file);
+    }
+
+    /**
+     * Starts uploading the inputStream to the given bucket, using the given key.
+     *
+     * @param bucket        The name of the bucket to upload the new object to.
+     * @param key           The key in the specified bucket by which to store the new object.
+     * @param inputStream   The input stream to upload.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String bucket, String key, InputStream inputStream) throws IOException {
+        // Saves the data as a file in the temporary directory
+        File file = File.createTempFile(UUID.randomUUID().toString(), ".tmp");
+        if (inputStream != null) {
+            try {
+                OutputStream outStream = new FileOutputStream(file);
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                // Keep reading until reaches the end of the stream
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outStream.write(buffer, 0, bytesRead);
+                    outStream.flush();
+                }
+                inputStream.close();
+                outStream.close();
+            } catch (Exception e) {
+                file = null;
+            }
+        }
+        return upload(bucket, key, file);
     }
 
     /**
