@@ -25,6 +25,7 @@ import com.amazonaws.event.ProgressListener;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -73,6 +74,11 @@ class TransferStatusUpdater {
      * The Singleton instance.
      */
     private static TransferStatusUpdater transferStatusUpdater;
+
+    /**
+     * Prefix for temporary File created when client uploads an `InputStream`.
+     */
+    static final String TEMP_FILE_PREFIX = "aws-s3";
 
     /**
      * This class is instantiated by TransferService and TransferUtility.
@@ -145,6 +151,15 @@ class TransferStatusUpdater {
      * @param id id of the transfer to remove
      */
     synchronized void removeTransferRecordFromDB(final int id) {
+        // Remove temporary file
+        TransferRecord transferRecord = dbUtil.getTransferById(id);
+        if (transferRecord != null) {
+            String path = transferRecord.file;
+            String fileName = new File(path).getName();
+            if (fileName.startsWith(TEMP_FILE_PREFIX)) {
+                new File(path).delete();
+            }
+        }
         S3ClientReference.remove(id);
         dbUtil.deleteTransferRecords(id);
     }
