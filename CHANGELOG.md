@@ -9,12 +9,12 @@
 
 ### Model updates
   - AWS Simple Token Service [#2132](https://github.com/aws-amplify/aws-sdk-android/pull/2132)
-  - AWS Comprehend [#2122](https://github.com/aws-amplify/aws-sdk-android/pull/2122)
-  - AWS Transcribe [#2127](https://github.com/aws-amplify/aws-sdk-android/pull/2127)
-  - AWS Translate [#2125](https://github.com/aws-amplify/aws-sdk-android/pull/2125)
-  - AWS Textract [#2128](https://github.com/aws-amplify/aws-sdk-android/pull/2128)
-  - AWS Rekognition [#2149](https://github.com/aws-amplify/aws-sdk-android/pull/2149), [#2179](https://github.com/aws-amplify/aws-sdk-android/pull/2179)
-  - AWS SNS [#2150](https://github.com/aws-amplify/aws-sdk-android/pull/2150)
+  - Amazon Comprehend [#2122](https://github.com/aws-amplify/aws-sdk-android/pull/2122)
+  - Amazon Transcribe [#2127](https://github.com/aws-amplify/aws-sdk-android/pull/2127)
+  - Amazon Translate [#2125](https://github.com/aws-amplify/aws-sdk-android/pull/2125)
+  - Amazon Textract [#2128](https://github.com/aws-amplify/aws-sdk-android/pull/2128)
+  - Amazon Rekognition [#2149](https://github.com/aws-amplify/aws-sdk-android/pull/2149), [#2179](https://github.com/aws-amplify/aws-sdk-android/pull/2179)
+  - Amazon SNS [#2150](https://github.com/aws-amplify/aws-sdk-android/pull/2150)
 
 ### Miscellaneous Updates
  - Update third-party dependency versions
