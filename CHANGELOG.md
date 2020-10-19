@@ -1,13 +1,32 @@
 # Change Log - AWS SDK for Android
 
-## [Release TBD](https://github.com/aws/aws-sdk-android/releases/tag/TBD)
+## [Release 2.19.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.1)
 
-- Model updates
+### New Features
+
+- **AWS Mobile Client**
+  - Added option to specify browser other than the default (Chrome) for HostedUI [#2152](https://github.com/aws-amplify/aws-sdk-android/pull/2152)
+
+### Model updates
   - AWS Simple Token Service [#2132](https://github.com/aws-amplify/aws-sdk-android/pull/2132)
   - AWS Comprehend [#2122](https://github.com/aws-amplify/aws-sdk-android/pull/2122)
   - AWS Transcribe [#2127](https://github.com/aws-amplify/aws-sdk-android/pull/2127)
   - AWS Translate [#2125](https://github.com/aws-amplify/aws-sdk-android/pull/2125)
   - AWS Textract [#2128](https://github.com/aws-amplify/aws-sdk-android/pull/2128)
+  - AWS Rekognition [#2149](https://github.com/aws-amplify/aws-sdk-android/pull/2149), [#2179](https://github.com/aws-amplify/aws-sdk-android/pull/2179)
+  - AWS SNS [#2150](https://github.com/aws-amplify/aws-sdk-android/pull/2150)
+
+### Miscellaneous Updates
+ - Update third-party dependency versions
+   - Junit 4.13.1
+   - AndroidX Core 1.3.0
+   - AndroidX jUnit Extension 1.1.2
+   - AndroidX Test Runner 1.3.0
+   - AndroidX Test Core 1.3.0
+   - AndroidX App Compat 1.2.0
+   - Robolectric 4.4
+   - Conscrypt Android 2.5.1
+
 
 ## [Release 2.19.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.0)
 
