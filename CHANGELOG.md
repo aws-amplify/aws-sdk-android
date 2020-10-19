@@ -6,7 +6,6 @@ MOVE THIS SECTION TO THE CORRECT LOCATION
 
 - Model updates for the following services
 ---rekognition
----iot
 # Change Log - AWS SDK for Android
 
 ## [Release TBD](https://github.com/aws/aws-sdk-android/releases/tag/TBD)
