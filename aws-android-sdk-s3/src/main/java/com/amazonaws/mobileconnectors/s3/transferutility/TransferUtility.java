@@ -23,6 +23,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
+
 import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.internal.Constants;
 import org.json.JSONObject;
@@ -608,28 +610,35 @@ public class TransferUtility {
      *
      * @param key           The key in the specified bucket by which to store the new object.
      * @param inputStream   The input stream to upload.
-     * @return A TransferObserver used to track upload progress and state
      */
-    public TransferObserver upload(String key, InputStream inputStream) throws IOException {
-        // Saves the data as a file in the temporary directory
-        File file = File.createTempFile(UUID.randomUUID().toString(), ".tmp");
-        if (inputStream != null) {
-            try {
-                OutputStream outStream = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                // Keep reading until reaches the end of the stream
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, bytesRead);
-                    outStream.flush();
+    public void uploadInputStream(String key, InputStream inputStream) {
+        try {
+            final File file = writeInputStreamToFile(inputStream);
+            TransferObserver observer = upload(key, file);
+
+            observer.setTransferListener(new TransferListener() {
+                @Override
+                public void onStateChanged(int id, TransferState state) {
+                    switch (state) {
+                        case COMPLETED:
+                            file.delete();
+                            break;
+                        case FAILED:
+                            throw new RuntimeException("Transfer failed.");
+                    }
                 }
-                inputStream.close();
-                outStream.close();
-            } catch (Exception e) {
-                file = null;
-            }
+
+                @Override
+                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {}
+
+                @Override
+                public void onError(int id, Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        } catch (IOException e) {
+            LOGGER.error("Failed writing the input stream into a file: ", e);
         }
-        return upload(key, file);
     }
 
     /**
@@ -638,28 +647,35 @@ public class TransferUtility {
      * @param bucket        The name of the bucket to upload the new object to.
      * @param key           The key in the specified bucket by which to store the new object.
      * @param inputStream   The input stream to upload.
-     * @return A TransferObserver used to track upload progress and state
      */
-    public TransferObserver upload(String bucket, String key, InputStream inputStream) throws IOException {
-        // Saves the data as a file in the temporary directory
-        File file = File.createTempFile(UUID.randomUUID().toString(), ".tmp");
-        if (inputStream != null) {
-            try {
-                OutputStream outStream = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                // Keep reading until reaches the end of the stream
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outStream.write(buffer, 0, bytesRead);
-                    outStream.flush();
+    public void uploadInputStream(String bucket, String key, InputStream inputStream) {
+        try {
+            final File file = writeInputStreamToFile(inputStream);
+            TransferObserver observer = upload(bucket, key, file);
+
+            observer.setTransferListener(new TransferListener() {
+                @Override
+                public void onStateChanged(int id, TransferState state) {
+                    switch (state) {
+                        case COMPLETED:
+                            file.delete();
+                            break;
+                        case FAILED:
+                            throw new RuntimeException("Transfer failed.");
+                    }
                 }
-                inputStream.close();
-                outStream.close();
-            } catch (Exception e) {
-                file = null;
-            }
+
+                @Override
+                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {}
+
+                @Override
+                public void onError(int id, Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+        } catch (IOException e) {
+            LOGGER.error("Failed writing the input stream into a file: ", e);
         }
-        return upload(bucket, key, file);
     }
 
     /**
@@ -825,6 +841,32 @@ public class TransferUtility {
             partNumber++;
         }
         return dbUtil.bulkInsertTransferRecords(valuesArray);
+    }
+
+    private File writeInputStreamToFile(InputStream inputStream) throws IOException {
+        if (inputStream == null) {
+            throw new IllegalArgumentException("Invalid inputStream: " + inputStream);
+        }
+
+        // Saves the data as a file in the temporary directory
+        File file = File.createTempFile("aws-s3", ".tmp");
+        if (!file.isFile()) {
+            throw new IOException("Error creating a temporary file.");
+        }
+        try (OutputStream outStream = new FileOutputStream(file)) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            // Keep reading until reaches the end of the stream
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+                outStream.flush();
+            }
+            inputStream.close();
+        } catch (IOException e) {
+            file.delete();
+            throw new IOException("Error writing the inputStream into a file.", e);
+        }
+        return file;
     }
 
     /**
