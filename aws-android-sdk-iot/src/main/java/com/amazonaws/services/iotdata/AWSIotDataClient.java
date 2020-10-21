@@ -353,6 +353,7 @@ public class AWSIotDataClient extends AmazonWebServiceClient implements AWSIotDa
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
+        setServiceNameIntern("iotdata");
         this.setEndpoint("data.iot.us-east-1.amazonaws.com");
         this.endpointPrefix = "data.iot";
 
