@@ -41,14 +41,12 @@ import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -610,71 +608,40 @@ public class TransferUtility {
      *
      * @param key           The key in the specified bucket by which to store the new object.
      * @param inputStream   The input stream to upload.
+     * @return A TransferObserver used to track upload progress and state
      */
-    public void uploadInputStream(String key, InputStream inputStream) {
-        try {
-            final File file = writeInputStreamToFile(inputStream);
-            TransferObserver observer = upload(key, file);
-
-            observer.setTransferListener(new TransferListener() {
-                @Override
-                public void onStateChanged(int id, TransferState state) {
-                    switch (state) {
-                        case COMPLETED:
-                            file.delete();
-                            break;
-                        case FAILED:
-                            throw new RuntimeException("Transfer failed.");
-                    }
-                }
-
-                @Override
-                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {}
-
-                @Override
-                public void onError(int id, Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-        } catch (IOException e) {
-            LOGGER.error("Failed writing the input stream into a file: ", e);
-        }
+    public TransferObserver upload(String key, InputStream inputStream) throws IOException {
+        return upload(key, inputStream, UploadOptions.builder().build());
     }
 
     /**
      * Starts uploading the inputStream to the given bucket, using the given key.
      *
-     * @param bucket        The name of the bucket to upload the new object to.
      * @param key           The key in the specified bucket by which to store the new object.
      * @param inputStream   The input stream to upload.
+     * @param options       An UploadOptions which hold all of the optional parameters
+     *                      i.e. bucket, metadata, cannedAcl and transferListener.
+     * @return A TransferObserver used to track upload progress and state
      */
-    public void uploadInputStream(String bucket, String key, InputStream inputStream) {
-        try {
-            final File file = writeInputStreamToFile(inputStream);
-            TransferObserver observer = upload(bucket, key, file);
+    public TransferObserver upload(String key, InputStream inputStream, UploadOptions options) throws IOException {
+        File file = writeInputStreamToFile(inputStream);
+        TransferObserver observer = upload(
+                options.getBucket() != null ? options.getBucket() : getDefaultBucketOrThrow(),
+                key,
+                file,
+                options.getMetadata() != null ? options.getMetadata() : new ObjectMetadata(), options.getCannedAcl(),
+                options.getTransferListener()
+        );
+        deleteTempFile(observer);
+        return observer;
+    }
 
-            observer.setTransferListener(new TransferListener() {
-                @Override
-                public void onStateChanged(int id, TransferState state) {
-                    switch (state) {
-                        case COMPLETED:
-                            file.delete();
-                            break;
-                        case FAILED:
-                            throw new RuntimeException("Transfer failed.");
-                    }
-                }
-
-                @Override
-                public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {}
-
-                @Override
-                public void onError(int id, Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-        } catch (IOException e) {
-            LOGGER.error("Failed writing the input stream into a file: ", e);
+    synchronized public void deleteTempFile(TransferObserver observer) {
+        final int recordId = observer.getId();
+        if (TransferState.COMPLETED.equals(observer.getState())) {
+            if (dbUtil.getTransferById(recordId).file.startsWith("aws-s3")) {
+                updater.removeTransferRecordFromDB(recordId);
+            }
         }
     }
 
@@ -861,10 +828,9 @@ public class TransferUtility {
                 outStream.write(buffer, 0, bytesRead);
                 outStream.flush();
             }
-            inputStream.close();
-        } catch (IOException e) {
+        } catch (IOException ioException) {
             file.delete();
-            throw new IOException("Error writing the inputStream into a file.", e);
+            throw new IOException("Error writing the inputStream into a file.", ioException);
         }
         return file;
     }
