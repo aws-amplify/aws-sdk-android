@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -15,39 +15,32 @@
 
 package com.amazonaws.services.lambda.model.transform;
 
-import com.amazonaws.services.lambda.model.InvokeResult;
-import com.amazonaws.transform.JsonUnmarshallerContext;
-import com.amazonaws.transform.Unmarshaller;
-import com.amazonaws.util.IOUtils;
-
-import java.io.InputStream;
-import java.nio.ByteBuffer;
+import com.amazonaws.services.lambda.model.*;
+import com.amazonaws.transform.SimpleTypeJsonUnmarshallers.*;
+import com.amazonaws.transform.*;
+import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * Invoke Result JSON Unmarshaller
+ * JSON unmarshaller for response InvokeResult
  */
 public class InvokeResultJsonUnmarshaller implements
         Unmarshaller<InvokeResult, JsonUnmarshallerContext> {
 
-    private static final ByteBuffer EMPTY_BYTEBUFFER = ByteBuffer.allocate(0);
-
-    @Override
     public InvokeResult unmarshall(JsonUnmarshallerContext context) throws Exception {
         InvokeResult invokeResult = new InvokeResult();
 
+        invokeResult.setStatusCode(context.getHttpResponse().getStatusCode());
         if (context.getHeader("X-Amz-Function-Error") != null)
             invokeResult.setFunctionError(context.getHeader("X-Amz-Function-Error"));
         if (context.getHeader("X-Amz-Log-Result") != null)
             invokeResult.setLogResult(context.getHeader("X-Amz-Log-Result"));
-
-        invokeResult.setStatusCode(context.getHttpResponse().getStatusCode());
-        ByteBuffer payload = EMPTY_BYTEBUFFER;
-        InputStream content = context.getHttpResponse().getContent();
-        if (content != null) {
-            payload = ByteBuffer.wrap(IOUtils.toByteArray(content));
+        java.io.InputStream is = context.getHttpResponse().getContent();
+        if (is != null) {
+            invokeResult.setPayload(java.nio.ByteBuffer.wrap(com.amazonaws.util.IOUtils
+                    .toByteArray(is)));
         }
-        invokeResult.setPayload(payload);
-
+        if (context.getHeader("X-Amz-Executed-Version") != null)
+            invokeResult.setExecutedVersion(context.getHeader("X-Amz-Executed-Version"));
         return invokeResult;
     }
 

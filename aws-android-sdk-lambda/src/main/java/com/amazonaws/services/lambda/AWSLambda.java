@@ -150,8 +150,9 @@ public interface AWSLambda {
      * long connections with timeout or keep-alive settings.
      * </p>
      * <p>
-     * This operation requires permission for the
-     * <code>lambda:InvokeFunction</code> action.
+     * This operation requires permission for the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/list_awslambda.html"
+     * >lambda:InvokeFunction</a> action.
      * </p>
      * 
      * @param invokeRequest
@@ -167,6 +168,10 @@ public interface AWSLambda {
      * @throws EC2UnexpectedException
      * @throws SubnetIPAddressLimitReachedException
      * @throws ENILimitReachedException
+     * @throws EFSMountConnectivityException
+     * @throws EFSMountFailureException
+     * @throws EFSMountTimeoutException
+     * @throws EFSIOException
      * @throws EC2ThrottledException
      * @throws EC2AccessDeniedException
      * @throws InvalidSubnetIDException
