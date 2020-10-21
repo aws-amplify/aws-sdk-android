@@ -40,6 +40,9 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The ARN of the authorizer's Lambda function.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      */
     private String authorizerFunctionArn;
 
@@ -72,6 +75,26 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>ACTIVE, INACTIVE
      */
     private String status;
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the custom authorizer.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     */
+    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -142,6 +165,9 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The ARN of the authorizer's Lambda function.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @return <p>
      *         The ARN of the authorizer's Lambda function.
@@ -155,6 +181,9 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The ARN of the authorizer's Lambda function.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -171,6 +200,9 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -435,6 +467,188 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
+     * Metadata which can be used to manage the custom authorizer.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage the custom authorizer.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         For URI Request parameters use format:
+     *         ...key1=value1&amp;key2=value2...
+     *         </p>
+     *         <p>
+     *         For the CLI command-line parameter use format: &amp;&amp;tags
+     *         "key1=value1&amp;key2=value2..."
+     *         </p>
+     *         <p>
+     *         For the cli-input-json file use format: "tags":
+     *         "key1=value1&amp;key2=value2..."
+     *         </p>
+     *         </note>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the custom authorizer.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the custom authorizer.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For URI Request parameters use format:
+     *            ...key1=value1&amp;key2=value2...
+     *            </p>
+     *            <p>
+     *            For the CLI command-line parameter use format: &amp;&amp;tags
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            <p>
+     *            For the cli-input-json file use format: "tags":
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            </note>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the custom authorizer.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the custom authorizer.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For URI Request parameters use format:
+     *            ...key1=value1&amp;key2=value2...
+     *            </p>
+     *            <p>
+     *            For the CLI command-line parameter use format: &amp;&amp;tags
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            <p>
+     *            For the cli-input-json file use format: "tags":
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateAuthorizerRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the custom authorizer.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the custom authorizer.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For URI Request parameters use format:
+     *            ...key1=value1&amp;key2=value2...
+     *            </p>
+     *            <p>
+     *            For the CLI command-line parameter use format: &amp;&amp;tags
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            <p>
+     *            For the cli-input-json file use format: "tags":
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateAuthorizerRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
+     * <p>
      * Specifies whether AWS IoT validates the token signature in an
      * authorization request.
      * </p>
@@ -520,6 +734,8 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
             sb.append("tokenSigningPublicKeys: " + getTokenSigningPublicKeys() + ",");
         if (getStatus() != null)
             sb.append("status: " + getStatus() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags() + ",");
         if (getSigningDisabled() != null)
             sb.append("signingDisabled: " + getSigningDisabled());
         sb.append("}");
@@ -543,6 +759,7 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
                 + ((getTokenSigningPublicKeys() == null) ? 0 : getTokenSigningPublicKeys()
                         .hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode
                 + ((getSigningDisabled() == null) ? 0 : getSigningDisabled().hashCode());
         return hashCode;
@@ -582,6 +799,10 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getSigningDisabled() == null ^ this.getSigningDisabled() == null)
             return false;

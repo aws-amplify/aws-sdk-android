@@ -59,7 +59,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      */
     private String propertyAlias;
 
@@ -253,7 +253,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @return <p>
      *         The name of the property alias associated with your asset
@@ -275,7 +275,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param propertyAlias <p>
      *            The name of the property alias associated with your asset
@@ -300,7 +300,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 2048<br/>
+     * <b>Length: </b>1 - <br/>
      *
      * @param propertyAlias <p>
      *            The name of the property alias associated with your asset

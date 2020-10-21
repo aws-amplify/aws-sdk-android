@@ -32,6 +32,7 @@ public class ListDomainConfigurationsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String nextMarker;
@@ -129,6 +130,7 @@ public class ListDomainConfigurationsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
@@ -145,6 +147,7 @@ public class ListDomainConfigurationsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>
@@ -164,6 +167,7 @@ public class ListDomainConfigurationsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param nextMarker <p>

@@ -31,8 +31,8 @@ public class ServerCertificateSummary implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      */
     private String serverCertificateArn;
 
@@ -61,8 +61,8 @@ public class ServerCertificateSummary implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      *
      * @return <p>
      *         The ARN of the server certificate.
@@ -80,8 +80,8 @@ public class ServerCertificateSummary implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      *
      * @param serverCertificateArn <p>
      *            The ARN of the server certificate.
@@ -102,8 +102,8 @@ public class ServerCertificateSummary implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      *
      * @param serverCertificateArn <p>
      *            The ARN of the server certificate.
