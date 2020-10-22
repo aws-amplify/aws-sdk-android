@@ -691,7 +691,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
     /**
      * <p>
      * Creates a topic to which notifications can be published. Users can create
-     * at most 100,000 topics. For more information, see <a
+     * at most 100,000 standard topics (at most 1,000 FIFO topics). For more
+     * information, see <a
      * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This
      * action is idempotent, so if the requester already owns a topic with the
      * specified name, that topic's ARN is returned without creating a new
@@ -2656,7 +2657,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> - The ID of an AWS-managed
+     *            <code>KmsMasterKeyId</code> – The ID of an AWS-managed
      *            customer master key (CMK) for Amazon SNS or a custom CMK. For
      *            more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -2664,6 +2665,34 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      *            >KeyId</a> in the <i>AWS Key Management Service API
      *            Reference</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to FIFO topics:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ContentBasedDeduplication</code> – Enables content-based
+     *            deduplication. Amazon SNS uses a SHA-256 hash to generate the
+     *            <code>MessageDeduplicationId</code> using the body of the
+     *            message (but not the attributes of the message).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            When <code>ContentBasedDeduplication</code> is in effect,
+     *            messages with identical content sent within the deduplication
+     *            interval are treated as duplicates and only one copy of the
+     *            message is delivered.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            If the queue has <code>ContentBasedDeduplication</code> set,
+     *            your <code>MessageDeduplicationId</code> overrides the
+     *            generated one.
      *            </p>
      *            </li>
      *            </ul>
@@ -2695,7 +2724,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
     /**
      * <p>
      * Creates a topic to which notifications can be published. Users can create
-     * at most 100,000 topics. For more information, see <a
+     * at most 100,000 standard topics (at most 1,000 FIFO topics). For more
+     * information, see <a
      * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This
      * action is idempotent, so if the requester already owns a topic with the
      * specified name, that topic's ARN is returned without creating a new
@@ -2709,6 +2739,10 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            Constraints: Topic names must be made up of only uppercase and
      *            lowercase ASCII letters, numbers, underscores, and hyphens,
      *            and must be between 1 and 256 characters long.
+     *            </p>
+     *            <p>
+     *            For a FIFO (first-in-first-out) topic, the name must end with
+     *            the <code>.fifo</code> suffix.
      *            </p>
      * @return createTopicResult The response from the CreateTopic service
      *         method, as returned by Amazon Simple Notification Service.
