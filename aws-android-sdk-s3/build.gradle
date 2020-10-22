@@ -7,22 +7,10 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 29
-        // Required when setting minSdkVersion to 20 or lower
-        multiDexEnabled true
-    }
-
-    compileOptions {
-        // Flag to enable support for the new language APIs
-        coreLibraryDesugaringEnabled true
-        // Sets Java compatibility to Java 8
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
-
     api project(':aws-android-sdk-core')
     api project(':aws-android-sdk-kms')
 

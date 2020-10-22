@@ -625,24 +625,13 @@ public class TransferUtility {
      */
     public TransferObserver upload(String key, InputStream inputStream, UploadOptions options) throws IOException {
         File file = writeInputStreamToFile(inputStream);
-        TransferObserver observer = upload(
+        return upload(
                 options.getBucket() != null ? options.getBucket() : getDefaultBucketOrThrow(),
                 key,
                 file,
                 options.getMetadata() != null ? options.getMetadata() : new ObjectMetadata(), options.getCannedAcl(),
                 options.getTransferListener()
         );
-        deleteTempFile(observer);
-        return observer;
-    }
-
-    synchronized public void deleteTempFile(TransferObserver observer) {
-        final int recordId = observer.getId();
-        if (TransferState.COMPLETED.equals(observer.getState())) {
-            if (dbUtil.getTransferById(recordId).file.startsWith("aws-s3")) {
-                updater.removeTransferRecordFromDB(recordId);
-            }
-        }
     }
 
     /**
@@ -817,10 +806,8 @@ public class TransferUtility {
 
         // Saves the data as a file in the temporary directory
         File file = File.createTempFile("aws-s3", ".tmp");
-        if (!file.isFile()) {
-            throw new IOException("Error creating a temporary file.");
-        }
-        try (OutputStream outStream = new FileOutputStream(file)) {
+        OutputStream outStream = new FileOutputStream(file);
+        try {
             byte[] buffer = new byte[1024];
             int bytesRead;
             // Keep reading until reaches the end of the stream
@@ -831,6 +818,8 @@ public class TransferUtility {
         } catch (IOException ioException) {
             file.delete();
             throw new IOException("Error writing the inputStream into a file.", ioException);
+        } finally {
+            outStream.close();
         }
         return file;
     }

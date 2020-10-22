@@ -25,6 +25,7 @@ import com.amazonaws.event.ProgressListener;
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -147,6 +148,11 @@ class TransferStatusUpdater {
     synchronized void removeTransferRecordFromDB(final int id) {
         S3ClientReference.remove(id);
         dbUtil.deleteTransferRecords(id);
+        // Remove temporary file
+        if (dbUtil.getTransferById(id).file.startsWith("aws-s3")) {
+            String path = dbUtil.getRecordUri(id).getPath();
+            new File(path).delete();
+        }
     }
 
     /**
