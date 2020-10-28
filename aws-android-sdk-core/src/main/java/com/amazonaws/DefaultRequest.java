@@ -73,6 +73,9 @@ public class DefaultRequest<T> implements Request<T> {
     /** All AWS Request metrics are collected into this object. */
     private AWSRequestMetrics metrics;
 
+    /** An optional prefix to prepend to the request endpoint host */
+    private String hostPrefix;
+
     /**
      * Constructs a new DefaultRequest with the specified service name and the
      * original, user facing request object.
@@ -241,6 +244,22 @@ public class DefaultRequest<T> implements Request<T> {
     public void setParameters(Map<String, String> parameters) {
         this.parameters.clear();
         this.parameters.putAll(parameters);
+    }
+
+    /**
+     * @see Request#getHostPrefix()
+     */
+    @Override
+    public String getHostPrefix() {
+        return this.hostPrefix;
+    }
+
+    /**
+     * @see Request#setHostPrefix(String)
+     */
+    @Override
+    public void setHostPrefix(String hostPrefix) {
+        this.hostPrefix = hostPrefix;
     }
 
     /**

@@ -152,6 +152,24 @@ public interface Request<T> {
     public void setContent(InputStream content);
 
     /**
+     * Returns the optional prefix to prepend to the request endpoint's host
+     * before sending this request.
+     *
+     * @return the optional prefix to prepend to the request endpoint host
+     *          before sending this request.
+     */
+    public String getHostPrefix();
+
+    /**
+     * Sets the optional prefix to prepend to the request endpoint's host before
+     * sending this request.
+     *
+     * @param hostPrefix The optional prefix to prepend to the request endpoint
+     *                   host.
+     */
+    public void setHostPrefix(String hostPrefix);
+
+    /**
      * Returns the name of the Amazon service this request is for.
      *
      * @return The name of the Amazon service this request is for.
