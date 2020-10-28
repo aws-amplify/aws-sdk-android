@@ -41,6 +41,11 @@ class AwsJobExecutionsRolloutConfigJsonUnmarshaller implements
                 awsJobExecutionsRolloutConfig.setMaximumPerMinute(IntegerJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("exponentialRate")) {
+                awsJobExecutionsRolloutConfig
+                        .setExponentialRate(AwsJobExponentialRolloutRateJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

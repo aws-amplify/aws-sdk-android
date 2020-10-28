@@ -142,6 +142,16 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
+     * The mode of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     */
+    private String certificateMode;
+
+    /**
+     * <p>
      * The ARN of the certificate.
      * </p>
      *
@@ -855,6 +865,103 @@ public class CertificateDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The mode of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @return <p>
+     *         The mode of the certificate.
+     *         </p>
+     * @see CertificateMode
+     */
+    public String getCertificateMode() {
+        return certificateMode;
+    }
+
+    /**
+     * <p>
+     * The mode of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            The mode of the certificate.
+     *            </p>
+     * @see CertificateMode
+     */
+    public void setCertificateMode(String certificateMode) {
+        this.certificateMode = certificateMode;
+    }
+
+    /**
+     * <p>
+     * The mode of the certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            The mode of the certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateMode
+     */
+    public CertificateDescription withCertificateMode(String certificateMode) {
+        this.certificateMode = certificateMode;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The mode of the certificate.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            The mode of the certificate.
+     *            </p>
+     * @see CertificateMode
+     */
+    public void setCertificateMode(CertificateMode certificateMode) {
+        this.certificateMode = certificateMode.toString();
+    }
+
+    /**
+     * <p>
+     * The mode of the certificate.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>DEFAULT, SNI_ONLY
+     *
+     * @param certificateMode <p>
+     *            The mode of the certificate.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CertificateMode
+     */
+    public CertificateDescription withCertificateMode(CertificateMode certificateMode) {
+        this.certificateMode = certificateMode.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -890,7 +997,9 @@ public class CertificateDescription implements Serializable {
         if (getGenerationId() != null)
             sb.append("generationId: " + getGenerationId() + ",");
         if (getValidity() != null)
-            sb.append("validity: " + getValidity());
+            sb.append("validity: " + getValidity() + ",");
+        if (getCertificateMode() != null)
+            sb.append("certificateMode: " + getCertificateMode());
         sb.append("}");
         return sb.toString();
     }
@@ -923,6 +1032,8 @@ public class CertificateDescription implements Serializable {
         hashCode = prime * hashCode
                 + ((getGenerationId() == null) ? 0 : getGenerationId().hashCode());
         hashCode = prime * hashCode + ((getValidity() == null) ? 0 : getValidity().hashCode());
+        hashCode = prime * hashCode
+                + ((getCertificateMode() == null) ? 0 : getCertificateMode().hashCode());
         return hashCode;
     }
 
@@ -998,6 +1109,11 @@ public class CertificateDescription implements Serializable {
         if (other.getValidity() == null ^ this.getValidity() == null)
             return false;
         if (other.getValidity() != null && other.getValidity().equals(this.getValidity()) == false)
+            return false;
+        if (other.getCertificateMode() == null ^ this.getCertificateMode() == null)
+            return false;
+        if (other.getCertificateMode() != null
+                && other.getCertificateMode().equals(this.getCertificateMode()) == false)
             return false;
         return true;
     }

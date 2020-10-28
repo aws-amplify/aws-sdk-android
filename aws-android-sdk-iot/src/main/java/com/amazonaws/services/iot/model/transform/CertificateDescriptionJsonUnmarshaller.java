@@ -76,6 +76,9 @@ class CertificateDescriptionJsonUnmarshaller implements
                 certificateDescription.setValidity(CertificateValidityJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("certificateMode")) {
+                certificateDescription.setCertificateMode(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

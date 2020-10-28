@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -54,6 +56,10 @@ public class UpdateJobRequestMarshaller implements
                 "{jobId}",
                 (updateJobRequest.getJobId() == null) ? "" : StringUtils
                         .fromString(updateJobRequest.getJobId()));
+        if (updateJobRequest.getNamespaceId() != null) {
+            request.addParameter("namespaceId",
+                    StringUtils.fromString(updateJobRequest.getNamespaceId()));
+        }
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
