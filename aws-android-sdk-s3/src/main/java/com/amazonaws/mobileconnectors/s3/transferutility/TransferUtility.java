@@ -15,30 +15,25 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
-import static com.amazonaws.services.s3.internal.Constants.MB;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.Build;
-
-import com.amazonaws.services.s3.S3ClientOptions;
-import com.amazonaws.services.s3.internal.Constants;
-import org.json.JSONObject;
 
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.S3ClientOptions;
+import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.util.VersionInfoUtils;
 
-import com.amazonaws.logging.Log;
-import com.amazonaws.logging.LogFactory;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,6 +42,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
+import static com.amazonaws.services.s3.internal.Constants.MB;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -629,7 +627,8 @@ public class TransferUtility {
                 options.getBucket() != null ? options.getBucket() : getDefaultBucketOrThrow(),
                 key,
                 file,
-                options.getMetadata() != null ? options.getMetadata() : new ObjectMetadata(), options.getCannedAcl(),
+                options.getMetadata() != null ? options.getMetadata() : new ObjectMetadata(),
+                options.getCannedAcl(),
                 options.getTransferListener()
         );
     }

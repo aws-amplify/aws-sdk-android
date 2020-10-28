@@ -15,13 +15,13 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
+import androidx.core.util.ObjectsCompat;
+
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 
-import java.util.Objects;
-
 /**
- * A class that can hold all of the optional parameters (bucket, metadata, cannedAcl, transferListener).
+ * Options used to configure the upload of an object using {@link TransferUtility}.
  */
 public final class UploadOptions {
     // These attributes are all optional
@@ -33,7 +33,7 @@ public final class UploadOptions {
     /**
      * Constructor.
      */
-    public UploadOptions(UploadOptionsBuilder builder) {
+    public UploadOptions(Builder builder) {
         this.bucket = builder.bucket;
         this.metadata = builder.metadata;
         this.cannedAcl = builder.cannedAcl;
@@ -59,13 +59,13 @@ public final class UploadOptions {
     /**
      * Builder class for UploadOptions
      */
-    public static final class UploadOptionsBuilder {
+    public static final class Builder {
         private String bucket;
         private ObjectMetadata metadata;
         private CannedAccessControlList cannedAcl;
         private TransferListener listener;
 
-        private UploadOptionsBuilder() {
+        private Builder() {
         }
 
         /**
@@ -74,7 +74,7 @@ public final class UploadOptions {
          * @param bucket The bucket name
          * @return builder
          */
-        public UploadOptionsBuilder bucket(final String bucket) {
+        public Builder bucket(final String bucket) {
             this.bucket = bucket;
             return this;
         }
@@ -85,7 +85,7 @@ public final class UploadOptions {
          * @param metadata The S3 metadata to associate with this object
          * @return builder
          */
-        public UploadOptionsBuilder objectMetadata(final ObjectMetadata metadata) {
+        public Builder objectMetadata(final ObjectMetadata metadata) {
             this.metadata = metadata;
             return this;
         }
@@ -96,7 +96,7 @@ public final class UploadOptions {
          * @param cannedAcl The canned ACL to associate with this object
          * @return builder
          */
-        public UploadOptionsBuilder cannedAcl(final CannedAccessControlList cannedAcl) {
+        public Builder cannedAcl(final CannedAccessControlList cannedAcl) {
             this.cannedAcl = cannedAcl;
             return this;
         }
@@ -107,7 +107,7 @@ public final class UploadOptions {
          * @param listener The listener to attach to transfer observer
          * @return builder
          */
-        public UploadOptionsBuilder transferListener(final TransferListener listener) {
+        public Builder transferListener(final TransferListener listener) {
             this.listener = listener;
             return this;
         }
@@ -124,8 +124,8 @@ public final class UploadOptions {
     /**
      * @return The builder object to construct a UploadOptions.
      */
-    public static UploadOptionsBuilder builder() {
-        return new UploadOptionsBuilder();
+    public static Builder builder() {
+        return new Builder();
     }
 
     @Override
@@ -139,18 +139,20 @@ public final class UploadOptions {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UploadOptions that = (UploadOptions) o;
-        return Objects.equals(bucket, that.bucket) &&
-                Objects.equals(metadata, that.metadata) &&
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) return false;
+        UploadOptions that = (UploadOptions) obj;
+        return ObjectsCompat.equals(bucket, that.bucket) &&
+                ObjectsCompat.equals(metadata, that.metadata) &&
                 cannedAcl == that.cannedAcl &&
-                Objects.equals(listener, that.listener);
+                ObjectsCompat.equals(listener, that.listener);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(bucket, metadata, cannedAcl, listener);
+        return ObjectsCompat.hash(bucket, metadata, cannedAcl, listener);
     }
 }

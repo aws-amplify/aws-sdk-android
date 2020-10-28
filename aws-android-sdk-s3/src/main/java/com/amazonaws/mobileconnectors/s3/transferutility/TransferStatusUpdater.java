@@ -146,13 +146,15 @@ class TransferStatusUpdater {
      * @param id id of the transfer to remove
      */
     synchronized void removeTransferRecordFromDB(final int id) {
+        // Remove temporary file
+        if (dbUtil.getTransferById(id) != null) {
+            if (dbUtil.getTransferById(id).file.startsWith("aws-s3")) {
+                String path = dbUtil.getTransferById(id).file;
+                new File(path).delete();
+            }
+        }
         S3ClientReference.remove(id);
         dbUtil.deleteTransferRecords(id);
-        // Remove temporary file
-        if (dbUtil.getTransferById(id).file.startsWith("aws-s3")) {
-            String path = dbUtil.getRecordUri(id).getPath();
-            new File(path).delete();
-        }
     }
 
     /**
