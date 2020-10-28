@@ -114,7 +114,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#addHeader(java.lang.String, java.lang.String)
+     * {@inheritDoc}
      */
     @Override
     public void addHeader(String name, String value) {
@@ -122,7 +122,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getHeaders()
+     * {@inheritDoc}
      */
     @Override
     public Map<String, String> getHeaders() {
@@ -130,7 +130,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#setResourcePath(java.lang.String)
+     * {@inheritDoc}
      */
     @Override
     public void setResourcePath(String resourcePath) {
@@ -138,7 +138,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getResourcePath()
+     * {@inheritDoc}
      */
     @Override
     public String getResourcePath() {
@@ -146,8 +146,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#addParameter(java.lang.String,
-     *      java.lang.String)
+     * {@inheritDoc}
      */
     @Override
     public void addParameter(String name, String value) {
@@ -155,7 +154,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getParameters()
+     * {@inheritDoc}
      */
     @Override
     public Map<String, String> getParameters() {
@@ -163,8 +162,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#withParameter(java.lang.String,
-     *      java.lang.String)
+     * {@inheritDoc}
      */
     @Override
     public Request<T> withParameter(String name, String value) {
@@ -173,7 +171,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getHttpMethod()
+     * {@inheritDoc}
      */
     @Override
     public HttpMethodName getHttpMethod() {
@@ -181,7 +179,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#setHttpMethod(com.amazonaws.http.HttpMethodName)
+     * {@inheritDoc}
      */
     @Override
     public void setHttpMethod(HttpMethodName httpMethod) {
@@ -189,7 +187,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#setEndpoint(java.net.URI)
+     * {@inheritDoc}
      */
     @Override
     public void setEndpoint(URI endpoint) {
@@ -197,7 +195,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getEndpoint()
+     * {@inheritDoc}
      */
     @Override
     public URI getEndpoint() {
@@ -205,7 +203,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getServiceName()
+     * {@inheritDoc}
      */
     @Override
     public String getServiceName() {
@@ -213,7 +211,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getContent()
+     * {@inheritDoc}
      */
     @Override
     public InputStream getContent() {
@@ -221,7 +219,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#setContent(java.io.InputStream)
+     * {@inheritDoc}
      */
     @Override
     public void setContent(InputStream content) {
@@ -229,7 +227,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#setHeaders(java.util.Map)
+     * {@inheritDoc}
      */
     @Override
     public void setHeaders(Map<String, String> headers) {
@@ -238,7 +236,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#setParameters(java.util.Map)
+     * {@inheritDoc}
      */
     @Override
     public void setParameters(Map<String, String> parameters) {
@@ -247,7 +245,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#getHostPrefix()
+     * {@inheritDoc}
      */
     @Override
     public String getHostPrefix() {
@@ -255,7 +253,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setHostPrefix(String)
+     * {@inheritDoc}
      */
     @Override
     public void setHostPrefix(String hostPrefix) {
@@ -263,7 +261,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see com.amazonaws.Request#getTimeOffset
+     * {@inheritDoc}
      */
     @Override
     public int getTimeOffset() {
@@ -271,7 +269,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setTimeOffset(int)
+     * {@inheritDoc}
      */
     @Override
     public void setTimeOffset(int timeOffset) {
@@ -279,7 +277,7 @@ public class DefaultRequest<T> implements Request<T> {
     }
 
     /**
-     * @see Request#setTimeOffset(int)
+     * {@inheritDoc}
      */
     @Override
     @SuppressWarnings("checkstyle:hiddenfield")
