@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -43,9 +43,12 @@ import com.amazonaws.util.TimingInfo;
 
 import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
+import com.amazonaws.util.URIBuilder;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -201,6 +204,20 @@ public class AmazonHttpClient {
             HttpResponseHandler<AmazonWebServiceResponse<T>> responseHandler,
             HttpResponseHandler<AmazonServiceException> errorResponseHandler,
             ExecutionContext executionContext) {
+        // Prepend host prefix if specified in the request.
+        if (request.getHostPrefix() != null) {
+            try {
+                URI endpoint = request.getEndpoint();
+                String host = request.getHostPrefix() + endpoint.getHost();
+                request.setEndpoint(URIBuilder.builder(endpoint)
+                        .host(host)
+                        .build());
+            } catch (URISyntaxException error) {
+                if (log.isDebugEnabled()) {
+                    log.debug("Failed to prepend host prefix: " + error.getMessage(), error);
+                }
+            }
+        }
         if (executionContext == null) {
             throw new AmazonClientException(
                     "Internal SDK Error: No execution context parameter specified.");
@@ -260,8 +277,6 @@ public class AmazonHttpClient {
     /**
      * Internal method to execute the HTTP method given.
      *
-     * @see AmazonHttpClient#execute(Request, HttpResponseHandler,
-     *      HttpResponseHandler)
      * @see AmazonHttpClient#execute(Request, HttpResponseHandler,
      *      HttpResponseHandler, ExecutionContext)
      */
@@ -564,7 +579,6 @@ public class AmazonHttpClient {
      *
      * @param originalRequest The original service request that is being
      *            executed.
-     * @param method The current HTTP method being executed.
      * @param exception The client/service exception from the failed request.
      * @param requestCount The number of times the current request has been
      *            attempted.
@@ -628,8 +642,6 @@ public class AmazonHttpClient {
      *            handled.
      * @param responseHandler The response unmarshaller used to interpret the
      *            contents of the response.
-     * @param method The HTTP method that was invoked, and contains the contents
-     *            of the response.
      * @param executionContext Extra state information about the request
      *            currently being executed.
      * @return The contents of the response, unmarshalled using the specified
@@ -686,7 +698,6 @@ public class AmazonHttpClient {
      *            handled.
      * @param errorResponseHandler The response handler responsible for
      *            unmarshalling the error response.
-     * @param method The HTTP method containing the actual response content.
      * @throws IOException If any problems are encountering reading the error
      *             response.
      */
