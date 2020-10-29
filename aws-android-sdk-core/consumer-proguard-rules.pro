@@ -2,6 +2,9 @@
 -keepnames class com.amazonaws.**
 -keepnames class com.amazon.**
 
+# Enums are not obfuscated correctly in combination with Gson
+-keepclassmembers enum * { *; }
+
 # Request handlers defined in request.handlers
 -keep class com.amazonaws.services.**.*Handler
 
