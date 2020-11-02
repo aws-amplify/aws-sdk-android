@@ -1,5 +1,10 @@
 # Change Log - AWS SDK for Android
 
+## [Release TBD](https://github.com/aws/aws-sdk-android/releases/tag/TBD)
+
+### Model Updates
+   - SNS
+
 ## [Release 2.19.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.1)
 
 ### New Features
