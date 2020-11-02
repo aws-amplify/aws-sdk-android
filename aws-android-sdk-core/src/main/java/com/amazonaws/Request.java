@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -150,6 +150,24 @@ public interface Request<T> {
      *            for this request.
      */
     public void setContent(InputStream content);
+
+    /**
+     * Returns the optional prefix to prepend to the request endpoint's host
+     * before sending this request.
+     *
+     * @return the optional prefix to prepend to the request endpoint host
+     *          before sending this request.
+     */
+    public String getHostPrefix();
+
+    /**
+     * Sets the optional prefix to prepend to the request endpoint's host before
+     * sending this request.
+     *
+     * @param hostPrefix The optional prefix to prepend to the request endpoint
+     *                   host.
+     */
+    public void setHostPrefix(String hostPrefix);
 
     /**
      * Returns the name of the Amazon service this request is for.
