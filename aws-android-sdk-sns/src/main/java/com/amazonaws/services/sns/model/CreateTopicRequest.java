@@ -22,7 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a topic to which notifications can be published. Users can create at
- * most 100,000 topics. For more information, see <a
+ * most 100,000 standard topics (at most 1,000 FIFO topics). For more
+ * information, see <a
  * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This action
  * is idempotent, so if the requester already owns a topic with the specified
  * name, that topic's ARN is returned without creating a new topic.
@@ -37,6 +38,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * Constraints: Topic names must be made up of only uppercase and lowercase
      * ASCII letters, numbers, underscores, and hyphens, and must be between 1
      * and 256 characters long.
+     * </p>
+     * <p>
+     * For a FIFO (first-in-first-out) topic, the name must end with the
+     * <code>.fifo</code> suffix.
      * </p>
      */
     private String name;
@@ -64,6 +69,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
+     * <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
@@ -77,7 +87,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -85,6 +95,50 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FifoTopic</code> – When this is set to <code>true</code>, a FIFO
+     * topic is created.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code> – Enables content-based
+     * deduplication for FIFO topics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * By default, <code>ContentBasedDeduplication</code> is set to
+     * <code>false</code>. If you create a FIFO topic and this attribute is
+     * <code>false</code>, you must specify a value for the
+     * <code>MessageDeduplicationId</code> parameter for the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     * >Publish</a> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>ContentBasedDeduplication</code> to <code>true</code>,
+     * Amazon SNS uses a SHA-256 hash to generate the
+     * <code>MessageDeduplicationId</code> using the body of the message (but
+     * not the attributes of the message).
+     * </p>
+     * <p>
+     * (Optional) To override the generated value, you can specify a value for
+     * the the <code>MessageDeduplicationId</code> parameter for the
+     * <code>Publish</code> action.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      */
@@ -125,6 +179,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            lowercase ASCII letters, numbers, underscores, and hyphens,
      *            and must be between 1 and 256 characters long.
      *            </p>
+     *            <p>
+     *            For a FIFO (first-in-first-out) topic, the name must end with
+     *            the <code>.fifo</code> suffix.
+     *            </p>
      */
     public CreateTopicRequest(String name) {
         setName(name);
@@ -139,6 +197,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * ASCII letters, numbers, underscores, and hyphens, and must be between 1
      * and 256 characters long.
      * </p>
+     * <p>
+     * For a FIFO (first-in-first-out) topic, the name must end with the
+     * <code>.fifo</code> suffix.
+     * </p>
      *
      * @return <p>
      *         The name of the topic you want to create.
@@ -147,6 +209,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         Constraints: Topic names must be made up of only uppercase and
      *         lowercase ASCII letters, numbers, underscores, and hyphens, and
      *         must be between 1 and 256 characters long.
+     *         </p>
+     *         <p>
+     *         For a FIFO (first-in-first-out) topic, the name must end with the
+     *         <code>.fifo</code> suffix.
      *         </p>
      */
     public String getName() {
@@ -162,6 +228,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * ASCII letters, numbers, underscores, and hyphens, and must be between 1
      * and 256 characters long.
      * </p>
+     * <p>
+     * For a FIFO (first-in-first-out) topic, the name must end with the
+     * <code>.fifo</code> suffix.
+     * </p>
      *
      * @param name <p>
      *            The name of the topic you want to create.
@@ -170,6 +240,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            Constraints: Topic names must be made up of only uppercase and
      *            lowercase ASCII letters, numbers, underscores, and hyphens,
      *            and must be between 1 and 256 characters long.
+     *            </p>
+     *            <p>
+     *            For a FIFO (first-in-first-out) topic, the name must end with
+     *            the <code>.fifo</code> suffix.
      *            </p>
      */
     public void setName(String name) {
@@ -186,6 +260,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * and 256 characters long.
      * </p>
      * <p>
+     * For a FIFO (first-in-first-out) topic, the name must end with the
+     * <code>.fifo</code> suffix.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -196,6 +274,10 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            Constraints: Topic names must be made up of only uppercase and
      *            lowercase ASCII letters, numbers, underscores, and hyphens,
      *            and must be between 1 and 256 characters long.
+     *            </p>
+     *            <p>
+     *            For a FIFO (first-in-first-out) topic, the name must end with
+     *            the <code>.fifo</code> suffix.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -228,6 +310,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
+     * <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
@@ -241,7 +328,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -249,6 +336,50 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FifoTopic</code> – When this is set to <code>true</code>, a FIFO
+     * topic is created.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code> – Enables content-based
+     * deduplication for FIFO topics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * By default, <code>ContentBasedDeduplication</code> is set to
+     * <code>false</code>. If you create a FIFO topic and this attribute is
+     * <code>false</code>, you must specify a value for the
+     * <code>MessageDeduplicationId</code> parameter for the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     * >Publish</a> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>ContentBasedDeduplication</code> to <code>true</code>,
+     * Amazon SNS uses a SHA-256 hash to generate the
+     * <code>MessageDeduplicationId</code> using the body of the message (but
+     * not the attributes of the message).
+     * </p>
+     * <p>
+     * (Optional) To override the generated value, you can specify a value for
+     * the the <code>MessageDeduplicationId</code> parameter for the
+     * <code>Publish</code> action.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      *
@@ -275,6 +406,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         <li>
      *         <p>
+     *         <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
      *         <code>Policy</code> – The policy that defines who can access your
      *         topic. By default, only the topic owner can publish or subscribe
      *         to the topic.
@@ -289,7 +425,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer
+     *         <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer
      *         master key (CMK) for Amazon SNS or a custom CMK. For more
      *         information, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -298,6 +434,50 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         >KeyId</a> in the <i>AWS Key Management Service API
      *         Reference</i>.
      *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The following attributes apply only to <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     *         >FIFO topics</a>:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>FifoTopic</code> – When this is set to <code>true</code>, a
+     *         FIFO topic is created.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ContentBasedDeduplication</code> – Enables content-based
+     *         deduplication for FIFO topics.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         By default, <code>ContentBasedDeduplication</code> is set to
+     *         <code>false</code>. If you create a FIFO topic and this attribute
+     *         is <code>false</code>, you must specify a value for the
+     *         <code>MessageDeduplicationId</code> parameter for the <a
+     *         href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     *         >Publish</a> action.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         When you set <code>ContentBasedDeduplication</code> to
+     *         <code>true</code>, Amazon SNS uses a SHA-256 hash to generate the
+     *         <code>MessageDeduplicationId</code> using the body of the message
+     *         (but not the attributes of the message).
+     *         </p>
+     *         <p>
+     *         (Optional) To override the generated value, you can specify a
+     *         value for the the <code>MessageDeduplicationId</code> parameter
+     *         for the <code>Publish</code> action.
+     *         </p>
+     *         </li>
+     *         </ul>
      *         </li>
      *         </ul>
      */
@@ -328,6 +508,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
+     * <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
@@ -341,7 +526,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -349,6 +534,50 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FifoTopic</code> – When this is set to <code>true</code>, a FIFO
+     * topic is created.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code> – Enables content-based
+     * deduplication for FIFO topics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * By default, <code>ContentBasedDeduplication</code> is set to
+     * <code>false</code>. If you create a FIFO topic and this attribute is
+     * <code>false</code>, you must specify a value for the
+     * <code>MessageDeduplicationId</code> parameter for the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     * >Publish</a> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>ContentBasedDeduplication</code> to <code>true</code>,
+     * Amazon SNS uses a SHA-256 hash to generate the
+     * <code>MessageDeduplicationId</code> using the body of the message (but
+     * not the attributes of the message).
+     * </p>
+     * <p>
+     * (Optional) To override the generated value, you can specify a value for
+     * the the <code>MessageDeduplicationId</code> parameter for the
+     * <code>Publish</code> action.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      *
@@ -375,6 +604,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
+     *            <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <code>Policy</code> – The policy that defines who can access
      *            your topic. By default, only the topic owner can publish or
      *            subscribe to the topic.
@@ -389,7 +623,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> - The ID of an AWS-managed
+     *            <code>KmsMasterKeyId</code> – The ID of an AWS-managed
      *            customer master key (CMK) for Amazon SNS or a custom CMK. For
      *            more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -398,6 +632,51 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            >KeyId</a> in the <i>AWS Key Management Service API
      *            Reference</i>.
      *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     *            >FIFO topics</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>FifoTopic</code> – When this is set to <code>true</code>
+     *            , a FIFO topic is created.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ContentBasedDeduplication</code> – Enables content-based
+     *            deduplication for FIFO topics.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            By default, <code>ContentBasedDeduplication</code> is set to
+     *            <code>false</code>. If you create a FIFO topic and this
+     *            attribute is <code>false</code>, you must specify a value for
+     *            the <code>MessageDeduplicationId</code> parameter for the <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     *            >Publish</a> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            When you set <code>ContentBasedDeduplication</code> to
+     *            <code>true</code>, Amazon SNS uses a SHA-256 hash to generate
+     *            the <code>MessageDeduplicationId</code> using the body of the
+     *            message (but not the attributes of the message).
+     *            </p>
+     *            <p>
+     *            (Optional) To override the generated value, you can specify a
+     *            value for the the <code>MessageDeduplicationId</code>
+     *            parameter for the <code>Publish</code> action.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            </ul>
      */
@@ -428,6 +707,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
+     * <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
@@ -441,7 +725,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -449,6 +733,50 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FifoTopic</code> – When this is set to <code>true</code>, a FIFO
+     * topic is created.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code> – Enables content-based
+     * deduplication for FIFO topics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * By default, <code>ContentBasedDeduplication</code> is set to
+     * <code>false</code>. If you create a FIFO topic and this attribute is
+     * <code>false</code>, you must specify a value for the
+     * <code>MessageDeduplicationId</code> parameter for the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     * >Publish</a> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>ContentBasedDeduplication</code> to <code>true</code>,
+     * Amazon SNS uses a SHA-256 hash to generate the
+     * <code>MessageDeduplicationId</code> using the body of the message (but
+     * not the attributes of the message).
+     * </p>
+     * <p>
+     * (Optional) To override the generated value, you can specify a value for
+     * the the <code>MessageDeduplicationId</code> parameter for the
+     * <code>Publish</code> action.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * <p>
@@ -478,6 +806,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            <li>
      *            <p>
+     *            <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <code>Policy</code> – The policy that defines who can access
      *            your topic. By default, only the topic owner can publish or
      *            subscribe to the topic.
@@ -492,7 +825,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> - The ID of an AWS-managed
+     *            <code>KmsMasterKeyId</code> – The ID of an AWS-managed
      *            customer master key (CMK) for Amazon SNS or a custom CMK. For
      *            more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -501,6 +834,51 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            >KeyId</a> in the <i>AWS Key Management Service API
      *            Reference</i>.
      *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attributes apply only to <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     *            >FIFO topics</a>:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>FifoTopic</code> – When this is set to <code>true</code>
+     *            , a FIFO topic is created.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ContentBasedDeduplication</code> – Enables content-based
+     *            deduplication for FIFO topics.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            By default, <code>ContentBasedDeduplication</code> is set to
+     *            <code>false</code>. If you create a FIFO topic and this
+     *            attribute is <code>false</code>, you must specify a value for
+     *            the <code>MessageDeduplicationId</code> parameter for the <a
+     *            href=
+     *            "https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     *            >Publish</a> action.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            When you set <code>ContentBasedDeduplication</code> to
+     *            <code>true</code>, Amazon SNS uses a SHA-256 hash to generate
+     *            the <code>MessageDeduplicationId</code> using the body of the
+     *            message (but not the attributes of the message).
+     *            </p>
+     *            <p>
+     *            (Optional) To override the generated value, you can specify a
+     *            value for the the <code>MessageDeduplicationId</code>
+     *            parameter for the <code>Publish</code> action.
+     *            </p>
+     *            </li>
+     *            </ul>
      *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
@@ -534,6 +912,11 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * <li>
      * <p>
+     * <code>FifoTopic</code> – Set to true to create a FIFO topic.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <code>Policy</code> – The policy that defines who can access your topic.
      * By default, only the topic owner can publish or subscribe to the topic.
      * </p>
@@ -547,7 +930,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> - The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -555,6 +938,50 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
      * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
      * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attributes apply only to <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-fifo-topics.html"
+     * >FIFO topics</a>:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>FifoTopic</code> – When this is set to <code>true</code>, a FIFO
+     * topic is created.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ContentBasedDeduplication</code> – Enables content-based
+     * deduplication for FIFO topics.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * By default, <code>ContentBasedDeduplication</code> is set to
+     * <code>false</code>. If you create a FIFO topic and this attribute is
+     * <code>false</code>, you must specify a value for the
+     * <code>MessageDeduplicationId</code> parameter for the <a
+     * href="https://docs.aws.amazon.com/sns/latest/api/API_Publish.html"
+     * >Publish</a> action.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * When you set <code>ContentBasedDeduplication</code> to <code>true</code>,
+     * Amazon SNS uses a SHA-256 hash to generate the
+     * <code>MessageDeduplicationId</code> using the body of the message (but
+     * not the attributes of the message).
+     * </p>
+     * <p>
+     * (Optional) To override the generated value, you can specify a value for
+     * the the <code>MessageDeduplicationId</code> parameter for the
+     * <code>Publish</code> action.
+     * </p>
+     * </li>
+     * </ul>
      * </li>
      * </ul>
      * <p>
