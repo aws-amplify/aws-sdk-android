@@ -112,6 +112,7 @@ public class UploadInputStreamTest {
                                                               .build());
         verify(transferUtility, times(1)).upload(eq(bucket), eq(key), any(File.class),
                 eq(metadata), eq(cannedAcl), eq(listener));
+        transferUtility.getDbUtil().closeDB();
     }
 
     /**
@@ -136,6 +137,7 @@ public class UploadInputStreamTest {
     @After
     public void teardown() throws IOException {
         inputStream.close();
+        transferUtility.getDbUtil().closeDB();
     }
 
     private static String getRandomString() {
