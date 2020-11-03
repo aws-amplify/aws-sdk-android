@@ -804,7 +804,7 @@ public class TransferUtility {
         }
 
         // Saves the data as a file in the temporary directory
-        File file = File.createTempFile("aws-s3", ".tmp");
+        File file = File.createTempFile(TransferStatusUpdater.TEMP_FILE_PREFIX, ".tmp");
         OutputStream outStream = new FileOutputStream(file);
         try {
             byte[] buffer = new byte[1024];

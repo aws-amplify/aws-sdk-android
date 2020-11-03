@@ -143,7 +143,9 @@ public final class UploadOptions {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
         UploadOptions that = (UploadOptions) obj;
         return ObjectsCompat.equals(bucket, that.bucket) &&
                 ObjectsCompat.equals(metadata, that.metadata) &&

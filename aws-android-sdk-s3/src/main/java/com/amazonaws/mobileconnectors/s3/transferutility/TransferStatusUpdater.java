@@ -76,6 +76,11 @@ class TransferStatusUpdater {
     private static TransferStatusUpdater transferStatusUpdater;
 
     /**
+     * Prefix of generated temporary file.
+     */
+    static final String TEMP_FILE_PREFIX = "aws-s3";
+
+    /**
      * This class is instantiated by TransferService and TransferUtility.
      * The updater is made a singleton. Use #getInstance for getting
      * the object of the updater.
@@ -147,9 +152,11 @@ class TransferStatusUpdater {
      */
     synchronized void removeTransferRecordFromDB(final int id) {
         // Remove temporary file
-        if (dbUtil.getTransferById(id) != null) {
-            if (dbUtil.getTransferById(id).file.startsWith("aws-s3")) {
-                String path = dbUtil.getTransferById(id).file;
+        TransferRecord transferRecord = dbUtil.getTransferById(id);
+        if (transferRecord != null) {
+            String path = transferRecord.file;
+            String fileName = new File(path).getName();
+            if (fileName.startsWith(TEMP_FILE_PREFIX)) {
                 new File(path).delete();
             }
         }
