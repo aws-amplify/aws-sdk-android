@@ -35,11 +35,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
-import static android.os.Looper.getMainLooper;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Matchers.isNull;
@@ -47,7 +45,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.robolectric.Shadows.shadowOf;
 
 @RunWith(RobolectricTestRunner.class)
 public class UploadInputStreamTest {
@@ -76,7 +73,6 @@ public class UploadInputStreamTest {
         cannedAcl = CannedAccessControlList.Private;
         listener = new UploadListener();
     }
-
     @Test
     public void testUpload() throws IOException {
         String key = getRandomString();
@@ -85,10 +81,6 @@ public class UploadInputStreamTest {
                 any(File.class), any(ObjectMetadata.class), isNull(CannedAccessControlList.class),
                 isNull(TransferListener.class));
     }
-
-    // Testing the upload(String key, InputStream inputStream, UploadOptions options) method calls
-    // upload(String bucket, String key, File file, ObjectMetadata metadata,
-    // CannedAccessControlList cannedAcl, TransferListener listener) in fact.
 
     /**
      * Test that upload(String key, String inputStream, UploadOptions options) with
@@ -125,43 +117,20 @@ public class UploadInputStreamTest {
     /**
      * Verify that the File does in fact get deleted after the upload is complete.
      */
-    @Test(expected = AssertionError.class)
-    public void testDeleteTempFileAfterUpload() throws InterruptedException {
-        final CountDownLatch deleteFileLatch = new CountDownLatch(1);
+    @Test
+    public void testDeleteTempFileAfterUpload() throws IOException {
+        // Call upload, so that a temporary File will be created
         final String key = getRandomString();
-        final Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    observer = transferUtility.upload(key, inputStream);
-                    observer.setTransferListener(new TransferListener() {
-                        @Override
-                        public void onStateChanged(int id, TransferState state) {
-                            if (state == TransferState.COMPLETED) {
-                                if (!new File(observer.getAbsoluteFilePath()).exists()) {
-                                    deleteFileLatch.countDown();
-                                }
-                            }
-                        }
-
-                        @Override
-                        public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {}
-
-                        @Override
-                        public void onError(int id, Exception ex) {}
-                    });
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }
-        });
-
-        thread.start();
-
-        if (!deleteFileLatch.await(2, TimeUnit.SECONDS)) {
-            shadowOf(getMainLooper()).idle();
-            fail("File was not deleted after upload.");
-        }
+        observer = transferUtility.upload(key, inputStream);
+        // Verify the file exists
+        File file = new File(observer.getAbsoluteFilePath());
+        assertTrue(file.exists());
+        // Set state to COMPLETED
+        Context context = InstrumentationRegistry.getInstrumentation().getContext();
+        TransferStatusUpdater transferStatusUpdater = TransferStatusUpdater.getInstance(context);
+        transferStatusUpdater.updateState(observer.getId(), TransferState.COMPLETED);
+        // Verify the file was deleted
+        assertFalse(file.exists());
     }
 
     @After

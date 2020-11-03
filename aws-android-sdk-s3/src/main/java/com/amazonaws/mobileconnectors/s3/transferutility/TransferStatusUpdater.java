@@ -76,7 +76,7 @@ class TransferStatusUpdater {
     private static TransferStatusUpdater transferStatusUpdater;
 
     /**
-     * Prefix of generated temporary file.
+     * Prefix for temporary File created when client uploads an `InputStream`.
      */
     static final String TEMP_FILE_PREFIX = "aws-s3";
 
