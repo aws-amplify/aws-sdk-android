@@ -112,7 +112,6 @@ public class UploadInputStreamTest {
                                                               .build());
         verify(transferUtility, times(1)).upload(eq(bucket), eq(key), any(File.class),
                 eq(metadata), eq(cannedAcl), eq(listener));
-        transferUtility.getDbUtil().closeDB();
     }
 
     /**
