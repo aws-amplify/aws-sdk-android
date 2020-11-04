@@ -15,32 +15,36 @@
 
 package com.amazonaws.mobileconnectors.s3.transferutility;
 
-import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
-import static com.amazonaws.services.s3.internal.Constants.MB;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import com.amazonaws.services.s3.S3ClientOptions;
-import com.amazonaws.services.s3.internal.Constants;
-import org.json.JSONObject;
 
 import com.amazonaws.AmazonWebServiceRequest;
+import com.amazonaws.logging.Log;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.S3ClientOptions;
+import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.util.VersionInfoUtils;
 
-import com.amazonaws.logging.Log;
-import com.amazonaws.logging.LogFactory;
+import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.amazonaws.services.s3.internal.Constants.MAXIMUM_UPLOAD_PARTS;
+import static com.amazonaws.services.s3.internal.Constants.MB;
 
 /**
  * The transfer utility is a high-level class for applications to upload and
@@ -598,6 +602,38 @@ public class TransferUtility {
     }
 
     /**
+     * Starts uploading the inputStream to the <b>default</b> bucket, using the given key.
+     *
+     * @param key           The key in the specified bucket by which to store the new object.
+     * @param inputStream   The input stream to upload.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, InputStream inputStream) throws IOException {
+        return upload(key, inputStream, UploadOptions.builder().build());
+    }
+
+    /**
+     * Starts uploading the inputStream to the given bucket, using the given key.
+     *
+     * @param key           The key in the specified bucket by which to store the new object.
+     * @param inputStream   The input stream to upload.
+     * @param options       An UploadOptions which hold all of the optional parameters
+     *                      i.e. bucket, metadata, cannedAcl and transferListener.
+     * @return A TransferObserver used to track upload progress and state
+     */
+    public TransferObserver upload(String key, InputStream inputStream, UploadOptions options) throws IOException {
+        File file = writeInputStreamToFile(inputStream);
+        return upload(
+                options.getBucket() != null ? options.getBucket() : getDefaultBucketOrThrow(),
+                key,
+                file,
+                options.getMetadata() != null ? options.getMetadata() : new ObjectMetadata(),
+                options.getCannedAcl(),
+                options.getTransferListener()
+        );
+    }
+
+    /**
      * Gets a TransferObserver instance to track the record with the given id.
      *
      * @param id A transfer id.
@@ -760,6 +796,31 @@ public class TransferUtility {
             partNumber++;
         }
         return dbUtil.bulkInsertTransferRecords(valuesArray);
+    }
+
+    private File writeInputStreamToFile(InputStream inputStream) throws IOException {
+        if (inputStream == null) {
+            throw new IllegalArgumentException("Invalid inputStream: " + inputStream);
+        }
+
+        // Saves the data as a file in the temporary directory
+        File file = File.createTempFile(TransferStatusUpdater.TEMP_FILE_PREFIX, ".tmp");
+        OutputStream outStream = new FileOutputStream(file);
+        try {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            // Keep reading until reaches the end of the stream
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outStream.write(buffer, 0, bytesRead);
+                outStream.flush();
+            }
+        } catch (IOException ioException) {
+            file.delete();
+            throw new IOException("Error writing the inputStream into a file.", ioException);
+        } finally {
+            outStream.close();
+        }
+        return file;
     }
 
     /**

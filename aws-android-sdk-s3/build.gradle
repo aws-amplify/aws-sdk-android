@@ -14,6 +14,8 @@ dependencies {
     api project(':aws-android-sdk-core')
     api project(':aws-android-sdk-kms')
 
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+
     testImplementation 'commons-logging:commons-logging:1.2'
     testImplementation 'joda-time:joda-time:2.8.1'
     testImplementation 'junit:junit:4.13.1'
