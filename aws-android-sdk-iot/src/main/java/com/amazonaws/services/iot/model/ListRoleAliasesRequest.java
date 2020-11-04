@@ -41,6 +41,7 @@ public class ListRoleAliasesRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      */
     private String marker;
@@ -112,6 +113,7 @@ public class ListRoleAliasesRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @return <p>
@@ -128,6 +130,7 @@ public class ListRoleAliasesRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param marker <p>
@@ -147,6 +150,7 @@ public class ListRoleAliasesRequest extends AmazonWebServiceRequest implements S
      * together.
      * <p>
      * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
      * <b>Pattern: </b>[A-Za-z0-9+/]+={0,2}<br/>
      *
      * @param marker <p>

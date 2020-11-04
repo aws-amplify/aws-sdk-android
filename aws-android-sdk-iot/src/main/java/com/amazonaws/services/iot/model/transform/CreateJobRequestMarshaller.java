@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -124,6 +126,11 @@ public class CreateJobRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
+            }
+            if (createJobRequest.getNamespaceId() != null) {
+                String namespaceId = createJobRequest.getNamespaceId();
+                jsonWriter.name("namespaceId");
+                jsonWriter.value(namespaceId);
             }
 
             jsonWriter.endObject();

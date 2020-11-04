@@ -27,6 +27,10 @@ public class Tag implements Serializable {
      * <p>
      * The tag's key.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$<br/>
      */
     private String key;
 
@@ -34,6 +38,9 @@ public class Tag implements Serializable {
      * <p>
      * The tag's value.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      */
     private String value;
 
@@ -41,6 +48,10 @@ public class Tag implements Serializable {
      * <p>
      * The tag's key.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$<br/>
      *
      * @return <p>
      *         The tag's key.
@@ -54,6 +65,10 @@ public class Tag implements Serializable {
      * <p>
      * The tag's key.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$<br/>
      *
      * @param key <p>
      *            The tag's key.
@@ -70,6 +85,10 @@ public class Tag implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^([\p{L}\p{Z}\p{N}_.:/=+\-@]*)$<br/>
      *
      * @param key <p>
      *            The tag's key.
@@ -86,6 +105,9 @@ public class Tag implements Serializable {
      * <p>
      * The tag's value.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
      *         The tag's value.
@@ -99,6 +121,9 @@ public class Tag implements Serializable {
      * <p>
      * The tag's value.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param value <p>
      *            The tag's value.
@@ -115,6 +140,9 @@ public class Tag implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param value <p>
      *            The tag's value.
