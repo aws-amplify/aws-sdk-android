@@ -133,13 +133,6 @@ public interface AmazonRekognition {
      * or <code>HIGH</code>. If you do not want to filter detected faces,
      * specify <code>NONE</code>. The default value is <code>NONE</code>.
      * </p>
-     * <note>
-     * <p>
-     * To use quality filtering, you need a collection associated with version 3
-     * of the face model or higher. To get the version of the face model
-     * associated with a collection, call <a>DescribeCollection</a>.
-     * </p>
-     * </note>
      * <p>
      * If the image doesn't contain Exif metadata, <code>CompareFaces</code>
      * returns orientation information for the source and target images. Use
@@ -428,8 +421,8 @@ public interface AmazonRekognition {
     /**
      * <p>
      * Deletes an Amazon Rekognition Custom Labels project. To delete a project
-     * you must first delete all versions of the model associated with the
-     * project. To delete a version of a model, see <a>DeleteProjectVersion</a>.
+     * you must first delete all models associated with the project. To delete a
+     * model, see <a>DeleteProjectVersion</a>.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -459,13 +452,14 @@ public interface AmazonRekognition {
 
     /**
      * <p>
-     * Deletes a version of a model.
+     * Deletes an Amazon Rekognition Custom Labels model.
      * </p>
      * <p>
-     * You must first stop the model before you can delete it. To check if a
-     * model is running, use the <code>Status</code> field returned from
+     * You can't delete a model if it is running or if it is training. To check
+     * the status of a model, use the <code>Status</code> field returned from
      * <a>DescribeProjectVersions</a>. To stop a running model call
-     * <a>StopProjectVersion</a>.
+     * <a>StopProjectVersion</a>. If the model is training, wait until it
+     * finishes.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -950,6 +944,102 @@ public interface AmazonRekognition {
      */
     DetectModerationLabelsResult detectModerationLabels(
             DetectModerationLabelsRequest detectModerationLabelsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Detects Personal Protective Equipment (PPE) worn by people detected in an
+     * image. Amazon Rekognition can detect the following types of PPE.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Face cover
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Hand cover
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Head cover
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * You pass the input image as base64-encoded image bytes or as a reference
+     * to an image in an Amazon S3 bucket. The image must be either a PNG or JPG
+     * formatted file.
+     * </p>
+     * <p>
+     * <code>DetectProtectiveEquipment</code> detects PPE worn by up to 15
+     * persons detected in an image.
+     * </p>
+     * <p>
+     * For each person detected in the image the API returns an array of body
+     * parts (face, head, left-hand, right-hand). For each body part, an array
+     * of detected items of PPE is returned, including an indicator of whether
+     * or not the PPE covers the body part. The API returns the confidence it
+     * has in each detection (person, PPE, body part and body part coverage). It
+     * also returns a bounding box (<a>BoundingBox</a>) for each detected person
+     * and each detected item of PPE.
+     * </p>
+     * <p>
+     * You can optionally request a summary of detected PPE items with the
+     * <code>SummarizationAttributes</code> input parameter. The summary
+     * provides the following information.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * The persons detected as wearing all of the types of PPE that you specify.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The persons detected as not wearing all of the types PPE that you
+     * specify.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The persons detected where PPE adornment could not be determined.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * This is a stateless API operation. That is, the operation does not
+     * persist any data.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DetectProtectiveEquipment</code> action.
+     * </p>
+     * 
+     * @param detectProtectiveEquipmentRequest
+     * @return detectProtectiveEquipmentResult The response from the
+     *         DetectProtectiveEquipment service method, as returned by Amazon
+     *         Rekognition.
+     * @throws InvalidS3ObjectException
+     * @throws InvalidParameterException
+     * @throws ImageTooLargeException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidImageFormatException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DetectProtectiveEquipmentResult detectProtectiveEquipment(
+            DetectProtectiveEquipmentRequest detectProtectiveEquipmentRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1480,6 +1570,77 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Gets the segment detection results of a Amazon Rekognition Video analysis
+     * started by <a>StartSegmentDetection</a>.
+     * </p>
+     * <p>
+     * Segment detection with Amazon Rekognition Video is an asynchronous
+     * operation. You start segment detection by calling
+     * <a>StartSegmentDetection</a> which returns a job identifier (
+     * <code>JobId</code>). When the segment detection operation finishes,
+     * Amazon Rekognition publishes a completion status to the Amazon Simple
+     * Notification Service topic registered in the initial call to
+     * <code>StartSegmentDetection</code>. To get the results of the segment
+     * detection operation, first check that the status value published to the
+     * Amazon SNS topic is <code>SUCCEEDED</code>. if so, call
+     * <code>GetSegmentDetection</code> and pass the job identifier (
+     * <code>JobId</code>) from the initial call of
+     * <code>StartSegmentDetection</code>.
+     * </p>
+     * <p>
+     * <code>GetSegmentDetection</code> returns detected segments in an array (
+     * <code>Segments</code>) of <a>SegmentDetection</a> objects.
+     * <code>Segments</code> is sorted by the segment types specified in the
+     * <code>SegmentTypes</code> input parameter of
+     * <code>StartSegmentDetection</code>. Each element of the array includes
+     * the detected segment, the precentage confidence in the acuracy of the
+     * detected segment, the type of the segment, and the frame in which the
+     * segment was detected.
+     * </p>
+     * <p>
+     * Use <code>SelectedSegmentTypes</code> to find out the type of segment
+     * detection requested in the call to <code>StartSegmentDetection</code>.
+     * </p>
+     * <p>
+     * Use the <code>MaxResults</code> parameter to limit the number of segment
+     * detections returned. If there are more results than specified in
+     * <code>MaxResults</code>, the value of <code>NextToken</code> in the
+     * operation response contains a pagination token for getting the next set
+     * of results. To get the next page of results, call
+     * <code>GetSegmentDetection</code> and populate the <code>NextToken</code>
+     * request parameter with the token value returned from the previous call to
+     * <code>GetSegmentDetection</code>.
+     * </p>
+     * <p>
+     * For more information, see Detecting Video Segments in Stored Video in the
+     * Amazon Rekognition Developer Guide.
+     * </p>
+     * 
+     * @param getSegmentDetectionRequest
+     * @return getSegmentDetectionResult The response from the
+     *         GetSegmentDetection service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws InvalidParameterException
+     * @throws InvalidPaginationTokenException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetSegmentDetectionResult getSegmentDetection(
+            GetSegmentDetectionRequest getSegmentDetectionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the text detection results of a Amazon Rekognition Video analysis
      * started by <a>StartTextDetection</a>.
      * </p>
@@ -1582,7 +1743,7 @@ public interface AmazonRekognition {
      * Developer Guide.
      * </p>
      * <p>
-     * If you provide the optional <code>ExternalImageID</code> for the input
+     * If you provide the optional <code>ExternalImageId</code> for the input
      * image you provided, Amazon Rekognition associates this ID with all faces
      * that it detects. When you call the <a>ListFaces</a> operation, the
      * response returns the external ID. You can use this external image ID to
@@ -1712,6 +1873,7 @@ public interface AmazonRekognition {
      * @throws ProvisionedThroughputExceededException
      * @throws ResourceNotFoundException
      * @throws InvalidImageFormatException
+     * @throws ServiceQuotaExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1828,11 +1990,11 @@ public interface AmazonRekognition {
      * Developer Guide.
      * </p>
      * <p>
-     * <code>RecognizeCelebrities</code> returns the 100 largest faces in the
+     * <code>RecognizeCelebrities</code> returns the 64 largest faces in the
      * image. It lists recognized celebrities in the <code>CelebrityFaces</code>
      * array and unrecognized faces in the <code>UnrecognizedFaces</code> array.
      * <code>RecognizeCelebrities</code> doesn't return celebrities whose faces
-     * aren't among the largest 100 faces in the image.
+     * aren't among the largest 64 faces in the image.
      * </p>
      * <p>
      * For each celebrity recognized, <code>RecognizeCelebrities</code> returns
@@ -2355,6 +2517,65 @@ public interface AmazonRekognition {
     StartProjectVersionResult startProjectVersion(
             StartProjectVersionRequest startProjectVersionRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Starts asynchronous detection of segment detection in a stored video.
+     * </p>
+     * <p>
+     * Amazon Rekognition Video can detect segments in a video stored in an
+     * Amazon S3 bucket. Use <a>Video</a> to specify the bucket name and the
+     * filename of the video. <code>StartSegmentDetection</code> returns a job
+     * identifier (<code>JobId</code>) which you use to get the results of the
+     * operation. When segment detection is finished, Amazon Rekognition Video
+     * publishes a completion status to the Amazon Simple Notification Service
+     * topic that you specify in <code>NotificationChannel</code>.
+     * </p>
+     * <p>
+     * You can use the <code>Filters</code>
+     * (<a>StartSegmentDetectionFilters</a>) input parameter to specify the
+     * minimum detection confidence returned in the response. Within
+     * <code>Filters</code>, use <code>ShotFilter</code>
+     * (<a>StartShotDetectionFilter</a>) to filter detected shots. Use
+     * <code>TechnicalCueFilter</code> (<a>StartTechnicalCueDetectionFilter</a>)
+     * to filter technical cues.
+     * </p>
+     * <p>
+     * To get the results of the segment detection operation, first check that
+     * the status value published to the Amazon SNS topic is
+     * <code>SUCCEEDED</code>. if so, call <a>GetSegmentDetection</a> and pass
+     * the job identifier (<code>JobId</code>) from the initial call to
+     * <code>StartSegmentDetection</code>.
+     * </p>
+     * <p>
+     * For more information, see Detecting Video Segments in Stored Video in the
+     * Amazon Rekognition Developer Guide.
+     * </p>
+     * 
+     * @param startSegmentDetectionRequest
+     * @return startSegmentDetectionResult The response from the
+     *         StartSegmentDetection service method, as returned by Amazon
+     *         Rekognition.
+     * @throws AccessDeniedException
+     * @throws IdempotentParameterMismatchException
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InternalServerErrorException
+     * @throws VideoTooLargeException
+     * @throws ProvisionedThroughputExceededException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartSegmentDetectionResult startSegmentDetection(
+            StartSegmentDetectionRequest startSegmentDetectionRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>

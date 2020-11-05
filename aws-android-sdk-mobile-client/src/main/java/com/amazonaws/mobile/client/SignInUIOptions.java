@@ -14,6 +14,8 @@ public class SignInUIOptions {
         this.builder = builder;
     }
 
+    public String getBrowserPackage() { return builder.browserPackage; }
+
     public Integer getLogo() {
         return builder.logo;
     }
@@ -39,6 +41,7 @@ public class SignInUIOptions {
     }
 
     public static class Builder {
+        private String browserPackage;
         private Integer logo;
         private Integer backgroundColor;
         private boolean canCancel;
@@ -49,6 +52,17 @@ public class SignInUIOptions {
 
         public Builder logo(final Integer logoResourceId) {
             logo = logoResourceId;
+            return this;
+        }
+
+        /**
+         * Specify which browser package to use for the sign in operation (e.g. "org.mozilla.firefox").
+         * Defaults to the Chrome package if not specified.
+         * @param browserPackage the browser package to use for the sign in operation (e.g. "org.mozilla.firefox").
+         * @return The builder object.
+         */
+        public Builder browserPackage(final String browserPackage) {
+            this.browserPackage = browserPackage;
             return this;
         }
 

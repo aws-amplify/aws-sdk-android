@@ -105,6 +105,11 @@ public final class Auth {
     private final String signOutRedirectUri;
 
     /**
+     * Optional string specifying the browser to open custom tabs. Defaults to Chrome if left null.
+     */
+    private String browserPackage;
+
+    /**
      * Scopes for the requested tokens.
      */
     private final Set<String> scopes;
@@ -142,6 +147,14 @@ public final class Auth {
     public void setPersistenceEnabled(boolean isPersistenceEnabled) {
         this.isPersistenceEnabled = isPersistenceEnabled;
         awsKeyValueStore.setPersistenceEnabled(this.isPersistenceEnabled);
+    }
+
+    /**
+     * Update the browser package to use for launching a custom tab.
+     * @param browserPackage the browser package to use for launching a custom tab.
+     */
+    public void setBrowserPackage(String browserPackage) {
+        this.browserPackage = browserPackage;
     }
 
     /**
@@ -613,6 +626,13 @@ public final class Auth {
     }
 
     /**
+     * @return Optional browser package set for this {@link Auth} instance.
+     */
+    public String getBrowserPackage() {
+        return browserPackage;
+    }
+
+    /**
      * @return Identity Provider set for this {@link Auth} instance.
      */
     public String getIdentityProvider() {
@@ -652,7 +672,12 @@ public final class Auth {
      * @param activity Activity to launch custom tabs from and to listen for the intent completions.
      */
     public void getSession(final Activity activity) {
-        this.user.getSession(true, activity);
+        if (getBrowserPackage() != null) {
+            this.user.getSession(true, activity, getBrowserPackage());
+        } else {
+            this.user.getSession(true, activity);
+        }
+
     }
 
     /**
@@ -687,7 +712,11 @@ public final class Auth {
      * </p>
      */
     public void signOut() {
-        this.user.signOut(false);
+        if (getBrowserPackage() != null) {
+            this.user.signOut(false, getBrowserPackage());
+        } else {
+            this.user.signOut(false);
+        }
     }
 
     /**
@@ -697,7 +726,11 @@ public final class Auth {
      *                             but the session may still be alive from the browser.
      */
     public void signOut(final boolean clearLocalTokensOnly) {
-        this.user.signOut(clearLocalTokensOnly);
+        if (getBrowserPackage() != null) {
+            this.user.signOut(clearLocalTokensOnly, getBrowserPackage());
+        } else {
+            this.user.signOut(clearLocalTokensOnly);
+        }
     }
 
     /**
