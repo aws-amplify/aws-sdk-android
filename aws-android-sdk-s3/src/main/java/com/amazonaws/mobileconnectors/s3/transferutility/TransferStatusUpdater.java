@@ -76,7 +76,10 @@ class TransferStatusUpdater {
     private static TransferStatusUpdater transferStatusUpdater;
 
     /**
-     * Prefix for temporary File created when client uploads an `InputStream`.
+     * Prefix for temporary File created when client uploads an InputStream.   When the 
+     * upload completes, the File is deleted, if it was created by the library, but not if it was
+     * provided by the client.   To ensure we don't delete any File objects provided by the client,
+     * a random UUID is included in the prefix.
      */
     static final String TEMP_FILE_PREFIX = "aws-s3-d861b25a-1edf-11eb-adc1-0242ac120002";
 
