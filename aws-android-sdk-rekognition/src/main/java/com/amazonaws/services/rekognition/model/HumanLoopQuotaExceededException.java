@@ -26,10 +26,25 @@ import com.amazonaws.AmazonServiceException;
 public class HumanLoopQuotaExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * The resource type.
+     * </p>
+     */
     private String resourceType;
 
+    /**
+     * <p>
+     * The quota code.
+     * </p>
+     */
     private String quotaCode;
 
+    /**
+     * <p>
+     * The service code.
+     * </p>
+     */
     private String serviceCode;
 
     /**
@@ -43,57 +58,78 @@ public class HumanLoopQuotaExceededException extends AmazonServiceException {
     }
 
     /**
-     * Returns the value of the resourceType property for this object.
+     * <p>
+     * The resource type.
+     * </p>
      *
-     * @return The value of the resourceType property for this object.
+     * @return <p>
+     *         The resource type.
+     *         </p>
      */
     public String getResourceType() {
         return resourceType;
     }
 
     /**
-     * Sets the value of resourceType
+     * <p>
+     * The resource type.
+     * </p>
      *
-     * @param resourceType The new value for the resourceType property for this
-     *            object.
+     * @param resourceType <p>
+     *            The resource type.
+     *            </p>
      */
     public void setResourceType(String resourceType) {
         this.resourceType = resourceType;
     }
 
     /**
-     * Returns the value of the quotaCode property for this object.
+     * <p>
+     * The quota code.
+     * </p>
      *
-     * @return The value of the quotaCode property for this object.
+     * @return <p>
+     *         The quota code.
+     *         </p>
      */
     public String getQuotaCode() {
         return quotaCode;
     }
 
     /**
-     * Sets the value of quotaCode
+     * <p>
+     * The quota code.
+     * </p>
      *
-     * @param quotaCode The new value for the quotaCode property for this
-     *            object.
+     * @param quotaCode <p>
+     *            The quota code.
+     *            </p>
      */
     public void setQuotaCode(String quotaCode) {
         this.quotaCode = quotaCode;
     }
 
     /**
-     * Returns the value of the serviceCode property for this object.
+     * <p>
+     * The service code.
+     * </p>
      *
-     * @return The value of the serviceCode property for this object.
+     * @return <p>
+     *         The service code.
+     *         </p>
      */
     public String getServiceCode() {
         return serviceCode;
     }
 
     /**
-     * Sets the value of serviceCode
+     * <p>
+     * The service code.
+     * </p>
      *
-     * @param serviceCode The new value for the serviceCode property for this
-     *            object.
+     * @param serviceCode <p>
+     *            The service code.
+     *            </p>
      */
     public void setServiceCode(String serviceCode) {
         this.serviceCode = serviceCode;

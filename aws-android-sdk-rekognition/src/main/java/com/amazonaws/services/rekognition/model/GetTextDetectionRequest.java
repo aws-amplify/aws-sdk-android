@@ -60,7 +60,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetTextDetectionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Job identifier for the label detection operation for which you want
+     * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
      * <code>StartTextDetection</code>.
      * </p>
@@ -97,7 +97,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Job identifier for the label detection operation for which you want
+     * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
      * <code>StartTextDetection</code>.
      * </p>
@@ -107,7 +107,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @return <p>
-     *         Job identifier for the label detection operation for which you
+     *         Job identifier for the text detection operation for which you
      *         want results returned. You get the job identifer from an initial
      *         call to <code>StartTextDetection</code>.
      *         </p>
@@ -118,7 +118,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Job identifier for the label detection operation for which you want
+     * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
      * <code>StartTextDetection</code>.
      * </p>
@@ -128,7 +128,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            Job identifier for the label detection operation for which you
+     *            Job identifier for the text detection operation for which you
      *            want results returned. You get the job identifer from an
      *            initial call to <code>StartTextDetection</code>.
      *            </p>
@@ -139,7 +139,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Job identifier for the label detection operation for which you want
+     * Job identifier for the text detection operation for which you want
      * results returned. You get the job identifer from an initial call to
      * <code>StartTextDetection</code>.
      * </p>
@@ -152,7 +152,7 @@ public class GetTextDetectionRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            Job identifier for the label detection operation for which you
+     *            Job identifier for the text detection operation for which you
      *            want results returned. You get the job identifer from an
      *            initial call to <code>StartTextDetection</code>.
      *            </p>

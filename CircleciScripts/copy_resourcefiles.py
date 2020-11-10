@@ -6,16 +6,14 @@ from shutil import copyfile
 root = sys.argv[1]
 dest = sys.argv[2]
 files = {
-"LICENSE.AMAZON.txt":"LICENSE.AMAZON.txt",
-"LICENSE.txt":"LICENSE.txt",
-"NOTICE.txt":"NOTICE.txt",
-"README.md":"README.md",
-"CircleciScripts/source.html":"src/source.html",
-"LICENSE.APACHE.txt":"LICENSE.APACHE.txt",
-"Logging.html":"Logging.html",
-"Proguard.html":"Proguard.html",
-"CircleciScripts/samples.html":"samples/samples.html"
-
+    "LICENSE.AMAZON.txt": "LICENSE.AMAZON.txt",
+    "LICENSE.txt": "LICENSE.txt",
+    "NOTICE.txt": "NOTICE.txt",
+    "README.md": "README.md",
+    "CircleciScripts/source.html": "src/source.html",
+    "LICENSE.APACHE.txt": "LICENSE.APACHE.txt",
+    "Proguard.html": "Proguard.html",
+    "CircleciScripts/samples.html": "samples/samples.html"
 }
 
 for source,target in files.items(): 

@@ -19,6 +19,8 @@ public class SignOutOptions {
         return builder.invalidateTokens;
     }
 
+    public String getBrowserPackage() { return builder.browserPackage; }
+
     /**
      * Start creating a SignOutOptions object with this builder.
      *
@@ -29,6 +31,7 @@ public class SignOutOptions {
     }
 
     public static class Builder {
+        private String browserPackage;
         private boolean signOutGlobally;
         private boolean invalidateTokens;
 
@@ -43,6 +46,18 @@ public class SignOutOptions {
          */
         public Builder signOutGlobally(final boolean signOutGlobally) {
             this.signOutGlobally = signOutGlobally;
+            return this;
+        }
+
+        /**
+         * If {@link #invalidateTokens} is true, this can optionally be used to specify which browser package should
+         * perform the sign out action (e.g. "org.mozilla.firefox"). Defaults to the Chrome package if not specified.
+         *
+         * @param browserPackage String specifying the browser to open custom tabs.
+         * @return Builder object for chaining
+         */
+        public Builder browserPackage(final String browserPackage) {
+            this.browserPackage = browserPackage;
             return this;
         }
 

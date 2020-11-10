@@ -16,6 +16,7 @@
 package com.amazonaws.services.rekognition.model.transform;
 
 import com.amazonaws.services.rekognition.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -35,6 +36,11 @@ class TestingDataResultJsonMarshaller {
             TestingData output = testingDataResult.getOutput();
             jsonWriter.name("Output");
             TestingDataJsonMarshaller.getInstance().marshall(output, jsonWriter);
+        }
+        if (testingDataResult.getValidation() != null) {
+            ValidationData validation = testingDataResult.getValidation();
+            jsonWriter.name("Validation");
+            ValidationDataJsonMarshaller.getInstance().marshall(validation, jsonWriter);
         }
         jsonWriter.endObject();
     }
