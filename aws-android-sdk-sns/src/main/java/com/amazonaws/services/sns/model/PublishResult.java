@@ -35,6 +35,19 @@ public class PublishResult implements Serializable {
 
     /**
      * <p>
+     * This response element applies only to FIFO (first-in-first-out) topics.
+     * </p>
+     * <p>
+     * The sequence number is a large, non-consecutive number that Amazon SNS
+     * assigns to each message. The length of <code>SequenceNumber</code> is 128
+     * bits. <code>SequenceNumber</code> continues to increase for each
+     * <code>MessageGroupId</code>.
+     * </p>
+     */
+    private String sequenceNumber;
+
+    /**
+     * <p>
      * Unique identifier assigned to the published message.
      * </p>
      * <p>
@@ -97,6 +110,93 @@ public class PublishResult implements Serializable {
     }
 
     /**
+     * <p>
+     * This response element applies only to FIFO (first-in-first-out) topics.
+     * </p>
+     * <p>
+     * The sequence number is a large, non-consecutive number that Amazon SNS
+     * assigns to each message. The length of <code>SequenceNumber</code> is 128
+     * bits. <code>SequenceNumber</code> continues to increase for each
+     * <code>MessageGroupId</code>.
+     * </p>
+     *
+     * @return <p>
+     *         This response element applies only to FIFO (first-in-first-out)
+     *         topics.
+     *         </p>
+     *         <p>
+     *         The sequence number is a large, non-consecutive number that
+     *         Amazon SNS assigns to each message. The length of
+     *         <code>SequenceNumber</code> is 128 bits.
+     *         <code>SequenceNumber</code> continues to increase for each
+     *         <code>MessageGroupId</code>.
+     *         </p>
+     */
+    public String getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    /**
+     * <p>
+     * This response element applies only to FIFO (first-in-first-out) topics.
+     * </p>
+     * <p>
+     * The sequence number is a large, non-consecutive number that Amazon SNS
+     * assigns to each message. The length of <code>SequenceNumber</code> is 128
+     * bits. <code>SequenceNumber</code> continues to increase for each
+     * <code>MessageGroupId</code>.
+     * </p>
+     *
+     * @param sequenceNumber <p>
+     *            This response element applies only to FIFO
+     *            (first-in-first-out) topics.
+     *            </p>
+     *            <p>
+     *            The sequence number is a large, non-consecutive number that
+     *            Amazon SNS assigns to each message. The length of
+     *            <code>SequenceNumber</code> is 128 bits.
+     *            <code>SequenceNumber</code> continues to increase for each
+     *            <code>MessageGroupId</code>.
+     *            </p>
+     */
+    public void setSequenceNumber(String sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+    }
+
+    /**
+     * <p>
+     * This response element applies only to FIFO (first-in-first-out) topics.
+     * </p>
+     * <p>
+     * The sequence number is a large, non-consecutive number that Amazon SNS
+     * assigns to each message. The length of <code>SequenceNumber</code> is 128
+     * bits. <code>SequenceNumber</code> continues to increase for each
+     * <code>MessageGroupId</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param sequenceNumber <p>
+     *            This response element applies only to FIFO
+     *            (first-in-first-out) topics.
+     *            </p>
+     *            <p>
+     *            The sequence number is a large, non-consecutive number that
+     *            Amazon SNS assigns to each message. The length of
+     *            <code>SequenceNumber</code> is 128 bits.
+     *            <code>SequenceNumber</code> continues to increase for each
+     *            <code>MessageGroupId</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PublishResult withSequenceNumber(String sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -108,7 +208,9 @@ public class PublishResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getMessageId() != null)
-            sb.append("MessageId: " + getMessageId());
+            sb.append("MessageId: " + getMessageId() + ",");
+        if (getSequenceNumber() != null)
+            sb.append("SequenceNumber: " + getSequenceNumber());
         sb.append("}");
         return sb.toString();
     }
@@ -119,6 +221,8 @@ public class PublishResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getMessageId() == null) ? 0 : getMessageId().hashCode());
+        hashCode = prime * hashCode
+                + ((getSequenceNumber() == null) ? 0 : getSequenceNumber().hashCode());
         return hashCode;
     }
 
@@ -137,6 +241,11 @@ public class PublishResult implements Serializable {
             return false;
         if (other.getMessageId() != null
                 && other.getMessageId().equals(this.getMessageId()) == false)
+            return false;
+        if (other.getSequenceNumber() == null ^ this.getSequenceNumber() == null)
+            return false;
+        if (other.getSequenceNumber() != null
+                && other.getSequenceNumber().equals(this.getSequenceNumber()) == false)
             return false;
         return true;
     }

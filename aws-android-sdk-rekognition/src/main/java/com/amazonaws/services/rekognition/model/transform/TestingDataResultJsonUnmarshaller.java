@@ -42,6 +42,9 @@ class TestingDataResultJsonUnmarshaller implements
             } else if (name.equals("Output")) {
                 testingDataResult.setOutput(TestingDataJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Validation")) {
+                testingDataResult.setValidation(ValidationDataJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

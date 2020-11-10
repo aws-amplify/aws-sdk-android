@@ -16,6 +16,7 @@
 package com.amazonaws.services.rekognition.model.transform;
 
 import com.amazonaws.services.rekognition.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -83,6 +84,11 @@ class ProjectVersionDescriptionJsonMarshaller {
             EvaluationResult evaluationResult = projectVersionDescription.getEvaluationResult();
             jsonWriter.name("EvaluationResult");
             EvaluationResultJsonMarshaller.getInstance().marshall(evaluationResult, jsonWriter);
+        }
+        if (projectVersionDescription.getManifestSummary() != null) {
+            GroundTruthManifest manifestSummary = projectVersionDescription.getManifestSummary();
+            jsonWriter.name("ManifestSummary");
+            GroundTruthManifestJsonMarshaller.getInstance().marshall(manifestSummary, jsonWriter);
         }
         jsonWriter.endObject();
     }

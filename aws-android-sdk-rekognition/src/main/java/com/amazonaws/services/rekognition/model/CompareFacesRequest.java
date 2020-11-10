@@ -67,13 +67,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>HIGH</code>. If you do not want to filter detected faces, specify
  * <code>NONE</code>. The default value is <code>NONE</code>.
  * </p>
- * <note>
- * <p>
- * To use quality filtering, you need a collection associated with version 3 of
- * the face model or higher. To get the version of the face model associated
- * with a collection, call <a>DescribeCollection</a>.
- * </p>
- * </note>
  * <p>
  * If the image doesn't contain Exif metadata, <code>CompareFaces</code> returns
  * orientation information for the source and target images. Use these values to

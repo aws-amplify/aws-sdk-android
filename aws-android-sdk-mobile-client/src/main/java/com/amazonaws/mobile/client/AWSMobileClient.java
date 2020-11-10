@@ -1530,6 +1530,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
                 if (signOutOptions.isInvalidateTokens()) {
                     if (hostedUI != null) {
+                        if (signOutOptions.getBrowserPackage() != null) {
+                            hostedUI.setBrowserPackage(signOutOptions.getBrowserPackage());
+                        }
                         hostedUI.signOut();
                     } else if (mOAuth2Client != null) {
                         final CountDownLatch latch = new CountDownLatch(1);
@@ -3316,6 +3319,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     hostedUIBuilder.setIdpIdentifier(idpIdentifier);
                 }
                 hostedUI = hostedUIBuilder.build();
+                if (signInUIOptions.getBrowserPackage() != null) {
+                    hostedUI.setBrowserPackage(signInUIOptions.getBrowserPackage());
+                }
                 hostedUI.getSession(callingActivity);
             }
         };

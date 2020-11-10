@@ -93,6 +93,16 @@ public class PublishRequestMarshaller implements
             }
             prefix = messageAttributesPrefix;
         }
+        if (publishRequest.getMessageDeduplicationId() != null) {
+            prefix = "MessageDeduplicationId";
+            String messageDeduplicationId = publishRequest.getMessageDeduplicationId();
+            request.addParameter(prefix, StringUtils.fromString(messageDeduplicationId));
+        }
+        if (publishRequest.getMessageGroupId() != null) {
+            prefix = "MessageGroupId";
+            String messageGroupId = publishRequest.getMessageGroupId();
+            request.addParameter(prefix, StringUtils.fromString(messageGroupId));
+        }
 
         return request;
     }
