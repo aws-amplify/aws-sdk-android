@@ -451,8 +451,8 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
 
     @Deprecated
     /** Use {@link #getSessionCredentialsExpiration()} instead. */
-    public Date getSessionCredentitalsExpiration() {
-        return getSessionCredentialsExpiration();
+    public void getSessionCredentitalsExpiration() {
+        getSessionCredentialsExpiration();
     }
 
     public String getIdentityPoolId() {
