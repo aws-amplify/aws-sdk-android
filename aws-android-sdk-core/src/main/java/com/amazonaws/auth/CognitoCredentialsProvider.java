@@ -451,12 +451,7 @@ public class CognitoCredentialsProvider implements AWSCredentialsProvider {
 
     @Deprecated
     public Date getSessionCredentitalsExpiration() {
-        credentialsLock.readLock().lock();
-        try {
-            return sessionCredentialsExpiration;
-        } finally {
-            credentialsLock.readLock().unlock();
-        }
+        return getSessionCredentialsExpiration();
     }
 
     public String getIdentityPoolId() {
