@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -94,6 +96,12 @@ public class ListAuditFindingsRequestMarshaller implements
                 java.util.Date endTime = listAuditFindingsRequest.getEndTime();
                 jsonWriter.name("endTime");
                 jsonWriter.value(endTime);
+            }
+            if (listAuditFindingsRequest.getListSuppressedFindings() != null) {
+                Boolean listSuppressedFindings = listAuditFindingsRequest
+                        .getListSuppressedFindings();
+                jsonWriter.name("listSuppressedFindings");
+                jsonWriter.value(listSuppressedFindings);
             }
 
             jsonWriter.endObject();

@@ -48,6 +48,10 @@ class AuditCheckDetailsJsonUnmarshaller implements
             } else if (name.equals("nonCompliantResourcesCount")) {
                 auditCheckDetails.setNonCompliantResourcesCount(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("suppressedNonCompliantResourcesCount")) {
+                auditCheckDetails.setSuppressedNonCompliantResourcesCount(LongJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("errorCode")) {
                 auditCheckDetails.setErrorCode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

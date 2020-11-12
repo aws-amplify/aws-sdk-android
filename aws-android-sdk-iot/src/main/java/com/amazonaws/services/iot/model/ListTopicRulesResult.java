@@ -32,7 +32,8 @@ public class ListTopicRulesResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
      * </p>
      */
     private String nextToken;
@@ -113,11 +114,13 @@ public class ListTopicRulesResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
      * </p>
      *
      * @return <p>
-     *         A token used to retrieve the next value.
+     *         The token to use to get the next set of results, or <b>null</b>
+     *         if there are no additional results.
      *         </p>
      */
     public String getNextToken() {
@@ -126,11 +129,13 @@ public class ListTopicRulesResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
      * </p>
      *
      * @param nextToken <p>
-     *            A token used to retrieve the next value.
+     *            The token to use to get the next set of results, or
+     *            <b>null</b> if there are no additional results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -139,14 +144,16 @@ public class ListTopicRulesResult implements Serializable {
 
     /**
      * <p>
-     * A token used to retrieve the next value.
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            A token used to retrieve the next value.
+     *            The token to use to get the next set of results, or
+     *            <b>null</b> if there are no additional results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

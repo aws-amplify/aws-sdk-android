@@ -73,8 +73,8 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      */
     private String validationCertificateArn;
 
@@ -89,11 +89,36 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The type of service delivered by the endpoint.
      * </p>
+     * <note>
+     * <p>
+     * AWS IoT Core currently supports only the <code>DATA</code> service type.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DATA, CREDENTIAL_PROVIDER, JOBS
      */
     private String serviceType;
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     */
+    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -320,8 +345,8 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      *
      * @return <p>
      *         The certificate used to validate the server certificate and prove
@@ -344,8 +369,8 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      *
      * @param validationCertificateArn <p>
      *            The certificate used to validate the server certificate and
@@ -371,8 +396,8 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      * <b>Pattern:
-     * </b>arn:aws:acm:[a-z]{2}-(gov-)?[a-z]{4,9}-\d{1}:\d{12}:certificate
-     * /?[a-zA-Z0-9/-]+<br/>
+     * </b>arn:aws(-cn|-us-gov|-iso-b|-iso)?:acm:[a-z]{2}-(gov-|iso-|
+     * isob-)?[a-z]{4,9}-\d{1}:\d{12}:certificate/[a-zA-Z0-9/-]+<br/>
      *
      * @param validationCertificateArn <p>
      *            The certificate used to validate the server certificate and
@@ -440,6 +465,11 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The type of service delivered by the endpoint.
      * </p>
+     * <note>
+     * <p>
+     * AWS IoT Core currently supports only the <code>DATA</code> service type.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DATA, CREDENTIAL_PROVIDER, JOBS
@@ -447,6 +477,12 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * @return <p>
      *         The type of service delivered by the endpoint.
      *         </p>
+     *         <note>
+     *         <p>
+     *         AWS IoT Core currently supports only the <code>DATA</code>
+     *         service type.
+     *         </p>
+     *         </note>
      * @see ServiceType
      */
     public String getServiceType() {
@@ -457,6 +493,11 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The type of service delivered by the endpoint.
      * </p>
+     * <note>
+     * <p>
+     * AWS IoT Core currently supports only the <code>DATA</code> service type.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DATA, CREDENTIAL_PROVIDER, JOBS
@@ -464,6 +505,12 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * @param serviceType <p>
      *            The type of service delivered by the endpoint.
      *            </p>
+     *            <note>
+     *            <p>
+     *            AWS IoT Core currently supports only the <code>DATA</code>
+     *            service type.
+     *            </p>
+     *            </note>
      * @see ServiceType
      */
     public void setServiceType(String serviceType) {
@@ -474,6 +521,11 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The type of service delivered by the endpoint.
      * </p>
+     * <note>
+     * <p>
+     * AWS IoT Core currently supports only the <code>DATA</code> service type.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -484,6 +536,12 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * @param serviceType <p>
      *            The type of service delivered by the endpoint.
      *            </p>
+     *            <note>
+     *            <p>
+     *            AWS IoT Core currently supports only the <code>DATA</code>
+     *            service type.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ServiceType
@@ -497,6 +555,11 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The type of service delivered by the endpoint.
      * </p>
+     * <note>
+     * <p>
+     * AWS IoT Core currently supports only the <code>DATA</code> service type.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DATA, CREDENTIAL_PROVIDER, JOBS
@@ -504,6 +567,12 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * @param serviceType <p>
      *            The type of service delivered by the endpoint.
      *            </p>
+     *            <note>
+     *            <p>
+     *            AWS IoT Core currently supports only the <code>DATA</code>
+     *            service type.
+     *            </p>
+     *            </note>
      * @see ServiceType
      */
     public void setServiceType(ServiceType serviceType) {
@@ -514,6 +583,11 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * <p>
      * The type of service delivered by the endpoint.
      * </p>
+     * <note>
+     * <p>
+     * AWS IoT Core currently supports only the <code>DATA</code> service type.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -524,12 +598,200 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
      * @param serviceType <p>
      *            The type of service delivered by the endpoint.
      *            </p>
+     *            <note>
+     *            <p>
+     *            AWS IoT Core currently supports only the <code>DATA</code>
+     *            service type.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ServiceType
      */
     public CreateDomainConfigurationRequest withServiceType(ServiceType serviceType) {
         this.serviceType = serviceType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     *
+     * @return <p>
+     *         Metadata which can be used to manage the domain configuration.
+     *         </p>
+     *         <note>
+     *         <p>
+     *         For URI Request parameters use format:
+     *         ...key1=value1&amp;key2=value2...
+     *         </p>
+     *         <p>
+     *         For the CLI command-line parameter use format: &amp;&amp;tags
+     *         "key1=value1&amp;key2=value2..."
+     *         </p>
+     *         <p>
+     *         For the cli-input-json file use format: "tags":
+     *         "key1=value1&amp;key2=value2..."
+     *         </p>
+     *         </note>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the domain configuration.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For URI Request parameters use format:
+     *            ...key1=value1&amp;key2=value2...
+     *            </p>
+     *            <p>
+     *            For the CLI command-line parameter use format: &amp;&amp;tags
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            <p>
+     *            For the cli-input-json file use format: "tags":
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            </note>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the domain configuration.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For URI Request parameters use format:
+     *            ...key1=value1&amp;key2=value2...
+     *            </p>
+     *            <p>
+     *            For the CLI command-line parameter use format: &amp;&amp;tags
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            <p>
+     *            For the cli-input-json file use format: "tags":
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDomainConfigurationRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Metadata which can be used to manage the domain configuration.
+     * </p>
+     * <note>
+     * <p>
+     * For URI Request parameters use format: ...key1=value1&amp;key2=value2...
+     * </p>
+     * <p>
+     * For the CLI command-line parameter use format: &amp;&amp;tags
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * <p>
+     * For the cli-input-json file use format: "tags":
+     * "key1=value1&amp;key2=value2..."
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Metadata which can be used to manage the domain configuration.
+     *            </p>
+     *            <note>
+     *            <p>
+     *            For URI Request parameters use format:
+     *            ...key1=value1&amp;key2=value2...
+     *            </p>
+     *            <p>
+     *            For the CLI command-line parameter use format: &amp;&amp;tags
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            <p>
+     *            For the cli-input-json file use format: "tags":
+     *            "key1=value1&amp;key2=value2..."
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDomainConfigurationRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
         return this;
     }
 
@@ -555,7 +817,9 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
         if (getAuthorizerConfig() != null)
             sb.append("authorizerConfig: " + getAuthorizerConfig() + ",");
         if (getServiceType() != null)
-            sb.append("serviceType: " + getServiceType());
+            sb.append("serviceType: " + getServiceType() + ",");
+        if (getTags() != null)
+            sb.append("tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -581,6 +845,7 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
                 + ((getAuthorizerConfig() == null) ? 0 : getAuthorizerConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getServiceType() == null) ? 0 : getServiceType().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -625,6 +890,10 @@ public class CreateDomainConfigurationRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getServiceType() != null
                 && other.getServiceType().equals(this.getServiceType()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

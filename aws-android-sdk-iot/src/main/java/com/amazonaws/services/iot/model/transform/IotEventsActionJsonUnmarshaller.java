@@ -42,6 +42,9 @@ class IotEventsActionJsonUnmarshaller implements
             } else if (name.equals("messageId")) {
                 iotEventsAction.setMessageId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("batchMode")) {
+                iotEventsAction.setBatchMode(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("roleArn")) {
                 iotEventsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

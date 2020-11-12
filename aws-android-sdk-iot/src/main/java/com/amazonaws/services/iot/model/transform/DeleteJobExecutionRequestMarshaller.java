@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -67,6 +69,10 @@ public class DeleteJobExecutionRequestMarshaller implements
         if (deleteJobExecutionRequest.getForce() != null) {
             request.addParameter("force",
                     StringUtils.fromBoolean(deleteJobExecutionRequest.getForce()));
+        }
+        if (deleteJobExecutionRequest.getNamespaceId() != null) {
+            request.addParameter("namespaceId",
+                    StringUtils.fromString(deleteJobExecutionRequest.getNamespaceId()));
         }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {

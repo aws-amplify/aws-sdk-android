@@ -45,6 +45,9 @@ class FirehoseActionJsonUnmarshaller implements
             } else if (name.equals("separator")) {
                 firehoseAction.setSeparator(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("batchMode")) {
+                firehoseAction.setBatchMode(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -148,6 +148,30 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     */
+    private String namespaceId;
+
+    /**
+     * <p>
      * A job identifier which must be unique for your AWS account. We recommend
      * using a UUID. Alpha-numeric characters, "-" and "_" are valid for use
      * here.
@@ -988,6 +1012,144 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
     }
 
     /**
+     * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @return <p>
+     *         The namespace used to indicate that a job is a customer-managed
+     *         job.
+     *         </p>
+     *         <p>
+     *         When you specify a value for this parameter, AWS IoT Core sends
+     *         jobs notifications to MQTT topics that contain the value in the
+     *         following format.
+     *         </p>
+     *         <p>
+     *         <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>namespaceId</code> feature is in public preview.
+     *         </p>
+     *         </note>
+     */
+    public String getNamespaceId() {
+        return namespaceId;
+    }
+
+    /**
+     * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param namespaceId <p>
+     *            The namespace used to indicate that a job is a
+     *            customer-managed job.
+     *            </p>
+     *            <p>
+     *            When you specify a value for this parameter, AWS IoT Core
+     *            sends jobs notifications to MQTT topics that contain the value
+     *            in the following format.
+     *            </p>
+     *            <p>
+     *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>namespaceId</code> feature is in public preview.
+     *            </p>
+     *            </note>
+     */
+    public void setNamespaceId(String namespaceId) {
+        this.namespaceId = namespaceId;
+    }
+
+    /**
+     * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param namespaceId <p>
+     *            The namespace used to indicate that a job is a
+     *            customer-managed job.
+     *            </p>
+     *            <p>
+     *            When you specify a value for this parameter, AWS IoT Core
+     *            sends jobs notifications to MQTT topics that contain the value
+     *            in the following format.
+     *            </p>
+     *            <p>
+     *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>namespaceId</code> feature is in public preview.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateJobRequest withNamespaceId(String namespaceId) {
+        this.namespaceId = namespaceId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1019,7 +1181,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
         if (getTimeoutConfig() != null)
             sb.append("timeoutConfig: " + getTimeoutConfig() + ",");
         if (getTags() != null)
-            sb.append("tags: " + getTags());
+            sb.append("tags: " + getTags() + ",");
+        if (getNamespaceId() != null)
+            sb.append("namespaceId: " + getNamespaceId());
         sb.append("}");
         return sb.toString();
     }
@@ -1049,6 +1213,8 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
         hashCode = prime * hashCode
                 + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getNamespaceId() == null) ? 0 : getNamespaceId().hashCode());
         return hashCode;
     }
 
@@ -1115,6 +1281,11 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getNamespaceId() == null ^ this.getNamespaceId() == null)
+            return false;
+        if (other.getNamespaceId() != null
+                && other.getNamespaceId().equals(this.getNamespaceId()) == false)
             return false;
         return true;
     }

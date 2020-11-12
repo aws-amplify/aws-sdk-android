@@ -107,6 +107,14 @@ public class AuditFinding implements Serializable {
 
     /**
      * <p>
+     * Indicates whether the audit finding was suppressed or not during
+     * reporting.
+     * </p>
+     */
+    private Boolean isSuppressed;
+
+    /**
+     * <p>
      * A unique identifier for this set of audit findings. This identifier is
      * used to apply mitigation tasks to one or more sets of findings.
      * </p>
@@ -677,6 +685,72 @@ public class AuditFinding implements Serializable {
     }
 
     /**
+     * <p>
+     * Indicates whether the audit finding was suppressed or not during
+     * reporting.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether the audit finding was suppressed or not during
+     *         reporting.
+     *         </p>
+     */
+    public Boolean isIsSuppressed() {
+        return isSuppressed;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the audit finding was suppressed or not during
+     * reporting.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether the audit finding was suppressed or not during
+     *         reporting.
+     *         </p>
+     */
+    public Boolean getIsSuppressed() {
+        return isSuppressed;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the audit finding was suppressed or not during
+     * reporting.
+     * </p>
+     *
+     * @param isSuppressed <p>
+     *            Indicates whether the audit finding was suppressed or not
+     *            during reporting.
+     *            </p>
+     */
+    public void setIsSuppressed(Boolean isSuppressed) {
+        this.isSuppressed = isSuppressed;
+    }
+
+    /**
+     * <p>
+     * Indicates whether the audit finding was suppressed or not during
+     * reporting.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param isSuppressed <p>
+     *            Indicates whether the audit finding was suppressed or not
+     *            during reporting.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AuditFinding withIsSuppressed(Boolean isSuppressed) {
+        this.isSuppressed = isSuppressed;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -706,7 +780,9 @@ public class AuditFinding implements Serializable {
         if (getReasonForNonCompliance() != null)
             sb.append("reasonForNonCompliance: " + getReasonForNonCompliance() + ",");
         if (getReasonForNonComplianceCode() != null)
-            sb.append("reasonForNonComplianceCode: " + getReasonForNonComplianceCode());
+            sb.append("reasonForNonComplianceCode: " + getReasonForNonComplianceCode() + ",");
+        if (getIsSuppressed() != null)
+            sb.append("isSuppressed: " + getIsSuppressed());
         sb.append("}");
         return sb.toString();
     }
@@ -736,6 +812,8 @@ public class AuditFinding implements Serializable {
                 * hashCode
                 + ((getReasonForNonComplianceCode() == null) ? 0 : getReasonForNonComplianceCode()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getIsSuppressed() == null) ? 0 : getIsSuppressed().hashCode());
         return hashCode;
     }
 
@@ -799,6 +877,11 @@ public class AuditFinding implements Serializable {
         if (other.getReasonForNonComplianceCode() != null
                 && other.getReasonForNonComplianceCode().equals(
                         this.getReasonForNonComplianceCode()) == false)
+            return false;
+        if (other.getIsSuppressed() == null ^ this.getIsSuppressed() == null)
+            return false;
+        if (other.getIsSuppressed() != null
+                && other.getIsSuppressed().equals(this.getIsSuppressed()) == false)
             return false;
         return true;
     }
