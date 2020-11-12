@@ -75,6 +75,30 @@ public class AssociateTargetsWithJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     */
+    private String namespaceId;
+
+    /**
+     * <p>
      * A list of thing group ARNs that define the targets of the job.
      * </p>
      *
@@ -271,6 +295,144 @@ public class AssociateTargetsWithJobRequest extends AmazonWebServiceRequest impl
     }
 
     /**
+     * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @return <p>
+     *         The namespace used to indicate that a job is a customer-managed
+     *         job.
+     *         </p>
+     *         <p>
+     *         When you specify a value for this parameter, AWS IoT Core sends
+     *         jobs notifications to MQTT topics that contain the value in the
+     *         following format.
+     *         </p>
+     *         <p>
+     *         <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     *         </p>
+     *         <note>
+     *         <p>
+     *         The <code>namespaceId</code> feature is in public preview.
+     *         </p>
+     *         </note>
+     */
+    public String getNamespaceId() {
+        return namespaceId;
+    }
+
+    /**
+     * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param namespaceId <p>
+     *            The namespace used to indicate that a job is a
+     *            customer-managed job.
+     *            </p>
+     *            <p>
+     *            When you specify a value for this parameter, AWS IoT Core
+     *            sends jobs notifications to MQTT topics that contain the value
+     *            in the following format.
+     *            </p>
+     *            <p>
+     *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>namespaceId</code> feature is in public preview.
+     *            </p>
+     *            </note>
+     */
+    public void setNamespaceId(String namespaceId) {
+        this.namespaceId = namespaceId;
+    }
+
+    /**
+     * <p>
+     * The namespace used to indicate that a job is a customer-managed job.
+     * </p>
+     * <p>
+     * When you specify a value for this parameter, AWS IoT Core sends jobs
+     * notifications to MQTT topics that contain the value in the following
+     * format.
+     * </p>
+     * <p>
+     * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     * </p>
+     * <note>
+     * <p>
+     * The <code>namespaceId</code> feature is in public preview.
+     * </p>
+     * </note>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
+     *
+     * @param namespaceId <p>
+     *            The namespace used to indicate that a job is a
+     *            customer-managed job.
+     *            </p>
+     *            <p>
+     *            When you specify a value for this parameter, AWS IoT Core
+     *            sends jobs notifications to MQTT topics that contain the value
+     *            in the following format.
+     *            </p>
+     *            <p>
+     *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
+     *            </p>
+     *            <note>
+     *            <p>
+     *            The <code>namespaceId</code> feature is in public preview.
+     *            </p>
+     *            </note>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssociateTargetsWithJobRequest withNamespaceId(String namespaceId) {
+        this.namespaceId = namespaceId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -286,7 +448,9 @@ public class AssociateTargetsWithJobRequest extends AmazonWebServiceRequest impl
         if (getJobId() != null)
             sb.append("jobId: " + getJobId() + ",");
         if (getComment() != null)
-            sb.append("comment: " + getComment());
+            sb.append("comment: " + getComment() + ",");
+        if (getNamespaceId() != null)
+            sb.append("namespaceId: " + getNamespaceId());
         sb.append("}");
         return sb.toString();
     }
@@ -299,6 +463,8 @@ public class AssociateTargetsWithJobRequest extends AmazonWebServiceRequest impl
         hashCode = prime * hashCode + ((getTargets() == null) ? 0 : getTargets().hashCode());
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
         hashCode = prime * hashCode + ((getComment() == null) ? 0 : getComment().hashCode());
+        hashCode = prime * hashCode
+                + ((getNamespaceId() == null) ? 0 : getNamespaceId().hashCode());
         return hashCode;
     }
 
@@ -324,6 +490,11 @@ public class AssociateTargetsWithJobRequest extends AmazonWebServiceRequest impl
         if (other.getComment() == null ^ this.getComment() == null)
             return false;
         if (other.getComment() != null && other.getComment().equals(this.getComment()) == false)
+            return false;
+        if (other.getNamespaceId() == null ^ this.getNamespaceId() == null)
+            return false;
+        if (other.getNamespaceId() != null
+                && other.getNamespaceId().equals(this.getNamespaceId()) == false)
             return false;
         return true;
     }

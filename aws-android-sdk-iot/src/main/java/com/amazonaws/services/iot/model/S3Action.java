@@ -39,7 +39,9 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The object key.
+     * The object key. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     * >Actions, resources, and condition keys for Amazon S3</a>.
      * </p>
      */
     private String key;
@@ -151,11 +153,15 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The object key.
+     * The object key. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     * >Actions, resources, and condition keys for Amazon S3</a>.
      * </p>
      *
      * @return <p>
-     *         The object key.
+     *         The object key. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     *         >Actions, resources, and condition keys for Amazon S3</a>.
      *         </p>
      */
     public String getKey() {
@@ -164,11 +170,15 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The object key.
+     * The object key. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     * >Actions, resources, and condition keys for Amazon S3</a>.
      * </p>
      *
      * @param key <p>
-     *            The object key.
+     *            The object key. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     *            >Actions, resources, and condition keys for Amazon S3</a>.
      *            </p>
      */
     public void setKey(String key) {
@@ -177,14 +187,18 @@ public class S3Action implements Serializable {
 
     /**
      * <p>
-     * The object key.
+     * The object key. For more information, see <a href=
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     * >Actions, resources, and condition keys for Amazon S3</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param key <p>
-     *            The object key.
+     *            The object key. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html"
+     *            >Actions, resources, and condition keys for Amazon S3</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

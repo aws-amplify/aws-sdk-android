@@ -42,6 +42,9 @@ class IotAnalyticsActionJsonUnmarshaller implements
             } else if (name.equals("channelName")) {
                 iotAnalyticsAction.setChannelName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("batchMode")) {
+                iotAnalyticsAction.setBatchMode(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("roleArn")) {
                 iotAnalyticsAction.setRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

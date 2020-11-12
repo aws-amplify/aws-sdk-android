@@ -30,7 +30,7 @@ public class JobExecutionsRolloutConfig implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Range: </b>1 - 1000<br/>
      */
     private Integer maximumPerMinute;
 
@@ -49,7 +49,7 @@ public class JobExecutionsRolloutConfig implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
      *         The maximum number of things that will be notified of a pending
@@ -68,7 +68,7 @@ public class JobExecutionsRolloutConfig implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Range: </b>1 - 1000<br/>
      *
      * @param maximumPerMinute <p>
      *            The maximum number of things that will be notified of a
@@ -90,7 +90,7 @@ public class JobExecutionsRolloutConfig implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - <br/>
+     * <b>Range: </b>1 - 1000<br/>
      *
      * @param maximumPerMinute <p>
      *            The maximum number of things that will be notified of a

@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -83,6 +85,17 @@ public class RegisterCACertificateRequestMarshaller implements
                 jsonWriter.name("registrationConfig");
                 RegistrationConfigJsonMarshaller.getInstance().marshall(registrationConfig,
                         jsonWriter);
+            }
+            if (registerCACertificateRequest.getTags() != null) {
+                java.util.List<Tag> tags = registerCACertificateRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();

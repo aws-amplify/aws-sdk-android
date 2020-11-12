@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**

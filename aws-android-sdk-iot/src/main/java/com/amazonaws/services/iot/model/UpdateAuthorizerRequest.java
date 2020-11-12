@@ -40,6 +40,9 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The ARN of the authorizer's Lambda function.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      */
     private String authorizerFunctionArn;
 
@@ -132,6 +135,9 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The ARN of the authorizer's Lambda function.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @return <p>
      *         The ARN of the authorizer's Lambda function.
@@ -145,6 +151,9 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The ARN of the authorizer's Lambda function.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.
@@ -161,6 +170,9 @@ public class UpdateAuthorizerRequest extends AmazonWebServiceRequest implements 
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param authorizerFunctionArn <p>
      *            The ARN of the authorizer's Lambda function.

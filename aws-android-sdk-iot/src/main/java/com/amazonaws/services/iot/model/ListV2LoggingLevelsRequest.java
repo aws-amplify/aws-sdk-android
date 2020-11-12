@@ -38,8 +38,9 @@ public class ListV2LoggingLevelsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      */
     private String nextToken;
@@ -163,13 +164,15 @@ public class ListV2LoggingLevelsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      *
      * @return <p>
-     *         The token used to get the next set of results, or <b>null</b> if
-     *         there are no additional results.
+     *         To retrieve the next set of results, the <code>nextToken</code>
+     *         value from a previous response; otherwise <b>null</b> to receive
+     *         the first set of results.
      *         </p>
      */
     public String getNextToken() {
@@ -178,13 +181,15 @@ public class ListV2LoggingLevelsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -193,16 +198,18 @@ public class ListV2LoggingLevelsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

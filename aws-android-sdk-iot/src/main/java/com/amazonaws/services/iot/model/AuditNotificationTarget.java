@@ -27,6 +27,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * The ARN of the target (SNS topic) to which audit notifications are sent.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      */
     private String targetArn;
 
@@ -52,6 +55,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * The ARN of the target (SNS topic) to which audit notifications are sent.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @return <p>
      *         The ARN of the target (SNS topic) to which audit notifications
@@ -66,6 +72,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * The ARN of the target (SNS topic) to which audit notifications are sent.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param targetArn <p>
      *            The ARN of the target (SNS topic) to which audit notifications
@@ -83,6 +92,9 @@ public class AuditNotificationTarget implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
      *
      * @param targetArn <p>
      *            The ARN of the target (SNS topic) to which audit notifications

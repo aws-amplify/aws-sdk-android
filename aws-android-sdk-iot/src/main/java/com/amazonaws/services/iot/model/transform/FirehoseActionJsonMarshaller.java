@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -39,6 +40,11 @@ class FirehoseActionJsonMarshaller {
             String separator = firehoseAction.getSeparator();
             jsonWriter.name("separator");
             jsonWriter.value(separator);
+        }
+        if (firehoseAction.getBatchMode() != null) {
+            Boolean batchMode = firehoseAction.getBatchMode();
+            jsonWriter.name("batchMode");
+            jsonWriter.value(batchMode);
         }
         jsonWriter.endObject();
     }

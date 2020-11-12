@@ -59,6 +59,14 @@ public class AuditCheckDetails implements Serializable {
 
     /**
      * <p>
+     * Describes how many of the non-compliant resources created during the
+     * evaluation of an audit check were marked as suppressed.
+     * </p>
+     */
+    private Long suppressedNonCompliantResourcesCount;
+
+    /**
+     * <p>
      * The code of any error encountered when this check is performed during
      * this audit. One of "INSUFFICIENT_PERMISSIONS" or "AUDIT_CHECK_DISABLED".
      * </p>
@@ -353,6 +361,60 @@ public class AuditCheckDetails implements Serializable {
 
     /**
      * <p>
+     * Describes how many of the non-compliant resources created during the
+     * evaluation of an audit check were marked as suppressed.
+     * </p>
+     *
+     * @return <p>
+     *         Describes how many of the non-compliant resources created during
+     *         the evaluation of an audit check were marked as suppressed.
+     *         </p>
+     */
+    public Long getSuppressedNonCompliantResourcesCount() {
+        return suppressedNonCompliantResourcesCount;
+    }
+
+    /**
+     * <p>
+     * Describes how many of the non-compliant resources created during the
+     * evaluation of an audit check were marked as suppressed.
+     * </p>
+     *
+     * @param suppressedNonCompliantResourcesCount <p>
+     *            Describes how many of the non-compliant resources created
+     *            during the evaluation of an audit check were marked as
+     *            suppressed.
+     *            </p>
+     */
+    public void setSuppressedNonCompliantResourcesCount(Long suppressedNonCompliantResourcesCount) {
+        this.suppressedNonCompliantResourcesCount = suppressedNonCompliantResourcesCount;
+    }
+
+    /**
+     * <p>
+     * Describes how many of the non-compliant resources created during the
+     * evaluation of an audit check were marked as suppressed.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param suppressedNonCompliantResourcesCount <p>
+     *            Describes how many of the non-compliant resources created
+     *            during the evaluation of an audit check were marked as
+     *            suppressed.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AuditCheckDetails withSuppressedNonCompliantResourcesCount(
+            Long suppressedNonCompliantResourcesCount) {
+        this.suppressedNonCompliantResourcesCount = suppressedNonCompliantResourcesCount;
+        return this;
+    }
+
+    /**
+     * <p>
      * The code of any error encountered when this check is performed during
      * this audit. One of "INSUFFICIENT_PERMISSIONS" or "AUDIT_CHECK_DISABLED".
      * </p>
@@ -484,6 +546,9 @@ public class AuditCheckDetails implements Serializable {
             sb.append("totalResourcesCount: " + getTotalResourcesCount() + ",");
         if (getNonCompliantResourcesCount() != null)
             sb.append("nonCompliantResourcesCount: " + getNonCompliantResourcesCount() + ",");
+        if (getSuppressedNonCompliantResourcesCount() != null)
+            sb.append("suppressedNonCompliantResourcesCount: "
+                    + getSuppressedNonCompliantResourcesCount() + ",");
         if (getErrorCode() != null)
             sb.append("errorCode: " + getErrorCode() + ",");
         if (getMessage() != null)
@@ -507,6 +572,10 @@ public class AuditCheckDetails implements Serializable {
                 * hashCode
                 + ((getNonCompliantResourcesCount() == null) ? 0 : getNonCompliantResourcesCount()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getSuppressedNonCompliantResourcesCount() == null) ? 0
+                        : getSuppressedNonCompliantResourcesCount().hashCode());
         hashCode = prime * hashCode + ((getErrorCode() == null) ? 0 : getErrorCode().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         return hashCode;
@@ -544,6 +613,13 @@ public class AuditCheckDetails implements Serializable {
         if (other.getNonCompliantResourcesCount() != null
                 && other.getNonCompliantResourcesCount().equals(
                         this.getNonCompliantResourcesCount()) == false)
+            return false;
+        if (other.getSuppressedNonCompliantResourcesCount() == null
+                ^ this.getSuppressedNonCompliantResourcesCount() == null)
+            return false;
+        if (other.getSuppressedNonCompliantResourcesCount() != null
+                && other.getSuppressedNonCompliantResourcesCount().equals(
+                        this.getSuppressedNonCompliantResourcesCount()) == false)
             return false;
         if (other.getErrorCode() == null ^ this.getErrorCode() == null)
             return false;

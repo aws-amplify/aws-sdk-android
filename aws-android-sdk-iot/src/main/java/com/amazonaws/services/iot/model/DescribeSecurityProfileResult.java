@@ -65,14 +65,14 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * <i>Please use
+     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
+     * instead.</i>
+     * </p>
+     * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
-     * </p>
-     * <p>
-     * <b>Note:</b> This API field is deprecated. Please use
-     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
-     * instead.
      * </p>
      */
     private java.util.List<String> additionalMetricsToRetain;
@@ -444,26 +444,26 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * <i>Please use
+     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
+     * instead.</i>
+     * </p>
+     * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
-     * <p>
-     * <b>Note:</b> This API field is deprecated. Please use
-     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
-     * instead.
-     * </p>
      *
      * @return <p>
+     *         <i>Please use
+     *         <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2
+     *         </a> instead.</i>
+     *         </p>
+     *         <p>
      *         A list of metrics whose data is retained (stored). By default,
      *         data is retained for any metric used in the profile's
      *         <code>behaviors</code>, but it is also retained for any metric
      *         specified here.
-     *         </p>
-     *         <p>
-     *         <b>Note:</b> This API field is deprecated. Please use
-     *         <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2
-     *         </a> instead.
      *         </p>
      */
     public java.util.List<String> getAdditionalMetricsToRetain() {
@@ -472,26 +472,26 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * <i>Please use
+     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
+     * instead.</i>
+     * </p>
+     * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
      * </p>
-     * <p>
-     * <b>Note:</b> This API field is deprecated. Please use
-     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
-     * instead.
-     * </p>
      *
      * @param additionalMetricsToRetain <p>
+     *            <i>Please use <a>
+     *            DescribeSecurityProfileResponse$additionalMetricsToRetainV2
+     *            </a> instead.</i>
+     *            </p>
+     *            <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
      *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
-     *            </p>
-     *            <p>
-     *            <b>Note:</b> This API field is deprecated. Please use <a>
-     *            DescribeSecurityProfileResponse$additionalMetricsToRetainV2
-     *            </a> instead.
      *            </p>
      */
     public void setAdditionalMetricsToRetain(java.util.Collection<String> additionalMetricsToRetain) {
@@ -505,29 +505,29 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * <i>Please use
+     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
+     * instead.</i>
+     * </p>
+     * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
-     * </p>
-     * <p>
-     * <b>Note:</b> This API field is deprecated. Please use
-     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
-     * instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param additionalMetricsToRetain <p>
+     *            <i>Please use <a>
+     *            DescribeSecurityProfileResponse$additionalMetricsToRetainV2
+     *            </a> instead.</i>
+     *            </p>
+     *            <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
      *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
-     *            </p>
-     *            <p>
-     *            <b>Note:</b> This API field is deprecated. Please use <a>
-     *            DescribeSecurityProfileResponse$additionalMetricsToRetainV2
-     *            </a> instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -546,29 +546,29 @@ public class DescribeSecurityProfileResult implements Serializable {
 
     /**
      * <p>
+     * <i>Please use
+     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
+     * instead.</i>
+     * </p>
+     * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's <code>behaviors</code>, but
      * it is also retained for any metric specified here.
-     * </p>
-     * <p>
-     * <b>Note:</b> This API field is deprecated. Please use
-     * <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a>
-     * instead.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param additionalMetricsToRetain <p>
+     *            <i>Please use <a>
+     *            DescribeSecurityProfileResponse$additionalMetricsToRetainV2
+     *            </a> instead.</i>
+     *            </p>
+     *            <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
      *            <code>behaviors</code>, but it is also retained for any metric
      *            specified here.
-     *            </p>
-     *            <p>
-     *            <b>Note:</b> This API field is deprecated. Please use <a>
-     *            DescribeSecurityProfileResponse$additionalMetricsToRetainV2
-     *            </a> instead.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
