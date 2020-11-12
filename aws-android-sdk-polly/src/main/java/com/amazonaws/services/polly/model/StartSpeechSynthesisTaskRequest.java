@@ -106,7 +106,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\)]{0,800}$<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\):;\$@=+\,\?&]{0,800}$<br/>
      */
     private String outputS3KeyPrefix;
 
@@ -172,10 +172,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla,
      * Carmen, Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa,
      * Filiz, Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna,
-     * Joey, Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Lupe, Mads,
-     * Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja,
-     * Nicole, Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon,
-     * Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte, Lucia,
+     * Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki,
+     * Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell, Salli,
+     * Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
      */
     private String voiceId;
 
@@ -813,7 +813,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\)]{0,800}$<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\):;\$@=+\,\?&]{0,800}$<br/>
      *
      * @return <p>
      *         The Amazon S3 key prefix for the output speech file.
@@ -829,7 +829,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\)]{0,800}$<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\):;\$@=+\,\?&]{0,800}$<br/>
      *
      * @param outputS3KeyPrefix <p>
      *            The Amazon S3 key prefix for the output speech file.
@@ -848,7 +848,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\)]{0,800}$<br/>
+     * <b>Pattern: </b>^[0-9a-zA-Z\/\!\-_\.\*\'\(\):;\$@=+\,\?&]{0,800}$<br/>
      *
      * @param outputS3KeyPrefix <p>
      *            The Amazon S3 key prefix for the output speech file.
@@ -1262,10 +1262,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla,
      * Carmen, Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa,
      * Filiz, Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna,
-     * Joey, Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Lupe, Mads,
-     * Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja,
-     * Nicole, Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon,
-     * Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte, Lucia,
+     * Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki,
+     * Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell, Salli,
+     * Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1285,10 +1285,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla,
      * Carmen, Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa,
      * Filiz, Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna,
-     * Joey, Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Lupe, Mads,
-     * Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja,
-     * Nicole, Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon,
-     * Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte, Lucia,
+     * Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki,
+     * Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell, Salli,
+     * Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1311,10 +1311,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla,
      * Carmen, Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa,
      * Filiz, Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna,
-     * Joey, Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Lupe, Mads,
-     * Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja,
-     * Nicole, Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon,
-     * Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte, Lucia,
+     * Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki,
+     * Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell, Salli,
+     * Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1337,10 +1337,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla,
      * Carmen, Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa,
      * Filiz, Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna,
-     * Joey, Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Lupe, Mads,
-     * Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja,
-     * Nicole, Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon,
-     * Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte, Lucia,
+     * Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki,
+     * Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell, Salli,
+     * Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1363,10 +1363,10 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>Aditi, Amy, Astrid, Bianca, Brian, Camila, Carla,
      * Carmen, Celine, Chantal, Conchita, Cristiano, Dora, Emma, Enrique, Ewa,
      * Filiz, Geraint, Giorgio, Gwyneth, Hans, Ines, Ivy, Jacek, Jan, Joanna,
-     * Joey, Justin, Karl, Kendra, Kimberly, Lea, Liv, Lotte, Lucia, Lupe, Mads,
-     * Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki, Naja,
-     * Nicole, Penelope, Raveena, Ricardo, Ruben, Russell, Salli, Seoyeon,
-     * Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte, Lucia,
+     * Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel, Mizuki,
+     * Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell, Salli,
+     * Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
