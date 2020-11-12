@@ -23,24 +23,24 @@ import android.util.Log;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.SDKGlobalConfiguration;
-
 import com.amazonaws.auth.AWSBasicCognitoIdentityProvider;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
+import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils;
 import com.amazonaws.mobile.auth.core.signin.AuthException;
 import com.amazonaws.mobile.auth.core.signin.CognitoAuthException;
 import com.amazonaws.mobile.auth.core.signin.ProviderAuthException;
 import com.amazonaws.mobile.auth.core.signin.SignInManager;
 import com.amazonaws.mobile.auth.core.signin.SignInProvider;
 import com.amazonaws.mobile.auth.core.signin.SignInProviderResultHandler;
-import com.amazonaws.mobile.auth.core.internal.util.ThreadUtils;
 import com.amazonaws.mobile.config.AWSConfiguration;
-
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Collection;
 import java.util.Date;
@@ -52,9 +52,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * The identity manager keeps track of the current sign-in provider and is responsible
@@ -344,7 +341,7 @@ public class IdentityManager {
         }
 
         final Date credentialsExpirationDate =
-            credentialsProviderHolder.getUnderlyingProvider().getSessionCredentitalsExpiration();
+            credentialsProviderHolder.getUnderlyingProvider().getSessionCredentialsExpiration();
 
         if (credentialsExpirationDate == null) {
             Log.d(LOG_TAG, "Credentials are EXPIRED.");

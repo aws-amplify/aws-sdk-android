@@ -17,8 +17,6 @@
 
 package com.amazonaws.mobileconnectors.kinesisvideo.auth;
 
-import java.util.Date;
-
 import androidx.annotation.NonNull;
 
 import com.amazonaws.auth.AWSCredentials;
@@ -30,6 +28,8 @@ import com.amazonaws.kinesisvideo.auth.KinesisVideoCredentials;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
+
+import java.util.Date;
 
 /**
  * Implementation of the AWS Credentials Provider wrapper for Android
@@ -65,7 +65,7 @@ public class KinesisVideoCredentialsProviderImpl extends AbstractKinesisVideoCre
             final CognitoCredentialsProvider cognitoCredentialsProvider =
                     (CognitoCredentialsProvider) credentialsProvider;
 
-            expiration = cognitoCredentialsProvider.getSessionCredentitalsExpiration();
+            expiration = cognitoCredentialsProvider.getSessionCredentialsExpiration();
             log.debug("Refreshed token expiration is %s", expiration);
         }
 
