@@ -2,11 +2,20 @@
 
 ## [Release 2.19.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.2)
 
+### New Features
+
+- **AWS S3 Transfer Utility**
+  - Now supports directly uploading `InputStream` object via `TransferUtility`. See [# 2182](https://github.com/aws-amplify/aws-sdk-android/pull/2182) for more details.
+
 ### Model updates
   - AWS IoT
   - AWS Lambda
   - Amazon Polly
   - Amazon Textract
+
+### Misc.
+  - Fixed typo in `CognitoCredentialsProvider#getSessionCredentialsExpiration()`.
+  - Updated `customer-proguard-rules.pro` to exclude `Enum` types when `minifyEnabled = true`.
 
 ## [Release 2.19.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.1)
 
