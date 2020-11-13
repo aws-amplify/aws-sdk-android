@@ -1,10 +1,6 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -36,6 +32,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, sdk = 16)
@@ -3019,6 +3019,67 @@ public class AWSIotMqttManagerTest {
         assertTrue(testClient.isMetricsEnabled());
         testClient.setMetricsIsEnabled(false);
         assertFalse(testClient.isMetricsEnabled());
+    }
+
+    @Test
+    public void testMqttSessionPresentWithCleanSession() throws MqttException {
+        MockMqttClient mockClient = new MockMqttClient();
+//        final CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        final AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+
+        testClient.setCleanSession(true);
+
+        testClient.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
+            @Override
+            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                if (status == AWSIotMqttClientStatus.Connecting) {
+                    System.out.println("Client persistent-client-id connecton status: " + status);
+                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
+                    assertFalse(testClient.getSessionPresent());
+                } else if (status == AWSIotMqttClientStatus.Connected) {
+                    System.out.println("Client persistent-client-id connecton status: " + status);
+                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
+                    assertFalse(testClient.getSessionPresent());
+                }
+            }
+        });
+    }
+
+    @Test
+    public void testMqttSessionPresentWithoutCleanSession() throws MqttException {
+        MockMqttClient mockClient = new MockMqttClient();
+//        final CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        final AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+
+        testClient.setCleanSession(false);
+
+        testClient.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
+            @Override
+            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                if (status == AWSIotMqttClientStatus.Connecting) {
+                    System.out.println("Client persistent-client-id connecton status: " + status);
+                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
+                    assertFalse(testClient.getSessionPresent());
+                } else if (status == AWSIotMqttClientStatus.Connected) {
+                    System.out.println("Client persistent-client-id connecton status: " + status);
+                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
+                    assertFalse(testClient.getSessionPresent());
+                }
+            }
+        });
+
     }
 
     /**
