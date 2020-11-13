@@ -1,5 +1,5 @@
-/**
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+/*
+ * Copyright 2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@ package com.amazonaws.mobileconnectors.s3.transferutility;
 
 import android.content.Context;
 import android.util.Log;
-
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -46,19 +45,24 @@ import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+/**
+ * Tests that new upload with input stream method calls
+ * the existing methods with expected parameters.
+ */
 @RunWith(RobolectricTestRunner.class)
 public class UploadInputStreamTest {
-
     private static final String TAG = "InputStreamTest";
+    private static final String DEFAULT_BUCKET = "s3-upload-input-stream-unit-test";
 
-    private static final String DEFAULT_BUCKET = "s3-upload-input-stream-unit-test-" + getRandomString();
     private InputStream inputStream;
     private ObjectMetadata metadata;
     private CannedAccessControlList cannedAcl;
     private TransferListener listener;
     private TransferUtility transferUtility;
-    private TransferObserver observer;
 
+    /**
+     * Sets up testing environment.
+     */
     @Before
     public void setup() {
         AmazonS3Client s3 = mock(AmazonS3Client.class);
@@ -68,78 +72,111 @@ public class UploadInputStreamTest {
                 .s3Client(s3)
                 .context(context)
                 .build());
+        transferUtility.getDbUtil().closeDB();
         inputStream = new ByteArrayInputStream("test data".getBytes());
         metadata = new ObjectMetadata();
         cannedAcl = CannedAccessControlList.Private;
         listener = new UploadListener();
     }
+
+    /**
+     * Test that {@link TransferUtility#upload(String, InputStream)} calls the File based
+     * upload method with all of the expected defaults.
+     * @throws IOException if upload fails to read input file
+     */
     @Test
     public void testUpload() throws IOException {
         String key = getRandomString();
         transferUtility.upload(key, inputStream);
-        verify(transferUtility, times(1)).upload(eq(DEFAULT_BUCKET), eq(key),
-                any(File.class), any(ObjectMetadata.class), isNull(CannedAccessControlList.class),
-                isNull(TransferListener.class));
+        verify(transferUtility, times(1)).upload(
+                eq(DEFAULT_BUCKET),
+                eq(key),
+                any(File.class),
+                any(ObjectMetadata.class),
+                isNull(CannedAccessControlList.class),
+                isNull(TransferListener.class)
+        );
     }
 
     /**
-     * Test that upload(String key, String inputStream, UploadOptions options) with
+     * Test that {@link TransferUtility#upload(String, InputStream, UploadOptions)} with
      * a default Builder calls the File based upload method with all of the expected defaults.
-     * @throws IOException
+     * @throws IOException if upload fails to read input file
      */
     @Test
     public void testUploadWithDefaults() throws IOException {
         String key = getRandomString();
         transferUtility.upload(key, inputStream, UploadOptions.builder().build());
-        verify(transferUtility, times(1)).upload(eq(DEFAULT_BUCKET), eq(key), any(File.class),
-                any(ObjectMetadata.class), isNull(CannedAccessControlList.class), isNull(TransferListener.class));
+        verify(transferUtility, times(1)).upload(
+                eq(DEFAULT_BUCKET),
+                eq(key),
+                any(File.class),
+                any(ObjectMetadata.class),
+                isNull(CannedAccessControlList.class),
+                isNull(TransferListener.class)
+        );
     }
 
     /**
-     * Test that upload(String key, String inputStream, UploadOptions options) with
-     * all parameters specified calls the File based upload method with the same parameters provided as input.
-     * @throws IOException
+     * Test that {@link TransferUtility#upload(String, InputStream, UploadOptions)} with
+     * all parameters specified calls the File based upload method with the same parameters
+     * provided as input.
+     * @throws IOException if upload fails to read input file
      */
     @Test
     public void testUploadWithAllParametersSet() throws IOException {
         String key = getRandomString();
         String bucket = getRandomString();
-        transferUtility.upload(key, inputStream, UploadOptions.builder()
-                                                              .bucket(bucket)
-                                                              .objectMetadata(metadata)
-                                                              .cannedAcl(cannedAcl)
-                                                              .transferListener(listener)
-                                                              .build());
-        verify(transferUtility, times(1)).upload(eq(bucket), eq(key), any(File.class),
-                eq(metadata), eq(cannedAcl), eq(listener));
+        UploadOptions options = UploadOptions.builder()
+                .bucket(bucket)
+                .objectMetadata(metadata)
+                .cannedAcl(cannedAcl)
+                .transferListener(listener)
+                .build();
+        transferUtility.upload(key, inputStream, options);
+        verify(transferUtility, times(1)).upload(
+                eq(bucket),
+                eq(key),
+                any(File.class),
+                eq(metadata),
+                eq(cannedAcl),
+                eq(listener)
+        );
     }
 
     /**
      * Verify that the File does in fact get deleted after the upload is complete.
+     * @throws IOException if upload fails to read input file
      */
     @Test
     public void testDeleteTempFileAfterUpload() throws IOException {
         // Call upload, so that a temporary File will be created
         final String key = getRandomString();
-        observer = transferUtility.upload(key, inputStream);
+        TransferObserver observer = transferUtility.upload(key, inputStream);
+
         // Verify the file exists
         File file = new File(observer.getAbsoluteFilePath());
         assertTrue(file.exists());
+
         // Set state to COMPLETED
         Context context = InstrumentationRegistry.getInstrumentation().getContext();
         TransferStatusUpdater transferStatusUpdater = TransferStatusUpdater.getInstance(context);
         transferStatusUpdater.updateState(observer.getId(), TransferState.COMPLETED);
+
         // Verify the file was deleted
         assertFalse(file.exists());
     }
 
+    /**
+     * Cleans up input stream
+     * @throws IOException if input stream fails to close
+     */
     @After
     public void teardown() throws IOException {
         inputStream.close();
-        transferUtility.getDbUtil().closeDB();
     }
 
-    private static String getRandomString() {
+    private String getRandomString() {
         return UUID.randomUUID().toString();
     }
 
