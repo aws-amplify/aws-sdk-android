@@ -160,6 +160,11 @@ public class AWSIotMqttManager {
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
 
+    /** The session present flag tells the client whether the broker already has a
+     *  persistent session available from previous interactions with the client.
+     */
+    private boolean sessionPresent;
+
     /** True if this is a clean Session with no state being persisted from a prior session */
     private boolean cleanSession = true;
     /**
@@ -1158,6 +1163,7 @@ public class AWSIotMqttManager {
                     LOGGER.info("onSuccess: mqtt connection is successful.");
                     connectionState = MqttManagerConnectionState.Connected;
                     lastConnackTime = getSystemTimeMs();
+                    sessionPresent = asyncActionToken.getSessionPresent();
                     if (mqttMessageQueue.size() > 0) {
                         publishMessagesFromQueue();
                     }
@@ -1182,6 +1188,7 @@ public class AWSIotMqttManager {
                         connectionState = MqttManagerConnectionState.Disconnected;
                         userConnectionCallback(e);
                     }
+                    sessionPresent = asyncActionToken.getSessionPresent();
                 }
             });
         } catch (final MqttException e) {
@@ -1297,7 +1304,7 @@ public class AWSIotMqttManager {
                     public void onSuccess(IMqttToken asyncActionToken) {
                         LOGGER.info("Reconnect successful");
                         connectionState = MqttManagerConnectionState.Connected;
-
+                        sessionPresent = asyncActionToken.getSessionPresent();
                         lastConnackTime = getSystemTimeMs();
 
                         if (needResubscribe) {
@@ -1306,13 +1313,13 @@ public class AWSIotMqttManager {
                         if (mqttMessageQueue.size() > 0) {
                             publishMessagesFromQueue();
                         }
-
                         userConnectionCallback();
                     }
 
                     @Override
                     public void onFailure(IMqttToken asyncActionToken, Throwable e) {
                         LOGGER.warn("Reconnect failed ", e);
+                        sessionPresent = asyncActionToken.getSessionPresent();
                         handleConnectionFailure(e);
                     }
                 });
@@ -1446,11 +1453,13 @@ public class AWSIotMqttManager {
                     mqttClient.subscribe(topic, qos.asInt(), null, new IMqttActionListener() {
                         @Override
                         public void onSuccess(IMqttToken asyncActionToken) {
+                            sessionPresent = asyncActionToken.getSessionPresent();
                             subscriptionStatusCallback.onSuccess();
                         }
 
                         @Override
                         public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                            sessionPresent = asyncActionToken.getSessionPresent();
                             subscriptionStatusCallback.onFailure(exception);
                         }
                     });
@@ -1966,5 +1975,13 @@ public class AWSIotMqttManager {
          * MQTT CONNECT message.
          */
         USERNAME_PASSWORD;
+    }
+
+    /**
+     *
+     * @return sessionPresent
+     */
+    public boolean getSessionPresent() {
+        return sessionPresent;
     }
 }
