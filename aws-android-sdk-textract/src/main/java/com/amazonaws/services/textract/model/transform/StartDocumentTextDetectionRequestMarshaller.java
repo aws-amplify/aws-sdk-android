@@ -91,6 +91,11 @@ public class StartDocumentTextDetectionRequestMarshaller implements
                 jsonWriter.name("OutputConfig");
                 OutputConfigJsonMarshaller.getInstance().marshall(outputConfig, jsonWriter);
             }
+            if (startDocumentTextDetectionRequest.getKMSKeyId() != null) {
+                String kMSKeyId = startDocumentTextDetectionRequest.getKMSKeyId();
+                jsonWriter.name("KMSKeyId");
+                jsonWriter.value(kMSKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

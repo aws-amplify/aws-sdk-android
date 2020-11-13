@@ -415,6 +415,7 @@ public interface AmazonTextract {
      *         Textract.
      * @throws InvalidParameterException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws UnsupportedDocumentException
      * @throws DocumentTooLargeException
      * @throws BadDocumentException
@@ -471,6 +472,7 @@ public interface AmazonTextract {
      *         Textract.
      * @throws InvalidParameterException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws UnsupportedDocumentException
      * @throws DocumentTooLargeException
      * @throws BadDocumentException

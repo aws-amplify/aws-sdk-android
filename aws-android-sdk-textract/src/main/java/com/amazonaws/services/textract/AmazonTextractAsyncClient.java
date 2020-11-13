@@ -967,6 +967,7 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      *         Textract.
      * @throws InvalidParameterException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws UnsupportedDocumentException
      * @throws DocumentTooLargeException
      * @throws BadDocumentException
@@ -1030,6 +1031,7 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      *         Textract.
      * @throws InvalidParameterException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws UnsupportedDocumentException
      * @throws DocumentTooLargeException
      * @throws BadDocumentException
@@ -1101,6 +1103,7 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      *         Textract.
      * @throws InvalidParameterException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws UnsupportedDocumentException
      * @throws DocumentTooLargeException
      * @throws BadDocumentException
@@ -1163,6 +1166,7 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      *         Textract.
      * @throws InvalidParameterException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws UnsupportedDocumentException
      * @throws DocumentTooLargeException
      * @throws BadDocumentException
