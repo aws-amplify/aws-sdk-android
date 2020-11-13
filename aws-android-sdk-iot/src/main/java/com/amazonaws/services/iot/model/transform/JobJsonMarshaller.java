@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -117,6 +118,11 @@ class JobJsonMarshaller {
             TimeoutConfig timeoutConfig = job.getTimeoutConfig();
             jsonWriter.name("timeoutConfig");
             TimeoutConfigJsonMarshaller.getInstance().marshall(timeoutConfig, jsonWriter);
+        }
+        if (job.getNamespaceId() != null) {
+            String namespaceId = job.getNamespaceId();
+            jsonWriter.name("namespaceId");
+            jsonWriter.value(namespaceId);
         }
         jsonWriter.endObject();
     }

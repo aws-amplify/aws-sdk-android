@@ -29,6 +29,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
+     * The maximum number of results to return in this operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 250<br/>
+     */
+    private Integer maxResults;
+
+    /**
+     * <p>
      * The name of the thing.
      * </p>
      * <p>
@@ -37,6 +56,117 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String thingName;
+
+    /**
+     * <p>
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
+     * </p>
+     *
+     * @return <p>
+     *         To retrieve the next set of results, the <code>nextToken</code>
+     *         value from a previous response; otherwise <b>null</b> to receive
+     *         the first set of results.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * To retrieve the next set of results, the <code>nextToken</code> value
+     * from a previous response; otherwise <b>null</b> to receive the first set
+     * of results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            To retrieve the next set of results, the
+     *            <code>nextToken</code> value from a previous response;
+     *            otherwise <b>null</b> to receive the first set of results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListThingPrincipalsRequest withNextToken(String nextToken) {
+        this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The maximum number of results to return in this operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 250<br/>
+     *
+     * @return <p>
+     *         The maximum number of results to return in this operation.
+     *         </p>
+     */
+    public Integer getMaxResults() {
+        return maxResults;
+    }
+
+    /**
+     * <p>
+     * The maximum number of results to return in this operation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 250<br/>
+     *
+     * @param maxResults <p>
+     *            The maximum number of results to return in this operation.
+     *            </p>
+     */
+    public void setMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+    }
+
+    /**
+     * <p>
+     * The maximum number of results to return in this operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 250<br/>
+     *
+     * @param maxResults <p>
+     *            The maximum number of results to return in this operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListThingPrincipalsRequest withMaxResults(Integer maxResults) {
+        this.maxResults = maxResults;
+        return this;
+    }
 
     /**
      * <p>
@@ -106,6 +236,10 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getNextToken() != null)
+            sb.append("nextToken: " + getNextToken() + ",");
+        if (getMaxResults() != null)
+            sb.append("maxResults: " + getMaxResults() + ",");
         if (getThingName() != null)
             sb.append("thingName: " + getThingName());
         sb.append("}");
@@ -117,6 +251,8 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
+        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getThingName() == null) ? 0 : getThingName().hashCode());
         return hashCode;
     }
@@ -132,6 +268,16 @@ public class ListThingPrincipalsRequest extends AmazonWebServiceRequest implemen
             return false;
         ListThingPrincipalsRequest other = (ListThingPrincipalsRequest) obj;
 
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
+            return false;
+        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+            return false;
+        if (other.getMaxResults() != null
+                && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
         if (other.getThingName() == null ^ this.getThingName() == null)
             return false;
         if (other.getThingName() != null

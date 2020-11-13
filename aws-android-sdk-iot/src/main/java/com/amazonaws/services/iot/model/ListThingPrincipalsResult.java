@@ -32,6 +32,14 @@ public class ListThingPrincipalsResult implements Serializable {
 
     /**
      * <p>
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
+     * </p>
+     */
+    private String nextToken;
+
+    /**
+     * <p>
      * The principals associated with the thing.
      * </p>
      *
@@ -105,6 +113,57 @@ public class ListThingPrincipalsResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
+     * </p>
+     *
+     * @return <p>
+     *         The token to use to get the next set of results, or <b>null</b>
+     *         if there are no additional results.
+     *         </p>
+     */
+    public String getNextToken() {
+        return nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
+     * </p>
+     *
+     * @param nextToken <p>
+     *            The token to use to get the next set of results, or
+     *            <b>null</b> if there are no additional results.
+     *            </p>
+     */
+    public void setNextToken(String nextToken) {
+        this.nextToken = nextToken;
+    }
+
+    /**
+     * <p>
+     * The token to use to get the next set of results, or <b>null</b> if there
+     * are no additional results.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param nextToken <p>
+     *            The token to use to get the next set of results, or
+     *            <b>null</b> if there are no additional results.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListThingPrincipalsResult withNextToken(String nextToken) {
+        this.nextToken = nextToken;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -116,7 +175,9 @@ public class ListThingPrincipalsResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getPrincipals() != null)
-            sb.append("principals: " + getPrincipals());
+            sb.append("principals: " + getPrincipals() + ",");
+        if (getNextToken() != null)
+            sb.append("nextToken: " + getNextToken());
         sb.append("}");
         return sb.toString();
     }
@@ -127,6 +188,7 @@ public class ListThingPrincipalsResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getPrincipals() == null) ? 0 : getPrincipals().hashCode());
+        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
 
@@ -145,6 +207,11 @@ public class ListThingPrincipalsResult implements Serializable {
             return false;
         if (other.getPrincipals() != null
                 && other.getPrincipals().equals(this.getPrincipals()) == false)
+            return false;
+        if (other.getNextToken() == null ^ this.getNextToken() == null)
+            return false;
+        if (other.getNextToken() != null
+                && other.getNextToken().equals(this.getNextToken()) == false)
             return false;
         return true;
     }

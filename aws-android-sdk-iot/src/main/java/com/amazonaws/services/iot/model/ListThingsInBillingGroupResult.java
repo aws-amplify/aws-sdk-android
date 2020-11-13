@@ -27,8 +27,8 @@ public class ListThingsInBillingGroupResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to use to get the next set of results. Will not be returned if
+     * operation has returned all results.
      * </p>
      */
     private String nextToken;
@@ -109,13 +109,13 @@ public class ListThingsInBillingGroupResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to use to get the next set of results. Will not be returned if
+     * operation has returned all results.
      * </p>
      *
      * @return <p>
-     *         The token used to get the next set of results, or <b>null</b> if
-     *         there are no additional results.
+     *         The token to use to get the next set of results. Will not be
+     *         returned if operation has returned all results.
      *         </p>
      */
     public String getNextToken() {
@@ -124,13 +124,13 @@ public class ListThingsInBillingGroupResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to use to get the next set of results. Will not be returned if
+     * operation has returned all results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            The token to use to get the next set of results. Will not be
+     *            returned if operation has returned all results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -139,16 +139,16 @@ public class ListThingsInBillingGroupResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
-     * are no additional results.
+     * The token to use to get the next set of results. Will not be returned if
+     * operation has returned all results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            The token to use to get the next set of results. Will not be
+     *            returned if operation has returned all results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

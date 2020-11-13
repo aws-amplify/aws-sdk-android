@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -30,6 +31,13 @@ class AwsJobExecutionsRolloutConfigJsonMarshaller {
             Integer maximumPerMinute = awsJobExecutionsRolloutConfig.getMaximumPerMinute();
             jsonWriter.name("maximumPerMinute");
             jsonWriter.value(maximumPerMinute);
+        }
+        if (awsJobExecutionsRolloutConfig.getExponentialRate() != null) {
+            AwsJobExponentialRolloutRate exponentialRate = awsJobExecutionsRolloutConfig
+                    .getExponentialRate();
+            jsonWriter.name("exponentialRate");
+            AwsJobExponentialRolloutRateJsonMarshaller.getInstance().marshall(exponentialRate,
+                    jsonWriter);
         }
         jsonWriter.endObject();
     }

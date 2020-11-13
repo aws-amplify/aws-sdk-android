@@ -41,6 +41,11 @@ class BlockJsonMarshaller {
             jsonWriter.name("Text");
             jsonWriter.value(text);
         }
+        if (block.getTextType() != null) {
+            String textType = block.getTextType();
+            jsonWriter.name("TextType");
+            jsonWriter.value(textType);
+        }
         if (block.getRowIndex() != null) {
             Integer rowIndex = block.getRowIndex();
             jsonWriter.name("RowIndex");

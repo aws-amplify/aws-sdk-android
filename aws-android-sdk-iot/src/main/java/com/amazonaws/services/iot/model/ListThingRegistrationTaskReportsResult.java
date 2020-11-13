@@ -37,7 +37,7 @@ public class ListThingRegistrationTaskReportsResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
+     * The token to use to get the next set of results, or <b>null</b> if there
      * are no additional results.
      * </p>
      */
@@ -217,13 +217,13 @@ public class ListThingRegistrationTaskReportsResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
+     * The token to use to get the next set of results, or <b>null</b> if there
      * are no additional results.
      * </p>
      *
      * @return <p>
-     *         The token used to get the next set of results, or <b>null</b> if
-     *         there are no additional results.
+     *         The token to use to get the next set of results, or <b>null</b>
+     *         if there are no additional results.
      *         </p>
      */
     public String getNextToken() {
@@ -232,13 +232,13 @@ public class ListThingRegistrationTaskReportsResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
+     * The token to use to get the next set of results, or <b>null</b> if there
      * are no additional results.
      * </p>
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            The token to use to get the next set of results, or
+     *            <b>null</b> if there are no additional results.
      *            </p>
      */
     public void setNextToken(String nextToken) {
@@ -247,7 +247,7 @@ public class ListThingRegistrationTaskReportsResult implements Serializable {
 
     /**
      * <p>
-     * The token used to get the next set of results, or <b>null</b> if there
+     * The token to use to get the next set of results, or <b>null</b> if there
      * are no additional results.
      * </p>
      * <p>
@@ -255,8 +255,8 @@ public class ListThingRegistrationTaskReportsResult implements Serializable {
      * together.
      *
      * @param nextToken <p>
-     *            The token used to get the next set of results, or <b>null</b>
-     *            if there are no additional results.
+     *            The token to use to get the next set of results, or
+     *            <b>null</b> if there are no additional results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

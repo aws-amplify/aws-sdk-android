@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -59,6 +61,10 @@ public class ListJobExecutionsForThingRequestMarshaller implements
         if (listJobExecutionsForThingRequest.getStatus() != null) {
             request.addParameter("status",
                     StringUtils.fromString(listJobExecutionsForThingRequest.getStatus()));
+        }
+        if (listJobExecutionsForThingRequest.getNamespaceId() != null) {
+            request.addParameter("namespaceId",
+                    StringUtils.fromString(listJobExecutionsForThingRequest.getNamespaceId()));
         }
         if (listJobExecutionsForThingRequest.getMaxResults() != null) {
             request.addParameter("maxResults",

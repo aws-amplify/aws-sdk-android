@@ -19,7 +19,9 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Use Sig V4 authorization.
+ * For more information, see <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+ * >Signature Version 4 signing process</a>.
  * </p>
  */
 public class SigV4Authorization implements Serializable {

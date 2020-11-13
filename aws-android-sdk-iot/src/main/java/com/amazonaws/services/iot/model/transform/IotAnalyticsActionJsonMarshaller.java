@@ -16,6 +16,7 @@
 package com.amazonaws.services.iot.model.transform;
 
 import com.amazonaws.services.iot.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -35,6 +36,11 @@ class IotAnalyticsActionJsonMarshaller {
             String channelName = iotAnalyticsAction.getChannelName();
             jsonWriter.name("channelName");
             jsonWriter.value(channelName);
+        }
+        if (iotAnalyticsAction.getBatchMode() != null) {
+            Boolean batchMode = iotAnalyticsAction.getBatchMode();
+            jsonWriter.name("batchMode");
+            jsonWriter.value(batchMode);
         }
         if (iotAnalyticsAction.getRoleArn() != null) {
             String roleArn = iotAnalyticsAction.getRoleArn();

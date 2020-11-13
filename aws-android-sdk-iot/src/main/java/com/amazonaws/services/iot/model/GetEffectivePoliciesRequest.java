@@ -28,7 +28,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetEffectivePoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The principal.
+     * The principal. Valid principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      */
     private String principal;
@@ -53,11 +57,20 @@ public class GetEffectivePoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal.
+     * The principal. Valid principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      *
      * @return <p>
-     *         The principal.
+     *         The principal. Valid principals are CertificateArn
+     *         (arn:aws:iot:<i
+     *         >region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     *         thingGroupArn
+     *         (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup
+     *         /<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).
      *         </p>
      */
     public String getPrincipal() {
@@ -66,11 +79,20 @@ public class GetEffectivePoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal.
+     * The principal. Valid principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      *
      * @param principal <p>
-     *            The principal.
+     *            The principal. Valid principals are CertificateArn
+     *            (arn:aws:iot
+     *            :<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     *            thingGroupArn
+     *            (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup
+     *            /<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).
      *            </p>
      */
     public void setPrincipal(String principal) {
@@ -79,14 +101,23 @@ public class GetEffectivePoliciesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The principal.
+     * The principal. Valid principals are CertificateArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     * thingGroupArn
+     * (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>)
+     * and CognitoId (<i>region</i>:<i>id</i>).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param principal <p>
-     *            The principal.
+     *            The principal. Valid principals are CertificateArn
+     *            (arn:aws:iot
+     *            :<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>),
+     *            thingGroupArn
+     *            (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup
+     *            /<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -22,6 +22,8 @@ import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
+import android.text.TextUtils;
+
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.Request;
 import com.amazonaws.DefaultRequest;
@@ -90,6 +92,17 @@ public class CreateAuthorizerRequestMarshaller implements
                 String status = createAuthorizerRequest.getStatus();
                 jsonWriter.name("status");
                 jsonWriter.value(status);
+            }
+            if (createAuthorizerRequest.getTags() != null) {
+                java.util.List<Tag> tags = createAuthorizerRequest.getTags();
+                jsonWriter.name("tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
             }
             if (createAuthorizerRequest.getSigningDisabled() != null) {
                 Boolean signingDisabled = createAuthorizerRequest.getSigningDisabled();
