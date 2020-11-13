@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.19.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.2)
+
+### Model updates
+  - AWS IoT
+  - AWS Lambda
+  - Amazon Polly
+  - Amazon Textract
+
 ## [Release 2.19.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.1)
 
 ### New Features
