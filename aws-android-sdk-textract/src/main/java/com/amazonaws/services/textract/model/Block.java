@@ -146,6 +146,17 @@ public class Block implements Serializable {
 
     /**
      * <p>
+     * The kind of text that Amazon Textract has detected. Can check for
+     * handwritten text and printed text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>HANDWRITING, PRINTED
+     */
+    private String textType;
+
+    /**
+     * <p>
      * The row in which a table cell is located. The first row position is 1.
      * <code>RowIndex</code> isn't returned by <code>DetectDocumentText</code>
      * and <code>GetDocumentTextDetection</code>.
@@ -1253,6 +1264,113 @@ public class Block implements Serializable {
 
     /**
      * <p>
+     * The kind of text that Amazon Textract has detected. Can check for
+     * handwritten text and printed text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>HANDWRITING, PRINTED
+     *
+     * @return <p>
+     *         The kind of text that Amazon Textract has detected. Can check for
+     *         handwritten text and printed text.
+     *         </p>
+     * @see TextType
+     */
+    public String getTextType() {
+        return textType;
+    }
+
+    /**
+     * <p>
+     * The kind of text that Amazon Textract has detected. Can check for
+     * handwritten text and printed text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>HANDWRITING, PRINTED
+     *
+     * @param textType <p>
+     *            The kind of text that Amazon Textract has detected. Can check
+     *            for handwritten text and printed text.
+     *            </p>
+     * @see TextType
+     */
+    public void setTextType(String textType) {
+        this.textType = textType;
+    }
+
+    /**
+     * <p>
+     * The kind of text that Amazon Textract has detected. Can check for
+     * handwritten text and printed text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>HANDWRITING, PRINTED
+     *
+     * @param textType <p>
+     *            The kind of text that Amazon Textract has detected. Can check
+     *            for handwritten text and printed text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TextType
+     */
+    public Block withTextType(String textType) {
+        this.textType = textType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The kind of text that Amazon Textract has detected. Can check for
+     * handwritten text and printed text.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>HANDWRITING, PRINTED
+     *
+     * @param textType <p>
+     *            The kind of text that Amazon Textract has detected. Can check
+     *            for handwritten text and printed text.
+     *            </p>
+     * @see TextType
+     */
+    public void setTextType(TextType textType) {
+        this.textType = textType.toString();
+    }
+
+    /**
+     * <p>
+     * The kind of text that Amazon Textract has detected. Can check for
+     * handwritten text and printed text.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>HANDWRITING, PRINTED
+     *
+     * @param textType <p>
+     *            The kind of text that Amazon Textract has detected. Can check
+     *            for handwritten text and printed text.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TextType
+     */
+    public Block withTextType(TextType textType) {
+        this.textType = textType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The row in which a table cell is located. The first row position is 1.
      * <code>RowIndex</code> isn't returned by <code>DetectDocumentText</code>
      * and <code>GetDocumentTextDetection</code>.
@@ -2295,6 +2413,8 @@ public class Block implements Serializable {
             sb.append("Confidence: " + getConfidence() + ",");
         if (getText() != null)
             sb.append("Text: " + getText() + ",");
+        if (getTextType() != null)
+            sb.append("TextType: " + getTextType() + ",");
         if (getRowIndex() != null)
             sb.append("RowIndex: " + getRowIndex() + ",");
         if (getColumnIndex() != null)
@@ -2327,6 +2447,7 @@ public class Block implements Serializable {
         hashCode = prime * hashCode + ((getBlockType() == null) ? 0 : getBlockType().hashCode());
         hashCode = prime * hashCode + ((getConfidence() == null) ? 0 : getConfidence().hashCode());
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
+        hashCode = prime * hashCode + ((getTextType() == null) ? 0 : getTextType().hashCode());
         hashCode = prime * hashCode + ((getRowIndex() == null) ? 0 : getRowIndex().hashCode());
         hashCode = prime * hashCode
                 + ((getColumnIndex() == null) ? 0 : getColumnIndex().hashCode());
@@ -2368,6 +2489,10 @@ public class Block implements Serializable {
         if (other.getText() == null ^ this.getText() == null)
             return false;
         if (other.getText() != null && other.getText().equals(this.getText()) == false)
+            return false;
+        if (other.getTextType() == null ^ this.getTextType() == null)
+            return false;
+        if (other.getTextType() != null && other.getTextType().equals(this.getTextType()) == false)
             return false;
         if (other.getRowIndex() == null ^ this.getRowIndex() == null)
             return false;

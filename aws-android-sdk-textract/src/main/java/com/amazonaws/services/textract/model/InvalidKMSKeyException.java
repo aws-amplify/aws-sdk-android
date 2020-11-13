@@ -19,21 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The document can't be processed because it's too large. The maximum document
- * size for synchronous operations 10 MB. The maximum document size for
- * asynchronous operations is 500 MB for PDF files.
+ * Indicates you do not have decrypt permissions with the KMS key entered, or
+ * the KMS key was entered incorrectly.
  * </p>
  */
-public class DocumentTooLargeException extends AmazonServiceException {
+public class InvalidKMSKeyException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new DocumentTooLargeException with the specified error
-     * message.
+     * Constructs a new InvalidKMSKeyException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public DocumentTooLargeException(String message) {
+    public InvalidKMSKeyException(String message) {
         super(message);
     }
 }

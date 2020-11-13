@@ -102,6 +102,11 @@ public class StartDocumentAnalysisRequestMarshaller implements
                 jsonWriter.name("OutputConfig");
                 OutputConfigJsonMarshaller.getInstance().marshall(outputConfig, jsonWriter);
             }
+            if (startDocumentAnalysisRequest.getKMSKeyId() != null) {
+                String kMSKeyId = startDocumentAnalysisRequest.getKMSKeyId();
+                jsonWriter.name("KMSKeyId");
+                jsonWriter.value(kMSKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -44,6 +44,9 @@ class BlockJsonUnmarshaller implements Unmarshaller<Block, JsonUnmarshallerConte
             } else if (name.equals("Text")) {
                 block.setText(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TextType")) {
+                block.setTextType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("RowIndex")) {
                 block.setRowIndex(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

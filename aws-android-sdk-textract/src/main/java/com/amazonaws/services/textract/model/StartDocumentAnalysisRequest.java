@@ -119,6 +119,21 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
+     * The KMS key used to encrypt the inference results. This can be in either
+     * Key ID or Key Alias format. When a KMS key is provided, the KMS key will
+     * be used for server-side encryption of the objects in the customer bucket.
+     * When this parameter is not enabled, the result will be encrypted server
+     * side,using SSE-S3.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     */
+    private String kMSKeyId;
+
+    /**
+     * <p>
      * The location of the document to be processed.
      * </p>
      *
@@ -571,6 +586,89 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
     }
 
     /**
+     * <p>
+     * The KMS key used to encrypt the inference results. This can be in either
+     * Key ID or Key Alias format. When a KMS key is provided, the KMS key will
+     * be used for server-side encryption of the objects in the customer bucket.
+     * When this parameter is not enabled, the result will be encrypted server
+     * side,using SSE-S3.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @return <p>
+     *         The KMS key used to encrypt the inference results. This can be in
+     *         either Key ID or Key Alias format. When a KMS key is provided,
+     *         the KMS key will be used for server-side encryption of the
+     *         objects in the customer bucket. When this parameter is not
+     *         enabled, the result will be encrypted server side,using SSE-S3.
+     *         </p>
+     */
+    public String getKMSKeyId() {
+        return kMSKeyId;
+    }
+
+    /**
+     * <p>
+     * The KMS key used to encrypt the inference results. This can be in either
+     * Key ID or Key Alias format. When a KMS key is provided, the KMS key will
+     * be used for server-side encryption of the objects in the customer bucket.
+     * When this parameter is not enabled, the result will be encrypted server
+     * side,using SSE-S3.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param kMSKeyId <p>
+     *            The KMS key used to encrypt the inference results. This can be
+     *            in either Key ID or Key Alias format. When a KMS key is
+     *            provided, the KMS key will be used for server-side encryption
+     *            of the objects in the customer bucket. When this parameter is
+     *            not enabled, the result will be encrypted server side,using
+     *            SSE-S3.
+     *            </p>
+     */
+    public void setKMSKeyId(String kMSKeyId) {
+        this.kMSKeyId = kMSKeyId;
+    }
+
+    /**
+     * <p>
+     * The KMS key used to encrypt the inference results. This can be in either
+     * Key ID or Key Alias format. When a KMS key is provided, the KMS key will
+     * be used for server-side encryption of the objects in the customer bucket.
+     * When this parameter is not enabled, the result will be encrypted server
+     * side,using SSE-S3.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param kMSKeyId <p>
+     *            The KMS key used to encrypt the inference results. This can be
+     *            in either Key ID or Key Alias format. When a KMS key is
+     *            provided, the KMS key will be used for server-side encryption
+     *            of the objects in the customer bucket. When this parameter is
+     *            not enabled, the result will be encrypted server side,using
+     *            SSE-S3.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartDocumentAnalysisRequest withKMSKeyId(String kMSKeyId) {
+        this.kMSKeyId = kMSKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -592,7 +690,9 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
         if (getNotificationChannel() != null)
             sb.append("NotificationChannel: " + getNotificationChannel() + ",");
         if (getOutputConfig() != null)
-            sb.append("OutputConfig: " + getOutputConfig());
+            sb.append("OutputConfig: " + getOutputConfig() + ",");
+        if (getKMSKeyId() != null)
+            sb.append("KMSKeyId: " + getKMSKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -613,6 +713,7 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
                 + ((getNotificationChannel() == null) ? 0 : getNotificationChannel().hashCode());
         hashCode = prime * hashCode
                 + ((getOutputConfig() == null) ? 0 : getOutputConfig().hashCode());
+        hashCode = prime * hashCode + ((getKMSKeyId() == null) ? 0 : getKMSKeyId().hashCode());
         return hashCode;
     }
 
@@ -655,6 +756,10 @@ public class StartDocumentAnalysisRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getOutputConfig() != null
                 && other.getOutputConfig().equals(this.getOutputConfig()) == false)
+            return false;
+        if (other.getKMSKeyId() == null ^ this.getKMSKeyId() == null)
+            return false;
+        if (other.getKMSKeyId() != null && other.getKMSKeyId().equals(this.getKMSKeyId()) == false)
             return false;
         return true;
     }
