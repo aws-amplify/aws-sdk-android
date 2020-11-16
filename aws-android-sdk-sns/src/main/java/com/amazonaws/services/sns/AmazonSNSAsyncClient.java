@@ -45,6 +45,12 @@ import com.amazonaws.services.sns.model.*;
  * SNS Developer Guide</a>.
  * </p>
  * <p>
+ * For information on the permissions you need to use this API, see <a href=
+ * "https://docs.aws.amazon.com/sns/latest/dg/sns-authentication-and-access-control.html"
+ * >Identity and access management in Amazon SNS</a> in the <i>Amazon SNS
+ * Developer Guide.</i>
+ * </p>
+ * <p>
  * We also provide SDKs that enable you to access Amazon SNS from your preferred
  * programming language. The SDKs contain functionality that automatically takes
  * care of tasks such as: cryptographically signing your service requests,
@@ -2939,7 +2945,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
      * HTTP/S or email, or if the endpoint and the topic are not in the same AWS
-     * account, the endpoint owner must the <code>ConfirmSubscription</code>
+     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
      * action to confirm the subscription.
      * </p>
      * <p>
@@ -2984,7 +2990,7 @@ public class AmazonSNSAsyncClient extends AmazonSNSClient implements AmazonSNSAs
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
      * HTTP/S or email, or if the endpoint and the topic are not in the same AWS
-     * account, the endpoint owner must the <code>ConfirmSubscription</code>
+     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
      * action to confirm the subscription.
      * </p>
      * <p>

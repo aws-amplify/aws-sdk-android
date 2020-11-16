@@ -40,7 +40,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -106,8 +106,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that this action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -206,7 +205,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -247,8 +246,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *         </p>
      *         <p>
      *         The following lists the names, descriptions, and values of the
-     *         special request parameters that the
-     *         <code>SetTopicAttributes</code> action uses:
+     *         special request parameters that this action uses:
      *         </p>
      *         <ul>
      *         <li>
@@ -295,7 +293,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -336,8 +334,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that this action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -385,7 +382,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -429,8 +426,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that this action uses:
      *            </p>
      *            <ul>
      *            <li>
