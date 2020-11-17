@@ -23,6 +23,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates the identity information for the specified user.
  * </p>
+ * <important>
+ * <p>
+ * Someone with the ability to invoke <code>UpdateUserIndentityInfo</code> can
+ * change the login credentials of other users by changing their email address.
+ * This poses a security risk to your organization. They can change the email
+ * address of a user to the attacker's email address, and then reset the
+ * password through email. We strongly recommend limiting who has the ability to
+ * invoke <code>UpdateUserIndentityInfo</code>. For more information, see <a
+ * href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html"
+ * >Best Practices for Security Profiles</a> in the <i>Amazon Connect
+ * Administrator Guide</i>.
+ * </p>
+ * </important>
  */
 public class UpdateUserIdentityInfoRequest extends AmazonWebServiceRequest implements Serializable {
     /**
