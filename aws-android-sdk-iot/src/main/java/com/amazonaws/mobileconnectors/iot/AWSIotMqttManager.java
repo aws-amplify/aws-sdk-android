@@ -1978,8 +1978,7 @@ public class AWSIotMqttManager {
     }
 
     /**
-     *
-     * @return sessionPresent
+     * @return the session present flag from a connack
      */
     public boolean getSessionPresent() {
         return sessionPresent;

@@ -11,6 +11,8 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.VersionInfoUtils;
 
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.junit.After;
@@ -3022,64 +3024,46 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
-    public void testMqttSessionPresentWithCleanSession() throws MqttException {
+    public void testMqttSessionPresent() throws MqttException {
+        // Test if sessionPresent flag from AWSIotMqttManager is correctly passed from the MqttClient
+        final boolean[] actualSessionPresent = new boolean[1];
         MockMqttClient mockClient = new MockMqttClient();
-//        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        IMqttActionListener listener = new IMqttActionListener() {
+            @Override
+            public void onSuccess(IMqttToken asyncActionToken) {
+                // Extract the actual sessionPresent flag from MqttClient and store it
+                actualSessionPresent[0] = asyncActionToken.getSessionPresent();
+            }
 
-        final AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+            @Override
+            public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
+                System.out.println("An error occurs within MqttClient" + exception);
+            }
+        };
+        mockClient.testToken.setActionCallback(listener);
+
+        final AWSIotMqttManager testSessionPresentFlag = new AWSIotMqttManager("test-sessionPresent-flag",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
-        testClient.setMqttClient(mockClient);
+        testSessionPresentFlag.setMqttClient(mockClient);
 
         KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
                 KEYSTORE_NAME, KEYSTORE_PASSWORD);
 
-        testClient.setCleanSession(true);
-
-        testClient.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
+        testSessionPresentFlag.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
                 if (status == AWSIotMqttClientStatus.Connecting) {
                     System.out.println("Client persistent-client-id connecton status: " + status);
-                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
-                    assertFalse(testClient.getSessionPresent());
+                    System.out.println("getSessionPresent: " + testSessionPresentFlag.getSessionPresent());
+                    // Compare sessionPresent flag from AWSIotMqttManager with the actual one
+                    assertEquals(testSessionPresentFlag.getSessionPresent(), actualSessionPresent[0]);
                 } else if (status == AWSIotMqttClientStatus.Connected) {
                     System.out.println("Client persistent-client-id connecton status: " + status);
-                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
-                    assertFalse(testClient.getSessionPresent());
+                    System.out.println("getSessionPresent: " + testSessionPresentFlag.getSessionPresent());
+                    assertEquals(testSessionPresentFlag.getSessionPresent(), actualSessionPresent[0]);
                 }
             }
         });
-    }
-
-    @Test
-    public void testMqttSessionPresentWithoutCleanSession() throws MqttException {
-        MockMqttClient mockClient = new MockMqttClient();
-//        final CountDownLatch countDownLatch = new CountDownLatch(1);
-
-        final AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
-                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
-        testClient.setMqttClient(mockClient);
-
-        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
-                KEYSTORE_NAME, KEYSTORE_PASSWORD);
-
-        testClient.setCleanSession(false);
-
-        testClient.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
-            @Override
-            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                if (status == AWSIotMqttClientStatus.Connecting) {
-                    System.out.println("Client persistent-client-id connecton status: " + status);
-                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
-                    assertFalse(testClient.getSessionPresent());
-                } else if (status == AWSIotMqttClientStatus.Connected) {
-                    System.out.println("Client persistent-client-id connecton status: " + status);
-                    System.out.println("getSessionPresent: " + testClient.getSessionPresent());
-                    assertFalse(testClient.getSessionPresent());
-                }
-            }
-        });
-
     }
 
     /**
