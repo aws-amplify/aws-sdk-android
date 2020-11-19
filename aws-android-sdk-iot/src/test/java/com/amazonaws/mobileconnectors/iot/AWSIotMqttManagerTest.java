@@ -3022,11 +3022,12 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test
-    public void testMqttSessionPresent() throws MqttException {
+    public void testMqttSessionPresent() throws MqttException, InterruptedException {
         // Test if sessionPresent flag from AWSIotMqttManager is correctly passed from the MqttClient
         MockMqttClient mockClient = new MockMqttClient();
         final boolean actualSessionPresent;
         actualSessionPresent = mockClient.testToken.getSessionPresent();
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
 
         final AWSIotMqttManager testSessionPresentFlag = new AWSIotMqttManager("test-sessionPresent-flag",
                 Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
@@ -3038,18 +3039,18 @@ public class AWSIotMqttManagerTest {
         testSessionPresentFlag.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
             @Override
             public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
-                if (status == AWSIotMqttClientStatus.Connecting) {
-                    System.out.println("Client persistent-client-id connecton status: " + status);
+                if (status == AWSIotMqttClientStatus.Connecting || status == AWSIotMqttClientStatus.Connected) {
+                    System.out.println("Client persistent-client-id connection status: " + status);
                     System.out.println("getSessionPresent: " + testSessionPresentFlag.getSessionPresent());
-                    // Compare sessionPresent flag from AWSIotMqttManager with the actual one
-                    assertEquals(testSessionPresentFlag.getSessionPresent(), actualSessionPresent);
-                } else if (status == AWSIotMqttClientStatus.Connected) {
-                    System.out.println("Client persistent-client-id connecton status: " + status);
-                    System.out.println("getSessionPresent: " + testSessionPresentFlag.getSessionPresent());
-                    assertEquals(testSessionPresentFlag.getSessionPresent(), actualSessionPresent);
+                    countDownLatch.countDown();
                 }
             }
         });
+
+        if (countDownLatch.await(2, TimeUnit.SECONDS)) {
+            // Compare sessionPresent flag from AWSIotMqttManager with the actual one
+            assertEquals(testSessionPresentFlag.getSessionPresent(), actualSessionPresent);
+        }
     }
 
     /**

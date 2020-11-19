@@ -160,8 +160,9 @@ public class AWSIotMqttManager {
     /** Do we need to resubscribe upon reconnecting? */
     private boolean needResubscribe;
 
-    /** The session present flag tells the client whether the broker already has a
-     *  persistent session available from previous interactions with the client.
+    /**
+     * The session present flag tells the client whether the broker already has a
+     * persistent session available from previous interactions with the client.
      */
     private boolean sessionPresent;
 
@@ -1182,10 +1183,12 @@ public class AWSIotMqttManager {
 
                     if (!userDisconnect && autoReconnect) {
                         connectionState = MqttManagerConnectionState.Reconnecting;
+                        sessionPresent = asyncActionToken.getSessionPresent();
                         userConnectionCallback(e);
                         scheduleReconnect();
                     } else {
                         connectionState = MqttManagerConnectionState.Disconnected;
+                        sessionPresent = asyncActionToken.getSessionPresent();
                         userConnectionCallback(e);
                     }
                     sessionPresent = asyncActionToken.getSessionPresent();
