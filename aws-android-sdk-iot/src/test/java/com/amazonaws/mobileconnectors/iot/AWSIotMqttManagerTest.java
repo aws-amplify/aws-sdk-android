@@ -1,10 +1,6 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
@@ -36,6 +32,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+
+import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, sdk = 16)
@@ -3019,6 +3020,40 @@ public class AWSIotMqttManagerTest {
         assertTrue(testClient.isMetricsEnabled());
         testClient.setMetricsIsEnabled(false);
         assertFalse(testClient.isMetricsEnabled());
+    }
+
+    @Test
+    public void testMqttSessionPresent() throws MqttException, InterruptedException {
+        // Test if sessionPresent flag from AWSIotMqttManager is correctly passed from the MqttClient
+        MockMqttClient mockClient = new MockMqttClient();
+        final boolean actualSessionPresent;
+        actualSessionPresent = mockClient.testToken.getSessionPresent();
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        final AWSIotMqttManager testSessionPresentFlag = new AWSIotMqttManager("test-sessionPresent-flag",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testSessionPresentFlag.setMqttClient(mockClient);
+
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                KEYSTORE_NAME, KEYSTORE_PASSWORD);
+
+        testSessionPresentFlag.connect(testKeystore, new AWSIotMqttClientStatusCallback() {
+            @Override
+            public void onStatusChanged(AWSIotMqttClientStatus status, Throwable throwable) {
+                if (status == AWSIotMqttClientStatus.Connecting || status == AWSIotMqttClientStatus.Connected) {
+                    System.out.println("Client persistent-client-id connection status: " + status);
+                    System.out.println("getSessionPresent: " + testSessionPresentFlag.getSessionPresent());
+                    countDownLatch.countDown();
+                }
+            }
+        });
+
+        if (countDownLatch.await(2, TimeUnit.SECONDS)) {
+            // Compare sessionPresent flag from AWSIotMqttManager with the actual one
+            assertEquals(testSessionPresentFlag.getSessionPresent(), actualSessionPresent);
+        } else {
+            fail("CountDownLatch timed out.");
+        }
     }
 
     /**
