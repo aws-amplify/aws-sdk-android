@@ -49,6 +49,11 @@ public class GetSessionResultJsonUnmarshaller implements
             } else if (name.equals("dialogAction")) {
                 getSessionResult.setDialogAction(DialogActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("activeContexts")) {
+                getSessionResult.setActiveContexts(new ListUnmarshaller<ActiveContext>(
+                        ActiveContextJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

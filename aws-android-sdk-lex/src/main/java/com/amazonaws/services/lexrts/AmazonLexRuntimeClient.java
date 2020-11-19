@@ -357,6 +357,7 @@ public class AmazonLexRuntimeClient extends AmazonWebServiceClient implements Am
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
+        setServiceNameIntern("lex");
         this.setEndpoint("runtime.lex.us-east-1.amazonaws.com");
         this.endpointPrefix = "runtime.lex";
 

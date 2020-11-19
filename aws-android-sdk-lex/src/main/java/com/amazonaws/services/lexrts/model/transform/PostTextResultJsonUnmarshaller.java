@@ -79,6 +79,11 @@ public class PostTextResultJsonUnmarshaller implements
             } else if (name.equals("botVersion")) {
                 postTextResult.setBotVersion(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("activeContexts")) {
+                postTextResult.setActiveContexts(new ListUnmarshaller<ActiveContext>(
+                        ActiveContextJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

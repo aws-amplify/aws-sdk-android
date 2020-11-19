@@ -66,6 +66,8 @@ public class PostContentResultJsonUnmarshaller implements
             postContentResult.setBotVersion(context.getHeader("x-amz-lex-bot-version"));
         if (context.getHeader("x-amz-lex-session-id") != null)
             postContentResult.setSessionId(context.getHeader("x-amz-lex-session-id"));
+        if (context.getHeader("x-amz-lex-active-contexts") != null)
+            postContentResult.setActiveContexts(context.getHeader("x-amz-lex-active-contexts"));
         return postContentResult;
     }
 

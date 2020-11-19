@@ -107,6 +107,19 @@ public class PutSessionRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (putSessionRequest.getActiveContexts() != null) {
+                java.util.List<ActiveContext> activeContexts = putSessionRequest
+                        .getActiveContexts();
+                jsonWriter.name("activeContexts");
+                jsonWriter.beginArray();
+                for (ActiveContext activeContextsItem : activeContexts) {
+                    if (activeContextsItem != null) {
+                        ActiveContextJsonMarshaller.getInstance().marshall(activeContextsItem,
+                                jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

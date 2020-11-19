@@ -178,6 +178,13 @@ public class PutSessionResult implements Serializable {
 
     /**
      * <p>
+     * A list of active contexts for the session.
+     * </p>
+     */
+    private String activeContexts;
+
+    /**
+     * <p>
      * Content type as specified in the <code>Accept</code> HTTP header in the
      * request.
      * </p>
@@ -1497,6 +1504,51 @@ public class PutSessionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     *
+     * @return <p>
+     *         A list of active contexts for the session.
+     *         </p>
+     */
+    public String getActiveContexts() {
+        return activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session.
+     *            </p>
+     */
+    public void setActiveContexts(String activeContexts) {
+        this.activeContexts = activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutSessionResult withActiveContexts(String activeContexts) {
+        this.activeContexts = activeContexts;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1526,7 +1578,9 @@ public class PutSessionResult implements Serializable {
         if (getAudioStream() != null)
             sb.append("audioStream: " + getAudioStream() + ",");
         if (getSessionId() != null)
-            sb.append("sessionId: " + getSessionId());
+            sb.append("sessionId: " + getSessionId() + ",");
+        if (getActiveContexts() != null)
+            sb.append("activeContexts: " + getActiveContexts());
         sb.append("}");
         return sb.toString();
     }
@@ -1552,6 +1606,8 @@ public class PutSessionResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getAudioStream() == null) ? 0 : getAudioStream().hashCode());
         hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getActiveContexts() == null) ? 0 : getActiveContexts().hashCode());
         return hashCode;
     }
 
@@ -1613,6 +1669,11 @@ public class PutSessionResult implements Serializable {
             return false;
         if (other.getSessionId() != null
                 && other.getSessionId().equals(this.getSessionId()) == false)
+            return false;
+        if (other.getActiveContexts() == null ^ this.getActiveContexts() == null)
+            return false;
+        if (other.getActiveContexts() != null
+                && other.getActiveContexts().equals(this.getActiveContexts()) == false)
             return false;
         return true;
     }

@@ -16,6 +16,7 @@
 package com.amazonaws.services.lexrts.model.transform;
 
 import com.amazonaws.services.lexrts.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**

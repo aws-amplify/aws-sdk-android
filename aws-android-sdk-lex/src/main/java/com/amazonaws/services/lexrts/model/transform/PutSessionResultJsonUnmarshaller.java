@@ -54,6 +54,8 @@ public class PutSessionResultJsonUnmarshaller implements
         }
         if (context.getHeader("x-amz-lex-session-id") != null)
             putSessionResult.setSessionId(context.getHeader("x-amz-lex-session-id"));
+        if (context.getHeader("x-amz-lex-active-contexts") != null)
+            putSessionResult.setActiveContexts(context.getHeader("x-amz-lex-active-contexts"));
         return putSessionResult;
     }
 

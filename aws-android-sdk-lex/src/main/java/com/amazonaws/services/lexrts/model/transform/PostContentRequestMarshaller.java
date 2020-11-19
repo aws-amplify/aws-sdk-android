@@ -67,6 +67,10 @@ public class PostContentRequestMarshaller implements
         if (postContentRequest.getAccept() != null) {
             request.addHeader("Accept", StringUtils.fromString(postContentRequest.getAccept()));
         }
+        if (postContentRequest.getActiveContexts() != null) {
+            request.addHeader("x-amz-lex-active-contexts",
+                    StringUtils.fromString(postContentRequest.getActiveContexts()));
+        }
         String uriResourcePath = "/bot/{botName}/alias/{botAlias}/user/{userId}/content";
         uriResourcePath = uriResourcePath.replace(
                 "{botName}",

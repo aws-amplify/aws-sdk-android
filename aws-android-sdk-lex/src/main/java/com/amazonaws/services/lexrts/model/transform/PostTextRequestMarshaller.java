@@ -105,6 +105,18 @@ public class PostTextRequestMarshaller implements
                 jsonWriter.name("inputText");
                 jsonWriter.value(inputText);
             }
+            if (postTextRequest.getActiveContexts() != null) {
+                java.util.List<ActiveContext> activeContexts = postTextRequest.getActiveContexts();
+                jsonWriter.name("activeContexts");
+                jsonWriter.beginArray();
+                for (ActiveContext activeContextsItem : activeContexts) {
+                    if (activeContextsItem != null) {
+                        ActiveContextJsonMarshaller.getInstance().marshall(activeContextsItem,
+                                jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
