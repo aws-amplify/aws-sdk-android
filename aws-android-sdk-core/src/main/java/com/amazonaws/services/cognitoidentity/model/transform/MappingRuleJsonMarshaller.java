@@ -16,6 +16,7 @@
 package com.amazonaws.services.cognitoidentity.model.transform;
 
 import com.amazonaws.services.cognitoidentity.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
