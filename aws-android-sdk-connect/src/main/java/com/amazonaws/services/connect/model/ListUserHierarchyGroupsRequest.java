@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides summary information about the hierarchy groups for the specified
  * Amazon Connect instance.
  * </p>
+ * <p>
+ * For more information about agent hierarchies, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html"
+ * >Set Up Agent Hierarchies</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
+ * </p>
  */
 public class ListUserHierarchyGroupsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

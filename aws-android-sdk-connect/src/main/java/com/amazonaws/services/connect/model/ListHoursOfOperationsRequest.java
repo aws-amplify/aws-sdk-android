@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides information about the hours of operation for the specified Amazon
  * Connect instance.
  * </p>
+ * <p>
+ * For more information about hours of operation, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html"
+ * >Set the Hours of Operation for a Queue</a> in the <i>Amazon Connect
+ * Administrator Guide</i>.
+ * </p>
  */
 public class ListHoursOfOperationsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
