@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+
+## [Release 2.19.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.3)
+
+### New Features
+
+- **AWS IOT**
+  - Added getSessionPresent() to AWSIotMqttManager.  The session present flag tells the client whether the broker already has a persistent session available from previous interactions with the client.  See the [MQTT documentation](https://www.hivemq.com/blog/mqtt-essentials-part-3-client-broker-connection-establishment/) for more details on its use.  [#2231](https://github.com/aws-amplify/aws-sdk-android/pull/2231)
+
 ## [Release 2.19.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.2)
 
 ### New Features
