@@ -102,7 +102,7 @@ public class LookupDeveloperIdentityRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -356,7 +356,7 @@ public class LookupDeveloperIdentityRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -386,7 +386,7 @@ public class LookupDeveloperIdentityRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -419,7 +419,7 @@ public class LookupDeveloperIdentityRequest extends AmazonWebServiceRequest impl
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>

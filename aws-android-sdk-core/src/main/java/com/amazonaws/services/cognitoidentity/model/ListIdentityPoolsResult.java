@@ -36,7 +36,7 @@ public class ListIdentityPoolsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      */
     private String nextToken;
@@ -123,7 +123,7 @@ public class ListIdentityPoolsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @return <p>
@@ -140,7 +140,7 @@ public class ListIdentityPoolsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
@@ -160,7 +160,7 @@ public class ListIdentityPoolsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 65535<br/>
      * <b>Pattern: </b>[\S]+<br/>
      *
      * @param nextToken <p>
