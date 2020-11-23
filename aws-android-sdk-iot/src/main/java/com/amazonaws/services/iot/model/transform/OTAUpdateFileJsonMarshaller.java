@@ -31,6 +31,11 @@ class OTAUpdateFileJsonMarshaller {
             jsonWriter.name("fileName");
             jsonWriter.value(fileName);
         }
+        if (oTAUpdateFile.getFileType() != null) {
+            Integer fileType = oTAUpdateFile.getFileType();
+            jsonWriter.name("fileType");
+            jsonWriter.value(fileType);
+        }
         if (oTAUpdateFile.getFileVersion() != null) {
             String fileVersion = oTAUpdateFile.getFileVersion();
             jsonWriter.name("fileVersion");
