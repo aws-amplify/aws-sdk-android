@@ -32,6 +32,17 @@ public class OTAUpdateFile implements Serializable {
 
     /**
      * <p>
+     * An integer value you can include in the job document to allow your
+     * devices to identify the type of file received from the cloud.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 255<br/>
+     */
+    private Integer fileType;
+
+    /**
+     * <p>
      * The file version.
      * </p>
      */
@@ -100,6 +111,69 @@ public class OTAUpdateFile implements Serializable {
      */
     public OTAUpdateFile withFileName(String fileName) {
         this.fileName = fileName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * An integer value you can include in the job document to allow your
+     * devices to identify the type of file received from the cloud.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 255<br/>
+     *
+     * @return <p>
+     *         An integer value you can include in the job document to allow
+     *         your devices to identify the type of file received from the
+     *         cloud.
+     *         </p>
+     */
+    public Integer getFileType() {
+        return fileType;
+    }
+
+    /**
+     * <p>
+     * An integer value you can include in the job document to allow your
+     * devices to identify the type of file received from the cloud.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 255<br/>
+     *
+     * @param fileType <p>
+     *            An integer value you can include in the job document to allow
+     *            your devices to identify the type of file received from the
+     *            cloud.
+     *            </p>
+     */
+    public void setFileType(Integer fileType) {
+        this.fileType = fileType;
+    }
+
+    /**
+     * <p>
+     * An integer value you can include in the job document to allow your
+     * devices to identify the type of file received from the cloud.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - 255<br/>
+     *
+     * @param fileType <p>
+     *            An integer value you can include in the job document to allow
+     *            your devices to identify the type of file received from the
+     *            cloud.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public OTAUpdateFile withFileType(Integer fileType) {
+        this.fileType = fileType;
         return this;
     }
 
@@ -333,6 +407,8 @@ public class OTAUpdateFile implements Serializable {
         sb.append("{");
         if (getFileName() != null)
             sb.append("fileName: " + getFileName() + ",");
+        if (getFileType() != null)
+            sb.append("fileType: " + getFileType() + ",");
         if (getFileVersion() != null)
             sb.append("fileVersion: " + getFileVersion() + ",");
         if (getFileLocation() != null)
@@ -351,6 +427,7 @@ public class OTAUpdateFile implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getFileName() == null) ? 0 : getFileName().hashCode());
+        hashCode = prime * hashCode + ((getFileType() == null) ? 0 : getFileType().hashCode());
         hashCode = prime * hashCode
                 + ((getFileVersion() == null) ? 0 : getFileVersion().hashCode());
         hashCode = prime * hashCode
@@ -375,6 +452,10 @@ public class OTAUpdateFile implements Serializable {
         if (other.getFileName() == null ^ this.getFileName() == null)
             return false;
         if (other.getFileName() != null && other.getFileName().equals(this.getFileName()) == false)
+            return false;
+        if (other.getFileType() == null ^ this.getFileType() == null)
+            return false;
+        if (other.getFileType() != null && other.getFileType().equals(this.getFileType()) == false)
             return false;
         if (other.getFileVersion() == null ^ this.getFileVersion() == null)
             return false;
