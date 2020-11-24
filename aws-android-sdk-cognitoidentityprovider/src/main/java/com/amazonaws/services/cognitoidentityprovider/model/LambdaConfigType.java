@@ -155,6 +155,37 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
+     * A custom SMS sender AWS Lambda trigger.
+     * </p>
+     */
+    private CustomSMSLambdaVersionConfigType customSMSSender;
+
+    /**
+     * <p>
+     * A custom email sender AWS Lambda trigger.
+     * </p>
+     */
+    private CustomEmailLambdaVersionConfigType customEmailSender;
+
+    /**
+     * <p>
+     * The Amazon Resource Name of Key Management Service <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
+     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
+     * temporary passwords sent to <code>CustomEmailSender</code> and
+     * <code>CustomSMSSender</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     */
+    private String kMSKeyID;
+
+    /**
+     * <p>
      * A pre-registration AWS Lambda trigger.
      * </p>
      * <p>
@@ -784,6 +815,186 @@ public class LambdaConfigType implements Serializable {
     }
 
     /**
+     * <p>
+     * A custom SMS sender AWS Lambda trigger.
+     * </p>
+     *
+     * @return <p>
+     *         A custom SMS sender AWS Lambda trigger.
+     *         </p>
+     */
+    public CustomSMSLambdaVersionConfigType getCustomSMSSender() {
+        return customSMSSender;
+    }
+
+    /**
+     * <p>
+     * A custom SMS sender AWS Lambda trigger.
+     * </p>
+     *
+     * @param customSMSSender <p>
+     *            A custom SMS sender AWS Lambda trigger.
+     *            </p>
+     */
+    public void setCustomSMSSender(CustomSMSLambdaVersionConfigType customSMSSender) {
+        this.customSMSSender = customSMSSender;
+    }
+
+    /**
+     * <p>
+     * A custom SMS sender AWS Lambda trigger.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customSMSSender <p>
+     *            A custom SMS sender AWS Lambda trigger.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public LambdaConfigType withCustomSMSSender(CustomSMSLambdaVersionConfigType customSMSSender) {
+        this.customSMSSender = customSMSSender;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A custom email sender AWS Lambda trigger.
+     * </p>
+     *
+     * @return <p>
+     *         A custom email sender AWS Lambda trigger.
+     *         </p>
+     */
+    public CustomEmailLambdaVersionConfigType getCustomEmailSender() {
+        return customEmailSender;
+    }
+
+    /**
+     * <p>
+     * A custom email sender AWS Lambda trigger.
+     * </p>
+     *
+     * @param customEmailSender <p>
+     *            A custom email sender AWS Lambda trigger.
+     *            </p>
+     */
+    public void setCustomEmailSender(CustomEmailLambdaVersionConfigType customEmailSender) {
+        this.customEmailSender = customEmailSender;
+    }
+
+    /**
+     * <p>
+     * A custom email sender AWS Lambda trigger.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param customEmailSender <p>
+     *            A custom email sender AWS Lambda trigger.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public LambdaConfigType withCustomEmailSender(
+            CustomEmailLambdaVersionConfigType customEmailSender) {
+        this.customEmailSender = customEmailSender;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name of Key Management Service <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
+     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
+     * temporary passwords sent to <code>CustomEmailSender</code> and
+     * <code>CustomSMSSender</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name of Key Management Service <a
+     *         href="/kms/latest/developerguide/concepts.html#master_keys"
+     *         >Customer master keys</a> . Amazon Cognito uses the key to
+     *         encrypt codes and temporary passwords sent to
+     *         <code>CustomEmailSender</code> and <code>CustomSMSSender</code>.
+     *         </p>
+     */
+    public String getKMSKeyID() {
+        return kMSKeyID;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name of Key Management Service <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
+     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
+     * temporary passwords sent to <code>CustomEmailSender</code> and
+     * <code>CustomSMSSender</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     *
+     * @param kMSKeyID <p>
+     *            The Amazon Resource Name of Key Management Service <a
+     *            href="/kms/latest/developerguide/concepts.html#master_keys"
+     *            >Customer master keys</a> . Amazon Cognito uses the key to
+     *            encrypt codes and temporary passwords sent to
+     *            <code>CustomEmailSender</code> and
+     *            <code>CustomSMSSender</code>.
+     *            </p>
+     */
+    public void setKMSKeyID(String kMSKeyID) {
+        this.kMSKeyID = kMSKeyID;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name of Key Management Service <a
+     * href="/kms/latest/developerguide/concepts.html#master_keys">Customer
+     * master keys</a> . Amazon Cognito uses the key to encrypt codes and
+     * temporary passwords sent to <code>CustomEmailSender</code> and
+     * <code>CustomSMSSender</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern:
+     * </b>arn:[\w+=/,.@-]+:[\w+=/,.@-]+:([\w+=/,.@-]*)?:[0-9]+:[\w+=
+     * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
+     *
+     * @param kMSKeyID <p>
+     *            The Amazon Resource Name of Key Management Service <a
+     *            href="/kms/latest/developerguide/concepts.html#master_keys"
+     *            >Customer master keys</a> . Amazon Cognito uses the key to
+     *            encrypt codes and temporary passwords sent to
+     *            <code>CustomEmailSender</code> and
+     *            <code>CustomSMSSender</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public LambdaConfigType withKMSKeyID(String kMSKeyID) {
+        this.kMSKeyID = kMSKeyID;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -813,7 +1024,13 @@ public class LambdaConfigType implements Serializable {
         if (getPreTokenGeneration() != null)
             sb.append("PreTokenGeneration: " + getPreTokenGeneration() + ",");
         if (getUserMigration() != null)
-            sb.append("UserMigration: " + getUserMigration());
+            sb.append("UserMigration: " + getUserMigration() + ",");
+        if (getCustomSMSSender() != null)
+            sb.append("CustomSMSSender: " + getCustomSMSSender() + ",");
+        if (getCustomEmailSender() != null)
+            sb.append("CustomEmailSender: " + getCustomEmailSender() + ",");
+        if (getKMSKeyID() != null)
+            sb.append("KMSKeyID: " + getKMSKeyID());
         sb.append("}");
         return sb.toString();
     }
@@ -844,6 +1061,11 @@ public class LambdaConfigType implements Serializable {
                 + ((getPreTokenGeneration() == null) ? 0 : getPreTokenGeneration().hashCode());
         hashCode = prime * hashCode
                 + ((getUserMigration() == null) ? 0 : getUserMigration().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomSMSSender() == null) ? 0 : getCustomSMSSender().hashCode());
+        hashCode = prime * hashCode
+                + ((getCustomEmailSender() == null) ? 0 : getCustomEmailSender().hashCode());
+        hashCode = prime * hashCode + ((getKMSKeyID() == null) ? 0 : getKMSKeyID().hashCode());
         return hashCode;
     }
 
@@ -909,6 +1131,20 @@ public class LambdaConfigType implements Serializable {
             return false;
         if (other.getUserMigration() != null
                 && other.getUserMigration().equals(this.getUserMigration()) == false)
+            return false;
+        if (other.getCustomSMSSender() == null ^ this.getCustomSMSSender() == null)
+            return false;
+        if (other.getCustomSMSSender() != null
+                && other.getCustomSMSSender().equals(this.getCustomSMSSender()) == false)
+            return false;
+        if (other.getCustomEmailSender() == null ^ this.getCustomEmailSender() == null)
+            return false;
+        if (other.getCustomEmailSender() != null
+                && other.getCustomEmailSender().equals(this.getCustomEmailSender()) == false)
+            return false;
+        if (other.getKMSKeyID() == null ^ this.getKMSKeyID() == null)
+            return false;
+        if (other.getKMSKeyID() != null && other.getKMSKeyID().equals(this.getKMSKeyID()) == false)
             return false;
         return true;
     }
