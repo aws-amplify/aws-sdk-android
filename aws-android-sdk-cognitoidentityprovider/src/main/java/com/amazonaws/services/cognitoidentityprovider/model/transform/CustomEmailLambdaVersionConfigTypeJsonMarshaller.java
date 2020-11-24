@@ -20,26 +20,31 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO UsernameConfigurationType
+ * JSON marshaller for POJO CustomEmailLambdaVersionConfigType
  */
-class UsernameConfigurationTypeJsonMarshaller {
+class CustomEmailLambdaVersionConfigTypeJsonMarshaller {
 
-    public void marshall(UsernameConfigurationType usernameConfigurationType,
+    public void marshall(CustomEmailLambdaVersionConfigType customEmailLambdaVersionConfigType,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (usernameConfigurationType.getCaseSensitive() != null) {
-            Boolean caseSensitive = usernameConfigurationType.getCaseSensitive();
-            jsonWriter.name("CaseSensitive");
-            jsonWriter.value(caseSensitive);
+        if (customEmailLambdaVersionConfigType.getLambdaVersion() != null) {
+            String lambdaVersion = customEmailLambdaVersionConfigType.getLambdaVersion();
+            jsonWriter.name("LambdaVersion");
+            jsonWriter.value(lambdaVersion);
+        }
+        if (customEmailLambdaVersionConfigType.getLambdaArn() != null) {
+            String lambdaArn = customEmailLambdaVersionConfigType.getLambdaArn();
+            jsonWriter.name("LambdaArn");
+            jsonWriter.value(lambdaArn);
         }
         jsonWriter.endObject();
     }
 
-    private static UsernameConfigurationTypeJsonMarshaller instance;
+    private static CustomEmailLambdaVersionConfigTypeJsonMarshaller instance;
 
-    public static UsernameConfigurationTypeJsonMarshaller getInstance() {
+    public static CustomEmailLambdaVersionConfigTypeJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new UsernameConfigurationTypeJsonMarshaller();
+            instance = new CustomEmailLambdaVersionConfigTypeJsonMarshaller();
         return instance;
     }
 }

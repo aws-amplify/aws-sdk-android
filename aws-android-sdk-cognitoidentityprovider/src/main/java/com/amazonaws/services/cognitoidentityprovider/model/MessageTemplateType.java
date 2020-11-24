@@ -36,7 +36,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The message template for email messages.
+     * The message template for email messages. EmailMessage is allowed only if
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +52,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The subject line for email messages.
+     * The subject line for email messages. EmailSubject is allowed only if <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -117,7 +123,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The message template for email messages.
+     * The message template for email messages. EmailMessage is allowed only if
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -127,7 +136,10 @@ public class MessageTemplateType implements Serializable {
      * N}\p{P}\s*]*<br/>
      *
      * @return <p>
-     *         The message template for email messages.
+     *         The message template for email messages. EmailMessage is allowed
+     *         only if <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *         >EmailSendingAccount</a> is DEVELOPER.
      *         </p>
      */
     public String getEmailMessage() {
@@ -136,7 +148,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The message template for email messages.
+     * The message template for email messages. EmailMessage is allowed only if
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +161,10 @@ public class MessageTemplateType implements Serializable {
      * N}\p{P}\s*]*<br/>
      *
      * @param emailMessage <p>
-     *            The message template for email messages.
+     *            The message template for email messages. EmailMessage is
+     *            allowed only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      */
     public void setEmailMessage(String emailMessage) {
@@ -155,7 +173,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The message template for email messages.
+     * The message template for email messages. EmailMessage is allowed only if
+     * <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -168,7 +189,10 @@ public class MessageTemplateType implements Serializable {
      * N}\p{P}\s*]*<br/>
      *
      * @param emailMessage <p>
-     *            The message template for email messages.
+     *            The message template for email messages. EmailMessage is
+     *            allowed only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -180,7 +204,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The subject line for email messages.
+     * The subject line for email messages. EmailSubject is allowed only if <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -188,7 +215,10 @@ public class MessageTemplateType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @return <p>
-     *         The subject line for email messages.
+     *         The subject line for email messages. EmailSubject is allowed only
+     *         if <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *         >EmailSendingAccount</a> is DEVELOPER.
      *         </p>
      */
     public String getEmailSubject() {
@@ -197,7 +227,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The subject line for email messages.
+     * The subject line for email messages. EmailSubject is allowed only if <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -205,7 +238,10 @@ public class MessageTemplateType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @param emailSubject <p>
-     *            The subject line for email messages.
+     *            The subject line for email messages. EmailSubject is allowed
+     *            only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      */
     public void setEmailSubject(String emailSubject) {
@@ -214,7 +250,10 @@ public class MessageTemplateType implements Serializable {
 
     /**
      * <p>
-     * The subject line for email messages.
+     * The subject line for email messages. EmailSubject is allowed only if <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     * >EmailSendingAccount</a> is DEVELOPER.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -225,7 +264,10 @@ public class MessageTemplateType implements Serializable {
      * <b>Pattern: </b>[\p{L}\p{M}\p{S}\p{N}\p{P}\s]+<br/>
      *
      * @param emailSubject <p>
-     *            The subject line for email messages.
+     *            The subject line for email messages. EmailSubject is allowed
+     *            only if <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_EmailConfigurationType.html#CognitoUserPools-Type-EmailConfigurationType-EmailSendingAccount"
+     *            >EmailSendingAccount</a> is DEVELOPER.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
