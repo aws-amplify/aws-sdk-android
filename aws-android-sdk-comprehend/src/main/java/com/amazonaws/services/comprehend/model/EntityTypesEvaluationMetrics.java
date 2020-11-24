@@ -44,7 +44,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
 
     /**
      * <p>
-     * A measure of how accurate the recognizer results are for for a specific
+     * A measure of how accurate the recognizer results are for a specific
      * entity type in the test data. It is derived from the
      * <code>Precision</code> and <code>Recall</code> values. The
      * <code>F1Score</code> is the harmonic average of the two scores. The
@@ -172,7 +172,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
 
     /**
      * <p>
-     * A measure of how accurate the recognizer results are for for a specific
+     * A measure of how accurate the recognizer results are for a specific
      * entity type in the test data. It is derived from the
      * <code>Precision</code> and <code>Recall</code> values. The
      * <code>F1Score</code> is the harmonic average of the two scores. The
@@ -180,7 +180,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
      * </p>
      *
      * @return <p>
-     *         A measure of how accurate the recognizer results are for for a
+     *         A measure of how accurate the recognizer results are for a
      *         specific entity type in the test data. It is derived from the
      *         <code>Precision</code> and <code>Recall</code> values. The
      *         <code>F1Score</code> is the harmonic average of the two scores.
@@ -193,7 +193,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
 
     /**
      * <p>
-     * A measure of how accurate the recognizer results are for for a specific
+     * A measure of how accurate the recognizer results are for a specific
      * entity type in the test data. It is derived from the
      * <code>Precision</code> and <code>Recall</code> values. The
      * <code>F1Score</code> is the harmonic average of the two scores. The
@@ -201,7 +201,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
      * </p>
      *
      * @param f1Score <p>
-     *            A measure of how accurate the recognizer results are for for a
+     *            A measure of how accurate the recognizer results are for a
      *            specific entity type in the test data. It is derived from the
      *            <code>Precision</code> and <code>Recall</code> values. The
      *            <code>F1Score</code> is the harmonic average of the two
@@ -214,7 +214,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
 
     /**
      * <p>
-     * A measure of how accurate the recognizer results are for for a specific
+     * A measure of how accurate the recognizer results are for a specific
      * entity type in the test data. It is derived from the
      * <code>Precision</code> and <code>Recall</code> values. The
      * <code>F1Score</code> is the harmonic average of the two scores. The
@@ -225,7 +225,7 @@ public class EntityTypesEvaluationMetrics implements Serializable {
      * together.
      *
      * @param f1Score <p>
-     *            A measure of how accurate the recognizer results are for for a
+     *            A measure of how accurate the recognizer results are for a
      *            specific entity type in the test data. It is derived from the
      *            <code>Precision</code> and <code>Recall</code> values. The
      *            <code>F1Score</code> is the harmonic average of the two
