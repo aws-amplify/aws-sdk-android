@@ -21,6 +21,14 @@ import java.io.Serializable;
  * <p>
  * The email configuration type.
  * </p>
+ * <note>
+ * <p>
+ * Amazon Cognito has specific regions for use with Amazon SES. For more
+ * information on the supported regions, see <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html"
+ * >Email Settings for Amazon Cognito User Pools</a>.
+ * </p>
+ * </note>
  */
 public class EmailConfigurationType implements Serializable {
     /**
@@ -93,7 +101,57 @@ public class EmailConfigurationType implements Serializable {
      * the FROM address, provide the ARN of an Amazon SES verified email address
      * for the <code>SourceArn</code> parameter.
      * </p>
-     * </dd>
+     * <p>
+     * If EmailSendingAccount is COGNITO_DEFAULT, the following parameters
+     * aren't allowed:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * EmailVerificationMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EmailVerificationSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessageByLink
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubject,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubjectByLink
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * DEVELOPER EmailSendingAccount is required.
+     * </p>
+     * </note></dd>
      * <dt>DEVELOPER</dt>
      * <dd>
      * <p>
@@ -431,7 +489,57 @@ public class EmailConfigurationType implements Serializable {
      * the FROM address, provide the ARN of an Amazon SES verified email address
      * for the <code>SourceArn</code> parameter.
      * </p>
-     * </dd>
+     * <p>
+     * If EmailSendingAccount is COGNITO_DEFAULT, the following parameters
+     * aren't allowed:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * EmailVerificationMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EmailVerificationSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessageByLink
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubject,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubjectByLink
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * DEVELOPER EmailSendingAccount is required.
+     * </p>
+     * </note></dd>
      * <dt>DEVELOPER</dt>
      * <dd>
      * <p>
@@ -492,7 +600,57 @@ public class EmailConfigurationType implements Serializable {
      *         customize the FROM address, provide the ARN of an Amazon SES
      *         verified email address for the <code>SourceArn</code> parameter.
      *         </p>
-     *         </dd>
+     *         <p>
+     *         If EmailSendingAccount is COGNITO_DEFAULT, the following
+     *         parameters aren't allowed:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         EmailVerificationMessage
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         EmailVerificationSubject
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         InviteMessageTemplate.EmailMessage
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         InviteMessageTemplate.EmailSubject
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         VerificationMessageTemplate.EmailMessage
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         VerificationMessageTemplate.EmailMessageByLink
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         VerificationMessageTemplate.EmailSubject,
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         VerificationMessageTemplate.EmailSubjectByLink
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <note>
+     *         <p>
+     *         DEVELOPER EmailSendingAccount is required.
+     *         </p>
+     *         </note></dd>
      *         <dt>DEVELOPER</dt>
      *         <dd>
      *         <p>
@@ -555,7 +713,57 @@ public class EmailConfigurationType implements Serializable {
      * the FROM address, provide the ARN of an Amazon SES verified email address
      * for the <code>SourceArn</code> parameter.
      * </p>
-     * </dd>
+     * <p>
+     * If EmailSendingAccount is COGNITO_DEFAULT, the following parameters
+     * aren't allowed:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * EmailVerificationMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EmailVerificationSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessageByLink
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubject,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubjectByLink
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * DEVELOPER EmailSendingAccount is required.
+     * </p>
+     * </note></dd>
      * <dt>DEVELOPER</dt>
      * <dd>
      * <p>
@@ -617,7 +825,57 @@ public class EmailConfigurationType implements Serializable {
      *            verified email address for the <code>SourceArn</code>
      *            parameter.
      *            </p>
-     *            </dd>
+     *            <p>
+     *            If EmailSendingAccount is COGNITO_DEFAULT, the following
+     *            parameters aren't allowed:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            EmailVerificationMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EmailVerificationSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessageByLink
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubject,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubjectByLink
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            DEVELOPER EmailSendingAccount is required.
+     *            </p>
+     *            </note></dd>
      *            <dt>DEVELOPER</dt>
      *            <dd>
      *            <p>
@@ -682,7 +940,57 @@ public class EmailConfigurationType implements Serializable {
      * the FROM address, provide the ARN of an Amazon SES verified email address
      * for the <code>SourceArn</code> parameter.
      * </p>
-     * </dd>
+     * <p>
+     * If EmailSendingAccount is COGNITO_DEFAULT, the following parameters
+     * aren't allowed:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * EmailVerificationMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EmailVerificationSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessageByLink
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubject,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubjectByLink
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * DEVELOPER EmailSendingAccount is required.
+     * </p>
+     * </note></dd>
      * <dt>DEVELOPER</dt>
      * <dd>
      * <p>
@@ -747,7 +1055,57 @@ public class EmailConfigurationType implements Serializable {
      *            verified email address for the <code>SourceArn</code>
      *            parameter.
      *            </p>
-     *            </dd>
+     *            <p>
+     *            If EmailSendingAccount is COGNITO_DEFAULT, the following
+     *            parameters aren't allowed:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            EmailVerificationMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EmailVerificationSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessageByLink
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubject,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubjectByLink
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            DEVELOPER EmailSendingAccount is required.
+     *            </p>
+     *            </note></dd>
      *            <dt>DEVELOPER</dt>
      *            <dd>
      *            <p>
@@ -815,7 +1173,57 @@ public class EmailConfigurationType implements Serializable {
      * the FROM address, provide the ARN of an Amazon SES verified email address
      * for the <code>SourceArn</code> parameter.
      * </p>
-     * </dd>
+     * <p>
+     * If EmailSendingAccount is COGNITO_DEFAULT, the following parameters
+     * aren't allowed:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * EmailVerificationMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EmailVerificationSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessageByLink
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubject,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubjectByLink
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * DEVELOPER EmailSendingAccount is required.
+     * </p>
+     * </note></dd>
      * <dt>DEVELOPER</dt>
      * <dd>
      * <p>
@@ -877,7 +1285,57 @@ public class EmailConfigurationType implements Serializable {
      *            verified email address for the <code>SourceArn</code>
      *            parameter.
      *            </p>
-     *            </dd>
+     *            <p>
+     *            If EmailSendingAccount is COGNITO_DEFAULT, the following
+     *            parameters aren't allowed:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            EmailVerificationMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EmailVerificationSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessageByLink
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubject,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubjectByLink
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            DEVELOPER EmailSendingAccount is required.
+     *            </p>
+     *            </note></dd>
      *            <dt>DEVELOPER</dt>
      *            <dd>
      *            <p>
@@ -942,7 +1400,57 @@ public class EmailConfigurationType implements Serializable {
      * the FROM address, provide the ARN of an Amazon SES verified email address
      * for the <code>SourceArn</code> parameter.
      * </p>
-     * </dd>
+     * <p>
+     * If EmailSendingAccount is COGNITO_DEFAULT, the following parameters
+     * aren't allowed:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * EmailVerificationMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * EmailVerificationSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * InviteMessageTemplate.EmailSubject
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessage
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailMessageByLink
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubject,
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * VerificationMessageTemplate.EmailSubjectByLink
+     * </p>
+     * </li>
+     * </ul>
+     * <note>
+     * <p>
+     * DEVELOPER EmailSendingAccount is required.
+     * </p>
+     * </note></dd>
      * <dt>DEVELOPER</dt>
      * <dd>
      * <p>
@@ -1007,7 +1515,57 @@ public class EmailConfigurationType implements Serializable {
      *            verified email address for the <code>SourceArn</code>
      *            parameter.
      *            </p>
-     *            </dd>
+     *            <p>
+     *            If EmailSendingAccount is COGNITO_DEFAULT, the following
+     *            parameters aren't allowed:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            EmailVerificationMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            EmailVerificationSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            InviteMessageTemplate.EmailSubject
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessage
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailMessageByLink
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubject,
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            VerificationMessageTemplate.EmailSubjectByLink
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <note>
+     *            <p>
+     *            DEVELOPER EmailSendingAccount is required.
+     *            </p>
+     *            </note></dd>
      *            <dt>DEVELOPER</dt>
      *            <dd>
      *            <p>
