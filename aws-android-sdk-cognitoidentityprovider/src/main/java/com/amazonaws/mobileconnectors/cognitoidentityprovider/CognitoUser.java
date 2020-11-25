@@ -3163,8 +3163,9 @@ public class CognitoUser {
             nextTask = deviceSrpAuthentication(clientMetadata, challenge, callback, runInBackground);
         } else if (CognitoServiceConstants.CHLG_TYPE_NEW_PASSWORD_REQUIRED.equals(challengeName)) {
             final NewPasswordContinuation newPasswordContinuation = new NewPasswordContinuation(
-                    cognitoUser, context, usernameInternal, clientId, secretHash, challenge,
-                    runInBackground, callback);
+                    cognitoUser, context, usernameInternal, clientId,
+                    CognitoSecretHash.getSecretHash(usernameInternal, clientId, clientSecret),
+                    challenge, runInBackground, callback);
             nextTask = new Runnable() {
                 @Override
                 public void run() {
