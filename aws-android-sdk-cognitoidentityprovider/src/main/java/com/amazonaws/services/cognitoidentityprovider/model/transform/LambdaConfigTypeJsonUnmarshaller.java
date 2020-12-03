@@ -67,6 +67,19 @@ class LambdaConfigTypeJsonUnmarshaller implements
             } else if (name.equals("UserMigration")) {
                 lambdaConfigType.setUserMigration(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CustomSMSSender")) {
+                lambdaConfigType
+                        .setCustomSMSSender(CustomSMSLambdaVersionConfigTypeJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("CustomEmailSender")) {
+                lambdaConfigType
+                        .setCustomEmailSender(CustomEmailLambdaVersionConfigTypeJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
+            } else if (name.equals("KMSKeyID")) {
+                lambdaConfigType.setKMSKeyID(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

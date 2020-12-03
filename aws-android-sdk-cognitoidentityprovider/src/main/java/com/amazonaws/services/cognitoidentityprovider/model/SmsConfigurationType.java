@@ -30,7 +30,10 @@ public class SmsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) caller. This is the ARN of the IAM role in your AWS account which
-     * Cognito will use to send SMS messages.
+     * Cognito will use to send SMS messages. SMS messages are subject to a <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     * >spending limit</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -60,7 +63,10 @@ public class SmsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) caller. This is the ARN of the IAM role in your AWS account which
-     * Cognito will use to send SMS messages.
+     * Cognito will use to send SMS messages. SMS messages are subject to a <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     * >spending limit</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -72,7 +78,10 @@ public class SmsConfigurationType implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) of the Amazon Simple Notification
      *         Service (SNS) caller. This is the ARN of the IAM role in your AWS
-     *         account which Cognito will use to send SMS messages.
+     *         account which Cognito will use to send SMS messages. SMS messages
+     *         are subject to a <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     *         >spending limit</a>.
      *         </p>
      */
     public String getSnsCallerArn() {
@@ -83,7 +92,10 @@ public class SmsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) caller. This is the ARN of the IAM role in your AWS account which
-     * Cognito will use to send SMS messages.
+     * Cognito will use to send SMS messages. SMS messages are subject to a <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     * >spending limit</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,7 +108,9 @@ public class SmsConfigurationType implements Serializable {
      *            The Amazon Resource Name (ARN) of the Amazon Simple
      *            Notification Service (SNS) caller. This is the ARN of the IAM
      *            role in your AWS account which Cognito will use to send SMS
-     *            messages.
+     *            messages. SMS messages are subject to a <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     *            >spending limit</a>.
      *            </p>
      */
     public void setSnsCallerArn(String snsCallerArn) {
@@ -107,7 +121,10 @@ public class SmsConfigurationType implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
      * (SNS) caller. This is the ARN of the IAM role in your AWS account which
-     * Cognito will use to send SMS messages.
+     * Cognito will use to send SMS messages. SMS messages are subject to a <a
+     * href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     * >spending limit</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -123,7 +140,9 @@ public class SmsConfigurationType implements Serializable {
      *            The Amazon Resource Name (ARN) of the Amazon Simple
      *            Notification Service (SNS) caller. This is the ARN of the IAM
      *            role in your AWS account which Cognito will use to send SMS
-     *            messages.
+     *            messages. SMS messages are subject to a <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html"
+     *            >spending limit</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

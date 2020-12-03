@@ -16,6 +16,7 @@
 package com.amazonaws.services.cognitoidentityprovider.model.transform;
 
 import com.amazonaws.services.cognitoidentityprovider.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -75,6 +76,25 @@ class LambdaConfigTypeJsonMarshaller {
             String userMigration = lambdaConfigType.getUserMigration();
             jsonWriter.name("UserMigration");
             jsonWriter.value(userMigration);
+        }
+        if (lambdaConfigType.getCustomSMSSender() != null) {
+            CustomSMSLambdaVersionConfigType customSMSSender = lambdaConfigType
+                    .getCustomSMSSender();
+            jsonWriter.name("CustomSMSSender");
+            CustomSMSLambdaVersionConfigTypeJsonMarshaller.getInstance().marshall(customSMSSender,
+                    jsonWriter);
+        }
+        if (lambdaConfigType.getCustomEmailSender() != null) {
+            CustomEmailLambdaVersionConfigType customEmailSender = lambdaConfigType
+                    .getCustomEmailSender();
+            jsonWriter.name("CustomEmailSender");
+            CustomEmailLambdaVersionConfigTypeJsonMarshaller.getInstance().marshall(
+                    customEmailSender, jsonWriter);
+        }
+        if (lambdaConfigType.getKMSKeyID() != null) {
+            String kMSKeyID = lambdaConfigType.getKMSKeyID();
+            jsonWriter.name("KMSKeyID");
+            jsonWriter.value(kMSKeyID);
         }
         jsonWriter.endObject();
     }

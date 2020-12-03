@@ -20,26 +20,31 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO UsernameConfigurationType
+ * JSON marshaller for POJO CustomSMSLambdaVersionConfigType
  */
-class UsernameConfigurationTypeJsonMarshaller {
+class CustomSMSLambdaVersionConfigTypeJsonMarshaller {
 
-    public void marshall(UsernameConfigurationType usernameConfigurationType,
+    public void marshall(CustomSMSLambdaVersionConfigType customSMSLambdaVersionConfigType,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (usernameConfigurationType.getCaseSensitive() != null) {
-            Boolean caseSensitive = usernameConfigurationType.getCaseSensitive();
-            jsonWriter.name("CaseSensitive");
-            jsonWriter.value(caseSensitive);
+        if (customSMSLambdaVersionConfigType.getLambdaVersion() != null) {
+            String lambdaVersion = customSMSLambdaVersionConfigType.getLambdaVersion();
+            jsonWriter.name("LambdaVersion");
+            jsonWriter.value(lambdaVersion);
+        }
+        if (customSMSLambdaVersionConfigType.getLambdaArn() != null) {
+            String lambdaArn = customSMSLambdaVersionConfigType.getLambdaArn();
+            jsonWriter.name("LambdaArn");
+            jsonWriter.value(lambdaArn);
         }
         jsonWriter.endObject();
     }
 
-    private static UsernameConfigurationTypeJsonMarshaller instance;
+    private static CustomSMSLambdaVersionConfigTypeJsonMarshaller instance;
 
-    public static UsernameConfigurationTypeJsonMarshaller getInstance() {
+    public static CustomSMSLambdaVersionConfigTypeJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new UsernameConfigurationTypeJsonMarshaller();
+            instance = new CustomSMSLambdaVersionConfigTypeJsonMarshaller();
         return instance;
     }
 }
