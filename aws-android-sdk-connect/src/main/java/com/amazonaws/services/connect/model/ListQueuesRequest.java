@@ -24,6 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides information about the queues for the specified Amazon Connect
  * instance.
  * </p>
+ * <p>
+ * For more information about queues, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
+ * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
+ * </p>
  */
 public class ListQueuesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
