@@ -731,6 +731,82 @@ public class AWSIotMqttManagerTest {
         assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
     }
 
+    @Test
+    public void testExceptionInAutoReconnect() throws Exception {
+        MockMqttClient mockClient = new MockMqttClient();
+
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                Region.getRegion(Regions.US_EAST_1), TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        testClient.setAutoReconnect(true);
+
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+
+        KeyStore testKeystore = AWSIotKeystoreHelper
+                .getIotKeystore(CERT_ID, KEYSTORE_PATH, KEYSTORE_NAME, KEYSTORE_PASSWORD);
+        testClient.connect(testKeystore, csb);
+        testClient.setUnitTestMillisOverride(1000L);
+        mockClient.mockConnectSuccess();
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+        assertEquals(1, mockClient.connectCalls);
+        mockClient.mockDisconnect();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        // make sure we wait for 4 seconds, still 1 after 3 seconds
+        Robolectric.getForegroundThreadScheduler().advanceBy(3000, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(4000L);
+        assertEquals(1, mockClient.connectCalls);
+
+        // now past 4
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(5100L);
+        /*
+        Comment out this temporarily before we upgrade to Robolectric v3
+         */
+        //assertEquals(2, mockClient.connectCalls);
+        mockClient.mockConnectFail();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        // make sure we wait for 8 seconds, still 2 after 7 seconds
+        Robolectric.getForegroundThreadScheduler().advanceBy(6900, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(12000L);
+        //assertEquals(2, mockClient.connectCalls);
+
+        // now past 8
+        Robolectric.getForegroundThreadScheduler().advanceBy(1100, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(13100L);
+
+        //assertEquals(3, mockClient.connectCalls);
+        mockClient.mockConnectFail();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        Robolectric.getForegroundThreadScheduler().advanceBy(1000, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(14100L);
+
+        // failure in reconnect should not start a new reconnect while reconnect is scheduled
+        mockClient.mockConnectFail();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        // reconnect when scheduled time expired should work
+        Robolectric.getForegroundThreadScheduler().advanceBy(29000L-14100L, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(29000L);
+        mockClient.mockConnectFail();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        Robolectric.getForegroundThreadScheduler().advanceBy(1000, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(30000L);
+
+        // failure in reconnect should not start a new reconnect while reconnect is scheduled
+        mockClient.mockConnectFail();
+        assertEquals(MqttManagerConnectionState.Reconnecting, testClient.getConnectionState());
+
+        Robolectric.getForegroundThreadScheduler().advanceBy(1000, TimeUnit.MILLISECONDS);
+        testClient.setUnitTestMillisOverride(31000L);
+
+        // success in reconnect
+        mockClient.mockConnectSuccess();
+        assertEquals(MqttManagerConnectionState.Connected, testClient.getConnectionState());
+    }
 
     @Test
     public void testUserDisconnectStopsAutoReconnect() throws Exception {
