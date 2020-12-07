@@ -88,6 +88,58 @@ public interface AmazonTranslate {
 
     /**
      * <p>
+     * Creates a parallel data resource in Amazon Translate by importing an
+     * input file from Amazon S3. Parallel data files contain examples of source
+     * phrases and their translations from your translation memory. By adding
+     * parallel data, you can influence the style, tone, and word choice in your
+     * translation output.
+     * </p>
+     * 
+     * @param createParallelDataRequest
+     * @return createParallelDataResult The response from the CreateParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateParallelDataResult createParallelData(CreateParallelDataRequest createParallelDataRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes a parallel data resource in Amazon Translate.
+     * </p>
+     * 
+     * @param deleteParallelDataRequest
+     * @return deleteParallelDataResult The response from the DeleteParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DeleteParallelDataResult deleteParallelData(DeleteParallelDataRequest deleteParallelDataRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * A synchronous action that deletes a custom terminology.
      * </p>
      * 
@@ -131,6 +183,29 @@ public interface AmazonTranslate {
      */
     DescribeTextTranslationJobResult describeTextTranslationJob(
             DescribeTextTranslationJobRequest describeTextTranslationJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides information about a parallel data resource.
+     * </p>
+     * 
+     * @param getParallelDataRequest
+     * @return getParallelDataResult The response from the GetParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    GetParallelDataResult getParallelData(GetParallelDataRequest getParallelDataRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -188,6 +263,28 @@ public interface AmazonTranslate {
      *             request, or a server side issue.
      */
     ImportTerminologyResult importTerminology(ImportTerminologyRequest importTerminologyRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides a list of your parallel data resources in Amazon Translate.
+     * </p>
+     * 
+     * @param listParallelDataRequest
+     * @return listParallelDataResult The response from the ListParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListParallelDataResult listParallelData(ListParallelDataRequest listParallelDataRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -341,6 +438,34 @@ public interface AmazonTranslate {
      *             request, or a server side issue.
      */
     TranslateTextResult translateText(TranslateTextRequest translateTextRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates a previously created parallel data resource by importing a new
+     * input file from Amazon S3.
+     * </p>
+     * 
+     * @param updateParallelDataRequest
+     * @return updateParallelDataResult The response from the UpdateParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws ConcurrentModificationException
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UpdateParallelDataResult updateParallelData(UpdateParallelDataRequest updateParallelDataRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

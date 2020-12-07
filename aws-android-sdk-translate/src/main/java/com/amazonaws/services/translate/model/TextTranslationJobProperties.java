@@ -94,6 +94,14 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
+     * A list containing the names of the parallel data resources applied to the
+     * translation job.
+     * </p>
+     */
+    private java.util.List<String> parallelDataNames;
+
+    /**
+     * <p>
      * An explanation of any errors that may have occured during the translation
      * job.
      * </p>
@@ -646,6 +654,89 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
+     * A list containing the names of the parallel data resources applied to the
+     * translation job.
+     * </p>
+     *
+     * @return <p>
+     *         A list containing the names of the parallel data resources
+     *         applied to the translation job.
+     *         </p>
+     */
+    public java.util.List<String> getParallelDataNames() {
+        return parallelDataNames;
+    }
+
+    /**
+     * <p>
+     * A list containing the names of the parallel data resources applied to the
+     * translation job.
+     * </p>
+     *
+     * @param parallelDataNames <p>
+     *            A list containing the names of the parallel data resources
+     *            applied to the translation job.
+     *            </p>
+     */
+    public void setParallelDataNames(java.util.Collection<String> parallelDataNames) {
+        if (parallelDataNames == null) {
+            this.parallelDataNames = null;
+            return;
+        }
+
+        this.parallelDataNames = new java.util.ArrayList<String>(parallelDataNames);
+    }
+
+    /**
+     * <p>
+     * A list containing the names of the parallel data resources applied to the
+     * translation job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param parallelDataNames <p>
+     *            A list containing the names of the parallel data resources
+     *            applied to the translation job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TextTranslationJobProperties withParallelDataNames(String... parallelDataNames) {
+        if (getParallelDataNames() == null) {
+            this.parallelDataNames = new java.util.ArrayList<String>(parallelDataNames.length);
+        }
+        for (String value : parallelDataNames) {
+            this.parallelDataNames.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list containing the names of the parallel data resources applied to the
+     * translation job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param parallelDataNames <p>
+     *            A list containing the names of the parallel data resources
+     *            applied to the translation job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TextTranslationJobProperties withParallelDataNames(
+            java.util.Collection<String> parallelDataNames) {
+        setParallelDataNames(parallelDataNames);
+        return this;
+    }
+
+    /**
+     * <p>
      * An explanation of any errors that may have occured during the translation
      * job.
      * </p>
@@ -981,6 +1072,8 @@ public class TextTranslationJobProperties implements Serializable {
             sb.append("TargetLanguageCodes: " + getTargetLanguageCodes() + ",");
         if (getTerminologyNames() != null)
             sb.append("TerminologyNames: " + getTerminologyNames() + ",");
+        if (getParallelDataNames() != null)
+            sb.append("ParallelDataNames: " + getParallelDataNames() + ",");
         if (getMessage() != null)
             sb.append("Message: " + getMessage() + ",");
         if (getSubmittedTime() != null)
@@ -1012,6 +1105,8 @@ public class TextTranslationJobProperties implements Serializable {
                 + ((getTargetLanguageCodes() == null) ? 0 : getTargetLanguageCodes().hashCode());
         hashCode = prime * hashCode
                 + ((getTerminologyNames() == null) ? 0 : getTerminologyNames().hashCode());
+        hashCode = prime * hashCode
+                + ((getParallelDataNames() == null) ? 0 : getParallelDataNames().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode
                 + ((getSubmittedTime() == null) ? 0 : getSubmittedTime().hashCode());
@@ -1068,6 +1163,11 @@ public class TextTranslationJobProperties implements Serializable {
             return false;
         if (other.getTerminologyNames() != null
                 && other.getTerminologyNames().equals(this.getTerminologyNames()) == false)
+            return false;
+        if (other.getParallelDataNames() == null ^ this.getParallelDataNames() == null)
+            return false;
+        if (other.getParallelDataNames() != null
+                && other.getParallelDataNames().equals(this.getParallelDataNames()) == false)
             return false;
         if (other.getMessage() == null ^ this.getMessage() == null)
             return false;
