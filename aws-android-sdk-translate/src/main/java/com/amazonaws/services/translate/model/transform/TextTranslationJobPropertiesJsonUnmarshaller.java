@@ -63,6 +63,11 @@ class TextTranslationJobPropertiesJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("ParallelDataNames")) {
+                textTranslationJobProperties.setParallelDataNames(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Message")) {
                 textTranslationJobProperties.setMessage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
