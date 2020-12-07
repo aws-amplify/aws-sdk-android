@@ -43,7 +43,7 @@ public class RoutingProfileSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 127<br/>
      */
     private String name;
 
@@ -143,7 +143,7 @@ public class RoutingProfileSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
      *         The name of the routing profile.
@@ -159,7 +159,7 @@ public class RoutingProfileSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
      *            The name of the routing profile.
@@ -178,7 +178,7 @@ public class RoutingProfileSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
      *            The name of the routing profile.
