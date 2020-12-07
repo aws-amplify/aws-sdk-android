@@ -1402,10 +1402,13 @@ public class AWSIotMqttManager {
                 @Override
                 public void run() {
                     LOGGER.debug("TID: " + ht.getThreadId() + " trying to reconnect to session");
-                    if (mqttClient != null && !mqttClient.isConnected()) {
-                        reconnectToSession();
+                    try {
+                        if (mqttClient != null && !mqttClient.isConnected()) {
+                            reconnectToSession();
+                        }
+                    } finally {
+                        ht.quit();
                     }
-                    ht.quit();
                 }
             }, reconnectScheduleDelay);
             autoReconnectsScheduledTimestamp = System.currentTimeMillis() + reconnectScheduleDelay;
