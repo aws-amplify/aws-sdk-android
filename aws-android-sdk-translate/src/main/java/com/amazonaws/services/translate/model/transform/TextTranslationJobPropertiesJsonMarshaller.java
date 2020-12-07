@@ -76,6 +76,18 @@ class TextTranslationJobPropertiesJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (textTranslationJobProperties.getParallelDataNames() != null) {
+            java.util.List<String> parallelDataNames = textTranslationJobProperties
+                    .getParallelDataNames();
+            jsonWriter.name("ParallelDataNames");
+            jsonWriter.beginArray();
+            for (String parallelDataNamesItem : parallelDataNames) {
+                if (parallelDataNamesItem != null) {
+                    jsonWriter.value(parallelDataNamesItem);
+                }
+            }
+            jsonWriter.endArray();
+        }
         if (textTranslationJobProperties.getMessage() != null) {
             String message = textTranslationJobProperties.getMessage();
             jsonWriter.name("Message");

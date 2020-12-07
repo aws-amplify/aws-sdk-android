@@ -599,6 +599,31 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets the status and details of an events detection job.
+     * </p>
+     * 
+     * @param describeEventsDetectionJobRequest
+     * @return describeEventsDetectionJobResult The response from the
+     *         DescribeEventsDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeEventsDetectionJobResult describeEventsDetectionJob(
+            DescribeEventsDetectionJobRequest describeEventsDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the properties associated with a key phrases detection job. Use this
      * operation to get the status of a detection job.
      * </p>
@@ -1008,6 +1033,31 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Gets a list of the events detection jobs that you have submitted.
+     * </p>
+     * 
+     * @param listEventsDetectionJobsRequest
+     * @return listEventsDetectionJobsResult The response from the
+     *         ListEventsDetectionJobs service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InvalidFilterException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListEventsDetectionJobsResult listEventsDetectionJobs(
+            ListEventsDetectionJobsRequest listEventsDetectionJobsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Get a list of key phrase detection jobs that you have submitted.
      * </p>
      * 
@@ -1220,6 +1270,31 @@ public interface AmazonComprehend {
 
     /**
      * <p>
+     * Starts an asynchronous event detection job for a collection of documents.
+     * </p>
+     * 
+     * @param startEventsDetectionJobRequest
+     * @return startEventsDetectionJobResult The response from the
+     *         StartEventsDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws KmsKeyValidationException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartEventsDetectionJobResult startEventsDetectionJob(
+            StartEventsDetectionJobRequest startEventsDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Starts an asynchronous key phrase detection job for a collection of
      * documents. Use the operation to track the status of a job.
      * </p>
@@ -1401,6 +1476,30 @@ public interface AmazonComprehend {
      */
     StopEntitiesDetectionJobResult stopEntitiesDetectionJob(
             StopEntitiesDetectionJobRequest stopEntitiesDetectionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Stops an events detection job in progress.
+     * </p>
+     * 
+     * @param stopEventsDetectionJobRequest
+     * @return stopEventsDetectionJobResult The response from the
+     *         StopEventsDetectionJob service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws JobNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopEventsDetectionJobResult stopEventsDetectionJob(
+            StopEventsDetectionJobRequest stopEventsDetectionJobRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

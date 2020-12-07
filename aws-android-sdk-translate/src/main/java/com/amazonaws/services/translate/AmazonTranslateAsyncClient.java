@@ -259,6 +259,160 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
 
     /**
      * <p>
+     * Creates a parallel data resource in Amazon Translate by importing an
+     * input file from Amazon S3. Parallel data files contain examples of source
+     * phrases and their translations from your translation memory. By adding
+     * parallel data, you can influence the style, tone, and word choice in your
+     * translation output.
+     * </p>
+     * 
+     * @param createParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         CreateParallelData service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateParallelDataResult> createParallelDataAsync(
+            final CreateParallelDataRequest createParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateParallelDataResult>() {
+            public CreateParallelDataResult call() throws Exception {
+                return createParallelData(createParallelDataRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates a parallel data resource in Amazon Translate by importing an
+     * input file from Amazon S3. Parallel data files contain examples of source
+     * phrases and their translations from your translation memory. By adding
+     * parallel data, you can influence the style, tone, and word choice in your
+     * translation output.
+     * </p>
+     * 
+     * @param createParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         CreateParallelData service method, as returned by Amazon
+     *         Translate.
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateParallelDataResult> createParallelDataAsync(
+            final CreateParallelDataRequest createParallelDataRequest,
+            final AsyncHandler<CreateParallelDataRequest, CreateParallelDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateParallelDataResult>() {
+            public CreateParallelDataResult call() throws Exception {
+                CreateParallelDataResult result = null;
+                try {
+                    result = createParallelData(createParallelDataRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createParallelDataRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a parallel data resource in Amazon Translate.
+     * </p>
+     * 
+     * @param deleteParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteParallelData service method, as returned by Amazon
+     *         Translate.
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteParallelDataResult> deleteParallelDataAsync(
+            final DeleteParallelDataRequest deleteParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteParallelDataResult>() {
+            public DeleteParallelDataResult call() throws Exception {
+                return deleteParallelData(deleteParallelDataRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a parallel data resource in Amazon Translate.
+     * </p>
+     * 
+     * @param deleteParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteParallelData service method, as returned by Amazon
+     *         Translate.
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteParallelDataResult> deleteParallelDataAsync(
+            final DeleteParallelDataRequest deleteParallelDataRequest,
+            final AsyncHandler<DeleteParallelDataRequest, DeleteParallelDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteParallelDataResult>() {
+            public DeleteParallelDataResult call() throws Exception {
+                DeleteParallelDataResult result = null;
+                try {
+                    result = deleteParallelData(deleteParallelDataRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteParallelDataRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * A synchronous action that deletes a custom terminology.
      * </p>
      * 
@@ -397,6 +551,75 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
                     throw ex;
                 }
                 asyncHandler.onSuccess(describeTextTranslationJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides information about a parallel data resource.
+     * </p>
+     * 
+     * @param getParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         GetParallelData service method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetParallelDataResult> getParallelDataAsync(
+            final GetParallelDataRequest getParallelDataRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<GetParallelDataResult>() {
+            public GetParallelDataResult call() throws Exception {
+                return getParallelData(getParallelDataRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides information about a parallel data resource.
+     * </p>
+     * 
+     * @param getParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         GetParallelData service method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetParallelDataResult> getParallelDataAsync(
+            final GetParallelDataRequest getParallelDataRequest,
+            final AsyncHandler<GetParallelDataRequest, GetParallelDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetParallelDataResult>() {
+            public GetParallelDataResult call() throws Exception {
+                GetParallelDataResult result = null;
+                try {
+                    result = getParallelData(getParallelDataRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getParallelDataRequest, result);
                 return result;
             }
         });
@@ -559,6 +782,73 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
                     throw ex;
                 }
                 asyncHandler.onSuccess(importTerminologyRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides a list of your parallel data resources in Amazon Translate.
+     * </p>
+     * 
+     * @param listParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         ListParallelData service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListParallelDataResult> listParallelDataAsync(
+            final ListParallelDataRequest listParallelDataRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListParallelDataResult>() {
+            public ListParallelDataResult call() throws Exception {
+                return listParallelData(listParallelDataRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides a list of your parallel data resources in Amazon Translate.
+     * </p>
+     * 
+     * @param listParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         ListParallelData service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListParallelDataResult> listParallelDataAsync(
+            final ListParallelDataRequest listParallelDataRequest,
+            final AsyncHandler<ListParallelDataRequest, ListParallelDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListParallelDataResult>() {
+            public ListParallelDataResult call() throws Exception {
+                ListParallelDataResult result = null;
+                try {
+                    result = listParallelData(listParallelDataRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listParallelDataRequest, result);
                 return result;
             }
         });
@@ -976,6 +1266,87 @@ public class AmazonTranslateAsyncClient extends AmazonTranslateClient implements
                     throw ex;
                 }
                 asyncHandler.onSuccess(translateTextRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates a previously created parallel data resource by importing a new
+     * input file from Amazon S3.
+     * </p>
+     * 
+     * @param updateParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateParallelData service method, as returned by Amazon
+     *         Translate.
+     * @throws ConcurrentModificationException
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateParallelDataResult> updateParallelDataAsync(
+            final UpdateParallelDataRequest updateParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateParallelDataResult>() {
+            public UpdateParallelDataResult call() throws Exception {
+                return updateParallelData(updateParallelDataRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates a previously created parallel data resource by importing a new
+     * input file from Amazon S3.
+     * </p>
+     * 
+     * @param updateParallelDataRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateParallelData service method, as returned by Amazon
+     *         Translate.
+     * @throws ConcurrentModificationException
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateParallelDataResult> updateParallelDataAsync(
+            final UpdateParallelDataRequest updateParallelDataRequest,
+            final AsyncHandler<UpdateParallelDataRequest, UpdateParallelDataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateParallelDataResult>() {
+            public UpdateParallelDataResult call() throws Exception {
+                UpdateParallelDataResult result = null;
+                try {
+                    result = updateParallelData(updateParallelDataRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateParallelDataRequest, result);
                 return result;
             }
         });

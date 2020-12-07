@@ -113,6 +113,18 @@ public class StartTextTranslationJobRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (startTextTranslationJobRequest.getParallelDataNames() != null) {
+                java.util.List<String> parallelDataNames = startTextTranslationJobRequest
+                        .getParallelDataNames();
+                jsonWriter.name("ParallelDataNames");
+                jsonWriter.beginArray();
+                for (String parallelDataNamesItem : parallelDataNames) {
+                    if (parallelDataNamesItem != null) {
+                        jsonWriter.value(parallelDataNamesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
             if (startTextTranslationJobRequest.getClientToken() != null) {
                 String clientToken = startTextTranslationJobRequest.getClientToken();
                 jsonWriter.name("ClientToken");
