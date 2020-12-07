@@ -47,6 +47,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.UnrecoverableKeyException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
@@ -147,6 +148,8 @@ public class AWSIotMqttManager {
     private int maxAutoReconnectAttempts;
     /** Reconnects attempted so far. */
     private int autoReconnectsAttempted;
+    /** Reconnect is schedule to be executed at this time. */
+    private long autoReconnectsScheduledTimestamp;
     /** Is offline publish queueing enabled? */
     private boolean offlinePublishQueueEnabled;
     /** Offline publish queue bound. */
@@ -1265,7 +1268,6 @@ public class AWSIotMqttManager {
      * Attempts to reconnect.  If unsuccessful schedules a reconnect attempt.
      */
     void reconnectToSession() {
-
         // status will be ConnectionLost if user calls disconnect() during reconnect logic
         if (null != mqttClient && !(MqttManagerConnectionState.Disconnected.equals(connectionState))) {
             LOGGER.info("attempting to reconnect to mqtt broker");
@@ -1379,9 +1381,18 @@ public class AWSIotMqttManager {
     private boolean scheduleReconnect() {
         LOGGER.info("schedule Reconnect attempt " + autoReconnectsAttempted + " of " + maxAutoReconnectAttempts
             + " in " + currentReconnectRetryTime + " seconds.");
-        // schedule a reconnect if unlimited or if we haven't yet hit the limit
 
+        // schedule a reconnect only if previously scheduled reconnect is finished.
+        if (System.currentTimeMillis() < autoReconnectsScheduledTimestamp) {
+            LOGGER.info("schedule Reconnect attempt canceled. There is already a reconnect scheduled at " + new Date(autoReconnectsScheduledTimestamp) + ".");
+            return true;
+        }
+
+        // schedule a reconnect if unlimited or if we haven't yet hit the limit
         if (maxAutoReconnectAttempts == -1 || autoReconnectsAttempted < maxAutoReconnectAttempts) {
+            // The delay is milliseconds for the reconnect to be scheduled.
+            final long reconnectScheduleDelay = MILLIS_IN_ONE_SECOND * currentReconnectRetryTime;
+
             //Start a separate thread to do reconnect, because connection must not occur on the main thread.
             final HandlerThread ht = new HandlerThread("Reconnect thread");
             ht.start();
@@ -1396,7 +1407,8 @@ public class AWSIotMqttManager {
                     }
                     ht.quit();
                 }
-            }, MILLIS_IN_ONE_SECOND * currentReconnectRetryTime);
+            }, reconnectScheduleDelay);
+            autoReconnectsScheduledTimestamp = System.currentTimeMillis() + reconnectScheduleDelay;
             currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
             return true;
         } else {
