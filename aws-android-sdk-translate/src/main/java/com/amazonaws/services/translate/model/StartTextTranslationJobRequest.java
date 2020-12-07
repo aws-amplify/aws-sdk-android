@@ -111,6 +111,15 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
+     * The names of the parallel data resources to use in the batch translation
+     * job. For a list of available parallel data resources, use the
+     * <a>ListParallelData</a> operation.
+     * </p>
+     */
+    private java.util.List<String> parallelDataNames;
+
+    /**
+     * <p>
      * A unique identifier for the request. This token is auto-generated when
      * using the Amazon Translate SDK.
      * </p>
@@ -600,6 +609,97 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
+     * The names of the parallel data resources to use in the batch translation
+     * job. For a list of available parallel data resources, use the
+     * <a>ListParallelData</a> operation.
+     * </p>
+     *
+     * @return <p>
+     *         The names of the parallel data resources to use in the batch
+     *         translation job. For a list of available parallel data resources,
+     *         use the <a>ListParallelData</a> operation.
+     *         </p>
+     */
+    public java.util.List<String> getParallelDataNames() {
+        return parallelDataNames;
+    }
+
+    /**
+     * <p>
+     * The names of the parallel data resources to use in the batch translation
+     * job. For a list of available parallel data resources, use the
+     * <a>ListParallelData</a> operation.
+     * </p>
+     *
+     * @param parallelDataNames <p>
+     *            The names of the parallel data resources to use in the batch
+     *            translation job. For a list of available parallel data
+     *            resources, use the <a>ListParallelData</a> operation.
+     *            </p>
+     */
+    public void setParallelDataNames(java.util.Collection<String> parallelDataNames) {
+        if (parallelDataNames == null) {
+            this.parallelDataNames = null;
+            return;
+        }
+
+        this.parallelDataNames = new java.util.ArrayList<String>(parallelDataNames);
+    }
+
+    /**
+     * <p>
+     * The names of the parallel data resources to use in the batch translation
+     * job. For a list of available parallel data resources, use the
+     * <a>ListParallelData</a> operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param parallelDataNames <p>
+     *            The names of the parallel data resources to use in the batch
+     *            translation job. For a list of available parallel data
+     *            resources, use the <a>ListParallelData</a> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTextTranslationJobRequest withParallelDataNames(String... parallelDataNames) {
+        if (getParallelDataNames() == null) {
+            this.parallelDataNames = new java.util.ArrayList<String>(parallelDataNames.length);
+        }
+        for (String value : parallelDataNames) {
+            this.parallelDataNames.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The names of the parallel data resources to use in the batch translation
+     * job. For a list of available parallel data resources, use the
+     * <a>ListParallelData</a> operation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param parallelDataNames <p>
+     *            The names of the parallel data resources to use in the batch
+     *            translation job. For a list of available parallel data
+     *            resources, use the <a>ListParallelData</a> operation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTextTranslationJobRequest withParallelDataNames(
+            java.util.Collection<String> parallelDataNames) {
+        setParallelDataNames(parallelDataNames);
+        return this;
+    }
+
+    /**
+     * <p>
      * A unique identifier for the request. This token is auto-generated when
      * using the Amazon Translate SDK.
      * </p>
@@ -686,6 +786,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
             sb.append("TargetLanguageCodes: " + getTargetLanguageCodes() + ",");
         if (getTerminologyNames() != null)
             sb.append("TerminologyNames: " + getTerminologyNames() + ",");
+        if (getParallelDataNames() != null)
+            sb.append("ParallelDataNames: " + getParallelDataNames() + ",");
         if (getClientToken() != null)
             sb.append("ClientToken: " + getClientToken());
         sb.append("}");
@@ -710,6 +812,8 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
                 + ((getTargetLanguageCodes() == null) ? 0 : getTargetLanguageCodes().hashCode());
         hashCode = prime * hashCode
                 + ((getTerminologyNames() == null) ? 0 : getTerminologyNames().hashCode());
+        hashCode = prime * hashCode
+                + ((getParallelDataNames() == null) ? 0 : getParallelDataNames().hashCode());
         hashCode = prime * hashCode
                 + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
         return hashCode;
@@ -759,6 +863,11 @@ public class StartTextTranslationJobRequest extends AmazonWebServiceRequest impl
             return false;
         if (other.getTerminologyNames() != null
                 && other.getTerminologyNames().equals(this.getTerminologyNames()) == false)
+            return false;
+        if (other.getParallelDataNames() == null ^ this.getParallelDataNames() == null)
+            return false;
+        if (other.getParallelDataNames() != null
+                && other.getParallelDataNames().equals(this.getParallelDataNames()) == false)
             return false;
         if (other.getClientToken() == null ^ this.getClientToken() == null)
             return false;

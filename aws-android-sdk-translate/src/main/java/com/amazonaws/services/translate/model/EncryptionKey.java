@@ -19,8 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The encryption key used to encrypt the custom terminologies used by Amazon
- * Translate.
+ * The encryption key used to encrypt this object.
  * </p>
  */
 public class EncryptionKey implements Serializable {
