@@ -1407,6 +1407,7 @@ public class AWSIotMqttManager {
                             reconnectToSession();
                         }
                     } finally {
+                        LOGGER.debug("TID: " + ht.getThreadId() + " quit");
                         ht.quit();
                     }
                 }
