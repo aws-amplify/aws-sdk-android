@@ -1383,7 +1383,7 @@ public class AWSIotMqttManager {
             + " in " + currentReconnectRetryTime + " seconds.");
 
         // schedule a reconnect only if previously scheduled reconnect is finished.
-        if (System.currentTimeMillis() < autoReconnectsScheduledTimestamp) {
+        if (getSystemTimeMs() < autoReconnectsScheduledTimestamp) {
             LOGGER.info("schedule Reconnect attempt canceled. There is already a reconnect scheduled at " + new Date(autoReconnectsScheduledTimestamp) + ".");
             return true;
         }
@@ -1411,7 +1411,7 @@ public class AWSIotMqttManager {
                     }
                 }
             }, reconnectScheduleDelay);
-            autoReconnectsScheduledTimestamp = System.currentTimeMillis() + reconnectScheduleDelay;
+            autoReconnectsScheduledTimestamp = getSystemTimeMs() + reconnectScheduleDelay;
             currentReconnectRetryTime = Math.min(currentReconnectRetryTime * 2, maxReconnectRetryTime);
             return true;
         } else {
