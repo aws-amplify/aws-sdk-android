@@ -364,6 +364,9 @@ public class DynamoDBQueryExpression<T> {
 
     /**
      * Sets the key condition expression to be used by this query.
+     * See <a href="Key Condition Expressions">
+     *     https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpressions
+     *     </a>
      *
      * @param keyConditionExpression the key condition expression to use for the query.
      */
@@ -373,6 +376,9 @@ public class DynamoDBQueryExpression<T> {
 
     /**
      * Sets the key condition expression to be used by this query.
+     * See <a href="Key Condition Expressions">
+     *     https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html#Query.KeyConditionExpressions
+     *     </a>
      * <p>
      * Returns a pointer to this object for method-chaining.
      *
