@@ -19,7 +19,7 @@ package com.amazonaws.logging;
  * Simple log to print to console. It conforms to the
  * {@code com.amazonaws.logging.Log} interface.
  */
-public class ConsoleLog implements com.amazonaws.logging.Log {
+public final class ConsoleLog implements com.amazonaws.logging.Log {
 
     /** Tag for the log message */
     private final String tag;
