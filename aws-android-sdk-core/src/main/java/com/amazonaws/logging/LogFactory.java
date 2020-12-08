@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2018-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  */
 
 package com.amazonaws.logging;
+
+import com.amazonaws.util.Environment;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -40,7 +42,7 @@ public class LogFactory {
      *
      * @return logger
      */
-    public static synchronized Log getLog(Class clazz) {
+    public static synchronized Log getLog(Class<?> clazz) {
         return getLog(getTruncatedLogTag(clazz.getSimpleName()));
     }
 
@@ -58,12 +60,12 @@ public class LogFactory {
             return log;
         }
 
-        if (checkApacheCommonsLoggingExists()) {
-            log = new ApacheCommonsLogging(logTag);
-        } else if (checkAndroidLoggingMocked()) {
-            log = new AndroidLog(logTag);
-        } else {
+        if (Environment.isJUnitTest()) {
             log = new ConsoleLog(logTag);
+        } else if (checkApacheCommonsLoggingExists()) {
+            log = new ApacheCommonsLogging(logTag);
+        } else {
+            log = new AndroidLog(logTag);
         }
         logMap.put(logTag, log);
         return log;
@@ -83,16 +85,8 @@ public class LogFactory {
             return true;
         } catch (ClassNotFoundException cnfe) {
             return false;
-        } catch (RuntimeException exception) {
-            return false;
-        }
-    }
-
-    private static boolean checkAndroidLoggingMocked() {
-        try {
-            android.util.Log.isLoggable(TAG, android.util.Log.VERBOSE);
-            return true;
-        } catch (RuntimeException exception) {
+        } catch (RuntimeException ex) {
+            android.util.Log.e(TAG, ex.getMessage());
             return false;
         }
     }
