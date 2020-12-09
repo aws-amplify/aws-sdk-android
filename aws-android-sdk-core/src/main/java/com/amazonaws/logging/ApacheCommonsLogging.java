@@ -15,14 +15,14 @@
 
 package com.amazonaws.logging;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import com.amazonaws.logging.LogFactory.Level;
 
 /**
  * This is a wrapper over the Apache Commons
  * Logging framework.
+ * @deprecated Use {@link AndroidLog} instead.
  */
+@Deprecated
 public class ApacheCommonsLogging implements com.amazonaws.logging.Log {
 
     private Class logClass;

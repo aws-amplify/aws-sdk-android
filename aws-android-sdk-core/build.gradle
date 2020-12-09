@@ -14,7 +14,6 @@ android {
 
 dependencies {
     api 'com.google.code.gson:gson:2.8.6'
-    compileOnly 'commons-logging:commons-logging:1.2'
     implementation 'androidx.annotation:annotation:1.1.0'
 
     testImplementation 'joda-time:joda-time:2.8.1'
@@ -23,6 +22,5 @@ dependencies {
     testImplementation 'org.easymock:easymock:3.1'
     testImplementation 'org.robolectric:robolectric:4.4'
     testImplementation 'xerces:xercesImpl:2.12.0'
-    testRuntimeOnly 'commons-logging:commons-logging:1.2'
 }
 

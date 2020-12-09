@@ -29,7 +29,6 @@ public class LogFactory {
      * Log tag longer than 23 will cause it to break on Android API level <= 23.
      */
     private static final String TAG = LogFactory.class.getSimpleName();
-    private static final String APACHE_COMMONS_LOGGING_LOGFACTORY = "org.apache.commons.logging.LogFactory";
     private static final Map<String, Log> logMap = new HashMap<>();
 
     private static Level globalLogLevel = null;
@@ -60,8 +59,6 @@ public class LogFactory {
 
         if (Environment.isJUnitTest()) {
             log = new ConsoleLog(logTag);
-        } else if (checkApacheCommonsLoggingExists()) {
-            log = new ApacheCommonsLogging(logTag);
         } else {
             log = new AndroidLog(logTag);
         }
@@ -75,18 +72,6 @@ public class LogFactory {
 
     public static Level getLevel() {
         return globalLogLevel;
-    }
-
-    private static boolean checkApacheCommonsLoggingExists() {
-        try {
-            Class.forName(APACHE_COMMONS_LOGGING_LOGFACTORY);
-            return true;
-        } catch (ClassNotFoundException cnfe) {
-            return false;
-        } catch (RuntimeException ex) {
-            android.util.Log.e(TAG, ex.getMessage());
-            return false;
-        }
     }
 
     /**

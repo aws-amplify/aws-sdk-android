@@ -10,7 +10,6 @@
 
 # The following are referenced but aren't required to run
 -dontwarn com.fasterxml.jackson.**
--dontwarn org.apache.commons.logging.**
 
 # Android 6.0 release removes support for the Apache HTTP client
 -dontwarn org.apache.http.**
