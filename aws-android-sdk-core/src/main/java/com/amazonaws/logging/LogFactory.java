@@ -15,8 +15,6 @@
 
 package com.amazonaws.logging;
 
-import com.amazonaws.util.Environment;
-
 import java.util.Map;
 import java.util.HashMap;
 

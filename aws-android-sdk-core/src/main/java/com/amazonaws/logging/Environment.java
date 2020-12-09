@@ -13,7 +13,7 @@
  * permissions and limitations under the License.
  */
 
-package com.amazonaws.util;
+package com.amazonaws.logging;
 
 /**
  * A utility for obtaining information about the current runtime environment.
