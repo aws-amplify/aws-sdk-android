@@ -325,6 +325,8 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
 
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
+        jsonErrorUnmarshallers.add(new ConcurrentModificationExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new DetectedLanguageLowConfidenceExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InvalidFilterExceptionUnmarshaller());
@@ -354,6 +356,114 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
         ClientConfiguration config = orig;
 
         return config;
+    }
+
+    /**
+     * <p>
+     * Creates a parallel data resource in Amazon Translate by importing an
+     * input file from Amazon S3. Parallel data files contain examples of source
+     * phrases and their translations from your translation memory. By adding
+     * parallel data, you can influence the style, tone, and word choice in your
+     * translation output.
+     * </p>
+     * 
+     * @param createParallelDataRequest
+     * @return createParallelDataResult The response from the CreateParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateParallelDataResult createParallelData(
+            CreateParallelDataRequest createParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createParallelDataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateParallelDataRequest> request = null;
+        Response<CreateParallelDataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateParallelDataRequestMarshaller()
+                        .marshall(createParallelDataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateParallelDataResult, JsonUnmarshallerContext> unmarshaller = new CreateParallelDataResultJsonUnmarshaller();
+            JsonResponseHandler<CreateParallelDataResult> responseHandler = new JsonResponseHandler<CreateParallelDataResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a parallel data resource in Amazon Translate.
+     * </p>
+     * 
+     * @param deleteParallelDataRequest
+     * @return deleteParallelDataResult The response from the DeleteParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws ConcurrentModificationException
+     * @throws ResourceNotFoundException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteParallelDataResult deleteParallelData(
+            DeleteParallelDataRequest deleteParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteParallelDataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteParallelDataRequest> request = null;
+        Response<DeleteParallelDataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteParallelDataRequestMarshaller()
+                        .marshall(deleteParallelDataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteParallelDataResult, JsonUnmarshallerContext> unmarshaller = new DeleteParallelDataResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteParallelDataResult> responseHandler = new JsonResponseHandler<DeleteParallelDataResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
     }
 
     /**
@@ -441,6 +551,55 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
             }
             Unmarshaller<DescribeTextTranslationJobResult, JsonUnmarshallerContext> unmarshaller = new DescribeTextTranslationJobResultJsonUnmarshaller();
             JsonResponseHandler<DescribeTextTranslationJobResult> responseHandler = new JsonResponseHandler<DescribeTextTranslationJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides information about a parallel data resource.
+     * </p>
+     * 
+     * @param getParallelDataRequest
+     * @return getParallelDataResult The response from the GetParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetParallelDataResult getParallelData(GetParallelDataRequest getParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getParallelDataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetParallelDataRequest> request = null;
+        Response<GetParallelDataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetParallelDataRequestMarshaller().marshall(getParallelDataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetParallelDataResult, JsonUnmarshallerContext> unmarshaller = new GetParallelDataResultJsonUnmarshaller();
+            JsonResponseHandler<GetParallelDataResult> responseHandler = new JsonResponseHandler<GetParallelDataResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -552,6 +711,54 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
             }
             Unmarshaller<ImportTerminologyResult, JsonUnmarshallerContext> unmarshaller = new ImportTerminologyResultJsonUnmarshaller();
             JsonResponseHandler<ImportTerminologyResult> responseHandler = new JsonResponseHandler<ImportTerminologyResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides a list of your parallel data resources in Amazon Translate.
+     * </p>
+     * 
+     * @param listParallelDataRequest
+     * @return listParallelDataResult The response from the ListParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws InvalidParameterValueException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListParallelDataResult listParallelData(ListParallelDataRequest listParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listParallelDataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListParallelDataRequest> request = null;
+        Response<ListParallelDataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListParallelDataRequestMarshaller().marshall(listParallelDataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListParallelDataResult, JsonUnmarshallerContext> unmarshaller = new ListParallelDataResultJsonUnmarshaller();
+            JsonResponseHandler<ListParallelDataResult> responseHandler = new JsonResponseHandler<ListParallelDataResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -840,6 +1047,62 @@ public class AmazonTranslateClient extends AmazonWebServiceClient implements Ama
             }
             Unmarshaller<TranslateTextResult, JsonUnmarshallerContext> unmarshaller = new TranslateTextResultJsonUnmarshaller();
             JsonResponseHandler<TranslateTextResult> responseHandler = new JsonResponseHandler<TranslateTextResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates a previously created parallel data resource by importing a new
+     * input file from Amazon S3.
+     * </p>
+     * 
+     * @param updateParallelDataRequest
+     * @return updateParallelDataResult The response from the UpdateParallelData
+     *         service method, as returned by Amazon Translate.
+     * @throws ConcurrentModificationException
+     * @throws InvalidParameterValueException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws TooManyRequestsException
+     * @throws ConflictException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Translate indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateParallelDataResult updateParallelData(
+            UpdateParallelDataRequest updateParallelDataRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateParallelDataRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateParallelDataRequest> request = null;
+        Response<UpdateParallelDataResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateParallelDataRequestMarshaller()
+                        .marshall(updateParallelDataRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateParallelDataResult, JsonUnmarshallerContext> unmarshaller = new UpdateParallelDataResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateParallelDataResult> responseHandler = new JsonResponseHandler<UpdateParallelDataResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

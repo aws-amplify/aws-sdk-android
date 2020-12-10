@@ -24,7 +24,8 @@ import java.util.Map;
 public enum Channel {
 
     VOICE("VOICE"),
-    CHAT("CHAT");
+    CHAT("CHAT"),
+    TASK("TASK");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum Channel {
         enumMap = new HashMap<String, Channel>();
         enumMap.put("VOICE", VOICE);
         enumMap.put("CHAT", CHAT);
+        enumMap.put("TASK", TASK);
     }
 
     /**

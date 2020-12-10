@@ -24,6 +24,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Provides summary information about the routing profiles for the specified
  * Amazon Connect instance.
  * </p>
+ * <p>
+ * For more information about routing profiles, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html"
+ * >Routing Profiles</a> and <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html"
+ * >Create a Routing Profile</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
+ * </p>
  */
 public class ListRoutingProfilesRequest extends AmazonWebServiceRequest implements Serializable {
     /**

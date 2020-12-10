@@ -2681,6 +2681,7 @@ public class DynamoDBMapper {
                 .getExpressionAttributeNames());
         queryRequest.setExpressionAttributeValues(queryExpression
                 .getExpressionAttributeValues());
+        queryRequest.setKeyConditionExpression(queryExpression.getKeyConditionExpression());
 
         return applyUserAgent(queryRequest);
     }
