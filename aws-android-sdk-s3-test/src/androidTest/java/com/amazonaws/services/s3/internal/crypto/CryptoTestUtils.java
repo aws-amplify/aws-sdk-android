@@ -20,6 +20,7 @@ import static org.junit.Assert.assertFalse;
  
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.PropertiesCredentials;
+import com.amazonaws.logging.LogFactory;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.internal.MD5DigestCalculatingInputStream;
 import com.amazonaws.services.s3.model.ObjectListing;
@@ -30,7 +31,6 @@ import com.amazonaws.util.Base64;
 import com.amazonaws.util.StringUtils;
  
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.LogFactory;
  
 import java.io.File;
 import java.io.FileInputStream;
