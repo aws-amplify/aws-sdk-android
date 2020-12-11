@@ -15,9 +15,6 @@
 
 package com.amazonaws.services.s3;
 
-import androidx.test.core.app.ApplicationProvider;
-
-import static com.amazonaws.services.s3.internal.Constants.GB;
 import static com.amazonaws.services.s3.internal.Constants.MB;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -27,9 +24,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.amazonaws.AmazonServiceException.ErrorType;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.services.s3.internal.crypto.CryptoTestUtils;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
@@ -40,16 +34,13 @@ import com.amazonaws.services.s3.model.ListPartsRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PartListing;
 import com.amazonaws.services.s3.model.PartSummary;
-import com.amazonaws.testutils.util.RandomTempFile;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
 import java.util.Date;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Integration tests for the copyPart operation.
@@ -68,14 +59,11 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
     /** Length of the data uploaded to S3 */
     private static final long CONTENT_LENGTH = 345L;
 
-    /** Milliseconds to wait before timing out on large file upload */
-    private static final long UPLOAD_TIMEOUT_MS = 200L;
-
     /** The file of random data uploaded to S3 */
     private File file;
 
     /** The ETag of the source object created by these tests */
-    private String sourceEtag;
+    private String sourceETag;
 
     /**
      * A date before the last modified time of the source object used by these
@@ -103,32 +91,61 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
     private static final String LARGE_BUCKET_NAME = "copy-part-integ-test-large-"
             + new Date().getTime();
 
+    /**
+     * Creates/populates all the test data needed for these tests (bucket,
+     * source object, file, source object ETag, etc).
+     */
+    @Before
+    public void initializeTestData() throws Exception {
+        s3.createBucket(BUCKET_NAME);
+        waitForBucketCreation(BUCKET_NAME);
+        file = getRandomSparseFile("copy-part-integ-test-" + new Date().getTime(), CONTENT_LENGTH);
+        s3.putObject(BUCKET_NAME, SOURCE_KEY, file);
+
+        ObjectMetadata sourceObjectMetadata = s3.getObjectMetadata(BUCKET_NAME, SOURCE_KEY);
+        sourceETag = sourceObjectMetadata.getETag();
+        Date sourceLastModifiedDate = sourceObjectMetadata.getLastModified();
+
+        /*
+         * TODO: This was causing problems when the date was in the future... It
+         * was essentially being ignored by S3. We should include a note about
+         * that in the docs
+         */
+        Thread.sleep(2000);
+        earlierDate = new Date(sourceLastModifiedDate.getTime() - 1000);
+        laterDate = new Date(sourceLastModifiedDate.getTime() + 1000);
+
+        InitiateMultipartUploadRequest initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
+                BUCKET_NAME,
+                DESTINATION_KEY);
+        initiateMultipartUploadRequest.setObjectMetadata(new ObjectMetadata());
+        initiateMultipartUploadRequest.getObjectMetadata().setSSEAlgorithm(
+                ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION);
+        multipartUploadId = s3.initiateMultipartUpload(
+                initiateMultipartUploadRequest)
+                .getUploadId();
+    }
+
     /** Releases resources used by tests */
     @After
     public void tearDown() {
+        if (multipartUploadId != null) {
+            s3.abortMultipartUpload(new AbortMultipartUploadRequest(
+                BUCKET_NAME,
+                DESTINATION_KEY,
+                multipartUploadId
+            ));
+        }
         try {
             s3.deleteObject(BUCKET_NAME, SOURCE_KEY);
-        } catch (Exception e) {
-        }
-        try {
             s3.deleteObject(BUCKET_NAME, DESTINATION_KEY);
-        } catch (Exception e) {
-        }
-        try {
             s3.deleteBucket(BUCKET_NAME);
-        } catch (Exception e) {
-        }
-        try {
-            file.delete();
-        } catch (Exception e) {
-        }
-        if (multipartUploadId != null) {
-            try {
-                s3.abortMultipartUpload(new AbortMultipartUploadRequest(BUCKET_NAME, DESTINATION_KEY,
-                        multipartUploadId));
-            } catch (Exception e) {
+        } catch (AmazonS3Exception exception) {
+            if (!"NoSuchBucket".equals(exception.getErrorCode())) {
+                throw exception;
             }
         }
+        file.delete();
     }
 
     /**
@@ -138,21 +155,20 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * nice one day to use a more advanced test framework like TestNG.
      */
     @Test
-    public void testcopyPart() throws Exception {
+    public void testCopyPart() throws Exception {
         if (!CryptoTestUtils.runTimeConsumingTests()) {
-            System.out
-                    .println("Please set the environment variable, export RUN_TIME_CONSUMING_TESTS=true, to run the testcopyPart test");
+            System.out.println("Please set the environment variable, " +
+                    "export RUN_TIME_CONSUMING_TESTS=true, to run the testcopyPart test");
             return;
         }
         initializeTestData();
 
-        gotestSuccessfulSimpleCopy();
-        gottestRangedCopy();
-        gotestMatchingEtagConstraint();
-        gotestNonmatchingEtagConstraint();
-
-        gotestModifiedSinceConstraint();
-        gotestUnmodifiedSinceConstraint();
+        testSuccessfulSimpleCopy();
+        testRangedCopy();
+        testMatchingETagConstraint();
+        testNonMatchingETagConstraint();
+        testModifiedSinceConstraint();
+        testUnmodifiedSinceConstraint();
 
         /*
          * TODO: It'd be nice to test the case where the returned HTTP status
@@ -160,22 +176,17 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
          * Unfortunately it's difficult to trigger that case, since it only
          * happens when S3 has an error copying the object.
          */
-        gotestNoSuchKeyException();
+        testNoSuchKeyException();
     }
 
 
     /**
      * Tests copying a range of data. The minimum size is 5GB, which is too big
      */
-    private void gottestRangedCopy() throws Exception {
+    private void testRangedCopy() throws Exception {
         if (!s3.doesBucketExist(LARGE_BUCKET_NAME)) {
             s3.createBucket(LARGE_BUCKET_NAME);
             waitForBucketCreation(LARGE_BUCKET_NAME);
-        }
-
-        if (!doesObjectExist(LARGE_BUCKET_NAME, LARGE_FILE_KEY)) {
-            File largeFile = new RandomTempFile("file1", 6 * GB);
-            assertTrue(uploadAndWait(LARGE_BUCKET_NAME, LARGE_FILE_KEY, largeFile));
         }
 
         long firstByte = 0L;
@@ -198,7 +209,7 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the simple form of the copy object operation correctly copies
      * an object.
      */
-    private void gotestSuccessfulSimpleCopy() throws Exception {
+    private void testSuccessfulSimpleCopy() throws Exception {
         waitForBucketCreation(BUCKET_NAME);
         CopyPartRequest rq = newCopyPartRequest();
         CopyPartResult copyPart = s3.copyPart(rq);
@@ -216,9 +227,9 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the matching ETag constraint parameter is correctly included
      * in requests when the user specifies it.
      */
-    private void gotestMatchingEtagConstraint() throws Exception {
+    private void testMatchingETagConstraint() throws Exception {
         s3.copyPart(newCopyPartRequest()
-                .withMatchingETagConstraint(sourceEtag));
+                .withMatchingETagConstraint(sourceETag));
 
         assertNull(s3.copyPart(newCopyPartRequest()
                 .withMatchingETagConstraint("nonmatching-etag")));
@@ -228,19 +239,19 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the non-matching ETag constraint parameter is correctly
      * included in requests when the user specifies it.
      */
-    private void gotestNonmatchingEtagConstraint() throws Exception {
+    private void testNonMatchingETagConstraint() {
         s3.copyPart(newCopyPartRequest()
                 .withNonmatchingETagConstraint("nonmatching-etag"));
 
         assertNull(s3.copyPart(newCopyPartRequest()
-                .withNonmatchingETagConstraint(sourceEtag)));
+                .withNonmatchingETagConstraint(sourceETag)));
     }
 
     /**
      * Tests that the modified since constraint parameter is correctly included
      * in requests when the user specifies it.
      */
-    private void gotestModifiedSinceConstraint() throws Exception {
+    private void testModifiedSinceConstraint() {
         s3.copyPart(newCopyPartRequest()
                 .withModifiedSinceConstraint(earlierDate));
 
@@ -252,7 +263,7 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the unmodified since constraint parameter is correctly
      * included in requests when the user specifies it.
      */
-    private void gotestUnmodifiedSinceConstraint() throws Exception {
+    private void testUnmodifiedSinceConstraint() {
         s3.copyPart(newCopyPartRequest()
                 .withUnmodifiedSinceConstraint(laterDate));
 
@@ -264,7 +275,7 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that error response are properly handled and unmarshalled as
      * AmazonS3Exception objects.
      */
-    private void gotestNoSuchKeyException() {
+    private void testNoSuchKeyException() {
         try {
             s3.copyPart(newCopyPartRequest().withSourceKey("key"));
             fail("Expected an AmazonS3Exception, but wasn't thrown");
@@ -277,45 +288,6 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
             assertEquals("Amazon S3", ase.getServiceName());
             assertEquals(404, ase.getStatusCode());
         }
-    }
-
-    /*
-     * Private Test Helper Methods
-     */
-
-    /**
-     * Creates/populates all the test data needed for these tests (bucket,
-     * source object, file, source object ETag, etc).
-     */
-    private void initializeTestData() throws Exception {
-        s3.createBucket(BUCKET_NAME);
-        waitForBucketCreation(BUCKET_NAME);
-        file = super.getRandomTempFile("copy-part-integ-test-" + new Date().getTime(),
-                CONTENT_LENGTH);
-        s3.putObject(BUCKET_NAME, SOURCE_KEY, file);
-
-        ObjectMetadata sourceObjectMetadata = s3.getObjectMetadata(BUCKET_NAME, SOURCE_KEY);
-        sourceEtag = sourceObjectMetadata.getETag();
-        Date sourceLastModifiedDate = sourceObjectMetadata.getLastModified();
-
-        /*
-         * TODO: This was causing problems when the date was in the future... It
-         * was essentially being ignored by S3. We should include a note about
-         * that in the docs
-         */
-        Thread.sleep(2000);
-        earlierDate = new Date(sourceLastModifiedDate.getTime() - 1000);
-        laterDate = new Date(sourceLastModifiedDate.getTime() + 1000);
-
-        InitiateMultipartUploadRequest initiateMultipartUploadRequest = new InitiateMultipartUploadRequest(
-                BUCKET_NAME,
-                DESTINATION_KEY);
-        initiateMultipartUploadRequest.setObjectMetadata(new ObjectMetadata());
-        initiateMultipartUploadRequest.getObjectMetadata().setSSEAlgorithm(
-                ObjectMetadata.AES_256_SERVER_SIDE_ENCRYPTION);
-        multipartUploadId = s3.initiateMultipartUpload(
-                initiateMultipartUploadRequest)
-                .getUploadId();
     }
 
     /**
@@ -348,37 +320,5 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
         long timeDifference = new Date().getTime() -
                 result.getLastModifiedDate().getTime();
         assertTrue(timeDifference < 1000 * 60 * 60 * 24);
-    }
-
-    private boolean uploadAndWait(String bucket, String key, File file) {
-        TransferUtility tu = TransferUtility.builder()
-                .context(ApplicationProvider.getApplicationContext())
-                .s3Client(s3)
-                .build();
-        final CountDownLatch uploaded = new CountDownLatch(1);
-        final AtomicBoolean success = new AtomicBoolean(true);
-        tu.upload(bucket, key, file, new TransferListener() {
-            @Override
-            public void onStateChanged(int id, TransferState state) {
-                if (TransferState.COMPLETED.equals(state)) {
-                    uploaded.countDown();
-                }
-            }
-
-            @Override
-            public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {}
-
-            @Override
-            public void onError(int id, Exception ex) {
-                success.set(false);
-                uploaded.countDown();
-            }
-        });
-        try {
-            return uploaded.await(UPLOAD_TIMEOUT_MS, TimeUnit.MILLISECONDS)
-                    && success.get();
-        } catch (InterruptedException interrupted) {
-            return false;
-        }
     }
 }
