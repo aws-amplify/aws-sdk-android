@@ -1,5 +1,26 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.19.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.4)
+
+### New Features
+
+- **Amazon DynamoDB**
+  - Added `keyConditionExpression` to `DynamoDBQueryExpression` class. See [PR #2280](https://github.com/aws-amplify/aws-sdk-android/pull/2280).
+
+- **Amazon Cognito Identity Provider**
+  - Fixed bug where client was sending invalid secret hash during `NewPasswordContinuation` flow. See [PR #2265](https://github.com/aws-amplify/aws-sdk-android/pull/2265).
+  - Reduced default threshold for refresh tokens from 5 minutes to 2 minutes. See [Issue #2232](https://github.com/aws-amplify/aws-sdk-android/issues/2232).
+
+### Model updates
+  - Amazon Cognito Identity Provider
+  - Amazon Connect
+  - Amazon Comprehend
+  - Amazon Translate
+  - AWS IoT
+  - AWS Lambda
+
+### Misc.
+  - Removed Apache Commons Logging dependency
 
 ## [Release 2.19.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.3)
 
