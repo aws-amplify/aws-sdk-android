@@ -17,7 +17,6 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.metrics.RequestMetricCollector;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.internal.BucketNameUtils;
 import com.amazonaws.services.s3.model.AccessControlList;
@@ -47,7 +46,7 @@ import java.net.URL;
  * An S3 Link that works with {@link DynamoDBMapper}. An S3 link is persisted as
  * a JSON string in DynamoDB. This link object can be used directly to
  * upload/download files to S3. Alternatively, the underlying
- * {@link AmazonS3Client} and {@link TransferManager} can be retrieved to
+ * {@link AmazonS3Client} can be retrieved to
  * provide full access API to S3.
  * <p>
  * For example:
@@ -73,10 +72,9 @@ import java.net.URL;
  * // Download file from S3 via an S3Link
  * s3link.downloadTo(new File("/path/to/downloads/" + username + ".jpg"));
  *
- * // Full S3 API is available via the canonical AmazonS3Client and TransferManager API.
+ * // Full S3 API is available via the canonical AmazonS3Client API.
  * // For example:
  * AmazonS3Client s3 = s3link.getAmazonS3Client();
- * TransferManager s3m = s3link.getTransferManager();
  * // etc.
  * </pre>
  *
@@ -189,10 +187,6 @@ public class S3Link {
 
     public AmazonS3Client getAmazonS3Client() {
         return s3cc.getClient(getS3Region());
-    }
-
-    public TransferManager getTransferManager() {
-        return s3cc.getTransferManager(getS3Region());
     }
 
     /**

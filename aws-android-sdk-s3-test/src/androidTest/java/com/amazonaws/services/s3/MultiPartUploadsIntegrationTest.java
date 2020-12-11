@@ -23,7 +23,6 @@ import static org.junit.Assert.fail;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.AccessControlList;
@@ -60,7 +59,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -84,13 +82,6 @@ public class MultiPartUploadsIntegrationTest extends S3IntegrationTestBase {
     @AfterClass
     public static void tearDown() {
         disableVersioning(BUCKET_NAME);
-
-        try {
-            new TransferManager(s3).abortMultipartUploads(BUCKET_NAME, new Date());
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-
         try {
             deleteBucketAndAllVersionedContents(BUCKET_NAME);
         } catch (final Exception e) {
