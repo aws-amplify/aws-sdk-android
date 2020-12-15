@@ -172,6 +172,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
+     * Send messages to an Amazon Managed Streaming for Apache Kafka (Amazon
+     * MSK) or self-managed Apache Kafka cluster.
+     * </p>
+     */
+    private KafkaAction kafka;
+
+    /**
+     * <p>
      * Write to a DynamoDB table.
      * </p>
      *
@@ -1113,6 +1121,57 @@ public class Action implements Serializable {
     }
 
     /**
+     * <p>
+     * Send messages to an Amazon Managed Streaming for Apache Kafka (Amazon
+     * MSK) or self-managed Apache Kafka cluster.
+     * </p>
+     *
+     * @return <p>
+     *         Send messages to an Amazon Managed Streaming for Apache Kafka
+     *         (Amazon MSK) or self-managed Apache Kafka cluster.
+     *         </p>
+     */
+    public KafkaAction getKafka() {
+        return kafka;
+    }
+
+    /**
+     * <p>
+     * Send messages to an Amazon Managed Streaming for Apache Kafka (Amazon
+     * MSK) or self-managed Apache Kafka cluster.
+     * </p>
+     *
+     * @param kafka <p>
+     *            Send messages to an Amazon Managed Streaming for Apache Kafka
+     *            (Amazon MSK) or self-managed Apache Kafka cluster.
+     *            </p>
+     */
+    public void setKafka(KafkaAction kafka) {
+        this.kafka = kafka;
+    }
+
+    /**
+     * <p>
+     * Send messages to an Amazon Managed Streaming for Apache Kafka (Amazon
+     * MSK) or self-managed Apache Kafka cluster.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kafka <p>
+     *            Send messages to an Amazon Managed Streaming for Apache Kafka
+     *            (Amazon MSK) or self-managed Apache Kafka cluster.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withKafka(KafkaAction kafka) {
+        this.kafka = kafka;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1162,7 +1221,9 @@ public class Action implements Serializable {
         if (getTimestream() != null)
             sb.append("timestream: " + getTimestream() + ",");
         if (getHttp() != null)
-            sb.append("http: " + getHttp());
+            sb.append("http: " + getHttp() + ",");
+        if (getKafka() != null)
+            sb.append("kafka: " + getKafka());
         sb.append("}");
         return sb.toString();
     }
@@ -1199,6 +1260,7 @@ public class Action implements Serializable {
                 + ((getStepFunctions() == null) ? 0 : getStepFunctions().hashCode());
         hashCode = prime * hashCode + ((getTimestream() == null) ? 0 : getTimestream().hashCode());
         hashCode = prime * hashCode + ((getHttp() == null) ? 0 : getHttp().hashCode());
+        hashCode = prime * hashCode + ((getKafka() == null) ? 0 : getKafka().hashCode());
         return hashCode;
     }
 
@@ -1304,6 +1366,10 @@ public class Action implements Serializable {
         if (other.getHttp() == null ^ this.getHttp() == null)
             return false;
         if (other.getHttp() != null && other.getHttp().equals(this.getHttp()) == false)
+            return false;
+        if (other.getKafka() == null ^ this.getKafka() == null)
+            return false;
+        if (other.getKafka() != null && other.getKafka().equals(this.getKafka()) == false)
             return false;
         return true;
     }

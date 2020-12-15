@@ -51,6 +51,13 @@ class ViolationEventJsonMarshaller {
             jsonWriter.name("metricValue");
             MetricValueJsonMarshaller.getInstance().marshall(metricValue, jsonWriter);
         }
+        if (violationEvent.getViolationEventAdditionalInfo() != null) {
+            ViolationEventAdditionalInfo violationEventAdditionalInfo = violationEvent
+                    .getViolationEventAdditionalInfo();
+            jsonWriter.name("violationEventAdditionalInfo");
+            ViolationEventAdditionalInfoJsonMarshaller.getInstance().marshall(
+                    violationEventAdditionalInfo, jsonWriter);
+        }
         if (violationEvent.getViolationEventType() != null) {
             String violationEventType = violationEvent.getViolationEventType();
             jsonWriter.name("violationEventType");

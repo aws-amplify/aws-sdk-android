@@ -31,7 +31,7 @@ public class DescribeDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) for the dimension.
+     * The Amazon Resource Name (ARN) for the dimension.
      * </p>
      */
     private String arn;
@@ -127,11 +127,11 @@ public class DescribeDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) for the dimension.
+     * The Amazon Resource Name (ARN) for the dimension.
      * </p>
      *
      * @return <p>
-     *         The ARN (Amazon resource name) for the dimension.
+     *         The Amazon Resource Name (ARN) for the dimension.
      *         </p>
      */
     public String getArn() {
@@ -140,11 +140,11 @@ public class DescribeDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) for the dimension.
+     * The Amazon Resource Name (ARN) for the dimension.
      * </p>
      *
      * @param arn <p>
-     *            The ARN (Amazon resource name) for the dimension.
+     *            The Amazon Resource Name (ARN) for the dimension.
      *            </p>
      */
     public void setArn(String arn) {
@@ -153,14 +153,14 @@ public class DescribeDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) for the dimension.
+     * The Amazon Resource Name (ARN) for the dimension.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN (Amazon resource name) for the dimension.
+     *            The Amazon Resource Name (ARN) for the dimension.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

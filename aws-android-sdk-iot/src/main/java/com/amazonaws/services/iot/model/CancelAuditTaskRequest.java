@@ -21,9 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Cancels an audit that is in progress. The audit can be either scheduled or
- * on-demand. If the audit is not in progress, an "InvalidRequestException"
- * occurs.
+ * Cancels an audit that is in progress. The audit can be either scheduled or on
+ * demand. If the audit isn't in progress, an "InvalidRequestException" occurs.
  * </p>
  */
 public class CancelAuditTaskRequest extends AmazonWebServiceRequest implements Serializable {

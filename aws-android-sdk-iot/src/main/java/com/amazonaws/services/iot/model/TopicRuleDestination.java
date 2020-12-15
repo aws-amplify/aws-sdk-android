@@ -76,9 +76,23 @@ public class TopicRuleDestination implements Serializable {
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      */
     private String status;
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was created.
+     * </p>
+     */
+    private java.util.Date createdAt;
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was last updated.
+     * </p>
+     */
+    private java.util.Date lastUpdatedAt;
 
     /**
      * <p>
@@ -94,6 +108,13 @@ public class TopicRuleDestination implements Serializable {
      * </p>
      */
     private HttpUrlDestinationProperties httpUrlProperties;
+
+    /**
+     * <p>
+     * Properties of the virtual private cloud (VPC) connection.
+     * </p>
+     */
+    private VpcDestinationProperties vpcProperties;
 
     /**
      * <p>
@@ -186,7 +207,7 @@ public class TopicRuleDestination implements Serializable {
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @return <p>
      *         The status of the topic rule destination. Valid values are:
@@ -284,7 +305,7 @@ public class TopicRuleDestination implements Serializable {
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -390,7 +411,7 @@ public class TopicRuleDestination implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -496,7 +517,7 @@ public class TopicRuleDestination implements Serializable {
      * </dl>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -602,7 +623,7 @@ public class TopicRuleDestination implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR
+     * <b>Allowed Values: </b>ENABLED, IN_PROGRESS, DISABLED, ERROR, DELETING
      *
      * @param status <p>
      *            The status of the topic rule destination. Valid values are:
@@ -659,6 +680,99 @@ public class TopicRuleDestination implements Serializable {
      */
     public TopicRuleDestination withStatus(TopicRuleDestinationStatus status) {
         this.status = status.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was created.
+     * </p>
+     *
+     * @return <p>
+     *         The date and time when the topic rule destination was created.
+     *         </p>
+     */
+    public java.util.Date getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was created.
+     * </p>
+     *
+     * @param createdAt <p>
+     *            The date and time when the topic rule destination was created.
+     *            </p>
+     */
+    public void setCreatedAt(java.util.Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was created.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param createdAt <p>
+     *            The date and time when the topic rule destination was created.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TopicRuleDestination withCreatedAt(java.util.Date createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was last updated.
+     * </p>
+     *
+     * @return <p>
+     *         The date and time when the topic rule destination was last
+     *         updated.
+     *         </p>
+     */
+    public java.util.Date getLastUpdatedAt() {
+        return lastUpdatedAt;
+    }
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was last updated.
+     * </p>
+     *
+     * @param lastUpdatedAt <p>
+     *            The date and time when the topic rule destination was last
+     *            updated.
+     *            </p>
+     */
+    public void setLastUpdatedAt(java.util.Date lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
+    }
+
+    /**
+     * <p>
+     * The date and time when the topic rule destination was last updated.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastUpdatedAt <p>
+     *            The date and time when the topic rule destination was last
+     *            updated.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TopicRuleDestination withLastUpdatedAt(java.util.Date lastUpdatedAt) {
+        this.lastUpdatedAt = lastUpdatedAt;
         return this;
     }
 
@@ -759,6 +873,51 @@ public class TopicRuleDestination implements Serializable {
     }
 
     /**
+     * <p>
+     * Properties of the virtual private cloud (VPC) connection.
+     * </p>
+     *
+     * @return <p>
+     *         Properties of the virtual private cloud (VPC) connection.
+     *         </p>
+     */
+    public VpcDestinationProperties getVpcProperties() {
+        return vpcProperties;
+    }
+
+    /**
+     * <p>
+     * Properties of the virtual private cloud (VPC) connection.
+     * </p>
+     *
+     * @param vpcProperties <p>
+     *            Properties of the virtual private cloud (VPC) connection.
+     *            </p>
+     */
+    public void setVpcProperties(VpcDestinationProperties vpcProperties) {
+        this.vpcProperties = vpcProperties;
+    }
+
+    /**
+     * <p>
+     * Properties of the virtual private cloud (VPC) connection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcProperties <p>
+     *            Properties of the virtual private cloud (VPC) connection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TopicRuleDestination withVpcProperties(VpcDestinationProperties vpcProperties) {
+        this.vpcProperties = vpcProperties;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -773,10 +932,16 @@ public class TopicRuleDestination implements Serializable {
             sb.append("arn: " + getArn() + ",");
         if (getStatus() != null)
             sb.append("status: " + getStatus() + ",");
+        if (getCreatedAt() != null)
+            sb.append("createdAt: " + getCreatedAt() + ",");
+        if (getLastUpdatedAt() != null)
+            sb.append("lastUpdatedAt: " + getLastUpdatedAt() + ",");
         if (getStatusReason() != null)
             sb.append("statusReason: " + getStatusReason() + ",");
         if (getHttpUrlProperties() != null)
-            sb.append("httpUrlProperties: " + getHttpUrlProperties());
+            sb.append("httpUrlProperties: " + getHttpUrlProperties() + ",");
+        if (getVpcProperties() != null)
+            sb.append("vpcProperties: " + getVpcProperties());
         sb.append("}");
         return sb.toString();
     }
@@ -788,10 +953,15 @@ public class TopicRuleDestination implements Serializable {
 
         hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode + ((getCreatedAt() == null) ? 0 : getCreatedAt().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastUpdatedAt() == null) ? 0 : getLastUpdatedAt().hashCode());
         hashCode = prime * hashCode
                 + ((getStatusReason() == null) ? 0 : getStatusReason().hashCode());
         hashCode = prime * hashCode
                 + ((getHttpUrlProperties() == null) ? 0 : getHttpUrlProperties().hashCode());
+        hashCode = prime * hashCode
+                + ((getVpcProperties() == null) ? 0 : getVpcProperties().hashCode());
         return hashCode;
     }
 
@@ -814,6 +984,16 @@ public class TopicRuleDestination implements Serializable {
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
+        if (other.getCreatedAt() == null ^ this.getCreatedAt() == null)
+            return false;
+        if (other.getCreatedAt() != null
+                && other.getCreatedAt().equals(this.getCreatedAt()) == false)
+            return false;
+        if (other.getLastUpdatedAt() == null ^ this.getLastUpdatedAt() == null)
+            return false;
+        if (other.getLastUpdatedAt() != null
+                && other.getLastUpdatedAt().equals(this.getLastUpdatedAt()) == false)
+            return false;
         if (other.getStatusReason() == null ^ this.getStatusReason() == null)
             return false;
         if (other.getStatusReason() != null
@@ -823,6 +1003,11 @@ public class TopicRuleDestination implements Serializable {
             return false;
         if (other.getHttpUrlProperties() != null
                 && other.getHttpUrlProperties().equals(this.getHttpUrlProperties()) == false)
+            return false;
+        if (other.getVpcProperties() == null ^ this.getVpcProperties() == null)
+            return false;
+        if (other.getVpcProperties() != null
+                && other.getVpcProperties().equals(this.getVpcProperties()) == false)
             return false;
         return true;
     }

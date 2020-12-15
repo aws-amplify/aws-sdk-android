@@ -47,7 +47,7 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The security profile whose behavior is in violation.
+     * The security profile with the behavior is in violation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,18 +58,25 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The behavior which is being violated.
+     * The behavior that is being violated.
      * </p>
      */
     private Behavior behavior;
 
     /**
      * <p>
-     * The value of the metric (the measurement) which caused the most recent
+     * The value of the metric (the measurement) that caused the most recent
      * violation.
      * </p>
      */
     private MetricValue lastViolationValue;
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     */
+    private ViolationEventAdditionalInfo violationEventAdditionalInfo;
 
     /**
      * <p>
@@ -198,7 +205,7 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The security profile whose behavior is in violation.
+     * The security profile with the behavior is in violation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -206,7 +213,7 @@ public class ActiveViolation implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The security profile whose behavior is in violation.
+     *         The security profile with the behavior is in violation.
      *         </p>
      */
     public String getSecurityProfileName() {
@@ -215,7 +222,7 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The security profile whose behavior is in violation.
+     * The security profile with the behavior is in violation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -223,7 +230,7 @@ public class ActiveViolation implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param securityProfileName <p>
-     *            The security profile whose behavior is in violation.
+     *            The security profile with the behavior is in violation.
      *            </p>
      */
     public void setSecurityProfileName(String securityProfileName) {
@@ -232,7 +239,7 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The security profile whose behavior is in violation.
+     * The security profile with the behavior is in violation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -243,7 +250,7 @@ public class ActiveViolation implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param securityProfileName <p>
-     *            The security profile whose behavior is in violation.
+     *            The security profile with the behavior is in violation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -255,11 +262,11 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The behavior which is being violated.
+     * The behavior that is being violated.
      * </p>
      *
      * @return <p>
-     *         The behavior which is being violated.
+     *         The behavior that is being violated.
      *         </p>
      */
     public Behavior getBehavior() {
@@ -268,11 +275,11 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The behavior which is being violated.
+     * The behavior that is being violated.
      * </p>
      *
      * @param behavior <p>
-     *            The behavior which is being violated.
+     *            The behavior that is being violated.
      *            </p>
      */
     public void setBehavior(Behavior behavior) {
@@ -281,14 +288,14 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The behavior which is being violated.
+     * The behavior that is being violated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param behavior <p>
-     *            The behavior which is being violated.
+     *            The behavior that is being violated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -300,12 +307,12 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The value of the metric (the measurement) which caused the most recent
+     * The value of the metric (the measurement) that caused the most recent
      * violation.
      * </p>
      *
      * @return <p>
-     *         The value of the metric (the measurement) which caused the most
+     *         The value of the metric (the measurement) that caused the most
      *         recent violation.
      *         </p>
      */
@@ -315,13 +322,13 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The value of the metric (the measurement) which caused the most recent
+     * The value of the metric (the measurement) that caused the most recent
      * violation.
      * </p>
      *
      * @param lastViolationValue <p>
-     *            The value of the metric (the measurement) which caused the
-     *            most recent violation.
+     *            The value of the metric (the measurement) that caused the most
+     *            recent violation.
      *            </p>
      */
     public void setLastViolationValue(MetricValue lastViolationValue) {
@@ -330,7 +337,7 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
-     * The value of the metric (the measurement) which caused the most recent
+     * The value of the metric (the measurement) that caused the most recent
      * violation.
      * </p>
      * <p>
@@ -338,14 +345,61 @@ public class ActiveViolation implements Serializable {
      * together.
      *
      * @param lastViolationValue <p>
-     *            The value of the metric (the measurement) which caused the
-     *            most recent violation.
+     *            The value of the metric (the measurement) that caused the most
+     *            recent violation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ActiveViolation withLastViolationValue(MetricValue lastViolationValue) {
         this.lastViolationValue = lastViolationValue;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     *
+     * @return <p>
+     *         The details of a violation event.
+     *         </p>
+     */
+    public ViolationEventAdditionalInfo getViolationEventAdditionalInfo() {
+        return violationEventAdditionalInfo;
+    }
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     *
+     * @param violationEventAdditionalInfo <p>
+     *            The details of a violation event.
+     *            </p>
+     */
+    public void setViolationEventAdditionalInfo(
+            ViolationEventAdditionalInfo violationEventAdditionalInfo) {
+        this.violationEventAdditionalInfo = violationEventAdditionalInfo;
+    }
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param violationEventAdditionalInfo <p>
+     *            The details of a violation event.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ActiveViolation withViolationEventAdditionalInfo(
+            ViolationEventAdditionalInfo violationEventAdditionalInfo) {
+        this.violationEventAdditionalInfo = violationEventAdditionalInfo;
         return this;
     }
 
@@ -460,6 +514,8 @@ public class ActiveViolation implements Serializable {
             sb.append("behavior: " + getBehavior() + ",");
         if (getLastViolationValue() != null)
             sb.append("lastViolationValue: " + getLastViolationValue() + ",");
+        if (getViolationEventAdditionalInfo() != null)
+            sb.append("violationEventAdditionalInfo: " + getViolationEventAdditionalInfo() + ",");
         if (getLastViolationTime() != null)
             sb.append("lastViolationTime: " + getLastViolationTime() + ",");
         if (getViolationStartTime() != null)
@@ -481,6 +537,10 @@ public class ActiveViolation implements Serializable {
         hashCode = prime * hashCode + ((getBehavior() == null) ? 0 : getBehavior().hashCode());
         hashCode = prime * hashCode
                 + ((getLastViolationValue() == null) ? 0 : getLastViolationValue().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getViolationEventAdditionalInfo() == null) ? 0
+                        : getViolationEventAdditionalInfo().hashCode());
         hashCode = prime * hashCode
                 + ((getLastViolationTime() == null) ? 0 : getLastViolationTime().hashCode());
         hashCode = prime * hashCode
@@ -522,6 +582,13 @@ public class ActiveViolation implements Serializable {
             return false;
         if (other.getLastViolationValue() != null
                 && other.getLastViolationValue().equals(this.getLastViolationValue()) == false)
+            return false;
+        if (other.getViolationEventAdditionalInfo() == null
+                ^ this.getViolationEventAdditionalInfo() == null)
+            return false;
+        if (other.getViolationEventAdditionalInfo() != null
+                && other.getViolationEventAdditionalInfo().equals(
+                        this.getViolationEventAdditionalInfo()) == false)
             return false;
         if (other.getLastViolationTime() == null ^ this.getLastViolationTime() == null)
             return false;

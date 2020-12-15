@@ -31,7 +31,7 @@ public class CreateDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) of the created dimension.
+     * The Amazon Resource Name (ARN) of the created dimension.
      * </p>
      */
     private String arn;
@@ -95,11 +95,11 @@ public class CreateDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) of the created dimension.
+     * The Amazon Resource Name (ARN) of the created dimension.
      * </p>
      *
      * @return <p>
-     *         The ARN (Amazon resource name) of the created dimension.
+     *         The Amazon Resource Name (ARN) of the created dimension.
      *         </p>
      */
     public String getArn() {
@@ -108,11 +108,11 @@ public class CreateDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) of the created dimension.
+     * The Amazon Resource Name (ARN) of the created dimension.
      * </p>
      *
      * @param arn <p>
-     *            The ARN (Amazon resource name) of the created dimension.
+     *            The Amazon Resource Name (ARN) of the created dimension.
      *            </p>
      */
     public void setArn(String arn) {
@@ -121,14 +121,14 @@ public class CreateDimensionResult implements Serializable {
 
     /**
      * <p>
-     * The ARN (Amazon resource name) of the created dimension.
+     * The Amazon Resource Name (ARN) of the created dimension.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The ARN (Amazon resource name) of the created dimension.
+     *            The Amazon Resource Name (ARN) of the created dimension.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

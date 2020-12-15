@@ -51,6 +51,11 @@ class ViolationEventJsonUnmarshaller implements
             } else if (name.equals("metricValue")) {
                 violationEvent.setMetricValue(MetricValueJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("violationEventAdditionalInfo")) {
+                violationEvent
+                        .setViolationEventAdditionalInfo(ViolationEventAdditionalInfoJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("violationEventType")) {
                 violationEvent.setViolationEventType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

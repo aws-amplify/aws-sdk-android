@@ -48,6 +48,19 @@ class MetricValueJsonUnmarshaller implements Unmarshaller<MetricValue, JsonUnmar
                         .getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("number")) {
+                metricValue.setNumber(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("numbers")) {
+                metricValue.setNumbers(new ListUnmarshaller<Double>(DoubleJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("strings")) {
+                metricValue.setStrings(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -47,6 +47,9 @@ class BehaviorJsonUnmarshaller implements Unmarshaller<Behavior, JsonUnmarshalle
             } else if (name.equals("criteria")) {
                 behavior.setCriteria(BehaviorCriteriaJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("suppressAlerts")) {
+                behavior.setSuppressAlerts(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

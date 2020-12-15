@@ -60,6 +60,13 @@ class BehaviorCriteriaJsonMarshaller {
             StatisticalThresholdJsonMarshaller.getInstance().marshall(statisticalThreshold,
                     jsonWriter);
         }
+        if (behaviorCriteria.getMlDetectionConfig() != null) {
+            MachineLearningDetectionConfig mlDetectionConfig = behaviorCriteria
+                    .getMlDetectionConfig();
+            jsonWriter.name("mlDetectionConfig");
+            MachineLearningDetectionConfigJsonMarshaller.getInstance().marshall(mlDetectionConfig,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

@@ -20,9 +20,10 @@ import java.io.Serializable;
 public class DescribeScheduledAuditResult implements Serializable {
     /**
      * <p>
-     * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
-     * the system.
+     * How often the scheduled audit takes place, either one of
+     * <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>, or
+     * <code>MONTHLY</code>. The start time of each audit is determined by the
+     * system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,10 +33,11 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Will be
-     * "1" through "31" or "LAST". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This is
+     * will be <code>1</code> through <code>31</code> or <code>LAST</code>. If
+     * days <code>29</code>-<code>31</code> are specified, and the month does
+     * not have that many days, the audit takes place on the <code>LAST</code>
+     * day of the month.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,8 +47,8 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     * The day of the week on which the scheduled audit takes place, either one
+     * of <code>SUN</code>, <code>MON</code>, <code>TUE</code>, <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,18 +88,20 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
-     * the system.
+     * How often the scheduled audit takes place, either one of
+     * <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>, or
+     * <code>MONTHLY</code>. The start time of each audit is determined by the
+     * system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @return <p>
-     *         How often the scheduled audit takes place. One of "DAILY",
-     *         "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit
-     *         is determined by the system.
+     *         How often the scheduled audit takes place, either one of
+     *         <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>,
+     *         or <code>MONTHLY</code>. The start time of each audit is
+     *         determined by the system.
      *         </p>
      * @see AuditFrequency
      */
@@ -107,18 +111,20 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
-     * the system.
+     * How often the scheduled audit takes place, either one of
+     * <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>, or
+     * <code>MONTHLY</code>. The start time of each audit is determined by the
+     * system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
-     *            audit is determined by the system.
+     *            How often the scheduled audit takes place, either one of
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -128,9 +134,10 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
-     * the system.
+     * How often the scheduled audit takes place, either one of
+     * <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>, or
+     * <code>MONTHLY</code>. The start time of each audit is determined by the
+     * system.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -140,9 +147,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
-     *            audit is determined by the system.
+     *            How often the scheduled audit takes place, either one of
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -155,18 +163,20 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
-     * the system.
+     * How often the scheduled audit takes place, either one of
+     * <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>, or
+     * <code>MONTHLY</code>. The start time of each audit is determined by the
+     * system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
-     *            audit is determined by the system.
+     *            How often the scheduled audit takes place, either one of
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -176,9 +186,10 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * How often the scheduled audit takes place. One of "DAILY", "WEEKLY",
-     * "BIWEEKLY", or "MONTHLY". The start time of each audit is determined by
-     * the system.
+     * How often the scheduled audit takes place, either one of
+     * <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>, or
+     * <code>MONTHLY</code>. The start time of each audit is determined by the
+     * system.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -188,9 +199,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. One of "DAILY",
-     *            "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each
-     *            audit is determined by the system.
+     *            How often the scheduled audit takes place, either one of
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -203,10 +215,11 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Will be
-     * "1" through "31" or "LAST". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This is
+     * will be <code>1</code> through <code>31</code> or <code>LAST</code>. If
+     * days <code>29</code>-<code>31</code> are specified, and the month does
+     * not have that many days, the audit takes place on the <code>LAST</code>
+     * day of the month.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -214,9 +227,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @return <p>
      *         The day of the month on which the scheduled audit takes place.
-     *         Will be "1" through "31" or "LAST". If days 29-31 are specified,
-     *         and the month does not have that many days, the audit takes place
-     *         on the "LAST" day of the month.
+     *         This is will be <code>1</code> through <code>31</code> or
+     *         <code>LAST</code>. If days <code>29</code>-<code>31</code> are
+     *         specified, and the month does not have that many days, the audit
+     *         takes place on the <code>LAST</code> day of the month.
      *         </p>
      */
     public String getDayOfMonth() {
@@ -225,10 +239,11 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Will be
-     * "1" through "31" or "LAST". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This is
+     * will be <code>1</code> through <code>31</code> or <code>LAST</code>. If
+     * days <code>29</code>-<code>31</code> are specified, and the month does
+     * not have that many days, the audit takes place on the <code>LAST</code>
+     * day of the month.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -236,9 +251,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param dayOfMonth <p>
      *            The day of the month on which the scheduled audit takes place.
-     *            Will be "1" through "31" or "LAST". If days 29-31 are
+     *            This is will be <code>1</code> through <code>31</code> or
+     *            <code>LAST</code>. If days <code>29</code>-<code>31</code> are
      *            specified, and the month does not have that many days, the
-     *            audit takes place on the "LAST" day of the month.
+     *            audit takes place on the <code>LAST</code> day of the month.
      *            </p>
      */
     public void setDayOfMonth(String dayOfMonth) {
@@ -247,10 +263,11 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Will be
-     * "1" through "31" or "LAST". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This is
+     * will be <code>1</code> through <code>31</code> or <code>LAST</code>. If
+     * days <code>29</code>-<code>31</code> are specified, and the month does
+     * not have that many days, the audit takes place on the <code>LAST</code>
+     * day of the month.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -261,9 +278,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      *
      * @param dayOfMonth <p>
      *            The day of the month on which the scheduled audit takes place.
-     *            Will be "1" through "31" or "LAST". If days 29-31 are
+     *            This is will be <code>1</code> through <code>31</code> or
+     *            <code>LAST</code>. If days <code>29</code>-<code>31</code> are
      *            specified, and the month does not have that many days, the
-     *            audit takes place on the "LAST" day of the month.
+     *            audit takes place on the <code>LAST</code> day of the month.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -275,16 +293,18 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     * The day of the week on which the scheduled audit takes place, either one
+     * of <code>SUN</code>, <code>MON</code>, <code>TUE</code>, <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUN, MON, TUE, WED, THU, FRI, SAT
      *
      * @return <p>
-     *         The day of the week on which the scheduled audit takes place. One
-     *         of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     *         The day of the week on which the scheduled audit takes place,
+     *         either one of <code>SUN</code>, <code>MON</code>,
+     *         <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *         <code>FRI</code>, or <code>SAT</code>.
      *         </p>
      * @see DayOfWeek
      */
@@ -294,16 +314,18 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     * The day of the week on which the scheduled audit takes place, either one
+     * of <code>SUN</code>, <code>MON</code>, <code>TUE</code>, <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUN, MON, TUE, WED, THU, FRI, SAT
      *
      * @param dayOfWeek <p>
-     *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     *            The day of the week on which the scheduled audit takes place,
+     *            either one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>.
      *            </p>
      * @see DayOfWeek
      */
@@ -313,8 +335,8 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     * The day of the week on which the scheduled audit takes place, either one
+     * of <code>SUN</code>, <code>MON</code>, <code>TUE</code>, <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -324,8 +346,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      * <b>Allowed Values: </b>SUN, MON, TUE, WED, THU, FRI, SAT
      *
      * @param dayOfWeek <p>
-     *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     *            The day of the week on which the scheduled audit takes place,
+     *            either one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -338,16 +362,18 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     * The day of the week on which the scheduled audit takes place, either one
+     * of <code>SUN</code>, <code>MON</code>, <code>TUE</code>, <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUN, MON, TUE, WED, THU, FRI, SAT
      *
      * @param dayOfWeek <p>
-     *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     *            The day of the week on which the scheduled audit takes place,
+     *            either one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>.
      *            </p>
      * @see DayOfWeek
      */
@@ -357,8 +383,8 @@ public class DescribeScheduledAuditResult implements Serializable {
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. One of
-     * "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     * The day of the week on which the scheduled audit takes place, either one
+     * of <code>SUN</code>, <code>MON</code>, <code>TUE</code>, <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -368,8 +394,10 @@ public class DescribeScheduledAuditResult implements Serializable {
      * <b>Allowed Values: </b>SUN, MON, TUE, WED, THU, FRI, SAT
      *
      * @param dayOfWeek <p>
-     *            The day of the week on which the scheduled audit takes place.
-     *            One of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
+     *            The day of the week on which the scheduled audit takes place,
+     *            either one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class SecurityProfileIdentifier implements Serializable {
     /**
      * <p>
-     * The name you have given to the security profile.
+     * The name you've given to the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class SecurityProfileIdentifier implements Serializable {
 
     /**
      * <p>
-     * The name you have given to the security profile.
+     * The name you've given to the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +51,7 @@ public class SecurityProfileIdentifier implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @return <p>
-     *         The name you have given to the security profile.
+     *         The name you've given to the security profile.
      *         </p>
      */
     public String getName() {
@@ -60,7 +60,7 @@ public class SecurityProfileIdentifier implements Serializable {
 
     /**
      * <p>
-     * The name you have given to the security profile.
+     * The name you've given to the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +68,7 @@ public class SecurityProfileIdentifier implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param name <p>
-     *            The name you have given to the security profile.
+     *            The name you've given to the security profile.
      *            </p>
      */
     public void setName(String name) {
@@ -77,7 +77,7 @@ public class SecurityProfileIdentifier implements Serializable {
 
     /**
      * <p>
-     * The name you have given to the security profile.
+     * The name you've given to the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,7 +88,7 @@ public class SecurityProfileIdentifier implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      *
      * @param name <p>
-     *            The name you have given to the security profile.
+     *            The name you've given to the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

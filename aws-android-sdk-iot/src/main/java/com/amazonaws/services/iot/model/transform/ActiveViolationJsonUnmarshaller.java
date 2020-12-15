@@ -51,6 +51,11 @@ class ActiveViolationJsonUnmarshaller implements
             } else if (name.equals("lastViolationValue")) {
                 activeViolation.setLastViolationValue(MetricValueJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("violationEventAdditionalInfo")) {
+                activeViolation
+                        .setViolationEventAdditionalInfo(ViolationEventAdditionalInfoJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else if (name.equals("lastViolationTime")) {
                 activeViolation.setLastViolationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
