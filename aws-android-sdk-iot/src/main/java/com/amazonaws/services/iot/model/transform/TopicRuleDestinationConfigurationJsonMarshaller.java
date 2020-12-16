@@ -34,6 +34,13 @@ class TopicRuleDestinationConfigurationJsonMarshaller {
             HttpUrlDestinationConfigurationJsonMarshaller.getInstance().marshall(
                     httpUrlConfiguration, jsonWriter);
         }
+        if (topicRuleDestinationConfiguration.getVpcConfiguration() != null) {
+            VpcDestinationConfiguration vpcConfiguration = topicRuleDestinationConfiguration
+                    .getVpcConfiguration();
+            jsonWriter.name("vpcConfiguration");
+            VpcDestinationConfigurationJsonMarshaller.getInstance().marshall(vpcConfiguration,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Gets information about a single audit finding. Properties include the reason
- * for noncompliance, the severity of the issue, and when the audit that
- * returned the finding was started.
+ * for noncompliance, the severity of the issue, and the start time when the
+ * audit that returned the finding.
  * </p>
  */
 public class DescribeAuditFindingRequest extends AmazonWebServiceRequest implements Serializable {

@@ -66,6 +66,10 @@ public class ListSecurityProfilesRequestMarshaller implements
             request.addParameter("dimensionName",
                     StringUtils.fromString(listSecurityProfilesRequest.getDimensionName()));
         }
+        if (listSecurityProfilesRequest.getMetricName() != null) {
+            request.addParameter("metricName",
+                    StringUtils.fromString(listSecurityProfilesRequest.getMetricName()));
+        }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

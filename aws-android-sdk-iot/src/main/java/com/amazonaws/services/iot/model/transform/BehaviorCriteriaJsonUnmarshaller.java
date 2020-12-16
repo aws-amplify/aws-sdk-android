@@ -57,6 +57,11 @@ class BehaviorCriteriaJsonUnmarshaller implements
                 behaviorCriteria.setStatisticalThreshold(StatisticalThresholdJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("mlDetectionConfig")) {
+                behaviorCriteria
+                        .setMlDetectionConfig(MachineLearningDetectionConfigJsonUnmarshaller
+                                .getInstance()
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

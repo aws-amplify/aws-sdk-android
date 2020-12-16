@@ -27,13 +27,38 @@ public class BehaviorCriteria implements Serializable {
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
      * criteria (containing a <code>value</code> or
-     * <code>statisticalThreshold</code>).
+     * <code>statisticalThreshold</code>). Valid operators include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>string-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     * <code>not-in-cidr-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number</code>: <code>less-than</code>,
+     * <code>less-than-equals</code>, <code>greater-than</code>, and
+     * <code>greater-than-equals</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>less-than, less-than-equals, greater-than,
      * greater-than-equals, in-cidr-set, not-in-cidr-set, in-port-set,
-     * not-in-port-set
+     * not-in-port-set, in-set, not-in-set
      */
     private String comparisonOperator;
 
@@ -47,12 +72,13 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * Use this to specify the time duration over which the behavior is
-     * evaluated, for those criteria which have a time dimension (for example,
+     * evaluated, for those criteria that have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>). For a <code>statisticalThreshhold</code>
      * metric comparison, measurements from all devices are accumulated over
      * this time duration before being used to calculate percentiles, and later,
      * measurements from an individual device are also accumulated over this
-     * time duration before being given a percentile rank.
+     * time duration before being given a percentile rank. Cannot be used with
+     * list-based metric datatypes.
      * </p>
      */
     private Integer durationSeconds;
@@ -83,7 +109,7 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * A statistical ranking (percentile) which indicates a threshold value by
+     * A statistical ranking (percentile)that indicates a threshold value by
      * which a behavior is determined to be in compliance or in violation of the
      * behavior.
      * </p>
@@ -92,21 +118,80 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
+     * The configuration of an ML Detect
+     * </p>
+     */
+    private MachineLearningDetectionConfig mlDetectionConfig;
+
+    /**
+     * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
      * criteria (containing a <code>value</code> or
-     * <code>statisticalThreshold</code>).
+     * <code>statisticalThreshold</code>). Valid operators include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>string-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     * <code>not-in-cidr-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number</code>: <code>less-than</code>,
+     * <code>less-than-equals</code>, <code>greater-than</code>, and
+     * <code>greater-than-equals</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>less-than, less-than-equals, greater-than,
      * greater-than-equals, in-cidr-set, not-in-cidr-set, in-port-set,
-     * not-in-port-set
+     * not-in-port-set, in-set, not-in-set
      *
      * @return <p>
      *         The operator that relates the thing measured (<code>metric</code>
      *         ) to the criteria (containing a <code>value</code> or
-     *         <code>statisticalThreshold</code>).
+     *         <code>statisticalThreshold</code>). Valid operators include:
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>string-list</code>: <code>in-set</code> and
+     *         <code>not-in-set</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>number-list</code>: <code>in-set</code> and
+     *         <code>not-in-set</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     *         <code>not-in-cidr-set</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>number</code>: <code>less-than</code>,
+     *         <code>less-than-equals</code>, <code>greater-than</code>, and
+     *         <code>greater-than-equals</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      * @see ComparisonOperator
      */
     public String getComparisonOperator() {
@@ -117,19 +202,72 @@ public class BehaviorCriteria implements Serializable {
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
      * criteria (containing a <code>value</code> or
-     * <code>statisticalThreshold</code>).
+     * <code>statisticalThreshold</code>). Valid operators include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>string-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     * <code>not-in-cidr-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number</code>: <code>less-than</code>,
+     * <code>less-than-equals</code>, <code>greater-than</code>, and
+     * <code>greater-than-equals</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>less-than, less-than-equals, greater-than,
      * greater-than-equals, in-cidr-set, not-in-cidr-set, in-port-set,
-     * not-in-port-set
+     * not-in-port-set, in-set, not-in-set
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
      *            <code>metric</code>) to the criteria (containing a
      *            <code>value</code> or <code>statisticalThreshold</code>).
+     *            Valid operators include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>string-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     *            <code>not-in-cidr-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number</code>: <code>less-than</code>,
+     *            <code>less-than-equals</code>, <code>greater-than</code>, and
+     *            <code>greater-than-equals</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see ComparisonOperator
      */
     public void setComparisonOperator(String comparisonOperator) {
@@ -140,8 +278,33 @@ public class BehaviorCriteria implements Serializable {
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
      * criteria (containing a <code>value</code> or
-     * <code>statisticalThreshold</code>).
+     * <code>statisticalThreshold</code>). Valid operators include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>string-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     * <code>not-in-cidr-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number</code>: <code>less-than</code>,
+     * <code>less-than-equals</code>, <code>greater-than</code>, and
+     * <code>greater-than-equals</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -149,13 +312,41 @@ public class BehaviorCriteria implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>less-than, less-than-equals, greater-than,
      * greater-than-equals, in-cidr-set, not-in-cidr-set, in-port-set,
-     * not-in-port-set
+     * not-in-port-set, in-set, not-in-set
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
      *            <code>metric</code>) to the criteria (containing a
      *            <code>value</code> or <code>statisticalThreshold</code>).
+     *            Valid operators include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>string-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     *            <code>not-in-cidr-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number</code>: <code>less-than</code>,
+     *            <code>less-than-equals</code>, <code>greater-than</code>, and
+     *            <code>greater-than-equals</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ComparisonOperator
@@ -169,19 +360,72 @@ public class BehaviorCriteria implements Serializable {
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
      * criteria (containing a <code>value</code> or
-     * <code>statisticalThreshold</code>).
+     * <code>statisticalThreshold</code>). Valid operators include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>string-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     * <code>not-in-cidr-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number</code>: <code>less-than</code>,
+     * <code>less-than-equals</code>, <code>greater-than</code>, and
+     * <code>greater-than-equals</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>less-than, less-than-equals, greater-than,
      * greater-than-equals, in-cidr-set, not-in-cidr-set, in-port-set,
-     * not-in-port-set
+     * not-in-port-set, in-set, not-in-set
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
      *            <code>metric</code>) to the criteria (containing a
      *            <code>value</code> or <code>statisticalThreshold</code>).
+     *            Valid operators include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>string-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     *            <code>not-in-cidr-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number</code>: <code>less-than</code>,
+     *            <code>less-than-equals</code>, <code>greater-than</code>, and
+     *            <code>greater-than-equals</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @see ComparisonOperator
      */
     public void setComparisonOperator(ComparisonOperator comparisonOperator) {
@@ -192,8 +436,33 @@ public class BehaviorCriteria implements Serializable {
      * <p>
      * The operator that relates the thing measured (<code>metric</code>) to the
      * criteria (containing a <code>value</code> or
-     * <code>statisticalThreshold</code>).
+     * <code>statisticalThreshold</code>). Valid operators include:
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>string-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number-list</code>: <code>in-set</code> and <code>not-in-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     * <code>not-in-cidr-set</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>number</code>: <code>less-than</code>,
+     * <code>less-than-equals</code>, <code>greater-than</code>, and
+     * <code>greater-than-equals</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -201,13 +470,41 @@ public class BehaviorCriteria implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>less-than, less-than-equals, greater-than,
      * greater-than-equals, in-cidr-set, not-in-cidr-set, in-port-set,
-     * not-in-port-set
+     * not-in-port-set, in-set, not-in-set
      *
      * @param comparisonOperator <p>
      *            The operator that relates the thing measured (
      *            <code>metric</code>) to the criteria (containing a
      *            <code>value</code> or <code>statisticalThreshold</code>).
+     *            Valid operators include:
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>string-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number-list</code>: <code>in-set</code> and
+     *            <code>not-in-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ip-address-list</code>: <code>in-cidr-set</code> and
+     *            <code>not-in-cidr-set</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>number</code>: <code>less-than</code>,
+     *            <code>less-than-equals</code>, <code>greater-than</code>, and
+     *            <code>greater-than-equals</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see ComparisonOperator
@@ -265,23 +562,25 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * Use this to specify the time duration over which the behavior is
-     * evaluated, for those criteria which have a time dimension (for example,
+     * evaluated, for those criteria that have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>). For a <code>statisticalThreshhold</code>
      * metric comparison, measurements from all devices are accumulated over
      * this time duration before being used to calculate percentiles, and later,
      * measurements from an individual device are also accumulated over this
-     * time duration before being given a percentile rank.
+     * time duration before being given a percentile rank. Cannot be used with
+     * list-based metric datatypes.
      * </p>
      *
      * @return <p>
      *         Use this to specify the time duration over which the behavior is
-     *         evaluated, for those criteria which have a time dimension (for
+     *         evaluated, for those criteria that have a time dimension (for
      *         example, <code>NUM_MESSAGES_SENT</code>). For a
      *         <code>statisticalThreshhold</code> metric comparison,
      *         measurements from all devices are accumulated over this time
      *         duration before being used to calculate percentiles, and later,
      *         measurements from an individual device are also accumulated over
-     *         this time duration before being given a percentile rank.
+     *         this time duration before being given a percentile rank. Cannot
+     *         be used with list-based metric datatypes.
      *         </p>
      */
     public Integer getDurationSeconds() {
@@ -291,24 +590,26 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * Use this to specify the time duration over which the behavior is
-     * evaluated, for those criteria which have a time dimension (for example,
+     * evaluated, for those criteria that have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>). For a <code>statisticalThreshhold</code>
      * metric comparison, measurements from all devices are accumulated over
      * this time duration before being used to calculate percentiles, and later,
      * measurements from an individual device are also accumulated over this
-     * time duration before being given a percentile rank.
+     * time duration before being given a percentile rank. Cannot be used with
+     * list-based metric datatypes.
      * </p>
      *
      * @param durationSeconds <p>
      *            Use this to specify the time duration over which the behavior
-     *            is evaluated, for those criteria which have a time dimension
+     *            is evaluated, for those criteria that have a time dimension
      *            (for example, <code>NUM_MESSAGES_SENT</code>). For a
      *            <code>statisticalThreshhold</code> metric comparison,
      *            measurements from all devices are accumulated over this time
      *            duration before being used to calculate percentiles, and
      *            later, measurements from an individual device are also
      *            accumulated over this time duration before being given a
-     *            percentile rank.
+     *            percentile rank. Cannot be used with list-based metric
+     *            datatypes.
      *            </p>
      */
     public void setDurationSeconds(Integer durationSeconds) {
@@ -318,12 +619,13 @@ public class BehaviorCriteria implements Serializable {
     /**
      * <p>
      * Use this to specify the time duration over which the behavior is
-     * evaluated, for those criteria which have a time dimension (for example,
+     * evaluated, for those criteria that have a time dimension (for example,
      * <code>NUM_MESSAGES_SENT</code>). For a <code>statisticalThreshhold</code>
      * metric comparison, measurements from all devices are accumulated over
      * this time duration before being used to calculate percentiles, and later,
      * measurements from an individual device are also accumulated over this
-     * time duration before being given a percentile rank.
+     * time duration before being given a percentile rank. Cannot be used with
+     * list-based metric datatypes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -331,14 +633,15 @@ public class BehaviorCriteria implements Serializable {
      *
      * @param durationSeconds <p>
      *            Use this to specify the time duration over which the behavior
-     *            is evaluated, for those criteria which have a time dimension
+     *            is evaluated, for those criteria that have a time dimension
      *            (for example, <code>NUM_MESSAGES_SENT</code>). For a
      *            <code>statisticalThreshhold</code> metric comparison,
      *            measurements from all devices are accumulated over this time
      *            duration before being used to calculate percentiles, and
      *            later, measurements from an individual device are also
      *            accumulated over this time duration before being given a
-     *            percentile rank.
+     *            percentile rank. Cannot be used with list-based metric
+     *            datatypes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -485,13 +788,13 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * A statistical ranking (percentile) which indicates a threshold value by
+     * A statistical ranking (percentile)that indicates a threshold value by
      * which a behavior is determined to be in compliance or in violation of the
      * behavior.
      * </p>
      *
      * @return <p>
-     *         A statistical ranking (percentile) which indicates a threshold
+     *         A statistical ranking (percentile)that indicates a threshold
      *         value by which a behavior is determined to be in compliance or in
      *         violation of the behavior.
      *         </p>
@@ -502,13 +805,13 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * A statistical ranking (percentile) which indicates a threshold value by
+     * A statistical ranking (percentile)that indicates a threshold value by
      * which a behavior is determined to be in compliance or in violation of the
      * behavior.
      * </p>
      *
      * @param statisticalThreshold <p>
-     *            A statistical ranking (percentile) which indicates a threshold
+     *            A statistical ranking (percentile)that indicates a threshold
      *            value by which a behavior is determined to be in compliance or
      *            in violation of the behavior.
      *            </p>
@@ -519,7 +822,7 @@ public class BehaviorCriteria implements Serializable {
 
     /**
      * <p>
-     * A statistical ranking (percentile) which indicates a threshold value by
+     * A statistical ranking (percentile)that indicates a threshold value by
      * which a behavior is determined to be in compliance or in violation of the
      * behavior.
      * </p>
@@ -528,7 +831,7 @@ public class BehaviorCriteria implements Serializable {
      * together.
      *
      * @param statisticalThreshold <p>
-     *            A statistical ranking (percentile) which indicates a threshold
+     *            A statistical ranking (percentile)that indicates a threshold
      *            value by which a behavior is determined to be in compliance or
      *            in violation of the behavior.
      *            </p>
@@ -537,6 +840,51 @@ public class BehaviorCriteria implements Serializable {
      */
     public BehaviorCriteria withStatisticalThreshold(StatisticalThreshold statisticalThreshold) {
         this.statisticalThreshold = statisticalThreshold;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The configuration of an ML Detect
+     * </p>
+     *
+     * @return <p>
+     *         The configuration of an ML Detect
+     *         </p>
+     */
+    public MachineLearningDetectionConfig getMlDetectionConfig() {
+        return mlDetectionConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration of an ML Detect
+     * </p>
+     *
+     * @param mlDetectionConfig <p>
+     *            The configuration of an ML Detect
+     *            </p>
+     */
+    public void setMlDetectionConfig(MachineLearningDetectionConfig mlDetectionConfig) {
+        this.mlDetectionConfig = mlDetectionConfig;
+    }
+
+    /**
+     * <p>
+     * The configuration of an ML Detect
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param mlDetectionConfig <p>
+     *            The configuration of an ML Detect
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public BehaviorCriteria withMlDetectionConfig(MachineLearningDetectionConfig mlDetectionConfig) {
+        this.mlDetectionConfig = mlDetectionConfig;
         return this;
     }
 
@@ -562,7 +910,9 @@ public class BehaviorCriteria implements Serializable {
         if (getConsecutiveDatapointsToClear() != null)
             sb.append("consecutiveDatapointsToClear: " + getConsecutiveDatapointsToClear() + ",");
         if (getStatisticalThreshold() != null)
-            sb.append("statisticalThreshold: " + getStatisticalThreshold());
+            sb.append("statisticalThreshold: " + getStatisticalThreshold() + ",");
+        if (getMlDetectionConfig() != null)
+            sb.append("mlDetectionConfig: " + getMlDetectionConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -587,6 +937,8 @@ public class BehaviorCriteria implements Serializable {
                         : getConsecutiveDatapointsToClear().hashCode());
         hashCode = prime * hashCode
                 + ((getStatisticalThreshold() == null) ? 0 : getStatisticalThreshold().hashCode());
+        hashCode = prime * hashCode
+                + ((getMlDetectionConfig() == null) ? 0 : getMlDetectionConfig().hashCode());
         return hashCode;
     }
 
@@ -633,6 +985,11 @@ public class BehaviorCriteria implements Serializable {
             return false;
         if (other.getStatisticalThreshold() != null
                 && other.getStatisticalThreshold().equals(this.getStatisticalThreshold()) == false)
+            return false;
+        if (other.getMlDetectionConfig() == null ^ this.getMlDetectionConfig() == null)
+            return false;
+        if (other.getMlDetectionConfig() != null
+                && other.getMlDetectionConfig().equals(this.getMlDetectionConfig()) == false)
             return false;
         return true;
     }

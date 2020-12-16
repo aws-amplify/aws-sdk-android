@@ -81,7 +81,8 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's behaviors, but it is also
-     * retained for any metric specified here.
+     * retained for any metric specified here. Can be used with custom metrics;
+     * cannot be used with dimensions.
      * </p>
      */
     private java.util.List<MetricToRetain> additionalMetricsToRetainV2;
@@ -580,13 +581,15 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's behaviors, but it is also
-     * retained for any metric specified here.
+     * retained for any metric specified here. Can be used with custom metrics;
+     * cannot be used with dimensions.
      * </p>
      *
      * @return <p>
      *         A list of metrics whose data is retained (stored). By default,
      *         data is retained for any metric used in the profile's behaviors,
-     *         but it is also retained for any metric specified here.
+     *         but it is also retained for any metric specified here. Can be
+     *         used with custom metrics; cannot be used with dimensions.
      *         </p>
      */
     public java.util.List<MetricToRetain> getAdditionalMetricsToRetainV2() {
@@ -597,14 +600,16 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's behaviors, but it is also
-     * retained for any metric specified here.
+     * retained for any metric specified here. Can be used with custom metrics;
+     * cannot be used with dimensions.
      * </p>
      *
      * @param additionalMetricsToRetainV2 <p>
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
      *            behaviors, but it is also retained for any metric specified
-     *            here.
+     *            here. Can be used with custom metrics; cannot be used with
+     *            dimensions.
      *            </p>
      */
     public void setAdditionalMetricsToRetainV2(
@@ -622,7 +627,8 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's behaviors, but it is also
-     * retained for any metric specified here.
+     * retained for any metric specified here. Can be used with custom metrics;
+     * cannot be used with dimensions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -632,7 +638,8 @@ public class UpdateSecurityProfileResult implements Serializable {
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
      *            behaviors, but it is also retained for any metric specified
-     *            here.
+     *            here. Can be used with custom metrics; cannot be used with
+     *            dimensions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -653,7 +660,8 @@ public class UpdateSecurityProfileResult implements Serializable {
      * <p>
      * A list of metrics whose data is retained (stored). By default, data is
      * retained for any metric used in the profile's behaviors, but it is also
-     * retained for any metric specified here.
+     * retained for any metric specified here. Can be used with custom metrics;
+     * cannot be used with dimensions.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -663,7 +671,8 @@ public class UpdateSecurityProfileResult implements Serializable {
      *            A list of metrics whose data is retained (stored). By default,
      *            data is retained for any metric used in the profile's
      *            behaviors, but it is also retained for any metric specified
-     *            here.
+     *            here. Can be used with custom metrics; cannot be used with
+     *            dimensions.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

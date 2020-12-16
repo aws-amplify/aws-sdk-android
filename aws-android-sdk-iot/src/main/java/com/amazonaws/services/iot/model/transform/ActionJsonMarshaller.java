@@ -127,6 +127,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("http");
             HttpActionJsonMarshaller.getInstance().marshall(http, jsonWriter);
         }
+        if (action.getKafka() != null) {
+            KafkaAction kafka = action.getKafka();
+            jsonWriter.name("kafka");
+            KafkaActionJsonMarshaller.getInstance().marshall(kafka, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

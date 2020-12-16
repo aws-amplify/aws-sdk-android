@@ -46,6 +46,11 @@ class BehaviorJsonMarshaller {
             jsonWriter.name("criteria");
             BehaviorCriteriaJsonMarshaller.getInstance().marshall(criteria, jsonWriter);
         }
+        if (behavior.getSuppressAlerts() != null) {
+            Boolean suppressAlerts = behavior.getSuppressAlerts();
+            jsonWriter.name("suppressAlerts");
+            jsonWriter.value(suppressAlerts);
+        }
         jsonWriter.endObject();
     }
 

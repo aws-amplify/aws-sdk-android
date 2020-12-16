@@ -32,7 +32,7 @@ public class MetricToRetain implements Serializable {
 
     /**
      * <p>
-     * The dimension of a metric.
+     * The dimension of a metric. This can't be used with custom metrics.
      * </p>
      */
     private MetricDimension metricDimension;
@@ -84,11 +84,12 @@ public class MetricToRetain implements Serializable {
 
     /**
      * <p>
-     * The dimension of a metric.
+     * The dimension of a metric. This can't be used with custom metrics.
      * </p>
      *
      * @return <p>
-     *         The dimension of a metric.
+     *         The dimension of a metric. This can't be used with custom
+     *         metrics.
      *         </p>
      */
     public MetricDimension getMetricDimension() {
@@ -97,11 +98,12 @@ public class MetricToRetain implements Serializable {
 
     /**
      * <p>
-     * The dimension of a metric.
+     * The dimension of a metric. This can't be used with custom metrics.
      * </p>
      *
      * @param metricDimension <p>
-     *            The dimension of a metric.
+     *            The dimension of a metric. This can't be used with custom
+     *            metrics.
      *            </p>
      */
     public void setMetricDimension(MetricDimension metricDimension) {
@@ -110,14 +112,15 @@ public class MetricToRetain implements Serializable {
 
     /**
      * <p>
-     * The dimension of a metric.
+     * The dimension of a metric. This can't be used with custom metrics.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param metricDimension <p>
-     *            The dimension of a metric.
+     *            The dimension of a metric. This can't be used with custom
+     *            metrics.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

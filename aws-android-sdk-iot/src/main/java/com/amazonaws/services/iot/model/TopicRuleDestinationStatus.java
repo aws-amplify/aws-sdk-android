@@ -26,7 +26,8 @@ public enum TopicRuleDestinationStatus {
     ENABLED("ENABLED"),
     IN_PROGRESS("IN_PROGRESS"),
     DISABLED("DISABLED"),
-    ERROR("ERROR");
+    ERROR("ERROR"),
+    DELETING("DELETING");
 
     private String value;
 
@@ -46,6 +47,7 @@ public enum TopicRuleDestinationStatus {
         enumMap.put("IN_PROGRESS", IN_PROGRESS);
         enumMap.put("DISABLED", DISABLED);
         enumMap.put("ERROR", ERROR);
+        enumMap.put("DELETING", DELETING);
     }
 
     /**

@@ -21,10 +21,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the Device Defender security profiles you have created. You can use
- * filters to list only those security profiles associated with a thing group or
- * only those associated with your account.
+ * Lists the Device Defender security profiles you've created. You can filter
+ * security profiles by dimension or custom metric.
  * </p>
+ * <note>
+ * <p>
+ * <code>dimensionName</code> and <code>metricName</code> cannot be used in the
+ * same request.
+ * </p>
+ * </note>
  */
 public class ListSecurityProfilesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -47,7 +52,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * A filter to limit results to the security profiles that use the defined
-     * dimension.
+     * dimension. Cannot be used with <code>metricName</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -55,6 +60,18 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
      */
     private String dimensionName;
+
+    /**
+     * <p>
+     * The name of the custom metric. Cannot be used with
+     * <code>dimensionName</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     */
+    private String metricName;
 
     /**
      * <p>
@@ -158,7 +175,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * A filter to limit results to the security profiles that use the defined
-     * dimension.
+     * dimension. Cannot be used with <code>metricName</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,7 +184,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         A filter to limit results to the security profiles that use the
-     *         defined dimension.
+     *         defined dimension. Cannot be used with <code>metricName</code>
      *         </p>
      */
     public String getDimensionName() {
@@ -177,7 +194,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * A filter to limit results to the security profiles that use the defined
-     * dimension.
+     * dimension. Cannot be used with <code>metricName</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -186,7 +203,8 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      *
      * @param dimensionName <p>
      *            A filter to limit results to the security profiles that use
-     *            the defined dimension.
+     *            the defined dimension. Cannot be used with
+     *            <code>metricName</code>
      *            </p>
      */
     public void setDimensionName(String dimensionName) {
@@ -196,7 +214,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * A filter to limit results to the security profiles that use the defined
-     * dimension.
+     * dimension. Cannot be used with <code>metricName</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -208,13 +226,77 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      *
      * @param dimensionName <p>
      *            A filter to limit results to the security profiles that use
-     *            the defined dimension.
+     *            the defined dimension. Cannot be used with
+     *            <code>metricName</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListSecurityProfilesRequest withDimensionName(String dimensionName) {
         this.dimensionName = dimensionName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name of the custom metric. Cannot be used with
+     * <code>dimensionName</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @return <p>
+     *         The name of the custom metric. Cannot be used with
+     *         <code>dimensionName</code>.
+     *         </p>
+     */
+    public String getMetricName() {
+        return metricName;
+    }
+
+    /**
+     * <p>
+     * The name of the custom metric. Cannot be used with
+     * <code>dimensionName</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param metricName <p>
+     *            The name of the custom metric. Cannot be used with
+     *            <code>dimensionName</code>.
+     *            </p>
+     */
+    public void setMetricName(String metricName) {
+        this.metricName = metricName;
+    }
+
+    /**
+     * <p>
+     * The name of the custom metric. Cannot be used with
+     * <code>dimensionName</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9:_-]+<br/>
+     *
+     * @param metricName <p>
+     *            The name of the custom metric. Cannot be used with
+     *            <code>dimensionName</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListSecurityProfilesRequest withMetricName(String metricName) {
+        this.metricName = metricName;
         return this;
     }
 
@@ -234,7 +316,9 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         if (getMaxResults() != null)
             sb.append("maxResults: " + getMaxResults() + ",");
         if (getDimensionName() != null)
-            sb.append("dimensionName: " + getDimensionName());
+            sb.append("dimensionName: " + getDimensionName() + ",");
+        if (getMetricName() != null)
+            sb.append("metricName: " + getMetricName());
         sb.append("}");
         return sb.toString();
     }
@@ -248,6 +332,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode
                 + ((getDimensionName() == null) ? 0 : getDimensionName().hashCode());
+        hashCode = prime * hashCode + ((getMetricName() == null) ? 0 : getMetricName().hashCode());
         return hashCode;
     }
 
@@ -276,6 +361,11 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getDimensionName() != null
                 && other.getDimensionName().equals(this.getDimensionName()) == false)
+            return false;
+        if (other.getMetricName() == null ^ this.getMetricName() == null)
+            return false;
+        if (other.getMetricName() != null
+                && other.getMetricName().equals(this.getMetricName()) == false)
             return false;
         return true;
     }

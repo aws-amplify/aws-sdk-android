@@ -27,9 +27,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateMitigationActionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The friendly name for the mitigation action. You can't change the name by
-     * using <code>UpdateMitigationAction</code>. Instead, you must delete and
-     * re-create the mitigation action with the new name.
+     * The friendly name for the mitigation action. You cannot change the name
+     * by using <code>UpdateMitigationAction</code>. Instead, you must delete
+     * and recreate the mitigation action with the new name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,9 +57,9 @@ public class UpdateMitigationActionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The friendly name for the mitigation action. You can't change the name by
-     * using <code>UpdateMitigationAction</code>. Instead, you must delete and
-     * re-create the mitigation action with the new name.
+     * The friendly name for the mitigation action. You cannot change the name
+     * by using <code>UpdateMitigationAction</code>. Instead, you must delete
+     * and recreate the mitigation action with the new name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -67,9 +67,9 @@ public class UpdateMitigationActionRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
-     *         The friendly name for the mitigation action. You can't change the
-     *         name by using <code>UpdateMitigationAction</code>. Instead, you
-     *         must delete and re-create the mitigation action with the new
+     *         The friendly name for the mitigation action. You cannot change
+     *         the name by using <code>UpdateMitigationAction</code>. Instead,
+     *         you must delete and recreate the mitigation action with the new
      *         name.
      *         </p>
      */
@@ -79,9 +79,9 @@ public class UpdateMitigationActionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The friendly name for the mitigation action. You can't change the name by
-     * using <code>UpdateMitigationAction</code>. Instead, you must delete and
-     * re-create the mitigation action with the new name.
+     * The friendly name for the mitigation action. You cannot change the name
+     * by using <code>UpdateMitigationAction</code>. Instead, you must delete
+     * and recreate the mitigation action with the new name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,9 +89,9 @@ public class UpdateMitigationActionRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param actionName <p>
-     *            The friendly name for the mitigation action. You can't change
+     *            The friendly name for the mitigation action. You cannot change
      *            the name by using <code>UpdateMitigationAction</code>.
-     *            Instead, you must delete and re-create the mitigation action
+     *            Instead, you must delete and recreate the mitigation action
      *            with the new name.
      *            </p>
      */
@@ -101,9 +101,9 @@ public class UpdateMitigationActionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The friendly name for the mitigation action. You can't change the name by
-     * using <code>UpdateMitigationAction</code>. Instead, you must delete and
-     * re-create the mitigation action with the new name.
+     * The friendly name for the mitigation action. You cannot change the name
+     * by using <code>UpdateMitigationAction</code>. Instead, you must delete
+     * and recreate the mitigation action with the new name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -114,9 +114,9 @@ public class UpdateMitigationActionRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param actionName <p>
-     *            The friendly name for the mitigation action. You can't change
+     *            The friendly name for the mitigation action. You cannot change
      *            the name by using <code>UpdateMitigationAction</code>.
-     *            Instead, you must delete and re-create the mitigation action
+     *            Instead, you must delete and recreate the mitigation action
      *            with the new name.
      *            </p>
      * @return A reference to this updated object so that method calls can be

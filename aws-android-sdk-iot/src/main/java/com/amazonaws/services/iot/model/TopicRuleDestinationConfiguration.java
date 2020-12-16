@@ -32,6 +32,13 @@ public class TopicRuleDestinationConfiguration implements Serializable {
 
     /**
      * <p>
+     * Configuration of the virtual private cloud (VPC) connection.
+     * </p>
+     */
+    private VpcDestinationConfiguration vpcConfiguration;
+
+    /**
+     * <p>
      * Configuration of the HTTP URL.
      * </p>
      *
@@ -77,6 +84,52 @@ public class TopicRuleDestinationConfiguration implements Serializable {
     }
 
     /**
+     * <p>
+     * Configuration of the virtual private cloud (VPC) connection.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration of the virtual private cloud (VPC) connection.
+     *         </p>
+     */
+    public VpcDestinationConfiguration getVpcConfiguration() {
+        return vpcConfiguration;
+    }
+
+    /**
+     * <p>
+     * Configuration of the virtual private cloud (VPC) connection.
+     * </p>
+     *
+     * @param vpcConfiguration <p>
+     *            Configuration of the virtual private cloud (VPC) connection.
+     *            </p>
+     */
+    public void setVpcConfiguration(VpcDestinationConfiguration vpcConfiguration) {
+        this.vpcConfiguration = vpcConfiguration;
+    }
+
+    /**
+     * <p>
+     * Configuration of the virtual private cloud (VPC) connection.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param vpcConfiguration <p>
+     *            Configuration of the virtual private cloud (VPC) connection.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TopicRuleDestinationConfiguration withVpcConfiguration(
+            VpcDestinationConfiguration vpcConfiguration) {
+        this.vpcConfiguration = vpcConfiguration;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -88,7 +141,9 @@ public class TopicRuleDestinationConfiguration implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getHttpUrlConfiguration() != null)
-            sb.append("httpUrlConfiguration: " + getHttpUrlConfiguration());
+            sb.append("httpUrlConfiguration: " + getHttpUrlConfiguration() + ",");
+        if (getVpcConfiguration() != null)
+            sb.append("vpcConfiguration: " + getVpcConfiguration());
         sb.append("}");
         return sb.toString();
     }
@@ -100,6 +155,8 @@ public class TopicRuleDestinationConfiguration implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getHttpUrlConfiguration() == null) ? 0 : getHttpUrlConfiguration().hashCode());
+        hashCode = prime * hashCode
+                + ((getVpcConfiguration() == null) ? 0 : getVpcConfiguration().hashCode());
         return hashCode;
     }
 
@@ -118,6 +175,11 @@ public class TopicRuleDestinationConfiguration implements Serializable {
             return false;
         if (other.getHttpUrlConfiguration() != null
                 && other.getHttpUrlConfiguration().equals(this.getHttpUrlConfiguration()) == false)
+            return false;
+        if (other.getVpcConfiguration() == null ^ this.getVpcConfiguration() == null)
+            return false;
+        if (other.getVpcConfiguration() != null
+                && other.getVpcConfiguration().equals(this.getVpcConfiguration()) == false)
             return false;
         return true;
     }

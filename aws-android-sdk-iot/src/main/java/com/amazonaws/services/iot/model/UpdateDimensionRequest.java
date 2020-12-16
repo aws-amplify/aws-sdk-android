@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Updates the definition for a dimension. You cannot change the type of a
- * dimension after it is created (you can delete it and re-create it).
+ * dimension after it is created (you can delete it and recreate it).
  * </p>
  */
 public class UpdateDimensionRequest extends AmazonWebServiceRequest implements Serializable {

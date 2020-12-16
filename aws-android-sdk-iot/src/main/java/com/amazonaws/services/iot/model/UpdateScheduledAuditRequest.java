@@ -28,9 +28,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
-     * determined by the system.
+     * How often the scheduled audit takes place, either <code>DAILY</code>,
+     * <code>WEEKLY</code>, <code>BIWEEKLY</code>, or <code>MONTHLY</code>. The
+     * start time of each audit is determined by the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,11 +40,12 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Can be "1"
-     * through "31" or "LAST". This field is required if the "frequency"
-     * parameter is set to "MONTHLY". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This can
+     * be <code>1</code> through <code>31</code> or <code>LAST</code>. This
+     * field is required if the <code>frequency</code> parameter is set to
+     * <code>MONTHLY</code>. If days 29-31 are specified, and the month does not
+     * have that many days, the audit takes place on the "LAST" day of the
+     * month.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,9 +55,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
-     * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+     * The day of the week on which the scheduled audit takes place. This can be
+     * one of <code>SUN</code>, <code>MON</code>, <code>TUE</code>,
+     * <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>
+     * . This field is required if the "frequency" parameter is set to
+     * <code>WEEKLY</code> or <code>BIWEEKLY</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,18 +92,19 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
-     * determined by the system.
+     * How often the scheduled audit takes place, either <code>DAILY</code>,
+     * <code>WEEKLY</code>, <code>BIWEEKLY</code>, or <code>MONTHLY</code>. The
+     * start time of each audit is determined by the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @return <p>
-     *         How often the scheduled audit takes place. Can be one of "DAILY",
-     *         "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit
-     *         is determined by the system.
+     *         How often the scheduled audit takes place, either
+     *         <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>,
+     *         or <code>MONTHLY</code>. The start time of each audit is
+     *         determined by the system.
      *         </p>
      * @see AuditFrequency
      */
@@ -110,18 +114,19 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
-     * determined by the system.
+     * How often the scheduled audit takes place, either <code>DAILY</code>,
+     * <code>WEEKLY</code>, <code>BIWEEKLY</code>, or <code>MONTHLY</code>. The
+     * start time of each audit is determined by the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
-     *            each audit is determined by the system.
+     *            How often the scheduled audit takes place, either
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -131,9 +136,9 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
-     * determined by the system.
+     * How often the scheduled audit takes place, either <code>DAILY</code>,
+     * <code>WEEKLY</code>, <code>BIWEEKLY</code>, or <code>MONTHLY</code>. The
+     * start time of each audit is determined by the system.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -143,9 +148,10 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
-     *            each audit is determined by the system.
+     *            How often the scheduled audit takes place, either
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -158,18 +164,19 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
-     * determined by the system.
+     * How often the scheduled audit takes place, either <code>DAILY</code>,
+     * <code>WEEKLY</code>, <code>BIWEEKLY</code>, or <code>MONTHLY</code>. The
+     * start time of each audit is determined by the system.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
-     *            each audit is determined by the system.
+     *            How often the scheduled audit takes place, either
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @see AuditFrequency
      */
@@ -179,9 +186,9 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * How often the scheduled audit takes place. Can be one of "DAILY",
-     * "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of each audit is
-     * determined by the system.
+     * How often the scheduled audit takes place, either <code>DAILY</code>,
+     * <code>WEEKLY</code>, <code>BIWEEKLY</code>, or <code>MONTHLY</code>. The
+     * start time of each audit is determined by the system.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -191,9 +198,10 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      * <b>Allowed Values: </b>DAILY, WEEKLY, BIWEEKLY, MONTHLY
      *
      * @param frequency <p>
-     *            How often the scheduled audit takes place. Can be one of
-     *            "DAILY", "WEEKLY", "BIWEEKLY", or "MONTHLY". The start time of
-     *            each audit is determined by the system.
+     *            How often the scheduled audit takes place, either
+     *            <code>DAILY</code>, <code>WEEKLY</code>, <code>BIWEEKLY</code>
+     *            , or <code>MONTHLY</code>. The start time of each audit is
+     *            determined by the system.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -206,11 +214,12 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Can be "1"
-     * through "31" or "LAST". This field is required if the "frequency"
-     * parameter is set to "MONTHLY". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This can
+     * be <code>1</code> through <code>31</code> or <code>LAST</code>. This
+     * field is required if the <code>frequency</code> parameter is set to
+     * <code>MONTHLY</code>. If days 29-31 are specified, and the month does not
+     * have that many days, the audit takes place on the "LAST" day of the
+     * month.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -218,10 +227,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @return <p>
      *         The day of the month on which the scheduled audit takes place.
-     *         Can be "1" through "31" or "LAST". This field is required if the
-     *         "frequency" parameter is set to "MONTHLY". If days 29-31 are
-     *         specified, and the month does not have that many days, the audit
-     *         takes place on the "LAST" day of the month.
+     *         This can be <code>1</code> through <code>31</code> or
+     *         <code>LAST</code>. This field is required if the
+     *         <code>frequency</code> parameter is set to <code>MONTHLY</code>.
+     *         If days 29-31 are specified, and the month does not have that
+     *         many days, the audit takes place on the "LAST" day of the month.
      *         </p>
      */
     public String getDayOfMonth() {
@@ -230,11 +240,12 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Can be "1"
-     * through "31" or "LAST". This field is required if the "frequency"
-     * parameter is set to "MONTHLY". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This can
+     * be <code>1</code> through <code>31</code> or <code>LAST</code>. This
+     * field is required if the <code>frequency</code> parameter is set to
+     * <code>MONTHLY</code>. If days 29-31 are specified, and the month does not
+     * have that many days, the audit takes place on the "LAST" day of the
+     * month.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -242,10 +253,12 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfMonth <p>
      *            The day of the month on which the scheduled audit takes place.
-     *            Can be "1" through "31" or "LAST". This field is required if
-     *            the "frequency" parameter is set to "MONTHLY". If days 29-31
-     *            are specified, and the month does not have that many days, the
-     *            audit takes place on the "LAST" day of the month.
+     *            This can be <code>1</code> through <code>31</code> or
+     *            <code>LAST</code>. This field is required if the
+     *            <code>frequency</code> parameter is set to
+     *            <code>MONTHLY</code>. If days 29-31 are specified, and the
+     *            month does not have that many days, the audit takes place on
+     *            the "LAST" day of the month.
      *            </p>
      */
     public void setDayOfMonth(String dayOfMonth) {
@@ -254,11 +267,12 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the month on which the scheduled audit takes place. Can be "1"
-     * through "31" or "LAST". This field is required if the "frequency"
-     * parameter is set to "MONTHLY". If days 29-31 are specified, and the month
-     * does not have that many days, the audit takes place on the "LAST" day of
-     * the month.
+     * The day of the month on which the scheduled audit takes place. This can
+     * be <code>1</code> through <code>31</code> or <code>LAST</code>. This
+     * field is required if the <code>frequency</code> parameter is set to
+     * <code>MONTHLY</code>. If days 29-31 are specified, and the month does not
+     * have that many days, the audit takes place on the "LAST" day of the
+     * month.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -269,10 +283,12 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfMonth <p>
      *            The day of the month on which the scheduled audit takes place.
-     *            Can be "1" through "31" or "LAST". This field is required if
-     *            the "frequency" parameter is set to "MONTHLY". If days 29-31
-     *            are specified, and the month does not have that many days, the
-     *            audit takes place on the "LAST" day of the month.
+     *            This can be <code>1</code> through <code>31</code> or
+     *            <code>LAST</code>. This field is required if the
+     *            <code>frequency</code> parameter is set to
+     *            <code>MONTHLY</code>. If days 29-31 are specified, and the
+     *            month does not have that many days, the audit takes place on
+     *            the "LAST" day of the month.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,19 +300,23 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
-     * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+     * The day of the week on which the scheduled audit takes place. This can be
+     * one of <code>SUN</code>, <code>MON</code>, <code>TUE</code>,
+     * <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>
+     * . This field is required if the "frequency" parameter is set to
+     * <code>WEEKLY</code> or <code>BIWEEKLY</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SUN, MON, TUE, WED, THU, FRI, SAT
      *
      * @return <p>
-     *         The day of the week on which the scheduled audit takes place. Can
-     *         be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT".
-     *         This field is required if the "frequency" parameter is set to
-     *         "WEEKLY" or "BIWEEKLY".
+     *         The day of the week on which the scheduled audit takes place.
+     *         This can be one of <code>SUN</code>, <code>MON</code>,
+     *         <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *         <code>FRI</code>, or <code>SAT</code>. This field is required if
+     *         the "frequency" parameter is set to <code>WEEKLY</code> or
+     *         <code>BIWEEKLY</code>.
      *         </p>
      * @see DayOfWeek
      */
@@ -306,9 +326,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
-     * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+     * The day of the week on which the scheduled audit takes place. This can be
+     * one of <code>SUN</code>, <code>MON</code>, <code>TUE</code>,
+     * <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>
+     * . This field is required if the "frequency" parameter is set to
+     * <code>WEEKLY</code> or <code>BIWEEKLY</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -316,9 +338,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
-     *            "SAT". This field is required if the "frequency" parameter is
-     *            set to "WEEKLY" or "BIWEEKLY".
+     *            This can be one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>. This field is required
+     *            if the "frequency" parameter is set to <code>WEEKLY</code> or
+     *            <code>BIWEEKLY</code>.
      *            </p>
      * @see DayOfWeek
      */
@@ -328,9 +352,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
-     * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+     * The day of the week on which the scheduled audit takes place. This can be
+     * one of <code>SUN</code>, <code>MON</code>, <code>TUE</code>,
+     * <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>
+     * . This field is required if the "frequency" parameter is set to
+     * <code>WEEKLY</code> or <code>BIWEEKLY</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -341,9 +367,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
-     *            "SAT". This field is required if the "frequency" parameter is
-     *            set to "WEEKLY" or "BIWEEKLY".
+     *            This can be one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>. This field is required
+     *            if the "frequency" parameter is set to <code>WEEKLY</code> or
+     *            <code>BIWEEKLY</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -356,9 +384,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
-     * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+     * The day of the week on which the scheduled audit takes place. This can be
+     * one of <code>SUN</code>, <code>MON</code>, <code>TUE</code>,
+     * <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>
+     * . This field is required if the "frequency" parameter is set to
+     * <code>WEEKLY</code> or <code>BIWEEKLY</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -366,9 +396,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
-     *            "SAT". This field is required if the "frequency" parameter is
-     *            set to "WEEKLY" or "BIWEEKLY".
+     *            This can be one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>. This field is required
+     *            if the "frequency" parameter is set to <code>WEEKLY</code> or
+     *            <code>BIWEEKLY</code>.
      *            </p>
      * @see DayOfWeek
      */
@@ -378,9 +410,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The day of the week on which the scheduled audit takes place. Can be one
-     * of "SUN", "MON", "TUE", "WED", "THU", "FRI", or "SAT". This field is
-     * required if the "frequency" parameter is set to "WEEKLY" or "BIWEEKLY".
+     * The day of the week on which the scheduled audit takes place. This can be
+     * one of <code>SUN</code>, <code>MON</code>, <code>TUE</code>,
+     * <code>WED</code>, <code>THU</code>, <code>FRI</code>, or <code>SAT</code>
+     * . This field is required if the "frequency" parameter is set to
+     * <code>WEEKLY</code> or <code>BIWEEKLY</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -391,9 +425,11 @@ public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest impleme
      *
      * @param dayOfWeek <p>
      *            The day of the week on which the scheduled audit takes place.
-     *            Can be one of "SUN", "MON", "TUE", "WED", "THU", "FRI", or
-     *            "SAT". This field is required if the "frequency" parameter is
-     *            set to "WEEKLY" or "BIWEEKLY".
+     *            This can be one of <code>SUN</code>, <code>MON</code>,
+     *            <code>TUE</code>, <code>WED</code>, <code>THU</code>,
+     *            <code>FRI</code>, or <code>SAT</code>. This field is required
+     *            if the "frequency" parameter is set to <code>WEEKLY</code> or
+     *            <code>BIWEEKLY</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

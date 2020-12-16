@@ -37,6 +37,16 @@ class TopicRuleDestinationSummaryJsonMarshaller {
             jsonWriter.name("status");
             jsonWriter.value(status);
         }
+        if (topicRuleDestinationSummary.getCreatedAt() != null) {
+            java.util.Date createdAt = topicRuleDestinationSummary.getCreatedAt();
+            jsonWriter.name("createdAt");
+            jsonWriter.value(createdAt);
+        }
+        if (topicRuleDestinationSummary.getLastUpdatedAt() != null) {
+            java.util.Date lastUpdatedAt = topicRuleDestinationSummary.getLastUpdatedAt();
+            jsonWriter.name("lastUpdatedAt");
+            jsonWriter.value(lastUpdatedAt);
+        }
         if (topicRuleDestinationSummary.getStatusReason() != null) {
             String statusReason = topicRuleDestinationSummary.getStatusReason();
             jsonWriter.name("statusReason");
@@ -47,6 +57,13 @@ class TopicRuleDestinationSummaryJsonMarshaller {
                     .getHttpUrlSummary();
             jsonWriter.name("httpUrlSummary");
             HttpUrlDestinationSummaryJsonMarshaller.getInstance().marshall(httpUrlSummary,
+                    jsonWriter);
+        }
+        if (topicRuleDestinationSummary.getVpcDestinationSummary() != null) {
+            VpcDestinationSummary vpcDestinationSummary = topicRuleDestinationSummary
+                    .getVpcDestinationSummary();
+            jsonWriter.name("vpcDestinationSummary");
+            VpcDestinationSummaryJsonMarshaller.getInstance().marshall(vpcDestinationSummary,
                     jsonWriter);
         }
         jsonWriter.endObject();

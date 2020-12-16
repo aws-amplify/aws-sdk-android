@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class EnableIoTLoggingParams implements Serializable {
     /**
      * <p>
-     * The ARN of the IAM role used for logging.
+     * The Amazon Resource Name (ARN) of the IAM role used for logging.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,7 +36,7 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * Specifies the types of information to be logged.
+     * Specifies the type of information to be logged.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,14 +46,14 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * The ARN of the IAM role used for logging.
+     * The Amazon Resource Name (ARN) of the IAM role used for logging.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The ARN of the IAM role used for logging.
+     *         The Amazon Resource Name (ARN) of the IAM role used for logging.
      *         </p>
      */
     public String getRoleArnForLogging() {
@@ -62,14 +62,15 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * The ARN of the IAM role used for logging.
+     * The Amazon Resource Name (ARN) of the IAM role used for logging.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArnForLogging <p>
-     *            The ARN of the IAM role used for logging.
+     *            The Amazon Resource Name (ARN) of the IAM role used for
+     *            logging.
      *            </p>
      */
     public void setRoleArnForLogging(String roleArnForLogging) {
@@ -78,7 +79,7 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * The ARN of the IAM role used for logging.
+     * The Amazon Resource Name (ARN) of the IAM role used for logging.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,7 +89,8 @@ public class EnableIoTLoggingParams implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArnForLogging <p>
-     *            The ARN of the IAM role used for logging.
+     *            The Amazon Resource Name (ARN) of the IAM role used for
+     *            logging.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -100,14 +102,14 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * Specifies the types of information to be logged.
+     * Specifies the type of information to be logged.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @return <p>
-     *         Specifies the types of information to be logged.
+     *         Specifies the type of information to be logged.
      *         </p>
      * @see LogLevel
      */
@@ -117,14 +119,14 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * Specifies the types of information to be logged.
+     * Specifies the type of information to be logged.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            Specifies the types of information to be logged.
+     *            Specifies the type of information to be logged.
      *            </p>
      * @see LogLevel
      */
@@ -134,7 +136,7 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * Specifies the types of information to be logged.
+     * Specifies the type of information to be logged.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -144,7 +146,7 @@ public class EnableIoTLoggingParams implements Serializable {
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            Specifies the types of information to be logged.
+     *            Specifies the type of information to be logged.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -157,14 +159,14 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * Specifies the types of information to be logged.
+     * Specifies the type of information to be logged.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            Specifies the types of information to be logged.
+     *            Specifies the type of information to be logged.
      *            </p>
      * @see LogLevel
      */
@@ -174,7 +176,7 @@ public class EnableIoTLoggingParams implements Serializable {
 
     /**
      * <p>
-     * Specifies the types of information to be logged.
+     * Specifies the type of information to be logged.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -184,7 +186,7 @@ public class EnableIoTLoggingParams implements Serializable {
      * <b>Allowed Values: </b>DEBUG, INFO, ERROR, WARN, DISABLED
      *
      * @param logLevel <p>
-     *            Specifies the types of information to be logged.
+     *            Specifies the type of information to be logged.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

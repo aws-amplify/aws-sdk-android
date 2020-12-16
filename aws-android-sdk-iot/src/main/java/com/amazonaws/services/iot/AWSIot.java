@@ -379,7 +379,7 @@ public interface AWSIot {
     /**
      * <p>
      * Cancels an audit that is in progress. The audit can be either scheduled
-     * or on-demand. If the audit is not in progress, an
+     * or on demand. If the audit isn't in progress, an
      * "InvalidRequestException" occurs.
      * </p>
      * 
@@ -437,6 +437,31 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void cancelCertificateTransfer(CancelCertificateTransferRequest cancelCertificateTransferRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Cancels a Device Defender ML Detect mitigation action.
+     * </p>
+     * 
+     * @param cancelDetectMitigationActionsTaskRequest
+     * @return cancelDetectMitigationActionsTaskResult The response from the
+     *         CancelDetectMitigationActionsTask service method, as returned by
+     *         AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CancelDetectMitigationActionsTaskResult cancelDetectMitigationActionsTask(
+            CancelDetectMitigationActionsTaskRequest cancelDetectMitigationActionsTaskRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -697,6 +722,31 @@ public interface AWSIot {
      */
     CreateCertificateFromCsrResult createCertificateFromCsr(
             CreateCertificateFromCsrRequest createCertificateFromCsrRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Use this API to define a Custom Metric published by your devices to
+     * Device Defender.
+     * </p>
+     * 
+     * @param createCustomMetricRequest
+     * @return createCustomMetricResult The response from the CreateCustomMetric
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ResourceAlreadyExistsException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateCustomMetricResult createCustomMetric(CreateCustomMetricRequest createCustomMetricRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1479,6 +1529,38 @@ public interface AWSIot {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <note>
+     * <p>
+     * Before you can delete a custom metric, you must first remove the custom
+     * metric from all security profiles it's a part of. The security profile
+     * associated with the custom metric can be found using the <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html"
+     * >ListSecurityProfiles</a> API with <code>metricName</code> set to your
+     * custom metric name.
+     * </p>
+     * </note>
+     * <p>
+     * Deletes a Device Defender detect custom metric.
+     * </p>
+     * 
+     * @param deleteCustomMetricRequest
+     * @return deleteCustomMetricResult The response from the DeleteCustomMetric
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DeleteCustomMetricResult deleteCustomMetric(DeleteCustomMetricRequest deleteCustomMetricRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
      * <p>
      * Removes the specified dimension from your AWS account.
      * </p>
@@ -2123,8 +2205,8 @@ public interface AWSIot {
     /**
      * <p>
      * Gets information about a single audit finding. Properties include the
-     * reason for noncompliance, the severity of the issue, and when the audit
-     * that returned the finding was started.
+     * reason for noncompliance, the severity of the issue, and the start time
+     * when the audit that returned the finding.
      * </p>
      * 
      * @param describeAuditFindingRequest
@@ -2328,6 +2410,30 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets information about a Device Defender detect custom metric.
+     * </p>
+     * 
+     * @param describeCustomMetricRequest
+     * @return describeCustomMetricResult The response from the
+     *         DescribeCustomMetric service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeCustomMetricResult describeCustomMetric(
+            DescribeCustomMetricRequest describeCustomMetricRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Describes the default authorizer.
      * </p>
      * 
@@ -2350,6 +2456,31 @@ public interface AWSIot {
      */
     DescribeDefaultAuthorizerResult describeDefaultAuthorizer(
             DescribeDefaultAuthorizerRequest describeDefaultAuthorizerRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Gets information about a Device Defender ML Detect mitigation action.
+     * </p>
+     * 
+     * @param describeDetectMitigationActionsTaskRequest
+     * @return describeDetectMitigationActionsTaskResult The response from the
+     *         DescribeDetectMitigationActionsTask service method, as returned
+     *         by AWS IoT.
+     * @throws ResourceNotFoundException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeDetectMitigationActionsTaskResult describeDetectMitigationActionsTask(
+            DescribeDetectMitigationActionsTaskRequest describeDetectMitigationActionsTaskRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2965,6 +3096,32 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void enableTopicRule(EnableTopicRuleRequest enableTopicRuleRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns a Device Defender's ML Detect Security Profile training model's
+     * status.
+     * </p>
+     * 
+     * @param getBehaviorModelTrainingSummariesRequest
+     * @return getBehaviorModelTrainingSummariesResult The response from the
+     *         GetBehaviorModelTrainingSummaries service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetBehaviorModelTrainingSummariesResult getBehaviorModelTrainingSummaries(
+            GetBehaviorModelTrainingSummariesRequest getBehaviorModelTrainingSummariesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -3654,6 +3811,77 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists your Device Defender detect custom metrics.
+     * </p>
+     * 
+     * @param listCustomMetricsRequest
+     * @return listCustomMetricsResult The response from the ListCustomMetrics
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListCustomMetricsResult listCustomMetrics(ListCustomMetricsRequest listCustomMetricsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists mitigation actions executions for a Device Defender ML Detect
+     * Security Profile.
+     * </p>
+     * 
+     * @param listDetectMitigationActionsExecutionsRequest
+     * @return listDetectMitigationActionsExecutionsResult The response from the
+     *         ListDetectMitigationActionsExecutions service method, as returned
+     *         by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListDetectMitigationActionsExecutionsResult listDetectMitigationActionsExecutions(
+            ListDetectMitigationActionsExecutionsRequest listDetectMitigationActionsExecutionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * List of Device Defender ML Detect mitigation actions tasks.
+     * </p>
+     * 
+     * @param listDetectMitigationActionsTasksRequest
+     * @return listDetectMitigationActionsTasksResult The response from the
+     *         ListDetectMitigationActionsTasks service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListDetectMitigationActionsTasksResult listDetectMitigationActionsTasks(
+            ListDetectMitigationActionsTasksRequest listDetectMitigationActionsTasksRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * List the set of dimensions that are defined for your AWS account.
      * </p>
      * 
@@ -4128,10 +4356,15 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists the Device Defender security profiles you have created. You can use
-     * filters to list only those security profiles associated with a thing
-     * group or only those associated with your account.
+     * Lists the Device Defender security profiles you've created. You can
+     * filter security profiles by dimension or custom metric.
      * </p>
+     * <note>
+     * <p>
+     * <code>dimensionName</code> and <code>metricName</code> cannot be used in
+     * the same request.
+     * </p>
+     * </note>
      * 
      * @param listSecurityProfilesRequest
      * @return listSecurityProfilesResult The response from the
@@ -5048,6 +5281,32 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Starts a Device Defender ML Detect mitigation actions task.
+     * </p>
+     * 
+     * @param startDetectMitigationActionsTaskRequest
+     * @return startDetectMitigationActionsTaskResult The response from the
+     *         StartDetectMitigationActionsTask service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws TaskAlreadyExistsException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    StartDetectMitigationActionsTaskResult startDetectMitigationActionsTask(
+            StartDetectMitigationActionsTaskRequest startDetectMitigationActionsTaskRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Starts an on-demand Device Defender audit.
      * </p>
      * 
@@ -5434,8 +5693,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates a Device Defender detect custom metric.
+     * </p>
+     * 
+     * @param updateCustomMetricRequest
+     * @return updateCustomMetricResult The response from the UpdateCustomMetric
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    UpdateCustomMetricResult updateCustomMetric(UpdateCustomMetricRequest updateCustomMetricRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates the definition for a dimension. You cannot change the type of a
-     * dimension after it is created (you can delete it and re-create it).
+     * dimension after it is created (you can delete it and recreate it).
      * </p>
      * 
      * @param updateDimensionRequest

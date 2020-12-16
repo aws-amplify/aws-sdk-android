@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class AlertTarget implements Serializable {
     /**
      * <p>
-     * The ARN of the notification target to which alerts are sent.
+     * The Amazon Resource Name (ARN) of the notification target to which alerts
+     * are sent.
      * </p>
      */
     private String alertTargetArn;
@@ -43,11 +44,13 @@ public class AlertTarget implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target to which alerts are sent.
+     * The Amazon Resource Name (ARN) of the notification target to which alerts
+     * are sent.
      * </p>
      *
      * @return <p>
-     *         The ARN of the notification target to which alerts are sent.
+     *         The Amazon Resource Name (ARN) of the notification target to
+     *         which alerts are sent.
      *         </p>
      */
     public String getAlertTargetArn() {
@@ -56,11 +59,13 @@ public class AlertTarget implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target to which alerts are sent.
+     * The Amazon Resource Name (ARN) of the notification target to which alerts
+     * are sent.
      * </p>
      *
      * @param alertTargetArn <p>
-     *            The ARN of the notification target to which alerts are sent.
+     *            The Amazon Resource Name (ARN) of the notification target to
+     *            which alerts are sent.
      *            </p>
      */
     public void setAlertTargetArn(String alertTargetArn) {
@@ -69,14 +74,16 @@ public class AlertTarget implements Serializable {
 
     /**
      * <p>
-     * The ARN of the notification target to which alerts are sent.
+     * The Amazon Resource Name (ARN) of the notification target to which alerts
+     * are sent.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param alertTargetArn <p>
-     *            The ARN of the notification target to which alerts are sent.
+     *            The Amazon Resource Name (ARN) of the notification target to
+     *            which alerts are sent.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

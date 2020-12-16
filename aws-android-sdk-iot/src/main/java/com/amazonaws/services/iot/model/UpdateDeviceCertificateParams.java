@@ -26,7 +26,7 @@ import java.io.Serializable;
 public class UpdateDeviceCertificateParams implements Serializable {
     /**
      * <p>
-     * The action that you want to apply to the device cerrtificate. The only
+     * The action that you want to apply to the device certificate. The only
      * supported value is <code>DEACTIVATE</code>.
      * </p>
      * <p>
@@ -37,7 +37,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
 
     /**
      * <p>
-     * The action that you want to apply to the device cerrtificate. The only
+     * The action that you want to apply to the device certificate. The only
      * supported value is <code>DEACTIVATE</code>.
      * </p>
      * <p>
@@ -45,7 +45,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
      * <b>Allowed Values: </b>DEACTIVATE
      *
      * @return <p>
-     *         The action that you want to apply to the device cerrtificate. The
+     *         The action that you want to apply to the device certificate. The
      *         only supported value is <code>DEACTIVATE</code>.
      *         </p>
      * @see DeviceCertificateUpdateAction
@@ -56,7 +56,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
 
     /**
      * <p>
-     * The action that you want to apply to the device cerrtificate. The only
+     * The action that you want to apply to the device certificate. The only
      * supported value is <code>DEACTIVATE</code>.
      * </p>
      * <p>
@@ -64,7 +64,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
      * <b>Allowed Values: </b>DEACTIVATE
      *
      * @param action <p>
-     *            The action that you want to apply to the device cerrtificate.
+     *            The action that you want to apply to the device certificate.
      *            The only supported value is <code>DEACTIVATE</code>.
      *            </p>
      * @see DeviceCertificateUpdateAction
@@ -75,7 +75,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
 
     /**
      * <p>
-     * The action that you want to apply to the device cerrtificate. The only
+     * The action that you want to apply to the device certificate. The only
      * supported value is <code>DEACTIVATE</code>.
      * </p>
      * <p>
@@ -86,7 +86,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
      * <b>Allowed Values: </b>DEACTIVATE
      *
      * @param action <p>
-     *            The action that you want to apply to the device cerrtificate.
+     *            The action that you want to apply to the device certificate.
      *            The only supported value is <code>DEACTIVATE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -100,7 +100,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
 
     /**
      * <p>
-     * The action that you want to apply to the device cerrtificate. The only
+     * The action that you want to apply to the device certificate. The only
      * supported value is <code>DEACTIVATE</code>.
      * </p>
      * <p>
@@ -108,7 +108,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
      * <b>Allowed Values: </b>DEACTIVATE
      *
      * @param action <p>
-     *            The action that you want to apply to the device cerrtificate.
+     *            The action that you want to apply to the device certificate.
      *            The only supported value is <code>DEACTIVATE</code>.
      *            </p>
      * @see DeviceCertificateUpdateAction
@@ -119,7 +119,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
 
     /**
      * <p>
-     * The action that you want to apply to the device cerrtificate. The only
+     * The action that you want to apply to the device certificate. The only
      * supported value is <code>DEACTIVATE</code>.
      * </p>
      * <p>
@@ -130,7 +130,7 @@ public class UpdateDeviceCertificateParams implements Serializable {
      * <b>Allowed Values: </b>DEACTIVATE
      *
      * @param action <p>
-     *            The action that you want to apply to the device cerrtificate.
+     *            The action that you want to apply to the device certificate.
      *            The only supported value is <code>DEACTIVATE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

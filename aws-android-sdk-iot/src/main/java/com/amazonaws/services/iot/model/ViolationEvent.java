@@ -57,7 +57,7 @@ public class ViolationEvent implements Serializable {
 
     /**
      * <p>
-     * The behavior which was violated.
+     * The behavior that was violated.
      * </p>
      */
     private Behavior behavior;
@@ -68,6 +68,13 @@ public class ViolationEvent implements Serializable {
      * </p>
      */
     private MetricValue metricValue;
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     */
+    private ViolationEventAdditionalInfo violationEventAdditionalInfo;
 
     /**
      * <p>
@@ -256,11 +263,11 @@ public class ViolationEvent implements Serializable {
 
     /**
      * <p>
-     * The behavior which was violated.
+     * The behavior that was violated.
      * </p>
      *
      * @return <p>
-     *         The behavior which was violated.
+     *         The behavior that was violated.
      *         </p>
      */
     public Behavior getBehavior() {
@@ -269,11 +276,11 @@ public class ViolationEvent implements Serializable {
 
     /**
      * <p>
-     * The behavior which was violated.
+     * The behavior that was violated.
      * </p>
      *
      * @param behavior <p>
-     *            The behavior which was violated.
+     *            The behavior that was violated.
      *            </p>
      */
     public void setBehavior(Behavior behavior) {
@@ -282,14 +289,14 @@ public class ViolationEvent implements Serializable {
 
     /**
      * <p>
-     * The behavior which was violated.
+     * The behavior that was violated.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param behavior <p>
-     *            The behavior which was violated.
+     *            The behavior that was violated.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -341,6 +348,53 @@ public class ViolationEvent implements Serializable {
      */
     public ViolationEvent withMetricValue(MetricValue metricValue) {
         this.metricValue = metricValue;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     *
+     * @return <p>
+     *         The details of a violation event.
+     *         </p>
+     */
+    public ViolationEventAdditionalInfo getViolationEventAdditionalInfo() {
+        return violationEventAdditionalInfo;
+    }
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     *
+     * @param violationEventAdditionalInfo <p>
+     *            The details of a violation event.
+     *            </p>
+     */
+    public void setViolationEventAdditionalInfo(
+            ViolationEventAdditionalInfo violationEventAdditionalInfo) {
+        this.violationEventAdditionalInfo = violationEventAdditionalInfo;
+    }
+
+    /**
+     * <p>
+     * The details of a violation event.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param violationEventAdditionalInfo <p>
+     *            The details of a violation event.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ViolationEvent withViolationEventAdditionalInfo(
+            ViolationEventAdditionalInfo violationEventAdditionalInfo) {
+        this.violationEventAdditionalInfo = violationEventAdditionalInfo;
         return this;
     }
 
@@ -507,6 +561,8 @@ public class ViolationEvent implements Serializable {
             sb.append("behavior: " + getBehavior() + ",");
         if (getMetricValue() != null)
             sb.append("metricValue: " + getMetricValue() + ",");
+        if (getViolationEventAdditionalInfo() != null)
+            sb.append("violationEventAdditionalInfo: " + getViolationEventAdditionalInfo() + ",");
         if (getViolationEventType() != null)
             sb.append("violationEventType: " + getViolationEventType() + ",");
         if (getViolationEventTime() != null)
@@ -528,6 +584,10 @@ public class ViolationEvent implements Serializable {
         hashCode = prime * hashCode + ((getBehavior() == null) ? 0 : getBehavior().hashCode());
         hashCode = prime * hashCode
                 + ((getMetricValue() == null) ? 0 : getMetricValue().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getViolationEventAdditionalInfo() == null) ? 0
+                        : getViolationEventAdditionalInfo().hashCode());
         hashCode = prime * hashCode
                 + ((getViolationEventType() == null) ? 0 : getViolationEventType().hashCode());
         hashCode = prime * hashCode
@@ -569,6 +629,13 @@ public class ViolationEvent implements Serializable {
             return false;
         if (other.getMetricValue() != null
                 && other.getMetricValue().equals(this.getMetricValue()) == false)
+            return false;
+        if (other.getViolationEventAdditionalInfo() == null
+                ^ this.getViolationEventAdditionalInfo() == null)
+            return false;
+        if (other.getViolationEventAdditionalInfo() != null
+                && other.getViolationEventAdditionalInfo().equals(
+                        this.getViolationEventAdditionalInfo()) == false)
             return false;
         if (other.getViolationEventType() == null ^ this.getViolationEventType() == null)
             return false;

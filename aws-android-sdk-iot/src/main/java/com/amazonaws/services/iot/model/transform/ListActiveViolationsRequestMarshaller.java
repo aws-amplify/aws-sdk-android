@@ -62,6 +62,14 @@ public class ListActiveViolationsRequestMarshaller implements
             request.addParameter("securityProfileName",
                     StringUtils.fromString(listActiveViolationsRequest.getSecurityProfileName()));
         }
+        if (listActiveViolationsRequest.getBehaviorCriteriaType() != null) {
+            request.addParameter("behaviorCriteriaType",
+                    StringUtils.fromString(listActiveViolationsRequest.getBehaviorCriteriaType()));
+        }
+        if (listActiveViolationsRequest.getListSuppressedAlerts() != null) {
+            request.addParameter("listSuppressedAlerts",
+                    StringUtils.fromBoolean(listActiveViolationsRequest.getListSuppressedAlerts()));
+        }
         if (listActiveViolationsRequest.getNextToken() != null) {
             request.addParameter("nextToken",
                     StringUtils.fromString(listActiveViolationsRequest.getNextToken()));
