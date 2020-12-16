@@ -53,6 +53,7 @@ com.amazonaws.mobileconnectors.dynamodbv2.document.datatype
 com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper
 com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.marshallers
 com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.unmarshallers
+com.amazonaws.mobileconnectors.geo.tracker
 com.amazonaws.mobileconnectors.iot
 com.amazonaws.mobileconnectors.kinesis.kinesisrecorder
 com.amazonaws.mobileconnectors.kinesisvideo.auth
@@ -85,8 +86,6 @@ com.amazonaws.mobileconnectors.s3.transferutility
 com.amazonaws.mobileconnectors.util
 com.amazonaws.regions
 com.amazonaws.retry
-com.amazonaws.services.autoscaling
-com.amazonaws.services.autoscaling.model
 com.amazonaws.services.cloudwatch
 com.amazonaws.services.cloudwatch.model
 com.amazonaws.services.comprehend
@@ -101,8 +100,8 @@ com.amazonaws.services.dynamodbv2.util
 com.amazonaws.services.ec2
 com.amazonaws.services.ec2.model
 com.amazonaws.services.ec2.util
-com.amazonaws.services.elasticloadbalancing
-com.amazonaws.services.elasticloadbalancing.model
+com.amazonaws.services.geo
+com.amazonaws.services.geo.model
 com.amazonaws.services.iot
 com.amazonaws.services.iot.model
 com.amazonaws.services.iotdata
