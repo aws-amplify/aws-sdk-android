@@ -144,6 +144,7 @@ public class AWSLocationTracker {
         this.trackingPublisher = new TrackingPublisher(
                 locationClient,
                 deviceId,
+                trackerName,
                 5,
                 options.getEmitLocationFrequency() == null ?
                         DEFAULT_EMIT_LOCATION_FREQUENCY :

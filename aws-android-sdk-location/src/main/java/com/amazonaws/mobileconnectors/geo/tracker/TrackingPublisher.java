@@ -44,6 +44,7 @@ public class TrackingPublisher {
     private static final long TERMINATION_TIMEOUT_MS = 10;
 
     private final String deviceId;
+    private final String trackerName;
     private final LinkedBlockingQueue<DevicePositionUpdate> positionUpdateQueue;
     private final LinkedBlockingQueue<BatchUpdateDevicePositionRequest> batchRequestQueue;
     private final ScheduledFuture<?> scheduledFuture;
@@ -51,9 +52,11 @@ public class TrackingPublisher {
     private final BatchPublisher batchPublisher;
 
     public TrackingPublisher(AmazonLocationClient locationClient,
-                             String deviceId) {
+                             String deviceId,
+                             String trackerName) {
         this(locationClient,
              deviceId,
+             trackerName,
              DEFAULT_WORKER_POOL_SIZE,
              DEFAULT_PUBLISH_INTERVAL_MS,
              DEFAULT_BATCH_SIZE,
@@ -62,12 +65,14 @@ public class TrackingPublisher {
 
     public TrackingPublisher(AmazonLocationClient locationClient,
                              String deviceId,
+                             String trackerName,
                              int workerPoolSize,
                              long publishIntervalMillis,
                              int batchSize,
                              TrackingListener listener) {
         this(locationClient,
              deviceId,
+             trackerName,
              Executors.newScheduledThreadPool(workerPoolSize),
              publishIntervalMillis,
              batchSize,
@@ -76,11 +81,13 @@ public class TrackingPublisher {
 
     public TrackingPublisher(AmazonLocationClient locationClient,
                              String deviceId,
+                             String trackerName,
                              ScheduledExecutorService scheduledExecutorService,
                              long publishIntervalMillis,
                              int batchSize,
                              TrackingListener listener) {
         this.deviceId = deviceId;
+        this.trackerName = trackerName;
         positionUpdateQueue = new LinkedBlockingQueue<>(batchSize);
         batchRequestQueue = new LinkedBlockingQueue<>();
         batchPublisher = new BatchPublisher(locationClient, batchRequestQueue, listener);
@@ -185,7 +192,7 @@ public class TrackingPublisher {
      */
     private BatchUpdateDevicePositionRequest createNewBatch() {
         BatchUpdateDevicePositionRequest batch = new BatchUpdateDevicePositionRequest();
-        batch.setTrackerName(deviceId);
+        batch.setTrackerName(trackerName);
         batch.setUpdates(new ArrayList<DevicePositionUpdate>());
         return batch;
     }
