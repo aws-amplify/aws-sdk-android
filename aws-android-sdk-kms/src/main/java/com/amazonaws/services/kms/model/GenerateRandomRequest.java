@@ -34,6 +34,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * href="https://d0.awsstatic.com/whitepapers/KMS-Cryptographic-Details.pdf">AWS
  * Key Management Service Cryptographic Details</a> whitepaper.
  * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GenerateRandom</a> (IAM policy)
+ * </p>
  */
 public class GenerateRandomRequest extends AmazonWebServiceRequest implements Serializable {
     /**

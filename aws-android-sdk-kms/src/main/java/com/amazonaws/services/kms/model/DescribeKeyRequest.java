@@ -80,9 +80,55 @@ import com.amazonaws.AmazonWebServiceRequest;
  * response.
  * </p>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN or alias ARN in the value of the KeyId parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
  * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:DescribeKey</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>GetKeyPolicy</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GetKeyRotationStatus</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListAliases</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListGrants</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListKeys</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListResourceTags</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListRetirableGrants</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class DescribeKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**

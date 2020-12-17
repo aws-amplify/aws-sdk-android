@@ -16,6 +16,7 @@
 package com.amazonaws.services.kms.model.transform;
 
 import com.amazonaws.services.kms.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -39,6 +40,16 @@ class AliasListEntryJsonMarshaller {
             String targetKeyId = aliasListEntry.getTargetKeyId();
             jsonWriter.name("TargetKeyId");
             jsonWriter.value(targetKeyId);
+        }
+        if (aliasListEntry.getCreationDate() != null) {
+            java.util.Date creationDate = aliasListEntry.getCreationDate();
+            jsonWriter.name("CreationDate");
+            jsonWriter.value(creationDate);
+        }
+        if (aliasListEntry.getLastUpdatedDate() != null) {
+            java.util.Date lastUpdatedDate = aliasListEntry.getLastUpdatedDate();
+            jsonWriter.name("LastUpdatedDate");
+            jsonWriter.value(lastUpdatedDate);
         }
         jsonWriter.endObject();
     }

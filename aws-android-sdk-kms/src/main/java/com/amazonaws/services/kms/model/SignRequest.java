@@ -83,6 +83,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:Sign</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations</b>: <a>Verify</a>
+ * </p>
  */
 public class SignRequest extends AmazonWebServiceRequest implements Serializable {
     /**

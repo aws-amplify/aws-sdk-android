@@ -23,8 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a unique customer managed <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master-keys"
- * >customer master key</a> (CMK) in your AWS account and Region. You cannot use
- * this operation to create a CMK in a different AWS account.
+ * >customer master key</a> (CMK) in your AWS account and Region.
  * </p>
  * <p>
  * You can use the <code>CreateKey</code> operation to create symmetric or
@@ -126,6 +125,42 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * </dd>
  * </dl>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot use this operation to create a CMK
+ * in a different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:CreateKey</a> (IAM policy). To use the <code>Tags</code> parameter, <a
+ * href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:TagResource</a> (IAM policy). For examples and information about related
+ * permissions, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html#iam-policy-example-create-key"
+ * >Allow a user to create CMKs</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>DescribeKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListKeys</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ScheduleKeyDeletion</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class CreateKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -173,6 +208,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * The key policy size quota is 32 kilobytes (32768 bytes).
      * </p>
      * <p>
+     * For help writing and formatting a JSON policy document, see the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>IAM User Guide</i> </i>.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 131072<br/>
      * <b>Pattern: </b>[ -\u00FF]+<br/>
@@ -195,10 +235,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -455,6 +497,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Use this parameter to tag the CMK when it is created. To add tags to an
      * existing CMK, use the <a>TagResource</a> operation.
      * </p>
+     * <p>
+     * To use this parameter, you must have <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:TagResource</a> permission in an IAM policy.
+     * </p>
      */
     private java.util.List<Tag> tags = new java.util.ArrayList<Tag>();
 
@@ -501,6 +548,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The key policy size quota is 32 kilobytes (32768 bytes).
+     * </p>
+     * <p>
+     * For help writing and formatting a JSON policy document, see the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>IAM User Guide</i> </i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -552,6 +604,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         The key policy size quota is 32 kilobytes (32768 bytes).
      *         </p>
+     *         <p>
+     *         For help writing and formatting a JSON policy document, see the
+     *         <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     *         >IAM JSON Policy Reference</a> in the <i> <i>IAM User Guide</i>
+     *         </i>.
+     *         </p>
      */
     public String getPolicy() {
         return policy;
@@ -600,6 +659,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The key policy size quota is 32 kilobytes (32768 bytes).
+     * </p>
+     * <p>
+     * For help writing and formatting a JSON policy document, see the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>IAM User Guide</i> </i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -652,6 +716,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            The key policy size quota is 32 kilobytes (32768 bytes).
      *            </p>
+     *            <p>
+     *            For help writing and formatting a JSON policy document, see
+     *            the <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     *            >IAM JSON Policy Reference</a> in the <i> <i>IAM User
+     *            Guide</i> </i>.
+     *            </p>
      */
     public void setPolicy(String policy) {
         this.policy = policy;
@@ -700,6 +771,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The key policy size quota is 32 kilobytes (32768 bytes).
+     * </p>
+     * <p>
+     * For help writing and formatting a JSON policy document, see the <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     * >IAM JSON Policy Reference</a> in the <i> <i>IAM User Guide</i> </i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -754,6 +830,13 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            The key policy size quota is 32 kilobytes (32768 bytes).
+     *            </p>
+     *            <p>
+     *            For help writing and formatting a JSON policy document, see
+     *            the <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html"
+     *            >IAM JSON Policy Reference</a> in the <i> <i>IAM User
+     *            Guide</i> </i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -843,10 +926,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -876,10 +961,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @return <p>
-     *         Determines the cryptographic operations for which you can use the
-     *         CMK. The default value is <code>ENCRYPT_DECRYPT</code>. This
-     *         parameter is required only for asymmetric CMKs. You can't change
-     *         the <code>KeyUsage</code> value after the CMK is created.
+     *         Determines the <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operations</a> for which you can use the CMK. The
+     *         default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
+     *         required only for asymmetric CMKs. You can't change the
+     *         <code>KeyUsage</code> value after the CMK is created.
      *         </p>
      *         <p>
      *         Select only one valid value.
@@ -912,10 +999,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -945,9 +1034,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -982,10 +1073,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -1018,9 +1111,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -1058,10 +1153,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -1091,9 +1188,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -1128,10 +1227,12 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Determines the cryptographic operations for which you can use the CMK.
-     * The default value is <code>ENCRYPT_DECRYPT</code>. This parameter is
-     * required only for asymmetric CMKs. You can't change the
-     * <code>KeyUsage</code> value after the CMK is created.
+     * Determines the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> for which you can use the CMK. The default
+     * value is <code>ENCRYPT_DECRYPT</code>. This parameter is required only
+     * for asymmetric CMKs. You can't change the <code>KeyUsage</code> value
+     * after the CMK is created.
      * </p>
      * <p>
      * Select only one valid value.
@@ -1164,9 +1265,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Allowed Values: </b>SIGN_VERIFY, ENCRYPT_DECRYPT
      *
      * @param keyUsage <p>
-     *            Determines the cryptographic operations for which you can use
-     *            the CMK. The default value is <code>ENCRYPT_DECRYPT</code>.
-     *            This parameter is required only for asymmetric CMKs. You can't
+     *            Determines the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> for which you can use the CMK.
+     *            The default value is <code>ENCRYPT_DECRYPT</code>. This
+     *            parameter is required only for asymmetric CMKs. You can't
      *            change the <code>KeyUsage</code> value after the CMK is
      *            created.
      *            </p>
@@ -3140,6 +3243,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Use this parameter to tag the CMK when it is created. To add tags to an
      * existing CMK, use the <a>TagResource</a> operation.
      * </p>
+     * <p>
+     * To use this parameter, you must have <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:TagResource</a> permission in an IAM policy.
+     * </p>
      *
      * @return <p>
      *         One or more tags. Each tag consists of a tag key and a tag value.
@@ -3157,6 +3265,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *         <p>
      *         Use this parameter to tag the CMK when it is created. To add tags
      *         to an existing CMK, use the <a>TagResource</a> operation.
+     *         </p>
+     *         <p>
+     *         To use this parameter, you must have <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     *         >kms:TagResource</a> permission in an IAM policy.
      *         </p>
      */
     public java.util.List<Tag> getTags() {
@@ -3180,6 +3293,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * Use this parameter to tag the CMK when it is created. To add tags to an
      * existing CMK, use the <a>TagResource</a> operation.
      * </p>
+     * <p>
+     * To use this parameter, you must have <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:TagResource</a> permission in an IAM policy.
+     * </p>
      *
      * @param tags <p>
      *            One or more tags. Each tag consists of a tag key and a tag
@@ -3197,6 +3315,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            Use this parameter to tag the CMK when it is created. To add
      *            tags to an existing CMK, use the <a>TagResource</a> operation.
+     *            </p>
+     *            <p>
+     *            To use this parameter, you must have <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     *            >kms:TagResource</a> permission in an IAM policy.
      *            </p>
      */
     public void setTags(java.util.Collection<Tag> tags) {
@@ -3226,6 +3349,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * existing CMK, use the <a>TagResource</a> operation.
      * </p>
      * <p>
+     * To use this parameter, you must have <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:TagResource</a> permission in an IAM policy.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -3245,6 +3373,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            Use this parameter to tag the CMK when it is created. To add
      *            tags to an existing CMK, use the <a>TagResource</a> operation.
+     *            </p>
+     *            <p>
+     *            To use this parameter, you must have <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     *            >kms:TagResource</a> permission in an IAM policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -3277,6 +3410,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      * existing CMK, use the <a>TagResource</a> operation.
      * </p>
      * <p>
+     * To use this parameter, you must have <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     * >kms:TagResource</a> permission in an IAM policy.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -3296,6 +3434,11 @@ public class CreateKeyRequest extends AmazonWebServiceRequest implements Seriali
      *            <p>
      *            Use this parameter to tag the CMK when it is created. To add
      *            tags to an existing CMK, use the <a>TagResource</a> operation.
+     *            </p>
+     *            <p>
+     *            To use this parameter, you must have <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+     *            >kms:TagResource</a> permission in an IAM policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -26,8 +26,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * When setting permissions, grants are an alternative to key policies.
  * </p>
  * <p>
- * To create a grant that allows a cryptographic operation only when the request
- * includes a particular <a href=
+ * To create a grant that allows a <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operation</a> only when the request includes a particular <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >encryption context</a>, use the <code>Constraints</code> parameter. For
  * details, see <a>GrantConstraints</a>.
@@ -83,12 +85,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * For information about symmetric and asymmetric CMKs, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
  * >Using Symmetric and Asymmetric CMKs</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
- * </p>
- * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN in the value of the <code>KeyId</code> parameter. For more
- * information about grants, see <a
+ * Developer Guide</i>. For more information about grants, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html"
  * >Grants</a> in the <i> <i>AWS Key Management Service Developer Guide</i>
  * </i>.
@@ -100,6 +97,41 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation on a CMK in a
+ * different AWS account, specify the key ARN in the value of the
+ * <code>KeyId</code> parameter.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:CreateGrant</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>ListGrants</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListRetirableGrants</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RetireGrant</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RevokeGrant</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class CreateGrantRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -192,12 +224,20 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
      * Developer Guide</i> </i>.
+     * </p>
+     * <p>
+     * Grant constraints are not applied to operations that do not support an
+     * encryption context, such as cryptographic operations with asymmetric CMKs
+     * and management operations, such as <a>DescribeKey</a> or
+     * <a>RetireGrant</a>.
      * </p>
      */
     private GrantConstraints constraints;
@@ -217,8 +257,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
-     * unintended creation of duplicate grants when retrying this request.
+     * A friendly name for the grant. Use this value to prevent the unintended
+     * creation of duplicate grants when retrying this request.
      * </p>
      * <p>
      * When this value is absent, all <code>CreateGrant</code> requests result
@@ -232,7 +272,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * original <code>GrantId</code> is returned without creating a new grant.
      * Note that the returned grant token is unique with every
      * <code>CreateGrant</code> request, even when a duplicate
-     * <code>GrantId</code> is returned. All grant tokens obtained in this way
+     * <code>GrantId</code> is returned. All grant tokens for the same grant ID
      * can be used interchangeably.
      * </p>
      * <p>
@@ -783,22 +823,38 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
      * Developer Guide</i> </i>.
      * </p>
+     * <p>
+     * Grant constraints are not applied to operations that do not support an
+     * encryption context, such as cryptographic operations with asymmetric CMKs
+     * and management operations, such as <a>DescribeKey</a> or
+     * <a>RetireGrant</a>.
+     * </p>
      *
      * @return <p>
-     *         Allows a cryptographic operation only when the encryption context
+     *         Allows a <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operation</a> only when the encryption context
      *         matches or includes the encryption context specified in this
      *         structure. For more information about encryption context, see <a
      *         href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *         >Encryption Context</a> in the <i> <i>AWS Key Management Service
      *         Developer Guide</i> </i>.
+     *         </p>
+     *         <p>
+     *         Grant constraints are not applied to operations that do not
+     *         support an encryption context, such as cryptographic operations
+     *         with asymmetric CMKs and management operations, such as
+     *         <a>DescribeKey</a> or <a>RetireGrant</a>.
      *         </p>
      */
     public GrantConstraints getConstraints() {
@@ -807,22 +863,38 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
      * Developer Guide</i> </i>.
      * </p>
+     * <p>
+     * Grant constraints are not applied to operations that do not support an
+     * encryption context, such as cryptographic operations with asymmetric CMKs
+     * and management operations, such as <a>DescribeKey</a> or
+     * <a>RetireGrant</a>.
+     * </p>
      *
      * @param constraints <p>
-     *            Allows a cryptographic operation only when the encryption
-     *            context matches or includes the encryption context specified
-     *            in this structure. For more information about encryption
-     *            context, see <a href=
+     *            Allows a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> only when the encryption context
+     *            matches or includes the encryption context specified in this
+     *            structure. For more information about encryption context, see
+     *            <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a> in the <i> <i>AWS Key Management
      *            Service Developer Guide</i> </i>.
+     *            </p>
+     *            <p>
+     *            Grant constraints are not applied to operations that do not
+     *            support an encryption context, such as cryptographic
+     *            operations with asymmetric CMKs and management operations,
+     *            such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      *            </p>
      */
     public void setConstraints(GrantConstraints constraints) {
@@ -831,25 +903,41 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a cryptographic operation only when the encryption context matches
-     * or includes the encryption context specified in this structure. For more
+     * Allows a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context matches or
+     * includes the encryption context specified in this structure. For more
      * information about encryption context, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      * >Encryption Context</a> in the <i> <i>AWS Key Management Service
      * Developer Guide</i> </i>.
      * </p>
      * <p>
+     * Grant constraints are not applied to operations that do not support an
+     * encryption context, such as cryptographic operations with asymmetric CMKs
+     * and management operations, such as <a>DescribeKey</a> or
+     * <a>RetireGrant</a>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param constraints <p>
-     *            Allows a cryptographic operation only when the encryption
-     *            context matches or includes the encryption context specified
-     *            in this structure. For more information about encryption
-     *            context, see <a href=
+     *            Allows a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> only when the encryption context
+     *            matches or includes the encryption context specified in this
+     *            structure. For more information about encryption context, see
+     *            <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
      *            >Encryption Context</a> in the <i> <i>AWS Key Management
      *            Service Developer Guide</i> </i>.
+     *            </p>
+     *            <p>
+     *            Grant constraints are not applied to operations that do not
+     *            support an encryption context, such as cryptographic
+     *            operations with asymmetric CMKs and management operations,
+     *            such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -983,8 +1071,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
-     * unintended creation of duplicate grants when retrying this request.
+     * A friendly name for the grant. Use this value to prevent the unintended
+     * creation of duplicate grants when retrying this request.
      * </p>
      * <p>
      * When this value is absent, all <code>CreateGrant</code> requests result
@@ -998,7 +1086,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * original <code>GrantId</code> is returned without creating a new grant.
      * Note that the returned grant token is unique with every
      * <code>CreateGrant</code> request, even when a duplicate
-     * <code>GrantId</code> is returned. All grant tokens obtained in this way
+     * <code>GrantId</code> is returned. All grant tokens for the same grant ID
      * can be used interchangeably.
      * </p>
      * <p>
@@ -1007,9 +1095,9 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @return <p>
-     *         A friendly name for identifying the grant. Use this value to
-     *         prevent the unintended creation of duplicate grants when retrying
-     *         this request.
+     *         A friendly name for the grant. Use this value to prevent the
+     *         unintended creation of duplicate grants when retrying this
+     *         request.
      *         </p>
      *         <p>
      *         When this value is absent, all <code>CreateGrant</code> requests
@@ -1025,7 +1113,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *         returned without creating a new grant. Note that the returned
      *         grant token is unique with every <code>CreateGrant</code>
      *         request, even when a duplicate <code>GrantId</code> is returned.
-     *         All grant tokens obtained in this way can be used
+     *         All grant tokens for the same grant ID can be used
      *         interchangeably.
      *         </p>
      */
@@ -1035,8 +1123,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
-     * unintended creation of duplicate grants when retrying this request.
+     * A friendly name for the grant. Use this value to prevent the unintended
+     * creation of duplicate grants when retrying this request.
      * </p>
      * <p>
      * When this value is absent, all <code>CreateGrant</code> requests result
@@ -1050,7 +1138,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * original <code>GrantId</code> is returned without creating a new grant.
      * Note that the returned grant token is unique with every
      * <code>CreateGrant</code> request, even when a duplicate
-     * <code>GrantId</code> is returned. All grant tokens obtained in this way
+     * <code>GrantId</code> is returned. All grant tokens for the same grant ID
      * can be used interchangeably.
      * </p>
      * <p>
@@ -1059,9 +1147,9 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param name <p>
-     *            A friendly name for identifying the grant. Use this value to
-     *            prevent the unintended creation of duplicate grants when
-     *            retrying this request.
+     *            A friendly name for the grant. Use this value to prevent the
+     *            unintended creation of duplicate grants when retrying this
+     *            request.
      *            </p>
      *            <p>
      *            When this value is absent, all <code>CreateGrant</code>
@@ -1077,7 +1165,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            returned without creating a new grant. Note that the returned
      *            grant token is unique with every <code>CreateGrant</code>
      *            request, even when a duplicate <code>GrantId</code> is
-     *            returned. All grant tokens obtained in this way can be used
+     *            returned. All grant tokens for the same grant ID can be used
      *            interchangeably.
      *            </p>
      */
@@ -1087,8 +1175,8 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A friendly name for identifying the grant. Use this value to prevent the
-     * unintended creation of duplicate grants when retrying this request.
+     * A friendly name for the grant. Use this value to prevent the unintended
+     * creation of duplicate grants when retrying this request.
      * </p>
      * <p>
      * When this value is absent, all <code>CreateGrant</code> requests result
@@ -1102,7 +1190,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * original <code>GrantId</code> is returned without creating a new grant.
      * Note that the returned grant token is unique with every
      * <code>CreateGrant</code> request, even when a duplicate
-     * <code>GrantId</code> is returned. All grant tokens obtained in this way
+     * <code>GrantId</code> is returned. All grant tokens for the same grant ID
      * can be used interchangeably.
      * </p>
      * <p>
@@ -1114,9 +1202,9 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[a-zA-Z0-9:/_-]+$<br/>
      *
      * @param name <p>
-     *            A friendly name for identifying the grant. Use this value to
-     *            prevent the unintended creation of duplicate grants when
-     *            retrying this request.
+     *            A friendly name for the grant. Use this value to prevent the
+     *            unintended creation of duplicate grants when retrying this
+     *            request.
      *            </p>
      *            <p>
      *            When this value is absent, all <code>CreateGrant</code>
@@ -1132,7 +1220,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            returned without creating a new grant. Note that the returned
      *            grant token is unique with every <code>CreateGrant</code>
      *            request, even when a duplicate <code>GrantId</code> is
-     *            returned. All grant tokens obtained in this way can be used
+     *            returned. All grant tokens for the same grant ID can be used
      *            interchangeably.
      *            </p>
      * @return A reference to this updated object so that method calls can be

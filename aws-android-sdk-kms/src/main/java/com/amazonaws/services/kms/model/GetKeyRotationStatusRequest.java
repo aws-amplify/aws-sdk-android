@@ -56,9 +56,30 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN in the value of the <code>KeyId</code> parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation on a CMK in a
+ * different AWS account, specify the key ARN in the value of the
+ * <code>KeyId</code> parameter.
  * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GetKeyRotationStatus</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>DisableKeyRotation</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>EnableKeyRotation</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GetKeyRotationStatusRequest extends AmazonWebServiceRequest implements Serializable {
     /**

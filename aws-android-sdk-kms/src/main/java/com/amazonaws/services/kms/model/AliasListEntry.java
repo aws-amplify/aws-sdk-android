@@ -47,13 +47,30 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier referred to by the alias.
+     * String that contains the key identifier of the CMK associated with the
+     * alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      */
     private String targetKeyId;
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently created in the account and
+     * Region. Formatted as Unix time.
+     * </p>
+     */
+    private java.util.Date creationDate;
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently associated with a CMK in
+     * the account and Region. Formatted as Unix time.
+     * </p>
+     */
+    private java.util.Date lastUpdatedDate;
 
     /**
      * <p>
@@ -174,14 +191,16 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier referred to by the alias.
+     * String that contains the key identifier of the CMK associated with the
+     * alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         String that contains the key identifier referred to by the alias.
+     *         String that contains the key identifier of the CMK associated
+     *         with the alias.
      *         </p>
      */
     public String getTargetKeyId() {
@@ -190,15 +209,16 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier referred to by the alias.
+     * String that contains the key identifier of the CMK associated with the
+     * alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier referred to by the
-     *            alias.
+     *            String that contains the key identifier of the CMK associated
+     *            with the alias.
      *            </p>
      */
     public void setTargetKeyId(String targetKeyId) {
@@ -207,7 +227,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier referred to by the alias.
+     * String that contains the key identifier of the CMK associated with the
+     * alias.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -217,14 +238,116 @@ public class AliasListEntry implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier referred to by the
-     *            alias.
+     *            String that contains the key identifier of the CMK associated
+     *            with the alias.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public AliasListEntry withTargetKeyId(String targetKeyId) {
         this.targetKeyId = targetKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently created in the account and
+     * Region. Formatted as Unix time.
+     * </p>
+     *
+     * @return <p>
+     *         Date and time that the alias was most recently created in the
+     *         account and Region. Formatted as Unix time.
+     *         </p>
+     */
+    public java.util.Date getCreationDate() {
+        return creationDate;
+    }
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently created in the account and
+     * Region. Formatted as Unix time.
+     * </p>
+     *
+     * @param creationDate <p>
+     *            Date and time that the alias was most recently created in the
+     *            account and Region. Formatted as Unix time.
+     *            </p>
+     */
+    public void setCreationDate(java.util.Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently created in the account and
+     * Region. Formatted as Unix time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param creationDate <p>
+     *            Date and time that the alias was most recently created in the
+     *            account and Region. Formatted as Unix time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AliasListEntry withCreationDate(java.util.Date creationDate) {
+        this.creationDate = creationDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently associated with a CMK in
+     * the account and Region. Formatted as Unix time.
+     * </p>
+     *
+     * @return <p>
+     *         Date and time that the alias was most recently associated with a
+     *         CMK in the account and Region. Formatted as Unix time.
+     *         </p>
+     */
+    public java.util.Date getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently associated with a CMK in
+     * the account and Region. Formatted as Unix time.
+     * </p>
+     *
+     * @param lastUpdatedDate <p>
+     *            Date and time that the alias was most recently associated with
+     *            a CMK in the account and Region. Formatted as Unix time.
+     *            </p>
+     */
+    public void setLastUpdatedDate(java.util.Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    /**
+     * <p>
+     * Date and time that the alias was most recently associated with a CMK in
+     * the account and Region. Formatted as Unix time.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param lastUpdatedDate <p>
+     *            Date and time that the alias was most recently associated with
+     *            a CMK in the account and Region. Formatted as Unix time.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AliasListEntry withLastUpdatedDate(java.util.Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
         return this;
     }
 
@@ -244,7 +367,11 @@ public class AliasListEntry implements Serializable {
         if (getAliasArn() != null)
             sb.append("AliasArn: " + getAliasArn() + ",");
         if (getTargetKeyId() != null)
-            sb.append("TargetKeyId: " + getTargetKeyId());
+            sb.append("TargetKeyId: " + getTargetKeyId() + ",");
+        if (getCreationDate() != null)
+            sb.append("CreationDate: " + getCreationDate() + ",");
+        if (getLastUpdatedDate() != null)
+            sb.append("LastUpdatedDate: " + getLastUpdatedDate());
         sb.append("}");
         return sb.toString();
     }
@@ -258,6 +385,10 @@ public class AliasListEntry implements Serializable {
         hashCode = prime * hashCode + ((getAliasArn() == null) ? 0 : getAliasArn().hashCode());
         hashCode = prime * hashCode
                 + ((getTargetKeyId() == null) ? 0 : getTargetKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getCreationDate() == null) ? 0 : getCreationDate().hashCode());
+        hashCode = prime * hashCode
+                + ((getLastUpdatedDate() == null) ? 0 : getLastUpdatedDate().hashCode());
         return hashCode;
     }
 
@@ -285,6 +416,16 @@ public class AliasListEntry implements Serializable {
             return false;
         if (other.getTargetKeyId() != null
                 && other.getTargetKeyId().equals(this.getTargetKeyId()) == false)
+            return false;
+        if (other.getCreationDate() == null ^ this.getCreationDate() == null)
+            return false;
+        if (other.getCreationDate() != null
+                && other.getCreationDate().equals(this.getCreationDate()) == false)
+            return false;
+        if (other.getLastUpdatedDate() == null ^ this.getLastUpdatedDate() == null)
+            return false;
+        if (other.getLastUpdatedDate() != null
+                && other.getLastUpdatedDate().equals(this.getLastUpdatedDate()) == false)
             return false;
         return true;
     }

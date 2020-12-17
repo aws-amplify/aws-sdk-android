@@ -48,9 +48,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >delete the orphaned key material</a> from the cluster and its backups.
  * </p>
  * <p>
- * You cannot perform this operation on a CMK in a different AWS account.
- * </p>
- * <p>
  * For more information about scheduling a CMK for deletion, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"
  * >Deleting Customer Master Keys</a> in the <i>AWS Key Management Service
@@ -63,6 +60,30 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
+ * different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:ScheduleKeyDeletion</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CancelKeyDeletion</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DisableKey</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class ScheduleKeyDeletionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

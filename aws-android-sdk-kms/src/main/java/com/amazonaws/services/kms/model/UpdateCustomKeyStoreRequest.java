@@ -79,6 +79,45 @@ import com.amazonaws.AmazonWebServiceRequest;
  * convenience and extensive integration of AWS KMS with the isolation and
  * control of a single-tenant key store.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a custom
+ * key store in a different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:UpdateCustomKeyStore</a> (IAM policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>ConnectCustomKeyStore</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CreateCustomKeyStore</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteCustomKeyStore</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DescribeCustomKeyStores</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DisconnectCustomKeyStore</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class UpdateCustomKeyStoreRequest extends AmazonWebServiceRequest implements Serializable {
     /**

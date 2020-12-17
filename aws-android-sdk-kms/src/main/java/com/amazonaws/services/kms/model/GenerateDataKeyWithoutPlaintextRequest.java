@@ -63,7 +63,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * encryption operation. If you specify an <code>EncryptionContext</code>, you
  * must specify the same encryption context (a case-sensitive exact match) when
  * decrypting the encrypted data key. Otherwise, the request to decrypt fails
- * with an InvalidCiphertextException. For more information, see <a href=
+ * with an <code>InvalidCiphertextException</code>. For more information, see <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
  * >Encryption Context</a> in the <i>AWS Key Management Service Developer
  * Guide</i>.
@@ -75,6 +76,46 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GenerateDataKeyWithoutPlaintext</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>Decrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>Encrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyPair</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyPairWithoutPlaintext</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GenerateDataKeyWithoutPlaintextRequest extends AmazonWebServiceRequest implements
         Serializable {
