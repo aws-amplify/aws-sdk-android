@@ -24,6 +24,7 @@ import com.amazonaws.services.geo.model.BatchUpdateDevicePositionRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowLog;
 
@@ -45,6 +46,7 @@ public class TrackingPublisherTest {
     private static final long PUBLISH_INTERVAL_MS = TimeUnit.SECONDS.toMillis(2);
     private static final int BATCH_SIZE = 10;
     private static final long LATCH_WAIT_BASE_TIMEOUT_MS = TimeUnit.SECONDS.toMillis(3);
+    private static final String TRACKER_NAME = "TRACKER_NAME";
 
     private TrackingPublisher trackingPublisher;
     private AmazonLocationClient mockLocationClient;
@@ -55,6 +57,7 @@ public class TrackingPublisherTest {
         mockLocationClient = mock(AmazonLocationClient.class);
         trackingPublisher = new TrackingPublisher(mockLocationClient,
                                                   "UNIT_TEST_DEVICE_ID",
+                                                  TRACKER_NAME,
                                                   WORKER_POOL_SIZE,
                                                   PUBLISH_INTERVAL_MS,
                                                   BATCH_SIZE,
@@ -104,7 +107,14 @@ public class TrackingPublisherTest {
 
         latch.await(LATCH_WAIT_BASE_TIMEOUT_MS * expectedNumOfBatchesPublished, TimeUnit.SECONDS);
         // The client should have been called once.
-        verify(mockLocationClient, times(expectedNumOfBatchesPublished)).batchUpdateDevicePosition(any(BatchUpdateDevicePositionRequest.class));
+        ArgumentCaptor<BatchUpdateDevicePositionRequest> requestArgumentCaptor =
+                ArgumentCaptor.forClass(BatchUpdateDevicePositionRequest.class);
+        verify(mockLocationClient,
+                times(expectedNumOfBatchesPublished)).batchUpdateDevicePosition(requestArgumentCaptor.capture());
+
+        // Verify the tracker name was set to the expected value.
+        assertEquals(TRACKER_NAME, requestArgumentCaptor.getValue().getTrackerName());
+
         // No pending batches should be left.
         assertEquals(0, trackingPublisher.pendingBatches());
     }
