@@ -23,10 +23,52 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets a list of all grants for the specified customer master key (CMK).
  * </p>
+ * <note>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN in the value of the <code>KeyId</code> parameter.
+ * The <code>GranteePrincipal</code> field in the <code>ListGrants</code>
+ * response usually contains the user or role designated as the grantee
+ * principal in the grant. However, when the grantee principal in the grant is
+ * an AWS service, the <code>GranteePrincipal</code> field contains the <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#principal-services"
+ * >service principal</a>, which might represent several different grantee
+ * principals.
  * </p>
+ * </note>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation on a CMK in a
+ * different AWS account, specify the key ARN in the value of the
+ * <code>KeyId</code> parameter.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:ListGrants</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateGrant</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListRetirableGrants</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RetireGrant</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>RevokeGrant</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class ListGrantsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

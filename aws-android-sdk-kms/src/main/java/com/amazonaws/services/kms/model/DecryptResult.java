@@ -20,8 +20,9 @@ import java.io.Serializable;
 public class DecryptResult implements Serializable {
     /**
      * <p>
-     * The ARN of the customer master key that was used to perform the
-     * decryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -53,16 +54,18 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the customer master key that was used to perform the
-     * decryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The ARN of the customer master key that was used to perform the
-     *         decryption.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
      *         </p>
      */
     public String getKeyId() {
@@ -71,16 +74,19 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the customer master key that was used to perform the
-     * decryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The ARN of the customer master key that was used to perform
-     *            the decryption.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that was used to decrypt the
+     *            ciphertext.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -89,8 +95,9 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the customer master key that was used to perform the
-     * decryption.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -100,8 +107,10 @@ public class DecryptResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The ARN of the customer master key that was used to perform
-     *            the decryption.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK that was used to decrypt the
+     *            ciphertext.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -24,8 +24,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Associates an existing AWS KMS alias with a different customer master key
  * (CMK). Each alias is associated with only one CMK at a time, although a CMK
  * can have multiple aliases. The alias and the CMK must be in the same AWS
- * account and region. You cannot perform this operation on an alias in a
- * different AWS account.
+ * account and region.
  * </p>
  * <p>
  * The current and new CMK must be the same type (both symmetric or both
@@ -53,6 +52,62 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
+ * different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:UpdateAlias</a> on the alias (IAM policy).
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:UpdateAlias</a> on the current CMK (key policy).
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:UpdateAlias</a> on the new CMK (key policy).
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * For details, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html#alias-access"
+ * >Controlling access to aliases</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateAlias</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteAlias</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListAliases</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class UpdateAliasRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -71,8 +126,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK to associate with the alias. When the update operation
-     * completes, the alias will point to this CMK.
+     * Identifies the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     * >customer managed CMK</a> to associate with the alias. You don't have
+     * permission to associate an alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     * >AWS managed CMK</a>.
      * </p>
      * <p>
      * The CMK must be in the same AWS account and Region as the alias. Also,
@@ -189,8 +248,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK to associate with the alias. When the update operation
-     * completes, the alias will point to this CMK.
+     * Identifies the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     * >customer managed CMK</a> to associate with the alias. You don't have
+     * permission to associate an alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     * >AWS managed CMK</a>.
      * </p>
      * <p>
      * The CMK must be in the same AWS account and Region as the alias. Also,
@@ -229,8 +292,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Identifies the CMK to associate with the alias. When the update
-     *         operation completes, the alias will point to this CMK.
+     *         Identifies the <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     *         >customer managed CMK</a> to associate with the alias. You don't
+     *         have permission to associate an alias with an <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     *         >AWS managed CMK</a>.
      *         </p>
      *         <p>
      *         The CMK must be in the same AWS account and Region as the alias.
@@ -272,8 +339,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK to associate with the alias. When the update operation
-     * completes, the alias will point to this CMK.
+     * Identifies the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     * >customer managed CMK</a> to associate with the alias. You don't have
+     * permission to associate an alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     * >AWS managed CMK</a>.
      * </p>
      * <p>
      * The CMK must be in the same AWS account and Region as the alias. Also,
@@ -312,8 +383,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            Identifies the CMK to associate with the alias. When the
-     *            update operation completes, the alias will point to this CMK.
+     *            Identifies the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     *            >customer managed CMK</a> to associate with the alias. You
+     *            don't have permission to associate an alias with an <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     *            >AWS managed CMK</a>.
      *            </p>
      *            <p>
      *            The CMK must be in the same AWS account and Region as the
@@ -356,8 +431,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Identifies the CMK to associate with the alias. When the update operation
-     * completes, the alias will point to this CMK.
+     * Identifies the <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     * >customer managed CMK</a> to associate with the alias. You don't have
+     * permission to associate an alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     * >AWS managed CMK</a>.
      * </p>
      * <p>
      * The CMK must be in the same AWS account and Region as the alias. Also,
@@ -399,8 +478,12 @@ public class UpdateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            Identifies the CMK to associate with the alias. When the
-     *            update operation completes, the alias will point to this CMK.
+     *            Identifies the <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
+     *            >customer managed CMK</a> to associate with the alias. You
+     *            don't have permission to associate an alias with an <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+     *            >AWS managed CMK</a>.
      *            </p>
      *            <p>
      *            The CMK must be in the same AWS account and Region as the

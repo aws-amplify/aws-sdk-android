@@ -20,8 +20,9 @@ import java.io.Serializable;
 public class ScheduleKeyDeletionResult implements Serializable {
     /**
      * <p>
-     * The unique identifier of the customer master key (CMK) for which deletion
-     * is scheduled.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK whose deletion is scheduled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,16 +40,18 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of the customer master key (CMK) for which deletion
-     * is scheduled.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK whose deletion is scheduled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The unique identifier of the customer master key (CMK) for which
-     *         deletion is scheduled.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the CMK whose deletion is scheduled.
      *         </p>
      */
     public String getKeyId() {
@@ -57,16 +60,18 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of the customer master key (CMK) for which deletion
-     * is scheduled.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK whose deletion is scheduled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier of the customer master key (CMK) for
-     *            which deletion is scheduled.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK whose deletion is scheduled.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -75,8 +80,9 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The unique identifier of the customer master key (CMK) for which deletion
-     * is scheduled.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the CMK whose deletion is scheduled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,8 +92,9 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier of the customer master key (CMK) for
-     *            which deletion is scheduled.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the CMK whose deletion is scheduled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

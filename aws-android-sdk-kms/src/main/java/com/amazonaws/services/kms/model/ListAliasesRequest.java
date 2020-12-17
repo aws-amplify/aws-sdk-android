@@ -21,14 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a list of aliases in the caller's AWS account and region. You cannot
- * list aliases in other accounts. For more information about aliases, see
- * <a>CreateAlias</a>.
+ * Gets a list of aliases in the caller's AWS account and region. For more
+ * information about aliases, see <a>CreateAlias</a>.
  * </p>
  * <p>
- * By default, the ListAliases command returns all aliases in the account and
- * region. To get only the aliases that point to a particular customer master
- * key (CMK), use the <code>KeyId</code> parameter.
+ * By default, the <code>ListAliases</code> operation returns all aliases in the
+ * account and region. To get only the aliases associated with a particular
+ * customer master key (CMK), use the <code>KeyId</code> parameter.
  * </p>
  * <p>
  * The <code>ListAliases</code> response can include aliases that you created
@@ -45,18 +44,74 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#aliases-limit"
  * >AWS KMS aliases quota</a>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. <code>ListAliases</code> does not return
+ * aliases in other AWS accounts.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:ListAliases</a> (IAM policy)
+ * </p>
+ * <p>
+ * For details, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html#alias-access"
+ * >Controlling access to aliases</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateAlias</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteAlias</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>UpdateAlias</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class ListAliasesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Lists only aliases that refer to the specified CMK. The value of this
-     * parameter can be the ID or Amazon Resource Name (ARN) of a CMK in the
-     * caller's account and region. You cannot use an alias name or alias ARN in
-     * this value.
+     * Lists only aliases that are associated with the specified CMK. Enter a
+     * CMK in your AWS account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
-     * returns all aliases in the account and region.
+     * returns all aliases in the account and Region.
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,29 +150,71 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Lists only aliases that refer to the specified CMK. The value of this
-     * parameter can be the ID or Amazon Resource Name (ARN) of a CMK in the
-     * caller's account and region. You cannot use an alias name or alias ARN in
-     * this value.
+     * Lists only aliases that are associated with the specified CMK. Enter a
+     * CMK in your AWS account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
-     * returns all aliases in the account and region.
+     * returns all aliases in the account and Region.
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Lists only aliases that refer to the specified CMK. The value of
-     *         this parameter can be the ID or Amazon Resource Name (ARN) of a
-     *         CMK in the caller's account and region. You cannot use an alias
-     *         name or alias ARN in this value.
+     *         Lists only aliases that are associated with the specified CMK.
+     *         Enter a CMK in your AWS account.
      *         </p>
      *         <p>
      *         This parameter is optional. If you omit it,
      *         <code>ListAliases</code> returns all aliases in the account and
-     *         region.
+     *         Region.
+     *         </p>
+     *         <p>
+     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         </p>
+     *         <p>
+     *         For example:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Key ARN:
+     *         <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -126,29 +223,72 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Lists only aliases that refer to the specified CMK. The value of this
-     * parameter can be the ID or Amazon Resource Name (ARN) of a CMK in the
-     * caller's account and region. You cannot use an alias name or alias ARN in
-     * this value.
+     * Lists only aliases that are associated with the specified CMK. Enter a
+     * CMK in your AWS account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
-     * returns all aliases in the account and region.
+     * returns all aliases in the account and Region.
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Lists only aliases that refer to the specified CMK. The value
-     *            of this parameter can be the ID or Amazon Resource Name (ARN)
-     *            of a CMK in the caller's account and region. You cannot use an
-     *            alias name or alias ARN in this value.
+     *            Lists only aliases that are associated with the specified CMK.
+     *            Enter a CMK in your AWS account.
      *            </p>
      *            <p>
      *            This parameter is optional. If you omit it,
      *            <code>ListAliases</code> returns all aliases in the account
-     *            and region.
+     *            and Region.
+     *            </p>
+     *            <p>
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Key ARN:
+     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -157,14 +297,35 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Lists only aliases that refer to the specified CMK. The value of this
-     * parameter can be the ID or Amazon Resource Name (ARN) of a CMK in the
-     * caller's account and region. You cannot use an alias name or alias ARN in
-     * this value.
+     * Lists only aliases that are associated with the specified CMK. Enter a
+     * CMK in your AWS account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
-     * returns all aliases in the account and region.
+     * returns all aliases in the account and Region.
+     * </p>
+     * <p>
+     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * </p>
+     * <p>
+     * For example:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Key ARN:
+     * <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * <a>DescribeKey</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -174,15 +335,37 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Lists only aliases that refer to the specified CMK. The value
-     *            of this parameter can be the ID or Amazon Resource Name (ARN)
-     *            of a CMK in the caller's account and region. You cannot use an
-     *            alias name or alias ARN in this value.
+     *            Lists only aliases that are associated with the specified CMK.
+     *            Enter a CMK in your AWS account.
      *            </p>
      *            <p>
      *            This parameter is optional. If you omit it,
      *            <code>ListAliases</code> returns all aliases in the account
-     *            and region.
+     *            and Region.
+     *            </p>
+     *            <p>
+     *            Specify the key ID or the Amazon Resource Name (ARN) of the
+     *            CMK.
+     *            </p>
+     *            <p>
+     *            For example:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Key ARN:
+     *            <code>arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
+     *            or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

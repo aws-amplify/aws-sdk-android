@@ -45,6 +45,12 @@ class AliasListEntryJsonUnmarshaller implements
             } else if (name.equals("TargetKeyId")) {
                 aliasListEntry.setTargetKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("CreationDate")) {
+                aliasListEntry.setCreationDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LastUpdatedDate")) {
+                aliasListEntry.setLastUpdatedDate(DateJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

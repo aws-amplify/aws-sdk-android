@@ -31,12 +31,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The custom key store that you delete cannot contain any AWS KMS <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
  * >customer master keys (CMKs)</a>. Before deleting the key store, verify that
- * you will never need to use any of the CMKs in the key store for any
- * cryptographic operations. Then, use <a>ScheduleKeyDeletion</a> to delete the
- * AWS KMS customer master keys (CMKs) from the key store. When the scheduled
- * waiting period expires, the <code>ScheduleKeyDeletion</code> operation
- * deletes the CMKs. Then it makes a best effort to delete the key material from
- * the associated cluster. However, you might need to manually <a href=
+ * you will never need to use any of the CMKs in the key store for any <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+ * >cryptographic operations</a>. Then, use <a>ScheduleKeyDeletion</a> to delete
+ * the AWS KMS customer master keys (CMKs) from the key store. When the
+ * scheduled waiting period expires, the <code>ScheduleKeyDeletion</code>
+ * operation deletes the CMKs. Then it makes a best effort to delete the key
+ * material from the associated cluster. However, you might need to manually <a
+ * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/fix-keystore.html#fix-keystore-orphaned-key"
  * >delete the orphaned key material</a> from the cluster and its backups.
  * </p>
@@ -62,6 +64,45 @@ import com.amazonaws.AmazonWebServiceRequest;
  * convenience and extensive integration of AWS KMS with the isolation and
  * control of a single-tenant key store.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a custom
+ * key store in a different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:DeleteCustomKeyStore</a> (IAM policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>ConnectCustomKeyStore</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>CreateCustomKeyStore</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DescribeCustomKeyStores</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DisconnectCustomKeyStore</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>UpdateCustomKeyStore</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class DeleteCustomKeyStoreRequest extends AmazonWebServiceRequest implements Serializable {
     /**

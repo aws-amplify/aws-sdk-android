@@ -54,6 +54,30 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
  * Management Service Developer Guide</i>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
+ * different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:GetParametersForImport</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>ImportKeyMaterial</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>DeleteImportedKeyMaterial</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class GetParametersForImportRequest extends AmazonWebServiceRequest implements Serializable {
     /**

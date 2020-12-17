@@ -20,8 +20,9 @@ import java.io.Serializable;
 public class SignResult implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the asymmetric CMK that was used to
-     * sign the message.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,16 +77,19 @@ public class SignResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the asymmetric CMK that was used to
-     * sign the message.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the asymmetric CMK that was
-     *         used to sign the message.
+     *         The Amazon Resource Name (<a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *         >key ARN</a>) of the asymmetric CMK that was used to sign the
+     *         message.
      *         </p>
      */
     public String getKeyId() {
@@ -94,16 +98,19 @@ public class SignResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the asymmetric CMK that was used to
-     * sign the message.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The Amazon Resource Name (ARN) of the asymmetric CMK that was
-     *            used to sign the message.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the asymmetric CMK that was used to sign the
+     *            message.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -112,8 +119,9 @@ public class SignResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the asymmetric CMK that was used to
-     * sign the message.
+     * The Amazon Resource Name (<a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -123,8 +131,10 @@ public class SignResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The Amazon Resource Name (ARN) of the asymmetric CMK that was
-     *            used to sign the message.
+     *            The Amazon Resource Name (<a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
+     *            >key ARN</a>) of the asymmetric CMK that was used to sign the
+     *            message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

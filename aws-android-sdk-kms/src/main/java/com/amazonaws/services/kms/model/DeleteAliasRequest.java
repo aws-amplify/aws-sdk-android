@@ -21,8 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified alias. You cannot perform this operation on an alias in
- * a different AWS account.
+ * Deletes the specified alias.
  * </p>
  * <p>
  * Because an alias is not a property of a CMK, you can delete and change the
@@ -36,6 +35,55 @@ import com.amazonaws.AmazonWebServiceRequest;
  * create a new alias. To associate an existing alias with a different customer
  * master key (CMK), call <a>UpdateAlias</a>.
  * </p>
+ * <p>
+ * <b>Cross-account use</b>: No. You cannot perform this operation on an alias
+ * in a different AWS account.
+ * </p>
+ * <p>
+ * <b>Required permissions</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:DeleteAlias</a> on the alias (IAM policy).
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:DeleteAlias</a> on the CMK (key policy).
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * For details, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html#alias-access"
+ * >Controlling access to aliases</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>CreateAlias</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ListAliases</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>UpdateAlias</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class DeleteAliasRequest extends AmazonWebServiceRequest implements Serializable {
     /**

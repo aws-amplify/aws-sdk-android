@@ -34,11 +34,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * You can use the <code>Encrypt</code> operation to move encrypted data from
- * one AWS region to another. In the first region, generate a data key and use
- * the plaintext key to encrypt the data. Then, in the new region, call the
- * <code>Encrypt</code> method on same plaintext data key. Now, you can safely
- * move the encrypted data and encrypted data key to the new region, and decrypt
- * in the new region when necessary.
+ * one AWS Region to another. For example, in Region A, generate a data key and
+ * use the plaintext key to encrypt your data. Then, in Region A, use the
+ * <code>Encrypt</code> operation to encrypt the plaintext data key under a CMK
+ * in Region B. Now, you can move the encrypted data and the encrypted data key
+ * to Region B. When necessary, you can decrypt the encrypted data key and the
+ * encrypted data entirely within in Region B.
  * </p>
  * </li>
  * </ul>
@@ -161,9 +162,35 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Management Service Developer Guide</i>.
  * </p>
  * <p>
- * To perform this operation on a CMK in a different AWS account, specify the
- * key ARN or alias ARN in the value of the KeyId parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
+ * different AWS account, specify the key ARN or alias ARN in the value of the
+ * <code>KeyId</code> parameter.
  * </p>
+ * <p>
+ * <b>Required permissions</b>: <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
+ * >kms:Encrypt</a> (key policy)
+ * </p>
+ * <p>
+ * <b>Related operations:</b>
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <a>Decrypt</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>GenerateDataKeyPair</a>
+ * </p>
+ * </li>
+ * </ul>
  */
 public class EncryptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -227,9 +254,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * Specifies the encryption context that will be used to encrypt the data.
-     * An encryption context is valid only for cryptographic operations with a
-     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
-     * uses do not support an encryption context.
+     * An encryption context is valid only for <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> with a symmetric CMK. The standard
+     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * encryption context.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
@@ -618,9 +647,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * Specifies the encryption context that will be used to encrypt the data.
-     * An encryption context is valid only for cryptographic operations with a
-     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
-     * uses do not support an encryption context.
+     * An encryption context is valid only for <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> with a symmetric CMK. The standard
+     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * encryption context.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
@@ -639,10 +670,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *
      * @return <p>
      *         Specifies the encryption context that will be used to encrypt the
-     *         data. An encryption context is valid only for cryptographic
-     *         operations with a symmetric CMK. The standard asymmetric
-     *         encryption algorithms that AWS KMS uses do not support an
-     *         encryption context.
+     *         data. An encryption context is valid only for <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operations</a> with a symmetric CMK. The standard
+     *         asymmetric encryption algorithms that AWS KMS uses do not support
+     *         an encryption context.
      *         </p>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
@@ -667,9 +699,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * Specifies the encryption context that will be used to encrypt the data.
-     * An encryption context is valid only for cryptographic operations with a
-     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
-     * uses do not support an encryption context.
+     * An encryption context is valid only for <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> with a symmetric CMK. The standard
+     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * encryption context.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
@@ -688,10 +722,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *
      * @param encryptionContext <p>
      *            Specifies the encryption context that will be used to encrypt
-     *            the data. An encryption context is valid only for
-     *            cryptographic operations with a symmetric CMK. The standard
-     *            asymmetric encryption algorithms that AWS KMS uses do not
-     *            support an encryption context.
+     *            the data. An encryption context is valid only for <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> with a symmetric CMK. The
+     *            standard asymmetric encryption algorithms that AWS KMS uses do
+     *            not support an encryption context.
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
@@ -716,9 +751,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * Specifies the encryption context that will be used to encrypt the data.
-     * An encryption context is valid only for cryptographic operations with a
-     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
-     * uses do not support an encryption context.
+     * An encryption context is valid only for <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> with a symmetric CMK. The standard
+     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * encryption context.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
@@ -740,10 +777,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *
      * @param encryptionContext <p>
      *            Specifies the encryption context that will be used to encrypt
-     *            the data. An encryption context is valid only for
-     *            cryptographic operations with a symmetric CMK. The standard
-     *            asymmetric encryption algorithms that AWS KMS uses do not
-     *            support an encryption context.
+     *            the data. An encryption context is valid only for <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operations</a> with a symmetric CMK. The
+     *            standard asymmetric encryption algorithms that AWS KMS uses do
+     *            not support an encryption context.
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
@@ -771,9 +809,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
     /**
      * <p>
      * Specifies the encryption context that will be used to encrypt the data.
-     * An encryption context is valid only for cryptographic operations with a
-     * symmetric CMK. The standard asymmetric encryption algorithms that AWS KMS
-     * uses do not support an encryption context.
+     * An encryption context is valid only for <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operations</a> with a symmetric CMK. The standard
+     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * encryption context.
      * </p>
      * <p>
      * An <i>encryption context</i> is a collection of non-secret key-value
