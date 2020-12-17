@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.20.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.20.1)
+
+## Bug Fixes
+ - Fixed an Amazon Location client bug where the trackerName was being set to the deviceId instead of the trackerName.  See [PR #2298](https://github.com/aws-amplify/aws-sdk-android/pull/2298).
+
+### Model updates
+ - Amazon Key Management Service (KMS)
+
 ## [Release 2.20.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.20.0)
 
 ### New Features
