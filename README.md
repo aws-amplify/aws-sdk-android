@@ -67,6 +67,7 @@ dependencies {
  * kms
  * lambda
  * lex
+ * location
  * logs
  * machinelearning
  * mobile-client

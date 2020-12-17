@@ -1,5 +1,13 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.20.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.20.0)
+
+### New Features
+ - Amazon Location Service
+
+### Model updates
+ - AWS IoT
+
 ## [Release 2.19.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.19.4)
 
 ### New Features
