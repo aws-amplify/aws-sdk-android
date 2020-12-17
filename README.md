@@ -1,6 +1,6 @@
 # AWS SDK for Android 
 
-[![DiscordChat](https://img.shields.io/discord/308323056592486420?logo=discord)](https://discord.gg/jWVbPfC)
+[![DiscordChat](https://img.shields.io/discord/308323056592486420?logo=discord)](https://discord.gg/amplify)
 [![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
 [![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-core.svg)](https://search.maven.org/search?q=a:aws-android-sdk-core)
 [![CircleCI](https://circleci.com/gh/aws-amplify/aws-sdk-android.svg?style=svg)](https://circleci.com/gh/aws-amplify/aws-sdk-android)
@@ -117,7 +117,7 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 
 ## Talk to Us
 
-[Come chat with us on our Discord Channel](https://discord.gg/U5XyRx).
+[Come chat with us on our Discord Channel](https://discord.gg/amplify).
 
 Report bugs to our [GitHub Issues](https://github.com/aws-amplify/aws-sdk-android/issues) page.
 
