@@ -1,7 +1,7 @@
 # AWS SDK for Android 
 
 [![GitHub release](https://img.shields.io/github/release/aws-amplify/aws-sdk-android.svg)](https://github.com/aws-amplify/aws-sdk-android/releases)
-[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-pom.svg)](https://search.maven.org/search?q=a:aws-android-sdk-pom)
+[![Maven Central](https://img.shields.io/maven-central/v/com.amazonaws/aws-android-sdk-core.svg)](https://search.maven.org/search?q=a:aws-android-sdk-core)
 
 The AWS SDK for Android provides a library and documentation for developers to build connected mobile applications using AWS.
 
