@@ -25,7 +25,6 @@
 			"aws-android-sdk-ddb-document",
 			"aws-android-sdk-ddb-mapper",
 			"aws-android-sdk-ec2",
-			"aws-android-sdk-elb",
 			"aws-android-sdk-iot",
 			"aws-android-sdk-kinesis",
 			"aws-android-sdk-kinesisvideo",
@@ -34,6 +33,7 @@
 			"aws-android-sdk-kms",
 			"aws-android-sdk-lambda",
 			"aws-android-sdk-lex",
+			"aws-android-sdk-location",
 			"aws-android-sdk-logs",
 			"aws-android-sdk-machinelearning",
 			"aws-android-sdk-mobile-client",
@@ -195,6 +195,13 @@
 				]  
 			},
 			{ 
+				title : "Amazon Location Service", 
+				packages : [ 
+					"${service.prefix}.geo*",
+					"${connector.prefix}.geo*" 
+				]  
+			},
+			{ 
 				title : "Amazon Polly" , 
 				packages : [ 
 					"${service.prefix}.polly*" 
@@ -204,12 +211,6 @@
 				title : "AWS Key Management Service" , 
 				packages : [ 
 					"${service.prefix}.kms*" 
-				]  
-			},
-			{ 
-				title : "Amazon AutoScaling" , 
-				packages : [ 
-					"${service.prefix}.autoscaling*" 
 				]  
 			},
 			{ 
