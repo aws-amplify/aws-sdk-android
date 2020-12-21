@@ -21,48 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Sends an event. Note that ConnectionToken is used for invoking this API
- * instead of ParticipantToken.
- * </p>
- * <p>
- * The Amazon Connect Participant Service APIs do not use <a href=
- * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
- * >Signature Version 4 authentication</a>.
+ * Allows you to confirm that the attachment has been uploaded using the
+ * pre-signed URL provided in StartAttachmentUpload API.
  * </p>
  */
-public class SendEventRequest extends AmazonWebServiceRequest implements Serializable {
+public class CompleteAttachmentUploadRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
-     * The content type of the request. Supported types are:
+     * A list of unique identifiers for the attachments.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.typing
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      */
-    private String contentType;
-
-    /**
-     * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
-     */
-    private String content;
+    private java.util.List<String> attachmentIds;
 
     /**
      * <p>
@@ -71,7 +41,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 500<br/>
      */
     private String clientToken;
 
@@ -87,189 +57,76 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The content type of the request. Supported types are:
+     * A list of unique identifiers for the attachments.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.typing
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The content type of the request. Supported types are:
+     *         A list of unique identifiers for the attachments.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         application/vnd.amazonaws.connect.event.typing
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         application/vnd.amazonaws.connect.event.connection.acknowledged
-     *         </p>
-     *         </li>
-     *         </ul>
      */
-    public String getContentType() {
-        return contentType;
+    public java.util.List<String> getAttachmentIds() {
+        return attachmentIds;
     }
 
     /**
      * <p>
-     * The content type of the request. Supported types are:
+     * A list of unique identifiers for the attachments.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.typing
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      *
-     * @param contentType <p>
-     *            The content type of the request. Supported types are:
+     * @param attachmentIds <p>
+     *            A list of unique identifiers for the attachments.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            application/vnd.amazonaws.connect.event.typing
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            application/vnd.amazonaws.connect.event.connection.
-     *            acknowledged
-     *            </p>
-     *            </li>
-     *            </ul>
      */
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
+    public void setAttachmentIds(java.util.Collection<String> attachmentIds) {
+        if (attachmentIds == null) {
+            this.attachmentIds = null;
+            return;
+        }
+
+        this.attachmentIds = new java.util.ArrayList<String>(attachmentIds);
     }
 
     /**
      * <p>
-     * The content type of the request. Supported types are:
+     * A list of unique identifiers for the attachments.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.typing
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * application/vnd.amazonaws.connect.event.connection.acknowledged
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      *
-     * @param contentType <p>
-     *            The content type of the request. Supported types are:
+     * @param attachmentIds <p>
+     *            A list of unique identifiers for the attachments.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            application/vnd.amazonaws.connect.event.typing
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            application/vnd.amazonaws.connect.event.connection.
-     *            acknowledged
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SendEventRequest withContentType(String contentType) {
-        this.contentType = contentType;
+    public CompleteAttachmentUploadRequest withAttachmentIds(String... attachmentIds) {
+        if (getAttachmentIds() == null) {
+            this.attachmentIds = new java.util.ArrayList<String>(attachmentIds.length);
+        }
+        for (String value : attachmentIds) {
+            this.attachmentIds.add(value);
+        }
         return this;
     }
 
     /**
      * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
-     *
-     * @return <p>
-     *         The content of the event to be sent (for example, message text).
-     *         This is not yet supported.
-     *         </p>
-     */
-    public String getContent() {
-        return content;
-    }
-
-    /**
-     * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
-     *
-     * @param content <p>
-     *            The content of the event to be sent (for example, message
-     *            text). This is not yet supported.
-     *            </p>
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    /**
-     * <p>
-     * The content of the event to be sent (for example, message text). This is
-     * not yet supported.
+     * A list of unique identifiers for the attachments.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 1024<br/>
      *
-     * @param content <p>
-     *            The content of the event to be sent (for example, message
-     *            text). This is not yet supported.
+     * @param attachmentIds <p>
+     *            A list of unique identifiers for the attachments.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SendEventRequest withContent(String content) {
-        this.content = content;
+    public CompleteAttachmentUploadRequest withAttachmentIds(
+            java.util.Collection<String> attachmentIds) {
+        setAttachmentIds(attachmentIds);
         return this;
     }
 
@@ -280,7 +137,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @return <p>
      *         A unique, case-sensitive identifier that you provide to ensure
@@ -298,7 +155,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
@@ -319,7 +176,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 500<br/>
      *
      * @param clientToken <p>
      *            A unique, case-sensitive identifier that you provide to ensure
@@ -328,7 +185,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SendEventRequest withClientToken(String clientToken) {
+    public CompleteAttachmentUploadRequest withClientToken(String clientToken) {
         this.clientToken = clientToken;
         return this;
     }
@@ -385,7 +242,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SendEventRequest withConnectionToken(String connectionToken) {
+    public CompleteAttachmentUploadRequest withConnectionToken(String connectionToken) {
         this.connectionToken = connectionToken;
         return this;
     }
@@ -401,10 +258,8 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getContentType() != null)
-            sb.append("ContentType: " + getContentType() + ",");
-        if (getContent() != null)
-            sb.append("Content: " + getContent() + ",");
+        if (getAttachmentIds() != null)
+            sb.append("AttachmentIds: " + getAttachmentIds() + ",");
         if (getClientToken() != null)
             sb.append("ClientToken: " + getClientToken() + ",");
         if (getConnectionToken() != null)
@@ -419,8 +274,7 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getContentType() == null) ? 0 : getContentType().hashCode());
-        hashCode = prime * hashCode + ((getContent() == null) ? 0 : getContent().hashCode());
+                + ((getAttachmentIds() == null) ? 0 : getAttachmentIds().hashCode());
         hashCode = prime * hashCode
                 + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
         hashCode = prime * hashCode
@@ -435,18 +289,14 @@ public class SendEventRequest extends AmazonWebServiceRequest implements Seriali
         if (obj == null)
             return false;
 
-        if (obj instanceof SendEventRequest == false)
+        if (obj instanceof CompleteAttachmentUploadRequest == false)
             return false;
-        SendEventRequest other = (SendEventRequest) obj;
+        CompleteAttachmentUploadRequest other = (CompleteAttachmentUploadRequest) obj;
 
-        if (other.getContentType() == null ^ this.getContentType() == null)
+        if (other.getAttachmentIds() == null ^ this.getAttachmentIds() == null)
             return false;
-        if (other.getContentType() != null
-                && other.getContentType().equals(this.getContentType()) == false)
-            return false;
-        if (other.getContent() == null ^ this.getContent() == null)
-            return false;
-        if (other.getContent() != null && other.getContent().equals(this.getContent()) == false)
+        if (other.getAttachmentIds() != null
+                && other.getAttachmentIds().equals(this.getAttachmentIds()) == false)
             return false;
         if (other.getClientToken() == null ^ this.getClientToken() == null)
             return false;

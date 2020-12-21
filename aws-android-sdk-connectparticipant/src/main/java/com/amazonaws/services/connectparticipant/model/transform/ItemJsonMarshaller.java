@@ -16,6 +16,7 @@
 package com.amazonaws.services.connectparticipant.model.transform;
 
 import com.amazonaws.services.connectparticipant.model.*;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
@@ -64,6 +65,18 @@ class ItemJsonMarshaller {
             String participantRole = item.getParticipantRole();
             jsonWriter.name("ParticipantRole");
             jsonWriter.value(participantRole);
+        }
+        if (item.getAttachments() != null) {
+            java.util.List<AttachmentItem> attachments = item.getAttachments();
+            jsonWriter.name("Attachments");
+            jsonWriter.beginArray();
+            for (AttachmentItem attachmentsItem : attachments) {
+                if (attachmentsItem != null) {
+                    AttachmentItemJsonMarshaller.getInstance()
+                            .marshall(attachmentsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
         }
         jsonWriter.endObject();
     }

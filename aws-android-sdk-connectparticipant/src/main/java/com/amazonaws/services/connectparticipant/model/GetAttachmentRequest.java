@@ -21,26 +21,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Disconnects a participant. Note that ConnectionToken is used for invoking
- * this API instead of ParticipantToken.
- * </p>
- * <p>
- * The Amazon Connect Participant Service APIs do not use <a href=
- * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
- * >Signature Version 4 authentication</a>.
+ * Provides a pre-signed URL for download of a completed attachment. This is an
+ * asynchronous API for use with active contacts.
  * </p>
  */
-public class DisconnectParticipantRequest extends AmazonWebServiceRequest implements Serializable {
+public class GetAttachmentRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * A unique identifier for the attachment.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
-    private String clientToken;
+    private String attachmentId;
 
     /**
      * <p>
@@ -54,61 +48,55 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * A unique identifier for the attachment.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         A unique, case-sensitive identifier that you provide to ensure
-     *         the idempotency of the request.
+     *         A unique identifier for the attachment.
      *         </p>
      */
-    public String getClientToken() {
-        return clientToken;
+    public String getAttachmentId() {
+        return attachmentId;
     }
 
     /**
      * <p>
-     * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * A unique identifier for the attachment.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param clientToken <p>
-     *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     * @param attachmentId <p>
+     *            A unique identifier for the attachment.
      *            </p>
      */
-    public void setClientToken(String clientToken) {
-        this.clientToken = clientToken;
+    public void setAttachmentId(String attachmentId) {
+        this.attachmentId = attachmentId;
     }
 
     /**
      * <p>
-     * A unique, case-sensitive identifier that you provide to ensure the
-     * idempotency of the request.
+     * A unique identifier for the attachment.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b> - 500<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param clientToken <p>
-     *            A unique, case-sensitive identifier that you provide to ensure
-     *            the idempotency of the request.
+     * @param attachmentId <p>
+     *            A unique identifier for the attachment.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DisconnectParticipantRequest withClientToken(String clientToken) {
-        this.clientToken = clientToken;
+    public GetAttachmentRequest withAttachmentId(String attachmentId) {
+        this.attachmentId = attachmentId;
         return this;
     }
 
@@ -164,7 +152,7 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DisconnectParticipantRequest withConnectionToken(String connectionToken) {
+    public GetAttachmentRequest withConnectionToken(String connectionToken) {
         this.connectionToken = connectionToken;
         return this;
     }
@@ -180,8 +168,8 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getClientToken() != null)
-            sb.append("ClientToken: " + getClientToken() + ",");
+        if (getAttachmentId() != null)
+            sb.append("AttachmentId: " + getAttachmentId() + ",");
         if (getConnectionToken() != null)
             sb.append("ConnectionToken: " + getConnectionToken());
         sb.append("}");
@@ -194,7 +182,7 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
+                + ((getAttachmentId() == null) ? 0 : getAttachmentId().hashCode());
         hashCode = prime * hashCode
                 + ((getConnectionToken() == null) ? 0 : getConnectionToken().hashCode());
         return hashCode;
@@ -207,14 +195,14 @@ public class DisconnectParticipantRequest extends AmazonWebServiceRequest implem
         if (obj == null)
             return false;
 
-        if (obj instanceof DisconnectParticipantRequest == false)
+        if (obj instanceof GetAttachmentRequest == false)
             return false;
-        DisconnectParticipantRequest other = (DisconnectParticipantRequest) obj;
+        GetAttachmentRequest other = (GetAttachmentRequest) obj;
 
-        if (other.getClientToken() == null ^ this.getClientToken() == null)
+        if (other.getAttachmentId() == null ^ this.getAttachmentId() == null)
             return false;
-        if (other.getClientToken() != null
-                && other.getClientToken().equals(this.getClientToken()) == false)
+        if (other.getAttachmentId() != null
+                && other.getAttachmentId().equals(this.getAttachmentId()) == false)
             return false;
         if (other.getConnectionToken() == null ^ this.getConnectionToken() == null)
             return false;

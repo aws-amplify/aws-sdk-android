@@ -19,24 +19,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Chat Item Type
+ * Artifact Status
  */
-public enum ChatItemType {
+public enum ArtifactStatus {
 
-    TYPING("TYPING"),
-    PARTICIPANT_JOINED("PARTICIPANT_JOINED"),
-    PARTICIPANT_LEFT("PARTICIPANT_LEFT"),
-    CHAT_ENDED("CHAT_ENDED"),
-    TRANSFER_SUCCEEDED("TRANSFER_SUCCEEDED"),
-    TRANSFER_FAILED("TRANSFER_FAILED"),
-    MESSAGE("MESSAGE"),
-    EVENT("EVENT"),
-    ATTACHMENT("ATTACHMENT"),
-    CONNECTION_ACK("CONNECTION_ACK");
+    APPROVED("APPROVED"),
+    REJECTED("REJECTED"),
+    IN_PROGRESS("IN_PROGRESS");
 
     private String value;
 
-    private ChatItemType(String value) {
+    private ArtifactStatus(String value) {
         this.value = value;
     }
 
@@ -45,28 +38,21 @@ public enum ChatItemType {
         return value;
     }
 
-    private static final Map<String, ChatItemType> enumMap;
+    private static final Map<String, ArtifactStatus> enumMap;
     static {
-        enumMap = new HashMap<String, ChatItemType>();
-        enumMap.put("TYPING", TYPING);
-        enumMap.put("PARTICIPANT_JOINED", PARTICIPANT_JOINED);
-        enumMap.put("PARTICIPANT_LEFT", PARTICIPANT_LEFT);
-        enumMap.put("CHAT_ENDED", CHAT_ENDED);
-        enumMap.put("TRANSFER_SUCCEEDED", TRANSFER_SUCCEEDED);
-        enumMap.put("TRANSFER_FAILED", TRANSFER_FAILED);
-        enumMap.put("MESSAGE", MESSAGE);
-        enumMap.put("EVENT", EVENT);
-        enumMap.put("ATTACHMENT", ATTACHMENT);
-        enumMap.put("CONNECTION_ACK", CONNECTION_ACK);
+        enumMap = new HashMap<String, ArtifactStatus>();
+        enumMap.put("APPROVED", APPROVED);
+        enumMap.put("REJECTED", REJECTED);
+        enumMap.put("IN_PROGRESS", IN_PROGRESS);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ChatItemType corresponding to the value
+     * @return ArtifactStatus corresponding to the value
      */
-    public static ChatItemType fromValue(String value) {
+    public static ArtifactStatus fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
