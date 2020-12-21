@@ -37,61 +37,49 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for GetTranscriptRequest
+ * JSON request marshaller for CompleteAttachmentUploadRequest
  */
-public class GetTranscriptRequestMarshaller implements
-        Marshaller<Request<GetTranscriptRequest>, GetTranscriptRequest> {
+public class CompleteAttachmentUploadRequestMarshaller implements
+        Marshaller<Request<CompleteAttachmentUploadRequest>, CompleteAttachmentUploadRequest> {
 
-    public Request<GetTranscriptRequest> marshall(GetTranscriptRequest getTranscriptRequest) {
-        if (getTranscriptRequest == null) {
+    public Request<CompleteAttachmentUploadRequest> marshall(
+            CompleteAttachmentUploadRequest completeAttachmentUploadRequest) {
+        if (completeAttachmentUploadRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(GetTranscriptRequest)");
+                    "Invalid argument passed to marshall(CompleteAttachmentUploadRequest)");
         }
 
-        Request<GetTranscriptRequest> request = new DefaultRequest<GetTranscriptRequest>(
-                getTranscriptRequest, "AmazonConnectParticipant");
+        Request<CompleteAttachmentUploadRequest> request = new DefaultRequest<CompleteAttachmentUploadRequest>(
+                completeAttachmentUploadRequest, "AmazonConnectParticipant");
         request.setHttpMethod(HttpMethodName.POST);
 
-        if (getTranscriptRequest.getConnectionToken() != null) {
+        if (completeAttachmentUploadRequest.getConnectionToken() != null) {
             request.addHeader("X-Amz-Bearer",
-                    StringUtils.fromString(getTranscriptRequest.getConnectionToken()));
+                    StringUtils.fromString(completeAttachmentUploadRequest.getConnectionToken()));
         }
-        String uriResourcePath = "/participant/transcript";
+        String uriResourcePath = "/participant/complete-attachment-upload";
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (getTranscriptRequest.getContactId() != null) {
-                String contactId = getTranscriptRequest.getContactId();
-                jsonWriter.name("ContactId");
-                jsonWriter.value(contactId);
+            if (completeAttachmentUploadRequest.getAttachmentIds() != null) {
+                java.util.List<String> attachmentIds = completeAttachmentUploadRequest
+                        .getAttachmentIds();
+                jsonWriter.name("AttachmentIds");
+                jsonWriter.beginArray();
+                for (String attachmentIdsItem : attachmentIds) {
+                    if (attachmentIdsItem != null) {
+                        jsonWriter.value(attachmentIdsItem);
+                    }
+                }
+                jsonWriter.endArray();
             }
-            if (getTranscriptRequest.getMaxResults() != null) {
-                Integer maxResults = getTranscriptRequest.getMaxResults();
-                jsonWriter.name("MaxResults");
-                jsonWriter.value(maxResults);
-            }
-            if (getTranscriptRequest.getNextToken() != null) {
-                String nextToken = getTranscriptRequest.getNextToken();
-                jsonWriter.name("NextToken");
-                jsonWriter.value(nextToken);
-            }
-            if (getTranscriptRequest.getScanDirection() != null) {
-                String scanDirection = getTranscriptRequest.getScanDirection();
-                jsonWriter.name("ScanDirection");
-                jsonWriter.value(scanDirection);
-            }
-            if (getTranscriptRequest.getSortOrder() != null) {
-                String sortOrder = getTranscriptRequest.getSortOrder();
-                jsonWriter.name("SortOrder");
-                jsonWriter.value(sortOrder);
-            }
-            if (getTranscriptRequest.getStartPosition() != null) {
-                StartPosition startPosition = getTranscriptRequest.getStartPosition();
-                jsonWriter.name("StartPosition");
-                StartPositionJsonMarshaller.getInstance().marshall(startPosition, jsonWriter);
+            if (completeAttachmentUploadRequest.getClientToken() != null) {
+                String clientToken = completeAttachmentUploadRequest.getClientToken();
+                jsonWriter.name("ClientToken");
+                jsonWriter.value(clientToken);
             }
 
             jsonWriter.endObject();
