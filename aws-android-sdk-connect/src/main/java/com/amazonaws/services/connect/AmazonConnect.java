@@ -115,6 +115,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates an approved origin to an Amazon Connect instance.
      * </p>
      * 
@@ -138,6 +142,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
@@ -175,6 +183,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Lambda function.
      * </p>
@@ -199,6 +211,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Amazon Lex bot.
@@ -247,6 +263,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates a security key to the instance.
      * </p>
@@ -343,7 +363,7 @@ public interface AmazonConnect {
      * change.
      * </p>
      * <p>
-     * Create an AppIntegration association with anAmazon Connect instance.
+     * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
      * 
      * @param createIntegrationAssociationRequest
@@ -365,6 +385,36 @@ public interface AmazonConnect {
      */
     CreateIntegrationAssociationResult createIntegrationAssociation(
             CreateIntegrationAssociationRequest createIntegrationAssociationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a quick connect for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createQuickConnectRequest
+     * @return createQuickConnectResult The response from the CreateQuickConnect
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateQuickConnectResult createQuickConnect(CreateQuickConnectRequest createQuickConnectRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -540,6 +590,32 @@ public interface AmazonConnect {
      * change.
      * </p>
      * <p>
+     * Deletes a quick connect.
+     * </p>
+     * 
+     * @param deleteQuickConnectRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteQuickConnect(DeleteQuickConnectRequest deleteQuickConnectRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Deletes a use case from an AppIntegration association.
      * </p>
      * 
@@ -646,6 +722,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns the current state of the specified instance identifier. It tracks
      * the instance while it is being created and returns an error status if
      * applicable.
@@ -676,6 +756,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Describes the specified instance attribute.
      * </p>
      * 
@@ -702,6 +786,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Retrieves the current storage configurations for the specified resource
      * type, association ID, and instance ID.
      * </p>
@@ -726,6 +814,36 @@ public interface AmazonConnect {
     DescribeInstanceStorageConfigResult describeInstanceStorageConfig(
             DescribeInstanceStorageConfigRequest describeInstanceStorageConfigRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the quick connect.
+     * </p>
+     * 
+     * @param describeQuickConnectRequest
+     * @return describeQuickConnectResult The response from the
+     *         DescribeQuickConnect service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeQuickConnectResult describeQuickConnect(
+            DescribeQuickConnectRequest describeQuickConnectRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -835,6 +953,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Revokes access to integrated applications from Amazon Connect.
      * </p>
      * 
@@ -857,6 +979,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Removes the storage type configurations for the specified resource type
      * and association ID.
@@ -882,6 +1008,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Remove the Lambda function from the drop-down options available in the
      * relevant contact flow blocks.
      * </p>
@@ -905,6 +1035,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Revokes authorization from the specified instance to access the specified
      * Amazon Lex bot.
@@ -951,6 +1085,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Deletes the specified security key.
      * </p>
@@ -1085,6 +1223,10 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all approved origins associated with the
      * instance.
@@ -1300,6 +1442,10 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns a paginated list of all the Lambda functions that show up in the
      * drop-down options in the relevant contact flow blocks.
      * </p>
@@ -1326,6 +1472,10 @@ public interface AmazonConnect {
             AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all the Amazon Lex bots currently associated
      * with the instance.
@@ -1439,6 +1589,35 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Provides information about the quick connects for the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listQuickConnectsRequest
+     * @return listQuickConnectsResult The response from the ListQuickConnects
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListQuickConnectsResult listQuickConnects(ListQuickConnectsRequest listQuickConnectsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * List the queues associated with a routing profile.
      * </p>
      * 
@@ -1499,6 +1678,10 @@ public interface AmazonConnect {
             AmazonServiceException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all security keys associated with the
      * instance.
@@ -1975,8 +2158,8 @@ public interface AmazonConnect {
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, and contact
-     * flows.
+     * The supported resource types are users, routing profiles, quick connects,
+     * and contact flows.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -2181,6 +2364,60 @@ public interface AmazonConnect {
      */
     void updateInstanceStorageConfig(
             UpdateInstanceStorageConfigRequest updateInstanceStorageConfigRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the configuration settings for the specified quick connect.
+     * </p>
+     * 
+     * @param updateQuickConnectConfigRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateQuickConnectConfig(UpdateQuickConnectConfigRequest updateQuickConnectConfigRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the name and description of a quick connect. The request accepts
+     * the following data in JSON format. At least Name or Description must be
+     * provided.
+     * </p>
+     * 
+     * @param updateQuickConnectNameRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateQuickConnectName(UpdateQuickConnectNameRequest updateQuickConnectNameRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

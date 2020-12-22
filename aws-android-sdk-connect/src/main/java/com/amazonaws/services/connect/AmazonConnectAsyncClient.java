@@ -285,6 +285,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates an approved origin to an Amazon Connect instance.
      * </p>
      * 
@@ -319,6 +323,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates an approved origin to an Amazon Connect instance.
      * </p>
@@ -363,6 +371,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
      * for example, that you can't define an instance with multiple S3 buckets
@@ -404,6 +416,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
@@ -456,6 +472,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Lambda function.
      * </p>
@@ -491,6 +511,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Lambda function.
@@ -536,6 +560,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Amazon Lex bot.
      * </p>
@@ -569,6 +597,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Amazon Lex bot.
@@ -686,6 +718,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates a security key to the instance.
      * </p>
      * 
@@ -719,6 +755,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates a security key to the instance.
      * </p>
@@ -939,7 +979,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * Create an AppIntegration association with anAmazon Connect instance.
+     * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
      * 
      * @param createIntegrationAssociationRequest
@@ -975,7 +1015,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * Create an AppIntegration association with anAmazon Connect instance.
+     * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
      * 
      * @param createIntegrationAssociationRequest
@@ -1009,6 +1049,89 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(createIntegrationAssociationRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a quick connect for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createQuickConnectRequest
+     * @return A Java Future object containing the response from the
+     *         CreateQuickConnect service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateQuickConnectResult> createQuickConnectAsync(
+            final CreateQuickConnectRequest createQuickConnectRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateQuickConnectResult>() {
+            public CreateQuickConnectResult call() throws Exception {
+                return createQuickConnect(createQuickConnectRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a quick connect for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createQuickConnectRequest
+     * @return A Java Future object containing the response from the
+     *         CreateQuickConnect service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateQuickConnectResult> createQuickConnectAsync(
+            final CreateQuickConnectRequest createQuickConnectRequest,
+            final AsyncHandler<CreateQuickConnectRequest, CreateQuickConnectResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateQuickConnectResult>() {
+            public CreateQuickConnectResult call() throws Exception {
+                CreateQuickConnectResult result = null;
+                try {
+                    result = createQuickConnect(createQuickConnectRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createQuickConnectRequest, result);
                 return result;
             }
         });
@@ -1494,6 +1617,86 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
+     * Deletes a quick connect.
+     * </p>
+     * 
+     * @param deleteQuickConnectRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteQuickConnect service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteQuickConnectAsync(
+            final DeleteQuickConnectRequest deleteQuickConnectRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                deleteQuickConnect(deleteQuickConnectRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Deletes a quick connect.
+     * </p>
+     * 
+     * @param deleteQuickConnectRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteQuickConnect service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> deleteQuickConnectAsync(
+            final DeleteQuickConnectRequest deleteQuickConnectRequest,
+            final AsyncHandler<DeleteQuickConnectRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    deleteQuickConnect(deleteQuickConnectRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteQuickConnectRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Deletes a use case from an AppIntegration association.
      * </p>
      * 
@@ -1813,6 +2016,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns the current state of the specified instance identifier. It tracks
      * the instance while it is being created and returns an error status if
      * applicable.
@@ -1849,6 +2056,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns the current state of the specified instance identifier. It tracks
      * the instance while it is being created and returns an error status if
@@ -1896,6 +2107,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Describes the specified instance attribute.
      * </p>
      * 
@@ -1927,6 +2142,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Describes the specified instance attribute.
      * </p>
@@ -1969,6 +2188,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Retrieves the current storage configurations for the specified resource
      * type, association ID, and instance ID.
      * </p>
@@ -2001,6 +2224,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Retrieves the current storage configurations for the specified resource
      * type, association ID, and instance ID.
@@ -2037,6 +2264,87 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(describeInstanceStorageConfigRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the quick connect.
+     * </p>
+     * 
+     * @param describeQuickConnectRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeQuickConnect service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeQuickConnectResult> describeQuickConnectAsync(
+            final DescribeQuickConnectRequest describeQuickConnectRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeQuickConnectResult>() {
+            public DescribeQuickConnectResult call() throws Exception {
+                return describeQuickConnect(describeQuickConnectRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the quick connect.
+     * </p>
+     * 
+     * @param describeQuickConnectRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeQuickConnect service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeQuickConnectResult> describeQuickConnectAsync(
+            final DescribeQuickConnectRequest describeQuickConnectRequest,
+            final AsyncHandler<DescribeQuickConnectRequest, DescribeQuickConnectResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeQuickConnectResult>() {
+            public DescribeQuickConnectResult call() throws Exception {
+                DescribeQuickConnectResult result = null;
+                try {
+                    result = describeQuickConnect(describeQuickConnectRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeQuickConnectRequest, result);
                 return result;
             }
         });
@@ -2342,6 +2650,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Revokes access to integrated applications from Amazon Connect.
      * </p>
      * 
@@ -2374,6 +2686,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Revokes access to integrated applications from Amazon Connect.
      * </p>
@@ -2416,6 +2732,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Removes the storage type configurations for the specified resource type
      * and association ID.
      * </p>
@@ -2449,6 +2769,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Removes the storage type configurations for the specified resource type
      * and association ID.
@@ -2492,6 +2816,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Remove the Lambda function from the drop-down options available in the
      * relevant contact flow blocks.
      * </p>
@@ -2525,6 +2853,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Remove the Lambda function from the drop-down options available in the
      * relevant contact flow blocks.
@@ -2568,6 +2900,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Revokes authorization from the specified instance to access the specified
      * Amazon Lex bot.
      * </p>
@@ -2600,6 +2936,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Revokes authorization from the specified instance to access the specified
      * Amazon Lex bot.
@@ -2716,6 +3056,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Deletes the specified security key.
      * </p>
      * 
@@ -2748,6 +3092,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Deletes the specified security key.
      * </p>
@@ -3102,6 +3450,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns a paginated list of all approved origins associated with the
      * instance.
      * </p>
@@ -3134,6 +3486,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all approved origins associated with the
      * instance.
@@ -3681,6 +4037,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns a paginated list of all the Lambda functions that show up in the
      * drop-down options in the relevant contact flow blocks.
      * </p>
@@ -3713,6 +4073,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all the Lambda functions that show up in the
      * drop-down options in the relevant contact flow blocks.
@@ -3756,6 +4120,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns a paginated list of all the Amazon Lex bots currently associated
      * with the instance.
      * </p>
@@ -3786,6 +4154,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all the Amazon Lex bots currently associated
      * with the instance.
@@ -4066,6 +4438,87 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Provides information about the quick connects for the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         ListQuickConnects service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListQuickConnectsResult> listQuickConnectsAsync(
+            final ListQuickConnectsRequest listQuickConnectsRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<ListQuickConnectsResult>() {
+            public ListQuickConnectsResult call() throws Exception {
+                return listQuickConnects(listQuickConnectsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Provides information about the quick connects for the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         ListQuickConnects service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListQuickConnectsResult> listQuickConnectsAsync(
+            final ListQuickConnectsRequest listQuickConnectsRequest,
+            final AsyncHandler<ListQuickConnectsRequest, ListQuickConnectsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListQuickConnectsResult>() {
+            public ListQuickConnectsResult call() throws Exception {
+                ListQuickConnectsResult result = null;
+                try {
+                    result = listQuickConnects(listQuickConnectsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listQuickConnectsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * List the queues associated with a routing profile.
      * </p>
      * 
@@ -4230,6 +4683,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns a paginated list of all security keys associated with the
      * instance.
      * </p>
@@ -4261,6 +4718,10 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all security keys associated with the
      * instance.
@@ -5479,8 +5940,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, and contact
-     * flows.
+     * The supported resource types are users, routing profiles, quick connects,
+     * and contact flows.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -5520,8 +5981,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, and contact
-     * flows.
+     * The supported resource types are users, routing profiles, quick connects,
+     * and contact flows.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -6086,6 +6547,174 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(updateInstanceStorageConfigRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the configuration settings for the specified quick connect.
+     * </p>
+     * 
+     * @param updateQuickConnectConfigRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQuickConnectConfig service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQuickConnectConfigAsync(
+            final UpdateQuickConnectConfigRequest updateQuickConnectConfigRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQuickConnectConfig(updateQuickConnectConfigRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the configuration settings for the specified quick connect.
+     * </p>
+     * 
+     * @param updateQuickConnectConfigRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQuickConnectConfig service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQuickConnectConfigAsync(
+            final UpdateQuickConnectConfigRequest updateQuickConnectConfigRequest,
+            final AsyncHandler<UpdateQuickConnectConfigRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQuickConnectConfig(updateQuickConnectConfigRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQuickConnectConfigRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the name and description of a quick connect. The request accepts
+     * the following data in JSON format. At least Name or Description must be
+     * provided.
+     * </p>
+     * 
+     * @param updateQuickConnectNameRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQuickConnectName service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQuickConnectNameAsync(
+            final UpdateQuickConnectNameRequest updateQuickConnectNameRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQuickConnectName(updateQuickConnectNameRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the name and description of a quick connect. The request accepts
+     * the following data in JSON format. At least Name or Description must be
+     * provided.
+     * </p>
+     * 
+     * @param updateQuickConnectNameRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQuickConnectName service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQuickConnectNameAsync(
+            final UpdateQuickConnectNameRequest updateQuickConnectNameRequest,
+            final AsyncHandler<UpdateQuickConnectNameRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQuickConnectName(updateQuickConnectNameRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQuickConnectNameRequest, result);
                 return result;
             }
         });

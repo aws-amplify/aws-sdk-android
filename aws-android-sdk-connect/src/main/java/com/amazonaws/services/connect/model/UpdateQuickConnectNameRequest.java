@@ -24,20 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Associates a storage resource type for the first time. You can only associate
- * one type of storage configuration in a single call. This means, for example,
- * that you can't define an instance with multiple S3 buckets for storing chat
- * transcripts.
- * </p>
- * <p>
- * This API does not create a resource that doesn't exist. It only associates it
- * to the instance. Ensure that the resource being specified in the storage
- * configuration, like an Amazon S3 bucket, exists when being used for
- * association.
+ * Updates the name and description of a quick connect. The request accepts the
+ * following data in JSON format. At least Name or Description must be provided.
  * </p>
  */
-public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceRequest implements
-        Serializable {
+public class UpdateQuickConnectNameRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance.
@@ -50,21 +41,30 @@ public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceReque
 
     /**
      * <p>
-     * A valid resource type.
+     * The identifier for the quick connect.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
      */
-    private String resourceType;
+    private String quickConnectId;
 
     /**
      * <p>
-     * A valid storage type.
+     * The name of the quick connect.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
      */
-    private InstanceStorageConfig storageConfig;
+    private String name;
+
+    /**
+     * <p>
+     * The description of the quick connect.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 250<br/>
+     */
+    private String description;
 
     /**
      * <p>
@@ -115,157 +115,161 @@ public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceReque
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public AssociateInstanceStorageConfigRequest withInstanceId(String instanceId) {
+    public UpdateQuickConnectNameRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * A valid resource type.
+     * The identifier for the quick connect.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
      *
      * @return <p>
-     *         A valid resource type.
+     *         The identifier for the quick connect.
      *         </p>
-     * @see InstanceStorageResourceType
      */
-    public String getResourceType() {
-        return resourceType;
+    public String getQuickConnectId() {
+        return quickConnectId;
     }
 
     /**
      * <p>
-     * A valid resource type.
+     * The identifier for the quick connect.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
      *
-     * @param resourceType <p>
-     *            A valid resource type.
+     * @param quickConnectId <p>
+     *            The identifier for the quick connect.
      *            </p>
-     * @see InstanceStorageResourceType
      */
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
+    public void setQuickConnectId(String quickConnectId) {
+        this.quickConnectId = quickConnectId;
     }
 
     /**
      * <p>
-     * A valid resource type.
+     * The identifier for the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
      *
-     * @param resourceType <p>
-     *            A valid resource type.
+     * @param quickConnectId <p>
+     *            The identifier for the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see InstanceStorageResourceType
      */
-    public AssociateInstanceStorageConfigRequest withResourceType(String resourceType) {
-        this.resourceType = resourceType;
+    public UpdateQuickConnectNameRequest withQuickConnectId(String quickConnectId) {
+        this.quickConnectId = quickConnectId;
         return this;
     }
 
     /**
      * <p>
-     * A valid resource type.
+     * The name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * <b>Length: </b>1 - 127<br/>
      *
-     * @param resourceType <p>
-     *            A valid resource type.
-     *            </p>
-     * @see InstanceStorageResourceType
+     * @return <p>
+     *         The name of the quick connect.
+     *         </p>
      */
-    public void setResourceType(InstanceStorageResourceType resourceType) {
-        this.resourceType = resourceType.toString();
+    public String getName() {
+        return name;
     }
 
     /**
      * <p>
-     * A valid resource type.
+     * The name of the quick connect.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 127<br/>
+     *
+     * @param name <p>
+     *            The name of the quick connect.
+     *            </p>
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * <p>
+     * The name of the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>CHAT_TRANSCRIPTS, CALL_RECORDINGS,
-     * SCHEDULED_REPORTS, MEDIA_STREAMS, CONTACT_TRACE_RECORDS, AGENT_EVENTS
+     * <b>Length: </b>1 - 127<br/>
      *
-     * @param resourceType <p>
-     *            A valid resource type.
+     * @param name <p>
+     *            The name of the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see InstanceStorageResourceType
      */
-    public AssociateInstanceStorageConfigRequest withResourceType(
-            InstanceStorageResourceType resourceType) {
-        this.resourceType = resourceType.toString();
+    public UpdateQuickConnectNameRequest withName(String name) {
+        this.name = name;
         return this;
     }
 
     /**
      * <p>
-     * A valid storage type.
+     * The description of the quick connect.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 250<br/>
      *
      * @return <p>
-     *         A valid storage type.
+     *         The description of the quick connect.
      *         </p>
      */
-    public InstanceStorageConfig getStorageConfig() {
-        return storageConfig;
+    public String getDescription() {
+        return description;
     }
 
     /**
      * <p>
-     * A valid storage type.
+     * The description of the quick connect.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 250<br/>
      *
-     * @param storageConfig <p>
-     *            A valid storage type.
+     * @param description <p>
+     *            The description of the quick connect.
      *            </p>
      */
-    public void setStorageConfig(InstanceStorageConfig storageConfig) {
-        this.storageConfig = storageConfig;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
      * <p>
-     * A valid storage type.
+     * The description of the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>0 - 250<br/>
      *
-     * @param storageConfig <p>
-     *            A valid storage type.
+     * @param description <p>
+     *            The description of the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public AssociateInstanceStorageConfigRequest withStorageConfig(
-            InstanceStorageConfig storageConfig) {
-        this.storageConfig = storageConfig;
+    public UpdateQuickConnectNameRequest withDescription(String description) {
+        this.description = description;
         return this;
     }
 
@@ -282,10 +286,12 @@ public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceReque
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getResourceType() != null)
-            sb.append("ResourceType: " + getResourceType() + ",");
-        if (getStorageConfig() != null)
-            sb.append("StorageConfig: " + getStorageConfig());
+        if (getQuickConnectId() != null)
+            sb.append("QuickConnectId: " + getQuickConnectId() + ",");
+        if (getName() != null)
+            sb.append("Name: " + getName() + ",");
+        if (getDescription() != null)
+            sb.append("Description: " + getDescription());
         sb.append("}");
         return sb.toString();
     }
@@ -297,9 +303,10 @@ public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceReque
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode
-                + ((getResourceType() == null) ? 0 : getResourceType().hashCode());
+                + ((getQuickConnectId() == null) ? 0 : getQuickConnectId().hashCode());
+        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
-                + ((getStorageConfig() == null) ? 0 : getStorageConfig().hashCode());
+                + ((getDescription() == null) ? 0 : getDescription().hashCode());
         return hashCode;
     }
 
@@ -310,24 +317,28 @@ public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceReque
         if (obj == null)
             return false;
 
-        if (obj instanceof AssociateInstanceStorageConfigRequest == false)
+        if (obj instanceof UpdateQuickConnectNameRequest == false)
             return false;
-        AssociateInstanceStorageConfigRequest other = (AssociateInstanceStorageConfigRequest) obj;
+        UpdateQuickConnectNameRequest other = (UpdateQuickConnectNameRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getResourceType() == null ^ this.getResourceType() == null)
+        if (other.getQuickConnectId() == null ^ this.getQuickConnectId() == null)
             return false;
-        if (other.getResourceType() != null
-                && other.getResourceType().equals(this.getResourceType()) == false)
+        if (other.getQuickConnectId() != null
+                && other.getQuickConnectId().equals(this.getQuickConnectId()) == false)
             return false;
-        if (other.getStorageConfig() == null ^ this.getStorageConfig() == null)
+        if (other.getName() == null ^ this.getName() == null)
             return false;
-        if (other.getStorageConfig() != null
-                && other.getStorageConfig().equals(this.getStorageConfig()) == false)
+        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+            return false;
+        if (other.getDescription() == null ^ this.getDescription() == null)
+            return false;
+        if (other.getDescription() != null
+                && other.getDescription().equals(this.getDescription()) == false)
             return false;
         return true;
     }

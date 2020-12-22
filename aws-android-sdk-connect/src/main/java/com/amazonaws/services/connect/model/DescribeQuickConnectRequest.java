@@ -24,10 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Deletes the specified security key.
+ * Describes the quick connect.
  * </p>
  */
-public class DisassociateSecurityKeyRequest extends AmazonWebServiceRequest implements Serializable {
+public class DescribeQuickConnectRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance.
@@ -40,14 +40,10 @@ public class DisassociateSecurityKeyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The existing association identifier that uniquely identifies the resource
-     * type and storage config for the given instance ID.
+     * The identifier for the quick connect.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      */
-    private String associationId;
+    private String quickConnectId;
 
     /**
      * <p>
@@ -98,70 +94,53 @@ public class DisassociateSecurityKeyRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DisassociateSecurityKeyRequest withInstanceId(String instanceId) {
+    public DescribeQuickConnectRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The existing association identifier that uniquely identifies the resource
-     * type and storage config for the given instance ID.
+     * The identifier for the quick connect.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The existing association identifier that uniquely identifies the
-     *         resource type and storage config for the given instance ID.
+     *         The identifier for the quick connect.
      *         </p>
      */
-    public String getAssociationId() {
-        return associationId;
+    public String getQuickConnectId() {
+        return quickConnectId;
     }
 
     /**
      * <p>
-     * The existing association identifier that uniquely identifies the resource
-     * type and storage config for the given instance ID.
+     * The identifier for the quick connect.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      *
-     * @param associationId <p>
-     *            The existing association identifier that uniquely identifies
-     *            the resource type and storage config for the given instance
-     *            ID.
+     * @param quickConnectId <p>
+     *            The identifier for the quick connect.
      *            </p>
      */
-    public void setAssociationId(String associationId) {
-        this.associationId = associationId;
+    public void setQuickConnectId(String quickConnectId) {
+        this.quickConnectId = quickConnectId;
     }
 
     /**
      * <p>
-     * The existing association identifier that uniquely identifies the resource
-     * type and storage config for the given instance ID.
+     * The identifier for the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
      *
-     * @param associationId <p>
-     *            The existing association identifier that uniquely identifies
-     *            the resource type and storage config for the given instance
-     *            ID.
+     * @param quickConnectId <p>
+     *            The identifier for the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DisassociateSecurityKeyRequest withAssociationId(String associationId) {
-        this.associationId = associationId;
+    public DescribeQuickConnectRequest withQuickConnectId(String quickConnectId) {
+        this.quickConnectId = quickConnectId;
         return this;
     }
 
@@ -178,8 +157,8 @@ public class DisassociateSecurityKeyRequest extends AmazonWebServiceRequest impl
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getAssociationId() != null)
-            sb.append("AssociationId: " + getAssociationId());
+        if (getQuickConnectId() != null)
+            sb.append("QuickConnectId: " + getQuickConnectId());
         sb.append("}");
         return sb.toString();
     }
@@ -191,7 +170,7 @@ public class DisassociateSecurityKeyRequest extends AmazonWebServiceRequest impl
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode
-                + ((getAssociationId() == null) ? 0 : getAssociationId().hashCode());
+                + ((getQuickConnectId() == null) ? 0 : getQuickConnectId().hashCode());
         return hashCode;
     }
 
@@ -202,19 +181,19 @@ public class DisassociateSecurityKeyRequest extends AmazonWebServiceRequest impl
         if (obj == null)
             return false;
 
-        if (obj instanceof DisassociateSecurityKeyRequest == false)
+        if (obj instanceof DescribeQuickConnectRequest == false)
             return false;
-        DisassociateSecurityKeyRequest other = (DisassociateSecurityKeyRequest) obj;
+        DescribeQuickConnectRequest other = (DescribeQuickConnectRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getAssociationId() == null ^ this.getAssociationId() == null)
+        if (other.getQuickConnectId() == null ^ this.getQuickConnectId() == null)
             return false;
-        if (other.getAssociationId() != null
-                && other.getAssociationId().equals(this.getAssociationId()) == false)
+        if (other.getQuickConnectId() != null
+                && other.getQuickConnectId().equals(this.getQuickConnectId()) == false)
             return false;
         return true;
     }

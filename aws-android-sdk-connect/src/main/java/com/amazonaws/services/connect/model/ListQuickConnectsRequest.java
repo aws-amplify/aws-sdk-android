@@ -24,11 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Returns a paginated list of all the Lambda functions that show up in the
- * drop-down options in the relevant contact flow blocks.
+ * Provides information about the quick connects for the specified Amazon
+ * Connect instance.
  * </p>
  */
-public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListQuickConnectsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance.
@@ -54,9 +54,18 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 25<br/>
+     * <b>Range: </b>1 - 1000<br/>
      */
     private Integer maxResults;
+
+    /**
+     * <p>
+     * The type of quick connect. In the Amazon Connect console, when you create
+     * a quick connect, you are prompted to assign one of the following types:
+     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * </p>
+     */
+    private java.util.List<String> quickConnectTypes;
 
     /**
      * <p>
@@ -107,7 +116,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListLambdaFunctionsRequest withInstanceId(String instanceId) {
+    public ListQuickConnectsRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
@@ -164,7 +173,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListLambdaFunctionsRequest withNextToken(String nextToken) {
+    public ListQuickConnectsRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
@@ -175,7 +184,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 25<br/>
+     * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
      *         The maximimum number of results to return per page.
@@ -191,7 +200,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 25<br/>
+     * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
      *            The maximimum number of results to return per page.
@@ -210,7 +219,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 25<br/>
+     * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
      *            The maximimum number of results to return per page.
@@ -218,8 +227,103 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListLambdaFunctionsRequest withMaxResults(Integer maxResults) {
+    public ListQuickConnectsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of quick connect. In the Amazon Connect console, when you create
+     * a quick connect, you are prompted to assign one of the following types:
+     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * </p>
+     *
+     * @return <p>
+     *         The type of quick connect. In the Amazon Connect console, when
+     *         you create a quick connect, you are prompted to assign one of the
+     *         following types: Agent (USER), External (PHONE_NUMBER), or Queue
+     *         (QUEUE).
+     *         </p>
+     */
+    public java.util.List<String> getQuickConnectTypes() {
+        return quickConnectTypes;
+    }
+
+    /**
+     * <p>
+     * The type of quick connect. In the Amazon Connect console, when you create
+     * a quick connect, you are prompted to assign one of the following types:
+     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * </p>
+     *
+     * @param quickConnectTypes <p>
+     *            The type of quick connect. In the Amazon Connect console, when
+     *            you create a quick connect, you are prompted to assign one of
+     *            the following types: Agent (USER), External (PHONE_NUMBER), or
+     *            Queue (QUEUE).
+     *            </p>
+     */
+    public void setQuickConnectTypes(java.util.Collection<String> quickConnectTypes) {
+        if (quickConnectTypes == null) {
+            this.quickConnectTypes = null;
+            return;
+        }
+
+        this.quickConnectTypes = new java.util.ArrayList<String>(quickConnectTypes);
+    }
+
+    /**
+     * <p>
+     * The type of quick connect. In the Amazon Connect console, when you create
+     * a quick connect, you are prompted to assign one of the following types:
+     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param quickConnectTypes <p>
+     *            The type of quick connect. In the Amazon Connect console, when
+     *            you create a quick connect, you are prompted to assign one of
+     *            the following types: Agent (USER), External (PHONE_NUMBER), or
+     *            Queue (QUEUE).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListQuickConnectsRequest withQuickConnectTypes(String... quickConnectTypes) {
+        if (getQuickConnectTypes() == null) {
+            this.quickConnectTypes = new java.util.ArrayList<String>(quickConnectTypes.length);
+        }
+        for (String value : quickConnectTypes) {
+            this.quickConnectTypes.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of quick connect. In the Amazon Connect console, when you create
+     * a quick connect, you are prompted to assign one of the following types:
+     * Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param quickConnectTypes <p>
+     *            The type of quick connect. In the Amazon Connect console, when
+     *            you create a quick connect, you are prompted to assign one of
+     *            the following types: Agent (USER), External (PHONE_NUMBER), or
+     *            Queue (QUEUE).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListQuickConnectsRequest withQuickConnectTypes(
+            java.util.Collection<String> quickConnectTypes) {
+        setQuickConnectTypes(quickConnectTypes);
         return this;
     }
 
@@ -239,7 +343,9 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults());
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getQuickConnectTypes() != null)
+            sb.append("QuickConnectTypes: " + getQuickConnectTypes());
         sb.append("}");
         return sb.toString();
     }
@@ -252,6 +358,8 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode
+                + ((getQuickConnectTypes() == null) ? 0 : getQuickConnectTypes().hashCode());
         return hashCode;
     }
 
@@ -262,9 +370,9 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
         if (obj == null)
             return false;
 
-        if (obj instanceof ListLambdaFunctionsRequest == false)
+        if (obj instanceof ListQuickConnectsRequest == false)
             return false;
-        ListLambdaFunctionsRequest other = (ListLambdaFunctionsRequest) obj;
+        ListQuickConnectsRequest other = (ListQuickConnectsRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
@@ -280,6 +388,11 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getQuickConnectTypes() == null ^ this.getQuickConnectTypes() == null)
+            return false;
+        if (other.getQuickConnectTypes() != null
+                && other.getQuickConnectTypes().equals(this.getQuickConnectTypes()) == false)
             return false;
         return true;
     }

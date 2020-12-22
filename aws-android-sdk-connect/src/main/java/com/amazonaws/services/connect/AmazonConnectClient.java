@@ -389,6 +389,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates an approved origin to an Amazon Connect instance.
      * </p>
      * 
@@ -435,6 +439,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
@@ -499,6 +507,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Lambda function.
      * </p>
@@ -546,6 +558,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Allows the specified Amazon Connect instance to access the specified
      * Amazon Lex bot.
@@ -637,6 +653,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Associates a security key to the instance.
      * </p>
@@ -814,7 +834,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * change.
      * </p>
      * <p>
-     * Create an AppIntegration association with anAmazon Connect instance.
+     * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
      * 
      * @param createIntegrationAssociationRequest
@@ -854,6 +874,64 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<CreateIntegrationAssociationResult, JsonUnmarshallerContext> unmarshaller = new CreateIntegrationAssociationResultJsonUnmarshaller();
             JsonResponseHandler<CreateIntegrationAssociationResult> responseHandler = new JsonResponseHandler<CreateIntegrationAssociationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a quick connect for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createQuickConnectRequest
+     * @return createQuickConnectResult The response from the CreateQuickConnect
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateQuickConnectResult createQuickConnect(
+            CreateQuickConnectRequest createQuickConnectRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createQuickConnectRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateQuickConnectRequest> request = null;
+        Response<CreateQuickConnectResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateQuickConnectRequestMarshaller()
+                        .marshall(createQuickConnectRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateQuickConnectResult, JsonUnmarshallerContext> unmarshaller = new CreateQuickConnectResultJsonUnmarshaller();
+            JsonResponseHandler<CreateQuickConnectResult> responseHandler = new JsonResponseHandler<CreateQuickConnectResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1187,6 +1265,54 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * change.
      * </p>
      * <p>
+     * Deletes a quick connect.
+     * </p>
+     * 
+     * @param deleteQuickConnectRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void deleteQuickConnect(DeleteQuickConnectRequest deleteQuickConnectRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteQuickConnectRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteQuickConnectRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteQuickConnectRequestMarshaller()
+                        .marshall(deleteQuickConnectRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Deletes a use case from an AppIntegration association.
      * </p>
      * 
@@ -1385,6 +1511,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns the current state of the specified instance identifier. It tracks
      * the instance while it is being created and returns an error status if
      * applicable.
@@ -1441,6 +1571,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Describes the specified instance attribute.
      * </p>
      * 
@@ -1494,6 +1628,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Retrieves the current storage configurations for the specified resource
      * type, association ID, and instance ID.
      * </p>
@@ -1535,6 +1673,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             }
             Unmarshaller<DescribeInstanceStorageConfigResult, JsonUnmarshallerContext> unmarshaller = new DescribeInstanceStorageConfigResultJsonUnmarshaller();
             JsonResponseHandler<DescribeInstanceStorageConfigResult> responseHandler = new JsonResponseHandler<DescribeInstanceStorageConfigResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the quick connect.
+     * </p>
+     * 
+     * @param describeQuickConnectRequest
+     * @return describeQuickConnectResult The response from the
+     *         DescribeQuickConnect service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeQuickConnectResult describeQuickConnect(
+            DescribeQuickConnectRequest describeQuickConnectRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeQuickConnectRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeQuickConnectRequest> request = null;
+        Response<DescribeQuickConnectResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeQuickConnectRequestMarshaller()
+                        .marshall(describeQuickConnectRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeQuickConnectResult, JsonUnmarshallerContext> unmarshaller = new DescribeQuickConnectResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeQuickConnectResult> responseHandler = new JsonResponseHandler<DescribeQuickConnectResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1761,6 +1956,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Revokes access to integrated applications from Amazon Connect.
      * </p>
      * 
@@ -1805,6 +2004,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Removes the storage type configurations for the specified resource type
      * and association ID.
@@ -1852,6 +2055,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Remove the Lambda function from the drop-down options available in the
      * relevant contact flow blocks.
      * </p>
@@ -1897,6 +2104,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Revokes authorization from the specified instance to access the specified
      * Amazon Lex bot.
@@ -1987,6 +2198,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Deletes the specified security key.
      * </p>
@@ -2252,6 +2467,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all approved origins associated with the
      * instance.
@@ -2654,6 +2873,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns a paginated list of all the Lambda functions that show up in the
      * drop-down options in the relevant contact flow blocks.
      * </p>
@@ -2707,6 +2930,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all the Amazon Lex bots currently associated
      * with the instance.
@@ -2924,6 +3151,63 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Provides information about the quick connects for the specified Amazon
+     * Connect instance.
+     * </p>
+     * 
+     * @param listQuickConnectsRequest
+     * @return listQuickConnectsResult The response from the ListQuickConnects
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListQuickConnectsResult listQuickConnects(
+            ListQuickConnectsRequest listQuickConnectsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listQuickConnectsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListQuickConnectsRequest> request = null;
+        Response<ListQuickConnectsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListQuickConnectsRequestMarshaller()
+                        .marshall(listQuickConnectsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListQuickConnectsResult, JsonUnmarshallerContext> unmarshaller = new ListQuickConnectsResultJsonUnmarshaller();
+            JsonResponseHandler<ListQuickConnectsResult> responseHandler = new JsonResponseHandler<ListQuickConnectsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * List the queues associated with a routing profile.
      * </p>
      * 
@@ -3038,6 +3322,10 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
     }
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Returns a paginated list of all security keys associated with the
      * instance.
@@ -3886,8 +4174,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, and contact
-     * flows.
+     * The supported resource types are users, routing profiles, quick connects,
+     * and contact flows.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -4240,6 +4528,105 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
             try {
                 request = new UpdateInstanceStorageConfigRequestMarshaller()
                         .marshall(updateInstanceStorageConfigRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the configuration settings for the specified quick connect.
+     * </p>
+     * 
+     * @param updateQuickConnectConfigRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void updateQuickConnectConfig(
+            UpdateQuickConnectConfigRequest updateQuickConnectConfigRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateQuickConnectConfigRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateQuickConnectConfigRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateQuickConnectConfigRequestMarshaller()
+                        .marshall(updateQuickConnectConfigRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the name and description of a quick connect. The request accepts
+     * the following data in JSON format. At least Name or Description must be
+     * provided.
+     * </p>
+     * 
+     * @param updateQuickConnectNameRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public void updateQuickConnectName(UpdateQuickConnectNameRequest updateQuickConnectNameRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateQuickConnectNameRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateQuickConnectNameRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateQuickConnectNameRequestMarshaller()
+                        .marshall(updateQuickConnectNameRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
