@@ -21,6 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
  * Returns the current state of the specified instance identifier. It tracks the
  * instance while it is being created and returns an error status if applicable.
  * </p>
