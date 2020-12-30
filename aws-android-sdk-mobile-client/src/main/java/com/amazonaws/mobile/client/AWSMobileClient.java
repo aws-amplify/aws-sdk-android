@@ -1325,6 +1325,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         detectedContinuation = signInChallengeContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
                         break;
+                    case CUSTOM_CHALLENGE:
+                        signInChallengeContinuation.setChallengeResponse("ANSWER", signInChallengeResponse);
+                        detectedContinuation = signInChallengeContinuation;
+                        signInCallback = new InternalCallback<SignInResult>(callback);
+                        if (clientMetadata != null) {
+                            signInChallengeContinuation.setClientMetaData(clientMetadata);
+                        }
+                        break;
                     case DONE:
                         callback.onError(new IllegalStateException("confirmSignIn called after signIn has succeeded"));
                         return;
