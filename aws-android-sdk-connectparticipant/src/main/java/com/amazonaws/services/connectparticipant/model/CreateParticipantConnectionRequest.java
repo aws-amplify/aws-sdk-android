@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The participant token is valid for the lifetime of the participant – until
- * the they are part of a contact.
+ * they are part of a contact.
  * </p>
  * <p>
  * The response URL for <code>WEBSOCKET</code> Type has a connect expiry timeout
@@ -45,6 +45,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * parameter, clients need to call this API again to obtain a new websocket URL
  * and perform the same steps as before.
  * </p>
+ * <note>
+ * <p>
+ * The Amazon Connect Participant Service APIs do not use <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+ * >Signature Version 4 authentication</a>.
+ * </p>
+ * </note>
  */
 public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -57,8 +64,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Participant Token as obtained from <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     * This is a header parameter.
+     * </p>
+     * <p>
+     * The Participant Token as obtained from <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      * >StartChatContact</a> API response.
      * </p>
      * <p>
@@ -143,8 +153,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Participant Token as obtained from <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     * This is a header parameter.
+     * </p>
+     * <p>
+     * The Participant Token as obtained from <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      * >StartChatContact</a> API response.
      * </p>
      * <p>
@@ -152,8 +165,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
      * <b>Length: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         Participant Token as obtained from <a href=
-     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     *         This is a header parameter.
+     *         </p>
+     *         <p>
+     *         The Participant Token as obtained from <a href=
+     *         "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      *         >StartChatContact</a> API response.
      *         </p>
      */
@@ -163,8 +179,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Participant Token as obtained from <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     * This is a header parameter.
+     * </p>
+     * <p>
+     * The Participant Token as obtained from <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      * >StartChatContact</a> API response.
      * </p>
      * <p>
@@ -172,8 +191,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
      * <b>Length: </b>1 - 1000<br/>
      *
      * @param participantToken <p>
-     *            Participant Token as obtained from <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     *            This is a header parameter.
+     *            </p>
+     *            <p>
+     *            The Participant Token as obtained from <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      *            >StartChatContact</a> API response.
      *            </p>
      */
@@ -183,8 +205,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * Participant Token as obtained from <a href=
-     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     * This is a header parameter.
+     * </p>
+     * <p>
+     * The Participant Token as obtained from <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      * >StartChatContact</a> API response.
      * </p>
      * <p>
@@ -195,8 +220,11 @@ public class CreateParticipantConnectionRequest extends AmazonWebServiceRequest 
      * <b>Length: </b>1 - 1000<br/>
      *
      * @param participantToken <p>
-     *            Participant Token as obtained from <a href=
-     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContactResponse.html"
+     *            This is a header parameter.
+     *            </p>
+     *            <p>
+     *            The Participant Token as obtained from <a href=
+     *            "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartChatContact.html"
      *            >StartChatContact</a> API response.
      *            </p>
      * @return A reference to this updated object so that method calls can be

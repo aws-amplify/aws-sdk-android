@@ -24,7 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds the specified tags to the specified resource.
  * </p>
  * <p>
- * The supported resource types are users, routing profiles, and contact flows.
+ * The supported resource types are users, routing profiles, quick connects, and
+ * contact flows.
  * </p>
  * <p>
  * For sample policies that use tags, see <a href=

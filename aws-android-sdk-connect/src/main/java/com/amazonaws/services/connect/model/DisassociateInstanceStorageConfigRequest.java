@@ -21,6 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
  * Removes the storage type configurations for the specified resource type and
  * association ID.
  * </p>

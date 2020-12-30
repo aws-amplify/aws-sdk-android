@@ -59,6 +59,11 @@ class ItemJsonUnmarshaller implements Unmarshaller<Item, JsonUnmarshallerContext
             } else if (name.equals("ParticipantRole")) {
                 item.setParticipantRole(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Attachments")) {
+                item.setAttachments(new ListUnmarshaller<AttachmentItem>(
+                        AttachmentItemJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

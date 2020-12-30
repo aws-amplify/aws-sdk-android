@@ -21,6 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
  * Associates a storage resource type for the first time. You can only associate
  * one type of storage configuration in a single call. This means, for example,
  * that you can't define an instance with multiple S3 buckets for storing chat
