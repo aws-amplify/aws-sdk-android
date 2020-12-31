@@ -795,8 +795,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     /**
-     * Returns the signed-in user's username obtained from the access token.
-     * @return signed-in user's username
+     * Returns the username attribute of the current access token. Note that the value stored in the username
+     * attribute of the access token may vary depending on how sign-in was performed. For example, if the user signed in
+     * with email, the username attribute will have the email address.
+     * @return The username attribute of the current access token.
+     * @see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html#amazon-cognito-user-pools-using-the-access-token">Using the Access Token</a>
+     * from Cognito documentation.
      */
     @AnyThread
     public String getUsername() {
