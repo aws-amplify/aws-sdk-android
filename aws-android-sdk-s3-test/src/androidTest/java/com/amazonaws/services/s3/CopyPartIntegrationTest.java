@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import com.amazonaws.AmazonServiceException.ErrorType;
-import com.amazonaws.services.s3.internal.crypto.CryptoTestUtils;
 import com.amazonaws.services.s3.model.AbortMultipartUploadRequest;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.CopyPartRequest;
@@ -37,6 +36,7 @@ import com.amazonaws.services.s3.model.PartSummary;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -149,45 +149,17 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
     }
 
     /**
-     * Test that the copyPart operation correctly copies an object and honors
-     * all specified options. Runs as a single JUnit test case to avoid having
-     * to create/delete buckets and objects for every individual test. Might be
-     * nice one day to use a more advanced test framework like TestNG.
-     */
-    @Test
-    public void testCopyPart() throws Exception {
-        if (!CryptoTestUtils.runTimeConsumingTests()) {
-            System.out.println("Please set the environment variable, " +
-                    "export RUN_TIME_CONSUMING_TESTS=true, to run the testcopyPart test");
-            return;
-        }
-        initializeTestData();
-
-        testSuccessfulSimpleCopy();
-        testRangedCopy();
-        testMatchingETagConstraint();
-        testNonMatchingETagConstraint();
-        testModifiedSinceConstraint();
-        testUnmodifiedSinceConstraint();
-
-        /*
-         * TODO: It'd be nice to test the case where the returned HTTP status
-         * code is 200, but the response content is an XML error response.
-         * Unfortunately it's difficult to trigger that case, since it only
-         * happens when S3 has an error copying the object.
-         */
-        testNoSuchKeyException();
-    }
-
-
-    /**
      * Tests copying a range of data. The minimum size is 5GB, which is too big
      */
-    private void testRangedCopy() throws Exception {
+    @Test
+    @Ignore("Current test architecture doesn't allow large file upload.")
+    public void testRangedCopy() throws Exception {
         if (!s3.doesBucketExist(LARGE_BUCKET_NAME)) {
             s3.createBucket(LARGE_BUCKET_NAME);
             waitForBucketCreation(LARGE_BUCKET_NAME);
         }
+
+        //TODO: Upload large file (at least 5 GB) to LARGE_BUCKET_NAME as LARGE_FILE_KEY
 
         long firstByte = 0L;
         long lastByte = firstByte + (5 * MB);
@@ -209,7 +181,8 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the simple form of the copy object operation correctly copies
      * an object.
      */
-    private void testSuccessfulSimpleCopy() throws Exception {
+    @Test
+    public void testSuccessfulSimpleCopy() throws Exception {
         waitForBucketCreation(BUCKET_NAME);
         CopyPartRequest rq = newCopyPartRequest();
         CopyPartResult copyPart = s3.copyPart(rq);
@@ -227,7 +200,8 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the matching ETag constraint parameter is correctly included
      * in requests when the user specifies it.
      */
-    private void testMatchingETagConstraint() throws Exception {
+    @Test
+    public void testMatchingETagConstraint() throws Exception {
         s3.copyPart(newCopyPartRequest()
                 .withMatchingETagConstraint(sourceETag));
 
@@ -239,7 +213,8 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the non-matching ETag constraint parameter is correctly
      * included in requests when the user specifies it.
      */
-    private void testNonMatchingETagConstraint() {
+    @Test
+    public void testNonMatchingETagConstraint() {
         s3.copyPart(newCopyPartRequest()
                 .withNonmatchingETagConstraint("nonmatching-etag"));
 
@@ -251,7 +226,8 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the modified since constraint parameter is correctly included
      * in requests when the user specifies it.
      */
-    private void testModifiedSinceConstraint() {
+    @Test
+    public void testModifiedSinceConstraint() {
         s3.copyPart(newCopyPartRequest()
                 .withModifiedSinceConstraint(earlierDate));
 
@@ -263,7 +239,8 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that the unmodified since constraint parameter is correctly
      * included in requests when the user specifies it.
      */
-    private void testUnmodifiedSinceConstraint() {
+    @Test
+    public void testUnmodifiedSinceConstraint() {
         s3.copyPart(newCopyPartRequest()
                 .withUnmodifiedSinceConstraint(laterDate));
 
@@ -275,7 +252,8 @@ public class CopyPartIntegrationTest extends S3IntegrationTestBase {
      * Tests that error response are properly handled and unmarshalled as
      * AmazonS3Exception objects.
      */
-    private void testNoSuchKeyException() {
+    @Test
+    public void testNoSuchKeyException() {
         try {
             s3.copyPart(newCopyPartRequest().withSourceKey("key"));
             fail("Expected an AmazonS3Exception, but wasn't thrown");
