@@ -47,8 +47,7 @@
 			"aws-android-sdk-sqs",
 			"aws-android-sdk-textract",
 			"aws-android-sdk-transcribe",
-			"aws-android-sdk-translate",
-			"aws-android-sdk-mobileanalytics"
+			"aws-android-sdk-translate"
 		],
 		packages : [
 			"com.amazonaws",
@@ -77,7 +76,6 @@
 			"com.amazonaws.cognito.clientcontext",
 			"com.amazonaws.services.*.metrics" ,
 			"com.amazonaws.services.*.model.transform" ,
-			"com.amazonaws.services.mobileanalytics" ,
 			"com.amazonaws.services.cognitoidentity" ,
 			"com.amazonaws.services.cognitoidentityprovider" ,
 			"com.amazonaws.services.cognitosync" ,
@@ -313,12 +311,6 @@
 					"${service.prefix}.translate*" 
 				]  
 			},
-			{
-				title : "Amazon Mobile Analytics",
-				packages : [
-					"com.amazonaws.mobileconnectors.amazonmobileanalytics*",
-				]
-			},		
 			{ 
 				title : "Common Runtime" , 
 				packages : [ 
