@@ -43,7 +43,6 @@ packagelist = {
     'aws-android-sdk-comprehend', 
     'aws-android-sdk-kinesisvideo', 
     'aws-android-sdk-auth-google', 
-    'aws-android-sdk-mobileanalytics', 
     'aws-android-sdk-kinesis', 
     'aws-android-sdk-pinpoint', 
     'aws-android-sdk-machinelearning', 
