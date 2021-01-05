@@ -14,7 +14,6 @@
 			"aws-android-sdk-auth-userpools",
 			"aws-android-sdk-autoscaling",
 			"aws-android-sdk-cloudwatch",
-			"aws-android-sdk-cognito",
 		    // "aws-android-sdk-cognitoauth",
 			"aws-android-sdk-cognitoidentityprovider",
 			"aws-android-sdk-comprehend",
@@ -312,12 +311,6 @@
 					"${service.prefix}.translate*" 
 				]  
 			},
-			{
-				title : "Amazon Cognito Sync",
-				packages : [
-					"com.amazonaws.mobileconnectors.cognito*"
-				]
-			},				
 			{ 
 				title : "Common Runtime" , 
 				packages : [ 

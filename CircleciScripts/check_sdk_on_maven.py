@@ -26,7 +26,6 @@ packagelist = {
     'aws-android-sdk-kms', 
     'aws-android-sdk-auth-core', 
     'aws-android-sdk-auth-ui', 
-    'aws-android-sdk-cognito', 
     'aws-android-sdk-logs', 
     'aws-android-sdk-auth-userpools', 
     'aws-android-sdk-autoscaling', 
