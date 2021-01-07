@@ -1,5 +1,19 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.21.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.21.0)
+
+### New Features
+
+- **AWSMobileClient**
+  - Added custom challenge for first method overload of `confirmSignIn`. See [PR #2316](https://github.com/aws-amplify/aws-sdk-android/pull/2316).
+
+### Model updates
+ - Amazon Connect
+
+### Misc.
+ - Removed deprecated Mobile Analytics Client [#2321](https://github.com/aws-amplify/aws-sdk-android/pull/2321)
+ - Removed deprecated Cognito Sync Client [#2320](https://github.com/aws-amplify/aws-sdk-android/pull/2320)
+
 ## [Release 2.20.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.20.1)
 
 ## Bug Fixes
