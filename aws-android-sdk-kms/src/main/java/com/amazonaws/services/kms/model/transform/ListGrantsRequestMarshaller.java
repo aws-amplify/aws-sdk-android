@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.kms.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
 import com.amazonaws.util.json.AwsJsonWriter;
@@ -75,6 +76,16 @@ public class ListGrantsRequestMarshaller implements
                 String keyId = listGrantsRequest.getKeyId();
                 jsonWriter.name("KeyId");
                 jsonWriter.value(keyId);
+            }
+            if (listGrantsRequest.getGrantId() != null) {
+                String grantId = listGrantsRequest.getGrantId();
+                jsonWriter.name("GrantId");
+                jsonWriter.value(grantId);
+            }
+            if (listGrantsRequest.getGranteePrincipal() != null) {
+                String granteePrincipal = listGrantsRequest.getGranteePrincipal();
+                jsonWriter.name("GranteePrincipal");
+                jsonWriter.value(granteePrincipal);
             }
 
             jsonWriter.endObject();
