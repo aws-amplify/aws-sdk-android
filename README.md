@@ -47,7 +47,6 @@ dependencies {
  * auth-userpools
  * autoscaling
  * cloudwatch
- * cognito
  * cognitoauth
  * cognitoidentityprovider
  * comprehend
@@ -71,7 +70,6 @@ dependencies {
  * logs
  * machinelearning
  * mobile-client
- * mobileanalytics
  * pinpoint
  * polly
  * rekognition
@@ -113,6 +111,48 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 ### Build
 ```shell
 ./gradlew build
+```
+
+### Consuming Development Versions
+
+Once you've built the SDK, you can manually install the SDK
+by publishing its artifacts to your local Maven repository.
+
+The local Maven repository is usually found in your home directory at
+`~/.m2/repository`.
+
+To publish the outputs of the build, execute the following command from
+the root of the `amplify-android` project:
+
+```shell
+./gradlew publishToMavenLocal
+```
+
+After this, you can use the published development artifacts from an app.
+To do so, specify `mavenLocal()` inside the app's top-level
+`build.gradle(Project)` file:
+
+```gradle
+buildscript {
+    repositories {
+        mavenLocal() // this should ideally appear before other repositories
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.0.1'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal() // this should ideally appear before other repositories
+    }
+}
+```
+Then, specify `local` instead of a version number to point to mavenLocal inside `build.gradle(Module)` file:
+```
+dependencies {
+    implementation 'com.amazonaws:aws-android-sdk-SERVICE:local'
+}
 ```
 
 ## Talk to Us
