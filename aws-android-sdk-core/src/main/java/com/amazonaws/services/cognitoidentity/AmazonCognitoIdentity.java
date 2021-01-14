@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -396,7 +396,7 @@ public interface AmazonCognitoIdentity {
      * the identity. Supplying multiple logins creates an implicit link.
      * </p>
      * <p>
-     * The OpenId token is valid for 10 minutes.
+     * The OpenID token is valid for 10 minutes.
      * </p>
      * <p>
      * This is a public API. You do not need any credentials to call this API.
@@ -473,6 +473,33 @@ public interface AmazonCognitoIdentity {
      */
     GetOpenIdTokenForDeveloperIdentityResult getOpenIdTokenForDeveloperIdentity(
             GetOpenIdTokenForDeveloperIdentityRequest getOpenIdTokenForDeveloperIdentityRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Use <code>GetPrincipalTagAttributeMap</code> to list all mappings between
+     * <code>PrincipalTags</code> and user attributes.
+     * </p>
+     * 
+     * @param getPrincipalTagAttributeMapRequest
+     * @return getPrincipalTagAttributeMapResult The response from the
+     *         GetPrincipalTagAttributeMap service method, as returned by Amazon
+     *         Cognito Identity.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Identity indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    GetPrincipalTagAttributeMapResult getPrincipalTagAttributeMap(
+            GetPrincipalTagAttributeMapRequest getPrincipalTagAttributeMapRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -695,9 +722,36 @@ public interface AmazonCognitoIdentity {
 
     /**
      * <p>
-     * Assigns a set of tags to an Amazon Cognito identity pool. A tag is a
-     * label that you can use to categorize and manage identity pools in
-     * different ways, such as by purpose, owner, environment, or other
+     * You can use this operation to use default (username and clientID)
+     * attribute or custom attribute mappings.
+     * </p>
+     * 
+     * @param setPrincipalTagAttributeMapRequest
+     * @return setPrincipalTagAttributeMapResult The response from the
+     *         SetPrincipalTagAttributeMap service method, as returned by Amazon
+     *         Cognito Identity.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Identity indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    SetPrincipalTagAttributeMapResult setPrincipalTagAttributeMap(
+            SetPrincipalTagAttributeMapRequest setPrincipalTagAttributeMapRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Assigns a set of tags to the specified Amazon Cognito identity pool. A
+     * tag is a label that you can use to categorize and manage identity pools
+     * in different ways, such as by purpose, owner, environment, or other
      * criteria.
      * </p>
      * <p>
@@ -804,8 +858,8 @@ public interface AmazonCognitoIdentity {
 
     /**
      * <p>
-     * Removes the specified tags from an Amazon Cognito identity pool. You can
-     * use this action up to 5 times per second, per account
+     * Removes the specified tags from the specified Amazon Cognito identity
+     * pool. You can use this action up to 5 times per second, per account
      * </p>
      * 
      * @param untagResourceRequest

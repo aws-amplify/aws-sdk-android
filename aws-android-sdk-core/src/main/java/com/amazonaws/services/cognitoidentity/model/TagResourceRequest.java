@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,9 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Assigns a set of tags to an Amazon Cognito identity pool. A tag is a label
- * that you can use to categorize and manage identity pools in different ways,
- * such as by purpose, owner, environment, or other criteria.
+ * Assigns a set of tags to the specified Amazon Cognito identity pool. A tag is
+ * a label that you can use to categorize and manage identity pools in different
+ * ways, such as by purpose, owner, environment, or other criteria.
  * </p>
  * <p>
  * Each tag consists of a key and value, both of which you define. A key is a
@@ -48,8 +48,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool to assign the tags
-     * to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,16 +65,14 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool to assign the tags
-     * to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the identity pool to assign the
-     *         tags to.
+     *         The Amazon Resource Name (ARN) of the identity pool.
      *         </p>
      */
     public String getResourceArn() {
@@ -84,16 +81,14 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool to assign the tags
-     * to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the identity pool to assign
-     *            the tags to.
+     *            The Amazon Resource Name (ARN) of the identity pool.
      *            </p>
      */
     public void setResourceArn(String resourceArn) {
@@ -102,8 +97,7 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool to assign the tags
-     * to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -113,8 +107,7 @@ public class TagResourceRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the identity pool to assign
-     *            the tags to.
+     *            The Amazon Resource Name (ARN) of the identity pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
