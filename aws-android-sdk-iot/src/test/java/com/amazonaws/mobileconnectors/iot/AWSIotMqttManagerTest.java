@@ -212,11 +212,6 @@ public class AWSIotMqttManagerTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testCreateClientWithEndpointBadEndpoint1() throws Exception {
-        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client", "ABCDEFG.us-east-1.amazonaws.com");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void testCreateClientWithEndpointBadEndpointRegion() throws Exception {
         AWSIotMqttManager testClient = new AWSIotMqttManager("test-client", "ABCDEFG.us-east-9.amazonaws.com");
     }
