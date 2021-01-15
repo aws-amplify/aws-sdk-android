@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,7 +54,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      * How users for a specific identity provider are to mapped to roles. This
      * is a string to <a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * Up to 25 rules can be specified per identity provider.
@@ -218,7 +218,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      * How users for a specific identity provider are to mapped to roles. This
      * is a string to <a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * Up to 25 rules can be specified per identity provider.
@@ -229,7 +229,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      *         roles. This is a string to <a>RoleMapping</a> object map. The
      *         string identifies the identity provider, for example,
      *         "graph.facebook.com" or
-     *         "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+     *         "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
      *         .
      *         </p>
      *         <p>
@@ -245,7 +245,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      * How users for a specific identity provider are to mapped to roles. This
      * is a string to <a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * Up to 25 rules can be specified per identity provider.
@@ -256,7 +256,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      *            roles. This is a string to <a>RoleMapping</a> object map. The
      *            string identifies the identity provider, for example,
      *            "graph.facebook.com" or
-     *            "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+     *            "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
      *            .
      *            </p>
      *            <p>
@@ -272,7 +272,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      * How users for a specific identity provider are to mapped to roles. This
      * is a string to <a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * Up to 25 rules can be specified per identity provider.
@@ -286,7 +286,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      *            roles. This is a string to <a>RoleMapping</a> object map. The
      *            string identifies the identity provider, for example,
      *            "graph.facebook.com" or
-     *            "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
+     *            "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"
      *            .
      *            </p>
      *            <p>
@@ -306,7 +306,7 @@ public class SetIdentityPoolRolesRequest extends AmazonWebServiceRequest impleme
      * How users for a specific identity provider are to mapped to roles. This
      * is a string to <a>RoleMapping</a> object map. The string identifies the
      * identity provider, for example, "graph.facebook.com" or
-     * "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
+     * "cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id".
      * </p>
      * <p>
      * Up to 25 rules can be specified per identity provider.

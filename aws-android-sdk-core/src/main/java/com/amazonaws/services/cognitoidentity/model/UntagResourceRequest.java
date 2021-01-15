@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,15 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes the specified tags from an Amazon Cognito identity pool. You can use
- * this action up to 5 times per second, per account
+ * Removes the specified tags from the specified Amazon Cognito identity pool.
+ * You can use this action up to 5 times per second, per account
  * </p>
  */
 public class UntagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool that the tags are
-     * assigned to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,16 +45,14 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool that the tags are
-     * assigned to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the identity pool that the tags
-     *         are assigned to.
+     *         The Amazon Resource Name (ARN) of the identity pool.
      *         </p>
      */
     public String getResourceArn() {
@@ -64,16 +61,14 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool that the tags are
-     * assigned to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the identity pool that the
-     *            tags are assigned to.
+     *            The Amazon Resource Name (ARN) of the identity pool.
      *            </p>
      */
     public void setResourceArn(String resourceArn) {
@@ -82,8 +77,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the identity pool that the tags are
-     * assigned to.
+     * The Amazon Resource Name (ARN) of the identity pool.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -93,8 +87,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param resourceArn <p>
-     *            The Amazon Resource Name (ARN) of the identity pool that the
-     *            tags are assigned to.
+     *            The Amazon Resource Name (ARN) of the identity pool.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
