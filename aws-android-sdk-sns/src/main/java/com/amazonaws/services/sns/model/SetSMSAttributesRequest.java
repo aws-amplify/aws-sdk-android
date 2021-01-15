@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * href="https://docs.aws.amazon.com/sns/latest/dg/sms_publish-to-phone.html"
  * >Publishing to a mobile phone</a> in the <i>Amazon SNS Developer Guide</i>.
  * </p>
+ * <note>
+ * <p>
+ * To use this operation, you must grant the Amazon SNS service principal (
+ * <code>sns.amazonaws.com</code>) permission to perform the
+ * <code>s3:ListBucket</code> action.
+ * </p>
+ * </note>
  */
 public class SetSMSAttributesRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -75,6 +75,38 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      */
     private String attributeName;
 
@@ -106,8 +138,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that this action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -141,6 +172,39 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            server errors (for example, when the service that powers the
      *            subscribed endpoint becomes unavailable) are held in the
      *            dead-letter queue for further analysis or reprocessing.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to Amazon Kinesis Data
+     *            Firehose delivery stream subscriptions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SubscriptionRoleArn</code> – The ARN of the IAM role
+     *            that has the following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Permission to write to the Kinesis Data Firehose delivery
+     *            stream
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon SNS listed as a trusted entity
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Specifying a valid ARN for this attribute is required for
+     *            Kinesis Data Firehose delivery stream subscriptions. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *            <i>Amazon SNS Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -206,7 +270,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -241,14 +305,45 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         A map of attributes with their corresponding values.
      *         </p>
      *         <p>
      *         The following lists the names, descriptions, and values of the
-     *         special request parameters that the
-     *         <code>SetTopicAttributes</code> action uses:
+     *         special request parameters that this action uses:
      *         </p>
      *         <ul>
      *         <li>
@@ -284,6 +379,38 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *         </p>
      *         </li>
      *         </ul>
+     *         <p>
+     *         The following attribute applies only to Amazon Kinesis Data
+     *         Firehose delivery stream subscriptions:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>SubscriptionRoleArn</code> – The ARN of the IAM role that
+     *         has the following:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Permission to write to the Kinesis Data Firehose delivery stream
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon SNS listed as a trusted entity
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         Specifying a valid ARN for this attribute is required for Kinesis
+     *         Data Firehose delivery stream subscriptions. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *         >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *         <i>Amazon SNS Developer Guide</i>.
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getAttributeName() {
         return attributeName;
@@ -295,7 +422,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -330,14 +457,45 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param attributeName <p>
      *            A map of attributes with their corresponding values.
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that this action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -374,6 +532,39 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            </p>
      *            </li>
      *            </ul>
+     *            <p>
+     *            The following attribute applies only to Amazon Kinesis Data
+     *            Firehose delivery stream subscriptions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SubscriptionRoleArn</code> – The ARN of the IAM role
+     *            that has the following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Permission to write to the Kinesis Data Firehose delivery
+     *            stream
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon SNS listed as a trusted entity
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Specifying a valid ARN for this attribute is required for
+     *            Kinesis Data Firehose delivery stream subscriptions. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *            <i>Amazon SNS Developer Guide</i>.
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;
@@ -385,7 +576,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that this action uses:
      * </p>
      * <ul>
      * <li>
@@ -421,6 +612,38 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      * </li>
      * </ul>
      * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -429,8 +652,7 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that this action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -464,6 +686,39 @@ public class SetSubscriptionAttributesRequest extends AmazonWebServiceRequest im
      *            server errors (for example, when the service that powers the
      *            subscribed endpoint becomes unavailable) are held in the
      *            dead-letter queue for further analysis or reprocessing.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to Amazon Kinesis Data
+     *            Firehose delivery stream subscriptions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SubscriptionRoleArn</code> – The ARN of the IAM role
+     *            that has the following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Permission to write to the Kinesis Data Firehose delivery
+     *            stream
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon SNS listed as a trusted entity
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Specifying a valid ARN for this attribute is required for
+     *            Kinesis Data Firehose delivery stream subscriptions. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *            <i>Amazon SNS Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S
  * or email, or if the endpoint and the topic are not in the same AWS account,
- * the endpoint owner must the <code>ConfirmSubscription</code> action to
+ * the endpoint owner must run the <code>ConfirmSubscription</code> action to
  * confirm the subscription.
  * </p>
  * <p>
@@ -44,7 +44,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The protocol you want to use. Supported protocols include:
+     * The protocol that you want to use. Supported protocols include:
      * </p>
      * <ul>
      * <li>
@@ -81,13 +81,19 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * <code>application</code> – delivery of JSON-encoded message to an
-     * EndpointArn for a mobile app and device.
+     * EndpointArn for a mobile app and device
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an Amazon
-     * Lambda function.
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * function
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>firehose</code> – delivery of JSON-encoded message to an Amazon
+     * Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
@@ -103,36 +109,36 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>http://</code>
+     * beginning with <code>http://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>https</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>https://</code>
+     * beginning with <code>https://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>email</code> protocol, the endpoint is an email address
+     * For the <code>email</code> protocol, the endpoint is an email address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>email-json</code> protocol, the endpoint is an email
-     * address
+     * address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sms</code> protocol, the endpoint is a phone number of an
-     * SMS-enabled device
+     * SMS-enabled device.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon
-     * SQS queue
+     * SQS queue.
      * </p>
      * </li>
      * <li>
@@ -143,8 +149,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
-     * Amazon Lambda function.
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For the <code>firehose</code> protocol, the endpoint is the ARN of an
+     * Amazon Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
@@ -192,6 +204,38 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
 
@@ -234,7 +278,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            The ARN of the topic you want to subscribe to.
      *            </p>
      * @param protocol <p>
-     *            The protocol you want to use. Supported protocols include:
+     *            The protocol that you want to use. Supported protocols
+     *            include:
      *            </p>
      *            <ul>
      *            <li>
@@ -274,13 +319,19 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            <code>application</code> – delivery of JSON-encoded message to
-     *            an EndpointArn for a mobile app and device.
+     *            an EndpointArn for a mobile app and device
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>lambda</code> – delivery of JSON-encoded message to an
-     *            Amazon Lambda function.
+     *            AWS Lambda function
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>firehose</code> – delivery of JSON-encoded message to an
+     *            Amazon Kinesis Data Firehose delivery stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -292,37 +343,37 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>http</code> protocol, the (public) endpoint is a
-     *            URL beginning with <code>http://</code>
+     *            URL beginning with <code>http://</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>https</code> protocol, the (public) endpoint is
-     *            a URL beginning with <code>https://</code>
+     *            a URL beginning with <code>https://</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>email</code> protocol, the endpoint is an email
-     *            address
+     *            address.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>email-json</code> protocol, the endpoint is an
-     *            email address
+     *            email address.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>sms</code> protocol, the endpoint is a phone
-     *            number of an SMS-enabled device
+     *            number of an SMS-enabled device.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>sqs</code> protocol, the endpoint is the ARN of
-     *            an Amazon SQS queue
+     *            an Amazon SQS queue.
      *            </p>
      *            </li>
      *            <li>
@@ -334,7 +385,13 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>lambda</code> protocol, the endpoint is the ARN
-     *            of an Amazon Lambda function.
+     *            of an AWS Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For the <code>firehose</code> protocol, the endpoint is the
+     *            ARN of an Amazon Kinesis Data Firehose delivery stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -392,7 +449,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The protocol you want to use. Supported protocols include:
+     * The protocol that you want to use. Supported protocols include:
      * </p>
      * <ul>
      * <li>
@@ -429,19 +486,25 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * <code>application</code> – delivery of JSON-encoded message to an
-     * EndpointArn for a mobile app and device.
+     * EndpointArn for a mobile app and device
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an Amazon
-     * Lambda function.
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * function
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>firehose</code> – delivery of JSON-encoded message to an Amazon
+     * Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         The protocol you want to use. Supported protocols include:
+     *         The protocol that you want to use. Supported protocols include:
      *         </p>
      *         <ul>
      *         <li>
@@ -481,13 +544,19 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         <code>application</code> – delivery of JSON-encoded message to an
-     *         EndpointArn for a mobile app and device.
+     *         EndpointArn for a mobile app and device
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>lambda</code> – delivery of JSON-encoded message to an
-     *         Amazon Lambda function.
+     *         <code>lambda</code> – delivery of JSON-encoded message to an AWS
+     *         Lambda function
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>firehose</code> – delivery of JSON-encoded message to an
+     *         Amazon Kinesis Data Firehose delivery stream.
      *         </p>
      *         </li>
      *         </ul>
@@ -498,7 +567,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The protocol you want to use. Supported protocols include:
+     * The protocol that you want to use. Supported protocols include:
      * </p>
      * <ul>
      * <li>
@@ -535,19 +604,26 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * <code>application</code> – delivery of JSON-encoded message to an
-     * EndpointArn for a mobile app and device.
+     * EndpointArn for a mobile app and device
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an Amazon
-     * Lambda function.
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * function
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>firehose</code> – delivery of JSON-encoded message to an Amazon
+     * Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
      *
      * @param protocol <p>
-     *            The protocol you want to use. Supported protocols include:
+     *            The protocol that you want to use. Supported protocols
+     *            include:
      *            </p>
      *            <ul>
      *            <li>
@@ -587,13 +663,19 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            <code>application</code> – delivery of JSON-encoded message to
-     *            an EndpointArn for a mobile app and device.
+     *            an EndpointArn for a mobile app and device
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>lambda</code> – delivery of JSON-encoded message to an
-     *            Amazon Lambda function.
+     *            AWS Lambda function
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>firehose</code> – delivery of JSON-encoded message to an
+     *            Amazon Kinesis Data Firehose delivery stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -604,7 +686,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * The protocol you want to use. Supported protocols include:
+     * The protocol that you want to use. Supported protocols include:
      * </p>
      * <ul>
      * <li>
@@ -641,13 +723,19 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * <code>application</code> – delivery of JSON-encoded message to an
-     * EndpointArn for a mobile app and device.
+     * EndpointArn for a mobile app and device
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an Amazon
-     * Lambda function.
+     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * function
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>firehose</code> – delivery of JSON-encoded message to an Amazon
+     * Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
@@ -656,7 +744,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * together.
      *
      * @param protocol <p>
-     *            The protocol you want to use. Supported protocols include:
+     *            The protocol that you want to use. Supported protocols
+     *            include:
      *            </p>
      *            <ul>
      *            <li>
@@ -696,13 +785,19 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            <code>application</code> – delivery of JSON-encoded message to
-     *            an EndpointArn for a mobile app and device.
+     *            an EndpointArn for a mobile app and device
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            <code>lambda</code> – delivery of JSON-encoded message to an
-     *            Amazon Lambda function.
+     *            AWS Lambda function
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>firehose</code> – delivery of JSON-encoded message to an
+     *            Amazon Kinesis Data Firehose delivery stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -723,36 +818,36 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>http://</code>
+     * beginning with <code>http://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>https</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>https://</code>
+     * beginning with <code>https://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>email</code> protocol, the endpoint is an email address
+     * For the <code>email</code> protocol, the endpoint is an email address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>email-json</code> protocol, the endpoint is an email
-     * address
+     * address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sms</code> protocol, the endpoint is a phone number of an
-     * SMS-enabled device
+     * SMS-enabled device.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon
-     * SQS queue
+     * SQS queue.
      * </p>
      * </li>
      * <li>
@@ -763,8 +858,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
-     * Amazon Lambda function.
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For the <code>firehose</code> protocol, the endpoint is the ARN of an
+     * Amazon Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
@@ -777,37 +878,37 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         For the <code>http</code> protocol, the (public) endpoint is a
-     *         URL beginning with <code>http://</code>
+     *         URL beginning with <code>http://</code>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         For the <code>https</code> protocol, the (public) endpoint is a
-     *         URL beginning with <code>https://</code>
+     *         URL beginning with <code>https://</code>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         For the <code>email</code> protocol, the endpoint is an email
-     *         address
+     *         address.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         For the <code>email-json</code> protocol, the endpoint is an
-     *         email address
+     *         email address.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         For the <code>sms</code> protocol, the endpoint is a phone number
-     *         of an SMS-enabled device
+     *         of an SMS-enabled device.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
      *         For the <code>sqs</code> protocol, the endpoint is the ARN of an
-     *         Amazon SQS queue
+     *         Amazon SQS queue.
      *         </p>
      *         </li>
      *         <li>
@@ -819,7 +920,13 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         For the <code>lambda</code> protocol, the endpoint is the ARN of
-     *         an Amazon Lambda function.
+     *         an AWS Lambda function.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         For the <code>firehose</code> protocol, the endpoint is the ARN
+     *         of an Amazon Kinesis Data Firehose delivery stream.
      *         </p>
      *         </li>
      *         </ul>
@@ -837,36 +944,36 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>http://</code>
+     * beginning with <code>http://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>https</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>https://</code>
+     * beginning with <code>https://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>email</code> protocol, the endpoint is an email address
+     * For the <code>email</code> protocol, the endpoint is an email address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>email-json</code> protocol, the endpoint is an email
-     * address
+     * address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sms</code> protocol, the endpoint is a phone number of an
-     * SMS-enabled device
+     * SMS-enabled device.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon
-     * SQS queue
+     * SQS queue.
      * </p>
      * </li>
      * <li>
@@ -877,8 +984,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
-     * Amazon Lambda function.
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For the <code>firehose</code> protocol, the endpoint is the ARN of an
+     * Amazon Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
@@ -891,37 +1004,37 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>http</code> protocol, the (public) endpoint is a
-     *            URL beginning with <code>http://</code>
+     *            URL beginning with <code>http://</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>https</code> protocol, the (public) endpoint is
-     *            a URL beginning with <code>https://</code>
+     *            a URL beginning with <code>https://</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>email</code> protocol, the endpoint is an email
-     *            address
+     *            address.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>email-json</code> protocol, the endpoint is an
-     *            email address
+     *            email address.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>sms</code> protocol, the endpoint is a phone
-     *            number of an SMS-enabled device
+     *            number of an SMS-enabled device.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>sqs</code> protocol, the endpoint is the ARN of
-     *            an Amazon SQS queue
+     *            an Amazon SQS queue.
      *            </p>
      *            </li>
      *            <li>
@@ -933,7 +1046,13 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>lambda</code> protocol, the endpoint is the ARN
-     *            of an Amazon Lambda function.
+     *            of an AWS Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For the <code>firehose</code> protocol, the endpoint is the
+     *            ARN of an Amazon Kinesis Data Firehose delivery stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -951,36 +1070,36 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * For the <code>http</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>http://</code>
+     * beginning with <code>http://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>https</code> protocol, the (public) endpoint is a URL
-     * beginning with <code>https://</code>
+     * beginning with <code>https://</code>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * For the <code>email</code> protocol, the endpoint is an email address
+     * For the <code>email</code> protocol, the endpoint is an email address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>email-json</code> protocol, the endpoint is an email
-     * address
+     * address.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sms</code> protocol, the endpoint is a phone number of an
-     * SMS-enabled device
+     * SMS-enabled device.
      * </p>
      * </li>
      * <li>
      * <p>
      * For the <code>sqs</code> protocol, the endpoint is the ARN of an Amazon
-     * SQS queue
+     * SQS queue.
      * </p>
      * </li>
      * <li>
@@ -991,8 +1110,14 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
-     * Amazon Lambda function.
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * Lambda function.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For the <code>firehose</code> protocol, the endpoint is the ARN of an
+     * Amazon Kinesis Data Firehose delivery stream.
      * </p>
      * </li>
      * </ul>
@@ -1008,37 +1133,37 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>http</code> protocol, the (public) endpoint is a
-     *            URL beginning with <code>http://</code>
+     *            URL beginning with <code>http://</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>https</code> protocol, the (public) endpoint is
-     *            a URL beginning with <code>https://</code>
+     *            a URL beginning with <code>https://</code>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>email</code> protocol, the endpoint is an email
-     *            address
+     *            address.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>email-json</code> protocol, the endpoint is an
-     *            email address
+     *            email address.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>sms</code> protocol, the endpoint is a phone
-     *            number of an SMS-enabled device
+     *            number of an SMS-enabled device.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
      *            For the <code>sqs</code> protocol, the endpoint is the ARN of
-     *            an Amazon SQS queue
+     *            an Amazon SQS queue.
      *            </p>
      *            </li>
      *            <li>
@@ -1050,7 +1175,13 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>lambda</code> protocol, the endpoint is the ARN
-     *            of an Amazon Lambda function.
+     *            of an AWS Lambda function.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            For the <code>firehose</code> protocol, the endpoint is the
+     *            ARN of an Amazon Kinesis Data Firehose delivery stream.
      *            </p>
      *            </li>
      *            </ul>
@@ -1103,6 +1234,38 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
      *         A map of attributes with their corresponding values.
@@ -1143,6 +1306,38 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         example, when the service that powers the subscribed endpoint
      *         becomes unavailable) are held in the dead-letter queue for
      *         further analysis or reprocessing.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The following attribute applies only to Amazon Kinesis Data
+     *         Firehose delivery stream subscriptions:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>SubscriptionRoleArn</code> – The ARN of the IAM role that
+     *         has the following:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Permission to write to the Kinesis Data Firehose delivery stream
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon SNS listed as a trusted entity
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         Specifying a valid ARN for this attribute is required for Kinesis
+     *         Data Firehose delivery stream subscriptions. For more
+     *         information, see <a href=
+     *         "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *         >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *         <i>Amazon SNS Developer Guide</i>.
      *         </p>
      *         </li>
      *         </ul>
@@ -1192,6 +1387,38 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param attributes <p>
      *            A map of attributes with their corresponding values.
@@ -1233,6 +1460,39 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            server errors (for example, when the service that powers the
      *            subscribed endpoint becomes unavailable) are held in the
      *            dead-letter queue for further analysis or reprocessing.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to Amazon Kinesis Data
+     *            Firehose delivery stream subscriptions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SubscriptionRoleArn</code> – The ARN of the IAM role
+     *            that has the following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Permission to write to the Kinesis Data Firehose delivery
+     *            stream
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon SNS listed as a trusted entity
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Specifying a valid ARN for this attribute is required for
+     *            Kinesis Data Firehose delivery stream subscriptions. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *            <i>Amazon SNS Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1283,6 +1543,38 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * </ul>
      * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -1326,6 +1618,39 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            server errors (for example, when the service that powers the
      *            subscribed endpoint becomes unavailable) are held in the
      *            dead-letter queue for further analysis or reprocessing.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The following attribute applies only to Amazon Kinesis Data
+     *            Firehose delivery stream subscriptions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>SubscriptionRoleArn</code> – The ARN of the IAM role
+     *            that has the following:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Permission to write to the Kinesis Data Firehose delivery
+     *            stream
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon SNS listed as a trusted entity
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            Specifying a valid ARN for this attribute is required for
+     *            Kinesis Data Firehose delivery stream subscriptions. For more
+     *            information, see <a href=
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
+     *            <i>Amazon SNS Developer Guide</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -1375,6 +1700,38 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * is unreachable) or server errors (for example, when the service that
      * powers the subscribed endpoint becomes unavailable) are held in the
      * dead-letter queue for further analysis or reprocessing.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The following attribute applies only to Amazon Kinesis Data Firehose
+     * delivery stream subscriptions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>SubscriptionRoleArn</code> – The ARN of the IAM role that has the
+     * following:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Permission to write to the Kinesis Data Firehose delivery stream
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon SNS listed as a trusted entity
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Specifying a valid ARN for this attribute is required for Kinesis Data
+     * Firehose delivery stream subscriptions. For more information, see <a
+     * href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     * >Fanout to Kinesis Data Firehose delivery streams</a> in the <i>Amazon
+     * SNS Developer Guide</i>.
      * </p>
      * </li>
      * </ul>
