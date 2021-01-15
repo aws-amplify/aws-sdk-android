@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -57,18 +56,12 @@ public class AliasListEntry implements Serializable {
     private String targetKeyId;
 
     /**
-     * <p>
-     * Date and time that the alias was most recently created in the account and
-     * Region. Formatted as Unix time.
-     * </p>
+     * The new value for the creationDate property for this object.
      */
     private java.util.Date creationDate;
 
     /**
-     * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
-     * </p>
+     * The new value for the lastUpdatedDate property for this object.
      */
     private java.util.Date lastUpdatedDate;
 
@@ -191,16 +184,14 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         String that contains the key identifier of the CMK associated
-     *         with the alias.
+     *         String that contains the key identifier referred to by the alias.
      *         </p>
      */
     public String getTargetKeyId() {
@@ -209,16 +200,15 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier of the CMK associated
-     *            with the alias.
+     *            String that contains the key identifier referred to by the
+     *            alias.
      *            </p>
      */
     public void setTargetKeyId(String targetKeyId) {
@@ -227,8 +217,7 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier referred to by the alias.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,8 +227,8 @@ public class AliasListEntry implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier of the CMK associated
-     *            with the alias.
+     *            String that contains the key identifier referred to by the
+     *            alias.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -250,48 +239,32 @@ public class AliasListEntry implements Serializable {
     }
 
     /**
-     * <p>
-     * Date and time that the alias was most recently created in the account and
-     * Region. Formatted as Unix time.
-     * </p>
+     * Returns the value of the creationDate property for this object.
      *
-     * @return <p>
-     *         Date and time that the alias was most recently created in the
-     *         account and Region. Formatted as Unix time.
-     *         </p>
+     * @return The value of the creationDate property for this object.
      */
     public java.util.Date getCreationDate() {
         return creationDate;
     }
 
     /**
-     * <p>
-     * Date and time that the alias was most recently created in the account and
-     * Region. Formatted as Unix time.
-     * </p>
+     * Sets the value of creationDate
      *
-     * @param creationDate <p>
-     *            Date and time that the alias was most recently created in the
-     *            account and Region. Formatted as Unix time.
-     *            </p>
+     * @param creationDate The new value for the creationDate property for this
+     *            object.
      */
     public void setCreationDate(java.util.Date creationDate) {
         this.creationDate = creationDate;
     }
 
     /**
-     * <p>
-     * Date and time that the alias was most recently created in the account and
-     * Region. Formatted as Unix time.
-     * </p>
+     * Sets the value of the creationDate property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param creationDate <p>
-     *            Date and time that the alias was most recently created in the
-     *            account and Region. Formatted as Unix time.
-     *            </p>
+     * @param creationDate The new value for the creationDate property for this
+     *            object.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -301,48 +274,32 @@ public class AliasListEntry implements Serializable {
     }
 
     /**
-     * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
-     * </p>
+     * Returns the value of the lastUpdatedDate property for this object.
      *
-     * @return <p>
-     *         Date and time that the alias was most recently associated with a
-     *         CMK in the account and Region. Formatted as Unix time.
-     *         </p>
+     * @return The value of the lastUpdatedDate property for this object.
      */
     public java.util.Date getLastUpdatedDate() {
         return lastUpdatedDate;
     }
 
     /**
-     * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
-     * </p>
+     * Sets the value of lastUpdatedDate
      *
-     * @param lastUpdatedDate <p>
-     *            Date and time that the alias was most recently associated with
-     *            a CMK in the account and Region. Formatted as Unix time.
-     *            </p>
+     * @param lastUpdatedDate The new value for the lastUpdatedDate property for
+     *            this object.
      */
     public void setLastUpdatedDate(java.util.Date lastUpdatedDate) {
         this.lastUpdatedDate = lastUpdatedDate;
     }
 
     /**
-     * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
-     * </p>
+     * Sets the value of the lastUpdatedDate property for this object.
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lastUpdatedDate <p>
-     *            Date and time that the alias was most recently associated with
-     *            a CMK in the account and Region. Formatted as Unix time.
-     *            </p>
+     * @param lastUpdatedDate The new value for the lastUpdatedDate property for
+     *            this object.
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
