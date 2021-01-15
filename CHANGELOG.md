@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.22.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.0)
+
+### Model updates
+ - Amazon Cognito Identity Pools
+ - Amazon Simple Notification Service
+ - AWS Key Management Service
+
+### Misc.
+ - Removed deprecated Transfer Manager client [#2285](https://github.com/aws-amplify/aws-sdk-android/pull/2285)
+ - Improved AWS Region code extraction for IoT client [#2325](https://github.com/aws-amplify/aws-sdk-android/pull/2325)
+
 ## [Release 2.21.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.21.0)
 
 ### New Features
