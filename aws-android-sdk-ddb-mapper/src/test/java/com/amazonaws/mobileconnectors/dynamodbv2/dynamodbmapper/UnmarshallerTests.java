@@ -17,7 +17,7 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 
 import static org.junit.Assert.assertEquals;
 
-import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.s3.model.Region;
 import com.amazonaws.util.StringUtils;
@@ -40,7 +40,7 @@ import java.util.TreeSet;
 
 public class UnmarshallerTests {
 
-    private static final S3ClientCache S3CC = new S3ClientCache((AWSCredentials) null);
+    private static final S3ClientCache S3CC = new S3ClientCache((AWSCredentialsProvider) null);
 
     private static final ItemConverter CONVERTER = ConversionSchemas.V1
             .getConverter(new ConversionSchema.Dependencies()

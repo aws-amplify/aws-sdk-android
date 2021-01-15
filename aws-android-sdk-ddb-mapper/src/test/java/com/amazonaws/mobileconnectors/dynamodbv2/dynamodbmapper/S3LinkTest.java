@@ -19,14 +19,12 @@ import static org.easymock.EasyMock.anyObject;
 import static org.easymock.EasyMock.eq;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.internal.StaticCredentialsProvider;
 import com.amazonaws.metrics.RequestMetricCollector;
-import com.amazonaws.mobileconnectors.s3.transfermanager.TransferManager;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -68,7 +66,10 @@ public class S3LinkTest
 
         mockDDB = EasyMock.createMock(AmazonDynamoDB.class);
         mockS3 = EasyMock.createMock(AmazonS3Client.class);
-        mapper = new DynamoDBMapper(mockDDB, s3CredentialProvider);
+        mapper = DynamoDBMapper.builder()
+                .dynamoDBClient(mockDDB)
+                .awsCredentialsProviderForS3(s3CredentialProvider)
+                .build();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -283,21 +284,6 @@ public class S3LinkTest
         URL retrievedURL = link.getUrl();
 
         assertEquals(createdURL, retrievedURL);
-    }
-
-    @Test
-    public void testGetTransferManager() {
-        AWSCredentials credentials = new BasicAWSCredentials("mock", "mock");
-        StaticCredentialsProvider s3CredentialProvider = new StaticCredentialsProvider(credentials);
-        AmazonS3Client realS3 = new AmazonS3Client(s3CredentialProvider,
-                com.amazonaws.regions.Region.getRegion(Regions.US_WEST_2));
-
-        mapper.getS3ClientCache().useClient(realS3);
-        S3Link link = mapper.createS3Link(Region.US_West_2, bucket, key);
-
-        TransferManager tm = link.getTransferManager();
-
-        assertSame(tm.getAmazonS3Client(), realS3);
     }
 
     @Test
