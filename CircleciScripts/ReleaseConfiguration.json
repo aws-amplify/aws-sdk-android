@@ -14,7 +14,6 @@
 			"aws-android-sdk-auth-userpools",
 			"aws-android-sdk-autoscaling",
 			"aws-android-sdk-cloudwatch",
-			"aws-android-sdk-cognito",
 		    // "aws-android-sdk-cognitoauth",
 			"aws-android-sdk-cognitoidentityprovider",
 			"aws-android-sdk-comprehend",
@@ -48,8 +47,7 @@
 			"aws-android-sdk-sqs",
 			"aws-android-sdk-textract",
 			"aws-android-sdk-transcribe",
-			"aws-android-sdk-translate",
-			"aws-android-sdk-mobileanalytics"
+			"aws-android-sdk-translate"
 		],
 		packages : [
 			"com.amazonaws",
@@ -78,7 +76,6 @@
 			"com.amazonaws.cognito.clientcontext",
 			"com.amazonaws.services.*.metrics" ,
 			"com.amazonaws.services.*.model.transform" ,
-			"com.amazonaws.services.mobileanalytics" ,
 			"com.amazonaws.services.cognitoidentity" ,
 			"com.amazonaws.services.cognitoidentityprovider" ,
 			"com.amazonaws.services.cognitosync" ,
@@ -315,18 +312,6 @@
 					"${service.prefix}.translate*" 
 				]  
 			},
-			{
-				title : "Amazon Mobile Analytics",
-				packages : [
-					"com.amazonaws.mobileconnectors.amazonmobileanalytics*",
-				]
-			},		
-			{
-				title : "Amazon Cognito Sync",
-				packages : [
-					"com.amazonaws.mobileconnectors.cognito*"
-				]
-			},				
 			{ 
 				title : "Common Runtime" , 
 				packages : [ 

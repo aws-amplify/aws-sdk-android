@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -81,6 +81,13 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
      * </p>
      */
     private java.util.Map<String, String> logins;
+
+    /**
+     * <p>
+     * Use this operation to configure attribute mappings for custom providers.
+     * </p>
+     */
+    private java.util.Map<String, String> principalTags;
 
     /**
      * <p>
@@ -369,6 +376,92 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
 
     /**
      * <p>
+     * Use this operation to configure attribute mappings for custom providers.
+     * </p>
+     *
+     * @return <p>
+     *         Use this operation to configure attribute mappings for custom
+     *         providers.
+     *         </p>
+     */
+    public java.util.Map<String, String> getPrincipalTags() {
+        return principalTags;
+    }
+
+    /**
+     * <p>
+     * Use this operation to configure attribute mappings for custom providers.
+     * </p>
+     *
+     * @param principalTags <p>
+     *            Use this operation to configure attribute mappings for custom
+     *            providers.
+     *            </p>
+     */
+    public void setPrincipalTags(java.util.Map<String, String> principalTags) {
+        this.principalTags = principalTags;
+    }
+
+    /**
+     * <p>
+     * Use this operation to configure attribute mappings for custom providers.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param principalTags <p>
+     *            Use this operation to configure attribute mappings for custom
+     *            providers.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetOpenIdTokenForDeveloperIdentityRequest withPrincipalTags(
+            java.util.Map<String, String> principalTags) {
+        this.principalTags = principalTags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Use this operation to configure attribute mappings for custom providers.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into PrincipalTags parameter, and
+     * returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param key The key of the entry to be added into PrincipalTags.
+     * @param value The corresponding value of the entry to be added into
+     *            PrincipalTags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetOpenIdTokenForDeveloperIdentityRequest addPrincipalTagsEntry(String key, String value) {
+        if (null == this.principalTags) {
+            this.principalTags = new java.util.HashMap<String, String>();
+        }
+        if (this.principalTags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.principalTags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into PrincipalTags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public GetOpenIdTokenForDeveloperIdentityRequest clearPrincipalTagsEntries() {
+        this.principalTags = null;
+        return this;
+    }
+
+    /**
+     * <p>
      * The expiration time of the token, in seconds. You can specify a custom
      * expiration time for the token so that you can cache it. If you don't
      * provide an expiration time, the token is valid for 15 minutes. You can
@@ -524,6 +617,8 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
             sb.append("IdentityId: " + getIdentityId() + ",");
         if (getLogins() != null)
             sb.append("Logins: " + getLogins() + ",");
+        if (getPrincipalTags() != null)
+            sb.append("PrincipalTags: " + getPrincipalTags() + ",");
         if (getTokenDuration() != null)
             sb.append("TokenDuration: " + getTokenDuration());
         sb.append("}");
@@ -539,6 +634,8 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
                 + ((getIdentityPoolId() == null) ? 0 : getIdentityPoolId().hashCode());
         hashCode = prime * hashCode + ((getIdentityId() == null) ? 0 : getIdentityId().hashCode());
         hashCode = prime * hashCode + ((getLogins() == null) ? 0 : getLogins().hashCode());
+        hashCode = prime * hashCode
+                + ((getPrincipalTags() == null) ? 0 : getPrincipalTags().hashCode());
         hashCode = prime * hashCode
                 + ((getTokenDuration() == null) ? 0 : getTokenDuration().hashCode());
         return hashCode;
@@ -568,6 +665,11 @@ public class GetOpenIdTokenForDeveloperIdentityRequest extends AmazonWebServiceR
         if (other.getLogins() == null ^ this.getLogins() == null)
             return false;
         if (other.getLogins() != null && other.getLogins().equals(this.getLogins()) == false)
+            return false;
+        if (other.getPrincipalTags() == null ^ this.getPrincipalTags() == null)
+            return false;
+        if (other.getPrincipalTags() != null
+                && other.getPrincipalTags().equals(this.getPrincipalTags()) == false)
             return false;
         if (other.getTokenDuration() == null ^ this.getTokenDuration() == null)
             return false;

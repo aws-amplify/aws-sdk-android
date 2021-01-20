@@ -20,6 +20,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.model.Region;
 
@@ -30,8 +32,19 @@ public class ConfigureS3LinksTest {
     private S3ClientCache s3cc;
 
     @Before
-    public void setUp() throws Exception {
-        s3cc = new S3ClientCache(new BasicAWSCredentials("mock", "mock"));
+    public void setUp() {
+        AWSCredentialsProvider mockCredentialsProvider = new AWSCredentialsProvider() {
+            @Override
+            public AWSCredentials getCredentials() {
+                return new BasicAWSCredentials("mock", "mock");
+            }
+
+            @Override
+            public void refresh() {
+                // do nothing
+            }
+        };
+        s3cc = new S3ClientCache(mockCredentialsProvider);
     }
 
     @DynamoDBTable(tableName = "nonexisting-test-name")
@@ -61,11 +74,11 @@ public class ConfigureS3LinksTest {
     }
 
     @DynamoDBTable(tableName = "nonexisting-test-tablename")
-    public static class CorrecctTestClass {
+    public static class CorrectTestClass {
         private String hk;
         private S3Link s3;
 
-        public CorrecctTestClass() {
+        public CorrectTestClass() {
         }
 
         @DynamoDBHashKey
@@ -88,7 +101,7 @@ public class ConfigureS3LinksTest {
 
     @Test
     public void testExplicitRegionClass() {
-        CorrecctTestClass obj = new CorrecctTestClass();
+        CorrectTestClass obj = new CorrectTestClass();
         S3Link s3 = new S3Link(s3cc, Region.AP_Singapore, "nonexisting-test-bucketname2", "key");
         obj.setS3(s3);
         assertNotNull(obj.getS3());

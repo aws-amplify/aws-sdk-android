@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -30,11 +30,17 @@ import com.amazonaws.services.sns.model.*;
  * you to build distributed web-enabled applications. Applications can use
  * Amazon SNS to easily push real-time notification messages to interested
  * subscribers over multiple delivery protocols. For more information about this
- * product see <a
- * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. For
- * detailed information about Amazon SNS features and their associated API
- * calls, see the <a href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon
- * SNS Developer Guide</a>.
+ * product see the <a href="http://aws.amazon.com/sns/">Amazon SNS product
+ * page</a>. For detailed information about Amazon SNS features and their
+ * associated API calls, see the <a
+ * href="https://docs.aws.amazon.com/sns/latest/dg/">Amazon SNS Developer
+ * Guide</a>.
+ * </p>
+ * <p>
+ * For information on the permissions you need to use this API, see <a href=
+ * "https://docs.aws.amazon.com/sns/latest/dg/sns-authentication-and-access-control.html"
+ * >Identity and access management in Amazon SNS</a> in the <i>Amazon SNS
+ * Developer Guide.</i>
  * </p>
  * <p>
  * We also provide SDKs that enable you to access Amazon SNS from your preferred
@@ -2046,6 +2052,13 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * >Publishing to a mobile phone</a> in the <i>Amazon SNS Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * To use this operation, you must grant the Amazon SNS service principal (
+     * <code>sns.amazonaws.com</code>) permission to perform the
+     * <code>s3:ListBucket</code> action.
+     * </p>
+     * </note>
      * 
      * @param setSMSAttributesRequest <p>
      *            The input for the SetSMSAttributes action.
@@ -2083,6 +2096,13 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * >Publishing to a mobile phone</a> in the <i>Amazon SNS Developer
      * Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * To use this operation, you must grant the Amazon SNS service principal (
+     * <code>sns.amazonaws.com</code>) permission to perform the
+     * <code>s3:ListBucket</code> action.
+     * </p>
+     * </note>
      * 
      * @param setSMSAttributesRequest <p>
      *            The input for the SetSMSAttributes action.
@@ -2237,7 +2257,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
      * HTTP/S or email, or if the endpoint and the topic are not in the same AWS
-     * account, the endpoint owner must the <code>ConfirmSubscription</code>
+     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
      * action to confirm the subscription.
      * </p>
      * <p>
@@ -2276,7 +2296,7 @@ public interface AmazonSNSAsync extends AmazonSNS {
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
      * HTTP/S or email, or if the endpoint and the topic are not in the same AWS
-     * account, the endpoint owner must the <code>ConfirmSubscription</code>
+     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
      * action to confirm the subscription.
      * </p>
      * <p>

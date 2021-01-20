@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -881,7 +881,7 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
      * the identity. Supplying multiple logins creates an implicit link.
      * </p>
      * <p>
-     * The OpenId token is valid for 10 minutes.
+     * The OpenID token is valid for 10 minutes.
      * </p>
      * <p>
      * This is a public API. You do not need any credentials to call this API.
@@ -1002,6 +1002,60 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
             }
             Unmarshaller<GetOpenIdTokenForDeveloperIdentityResult, JsonUnmarshallerContext> unmarshaller = new GetOpenIdTokenForDeveloperIdentityResultJsonUnmarshaller();
             JsonResponseHandler<GetOpenIdTokenForDeveloperIdentityResult> responseHandler = new JsonResponseHandler<GetOpenIdTokenForDeveloperIdentityResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Use <code>GetPrincipalTagAttributeMap</code> to list all mappings between
+     * <code>PrincipalTags</code> and user attributes.
+     * </p>
+     * 
+     * @param getPrincipalTagAttributeMapRequest
+     * @return getPrincipalTagAttributeMapResult The response from the
+     *         GetPrincipalTagAttributeMap service method, as returned by Amazon
+     *         Cognito Identity.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Identity indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public GetPrincipalTagAttributeMapResult getPrincipalTagAttributeMap(
+            GetPrincipalTagAttributeMapRequest getPrincipalTagAttributeMapRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getPrincipalTagAttributeMapRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetPrincipalTagAttributeMapRequest> request = null;
+        Response<GetPrincipalTagAttributeMapResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetPrincipalTagAttributeMapRequestMarshaller()
+                        .marshall(getPrincipalTagAttributeMapRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetPrincipalTagAttributeMapResult, JsonUnmarshallerContext> unmarshaller = new GetPrincipalTagAttributeMapResultJsonUnmarshaller();
+            JsonResponseHandler<GetPrincipalTagAttributeMapResult> responseHandler = new JsonResponseHandler<GetPrincipalTagAttributeMapResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1390,9 +1444,63 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
     /**
      * <p>
-     * Assigns a set of tags to an Amazon Cognito identity pool. A tag is a
-     * label that you can use to categorize and manage identity pools in
-     * different ways, such as by purpose, owner, environment, or other
+     * You can use this operation to use default (username and clientID)
+     * attribute or custom attribute mappings.
+     * </p>
+     * 
+     * @param setPrincipalTagAttributeMapRequest
+     * @return setPrincipalTagAttributeMapResult The response from the
+     *         SetPrincipalTagAttributeMap service method, as returned by Amazon
+     *         Cognito Identity.
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws NotAuthorizedException
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Identity indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public SetPrincipalTagAttributeMapResult setPrincipalTagAttributeMap(
+            SetPrincipalTagAttributeMapRequest setPrincipalTagAttributeMapRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(setPrincipalTagAttributeMapRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<SetPrincipalTagAttributeMapRequest> request = null;
+        Response<SetPrincipalTagAttributeMapResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new SetPrincipalTagAttributeMapRequestMarshaller()
+                        .marshall(setPrincipalTagAttributeMapRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<SetPrincipalTagAttributeMapResult, JsonUnmarshallerContext> unmarshaller = new SetPrincipalTagAttributeMapResultJsonUnmarshaller();
+            JsonResponseHandler<SetPrincipalTagAttributeMapResult> responseHandler = new JsonResponseHandler<SetPrincipalTagAttributeMapResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Assigns a set of tags to the specified Amazon Cognito identity pool. A
+     * tag is a label that you can use to categorize and manage identity pools
+     * in different ways, such as by purpose, owner, environment, or other
      * criteria.
      * </p>
      * <p>
@@ -1569,8 +1677,8 @@ public class AmazonCognitoIdentityClient extends AmazonWebServiceClient implemen
 
     /**
      * <p>
-     * Removes the specified tags from an Amazon Cognito identity pool. You can
-     * use this action up to 5 times per second, per account
+     * Removes the specified tags from the specified Amazon Cognito identity
+     * pool. You can use this action up to 5 times per second, per account
      * </p>
      * 
      * @param untagResourceRequest

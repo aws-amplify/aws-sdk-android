@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -39,8 +39,8 @@ public class CreateGrantResult implements Serializable {
      * The unique identifier for the grant.
      * </p>
      * <p>
-     * You can use the <code>GrantId</code> in a subsequent <a>RetireGrant</a>
-     * or <a>RevokeGrant</a> operation.
+     * You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     * <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,8 +143,8 @@ public class CreateGrantResult implements Serializable {
      * The unique identifier for the grant.
      * </p>
      * <p>
-     * You can use the <code>GrantId</code> in a subsequent <a>RetireGrant</a>
-     * or <a>RevokeGrant</a> operation.
+     * You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     * <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -154,8 +154,8 @@ public class CreateGrantResult implements Serializable {
      *         The unique identifier for the grant.
      *         </p>
      *         <p>
-     *         You can use the <code>GrantId</code> in a subsequent
-     *         <a>RetireGrant</a> or <a>RevokeGrant</a> operation.
+     *         You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     *         <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      *         </p>
      */
     public String getGrantId() {
@@ -167,8 +167,8 @@ public class CreateGrantResult implements Serializable {
      * The unique identifier for the grant.
      * </p>
      * <p>
-     * You can use the <code>GrantId</code> in a subsequent <a>RetireGrant</a>
-     * or <a>RevokeGrant</a> operation.
+     * You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     * <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -178,8 +178,8 @@ public class CreateGrantResult implements Serializable {
      *            The unique identifier for the grant.
      *            </p>
      *            <p>
-     *            You can use the <code>GrantId</code> in a subsequent
-     *            <a>RetireGrant</a> or <a>RevokeGrant</a> operation.
+     *            You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     *            <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      *            </p>
      */
     public void setGrantId(String grantId) {
@@ -191,8 +191,8 @@ public class CreateGrantResult implements Serializable {
      * The unique identifier for the grant.
      * </p>
      * <p>
-     * You can use the <code>GrantId</code> in a subsequent <a>RetireGrant</a>
-     * or <a>RevokeGrant</a> operation.
+     * You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     * <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -205,8 +205,8 @@ public class CreateGrantResult implements Serializable {
      *            The unique identifier for the grant.
      *            </p>
      *            <p>
-     *            You can use the <code>GrantId</code> in a subsequent
-     *            <a>RetireGrant</a> or <a>RevokeGrant</a> operation.
+     *            You can use the <code>GrantId</code> in a <a>ListGrants</a>,
+     *            <a>RetireGrant</a>, or <a>RevokeGrant</a> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -89,6 +89,9 @@ public class AWSIotMqttManager {
     /** Default value for "connection established" hysteresis timer. */
     private static final Integer DEFAULT_CONNECTION_STABILITY_TIME_SECONDS = 10;
 
+    /** Regular expression pattern to tokenize a hostname into segments */
+    private static final String TOKENIZE_ENDPOINT_PATTERN = "[\\.:]";
+
     /** The underlying Paho Java MQTT client. */
     private MqttAsyncClient mqttClient;
 
@@ -687,7 +690,7 @@ public class AWSIotMqttManager {
         this.mqttClientId = mqttClientId;
         this.endpoint = endpoint;
         this.accountEndpointPrefix = null;
-        this.region = AwsIotEndpointUtility.getRegionFromIotEndpoint(endpoint);
+        this.region = getRegionFromIotEndpoint(endpoint);
 
         initDefaults();
     }
@@ -1213,6 +1216,28 @@ public class AWSIotMqttManager {
             connectionState = MqttManagerConnectionState.Disconnected;
             userConnectionCallback(exception);
         }
+    }
+
+    /**
+     * Identifies the AWS Region of the given endpoint and returns the corresponding {@link Region}.
+     *
+     * @param endpoint endpoint from which to identify the AWS Region code.
+     * @return {@link Region} for the AWS Region code contained within the endpoint.
+     * @throws {@link IllegalArgumentException} if no valid AWS Region code can be found within endpoint.
+     */
+    private static Region getRegionFromIotEndpoint(String endpoint) {
+        String[] parts = endpoint.toLowerCase().split(TOKENIZE_ENDPOINT_PATTERN);
+        Region region;
+
+        for (String part : parts) {
+            region = Region.getRegion(part);
+
+            if (region != null) {
+                return region;
+            }
+        }
+
+        throw new IllegalArgumentException("Cannot find AWS Region code within endpoint");
     }
 
     private String getEndpointWithHttpPort() {
