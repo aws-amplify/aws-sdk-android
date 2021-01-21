@@ -3329,7 +3329,7 @@ public class CognitoUser {
                 pool.getUserPoolId(), context);
         final AuthenticationHelper authenticationHelper = new AuthenticationHelper(deviceGroupKey);
         final RespondToAuthChallengeRequest devicesAuthRequest = initiateDevicesAuthRequest(
-                clientMetadata, authenticationHelper);
+                clientMetadata, challenge, authenticationHelper);
         try {
             final RespondToAuthChallengeResult initiateDeviceAuthResult = cognitoIdentityProviderClient
                     .respondToAuthChallenge(devicesAuthRequest);
@@ -3481,12 +3481,14 @@ public class CognitoUser {
      */
     private RespondToAuthChallengeRequest initiateDevicesAuthRequest(
             final Map<String, String> clientMetadata,
+            final RespondToAuthChallengeResult challenge,
             AuthenticationHelper authenticationHelper) {
         final RespondToAuthChallengeRequest initiateDevicesAuthRequest = new RespondToAuthChallengeRequest();
         initiateDevicesAuthRequest.setClientId(clientId);
         initiateDevicesAuthRequest
                 .setChallengeName(CognitoServiceConstants.CHLG_TYPE_DEVICE_SRP_AUTH);
         initiateDevicesAuthRequest.setClientMetadata(clientMetadata);
+        initiateDevicesAuthRequest.setSession(challenge.getSession());
         initiateDevicesAuthRequest.addChallengeResponsesEntry(
                 CognitoServiceConstants.CHLG_RESP_USERNAME, usernameInternal);
         initiateDevicesAuthRequest.addChallengeResponsesEntry(
