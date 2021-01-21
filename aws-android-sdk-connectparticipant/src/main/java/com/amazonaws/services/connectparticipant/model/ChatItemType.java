@@ -23,8 +23,15 @@ import java.util.Map;
  */
 public enum ChatItemType {
 
+    TYPING("TYPING"),
+    PARTICIPANT_JOINED("PARTICIPANT_JOINED"),
+    PARTICIPANT_LEFT("PARTICIPANT_LEFT"),
+    CHAT_ENDED("CHAT_ENDED"),
+    TRANSFER_SUCCEEDED("TRANSFER_SUCCEEDED"),
+    TRANSFER_FAILED("TRANSFER_FAILED"),
     MESSAGE("MESSAGE"),
     EVENT("EVENT"),
+    ATTACHMENT("ATTACHMENT"),
     CONNECTION_ACK("CONNECTION_ACK");
 
     private String value;
@@ -41,8 +48,15 @@ public enum ChatItemType {
     private static final Map<String, ChatItemType> enumMap;
     static {
         enumMap = new HashMap<String, ChatItemType>();
+        enumMap.put("TYPING", TYPING);
+        enumMap.put("PARTICIPANT_JOINED", PARTICIPANT_JOINED);
+        enumMap.put("PARTICIPANT_LEFT", PARTICIPANT_LEFT);
+        enumMap.put("CHAT_ENDED", CHAT_ENDED);
+        enumMap.put("TRANSFER_SUCCEEDED", TRANSFER_SUCCEEDED);
+        enumMap.put("TRANSFER_FAILED", TRANSFER_FAILED);
         enumMap.put("MESSAGE", MESSAGE);
         enumMap.put("EVENT", EVENT);
+        enumMap.put("ATTACHMENT", ATTACHMENT);
         enumMap.put("CONNECTION_ACK", CONNECTION_ACK);
     }
 

@@ -91,29 +91,20 @@ public class AmazonS3ClientIntegrationTest extends S3IntegrationTestBase {
     public static void setUpBeforeClass() throws Exception {
         S3IntegrationTestBase.setUp();
         tempData = tempDataBuffer(1000);
-
-        try {
-            bucketWithSSEKMSEnabled = getPackageConfigure("s3")
-                    .getString("bucket_with_sse_kms_enabled");
-            kmsKeyId = getPackageConfigure("s3")
-                    .getString("sse_kms_key_id");
-            s3.createBucket(BUCKET_NAME);
-            waitForBucketCreation(BUCKET_NAME);
-        } catch (final Exception e) {
-            System.out.println("Error in creating the bucket. "
-                    + "Please manually create the bucket " + BUCKET_NAME);
-        }
+        bucketWithSSEKMSEnabled = getPackageConfigure("s3")
+                .getString("bucket_with_sse_kms_enabled");
+        kmsKeyId = getPackageConfigure("s3")
+                .getString("sse_kms_key_id");
+        s3.createBucket(BUCKET_NAME);
+        waitForBucketCreation(BUCKET_NAME);
     }
 
+    /**
+     * Tear down resources created for these tests.
+     */
     @AfterClass
     public static void tearDown() {
-        try {
-            deleteBucketAndAllContents(BUCKET_NAME);
-        } catch (final Exception e) {
-            System.out.println("Error in deleting the bucket. "
-                + "Please manually delete the bucket " + BUCKET_NAME);
-            e.printStackTrace();
-        }
+        deleteBucketAndAllContents(BUCKET_NAME);
 
         if (file != null) {
             file.delete();

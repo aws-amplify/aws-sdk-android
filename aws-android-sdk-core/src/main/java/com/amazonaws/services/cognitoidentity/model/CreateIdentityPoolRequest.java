@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * A list of OpendID Connect provider ARNs.
+     * The Amazon Resource Names (ARN) of the OpenID Connect providers.
      * </p>
      */
     private java.util.List<String> openIdConnectProviderARNs;
@@ -545,11 +545,11 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * A list of OpendID Connect provider ARNs.
+     * The Amazon Resource Names (ARN) of the OpenID Connect providers.
      * </p>
      *
      * @return <p>
-     *         A list of OpendID Connect provider ARNs.
+     *         The Amazon Resource Names (ARN) of the OpenID Connect providers.
      *         </p>
      */
     public java.util.List<String> getOpenIdConnectProviderARNs() {
@@ -558,11 +558,12 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * A list of OpendID Connect provider ARNs.
+     * The Amazon Resource Names (ARN) of the OpenID Connect providers.
      * </p>
      *
      * @param openIdConnectProviderARNs <p>
-     *            A list of OpendID Connect provider ARNs.
+     *            The Amazon Resource Names (ARN) of the OpenID Connect
+     *            providers.
      *            </p>
      */
     public void setOpenIdConnectProviderARNs(java.util.Collection<String> openIdConnectProviderARNs) {
@@ -576,14 +577,15 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * A list of OpendID Connect provider ARNs.
+     * The Amazon Resource Names (ARN) of the OpenID Connect providers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param openIdConnectProviderARNs <p>
-     *            A list of OpendID Connect provider ARNs.
+     *            The Amazon Resource Names (ARN) of the OpenID Connect
+     *            providers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -602,14 +604,15 @@ public class CreateIdentityPoolRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * A list of OpendID Connect provider ARNs.
+     * The Amazon Resource Names (ARN) of the OpenID Connect providers.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param openIdConnectProviderARNs <p>
-     *            A list of OpendID Connect provider ARNs.
+     *            The Amazon Resource Names (ARN) of the OpenID Connect
+     *            providers.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

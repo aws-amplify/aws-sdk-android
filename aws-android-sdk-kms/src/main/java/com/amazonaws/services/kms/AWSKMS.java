@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -3138,6 +3138,10 @@ public interface AWSKMS {
      * <p>
      * Gets a list of all grants for the specified customer master key (CMK).
      * </p>
+     * <p>
+     * You must specify the CMK in all requests. You can filter the grant list
+     * by grant ID or grantee principal.
+     * </p>
      * <note>
      * <p>
      * The <code>GranteePrincipal</code> field in the <code>ListGrants</code>
@@ -3192,6 +3196,7 @@ public interface AWSKMS {
      * @throws NotFoundException
      * @throws DependencyTimeoutException
      * @throws InvalidMarkerException
+     * @throws InvalidGrantIdException
      * @throws InvalidArnException
      * @throws KMSInternalException
      * @throws KMSInvalidStateException

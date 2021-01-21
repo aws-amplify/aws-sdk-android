@@ -40,12 +40,73 @@ import com.amazonaws.services.connectparticipant.model.*;
 public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant {
     /**
      * <p>
+     * Allows you to confirm that the attachment has been uploaded using the
+     * pre-signed URL provided in StartAttachmentUpload API.
+     * </p>
+     * 
+     * @param completeAttachmentUploadRequest
+     * @return A Java Future object containing the response from the
+     *         CompleteAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<CompleteAttachmentUploadResult> completeAttachmentUploadAsync(
+            CompleteAttachmentUploadRequest completeAttachmentUploadRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Allows you to confirm that the attachment has been uploaded using the
+     * pre-signed URL provided in StartAttachmentUpload API.
+     * </p>
+     * 
+     * @param completeAttachmentUploadRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CompleteAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<CompleteAttachmentUploadResult> completeAttachmentUploadAsync(
+            CompleteAttachmentUploadRequest completeAttachmentUploadRequest,
+            AsyncHandler<CompleteAttachmentUploadRequest, CompleteAttachmentUploadResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates the participant's connection. Note that ParticipantToken is used
      * for invoking this API instead of ConnectionToken.
      * </p>
      * <p>
      * The participant token is valid for the lifetime of the participant –
-     * until the they are part of a contact.
+     * until they are part of a contact.
      * </p>
      * <p>
      * The response URL for <code>WEBSOCKET</code> Type has a connect expiry
@@ -64,6 +125,13 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * parameter, clients need to call this API again to obtain a new websocket
      * URL and perform the same steps as before.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param createParticipantConnectionRequest
      * @return A Java Future object containing the response from the
@@ -92,7 +160,7 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * </p>
      * <p>
      * The participant token is valid for the lifetime of the participant –
-     * until the they are part of a contact.
+     * until they are part of a contact.
      * </p>
      * <p>
      * The response URL for <code>WEBSOCKET</code> Type has a connect expiry
@@ -111,6 +179,13 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * parameter, clients need to call this API again to obtain a new websocket
      * URL and perform the same steps as before.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param createParticipantConnectionRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -142,6 +217,11 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * Disconnects a participant. Note that ConnectionToken is used for invoking
      * this API instead of ParticipantToken.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param disconnectParticipantRequest
      * @return A Java Future object containing the response from the
@@ -167,6 +247,11 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * <p>
      * Disconnects a participant. Note that ConnectionToken is used for invoking
      * this API instead of ParticipantToken.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param disconnectParticipantRequest
@@ -196,8 +281,69 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
 
     /**
      * <p>
-     * Retrieves a transcript of the session. Note that ConnectionToken is used
-     * for invoking this API instead of ParticipantToken.
+     * Provides a pre-signed URL for download of a completed attachment. This is
+     * an asynchronous API for use with active contacts.
+     * </p>
+     * 
+     * @param getAttachmentRequest
+     * @return A Java Future object containing the response from the
+     *         GetAttachment service method, as returned by Amazon Connect
+     *         Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<GetAttachmentResult> getAttachmentAsync(GetAttachmentRequest getAttachmentRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a pre-signed URL for download of a completed attachment. This is
+     * an asynchronous API for use with active contacts.
+     * </p>
+     * 
+     * @param getAttachmentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         GetAttachment service method, as returned by Amazon Connect
+     *         Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<GetAttachmentResult> getAttachmentAsync(GetAttachmentRequest getAttachmentRequest,
+            AsyncHandler<GetAttachmentRequest, GetAttachmentResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Retrieves a transcript of the session, including details about any
+     * attachments. Note that ConnectionToken is used for invoking this API
+     * instead of ParticipantToken.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param getTranscriptRequest
@@ -221,8 +367,14 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
 
     /**
      * <p>
-     * Retrieves a transcript of the session. Note that ConnectionToken is used
-     * for invoking this API instead of ParticipantToken.
+     * Retrieves a transcript of the session, including details about any
+     * attachments. Note that ConnectionToken is used for invoking this API
+     * instead of ParticipantToken.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param getTranscriptRequest
@@ -254,6 +406,11 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * Sends an event. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param sendEventRequest
      * @return A Java Future object containing the response from the SendEvent
@@ -277,6 +434,11 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * <p>
      * Sends an event. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param sendEventRequest
@@ -307,6 +469,13 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * Sends a message. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param sendMessageRequest
      * @return A Java Future object containing the response from the SendMessage
@@ -331,6 +500,13 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      * Sends a message. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param sendMessageRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -353,6 +529,65 @@ public interface AmazonConnectParticipantAsync extends AmazonConnectParticipant 
      */
     Future<SendMessageResult> sendMessageAsync(SendMessageRequest sendMessageRequest,
             AsyncHandler<SendMessageRequest, SendMessageResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a pre-signed Amazon S3 URL in response for uploading the file
+     * directly to S3.
+     * </p>
+     * 
+     * @param startAttachmentUploadRequest
+     * @return A Java Future object containing the response from the
+     *         StartAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<StartAttachmentUploadResult> startAttachmentUploadAsync(
+            StartAttachmentUploadRequest startAttachmentUploadRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides a pre-signed Amazon S3 URL in response for uploading the file
+     * directly to S3.
+     * </p>
+     * 
+     * @param startAttachmentUploadRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    Future<StartAttachmentUploadResult> startAttachmentUploadAsync(
+            StartAttachmentUploadRequest startAttachmentUploadRequest,
+            AsyncHandler<StartAttachmentUploadRequest, StartAttachmentUploadResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
 }

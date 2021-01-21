@@ -99,12 +99,40 @@ public interface AmazonConnectParticipant {
 
     /**
      * <p>
+     * Allows you to confirm that the attachment has been uploaded using the
+     * pre-signed URL provided in StartAttachmentUpload API.
+     * </p>
+     * 
+     * @param completeAttachmentUploadRequest
+     * @return completeAttachmentUploadResult The response from the
+     *         CompleteAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    CompleteAttachmentUploadResult completeAttachmentUpload(
+            CompleteAttachmentUploadRequest completeAttachmentUploadRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates the participant's connection. Note that ParticipantToken is used
      * for invoking this API instead of ConnectionToken.
      * </p>
      * <p>
      * The participant token is valid for the lifetime of the participant –
-     * until the they are part of a contact.
+     * until they are part of a contact.
      * </p>
      * <p>
      * The response URL for <code>WEBSOCKET</code> Type has a connect expiry
@@ -123,6 +151,13 @@ public interface AmazonConnectParticipant {
      * parameter, clients need to call this API again to obtain a new websocket
      * URL and perform the same steps as before.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param createParticipantConnectionRequest
      * @return createParticipantConnectionResult The response from the
@@ -149,6 +184,11 @@ public interface AmazonConnectParticipant {
      * Disconnects a participant. Note that ConnectionToken is used for invoking
      * this API instead of ParticipantToken.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param disconnectParticipantRequest
      * @return disconnectParticipantResult The response from the
@@ -172,8 +212,38 @@ public interface AmazonConnectParticipant {
 
     /**
      * <p>
-     * Retrieves a transcript of the session. Note that ConnectionToken is used
-     * for invoking this API instead of ParticipantToken.
+     * Provides a pre-signed URL for download of a completed attachment. This is
+     * an asynchronous API for use with active contacts.
+     * </p>
+     * 
+     * @param getAttachmentRequest
+     * @return getAttachmentResult The response from the GetAttachment service
+     *         method, as returned by Amazon Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    GetAttachmentResult getAttachment(GetAttachmentRequest getAttachmentRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieves a transcript of the session, including details about any
+     * attachments. Note that ConnectionToken is used for invoking this API
+     * instead of ParticipantToken.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param getTranscriptRequest
@@ -199,6 +269,11 @@ public interface AmazonConnectParticipant {
      * Sends an event. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param sendEventRequest
      * @return sendEventResult The response from the SendEvent service method,
@@ -223,6 +298,13 @@ public interface AmazonConnectParticipant {
      * Sends a message. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param sendMessageRequest
      * @return sendMessageResult The response from the SendMessage service
@@ -240,6 +322,33 @@ public interface AmazonConnectParticipant {
      *             in the request, or a server side issue.
      */
     SendMessageResult sendMessage(SendMessageRequest sendMessageRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Provides a pre-signed Amazon S3 URL in response for uploading the file
+     * directly to S3.
+     * </p>
+     * 
+     * @param startAttachmentUploadRequest
+     * @return startAttachmentUploadResult The response from the
+     *         StartAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    StartAttachmentUploadResult startAttachmentUpload(
+            StartAttachmentUploadRequest startAttachmentUploadRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

@@ -18,6 +18,7 @@ package com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper;
 import static org.junit.Assert.assertEquals;
 
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.util.StringUtils;
 
@@ -335,7 +336,7 @@ public class V2CompatMarshallerTests {
                 + "\"key\":\"key\","
                 + "\"region\":null}}",
                 convert("getS3Link",
-                        new S3Link(new S3ClientCache((AWSCredentials) null), "bucket", "key"))
+                        new S3Link(new S3ClientCache((AWSCredentialsProvider) null), "bucket", "key"))
                         .getS());
     }
 

@@ -21,6 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
  * Allows the specified Amazon Connect instance to access the specified Lambda
  * function.
  * </p>

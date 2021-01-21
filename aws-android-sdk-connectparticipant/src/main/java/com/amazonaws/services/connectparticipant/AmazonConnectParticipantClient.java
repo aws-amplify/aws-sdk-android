@@ -124,12 +124,15 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
     private void init() {
         jsonErrorUnmarshallers = new ArrayList<JsonErrorUnmarshaller>();
         jsonErrorUnmarshallers.add(new AccessDeniedExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ValidationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
+        setServiceNameIntern("execute-api");
         this.setEndpoint("participant.connect.us-east-1.amazonaws.com");
         this.endpointPrefix = "participant.connect";
 
@@ -148,12 +151,67 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
 
     /**
      * <p>
+     * Allows you to confirm that the attachment has been uploaded using the
+     * pre-signed URL provided in StartAttachmentUpload API.
+     * </p>
+     * 
+     * @param completeAttachmentUploadRequest
+     * @return completeAttachmentUploadResult The response from the
+     *         CompleteAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public CompleteAttachmentUploadResult completeAttachmentUpload(
+            CompleteAttachmentUploadRequest completeAttachmentUploadRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(completeAttachmentUploadRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CompleteAttachmentUploadRequest> request = null;
+        Response<CompleteAttachmentUploadResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CompleteAttachmentUploadRequestMarshaller()
+                        .marshall(completeAttachmentUploadRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CompleteAttachmentUploadResult, JsonUnmarshallerContext> unmarshaller = new CompleteAttachmentUploadResultJsonUnmarshaller();
+            JsonResponseHandler<CompleteAttachmentUploadResult> responseHandler = new JsonResponseHandler<CompleteAttachmentUploadResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates the participant's connection. Note that ParticipantToken is used
      * for invoking this API instead of ConnectionToken.
      * </p>
      * <p>
      * The participant token is valid for the lifetime of the participant –
-     * until the they are part of a contact.
+     * until they are part of a contact.
      * </p>
      * <p>
      * The response URL for <code>WEBSOCKET</code> Type has a connect expiry
@@ -172,6 +230,13 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
      * parameter, clients need to call this API again to obtain a new websocket
      * URL and perform the same steps as before.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param createParticipantConnectionRequest
      * @return createParticipantConnectionResult The response from the
@@ -225,6 +290,11 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
      * Disconnects a participant. Note that ConnectionToken is used for invoking
      * this API instead of ParticipantToken.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param disconnectParticipantRequest
      * @return disconnectParticipantResult The response from the
@@ -275,8 +345,64 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
 
     /**
      * <p>
-     * Retrieves a transcript of the session. Note that ConnectionToken is used
-     * for invoking this API instead of ParticipantToken.
+     * Provides a pre-signed URL for download of a completed attachment. This is
+     * an asynchronous API for use with active contacts.
+     * </p>
+     * 
+     * @param getAttachmentRequest
+     * @return getAttachmentResult The response from the GetAttachment service
+     *         method, as returned by Amazon Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public GetAttachmentResult getAttachment(GetAttachmentRequest getAttachmentRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getAttachmentRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetAttachmentRequest> request = null;
+        Response<GetAttachmentResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetAttachmentRequestMarshaller().marshall(getAttachmentRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetAttachmentResult, JsonUnmarshallerContext> unmarshaller = new GetAttachmentResultJsonUnmarshaller();
+            JsonResponseHandler<GetAttachmentResult> responseHandler = new JsonResponseHandler<GetAttachmentResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves a transcript of the session, including details about any
+     * attachments. Note that ConnectionToken is used for invoking this API
+     * instead of ParticipantToken.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param getTranscriptRequest
@@ -328,6 +454,11 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
      * Sends an event. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param sendEventRequest
      * @return sendEventResult The response from the SendEvent service method,
@@ -378,6 +509,13 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
      * Sends a message. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
+     * <note>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
+     * </note>
      * 
      * @param sendMessageRequest
      * @return sendMessageResult The response from the SendMessage service
@@ -412,6 +550,60 @@ public class AmazonConnectParticipantClient extends AmazonWebServiceClient imple
             }
             Unmarshaller<SendMessageResult, JsonUnmarshallerContext> unmarshaller = new SendMessageResultJsonUnmarshaller();
             JsonResponseHandler<SendMessageResult> responseHandler = new JsonResponseHandler<SendMessageResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides a pre-signed Amazon S3 URL in response for uploading the file
+     * directly to S3.
+     * </p>
+     * 
+     * @param startAttachmentUploadRequest
+     * @return startAttachmentUploadResult The response from the
+     *         StartAttachmentUpload service method, as returned by Amazon
+     *         Connect Participant.
+     * @throws AccessDeniedException
+     * @throws InternalServerException
+     * @throws ThrottlingException
+     * @throws ValidationException
+     * @throws ServiceQuotaExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect Participant indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public StartAttachmentUploadResult startAttachmentUpload(
+            StartAttachmentUploadRequest startAttachmentUploadRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startAttachmentUploadRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartAttachmentUploadRequest> request = null;
+        Response<StartAttachmentUploadResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartAttachmentUploadRequestMarshaller()
+                        .marshall(startAttachmentUploadRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartAttachmentUploadResult, JsonUnmarshallerContext> unmarshaller = new StartAttachmentUploadResultJsonUnmarshaller();
+            JsonResponseHandler<StartAttachmentUploadResult> responseHandler = new JsonResponseHandler<StartAttachmentUploadResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

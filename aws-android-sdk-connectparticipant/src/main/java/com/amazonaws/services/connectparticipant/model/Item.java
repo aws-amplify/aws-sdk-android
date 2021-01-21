@@ -73,7 +73,9 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MESSAGE, EVENT, CONNECTION_ACK
+     * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
+     * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
+     * ATTACHMENT, CONNECTION_ACK
      */
     private String type;
 
@@ -106,6 +108,13 @@ public class Item implements Serializable {
      * <b>Allowed Values: </b>AGENT, CUSTOMER, SYSTEM
      */
     private String participantRole;
+
+    /**
+     * <p>
+     * Provides information about the attachments.
+     * </p>
+     */
+    private java.util.List<AttachmentItem> attachments;
 
     /**
      * <p>
@@ -353,7 +362,9 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MESSAGE, EVENT, CONNECTION_ACK
+     * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
+     * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
+     * ATTACHMENT, CONNECTION_ACK
      *
      * @return <p>
      *         Type of the item: message or event.
@@ -370,7 +381,9 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MESSAGE, EVENT, CONNECTION_ACK
+     * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
+     * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
+     * ATTACHMENT, CONNECTION_ACK
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -390,7 +403,9 @@ public class Item implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MESSAGE, EVENT, CONNECTION_ACK
+     * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
+     * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
+     * ATTACHMENT, CONNECTION_ACK
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -410,7 +425,9 @@ public class Item implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MESSAGE, EVENT, CONNECTION_ACK
+     * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
+     * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
+     * ATTACHMENT, CONNECTION_ACK
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -430,7 +447,9 @@ public class Item implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>MESSAGE, EVENT, CONNECTION_ACK
+     * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
+     * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
+     * ATTACHMENT, CONNECTION_ACK
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -655,6 +674,80 @@ public class Item implements Serializable {
     }
 
     /**
+     * <p>
+     * Provides information about the attachments.
+     * </p>
+     *
+     * @return <p>
+     *         Provides information about the attachments.
+     *         </p>
+     */
+    public java.util.List<AttachmentItem> getAttachments() {
+        return attachments;
+    }
+
+    /**
+     * <p>
+     * Provides information about the attachments.
+     * </p>
+     *
+     * @param attachments <p>
+     *            Provides information about the attachments.
+     *            </p>
+     */
+    public void setAttachments(java.util.Collection<AttachmentItem> attachments) {
+        if (attachments == null) {
+            this.attachments = null;
+            return;
+        }
+
+        this.attachments = new java.util.ArrayList<AttachmentItem>(attachments);
+    }
+
+    /**
+     * <p>
+     * Provides information about the attachments.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param attachments <p>
+     *            Provides information about the attachments.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Item withAttachments(AttachmentItem... attachments) {
+        if (getAttachments() == null) {
+            this.attachments = new java.util.ArrayList<AttachmentItem>(attachments.length);
+        }
+        for (AttachmentItem value : attachments) {
+            this.attachments.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Provides information about the attachments.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param attachments <p>
+     *            Provides information about the attachments.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Item withAttachments(java.util.Collection<AttachmentItem> attachments) {
+        setAttachments(attachments);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -680,7 +773,9 @@ public class Item implements Serializable {
         if (getDisplayName() != null)
             sb.append("DisplayName: " + getDisplayName() + ",");
         if (getParticipantRole() != null)
-            sb.append("ParticipantRole: " + getParticipantRole());
+            sb.append("ParticipantRole: " + getParticipantRole() + ",");
+        if (getAttachments() != null)
+            sb.append("Attachments: " + getAttachments());
         sb.append("}");
         return sb.toString();
     }
@@ -703,6 +798,8 @@ public class Item implements Serializable {
                 + ((getDisplayName() == null) ? 0 : getDisplayName().hashCode());
         hashCode = prime * hashCode
                 + ((getParticipantRole() == null) ? 0 : getParticipantRole().hashCode());
+        hashCode = prime * hashCode
+                + ((getAttachments() == null) ? 0 : getAttachments().hashCode());
         return hashCode;
     }
 
@@ -753,6 +850,11 @@ public class Item implements Serializable {
             return false;
         if (other.getParticipantRole() != null
                 && other.getParticipantRole().equals(this.getParticipantRole()) == false)
+            return false;
+        if (other.getAttachments() == null ^ this.getAttachments() == null)
+            return false;
+        if (other.getAttachments() != null
+                && other.getAttachments().equals(this.getAttachments()) == false)
             return false;
         return true;
     }
