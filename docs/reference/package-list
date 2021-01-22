@@ -36,12 +36,8 @@ com.amazonaws.mobile.auth.userpools
 com.amazonaws.mobile.client
 com.amazonaws.mobile.client.results
 com.amazonaws.mobile.config
-com.amazonaws.mobileconnectors.amazonmobileanalytics
-com.amazonaws.mobileconnectors.amazonmobileanalytics.monetization
 com.amazonaws.mobileconnectors.apigateway
 com.amazonaws.mobileconnectors.apigateway.annotation
-com.amazonaws.mobileconnectors.cognito
-com.amazonaws.mobileconnectors.cognito.exceptions
 com.amazonaws.mobileconnectors.cognitoidentityprovider
 com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations
 com.amazonaws.mobileconnectors.cognitoidentityprovider.exceptions
@@ -79,9 +75,6 @@ com.amazonaws.mobileconnectors.pinpoint.analytics.monetization
 com.amazonaws.mobileconnectors.pinpoint.targeting
 com.amazonaws.mobileconnectors.pinpoint.targeting.endpointProfile
 com.amazonaws.mobileconnectors.pinpoint.targeting.notification
-com.amazonaws.mobileconnectors.s3.transfermanager
-com.amazonaws.mobileconnectors.s3.transfermanager.exception
-com.amazonaws.mobileconnectors.s3.transfermanager.model
 com.amazonaws.mobileconnectors.s3.transferutility
 com.amazonaws.mobileconnectors.util
 com.amazonaws.regions
