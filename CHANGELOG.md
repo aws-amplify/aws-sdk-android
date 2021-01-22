@@ -1,5 +1,10 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.22.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.1)
+
+### Misc.
+ - Amazon Cognito Identity Provider: Set session paraemter for DEVICE_SRP_AUTH request
+
 ## [Release 2.22.0](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.0)
 
 ### Model updates
