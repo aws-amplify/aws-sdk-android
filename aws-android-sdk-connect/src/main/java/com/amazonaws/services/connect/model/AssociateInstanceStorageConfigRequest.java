@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,8 +32,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * This API does not create a resource that doesn't exist. It only associates it
  * to the instance. Ensure that the resource being specified in the storage
- * configuration, like an Amazon S3 bucket, exists when being used for
- * association.
+ * configuration, like an S3 bucket, exists when being used for association.
  * </p>
  */
 public class AssociateInstanceStorageConfigRequest extends AmazonWebServiceRequest implements

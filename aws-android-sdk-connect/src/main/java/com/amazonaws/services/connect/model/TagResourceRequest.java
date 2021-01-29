@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds the specified tags to the specified resource.
  * </p>
  * <p>
- * The supported resource types are users, routing profiles, quick connects, and
- * contact flows.
+ * The supported resource types are users, routing profiles, queues, quick
+ * connects, and contact flows.
  * </p>
  * <p>
  * For sample policies that use tags, see <a href=

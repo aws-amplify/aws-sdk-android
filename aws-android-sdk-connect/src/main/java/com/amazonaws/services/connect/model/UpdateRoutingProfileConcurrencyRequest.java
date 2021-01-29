@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ public class UpdateRoutingProfileConcurrencyRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP).
+     * The channels that agents can handle in the Contact Control Panel (CCP).
      * </p>
      */
     private java.util.List<MediaConcurrency> mediaConcurrencies;
@@ -152,11 +152,11 @@ public class UpdateRoutingProfileConcurrencyRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP).
+     * The channels that agents can handle in the Contact Control Panel (CCP).
      * </p>
      *
      * @return <p>
-     *         The channels agents can handle in the Contact Control Panel
+     *         The channels that agents can handle in the Contact Control Panel
      *         (CCP).
      *         </p>
      */
@@ -166,12 +166,12 @@ public class UpdateRoutingProfileConcurrencyRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP).
+     * The channels that agents can handle in the Contact Control Panel (CCP).
      * </p>
      *
      * @param mediaConcurrencies <p>
-     *            The channels agents can handle in the Contact Control Panel
-     *            (CCP).
+     *            The channels that agents can handle in the Contact Control
+     *            Panel (CCP).
      *            </p>
      */
     public void setMediaConcurrencies(java.util.Collection<MediaConcurrency> mediaConcurrencies) {
@@ -185,15 +185,15 @@ public class UpdateRoutingProfileConcurrencyRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP).
+     * The channels that agents can handle in the Contact Control Panel (CCP).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mediaConcurrencies <p>
-     *            The channels agents can handle in the Contact Control Panel
-     *            (CCP).
+     *            The channels that agents can handle in the Contact Control
+     *            Panel (CCP).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -212,15 +212,15 @@ public class UpdateRoutingProfileConcurrencyRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP).
+     * The channels that agents can handle in the Contact Control Panel (CCP).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mediaConcurrencies <p>
-     *            The channels agents can handle in the Contact Control Panel
-     *            (CCP).
+     *            The channels that agents can handle in the Contact Control
+     *            Panel (CCP).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

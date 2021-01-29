@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -65,15 +65,15 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The inbound queues associated with the routing profile. If no queue is
-     * added, the agent can only make outbound calls.
+     * added, the agent can make only outbound calls.
      * </p>
      */
     private java.util.List<RoutingProfileQueueConfig> queueConfigs;
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP) for
-     * this routing profile.
+     * The channels that agents can handle in the Contact Control Panel (CCP)
+     * for this routing profile.
      * </p>
      */
     private java.util.List<MediaConcurrency> mediaConcurrencies;
@@ -301,12 +301,12 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The inbound queues associated with the routing profile. If no queue is
-     * added, the agent can only make outbound calls.
+     * added, the agent can make only outbound calls.
      * </p>
      *
      * @return <p>
      *         The inbound queues associated with the routing profile. If no
-     *         queue is added, the agent can only make outbound calls.
+     *         queue is added, the agent can make only outbound calls.
      *         </p>
      */
     public java.util.List<RoutingProfileQueueConfig> getQueueConfigs() {
@@ -316,12 +316,12 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The inbound queues associated with the routing profile. If no queue is
-     * added, the agent can only make outbound calls.
+     * added, the agent can make only outbound calls.
      * </p>
      *
      * @param queueConfigs <p>
      *            The inbound queues associated with the routing profile. If no
-     *            queue is added, the agent can only make outbound calls.
+     *            queue is added, the agent can make only outbound calls.
      *            </p>
      */
     public void setQueueConfigs(java.util.Collection<RoutingProfileQueueConfig> queueConfigs) {
@@ -336,7 +336,7 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The inbound queues associated with the routing profile. If no queue is
-     * added, the agent can only make outbound calls.
+     * added, the agent can make only outbound calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -344,7 +344,7 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
      *
      * @param queueConfigs <p>
      *            The inbound queues associated with the routing profile. If no
-     *            queue is added, the agent can only make outbound calls.
+     *            queue is added, the agent can make only outbound calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -363,7 +363,7 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
     /**
      * <p>
      * The inbound queues associated with the routing profile. If no queue is
-     * added, the agent can only make outbound calls.
+     * added, the agent can make only outbound calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -371,7 +371,7 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
      *
      * @param queueConfigs <p>
      *            The inbound queues associated with the routing profile. If no
-     *            queue is added, the agent can only make outbound calls.
+     *            queue is added, the agent can make only outbound calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -384,13 +384,13 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP) for
-     * this routing profile.
+     * The channels that agents can handle in the Contact Control Panel (CCP)
+     * for this routing profile.
      * </p>
      *
      * @return <p>
-     *         The channels agents can handle in the Contact Control Panel (CCP)
-     *         for this routing profile.
+     *         The channels that agents can handle in the Contact Control Panel
+     *         (CCP) for this routing profile.
      *         </p>
      */
     public java.util.List<MediaConcurrency> getMediaConcurrencies() {
@@ -399,13 +399,13 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP) for
-     * this routing profile.
+     * The channels that agents can handle in the Contact Control Panel (CCP)
+     * for this routing profile.
      * </p>
      *
      * @param mediaConcurrencies <p>
-     *            The channels agents can handle in the Contact Control Panel
-     *            (CCP) for this routing profile.
+     *            The channels that agents can handle in the Contact Control
+     *            Panel (CCP) for this routing profile.
      *            </p>
      */
     public void setMediaConcurrencies(java.util.Collection<MediaConcurrency> mediaConcurrencies) {
@@ -419,16 +419,16 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP) for
-     * this routing profile.
+     * The channels that agents can handle in the Contact Control Panel (CCP)
+     * for this routing profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mediaConcurrencies <p>
-     *            The channels agents can handle in the Contact Control Panel
-     *            (CCP) for this routing profile.
+     *            The channels that agents can handle in the Contact Control
+     *            Panel (CCP) for this routing profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -447,16 +447,16 @@ public class CreateRoutingProfileRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The channels agents can handle in the Contact Control Panel (CCP) for
-     * this routing profile.
+     * The channels that agents can handle in the Contact Control Panel (CCP)
+     * for this routing profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param mediaConcurrencies <p>
-     *            The channels agents can handle in the Contact Control Panel
-     *            (CCP) for this routing profile.
+     *            The channels that agents can handle in the Contact Control
+     *            Panel (CCP) for this routing profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

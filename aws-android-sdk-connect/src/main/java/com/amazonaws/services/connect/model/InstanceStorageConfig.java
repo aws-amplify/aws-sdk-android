@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ public class InstanceStorageConfig implements Serializable {
 
     /**
      * <p>
-     * The S3 configuration.
+     * The S3 bucket configuration.
      * </p>
      */
     private S3Config s3Config;
@@ -239,11 +239,11 @@ public class InstanceStorageConfig implements Serializable {
 
     /**
      * <p>
-     * The S3 configuration.
+     * The S3 bucket configuration.
      * </p>
      *
      * @return <p>
-     *         The S3 configuration.
+     *         The S3 bucket configuration.
      *         </p>
      */
     public S3Config getS3Config() {
@@ -252,11 +252,11 @@ public class InstanceStorageConfig implements Serializable {
 
     /**
      * <p>
-     * The S3 configuration.
+     * The S3 bucket configuration.
      * </p>
      *
      * @param s3Config <p>
-     *            The S3 configuration.
+     *            The S3 bucket configuration.
      *            </p>
      */
     public void setS3Config(S3Config s3Config) {
@@ -265,14 +265,14 @@ public class InstanceStorageConfig implements Serializable {
 
     /**
      * <p>
-     * The S3 configuration.
+     * The S3 bucket configuration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param s3Config <p>
-     *            The S3 configuration.
+     *            The S3 bucket configuration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
