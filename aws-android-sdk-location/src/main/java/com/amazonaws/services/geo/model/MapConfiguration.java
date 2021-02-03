@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,10 +28,10 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     * <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
-     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
-     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>
+     * Valid styles: <code>VectorEsriStreets</code>,
+     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
+     * <code>VectorEsriDarkGrayCanvas</code>,
+     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
      * <p>
@@ -53,10 +53,10 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     * <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
-     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
-     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>
+     * Valid styles: <code>VectorEsriStreets</code>,
+     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
+     * <code>VectorEsriDarkGrayCanvas</code>,
+     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
      * <p>
@@ -75,12 +75,12 @@ public class MapConfiguration implements Serializable {
      *         Specifies the map style selected from an available data provider.
      *         </p>
      *         <p>
-     *         Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     *         <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
+     *         Valid styles: <code>VectorEsriStreets</code>,
+     *         <code>VectorEsriTopographic</code>,
      *         <code>VectorEsriNavigation</code>,
      *         <code>VectorEsriDarkGrayCanvas</code>,
      *         <code>VectorEsriLightGrayCanvas</code>,
-     *         <code>VectorHereBerlin</code>
+     *         <code>VectorHereBerlin</code>.
      *         </p>
      *         <note>
      *         <p>
@@ -101,10 +101,10 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     * <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
-     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
-     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>
+     * Valid styles: <code>VectorEsriStreets</code>,
+     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
+     * <code>VectorEsriDarkGrayCanvas</code>,
+     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
      * <p>
@@ -124,12 +124,12 @@ public class MapConfiguration implements Serializable {
      *            provider.
      *            </p>
      *            <p>
-     *            Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     *            <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
+     *            Valid styles: <code>VectorEsriStreets</code>,
+     *            <code>VectorEsriTopographic</code>,
      *            <code>VectorEsriNavigation</code>,
      *            <code>VectorEsriDarkGrayCanvas</code>,
      *            <code>VectorEsriLightGrayCanvas</code>,
-     *            <code>VectorHereBerlin</code>
+     *            <code>VectorHereBerlin</code>.
      *            </p>
      *            <note>
      *            <p>
@@ -150,10 +150,10 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     * <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
-     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
-     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>
+     * Valid styles: <code>VectorEsriStreets</code>,
+     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
+     * <code>VectorEsriDarkGrayCanvas</code>,
+     * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
      * <p>
@@ -176,12 +176,12 @@ public class MapConfiguration implements Serializable {
      *            provider.
      *            </p>
      *            <p>
-     *            Valid styles: <code>VectorEsriLightGrayCanvas</code>,
-     *            <code>VectorEsriLight</code>, <code>VectorEsriStreets</code>,
+     *            Valid styles: <code>VectorEsriStreets</code>,
+     *            <code>VectorEsriTopographic</code>,
      *            <code>VectorEsriNavigation</code>,
      *            <code>VectorEsriDarkGrayCanvas</code>,
      *            <code>VectorEsriLightGrayCanvas</code>,
-     *            <code>VectorHereBerlin</code>
+     *            <code>VectorHereBerlin</code>.
      *            </p>
      *            <note>
      *            <p>
