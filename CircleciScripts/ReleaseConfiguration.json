@@ -12,7 +12,6 @@
 			"aws-android-sdk-auth-google",
 			// "aws-android-sdk-auth-ui",
 			"aws-android-sdk-auth-userpools",
-			"aws-android-sdk-autoscaling",
 			"aws-android-sdk-cloudwatch",
 		    // "aws-android-sdk-cognitoauth",
 			"aws-android-sdk-cognitoidentityprovider",

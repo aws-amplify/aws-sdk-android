@@ -45,7 +45,6 @@ dependencies {
  * auth-google
  * auth-ui
  * auth-userpools
- * autoscaling
  * cloudwatch
  * cognitoauth
  * cognitoidentityprovider
@@ -57,7 +56,6 @@ dependencies {
  * ddb-document
  * ddb-mapper
  * ec2
- * elb
  * iot
  * kinesis
  * kinesisvideo
