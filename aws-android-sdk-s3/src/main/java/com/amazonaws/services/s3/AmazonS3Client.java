@@ -169,7 +169,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     public static final String S3_SERVICE_NAME = "s3";
 
-    private static final String S3_SIGNER = "S3SignerType";
     private static final String S3_V4_SIGNER = "AWSS3V4SignerType";
 
     /** Shared logger for client events */
@@ -180,7 +179,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         AwsSdkMetrics.addAll(Arrays.asList(S3ServiceMetric.values()));
 
         // Register S3-specific signers.
-        SignerFactory.registerSigner(S3_SIGNER, S3Signer.class);
         SignerFactory.registerSigner(S3_V4_SIGNER, AWSS3V4Signer.class);
     }
 

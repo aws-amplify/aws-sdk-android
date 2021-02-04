@@ -157,8 +157,8 @@ public class InternalConfig {
         // map from abbreviated service name to signer type
         final Map<String, SignerConfig> ret = new HashMap<String, SignerConfig>();
         ret.put("ec2", new SignerConfig("QueryStringSignerType"));
-        ret.put("email", new SignerConfig("AWS3SignerType"));
-        ret.put("s3", new SignerConfig("S3SignerType"));
+        ret.put("email", new SignerConfig("AWS4SignerType"));
+        ret.put("s3", new SignerConfig("AWSS3V4SignerType"));
         ret.put("sdb", new SignerConfig("QueryStringSignerType"));
         ret.put("runtime.lex", new SignerConfig("AmazonLexV4Signer"));
         ret.put("polly", new SignerConfig("AmazonPollyCustomPresigner"));
