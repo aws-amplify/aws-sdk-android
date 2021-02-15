@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,12 +26,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * You can add or update attributes for both ongoing and completed contacts. For
- * example, you can update the customer's name or the reason the customer called
- * while the call is active, or add notes about steps that the agent took during
- * the call that are displayed to the next agent that takes the call. You can
+ * example, while the call is active, you can update the customer's name or the
+ * reason the customer called. You can add notes about steps that the agent took
+ * during the call that display to the next agent that takes the call. You can
  * also update attributes for a contact using data from your CRM application and
  * save the data with the contact in Amazon Connect. You could also flag calls
- * for additional analysis, such as legal review or identifying abusive callers.
+ * for additional analysis, such as legal review or to identify abusive callers.
  * </p>
  * <p>
  * Contact attributes are available in Amazon Connect for 24 months, and are
@@ -39,12 +39,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * <b>Important:</b> You cannot use the operation to update attributes for
- * contacts that occurred prior to the release of the API, September 12, 2018.
- * You can update attributes only for contacts that started after the release of
- * the API. If you attempt to update attributes for a contact that occurred
- * prior to the release of the API, a 400 error is returned. This applies also
- * to queued callbacks that were initiated prior to the release of the API but
- * are still active in your instance.
+ * contacts that occurred prior to the release of the API, which was September
+ * 12, 2018. You can update attributes only for contacts that started after the
+ * release of the API. If you attempt to update attributes for a contact that
+ * occurred prior to the release of the API, a 400 error is returned. This
+ * applies also to queued callbacks that were initiated prior to the release of
+ * the API but are still active in your instance.
  * </p>
  */
 public class UpdateContactAttributesRequest extends AmazonWebServiceRequest implements Serializable {

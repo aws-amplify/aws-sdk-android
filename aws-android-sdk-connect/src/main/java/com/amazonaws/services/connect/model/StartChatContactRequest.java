@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Service.
  * </p>
  * <p>
- * When a new chat contact is successfully created, clients need to subscribe to
+ * When a new chat contact is successfully created, clients must subscribe to
  * the participant’s connection for the created chat within 5 minutes. This is
  * achieved by invoking <a href=
  * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
@@ -54,7 +54,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * For more information about how chat works, see <a
+ * For more information about chat, see <a
  * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
  * >Chat</a> in the <i>Amazon Connect Administrator Guide</i>.
  * </p>
@@ -92,7 +92,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
+     * standard Amazon Connect attributes. They can be accessed in contact flows
      * just like any other contact attributes.
      * </p>
      * <p>
@@ -299,7 +299,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
+     * standard Amazon Connect attributes. They can be accessed in contact flows
      * just like any other contact attributes.
      * </p>
      * <p>
@@ -310,7 +310,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      *
      * @return <p>
      *         A custom key-value pair using an attribute map. The attributes
-     *         are standard Amazon Connect attributes, and can be accessed in
+     *         are standard Amazon Connect attributes. They can be accessed in
      *         contact flows just like any other contact attributes.
      *         </p>
      *         <p>
@@ -326,7 +326,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
+     * standard Amazon Connect attributes. They can be accessed in contact flows
      * just like any other contact attributes.
      * </p>
      * <p>
@@ -337,8 +337,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      *
      * @param attributes <p>
      *            A custom key-value pair using an attribute map. The attributes
-     *            are standard Amazon Connect attributes, and can be accessed in
-     *            contact flows just like any other contact attributes.
+     *            are standard Amazon Connect attributes. They can be accessed
+     *            in contact flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            There can be up to 32,768 UTF-8 bytes across all key-value
@@ -353,7 +353,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
+     * standard Amazon Connect attributes. They can be accessed in contact flows
      * just like any other contact attributes.
      * </p>
      * <p>
@@ -367,8 +367,8 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
      *
      * @param attributes <p>
      *            A custom key-value pair using an attribute map. The attributes
-     *            are standard Amazon Connect attributes, and can be accessed in
-     *            contact flows just like any other contact attributes.
+     *            are standard Amazon Connect attributes. They can be accessed
+     *            in contact flows just like any other contact attributes.
      *            </p>
      *            <p>
      *            There can be up to 32,768 UTF-8 bytes across all key-value
@@ -386,7 +386,7 @@ public class StartChatContactRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * A custom key-value pair using an attribute map. The attributes are
-     * standard Amazon Connect attributes, and can be accessed in contact flows
+     * standard Amazon Connect attributes. They can be accessed in contact flows
      * just like any other contact attributes.
      * </p>
      * <p>

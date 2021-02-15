@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,14 +32,14 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the quick connect.
      * </p>
      */
     private String arn;
 
     /**
      * <p>
-     * The name.
+     * The name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -106,11 +106,11 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the quick connect.
      * </p>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN).
+     *         The Amazon Resource Name (ARN) of the quick connect.
      *         </p>
      */
     public String getArn() {
@@ -119,11 +119,11 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the quick connect.
      * </p>
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN).
+     *            The Amazon Resource Name (ARN) of the quick connect.
      *            </p>
      */
     public void setArn(String arn) {
@@ -132,14 +132,14 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN).
+     * The Amazon Resource Name (ARN) of the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param arn <p>
-     *            The Amazon Resource Name (ARN).
+     *            The Amazon Resource Name (ARN) of the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -151,14 +151,14 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The name.
+     * The name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         The name.
+     *         The name of the quick connect.
      *         </p>
      */
     public String getName() {
@@ -167,14 +167,14 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The name.
+     * The name of the quick connect.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name.
+     *            The name of the quick connect.
      *            </p>
      */
     public void setName(String name) {
@@ -183,7 +183,7 @@ public class QuickConnectSummary implements Serializable {
 
     /**
      * <p>
-     * The name.
+     * The name of the quick connect.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -193,7 +193,7 @@ public class QuickConnectSummary implements Serializable {
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name.
+     *            The name of the quick connect.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

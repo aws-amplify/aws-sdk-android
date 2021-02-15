@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ public class ListQuickConnectsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,14 +180,14 @@ public class ListQuickConnectsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @return <p>
-     *         The maximimum number of results to return per page.
+     *         The maximum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -196,14 +196,14 @@ public class ListQuickConnectsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -212,7 +212,7 @@ public class ListQuickConnectsRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -222,7 +222,7 @@ public class ListQuickConnectsRequest extends AmazonWebServiceRequest implements
      * <b>Range: </b>1 - 1000<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

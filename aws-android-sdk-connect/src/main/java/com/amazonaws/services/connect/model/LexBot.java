@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ public class LexBot implements Serializable {
 
     /**
      * <p>
-     * The Region the Amazon Lex bot was created in.
+     * The Region that the Amazon Lex bot was created in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,14 +99,14 @@ public class LexBot implements Serializable {
 
     /**
      * <p>
-     * The Region the Amazon Lex bot was created in.
+     * The Region that the Amazon Lex bot was created in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 60<br/>
      *
      * @return <p>
-     *         The Region the Amazon Lex bot was created in.
+     *         The Region that the Amazon Lex bot was created in.
      *         </p>
      */
     public String getLexRegion() {
@@ -115,14 +115,14 @@ public class LexBot implements Serializable {
 
     /**
      * <p>
-     * The Region the Amazon Lex bot was created in.
+     * The Region that the Amazon Lex bot was created in.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 60<br/>
      *
      * @param lexRegion <p>
-     *            The Region the Amazon Lex bot was created in.
+     *            The Region that the Amazon Lex bot was created in.
      *            </p>
      */
     public void setLexRegion(String lexRegion) {
@@ -131,7 +131,7 @@ public class LexBot implements Serializable {
 
     /**
      * <p>
-     * The Region the Amazon Lex bot was created in.
+     * The Region that the Amazon Lex bot was created in.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,7 +141,7 @@ public class LexBot implements Serializable {
      * <b>Length: </b> - 60<br/>
      *
      * @param lexRegion <p>
-     *            The Region the Amazon Lex bot was created in.
+     *            The Region that the Amazon Lex bot was created in.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

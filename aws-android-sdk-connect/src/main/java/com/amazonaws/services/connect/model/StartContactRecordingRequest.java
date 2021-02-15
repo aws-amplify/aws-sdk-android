@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API starts recording the contact when the agent joins the call.
+ * Starts recording the contact when the agent joins the call.
  * StartContactRecording is a one-time action. For example, if you use
  * StopContactRecording to stop recording an ongoing call, you can't use
  * StartContactRecording to restart it. For scenarios where the recording has
@@ -73,7 +73,7 @@ public class StartContactRecordingRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Who is being recorded.
+     * The person being recorded.
      * </p>
      */
     private VoiceRecordingConfiguration voiceRecordingConfiguration;
@@ -251,11 +251,11 @@ public class StartContactRecordingRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Who is being recorded.
+     * The person being recorded.
      * </p>
      *
      * @return <p>
-     *         Who is being recorded.
+     *         The person being recorded.
      *         </p>
      */
     public VoiceRecordingConfiguration getVoiceRecordingConfiguration() {
@@ -264,11 +264,11 @@ public class StartContactRecordingRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Who is being recorded.
+     * The person being recorded.
      * </p>
      *
      * @param voiceRecordingConfiguration <p>
-     *            Who is being recorded.
+     *            The person being recorded.
      *            </p>
      */
     public void setVoiceRecordingConfiguration(
@@ -278,14 +278,14 @@ public class StartContactRecordingRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * Who is being recorded.
+     * The person being recorded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param voiceRecordingConfiguration <p>
-     *            Who is being recorded.
+     *            The person being recorded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

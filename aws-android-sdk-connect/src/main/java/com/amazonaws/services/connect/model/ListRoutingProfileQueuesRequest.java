@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * List the queues associated with a routing profile.
+ * Lists the queues associated with a routing profile.
  * </p>
  */
 public class ListRoutingProfileQueuesRequest extends AmazonWebServiceRequest implements
@@ -54,7 +54,7 @@ public class ListRoutingProfileQueuesRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -220,14 +220,14 @@ public class ListRoutingProfileQueuesRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximimum number of results to return per page.
+     *         The maximum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -236,14 +236,14 @@ public class ListRoutingProfileQueuesRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -252,7 +252,7 @@ public class ListRoutingProfileQueuesRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -262,7 +262,7 @@ public class ListRoutingProfileQueuesRequest extends AmazonWebServiceRequest imp
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

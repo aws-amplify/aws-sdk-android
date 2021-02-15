@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Returns the current state of the specified instance identifier. It tracks the
- * instance while it is being created and returns an error status if applicable.
+ * instance while it is being created and returns an error status, if
+ * applicable.
  * </p>
  * <p>
  * If an instance is not created successfully, the instance status reason field
