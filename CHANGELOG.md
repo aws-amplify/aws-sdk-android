@@ -1,12 +1,15 @@
----
-
-MOVE THIS SECTION TO THE CORRECT LOCATION
-
-### Misc. Updates
-
-- Model updates for the following services
----geo
 # Change Log - AWS SDK for Android
+
+## [Release 2.22.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.2)
+
+### Misc.
+ - Removed references to SigV3 signers in favor of SigV4 signers. See [#2341](https://github.com/aws-amplify/aws-sdk-android/pull/2341).
+
+### Model updates
+ - Amazon Connect
+ - Amazon Location
+ - AWS IoT
+ - AWS Lambda
 
 ## [Release 2.22.1](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.1)
 
