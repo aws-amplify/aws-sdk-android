@@ -99,6 +99,14 @@ public final class CustomTabsManagerActivity extends Activity {
         outState.putParcelable(CUSTOM_TABS_INTENT_KEY, customTabsIntent);
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null) {
+            extractState(savedInstanceState);
+        }
+    }
+
     private void handleAuthorizationComplete() {
         setResult(RESULT_OK, getIntent());
     }
