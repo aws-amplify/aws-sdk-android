@@ -146,10 +146,12 @@ allprojects {
     }
 }
 ```
-Then, specify `local` instead of a version number to point to mavenLocal inside `build.gradle(Module)` file:
+Then, find the `VERSION_NAME` of the *library* inside `gradle.properties` file.
+
+Use the above version to specify dependencies in your *app*'s `build.gradle (:app)` file:
 ```
 dependencies {
-    implementation 'com.amazonaws:aws-android-sdk-SERVICE:local'
+    implementation 'com.amazonaws:aws-android-sdk-SERVICE:VERSION_NAME'
 }
 ```
 
