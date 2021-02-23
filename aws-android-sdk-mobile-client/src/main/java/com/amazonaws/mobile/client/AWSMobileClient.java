@@ -457,6 +457,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     protected Runnable _initialize(final Context context, final AWSConfiguration awsConfiguration, final Callback<UserStateDetails> callback) {
         return new Runnable() {
             public void run() {
+
                 synchronized (initLockObject) {
                     if (AWSMobileClient.this.awsConfiguration != null) {
                         callback.onResult(getUserStateDetails(true));
@@ -483,11 +484,14 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     mContext = context.getApplicationContext();
                     mStore = new AWSMobileClientStore(AWSMobileClient.this);
 
+                    AWSMobileClient.this.awsConfiguration = awsConfiguration;
+
                     final IdentityManager identityManager = new IdentityManager(mContext);
                     identityManager.enableFederation(false);
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
+                    registerConfigSignInProviders();
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -603,8 +607,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 " At least one must be present to use AWSMobileClient."));
                         return;
                     }
-
-                    AWSMobileClient.this.awsConfiguration = awsConfiguration;
 
                     final UserStateDetails userStateDetails = getUserStateDetails(true);
                     callback.onResult(userStateDetails);
@@ -3352,8 +3354,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         callback.onError(new RuntimeException("Called showSignIn while user is already signed-in"));
                         return;
                     }
-
-                    registerConfigSignInProviders();
 
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
                             .canCancel(signInUIOptions.canCancel())
