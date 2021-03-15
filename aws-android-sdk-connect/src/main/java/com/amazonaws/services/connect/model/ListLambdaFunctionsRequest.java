@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Returns a paginated list of all the Lambda functions that show up in the
- * drop-down options in the relevant contact flow blocks.
+ * Returns a paginated list of all Lambda functions that display in the dropdown
+ * options in the relevant contact flow blocks.
  * </p>
  */
 public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implements Serializable {
@@ -50,7 +50,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -171,14 +171,14 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 25<br/>
      *
      * @return <p>
-     *         The maximimum number of results to return per page.
+     *         The maximum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -187,14 +187,14 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 25<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -203,7 +203,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,7 +213,7 @@ public class ListLambdaFunctionsRequest extends AmazonWebServiceRequest implemen
      * <b>Range: </b>1 - 25<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

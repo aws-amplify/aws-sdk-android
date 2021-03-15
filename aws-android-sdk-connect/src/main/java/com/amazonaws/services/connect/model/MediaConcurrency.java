@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1 - 10<br/>
      */
     private Integer concurrency;
 
@@ -152,7 +152,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1 - 10<br/>
      *
      * @return <p>
      *         The number of contacts an agent can have on a channel
@@ -169,7 +169,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1 - 10<br/>
      *
      * @param concurrency <p>
      *            The number of contacts an agent can have on a channel
@@ -189,7 +189,7 @@ public class MediaConcurrency implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 5<br/>
+     * <b>Range: </b>1 - 10<br/>
      *
      * @param concurrency <p>
      *            The number of contacts an agent can have on a channel

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ public class ListInstancesRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,14 +109,14 @@ public class ListInstancesRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10<br/>
      *
      * @return <p>
-     *         The maximimum number of results to return per page.
+     *         The maximum number of results to return per page.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -125,14 +125,14 @@ public class ListInstancesRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -141,7 +141,7 @@ public class ListInstancesRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The maximimum number of results to return per page.
+     * The maximum number of results to return per page.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -151,7 +151,7 @@ public class ListInstancesRequest extends AmazonWebServiceRequest implements Ser
      * <b>Range: </b>1 - 10<br/>
      *
      * @param maxResults <p>
-     *            The maximimum number of results to return per page.
+     *            The maximum number of results to return per page.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

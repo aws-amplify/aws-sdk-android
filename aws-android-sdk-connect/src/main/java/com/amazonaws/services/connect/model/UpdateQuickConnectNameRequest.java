@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Updates the name and description of a quick connect. The request accepts the
- * following data in JSON format. At least Name or Description must be provided.
+ * following data in JSON format. At least <code>Name</code> or
+ * <code>Description</code> must be provided.
  * </p>
  */
 public class UpdateQuickConnectNameRequest extends AmazonWebServiceRequest implements Serializable {

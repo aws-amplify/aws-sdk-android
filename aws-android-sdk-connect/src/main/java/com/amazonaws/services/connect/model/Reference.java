@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@ import java.io.Serializable;
 public class Reference implements Serializable {
     /**
      * <p>
-     * A formatted URL that will be shown to an agent in the Contact Control
-     * Panel (CCP)
+     * A formatted URL that displays to an agent in the Contact Control Panel
+     * (CCP)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,16 +47,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A formatted URL that will be shown to an agent in the Contact Control
-     * Panel (CCP)
+     * A formatted URL that displays to an agent in the Contact Control Panel
+     * (CCP)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
-     *         A formatted URL that will be shown to an agent in the Contact
-     *         Control Panel (CCP)
+     *         A formatted URL that displays to an agent in the Contact Control
+     *         Panel (CCP)
      *         </p>
      */
     public String getValue() {
@@ -65,15 +65,15 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A formatted URL that will be shown to an agent in the Contact Control
-     * Panel (CCP)
+     * A formatted URL that displays to an agent in the Contact Control Panel
+     * (CCP)
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            A formatted URL that will be shown to an agent in the Contact
+     *            A formatted URL that displays to an agent in the Contact
      *            Control Panel (CCP)
      *            </p>
      */
@@ -83,8 +83,8 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A formatted URL that will be shown to an agent in the Contact Control
-     * Panel (CCP)
+     * A formatted URL that displays to an agent in the Contact Control Panel
+     * (CCP)
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,7 +94,7 @@ public class Reference implements Serializable {
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            A formatted URL that will be shown to an agent in the Contact
+     *            A formatted URL that displays to an agent in the Contact
      *            Control Panel (CCP)
      *            </p>
      * @return A reference to this updated object so that method calls can be

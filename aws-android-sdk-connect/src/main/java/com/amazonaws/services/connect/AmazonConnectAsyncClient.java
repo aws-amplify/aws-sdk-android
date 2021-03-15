@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,26 +33,26 @@ import com.amazonaws.services.connect.model.*;
 /**
  * Interface for accessing Amazon Connect asynchronously.
  * <p>
- * Amazon Connect is a cloud-based contact center solution that makes it easy to
- * set up and manage a customer contact center and provide reliable customer
+ * Amazon Connect is a cloud-based contact center solution that you use to set
+ * up and manage a customer contact center and provide reliable customer
  * engagement at any scale.
  * </p>
  * <p>
- * Amazon Connect provides rich metrics and real-time reporting that allow you
- * to optimize contact routing. You can also resolve customer issues more
- * efficiently by putting customers in touch with the right agents.
+ * Amazon Connect provides metrics and real-time reporting that enable you to
+ * optimize contact routing. You can also resolve customer issues more
+ * efficiently by getting customers in touch with the appropriate agents.
  * </p>
  * <p>
  * There are limits to the number of Amazon Connect resources that you can
- * create and limits to the number of requests that you can make per second. For
- * more information, see <a href=
+ * create. There are also limits to the number of requests that you can make per
+ * second. For more information, see <a href=
  * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
  * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
  * </p>
  * <p>
- * To connect programmatically to an AWS service, you use an endpoint. For a
- * list of Amazon Connect endpoints, see <a
+ * You can connect programmatically to an AWS service by using an endpoint. For
+ * a list of Amazon Connect endpoints, see <a
  * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
  * >Amazon Connect Endpoints</a>.
  * </p>
@@ -383,8 +383,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * <p>
      * This API does not create a resource that doesn't exist. It only
      * associates it to the instance. Ensure that the resource being specified
-     * in the storage configuration, like an Amazon S3 bucket, exists when being
-     * used for association.
+     * in the storage configuration, like an S3 bucket, exists when being used
+     * for association.
      * </p>
      * 
      * @param associateInstanceStorageConfigRequest
@@ -429,8 +429,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * <p>
      * This API does not create a resource that doesn't exist. It only
      * associates it to the instance. Ensure that the resource being specified
-     * in the storage configuration, like an Amazon S3 bucket, exists when being
-     * used for association.
+     * in the storage configuration, like an S3 bucket, exists when being used
+     * for association.
      * </p>
      * 
      * @param associateInstanceStorageConfigRequest
@@ -637,6 +637,90 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(associateLexBotRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Associates a set of quick connects with a queue.
+     * </p>
+     * 
+     * @param associateQueueQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         AssociateQueueQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> associateQueueQuickConnectsAsync(
+            final AssociateQueueQuickConnectsRequest associateQueueQuickConnectsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                associateQueueQuickConnects(associateQueueQuickConnectsRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Associates a set of quick connects with a queue.
+     * </p>
+     * 
+     * @param associateQueueQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         AssociateQueueQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> associateQueueQuickConnectsAsync(
+            final AssociateQueueQuickConnectsRequest associateQueueQuickConnectsRequest,
+            final AsyncHandler<AssociateQueueQuickConnectsRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    associateQueueQuickConnects(associateQueueQuickConnectsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(associateQueueQuickConnectsRequest, result);
                 return result;
             }
         });
@@ -895,9 +979,9 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Initiates an Amazon Connect instance with all the supported channels
-     * enabled. It does not attach any storage (such as Amazon S3, or Kinesis)
-     * or allow for any configurations on features such as Contact Lens for
-     * Amazon Connect.
+     * enabled. It does not attach any storage, such as Amazon Simple Storage
+     * Service (Amazon S3) or Amazon Kinesis. It also does not allow for any
+     * configurations on features, such as Contact Lens for Amazon Connect.
      * </p>
      * 
      * @param createInstanceRequest
@@ -933,9 +1017,9 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Initiates an Amazon Connect instance with all the supported channels
-     * enabled. It does not attach any storage (such as Amazon S3, or Kinesis)
-     * or allow for any configurations on features such as Contact Lens for
-     * Amazon Connect.
+     * enabled. It does not attach any storage, such as Amazon Simple Storage
+     * Service (Amazon S3) or Amazon Kinesis. It also does not allow for any
+     * configurations on features, such as Contact Lens for Amazon Connect.
      * </p>
      * 
      * @param createInstanceRequest
@@ -1049,6 +1133,87 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(createIntegrationAssociationRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a new queue for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createQueueRequest
+     * @return A Java Future object containing the response from the CreateQueue
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateQueueResult> createQueueAsync(final CreateQueueRequest createQueueRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateQueueResult>() {
+            public CreateQueueResult call() throws Exception {
+                return createQueue(createQueueRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a new queue for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createQueueRequest
+     * @return A Java Future object containing the response from the CreateQueue
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateQueueResult> createQueueAsync(final CreateQueueRequest createQueueRequest,
+            final AsyncHandler<CreateQueueRequest, CreateQueueResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateQueueResult>() {
+            public CreateQueueResult call() throws Exception {
+                CreateQueueResult result = null;
+                try {
+                    result = createQueue(createQueueRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createQueueRequest, result);
                 return result;
             }
         });
@@ -2020,8 +2185,89 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
+     * Describes the hours of operation.
+     * </p>
+     * 
+     * @param describeHoursOfOperationRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeHoursOfOperation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeHoursOfOperationResult> describeHoursOfOperationAsync(
+            final DescribeHoursOfOperationRequest describeHoursOfOperationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeHoursOfOperationResult>() {
+            public DescribeHoursOfOperationResult call() throws Exception {
+                return describeHoursOfOperation(describeHoursOfOperationRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the hours of operation.
+     * </p>
+     * 
+     * @param describeHoursOfOperationRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeHoursOfOperation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeHoursOfOperationResult> describeHoursOfOperationAsync(
+            final DescribeHoursOfOperationRequest describeHoursOfOperationRequest,
+            final AsyncHandler<DescribeHoursOfOperationRequest, DescribeHoursOfOperationResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeHoursOfOperationResult>() {
+            public DescribeHoursOfOperationResult call() throws Exception {
+                DescribeHoursOfOperationResult result = null;
+                try {
+                    result = describeHoursOfOperation(describeHoursOfOperationRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeHoursOfOperationRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Returns the current state of the specified instance identifier. It tracks
-     * the instance while it is being created and returns an error status if
+     * the instance while it is being created and returns an error status, if
      * applicable.
      * </p>
      * <p>
@@ -2062,7 +2308,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Returns the current state of the specified instance identifier. It tracks
-     * the instance while it is being created and returns an error status if
+     * the instance while it is being created and returns an error status, if
      * applicable.
      * </p>
      * <p>
@@ -2264,6 +2510,85 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(describeInstanceStorageConfigRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the specified queue.
+     * </p>
+     * 
+     * @param describeQueueRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeQueue service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeQueueResult> describeQueueAsync(
+            final DescribeQueueRequest describeQueueRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<DescribeQueueResult>() {
+            public DescribeQueueResult call() throws Exception {
+                return describeQueue(describeQueueRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the specified queue.
+     * </p>
+     * 
+     * @param describeQueueRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeQueue service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DescribeQueueResult> describeQueueAsync(
+            final DescribeQueueRequest describeQueueRequest,
+            final AsyncHandler<DescribeQueueRequest, DescribeQueueResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DescribeQueueResult>() {
+            public DescribeQueueResult call() throws Exception {
+                DescribeQueueResult result = null;
+                try {
+                    result = describeQueue(describeQueueRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(describeQueueRequest, result);
                 return result;
             }
         });
@@ -2820,7 +3145,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * Remove the Lambda function from the drop-down options available in the
+     * Remove the Lambda function from the dropdown options available in the
      * relevant contact flow blocks.
      * </p>
      * 
@@ -2858,7 +3183,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * Remove the Lambda function from the drop-down options available in the
+     * Remove the Lambda function from the dropdown options available in the
      * relevant contact flow blocks.
      * </p>
      * 
@@ -2975,6 +3300,88 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(disassociateLexBotRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Disassociates a set of quick connects from a queue.
+     * </p>
+     * 
+     * @param disassociateQueueQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         DisassociateQueueQuickConnects service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> disassociateQueueQuickConnectsAsync(
+            final DisassociateQueueQuickConnectsRequest disassociateQueueQuickConnectsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                disassociateQueueQuickConnects(disassociateQueueQuickConnectsRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Disassociates a set of quick connects from a queue.
+     * </p>
+     * 
+     * @param disassociateQueueQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         DisassociateQueueQuickConnects service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> disassociateQueueQuickConnectsAsync(
+            final DisassociateQueueQuickConnectsRequest disassociateQueueQuickConnectsRequest,
+            final AsyncHandler<DisassociateQueueQuickConnectsRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    disassociateQueueQuickConnects(disassociateQueueQuickConnectsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(disassociateQueueQuickConnectsRequest, result);
                 return result;
             }
         });
@@ -4041,8 +4448,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * Returns a paginated list of all the Lambda functions that show up in the
-     * drop-down options in the relevant contact flow blocks.
+     * Returns a paginated list of all Lambda functions that display in the
+     * dropdown options in the relevant contact flow blocks.
      * </p>
      * 
      * @param listLambdaFunctionsRequest
@@ -4078,8 +4485,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * Returns a paginated list of all the Lambda functions that show up in the
-     * drop-down options in the relevant contact flow blocks.
+     * Returns a paginated list of all Lambda functions that display in the
+     * dropdown options in the relevant contact flow blocks.
      * </p>
      * 
      * @param listLambdaFunctionsRequest
@@ -4355,6 +4762,87 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists the quick connects associated with a queue.
+     * </p>
+     * 
+     * @param listQueueQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         ListQueueQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListQueueQuickConnectsResult> listQueueQuickConnectsAsync(
+            final ListQueueQuickConnectsRequest listQueueQuickConnectsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListQueueQuickConnectsResult>() {
+            public ListQueueQuickConnectsResult call() throws Exception {
+                return listQueueQuickConnects(listQueueQuickConnectsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists the quick connects associated with a queue.
+     * </p>
+     * 
+     * @param listQueueQuickConnectsRequest
+     * @return A Java Future object containing the response from the
+     *         ListQueueQuickConnects service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListQueueQuickConnectsResult> listQueueQuickConnectsAsync(
+            final ListQueueQuickConnectsRequest listQueueQuickConnectsRequest,
+            final AsyncHandler<ListQueueQuickConnectsRequest, ListQueueQuickConnectsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListQueueQuickConnectsResult>() {
+            public ListQueueQuickConnectsResult call() throws Exception {
+                ListQueueQuickConnectsResult result = null;
+                try {
+                    result = listQueueQuickConnects(listQueueQuickConnectsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listQueueQuickConnectsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Provides information about the queues for the specified Amazon Connect
      * instance.
      * </p>
@@ -4519,7 +5007,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * List the queues associated with a routing profile.
+     * Lists the queues associated with a routing profile.
      * </p>
      * 
      * @param listRoutingProfileQueuesRequest
@@ -4551,7 +5039,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * List the queues associated with a routing profile.
+     * Lists the queues associated with a routing profile.
      * </p>
      * 
      * @param listRoutingProfileQueuesRequest
@@ -4938,7 +5426,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * List the use cases.
+     * Lists the use cases.
      * </p>
      * 
      * @param listUseCasesRequest <p>
@@ -4975,7 +5463,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
-     * List the use cases.
+     * Lists the use cases.
      * </p>
      * 
      * @param listUseCasesRequest <p>
@@ -5260,9 +5748,9 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * Service.
      * </p>
      * <p>
-     * When a new chat contact is successfully created, clients need to
-     * subscribe to the participant’s connection for the created chat within 5
-     * minutes. This is achieved by invoking <a href=
+     * When a new chat contact is successfully created, clients must subscribe
+     * to the participant’s connection for the created chat within 5 minutes.
+     * This is achieved by invoking <a href=
      * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
      * >CreateParticipantConnection</a> with WEBSOCKET and
      * CONNECTION_CREDENTIALS.
@@ -5287,7 +5775,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </li>
      * </ul>
      * <p>
-     * For more information about how chat works, see <a
+     * For more information about chat, see <a
      * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
      * >Chat</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
@@ -5328,9 +5816,9 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * Service.
      * </p>
      * <p>
-     * When a new chat contact is successfully created, clients need to
-     * subscribe to the participant’s connection for the created chat within 5
-     * minutes. This is achieved by invoking <a href=
+     * When a new chat contact is successfully created, clients must subscribe
+     * to the participant’s connection for the created chat within 5 minutes.
+     * This is achieved by invoking <a href=
      * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html"
      * >CreateParticipantConnection</a> with WEBSOCKET and
      * CONNECTION_CREDENTIALS.
@@ -5355,7 +5843,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </li>
      * </ul>
      * <p>
-     * For more information about how chat works, see <a
+     * For more information about chat, see <a
      * href="https://docs.aws.amazon.com/connect/latest/adminguide/chat.html"
      * >Chat</a> in the <i>Amazon Connect Administrator Guide</i>.
      * </p>
@@ -5397,7 +5885,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API starts recording the contact when the agent joins the call.
+     * Starts recording the contact when the agent joins the call.
      * StartContactRecording is a one-time action. For example, if you use
      * StopContactRecording to stop recording an ongoing call, you can't use
      * StartContactRecording to restart it. For scenarios where the recording
@@ -5443,7 +5931,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API starts recording the contact when the agent joins the call.
+     * Starts recording the contact when the agent joins the call.
      * StartContactRecording is a one-time action. For example, if you use
      * StopContactRecording to stop recording an ongoing call, you can't use
      * StartContactRecording to restart it. For scenarios where the recording
@@ -5498,18 +5986,18 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API places an outbound call to a contact, and then initiates the
-     * contact flow. It performs the actions in the contact flow that's
-     * specified (in <code>ContactFlowId</code>).
+     * Places an outbound call to a contact, and then initiates the contact
+     * flow. It performs the actions in the contact flow that's specified (in
+     * <code>ContactFlowId</code>).
      * </p>
      * <p>
-     * Agents are not involved in initiating the outbound API (that is, dialing
-     * the contact). If the contact flow places an outbound call to a contact,
-     * and then puts the contact in queue, that's when the call is routed to the
-     * agent, like any other inbound case.
+     * Agents do not initiate the outbound API, which means that they do not
+     * dial the contact. If the contact flow places an outbound call to a
+     * contact, and then puts the contact in queue, the call is then routed to
+     * the agent, like any other inbound case.
      * </p>
      * <p>
-     * There is a 60 second dialing timeout for this operation. If the call is
+     * There is a 60-second dialing timeout for this operation. If the call is
      * not connected after 60 seconds, it fails.
      * </p>
      * <note>
@@ -5554,18 +6042,18 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * This API places an outbound call to a contact, and then initiates the
-     * contact flow. It performs the actions in the contact flow that's
-     * specified (in <code>ContactFlowId</code>).
+     * Places an outbound call to a contact, and then initiates the contact
+     * flow. It performs the actions in the contact flow that's specified (in
+     * <code>ContactFlowId</code>).
      * </p>
      * <p>
-     * Agents are not involved in initiating the outbound API (that is, dialing
-     * the contact). If the contact flow places an outbound call to a contact,
-     * and then puts the contact in queue, that's when the call is routed to the
-     * agent, like any other inbound case.
+     * Agents do not initiate the outbound API, which means that they do not
+     * dial the contact. If the contact flow places an outbound call to a
+     * contact, and then puts the contact in queue, the call is then routed to
+     * the agent, like any other inbound case.
      * </p>
      * <p>
-     * There is a 60 second dialing timeout for this operation. If the call is
+     * There is a 60-second dialing timeout for this operation. If the call is
      * not connected after 60 seconds, it fails.
      * </p>
      * <note>
@@ -5761,7 +6249,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * When a contact is being recorded, this API stops recording the call.
+     * Stops recording a call when a contact is being recorded.
      * StopContactRecording is a one-time action. If you use
      * StopContactRecording to stop recording an ongoing call, you can't use
      * StartContactRecording to restart it. For scenarios where the recording
@@ -5800,7 +6288,7 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
-     * When a contact is being recorded, this API stops recording the call.
+     * Stops recording a call when a contact is being recorded.
      * StopContactRecording is a one-time action. If you use
      * StopContactRecording to stop recording an ongoing call, you can't use
      * StartContactRecording to restart it. For scenarios where the recording
@@ -5940,8 +6428,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, quick connects,
-     * and contact flows.
+     * The supported resource types are users, routing profiles, queues, quick
+     * connects, and contact flows.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -5981,8 +6469,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * Adds the specified tags to the specified resource.
      * </p>
      * <p>
-     * The supported resource types are users, routing profiles, quick connects,
-     * and contact flows.
+     * The supported resource types are users, routing profiles, queues, quick
+     * connects, and contact flows.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -6102,13 +6590,13 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * You can add or update attributes for both ongoing and completed contacts.
-     * For example, you can update the customer's name or the reason the
-     * customer called while the call is active, or add notes about steps that
-     * the agent took during the call that are displayed to the next agent that
-     * takes the call. You can also update attributes for a contact using data
-     * from your CRM application and save the data with the contact in Amazon
-     * Connect. You could also flag calls for additional analysis, such as legal
-     * review or identifying abusive callers.
+     * For example, while the call is active, you can update the customer's name
+     * or the reason the customer called. You can add notes about steps that the
+     * agent took during the call that display to the next agent that takes the
+     * call. You can also update attributes for a contact using data from your
+     * CRM application and save the data with the contact in Amazon Connect. You
+     * could also flag calls for additional analysis, such as legal review or to
+     * identify abusive callers.
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
@@ -6116,12 +6604,12 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * <b>Important:</b> You cannot use the operation to update attributes for
-     * contacts that occurred prior to the release of the API, September 12,
-     * 2018. You can update attributes only for contacts that started after the
-     * release of the API. If you attempt to update attributes for a contact
-     * that occurred prior to the release of the API, a 400 error is returned.
-     * This applies also to queued callbacks that were initiated prior to the
-     * release of the API but are still active in your instance.
+     * contacts that occurred prior to the release of the API, which was
+     * September 12, 2018. You can update attributes only for contacts that
+     * started after the release of the API. If you attempt to update attributes
+     * for a contact that occurred prior to the release of the API, a 400 error
+     * is returned. This applies also to queued callbacks that were initiated
+     * prior to the release of the API but are still active in your instance.
      * </p>
      * 
      * @param updateContactAttributesRequest
@@ -6157,13 +6645,13 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * You can add or update attributes for both ongoing and completed contacts.
-     * For example, you can update the customer's name or the reason the
-     * customer called while the call is active, or add notes about steps that
-     * the agent took during the call that are displayed to the next agent that
-     * takes the call. You can also update attributes for a contact using data
-     * from your CRM application and save the data with the contact in Amazon
-     * Connect. You could also flag calls for additional analysis, such as legal
-     * review or identifying abusive callers.
+     * For example, while the call is active, you can update the customer's name
+     * or the reason the customer called. You can add notes about steps that the
+     * agent took during the call that display to the next agent that takes the
+     * call. You can also update attributes for a contact using data from your
+     * CRM application and save the data with the contact in Amazon Connect. You
+     * could also flag calls for additional analysis, such as legal review or to
+     * identify abusive callers.
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
@@ -6171,12 +6659,12 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * <b>Important:</b> You cannot use the operation to update attributes for
-     * contacts that occurred prior to the release of the API, September 12,
-     * 2018. You can update attributes only for contacts that started after the
-     * release of the API. If you attempt to update attributes for a contact
-     * that occurred prior to the release of the API, a 400 error is returned.
-     * This applies also to queued callbacks that were initiated prior to the
-     * release of the API but are still active in your instance.
+     * contacts that occurred prior to the release of the API, which was
+     * September 12, 2018. You can update attributes only for contacts that
+     * started after the release of the API. If you attempt to update attributes
+     * for a contact that occurred prior to the release of the API, a 400 error
+     * is returned. This applies also to queued callbacks that were initiated
+     * prior to the release of the API but are still active in your instance.
      * </p>
      * 
      * @param updateContactAttributesRequest
@@ -6558,6 +7046,418 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
+     * Updates the hours of operation for the specified queue.
+     * </p>
+     * 
+     * @param updateQueueHoursOfOperationRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueHoursOfOperation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueHoursOfOperationAsync(
+            final UpdateQueueHoursOfOperationRequest updateQueueHoursOfOperationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQueueHoursOfOperation(updateQueueHoursOfOperationRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the hours of operation for the specified queue.
+     * </p>
+     * 
+     * @param updateQueueHoursOfOperationRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueHoursOfOperation service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueHoursOfOperationAsync(
+            final UpdateQueueHoursOfOperationRequest updateQueueHoursOfOperationRequest,
+            final AsyncHandler<UpdateQueueHoursOfOperationRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQueueHoursOfOperation(updateQueueHoursOfOperationRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQueueHoursOfOperationRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the maximum number of contacts allowed in a queue before it is
+     * considered full.
+     * </p>
+     * 
+     * @param updateQueueMaxContactsRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueMaxContacts service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueMaxContactsAsync(
+            final UpdateQueueMaxContactsRequest updateQueueMaxContactsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQueueMaxContacts(updateQueueMaxContactsRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the maximum number of contacts allowed in a queue before it is
+     * considered full.
+     * </p>
+     * 
+     * @param updateQueueMaxContactsRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueMaxContacts service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueMaxContactsAsync(
+            final UpdateQueueMaxContactsRequest updateQueueMaxContactsRequest,
+            final AsyncHandler<UpdateQueueMaxContactsRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQueueMaxContacts(updateQueueMaxContactsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQueueMaxContactsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the name and description of a queue. At least <code>Name</code>
+     * or <code>Description</code> must be provided.
+     * </p>
+     * 
+     * @param updateQueueNameRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueName service method, as returned by Amazon Connect.
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueNameAsync(final UpdateQueueNameRequest updateQueueNameRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQueueName(updateQueueNameRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the name and description of a queue. At least <code>Name</code>
+     * or <code>Description</code> must be provided.
+     * </p>
+     * 
+     * @param updateQueueNameRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueName service method, as returned by Amazon Connect.
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueNameAsync(final UpdateQueueNameRequest updateQueueNameRequest,
+            final AsyncHandler<UpdateQueueNameRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQueueName(updateQueueNameRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQueueNameRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the outbound caller ID name, number, and outbound whisper flow
+     * for a specified queue.
+     * </p>
+     * 
+     * @param updateQueueOutboundCallerConfigRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueOutboundCallerConfig service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueOutboundCallerConfigAsync(
+            final UpdateQueueOutboundCallerConfigRequest updateQueueOutboundCallerConfigRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQueueOutboundCallerConfig(updateQueueOutboundCallerConfigRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the outbound caller ID name, number, and outbound whisper flow
+     * for a specified queue.
+     * </p>
+     * 
+     * @param updateQueueOutboundCallerConfigRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueOutboundCallerConfig service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueOutboundCallerConfigAsync(
+            final UpdateQueueOutboundCallerConfigRequest updateQueueOutboundCallerConfigRequest,
+            final AsyncHandler<UpdateQueueOutboundCallerConfigRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQueueOutboundCallerConfig(updateQueueOutboundCallerConfigRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQueueOutboundCallerConfigRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the status of the queue.
+     * </p>
+     * 
+     * @param updateQueueStatusRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueStatus service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueStatusAsync(
+            final UpdateQueueStatusRequest updateQueueStatusRequest) throws AmazonServiceException,
+            AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                updateQueueStatus(updateQueueStatusRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the status of the queue.
+     * </p>
+     * 
+     * @param updateQueueStatusRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateQueueStatus service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> updateQueueStatusAsync(
+            final UpdateQueueStatusRequest updateQueueStatusRequest,
+            final AsyncHandler<UpdateQueueStatusRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    updateQueueStatus(updateQueueStatusRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateQueueStatusRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Updates the configuration settings for the specified quick connect.
      * </p>
      * 
@@ -6641,8 +7541,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Updates the name and description of a quick connect. The request accepts
-     * the following data in JSON format. At least Name or Description must be
-     * provided.
+     * the following data in JSON format. At least <code>Name</code> or
+     * <code>Description</code> must be provided.
      * </p>
      * 
      * @param updateQuickConnectNameRequest
@@ -6680,8 +7580,8 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <p>
      * Updates the name and description of a quick connect. The request accepts
-     * the following data in JSON format. At least Name or Description must be
-     * provided.
+     * the following data in JSON format. At least <code>Name</code> or
+     * <code>Description</code> must be provided.
      * </p>
      * 
      * @param updateQuickConnectNameRequest
@@ -7260,13 +8160,12 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <important>
      * <p>
-     * Someone with the ability to invoke <code>UpdateUserIndentityInfo</code>
-     * can change the login credentials of other users by changing their email
-     * address. This poses a security risk to your organization. They can change
-     * the email address of a user to the attacker's email address, and then
-     * reset the password through email. We strongly recommend limiting who has
-     * the ability to invoke <code>UpdateUserIndentityInfo</code>. For more
-     * information, see <a href=
+     * We strongly recommend limiting who has the ability to invoke
+     * <code>UpdateUserIdentityInfo</code>. Someone with that ability can change
+     * the login credentials of other users by changing their email address.
+     * This poses a security risk to your organization. They can change the
+     * email address of a user to the attacker's email address, and then reset
+     * the password through email. For more information, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html"
      * >Best Practices for Security Profiles</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
@@ -7307,13 +8206,12 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * </p>
      * <important>
      * <p>
-     * Someone with the ability to invoke <code>UpdateUserIndentityInfo</code>
-     * can change the login credentials of other users by changing their email
-     * address. This poses a security risk to your organization. They can change
-     * the email address of a user to the attacker's email address, and then
-     * reset the password through email. We strongly recommend limiting who has
-     * the ability to invoke <code>UpdateUserIndentityInfo</code>. For more
-     * information, see <a href=
+     * We strongly recommend limiting who has the ability to invoke
+     * <code>UpdateUserIdentityInfo</code>. Someone with that ability can change
+     * the login credentials of other users by changing their email address.
+     * This poses a security risk to your organization. They can change the
+     * email address of a user to the attacker's email address, and then reset
+     * the password through email. For more information, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html"
      * >Best Practices for Security Profiles</a> in the <i>Amazon Connect
      * Administrator Guide</i>.

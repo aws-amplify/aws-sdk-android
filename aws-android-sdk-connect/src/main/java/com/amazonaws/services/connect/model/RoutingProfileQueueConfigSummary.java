@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class RoutingProfileQueueConfigSummary implements Serializable {
     /**
      * <p>
-     * The identifier of the queue.
+     * The identifier for the queue.
      * </p>
      */
     private String queueId;
@@ -86,11 +86,11 @@ public class RoutingProfileQueueConfigSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the queue.
+     * The identifier for the queue.
      * </p>
      *
      * @return <p>
-     *         The identifier of the queue.
+     *         The identifier for the queue.
      *         </p>
      */
     public String getQueueId() {
@@ -99,11 +99,11 @@ public class RoutingProfileQueueConfigSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the queue.
+     * The identifier for the queue.
      * </p>
      *
      * @param queueId <p>
-     *            The identifier of the queue.
+     *            The identifier for the queue.
      *            </p>
      */
     public void setQueueId(String queueId) {
@@ -112,14 +112,14 @@ public class RoutingProfileQueueConfigSummary implements Serializable {
 
     /**
      * <p>
-     * The identifier of the queue.
+     * The identifier for the queue.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param queueId <p>
-     *            The identifier of the queue.
+     *            The identifier for the queue.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

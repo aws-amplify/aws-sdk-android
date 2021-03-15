@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Information about the S3 storage type.
+ * Information about the Amazon Simple Storage Service (Amazon S3) storage type.
  * </p>
  */
 public class S3Config implements Serializable {
@@ -45,7 +45,7 @@ public class S3Config implements Serializable {
 
     /**
      * <p>
-     * The S3 encryption configuration.
+     * The Amazon S3 encryption configuration.
      * </p>
      */
     private EncryptionConfig encryptionConfig;
@@ -160,11 +160,11 @@ public class S3Config implements Serializable {
 
     /**
      * <p>
-     * The S3 encryption configuration.
+     * The Amazon S3 encryption configuration.
      * </p>
      *
      * @return <p>
-     *         The S3 encryption configuration.
+     *         The Amazon S3 encryption configuration.
      *         </p>
      */
     public EncryptionConfig getEncryptionConfig() {
@@ -173,11 +173,11 @@ public class S3Config implements Serializable {
 
     /**
      * <p>
-     * The S3 encryption configuration.
+     * The Amazon S3 encryption configuration.
      * </p>
      *
      * @param encryptionConfig <p>
-     *            The S3 encryption configuration.
+     *            The Amazon S3 encryption configuration.
      *            </p>
      */
     public void setEncryptionConfig(EncryptionConfig encryptionConfig) {
@@ -186,14 +186,14 @@ public class S3Config implements Serializable {
 
     /**
      * <p>
-     * The S3 encryption configuration.
+     * The Amazon S3 encryption configuration.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param encryptionConfig <p>
-     *            The S3 encryption configuration.
+     *            The Amazon S3 encryption configuration.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

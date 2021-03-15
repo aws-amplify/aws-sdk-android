@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * Initiates an Amazon Connect instance with all the supported channels enabled.
- * It does not attach any storage (such as Amazon S3, or Kinesis) or allow for
- * any configurations on features such as Contact Lens for Amazon Connect.
+ * It does not attach any storage, such as Amazon Simple Storage Service (Amazon
+ * S3) or Amazon Kinesis. It also does not allow for any configurations on
+ * features, such as Contact Lens for Amazon Connect.
  * </p>
  */
 public class CreateInstanceRequest extends AmazonWebServiceRequest implements Serializable {
@@ -74,14 +75,14 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center handles incoming contacts.
+     * Your contact center handles incoming contacts.
      * </p>
      */
     private Boolean inboundCallsEnabled;
 
     /**
      * <p>
-     * Whether your contact center allows outbound calls.
+     * Your contact center allows outbound calls.
      * </p>
      */
     private Boolean outboundCallsEnabled;
@@ -353,11 +354,11 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center handles incoming contacts.
+     * Your contact center handles incoming contacts.
      * </p>
      *
      * @return <p>
-     *         Whether your contact center handles incoming contacts.
+     *         Your contact center handles incoming contacts.
      *         </p>
      */
     public Boolean isInboundCallsEnabled() {
@@ -366,11 +367,11 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center handles incoming contacts.
+     * Your contact center handles incoming contacts.
      * </p>
      *
      * @return <p>
-     *         Whether your contact center handles incoming contacts.
+     *         Your contact center handles incoming contacts.
      *         </p>
      */
     public Boolean getInboundCallsEnabled() {
@@ -379,11 +380,11 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center handles incoming contacts.
+     * Your contact center handles incoming contacts.
      * </p>
      *
      * @param inboundCallsEnabled <p>
-     *            Whether your contact center handles incoming contacts.
+     *            Your contact center handles incoming contacts.
      *            </p>
      */
     public void setInboundCallsEnabled(Boolean inboundCallsEnabled) {
@@ -392,14 +393,14 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center handles incoming contacts.
+     * Your contact center handles incoming contacts.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param inboundCallsEnabled <p>
-     *            Whether your contact center handles incoming contacts.
+     *            Your contact center handles incoming contacts.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -411,11 +412,11 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center allows outbound calls.
+     * Your contact center allows outbound calls.
      * </p>
      *
      * @return <p>
-     *         Whether your contact center allows outbound calls.
+     *         Your contact center allows outbound calls.
      *         </p>
      */
     public Boolean isOutboundCallsEnabled() {
@@ -424,11 +425,11 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center allows outbound calls.
+     * Your contact center allows outbound calls.
      * </p>
      *
      * @return <p>
-     *         Whether your contact center allows outbound calls.
+     *         Your contact center allows outbound calls.
      *         </p>
      */
     public Boolean getOutboundCallsEnabled() {
@@ -437,11 +438,11 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center allows outbound calls.
+     * Your contact center allows outbound calls.
      * </p>
      *
      * @param outboundCallsEnabled <p>
-     *            Whether your contact center allows outbound calls.
+     *            Your contact center allows outbound calls.
      *            </p>
      */
     public void setOutboundCallsEnabled(Boolean outboundCallsEnabled) {
@@ -450,14 +451,14 @@ public class CreateInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Whether your contact center allows outbound calls.
+     * Your contact center allows outbound calls.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param outboundCallsEnabled <p>
-     *            Whether your contact center allows outbound calls.
+     *            Your contact center allows outbound calls.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
