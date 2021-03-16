@@ -1208,16 +1208,16 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                 Log.d(TAG, "Sending password.");
                                 final HashMap<String, String> authParameters = new HashMap<>();
                                 // Check if the auth flow type setting is in the configuration.
-                                boolean authFlowTypeInConfig = false;
-                                if (awsConfiguration.optJsonObject(AUTH_KEY) != null &&
-                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType")) {
-                                    authFlowTypeInConfig = true;
-                                }
+                                boolean authFlowTypeInConfig =
+                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType");
 
                                 try {
+                                    String authFlowType = authFlowTypeInConfig ?
+                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
+                                        null;
                                     // If there's a value in the config and it's CUSTOM_AUTH
-                                    if (authFlowTypeInConfig &&
-                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")) {
+                                    if (authFlowTypeInConfig && "CUSTOM_AUTH".equals(authFlowType)) {
                                         if (password != null) {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                         } else {
