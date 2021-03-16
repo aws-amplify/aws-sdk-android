@@ -261,7 +261,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private volatile CountDownLatch showSignInWaitLatch;
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
-    AWSMobileClientStore mStore;
+    KeyValueStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
@@ -327,6 +327,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         federateWithCognitoIdentityLockObject = new Object();
         showSignInWaitLatch = new CountDownLatch(1);
         initLockObject = new Object();
+        mStore = new DummyStore();
     }
 
     /**
@@ -3789,7 +3790,49 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 }
 
-class AWSMobileClientStore {
+interface KeyValueStore {
+    Map<String, String> get(final String... keys);
+    String get(final String key);
+    void set(final Map<String, String> attributes);
+    void set(final String key, final String value);
+    void clear();
+}
+
+final class DummyStore implements KeyValueStore {
+    @Override
+    public Map<String, String> get(String... keys) {
+        throwNotInitializedException();
+        return null;
+    }
+
+    @Override
+    public String get(String key) {
+        throwNotInitializedException();
+        return null;
+    }
+
+    @Override
+    public void set(Map<String, String> attributes) {
+        throwNotInitializedException();
+    }
+
+    @Override
+    public void set(String key, String value) {
+        throwNotInitializedException();
+
+    }
+
+    @Override
+    public void clear() {
+        throwNotInitializedException();
+    }
+
+    private void throwNotInitializedException() {
+        throw new RuntimeException("AWSMobileClient has not been initialized yet.");
+    }
+}
+
+final class AWSMobileClientStore implements KeyValueStore {
     AWSKeyValueStore mAWSKeyValueStore;
 
     private ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
@@ -3800,7 +3843,8 @@ class AWSMobileClientStore {
                 client.mIsPersistenceEnabled);
     }
 
-    Map<String, String> get(final String... keys) {
+    @Override
+    public Map<String, String> get(final String... keys) {
         try {
             mReadWriteLock.readLock().lock();
             HashMap<String, String> attributes = new HashMap<String, String>();
@@ -3813,7 +3857,8 @@ class AWSMobileClientStore {
         }
     }
 
-    String get(final String key) {
+    @Override
+    public String get(final String key) {
         try {
             mReadWriteLock.readLock().lock();
             return mAWSKeyValueStore.get(key);
@@ -3822,7 +3867,8 @@ class AWSMobileClientStore {
         }
     }
 
-    void set(final Map<String, String> attributes) {
+    @Override
+    public void set(final Map<String, String> attributes) {
         try {
             mReadWriteLock.writeLock().lock();
             for (String key : attributes.keySet()) {
@@ -3833,7 +3879,8 @@ class AWSMobileClientStore {
         }
     }
 
-    void set(final String key, final String value) {
+    @Override
+    public void set(final String key, final String value) {
         try {
             mReadWriteLock.writeLock().lock();
             mAWSKeyValueStore.put(key, value);
@@ -3842,7 +3889,8 @@ class AWSMobileClientStore {
         }
     }
 
-    void clear() {
+    @Override
+    public void clear() {
         mAWSKeyValueStore.clear();
     }
 }
