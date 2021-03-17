@@ -52,6 +52,6 @@ final class DummyStore implements KeyValueStore {
     }
 
     private void throwNotInitializedException() {
-        throw new RuntimeException("AWSMobileClient has not been initialized yet.");
+        throw new IllegalStateException("AWSMobileClient has not been initialized yet.");
     }
 }
