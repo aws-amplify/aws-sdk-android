@@ -487,6 +487,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
+                    registerConfigSignInProviders(awsConfiguration);
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -3365,8 +3366,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
-                    registerConfigSignInProviders();
-
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
                             .canCancel(signInUIOptions.canCancel())
                             .isBackgroundColorFullScreen(false);
@@ -3505,7 +3504,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             final IdentityManager identityManager = new IdentityManager(context, this.awsConfiguration);
             IdentityManager.setDefaultIdentityManager(identityManager);
             if (this.signInProviderConfig == null) {
-                this.registerConfigSignInProviders();
+                this.registerConfigSignInProviders(this.awsConfiguration);
             } else {
                 this.registerUserSignInProvidersWithPermissions();
             }
@@ -3541,21 +3540,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Register the SignInProvider and permissions based on the
      * AWSConfiguration.
      */
-    private void registerConfigSignInProviders() {
+    private void registerConfigSignInProviders(final AWSConfiguration awsConfiguration) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, this.awsConfiguration)
+        if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)
                 && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
             identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(FACEBOOK, this.awsConfiguration)
+        if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)
                 && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
             identityManager.addSignInProvider(FacebookSignInProvider.class);
         }
 
-        if (isConfigurationKeyPresent(GOOGLE, this.awsConfiguration)
+        if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)
                 && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
             identityManager.addSignInProvider(GoogleSignInProvider.class);
         }
