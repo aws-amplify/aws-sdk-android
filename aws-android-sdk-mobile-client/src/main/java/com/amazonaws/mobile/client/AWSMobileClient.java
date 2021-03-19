@@ -126,9 +126,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import static com.amazonaws.mobile.client.results.SignInState.CUSTOM_CHALLENGE;
 
@@ -261,7 +259,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private volatile CountDownLatch showSignInWaitLatch;
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
-    AWSMobileClientStore mStore;
+    KeyValueStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
@@ -327,6 +325,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         federateWithCognitoIdentityLockObject = new Object();
         showSignInWaitLatch = new CountDownLatch(1);
         initLockObject = new Object();
+        mStore = new DummyStore();
     }
 
     /**
@@ -3798,64 +3797,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         public String[] getProviderPermissions() {
             return this.providerPermissions;
         }
-    }
-}
-
-class AWSMobileClientStore {
-    AWSKeyValueStore mAWSKeyValueStore;
-
-    private ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
-
-    AWSMobileClientStore(AWSMobileClient client) {
-        mAWSKeyValueStore = new AWSKeyValueStore(client.mContext,
-                AWSMobileClient.SHARED_PREFERENCES_KEY,
-                client.mIsPersistenceEnabled);
-    }
-
-    Map<String, String> get(final String... keys) {
-        try {
-            mReadWriteLock.readLock().lock();
-            HashMap<String, String> attributes = new HashMap<String, String>();
-            for (String key : keys) {
-                attributes.put(key, mAWSKeyValueStore.get(key));
-            }
-            return attributes;
-        } finally {
-            mReadWriteLock.readLock().unlock();
-        }
-    }
-
-    String get(final String key) {
-        try {
-            mReadWriteLock.readLock().lock();
-            return mAWSKeyValueStore.get(key);
-        } finally {
-            mReadWriteLock.readLock().unlock();
-        }
-    }
-
-    void set(final Map<String, String> attributes) {
-        try {
-            mReadWriteLock.writeLock().lock();
-            for (String key : attributes.keySet()) {
-                mAWSKeyValueStore.put(key, attributes.get(key));
-            }
-        } finally {
-            mReadWriteLock.writeLock().unlock();
-        }
-    }
-
-    void set(final String key, final String value) {
-        try {
-            mReadWriteLock.writeLock().lock();
-            mAWSKeyValueStore.put(key, value);
-        } finally {
-            mReadWriteLock.writeLock().unlock();
-        }
-    }
-
-    void clear() {
-        mAWSKeyValueStore.clear();
     }
 }
 
