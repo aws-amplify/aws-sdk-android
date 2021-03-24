@@ -46,9 +46,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -122,8 +121,7 @@ public class IdentityManager {
     private final CountDownLatch startupAuthTimeoutLatch = new CountDownLatch(1);
 
     /** Keep track of the registered sign-in providers. */
-    private final List<Class<? extends SignInProvider>> signInProviderClasses
-        = new LinkedList<Class<? extends SignInProvider>>();
+    private final Set<Class<? extends SignInProvider>> signInProviderClasses = new HashSet<>();
 
     /** Current provider beingIdentityProviderType used to obtain a Cognito access token. */
     private volatile IdentityProvider currentIdentityProvider = null;
