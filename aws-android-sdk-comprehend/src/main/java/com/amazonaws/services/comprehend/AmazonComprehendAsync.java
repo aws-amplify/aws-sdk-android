@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -392,6 +392,65 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
     Future<ClassifyDocumentResult> classifyDocumentAsync(
             ClassifyDocumentRequest classifyDocumentRequest,
             AsyncHandler<ClassifyDocumentRequest, ClassifyDocumentResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Analyzes input text for the presence of personally identifiable
+     * information (PII) and returns the labels of identified PII entity types
+     * such as name, address, bank account number, or phone number.
+     * </p>
+     * 
+     * @param containsPiiEntitiesRequest
+     * @return A Java Future object containing the response from the
+     *         ContainsPiiEntities service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ContainsPiiEntitiesResult> containsPiiEntitiesAsync(
+            ContainsPiiEntitiesRequest containsPiiEntitiesRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Analyzes input text for the presence of personally identifiable
+     * information (PII) and returns the labels of identified PII entity types
+     * such as name, address, bank account number, or phone number.
+     * </p>
+     * 
+     * @param containsPiiEntitiesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ContainsPiiEntities service method, as returned by Amazon
+     *         Comprehend.
+     * @throws InvalidRequestException
+     * @throws TextSizeLimitExceededException
+     * @throws UnsupportedLanguageException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ContainsPiiEntitiesResult> containsPiiEntitiesAsync(
+            ContainsPiiEntitiesRequest containsPiiEntitiesRequest,
+            AsyncHandler<ContainsPiiEntitiesRequest, ContainsPiiEntitiesResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
