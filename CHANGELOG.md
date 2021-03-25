@@ -1,5 +1,15 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.22.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.4)
+
+### Bug fixes
+- **AWSMobileClient**
+  - Changes from v2.22.3 caused optional dependencies to become required during initialization. Fixed in [#2393](https://github.com/aws-amplify/aws-sdk-android/pull/2393).
+
+### Model updates
+- Amazon Comprehend
+- Amazon Rekognition
+
 ## [Release 2.22.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.3)
 
 ### Misc.
