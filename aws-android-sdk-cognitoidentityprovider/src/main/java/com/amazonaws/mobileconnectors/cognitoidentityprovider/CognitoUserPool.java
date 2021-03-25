@@ -19,6 +19,7 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
 import android.os.Handler;
+import android.text.TextUtils;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
@@ -272,6 +273,27 @@ public class CognitoUserPool {
         this.client = new AmazonCognitoIdentityProviderClient(new AnonymousAWSCredentials(), clientConfiguration);
         this.client.setRegion(com.amazonaws.regions.Region.getRegion(region));
         this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, pinpointAppId);
+    }
+
+    /**
+     * Constructs a user-pool with custom endpoint for Cognito User Pool
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
+     * @param cognitoUserPoolCustomEndpoint REQUIRED: Custom endpoint for Cognito Userpool
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client, String pinpointAppId, String cognitoUserPoolCustomEndpoint) {
+        this(context, userPoolId, clientId, clientSecret, client, pinpointAppId);
+
+        // check if the custom endpoint is not empty
+        if(!TextUtils.isEmpty((cognitoUserPoolCustomEndpoint))) {
+            this.client.setEndpoint(cognitoUserPoolCustomEndpoint);
+        }
     }
 
 
