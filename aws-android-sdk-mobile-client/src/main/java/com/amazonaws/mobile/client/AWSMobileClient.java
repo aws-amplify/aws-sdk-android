@@ -3544,19 +3544,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
-            identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
-        }
+        try {
+            if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)) {
+                identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
-            identityManager.addSignInProvider(FacebookSignInProvider.class);
-        }
+            if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)) {
+                identityManager.addSignInProvider(FacebookSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
-            identityManager.addSignInProvider(GoogleSignInProvider.class);
+            if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)) {
+                identityManager.addSignInProvider(GoogleSignInProvider.class);
+            }
+        } catch (NoClassDefFoundError exception) {
+            Log.w(TAG, "Sign in provider was not registered due to missing optional dependency. " +
+                    "showSignIn() API may not work as expected.", exception);
         }
     }
 
