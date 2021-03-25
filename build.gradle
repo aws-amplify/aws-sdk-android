@@ -30,7 +30,6 @@ subprojects { project ->
 private void configureAndroidLibrary(Project project) {
     project.android {
         defaultConfig {
-            versionCode rootProject.findProperty('VERSION_CODE').toInteger()
             versionName rootProject.findProperty('VERSION_NAME')
         }
     }

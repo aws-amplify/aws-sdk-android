@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -90,6 +90,13 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * </p>
      */
     private TestingData testingData;
+
+    /**
+     * <p>
+     * A set of tags (key-value pairs) that you want to attach to the model.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -355,6 +362,89 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * A set of tags (key-value pairs) that you want to attach to the model.
+     * </p>
+     *
+     * @return <p>
+     *         A set of tags (key-value pairs) that you want to attach to the
+     *         model.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * A set of tags (key-value pairs) that you want to attach to the model.
+     * </p>
+     *
+     * @param tags <p>
+     *            A set of tags (key-value pairs) that you want to attach to the
+     *            model.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * A set of tags (key-value pairs) that you want to attach to the model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            A set of tags (key-value pairs) that you want to attach to the
+     *            model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateProjectVersionRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A set of tags (key-value pairs) that you want to attach to the model.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateProjectVersionRequest addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CreateProjectVersionRequest clearTagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -374,7 +464,9 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
         if (getTrainingData() != null)
             sb.append("TrainingData: " + getTrainingData() + ",");
         if (getTestingData() != null)
-            sb.append("TestingData: " + getTestingData());
+            sb.append("TestingData: " + getTestingData() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -393,6 +485,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
                 + ((getTrainingData() == null) ? 0 : getTrainingData().hashCode());
         hashCode = prime * hashCode
                 + ((getTestingData() == null) ? 0 : getTestingData().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -431,6 +524,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
             return false;
         if (other.getTestingData() != null
                 && other.getTestingData().equals(this.getTestingData()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

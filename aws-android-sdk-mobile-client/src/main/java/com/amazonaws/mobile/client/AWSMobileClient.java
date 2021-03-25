@@ -126,9 +126,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import static com.amazonaws.mobile.client.results.SignInState.CUSTOM_CHALLENGE;
 
@@ -261,7 +259,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private volatile CountDownLatch showSignInWaitLatch;
     private Object federateWithCognitoIdentityLockObject;
     private Object initLockObject;
-    AWSMobileClientStore mStore;
+    KeyValueStore mStore;
     AWSMobileClientCognitoIdentityProvider provider;
     DeviceOperations mDeviceOperations;
     AmazonCognitoIdentityProvider userpoolLL;
@@ -327,6 +325,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         federateWithCognitoIdentityLockObject = new Object();
         showSignInWaitLatch = new CountDownLatch(1);
         initLockObject = new Object();
+        mStore = new DummyStore();
     }
 
     /**
@@ -488,6 +487,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     identityManager.setConfiguration(awsConfiguration);
                     identityManager.setPersistenceEnabled(mIsPersistenceEnabled);
                     IdentityManager.setDefaultIdentityManager(identityManager);
+                    registerConfigSignInProviders(awsConfiguration);
                     identityManager.addSignInStateChangeListener(new SignInStateChangeListener() {
                         @Override
                         public void onUserSignedIn() {
@@ -1206,20 +1206,33 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             @Override
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                                 Log.d(TAG, "Sending password.");
+                                final HashMap<String, String> authParameters = new HashMap<>();
+                                // Check if the auth flow type setting is in the configuration.
+                                boolean authFlowTypeInConfig =
+                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType");
+
                                 try {
-                                    if (
-                                            awsConfiguration.optJsonObject(AUTH_KEY) != null &&
-                                            awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
-                                            awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
-                                    ) {
-                                        final HashMap<String, String> authParameters = new HashMap<String, String>();
+                                    String authFlowType = authFlowTypeInConfig ?
+                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
+                                        null;
+                                    // If there's a value in the config and it's CUSTOM_AUTH
+                                    if (authFlowTypeInConfig && "CUSTOM_AUTH".equals(authFlowType)) {
                                         if (password != null) {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                         } else {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
                                         }
                                     } else {
-                                        authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
+                                        // Otherwise, create the AuthenticationDetails instance using the constructor below
+                                        // which will default the auth flow to CHLG_TYPE_USER_PASSWORD_VERIFIER
+                                        AuthenticationDetails authenticationDetails = new AuthenticationDetails(username, password, validationData);
+                                        if (authFlowTypeInConfig) {
+                                            // If there's an auth flow type value in the config, use that value instead.
+                                            // The field names are very misleading.
+                                            authenticationDetails.setAuthenticationType(awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType"));
+                                        }
+                                        authenticationContinuation.setAuthenticationDetails(authenticationDetails);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -3353,8 +3366,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         return;
                     }
 
-                    registerConfigSignInProviders();
-
                     final AuthUIConfiguration.Builder authUIConfigBuilder = new AuthUIConfiguration.Builder()
                             .canCancel(signInUIOptions.canCancel())
                             .isBackgroundColorFullScreen(false);
@@ -3493,7 +3504,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             final IdentityManager identityManager = new IdentityManager(context, this.awsConfiguration);
             IdentityManager.setDefaultIdentityManager(identityManager);
             if (this.signInProviderConfig == null) {
-                this.registerConfigSignInProviders();
+                this.registerConfigSignInProviders(this.awsConfiguration);
             } else {
                 this.registerUserSignInProvidersWithPermissions();
             }
@@ -3529,23 +3540,25 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      * Register the SignInProvider and permissions based on the
      * AWSConfiguration.
      */
-    private void registerConfigSignInProviders() {
+    private void registerConfigSignInProviders(final AWSConfiguration awsConfiguration) {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, this.awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
-            identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
-        }
+        try {
+            if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)) {
+                identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(FACEBOOK, this.awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
-            identityManager.addSignInProvider(FacebookSignInProvider.class);
-        }
+            if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)) {
+                identityManager.addSignInProvider(FacebookSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(GOOGLE, this.awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
-            identityManager.addSignInProvider(GoogleSignInProvider.class);
+            if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)) {
+                identityManager.addSignInProvider(GoogleSignInProvider.class);
+            }
+        } catch (NoClassDefFoundError exception) {
+            Log.w(TAG, "Sign in provider was not registered due to missing optional dependency. " +
+                    "showSignIn() API may not work as expected.", exception);
         }
     }
 
@@ -3786,64 +3799,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         public String[] getProviderPermissions() {
             return this.providerPermissions;
         }
-    }
-}
-
-class AWSMobileClientStore {
-    AWSKeyValueStore mAWSKeyValueStore;
-
-    private ReadWriteLock mReadWriteLock = new ReentrantReadWriteLock();
-
-    AWSMobileClientStore(AWSMobileClient client) {
-        mAWSKeyValueStore = new AWSKeyValueStore(client.mContext,
-                AWSMobileClient.SHARED_PREFERENCES_KEY,
-                client.mIsPersistenceEnabled);
-    }
-
-    Map<String, String> get(final String... keys) {
-        try {
-            mReadWriteLock.readLock().lock();
-            HashMap<String, String> attributes = new HashMap<String, String>();
-            for (String key : keys) {
-                attributes.put(key, mAWSKeyValueStore.get(key));
-            }
-            return attributes;
-        } finally {
-            mReadWriteLock.readLock().unlock();
-        }
-    }
-
-    String get(final String key) {
-        try {
-            mReadWriteLock.readLock().lock();
-            return mAWSKeyValueStore.get(key);
-        } finally {
-            mReadWriteLock.readLock().unlock();
-        }
-    }
-
-    void set(final Map<String, String> attributes) {
-        try {
-            mReadWriteLock.writeLock().lock();
-            for (String key : attributes.keySet()) {
-                mAWSKeyValueStore.put(key, attributes.get(key));
-            }
-        } finally {
-            mReadWriteLock.writeLock().unlock();
-        }
-    }
-
-    void set(final String key, final String value) {
-        try {
-            mReadWriteLock.writeLock().lock();
-            mAWSKeyValueStore.put(key, value);
-        } finally {
-            mReadWriteLock.writeLock().unlock();
-        }
-    }
-
-    void clear() {
-        mAWSKeyValueStore.clear();
     }
 }
 

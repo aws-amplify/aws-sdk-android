@@ -1,5 +1,16 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.22.3](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.3)
+
+### Misc.
+- **AWSMobileClient**
+  - Honored authenticationFlowType from config [#2377](https://github.com/aws-amplify/aws-sdk-android/pull/2377)
+  - Initialized key value store inside mobile client constructor [#2383](https://github.com/aws-amplify/aws-sdk-android/pull/2383)
+  - Registered sign in providers for dropInUI [#2386](https://github.com/aws-amplify/aws-sdk-android/pull/2386)
+
+### Model updates
+ - Amazon Connect
+
 ## [Release 2.22.2](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.2)
 
 ### Misc.
