@@ -1,5 +1,11 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.22.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.5)
+
+### Bug fixes
+- **AWSMobileClient**
+  - Changes from v2.22.3 caused `USER_SRP_AUTH` auth flow type to be unrecognizable. The change was reverted.
+
 ## [Release 2.22.4](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.4)
 
 ### Bug fixes
