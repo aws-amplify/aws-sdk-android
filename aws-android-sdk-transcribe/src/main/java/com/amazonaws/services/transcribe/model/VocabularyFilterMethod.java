@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ import java.util.Map;
 public enum VocabularyFilterMethod {
 
     Remove("remove"),
-    Mask("mask");
+    Mask("mask"),
+    Tag("tag");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum VocabularyFilterMethod {
         enumMap = new HashMap<String, VocabularyFilterMethod>();
         enumMap.put("remove", Remove);
         enumMap.put("mask", Mask);
+        enumMap.put("tag", Tag);
     }
 
     /**
