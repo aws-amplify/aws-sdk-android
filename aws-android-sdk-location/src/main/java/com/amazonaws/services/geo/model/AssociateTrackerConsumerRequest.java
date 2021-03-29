@@ -25,6 +25,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This allows the tracker resource to communicate location data to the linked
  * geofence collection.
  * </p>
+ * <note>
+ * <p>
+ * Currently not supported — Cross-account configurations, such as creating
+ * associations between a tracker resource in one account and a geofence
+ * collection in another account.
+ * </p>
+ * </note>
  */
 public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest implements
         Serializable {

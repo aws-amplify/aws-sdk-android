@@ -44,7 +44,7 @@ public class BatchUpdateDevicePositionError implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when a position sample was attempted in <a
+     * The timestamp at which the device position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -161,14 +161,14 @@ public class BatchUpdateDevicePositionError implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when a position sample was attempted in <a
+     * The timestamp at which the device position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when a position sample was attempted in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *         The timestamp at which the device position was determined. Uses
+     *         <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
      *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *         </p>
      */
@@ -178,15 +178,16 @@ public class BatchUpdateDevicePositionError implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when a position sample was attempted in <a
+     * The timestamp at which the device position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param sampleTime <p>
-     *            The timestamp for when a position sample was attempted in <a
-     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            The timestamp at which the device position was determined.
+     *            Uses <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *            </p>
      */
     public void setSampleTime(java.util.Date sampleTime) {
@@ -195,7 +196,7 @@ public class BatchUpdateDevicePositionError implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when a position sample was attempted in <a
+     * The timestamp at which the device position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -204,9 +205,10 @@ public class BatchUpdateDevicePositionError implements Serializable {
      * together.
      *
      * @param sampleTime <p>
-     *            The timestamp for when a position sample was attempted in <a
-     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            The timestamp at which the device position was determined.
+     *            Uses <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

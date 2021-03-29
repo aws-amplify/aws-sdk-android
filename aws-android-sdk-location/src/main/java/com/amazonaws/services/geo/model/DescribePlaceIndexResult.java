@@ -29,7 +29,25 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data.
+     * The data provider of geospatial data. Indicates one of the available
+     * providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Esri</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional details on data providers, see the <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     * >Amazon Location Service data providers page</a>.
      * </p>
      */
     private String dataSource;
@@ -75,6 +93,22 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      */
     private String indexName;
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified Place index resource.
+     * </p>
+     * <p>
+     * For additional details and restrictions on each pricing plan option, see
+     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing page</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     */
+    private String pricingPlan;
 
     /**
      * <p>
@@ -146,11 +180,47 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data.
+     * The data provider of geospatial data. Indicates one of the available
+     * providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Esri</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional details on data providers, see the <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     * >Amazon Location Service data providers page</a>.
      * </p>
      *
      * @return <p>
-     *         The data provider of geospatial data.
+     *         The data provider of geospatial data. Indicates one of the
+     *         available providers:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>Esri</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Here</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         For additional details on data providers, see the <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     *         >Amazon Location Service data providers page</a>.
      *         </p>
      */
     public String getDataSource() {
@@ -159,11 +229,47 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data.
+     * The data provider of geospatial data. Indicates one of the available
+     * providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Esri</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional details on data providers, see the <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     * >Amazon Location Service data providers page</a>.
      * </p>
      *
      * @param dataSource <p>
-     *            The data provider of geospatial data.
+     *            The data provider of geospatial data. Indicates one of the
+     *            available providers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>Esri</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Here</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For additional details on data providers, see the <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     *            >Amazon Location Service data providers page</a>.
      *            </p>
      */
     public void setDataSource(String dataSource) {
@@ -172,14 +278,50 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data.
+     * The data provider of geospatial data. Indicates one of the available
+     * providers:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>Esri</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional details on data providers, see the <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     * >Amazon Location Service data providers page</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param dataSource <p>
-     *            The data provider of geospatial data.
+     *            The data provider of geospatial data. Indicates one of the
+     *            available providers:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>Esri</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Here</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For additional details on data providers, see the <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
+     *            >Amazon Location Service data providers page</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -417,6 +559,167 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
+     * The pricing plan selected for the specified Place index resource.
+     * </p>
+     * <p>
+     * For additional details and restrictions on each pricing plan option, see
+     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing page</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @return <p>
+     *         The pricing plan selected for the specified Place index resource.
+     *         </p>
+     *         <p>
+     *         For additional details and restrictions on each pricing plan
+     *         option, see the <a
+     *         href="https://aws.amazon.com/location/pricing/">Amazon Location
+     *         Service pricing page</a>.
+     *         </p>
+     * @see PricingPlan
+     */
+    public String getPricingPlan() {
+        return pricingPlan;
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified Place index resource.
+     * </p>
+     * <p>
+     * For additional details and restrictions on each pricing plan option, see
+     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing page</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified Place index
+     *            resource.
+     *            </p>
+     *            <p>
+     *            For additional details and restrictions on each pricing plan
+     *            option, see the <a
+     *            href="https://aws.amazon.com/location/pricing/">Amazon
+     *            Location Service pricing page</a>.
+     *            </p>
+     * @see PricingPlan
+     */
+    public void setPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified Place index resource.
+     * </p>
+     * <p>
+     * For additional details and restrictions on each pricing plan option, see
+     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing page</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified Place index
+     *            resource.
+     *            </p>
+     *            <p>
+     *            For additional details and restrictions on each pricing plan
+     *            option, see the <a
+     *            href="https://aws.amazon.com/location/pricing/">Amazon
+     *            Location Service pricing page</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
+     */
+    public DescribePlaceIndexResult withPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified Place index resource.
+     * </p>
+     * <p>
+     * For additional details and restrictions on each pricing plan option, see
+     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing page</a>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified Place index
+     *            resource.
+     *            </p>
+     *            <p>
+     *            For additional details and restrictions on each pricing plan
+     *            option, see the <a
+     *            href="https://aws.amazon.com/location/pricing/">Amazon
+     *            Location Service pricing page</a>.
+     *            </p>
+     * @see PricingPlan
+     */
+    public void setPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified Place index resource.
+     * </p>
+     * <p>
+     * For additional details and restrictions on each pricing plan option, see
+     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing page</a>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified Place index
+     *            resource.
+     *            </p>
+     *            <p>
+     *            For additional details and restrictions on each pricing plan
+     *            option, see the <a
+     *            href="https://aws.amazon.com/location/pricing/">Amazon
+     *            Location Service pricing page</a>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
+     */
+    public DescribePlaceIndexResult withPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp for when the Place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -498,6 +801,8 @@ public class DescribePlaceIndexResult implements Serializable {
             sb.append("IndexArn: " + getIndexArn() + ",");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
+        if (getPricingPlan() != null)
+            sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -519,6 +824,8 @@ public class DescribePlaceIndexResult implements Serializable {
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getIndexArn() == null) ? 0 : getIndexArn().hashCode());
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode
+                + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -562,6 +869,11 @@ public class DescribePlaceIndexResult implements Serializable {
             return false;
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
+            return false;
+        if (other.getPricingPlan() != null
+                && other.getPricingPlan().equals(this.getPricingPlan()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

@@ -50,6 +50,14 @@ public class DescribeGeofenceCollectionResultJsonUnmarshaller implements
                 describeGeofenceCollectionResult.setDescription(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                describeGeofenceCollectionResult.setPricingPlan(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PricingPlanDataSource")) {
+                describeGeofenceCollectionResult.setPricingPlanDataSource(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describeGeofenceCollectionResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

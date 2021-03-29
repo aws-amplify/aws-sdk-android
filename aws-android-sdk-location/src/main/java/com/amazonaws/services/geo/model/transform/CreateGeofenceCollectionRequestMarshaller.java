@@ -76,6 +76,12 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                 jsonWriter.name("PricingPlan");
                 jsonWriter.value(pricingPlan);
             }
+            if (createGeofenceCollectionRequest.getPricingPlanDataSource() != null) {
+                String pricingPlanDataSource = createGeofenceCollectionRequest
+                        .getPricingPlanDataSource();
+                jsonWriter.name("PricingPlanDataSource");
+                jsonWriter.value(pricingPlanDataSource);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -63,7 +63,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * Must contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * and underscores (_).
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -86,29 +86,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource. There's three pricing
-     * plan options:
+     * Specifies the pricing plan for your map resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -233,7 +212,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * Must contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * and underscores (_).
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -262,7 +241,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         Must contain only alphanumeric characters (A–Z, a–z, 0–9),
-     *         hyphens (-), and underscores (_).
+     *         hyphens (-), periods (.), and underscores (_).
      *         </p>
      *         </li>
      *         <li>
@@ -292,7 +271,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * Must contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * and underscores (_).
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -321,7 +300,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            Must contain only alphanumeric characters (A–Z, a–z, 0–9),
-     *            hyphens (-), and underscores (_).
+     *            hyphens (-), periods (.), and underscores (_).
      *            </p>
      *            </li>
      *            <li>
@@ -351,7 +330,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * <li>
      * <p>
      * Must contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
-     * and underscores (_).
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -383,7 +362,7 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            Must contain only alphanumeric characters (A–Z, a–z, 0–9),
-     *            hyphens (-), and underscores (_).
+     *            hyphens (-), periods (.), and underscores (_).
      *            </p>
      *            </li>
      *            <li>
@@ -407,29 +386,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource. There's three pricing
-     * plan options:
+     * Specifies the pricing plan for your map resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -441,29 +399,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for your map resource. There's three
-     *         pricing plan options:
+     *         Specifies the pricing plan for your map resource.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         <code>RequestBasedUsage</code> — Selects the
-     *         "Request-Based Usage" pricing plan.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>MobileAssetTracking</code> — Selects the
-     *         "Mobile Asset Tracking" pricing plan.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>MobileAssetManagement</code> — Selects the
-     *         "Mobile Asset Management" pricing plan.
-     *         </p>
-     *         </li>
-     *         </ul>
      *         <p>
      *         For additional details and restrictions on each pricing plan
      *         option, see the <a
@@ -478,29 +415,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource. There's three pricing
-     * plan options:
+     * Specifies the pricing plan for your map resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -512,29 +428,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your map resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -549,29 +444,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource. There's three pricing
-     * plan options:
+     * Specifies the pricing plan for your map resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -586,29 +460,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your map resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -626,29 +479,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource. There's three pricing
-     * plan options:
+     * Specifies the pricing plan for your map resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -660,29 +492,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your map resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -697,29 +508,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource. There's three pricing
-     * plan options:
+     * Specifies the pricing plan for your map resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -734,29 +524,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your map resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a

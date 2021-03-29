@@ -37,6 +37,16 @@ class ListTrackersResponseEntryJsonMarshaller {
             jsonWriter.name("Description");
             jsonWriter.value(description);
         }
+        if (listTrackersResponseEntry.getPricingPlan() != null) {
+            String pricingPlan = listTrackersResponseEntry.getPricingPlan();
+            jsonWriter.name("PricingPlan");
+            jsonWriter.value(pricingPlan);
+        }
+        if (listTrackersResponseEntry.getPricingPlanDataSource() != null) {
+            String pricingPlanDataSource = listTrackersResponseEntry.getPricingPlanDataSource();
+            jsonWriter.name("PricingPlanDataSource");
+            jsonWriter.value(pricingPlanDataSource);
+        }
         if (listTrackersResponseEntry.getTrackerName() != null) {
             String trackerName = listTrackersResponseEntry.getTrackerName();
             jsonWriter.name("TrackerName");

@@ -49,6 +49,9 @@ class ListMapsResponseEntryJsonUnmarshaller implements
             } else if (name.equals("MapName")) {
                 listMapsResponseEntry.setMapName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                listMapsResponseEntry.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listMapsResponseEntry.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

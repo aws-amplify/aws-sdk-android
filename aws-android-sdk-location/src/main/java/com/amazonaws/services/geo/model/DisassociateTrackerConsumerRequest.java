@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes the association bewteen a tracker resource and a geofence collection.
+ * Removes the association between a tracker resource and a geofence collection.
  * </p>
  * <note>
  * <p>

@@ -38,14 +38,14 @@ public class DevicePositionUpdate implements Serializable {
      * <p>
      * The latest device position defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[Xlongitude, Ylatitude]</code>.
+     * format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      */
     private java.util.List<Double> position;
 
     /**
      * <p>
-     * The timestamp for when the position update was received in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      * </p>
@@ -113,13 +113,13 @@ public class DevicePositionUpdate implements Serializable {
      * <p>
      * The latest device position defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[Xlongitude, Ylatitude]</code>.
+     * format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      *
      * @return <p>
      *         The latest device position defined in <a
      *         href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *         84</a> format: <code>[Xlongitude, Ylatitude]</code>.
+     *         84</a> format: <code>[X or longitude, Y or latitude]</code>.
      *         </p>
      */
     public java.util.List<Double> getPosition() {
@@ -130,13 +130,13 @@ public class DevicePositionUpdate implements Serializable {
      * <p>
      * The latest device position defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[Xlongitude, Ylatitude]</code>.
+     * format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      *
      * @param position <p>
      *            The latest device position defined in <a
      *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[Xlongitude, Ylatitude]</code>.
+     *            84</a> format: <code>[X or longitude, Y or latitude]</code>.
      *            </p>
      */
     public void setPosition(java.util.Collection<Double> position) {
@@ -152,7 +152,7 @@ public class DevicePositionUpdate implements Serializable {
      * <p>
      * The latest device position defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[Xlongitude, Ylatitude]</code>.
+     * format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -161,7 +161,7 @@ public class DevicePositionUpdate implements Serializable {
      * @param position <p>
      *            The latest device position defined in <a
      *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[Xlongitude, Ylatitude]</code>.
+     *            84</a> format: <code>[X or longitude, Y or latitude]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -180,7 +180,7 @@ public class DevicePositionUpdate implements Serializable {
      * <p>
      * The latest device position defined in <a
      * href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS 84</a>
-     * format: <code>[Xlongitude, Ylatitude]</code>.
+     * format: <code>[X or longitude, Y or latitude]</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,7 +189,7 @@ public class DevicePositionUpdate implements Serializable {
      * @param position <p>
      *            The latest device position defined in <a
      *            href="https://earth-info.nga.mil/GandG/wgs84/index.html">WGS
-     *            84</a> format: <code>[Xlongitude, Ylatitude]</code>.
+     *            84</a> format: <code>[X or longitude, Y or latitude]</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -201,15 +201,15 @@ public class DevicePositionUpdate implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position update was received in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the position update was received in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
+     *         The timestamp at which the device's position was determined. Uses
+     *         <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      *         </p>
      */
     public java.util.Date getSampleTime() {
@@ -218,15 +218,15 @@ public class DevicePositionUpdate implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position update was received in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      * </p>
      *
      * @param sampleTime <p>
-     *            The timestamp for when the position update was received in <a
-     *            href
-     *            ="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            The timestamp at which the device's position was determined.
+     *            Uses <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      *            </p>
      */
@@ -236,7 +236,7 @@ public class DevicePositionUpdate implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position update was received in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      * </p>
@@ -245,9 +245,9 @@ public class DevicePositionUpdate implements Serializable {
      * together.
      *
      * @param sampleTime <p>
-     *            The timestamp for when the position update was received in <a
-     *            href
-     *            ="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     *            The timestamp at which the device's position was determined.
+     *            Uses <a href=
+     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be

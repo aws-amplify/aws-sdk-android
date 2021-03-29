@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * Limitation — Device positions are deleted after one year.
+ * Device positions are deleted after 1 year.
  * </p>
  * </note>
  */
@@ -47,13 +47,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the end time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -78,13 +82,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the start time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be 24 hours prior to the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>StartTimeInclusive</code> must be before
+     * <code>EndTimeExclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -164,13 +172,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the end time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -178,13 +190,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * @return <p>
      *         Specify the end time for the position history in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *         default, the value will be the time that the request is made.
+     *         </p>
+     *         <p>
+     *         Requirement:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         The given time for <code>EndTimeExclusive</code> must be after
-     *         the time for <code>StartTimeInclusive</code>.
+     *         The time specified for <code>EndTimeExclusive</code> must be
+     *         after the time for <code>StartTimeInclusive</code>.
      *         </p>
      *         </li>
      *         </ul>
@@ -197,13 +213,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the end time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -211,13 +231,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * @param endTimeExclusive <p>
      *            Specify the end time for the position history in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *            default, the value will be the time that the request is made.
+     *            </p>
+     *            <p>
+     *            Requirement:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            The given time for <code>EndTimeExclusive</code> must be after
-     *            the time for <code>StartTimeInclusive</code>.
+     *            The time specified for <code>EndTimeExclusive</code> must be
+     *            after the time for <code>StartTimeInclusive</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -230,13 +254,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the end time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>EndTimeExclusive</code> must be after the
+     * time for <code>StartTimeInclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -247,13 +275,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * @param endTimeExclusive <p>
      *            Specify the end time for the position history in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *            default, the value will be the time that the request is made.
+     *            </p>
+     *            <p>
+     *            Requirement:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            The given time for <code>EndTimeExclusive</code> must be after
-     *            the time for <code>StartTimeInclusive</code>.
+     *            The time specified for <code>EndTimeExclusive</code> must be
+     *            after the time for <code>StartTimeInclusive</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -350,13 +382,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the start time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be 24 hours prior to the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>StartTimeInclusive</code> must be before
+     * <code>EndTimeExclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -364,13 +400,18 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * @return <p>
      *         Specify the start time for the position history in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
-     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *         default, the value will be 24 hours prior to the time that the
+     *         request is made.
+     *         </p>
+     *         <p>
+     *         Requirement:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         The given time for <code>EndTimeExclusive</code> must be after
-     *         the time for <code>StartTimeInclusive</code>.
+     *         The time specified for <code>StartTimeInclusive</code> must be
+     *         before <code>EndTimeExclusive</code>.
      *         </p>
      *         </li>
      *         </ul>
@@ -383,13 +424,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the start time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be 24 hours prior to the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>StartTimeInclusive</code> must be before
+     * <code>EndTimeExclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -397,13 +442,18 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * @param startTimeInclusive <p>
      *            Specify the start time for the position history in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *            default, the value will be 24 hours prior to the time that the
+     *            request is made.
+     *            </p>
+     *            <p>
+     *            Requirement:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            The given time for <code>EndTimeExclusive</code> must be after
-     *            the time for <code>StartTimeInclusive</code>.
+     *            The time specified for <code>StartTimeInclusive</code> must be
+     *            before <code>EndTimeExclusive</code>.
      *            </p>
      *            </li>
      *            </ul>
@@ -416,13 +466,17 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * <p>
      * Specify the start time for the position history in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By default, the
+     * value will be 24 hours prior to the time that the request is made.
+     * </p>
+     * <p>
+     * Requirement:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * The given time for <code>EndTimeExclusive</code> must be after the time
-     * for <code>StartTimeInclusive</code>.
+     * The time specified for <code>StartTimeInclusive</code> must be before
+     * <code>EndTimeExclusive</code>.
      * </p>
      * </li>
      * </ul>
@@ -433,13 +487,18 @@ public class GetDevicePositionHistoryRequest extends AmazonWebServiceRequest imp
      * @param startTimeInclusive <p>
      *            Specify the start time for the position history in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. By
+     *            default, the value will be 24 hours prior to the time that the
+     *            request is made.
+     *            </p>
+     *            <p>
+     *            Requirement:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            The given time for <code>EndTimeExclusive</code> must be after
-     *            the time for <code>StartTimeInclusive</code>.
+     *            The time specified for <code>StartTimeInclusive</code> must be
+     *            before <code>EndTimeExclusive</code>.
      *            </p>
      *            </li>
      *            </ul>

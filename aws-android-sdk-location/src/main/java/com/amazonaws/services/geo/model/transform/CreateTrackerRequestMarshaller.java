@@ -70,6 +70,11 @@ public class CreateTrackerRequestMarshaller implements
                 jsonWriter.name("PricingPlan");
                 jsonWriter.value(pricingPlan);
             }
+            if (createTrackerRequest.getPricingPlanDataSource() != null) {
+                String pricingPlanDataSource = createTrackerRequest.getPricingPlanDataSource();
+                jsonWriter.name("PricingPlanDataSource");
+                jsonWriter.value(pricingPlanDataSource);
+            }
             if (createTrackerRequest.getTrackerName() != null) {
                 String trackerName = createTrackerRequest.getTrackerName();
                 jsonWriter.name("TrackerName");

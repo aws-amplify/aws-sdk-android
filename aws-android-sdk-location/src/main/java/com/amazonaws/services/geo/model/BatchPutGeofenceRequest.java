@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * A batch request for storing geofences into a given geofence collection.
+ * A batch request for storing geofence geometries into a given geofence
+ * collection.
  * </p>
  */
 public class BatchPutGeofenceRequest extends AmazonWebServiceRequest implements Serializable {

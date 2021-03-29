@@ -40,6 +40,12 @@ public class DescribeTrackerResultJsonUnmarshaller implements
             } else if (name.equals("Description")) {
                 describeTrackerResult.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                describeTrackerResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PricingPlanDataSource")) {
+                describeTrackerResult.setPricingPlanDataSource(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TrackerArn")) {
                 describeTrackerResult.setTrackerArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
