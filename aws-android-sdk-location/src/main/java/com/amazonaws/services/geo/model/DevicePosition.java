@@ -43,8 +43,8 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the tracker resource recieved the position in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * The timestamp for when the tracker resource received the device position
+     * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      */
@@ -52,7 +52,7 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position was detected and sampled in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -192,14 +192,14 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the tracker resource recieved the position in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * The timestamp for when the tracker resource received the device position
+     * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the tracker resource recieved the position
-     *         in <a
+     *         The timestamp for when the tracker resource received the device
+     *         position in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
      *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *         </p>
@@ -210,14 +210,14 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the tracker resource recieved the position in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * The timestamp for when the tracker resource received the device position
+     * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param receivedTime <p>
-     *            The timestamp for when the tracker resource recieved the
-     *            position in <a href=
+     *            The timestamp for when the tracker resource received the
+     *            device position in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *            </p>
@@ -228,8 +228,8 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the tracker resource recieved the position in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * The timestamp for when the tracker resource received the device position
+     * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      * <p>
@@ -237,8 +237,8 @@ public class DevicePosition implements Serializable {
      * together.
      *
      * @param receivedTime <p>
-     *            The timestamp for when the tracker resource recieved the
-     *            position in <a href=
+     *            The timestamp for when the tracker resource received the
+     *            device position in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *            </p>
@@ -252,13 +252,13 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position was detected and sampled in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the position was detected and sampled in
+     *         The timestamp at which the device's position was determined. Uses
      *         <a href="https://www.iso.org/iso-8601-date-and-time-format.html">
      *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *         </p>
@@ -269,14 +269,14 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position was detected and sampled in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param sampleTime <p>
-     *            The timestamp for when the position was detected and sampled
-     *            in <a href=
+     *            The timestamp at which the device's position was determined.
+     *            Uses <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *            </p>
@@ -287,7 +287,7 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the position was detected and sampled in <a
+     * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -296,8 +296,8 @@ public class DevicePosition implements Serializable {
      * together.
      *
      * @param sampleTime <p>
-     *            The timestamp for when the position was detected and sampled
-     *            in <a href=
+     *            The timestamp at which the device's position was determined.
+     *            Uses <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *            </p>

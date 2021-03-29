@@ -49,6 +49,14 @@ class ListGeofenceCollectionsResponseEntryJsonUnmarshaller implements
                 listGeofenceCollectionsResponseEntry.setDescription(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                listGeofenceCollectionsResponseEntry.setPricingPlan(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PricingPlanDataSource")) {
+                listGeofenceCollectionsResponseEntry
+                        .setPricingPlanDataSource(StringJsonUnmarshaller.getInstance()
+                                .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listGeofenceCollectionsResponseEntry.setUpdateTime(DateJsonUnmarshaller
                         .getInstance(TimestampFormat.ISO_8601)

@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Stores a geofence to a given geofence collection, or updates the geometry of
- * an existing geofence if a geofence ID is included in the request.
+ * Stores a geofence geometry in a given geofence collection, or updates the
+ * geometry of an existing geofence if a geofence ID is included in the request.
  * </p>
  */
 public class PutGeofenceRequest extends AmazonWebServiceRequest implements Serializable {
@@ -53,6 +53,13 @@ public class PutGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Contains the polygon details to specify the position of the geofence.
      * </p>
+     * <note>
+     * <p>
+     * Each <a href=
+     * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * </p>
+     * </note>
      */
     private GeofenceGeometry geometry;
 
@@ -180,11 +187,25 @@ public class PutGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Contains the polygon details to specify the position of the geofence.
      * </p>
+     * <note>
+     * <p>
+     * Each <a href=
+     * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         Contains the polygon details to specify the position of the
      *         geofence.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Each <a href=
+     *         "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     *         >geofence polygon</a> can have a maximum of 1,000 vertices.
+     *         </p>
+     *         </note>
      */
     public GeofenceGeometry getGeometry() {
         return geometry;
@@ -194,11 +215,25 @@ public class PutGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Contains the polygon details to specify the position of the geofence.
      * </p>
+     * <note>
+     * <p>
+     * Each <a href=
+     * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * </p>
+     * </note>
      *
      * @param geometry <p>
      *            Contains the polygon details to specify the position of the
      *            geofence.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Each <a href=
+     *            "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     *            >geofence polygon</a> can have a maximum of 1,000 vertices.
+     *            </p>
+     *            </note>
      */
     public void setGeometry(GeofenceGeometry geometry) {
         this.geometry = geometry;
@@ -208,6 +243,13 @@ public class PutGeofenceRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Contains the polygon details to specify the position of the geofence.
      * </p>
+     * <note>
+     * <p>
+     * Each <a href=
+     * "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     * >geofence polygon</a> can have a maximum of 1,000 vertices.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -216,6 +258,13 @@ public class PutGeofenceRequest extends AmazonWebServiceRequest implements Seria
      *            Contains the polygon details to specify the position of the
      *            geofence.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Each <a href=
+     *            "https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html"
+     *            >geofence polygon</a> can have a maximum of 1,000 vertices.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

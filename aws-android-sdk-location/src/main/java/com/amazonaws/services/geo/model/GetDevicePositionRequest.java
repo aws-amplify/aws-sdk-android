@@ -21,18 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves the latest device position.
+ * Retrieves a device's most recent position according to its sample time.
  * </p>
  * <note>
  * <p>
- * Limitation — Device positions are deleted after one year.
+ * Device positions are deleted after one year.
  * </p>
  * </note>
  */
 public class GetDevicePositionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The device whose position you want to retreieve.
+     * The device whose position you want to retrieve.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,7 +54,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The device whose position you want to retreieve.
+     * The device whose position you want to retrieve.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,7 +62,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
      *
      * @return <p>
-     *         The device whose position you want to retreieve.
+     *         The device whose position you want to retrieve.
      *         </p>
      */
     public String getDeviceId() {
@@ -71,7 +71,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The device whose position you want to retreieve.
+     * The device whose position you want to retrieve.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,7 +79,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
      *
      * @param deviceId <p>
-     *            The device whose position you want to retreieve.
+     *            The device whose position you want to retrieve.
      *            </p>
      */
     public void setDeviceId(String deviceId) {
@@ -88,7 +88,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The device whose position you want to retreieve.
+     * The device whose position you want to retrieve.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -99,7 +99,7 @@ public class GetDevicePositionRequest extends AmazonWebServiceRequest implements
      * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
      *
      * @param deviceId <p>
-     *            The device whose position you want to retreieve.
+     *            The device whose position you want to retrieve.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

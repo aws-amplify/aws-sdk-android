@@ -42,6 +42,17 @@ class ListGeofenceCollectionsResponseEntryJsonMarshaller {
             jsonWriter.name("Description");
             jsonWriter.value(description);
         }
+        if (listGeofenceCollectionsResponseEntry.getPricingPlan() != null) {
+            String pricingPlan = listGeofenceCollectionsResponseEntry.getPricingPlan();
+            jsonWriter.name("PricingPlan");
+            jsonWriter.value(pricingPlan);
+        }
+        if (listGeofenceCollectionsResponseEntry.getPricingPlanDataSource() != null) {
+            String pricingPlanDataSource = listGeofenceCollectionsResponseEntry
+                    .getPricingPlanDataSource();
+            jsonWriter.name("PricingPlanDataSource");
+            jsonWriter.value(pricingPlanDataSource);
+        }
         if (listGeofenceCollectionsResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listGeofenceCollectionsResponseEntry.getUpdateTime();
             jsonWriter.name("UpdateTime");

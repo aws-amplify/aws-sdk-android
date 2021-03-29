@@ -21,9 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Used in geofence monitoring. Evaluates device positions against the position
- * of geofences in a given geofence collection.
+ * Evaluates device positions against the geofence geometries from a given
+ * geofence collection. The evaluation determines if the device has entered or
+ * exited a geofenced area, which publishes ENTER or EXIT geofence events to
+ * Amazon EventBridge.
  * </p>
+ * <note>
+ * <p>
+ * The last geofence that a device was observed within, if any, is tracked for
+ * 30 days after the most recent device position update
+ * </p>
+ * </note>
  */
 public class BatchEvaluateGeofencesRequest extends AmazonWebServiceRequest implements Serializable {
     /**

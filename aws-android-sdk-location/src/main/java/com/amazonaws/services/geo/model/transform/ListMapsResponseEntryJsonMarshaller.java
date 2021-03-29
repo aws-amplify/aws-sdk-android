@@ -47,6 +47,11 @@ class ListMapsResponseEntryJsonMarshaller {
             jsonWriter.name("MapName");
             jsonWriter.value(mapName);
         }
+        if (listMapsResponseEntry.getPricingPlan() != null) {
+            String pricingPlan = listMapsResponseEntry.getPricingPlan();
+            jsonWriter.name("PricingPlan");
+            jsonWriter.value(pricingPlan);
+        }
         if (listMapsResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listMapsResponseEntry.getUpdateTime();
             jsonWriter.name("UpdateTime");

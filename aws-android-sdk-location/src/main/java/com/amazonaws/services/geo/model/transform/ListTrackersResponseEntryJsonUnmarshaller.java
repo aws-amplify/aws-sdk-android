@@ -43,6 +43,13 @@ class ListTrackersResponseEntryJsonUnmarshaller implements
             } else if (name.equals("Description")) {
                 listTrackersResponseEntry.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                listTrackersResponseEntry.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PricingPlanDataSource")) {
+                listTrackersResponseEntry.setPricingPlanDataSource(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("TrackerName")) {
                 listTrackersResponseEntry.setTrackerName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
