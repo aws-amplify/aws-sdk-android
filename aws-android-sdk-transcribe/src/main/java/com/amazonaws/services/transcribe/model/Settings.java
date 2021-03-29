@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -125,11 +125,14 @@ public class Settings implements Serializable {
      * Set to <code>mask</code> to remove filtered text from the transcript and
      * replace it with three asterisks ("***") as placeholder text. Set to
      * <code>remove</code> to remove filtered text from the transcript without
-     * using placeholder text.
+     * using placeholder text. Set to <code>tag</code> to mark the word in the
+     * transcription output that matches the vocabulary filter. When you set the
+     * filter method to <code>tag</code>, the words matching your vocabulary
+     * filter are not masked or removed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>remove, mask
+     * <b>Allowed Values: </b>remove, mask, tag
      */
     private String vocabularyFilterMethod;
 
@@ -805,17 +808,24 @@ public class Settings implements Serializable {
      * Set to <code>mask</code> to remove filtered text from the transcript and
      * replace it with three asterisks ("***") as placeholder text. Set to
      * <code>remove</code> to remove filtered text from the transcript without
-     * using placeholder text.
+     * using placeholder text. Set to <code>tag</code> to mark the word in the
+     * transcription output that matches the vocabulary filter. When you set the
+     * filter method to <code>tag</code>, the words matching your vocabulary
+     * filter are not masked or removed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>remove, mask
+     * <b>Allowed Values: </b>remove, mask, tag
      *
      * @return <p>
      *         Set to <code>mask</code> to remove filtered text from the
      *         transcript and replace it with three asterisks ("***") as
      *         placeholder text. Set to <code>remove</code> to remove filtered
-     *         text from the transcript without using placeholder text.
+     *         text from the transcript without using placeholder text. Set to
+     *         <code>tag</code> to mark the word in the transcription output
+     *         that matches the vocabulary filter. When you set the filter
+     *         method to <code>tag</code>, the words matching your vocabulary
+     *         filter are not masked or removed.
      *         </p>
      * @see VocabularyFilterMethod
      */
@@ -828,18 +838,24 @@ public class Settings implements Serializable {
      * Set to <code>mask</code> to remove filtered text from the transcript and
      * replace it with three asterisks ("***") as placeholder text. Set to
      * <code>remove</code> to remove filtered text from the transcript without
-     * using placeholder text.
+     * using placeholder text. Set to <code>tag</code> to mark the word in the
+     * transcription output that matches the vocabulary filter. When you set the
+     * filter method to <code>tag</code>, the words matching your vocabulary
+     * filter are not masked or removed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>remove, mask
+     * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
      *            Set to <code>mask</code> to remove filtered text from the
      *            transcript and replace it with three asterisks ("***") as
      *            placeholder text. Set to <code>remove</code> to remove
      *            filtered text from the transcript without using placeholder
-     *            text.
+     *            text. Set to <code>tag</code> to mark the word in the
+     *            transcription output that matches the vocabulary filter. When
+     *            you set the filter method to <code>tag</code>, the words
+     *            matching your vocabulary filter are not masked or removed.
      *            </p>
      * @see VocabularyFilterMethod
      */
@@ -852,21 +868,27 @@ public class Settings implements Serializable {
      * Set to <code>mask</code> to remove filtered text from the transcript and
      * replace it with three asterisks ("***") as placeholder text. Set to
      * <code>remove</code> to remove filtered text from the transcript without
-     * using placeholder text.
+     * using placeholder text. Set to <code>tag</code> to mark the word in the
+     * transcription output that matches the vocabulary filter. When you set the
+     * filter method to <code>tag</code>, the words matching your vocabulary
+     * filter are not masked or removed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>remove, mask
+     * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
      *            Set to <code>mask</code> to remove filtered text from the
      *            transcript and replace it with three asterisks ("***") as
      *            placeholder text. Set to <code>remove</code> to remove
      *            filtered text from the transcript without using placeholder
-     *            text.
+     *            text. Set to <code>tag</code> to mark the word in the
+     *            transcription output that matches the vocabulary filter. When
+     *            you set the filter method to <code>tag</code>, the words
+     *            matching your vocabulary filter are not masked or removed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -882,18 +904,24 @@ public class Settings implements Serializable {
      * Set to <code>mask</code> to remove filtered text from the transcript and
      * replace it with three asterisks ("***") as placeholder text. Set to
      * <code>remove</code> to remove filtered text from the transcript without
-     * using placeholder text.
+     * using placeholder text. Set to <code>tag</code> to mark the word in the
+     * transcription output that matches the vocabulary filter. When you set the
+     * filter method to <code>tag</code>, the words matching your vocabulary
+     * filter are not masked or removed.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>remove, mask
+     * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
      *            Set to <code>mask</code> to remove filtered text from the
      *            transcript and replace it with three asterisks ("***") as
      *            placeholder text. Set to <code>remove</code> to remove
      *            filtered text from the transcript without using placeholder
-     *            text.
+     *            text. Set to <code>tag</code> to mark the word in the
+     *            transcription output that matches the vocabulary filter. When
+     *            you set the filter method to <code>tag</code>, the words
+     *            matching your vocabulary filter are not masked or removed.
      *            </p>
      * @see VocabularyFilterMethod
      */
@@ -906,21 +934,27 @@ public class Settings implements Serializable {
      * Set to <code>mask</code> to remove filtered text from the transcript and
      * replace it with three asterisks ("***") as placeholder text. Set to
      * <code>remove</code> to remove filtered text from the transcript without
-     * using placeholder text.
+     * using placeholder text. Set to <code>tag</code> to mark the word in the
+     * transcription output that matches the vocabulary filter. When you set the
+     * filter method to <code>tag</code>, the words matching your vocabulary
+     * filter are not masked or removed.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>remove, mask
+     * <b>Allowed Values: </b>remove, mask, tag
      *
      * @param vocabularyFilterMethod <p>
      *            Set to <code>mask</code> to remove filtered text from the
      *            transcript and replace it with three asterisks ("***") as
      *            placeholder text. Set to <code>remove</code> to remove
      *            filtered text from the transcript without using placeholder
-     *            text.
+     *            text. Set to <code>tag</code> to mark the word in the
+     *            transcription output that matches the vocabulary filter. When
+     *            you set the filter method to <code>tag</code>, the words
+     *            matching your vocabulary filter are not masked or removed.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
