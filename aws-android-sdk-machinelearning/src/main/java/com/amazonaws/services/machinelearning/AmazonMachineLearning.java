@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -97,17 +97,9 @@ public interface AmazonMachineLearning {
      * @param getMLModelRequest
      * @return getMLModelResult The response from the GetMLModel service method,
      *         as returned by Amazon Machine Learning.
-     * @throws InvalidInputException <p>
-     *             An error on the client occurred. Typically, the cause is an
-     *             invalid input value.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             A specified resource cannot be located.
-     *             </p>
-     * @throws InternalServerException <p>
-     *             An error on the server occurred when trying to process a
-     *             request.
-     *             </p>
+     * @throws InvalidInputException
+     * @throws ResourceNotFoundException
+     * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -124,36 +116,19 @@ public interface AmazonMachineLearning {
      * Generates a prediction for the observation using the specified
      * <code>ML Model</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * Not all response parameters will be populated. Whether a response
-     * parameter is populated depends on the type of model requested.
+     * <b>Note:</b> Not all response parameters will be populated. Whether a
+     * response parameter is populated depends on the type of model requested.
      * </p>
-     * </note>
      * 
      * @param predictRequest
      * @return predictResult The response from the Predict service method, as
      *         returned by Amazon Machine Learning.
-     * @throws InvalidInputException <p>
-     *             An error on the client occurred. Typically, the cause is an
-     *             invalid input value.
-     *             </p>
-     * @throws ResourceNotFoundException <p>
-     *             A specified resource cannot be located.
-     *             </p>
-     * @throws LimitExceededException <p>
-     *             The subscriber exceeded the maximum number of operations.
-     *             This exception can occur when listing objects such as
-     *             <code>DataSource</code>.
-     *             </p>
-     * @throws InternalServerException <p>
-     *             An error on the server occurred when trying to process a
-     *             request.
-     *             </p>
-     * @throws PredictorNotMountedException <p>
-     *             The exception is thrown when a predict request is made to an
-     *             unmounted <code>MLModel</code>.
-     *             </p>
+     * @throws InvalidInputException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws InternalServerException
+     * @throws PredictorNotMountedException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
