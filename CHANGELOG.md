@@ -1,3 +1,14 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---machinelearning
+---iot
+---comprehend
+---transcribe
 # Change Log - AWS SDK for Android
 
 ## [Release 2.22.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.5)
