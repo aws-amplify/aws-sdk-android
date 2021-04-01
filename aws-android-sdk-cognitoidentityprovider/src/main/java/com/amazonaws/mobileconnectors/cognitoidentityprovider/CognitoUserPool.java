@@ -19,7 +19,6 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 
 import android.content.Context;
 import android.os.Handler;
-import android.text.TextUtils;
 
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
@@ -291,11 +290,10 @@ public class CognitoUserPool {
         this(context, userPoolId, clientId, clientSecret, client, pinpointAppId);
 
         // check if the custom endpoint is not empty
-        if(!TextUtils.isEmpty((cognitoUserPoolCustomEndpoint))) {
+        if(cognitoUserPoolCustomEndpoint != null && !cognitoUserPoolCustomEndpoint.isEmpty()) {
             this.client.setEndpoint(cognitoUserPoolCustomEndpoint);
         }
     }
-
 
     /**
      * Constructs a user-pool with default {@link ClientConfiguration}.
@@ -610,5 +608,12 @@ public class CognitoUserPool {
             contextData.setEncodedData(encodedData);
         }
         return contextData;
+    }
+
+    /**
+     * Returns the {@link AmazonCognitoIdentityProvider} instance
+     */
+    public AmazonCognitoIdentityProvider getClientInstance() {
+        return this.client;
     }
 }
