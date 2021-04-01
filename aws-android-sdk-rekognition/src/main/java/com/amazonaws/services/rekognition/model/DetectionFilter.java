@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@ import java.io.Serializable;
 public class DetectionFilter implements Serializable {
     /**
      * <p>
-     * Sets confidence of word detection. Words with detection confidence below
-     * this will be excluded from the result. Values should be between 0.5 and 1
-     * as Text in Video will not return any result below 0.5.
+     * Sets the confidence of word detection. Words with detection confidence
+     * below this will be excluded from the result. Values should be between 50
+     * and 100 as Text in Video will not return any result below 50.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,19 +62,19 @@ public class DetectionFilter implements Serializable {
 
     /**
      * <p>
-     * Sets confidence of word detection. Words with detection confidence below
-     * this will be excluded from the result. Values should be between 0.5 and 1
-     * as Text in Video will not return any result below 0.5.
+     * Sets the confidence of word detection. Words with detection confidence
+     * below this will be excluded from the result. Values should be between 50
+     * and 100 as Text in Video will not return any result below 50.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @return <p>
-     *         Sets confidence of word detection. Words with detection
+     *         Sets the confidence of word detection. Words with detection
      *         confidence below this will be excluded from the result. Values
-     *         should be between 0.5 and 1 as Text in Video will not return any
-     *         result below 0.5.
+     *         should be between 50 and 100 as Text in Video will not return any
+     *         result below 50.
      *         </p>
      */
     public Float getMinConfidence() {
@@ -83,19 +83,19 @@ public class DetectionFilter implements Serializable {
 
     /**
      * <p>
-     * Sets confidence of word detection. Words with detection confidence below
-     * this will be excluded from the result. Values should be between 0.5 and 1
-     * as Text in Video will not return any result below 0.5.
+     * Sets the confidence of word detection. Words with detection confidence
+     * below this will be excluded from the result. Values should be between 50
+     * and 100 as Text in Video will not return any result below 50.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 100<br/>
      *
      * @param minConfidence <p>
-     *            Sets confidence of word detection. Words with detection
+     *            Sets the confidence of word detection. Words with detection
      *            confidence below this will be excluded from the result. Values
-     *            should be between 0.5 and 1 as Text in Video will not return
-     *            any result below 0.5.
+     *            should be between 50 and 100 as Text in Video will not return
+     *            any result below 50.
      *            </p>
      */
     public void setMinConfidence(Float minConfidence) {
@@ -104,9 +104,9 @@ public class DetectionFilter implements Serializable {
 
     /**
      * <p>
-     * Sets confidence of word detection. Words with detection confidence below
-     * this will be excluded from the result. Values should be between 0.5 and 1
-     * as Text in Video will not return any result below 0.5.
+     * Sets the confidence of word detection. Words with detection confidence
+     * below this will be excluded from the result. Values should be between 50
+     * and 100 as Text in Video will not return any result below 50.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -116,10 +116,10 @@ public class DetectionFilter implements Serializable {
      * <b>Length: </b>0 - 100<br/>
      *
      * @param minConfidence <p>
-     *            Sets confidence of word detection. Words with detection
+     *            Sets the confidence of word detection. Words with detection
      *            confidence below this will be excluded from the result. Values
-     *            should be between 0.5 and 1 as Text in Video will not return
-     *            any result below 0.5.
+     *            should be between 50 and 100 as Text in Video will not return
+     *            any result below 50.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

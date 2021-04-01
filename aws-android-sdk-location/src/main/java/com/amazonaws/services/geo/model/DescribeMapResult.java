@@ -78,6 +78,21 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
+     * The pricing plan selected for the specified map resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     */
+    private String pricingPlan;
+
+    /**
+     * <p>
      * The timestamp for when the map resource was last update in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -419,6 +434,148 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
+     * The pricing plan selected for the specified map resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @return <p>
+     *         The pricing plan selected for the specified map resource.
+     *         </p>
+     * 
+     *         <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * @see PricingPlan
+     */
+    public String getPricingPlan() {
+        return pricingPlan;
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified map resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified map resource.
+     *            </p>
+     * 
+     *            <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * @see PricingPlan
+     */
+    public void setPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified map resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified map resource.
+     *            </p>
+     * 
+     *            <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
+     */
+    public DescribeMapResult withPricingPlan(String pricingPlan) {
+        this.pricingPlan = pricingPlan;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified map resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified map resource.
+     *            </p>
+     * 
+     *            <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * @see PricingPlan
+     */
+    public void setPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+    }
+
+    /**
+     * <p>
+     * The pricing plan selected for the specified map resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RequestBasedUsage, MobileAssetTracking,
+     * MobileAssetManagement
+     *
+     * @param pricingPlan <p>
+     *            The pricing plan selected for the specified map resource.
+     *            </p>
+     * 
+     *            <pre>
+     * <code> &lt;p&gt;For additional details and restrictions on each pricing plan option, see the &lt;a href=&quot;https://aws.amazon.com/location/pricing/&quot;&gt;Amazon Location Service pricing page&lt;/a&gt;.&lt;/p&gt; </code>
+     * </pre>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PricingPlan
+     */
+    public DescribeMapResult withPricingPlan(PricingPlan pricingPlan) {
+        this.pricingPlan = pricingPlan.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp for when the map resource was last update in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -499,6 +656,8 @@ public class DescribeMapResult implements Serializable {
             sb.append("MapArn: " + getMapArn() + ",");
         if (getMapName() != null)
             sb.append("MapName: " + getMapName() + ",");
+        if (getPricingPlan() != null)
+            sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -518,6 +677,8 @@ public class DescribeMapResult implements Serializable {
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getMapArn() == null) ? 0 : getMapArn().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
+        hashCode = prime * hashCode
+                + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -560,6 +721,11 @@ public class DescribeMapResult implements Serializable {
         if (other.getMapName() == null ^ this.getMapName() == null)
             return false;
         if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+            return false;
+        if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
+            return false;
+        if (other.getPricingPlan() != null
+                && other.getPricingPlan().equals(this.getPricingPlan()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

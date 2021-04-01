@@ -50,6 +50,9 @@ class ListPlaceIndexesResponseEntryJsonUnmarshaller implements
             } else if (name.equals("IndexName")) {
                 listPlaceIndexesResponseEntry.setIndexName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                listPlaceIndexesResponseEntry.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 listPlaceIndexesResponseEntry.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

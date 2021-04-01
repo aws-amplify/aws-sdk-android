@@ -54,6 +54,9 @@ public class DescribePlaceIndexResultJsonUnmarshaller implements
             } else if (name.equals("IndexName")) {
                 describePlaceIndexResult.setIndexName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PricingPlan")) {
+                describePlaceIndexResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describePlaceIndexResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

@@ -1213,33 +1213,20 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             @Override
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                                 Log.d(TAG, "Sending password.");
-                                final HashMap<String, String> authParameters = new HashMap<>();
-                                // Check if the auth flow type setting is in the configuration.
-                                boolean authFlowTypeInConfig =
-                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
-                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType");
-
                                 try {
-                                    String authFlowType = authFlowTypeInConfig ?
-                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
-                                        null;
-                                    // If there's a value in the config and it's CUSTOM_AUTH
-                                    if (authFlowTypeInConfig && "CUSTOM_AUTH".equals(authFlowType)) {
+                                    if (
+                                            awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                            awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
+                                            awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
+                                    ) {
+                                        final HashMap<String, String> authParameters = new HashMap<String, String>();
                                         if (password != null) {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                         } else {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
                                         }
                                     } else {
-                                        // Otherwise, create the AuthenticationDetails instance using the constructor below
-                                        // which will default the auth flow to CHLG_TYPE_USER_PASSWORD_VERIFIER
-                                        AuthenticationDetails authenticationDetails = new AuthenticationDetails(username, password, validationData);
-                                        if (authFlowTypeInConfig) {
-                                            // If there's an auth flow type value in the config, use that value instead.
-                                            // The field names are very misleading.
-                                            authenticationDetails.setAuthenticationType(awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType"));
-                                        }
-                                        authenticationContinuation.setAuthenticationDetails(authenticationDetails);
+                                        authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -3551,19 +3538,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         Log.d(TAG, "Using the SignInProviderConfig from `awsconfiguration.json`.");
         final IdentityManager identityManager = IdentityManager.getDefaultIdentityManager();
 
-        if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(CognitoUserPoolsSignInProvider.class)) {
-            identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
-        }
+        try {
+            if (isConfigurationKeyPresent(USER_POOLS, awsConfiguration)) {
+                identityManager.addSignInProvider(CognitoUserPoolsSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(FacebookSignInProvider.class)) {
-            identityManager.addSignInProvider(FacebookSignInProvider.class);
-        }
+            if (isConfigurationKeyPresent(FACEBOOK, awsConfiguration)) {
+                identityManager.addSignInProvider(FacebookSignInProvider.class);
+            }
 
-        if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)
-                && !identityManager.getSignInProviderClasses().contains(GoogleSignInProvider.class)) {
-            identityManager.addSignInProvider(GoogleSignInProvider.class);
+            if (isConfigurationKeyPresent(GOOGLE, awsConfiguration)) {
+                identityManager.addSignInProvider(GoogleSignInProvider.class);
+            }
+        } catch (NoClassDefFoundError exception) {
+            Log.w(TAG, "Sign in provider was not registered due to missing optional dependency. " +
+                    "showSignIn() API may not work as expected.", exception);
         }
     }
 

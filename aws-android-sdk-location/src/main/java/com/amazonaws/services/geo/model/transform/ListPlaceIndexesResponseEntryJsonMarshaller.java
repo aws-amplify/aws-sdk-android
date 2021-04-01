@@ -47,6 +47,11 @@ class ListPlaceIndexesResponseEntryJsonMarshaller {
             jsonWriter.name("IndexName");
             jsonWriter.value(indexName);
         }
+        if (listPlaceIndexesResponseEntry.getPricingPlan() != null) {
+            String pricingPlan = listPlaceIndexesResponseEntry.getPricingPlan();
+            jsonWriter.name("PricingPlan");
+            jsonWriter.value(pricingPlan);
+        }
         if (listPlaceIndexesResponseEntry.getUpdateTime() != null) {
             java.util.Date updateTime = listPlaceIndexesResponseEntry.getUpdateTime();
             jsonWriter.name("UpdateTime");

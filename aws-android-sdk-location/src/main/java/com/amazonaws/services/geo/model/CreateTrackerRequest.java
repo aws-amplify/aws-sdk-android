@@ -38,29 +38,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for your tracker resource. There's three
-     * pricing plan options:
+     * Specifies the pricing plan for your tracker resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -75,6 +54,24 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * Specifies the plan data source. Required if the Mobile Asset Tracking
+     * (MAT) or the Mobile Asset Management (MAM) pricing plan is selected.
+     * </p>
+     * <p>
+     * Billing is determined by the resource usage, the associated pricing plan,
+     * and data source that was specified. For more information about each
+     * pricing plan option and restrictions, see the <a
+     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
+     * pricing page</a>.
+     * </p>
+     * <p>
+     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * </p>
+     */
+    private String pricingPlanDataSource;
+
+    /**
+     * <p>
      * The name for the tracker resource.
      * </p>
      * <p>
@@ -83,8 +80,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-) and
-     * underscores (_).
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -161,29 +158,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for your tracker resource. There's three
-     * pricing plan options:
+     * Specifies the pricing plan for your tracker resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -195,29 +171,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for your tracker resource. There's
-     *         three pricing plan options:
+     *         Specifies the pricing plan for your tracker resource.
      *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         <code>RequestBasedUsage</code> — Selects the
-     *         "Request-Based Usage" pricing plan.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>MobileAssetTracking</code> — Selects the
-     *         "Mobile Asset Tracking" pricing plan.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         <code>MobileAssetManagement</code> — Selects the
-     *         "Mobile Asset Management" pricing plan.
-     *         </p>
-     *         </li>
-     *         </ul>
      *         <p>
      *         For additional details and restrictions on each pricing plan
      *         option, see the <a
@@ -232,29 +187,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for your tracker resource. There's three
-     * pricing plan options:
+     * Specifies the pricing plan for your tracker resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -266,29 +200,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your tracker resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your tracker resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -303,29 +216,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for your tracker resource. There's three
-     * pricing plan options:
+     * Specifies the pricing plan for your tracker resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -340,29 +232,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your tracker resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your tracker resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -380,29 +251,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for your tracker resource. There's three
-     * pricing plan options:
+     * Specifies the pricing plan for your tracker resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -414,29 +264,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your tracker resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your tracker resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -451,29 +280,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Specifies the pricing plan for your tracker resource. There's three
-     * pricing plan options:
+     * Specifies the pricing plan for your tracker resource.
      * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * <code>RequestBasedUsage</code> — Selects the "Request-Based Usage"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetTracking</code> — Selects the "Mobile Asset Tracking"
-     * pricing plan.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * <code>MobileAssetManagement</code> — Selects the
-     * "Mobile Asset Management" pricing plan.
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
      * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
@@ -488,29 +296,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your tracker resource. There's
-     *            three pricing plan options:
+     *            Specifies the pricing plan for your tracker resource.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            <code>RequestBasedUsage</code> — Selects the
-     *            "Request-Based Usage" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetTracking</code> — Selects the
-     *            "Mobile Asset Tracking" pricing plan.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            <code>MobileAssetManagement</code> — Selects the
-     *            "Mobile Asset Management" pricing plan.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For additional details and restrictions on each pricing plan
      *            option, see the <a
@@ -528,6 +315,122 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * Specifies the plan data source. Required if the Mobile Asset Tracking
+     * (MAT) or the Mobile Asset Management (MAM) pricing plan is selected.
+     * </p>
+     * <p>
+     * Billing is determined by the resource usage, the associated pricing plan,
+     * and data source that was specified. For more information about each
+     * pricing plan option and restrictions, see the <a
+     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
+     * pricing page</a>.
+     * </p>
+     * <p>
+     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * </p>
+     *
+     * @return <p>
+     *         Specifies the plan data source. Required if the Mobile Asset
+     *         Tracking (MAT) or the Mobile Asset Management (MAM) pricing plan
+     *         is selected.
+     *         </p>
+     *         <p>
+     *         Billing is determined by the resource usage, the associated
+     *         pricing plan, and data source that was specified. For more
+     *         information about each pricing plan option and restrictions, see
+     *         the <a href="https://aws.amazon.com/location/pricing/">Amazon
+     *         Location Service pricing page</a>.
+     *         </p>
+     *         <p>
+     *         Valid Values: <code>Esri</code> | <code>Here</code>
+     *         </p>
+     */
+    public String getPricingPlanDataSource() {
+        return pricingPlanDataSource;
+    }
+
+    /**
+     * <p>
+     * Specifies the plan data source. Required if the Mobile Asset Tracking
+     * (MAT) or the Mobile Asset Management (MAM) pricing plan is selected.
+     * </p>
+     * <p>
+     * Billing is determined by the resource usage, the associated pricing plan,
+     * and data source that was specified. For more information about each
+     * pricing plan option and restrictions, see the <a
+     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
+     * pricing page</a>.
+     * </p>
+     * <p>
+     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * </p>
+     *
+     * @param pricingPlanDataSource <p>
+     *            Specifies the plan data source. Required if the Mobile Asset
+     *            Tracking (MAT) or the Mobile Asset Management (MAM) pricing
+     *            plan is selected.
+     *            </p>
+     *            <p>
+     *            Billing is determined by the resource usage, the associated
+     *            pricing plan, and data source that was specified. For more
+     *            information about each pricing plan option and restrictions,
+     *            see the <a
+     *            href="https://aws.amazon.com/location/pricing/">Amazon
+     *            Location Service pricing page</a>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>Esri</code> | <code>Here</code>
+     *            </p>
+     */
+    public void setPricingPlanDataSource(String pricingPlanDataSource) {
+        this.pricingPlanDataSource = pricingPlanDataSource;
+    }
+
+    /**
+     * <p>
+     * Specifies the plan data source. Required if the Mobile Asset Tracking
+     * (MAT) or the Mobile Asset Management (MAM) pricing plan is selected.
+     * </p>
+     * <p>
+     * Billing is determined by the resource usage, the associated pricing plan,
+     * and data source that was specified. For more information about each
+     * pricing plan option and restrictions, see the <a
+     * href="https://aws.amazon.com/location/pricing/">Amazon Location Service
+     * pricing page</a>.
+     * </p>
+     * <p>
+     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param pricingPlanDataSource <p>
+     *            Specifies the plan data source. Required if the Mobile Asset
+     *            Tracking (MAT) or the Mobile Asset Management (MAM) pricing
+     *            plan is selected.
+     *            </p>
+     *            <p>
+     *            Billing is determined by the resource usage, the associated
+     *            pricing plan, and data source that was specified. For more
+     *            information about each pricing plan option and restrictions,
+     *            see the <a
+     *            href="https://aws.amazon.com/location/pricing/">Amazon
+     *            Location Service pricing page</a>.
+     *            </p>
+     *            <p>
+     *            Valid Values: <code>Esri</code> | <code>Here</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateTrackerRequest withPricingPlanDataSource(String pricingPlanDataSource) {
+        this.pricingPlanDataSource = pricingPlanDataSource;
+        return this;
+    }
+
+    /**
+     * <p>
      * The name for the tracker resource.
      * </p>
      * <p>
@@ -536,8 +439,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-) and
-     * underscores (_).
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -566,7 +469,7 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      *         <li>
      *         <p>
      *         Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
-     *         (-) and underscores (_).
+     *         (-), periods (.), and underscores (_).
      *         </p>
      *         </li>
      *         <li>
@@ -595,8 +498,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-) and
-     * underscores (_).
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -625,7 +528,7 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      *            <li>
      *            <p>
      *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
-     *            (-) and underscores (_).
+     *            (-), periods (.), and underscores (_).
      *            </p>
      *            </li>
      *            <li>
@@ -654,8 +557,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-) and
-     * underscores (_).
+     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
@@ -687,7 +590,7 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
      *            <li>
      *            <p>
      *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
-     *            (-) and underscores (_).
+     *            (-), periods (.), and underscores (_).
      *            </p>
      *            </li>
      *            <li>
@@ -724,6 +627,8 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
             sb.append("Description: " + getDescription() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getPricingPlanDataSource() != null)
+            sb.append("PricingPlanDataSource: " + getPricingPlanDataSource() + ",");
         if (getTrackerName() != null)
             sb.append("TrackerName: " + getTrackerName());
         sb.append("}");
@@ -739,6 +644,9 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getPricingPlanDataSource() == null) ? 0 : getPricingPlanDataSource().hashCode());
         hashCode = prime * hashCode
                 + ((getTrackerName() == null) ? 0 : getTrackerName().hashCode());
         return hashCode;
@@ -764,6 +672,11 @@ public class CreateTrackerRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getPricingPlanDataSource() == null ^ this.getPricingPlanDataSource() == null)
+            return false;
+        if (other.getPricingPlanDataSource() != null
+                && other.getPricingPlanDataSource().equals(this.getPricingPlanDataSource()) == false)
             return false;
         if (other.getTrackerName() == null ^ this.getTrackerName() == null)
             return false;

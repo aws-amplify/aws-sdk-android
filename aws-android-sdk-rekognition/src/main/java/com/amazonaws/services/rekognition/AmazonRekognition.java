@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -90,10 +90,21 @@ public interface AmazonRekognition {
      * Compares a face in the <i>source</i> input image with each of the 100
      * largest faces detected in the <i>target</i> input image.
      * </p>
-     * <note>
      * <p>
      * If the source image contains multiple faces, the service detects the
      * largest face and compares it with each face detected in the target image.
+     * </p>
+     * <note>
+     * <p>
+     * CompareFaces uses machine learning algorithms, which are probabilistic. A
+     * false negative is an incorrect prediction that a face in the target image
+     * has a low similarity confidence score when compared to the face in the
+     * source image. To reduce the probability of false negatives, we recommend
+     * that you compare the target image against multiple source images. If you
+     * plan to use <code>CompareFaces</code> to make a decision that impacts an
+     * individual's rights, privacy, or access to services, we recommend that
+     * you pass the result to a human for review and further validation before
+     * taking action.
      * </p>
      * </note>
      * <p>
@@ -215,6 +226,7 @@ public interface AmazonRekognition {
      * @throws ThrottlingException
      * @throws ProvisionedThroughputExceededException
      * @throws ResourceAlreadyExistsException
+     * @throws ServiceQuotaExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -296,6 +308,7 @@ public interface AmazonRekognition {
      * @throws InternalServerErrorException
      * @throws ThrottlingException
      * @throws ProvisionedThroughputExceededException
+     * @throws ServiceQuotaExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -345,6 +358,7 @@ public interface AmazonRekognition {
      * @throws LimitExceededException
      * @throws ResourceInUseException
      * @throws ProvisionedThroughputExceededException
+     * @throws ServiceQuotaExceededException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -1985,6 +1999,34 @@ public interface AmazonRekognition {
 
     /**
      * <p>
+     * Returns a list of tags in an Amazon Rekognition collection, stream
+     * processor, or Custom Labels model.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Returns an array of celebrities recognized in the input image. For more
      * information, see Recognizing Celebrities in the Amazon Rekognition
      * Developer Guide.
@@ -2708,6 +2750,61 @@ public interface AmazonRekognition {
     StopStreamProcessorResult stopStreamProcessor(
             StopStreamProcessorRequest stopStreamProcessorRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Adds one or more key-value tags to an Amazon Rekognition collection,
+     * stream processor, or Custom Labels model. For more information, see <a
+     * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">
+     * Tagging AWS Resources</a>.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws ServiceQuotaExceededException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes one or more tags from an Amazon Rekognition collection, stream
+     * processor, or Custom Labels model.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * Shuts down this client object, releasing any resources that might be held

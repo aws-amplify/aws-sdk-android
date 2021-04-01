@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -52,8 +52,8 @@ public class ProtectiveEquipmentSummary implements Serializable {
     /**
      * <p>
      * An array of IDs for persons who are not wearing all of the types of PPE
-     * specified in the RequiredEquipmentTypes field of the detected personal
-     * protective equipment.
+     * specified in the <code>RequiredEquipmentTypes</code> field of the
+     * detected personal protective equipment.
      * </p>
      */
     private java.util.List<Integer> personsWithoutRequiredEquipment;
@@ -156,14 +156,14 @@ public class ProtectiveEquipmentSummary implements Serializable {
     /**
      * <p>
      * An array of IDs for persons who are not wearing all of the types of PPE
-     * specified in the RequiredEquipmentTypes field of the detected personal
-     * protective equipment.
+     * specified in the <code>RequiredEquipmentTypes</code> field of the
+     * detected personal protective equipment.
      * </p>
      *
      * @return <p>
      *         An array of IDs for persons who are not wearing all of the types
-     *         of PPE specified in the RequiredEquipmentTypes field of the
-     *         detected personal protective equipment.
+     *         of PPE specified in the <code>RequiredEquipmentTypes</code> field
+     *         of the detected personal protective equipment.
      *         </p>
      */
     public java.util.List<Integer> getPersonsWithoutRequiredEquipment() {
@@ -173,14 +173,15 @@ public class ProtectiveEquipmentSummary implements Serializable {
     /**
      * <p>
      * An array of IDs for persons who are not wearing all of the types of PPE
-     * specified in the RequiredEquipmentTypes field of the detected personal
-     * protective equipment.
+     * specified in the <code>RequiredEquipmentTypes</code> field of the
+     * detected personal protective equipment.
      * </p>
      *
      * @param personsWithoutRequiredEquipment <p>
      *            An array of IDs for persons who are not wearing all of the
-     *            types of PPE specified in the RequiredEquipmentTypes field of
-     *            the detected personal protective equipment.
+     *            types of PPE specified in the
+     *            <code>RequiredEquipmentTypes</code> field of the detected
+     *            personal protective equipment.
      *            </p>
      */
     public void setPersonsWithoutRequiredEquipment(
@@ -197,8 +198,8 @@ public class ProtectiveEquipmentSummary implements Serializable {
     /**
      * <p>
      * An array of IDs for persons who are not wearing all of the types of PPE
-     * specified in the RequiredEquipmentTypes field of the detected personal
-     * protective equipment.
+     * specified in the <code>RequiredEquipmentTypes</code> field of the
+     * detected personal protective equipment.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -206,8 +207,9 @@ public class ProtectiveEquipmentSummary implements Serializable {
      *
      * @param personsWithoutRequiredEquipment <p>
      *            An array of IDs for persons who are not wearing all of the
-     *            types of PPE specified in the RequiredEquipmentTypes field of
-     *            the detected personal protective equipment.
+     *            types of PPE specified in the
+     *            <code>RequiredEquipmentTypes</code> field of the detected
+     *            personal protective equipment.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -227,8 +229,8 @@ public class ProtectiveEquipmentSummary implements Serializable {
     /**
      * <p>
      * An array of IDs for persons who are not wearing all of the types of PPE
-     * specified in the RequiredEquipmentTypes field of the detected personal
-     * protective equipment.
+     * specified in the <code>RequiredEquipmentTypes</code> field of the
+     * detected personal protective equipment.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -236,8 +238,9 @@ public class ProtectiveEquipmentSummary implements Serializable {
      *
      * @param personsWithoutRequiredEquipment <p>
      *            An array of IDs for persons who are not wearing all of the
-     *            types of PPE specified in the RequiredEquipmentTypes field of
-     *            the detected personal protective equipment.
+     *            types of PPE specified in the
+     *            <code>RequiredEquipmentTypes</code> field of the detected
+     *            personal protective equipment.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
