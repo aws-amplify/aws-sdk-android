@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -370,8 +370,10 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
         jsonErrorUnmarshallers.add(new SoftwareTokenMFANotFoundExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyFailedAttemptsExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new TooManyRequestsExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UnauthorizedExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnexpectedLambdaExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedIdentityProviderExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new UnsupportedOperationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UnsupportedUserStateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserImportInProgressExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new UserLambdaValidationExceptionUnmarshaller());
@@ -870,7 +872,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
      * </p>
      * 
      * @param adminDisableUserRequest <p>
-     *            Represents the request to disable any user as an
+     *            Represents the request to disable the user as an
      *            administrator.
      *            </p>
      * @return adminDisableUserResult The response from the AdminDisableUser
@@ -2796,7 +2798,7 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * Deletes a group. Currently only groups with no members can be deleted.
+     * Deletes a group.
      * </p>
      * <p>
      * Calling this action requires developer credentials.
@@ -4298,6 +4300,57 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
+     * The Introspect token is used to check the status of Cognito User Pool
+     * tokens.
+     * </p>
+     * 
+     * @param introspectTokenRequest
+     * @return introspectTokenResult The response from the IntrospectToken
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnauthorizedException
+     * @throws InvalidParameterException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public IntrospectTokenResult introspectToken(IntrospectTokenRequest introspectTokenRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(introspectTokenRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<IntrospectTokenRequest> request = null;
+        Response<IntrospectTokenResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new IntrospectTokenRequestMarshaller().marshall(introspectTokenRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<IntrospectTokenResult, JsonUnmarshallerContext> unmarshaller = new IntrospectTokenResultJsonUnmarshaller();
+            JsonResponseHandler<IntrospectTokenResult> responseHandler = new JsonResponseHandler<IntrospectTokenResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists the devices.
      * </p>
      * 
@@ -4961,6 +5014,56 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
             }
             Unmarshaller<RespondToAuthChallengeResult, JsonUnmarshallerContext> unmarshaller = new RespondToAuthChallengeResultJsonUnmarshaller();
             JsonResponseHandler<RespondToAuthChallengeResult> responseHandler = new JsonResponseHandler<RespondToAuthChallengeResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * (Optional) Invalidates the provided token.
+     * </p>
+     * 
+     * @param revokeTokenRequest
+     * @return revokeTokenResult The response from the RevokeToken service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnauthorizedException
+     * @throws InvalidParameterException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    public RevokeTokenResult revokeToken(RevokeTokenRequest revokeTokenRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(revokeTokenRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RevokeTokenRequest> request = null;
+        Response<RevokeTokenResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RevokeTokenRequestMarshaller().marshall(revokeTokenRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RevokeTokenResult, JsonUnmarshallerContext> unmarshaller = new RevokeTokenResultJsonUnmarshaller();
+            JsonResponseHandler<RevokeTokenResult> responseHandler = new JsonResponseHandler<RevokeTokenResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

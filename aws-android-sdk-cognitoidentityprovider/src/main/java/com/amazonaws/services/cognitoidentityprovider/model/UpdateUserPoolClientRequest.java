@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -364,6 +364,13 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <b>Allowed Values: </b>LEGACY, ENABLED
      */
     private String preventUserExistenceErrors;
+
+    /**
+     * <p>
+     * Updates the revocation request.
+     * </p>
+     */
+    private Boolean enableTokenIntrospectionRevocation;
 
     /**
      * <p>
@@ -3007,6 +3014,65 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Updates the revocation request.
+     * </p>
+     *
+     * @return <p>
+     *         Updates the revocation request.
+     *         </p>
+     */
+    public Boolean isEnableTokenIntrospectionRevocation() {
+        return enableTokenIntrospectionRevocation;
+    }
+
+    /**
+     * <p>
+     * Updates the revocation request.
+     * </p>
+     *
+     * @return <p>
+     *         Updates the revocation request.
+     *         </p>
+     */
+    public Boolean getEnableTokenIntrospectionRevocation() {
+        return enableTokenIntrospectionRevocation;
+    }
+
+    /**
+     * <p>
+     * Updates the revocation request.
+     * </p>
+     *
+     * @param enableTokenIntrospectionRevocation <p>
+     *            Updates the revocation request.
+     *            </p>
+     */
+    public void setEnableTokenIntrospectionRevocation(Boolean enableTokenIntrospectionRevocation) {
+        this.enableTokenIntrospectionRevocation = enableTokenIntrospectionRevocation;
+    }
+
+    /**
+     * <p>
+     * Updates the revocation request.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enableTokenIntrospectionRevocation <p>
+     *            Updates the revocation request.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateUserPoolClientRequest withEnableTokenIntrospectionRevocation(
+            Boolean enableTokenIntrospectionRevocation) {
+        this.enableTokenIntrospectionRevocation = enableTokenIntrospectionRevocation;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -3055,7 +3121,10 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         if (getAnalyticsConfiguration() != null)
             sb.append("AnalyticsConfiguration: " + getAnalyticsConfiguration() + ",");
         if (getPreventUserExistenceErrors() != null)
-            sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors());
+            sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors() + ",");
+        if (getEnableTokenIntrospectionRevocation() != null)
+            sb.append("EnableTokenIntrospectionRevocation: "
+                    + getEnableTokenIntrospectionRevocation());
         sb.append("}");
         return sb.toString();
     }
@@ -3107,6 +3176,10 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
                 * hashCode
                 + ((getPreventUserExistenceErrors() == null) ? 0 : getPreventUserExistenceErrors()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getEnableTokenIntrospectionRevocation() == null) ? 0
+                        : getEnableTokenIntrospectionRevocation().hashCode());
         return hashCode;
     }
 
@@ -3220,6 +3293,13 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         if (other.getPreventUserExistenceErrors() != null
                 && other.getPreventUserExistenceErrors().equals(
                         this.getPreventUserExistenceErrors()) == false)
+            return false;
+        if (other.getEnableTokenIntrospectionRevocation() == null
+                ^ this.getEnableTokenIntrospectionRevocation() == null)
+            return false;
+        if (other.getEnableTokenIntrospectionRevocation() != null
+                && other.getEnableTokenIntrospectionRevocation().equals(
+                        this.getEnableTokenIntrospectionRevocation()) == false)
             return false;
         return true;
     }

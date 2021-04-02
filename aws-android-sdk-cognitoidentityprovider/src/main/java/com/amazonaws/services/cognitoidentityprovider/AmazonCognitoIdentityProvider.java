@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -388,7 +388,7 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * 
      * @param adminDisableUserRequest <p>
-     *            Represents the request to disable any user as an
+     *            Represents the request to disable the user as an
      *            administrator.
      *            </p>
      * @return adminDisableUserResult The response from the AdminDisableUser
@@ -1468,7 +1468,7 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Deletes a group. Currently only groups with no members can be deleted.
+     * Deletes a group.
      * </p>
      * <p>
      * Calling this action requires developer credentials.
@@ -2260,6 +2260,31 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
+     * The Introspect token is used to check the status of Cognito User Pool
+     * tokens.
+     * </p>
+     * 
+     * @param introspectTokenRequest
+     * @return introspectTokenResult The response from the IntrospectToken
+     *         service method, as returned by Amazon Cognito Your User Pool.
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnauthorizedException
+     * @throws InvalidParameterException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    IntrospectTokenResult introspectToken(IntrospectTokenRequest introspectTokenRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the devices.
      * </p>
      * 
@@ -2612,6 +2637,30 @@ public interface AmazonCognitoIdentityProvider {
      */
     RespondToAuthChallengeResult respondToAuthChallenge(
             RespondToAuthChallengeRequest respondToAuthChallengeRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * (Optional) Invalidates the provided token.
+     * </p>
+     * 
+     * @param revokeTokenRequest
+     * @return revokeTokenResult The response from the RevokeToken service
+     *         method, as returned by Amazon Cognito Your User Pool.
+     * @throws TooManyRequestsException
+     * @throws InternalErrorException
+     * @throws UnauthorizedException
+     * @throws InvalidParameterException
+     * @throws UnsupportedOperationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Cognito Your User Pool indicating either a problem with the
+     *             data in the request, or a server side issue.
+     */
+    RevokeTokenResult revokeToken(RevokeTokenRequest revokeTokenRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
