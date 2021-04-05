@@ -24,8 +24,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 /**
  * Unit test cases for checking the custom end points for Cognito User Identity Pool
@@ -58,7 +58,7 @@ public class CognitoIdentityProviderCustomEndPointTest {
     @Test
     public void testForCustomEndpoint() {
         testPool = new CognitoUserPool(appContext, TEST_USER_POOL, TEST_CLIENT_ID, TEST_CLIENT_SECRET, mockCustomEndpointClient, TEST_PINPOINT_APP_ID, DUMMY_CUSTOM_ENDPOINT);
-        verify(testPool.getClientInstance()).setEndpoint(DUMMY_CUSTOM_ENDPOINT);
+        verify(mockCustomEndpointClient).setEndpoint(DUMMY_CUSTOM_ENDPOINT);
     }
 
     /**
@@ -69,7 +69,7 @@ public class CognitoIdentityProviderCustomEndPointTest {
     @Test
     public void testForCustomEndpointWhenNull() {
         testPool = new CognitoUserPool(appContext, TEST_USER_POOL, TEST_CLIENT_ID, TEST_CLIENT_SECRET, mockCustomEndpointClient, TEST_PINPOINT_APP_ID, null);
-        verify(testPool.getClientInstance(), never()).setEndpoint(null);
+        verifyZeroInteractions(mockCustomEndpointClient);
     }
 
     /**
@@ -80,7 +80,7 @@ public class CognitoIdentityProviderCustomEndPointTest {
     @Test
     public void testForCustomEndpointWhenEmpty() {
         testPool = new CognitoUserPool(appContext, TEST_USER_POOL, TEST_CLIENT_ID, TEST_CLIENT_SECRET, mockCustomEndpointClient, TEST_PINPOINT_APP_ID, "");
-        verify(testPool.getClientInstance(), never()).setEndpoint("");
+        verifyZeroInteractions(mockCustomEndpointClient);
     }
 
 
