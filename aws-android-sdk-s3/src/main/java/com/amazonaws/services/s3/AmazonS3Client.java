@@ -62,10 +62,8 @@ import com.amazonaws.services.s3.internal.CompleteMultipartUploadRetryCondition;
 import com.amazonaws.services.s3.internal.Constants;
 import com.amazonaws.services.s3.internal.DeleteObjectTaggingHeaderHandler;
 import com.amazonaws.services.s3.internal.DeleteObjectsResponse;
-import com.amazonaws.services.s3.internal.DigestValidationInputStream;
 import com.amazonaws.services.s3.internal.GetObjectTaggingResponseHeaderHandler;
 import com.amazonaws.services.s3.internal.InputSubstream;
-import com.amazonaws.services.s3.internal.MD5DigestCalculatingInputStream;
 import com.amazonaws.services.s3.internal.ObjectExpirationHeaderHandler;
 import com.amazonaws.services.s3.internal.RepeatableFileInputStream;
 import com.amazonaws.services.s3.internal.ResponseHeaderHandlerChain;
@@ -127,8 +125,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -588,7 +584,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            how this client connects to Amazon S3 (e.g. proxy settings,
      *            retry counts, etc).
      * @see AmazonS3Client#AmazonS3Client(AWSCredentials, com.amazonaws.regions.Region)
-     * @see AmazonS3Client#AmazonS3Client(AWSCredentials, ClientConfiguration, com.amazonaws.regions.Region)
      */
     public AmazonS3Client(ClientConfiguration clientConfiguration,
                           com.amazonaws.regions.Region region) {
@@ -613,9 +608,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
 
     /**
      *
-     * @param awsCredentialsProvider The AWS credentials provider which will
-     *            provide credentials to authenticate requests with AWS
-     *            services.
      * @param region the AWS region
      * @param clientConfiguration The AWS credentials provider which will
      *            provide credentials to authenticate requests with AWS
@@ -1622,37 +1614,11 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                         ProgressEvent.STARTED_EVENT_CODE);
             }
 
-
-            // The Etag header contains a server-side MD5 of the object. If
-            // we're downloading the whole object, by default we wrap the
-            // stream in a validator that calculates an MD5 of the downloaded
-            // bytes and complains if what we received doesn't match the Etag.
-            if (!ServiceUtils.skipMd5CheckPerRequest(getObjectRequest, clientOptions)
-                    && !ServiceUtils.skipMd5CheckPerResponse(s3Object.getObjectMetadata(), clientOptions)) {
-                byte[] serverSideHash = null;
-                final String etag = s3Object.getObjectMetadata().getETag();
-                if (etag != null && ServiceUtils.isMultipartUploadETag(etag) == false) {
-                    serverSideHash = BinaryUtils.fromHex(s3Object.getObjectMetadata().getETag());
-                    try {
-                        // No content length check is performed when the
-                        // MD5 check is enabled, since a correct MD5 check would
-                        // imply a correct content length.
-                        final MessageDigest digest = MessageDigest.getInstance("MD5");
-                        input = new DigestValidationInputStream(input, digest, serverSideHash);
-                    } catch (final NoSuchAlgorithmException e) {
-                        log.warn("No MD5 digest algorithm available. Unable to calculate "
-                                + "checksum and verify data integrity.", e);
-                    }
-                }
-            } else {
-                // Ensures the data received from S3 has the same length as the
-                // expected content-length
-                input = new LengthCheckInputStream(input,
-                        s3Object.getObjectMetadata().getContentLength(), // expected
-                        // length
-                        INCLUDE_SKIPPED_BYTES); // bytes received from S3 are
-                // all included even if skipped
-            }
+            // Ensures the data received from S3 has the same length as the
+            // expected content-length
+            input = new LengthCheckInputStream(input,
+                    s3Object.getObjectMetadata().getContentLength(), // expected length
+                    INCLUDE_SKIPPED_BYTES); // bytes received from S3 are all included even if skipped
 
             // Re-wrap within an S3ObjectInputStream. Explicitly do not collect
             // metrics here because we know we're ultimately wrapping another
@@ -1917,18 +1883,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.STARTED_EVENT_CODE);
         }
 
-        MD5DigestCalculatingInputStream md5DigestStream = null;
-        if (metadata.getContentMD5() == null
-                && !skipContentMd5Check) {
-            /*
-             * If the user hasn't set the content MD5, then we don't want to
-             * buffer the whole stream in memory just to calculate it. Instead,
-             * we can calculate it on the fly and validate it with the returned
-             * ETag from the object upload.
-             */
-            input = md5DigestStream = new MD5DigestCalculatingInputStream(input);
-        }
-
         if (metadata.getContentType() == null) {
             /*
              * Default to the "application/octet-stream" if the user hasn't
@@ -1968,27 +1922,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             }
         }
 
-        String contentMd5 = metadata.getContentMD5();
-        if (md5DigestStream != null) {
-            contentMd5 = BinaryUtils.toBase64(md5DigestStream.getMd5Digest());
-        }
-
-        if (returnedMetadata != null && contentMd5 != null && !skipContentMd5Check) {
-            final byte[] clientSideHash = BinaryUtils.fromBase64(contentMd5);
-            final byte[] serverSideHash = BinaryUtils.fromHex(returnedMetadata.getETag());
-
-            if (!Arrays.equals(clientSideHash, serverSideHash)) {
-                fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.FAILED_EVENT_CODE);
-
-                throw new AmazonClientException(
-                        "Unable to verify integrity of data upload.  "
-                                +
-                                "Client calculated content hash didn't match hash calculated by Amazon S3.  "
-                                +
-                                "You may need to delete the data stored in Amazon S3.");
-            }
-        }
-
         fireProgressEvent(progressListenerCallbackExecutor, ProgressEvent.COMPLETED_EVENT_CODE);
 
         final PutObjectResult result = new PutObjectResult();
@@ -2001,7 +1934,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         result.setETag(returnedMetadata.getETag());
         result.setMetadata(returnedMetadata);
         result.setRequesterCharged(returnedMetadata.isRequesterCharged());
-        result.setContentMd5(contentMd5);
+        result.setContentMd5(returnedMetadata.getContentMD5());
 
         return result;
     }
@@ -3826,7 +3759,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
         if (objectMetadata != null) {
             populateRequestMetadata(request, objectMetadata);
         }
-        addHeaderIfNotNull(request, Headers.CONTENT_MD5, uploadPartRequest.getMd5Digest());
         request.addHeader(Headers.CONTENT_LENGTH, Long.toString(partSize));
         /*
          * HttpUrlConnection seems to be buggy in terms of implementation of
@@ -3853,16 +3785,20 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
                     "A File or InputStream must be specified when uploading part");
         }
 
-        MD5DigestCalculatingInputStream md5DigestStream = null;
+        // Uses buffered input stream to calculate MD5 prior to sending upload request.
+        // Cannot use MD5DigestCalculatingInputStream because the stream is not read
+        // until request is invoked.
         if (uploadPartRequest.getMd5Digest() == null
-                && !ServiceUtils.skipMd5CheckPerRequest(uploadPartRequest, clientOptions)) {
-            /*
-             * If the user hasn't set the content MD5, then we don't want to
-             * buffer the whole stream in memory just to calculate it. Instead,
-             * we can calculate it on the fly and validate it with the returned
-             * ETag from the object upload.
-             */
-            inputStream = md5DigestStream = new MD5DigestCalculatingInputStream(inputStream);
+                && !ServiceUtils.skipMd5CheckPerRequest(uploadPartRequest, clientOptions)
+                && inputStream.markSupported()) {
+            try {
+                final String contentMd5_b64 = Md5Utils.md5AsBase64(inputStream);
+                addHeaderIfNotNull(request, Headers.CONTENT_MD5, contentMd5_b64);
+                inputStream.reset();
+            } catch (final Exception e) {
+                throw new AmazonClientException(
+                        "Unable to calculate MD5 hash: " + e.getMessage(), e);
+            }
         }
 
         /*
@@ -3884,21 +3820,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
             request.setContent(inputStream);
             final ObjectMetadata metadata = invoke(request, new S3MetadataResponseHandler(), bucketName,
                     key);
-
-            if (metadata != null && md5DigestStream != null
-                    && !ServiceUtils.skipMd5CheckPerResponse(metadata, clientOptions)) {
-                final byte[] clientSideHash = md5DigestStream.getMd5Digest();
-                final byte[] serverSideHash = BinaryUtils.fromHex(metadata.getETag());
-
-                if (!Arrays.equals(clientSideHash, serverSideHash)) {
-                    throw new AmazonClientException(
-                            "Unable to verify integrity of data upload.  "
-                                    +
-                                    "Client calculated content hash didn't match hash calculated by Amazon S3.  "
-                                    +
-                                    "You may need to delete the data stored in Amazon S3.");
-                }
-            }
 
             fireProgressEvent(progressListenerCallbackExecutor,
                     ProgressEvent.PART_COMPLETED_EVENT_CODE);
@@ -3993,9 +3914,6 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
     /**
      * (non-Javadoc)
      *
-     * @see
-     *      com.amazonaws.services.s3.AmazonS3#copyGlacierObject((java.lang.String
-     *      , java.lang.String, int)
      */
     @Override
     public void restoreObject(String bucketName, String key, int expirationInDays)
@@ -4557,7 +4475,7 @@ public class AmazonS3Client extends AmazonWebServiceClient implements AmazonS3 {
      *            options expressed in the
      *            <code>ServerSideEncryptionWithCustomerKeyRequest</code>
      *            object.
-     * @param sseCpkRequest The request object for an S3 operation that allows
+     * @param sseKey The request object for an S3 operation that allows
      *            server-side encryption using customer-provided keys.
      */
     private static void populateSSE_C(Request<?> request, SSECustomerKey sseKey) {
