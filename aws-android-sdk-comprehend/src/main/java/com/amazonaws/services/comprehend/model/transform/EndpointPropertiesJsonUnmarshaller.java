@@ -60,6 +60,9 @@ class EndpointPropertiesJsonUnmarshaller implements
             } else if (name.equals("LastModifiedTime")) {
                 endpointProperties.setLastModifiedTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DataAccessRoleArn")) {
+                endpointProperties.setDataAccessRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,12 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Generates a prediction for the observation using the specified
  * <code>ML Model</code>.
  * </p>
- * <note><title>Note</title>
  * <p>
- * Not all response parameters will be populated. Whether a response parameter
- * is populated depends on the type of model requested.
+ * <b>Note:</b> Not all response parameters will be populated. Whether a
+ * response parameter is populated depends on the type of model requested.
  * </p>
- * </note>
  */
 public class PredictRequest extends AmazonWebServiceRequest implements Serializable {
     /**
