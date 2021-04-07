@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -62,17 +62,23 @@ public class Prediction implements Serializable {
     private String predictedLabel;
 
     /**
+     * <p>
      * The prediction value for <code>REGRESSION</code> <code>MLModel</code>.
+     * </p>
      */
     private Float predictedValue;
 
     /**
+     * <p>
      * Provides the raw classification score corresponding to each label.
+     * </p>
      */
     private java.util.Map<String, Float> predictedScores = new java.util.HashMap<String, Float>();
 
     /**
+     * <p>
      * Provides any additional details regarding the prediction.
+     * </p>
      */
     private java.util.Map<String, String> details = new java.util.HashMap<String, String>();
 
@@ -137,33 +143,45 @@ public class Prediction implements Serializable {
     }
 
     /**
+     * <p>
      * The prediction value for <code>REGRESSION</code> <code>MLModel</code>.
+     * </p>
      *
-     * @return The prediction value for <code>REGRESSION</code>
+     * @return <p>
+     *         The prediction value for <code>REGRESSION</code>
      *         <code>MLModel</code>.
+     *         </p>
      */
     public Float getPredictedValue() {
         return predictedValue;
     }
 
     /**
+     * <p>
      * The prediction value for <code>REGRESSION</code> <code>MLModel</code>.
+     * </p>
      *
-     * @param predictedValue The prediction value for <code>REGRESSION</code>
+     * @param predictedValue <p>
+     *            The prediction value for <code>REGRESSION</code>
      *            <code>MLModel</code>.
+     *            </p>
      */
     public void setPredictedValue(Float predictedValue) {
         this.predictedValue = predictedValue;
     }
 
     /**
+     * <p>
      * The prediction value for <code>REGRESSION</code> <code>MLModel</code>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param predictedValue The prediction value for <code>REGRESSION</code>
+     * @param predictedValue <p>
+     *            The prediction value for <code>REGRESSION</code>
      *            <code>MLModel</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -173,33 +191,45 @@ public class Prediction implements Serializable {
     }
 
     /**
+     * <p>
      * Provides the raw classification score corresponding to each label.
+     * </p>
      *
-     * @return Provides the raw classification score corresponding to each
+     * @return <p>
+     *         Provides the raw classification score corresponding to each
      *         label.
+     *         </p>
      */
     public java.util.Map<String, Float> getPredictedScores() {
         return predictedScores;
     }
 
     /**
+     * <p>
      * Provides the raw classification score corresponding to each label.
+     * </p>
      *
-     * @param predictedScores Provides the raw classification score
-     *            corresponding to each label.
+     * @param predictedScores <p>
+     *            Provides the raw classification score corresponding to each
+     *            label.
+     *            </p>
      */
     public void setPredictedScores(java.util.Map<String, Float> predictedScores) {
         this.predictedScores = predictedScores;
     }
 
     /**
+     * <p>
      * Provides the raw classification score corresponding to each label.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param predictedScores Provides the raw classification score
-     *            corresponding to each label.
+     * @param predictedScores <p>
+     *            Provides the raw classification score corresponding to each
+     *            label.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -209,7 +239,9 @@ public class Prediction implements Serializable {
     }
 
     /**
+     * <p>
      * Provides the raw classification score corresponding to each label.
+     * </p>
      * <p>
      * The method adds a new key-value pair into predictedScores parameter, and
      * returns a reference to this object so that method calls can be chained
@@ -244,30 +276,42 @@ public class Prediction implements Serializable {
     }
 
     /**
+     * <p>
      * Provides any additional details regarding the prediction.
+     * </p>
      *
-     * @return Provides any additional details regarding the prediction.
+     * @return <p>
+     *         Provides any additional details regarding the prediction.
+     *         </p>
      */
     public java.util.Map<String, String> getDetails() {
         return details;
     }
 
     /**
+     * <p>
      * Provides any additional details regarding the prediction.
+     * </p>
      *
-     * @param details Provides any additional details regarding the prediction.
+     * @param details <p>
+     *            Provides any additional details regarding the prediction.
+     *            </p>
      */
     public void setDetails(java.util.Map<String, String> details) {
         this.details = details;
     }
 
     /**
+     * <p>
      * Provides any additional details regarding the prediction.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param details Provides any additional details regarding the prediction.
+     * @param details <p>
+     *            Provides any additional details regarding the prediction.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -277,7 +321,9 @@ public class Prediction implements Serializable {
     }
 
     /**
+     * <p>
      * Provides any additional details regarding the prediction.
+     * </p>
      * <p>
      * The method adds a new key-value pair into details parameter, and returns
      * a reference to this object so that method calls can be chained together.
