@@ -34,7 +34,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      */
     private String languageCode;
 
@@ -83,7 +83,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @return <p>
      *         The language of the input text you're using to train your custom
@@ -102,7 +102,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language of the input text you're using to train your
@@ -124,7 +124,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language of the input text you're using to train your
@@ -146,7 +146,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language of the input text you're using to train your
@@ -168,7 +168,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language of the input text you're using to train your
