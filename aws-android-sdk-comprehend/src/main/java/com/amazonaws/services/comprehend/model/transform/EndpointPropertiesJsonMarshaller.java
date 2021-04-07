@@ -67,6 +67,11 @@ class EndpointPropertiesJsonMarshaller {
             jsonWriter.name("LastModifiedTime");
             jsonWriter.value(lastModifiedTime);
         }
+        if (endpointProperties.getDataAccessRoleArn() != null) {
+            String dataAccessRoleArn = endpointProperties.getDataAccessRoleArn();
+            jsonWriter.name("DataAccessRoleArn");
+            jsonWriter.value(dataAccessRoleArn);
+        }
         jsonWriter.endObject();
     }
 
