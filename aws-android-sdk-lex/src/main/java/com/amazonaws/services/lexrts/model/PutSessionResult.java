@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -66,10 +66,30 @@ public class PutSessionResult implements Serializable {
      * The next message that should be presented to the user.
      * </p>
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      */
     private String message;
+
+    /**
+     * <p>
+     * The next message that should be presented to the user.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     */
+    private String encodedMessage;
 
     /**
      * <p>
@@ -175,6 +195,13 @@ public class PutSessionResult implements Serializable {
      * </p>
      */
     private String sessionId;
+
+    /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     */
+    private String activeContexts;
 
     /**
      * <p>
@@ -458,11 +485,23 @@ public class PutSessionResult implements Serializable {
      * The next message that should be presented to the user.
      * </p>
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
      * @return <p>
      *         The next message that should be presented to the user.
+     *         </p>
+     *         <p>
+     *         You can only use this field in the de-DE, en-AU, en-GB, en-US,
+     *         es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *         other locales, the <code>message</code> field is null. You should
+     *         use the <code>encodedMessage</code> field instead.
      *         </p>
      */
     public String getMessage() {
@@ -474,11 +513,23 @@ public class PutSessionResult implements Serializable {
      * The next message that should be presented to the user.
      * </p>
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      *
      * @param message <p>
      *            The next message that should be presented to the user.
+     *            </p>
+     *            <p>
+     *            You can only use this field in the de-DE, en-AU, en-GB, en-US,
+     *            es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *            other locales, the <code>message</code> field is null. You
+     *            should use the <code>encodedMessage</code> field instead.
      *            </p>
      */
     public void setMessage(String message) {
@@ -490,6 +541,12 @@ public class PutSessionResult implements Serializable {
      * The next message that should be presented to the user.
      * </p>
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -499,11 +556,95 @@ public class PutSessionResult implements Serializable {
      * @param message <p>
      *            The next message that should be presented to the user.
      *            </p>
+     *            <p>
+     *            You can only use this field in the de-DE, en-AU, en-GB, en-US,
+     *            es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *            other locales, the <code>message</code> field is null. You
+     *            should use the <code>encodedMessage</code> field instead.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public PutSessionResult withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The next message that should be presented to the user.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     *
+     * @return <p>
+     *         The next message that should be presented to the user.
+     *         </p>
+     *         <p>
+     *         The <code>encodedMessage</code> field is base-64 encoded. You
+     *         must decode the field before you can use the value.
+     *         </p>
+     */
+    public String getEncodedMessage() {
+        return encodedMessage;
+    }
+
+    /**
+     * <p>
+     * The next message that should be presented to the user.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     *
+     * @param encodedMessage <p>
+     *            The next message that should be presented to the user.
+     *            </p>
+     *            <p>
+     *            The <code>encodedMessage</code> field is base-64 encoded. You
+     *            must decode the field before you can use the value.
+     *            </p>
+     */
+    public void setEncodedMessage(String encodedMessage) {
+        this.encodedMessage = encodedMessage;
+    }
+
+    /**
+     * <p>
+     * The next message that should be presented to the user.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     *
+     * @param encodedMessage <p>
+     *            The next message that should be presented to the user.
+     *            </p>
+     *            <p>
+     *            The <code>encodedMessage</code> field is base-64 encoded. You
+     *            must decode the field before you can use the value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutSessionResult withEncodedMessage(String encodedMessage) {
+        this.encodedMessage = encodedMessage;
         return this;
     }
 
@@ -1497,6 +1638,51 @@ public class PutSessionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     *
+     * @return <p>
+     *         A list of active contexts for the session.
+     *         </p>
+     */
+    public String getActiveContexts() {
+        return activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session.
+     *            </p>
+     */
+    public void setActiveContexts(String activeContexts) {
+        this.activeContexts = activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PutSessionResult withActiveContexts(String activeContexts) {
+        this.activeContexts = activeContexts;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1517,6 +1703,8 @@ public class PutSessionResult implements Serializable {
             sb.append("sessionAttributes: " + getSessionAttributes() + ",");
         if (getMessage() != null)
             sb.append("message: " + getMessage() + ",");
+        if (getEncodedMessage() != null)
+            sb.append("encodedMessage: " + getEncodedMessage() + ",");
         if (getMessageFormat() != null)
             sb.append("messageFormat: " + getMessageFormat() + ",");
         if (getDialogState() != null)
@@ -1526,7 +1714,9 @@ public class PutSessionResult implements Serializable {
         if (getAudioStream() != null)
             sb.append("audioStream: " + getAudioStream() + ",");
         if (getSessionId() != null)
-            sb.append("sessionId: " + getSessionId());
+            sb.append("sessionId: " + getSessionId() + ",");
+        if (getActiveContexts() != null)
+            sb.append("activeContexts: " + getActiveContexts());
         sb.append("}");
         return sb.toString();
     }
@@ -1544,6 +1734,8 @@ public class PutSessionResult implements Serializable {
                 + ((getSessionAttributes() == null) ? 0 : getSessionAttributes().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode
+                + ((getEncodedMessage() == null) ? 0 : getEncodedMessage().hashCode());
+        hashCode = prime * hashCode
                 + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode());
         hashCode = prime * hashCode
                 + ((getDialogState() == null) ? 0 : getDialogState().hashCode());
@@ -1552,6 +1744,8 @@ public class PutSessionResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getAudioStream() == null) ? 0 : getAudioStream().hashCode());
         hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getActiveContexts() == null) ? 0 : getActiveContexts().hashCode());
         return hashCode;
     }
 
@@ -1589,6 +1783,11 @@ public class PutSessionResult implements Serializable {
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
             return false;
+        if (other.getEncodedMessage() == null ^ this.getEncodedMessage() == null)
+            return false;
+        if (other.getEncodedMessage() != null
+                && other.getEncodedMessage().equals(this.getEncodedMessage()) == false)
+            return false;
         if (other.getMessageFormat() == null ^ this.getMessageFormat() == null)
             return false;
         if (other.getMessageFormat() != null
@@ -1613,6 +1812,11 @@ public class PutSessionResult implements Serializable {
             return false;
         if (other.getSessionId() != null
                 && other.getSessionId().equals(this.getSessionId()) == false)
+            return false;
+        if (other.getActiveContexts() == null ^ this.getActiveContexts() == null)
+            return false;
+        if (other.getActiveContexts() != null
+                && other.getActiveContexts().equals(this.getActiveContexts()) == false)
             return false;
         return true;
     }

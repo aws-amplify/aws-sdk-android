@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -54,6 +54,19 @@ public class GetSessionResult implements Serializable {
      * </p>
      */
     private DialogAction dialogAction;
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     */
+    private java.util.List<ActiveContext> activeContexts;
 
     /**
      * <p>
@@ -384,6 +397,132 @@ public class GetSessionResult implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     *
+     * @return <p>
+     *         A list of active contexts for the session. A context can be set
+     *         when an intent is fulfilled or by calling the
+     *         <code>PostContent</code>, <code>PostText</code>, or
+     *         <code>PutSession</code> operation.
+     *         </p>
+     *         <p>
+     *         You can use a context to control the intents that can follow up
+     *         an intent, or to modify the operation of your application.
+     *         </p>
+     */
+    public java.util.List<ActiveContext> getActiveContexts() {
+        return activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     */
+    public void setActiveContexts(java.util.Collection<ActiveContext> activeContexts) {
+        if (activeContexts == null) {
+            this.activeContexts = null;
+            return;
+        }
+
+        this.activeContexts = new java.util.ArrayList<ActiveContext>(activeContexts);
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetSessionResult withActiveContexts(ActiveContext... activeContexts) {
+        if (getActiveContexts() == null) {
+            this.activeContexts = new java.util.ArrayList<ActiveContext>(activeContexts.length);
+        }
+        for (ActiveContext value : activeContexts) {
+            this.activeContexts.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public GetSessionResult withActiveContexts(java.util.Collection<ActiveContext> activeContexts) {
+        setActiveContexts(activeContexts);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -401,7 +540,9 @@ public class GetSessionResult implements Serializable {
         if (getSessionId() != null)
             sb.append("sessionId: " + getSessionId() + ",");
         if (getDialogAction() != null)
-            sb.append("dialogAction: " + getDialogAction());
+            sb.append("dialogAction: " + getDialogAction() + ",");
+        if (getActiveContexts() != null)
+            sb.append("activeContexts: " + getActiveContexts());
         sb.append("}");
         return sb.toString();
     }
@@ -420,6 +561,8 @@ public class GetSessionResult implements Serializable {
         hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
         hashCode = prime * hashCode
                 + ((getDialogAction() == null) ? 0 : getDialogAction().hashCode());
+        hashCode = prime * hashCode
+                + ((getActiveContexts() == null) ? 0 : getActiveContexts().hashCode());
         return hashCode;
     }
 
@@ -453,6 +596,11 @@ public class GetSessionResult implements Serializable {
             return false;
         if (other.getDialogAction() != null
                 && other.getDialogAction().equals(this.getDialogAction()) == false)
+            return false;
+        if (other.getActiveContexts() == null ^ this.getActiveContexts() == null)
+            return false;
+        if (other.getActiveContexts() != null
+                && other.getActiveContexts().equals(this.getActiveContexts()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.lexrts.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
 import com.amazonaws.util.json.AwsJsonWriter;
@@ -103,6 +104,19 @@ public class PutSessionRequestMarshaller implements
                     if (recentIntentSummaryViewItem != null) {
                         IntentSummaryJsonMarshaller.getInstance().marshall(
                                 recentIntentSummaryViewItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (putSessionRequest.getActiveContexts() != null) {
+                java.util.List<ActiveContext> activeContexts = putSessionRequest
+                        .getActiveContexts();
+                jsonWriter.name("activeContexts");
+                jsonWriter.beginArray();
+                for (ActiveContext activeContextsItem : activeContexts) {
+                    if (activeContextsItem != null) {
+                        ActiveContextJsonMarshaller.getInstance().marshall(activeContextsItem,
+                                jsonWriter);
                     }
                 }
                 jsonWriter.endArray();

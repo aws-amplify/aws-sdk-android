@@ -20,26 +20,31 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO IntentConfidence
+ * JSON marshaller for POJO ActiveContextTimeToLive
  */
-class IntentConfidenceJsonMarshaller {
+class ActiveContextTimeToLiveJsonMarshaller {
 
-    public void marshall(IntentConfidence intentConfidence, AwsJsonWriter jsonWriter)
+    public void marshall(ActiveContextTimeToLive activeContextTimeToLive, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (intentConfidence.getScore() != null) {
-            Double score = intentConfidence.getScore();
-            jsonWriter.name("score");
-            jsonWriter.value(score);
+        if (activeContextTimeToLive.getTimeToLiveInSeconds() != null) {
+            Integer timeToLiveInSeconds = activeContextTimeToLive.getTimeToLiveInSeconds();
+            jsonWriter.name("timeToLiveInSeconds");
+            jsonWriter.value(timeToLiveInSeconds);
+        }
+        if (activeContextTimeToLive.getTurnsToLive() != null) {
+            Integer turnsToLive = activeContextTimeToLive.getTurnsToLive();
+            jsonWriter.name("turnsToLive");
+            jsonWriter.value(turnsToLive);
         }
         jsonWriter.endObject();
     }
 
-    private static IntentConfidenceJsonMarshaller instance;
+    private static ActiveContextTimeToLiveJsonMarshaller instance;
 
-    public static IntentConfidenceJsonMarshaller getInstance() {
+    public static ActiveContextTimeToLiveJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new IntentConfidenceJsonMarshaller();
+            instance = new ActiveContextTimeToLiveJsonMarshaller();
         return instance;
     }
 }
