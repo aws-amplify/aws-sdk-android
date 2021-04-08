@@ -3544,8 +3544,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 identityManager.addSignInProvider(GoogleSignInProvider.class);
             }
         } catch (NoClassDefFoundError exception) {
-            Log.w(TAG, "Sign in provider was not registered due to missing optional dependency. " +
-                    "showSignIn() API may not work as expected.", exception);
+            // This is not 90% use-case. Do not log anything.
         }
     }
 
