@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,9 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * A <code>PlaybackMode</code> of <code>ON_DEMAND</code> was requested for a
- * stream that does not retain data (that is, has a
- * <code>DataRetentionInHours</code> of 0).
+ * A streaming session was requested for a stream that does not retain data
+ * (that is, has a <code>DataRetentionInHours</code> of 0).
  * </p>
  */
 public class NoDataRetentionException extends AmazonServiceException {
