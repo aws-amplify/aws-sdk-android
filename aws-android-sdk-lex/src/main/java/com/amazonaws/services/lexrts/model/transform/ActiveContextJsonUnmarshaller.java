@@ -21,37 +21,44 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO IntentConfidence
+ * JSON unmarshaller for POJO ActiveContext
  */
-class IntentConfidenceJsonUnmarshaller implements
-        Unmarshaller<IntentConfidence, JsonUnmarshallerContext> {
+class ActiveContextJsonUnmarshaller implements Unmarshaller<ActiveContext, JsonUnmarshallerContext> {
 
-    public IntentConfidence unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public ActiveContext unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        IntentConfidence intentConfidence = new IntentConfidence();
+        ActiveContext activeContext = new ActiveContext();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("score")) {
-                intentConfidence.setScore(DoubleJsonUnmarshaller.getInstance()
+            if (name.equals("name")) {
+                activeContext.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("timeToLive")) {
+                activeContext.setTimeToLive(ActiveContextTimeToLiveJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("parameters")) {
+                activeContext.setParameters(new MapUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return intentConfidence;
+        return activeContext;
     }
 
-    private static IntentConfidenceJsonUnmarshaller instance;
+    private static ActiveContextJsonUnmarshaller instance;
 
-    public static IntentConfidenceJsonUnmarshaller getInstance() {
+    public static ActiveContextJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new IntentConfidenceJsonUnmarshaller();
+            instance = new ActiveContextJsonUnmarshaller();
         return instance;
     }
 }

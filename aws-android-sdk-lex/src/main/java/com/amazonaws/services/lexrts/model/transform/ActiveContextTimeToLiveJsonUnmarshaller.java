@@ -21,37 +21,41 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO IntentConfidence
+ * JSON unmarshaller for POJO ActiveContextTimeToLive
  */
-class IntentConfidenceJsonUnmarshaller implements
-        Unmarshaller<IntentConfidence, JsonUnmarshallerContext> {
+class ActiveContextTimeToLiveJsonUnmarshaller implements
+        Unmarshaller<ActiveContextTimeToLive, JsonUnmarshallerContext> {
 
-    public IntentConfidence unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public ActiveContextTimeToLive unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        IntentConfidence intentConfidence = new IntentConfidence();
+        ActiveContextTimeToLive activeContextTimeToLive = new ActiveContextTimeToLive();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("score")) {
-                intentConfidence.setScore(DoubleJsonUnmarshaller.getInstance()
+            if (name.equals("timeToLiveInSeconds")) {
+                activeContextTimeToLive.setTimeToLiveInSeconds(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("turnsToLive")) {
+                activeContextTimeToLive.setTurnsToLive(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return intentConfidence;
+        return activeContextTimeToLive;
     }
 
-    private static IntentConfidenceJsonUnmarshaller instance;
+    private static ActiveContextTimeToLiveJsonUnmarshaller instance;
 
-    public static IntentConfidenceJsonUnmarshaller getInstance() {
+    public static ActiveContextTimeToLiveJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new IntentConfidenceJsonUnmarshaller();
+            instance = new ActiveContextTimeToLiveJsonUnmarshaller();
         return instance;
     }
 }
