@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,17 +19,49 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Contains the range of time stamps for the requested media, and the source of
- * the time stamps.
+ * Contains the range of timestamps for the requested media, and the source of
+ * the timestamps.
  * </p>
  */
 public class HLSFragmentSelector implements Serializable {
     /**
      * <p>
-     * The source of the time stamps for the requested media.
+     * The source of the timestamps for the requested media.
      * </p>
      * <p>
-     * The default is <code>PRODUCER_TIMESTAMP</code>.
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment
+     * ingested with a producer timestamp within the specified
+     * <a>FragmentSelector$TimestampRange</a> is included in the media playlist.
+     * In addition, the fragments with producer timestamps within the
+     * <code>TimestampRange</code> ingested immediately following the first
+     * fragment (up to the
+     * <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a>
+     * value) are included.
+     * </p>
+     * <p>
+     * Fragments that have duplicate producer timestamps are deduplicated. This
+     * means that if producers are producing a stream of fragments with producer
+     * timestamps that are approximately equal to the true clock time, the HLS
+     * media playlists will contain all of the fragments within the requested
+     * timestamp range. If some fragments are ingested within the same time
+     * range and very different points in time, only the oldest ingested
+     * collection of fragments are returned.
+     * </p>
+     * <p>
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>,
+     * the producer timestamps are used in the MP4 fragments and for
+     * deduplication. But the most recently ingested fragments based on server
+     * timestamps are included in the HLS media playlist. This means that even
+     * if fragments ingested in the past have producer timestamps with values
+     * now, they are not included in the HLS media playlist.
+     * </p>
+     * <p>
+     * The default is <code>SERVER_TIMESTAMP</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -39,7 +71,7 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The start and end of the time stamp range for the requested media.
+     * The start and end of the timestamp range for the requested media.
      * </p>
      * <p>
      * This value should not be present if <code>PlaybackType</code> is
@@ -50,20 +82,86 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The source of the time stamps for the requested media.
+     * The source of the timestamps for the requested media.
      * </p>
      * <p>
-     * The default is <code>PRODUCER_TIMESTAMP</code>.
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment
+     * ingested with a producer timestamp within the specified
+     * <a>FragmentSelector$TimestampRange</a> is included in the media playlist.
+     * In addition, the fragments with producer timestamps within the
+     * <code>TimestampRange</code> ingested immediately following the first
+     * fragment (up to the
+     * <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a>
+     * value) are included.
+     * </p>
+     * <p>
+     * Fragments that have duplicate producer timestamps are deduplicated. This
+     * means that if producers are producing a stream of fragments with producer
+     * timestamps that are approximately equal to the true clock time, the HLS
+     * media playlists will contain all of the fragments within the requested
+     * timestamp range. If some fragments are ingested within the same time
+     * range and very different points in time, only the oldest ingested
+     * collection of fragments are returned.
+     * </p>
+     * <p>
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>,
+     * the producer timestamps are used in the MP4 fragments and for
+     * deduplication. But the most recently ingested fragments based on server
+     * timestamps are included in the HLS media playlist. This means that even
+     * if fragments ingested in the past have producer timestamps with values
+     * now, they are not included in the HLS media playlist.
+     * </p>
+     * <p>
+     * The default is <code>SERVER_TIMESTAMP</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @return <p>
-     *         The source of the time stamps for the requested media.
+     *         The source of the timestamps for the requested media.
      *         </p>
      *         <p>
-     *         The default is <code>PRODUCER_TIMESTAMP</code>.
+     *         When <code>FragmentSelectorType</code> is set to
+     *         <code>PRODUCER_TIMESTAMP</code> and
+     *         <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *         <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first
+     *         fragment ingested with a producer timestamp within the specified
+     *         <a>FragmentSelector$TimestampRange</a> is included in the media
+     *         playlist. In addition, the fragments with producer timestamps
+     *         within the <code>TimestampRange</code> ingested immediately
+     *         following the first fragment (up to the <a>
+     *         GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults
+     *         </a> value) are included.
+     *         </p>
+     *         <p>
+     *         Fragments that have duplicate producer timestamps are
+     *         deduplicated. This means that if producers are producing a stream
+     *         of fragments with producer timestamps that are approximately
+     *         equal to the true clock time, the HLS media playlists will
+     *         contain all of the fragments within the requested timestamp
+     *         range. If some fragments are ingested within the same time range
+     *         and very different points in time, only the oldest ingested
+     *         collection of fragments are returned.
+     *         </p>
+     *         <p>
+     *         When <code>FragmentSelectorType</code> is set to
+     *         <code>PRODUCER_TIMESTAMP</code> and
+     *         <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *         <code>LIVE</code>, the producer timestamps are used in the MP4
+     *         fragments and for deduplication. But the most recently ingested
+     *         fragments based on server timestamps are included in the HLS
+     *         media playlist. This means that even if fragments ingested in the
+     *         past have producer timestamps with values now, they are not
+     *         included in the HLS media playlist.
+     *         </p>
+     *         <p>
+     *         The default is <code>SERVER_TIMESTAMP</code>.
      *         </p>
      * @see HLSFragmentSelectorType
      */
@@ -73,20 +171,87 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The source of the time stamps for the requested media.
+     * The source of the timestamps for the requested media.
      * </p>
      * <p>
-     * The default is <code>PRODUCER_TIMESTAMP</code>.
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment
+     * ingested with a producer timestamp within the specified
+     * <a>FragmentSelector$TimestampRange</a> is included in the media playlist.
+     * In addition, the fragments with producer timestamps within the
+     * <code>TimestampRange</code> ingested immediately following the first
+     * fragment (up to the
+     * <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a>
+     * value) are included.
+     * </p>
+     * <p>
+     * Fragments that have duplicate producer timestamps are deduplicated. This
+     * means that if producers are producing a stream of fragments with producer
+     * timestamps that are approximately equal to the true clock time, the HLS
+     * media playlists will contain all of the fragments within the requested
+     * timestamp range. If some fragments are ingested within the same time
+     * range and very different points in time, only the oldest ingested
+     * collection of fragments are returned.
+     * </p>
+     * <p>
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>,
+     * the producer timestamps are used in the MP4 fragments and for
+     * deduplication. But the most recently ingested fragments based on server
+     * timestamps are included in the HLS media playlist. This means that even
+     * if fragments ingested in the past have producer timestamps with values
+     * now, they are not included in the HLS media playlist.
+     * </p>
+     * <p>
+     * The default is <code>SERVER_TIMESTAMP</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The source of the time stamps for the requested media.
+     *            The source of the timestamps for the requested media.
      *            </p>
      *            <p>
-     *            The default is <code>PRODUCER_TIMESTAMP</code>.
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first
+     *            fragment ingested with a producer timestamp within the
+     *            specified <a>FragmentSelector$TimestampRange</a> is included
+     *            in the media playlist. In addition, the fragments with
+     *            producer timestamps within the <code>TimestampRange</code>
+     *            ingested immediately following the first fragment (up to the
+     *            <a>
+     *            GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults
+     *            </a> value) are included.
+     *            </p>
+     *            <p>
+     *            Fragments that have duplicate producer timestamps are
+     *            deduplicated. This means that if producers are producing a
+     *            stream of fragments with producer timestamps that are
+     *            approximately equal to the true clock time, the HLS media
+     *            playlists will contain all of the fragments within the
+     *            requested timestamp range. If some fragments are ingested
+     *            within the same time range and very different points in time,
+     *            only the oldest ingested collection of fragments are returned.
+     *            </p>
+     *            <p>
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>LIVE</code>, the producer timestamps are used in the MP4
+     *            fragments and for deduplication. But the most recently
+     *            ingested fragments based on server timestamps are included in
+     *            the HLS media playlist. This means that even if fragments
+     *            ingested in the past have producer timestamps with values now,
+     *            they are not included in the HLS media playlist.
+     *            </p>
+     *            <p>
+     *            The default is <code>SERVER_TIMESTAMP</code>.
      *            </p>
      * @see HLSFragmentSelectorType
      */
@@ -96,10 +261,42 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The source of the time stamps for the requested media.
+     * The source of the timestamps for the requested media.
      * </p>
      * <p>
-     * The default is <code>PRODUCER_TIMESTAMP</code>.
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment
+     * ingested with a producer timestamp within the specified
+     * <a>FragmentSelector$TimestampRange</a> is included in the media playlist.
+     * In addition, the fragments with producer timestamps within the
+     * <code>TimestampRange</code> ingested immediately following the first
+     * fragment (up to the
+     * <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a>
+     * value) are included.
+     * </p>
+     * <p>
+     * Fragments that have duplicate producer timestamps are deduplicated. This
+     * means that if producers are producing a stream of fragments with producer
+     * timestamps that are approximately equal to the true clock time, the HLS
+     * media playlists will contain all of the fragments within the requested
+     * timestamp range. If some fragments are ingested within the same time
+     * range and very different points in time, only the oldest ingested
+     * collection of fragments are returned.
+     * </p>
+     * <p>
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>,
+     * the producer timestamps are used in the MP4 fragments and for
+     * deduplication. But the most recently ingested fragments based on server
+     * timestamps are included in the HLS media playlist. This means that even
+     * if fragments ingested in the past have producer timestamps with values
+     * now, they are not included in the HLS media playlist.
+     * </p>
+     * <p>
+     * The default is <code>SERVER_TIMESTAMP</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,10 +306,45 @@ public class HLSFragmentSelector implements Serializable {
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The source of the time stamps for the requested media.
+     *            The source of the timestamps for the requested media.
      *            </p>
      *            <p>
-     *            The default is <code>PRODUCER_TIMESTAMP</code>.
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first
+     *            fragment ingested with a producer timestamp within the
+     *            specified <a>FragmentSelector$TimestampRange</a> is included
+     *            in the media playlist. In addition, the fragments with
+     *            producer timestamps within the <code>TimestampRange</code>
+     *            ingested immediately following the first fragment (up to the
+     *            <a>
+     *            GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults
+     *            </a> value) are included.
+     *            </p>
+     *            <p>
+     *            Fragments that have duplicate producer timestamps are
+     *            deduplicated. This means that if producers are producing a
+     *            stream of fragments with producer timestamps that are
+     *            approximately equal to the true clock time, the HLS media
+     *            playlists will contain all of the fragments within the
+     *            requested timestamp range. If some fragments are ingested
+     *            within the same time range and very different points in time,
+     *            only the oldest ingested collection of fragments are returned.
+     *            </p>
+     *            <p>
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>LIVE</code>, the producer timestamps are used in the MP4
+     *            fragments and for deduplication. But the most recently
+     *            ingested fragments based on server timestamps are included in
+     *            the HLS media playlist. This means that even if fragments
+     *            ingested in the past have producer timestamps with values now,
+     *            they are not included in the HLS media playlist.
+     *            </p>
+     *            <p>
+     *            The default is <code>SERVER_TIMESTAMP</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -125,20 +357,87 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The source of the time stamps for the requested media.
+     * The source of the timestamps for the requested media.
      * </p>
      * <p>
-     * The default is <code>PRODUCER_TIMESTAMP</code>.
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment
+     * ingested with a producer timestamp within the specified
+     * <a>FragmentSelector$TimestampRange</a> is included in the media playlist.
+     * In addition, the fragments with producer timestamps within the
+     * <code>TimestampRange</code> ingested immediately following the first
+     * fragment (up to the
+     * <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a>
+     * value) are included.
+     * </p>
+     * <p>
+     * Fragments that have duplicate producer timestamps are deduplicated. This
+     * means that if producers are producing a stream of fragments with producer
+     * timestamps that are approximately equal to the true clock time, the HLS
+     * media playlists will contain all of the fragments within the requested
+     * timestamp range. If some fragments are ingested within the same time
+     * range and very different points in time, only the oldest ingested
+     * collection of fragments are returned.
+     * </p>
+     * <p>
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>,
+     * the producer timestamps are used in the MP4 fragments and for
+     * deduplication. But the most recently ingested fragments based on server
+     * timestamps are included in the HLS media playlist. This means that even
+     * if fragments ingested in the past have producer timestamps with values
+     * now, they are not included in the HLS media playlist.
+     * </p>
+     * <p>
+     * The default is <code>SERVER_TIMESTAMP</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The source of the time stamps for the requested media.
+     *            The source of the timestamps for the requested media.
      *            </p>
      *            <p>
-     *            The default is <code>PRODUCER_TIMESTAMP</code>.
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first
+     *            fragment ingested with a producer timestamp within the
+     *            specified <a>FragmentSelector$TimestampRange</a> is included
+     *            in the media playlist. In addition, the fragments with
+     *            producer timestamps within the <code>TimestampRange</code>
+     *            ingested immediately following the first fragment (up to the
+     *            <a>
+     *            GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults
+     *            </a> value) are included.
+     *            </p>
+     *            <p>
+     *            Fragments that have duplicate producer timestamps are
+     *            deduplicated. This means that if producers are producing a
+     *            stream of fragments with producer timestamps that are
+     *            approximately equal to the true clock time, the HLS media
+     *            playlists will contain all of the fragments within the
+     *            requested timestamp range. If some fragments are ingested
+     *            within the same time range and very different points in time,
+     *            only the oldest ingested collection of fragments are returned.
+     *            </p>
+     *            <p>
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>LIVE</code>, the producer timestamps are used in the MP4
+     *            fragments and for deduplication. But the most recently
+     *            ingested fragments based on server timestamps are included in
+     *            the HLS media playlist. This means that even if fragments
+     *            ingested in the past have producer timestamps with values now,
+     *            they are not included in the HLS media playlist.
+     *            </p>
+     *            <p>
+     *            The default is <code>SERVER_TIMESTAMP</code>.
      *            </p>
      * @see HLSFragmentSelectorType
      */
@@ -148,10 +447,42 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The source of the time stamps for the requested media.
+     * The source of the timestamps for the requested media.
      * </p>
      * <p>
-     * The default is <code>PRODUCER_TIMESTAMP</code>.
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first fragment
+     * ingested with a producer timestamp within the specified
+     * <a>FragmentSelector$TimestampRange</a> is included in the media playlist.
+     * In addition, the fragments with producer timestamps within the
+     * <code>TimestampRange</code> ingested immediately following the first
+     * fragment (up to the
+     * <a>GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults</a>
+     * value) are included.
+     * </p>
+     * <p>
+     * Fragments that have duplicate producer timestamps are deduplicated. This
+     * means that if producers are producing a stream of fragments with producer
+     * timestamps that are approximately equal to the true clock time, the HLS
+     * media playlists will contain all of the fragments within the requested
+     * timestamp range. If some fragments are ingested within the same time
+     * range and very different points in time, only the oldest ingested
+     * collection of fragments are returned.
+     * </p>
+     * <p>
+     * When <code>FragmentSelectorType</code> is set to
+     * <code>PRODUCER_TIMESTAMP</code> and
+     * <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is <code>LIVE</code>,
+     * the producer timestamps are used in the MP4 fragments and for
+     * deduplication. But the most recently ingested fragments based on server
+     * timestamps are included in the HLS media playlist. This means that even
+     * if fragments ingested in the past have producer timestamps with values
+     * now, they are not included in the HLS media playlist.
+     * </p>
+     * <p>
+     * The default is <code>SERVER_TIMESTAMP</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -161,10 +492,45 @@ public class HLSFragmentSelector implements Serializable {
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The source of the time stamps for the requested media.
+     *            The source of the timestamps for the requested media.
      *            </p>
      *            <p>
-     *            The default is <code>PRODUCER_TIMESTAMP</code>.
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>, the first
+     *            fragment ingested with a producer timestamp within the
+     *            specified <a>FragmentSelector$TimestampRange</a> is included
+     *            in the media playlist. In addition, the fragments with
+     *            producer timestamps within the <code>TimestampRange</code>
+     *            ingested immediately following the first fragment (up to the
+     *            <a>
+     *            GetHLSStreamingSessionURLInput$MaxMediaPlaylistFragmentResults
+     *            </a> value) are included.
+     *            </p>
+     *            <p>
+     *            Fragments that have duplicate producer timestamps are
+     *            deduplicated. This means that if producers are producing a
+     *            stream of fragments with producer timestamps that are
+     *            approximately equal to the true clock time, the HLS media
+     *            playlists will contain all of the fragments within the
+     *            requested timestamp range. If some fragments are ingested
+     *            within the same time range and very different points in time,
+     *            only the oldest ingested collection of fragments are returned.
+     *            </p>
+     *            <p>
+     *            When <code>FragmentSelectorType</code> is set to
+     *            <code>PRODUCER_TIMESTAMP</code> and
+     *            <a>GetHLSStreamingSessionURLInput$PlaybackMode</a> is
+     *            <code>LIVE</code>, the producer timestamps are used in the MP4
+     *            fragments and for deduplication. But the most recently
+     *            ingested fragments based on server timestamps are included in
+     *            the HLS media playlist. This means that even if fragments
+     *            ingested in the past have producer timestamps with values now,
+     *            they are not included in the HLS media playlist.
+     *            </p>
+     *            <p>
+     *            The default is <code>SERVER_TIMESTAMP</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -177,7 +543,7 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The start and end of the time stamp range for the requested media.
+     * The start and end of the timestamp range for the requested media.
      * </p>
      * <p>
      * This value should not be present if <code>PlaybackType</code> is
@@ -185,8 +551,7 @@ public class HLSFragmentSelector implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The start and end of the time stamp range for the requested
-     *         media.
+     *         The start and end of the timestamp range for the requested media.
      *         </p>
      *         <p>
      *         This value should not be present if <code>PlaybackType</code> is
@@ -199,7 +564,7 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The start and end of the time stamp range for the requested media.
+     * The start and end of the timestamp range for the requested media.
      * </p>
      * <p>
      * This value should not be present if <code>PlaybackType</code> is
@@ -207,7 +572,7 @@ public class HLSFragmentSelector implements Serializable {
      * </p>
      *
      * @param timestampRange <p>
-     *            The start and end of the time stamp range for the requested
+     *            The start and end of the timestamp range for the requested
      *            media.
      *            </p>
      *            <p>
@@ -221,7 +586,7 @@ public class HLSFragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The start and end of the time stamp range for the requested media.
+     * The start and end of the timestamp range for the requested media.
      * </p>
      * <p>
      * This value should not be present if <code>PlaybackType</code> is
@@ -232,7 +597,7 @@ public class HLSFragmentSelector implements Serializable {
      * together.
      *
      * @param timestampRange <p>
-     *            The start and end of the time stamp range for the requested
+     *            The start and end of the timestamp range for the requested
      *            media.
      *            </p>
      *            <p>

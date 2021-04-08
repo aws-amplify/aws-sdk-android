@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,11 +25,13 @@ import java.io.Serializable;
 public class Fragment implements Serializable {
     /**
      * <p>
-     * The index value of the fragment.
+     * The unique identifier of the fragment. This value monotonically increases
+     * based on the ingestion order.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[0-9]+$<br/>
      */
     private String fragmentNumber;
 
@@ -43,14 +45,14 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment.
      * </p>
      */
     private java.util.Date producerTimestamp;
 
     /**
      * <p>
-     * The time stamp from the AWS server corresponding to the fragment.
+     * The timestamp from the AWS server corresponding to the fragment.
      * </p>
      */
     private java.util.Date serverTimestamp;
@@ -64,14 +66,17 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The index value of the fragment.
+     * The unique identifier of the fragment. This value monotonically increases
+     * based on the ingestion order.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[0-9]+$<br/>
      *
      * @return <p>
-     *         The index value of the fragment.
+     *         The unique identifier of the fragment. This value monotonically
+     *         increases based on the ingestion order.
      *         </p>
      */
     public String getFragmentNumber() {
@@ -80,14 +85,17 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The index value of the fragment.
+     * The unique identifier of the fragment. This value monotonically increases
+     * based on the ingestion order.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[0-9]+$<br/>
      *
      * @param fragmentNumber <p>
-     *            The index value of the fragment.
+     *            The unique identifier of the fragment. This value
+     *            monotonically increases based on the ingestion order.
      *            </p>
      */
     public void setFragmentNumber(String fragmentNumber) {
@@ -96,17 +104,20 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The index value of the fragment.
+     * The unique identifier of the fragment. This value monotonically increases
+     * based on the ingestion order.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 128<br/>
+     * <b>Pattern: </b>^[0-9]+$<br/>
      *
      * @param fragmentNumber <p>
-     *            The index value of the fragment.
+     *            The unique identifier of the fragment. This value
+     *            monotonically increases based on the ingestion order.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -169,11 +180,11 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment.
      * </p>
      *
      * @return <p>
-     *         The time stamp from the producer corresponding to the fragment.
+     *         The timestamp from the producer corresponding to the fragment.
      *         </p>
      */
     public java.util.Date getProducerTimestamp() {
@@ -182,12 +193,11 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment.
      * </p>
      *
      * @param producerTimestamp <p>
-     *            The time stamp from the producer corresponding to the
-     *            fragment.
+     *            The timestamp from the producer corresponding to the fragment.
      *            </p>
      */
     public void setProducerTimestamp(java.util.Date producerTimestamp) {
@@ -196,15 +206,14 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the producer corresponding to the fragment.
+     * The timestamp from the producer corresponding to the fragment.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param producerTimestamp <p>
-     *            The time stamp from the producer corresponding to the
-     *            fragment.
+     *            The timestamp from the producer corresponding to the fragment.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -216,11 +225,11 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the AWS server corresponding to the fragment.
+     * The timestamp from the AWS server corresponding to the fragment.
      * </p>
      *
      * @return <p>
-     *         The time stamp from the AWS server corresponding to the fragment.
+     *         The timestamp from the AWS server corresponding to the fragment.
      *         </p>
      */
     public java.util.Date getServerTimestamp() {
@@ -229,11 +238,11 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the AWS server corresponding to the fragment.
+     * The timestamp from the AWS server corresponding to the fragment.
      * </p>
      *
      * @param serverTimestamp <p>
-     *            The time stamp from the AWS server corresponding to the
+     *            The timestamp from the AWS server corresponding to the
      *            fragment.
      *            </p>
      */
@@ -243,14 +252,14 @@ public class Fragment implements Serializable {
 
     /**
      * <p>
-     * The time stamp from the AWS server corresponding to the fragment.
+     * The timestamp from the AWS server corresponding to the fragment.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param serverTimestamp <p>
-     *            The time stamp from the AWS server corresponding to the
+     *            The timestamp from the AWS server corresponding to the
      *            fragment.
      *            </p>
      * @return A reference to this updated object so that method calls can be
