@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -26,9 +26,8 @@ import java.io.Serializable;
 public class GetMLModelResult implements Serializable {
     /**
      * <p>
-     * The MLModel ID<?oxy_insert_start author="annbech"
-     * timestamp="20160328T151251-0700">,<?oxy_insert_end> which is same as the
-     * <code>MLModelId</code> in the request.
+     * The MLModel ID, which is same as the <code>MLModelId</code> in the
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -92,14 +91,34 @@ public class GetMLModelResult implements Serializable {
      * of the following values:
      * </p>
      * <ul>
-     * <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted
-     * a request to describe a <code>MLModel</code>.</li>
-     * <li> <code>INPROGRESS</code> - The request is processing.</li>
-     * <li> <code>FAILED</code> - The request did not run to completion. The ML
-     * model isn't usable.</li>
-     * <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     * <li> <code>DELETED</code> - The <code>MLModel</code> is marked as deleted.
-     * It isn't usable.</li>
+     * <li>
+     * <p>
+     * <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted a
+     * request to describe a <code>MLModel</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>INPROGRESS</code> - The request is processing.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> - The request did not run to completion. The ML model
+     * isn't usable.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>COMPLETED</code> - The request completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETED</code> - The <code>MLModel</code> is marked as deleted. It
+     * isn't usable.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -210,12 +229,24 @@ public class GetMLModelResult implements Serializable {
      * available types:
      * </p>
      * <ul>
-     * <li>REGRESSION -- Produces a numeric result. For example,
-     * "What price should a house be listed at?"</li>
-     * <li>BINARY -- Produces one of two possible results. For example,
-     * "Is this an e-commerce website?"</li>
-     * <li>MULTICLASS -- Produces one of several possible results. For example,
-     * "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     * <li>
+     * <p>
+     * REGRESSION -- Produces a numeric result. For example,
+     * "What price should a house be listed at?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BINARY -- Produces one of two possible results. For example,
+     * "Is this an e-commerce website?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MULTICLASS -- Produces one of several possible results. For example,
+     * "Is this a HIGH, LOW or MEDIUM risk trade?"
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -226,9 +257,8 @@ public class GetMLModelResult implements Serializable {
     /**
      * <p>
      * The scoring threshold is used in binary classification
-     * <code>MLModel</code><?oxy_insert_start author="laurama"
-     * timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It marks the
-     * boundary between a positive prediction and a negative prediction.
+     * <code>MLModel</code> models. It marks the boundary between a positive
+     * prediction and a negative prediction.
      * </p>
      * <p>
      * Output values greater than or equal to the threshold receive a positive
@@ -303,11 +333,9 @@ public class GetMLModelResult implements Serializable {
      * data to use during training, and manipulations to perform on the
      * observation data during training.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 131071<br/>
@@ -319,11 +347,9 @@ public class GetMLModelResult implements Serializable {
      * The schema used by all of the data files referenced by the
      * <code>DataSource</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 131071<br/>
@@ -332,9 +358,8 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * <p>
-     * The MLModel ID<?oxy_insert_start author="annbech"
-     * timestamp="20160328T151251-0700">,<?oxy_insert_end> which is same as the
-     * <code>MLModelId</code> in the request.
+     * The MLModel ID, which is same as the <code>MLModelId</code> in the
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -342,9 +367,8 @@ public class GetMLModelResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @return <p>
-     *         The MLModel ID<?oxy_insert_start author="annbech"
-     *         timestamp="20160328T151251-0700">,<?oxy_insert_end> which is same
-     *         as the <code>MLModelId</code> in the request.
+     *         The MLModel ID, which is same as the <code>MLModelId</code> in
+     *         the request.
      *         </p>
      */
     public String getMLModelId() {
@@ -353,9 +377,8 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * <p>
-     * The MLModel ID<?oxy_insert_start author="annbech"
-     * timestamp="20160328T151251-0700">,<?oxy_insert_end> which is same as the
-     * <code>MLModelId</code> in the request.
+     * The MLModel ID, which is same as the <code>MLModelId</code> in the
+     * request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -363,9 +386,8 @@ public class GetMLModelResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param mLModelId <p>
-     *            The MLModel ID<?oxy_insert_start author="annbech"
-     *            timestamp="20160328T151251-0700">,<?oxy_insert_end> which is
-     *            same as the <code>MLModelId</code> in the request.
+     *            The MLModel ID, which is same as the <code>MLModelId</code> in
+     *            the request.
      *            </p>
      */
     public void setMLModelId(String mLModelId) {
@@ -374,9 +396,8 @@ public class GetMLModelResult implements Serializable {
 
     /**
      * <p>
-     * The MLModel ID<?oxy_insert_start author="annbech"
-     * timestamp="20160328T151251-0700">,<?oxy_insert_end> which is same as the
-     * <code>MLModelId</code> in the request.
+     * The MLModel ID, which is same as the <code>MLModelId</code> in the
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -387,9 +408,8 @@ public class GetMLModelResult implements Serializable {
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      *
      * @param mLModelId <p>
-     *            The MLModel ID<?oxy_insert_start author="annbech"
-     *            timestamp="20160328T151251-0700">,<?oxy_insert_end> which is
-     *            same as the <code>MLModelId</code> in the request.
+     *            The MLModel ID, which is same as the <code>MLModelId</code> in
+     *            the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -686,14 +706,34 @@ public class GetMLModelResult implements Serializable {
      * of the following values:
      * </p>
      * <ul>
-     * <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted
-     * a request to describe a <code>MLModel</code>.</li>
-     * <li> <code>INPROGRESS</code> - The request is processing.</li>
-     * <li> <code>FAILED</code> - The request did not run to completion. The ML
-     * model isn't usable.</li>
-     * <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     * <li> <code>DELETED</code> - The <code>MLModel</code> is marked as deleted.
-     * It isn't usable.</li>
+     * <li>
+     * <p>
+     * <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted a
+     * request to describe a <code>MLModel</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>INPROGRESS</code> - The request is processing.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> - The request did not run to completion. The ML model
+     * isn't usable.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>COMPLETED</code> - The request completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETED</code> - The <code>MLModel</code> is marked as deleted. It
+     * isn't usable.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -704,14 +744,34 @@ public class GetMLModelResult implements Serializable {
      *         have one of the following values:
      *         </p>
      *         <ul>
-     *         <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
-     *         submitted a request to describe a <code>MLModel</code>.</li>
-     *         <li> <code>INPROGRESS</code> - The request is processing.</li>
-     *         <li> <code>FAILED</code> - The request did not run to completion.
-     *         The ML model isn't usable.</li>
-     *         <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     *         <li> <code>DELETED</code> - The <code>MLModel</code> is marked as
-     *         deleted. It isn't usable.</li>
+     *         <li>
+     *         <p>
+     *         <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
+     *         submitted a request to describe a <code>MLModel</code>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>INPROGRESS</code> - The request is processing.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>FAILED</code> - The request did not run to completion. The
+     *         ML model isn't usable.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>COMPLETED</code> - The request completed successfully.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>DELETED</code> - The <code>MLModel</code> is marked as
+     *         deleted. It isn't usable.
+     *         </p>
+     *         </li>
      *         </ul>
      * @see EntityStatus
      */
@@ -725,14 +785,34 @@ public class GetMLModelResult implements Serializable {
      * of the following values:
      * </p>
      * <ul>
-     * <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted
-     * a request to describe a <code>MLModel</code>.</li>
-     * <li> <code>INPROGRESS</code> - The request is processing.</li>
-     * <li> <code>FAILED</code> - The request did not run to completion. The ML
-     * model isn't usable.</li>
-     * <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     * <li> <code>DELETED</code> - The <code>MLModel</code> is marked as deleted.
-     * It isn't usable.</li>
+     * <li>
+     * <p>
+     * <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted a
+     * request to describe a <code>MLModel</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>INPROGRESS</code> - The request is processing.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> - The request did not run to completion. The ML model
+     * isn't usable.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>COMPLETED</code> - The request completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETED</code> - The <code>MLModel</code> is marked as deleted. It
+     * isn't usable.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -743,15 +823,34 @@ public class GetMLModelResult implements Serializable {
      *            can have one of the following values:
      *            </p>
      *            <ul>
-     *            <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
-     *            submitted a request to describe a <code>MLModel</code>.</li>
-     *            <li> <code>INPROGRESS</code> - The request is processing.</li>
-     *            <li> <code>FAILED</code> - The request did not run to
-     *            completion. The ML model isn't usable.</li>
-     *            <li> <code>COMPLETED</code> - The request completed
-     *            successfully.</li>
-     *            <li> <code>DELETED</code> - The <code>MLModel</code> is marked
-     *            as deleted. It isn't usable.</li>
+     *            <li>
+     *            <p>
+     *            <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
+     *            submitted a request to describe a <code>MLModel</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INPROGRESS</code> - The request is processing.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FAILED</code> - The request did not run to completion.
+     *            The ML model isn't usable.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>COMPLETED</code> - The request completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETED</code> - The <code>MLModel</code> is marked as
+     *            deleted. It isn't usable.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see EntityStatus
      */
@@ -765,14 +864,34 @@ public class GetMLModelResult implements Serializable {
      * of the following values:
      * </p>
      * <ul>
-     * <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted
-     * a request to describe a <code>MLModel</code>.</li>
-     * <li> <code>INPROGRESS</code> - The request is processing.</li>
-     * <li> <code>FAILED</code> - The request did not run to completion. The ML
-     * model isn't usable.</li>
-     * <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     * <li> <code>DELETED</code> - The <code>MLModel</code> is marked as deleted.
-     * It isn't usable.</li>
+     * <li>
+     * <p>
+     * <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted a
+     * request to describe a <code>MLModel</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>INPROGRESS</code> - The request is processing.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> - The request did not run to completion. The ML model
+     * isn't usable.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>COMPLETED</code> - The request completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETED</code> - The <code>MLModel</code> is marked as deleted. It
+     * isn't usable.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -786,15 +905,34 @@ public class GetMLModelResult implements Serializable {
      *            can have one of the following values:
      *            </p>
      *            <ul>
-     *            <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
-     *            submitted a request to describe a <code>MLModel</code>.</li>
-     *            <li> <code>INPROGRESS</code> - The request is processing.</li>
-     *            <li> <code>FAILED</code> - The request did not run to
-     *            completion. The ML model isn't usable.</li>
-     *            <li> <code>COMPLETED</code> - The request completed
-     *            successfully.</li>
-     *            <li> <code>DELETED</code> - The <code>MLModel</code> is marked
-     *            as deleted. It isn't usable.</li>
+     *            <li>
+     *            <p>
+     *            <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
+     *            submitted a request to describe a <code>MLModel</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INPROGRESS</code> - The request is processing.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FAILED</code> - The request did not run to completion.
+     *            The ML model isn't usable.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>COMPLETED</code> - The request completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETED</code> - The <code>MLModel</code> is marked as
+     *            deleted. It isn't usable.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -811,14 +949,34 @@ public class GetMLModelResult implements Serializable {
      * of the following values:
      * </p>
      * <ul>
-     * <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted
-     * a request to describe a <code>MLModel</code>.</li>
-     * <li> <code>INPROGRESS</code> - The request is processing.</li>
-     * <li> <code>FAILED</code> - The request did not run to completion. The ML
-     * model isn't usable.</li>
-     * <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     * <li> <code>DELETED</code> - The <code>MLModel</code> is marked as deleted.
-     * It isn't usable.</li>
+     * <li>
+     * <p>
+     * <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted a
+     * request to describe a <code>MLModel</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>INPROGRESS</code> - The request is processing.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> - The request did not run to completion. The ML model
+     * isn't usable.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>COMPLETED</code> - The request completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETED</code> - The <code>MLModel</code> is marked as deleted. It
+     * isn't usable.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -829,15 +987,34 @@ public class GetMLModelResult implements Serializable {
      *            can have one of the following values:
      *            </p>
      *            <ul>
-     *            <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
-     *            submitted a request to describe a <code>MLModel</code>.</li>
-     *            <li> <code>INPROGRESS</code> - The request is processing.</li>
-     *            <li> <code>FAILED</code> - The request did not run to
-     *            completion. The ML model isn't usable.</li>
-     *            <li> <code>COMPLETED</code> - The request completed
-     *            successfully.</li>
-     *            <li> <code>DELETED</code> - The <code>MLModel</code> is marked
-     *            as deleted. It isn't usable.</li>
+     *            <li>
+     *            <p>
+     *            <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
+     *            submitted a request to describe a <code>MLModel</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INPROGRESS</code> - The request is processing.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FAILED</code> - The request did not run to completion.
+     *            The ML model isn't usable.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>COMPLETED</code> - The request completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETED</code> - The <code>MLModel</code> is marked as
+     *            deleted. It isn't usable.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see EntityStatus
      */
@@ -851,14 +1028,34 @@ public class GetMLModelResult implements Serializable {
      * of the following values:
      * </p>
      * <ul>
-     * <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted
-     * a request to describe a <code>MLModel</code>.</li>
-     * <li> <code>INPROGRESS</code> - The request is processing.</li>
-     * <li> <code>FAILED</code> - The request did not run to completion. The ML
-     * model isn't usable.</li>
-     * <li> <code>COMPLETED</code> - The request completed successfully.</li>
-     * <li> <code>DELETED</code> - The <code>MLModel</code> is marked as deleted.
-     * It isn't usable.</li>
+     * <li>
+     * <p>
+     * <code>PENDING</code> - Amazon Machine Learning (Amazon ML) submitted a
+     * request to describe a <code>MLModel</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>INPROGRESS</code> - The request is processing.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>FAILED</code> - The request did not run to completion. The ML model
+     * isn't usable.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>COMPLETED</code> - The request completed successfully.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DELETED</code> - The <code>MLModel</code> is marked as deleted. It
+     * isn't usable.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -872,15 +1069,34 @@ public class GetMLModelResult implements Serializable {
      *            can have one of the following values:
      *            </p>
      *            <ul>
-     *            <li> <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
-     *            submitted a request to describe a <code>MLModel</code>.</li>
-     *            <li> <code>INPROGRESS</code> - The request is processing.</li>
-     *            <li> <code>FAILED</code> - The request did not run to
-     *            completion. The ML model isn't usable.</li>
-     *            <li> <code>COMPLETED</code> - The request completed
-     *            successfully.</li>
-     *            <li> <code>DELETED</code> - The <code>MLModel</code> is marked
-     *            as deleted. It isn't usable.</li>
+     *            <li>
+     *            <p>
+     *            <code>PENDING</code> - Amazon Machine Learning (Amazon ML)
+     *            submitted a request to describe a <code>MLModel</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>INPROGRESS</code> - The request is processing.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>FAILED</code> - The request did not run to completion.
+     *            The ML model isn't usable.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>COMPLETED</code> - The request completed successfully.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DELETED</code> - The <code>MLModel</code> is marked as
+     *            deleted. It isn't usable.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1594,12 +1810,24 @@ public class GetMLModelResult implements Serializable {
      * available types:
      * </p>
      * <ul>
-     * <li>REGRESSION -- Produces a numeric result. For example,
-     * "What price should a house be listed at?"</li>
-     * <li>BINARY -- Produces one of two possible results. For example,
-     * "Is this an e-commerce website?"</li>
-     * <li>MULTICLASS -- Produces one of several possible results. For example,
-     * "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     * <li>
+     * <p>
+     * REGRESSION -- Produces a numeric result. For example,
+     * "What price should a house be listed at?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BINARY -- Produces one of two possible results. For example,
+     * "Is this an e-commerce website?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MULTICLASS -- Produces one of several possible results. For example,
+     * "Is this a HIGH, LOW or MEDIUM risk trade?"
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1610,12 +1838,24 @@ public class GetMLModelResult implements Serializable {
      *         the available types:
      *         </p>
      *         <ul>
-     *         <li>REGRESSION -- Produces a numeric result. For example,
-     *         "What price should a house be listed at?"</li>
-     *         <li>BINARY -- Produces one of two possible results. For example,
-     *         "Is this an e-commerce website?"</li>
-     *         <li>MULTICLASS -- Produces one of several possible results. For
-     *         example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     *         <li>
+     *         <p>
+     *         REGRESSION -- Produces a numeric result. For example,
+     *         "What price should a house be listed at?"
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         BINARY -- Produces one of two possible results. For example,
+     *         "Is this an e-commerce website?"
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         MULTICLASS -- Produces one of several possible results. For
+     *         example, "Is this a HIGH, LOW or MEDIUM risk trade?"
+     *         </p>
+     *         </li>
      *         </ul>
      * @see MLModelType
      */
@@ -1629,12 +1869,24 @@ public class GetMLModelResult implements Serializable {
      * available types:
      * </p>
      * <ul>
-     * <li>REGRESSION -- Produces a numeric result. For example,
-     * "What price should a house be listed at?"</li>
-     * <li>BINARY -- Produces one of two possible results. For example,
-     * "Is this an e-commerce website?"</li>
-     * <li>MULTICLASS -- Produces one of several possible results. For example,
-     * "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     * <li>
+     * <p>
+     * REGRESSION -- Produces a numeric result. For example,
+     * "What price should a house be listed at?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BINARY -- Produces one of two possible results. For example,
+     * "Is this an e-commerce website?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MULTICLASS -- Produces one of several possible results. For example,
+     * "Is this a HIGH, LOW or MEDIUM risk trade?"
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1645,12 +1897,24 @@ public class GetMLModelResult implements Serializable {
      *            are the available types:
      *            </p>
      *            <ul>
-     *            <li>REGRESSION -- Produces a numeric result. For example,
-     *            "What price should a house be listed at?"</li>
-     *            <li>BINARY -- Produces one of two possible results. For
-     *            example, "Is this an e-commerce website?"</li>
-     *            <li>MULTICLASS -- Produces one of several possible results.
-     *            For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     *            <li>
+     *            <p>
+     *            REGRESSION -- Produces a numeric result. For example,
+     *            "What price should a house be listed at?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            BINARY -- Produces one of two possible results. For example,
+     *            "Is this an e-commerce website?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MULTICLASS -- Produces one of several possible results. For
+     *            example, "Is this a HIGH, LOW or MEDIUM risk trade?"
+     *            </p>
+     *            </li>
      *            </ul>
      * @see MLModelType
      */
@@ -1664,12 +1928,24 @@ public class GetMLModelResult implements Serializable {
      * available types:
      * </p>
      * <ul>
-     * <li>REGRESSION -- Produces a numeric result. For example,
-     * "What price should a house be listed at?"</li>
-     * <li>BINARY -- Produces one of two possible results. For example,
-     * "Is this an e-commerce website?"</li>
-     * <li>MULTICLASS -- Produces one of several possible results. For example,
-     * "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     * <li>
+     * <p>
+     * REGRESSION -- Produces a numeric result. For example,
+     * "What price should a house be listed at?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BINARY -- Produces one of two possible results. For example,
+     * "Is this an e-commerce website?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MULTICLASS -- Produces one of several possible results. For example,
+     * "Is this a HIGH, LOW or MEDIUM risk trade?"
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1683,12 +1959,24 @@ public class GetMLModelResult implements Serializable {
      *            are the available types:
      *            </p>
      *            <ul>
-     *            <li>REGRESSION -- Produces a numeric result. For example,
-     *            "What price should a house be listed at?"</li>
-     *            <li>BINARY -- Produces one of two possible results. For
-     *            example, "Is this an e-commerce website?"</li>
-     *            <li>MULTICLASS -- Produces one of several possible results.
-     *            For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     *            <li>
+     *            <p>
+     *            REGRESSION -- Produces a numeric result. For example,
+     *            "What price should a house be listed at?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            BINARY -- Produces one of two possible results. For example,
+     *            "Is this an e-commerce website?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MULTICLASS -- Produces one of several possible results. For
+     *            example, "Is this a HIGH, LOW or MEDIUM risk trade?"
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1705,12 +1993,24 @@ public class GetMLModelResult implements Serializable {
      * available types:
      * </p>
      * <ul>
-     * <li>REGRESSION -- Produces a numeric result. For example,
-     * "What price should a house be listed at?"</li>
-     * <li>BINARY -- Produces one of two possible results. For example,
-     * "Is this an e-commerce website?"</li>
-     * <li>MULTICLASS -- Produces one of several possible results. For example,
-     * "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     * <li>
+     * <p>
+     * REGRESSION -- Produces a numeric result. For example,
+     * "What price should a house be listed at?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BINARY -- Produces one of two possible results. For example,
+     * "Is this an e-commerce website?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MULTICLASS -- Produces one of several possible results. For example,
+     * "Is this a HIGH, LOW or MEDIUM risk trade?"
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1721,12 +2021,24 @@ public class GetMLModelResult implements Serializable {
      *            are the available types:
      *            </p>
      *            <ul>
-     *            <li>REGRESSION -- Produces a numeric result. For example,
-     *            "What price should a house be listed at?"</li>
-     *            <li>BINARY -- Produces one of two possible results. For
-     *            example, "Is this an e-commerce website?"</li>
-     *            <li>MULTICLASS -- Produces one of several possible results.
-     *            For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     *            <li>
+     *            <p>
+     *            REGRESSION -- Produces a numeric result. For example,
+     *            "What price should a house be listed at?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            BINARY -- Produces one of two possible results. For example,
+     *            "Is this an e-commerce website?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MULTICLASS -- Produces one of several possible results. For
+     *            example, "Is this a HIGH, LOW or MEDIUM risk trade?"
+     *            </p>
+     *            </li>
      *            </ul>
      * @see MLModelType
      */
@@ -1740,12 +2052,24 @@ public class GetMLModelResult implements Serializable {
      * available types:
      * </p>
      * <ul>
-     * <li>REGRESSION -- Produces a numeric result. For example,
-     * "What price should a house be listed at?"</li>
-     * <li>BINARY -- Produces one of two possible results. For example,
-     * "Is this an e-commerce website?"</li>
-     * <li>MULTICLASS -- Produces one of several possible results. For example,
-     * "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     * <li>
+     * <p>
+     * REGRESSION -- Produces a numeric result. For example,
+     * "What price should a house be listed at?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * BINARY -- Produces one of two possible results. For example,
+     * "Is this an e-commerce website?"
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * MULTICLASS -- Produces one of several possible results. For example,
+     * "Is this a HIGH, LOW or MEDIUM risk trade?"
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1759,12 +2083,24 @@ public class GetMLModelResult implements Serializable {
      *            are the available types:
      *            </p>
      *            <ul>
-     *            <li>REGRESSION -- Produces a numeric result. For example,
-     *            "What price should a house be listed at?"</li>
-     *            <li>BINARY -- Produces one of two possible results. For
-     *            example, "Is this an e-commerce website?"</li>
-     *            <li>MULTICLASS -- Produces one of several possible results.
-     *            For example, "Is this a HIGH, LOW or MEDIUM risk trade?"</li>
+     *            <li>
+     *            <p>
+     *            REGRESSION -- Produces a numeric result. For example,
+     *            "What price should a house be listed at?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            BINARY -- Produces one of two possible results. For example,
+     *            "Is this an e-commerce website?"
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            MULTICLASS -- Produces one of several possible results. For
+     *            example, "Is this a HIGH, LOW or MEDIUM risk trade?"
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1778,9 +2114,8 @@ public class GetMLModelResult implements Serializable {
     /**
      * <p>
      * The scoring threshold is used in binary classification
-     * <code>MLModel</code><?oxy_insert_start author="laurama"
-     * timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It marks the
-     * boundary between a positive prediction and a negative prediction.
+     * <code>MLModel</code> models. It marks the boundary between a positive
+     * prediction and a negative prediction.
      * </p>
      * <p>
      * Output values greater than or equal to the threshold receive a positive
@@ -1791,10 +2126,8 @@ public class GetMLModelResult implements Serializable {
      *
      * @return <p>
      *         The scoring threshold is used in binary classification
-     *         <code>MLModel</code><?oxy_insert_start author="laurama"
-     *         timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It
-     *         marks the boundary between a positive prediction and a negative
-     *         prediction.
+     *         <code>MLModel</code> models. It marks the boundary between a
+     *         positive prediction and a negative prediction.
      *         </p>
      *         <p>
      *         Output values greater than or equal to the threshold receive a
@@ -1810,9 +2143,8 @@ public class GetMLModelResult implements Serializable {
     /**
      * <p>
      * The scoring threshold is used in binary classification
-     * <code>MLModel</code><?oxy_insert_start author="laurama"
-     * timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It marks the
-     * boundary between a positive prediction and a negative prediction.
+     * <code>MLModel</code> models. It marks the boundary between a positive
+     * prediction and a negative prediction.
      * </p>
      * <p>
      * Output values greater than or equal to the threshold receive a positive
@@ -1823,10 +2155,8 @@ public class GetMLModelResult implements Serializable {
      *
      * @param scoreThreshold <p>
      *            The scoring threshold is used in binary classification
-     *            <code>MLModel</code><?oxy_insert_start author="laurama"
-     *            timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It
-     *            marks the boundary between a positive prediction and a
-     *            negative prediction.
+     *            <code>MLModel</code> models. It marks the boundary between a
+     *            positive prediction and a negative prediction.
      *            </p>
      *            <p>
      *            Output values greater than or equal to the threshold receive a
@@ -1842,9 +2172,8 @@ public class GetMLModelResult implements Serializable {
     /**
      * <p>
      * The scoring threshold is used in binary classification
-     * <code>MLModel</code><?oxy_insert_start author="laurama"
-     * timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It marks the
-     * boundary between a positive prediction and a negative prediction.
+     * <code>MLModel</code> models. It marks the boundary between a positive
+     * prediction and a negative prediction.
      * </p>
      * <p>
      * Output values greater than or equal to the threshold receive a positive
@@ -1858,10 +2187,8 @@ public class GetMLModelResult implements Serializable {
      *
      * @param scoreThreshold <p>
      *            The scoring threshold is used in binary classification
-     *            <code>MLModel</code><?oxy_insert_start author="laurama"
-     *            timestamp="20160329T114851-0700"> <?oxy_insert_end>models. It
-     *            marks the boundary between a positive prediction and a
-     *            negative prediction.
+     *            <code>MLModel</code> models. It marks the boundary between a
+     *            positive prediction and a negative prediction.
      *            </p>
      *            <p>
      *            Output values greater than or equal to the threshold receive a
@@ -2244,11 +2571,9 @@ public class GetMLModelResult implements Serializable {
      * data to use during training, and manipulations to perform on the
      * observation data during training.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 131071<br/>
@@ -2259,11 +2584,10 @@ public class GetMLModelResult implements Serializable {
      *         observation data to use during training, and manipulations to
      *         perform on the observation data during training.
      *         </p>
-     *         <note><title>Note</title>
      *         <p>
-     *         This parameter is provided as part of the verbose format.
+     *         <b>Note:</b> This parameter is provided as part of the verbose
+     *         format.
      *         </p>
-     *         </note>
      */
     public String getRecipe() {
         return recipe;
@@ -2276,11 +2600,9 @@ public class GetMLModelResult implements Serializable {
      * data to use during training, and manipulations to perform on the
      * observation data during training.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 131071<br/>
@@ -2291,11 +2613,10 @@ public class GetMLModelResult implements Serializable {
      *            observation data to use during training, and manipulations to
      *            perform on the observation data during training.
      *            </p>
-     *            <note><title>Note</title>
      *            <p>
-     *            This parameter is provided as part of the verbose format.
+     *            <b>Note:</b> This parameter is provided as part of the verbose
+     *            format.
      *            </p>
-     *            </note>
      */
     public void setRecipe(String recipe) {
         this.recipe = recipe;
@@ -2308,11 +2629,9 @@ public class GetMLModelResult implements Serializable {
      * data to use during training, and manipulations to perform on the
      * observation data during training.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -2326,11 +2645,10 @@ public class GetMLModelResult implements Serializable {
      *            observation data to use during training, and manipulations to
      *            perform on the observation data during training.
      *            </p>
-     *            <note><title>Note</title>
      *            <p>
-     *            This parameter is provided as part of the verbose format.
+     *            <b>Note:</b> This parameter is provided as part of the verbose
+     *            format.
      *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -2344,11 +2662,9 @@ public class GetMLModelResult implements Serializable {
      * The schema used by all of the data files referenced by the
      * <code>DataSource</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 131071<br/>
@@ -2357,11 +2673,10 @@ public class GetMLModelResult implements Serializable {
      *         The schema used by all of the data files referenced by the
      *         <code>DataSource</code>.
      *         </p>
-     *         <note><title>Note</title>
      *         <p>
-     *         This parameter is provided as part of the verbose format.
+     *         <b>Note:</b> This parameter is provided as part of the verbose
+     *         format.
      *         </p>
-     *         </note>
      */
     public String getSchema() {
         return schema;
@@ -2372,11 +2687,9 @@ public class GetMLModelResult implements Serializable {
      * The schema used by all of the data files referenced by the
      * <code>DataSource</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 131071<br/>
@@ -2385,11 +2698,10 @@ public class GetMLModelResult implements Serializable {
      *            The schema used by all of the data files referenced by the
      *            <code>DataSource</code>.
      *            </p>
-     *            <note><title>Note</title>
      *            <p>
-     *            This parameter is provided as part of the verbose format.
+     *            <b>Note:</b> This parameter is provided as part of the verbose
+     *            format.
      *            </p>
-     *            </note>
      */
     public void setSchema(String schema) {
         this.schema = schema;
@@ -2400,11 +2712,9 @@ public class GetMLModelResult implements Serializable {
      * The schema used by all of the data files referenced by the
      * <code>DataSource</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * This parameter is provided as part of the verbose format.
+     * <b>Note:</b> This parameter is provided as part of the verbose format.
      * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -2416,11 +2726,10 @@ public class GetMLModelResult implements Serializable {
      *            The schema used by all of the data files referenced by the
      *            <code>DataSource</code>.
      *            </p>
-     *            <note><title>Note</title>
      *            <p>
-     *            This parameter is provided as part of the verbose format.
+     *            <b>Note:</b> This parameter is provided as part of the verbose
+     *            format.
      *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

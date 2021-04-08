@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,11 +23,31 @@ import java.util.Map;
  * Object status with the following possible values:
  * </p>
  * <ul>
- * <li><code>PENDING</code></li>
- * <li><code>INPROGRESS</code></li>
- * <li><code>FAILED</code></li>
- * <li><code>COMPLETED</code></li>
- * <li><code>DELETED</code></li>
+ * <li>
+ * <p>
+ * <code>PENDING</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>INPROGRESS</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>FAILED</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>COMPLETED</code>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>DELETED</code>
+ * </p>
+ * </li>
  * </ul>
  */
 public enum EntityStatus {

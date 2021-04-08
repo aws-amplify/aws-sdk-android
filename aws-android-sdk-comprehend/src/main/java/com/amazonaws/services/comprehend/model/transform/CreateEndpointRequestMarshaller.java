@@ -93,6 +93,11 @@ public class CreateEndpointRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createEndpointRequest.getDataAccessRoleArn() != null) {
+                String dataAccessRoleArn = createEndpointRequest.getDataAccessRoleArn();
+                jsonWriter.name("DataAccessRoleArn");
+                jsonWriter.value(dataAccessRoleArn);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
