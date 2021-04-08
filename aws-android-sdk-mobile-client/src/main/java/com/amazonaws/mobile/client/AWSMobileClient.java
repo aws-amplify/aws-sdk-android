@@ -189,12 +189,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     private static final String FACEBOOK = "FacebookSignIn";
     private static final String GOOGLE = "GoogleSignIn";
     private static final String GOOGLE_WEBAPP_CONFIG_KEY = "ClientId-WebApp";
-
-    /**
-     * Configuration key for Cognito User Pool Custom Endpoint
-     */
-    private static final String COGNITO_USERPOOL_CUSTOM_ENDPOINT = "Endpoint";
-
     /**
      * Singleton instance for AWSMobileClient.
      */
@@ -563,7 +557,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             final String clientId = userPoolJSON.getString("AppClientId");
                             final String clientSecret = userPoolJSON.optString("AppClientSecret");
                             final String pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolJSON.optString("PinpointAppId"));
-                            final String cognitoUserPoolCustomEndpoint = userPoolJSON.optString(COGNITO_USERPOOL_CUSTOM_ENDPOINT);
 
                             final ClientConfiguration clientConfig = new ClientConfiguration();
                             clientConfig.setUserAgent(DEFAULT_USER_AGENT + " " + awsConfiguration.getUserAgent());
@@ -576,7 +569,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
 
                             userpoolsLoginKey = String.format("cognito-idp.%s.amazonaws.com/%s", userPoolJSON.getString("Region"), userPoolJSON.getString("PoolId"));
 
-                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId, cognitoUserPoolCustomEndpoint);
+                            userpool = new CognitoUserPool(mContext, mUserPoolPoolId, clientId, clientSecret, userpoolLL, pinpointEndpointId);
                             userpool.setPersistenceEnabled(mIsPersistenceEnabled);
 
                             mDeviceOperations = new DeviceOperations(AWSMobileClient.this, userpoolLL);
