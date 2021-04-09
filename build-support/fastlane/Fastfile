@@ -1,0 +1,10 @@
+default_platform(:android)
+
+import_from_git(
+    url: 'git@github.com:aws-amplify/amplify-ci-support.git',
+    branch: 'android/fastlane-actions',
+    path: './src/fastlane/release_actions/fastlane/AndroidAppsFastfile'
+)
+
+# When testing against local changes, comment out the above and use the line below instead.
+# import '~/github/aws-amplify/amplify-ci-support/src/fastlane/release_actions/fastlane/AndroidAppsFastfile'
