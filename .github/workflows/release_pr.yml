@@ -1,4 +1,4 @@
-name: Create PR for a release
+name: Prepare Next Release
 on:
   workflow_dispatch:
 env:
