@@ -42,7 +42,7 @@ jobs:
         RELEASE_MANAGER_TOKEN: ${{ secrets.RELEASE_MANAGER_TOKEN }}
       run: |
         cd build-support
-        bundle exec fastlane android create_next_release_pr repo:aws-amplify/aws-sdk-android product_name:"AWS SDK for Android"
+        bundle exec fastlane android create_next_release_pr
     - name: Check modified file content
       run: |
         cat gradle.properties
