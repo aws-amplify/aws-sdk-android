@@ -39,7 +39,7 @@ jobs:
         git checkout -b $branch_name
     - name: Create PR for next release
       env:
-        RELEASE_MANAGER_TOKEN: ${{ secrets.RELEASE_MANAGER_TOKEN }}
+        RELEASE_MANAGER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd build-support
         bundle exec fastlane android create_next_release_pr
