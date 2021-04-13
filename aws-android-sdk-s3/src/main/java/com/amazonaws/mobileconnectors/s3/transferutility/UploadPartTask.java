@@ -56,12 +56,13 @@ class UploadPartTask implements Callable<Boolean> {
     public Boolean call() throws Exception {
         uploadPartTaskMetadata.state = TransferState.IN_PROGRESS;
         uploadPartRequest.setGeneralProgressListener(uploadPartTaskProgressListener);
-        UploadPartResult putPartResult = null;
         int retried = 1;
-        while (retried <= RETRY_COUNT) {
+        while (true) {
             try {
-                putPartResult = s3.uploadPart(uploadPartRequest);
-                break;
+                final UploadPartResult putPartResult = s3.uploadPart(uploadPartRequest);
+                setTaskState(TransferState.PART_COMPLETED);
+                dbUtil.updateETag(uploadPartRequest.getId(), putPartResult.getETag());
+                return true;
             } catch (AbortedException e) {
                 // If request got aborted, operation was paused or canceled. do not retry.
                 LOGGER.error("Upload part aborted.");
@@ -95,17 +96,9 @@ class UploadPartTask implements Callable<Boolean> {
                     LOGGER.error("Encountered error uploading part ", e);
                     throw e;
                 }
-                LOGGER.debug("Retry attempt: " + ++retried, e);
+                LOGGER.debug("Retry attempt: " + retried++, e);
             }
         }
-
-        if (putPartResult == null) {
-            setTaskState(TransferState.FAILED);
-            return false;
-        }
-        setTaskState(TransferState.PART_COMPLETED);
-        dbUtil.updateETag(uploadPartRequest.getId(), putPartResult.getETag());
-        return true;
     }
 
     private void setTaskState(TransferState newState) {
