@@ -110,6 +110,19 @@ public class EndpointProperties implements Serializable {
 
     /**
      * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     */
+    private String dataAccessRoleArn;
+
+    /**
+     * <p>
      * The Amazon Resource Number (ARN) of the endpoint.
      * </p>
      * <p>
@@ -635,6 +648,78 @@ public class EndpointProperties implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the AWS identity and Access
+     *         Management (IAM) role that grants Amazon Comprehend read access
+     *         to trained custom models encrypted with a customer managed key
+     *         (ModelKmsKeyId).
+     *         </p>
+     */
+    public String getDataAccessRoleArn() {
+        return dataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param dataAccessRoleArn <p>
+     *            The Amazon Resource Name (ARN) of the AWS identity and Access
+     *            Management (IAM) role that grants Amazon Comprehend read
+     *            access to trained custom models encrypted with a customer
+     *            managed key (ModelKmsKeyId).
+     *            </p>
+     */
+    public void setDataAccessRoleArn(String dataAccessRoleArn) {
+        this.dataAccessRoleArn = dataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the AWS identity and Access Management
+     * (IAM) role that grants Amazon Comprehend read access to trained custom
+     * models encrypted with a customer managed key (ModelKmsKeyId).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param dataAccessRoleArn <p>
+     *            The Amazon Resource Name (ARN) of the AWS identity and Access
+     *            Management (IAM) role that grants Amazon Comprehend read
+     *            access to trained custom models encrypted with a customer
+     *            managed key (ModelKmsKeyId).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EndpointProperties withDataAccessRoleArn(String dataAccessRoleArn) {
+        this.dataAccessRoleArn = dataAccessRoleArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -660,7 +745,9 @@ public class EndpointProperties implements Serializable {
         if (getCreationTime() != null)
             sb.append("CreationTime: " + getCreationTime() + ",");
         if (getLastModifiedTime() != null)
-            sb.append("LastModifiedTime: " + getLastModifiedTime());
+            sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
+        if (getDataAccessRoleArn() != null)
+            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn());
         sb.append("}");
         return sb.toString();
     }
@@ -685,6 +772,8 @@ public class EndpointProperties implements Serializable {
                 + ((getCreationTime() == null) ? 0 : getCreationTime().hashCode());
         hashCode = prime * hashCode
                 + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
+        hashCode = prime * hashCode
+                + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         return hashCode;
     }
 
@@ -735,6 +824,11 @@ public class EndpointProperties implements Serializable {
             return false;
         if (other.getLastModifiedTime() != null
                 && other.getLastModifiedTime().equals(this.getLastModifiedTime()) == false)
+            return false;
+        if (other.getDataAccessRoleArn() == null ^ this.getDataAccessRoleArn() == null)
+            return false;
+        if (other.getDataAccessRoleArn() != null
+                && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
             return false;
         return true;
     }

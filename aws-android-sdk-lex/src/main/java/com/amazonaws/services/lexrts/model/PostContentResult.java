@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class PostContentResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex NLU.
+     * change based on improvements to Amazon Lex.
      * </p>
      */
     private String nluIntentConfidence;
@@ -102,6 +102,12 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * The message to convey to the user. The message can come from the bot's
      * configuration or from a Lambda function.
      * </p>
@@ -130,6 +136,41 @@ public class PostContentResult implements Serializable {
      * <b>Length: </b>1 - 1024<br/>
      */
     private String message;
+
+    /**
+     * <p>
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     */
+    private String encodedMessage;
 
     /**
      * <p>
@@ -256,6 +297,12 @@ public class PostContentResult implements Serializable {
      * The text used to process the request.
      * </p>
      * <p>
+     * You can use this field only in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>inputTranscript</code> field is null. You should use the
+     * <code>encodedInputTranscript</code> field instead.
+     * </p>
+     * <p>
      * If the input was an audio stream, the <code>inputTranscript</code> field
      * contains the text extracted from the audio stream. This is the text that
      * is actually processed to recognize intents and slot values. You can use
@@ -264,6 +311,24 @@ public class PostContentResult implements Serializable {
      * </p>
      */
     private String inputTranscript;
+
+    /**
+     * <p>
+     * The text used to process the request.
+     * </p>
+     * <p>
+     * If the input was an audio stream, the <code>encodedInputTranscript</code>
+     * field contains the text extracted from the audio stream. This is the text
+     * that is actually processed to recognize intents and slot values. You can
+     * use this information to determine if Amazon Lex is correctly processing
+     * the audio that you send.
+     * </p>
+     * <p>
+     * The <code>encodedInputTranscript</code> field is base-64 encoded. You
+     * must decode the field before you can use the value.
+     * </p>
+     */
+    private String encodedInputTranscript;
 
     /**
      * <p>
@@ -286,17 +351,6 @@ public class PostContentResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
@@ -309,6 +363,19 @@ public class PostContentResult implements Serializable {
      * </p>
      */
     private String sessionId;
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     */
+    private String activeContexts;
 
     /**
      * <p>
@@ -414,7 +481,7 @@ public class PostContentResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex NLU.
+     * change based on improvements to Amazon Lex.
      * </p>
      *
      * @return <p>
@@ -424,7 +491,7 @@ public class PostContentResult implements Serializable {
      *         </p>
      *         <p>
      *         The score is a relative score, not an absolute score. The score
-     *         may change based on improvements to the Amazon Lex NLU.
+     *         may change based on improvements to Amazon Lex.
      *         </p>
      */
     public String getNluIntentConfidence() {
@@ -439,7 +506,7 @@ public class PostContentResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex NLU.
+     * change based on improvements to Amazon Lex.
      * </p>
      *
      * @param nluIntentConfidence <p>
@@ -449,7 +516,7 @@ public class PostContentResult implements Serializable {
      *            </p>
      *            <p>
      *            The score is a relative score, not an absolute score. The
-     *            score may change based on improvements to the Amazon Lex NLU.
+     *            score may change based on improvements to Amazon Lex.
      *            </p>
      */
     public void setNluIntentConfidence(String nluIntentConfidence) {
@@ -464,7 +531,7 @@ public class PostContentResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex NLU.
+     * change based on improvements to Amazon Lex.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -477,7 +544,7 @@ public class PostContentResult implements Serializable {
      *            </p>
      *            <p>
      *            The score is a relative score, not an absolute score. The
-     *            score may change based on improvements to the Amazon Lex NLU.
+     *            score may change based on improvements to Amazon Lex.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -832,6 +899,12 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * The message to convey to the user. The message can come from the bot's
      * configuration or from a Lambda function.
      * </p>
@@ -860,6 +933,12 @@ public class PostContentResult implements Serializable {
      * <b>Length: </b>1 - 1024<br/>
      *
      * @return <p>
+     *         You can only use this field in the de-DE, en-AU, en-GB, en-US,
+     *         es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *         other locales, the <code>message</code> field is null. You should
+     *         use the <code>encodedMessage</code> field instead.
+     *         </p>
+     *         <p>
      *         The message to convey to the user. The message can come from the
      *         bot's configuration or from a Lambda function.
      *         </p>
@@ -891,6 +970,12 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * The message to convey to the user. The message can come from the bot's
      * configuration or from a Lambda function.
      * </p>
@@ -919,6 +1004,12 @@ public class PostContentResult implements Serializable {
      * <b>Length: </b>1 - 1024<br/>
      *
      * @param message <p>
+     *            You can only use this field in the de-DE, en-AU, en-GB, en-US,
+     *            es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *            other locales, the <code>message</code> field is null. You
+     *            should use the <code>encodedMessage</code> field instead.
+     *            </p>
+     *            <p>
      *            The message to convey to the user. The message can come from
      *            the bot's configuration or from a Lambda function.
      *            </p>
@@ -951,6 +1042,12 @@ public class PostContentResult implements Serializable {
 
     /**
      * <p>
+     * You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>message</code> field is null. You should use the
+     * <code>encodedMessage</code> field instead.
+     * </p>
+     * <p>
      * The message to convey to the user. The message can come from the bot's
      * configuration or from a Lambda function.
      * </p>
@@ -982,6 +1079,12 @@ public class PostContentResult implements Serializable {
      * <b>Length: </b>1 - 1024<br/>
      *
      * @param message <p>
+     *            You can only use this field in the de-DE, en-AU, en-GB, en-US,
+     *            es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *            other locales, the <code>message</code> field is null. You
+     *            should use the <code>encodedMessage</code> field instead.
+     *            </p>
+     *            <p>
      *            The message to convey to the user. The message can come from
      *            the bot's configuration or from a Lambda function.
      *            </p>
@@ -1012,6 +1115,215 @@ public class PostContentResult implements Serializable {
      */
     public PostContentResult withMessage(String message) {
         this.message = message;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     *
+     * @return <p>
+     *         The message to convey to the user. The message can come from the
+     *         bot's configuration or from a Lambda function.
+     *         </p>
+     *         <p>
+     *         If the intent is not configured with a Lambda function, or if the
+     *         Lambda function returned <code>Delegate</code> as the
+     *         <code>dialogAction.type</code> in its response, Amazon Lex
+     *         decides on the next course of action and selects an appropriate
+     *         message from the bot's configuration based on the current
+     *         interaction context. For example, if Amazon Lex isn't able to
+     *         understand user input, it uses a clarification prompt message.
+     *         </p>
+     *         <p>
+     *         When you create an intent you can assign messages to groups. When
+     *         messages are assigned to groups Amazon Lex returns one message
+     *         from each group in the response. The message field is an escaped
+     *         JSON string containing the messages. For more information about
+     *         the structure of the JSON string returned, see
+     *         <a>msg-prompts-formats</a>.
+     *         </p>
+     *         <p>
+     *         If the Lambda function returns a message, Amazon Lex passes it to
+     *         the client in its response.
+     *         </p>
+     *         <p>
+     *         The <code>encodedMessage</code> field is base-64 encoded. You
+     *         must decode the field before you can use the value.
+     *         </p>
+     */
+    public String getEncodedMessage() {
+        return encodedMessage;
+    }
+
+    /**
+     * <p>
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     *
+     * @param encodedMessage <p>
+     *            The message to convey to the user. The message can come from
+     *            the bot's configuration or from a Lambda function.
+     *            </p>
+     *            <p>
+     *            If the intent is not configured with a Lambda function, or if
+     *            the Lambda function returned <code>Delegate</code> as the
+     *            <code>dialogAction.type</code> in its response, Amazon Lex
+     *            decides on the next course of action and selects an
+     *            appropriate message from the bot's configuration based on the
+     *            current interaction context. For example, if Amazon Lex isn't
+     *            able to understand user input, it uses a clarification prompt
+     *            message.
+     *            </p>
+     *            <p>
+     *            When you create an intent you can assign messages to groups.
+     *            When messages are assigned to groups Amazon Lex returns one
+     *            message from each group in the response. The message field is
+     *            an escaped JSON string containing the messages. For more
+     *            information about the structure of the JSON string returned,
+     *            see <a>msg-prompts-formats</a>.
+     *            </p>
+     *            <p>
+     *            If the Lambda function returns a message, Amazon Lex passes it
+     *            to the client in its response.
+     *            </p>
+     *            <p>
+     *            The <code>encodedMessage</code> field is base-64 encoded. You
+     *            must decode the field before you can use the value.
+     *            </p>
+     */
+    public void setEncodedMessage(String encodedMessage) {
+        this.encodedMessage = encodedMessage;
+    }
+
+    /**
+     * <p>
+     * The message to convey to the user. The message can come from the bot's
+     * configuration or from a Lambda function.
+     * </p>
+     * <p>
+     * If the intent is not configured with a Lambda function, or if the Lambda
+     * function returned <code>Delegate</code> as the
+     * <code>dialogAction.type</code> in its response, Amazon Lex decides on the
+     * next course of action and selects an appropriate message from the bot's
+     * configuration based on the current interaction context. For example, if
+     * Amazon Lex isn't able to understand user input, it uses a clarification
+     * prompt message.
+     * </p>
+     * <p>
+     * When you create an intent you can assign messages to groups. When
+     * messages are assigned to groups Amazon Lex returns one message from each
+     * group in the response. The message field is an escaped JSON string
+     * containing the messages. For more information about the structure of the
+     * JSON string returned, see <a>msg-prompts-formats</a>.
+     * </p>
+     * <p>
+     * If the Lambda function returns a message, Amazon Lex passes it to the
+     * client in its response.
+     * </p>
+     * <p>
+     * The <code>encodedMessage</code> field is base-64 encoded. You must decode
+     * the field before you can use the value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1366<br/>
+     *
+     * @param encodedMessage <p>
+     *            The message to convey to the user. The message can come from
+     *            the bot's configuration or from a Lambda function.
+     *            </p>
+     *            <p>
+     *            If the intent is not configured with a Lambda function, or if
+     *            the Lambda function returned <code>Delegate</code> as the
+     *            <code>dialogAction.type</code> in its response, Amazon Lex
+     *            decides on the next course of action and selects an
+     *            appropriate message from the bot's configuration based on the
+     *            current interaction context. For example, if Amazon Lex isn't
+     *            able to understand user input, it uses a clarification prompt
+     *            message.
+     *            </p>
+     *            <p>
+     *            When you create an intent you can assign messages to groups.
+     *            When messages are assigned to groups Amazon Lex returns one
+     *            message from each group in the response. The message field is
+     *            an escaped JSON string containing the messages. For more
+     *            information about the structure of the JSON string returned,
+     *            see <a>msg-prompts-formats</a>.
+     *            </p>
+     *            <p>
+     *            If the Lambda function returns a message, Amazon Lex passes it
+     *            to the client in its response.
+     *            </p>
+     *            <p>
+     *            The <code>encodedMessage</code> field is base-64 encoded. You
+     *            must decode the field before you can use the value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withEncodedMessage(String encodedMessage) {
+        this.encodedMessage = encodedMessage;
         return this;
     }
 
@@ -2220,6 +2532,12 @@ public class PostContentResult implements Serializable {
      * The text used to process the request.
      * </p>
      * <p>
+     * You can use this field only in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>inputTranscript</code> field is null. You should use the
+     * <code>encodedInputTranscript</code> field instead.
+     * </p>
+     * <p>
      * If the input was an audio stream, the <code>inputTranscript</code> field
      * contains the text extracted from the audio stream. This is the text that
      * is actually processed to recognize intents and slot values. You can use
@@ -2229,6 +2547,13 @@ public class PostContentResult implements Serializable {
      *
      * @return <p>
      *         The text used to process the request.
+     *         </p>
+     *         <p>
+     *         You can use this field only in the de-DE, en-AU, en-GB, en-US,
+     *         es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *         other locales, the <code>inputTranscript</code> field is null.
+     *         You should use the <code>encodedInputTranscript</code> field
+     *         instead.
      *         </p>
      *         <p>
      *         If the input was an audio stream, the
@@ -2248,6 +2573,12 @@ public class PostContentResult implements Serializable {
      * The text used to process the request.
      * </p>
      * <p>
+     * You can use this field only in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>inputTranscript</code> field is null. You should use the
+     * <code>encodedInputTranscript</code> field instead.
+     * </p>
+     * <p>
      * If the input was an audio stream, the <code>inputTranscript</code> field
      * contains the text extracted from the audio stream. This is the text that
      * is actually processed to recognize intents and slot values. You can use
@@ -2257,6 +2588,13 @@ public class PostContentResult implements Serializable {
      *
      * @param inputTranscript <p>
      *            The text used to process the request.
+     *            </p>
+     *            <p>
+     *            You can use this field only in the de-DE, en-AU, en-GB, en-US,
+     *            es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *            other locales, the <code>inputTranscript</code> field is null.
+     *            You should use the <code>encodedInputTranscript</code> field
+     *            instead.
      *            </p>
      *            <p>
      *            If the input was an audio stream, the
@@ -2276,6 +2614,12 @@ public class PostContentResult implements Serializable {
      * The text used to process the request.
      * </p>
      * <p>
+     * You can use this field only in the de-DE, en-AU, en-GB, en-US, es-419,
+     * es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the
+     * <code>inputTranscript</code> field is null. You should use the
+     * <code>encodedInputTranscript</code> field instead.
+     * </p>
+     * <p>
      * If the input was an audio stream, the <code>inputTranscript</code> field
      * contains the text extracted from the audio stream. This is the text that
      * is actually processed to recognize intents and slot values. You can use
@@ -2290,6 +2634,13 @@ public class PostContentResult implements Serializable {
      *            The text used to process the request.
      *            </p>
      *            <p>
+     *            You can use this field only in the de-DE, en-AU, en-GB, en-US,
+     *            es-419, es-ES, es-US, fr-CA, fr-FR, and it-IT locales. In all
+     *            other locales, the <code>inputTranscript</code> field is null.
+     *            You should use the <code>encodedInputTranscript</code> field
+     *            instead.
+     *            </p>
+     *            <p>
      *            If the input was an audio stream, the
      *            <code>inputTranscript</code> field contains the text extracted
      *            from the audio stream. This is the text that is actually
@@ -2302,6 +2653,122 @@ public class PostContentResult implements Serializable {
      */
     public PostContentResult withInputTranscript(String inputTranscript) {
         this.inputTranscript = inputTranscript;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The text used to process the request.
+     * </p>
+     * <p>
+     * If the input was an audio stream, the <code>encodedInputTranscript</code>
+     * field contains the text extracted from the audio stream. This is the text
+     * that is actually processed to recognize intents and slot values. You can
+     * use this information to determine if Amazon Lex is correctly processing
+     * the audio that you send.
+     * </p>
+     * <p>
+     * The <code>encodedInputTranscript</code> field is base-64 encoded. You
+     * must decode the field before you can use the value.
+     * </p>
+     *
+     * @return <p>
+     *         The text used to process the request.
+     *         </p>
+     *         <p>
+     *         If the input was an audio stream, the
+     *         <code>encodedInputTranscript</code> field contains the text
+     *         extracted from the audio stream. This is the text that is
+     *         actually processed to recognize intents and slot values. You can
+     *         use this information to determine if Amazon Lex is correctly
+     *         processing the audio that you send.
+     *         </p>
+     *         <p>
+     *         The <code>encodedInputTranscript</code> field is base-64 encoded.
+     *         You must decode the field before you can use the value.
+     *         </p>
+     */
+    public String getEncodedInputTranscript() {
+        return encodedInputTranscript;
+    }
+
+    /**
+     * <p>
+     * The text used to process the request.
+     * </p>
+     * <p>
+     * If the input was an audio stream, the <code>encodedInputTranscript</code>
+     * field contains the text extracted from the audio stream. This is the text
+     * that is actually processed to recognize intents and slot values. You can
+     * use this information to determine if Amazon Lex is correctly processing
+     * the audio that you send.
+     * </p>
+     * <p>
+     * The <code>encodedInputTranscript</code> field is base-64 encoded. You
+     * must decode the field before you can use the value.
+     * </p>
+     *
+     * @param encodedInputTranscript <p>
+     *            The text used to process the request.
+     *            </p>
+     *            <p>
+     *            If the input was an audio stream, the
+     *            <code>encodedInputTranscript</code> field contains the text
+     *            extracted from the audio stream. This is the text that is
+     *            actually processed to recognize intents and slot values. You
+     *            can use this information to determine if Amazon Lex is
+     *            correctly processing the audio that you send.
+     *            </p>
+     *            <p>
+     *            The <code>encodedInputTranscript</code> field is base-64
+     *            encoded. You must decode the field before you can use the
+     *            value.
+     *            </p>
+     */
+    public void setEncodedInputTranscript(String encodedInputTranscript) {
+        this.encodedInputTranscript = encodedInputTranscript;
+    }
+
+    /**
+     * <p>
+     * The text used to process the request.
+     * </p>
+     * <p>
+     * If the input was an audio stream, the <code>encodedInputTranscript</code>
+     * field contains the text extracted from the audio stream. This is the text
+     * that is actually processed to recognize intents and slot values. You can
+     * use this information to determine if Amazon Lex is correctly processing
+     * the audio that you send.
+     * </p>
+     * <p>
+     * The <code>encodedInputTranscript</code> field is base-64 encoded. You
+     * must decode the field before you can use the value.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param encodedInputTranscript <p>
+     *            The text used to process the request.
+     *            </p>
+     *            <p>
+     *            If the input was an audio stream, the
+     *            <code>encodedInputTranscript</code> field contains the text
+     *            extracted from the audio stream. This is the text that is
+     *            actually processed to recognize intents and slot values. You
+     *            can use this information to determine if Amazon Lex is
+     *            correctly processing the audio that you send.
+     *            </p>
+     *            <p>
+     *            The <code>encodedInputTranscript</code> field is base-64
+     *            encoded. You must decode the field before you can use the
+     *            value.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withEncodedInputTranscript(String encodedInputTranscript) {
+        this.encodedInputTranscript = encodedInputTranscript;
         return this;
     }
 
@@ -2402,17 +2869,6 @@ public class PostContentResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
@@ -2421,17 +2877,6 @@ public class PostContentResult implements Serializable {
      *         The version of the bot that responded to the conversation. You
      *         can use this information to help determine if one version of a
      *         bot is performing better than another version.
-     *         </p>
-     *         <p>
-     *         If you have enabled the new natural language understanding (NLU)
-     *         model, you can use this to determine if the improvement is due to
-     *         changes to the bot or changes to the NLU.
-     *         </p>
-     *         <p>
-     *         For more information about enabling the new NLU, see the <a href=
-     *         "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     *         >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     *         operation.
      *         </p>
      */
     public String getBotVersion() {
@@ -2445,17 +2890,6 @@ public class PostContentResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
@@ -2464,18 +2898,6 @@ public class PostContentResult implements Serializable {
      *            The version of the bot that responded to the conversation. You
      *            can use this information to help determine if one version of a
      *            bot is performing better than another version.
-     *            </p>
-     *            <p>
-     *            If you have enabled the new natural language understanding
-     *            (NLU) model, you can use this to determine if the improvement
-     *            is due to changes to the bot or changes to the NLU.
-     *            </p>
-     *            <p>
-     *            For more information about enabling the new NLU, see the <a
-     *            href=
-     *            "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     *            >enableModelImprovements</a> parameter of the
-     *            <code>PutBot</code> operation.
      *            </p>
      */
     public void setBotVersion(String botVersion) {
@@ -2489,17 +2911,6 @@ public class PostContentResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -2511,18 +2922,6 @@ public class PostContentResult implements Serializable {
      *            The version of the bot that responded to the conversation. You
      *            can use this information to help determine if one version of a
      *            bot is performing better than another version.
-     *            </p>
-     *            <p>
-     *            If you have enabled the new natural language understanding
-     *            (NLU) model, you can use this to determine if the improvement
-     *            is due to changes to the bot or changes to the NLU.
-     *            </p>
-     *            <p>
-     *            For more information about enabling the new NLU, see the <a
-     *            href=
-     *            "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     *            >enableModelImprovements</a> parameter of the
-     *            <code>PutBot</code> operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2578,6 +2977,90 @@ public class PostContentResult implements Serializable {
     }
 
     /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     *
+     * @return <p>
+     *         A list of active contexts for the session. A context can be set
+     *         when an intent is fulfilled or by calling the
+     *         <code>PostContent</code>, <code>PostText</code>, or
+     *         <code>PutSession</code> operation.
+     *         </p>
+     *         <p>
+     *         You can use a context to control the intents that can follow up
+     *         an intent, or to modify the operation of your application.
+     *         </p>
+     */
+    public String getActiveContexts() {
+        return activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     */
+    public void setActiveContexts(String activeContexts) {
+        this.activeContexts = activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostContentResult withActiveContexts(String activeContexts) {
+        this.activeContexts = activeContexts;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -2604,6 +3087,8 @@ public class PostContentResult implements Serializable {
             sb.append("sentimentResponse: " + getSentimentResponse() + ",");
         if (getMessage() != null)
             sb.append("message: " + getMessage() + ",");
+        if (getEncodedMessage() != null)
+            sb.append("encodedMessage: " + getEncodedMessage() + ",");
         if (getMessageFormat() != null)
             sb.append("messageFormat: " + getMessageFormat() + ",");
         if (getDialogState() != null)
@@ -2612,12 +3097,16 @@ public class PostContentResult implements Serializable {
             sb.append("slotToElicit: " + getSlotToElicit() + ",");
         if (getInputTranscript() != null)
             sb.append("inputTranscript: " + getInputTranscript() + ",");
+        if (getEncodedInputTranscript() != null)
+            sb.append("encodedInputTranscript: " + getEncodedInputTranscript() + ",");
         if (getAudioStream() != null)
             sb.append("audioStream: " + getAudioStream() + ",");
         if (getBotVersion() != null)
             sb.append("botVersion: " + getBotVersion() + ",");
         if (getSessionId() != null)
-            sb.append("sessionId: " + getSessionId());
+            sb.append("sessionId: " + getSessionId() + ",");
+        if (getActiveContexts() != null)
+            sb.append("activeContexts: " + getActiveContexts());
         sb.append("}");
         return sb.toString();
     }
@@ -2641,6 +3130,8 @@ public class PostContentResult implements Serializable {
                 + ((getSentimentResponse() == null) ? 0 : getSentimentResponse().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode
+                + ((getEncodedMessage() == null) ? 0 : getEncodedMessage().hashCode());
+        hashCode = prime * hashCode
                 + ((getMessageFormat() == null) ? 0 : getMessageFormat().hashCode());
         hashCode = prime * hashCode
                 + ((getDialogState() == null) ? 0 : getDialogState().hashCode());
@@ -2648,10 +3139,16 @@ public class PostContentResult implements Serializable {
                 + ((getSlotToElicit() == null) ? 0 : getSlotToElicit().hashCode());
         hashCode = prime * hashCode
                 + ((getInputTranscript() == null) ? 0 : getInputTranscript().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getEncodedInputTranscript() == null) ? 0 : getEncodedInputTranscript()
+                        .hashCode());
         hashCode = prime * hashCode
                 + ((getAudioStream() == null) ? 0 : getAudioStream().hashCode());
         hashCode = prime * hashCode + ((getBotVersion() == null) ? 0 : getBotVersion().hashCode());
         hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
+        hashCode = prime * hashCode
+                + ((getActiveContexts() == null) ? 0 : getActiveContexts().hashCode());
         return hashCode;
     }
 
@@ -2704,6 +3201,11 @@ public class PostContentResult implements Serializable {
             return false;
         if (other.getMessage() != null && other.getMessage().equals(this.getMessage()) == false)
             return false;
+        if (other.getEncodedMessage() == null ^ this.getEncodedMessage() == null)
+            return false;
+        if (other.getEncodedMessage() != null
+                && other.getEncodedMessage().equals(this.getEncodedMessage()) == false)
+            return false;
         if (other.getMessageFormat() == null ^ this.getMessageFormat() == null)
             return false;
         if (other.getMessageFormat() != null
@@ -2724,6 +3226,11 @@ public class PostContentResult implements Serializable {
         if (other.getInputTranscript() != null
                 && other.getInputTranscript().equals(this.getInputTranscript()) == false)
             return false;
+        if (other.getEncodedInputTranscript() == null ^ this.getEncodedInputTranscript() == null)
+            return false;
+        if (other.getEncodedInputTranscript() != null
+                && other.getEncodedInputTranscript().equals(this.getEncodedInputTranscript()) == false)
+            return false;
         if (other.getAudioStream() == null ^ this.getAudioStream() == null)
             return false;
         if (other.getAudioStream() != null
@@ -2738,6 +3245,11 @@ public class PostContentResult implements Serializable {
             return false;
         if (other.getSessionId() != null
                 && other.getSessionId().equals(this.getSessionId()) == false)
+            return false;
+        if (other.getActiveContexts() == null ^ this.getActiveContexts() == null)
+            return false;
+        if (other.getActiveContexts() != null
+                && other.getActiveContexts().equals(this.getActiveContexts()) == false)
             return false;
         return true;
     }

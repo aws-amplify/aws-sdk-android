@@ -54,7 +54,7 @@ public class LanguageModel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      */
     private String languageCode;
 
@@ -257,7 +257,7 @@ public class LanguageModel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @return <p>
      *         The language code you used to create your custom language model.
@@ -274,7 +274,7 @@ public class LanguageModel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code you used to create your custom language
@@ -295,7 +295,7 @@ public class LanguageModel implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code you used to create your custom language
@@ -316,7 +316,7 @@ public class LanguageModel implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code you used to create your custom language
@@ -337,7 +337,7 @@ public class LanguageModel implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code you used to create your custom language

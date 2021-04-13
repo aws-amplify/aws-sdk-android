@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,10 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Kinesis Video Streams has throttled the request because you have exceeded the
- * limit of allowed client calls. Try making the call later.
+ * Kinesis Video Streams has throttled the request because you have exceeded a
+ * limit. Try making the call later. For information about limits, see <a
+ * href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html"
+ * >Kinesis Video Streams Limits</a>.
  * </p>
  */
 public class ClientLimitExceededException extends AmazonServiceException {

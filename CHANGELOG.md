@@ -1,5 +1,19 @@
 # Change Log - AWS SDK for Android
 
+## [Release 2.22.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.6)
+
+### Bug fixes
+ - Updated Service name for Lex runtime
+
+### Model updates
+ - Amazon Comprehend
+ - Amazon Kinesis Video Streams Archived Media
+ - Amazon Lex
+ - Amazon Location Service
+ - Amazon Transcribe
+ - AWS Machine Learning
+ - AWS IoT
+
 ## [Release 2.22.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.5)
 
 ### Bug fixes
