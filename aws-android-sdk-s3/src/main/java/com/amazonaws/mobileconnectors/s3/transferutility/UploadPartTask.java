@@ -57,8 +57,8 @@ class UploadPartTask implements Callable<Boolean> {
         uploadPartTaskMetadata.state = TransferState.IN_PROGRESS;
         uploadPartRequest.setGeneralProgressListener(uploadPartTaskProgressListener);
         UploadPartResult putPartResult = null;
-        int retried = 0;
-        while (retried < RETRY_COUNT) {
+        int retried = 1;
+        while (retried <= RETRY_COUNT) {
             try {
                 putPartResult = s3.uploadPart(uploadPartRequest);
                 break;
