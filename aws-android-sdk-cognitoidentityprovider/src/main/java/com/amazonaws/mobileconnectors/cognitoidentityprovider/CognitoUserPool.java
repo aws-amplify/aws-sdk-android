@@ -274,7 +274,6 @@ public class CognitoUserPool {
         this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, pinpointAppId);
     }
 
-
     /**
      * Constructs a user-pool with default {@link ClientConfiguration}.
      *
@@ -303,6 +302,22 @@ public class CognitoUserPool {
      * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
      */
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client, String pinpointAppId) {
+        this(context, userPoolId, clientId, clientSecret, client, pinpointAppId, null);
+    }
+
+    /**
+     * Constructs a user-pool with custom endpoint for Cognito User Pool
+     *
+     * @param context               REQUIRED: Android application context.
+     * @param userPoolId            REQUIRED: User-pool-Id of the user-pool.
+     * @param clientId              REQUIRED: Client-Id generated for this app and user-pool at the
+     *                              Cognito Identity Provider developer console.
+     * @param clientSecret          REQUIRED: Client Secret generated for this app and user-pool at
+     *                              the Cognito Identity Provider developer console.
+     * @param pinpointAppId         REQUIRED: AWS Pinpoint App Id for analytics.
+     * @param cognitoUserPoolCustomEndpoint REQUIRED: Custom endpoint for Cognito Userpool
+     */
+    public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client, String pinpointAppId, String cognitoUserPoolCustomEndpoint) {
         initialize(context);
         this.context = context;
         this.userPoolId = userPoolId;
@@ -310,7 +325,13 @@ public class CognitoUserPool {
         this.clientSecret = clientSecret;
         this.client = client;
         this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, pinpointAppId);
+
+        // check if the custom endpoint is not empty
+        if(cognitoUserPoolCustomEndpoint != null && !cognitoUserPoolCustomEndpoint.isEmpty()) {
+            this.client.setEndpoint(cognitoUserPoolCustomEndpoint);
+        }
     }
+
 
     private void initialize(final Context context) {
         this.awsKeyValueStore = new AWSKeyValueStore(context,
