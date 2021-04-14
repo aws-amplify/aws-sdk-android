@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -100,6 +100,44 @@ public class AssumeRoleWithWebIdentityResult implements Serializable {
      * </p>
      */
     private String audience;
+
+    /**
+     * <p>
+     * The value of the source identity that is returned in the JSON web token
+     * (JWT) from the identity provider.
+     * </p>
+     * <p>
+     * You can require users to set a source identity value when they assume a
+     * role. You do this by using the <code>sts:SourceIdentity</code> condition
+     * key in a role trust policy. That way, actions that are taken with the
+     * role are associated with that user. After the source identity is set, the
+     * value cannot be changed. It is present in the request for all actions
+     * that are taken by the role and persists across <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     * >chained role</a> sessions. You can configure your identity provider to
+     * use an attribute associated with your users, like user name or email, as
+     * the source identity when calling <code>AssumeRoleWithWebIdentity</code>.
+     * You do this by adding a claim to the JSON web token. To learn more about
+     * OIDC tokens and claims, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     * >Using Tokens with User Pools</a> in the <i>Amazon Cognito Developer
+     * Guide</i>. For more information about using source identity, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     * >Monitor and control actions taken with assumed roles</a> in the <i>IAM
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@-
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 64<br/>
+     * <b>Pattern: </b>[\w+=,.@-]*<br/>
+     */
+    private String sourceIdentity;
 
     /**
      * <p>
@@ -574,6 +612,236 @@ public class AssumeRoleWithWebIdentityResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The value of the source identity that is returned in the JSON web token
+     * (JWT) from the identity provider.
+     * </p>
+     * <p>
+     * You can require users to set a source identity value when they assume a
+     * role. You do this by using the <code>sts:SourceIdentity</code> condition
+     * key in a role trust policy. That way, actions that are taken with the
+     * role are associated with that user. After the source identity is set, the
+     * value cannot be changed. It is present in the request for all actions
+     * that are taken by the role and persists across <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     * >chained role</a> sessions. You can configure your identity provider to
+     * use an attribute associated with your users, like user name or email, as
+     * the source identity when calling <code>AssumeRoleWithWebIdentity</code>.
+     * You do this by adding a claim to the JSON web token. To learn more about
+     * OIDC tokens and claims, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     * >Using Tokens with User Pools</a> in the <i>Amazon Cognito Developer
+     * Guide</i>. For more information about using source identity, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     * >Monitor and control actions taken with assumed roles</a> in the <i>IAM
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@-
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 64<br/>
+     * <b>Pattern: </b>[\w+=,.@-]*<br/>
+     *
+     * @return <p>
+     *         The value of the source identity that is returned in the JSON web
+     *         token (JWT) from the identity provider.
+     *         </p>
+     *         <p>
+     *         You can require users to set a source identity value when they
+     *         assume a role. You do this by using the
+     *         <code>sts:SourceIdentity</code> condition key in a role trust
+     *         policy. That way, actions that are taken with the role are
+     *         associated with that user. After the source identity is set, the
+     *         value cannot be changed. It is present in the request for all
+     *         actions that are taken by the role and persists across <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     *         >chained role</a> sessions. You can configure your identity
+     *         provider to use an attribute associated with your users, like
+     *         user name or email, as the source identity when calling
+     *         <code>AssumeRoleWithWebIdentity</code>. You do this by adding a
+     *         claim to the JSON web token. To learn more about OIDC tokens and
+     *         claims, see <a href=
+     *         "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     *         >Using Tokens with User Pools</a> in the <i>Amazon Cognito
+     *         Developer Guide</i>. For more information about using source
+     *         identity, see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     *         >Monitor and control actions taken with assumed roles</a> in the
+     *         <i>IAM User Guide</i>.
+     *         </p>
+     *         <p>
+     *         The regex used to validate this parameter is a string of
+     *         characters consisting of upper- and lower-case alphanumeric
+     *         characters with no spaces. You can also include underscores or
+     *         any of the following characters: =,.@-
+     *         </p>
+     */
+    public String getSourceIdentity() {
+        return sourceIdentity;
+    }
+
+    /**
+     * <p>
+     * The value of the source identity that is returned in the JSON web token
+     * (JWT) from the identity provider.
+     * </p>
+     * <p>
+     * You can require users to set a source identity value when they assume a
+     * role. You do this by using the <code>sts:SourceIdentity</code> condition
+     * key in a role trust policy. That way, actions that are taken with the
+     * role are associated with that user. After the source identity is set, the
+     * value cannot be changed. It is present in the request for all actions
+     * that are taken by the role and persists across <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     * >chained role</a> sessions. You can configure your identity provider to
+     * use an attribute associated with your users, like user name or email, as
+     * the source identity when calling <code>AssumeRoleWithWebIdentity</code>.
+     * You do this by adding a claim to the JSON web token. To learn more about
+     * OIDC tokens and claims, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     * >Using Tokens with User Pools</a> in the <i>Amazon Cognito Developer
+     * Guide</i>. For more information about using source identity, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     * >Monitor and control actions taken with assumed roles</a> in the <i>IAM
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@-
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 64<br/>
+     * <b>Pattern: </b>[\w+=,.@-]*<br/>
+     *
+     * @param sourceIdentity <p>
+     *            The value of the source identity that is returned in the JSON
+     *            web token (JWT) from the identity provider.
+     *            </p>
+     *            <p>
+     *            You can require users to set a source identity value when they
+     *            assume a role. You do this by using the
+     *            <code>sts:SourceIdentity</code> condition key in a role trust
+     *            policy. That way, actions that are taken with the role are
+     *            associated with that user. After the source identity is set,
+     *            the value cannot be changed. It is present in the request for
+     *            all actions that are taken by the role and persists across <a
+     *            href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     *            >chained role</a> sessions. You can configure your identity
+     *            provider to use an attribute associated with your users, like
+     *            user name or email, as the source identity when calling
+     *            <code>AssumeRoleWithWebIdentity</code>. You do this by adding
+     *            a claim to the JSON web token. To learn more about OIDC tokens
+     *            and claims, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     *            >Using Tokens with User Pools</a> in the <i>Amazon Cognito
+     *            Developer Guide</i>. For more information about using source
+     *            identity, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     *            >Monitor and control actions taken with assumed roles</a> in
+     *            the <i>IAM User Guide</i>.
+     *            </p>
+     *            <p>
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
+     *            </p>
+     */
+    public void setSourceIdentity(String sourceIdentity) {
+        this.sourceIdentity = sourceIdentity;
+    }
+
+    /**
+     * <p>
+     * The value of the source identity that is returned in the JSON web token
+     * (JWT) from the identity provider.
+     * </p>
+     * <p>
+     * You can require users to set a source identity value when they assume a
+     * role. You do this by using the <code>sts:SourceIdentity</code> condition
+     * key in a role trust policy. That way, actions that are taken with the
+     * role are associated with that user. After the source identity is set, the
+     * value cannot be changed. It is present in the request for all actions
+     * that are taken by the role and persists across <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     * >chained role</a> sessions. You can configure your identity provider to
+     * use an attribute associated with your users, like user name or email, as
+     * the source identity when calling <code>AssumeRoleWithWebIdentity</code>.
+     * You do this by adding a claim to the JSON web token. To learn more about
+     * OIDC tokens and claims, see <a href=
+     * "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     * >Using Tokens with User Pools</a> in the <i>Amazon Cognito Developer
+     * Guide</i>. For more information about using source identity, see <a href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     * >Monitor and control actions taken with assumed roles</a> in the <i>IAM
+     * User Guide</i>.
+     * </p>
+     * <p>
+     * The regex used to validate this parameter is a string of characters
+     * consisting of upper- and lower-case alphanumeric characters with no
+     * spaces. You can also include underscores or any of the following
+     * characters: =,.@-
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 64<br/>
+     * <b>Pattern: </b>[\w+=,.@-]*<br/>
+     *
+     * @param sourceIdentity <p>
+     *            The value of the source identity that is returned in the JSON
+     *            web token (JWT) from the identity provider.
+     *            </p>
+     *            <p>
+     *            You can require users to set a source identity value when they
+     *            assume a role. You do this by using the
+     *            <code>sts:SourceIdentity</code> condition key in a role trust
+     *            policy. That way, actions that are taken with the role are
+     *            associated with that user. After the source identity is set,
+     *            the value cannot be changed. It is present in the request for
+     *            all actions that are taken by the role and persists across <a
+     *            href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts#iam-term-role-chaining"
+     *            >chained role</a> sessions. You can configure your identity
+     *            provider to use an attribute associated with your users, like
+     *            user name or email, as the source identity when calling
+     *            <code>AssumeRoleWithWebIdentity</code>. You do this by adding
+     *            a claim to the JSON web token. To learn more about OIDC tokens
+     *            and claims, see <a href=
+     *            "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html"
+     *            >Using Tokens with User Pools</a> in the <i>Amazon Cognito
+     *            Developer Guide</i>. For more information about using source
+     *            identity, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_monitor.html"
+     *            >Monitor and control actions taken with assumed roles</a> in
+     *            the <i>IAM User Guide</i>.
+     *            </p>
+     *            <p>
+     *            The regex used to validate this parameter is a string of
+     *            characters consisting of upper- and lower-case alphanumeric
+     *            characters with no spaces. You can also include underscores or
+     *            any of the following characters: =,.@-
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public AssumeRoleWithWebIdentityResult withSourceIdentity(String sourceIdentity) {
+        this.sourceIdentity = sourceIdentity;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -595,7 +863,9 @@ public class AssumeRoleWithWebIdentityResult implements Serializable {
         if (getProvider() != null)
             sb.append("Provider: " + getProvider() + ",");
         if (getAudience() != null)
-            sb.append("Audience: " + getAudience());
+            sb.append("Audience: " + getAudience() + ",");
+        if (getSourceIdentity() != null)
+            sb.append("SourceIdentity: " + getSourceIdentity());
         sb.append("}");
         return sb.toString();
     }
@@ -617,6 +887,8 @@ public class AssumeRoleWithWebIdentityResult implements Serializable {
                 + ((getPackedPolicySize() == null) ? 0 : getPackedPolicySize().hashCode());
         hashCode = prime * hashCode + ((getProvider() == null) ? 0 : getProvider().hashCode());
         hashCode = prime * hashCode + ((getAudience() == null) ? 0 : getAudience().hashCode());
+        hashCode = prime * hashCode
+                + ((getSourceIdentity() == null) ? 0 : getSourceIdentity().hashCode());
         return hashCode;
     }
 
@@ -660,6 +932,11 @@ public class AssumeRoleWithWebIdentityResult implements Serializable {
         if (other.getAudience() == null ^ this.getAudience() == null)
             return false;
         if (other.getAudience() != null && other.getAudience().equals(this.getAudience()) == false)
+            return false;
+        if (other.getSourceIdentity() == null ^ this.getSourceIdentity() == null)
+            return false;
+        if (other.getSourceIdentity() != null
+                && other.getSourceIdentity().equals(this.getSourceIdentity()) == false)
             return false;
         return true;
     }
