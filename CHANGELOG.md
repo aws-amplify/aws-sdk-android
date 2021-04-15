@@ -2278,6 +2278,7 @@ All documentation is now centralized at https://aws-amplify.github.io/
 ### Bug Fixes
 - **Amazon S3**: Fixed an issue that occurs when required headers are not properly signed. This issue affects S3 in two regions: Frankfurt (eu-central-1) and China (cn-north-1). [#42](https://github.com/aws/aws-sdk-android/issues/42)
 - **AWS Core Runtime Library**: Fixed an issue in Maven distribution where an incorrect version string is set in "User-Agent".
+
 # Release 2.22.7
 
 ### Bug Fixes
