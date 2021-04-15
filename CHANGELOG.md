@@ -1,4 +1,4 @@
-# Release 2.22.7
+## [Release 2.22.7](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.7)
 
 ### Bug Fixes
 - **mobile-client:** missing optional dependency warning removed (#2427)
