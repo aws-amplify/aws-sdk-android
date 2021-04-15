@@ -1,3 +1,12 @@
+# Release 2.22.7
+
+### Bug Fixes
+- **mobile-client:** missing optional dependency warning removed (#2427)
+- change protocol for github import (#2429)
+- **s3:** remove eTag validation logic (#2419)
+
+[See all changes between 2.22.6 and 2.22.7](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.6...release_v2.22.7)
+
 # Change Log - AWS SDK for Android
 
 ## [Release 2.22.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.6)
