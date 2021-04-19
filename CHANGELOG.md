@@ -1,4 +1,4 @@
-## [Release 2.23.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.23.0)
+## [Release 2.22.7](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.22.7)
 
 ### Features
 - **aws-android-sdk-core:** update models to latest (#2445)
