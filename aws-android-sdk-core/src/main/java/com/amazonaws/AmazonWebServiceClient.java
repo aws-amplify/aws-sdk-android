@@ -95,7 +95,7 @@ public abstract class AmazonWebServiceClient {
 
     /** Optional offset (in seconds) to use when signing requests. */
     @SuppressWarnings("checkstyle:visibilitymodifier")
-    protected int timeOffset;
+    protected long timeOffset;
 
     /** AWS signer for authenticating requests. */
     private volatile Signer signer;
@@ -660,7 +660,7 @@ public abstract class AmazonWebServiceClient {
      *
      * @return The optional value for time offset (in seconds) for this client.
      */
-    public int getTimeOffset() {
+    public long getTimeOffset() {
         return timeOffset;
     }
 

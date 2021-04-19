@@ -494,8 +494,8 @@ public class AmazonHttpClientTest {
         AmazonServiceException ase = new AmazonServiceException("ClockSkew");
 
         // assert date is > 10 years
-        int offset = client.parseClockSkewOffset(httpResponse, ase);
-        assertTrue(offset > 315400000);
+        long offset = client.parseClockSkewOffset(httpResponse, ase);
+        assertTrue(offset > 315400000L);
     }
 
     @Test
@@ -505,8 +505,8 @@ public class AmazonHttpClientTest {
         AmazonServiceException ase = new AmazonServiceException("(20041106T084937Z - 15)");
 
         // assert date is > 10 years
-        int offset = client.parseClockSkewOffset(httpResponse, ase);
-        assertTrue(offset > 315400000);
+        long offset = client.parseClockSkewOffset(httpResponse, ase);
+        assertTrue(offset > 315400000L);
     }
 
     @Test
@@ -517,8 +517,8 @@ public class AmazonHttpClientTest {
 
         AmazonServiceException ase = new AmazonServiceException("ClockSkew");
         // assert date is > 10 years
-        int offset = client.parseClockSkewOffset(httpResponse, ase);
-        assertEquals(offset, 0);
+        final long offset = client.parseClockSkewOffset(httpResponse, ase);
+        assertEquals(offset, 0L);
     }
 
     @Test
