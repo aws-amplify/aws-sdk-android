@@ -1,4 +1,18 @@
-# Change Log - AWS SDK for Android
+## [Release 2.22.7](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.22.7)
+
+### Features
+- **aws-android-sdk-core:** update models to latest (#2445)
+
+### Bug Fixes
+- **mobile-client:** missing optional dependency warning removed (#2427)
+- **s3:** remove eTag validation logic (#2419)
+- **s3:** force upload part tasks to be serial (#2447)
+
+### Miscellaneous
+- change the time offset precision from int to long (#2448)
+
+[See all changes between 2.22.6 and 2.22.7](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.6...release_v2.22.7)
+
 
 ## [Release 2.22.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.6)
 
