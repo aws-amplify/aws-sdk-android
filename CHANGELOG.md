@@ -5,7 +5,6 @@
 
 ### Bug Fixes
 - **mobile-client:** missing optional dependency warning removed (#2427)
-- change protocol for github import (#2429)
 - **s3:** remove eTag validation logic (#2419)
 - **s3:** force upload part tasks to be serial (#2447)
 
