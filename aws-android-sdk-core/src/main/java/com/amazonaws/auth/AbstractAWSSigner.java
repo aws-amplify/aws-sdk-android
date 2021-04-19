@@ -432,7 +432,7 @@ public abstract class AbstractAWSSigner implements Signer {
         return new String(bytes, UTF8);
     }
 
-    protected Date getSignatureDate(int timeOffset) {
+    protected Date getSignatureDate(long timeOffset) {
         Date dateValue = new Date();
         if (timeOffset != 0) {
             long epochMillis = dateValue.getTime();
@@ -442,8 +442,8 @@ public abstract class AbstractAWSSigner implements Signer {
         return dateValue;
     }
 
-    protected int getTimeOffset(Request<?> request) {
-        int timeOffset = request.getTimeOffset();
+    protected long getTimeOffset(Request<?> request) {
+        long timeOffset = request.getTimeOffset();
         if (SDKGlobalConfiguration.getGlobalTimeOffset() != 0) {
             // if global time offset is set then use that (For clock skew
             // issues)

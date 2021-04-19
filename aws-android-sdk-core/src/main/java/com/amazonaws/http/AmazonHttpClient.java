@@ -72,7 +72,7 @@ public class AmazonHttpClient {
     private static final int HTTP_STATUS_REQ_TOO_LONG = 413;
     private static final int HTTP_STATUS_SERVICE_UNAVAILABLE = 503;
 
-    private static final int TIME_MILLISEC = 1000;
+    private static final long TIME_MILLISEC = 1000L;
 
     /**
      * Logger providing detailed information on requests/responses. Users can
@@ -439,7 +439,7 @@ public class AmazonHttpClient {
                      * exception.
                      */
                     if (RetryUtils.isClockSkewError(ase)) {
-                        final int timeOffset = parseClockSkewOffset(httpResponse, ase);
+                        final long timeOffset = parseClockSkewOffset(httpResponse, ase);
                         SDKGlobalConfiguration.setGlobalTimeOffset(timeOffset);
                     }
                     resetRequestAfterError(request, ase);
@@ -803,7 +803,7 @@ public class AmazonHttpClient {
         return msg;
     }
 
-    int parseClockSkewOffset(HttpResponse response, AmazonServiceException exception) {
+    long parseClockSkewOffset(HttpResponse response, AmazonServiceException exception) {
         final Date deviceDate = new Date();
         Date serverDate = null;
         String serverDateStr = null;
@@ -827,7 +827,7 @@ public class AmazonHttpClient {
         }
 
         final long diff = deviceDate.getTime() - serverDate.getTime();
-        return (int) (diff / TIME_MILLISEC);
+        return diff / TIME_MILLISEC;
     }
 
     @Override
