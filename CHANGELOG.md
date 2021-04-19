@@ -11,7 +11,7 @@
 ### Miscellaneous
 - change the time offset precision from int to long (#2448)
 
-[See all changes between 2.22.6 and 2.23.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.6...release_v2.23.0)
+[See all changes between 2.22.6 and 2.22.7](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.6...release_v2.22.7)
 
 # Change Log - AWS SDK for Android
 
