@@ -889,10 +889,10 @@ abstract class NotificationClientBase {
         }
 
         final AnalyticsEvent pushEvent;
+        this.pinpointContext.getAnalyticsClient().updateEventSourceGlobally(eventSourceAttributes);
         if (isAppInForeground) {
             pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedForeground());
         } else {
-            this.pinpointContext.getAnalyticsClient().updateEventSourceGlobally(eventSourceAttributes);
             pushEvent = this.pinpointContext.getAnalyticsClient().createEvent(eventSourceType.getEventTypeReceivedBackground());
         }
         pushEvent.addAttribute("isAppInForeground", Boolean.toString(isAppInForeground));
