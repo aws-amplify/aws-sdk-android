@@ -1,5 +1,8 @@
 ## [Release 2.22.8](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.22.8)
 
+### New Features
+- **aws-android-sdk-cognitoidentityprovider:** support custom endpoint (#2455)
+
 ### Bug Fixes
 - **pinpoint:** add campaign attributes to push events (#2458)
 
