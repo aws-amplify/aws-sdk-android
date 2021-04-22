@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -98,6 +98,13 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
      * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
      * app client is configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
      * </p>
      * </li>
      * </ul>
@@ -476,6 +483,13 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * app client is configured with client secret).
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The value of the <code>USERNAME</code> attribute must be the user's
@@ -520,6 +534,14 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      *         any other required attributes, <code>USERNAME</code>,
      *         <code>SECRET_HASH</code> (if app client is configured with client
      *         secret).
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you
+     *         need to use the session value returned by
+     *         <code>VerifySoftwareToken</code> in the <code>Session</code>
+     *         parameter.
      *         </p>
      *         </li>
      *         </ul>
@@ -572,6 +594,13 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * app client is configured with client secret).
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The value of the <code>USERNAME</code> attribute must be the user's
@@ -617,6 +646,14 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      *            any other required attributes, <code>USERNAME</code>,
      *            <code>SECRET_HASH</code> (if app client is configured with
      *            client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
+     *            you need to use the session value returned by
+     *            <code>VerifySoftwareToken</code> in the <code>Session</code>
+     *            parameter.
      *            </p>
      *            </li>
      *            </ul>
@@ -669,6 +706,13 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * app client is configured with client secret).
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * The value of the <code>USERNAME</code> attribute must be the user's
@@ -717,6 +761,14 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      *            any other required attributes, <code>USERNAME</code>,
      *            <code>SECRET_HASH</code> (if app client is configured with
      *            client secret).
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
+     *            you need to use the session value returned by
+     *            <code>VerifySoftwareToken</code> in the <code>Session</code>
+     *            parameter.
      *            </p>
      *            </li>
      *            </ul>
@@ -771,6 +823,13 @@ public class AdminRespondToAuthChallengeRequest extends AmazonWebServiceRequest 
      * <code>NEW_PASSWORD_REQUIRED</code>: <code>NEW_PASSWORD</code>, any other
      * required attributes, <code>USERNAME</code>, <code>SECRET_HASH</code> (if
      * app client is configured with client secret).
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
      * </p>
      * </li>
      * </ul>

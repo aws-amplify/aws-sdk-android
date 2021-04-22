@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,7 +31,9 @@ import com.amazonaws.services.cognitoidentityprovider.model.*;
  * User Pools.
  * </p>
  * <p>
- * For more information, see the Amazon Cognito Documentation.
+ * For more information, see the <a href=
+ * "https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html"
+ * >Amazon Cognito Documentation</a>.
  * </p>
  **/
 public interface AmazonCognitoIdentityProvider {
@@ -388,7 +390,7 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * 
      * @param adminDisableUserRequest <p>
-     *            Represents the request to disable any user as an
+     *            Represents the request to disable the user as an
      *            administrator.
      *            </p>
      * @return adminDisableUserResult The response from the AdminDisableUser
@@ -1468,7 +1470,7 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Deletes a group. Currently only groups with no members can be deleted.
+     * Deletes a group.
      * </p>
      * <p>
      * Calling this action requires developer credentials.
