@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -115,6 +115,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
      * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
      * </p>
      * </li>
      * </ul>
@@ -545,6 +552,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
+     * </p>
+     * </li>
      * </ul>
      *
      * @return <p>
@@ -597,6 +611,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *         <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
      *         <code>PASSWORD_VERIFIER</code> requires plus
      *         <code>DEVICE_KEY</code>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you
+     *         need to use the session value returned by
+     *         <code>VerifySoftwareToken</code> in the <code>Session</code>
+     *         parameter.
      *         </p>
      *         </li>
      *         </ul>
@@ -654,6 +676,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
+     * </p>
+     * </li>
      * </ul>
      *
      * @param challengeResponses <p>
@@ -706,6 +735,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
      *            <code>PASSWORD_VERIFIER</code> requires plus
      *            <code>DEVICE_KEY</code>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
+     *            you need to use the session value returned by
+     *            <code>VerifySoftwareToken</code> in the <code>Session</code>
+     *            parameter.
      *            </p>
      *            </li>
      *            </ul>
@@ -761,6 +798,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
      * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
      * </p>
      * </li>
      * </ul>
@@ -820,6 +864,14 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      *            <code>DEVICE_KEY</code>.
      *            </p>
      *            </li>
+     *            <li>
+     *            <p>
+     *            <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus
+     *            you need to use the session value returned by
+     *            <code>VerifySoftwareToken</code> in the <code>Session</code>
+     *            parameter.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -877,6 +929,13 @@ public class RespondToAuthChallengeRequest extends AmazonWebServiceRequest imple
      * <p>
      * <code>DEVICE_PASSWORD_VERIFIER</code> requires everything that
      * <code>PASSWORD_VERIFIER</code> requires plus <code>DEVICE_KEY</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>MFA_SETUP</code> requires <code>USERNAME</code>, plus you need to
+     * use the session value returned by <code>VerifySoftwareToken</code> in the
+     * <code>Session</code> parameter.
      * </p>
      * </li>
      * </ul>

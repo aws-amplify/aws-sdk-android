@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -55,6 +55,13 @@ public class SmsConfigurationType implements Serializable {
      * create a role for SMS MFA, Cognito will create a role with the required
      * permissions and a trust policy that demonstrates use of the
      * <code>ExternalId</code>.
+     * </p>
+     * <p>
+     * For more information about the <code>ExternalId</code> of a role, see <a
+     * href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     * >How to use an external ID when granting access to your AWS resources to
+     * a third party</a>
      * </p>
      */
     private String externalId;
@@ -164,6 +171,13 @@ public class SmsConfigurationType implements Serializable {
      * permissions and a trust policy that demonstrates use of the
      * <code>ExternalId</code>.
      * </p>
+     * <p>
+     * For more information about the <code>ExternalId</code> of a role, see <a
+     * href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     * >How to use an external ID when granting access to your AWS resources to
+     * a third party</a>
+     * </p>
      *
      * @return <p>
      *         The external ID is a value that we recommend you use to add
@@ -176,6 +190,13 @@ public class SmsConfigurationType implements Serializable {
      *         Cognito will create a role with the required permissions and a
      *         trust policy that demonstrates use of the <code>ExternalId</code>
      *         .
+     *         </p>
+     *         <p>
+     *         For more information about the <code>ExternalId</code> of a role,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     *         >How to use an external ID when granting access to your AWS
+     *         resources to a third party</a>
      *         </p>
      */
     public String getExternalId() {
@@ -194,6 +215,13 @@ public class SmsConfigurationType implements Serializable {
      * permissions and a trust policy that demonstrates use of the
      * <code>ExternalId</code>.
      * </p>
+     * <p>
+     * For more information about the <code>ExternalId</code> of a role, see <a
+     * href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     * >How to use an external ID when granting access to your AWS resources to
+     * a third party</a>
+     * </p>
      *
      * @param externalId <p>
      *            The external ID is a value that we recommend you use to add
@@ -206,6 +234,13 @@ public class SmsConfigurationType implements Serializable {
      *            for SMS MFA, Cognito will create a role with the required
      *            permissions and a trust policy that demonstrates use of the
      *            <code>ExternalId</code>.
+     *            </p>
+     *            <p>
+     *            For more information about the <code>ExternalId</code> of a
+     *            role, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     *            >How to use an external ID when granting access to your AWS
+     *            resources to a third party</a>
      *            </p>
      */
     public void setExternalId(String externalId) {
@@ -225,6 +260,13 @@ public class SmsConfigurationType implements Serializable {
      * <code>ExternalId</code>.
      * </p>
      * <p>
+     * For more information about the <code>ExternalId</code> of a role, see <a
+     * href=
+     * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     * >How to use an external ID when granting access to your AWS resources to
+     * a third party</a>
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -239,6 +281,13 @@ public class SmsConfigurationType implements Serializable {
      *            for SMS MFA, Cognito will create a role with the required
      *            permissions and a trust policy that demonstrates use of the
      *            <code>ExternalId</code>.
+     *            </p>
+     *            <p>
+     *            For more information about the <code>ExternalId</code> of a
+     *            role, see <a href=
+     *            "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html"
+     *            >How to use an external ID when granting access to your AWS
+     *            resources to a third party</a>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -31,18 +31,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class OptInPhoneNumberRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The phone number to opt in.
+     * The phone number to opt in. Use E.164 format.
      * </p>
      */
     private String phoneNumber;
 
     /**
      * <p>
-     * The phone number to opt in.
+     * The phone number to opt in. Use E.164 format.
      * </p>
      *
      * @return <p>
-     *         The phone number to opt in.
+     *         The phone number to opt in. Use E.164 format.
      *         </p>
      */
     public String getPhoneNumber() {
@@ -51,11 +51,11 @@ public class OptInPhoneNumberRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The phone number to opt in.
+     * The phone number to opt in. Use E.164 format.
      * </p>
      *
      * @param phoneNumber <p>
-     *            The phone number to opt in.
+     *            The phone number to opt in. Use E.164 format.
      *            </p>
      */
     public void setPhoneNumber(String phoneNumber) {
@@ -64,14 +64,14 @@ public class OptInPhoneNumberRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The phone number to opt in.
+     * The phone number to opt in. Use E.164 format.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param phoneNumber <p>
-     *            The phone number to opt in.
+     *            The phone number to opt in. Use E.164 format.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

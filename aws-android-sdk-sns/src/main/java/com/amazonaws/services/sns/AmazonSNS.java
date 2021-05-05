@@ -1339,7 +1339,7 @@ public interface AmazonSNS {
      *            Specifying a valid ARN for this attribute is required for
      *            Kinesis Data Firehose delivery stream subscriptions. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
      *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
      *            <i>Amazon SNS Developer Guide</i>.
      *            </p>
