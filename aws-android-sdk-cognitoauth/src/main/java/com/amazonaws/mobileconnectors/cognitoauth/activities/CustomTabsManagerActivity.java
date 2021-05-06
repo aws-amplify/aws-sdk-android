@@ -7,7 +7,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.logging.Logger;
+
 public final class CustomTabsManagerActivity extends Activity {
+    private static final String TAG = "AuthClient"; // This activity is used for HostedUI auth flow
     static final String CUSTOM_TABS_LAUNCHED_KEY = "customTabsLaunched";
     static final String CUSTOM_TABS_INTENT_KEY = "customTabsIntent";
 
@@ -100,18 +103,18 @@ public final class CustomTabsManagerActivity extends Activity {
     }
 
     private void handleAuthorizationComplete() {
+        Log.d(TAG, "Authorization flow completed successfully");
         setResult(RESULT_OK, getIntent());
     }
 
     private void handleAuthorizationCanceled() {
+        Log.d(TAG, "Authorization flow canceled by user");
         setResult(RESULT_CANCELED);
     }
 
     private void extractState(Bundle state) {
         if (state == null) {
-            Log.i("AuthClient",
-                    "CustomTabsManagerActivity was created with a null state. This should never happen. " +
-                            "Please file an issue with us on GitHub.");
+            Log.d(TAG, "CustomTabsManagerActivity was created with a null state.");
             finish();
             return;
         }
