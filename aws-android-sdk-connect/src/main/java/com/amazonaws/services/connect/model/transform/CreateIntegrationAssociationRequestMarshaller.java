@@ -93,6 +93,19 @@ public class CreateIntegrationAssociationRequestMarshaller
                 jsonWriter.name("SourceType");
                 jsonWriter.value(sourceType);
             }
+            if (createIntegrationAssociationRequest.getTags() != null) {
+                java.util.Map<String, String> tags = createIntegrationAssociationRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                    String tagsValue = tagsEntry.getValue();
+                    if (tagsValue != null) {
+                        jsonWriter.name(tagsEntry.getKey());
+                        jsonWriter.value(tagsValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
