@@ -646,7 +646,7 @@ public class AuthClient {
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_CLIENT_ID, pool.getAppId())
                 .appendQueryParameter(ClientConstants.DOMAIN_QUERY_PARAM_LOGOUT_URI, redirectUri);
         final Uri fqdn = builder.build();
-        launchCustomTabsWithoutCallback(fqdn, browserPackage);
+        launchCustomTabs(fqdn, null, browserPackage);
     }
 
     /**
@@ -665,35 +665,19 @@ public class AuthClient {
 	        mCustomTabsIntent.intent.setPackage(
 	                browserPackage != null ? browserPackage : DEFAULT_BROWSER_PACKAGE);
             mCustomTabsIntent.intent.setData(uri);
-            activity.startActivityForResult(
-                CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent),
-                CUSTOM_TABS_ACTIVITY_CODE
-            );
+            if (activity != null) {
+                activity.startActivityForResult(
+                    CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent),
+                    CUSTOM_TABS_ACTIVITY_CODE
+                );
+            } else {
+                context.startActivity(
+                    CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent)
+                );
+            }
     	} catch (final Exception e) {
     		userHandler.onFailure(e);
     	}
-    }
-
-    /**
-     * Launches the HostedUI page on Custom Tab without paying attention to callbacks.
-     * @param uri Required: {@link Uri}.
-     * @param browserPackage Optional string specifying the browser package to launch the specified url.
-     *                       Defaults to Chrome if null.
-     */
-    private void launchCustomTabsWithoutCallback(final Uri uri, final String browserPackage) {
-        try {
-            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
-            mCustomTabsIntent = builder.build();
-            if(pool.getCustomTabExtras() != null)
-                mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
-            mCustomTabsIntent.intent.setPackage(
-                    browserPackage != null ? browserPackage : DEFAULT_BROWSER_PACKAGE);
-            mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            mCustomTabsIntent.intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mCustomTabsIntent.launchUrl(context, uri);
-        } catch (final Exception e) {
-            userHandler.onFailure(e);
-        }
     }
 
     private String getUserContextData() {
