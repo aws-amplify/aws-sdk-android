@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.util.logging.Logger;
-
 public final class CustomTabsManagerActivity extends Activity {
     private static final String TAG = "AuthClient"; // This activity is used for HostedUI auth flow
     static final String CUSTOM_TABS_LAUNCHED_KEY = "customTabsLaunched";
