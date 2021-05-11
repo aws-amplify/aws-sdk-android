@@ -6,6 +6,9 @@ import android.os.Bundle;
 import com.amazonaws.mobile.client.AWSMobileClient;
 import com.amazonaws.mobileconnectors.cognitoauth.activities.CustomTabsManagerActivity;
 
+/**
+ * Handles auth redirect for sign-in and sign-out.
+ */
 public final class CustomTabsRedirectActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceBundle) {
