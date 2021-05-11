@@ -46,6 +46,8 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Local client for {@link Auth}.
@@ -68,6 +70,11 @@ public class AuthClient {
      * Specifies what browser package to default to if one isn't specified.
      */
     private static final String DEFAULT_BROWSER_PACKAGE = ClientConstants.CHROME_PACKAGE;
+
+    /**
+     * Default timeout duration to wait for sign-out redirect.
+     */
+    private static final long DEFAULT_REDIRECT_TIMEOUT_SECONDS = 3;
 
     /**
      * Android application context.
@@ -109,6 +116,8 @@ public class AuthClient {
     private CustomTabsSession mCustomTabsSession;
     private CustomTabsIntent mCustomTabsIntent;
     private CustomTabsServiceConnection mCustomTabsServiceConnection;
+
+    private CountDownLatch cookiesCleared;
 
     /**
      * Constructs {@link AuthClient} with no user name.
@@ -250,8 +259,7 @@ public class AuthClient {
      * @param browserPackage String specifying the browser package to launch the specified url.
      */
     public void signOut(String browserPackage) {
-        LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
-        launchSignOut(pool.getSignOutRedirectUri(), browserPackage);
+        signOut(false, browserPackage);
     }
 
     /**
@@ -271,8 +279,9 @@ public class AuthClient {
     /**
      * Signs-out a user.
      * <p>
-     *     Clears cached tokens for the user. Launches the sign-out Cognito web end-point to
-     *     clear all Cognito Auth cookies stored by Chrome.
+     *     Launches the sign-out Cognito web end-point to clear all Cognito Auth cookies stored
+     *     by Chrome.
+     *     Cached tokens will be deleted if sign-out redirect is handled properly or timed out.
      * </p>
      *
      * @param clearLocalTokensOnly true if signs out the user from the client,
@@ -280,9 +289,23 @@ public class AuthClient {
      * @param browserPackage String specifying the browser package to launch the specified url.
      */
     public void signOut(final boolean clearLocalTokensOnly, final String browserPackage) {
-        LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
+        // Try deleting cookies.
         if (!clearLocalTokensOnly) {
+            endSession(browserPackage);
+        }
+
+        // Delete local cache
+        LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
+    }
+
+    private void endSession(final String browserPackage) {
+        try {
+            cookiesCleared = new CountDownLatch(1);
             launchSignOut(pool.getSignOutRedirectUri(), browserPackage);
+            cookiesCleared.await(DEFAULT_REDIRECT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            // Do nothing. It's possible that sign-out redirect URI was successfully
+            // launched but success callback wasn't called.
         }
     }
 
@@ -415,6 +438,10 @@ public class AuthClient {
                         }
                     }
                 } else {
+                    if (cookiesCleared != null) {
+                        cookiesCleared.countDown();
+                    }
+
                     // User sign-out.
                     returnCallback = new Runnable() {
                         @Override
