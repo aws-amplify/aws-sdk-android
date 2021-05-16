@@ -80,11 +80,6 @@ public class AssumeRoleWithWebIdentityResultStaxUnmarshaller implements
                             .getInstance().unmarshall(context));
                     continue;
                 }
-                if (context.testExpression("SourceIdentity", targetDepth)) {
-                    assumeRoleWithWebIdentityResult.setSourceIdentity(StringStaxUnmarshaller
-                            .getInstance().unmarshall(context));
-                    continue;
-                }
             } else if (xmlEvent == XmlPullParser.END_TAG) {
                 if (context.getCurrentDepth() < originalDepth) {
                     break;
