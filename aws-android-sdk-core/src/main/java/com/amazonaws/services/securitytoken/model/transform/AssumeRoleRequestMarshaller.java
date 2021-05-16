@@ -118,11 +118,6 @@ public class AssumeRoleRequestMarshaller implements
             String tokenCode = assumeRoleRequest.getTokenCode();
             request.addParameter(prefix, StringUtils.fromString(tokenCode));
         }
-        if (assumeRoleRequest.getSourceIdentity() != null) {
-            prefix = "SourceIdentity";
-            String sourceIdentity = assumeRoleRequest.getSourceIdentity();
-            request.addParameter(prefix, StringUtils.fromString(sourceIdentity));
-        }
 
         return request;
     }
