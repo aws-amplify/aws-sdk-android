@@ -214,7 +214,9 @@ public interface AmazonRekognition {
      * </note>
      * <p>
      * This operation requires permissions to perform the
-     * <code>rekognition:CreateCollection</code> action.
+     * <code>rekognition:CreateCollection</code> action. If you want to tag your
+     * collection, you also require permission to perform the
+     * <code>rekognition:TagResource</code> operation.
      * </p>
      * 
      * @param createCollectionRequest
@@ -345,6 +347,12 @@ public interface AmazonRekognition {
      * After you have finished analyzing a streaming video, use
      * <a>StopStreamProcessor</a> to stop processing. You can delete the stream
      * processor by calling <a>DeleteStreamProcessor</a>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:CreateStreamProcessor</code> action. If you want to tag
+     * your stream processor, you also require permission to perform the
+     * <code>rekognition:TagResource</code> operation.
      * </p>
      * 
      * @param createStreamProcessorRequest
@@ -2002,6 +2010,10 @@ public interface AmazonRekognition {
      * Returns a list of tags in an Amazon Rekognition collection, stream
      * processor, or Custom Labels model.
      * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:ListTagsForResource</code> action.
+     * </p>
      * 
      * @param listTagsForResourceRequest
      * @return listTagsForResourceResult The response from the
@@ -2178,6 +2190,11 @@ public interface AmazonRekognition {
      * returns the bounding box (and a confidence level that the bounding box
      * contains a face) of the face that Amazon Rekognition used for the input
      * image.
+     * </p>
+     * <p>
+     * If no faces are detected in the input image,
+     * <code>SearchFacesByImage</code> returns an
+     * <code>InvalidParameterException</code> error.
      * </p>
      * <p>
      * For an example, Searching for a Face Using an Image in the Amazon
@@ -2758,6 +2775,10 @@ public interface AmazonRekognition {
      * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">
      * Tagging AWS Resources</a>.
      * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:TagResource</code> action.
+     * </p>
      * 
      * @param tagResourceRequest
      * @return tagResourceResult The response from the TagResource service
@@ -2784,6 +2805,10 @@ public interface AmazonRekognition {
      * <p>
      * Removes one or more tags from an Amazon Rekognition collection, stream
      * processor, or Custom Labels model.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:UntagResource</code> action.
      * </p>
      * 
      * @param untagResourceRequest
