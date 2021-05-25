@@ -21,6 +21,9 @@ import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
 import androidx.browser.customtabs.CustomTabsClient;
@@ -28,9 +31,11 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.browser.customtabs.CustomTabsServiceConnection;
 import androidx.browser.customtabs.CustomTabsSession;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.amazonaws.cognito.clientcontext.data.UserContextDataProvider;
 import com.amazonaws.mobileconnectors.cognitoauth.activities.CustomTabsManagerActivity;
+import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthClientException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthNavigationException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthServiceException;
@@ -44,6 +49,7 @@ import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import java.net.URL;
 import java.security.InvalidParameterException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
@@ -67,14 +73,24 @@ public class AuthClient {
     public static final int CUSTOM_TABS_ACTIVITY_CODE = 49281;
 
     /**
+     * Namespace for logging client activities
+     */
+    private static final String TAG = AuthClient.class.getSimpleName();
+
+    /**
+     * Name of redirect activity in charge of handling auth responses.
+     */
+    private static final String REDIRECT_ACTIVITY_NAME = "HostedUIRedirectActivity";
+
+    /**
+     * Default timeout duration for auth redirects.
+     */
+    private static final long REDIRECT_TIMEOUT_SECONDS = 10;
+
+    /**
      * Specifies what browser package to default to if one isn't specified.
      */
     private static final String DEFAULT_BROWSER_PACKAGE = ClientConstants.CHROME_PACKAGE;
-
-    /**
-     * Default timeout duration to wait for sign-out redirect.
-     */
-    private static final long DEFAULT_REDIRECT_TIMEOUT_SECONDS = 3;
 
     /**
      * Android application context.
@@ -111,6 +127,12 @@ public class AuthClient {
      */
     private AuthHandler userHandler;
 
+    /**
+     * Remembers whether redirect activity was found in manifest or not.
+     */
+    private boolean isRedirectActivityDeclared;
+
+
     // - Chrome Custom Tabs Controls
     private CustomTabsClient mCustomTabsClient;
     private CustomTabsSession mCustomTabsSession;
@@ -138,6 +160,7 @@ public class AuthClient {
         this.context = context;
         this.pool = pool;
         this.userId = username;
+        this.isRedirectActivityDeclared = false;
         preWarmChrome();
     }
 
@@ -280,8 +303,7 @@ public class AuthClient {
      * Signs-out a user.
      * <p>
      *     Launches the sign-out Cognito web end-point to clear all Cognito Auth cookies stored
-     *     by Chrome.
-     *     Cached tokens will be deleted if sign-out redirect is handled properly or timed out.
+     *     by Chrome. Cached tokens will be deleted if sign-out redirect is completed.
      * </p>
      *
      * @param clearLocalTokensOnly true if signs out the user from the client,
@@ -289,7 +311,6 @@ public class AuthClient {
      * @param browserPackage String specifying the browser package to launch the specified url.
      */
     public void signOut(final boolean clearLocalTokensOnly, final String browserPackage) {
-        // Try deleting cookies.
         if (!clearLocalTokensOnly) {
             endSession(browserPackage);
         }
@@ -298,14 +319,25 @@ public class AuthClient {
         LocalDataManager.clearCache(pool.awsKeyValueStore, context, pool.getAppId(), userId);
     }
 
-    private void endSession(final String browserPackage) {
+    /**
+     * Ends current browser session.
+     * @param browserPackage browser package to launch sign-out endpoint from.
+     * @throws AuthClientException if sign-out redirect fails to resolve.
+     */
+    private void endSession(final String browserPackage) throws AuthClientException {
+        boolean redirectReceived;
         try {
             cookiesCleared = new CountDownLatch(1);
             launchSignOut(pool.getSignOutRedirectUri(), browserPackage);
-            cookiesCleared.await(DEFAULT_REDIRECT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+            if (!isRedirectActivityDeclared()) {
+                cookiesCleared.countDown();
+            }
+            redirectReceived = cookiesCleared.await(REDIRECT_TIMEOUT_SECONDS, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
-            // Do nothing. It's possible that sign-out redirect URI was successfully
-            // launched but success callback wasn't called.
+            throw new AuthNavigationException("User cancelled sign-out.");
+        }
+        if (!redirectReceived) {
+            throw new AuthServiceException("Timed out while waiting for sign-out redirect response.");
         }
     }
 
@@ -440,6 +472,7 @@ public class AuthClient {
                 } else {
                     if (cookiesCleared != null) {
                         cookiesCleared.countDown();
+                        Log.d(TAG, "Sign-out was successful.");
                     }
 
                     // User sign-out.
@@ -599,7 +632,7 @@ public class AuthClient {
         if (userContextData != null) {
             httpBodyParams.put(ClientConstants.DOMAIN_QUERY_PARAM_USERCONTEXTDATA, userContextData);
         }
-        return  httpBodyParams;
+        return httpBodyParams;
     }
 
     /**
@@ -698,9 +731,9 @@ public class AuthClient {
                     CUSTOM_TABS_ACTIVITY_CODE
                 );
             } else {
-                context.startActivity(
-                    CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent)
-                );
+                Intent startIntent = CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(startIntent);
             }
     	} catch (final Exception e) {
     		userHandler.onFailure(e);
@@ -734,5 +767,37 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
+    }
+
+    // Inspects context to determine whether HostedUIRedirectActivity is declared in
+    // customer's AndroidManifest.xml.
+    private boolean isRedirectActivityDeclared() {
+        // If the activity was found at least once, then don't bother searching again.
+        if (isRedirectActivityDeclared) {
+            return true;
+        }
+        if (context == null) {
+            Log.w(TAG, "Context is null. Failed to inspect packages.");
+            return false;
+        }
+        try {
+            List<PackageInfo> packages = context.getPackageManager()
+                    .getInstalledPackages(PackageManager.GET_ACTIVITIES);
+            for (PackageInfo packageInfo : packages) {
+                if (packageInfo.activities == null) {
+                    continue;
+                }
+                for (ActivityInfo activityInfo : packageInfo.activities) {
+                    if (activityInfo.name.contains(REDIRECT_ACTIVITY_NAME)) {
+                        isRedirectActivityDeclared = true;
+                        return true;
+                    }
+                }
+            }
+            Log.w(TAG, REDIRECT_ACTIVITY_NAME + " is not declared in AndroidManifest.");
+        } catch (Exception error) {
+            Log.w(TAG, "Failed to inspect packages.");
+        }
+        return false;
     }
 }
