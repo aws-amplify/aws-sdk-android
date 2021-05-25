@@ -732,7 +732,7 @@ public class AuthClient {
                 );
             } else {
                 Intent startIntent = CustomTabsManagerActivity.createStartIntent(context, mCustomTabsIntent.intent);
-                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 context.startActivity(startIntent);
             }
     	} catch (final Exception e) {
