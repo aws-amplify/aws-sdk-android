@@ -38,87 +38,79 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreateJobRequest
+ * JSON request marshaller for CreateJobTemplateRequest
  */
-public class CreateJobRequestMarshaller implements
-        Marshaller<Request<CreateJobRequest>, CreateJobRequest> {
+public class CreateJobTemplateRequestMarshaller implements
+        Marshaller<Request<CreateJobTemplateRequest>, CreateJobTemplateRequest> {
 
-    public Request<CreateJobRequest> marshall(CreateJobRequest createJobRequest) {
-        if (createJobRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(CreateJobRequest)");
+    public Request<CreateJobTemplateRequest> marshall(
+            CreateJobTemplateRequest createJobTemplateRequest) {
+        if (createJobTemplateRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(CreateJobTemplateRequest)");
         }
 
-        Request<CreateJobRequest> request = new DefaultRequest<CreateJobRequest>(createJobRequest,
-                "AWSIot");
+        Request<CreateJobTemplateRequest> request = new DefaultRequest<CreateJobTemplateRequest>(
+                createJobTemplateRequest, "AWSIot");
         request.setHttpMethod(HttpMethodName.PUT);
 
-        String uriResourcePath = "/jobs/{jobId}";
+        String uriResourcePath = "/job-templates/{jobTemplateId}";
         uriResourcePath = uriResourcePath.replace(
-                "{jobId}",
-                (createJobRequest.getJobId() == null) ? "" : StringUtils
-                        .fromString(createJobRequest.getJobId()));
+                "{jobTemplateId}",
+                (createJobTemplateRequest.getJobTemplateId() == null) ? "" : StringUtils
+                        .fromString(createJobTemplateRequest.getJobTemplateId()));
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createJobRequest.getTargets() != null) {
-                java.util.List<String> targets = createJobRequest.getTargets();
-                jsonWriter.name("targets");
-                jsonWriter.beginArray();
-                for (String targetsItem : targets) {
-                    if (targetsItem != null) {
-                        jsonWriter.value(targetsItem);
-                    }
-                }
-                jsonWriter.endArray();
+            if (createJobTemplateRequest.getJobArn() != null) {
+                String jobArn = createJobTemplateRequest.getJobArn();
+                jsonWriter.name("jobArn");
+                jsonWriter.value(jobArn);
             }
-            if (createJobRequest.getDocumentSource() != null) {
-                String documentSource = createJobRequest.getDocumentSource();
+            if (createJobTemplateRequest.getDocumentSource() != null) {
+                String documentSource = createJobTemplateRequest.getDocumentSource();
                 jsonWriter.name("documentSource");
                 jsonWriter.value(documentSource);
             }
-            if (createJobRequest.getDocument() != null) {
-                String document = createJobRequest.getDocument();
+            if (createJobTemplateRequest.getDocument() != null) {
+                String document = createJobTemplateRequest.getDocument();
                 jsonWriter.name("document");
                 jsonWriter.value(document);
             }
-            if (createJobRequest.getDescription() != null) {
-                String description = createJobRequest.getDescription();
+            if (createJobTemplateRequest.getDescription() != null) {
+                String description = createJobTemplateRequest.getDescription();
                 jsonWriter.name("description");
                 jsonWriter.value(description);
             }
-            if (createJobRequest.getPresignedUrlConfig() != null) {
-                PresignedUrlConfig presignedUrlConfig = createJobRequest.getPresignedUrlConfig();
+            if (createJobTemplateRequest.getPresignedUrlConfig() != null) {
+                PresignedUrlConfig presignedUrlConfig = createJobTemplateRequest
+                        .getPresignedUrlConfig();
                 jsonWriter.name("presignedUrlConfig");
                 PresignedUrlConfigJsonMarshaller.getInstance().marshall(presignedUrlConfig,
                         jsonWriter);
             }
-            if (createJobRequest.getTargetSelection() != null) {
-                String targetSelection = createJobRequest.getTargetSelection();
-                jsonWriter.name("targetSelection");
-                jsonWriter.value(targetSelection);
-            }
-            if (createJobRequest.getJobExecutionsRolloutConfig() != null) {
-                JobExecutionsRolloutConfig jobExecutionsRolloutConfig = createJobRequest
+            if (createJobTemplateRequest.getJobExecutionsRolloutConfig() != null) {
+                JobExecutionsRolloutConfig jobExecutionsRolloutConfig = createJobTemplateRequest
                         .getJobExecutionsRolloutConfig();
                 jsonWriter.name("jobExecutionsRolloutConfig");
                 JobExecutionsRolloutConfigJsonMarshaller.getInstance().marshall(
                         jobExecutionsRolloutConfig, jsonWriter);
             }
-            if (createJobRequest.getAbortConfig() != null) {
-                AbortConfig abortConfig = createJobRequest.getAbortConfig();
+            if (createJobTemplateRequest.getAbortConfig() != null) {
+                AbortConfig abortConfig = createJobTemplateRequest.getAbortConfig();
                 jsonWriter.name("abortConfig");
                 AbortConfigJsonMarshaller.getInstance().marshall(abortConfig, jsonWriter);
             }
-            if (createJobRequest.getTimeoutConfig() != null) {
-                TimeoutConfig timeoutConfig = createJobRequest.getTimeoutConfig();
+            if (createJobTemplateRequest.getTimeoutConfig() != null) {
+                TimeoutConfig timeoutConfig = createJobTemplateRequest.getTimeoutConfig();
                 jsonWriter.name("timeoutConfig");
                 TimeoutConfigJsonMarshaller.getInstance().marshall(timeoutConfig, jsonWriter);
             }
-            if (createJobRequest.getTags() != null) {
-                java.util.List<Tag> tags = createJobRequest.getTags();
+            if (createJobTemplateRequest.getTags() != null) {
+                java.util.List<Tag> tags = createJobTemplateRequest.getTags();
                 jsonWriter.name("tags");
                 jsonWriter.beginArray();
                 for (Tag tagsItem : tags) {
@@ -127,16 +119,6 @@ public class CreateJobRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
-            }
-            if (createJobRequest.getNamespaceId() != null) {
-                String namespaceId = createJobRequest.getNamespaceId();
-                jsonWriter.name("namespaceId");
-                jsonWriter.value(namespaceId);
-            }
-            if (createJobRequest.getJobTemplateArn() != null) {
-                String jobTemplateArn = createJobRequest.getJobTemplateArn();
-                jsonWriter.name("jobTemplateArn");
-                jsonWriter.value(jobTemplateArn);
             }
 
             jsonWriter.endObject();

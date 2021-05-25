@@ -21,77 +21,75 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets summary information about a domain configuration.
+ * Returns information about a job template.
  * </p>
  */
-public class DescribeDomainConfigurationRequest extends AmazonWebServiceRequest implements
-        Serializable {
+public class DescribeJobTemplateRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the domain configuration.
+     * The unique identifier of the job template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w.:-]+<br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      */
-    private String domainConfigurationName;
+    private String jobTemplateId;
 
     /**
      * <p>
-     * The name of the domain configuration.
+     * The unique identifier of the job template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w.:-]+<br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
-     *         The name of the domain configuration.
+     *         The unique identifier of the job template.
      *         </p>
      */
-    public String getDomainConfigurationName() {
-        return domainConfigurationName;
+    public String getJobTemplateId() {
+        return jobTemplateId;
     }
 
     /**
      * <p>
-     * The name of the domain configuration.
+     * The unique identifier of the job template.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w.:-]+<br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
-     * @param domainConfigurationName <p>
-     *            The name of the domain configuration.
+     * @param jobTemplateId <p>
+     *            The unique identifier of the job template.
      *            </p>
      */
-    public void setDomainConfigurationName(String domainConfigurationName) {
-        this.domainConfigurationName = domainConfigurationName;
+    public void setJobTemplateId(String jobTemplateId) {
+        this.jobTemplateId = jobTemplateId;
     }
 
     /**
      * <p>
-     * The name of the domain configuration.
+     * The unique identifier of the job template.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 128<br/>
-     * <b>Pattern: </b>[\w.:-]+<br/>
+     * <b>Length: </b>1 - 64<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
-     * @param domainConfigurationName <p>
-     *            The name of the domain configuration.
+     * @param jobTemplateId <p>
+     *            The unique identifier of the job template.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DescribeDomainConfigurationRequest withDomainConfigurationName(
-            String domainConfigurationName) {
-        this.domainConfigurationName = domainConfigurationName;
+    public DescribeJobTemplateRequest withJobTemplateId(String jobTemplateId) {
+        this.jobTemplateId = jobTemplateId;
         return this;
     }
 
@@ -106,8 +104,8 @@ public class DescribeDomainConfigurationRequest extends AmazonWebServiceRequest 
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getDomainConfigurationName() != null)
-            sb.append("domainConfigurationName: " + getDomainConfigurationName());
+        if (getJobTemplateId() != null)
+            sb.append("jobTemplateId: " + getJobTemplateId());
         sb.append("}");
         return sb.toString();
     }
@@ -117,10 +115,8 @@ public class DescribeDomainConfigurationRequest extends AmazonWebServiceRequest 
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime
-                * hashCode
-                + ((getDomainConfigurationName() == null) ? 0 : getDomainConfigurationName()
-                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getJobTemplateId() == null) ? 0 : getJobTemplateId().hashCode());
         return hashCode;
     }
 
@@ -131,14 +127,14 @@ public class DescribeDomainConfigurationRequest extends AmazonWebServiceRequest 
         if (obj == null)
             return false;
 
-        if (obj instanceof DescribeDomainConfigurationRequest == false)
+        if (obj instanceof DescribeJobTemplateRequest == false)
             return false;
-        DescribeDomainConfigurationRequest other = (DescribeDomainConfigurationRequest) obj;
+        DescribeJobTemplateRequest other = (DescribeJobTemplateRequest) obj;
 
-        if (other.getDomainConfigurationName() == null ^ this.getDomainConfigurationName() == null)
+        if (other.getJobTemplateId() == null ^ this.getJobTemplateId() == null)
             return false;
-        if (other.getDomainConfigurationName() != null
-                && other.getDomainConfigurationName().equals(this.getDomainConfigurationName()) == false)
+        if (other.getJobTemplateId() != null
+                && other.getJobTemplateId().equals(this.getJobTemplateId()) == false)
             return false;
         return true;
     }
