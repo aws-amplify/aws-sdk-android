@@ -1363,9 +1363,6 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         signInChallengeContinuation.setChallengeResponse("ANSWER", signInChallengeResponse);
                         detectedContinuation = signInChallengeContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
-                        for (final String key : userAttributes.keySet()) {
-                            signInChallengeContinuation.setChallengeResponse(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + key, userAttributes.get(key));
-                        }
                         if (clientMetadata != null) {
                             signInChallengeContinuation.setClientMetaData(clientMetadata);
                         }
