@@ -355,7 +355,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.us-east-2.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.us-east-2.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-east-2.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.us-east-2..amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-east-2.amazonaws.com", false, true);
 
         region = new Region("us-west-1", "amazonaws.com");
         ret.add(region);
