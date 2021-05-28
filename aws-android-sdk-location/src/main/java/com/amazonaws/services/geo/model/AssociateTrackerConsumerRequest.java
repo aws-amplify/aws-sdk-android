@@ -45,7 +45,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      * </p>
      * </li>
      * </ul>
@@ -80,7 +80,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      * </p>
      * </li>
      * </ul>
@@ -100,7 +100,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      *         <li>
      *         <p>
      *         Format example:
-     *         <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     *         <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      *         </p>
      *         </li>
      *         </ul>
@@ -119,7 +119,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      * </p>
      * </li>
      * </ul>
@@ -139,7 +139,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      *            <li>
      *            <p>
      *            Format example:
-     *            <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     *            <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      *            </p>
      *            </li>
      *            </ul>
@@ -158,7 +158,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      * </p>
      * </li>
      * </ul>
@@ -181,7 +181,7 @@ public class AssociateTrackerConsumerRequest extends AmazonWebServiceRequest imp
      *            <li>
      *            <p>
      *            Format example:
-     *            <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     *            <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code>
      *            </p>
      *            </li>
      *            </ul>

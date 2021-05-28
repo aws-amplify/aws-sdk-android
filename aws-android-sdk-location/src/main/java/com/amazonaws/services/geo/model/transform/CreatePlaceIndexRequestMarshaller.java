@@ -87,6 +87,19 @@ public class CreatePlaceIndexRequestMarshaller implements
                 jsonWriter.name("PricingPlan");
                 jsonWriter.value(pricingPlan);
             }
+            if (createPlaceIndexRequest.getTags() != null) {
+                java.util.Map<String, String> tags = createPlaceIndexRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                    String tagsValue = tagsEntry.getValue();
+                    if (tagsValue != null) {
+                        jsonWriter.name(tagsEntry.getKey());
+                        jsonWriter.value(tagsValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

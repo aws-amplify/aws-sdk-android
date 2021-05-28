@@ -36,7 +36,7 @@ public class CreateMapResult implements Serializable {
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -128,7 +128,7 @@ public class CreateMapResult implements Serializable {
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -147,7 +147,7 @@ public class CreateMapResult implements Serializable {
      *         <li>
      *         <p>
      *         Format example:
-     *         <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     *         <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      *         </p>
      *         </li>
      *         </ul>
@@ -165,7 +165,7 @@ public class CreateMapResult implements Serializable {
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -184,7 +184,7 @@ public class CreateMapResult implements Serializable {
      *            <li>
      *            <p>
      *            Format example:
-     *            <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     *            <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      *            </p>
      *            </li>
      *            </ul>
@@ -202,7 +202,7 @@ public class CreateMapResult implements Serializable {
      * <li>
      * <p>
      * Format example:
-     * <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     * <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      * </p>
      * </li>
      * </ul>
@@ -224,7 +224,7 @@ public class CreateMapResult implements Serializable {
      *            <li>
      *            <p>
      *            Format example:
-     *            <code>arn:partition:service:region:account-id:resource-type:resource-id</code>
+     *            <code>arn:aws:geo:region:account-id:maps/ExampleMap</code>
      *            </p>
      *            </li>
      *            </ul>

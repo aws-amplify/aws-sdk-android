@@ -24,25 +24,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Reverse geocodes a given coordinate and returns a legible address. Allows you
  * to search for Places or points of interest near a given position.
  * </p>
- * <note>
- * <p>
- * By using Places, you agree that AWS may transmit your API queries to your
- * selected third party provider for processing, which may be outside the AWS
- * region you are currently using.
- * </p>
- * <p>
- * Because of licensing limitations, you may not use HERE to store results for
- * locations in Japan. For more information, see the <a
- * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for Amazon
- * Location Service.
- * </p>
- * </note>
  */
 public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,7 +76,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -97,7 +84,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource you want to use for the
+     *         The name of the place index resource you want to use for the
      *         search.
      *         </p>
      */
@@ -107,7 +94,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -115,7 +102,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource you want to use for the
+     *            The name of the place index resource you want to use for the
      *            search.
      *            </p>
      */
@@ -125,7 +112,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -136,7 +123,7 @@ public class SearchPlaceIndexForPositionRequest extends AmazonWebServiceRequest 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource you want to use for the
+     *            The name of the place index resource you want to use for the
      *            search.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -32,6 +32,14 @@ public class CreateTrackerResult implements Serializable {
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
      * need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -114,6 +122,14 @@ public class CreateTrackerResult implements Serializable {
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
      * need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -125,6 +141,14 @@ public class CreateTrackerResult implements Serializable {
      *         The Amazon Resource Name (ARN) for the tracker resource. Used
      *         when you need to specify a resource across all AWS.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getTrackerArn() {
         return trackerArn;
@@ -135,6 +159,14 @@ public class CreateTrackerResult implements Serializable {
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
      * need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -146,6 +178,14 @@ public class CreateTrackerResult implements Serializable {
      *            The Amazon Resource Name (ARN) for the tracker resource. Used
      *            when you need to specify a resource across all AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setTrackerArn(String trackerArn) {
         this.trackerArn = trackerArn;
@@ -156,6 +196,14 @@ public class CreateTrackerResult implements Serializable {
      * The Amazon Resource Name (ARN) for the tracker resource. Used when you
      * need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -170,6 +218,14 @@ public class CreateTrackerResult implements Serializable {
      *            The Amazon Resource Name (ARN) for the tracker resource. Used
      *            when you need to specify a resource across all AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

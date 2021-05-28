@@ -28,8 +28,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <note>
  * <p>
  * Only one position update is stored per sample time. Location data is sampled
- * at a fixed rate of one position per 30-second interval, and retained for one
- * year before it is deleted.
+ * at a fixed rate of one position per 30-second interval and retained for 30
+ * days before it's deleted.
  * </p>
  * </note>
  */
