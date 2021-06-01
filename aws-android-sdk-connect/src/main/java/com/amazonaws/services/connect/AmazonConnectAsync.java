@@ -624,6 +624,13 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Service (Amazon S3) or Amazon Kinesis. It also does not allow for any
      * configurations on features, such as Contact Lens for Amazon Connect.
      * </p>
+     * <p>
+     * Amazon Connect enforces a limit on the total number of instances that you
+     * can create or delete in 30 days. If you exceed this limit, you will get
+     * an error message indicating there has been an excessive number of
+     * attempts at creating or deleting instances. You must wait 30 days before
+     * you can restart creating and deleting instances in your account.
+     * </p>
      * 
      * @param createInstanceRequest
      * @return A Java Future object containing the response from the
@@ -655,6 +662,13 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * Service (Amazon S3) or Amazon Kinesis. It also does not allow for any
      * configurations on features, such as Contact Lens for Amazon Connect.
      * </p>
+     * <p>
+     * Amazon Connect enforces a limit on the total number of instances that you
+     * can create or delete in 30 days. If you exceed this limit, you will get
+     * an error message indicating there has been an excessive number of
+     * attempts at creating or deleting instances. You must wait 30 days before
+     * you can restart creating and deleting instances in your account.
+     * </p>
      * 
      * @param createInstanceRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -682,10 +696,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
      * 
@@ -711,10 +721,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
@@ -940,10 +946,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Creates a use case for an AppIntegration association.
      * </p>
      * 
@@ -967,10 +969,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Creates a use case for an AppIntegration association.
      * </p>
@@ -1137,6 +1135,13 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Deletes the Amazon Connect instance.
      * </p>
+     * <p>
+     * Amazon Connect enforces a limit on the total number of instances that you
+     * can create or delete in 30 days. If you exceed this limit, you will get
+     * an error message indicating there has been an excessive number of
+     * attempts at creating or deleting instances. You must wait 30 days before
+     * you can restart creating and deleting instances in your account.
+     * </p>
      * 
      * @param deleteInstanceRequest
      * @return A Java Future object containing the response from the
@@ -1163,6 +1168,13 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Deletes the Amazon Connect instance.
      * </p>
+     * <p>
+     * Amazon Connect enforces a limit on the total number of instances that you
+     * can create or delete in 30 days. If you exceed this limit, you will get
+     * an error message indicating there has been an excessive number of
+     * attempts at creating or deleting instances. You must wait 30 days before
+     * you can restart creating and deleting instances in your account.
+     * </p>
      * 
      * @param deleteInstanceRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -1187,10 +1199,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes an AppIntegration association from an Amazon Connect instance.
      * The association must not have any use cases associated with it.
@@ -1217,10 +1225,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes an AppIntegration association from an Amazon Connect instance.
      * The association must not have any use cases associated with it.
@@ -1314,10 +1318,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Deletes a use case from an AppIntegration association.
      * </p>
      * 
@@ -1340,10 +1340,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes a use case from an AppIntegration association.
      * </p>
@@ -2775,6 +2771,16 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Retrieves a token for federation.
      * </p>
+     * <note>
+     * <p>
+     * This API doesn't support root users. If you try to invoke
+     * GetFederationToken with root credentials, an error message similar to the
+     * following one appears:
+     * </p>
+     * <p>
+     * <code>Provided identity: Principal: .... User: .... cannot be used for federation with Amazon Connect</code>
+     * </p>
+     * </note>
      * 
      * @param getFederationTokenRequest
      * @return A Java Future object containing the response from the
@@ -2801,6 +2807,16 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Retrieves a token for federation.
      * </p>
+     * <note>
+     * <p>
+     * This API doesn't support root users. If you try to invoke
+     * GetFederationToken with root credentials, an error message similar to the
+     * following one appears:
+     * </p>
+     * <p>
+     * <code>Provided identity: Principal: .... User: .... cannot be used for federation with Amazon Connect</code>
+     * </p>
+     * </note>
      * 
      * @param getFederationTokenRequest
      * @param asyncHandler Asynchronous callback handler for events in the
@@ -3303,10 +3319,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Provides summary information about the AppIntegration associations for
      * the specified Amazon Connect instance.
      * </p>
@@ -3332,10 +3344,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Provides summary information about the AppIntegration associations for
      * the specified Amazon Connect instance.
@@ -3691,6 +3699,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * instance.
      * </p>
      * <p>
+     * If you do not specify a <code>QueueTypes</code> parameter, both standard
+     * and agent queues are returned. This might cause an unexpected truncation
+     * of results if you have more than 1000 agents and you limit the number of
+     * results of the API call in code.
+     * </p>
+     * <p>
      * For more information about queues, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
      * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
@@ -3720,6 +3734,12 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <p>
      * Provides information about the queues for the specified Amazon Connect
      * instance.
+     * </p>
+     * <p>
+     * If you do not specify a <code>QueueTypes</code> parameter, both standard
+     * and agent queues are returned. This might cause an unexpected truncation
+     * of results if you have more than 1000 agents and you limit the number of
+     * results of the API call in code.
      * </p>
      * <p>
      * For more information about queues, see <a href=
@@ -4154,10 +4174,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Lists the use cases.
      * </p>
      * 
@@ -4183,10 +4199,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Lists the use cases.
      * </p>
@@ -4428,7 +4440,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <li>
      * <p>
      * API rate limit is exceeded. API TPS throttling returns a
-     * <code>TooManyRequests</code> exception from the API Gateway.
+     * <code>TooManyRequests</code> exception.
      * </p>
      * </li>
      * <li>
@@ -4490,7 +4502,7 @@ public interface AmazonConnectAsync extends AmazonConnect {
      * <li>
      * <p>
      * API rate limit is exceeded. API TPS throttling returns a
-     * <code>TooManyRequests</code> exception from the API Gateway.
+     * <code>TooManyRequests</code> exception.
      * </p>
      * </li>
      * <li>
@@ -5105,22 +5117,26 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Creates or updates the contact attributes associated with the specified
-     * contact.
+     * Creates or updates user-defined contact attributes associated with the
+     * specified contact.
      * </p>
      * <p>
-     * You can add or update attributes for both ongoing and completed contacts.
-     * For example, while the call is active, you can update the customer's name
-     * or the reason the customer called. You can add notes about steps that the
-     * agent took during the call that display to the next agent that takes the
-     * call. You can also update attributes for a contact using data from your
-     * CRM application and save the data with the contact in Amazon Connect. You
-     * could also flag calls for additional analysis, such as legal review or to
-     * identify abusive callers.
+     * You can create or update user-defined attributes for both ongoing and
+     * completed contacts. For example, while the call is active, you can update
+     * the customer's name or the reason the customer called. You can add notes
+     * about steps that the agent took during the call that display to the next
+     * agent that takes the call. You can also update attributes for a contact
+     * using data from your CRM application and save the data with the contact
+     * in Amazon Connect. You could also flag calls for additional analysis,
+     * such as legal review or to identify abusive callers.
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
-     * then deleted.
+     * then deleted. For information about CTR retention and the maximum size of
+     * the CTR attributes section, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * >Feature specifications</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Important:</b> You cannot use the operation to update attributes for
@@ -5154,22 +5170,26 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * Creates or updates the contact attributes associated with the specified
-     * contact.
+     * Creates or updates user-defined contact attributes associated with the
+     * specified contact.
      * </p>
      * <p>
-     * You can add or update attributes for both ongoing and completed contacts.
-     * For example, while the call is active, you can update the customer's name
-     * or the reason the customer called. You can add notes about steps that the
-     * agent took during the call that display to the next agent that takes the
-     * call. You can also update attributes for a contact using data from your
-     * CRM application and save the data with the contact in Amazon Connect. You
-     * could also flag calls for additional analysis, such as legal review or to
-     * identify abusive callers.
+     * You can create or update user-defined attributes for both ongoing and
+     * completed contacts. For example, while the call is active, you can update
+     * the customer's name or the reason the customer called. You can add notes
+     * about steps that the agent took during the call that display to the next
+     * agent that takes the call. You can also update attributes for a contact
+     * using data from your CRM application and save the data with the contact
+     * in Amazon Connect. You could also flag calls for additional analysis,
+     * such as legal review or to identify abusive callers.
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
-     * then deleted.
+     * then deleted. For information about CTR retention and the maximum size of
+     * the CTR attributes section, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * >Feature specifications</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Important:</b> You cannot use the operation to update attributes for
