@@ -23,6 +23,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -64,6 +72,19 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
+     * A key identifier for an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >AWS KMS customer managed key</a> assigned to the Amazon Location
+     * resource
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     */
+    private String kmsKeyId;
+
+    /**
+     * <p>
      * The pricing plan selected for the specified geofence collection.
      * </p>
      * <p>
@@ -80,11 +101,17 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      */
     private String pricingPlanDataSource;
+
+    /**
+     * <p>
+     * Displays the key, value pairs of tags associated with this resource.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -100,6 +127,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -112,6 +147,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      *         resource. Used when you need to specify a resource across all
      *         AWS.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getCollectionArn() {
         return collectionArn;
@@ -122,6 +165,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -134,6 +185,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      *            resource. Used when you need to specify a resource across all
      *            AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setCollectionArn(String collectionArn) {
         this.collectionArn = collectionArn;
@@ -144,6 +203,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -159,6 +226,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
      *            resource. Used when you need to specify a resource across all
      *            AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -339,6 +414,78 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
+     * A key identifier for an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >AWS KMS customer managed key</a> assigned to the Amazon Location
+     * resource
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @return <p>
+     *         A key identifier for an <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *         >AWS KMS customer managed key</a> assigned to the Amazon Location
+     *         resource
+     *         </p>
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * A key identifier for an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >AWS KMS customer managed key</a> assigned to the Amazon Location
+     * resource
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @param kmsKeyId <p>
+     *            A key identifier for an <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *            >AWS KMS customer managed key</a> assigned to the Amazon
+     *            Location resource
+     *            </p>
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * A key identifier for an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     * >AWS KMS customer managed key</a> assigned to the Amazon Location
+     * resource
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     *
+     * @param kmsKeyId <p>
+     *            A key identifier for an <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html"
+     *            >AWS KMS customer managed key</a> assigned to the Amazon
+     *            Location resource
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeGeofenceCollectionResult withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
      * The pricing plan selected for the specified geofence collection.
      * </p>
      * <p>
@@ -500,13 +647,11 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      *
      * @return <p>
-     *         The data source selected for the geofence collection and
-     *         associated pricing plan.
+     *         The specified data provider for the geofence collection.
      *         </p>
      */
     public String getPricingPlanDataSource() {
@@ -515,13 +660,11 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      *
      * @param pricingPlanDataSource <p>
-     *            The data source selected for the geofence collection and
-     *            associated pricing plan.
+     *            The specified data provider for the geofence collection.
      *            </p>
      */
     public void setPricingPlanDataSource(String pricingPlanDataSource) {
@@ -530,22 +673,103 @@ public class DescribeGeofenceCollectionResult implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param pricingPlanDataSource <p>
-     *            The data source selected for the geofence collection and
-     *            associated pricing plan.
+     *            The specified data provider for the geofence collection.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public DescribeGeofenceCollectionResult withPricingPlanDataSource(String pricingPlanDataSource) {
         this.pricingPlanDataSource = pricingPlanDataSource;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Displays the key, value pairs of tags associated with this resource.
+     * </p>
+     *
+     * @return <p>
+     *         Displays the key, value pairs of tags associated with this
+     *         resource.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Displays the key, value pairs of tags associated with this resource.
+     * </p>
+     *
+     * @param tags <p>
+     *            Displays the key, value pairs of tags associated with this
+     *            resource.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * Displays the key, value pairs of tags associated with this resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Displays the key, value pairs of tags associated with this
+     *            resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeGeofenceCollectionResult withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Displays the key, value pairs of tags associated with this resource.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeGeofenceCollectionResult addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DescribeGeofenceCollectionResult clearTagsEntries() {
+        this.tags = null;
         return this;
     }
 
@@ -628,10 +852,14 @@ public class DescribeGeofenceCollectionResult implements Serializable {
             sb.append("CreateTime: " + getCreateTime() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("KmsKeyId: " + getKmsKeyId() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getPricingPlanDataSource() != null)
             sb.append("PricingPlanDataSource: " + getPricingPlanDataSource() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -650,11 +878,13 @@ public class DescribeGeofenceCollectionResult implements Serializable {
         hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getPricingPlanDataSource() == null) ? 0 : getPricingPlanDataSource().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -690,6 +920,10 @@ public class DescribeGeofenceCollectionResult implements Serializable {
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
             return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
         if (other.getPricingPlan() != null
@@ -699,6 +933,10 @@ public class DescribeGeofenceCollectionResult implements Serializable {
             return false;
         if (other.getPricingPlanDataSource() != null
                 && other.getPricingPlanDataSource().equals(this.getPricingPlanDataSource()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

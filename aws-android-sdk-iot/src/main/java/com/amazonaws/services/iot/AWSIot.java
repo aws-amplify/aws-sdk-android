@@ -781,12 +781,6 @@ public interface AWSIot {
      * <p>
      * Creates a domain configuration.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param createDomainConfigurationRequest
      * @return createDomainConfigurationResult The response from the
@@ -862,6 +856,31 @@ public interface AWSIot {
      */
     CreateJobResult createJob(CreateJobRequest createJobRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a job template.
+     * </p>
+     * 
+     * @param createJobTemplateRequest
+     * @return createJobTemplateResult The response from the CreateJobTemplate
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateJobTemplateResult createJobTemplate(CreateJobTemplateRequest createJobTemplateRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -1586,12 +1605,6 @@ public interface AWSIot {
      * <p>
      * Deletes the specified domain configuration.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param deleteDomainConfigurationRequest
      * @return deleteDomainConfigurationResult The response from the
@@ -1692,6 +1705,27 @@ public interface AWSIot {
      *             or a server side issue.
      */
     void deleteJobExecution(DeleteJobExecutionRequest deleteJobExecutionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Deletes the specified job template.
+     * </p>
+     * 
+     * @param deleteJobTemplateRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void deleteJobTemplate(DeleteJobTemplateRequest deleteJobTemplateRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2510,12 +2544,6 @@ public interface AWSIot {
      * <p>
      * Gets summary information about a domain configuration.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param describeDomainConfigurationRequest
      * @return describeDomainConfigurationResult The response from the
@@ -2657,6 +2685,30 @@ public interface AWSIot {
      */
     DescribeJobExecutionResult describeJobExecution(
             DescribeJobExecutionRequest describeJobExecutionRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns information about a job template.
+     * </p>
+     * 
+     * @param describeJobTemplateRequest
+     * @return describeJobTemplateResult The response from the
+     *         DescribeJobTemplate service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeJobTemplateResult describeJobTemplate(
+            DescribeJobTemplateRequest describeJobTemplateRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -3907,12 +3959,6 @@ public interface AWSIot {
      * Gets a list of domain configurations for the user. This list is sorted
      * alphabetically by domain configuration name.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param listDomainConfigurationsRequest
      * @return listDomainConfigurationsResult The response from the
@@ -4004,6 +4050,28 @@ public interface AWSIot {
      */
     ListJobExecutionsForThingResult listJobExecutionsForThing(
             ListJobExecutionsForThingRequest listJobExecutionsForThingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns a list of job templates.
+     * </p>
+     * 
+     * @param listJobTemplatesRequest
+     * @return listJobTemplatesResult The response from the ListJobTemplates
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListJobTemplatesResult listJobTemplates(ListJobTemplatesRequest listJobTemplatesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -5743,12 +5811,6 @@ public interface AWSIot {
      * Updates values stored in the domain configuration. Domain configurations
      * for default endpoints can't be updated.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param updateDomainConfigurationRequest
      * @return updateDomainConfigurationResult The response from the

@@ -217,6 +217,19 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
+     * You can configure Amazon Transcribe Medical to label content in the
+     * transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+     * Medical labels the personal health information (PHI) that it identifies
+     * in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     */
+    private String contentIdentificationType;
+
+    /**
+     * <p>
      * The medical specialty of any clinician speaking in the input media.
      * </p>
      * <p>
@@ -1451,6 +1464,140 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
+     * You can configure Amazon Transcribe Medical to label content in the
+     * transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+     * Medical labels the personal health information (PHI) that it identifies
+     * in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @return <p>
+     *         You can configure Amazon Transcribe Medical to label content in
+     *         the transcription output. If you specify <code>PHI</code>, Amazon
+     *         Transcribe Medical labels the personal health information (PHI)
+     *         that it identifies in the transcription output.
+     *         </p>
+     * @see MedicalContentIdentificationType
+     */
+    public String getContentIdentificationType() {
+        return contentIdentificationType;
+    }
+
+    /**
+     * <p>
+     * You can configure Amazon Transcribe Medical to label content in the
+     * transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+     * Medical labels the personal health information (PHI) that it identifies
+     * in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            You can configure Amazon Transcribe Medical to label content
+     *            in the transcription output. If you specify <code>PHI</code>,
+     *            Amazon Transcribe Medical labels the personal health
+     *            information (PHI) that it identifies in the transcription
+     *            output.
+     *            </p>
+     * @see MedicalContentIdentificationType
+     */
+    public void setContentIdentificationType(String contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType;
+    }
+
+    /**
+     * <p>
+     * You can configure Amazon Transcribe Medical to label content in the
+     * transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+     * Medical labels the personal health information (PHI) that it identifies
+     * in the transcription output.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            You can configure Amazon Transcribe Medical to label content
+     *            in the transcription output. If you specify <code>PHI</code>,
+     *            Amazon Transcribe Medical labels the personal health
+     *            information (PHI) that it identifies in the transcription
+     *            output.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see MedicalContentIdentificationType
+     */
+    public StartMedicalTranscriptionJobRequest withContentIdentificationType(
+            String contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * You can configure Amazon Transcribe Medical to label content in the
+     * transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+     * Medical labels the personal health information (PHI) that it identifies
+     * in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            You can configure Amazon Transcribe Medical to label content
+     *            in the transcription output. If you specify <code>PHI</code>,
+     *            Amazon Transcribe Medical labels the personal health
+     *            information (PHI) that it identifies in the transcription
+     *            output.
+     *            </p>
+     * @see MedicalContentIdentificationType
+     */
+    public void setContentIdentificationType(
+            MedicalContentIdentificationType contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType.toString();
+    }
+
+    /**
+     * <p>
+     * You can configure Amazon Transcribe Medical to label content in the
+     * transcription output. If you specify <code>PHI</code>, Amazon Transcribe
+     * Medical labels the personal health information (PHI) that it identifies
+     * in the transcription output.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            You can configure Amazon Transcribe Medical to label content
+     *            in the transcription output. If you specify <code>PHI</code>,
+     *            Amazon Transcribe Medical labels the personal health
+     *            information (PHI) that it identifies in the transcription
+     *            output.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see MedicalContentIdentificationType
+     */
+    public StartMedicalTranscriptionJobRequest withContentIdentificationType(
+            MedicalContentIdentificationType contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The medical specialty of any clinician speaking in the input media.
      * </p>
      * <p>
@@ -1712,6 +1859,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
             sb.append("OutputEncryptionKMSKeyId: " + getOutputEncryptionKMSKeyId() + ",");
         if (getSettings() != null)
             sb.append("Settings: " + getSettings() + ",");
+        if (getContentIdentificationType() != null)
+            sb.append("ContentIdentificationType: " + getContentIdentificationType() + ",");
         if (getSpecialty() != null)
             sb.append("Specialty: " + getSpecialty() + ",");
         if (getType() != null)
@@ -1744,6 +1893,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
                 + ((getOutputEncryptionKMSKeyId() == null) ? 0 : getOutputEncryptionKMSKeyId()
                         .hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getContentIdentificationType() == null) ? 0 : getContentIdentificationType()
+                        .hashCode());
         hashCode = prime * hashCode + ((getSpecialty() == null) ? 0 : getSpecialty().hashCode());
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
         return hashCode;
@@ -1805,6 +1958,12 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
         if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
+            return false;
+        if (other.getContentIdentificationType() == null
+                ^ this.getContentIdentificationType() == null)
+            return false;
+        if (other.getContentIdentificationType() != null
+                && other.getContentIdentificationType().equals(this.getContentIdentificationType()) == false)
             return false;
         if (other.getSpecialty() == null ^ this.getSpecialty() == null)
             return false;

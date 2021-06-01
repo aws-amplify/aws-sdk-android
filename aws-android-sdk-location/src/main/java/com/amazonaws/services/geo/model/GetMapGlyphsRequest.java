@@ -36,7 +36,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * A Unicode range of characters to download glyphs for. Each response will
-     * contain 256 characters. For example, 0-255 includes all characters from
+     * contain 256 characters. For example, 0–255 includes all characters from
      * range <code>U+0000</code> to <code>00FF</code>. Must be aligned to
      * multiples of 256.
      * </p>
@@ -113,7 +113,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * A Unicode range of characters to download glyphs for. Each response will
-     * contain 256 characters. For example, 0-255 includes all characters from
+     * contain 256 characters. For example, 0–255 includes all characters from
      * range <code>U+0000</code> to <code>00FF</code>. Must be aligned to
      * multiples of 256.
      * </p>
@@ -123,7 +123,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *
      * @return <p>
      *         A Unicode range of characters to download glyphs for. Each
-     *         response will contain 256 characters. For example, 0-255 includes
+     *         response will contain 256 characters. For example, 0–255 includes
      *         all characters from range <code>U+0000</code> to
      *         <code>00FF</code>. Must be aligned to multiples of 256.
      *         </p>
@@ -135,7 +135,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * A Unicode range of characters to download glyphs for. Each response will
-     * contain 256 characters. For example, 0-255 includes all characters from
+     * contain 256 characters. For example, 0–255 includes all characters from
      * range <code>U+0000</code> to <code>00FF</code>. Must be aligned to
      * multiples of 256.
      * </p>
@@ -145,7 +145,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param fontUnicodeRange <p>
      *            A Unicode range of characters to download glyphs for. Each
-     *            response will contain 256 characters. For example, 0-255
+     *            response will contain 256 characters. For example, 0–255
      *            includes all characters from range <code>U+0000</code> to
      *            <code>00FF</code>. Must be aligned to multiples of 256.
      *            </p>
@@ -157,7 +157,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
     /**
      * <p>
      * A Unicode range of characters to download glyphs for. Each response will
-     * contain 256 characters. For example, 0-255 includes all characters from
+     * contain 256 characters. For example, 0–255 includes all characters from
      * range <code>U+0000</code> to <code>00FF</code>. Must be aligned to
      * multiples of 256.
      * </p>
@@ -170,7 +170,7 @@ public class GetMapGlyphsRequest extends AmazonWebServiceRequest implements Seri
      *
      * @param fontUnicodeRange <p>
      *            A Unicode range of characters to download glyphs for. Each
-     *            response will contain 256 characters. For example, 0-255
+     *            response will contain 256 characters. For example, 0–255
      *            includes all characters from range <code>U+0000</code> to
      *            <code>00FF</code>. Must be aligned to multiples of 256.
      *            </p>

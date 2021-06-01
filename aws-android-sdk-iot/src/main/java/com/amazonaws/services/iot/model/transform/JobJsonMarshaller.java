@@ -124,6 +124,11 @@ class JobJsonMarshaller {
             jsonWriter.name("namespaceId");
             jsonWriter.value(namespaceId);
         }
+        if (job.getJobTemplateArn() != null) {
+            String jobTemplateArn = job.getJobTemplateArn();
+            jsonWriter.name("jobTemplateArn");
+            jsonWriter.value(jobTemplateArn);
+        }
         jsonWriter.endObject();
     }
 

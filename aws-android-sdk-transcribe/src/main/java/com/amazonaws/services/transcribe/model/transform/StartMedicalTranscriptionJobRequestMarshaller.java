@@ -114,6 +114,12 @@ public class StartMedicalTranscriptionJobRequestMarshaller
                 MedicalTranscriptionSettingJsonMarshaller.getInstance().marshall(settings,
                         jsonWriter);
             }
+            if (startMedicalTranscriptionJobRequest.getContentIdentificationType() != null) {
+                String contentIdentificationType = startMedicalTranscriptionJobRequest
+                        .getContentIdentificationType();
+                jsonWriter.name("ContentIdentificationType");
+                jsonWriter.value(contentIdentificationType);
+            }
             if (startMedicalTranscriptionJobRequest.getSpecialty() != null) {
                 String specialty = startMedicalTranscriptionJobRequest.getSpecialty();
                 jsonWriter.name("Specialty");

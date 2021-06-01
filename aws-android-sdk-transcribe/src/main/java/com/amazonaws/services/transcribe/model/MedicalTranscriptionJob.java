@@ -200,6 +200,19 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
+     * Shows the type of content that you've configured Amazon Transcribe
+     * Medical to identify in a transcription job. If the value is
+     * <code>PHI</code>, you've configured the job to identify personal health
+     * information (PHI) in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     */
+    private String contentIdentificationType;
+
+    /**
+     * <p>
      * The medical specialty of any clinicians providing a dictation or having a
      * conversation. <code>PRIMARYCARE</code> is the only available setting for
      * this object. This specialty enables you to generate transcriptions for
@@ -1423,6 +1436,139 @@ public class MedicalTranscriptionJob implements Serializable {
 
     /**
      * <p>
+     * Shows the type of content that you've configured Amazon Transcribe
+     * Medical to identify in a transcription job. If the value is
+     * <code>PHI</code>, you've configured the job to identify personal health
+     * information (PHI) in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @return <p>
+     *         Shows the type of content that you've configured Amazon
+     *         Transcribe Medical to identify in a transcription job. If the
+     *         value is <code>PHI</code>, you've configured the job to identify
+     *         personal health information (PHI) in the transcription output.
+     *         </p>
+     * @see MedicalContentIdentificationType
+     */
+    public String getContentIdentificationType() {
+        return contentIdentificationType;
+    }
+
+    /**
+     * <p>
+     * Shows the type of content that you've configured Amazon Transcribe
+     * Medical to identify in a transcription job. If the value is
+     * <code>PHI</code>, you've configured the job to identify personal health
+     * information (PHI) in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            Shows the type of content that you've configured Amazon
+     *            Transcribe Medical to identify in a transcription job. If the
+     *            value is <code>PHI</code>, you've configured the job to
+     *            identify personal health information (PHI) in the
+     *            transcription output.
+     *            </p>
+     * @see MedicalContentIdentificationType
+     */
+    public void setContentIdentificationType(String contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType;
+    }
+
+    /**
+     * <p>
+     * Shows the type of content that you've configured Amazon Transcribe
+     * Medical to identify in a transcription job. If the value is
+     * <code>PHI</code>, you've configured the job to identify personal health
+     * information (PHI) in the transcription output.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            Shows the type of content that you've configured Amazon
+     *            Transcribe Medical to identify in a transcription job. If the
+     *            value is <code>PHI</code>, you've configured the job to
+     *            identify personal health information (PHI) in the
+     *            transcription output.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see MedicalContentIdentificationType
+     */
+    public MedicalTranscriptionJob withContentIdentificationType(String contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Shows the type of content that you've configured Amazon Transcribe
+     * Medical to identify in a transcription job. If the value is
+     * <code>PHI</code>, you've configured the job to identify personal health
+     * information (PHI) in the transcription output.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            Shows the type of content that you've configured Amazon
+     *            Transcribe Medical to identify in a transcription job. If the
+     *            value is <code>PHI</code>, you've configured the job to
+     *            identify personal health information (PHI) in the
+     *            transcription output.
+     *            </p>
+     * @see MedicalContentIdentificationType
+     */
+    public void setContentIdentificationType(
+            MedicalContentIdentificationType contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType.toString();
+    }
+
+    /**
+     * <p>
+     * Shows the type of content that you've configured Amazon Transcribe
+     * Medical to identify in a transcription job. If the value is
+     * <code>PHI</code>, you've configured the job to identify personal health
+     * information (PHI) in the transcription output.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>PHI
+     *
+     * @param contentIdentificationType <p>
+     *            Shows the type of content that you've configured Amazon
+     *            Transcribe Medical to identify in a transcription job. If the
+     *            value is <code>PHI</code>, you've configured the job to
+     *            identify personal health information (PHI) in the
+     *            transcription output.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see MedicalContentIdentificationType
+     */
+    public MedicalTranscriptionJob withContentIdentificationType(
+            MedicalContentIdentificationType contentIdentificationType) {
+        this.contentIdentificationType = contentIdentificationType.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The medical specialty of any clinicians providing a dictation or having a
      * conversation. <code>PRIMARYCARE</code> is the only available setting for
      * this object. This specialty enables you to generate transcriptions for
@@ -1785,6 +1931,8 @@ public class MedicalTranscriptionJob implements Serializable {
             sb.append("FailureReason: " + getFailureReason() + ",");
         if (getSettings() != null)
             sb.append("Settings: " + getSettings() + ",");
+        if (getContentIdentificationType() != null)
+            sb.append("ContentIdentificationType: " + getContentIdentificationType() + ",");
         if (getSpecialty() != null)
             sb.append("Specialty: " + getSpecialty() + ",");
         if (getType() != null)
@@ -1822,6 +1970,10 @@ public class MedicalTranscriptionJob implements Serializable {
         hashCode = prime * hashCode
                 + ((getFailureReason() == null) ? 0 : getFailureReason().hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getContentIdentificationType() == null) ? 0 : getContentIdentificationType()
+                        .hashCode());
         hashCode = prime * hashCode + ((getSpecialty() == null) ? 0 : getSpecialty().hashCode());
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
         return hashCode;
@@ -1897,6 +2049,12 @@ public class MedicalTranscriptionJob implements Serializable {
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
         if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
+            return false;
+        if (other.getContentIdentificationType() == null
+                ^ this.getContentIdentificationType() == null)
+            return false;
+        if (other.getContentIdentificationType() != null
+                && other.getContentIdentificationType().equals(this.getContentIdentificationType()) == false)
             return false;
         if (other.getSpecialty() == null ^ this.getSpecialty() == null)
             return false;

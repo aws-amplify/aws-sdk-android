@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A Place index resource listed in your AWS account.
+ * A place index resource listed in your AWS account.
  * </p>
  */
 public class ListPlaceIndexesResponseEntry implements Serializable {
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -40,12 +40,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Esri
+     * <code>Esri</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * HERE
+     * <code>Here</code>
      * </p>
      * </li>
      * </ul>
@@ -59,7 +59,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -69,7 +69,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,7 +80,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified Place index resource.
+     * The pricing plan for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -96,7 +96,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -105,13 +105,13 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the Place index resource was created in <a
+     *         The timestamp for when the place index resource was created in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *         </p>
@@ -122,13 +122,13 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param createTime <p>
-     *            The timestamp for when the Place index resource was created in
+     *            The timestamp for when the place index resource was created in
      *            <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -140,7 +140,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -149,7 +149,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * together.
      *
      * @param createTime <p>
-     *            The timestamp for when the Place index resource was created in
+     *            The timestamp for when the place index resource was created in
      *            <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -170,12 +170,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Esri
+     * <code>Esri</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * HERE
+     * <code>Here</code>
      * </p>
      * </li>
      * </ul>
@@ -192,12 +192,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      *         <ul>
      *         <li>
      *         <p>
-     *         Esri
+     *         <code>Esri</code>
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         HERE
+     *         <code>Here</code>
      *         </p>
      *         </li>
      *         </ul>
@@ -219,12 +219,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Esri
+     * <code>Esri</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * HERE
+     * <code>Here</code>
      * </p>
      * </li>
      * </ul>
@@ -241,12 +241,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Esri
+     *            <code>Esri</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            HERE
+     *            <code>Here</code>
      *            </p>
      *            </li>
      *            </ul>
@@ -268,12 +268,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <ul>
      * <li>
      * <p>
-     * Esri
+     * <code>Esri</code>
      * </p>
      * </li>
      * <li>
      * <p>
-     * HERE
+     * <code>Here</code>
      * </p>
      * </li>
      * </ul>
@@ -293,12 +293,12 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      *            <ul>
      *            <li>
      *            <p>
-     *            Esri
+     *            <code>Esri</code>
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            HERE
+     *            <code>Here</code>
      *            </p>
      *            </li>
      *            </ul>
@@ -317,14 +317,14 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         The optional description for the Place index resource.
+     *         The optional description for the place index resource.
      *         </p>
      */
     public String getDescription() {
@@ -333,14 +333,14 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1000<br/>
      *
      * @param description <p>
-     *            The optional description for the Place index resource.
+     *            The optional description for the place index resource.
      *            </p>
      */
     public void setDescription(String description) {
@@ -349,7 +349,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -359,7 +359,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <b>Length: </b>0 - 1000<br/>
      *
      * @param description <p>
-     *            The optional description for the Place index resource.
+     *            The optional description for the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -371,7 +371,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -379,7 +379,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource.
+     *         The name of the place index resource.
      *         </p>
      */
     public String getIndexName() {
@@ -388,7 +388,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -396,7 +396,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource.
+     *            The name of the place index resource.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -405,7 +405,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -416,7 +416,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource.
+     *            The name of the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -428,7 +428,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified Place index resource.
+     * The pricing plan for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -441,7 +441,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @return <p>
-     *         The pricing plan for the specified Place index resource.
+     *         The pricing plan for the specified place index resource.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -457,7 +457,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified Place index resource.
+     * The pricing plan for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -470,7 +470,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified Place index resource.
+     *            The pricing plan for the specified place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -486,7 +486,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified Place index resource.
+     * The pricing plan for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -502,7 +502,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified Place index resource.
+     *            The pricing plan for the specified place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -521,7 +521,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified Place index resource.
+     * The pricing plan for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -534,7 +534,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified Place index resource.
+     *            The pricing plan for the specified place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -550,7 +550,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The pricing plan for the specified Place index resource.
+     * The pricing plan for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -566,7 +566,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan for the specified Place index resource.
+     *            The pricing plan for the specified place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -585,13 +585,13 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the Place index resource was last updated
+     *         The timestamp for when the place index resource was last updated
      *         in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -603,13 +603,13 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param updateTime <p>
-     *            The timestamp for when the Place index resource was last
+     *            The timestamp for when the place index resource was last
      *            updated in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -621,7 +621,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -630,7 +630,7 @@ public class ListPlaceIndexesResponseEntry implements Serializable {
      * together.
      *
      * @param updateTime <p>
-     *            The timestamp for when the Place index resource was last
+     *            The timestamp for when the place index resource was last
      *            updated in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
