@@ -204,6 +204,17 @@ public class Job implements Serializable {
 
     /**
      * <p>
+     * The ARN of the job template used to create the job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>^arn:[!-~]+$<br/>
+     */
+    private String jobTemplateArn;
+
+    /**
+     * <p>
      * An ARN identifying the job with format
      * "arn:aws:iot:region:account:job/jobId".
      * </p>
@@ -1438,6 +1449,63 @@ public class Job implements Serializable {
     }
 
     /**
+     * <p>
+     * The ARN of the job template used to create the job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>^arn:[!-~]+$<br/>
+     *
+     * @return <p>
+     *         The ARN of the job template used to create the job.
+     *         </p>
+     */
+    public String getJobTemplateArn() {
+        return jobTemplateArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the job template used to create the job.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>^arn:[!-~]+$<br/>
+     *
+     * @param jobTemplateArn <p>
+     *            The ARN of the job template used to create the job.
+     *            </p>
+     */
+    public void setJobTemplateArn(String jobTemplateArn) {
+        this.jobTemplateArn = jobTemplateArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the job template used to create the job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1600<br/>
+     * <b>Pattern: </b>^arn:[!-~]+$<br/>
+     *
+     * @param jobTemplateArn <p>
+     *            The ARN of the job template used to create the job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Job withJobTemplateArn(String jobTemplateArn) {
+        this.jobTemplateArn = jobTemplateArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1483,7 +1551,9 @@ public class Job implements Serializable {
         if (getTimeoutConfig() != null)
             sb.append("timeoutConfig: " + getTimeoutConfig() + ",");
         if (getNamespaceId() != null)
-            sb.append("namespaceId: " + getNamespaceId());
+            sb.append("namespaceId: " + getNamespaceId() + ",");
+        if (getJobTemplateArn() != null)
+            sb.append("jobTemplateArn: " + getJobTemplateArn());
         sb.append("}");
         return sb.toString();
     }
@@ -1524,6 +1594,8 @@ public class Job implements Serializable {
                 + ((getTimeoutConfig() == null) ? 0 : getTimeoutConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getNamespaceId() == null) ? 0 : getNamespaceId().hashCode());
+        hashCode = prime * hashCode
+                + ((getJobTemplateArn() == null) ? 0 : getJobTemplateArn().hashCode());
         return hashCode;
     }
 
@@ -1624,6 +1696,11 @@ public class Job implements Serializable {
             return false;
         if (other.getNamespaceId() != null
                 && other.getNamespaceId().equals(this.getNamespaceId()) == false)
+            return false;
+        if (other.getJobTemplateArn() == null ^ this.getJobTemplateArn() == null)
+            return false;
+        if (other.getJobTemplateArn() != null
+                && other.getJobTemplateArn().equals(this.getJobTemplateArn()) == false)
             return false;
         return true;
     }
