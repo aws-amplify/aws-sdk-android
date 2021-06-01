@@ -41,7 +41,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * API rate limit is exceeded. API TPS throttling returns a
- * <code>TooManyRequests</code> exception from the API Gateway.
+ * <code>TooManyRequests</code> exception.
  * </p>
  * </li>
  * <li>
