@@ -35,7 +35,8 @@ import com.amazonaws.services.geo.model.transform.*;
  * client are blocking, and will not return until the service call completes.
  * <p>
  * <p>
- * Suite of geospatial services including Maps, Places, Tracking, and Geofencing
+ * Suite of geospatial services including Maps, Places, Routes, Tracking, and
+ * Geofencing
  * </p>
  */
 public class AmazonLocationClient extends AmazonWebServiceClient implements AmazonLocation {
@@ -414,11 +415,65 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Deletes the position history of one or more devices from a tracker
+     * resource.
+     * </p>
+     * 
+     * @param batchDeleteDevicePositionHistoryRequest
+     * @return batchDeleteDevicePositionHistoryResult The response from the
+     *         BatchDeleteDevicePositionHistory service method, as returned by
+     *         AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public BatchDeleteDevicePositionHistoryResult batchDeleteDevicePositionHistory(
+            BatchDeleteDevicePositionHistoryRequest batchDeleteDevicePositionHistoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(batchDeleteDevicePositionHistoryRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<BatchDeleteDevicePositionHistoryRequest> request = null;
+        Response<BatchDeleteDevicePositionHistoryResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new BatchDeleteDevicePositionHistoryRequestMarshaller()
+                        .marshall(batchDeleteDevicePositionHistoryRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<BatchDeleteDevicePositionHistoryResult, JsonUnmarshallerContext> unmarshaller = new BatchDeleteDevicePositionHistoryResultJsonUnmarshaller();
+            JsonResponseHandler<BatchDeleteDevicePositionHistoryResult> responseHandler = new JsonResponseHandler<BatchDeleteDevicePositionHistoryResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a batch of geofences from a geofence collection.
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You can't undo this action.
+     * This operation deletes the resource permanently.
      * </p>
      * </note>
      * 
@@ -588,7 +643,8 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * A batch request for storing geofence geometries into a given geofence
-     * collection.
+     * collection, or updates the geometry of an existing geofence if a geofence
+     * ID is included in the request.
      * </p>
      * 
      * @param batchPutGeofenceRequest
@@ -645,8 +701,8 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * <note>
      * <p>
      * Only one position update is stored per sample time. Location data is
-     * sampled at a fixed rate of one position per 30-second interval, and
-     * retained for one year before it is deleted.
+     * sampled at a fixed rate of one position per 30-second interval and
+     * retained for 30 days before it's deleted.
      * </p>
      * </note>
      * 
@@ -687,6 +743,99 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<BatchUpdateDevicePositionResult, JsonUnmarshallerContext> unmarshaller = new BatchUpdateDevicePositionResultJsonUnmarshaller();
             JsonResponseHandler<BatchUpdateDevicePositionResult> responseHandler = new JsonResponseHandler<BatchUpdateDevicePositionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html"
+     * >Calculates a route</a> given the following required parameters:
+     * <code>DeparturePostiton</code> and <code>DestinationPosition</code>.
+     * Requires that you first <a href=
+     * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
+     * >create aroute calculator resource</a>
+     * </p>
+     * <p>
+     * By default, a request that doesn't specify a departure time uses the best
+     * time of day to travel with the best traffic conditions when calculating
+     * the route.
+     * </p>
+     * <p>
+     * Additional options include:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time"
+     * >Specifying a departure time</a> using either <code>DepartureTime</code>
+     * or <code>DepartureNow</code>. This calculates a route based on predictive
+     * traffic data at the given time.
+     * </p>
+     * <note>
+     * <p>
+     * You can't specify both <code>DepartureTime</code> and
+     * <code>DepartureNow</code> in a single request. Specifying both parameters
+     * returns an error message.
+     * </p>
+     * </note></li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode"
+     * >Specifying a travel mode</a> using TravelMode. This lets you specify
+     * additional route preference such as <code>CarModeOptions</code> if
+     * traveling by <code>Car</code>, or <code>TruckModeOptions</code> if
+     * traveling by <code>Truck</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * </p>
+     * 
+     * @param calculateRouteRequest
+     * @return calculateRouteResult The response from the CalculateRoute service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public CalculateRouteResult calculateRoute(CalculateRouteRequest calculateRouteRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(calculateRouteRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CalculateRouteRequest> request = null;
+        Response<CalculateRouteResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CalculateRouteRequestMarshaller().marshall(calculateRouteRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CalculateRouteResult, JsonUnmarshallerContext> unmarshaller = new CalculateRouteResultJsonUnmarshaller();
+            JsonResponseHandler<CalculateRouteResult> responseHandler = new JsonResponseHandler<CalculateRouteResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -756,15 +905,6 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * Creates a map resource in your AWS account, which provides map tiles of
      * different styles sourced from global location data providers.
      * </p>
-     * <note>
-     * <p>
-     * By using Maps, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
-     * </note>
      * 
      * @param createMapRequest
      * @return createMapResult The response from the CreateMap service method,
@@ -813,22 +953,9 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Creates a Place index resource in your AWS account, which supports Places
+     * Creates a place index resource in your AWS account, which supports
      * functions with geospatial data sourced from your chosen data provider.
      * </p>
-     * <note>
-     * <p>
-     * By using Places, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using.
-     * </p>
-     * <p>
-     * Because of licensing limitations, you may not use HERE to store results
-     * for locations in Japan. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
-     * </note>
      * 
      * @param createPlaceIndexRequest
      * @return createPlaceIndexResult The response from the CreatePlaceIndex
@@ -864,6 +991,64 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<CreatePlaceIndexResult, JsonUnmarshallerContext> unmarshaller = new CreatePlaceIndexResultJsonUnmarshaller();
             JsonResponseHandler<CreatePlaceIndexResult> responseHandler = new JsonResponseHandler<CreatePlaceIndexResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a route calculator resource in your AWS account.
+     * </p>
+     * <p>
+     * You can send requests to a route calculator resource to estimate travel
+     * time, distance, and get directions. A route calculator sources traffic
+     * and road network data from your chosen data provider.
+     * </p>
+     * 
+     * @param createRouteCalculatorRequest
+     * @return createRouteCalculatorResult The response from the
+     *         CreateRouteCalculator service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ConflictException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public CreateRouteCalculatorResult createRouteCalculator(
+            CreateRouteCalculatorRequest createRouteCalculatorRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createRouteCalculatorRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateRouteCalculatorRequest> request = null;
+        Response<CreateRouteCalculatorResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateRouteCalculatorRequestMarshaller()
+                        .marshall(createRouteCalculatorRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateRouteCalculatorResult, JsonUnmarshallerContext> unmarshaller = new CreateRouteCalculatorResultJsonUnmarshaller();
+            JsonResponseHandler<CreateRouteCalculatorResult> responseHandler = new JsonResponseHandler<CreateRouteCalculatorResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -932,9 +1117,9 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You can't undo this action.
-     * If the geofence collection is the target of a tracker resource, the
-     * devices will no longer be monitored.
+     * This operation deletes the resource permanently. If the geofence
+     * collection is the target of a tracker resource, the devices will no
+     * longer be monitored.
      * </p>
      * </note>
      * 
@@ -992,9 +1177,8 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You cannot undo this
-     * action. If the map is being used in an application, the map may not
-     * render.
+     * This operation deletes the resource permanently. If the map is being used
+     * in an application, the map may not render.
      * </p>
      * </note>
      * 
@@ -1045,12 +1229,11 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Deletes a Place index resource from your AWS account.
+     * Deletes a place index resource from your AWS account.
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You cannot undo this
-     * action.
+     * This operation deletes the resource permanently.
      * </p>
      * </note>
      * 
@@ -1101,13 +1284,71 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Deletes a route calculator resource from your AWS account.
+     * </p>
+     * <note>
+     * <p>
+     * This operation deletes the resource permanently.
+     * </p>
+     * </note>
+     * 
+     * @param deleteRouteCalculatorRequest
+     * @return deleteRouteCalculatorResult The response from the
+     *         DeleteRouteCalculator service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public DeleteRouteCalculatorResult deleteRouteCalculator(
+            DeleteRouteCalculatorRequest deleteRouteCalculatorRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteRouteCalculatorRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteRouteCalculatorRequest> request = null;
+        Response<DeleteRouteCalculatorResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteRouteCalculatorRequestMarshaller()
+                        .marshall(deleteRouteCalculatorRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteRouteCalculatorResult, JsonUnmarshallerContext> unmarshaller = new DeleteRouteCalculatorResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteRouteCalculatorResult> responseHandler = new JsonResponseHandler<DeleteRouteCalculatorResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes a tracker resource from your AWS account.
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You can't undo this action.
-     * If the tracker resource is in use, you may encounter an error. Make sure
-     * that the target resource is not a dependency for your applications.
+     * This operation deletes the resource permanently. If the tracker resource
+     * is in use, you may encounter an error. Make sure that the target resource
+     * isn't a dependency for your applications.
      * </p>
      * </note>
      * 
@@ -1261,7 +1502,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Retrieves the Place index resource details.
+     * Retrieves the place index resource details.
      * </p>
      * 
      * @param describePlaceIndexRequest
@@ -1300,6 +1541,59 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<DescribePlaceIndexResult, JsonUnmarshallerContext> unmarshaller = new DescribePlaceIndexResultJsonUnmarshaller();
             JsonResponseHandler<DescribePlaceIndexResult> responseHandler = new JsonResponseHandler<DescribePlaceIndexResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves the route calculator resource details.
+     * </p>
+     * 
+     * @param describeRouteCalculatorRequest
+     * @return describeRouteCalculatorResult The response from the
+     *         DescribeRouteCalculator service method, as returned by AWS
+     *         Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public DescribeRouteCalculatorResult describeRouteCalculator(
+            DescribeRouteCalculatorRequest describeRouteCalculatorRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeRouteCalculatorRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeRouteCalculatorRequest> request = null;
+        Response<DescribeRouteCalculatorResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeRouteCalculatorRequestMarshaller()
+                        .marshall(describeRouteCalculatorRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeRouteCalculatorResult, JsonUnmarshallerContext> unmarshaller = new DescribeRouteCalculatorResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeRouteCalculatorResult> responseHandler = new JsonResponseHandler<DescribeRouteCalculatorResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1428,7 +1722,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * Device positions are deleted after one year.
+     * Device positions are deleted after 30 days.
      * </p>
      * </note>
      * 
@@ -1486,7 +1780,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <note>
      * <p>
-     * Device positions are deleted after 1 year.
+     * Device positions are deleted after 30 days.
      * </p>
      * </note>
      * 
@@ -1752,7 +2046,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * Retrieves a vector data tile from the map resource. Map tiles are used by
-     * clients to render a map. They are addressed using a grid arrangement with
+     * clients to render a map. they're addressed using a grid arrangement with
      * an X coordinate, Y coordinate, and Z (zoom) level.
      * </p>
      * <p>
@@ -1796,6 +2090,58 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<GetMapTileResult, JsonUnmarshallerContext> unmarshaller = new GetMapTileResultJsonUnmarshaller();
             JsonResponseHandler<GetMapTileResult> responseHandler = new JsonResponseHandler<GetMapTileResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the latest device positions for requested devices.
+     * </p>
+     * 
+     * @param listDevicePositionsRequest
+     * @return listDevicePositionsResult The response from the
+     *         ListDevicePositions service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public ListDevicePositionsResult listDevicePositions(
+            ListDevicePositionsRequest listDevicePositionsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDevicePositionsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDevicePositionsRequest> request = null;
+        Response<ListDevicePositionsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDevicePositionsRequestMarshaller()
+                        .marshall(listDevicePositionsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDevicePositionsResult, JsonUnmarshallerContext> unmarshaller = new ListDevicePositionsResultJsonUnmarshaller();
+            JsonResponseHandler<ListDevicePositionsResult> responseHandler = new JsonResponseHandler<ListDevicePositionsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1960,7 +2306,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Lists Place index resources in your AWS account.
+     * Lists place index resources in your AWS account.
      * </p>
      * 
      * @param listPlaceIndexesRequest
@@ -1996,6 +2342,111 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<ListPlaceIndexesResult, JsonUnmarshallerContext> unmarshaller = new ListPlaceIndexesResultJsonUnmarshaller();
             JsonResponseHandler<ListPlaceIndexesResult> responseHandler = new JsonResponseHandler<ListPlaceIndexesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists route calculator resources in your AWS account.
+     * </p>
+     * 
+     * @param listRouteCalculatorsRequest
+     * @return listRouteCalculatorsResult The response from the
+     *         ListRouteCalculators service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public ListRouteCalculatorsResult listRouteCalculators(
+            ListRouteCalculatorsRequest listRouteCalculatorsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listRouteCalculatorsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListRouteCalculatorsRequest> request = null;
+        Response<ListRouteCalculatorsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListRouteCalculatorsRequestMarshaller()
+                        .marshall(listRouteCalculatorsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListRouteCalculatorsResult, JsonUnmarshallerContext> unmarshaller = new ListRouteCalculatorsResultJsonUnmarshaller();
+            JsonResponseHandler<ListRouteCalculatorsResult> responseHandler = new JsonResponseHandler<ListRouteCalculatorsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns the tags for the specified Amazon Location Service resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2168,19 +2619,6 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * Reverse geocodes a given coordinate and returns a legible address. Allows
      * you to search for Places or points of interest near a given position.
      * </p>
-     * <note>
-     * <p>
-     * By using Places, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using.
-     * </p>
-     * <p>
-     * Because of licensing limitations, you may not use HERE to store results
-     * for locations in Japan. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
-     * </note>
      * 
      * @param searchPlaceIndexForPositionRequest
      * @return searchPlaceIndexForPositionResult The response from the
@@ -2246,20 +2684,6 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * <code>FilterBBox</code>. Providing both parameters simultaneously returns
      * an error.
      * </p>
-     * </note> <note>
-     * <p>
-     * By using Places, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using.
-     * </p>
-     * <p>
-     * Also, when using HERE as your data provider, you may not (a) use HERE
-     * Places for Asset Management, or (b) select the <code>Storage</code>
-     * option for the <code>IntendedUse</code> parameter when requesting Places
-     * in Japan. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
      * </note>
      * 
      * @param searchPlaceIndexForTextRequest
@@ -2299,6 +2723,112 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<SearchPlaceIndexForTextResult, JsonUnmarshallerContext> unmarshaller = new SearchPlaceIndexForTextResultJsonUnmarshaller();
             JsonResponseHandler<SearchPlaceIndexForTextResult> responseHandler = new JsonResponseHandler<SearchPlaceIndexForTextResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Assigns one or more tags (key-value pairs) to the specified Amazon
+     * Location Service resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; action with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate as many as 50 tags with a resource.&lt;/p&gt; </code>
+     * </pre>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<TagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<TagResourceResult, JsonUnmarshallerContext> unmarshaller = new TagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<TagResourceResult> responseHandler = new JsonResponseHandler<TagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes one or more tags from the specified Amazon Location Service
+     * resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<UntagResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
+            JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

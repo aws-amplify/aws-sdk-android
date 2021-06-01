@@ -21,13 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves the Place index resource details.
+ * Retrieves the place index resource details.
  * </p>
  */
 public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +38,7 @@ public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -46,7 +46,7 @@ public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource.
+     *         The name of the place index resource.
      *         </p>
      */
     public String getIndexName() {
@@ -55,7 +55,7 @@ public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +63,7 @@ public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource.
+     *            The name of the place index resource.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -72,7 +72,7 @@ public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -83,7 +83,7 @@ public class DescribePlaceIndexRequest extends AmazonWebServiceRequest implement
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource.
+     *            The name of the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

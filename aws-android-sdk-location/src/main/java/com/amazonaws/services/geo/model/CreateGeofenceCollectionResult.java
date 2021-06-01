@@ -23,6 +23,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -57,6 +65,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -69,6 +85,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      *         resource. Used when you need to specify a resource across all
      *         AWS.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getCollectionArn() {
         return collectionArn;
@@ -79,6 +103,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -91,6 +123,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      *            resource. Used when you need to specify a resource across all
      *            AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setCollectionArn(String collectionArn) {
         this.collectionArn = collectionArn;
@@ -101,6 +141,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      * The Amazon Resource Name (ARN) for the geofence collection resource. Used
      * when you need to specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -116,6 +164,14 @@ public class CreateGeofenceCollectionResult implements Serializable {
      *            resource. Used when you need to specify a resource across all
      *            AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

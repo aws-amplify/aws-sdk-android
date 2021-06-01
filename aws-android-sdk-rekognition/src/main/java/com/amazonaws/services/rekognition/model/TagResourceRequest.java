@@ -26,6 +26,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
  * AWS Resources</a>.
  * </p>
+ * <p>
+ * This operation requires permissions to perform the
+ * <code>rekognition:TagResource</code> action.
+ * </p>
  */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

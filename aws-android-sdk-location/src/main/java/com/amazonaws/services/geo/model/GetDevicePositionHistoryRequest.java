@@ -26,7 +26,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * Device positions are deleted after 1 year.
+ * Device positions are deleted after 30 days.
  * </p>
  * </note>
  */

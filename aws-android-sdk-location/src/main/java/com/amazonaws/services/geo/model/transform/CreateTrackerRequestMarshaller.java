@@ -65,6 +65,11 @@ public class CreateTrackerRequestMarshaller implements
                 jsonWriter.name("Description");
                 jsonWriter.value(description);
             }
+            if (createTrackerRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createTrackerRequest.getKmsKeyId();
+                jsonWriter.name("KmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
             if (createTrackerRequest.getPricingPlan() != null) {
                 String pricingPlan = createTrackerRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
@@ -74,6 +79,19 @@ public class CreateTrackerRequestMarshaller implements
                 String pricingPlanDataSource = createTrackerRequest.getPricingPlanDataSource();
                 jsonWriter.name("PricingPlanDataSource");
                 jsonWriter.value(pricingPlanDataSource);
+            }
+            if (createTrackerRequest.getTags() != null) {
+                java.util.Map<String, String> tags = createTrackerRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                    String tagsValue = tagsEntry.getValue();
+                    if (tagsValue != null) {
+                        jsonWriter.name(tagsEntry.getKey());
+                        jsonWriter.value(tagsValue);
+                    }
+                }
+                jsonWriter.endObject();
             }
             if (createTrackerRequest.getTrackerName() != null) {
                 String trackerName = createTrackerRequest.getTrackerName();

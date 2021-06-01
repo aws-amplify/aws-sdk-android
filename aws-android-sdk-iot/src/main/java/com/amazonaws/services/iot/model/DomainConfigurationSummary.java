@@ -42,12 +42,6 @@ import java.io.Serializable;
  * </p>
  * </li>
  * </ul>
- * <note>
- * <p>
- * The domain configuration feature is in public preview and is subject to
- * change.
- * </p>
- * </note>
  */
 public class DomainConfigurationSummary implements Serializable {
     /**

@@ -60,8 +60,7 @@ public class ListTrackersResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the tracker resource and associated pricing
-     * plan.
+     * The specified data provider for the tracker resource.
      * </p>
      */
     private String pricingPlanDataSource;
@@ -356,13 +355,11 @@ public class ListTrackersResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the tracker resource and associated pricing
-     * plan.
+     * The specified data provider for the tracker resource.
      * </p>
      *
      * @return <p>
-     *         The data source selected for the tracker resource and associated
-     *         pricing plan.
+     *         The specified data provider for the tracker resource.
      *         </p>
      */
     public String getPricingPlanDataSource() {
@@ -371,13 +368,11 @@ public class ListTrackersResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the tracker resource and associated pricing
-     * plan.
+     * The specified data provider for the tracker resource.
      * </p>
      *
      * @param pricingPlanDataSource <p>
-     *            The data source selected for the tracker resource and
-     *            associated pricing plan.
+     *            The specified data provider for the tracker resource.
      *            </p>
      */
     public void setPricingPlanDataSource(String pricingPlanDataSource) {
@@ -386,16 +381,14 @@ public class ListTrackersResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the tracker resource and associated pricing
-     * plan.
+     * The specified data provider for the tracker resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param pricingPlanDataSource <p>
-     *            The data source selected for the tracker resource and
-     *            associated pricing plan.
+     *            The specified data provider for the tracker resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

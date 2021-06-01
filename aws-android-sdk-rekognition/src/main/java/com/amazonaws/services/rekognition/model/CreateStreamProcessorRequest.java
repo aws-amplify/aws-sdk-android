@@ -43,6 +43,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <a>StopStreamProcessor</a> to stop processing. You can delete the stream
  * processor by calling <a>DeleteStreamProcessor</a>.
  * </p>
+ * <p>
+ * This operation requires permissions to perform the
+ * <code>rekognition:CreateStreamProcessor</code> action. If you want to tag
+ * your stream processor, you also require permission to perform the
+ * <code>rekognition:TagResource</code> operation.
+ * </p>
  */
 public class CreateStreamProcessorRequest extends AmazonWebServiceRequest implements Serializable {
     /**
