@@ -88,6 +88,12 @@ class MedicalTranscriptionJobJsonMarshaller {
             jsonWriter.name("Settings");
             MedicalTranscriptionSettingJsonMarshaller.getInstance().marshall(settings, jsonWriter);
         }
+        if (medicalTranscriptionJob.getContentIdentificationType() != null) {
+            String contentIdentificationType = medicalTranscriptionJob
+                    .getContentIdentificationType();
+            jsonWriter.name("ContentIdentificationType");
+            jsonWriter.value(contentIdentificationType);
+        }
         if (medicalTranscriptionJob.getSpecialty() != null) {
             String specialty = medicalTranscriptionJob.getSpecialty();
             jsonWriter.name("Specialty");
