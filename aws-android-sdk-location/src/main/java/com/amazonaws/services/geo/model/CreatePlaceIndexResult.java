@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class CreatePlaceIndexResult implements Serializable {
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -29,9 +29,17 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -43,7 +51,7 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name for the Place index resource.
+     * The name for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,13 +62,13 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the Place index resource was created in <a
+     *         The timestamp for when the place index resource was created in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *         </p>
@@ -71,13 +79,13 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param createTime <p>
-     *            The timestamp for when the Place index resource was created in
+     *            The timestamp for when the place index resource was created in
      *            <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -89,7 +97,7 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -98,7 +106,7 @@ public class CreatePlaceIndexResult implements Serializable {
      * together.
      *
      * @param createTime <p>
-     *            The timestamp for when the Place index resource was created in
+     *            The timestamp for when the place index resource was created in
      *            <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -113,9 +121,17 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -124,9 +140,17 @@ public class CreatePlaceIndexResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for the Place index resource. Used
-     *         when you need to specify a resource across all AWS.
+     *         The Amazon Resource Name (ARN) for the place index resource. Used
+     *         to specify a resource across all AWS.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getIndexArn() {
         return indexArn;
@@ -134,9 +158,17 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -145,9 +177,17 @@ public class CreatePlaceIndexResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param indexArn <p>
-     *            The Amazon Resource Name (ARN) for the Place index resource.
-     *            Used when you need to specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) for the place index resource.
+     *            Used to specify a resource across all AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setIndexArn(String indexArn) {
         this.indexArn = indexArn;
@@ -155,9 +195,17 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -169,9 +217,17 @@ public class CreatePlaceIndexResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param indexArn <p>
-     *            The Amazon Resource Name (ARN) for the Place index resource.
-     *            Used when you need to specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) for the place index resource.
+     *            Used to specify a resource across all AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -182,7 +238,7 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name for the Place index resource.
+     * The name for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -190,7 +246,7 @@ public class CreatePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name for the Place index resource.
+     *         The name for the place index resource.
      *         </p>
      */
     public String getIndexName() {
@@ -199,7 +255,7 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name for the Place index resource.
+     * The name for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -207,7 +263,7 @@ public class CreatePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name for the Place index resource.
+     *            The name for the place index resource.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -216,7 +272,7 @@ public class CreatePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name for the Place index resource.
+     * The name for the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -227,7 +283,7 @@ public class CreatePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name for the Place index resource.
+     *            The name for the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

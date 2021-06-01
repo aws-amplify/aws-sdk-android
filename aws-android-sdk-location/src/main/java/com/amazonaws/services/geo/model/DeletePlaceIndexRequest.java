@@ -21,18 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a Place index resource from your AWS account.
+ * Deletes a place index resource from your AWS account.
  * </p>
  * <note>
  * <p>
- * This action deletes the resource permanently. You cannot undo this action.
+ * This operation deletes the resource permanently.
  * </p>
  * </note>
  */
 public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the Place index resource to be deleted.
+     * The name of the place index resource to be deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource to be deleted.
+     * The name of the place index resource to be deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +51,7 @@ public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource to be deleted.
+     *         The name of the place index resource to be deleted.
      *         </p>
      */
     public String getIndexName() {
@@ -60,7 +60,7 @@ public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource to be deleted.
+     * The name of the place index resource to be deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +68,7 @@ public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource to be deleted.
+     *            The name of the place index resource to be deleted.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -77,7 +77,7 @@ public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource to be deleted.
+     * The name of the place index resource to be deleted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -88,7 +88,7 @@ public class DeletePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource to be deleted.
+     *            The name of the place index resource to be deleted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -22,7 +22,8 @@ import com.amazonaws.services.geo.model.*;
 /**
  * Interface for accessing AWS Location service
  * <p>
- * Suite of geospatial services including Maps, Places, Tracking, and Geofencing
+ * Suite of geospatial services including Maps, Places, Routes, Tracking, and
+ * Geofencing
  * </p>
  **/
 public interface AmazonLocation {
@@ -123,11 +124,38 @@ public interface AmazonLocation {
 
     /**
      * <p>
+     * Deletes the position history of one or more devices from a tracker
+     * resource.
+     * </p>
+     * 
+     * @param batchDeleteDevicePositionHistoryRequest
+     * @return batchDeleteDevicePositionHistoryResult The response from the
+     *         BatchDeleteDevicePositionHistory service method, as returned by
+     *         AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    BatchDeleteDevicePositionHistoryResult batchDeleteDevicePositionHistory(
+            BatchDeleteDevicePositionHistoryRequest batchDeleteDevicePositionHistoryRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a batch of geofences from a geofence collection.
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You can't undo this action.
+     * This operation deletes the resource permanently.
      * </p>
      * </note>
      * 
@@ -216,7 +244,8 @@ public interface AmazonLocation {
     /**
      * <p>
      * A batch request for storing geofence geometries into a given geofence
-     * collection.
+     * collection, or updates the geometry of an existing geofence if a geofence
+     * ID is included in the request.
      * </p>
      * 
      * @param batchPutGeofenceRequest
@@ -247,8 +276,8 @@ public interface AmazonLocation {
      * <note>
      * <p>
      * Only one position update is stored per sample time. Location data is
-     * sampled at a fixed rate of one position per 30-second interval, and
-     * retained for one year before it is deleted.
+     * sampled at a fixed rate of one position per 30-second interval and
+     * retained for 30 days before it's deleted.
      * </p>
      * </note>
      * 
@@ -271,6 +300,73 @@ public interface AmazonLocation {
      */
     BatchUpdateDevicePositionResult batchUpdateDevicePosition(
             BatchUpdateDevicePositionRequest batchUpdateDevicePositionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html"
+     * >Calculates a route</a> given the following required parameters:
+     * <code>DeparturePostiton</code> and <code>DestinationPosition</code>.
+     * Requires that you first <a href=
+     * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
+     * >create aroute calculator resource</a>
+     * </p>
+     * <p>
+     * By default, a request that doesn't specify a departure time uses the best
+     * time of day to travel with the best traffic conditions when calculating
+     * the route.
+     * </p>
+     * <p>
+     * Additional options include:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time"
+     * >Specifying a departure time</a> using either <code>DepartureTime</code>
+     * or <code>DepartureNow</code>. This calculates a route based on predictive
+     * traffic data at the given time.
+     * </p>
+     * <note>
+     * <p>
+     * You can't specify both <code>DepartureTime</code> and
+     * <code>DepartureNow</code> in a single request. Specifying both parameters
+     * returns an error message.
+     * </p>
+     * </note></li>
+     * <li>
+     * <p>
+     * <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode"
+     * >Specifying a travel mode</a> using TravelMode. This lets you specify
+     * additional route preference such as <code>CarModeOptions</code> if
+     * traveling by <code>Car</code>, or <code>TruckModeOptions</code> if
+     * traveling by <code>Truck</code>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * </p>
+     * 
+     * @param calculateRouteRequest
+     * @return calculateRouteResult The response from the CalculateRoute service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    CalculateRouteResult calculateRoute(CalculateRouteRequest calculateRouteRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -304,15 +400,6 @@ public interface AmazonLocation {
      * Creates a map resource in your AWS account, which provides map tiles of
      * different styles sourced from global location data providers.
      * </p>
-     * <note>
-     * <p>
-     * By using Maps, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
-     * </note>
      * 
      * @param createMapRequest
      * @return createMapResult The response from the CreateMap service method,
@@ -335,22 +422,9 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Creates a Place index resource in your AWS account, which supports Places
+     * Creates a place index resource in your AWS account, which supports
      * functions with geospatial data sourced from your chosen data provider.
      * </p>
-     * <note>
-     * <p>
-     * By using Places, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using.
-     * </p>
-     * <p>
-     * Because of licensing limitations, you may not use HERE to store results
-     * for locations in Japan. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
-     * </note>
      * 
      * @param createPlaceIndexRequest
      * @return createPlaceIndexResult The response from the CreatePlaceIndex
@@ -369,6 +443,37 @@ public interface AmazonLocation {
      *             the request, or a server side issue.
      */
     CreatePlaceIndexResult createPlaceIndex(CreatePlaceIndexRequest createPlaceIndexRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Creates a route calculator resource in your AWS account.
+     * </p>
+     * <p>
+     * You can send requests to a route calculator resource to estimate travel
+     * time, distance, and get directions. A route calculator sources traffic
+     * and road network data from your chosen data provider.
+     * </p>
+     * 
+     * @param createRouteCalculatorRequest
+     * @return createRouteCalculatorResult The response from the
+     *         CreateRouteCalculator service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ConflictException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    CreateRouteCalculatorResult createRouteCalculator(
+            CreateRouteCalculatorRequest createRouteCalculatorRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -402,9 +507,9 @@ public interface AmazonLocation {
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You can't undo this action.
-     * If the geofence collection is the target of a tracker resource, the
-     * devices will no longer be monitored.
+     * This operation deletes the resource permanently. If the geofence
+     * collection is the target of a tracker resource, the devices will no
+     * longer be monitored.
      * </p>
      * </note>
      * 
@@ -435,9 +540,8 @@ public interface AmazonLocation {
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You cannot undo this
-     * action. If the map is being used in an application, the map may not
-     * render.
+     * This operation deletes the resource permanently. If the map is being used
+     * in an application, the map may not render.
      * </p>
      * </note>
      * 
@@ -462,12 +566,11 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Deletes a Place index resource from your AWS account.
+     * Deletes a place index resource from your AWS account.
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You cannot undo this
-     * action.
+     * This operation deletes the resource permanently.
      * </p>
      * </note>
      * 
@@ -492,13 +595,44 @@ public interface AmazonLocation {
 
     /**
      * <p>
+     * Deletes a route calculator resource from your AWS account.
+     * </p>
+     * <note>
+     * <p>
+     * This operation deletes the resource permanently.
+     * </p>
+     * </note>
+     * 
+     * @param deleteRouteCalculatorRequest
+     * @return deleteRouteCalculatorResult The response from the
+     *         DeleteRouteCalculator service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    DeleteRouteCalculatorResult deleteRouteCalculator(
+            DeleteRouteCalculatorRequest deleteRouteCalculatorRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a tracker resource from your AWS account.
      * </p>
      * <note>
      * <p>
-     * This action deletes the resource permanently. You can't undo this action.
-     * If the tracker resource is in use, you may encounter an error. Make sure
-     * that the target resource is not a dependency for your applications.
+     * This operation deletes the resource permanently. If the tracker resource
+     * is in use, you may encounter an error. Make sure that the target resource
+     * isn't a dependency for your applications.
      * </p>
      * </note>
      * 
@@ -573,7 +707,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Retrieves the Place index resource details.
+     * Retrieves the place index resource details.
      * </p>
      * 
      * @param describePlaceIndexRequest
@@ -593,6 +727,32 @@ public interface AmazonLocation {
      *             the request, or a server side issue.
      */
     DescribePlaceIndexResult describePlaceIndex(DescribePlaceIndexRequest describePlaceIndexRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Retrieves the route calculator resource details.
+     * </p>
+     * 
+     * @param describeRouteCalculatorRequest
+     * @return describeRouteCalculatorResult The response from the
+     *         DescribeRouteCalculator service method, as returned by AWS
+     *         Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    DescribeRouteCalculatorResult describeRouteCalculator(
+            DescribeRouteCalculatorRequest describeRouteCalculatorRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -659,7 +819,7 @@ public interface AmazonLocation {
      * </p>
      * <note>
      * <p>
-     * Device positions are deleted after one year.
+     * Device positions are deleted after 30 days.
      * </p>
      * </note>
      * 
@@ -689,7 +849,7 @@ public interface AmazonLocation {
      * </p>
      * <note>
      * <p>
-     * Device positions are deleted after 1 year.
+     * Device positions are deleted after 30 days.
      * </p>
      * </note>
      * 
@@ -823,7 +983,7 @@ public interface AmazonLocation {
     /**
      * <p>
      * Retrieves a vector data tile from the map resource. Map tiles are used by
-     * clients to render a map. They are addressed using a grid arrangement with
+     * clients to render a map. they're addressed using a grid arrangement with
      * an X coordinate, Y coordinate, and Z (zoom) level.
      * </p>
      * <p>
@@ -850,6 +1010,31 @@ public interface AmazonLocation {
      *             the request, or a server side issue.
      */
     GetMapTileResult getMapTile(GetMapTileRequest getMapTileRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists the latest device positions for requested devices.
+     * </p>
+     * 
+     * @param listDevicePositionsRequest
+     * @return listDevicePositionsResult The response from the
+     *         ListDevicePositions service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    ListDevicePositionsResult listDevicePositions(
+            ListDevicePositionsRequest listDevicePositionsRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -926,7 +1111,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists Place index resources in your AWS account.
+     * Lists place index resources in your AWS account.
      * </p>
      * 
      * @param listPlaceIndexesRequest
@@ -946,6 +1131,57 @@ public interface AmazonLocation {
      */
     ListPlaceIndexesResult listPlaceIndexes(ListPlaceIndexesRequest listPlaceIndexesRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists route calculator resources in your AWS account.
+     * </p>
+     * 
+     * @param listRouteCalculatorsRequest
+     * @return listRouteCalculatorsResult The response from the
+     *         ListRouteCalculators service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    ListRouteCalculatorsResult listRouteCalculators(
+            ListRouteCalculatorsRequest listRouteCalculatorsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Returns the tags for the specified Amazon Location Service resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -1029,19 +1265,6 @@ public interface AmazonLocation {
      * Reverse geocodes a given coordinate and returns a legible address. Allows
      * you to search for Places or points of interest near a given position.
      * </p>
-     * <note>
-     * <p>
-     * By using Places, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using.
-     * </p>
-     * <p>
-     * Because of licensing limitations, you may not use HERE to store results
-     * for locations in Japan. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
-     * </note>
      * 
      * @param searchPlaceIndexForPositionRequest
      * @return searchPlaceIndexForPositionResult The response from the
@@ -1080,20 +1303,6 @@ public interface AmazonLocation {
      * <code>FilterBBox</code>. Providing both parameters simultaneously returns
      * an error.
      * </p>
-     * </note> <note>
-     * <p>
-     * By using Places, you agree that AWS may transmit your API queries to your
-     * selected third party provider for processing, which may be outside the
-     * AWS region you are currently using.
-     * </p>
-     * <p>
-     * Also, when using HERE as your data provider, you may not (a) use HERE
-     * Places for Asset Management, or (b) select the <code>Storage</code>
-     * option for the <code>IntendedUse</code> parameter when requesting Places
-     * in Japan. For more information, see the <a
-     * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
-     * Amazon Location Service.
-     * </p>
      * </note>
      * 
      * @param searchPlaceIndexForTextRequest
@@ -1115,6 +1324,60 @@ public interface AmazonLocation {
      */
     SearchPlaceIndexForTextResult searchPlaceIndexForText(
             SearchPlaceIndexForTextRequest searchPlaceIndexForTextRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Assigns one or more tags (key-value pairs) to the specified Amazon
+     * Location Service resource.
+     * </p>
+     * 
+     * <pre>
+     * <code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; action with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate as many as 50 tags with a resource.&lt;/p&gt; </code>
+     * </pre>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes one or more tags from the specified Amazon Location Service
+     * resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

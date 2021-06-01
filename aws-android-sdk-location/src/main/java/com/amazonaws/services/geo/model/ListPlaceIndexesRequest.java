@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists Place index resources in your AWS account.
+ * Lists place index resources in your AWS account.
  * </p>
  */
 public class ListPlaceIndexesRequest extends AmazonWebServiceRequest implements Serializable {
