@@ -82,12 +82,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The following attribute applies only to <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     * >server-side-encryption</a>:
+     * >server-side encryption</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -134,7 +134,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * (Optional) To override the generated value, you can specify a value for
-     * the the <code>MessageDeduplicationId</code> parameter for the
+     * the <code>MessageDeduplicationId</code> parameter for the
      * <code>Publish</code> action.
      * </p>
      * </li>
@@ -323,12 +323,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The following attribute applies only to <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     * >server-side-encryption</a>:
+     * >server-side encryption</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -375,7 +375,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * (Optional) To override the generated value, you can specify a value for
-     * the the <code>MessageDeduplicationId</code> parameter for the
+     * the <code>MessageDeduplicationId</code> parameter for the
      * <code>Publish</code> action.
      * </p>
      * </li>
@@ -420,12 +420,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         <p>
      *         The following attribute applies only to <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     *         >server-side-encryption</a>:
+     *         >server-side encryption</a>:
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer
+     *         <code>KmsMasterKeyId</code> – The ID of an AWS managed customer
      *         master key (CMK) for Amazon SNS or a custom CMK. For more
      *         information, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -473,8 +473,8 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         </p>
      *         <p>
      *         (Optional) To override the generated value, you can specify a
-     *         value for the the <code>MessageDeduplicationId</code> parameter
-     *         for the <code>Publish</code> action.
+     *         value for the <code>MessageDeduplicationId</code> parameter for
+     *         the <code>Publish</code> action.
      *         </p>
      *         </li>
      *         </ul>
@@ -521,12 +521,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The following attribute applies only to <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     * >server-side-encryption</a>:
+     * >server-side encryption</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -573,7 +573,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * (Optional) To override the generated value, you can specify a value for
-     * the the <code>MessageDeduplicationId</code> parameter for the
+     * the <code>MessageDeduplicationId</code> parameter for the
      * <code>Publish</code> action.
      * </p>
      * </li>
@@ -618,12 +618,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            The following attribute applies only to <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     *            >server-side-encryption</a>:
+     *            >server-side encryption</a>:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> – The ID of an AWS-managed
+     *            <code>KmsMasterKeyId</code> – The ID of an AWS managed
      *            customer master key (CMK) for Amazon SNS or a custom CMK. For
      *            more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -672,8 +672,8 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      *            <p>
      *            (Optional) To override the generated value, you can specify a
-     *            value for the the <code>MessageDeduplicationId</code>
-     *            parameter for the <code>Publish</code> action.
+     *            value for the <code>MessageDeduplicationId</code> parameter
+     *            for the <code>Publish</code> action.
      *            </p>
      *            </li>
      *            </ul>
@@ -720,12 +720,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The following attribute applies only to <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     * >server-side-encryption</a>:
+     * >server-side encryption</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -772,7 +772,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * (Optional) To override the generated value, you can specify a value for
-     * the the <code>MessageDeduplicationId</code> parameter for the
+     * the <code>MessageDeduplicationId</code> parameter for the
      * <code>Publish</code> action.
      * </p>
      * </li>
@@ -820,12 +820,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            <p>
      *            The following attribute applies only to <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     *            >server-side-encryption</a>:
+     *            >server-side encryption</a>:
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> – The ID of an AWS-managed
+     *            <code>KmsMasterKeyId</code> – The ID of an AWS managed
      *            customer master key (CMK) for Amazon SNS or a custom CMK. For
      *            more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -874,8 +874,8 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            </p>
      *            <p>
      *            (Optional) To override the generated value, you can specify a
-     *            value for the the <code>MessageDeduplicationId</code>
-     *            parameter for the <code>Publish</code> action.
+     *            value for the <code>MessageDeduplicationId</code> parameter
+     *            for the <code>Publish</code> action.
      *            </p>
      *            </li>
      *            </ul>
@@ -925,12 +925,12 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * The following attribute applies only to <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html"
-     * >server-side-encryption</a>:
+     * >server-side encryption</a>:
      * </p>
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS-managed customer master
+     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
      * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
      * href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
@@ -977,7 +977,7 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * </p>
      * <p>
      * (Optional) To override the generated value, you can specify a value for
-     * the the <code>MessageDeduplicationId</code> parameter for the
+     * the <code>MessageDeduplicationId</code> parameter for the
      * <code>Publish</code> action.
      * </p>
      * </li>

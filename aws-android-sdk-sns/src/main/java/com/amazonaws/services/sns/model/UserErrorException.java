@@ -19,20 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Can’t perform the action on the specified resource. Make sure that the
- * resource exists.
+ * Indicates that a request parameter does not comply with the associated
+ * constraints.
  * </p>
  */
-public class ResourceNotFoundException extends AmazonServiceException {
+public class UserErrorException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ResourceNotFoundException with the specified error
-     * message.
+     * Constructs a new UserErrorException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public ResourceNotFoundException(String message) {
+    public UserErrorException(String message) {
         super(message);
     }
 }

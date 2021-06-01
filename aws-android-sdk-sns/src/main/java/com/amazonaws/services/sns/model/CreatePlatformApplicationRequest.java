@@ -104,7 +104,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>
+     * >SetPlatformApplicationAttributes</a>.
      * </p>
      */
     private java.util.Map<String, String> attributes = new java.util.HashMap<String, String>();
@@ -227,13 +227,13 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>
+     * >SetPlatformApplicationAttributes</a>.
      * </p>
      *
      * @return <p>
      *         For a list of attributes, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     *         >SetPlatformApplicationAttributes</a>
+     *         >SetPlatformApplicationAttributes</a>.
      *         </p>
      */
     public java.util.Map<String, String> getAttributes() {
@@ -244,13 +244,13 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>
+     * >SetPlatformApplicationAttributes</a>.
      * </p>
      *
      * @param attributes <p>
      *            For a list of attributes, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     *            >SetPlatformApplicationAttributes</a>
+     *            >SetPlatformApplicationAttributes</a>.
      *            </p>
      */
     public void setAttributes(java.util.Map<String, String> attributes) {
@@ -261,7 +261,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>
+     * >SetPlatformApplicationAttributes</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -270,7 +270,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * @param attributes <p>
      *            For a list of attributes, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     *            >SetPlatformApplicationAttributes</a>
+     *            >SetPlatformApplicationAttributes</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -284,7 +284,7 @@ public class CreatePlatformApplicationRequest extends AmazonWebServiceRequest im
      * <p>
      * For a list of attributes, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html"
-     * >SetPlatformApplicationAttributes</a>
+     * >SetPlatformApplicationAttributes</a>.
      * </p>
      * <p>
      * The method adds a new key-value pair into Attributes parameter, and
