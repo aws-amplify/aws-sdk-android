@@ -38,6 +38,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.af-south-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.af-south-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.af-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.af-south-1.amazonaws.com", false, true);
 
         region = new Region("ap-northeast-1", "amazonaws.com");
         ret.add(region);
@@ -63,7 +64,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.ap-northeast-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-northeast-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-northeast-1.amazonaws.com", false, true);
 
         region = new Region("ap-northeast-2", "amazonaws.com");
         ret.add(region);
@@ -108,7 +109,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.ap-south-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.ap-south-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-south-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-south-1.amazonaws.com", false, true);
 
         region = new Region("ap-southeast-1", "amazonaws.com");
         ret.add(region);
@@ -133,7 +134,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.ap-southeast-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.ap-southeast-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-southeast-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-southeast-1.amazonaws.com", false, true);
 
         region = new Region("ap-southeast-2", "amazonaws.com");
         ret.add(region);
@@ -158,7 +159,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.ap-southeast-2.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.ap-southeast-2.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-southeast-2.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-southeast-2.amazonaws.com", false, true);
 
         region = new Region("ca-central-1", "amazonaws.com");
         ret.add(region);
@@ -175,7 +176,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.ca-central-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.ca-central-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ca-central-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ca-central-1.amazonaws.com", false, true);
 
         region = new Region("eu-central-1", "amazonaws.com");
         ret.add(region);
@@ -199,7 +200,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.eu-central-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-central-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-central-1.amazonaws.com", false, true);
 
         region = new Region("eu-south-1", "amazonaws.com");
         ret.add(region);
@@ -213,6 +214,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.eu-south-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.eu-south-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-south-1.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-south-1.amazonaws.com", false, true);
 
         region = new Region("eu-west-1", "amazonaws.com");
         ret.add(region);
@@ -241,7 +243,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.eu-west-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-west-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-west-1.amazonaws.com", false, true);
 
         region = new Region("eu-west-2", "amazonaws.com");
         ret.add(region);
@@ -263,7 +265,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.eu-west-2.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.eu-west-2.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-west-2.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-west-2.amazonaws.com", false, true);
 
         region = new Region("eu-west-3", "amazonaws.com");
         ret.add(region);
@@ -280,7 +282,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.eu-west-3.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.eu-west-3.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-west-3.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-west-3.amazonaws.com", false, true);
 
         region = new Region("sa-east-1", "amazonaws.com");
         ret.add(region);
@@ -298,7 +300,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.sa-east-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.sa-east-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.sa-east-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.sa-east-1.amazonaws.com", false, true);
 
         region = new Region("us-east-1", "amazonaws.com");
         ret.add(region);
@@ -330,7 +332,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.us-east-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-east-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-east-1.amazonaws.com", false, true);
 
         region = new Region("us-east-2", "amazonaws.com");
         ret.add(region);
@@ -353,7 +355,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.us-east-2.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.us-east-2.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-east-2.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-east-2.amazonaws.com", false, true);
 
         region = new Region("us-west-1", "amazonaws.com");
         ret.add(region);
@@ -371,7 +373,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.us-west-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.us-west-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-west-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-west-1.amazonaws.com", false, true);
 
         region = new Region("us-west-2", "amazonaws.com");
         ret.add(region);
@@ -398,7 +400,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.us-west-2.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-west-2.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-west-2.amazonaws.com", false, true);
 
         region = new Region("cn-north-1", "amazonaws.com.cn");
         ret.add(region);
@@ -431,7 +433,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.cn-northwest-1.amazonaws.com.cn", false, true);
         updateRegion(region, "sns", "sns.cn-northwest-1.amazonaws.com.cn", false, true);
         updateRegion(region, "sqs", "sqs.cn-northwest-1.amazonaws.com.cn", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com.cn", false, true);
+        updateRegion(region, "sts", "sts.cn-northwest-1.amazonaws.com.cn", false, true);
 
         region = new Region("us-gov-west-1", "amazonaws.com");
         ret.add(region);
@@ -448,7 +450,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.us-gov-west-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.us-gov-west-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.us-gov-west-1.amazonaws.com", false, true);
 
         region = new Region("eu-north-1", "amazonaws.com");
         ret.add(region);
@@ -466,7 +468,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.eu-north-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.eu-north-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.eu-north-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.eu-north-1.amazonaws.com", false, true);
 
         region = new Region("ap-east-1", "amazonaws.com");
         ret.add(region);
@@ -484,7 +486,7 @@ class RegionDefaults {
         updateRegion(region, "s3", "s3.ap-east-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.ap-east-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.ap-east-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-east-1.amazonaws.com", false, true);
 
         // Support Middle East (Bahrain) `me-south-1` region
         region = new Region("me-south-1", "amazonaws.com");
@@ -511,7 +513,7 @@ class RegionDefaults {
         updateRegion(region, "sdb", "sdb.me-south-1.amazonaws.com", false, true);
         updateRegion(region, "sns", "sns.me-south-1.amazonaws.com", false, true);
         updateRegion(region, "sqs", "sqs.me-south-1.amazonaws.com", false, true);
-        updateRegion(region, "sts", "sts.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.me-south-1.amazonaws.com", false, true);
 
         return ret;
     }
