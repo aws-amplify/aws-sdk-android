@@ -50,6 +50,9 @@ public class DescribeGeofenceCollectionResultJsonUnmarshaller implements
                 describeGeofenceCollectionResult.setDescription(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KmsKeyId")) {
+                describeGeofenceCollectionResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 describeGeofenceCollectionResult.setPricingPlan(StringJsonUnmarshaller
                         .getInstance()
@@ -58,6 +61,11 @@ public class DescribeGeofenceCollectionResultJsonUnmarshaller implements
                 describeGeofenceCollectionResult.setPricingPlanDataSource(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Tags")) {
+                describeGeofenceCollectionResult.setTags(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describeGeofenceCollectionResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

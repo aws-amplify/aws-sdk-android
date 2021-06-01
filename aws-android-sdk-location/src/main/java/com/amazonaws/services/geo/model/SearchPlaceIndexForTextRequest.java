@@ -35,19 +35,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>FilterBBox</code>. Providing both parameters simultaneously returns an
  * error.
  * </p>
- * </note> <note>
- * <p>
- * By using Places, you agree that AWS may transmit your API queries to your
- * selected third party provider for processing, which may be outside the AWS
- * region you are currently using.
- * </p>
- * <p>
- * Also, when using HERE as your data provider, you may not (a) use HERE Places
- * for Asset Management, or (b) select the <code>Storage</code> option for the
- * <code>IntendedUse</code> parameter when requesting Places in Japan. For more
- * information, see the <a href="https://aws.amazon.com/service-terms/">AWS
- * Service Terms</a> for Amazon Location Service.
- * </p>
  * </note>
  */
 public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest implements Serializable {
@@ -143,7 +130,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -972,7 +959,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -980,7 +967,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource you want to use for the
+     *         The name of the place index resource you want to use for the
      *         search.
      *         </p>
      */
@@ -990,7 +977,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -998,7 +985,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource you want to use for the
+     *            The name of the place index resource you want to use for the
      *            search.
      *            </p>
      */
@@ -1008,7 +995,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The name of the Place index resource you want to use for the search.
+     * The name of the place index resource you want to use for the search.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1019,7 +1006,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource you want to use for the
+     *            The name of the place index resource you want to use for the
      *            search.
      *            </p>
      * @return A reference to this updated object so that method calls can be
