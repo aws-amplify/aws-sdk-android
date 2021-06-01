@@ -130,6 +130,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
+     * The identifer for the AWS Key Management Service (AWS KMS) customer
+     * master key that was used to encrypt the model during training.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     */
+    private String kmsKeyId;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the model version.
      * </p>
      * <p>
@@ -796,6 +808,72 @@ public class ProjectVersionDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * The identifer for the AWS Key Management Service (AWS KMS) customer
+     * master key that was used to encrypt the model during training.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @return <p>
+     *         The identifer for the AWS Key Management Service (AWS KMS)
+     *         customer master key that was used to encrypt the model during
+     *         training.
+     *         </p>
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The identifer for the AWS Key Management Service (AWS KMS) customer
+     * master key that was used to encrypt the model during training.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The identifer for the AWS Key Management Service (AWS KMS)
+     *            customer master key that was used to encrypt the model during
+     *            training.
+     *            </p>
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The identifer for the AWS Key Management Service (AWS KMS) customer
+     * master key that was used to encrypt the model during training.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The identifer for the AWS Key Management Service (AWS KMS)
+     *            customer master key that was used to encrypt the model during
+     *            training.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectVersionDescription withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -829,7 +907,9 @@ public class ProjectVersionDescription implements Serializable {
         if (getEvaluationResult() != null)
             sb.append("EvaluationResult: " + getEvaluationResult() + ",");
         if (getManifestSummary() != null)
-            sb.append("ManifestSummary: " + getManifestSummary());
+            sb.append("ManifestSummary: " + getManifestSummary() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("KmsKeyId: " + getKmsKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -864,6 +944,7 @@ public class ProjectVersionDescription implements Serializable {
                 + ((getEvaluationResult() == null) ? 0 : getEvaluationResult().hashCode());
         hashCode = prime * hashCode
                 + ((getManifestSummary() == null) ? 0 : getManifestSummary().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         return hashCode;
     }
 
@@ -938,6 +1019,10 @@ public class ProjectVersionDescription implements Serializable {
             return false;
         if (other.getManifestSummary() != null
                 && other.getManifestSummary().equals(this.getManifestSummary()) == false)
+            return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
             return false;
         return true;
     }

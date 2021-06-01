@@ -24,12 +24,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates values stored in the domain configuration. Domain configurations for
  * default endpoints can't be updated.
  * </p>
- * <note>
- * <p>
- * The domain configuration feature is in public preview and is subject to
- * change.
- * </p>
- * </note>
  */
 public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {

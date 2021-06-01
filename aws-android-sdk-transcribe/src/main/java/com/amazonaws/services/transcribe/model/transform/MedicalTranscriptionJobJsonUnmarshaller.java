@@ -77,6 +77,10 @@ class MedicalTranscriptionJobJsonUnmarshaller implements
                 medicalTranscriptionJob.setSettings(MedicalTranscriptionSettingJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ContentIdentificationType")) {
+                medicalTranscriptionJob.setContentIdentificationType(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Specialty")) {
                 medicalTranscriptionJob.setSpecialty(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

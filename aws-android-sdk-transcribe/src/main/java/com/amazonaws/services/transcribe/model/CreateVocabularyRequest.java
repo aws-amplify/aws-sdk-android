@@ -42,7 +42,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the vocabulary entries. For a list of languages and
+     * their corresponding language codes, see <a>what-is-transcribe</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -72,8 +73,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * For more information about custom vocabularies, see <a
+     * href="http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -160,7 +161,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the vocabulary entries. For a list of languages and
+     * their corresponding language codes, see <a>what-is-transcribe</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -170,7 +172,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @return <p>
-     *         The language code of the vocabulary entries.
+     *         The language code of the vocabulary entries. For a list of
+     *         languages and their corresponding language codes, see
+     *         <a>what-is-transcribe</a>.
      *         </p>
      * @see LanguageCode
      */
@@ -180,7 +184,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the vocabulary entries. For a list of languages and
+     * their corresponding language codes, see <a>what-is-transcribe</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -190,7 +195,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the vocabulary entries. For a list of
+     *            languages and their corresponding language codes, see
+     *            <a>what-is-transcribe</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -200,7 +207,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the vocabulary entries. For a list of languages and
+     * their corresponding language codes, see <a>what-is-transcribe</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,7 +221,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the vocabulary entries. For a list of
+     *            languages and their corresponding language codes, see
+     *            <a>what-is-transcribe</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -226,7 +236,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the vocabulary entries. For a list of languages and
+     * their corresponding language codes, see <a>what-is-transcribe</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -236,7 +247,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the vocabulary entries. For a list of
+     *            languages and their corresponding language codes, see
+     *            <a>what-is-transcribe</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -246,7 +259,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The language code of the vocabulary entries.
+     * The language code of the vocabulary entries. For a list of languages and
+     * their corresponding language codes, see <a>what-is-transcribe</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -259,7 +273,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
      *
      * @param languageCode <p>
-     *            The language code of the vocabulary entries.
+     *            The language code of the vocabulary entries. For a list of
+     *            languages and their corresponding language codes, see
+     *            <a>what-is-transcribe</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -356,8 +372,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * For more information about custom vocabularies, see <a
+     * href="http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -377,7 +393,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For more information about custom vocabularies, see <a href=
-     *         "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *         "http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      *         >Custom Vocabularies</a>.
      *         </p>
      */
@@ -397,8 +413,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * For more information about custom vocabularies, see <a
+     * href="http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -418,7 +434,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      *            >Custom Vocabularies</a>.
      *            </p>
      */
@@ -438,8 +454,8 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
-     * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * For more information about custom vocabularies, see <a
+     * href="http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -462,7 +478,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
      *            >Custom Vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
