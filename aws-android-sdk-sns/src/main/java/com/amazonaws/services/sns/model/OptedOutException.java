@@ -19,20 +19,20 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Can’t perform the action on the specified resource. Make sure that the
- * resource exists.
+ * Indicates that the specified phone number opted out of receiving SMS messages
+ * from your AWS account. You can't send SMS messages to phone numbers that opt
+ * out.
  * </p>
  */
-public class ResourceNotFoundException extends AmazonServiceException {
+public class OptedOutException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ResourceNotFoundException with the specified error
-     * message.
+     * Constructs a new OptedOutException with the specified error message.
      *
      * @param message Describes the error encountered.
      */
-    public ResourceNotFoundException(String message) {
+    public OptedOutException(String message) {
         super(message);
     }
 }
