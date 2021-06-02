@@ -16,6 +16,7 @@
 ### Bug Fixes
 - hosted-ui sign-out flow is now launched correctly using custom tabs manager (#2472)
 - hostedUI auth response is now properly handled via `HostedUIRedirectActivity` (#2473)
+  - _note:_ applying above fix requires an update to `AndroidManifest.xml`. See the [documentation](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app) for more information.
 
 [See all changes between 2.23.0 and 2.24.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.23.0...release_v2.24.0)
 
