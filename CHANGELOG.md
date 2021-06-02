@@ -3,7 +3,6 @@
 ### Features
 - **aws-android-sdk-sns:** update models to latest (#2461)
 - **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2456)
-- **mobile-client:** hosted-ui auth response handler is now built into redirect activity (#2473)
 - **aws-android-sdk-connect:** update models to latest (#2469)
 - **aws-android-sdk-transcribe:** update models to latest (#2476)
 - **aws-android-sdk-rekognition:** update models to latest (#2487)
@@ -12,9 +11,11 @@
 - **aws-android-sdk-sns:** update models to latest (#2496)
 - **aws-android-sdk-polly:** update models to latest (#2497)
 - **aws-android-sdk-mobile-client:** adds signature with user attributes in confirmSignIn (#2492)
+- **aws-android-sdk-mobile-client:** hosted-ui auth response handler is now built into redirect activity (#2473)
 
 ### Bug Fixes
-- launch hosted-ui sign-out using custom tabs manager (#2472)
+- hosted-ui sign-out flow is now launched correctly using custom tabs manager (#2472)
+- hostedUI auth response is now properly handled via `HostedUIRedirectActivity` (#2473)
 
 [See all changes between 2.23.0 and 2.24.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.23.0...release_v2.24.0)
 
