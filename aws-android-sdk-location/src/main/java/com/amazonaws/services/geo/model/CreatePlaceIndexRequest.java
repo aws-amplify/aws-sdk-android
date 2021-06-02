@@ -21,22 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a Place index resource in your AWS account, which supports Places
- * functions with geospatial data sourced from your chosen data provider.
+ * Creates a place index resource in your AWS account, which supports functions
+ * with geospatial data sourced from your chosen data provider.
  * </p>
- * <note>
- * <p>
- * By using Places, you agree that AWS may transmit your API queries to your
- * selected third party provider for processing, which may be outside the AWS
- * region you are currently using.
- * </p>
- * <p>
- * Because of licensing limitations, you may not use HERE to store results for
- * locations in Japan. For more information, see the <a
- * href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for Amazon
- * Location Service.
- * </p>
- * </note>
  */
 public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -62,7 +49,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code>
      * </p>
-     * </li>
+     * <important>
+     * <p>
+     * Place index resources using HERE as a data provider can't be used to <a
+     * href=
+     * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     * >store</a> results for locations in Japan. For more information, see the
+     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
+     * Amazon Location Service.
+     * </p>
+     * </important></li>
      * </ul>
      * <p>
      * For additional details on data providers, see the <a href=
@@ -81,7 +77,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -91,7 +87,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Requirements:
@@ -99,13 +95,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
      * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be a unique Place index resource name.
+     * Must be a unique place index resource name.
      * </p>
      * </li>
      * <li>
@@ -123,7 +119,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your Place index resource.
+     * Specifies the pricing plan for your place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -136,6 +132,49 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      */
     private String pricingPlan;
+
+    /**
+     * <p>
+     * Applies one or more tags to the place index resource. A tag is a
+     * key-value pair helps manage, identify, search, and filter your resources
+     * by labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * </ul>
+     */
+    private java.util.Map<String, String> tags;
 
     /**
      * <p>
@@ -160,7 +199,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code>
      * </p>
-     * </li>
+     * <important>
+     * <p>
+     * Place index resources using HERE as a data provider can't be used to <a
+     * href=
+     * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     * >store</a> results for locations in Japan. For more information, see the
+     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
+     * Amazon Location Service.
+     * </p>
+     * </important></li>
      * </ul>
      * <p>
      * For additional details on data providers, see the <a href=
@@ -190,7 +238,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         <p>
      *         <code>Here</code>
      *         </p>
-     *         </li>
+     *         <important>
+     *         <p>
+     *         Place index resources using HERE as a data provider can't be used
+     *         to <a href=
+     *         "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     *         >store</a> results for locations in Japan. For more information,
+     *         see the <a href="https://aws.amazon.com/service-terms/">AWS
+     *         Service Terms</a> for Amazon Location Service.
+     *         </p>
+     *         </important></li>
      *         </ul>
      *         <p>
      *         For additional details on data providers, see the <a href=
@@ -225,7 +282,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code>
      * </p>
-     * </li>
+     * <important>
+     * <p>
+     * Place index resources using HERE as a data provider can't be used to <a
+     * href=
+     * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     * >store</a> results for locations in Japan. For more information, see the
+     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
+     * Amazon Location Service.
+     * </p>
+     * </important></li>
      * </ul>
      * <p>
      * For additional details on data providers, see the <a href=
@@ -255,7 +321,17 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            <code>Here</code>
      *            </p>
-     *            </li>
+     *            <important>
+     *            <p>
+     *            Place index resources using HERE as a data provider can't be
+     *            used to <a href=
+     *            "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     *            >store</a> results for locations in Japan. For more
+     *            information, see the <a
+     *            href="https://aws.amazon.com/service-terms/">AWS Service
+     *            Terms</a> for Amazon Location Service.
+     *            </p>
+     *            </important></li>
      *            </ul>
      *            <p>
      *            For additional details on data providers, see the <a href=
@@ -290,7 +366,16 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code>
      * </p>
-     * </li>
+     * <important>
+     * <p>
+     * Place index resources using HERE as a data provider can't be used to <a
+     * href=
+     * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     * >store</a> results for locations in Japan. For more information, see the
+     * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
+     * Amazon Location Service.
+     * </p>
+     * </important></li>
      * </ul>
      * <p>
      * For additional details on data providers, see the <a href=
@@ -323,7 +408,17 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            <code>Here</code>
      *            </p>
-     *            </li>
+     *            <important>
+     *            <p>
+     *            Place index resources using HERE as a data provider can't be
+     *            used to <a href=
+     *            "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
+     *            >store</a> results for locations in Japan. For more
+     *            information, see the <a
+     *            href="https://aws.amazon.com/service-terms/">AWS Service
+     *            Terms</a> for Amazon Location Service.
+     *            </p>
+     *            </important></li>
      *            </ul>
      *            <p>
      *            For additional details on data providers, see the <a href=
@@ -386,14 +481,14 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         The optional description for the Place index resource.
+     *         The optional description for the place index resource.
      *         </p>
      */
     public String getDescription() {
@@ -402,14 +497,14 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1000<br/>
      *
      * @param description <p>
-     *            The optional description for the Place index resource.
+     *            The optional description for the place index resource.
      *            </p>
      */
     public void setDescription(String description) {
@@ -418,7 +513,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -428,7 +523,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b>0 - 1000<br/>
      *
      * @param description <p>
-     *            The optional description for the Place index resource.
+     *            The optional description for the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -440,7 +535,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Requirements:
@@ -448,13 +543,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
      * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be a unique Place index resource name.
+     * Must be a unique place index resource name.
      * </p>
      * </li>
      * <li>
@@ -469,7 +564,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource.
+     *         The name of the place index resource.
      *         </p>
      *         <p>
      *         Requirements:
@@ -477,13 +572,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         <ul>
      *         <li>
      *         <p>
-     *         Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
+     *         Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
      *         (-), periods (.), and underscores (_).
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         Must be a unique Place index resource name.
+     *         Must be a unique place index resource name.
      *         </p>
      *         </li>
      *         <li>
@@ -499,7 +594,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Requirements:
@@ -507,13 +602,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
      * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be a unique Place index resource name.
+     * Must be a unique place index resource name.
      * </p>
      * </li>
      * <li>
@@ -528,7 +623,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource.
+     *            The name of the place index resource.
      *            </p>
      *            <p>
      *            Requirements:
@@ -536,13 +631,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
+     *            Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
      *            (-), periods (.), and underscores (_).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Must be a unique Place index resource name.
+     *            Must be a unique place index resource name.
      *            </p>
      *            </li>
      *            <li>
@@ -559,7 +654,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The name of the Place index resource.
+     * The name of the place index resource.
      * </p>
      * <p>
      * Requirements:
@@ -567,13 +662,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+     * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens (-),
      * periods (.), and underscores (_).
      * </p>
      * </li>
      * <li>
      * <p>
-     * Must be a unique Place index resource name.
+     * Must be a unique place index resource name.
      * </p>
      * </li>
      * <li>
@@ -591,7 +686,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource.
+     *            The name of the place index resource.
      *            </p>
      *            <p>
      *            Requirements:
@@ -599,13 +694,13 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens
+     *            Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
      *            (-), periods (.), and underscores (_).
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            Must be a unique Place index resource name.
+     *            Must be a unique place index resource name.
      *            </p>
      *            </li>
      *            <li>
@@ -625,7 +720,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your Place index resource.
+     * Specifies the pricing plan for your place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -638,7 +733,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for your Place index resource.
+     *         Specifies the pricing plan for your place index resource.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -654,7 +749,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your Place index resource.
+     * Specifies the pricing plan for your place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -667,7 +762,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your Place index resource.
+     *            Specifies the pricing plan for your place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -683,7 +778,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your Place index resource.
+     * Specifies the pricing plan for your place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -699,7 +794,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your Place index resource.
+     *            Specifies the pricing plan for your place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -718,7 +813,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your Place index resource.
+     * Specifies the pricing plan for your place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -731,7 +826,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your Place index resource.
+     *            Specifies the pricing plan for your place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -747,7 +842,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your Place index resource.
+     * Specifies the pricing plan for your place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -763,7 +858,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your Place index resource.
+     *            Specifies the pricing plan for your place index resource.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -777,6 +872,338 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      */
     public CreatePlaceIndexRequest withPricingPlan(PricingPlan pricingPlan) {
         this.pricingPlan = pricingPlan.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the place index resource. A tag is a
+     * key-value pair helps manage, identify, search, and filter your resources
+     * by labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @return <p>
+     *         Applies one or more tags to the place index resource. A tag is a
+     *         key-value pair helps manage, identify, search, and filter your
+     *         resources by labelling them.
+     *         </p>
+     *         <p>
+     *         Format: <code>"key" : "value"</code>
+     *         </p>
+     *         <p>
+     *         Restrictions:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Maximum 50 tags per resource
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Each resource tag must be unique with a maximum of one value.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Maximum key length: 128 Unicode characters in UTF-8
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Maximum value length: 256 Unicode characters in UTF-8
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Can use alphanumeric characters (A–Z, a–z, 0–9), and the
+     *         following characters: + - = . _ : / @.
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the place index resource. A tag is a
+     * key-value pair helps manage, identify, search, and filter your resources
+     * by labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * </ul>
+     *
+     * @param tags <p>
+     *            Applies one or more tags to the place index resource. A tag is
+     *            a key-value pair helps manage, identify, search, and filter
+     *            your resources by labelling them.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
+     *            </p>
+     *            <p>
+     *            Restrictions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Maximum 50 tags per resource
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Each resource tag must be unique with a maximum of one value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum key length: 128 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum value length: 256 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
+     *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the place index resource. A tag is a
+     * key-value pair helps manage, identify, search, and filter your resources
+     * by labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Applies one or more tags to the place index resource. A tag is
+     *            a key-value pair helps manage, identify, search, and filter
+     *            your resources by labelling them.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
+     *            </p>
+     *            <p>
+     *            Restrictions:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Maximum 50 tags per resource
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Each resource tag must be unique with a maximum of one value.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum key length: 128 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Maximum value length: 256 Unicode characters in UTF-8
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
+     *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreatePlaceIndexRequest withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Applies one or more tags to the place index resource. A tag is a
+     * key-value pair helps manage, identify, search, and filter your resources
+     * by labelling them.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Restrictions:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Maximum 50 tags per resource
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Each resource tag must be unique with a maximum of one value.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum key length: 128 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Maximum value length: 256 Unicode characters in UTF-8
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+     * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreatePlaceIndexRequest addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CreatePlaceIndexRequest clearTagsEntries() {
+        this.tags = null;
         return this;
     }
 
@@ -800,7 +1227,9 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
         if (getPricingPlan() != null)
-            sb.append("PricingPlan: " + getPricingPlan());
+            sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -820,6 +1249,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -858,6 +1288,10 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

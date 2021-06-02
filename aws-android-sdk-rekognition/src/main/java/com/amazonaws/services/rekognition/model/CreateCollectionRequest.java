@@ -41,7 +41,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </note>
  * <p>
  * This operation requires permissions to perform the
- * <code>rekognition:CreateCollection</code> action.
+ * <code>rekognition:CreateCollection</code> action. If you want to tag your
+ * collection, you also require permission to perform the
+ * <code>rekognition:TagResource</code> operation.
  * </p>
  */
 public class CreateCollectionRequest extends AmazonWebServiceRequest implements Serializable {

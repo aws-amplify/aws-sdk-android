@@ -133,6 +133,11 @@ public class CreateJobRequestMarshaller implements
                 jsonWriter.name("namespaceId");
                 jsonWriter.value(namespaceId);
             }
+            if (createJobRequest.getJobTemplateArn() != null) {
+                String jobTemplateArn = createJobRequest.getJobTemplateArn();
+                jsonWriter.name("jobTemplateArn");
+                jsonWriter.value(jobTemplateArn);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * Specifies a single point of interest, or Place as a result of a search query
- * obtained from a dataset configured in the Place index Resource.
+ * obtained from a dataset configured in the place index resource.
  * </p>
  */
 public class SearchForPositionResult implements Serializable {

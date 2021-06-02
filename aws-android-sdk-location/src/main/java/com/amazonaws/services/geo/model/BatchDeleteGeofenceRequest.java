@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * This action deletes the resource permanently. You can't undo this action.
+ * This operation deletes the resource permanently.
  * </p>
  * </note>
  */

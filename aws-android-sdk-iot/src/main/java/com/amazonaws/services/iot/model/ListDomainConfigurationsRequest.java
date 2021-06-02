@@ -24,12 +24,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets a list of domain configurations for the user. This list is sorted
  * alphabetically by domain configuration name.
  * </p>
- * <note>
- * <p>
- * The domain configuration feature is in public preview and is subject to
- * change.
- * </p>
- * </note>
  */
 public class ListDomainConfigurationsRequest extends AmazonWebServiceRequest implements
         Serializable {

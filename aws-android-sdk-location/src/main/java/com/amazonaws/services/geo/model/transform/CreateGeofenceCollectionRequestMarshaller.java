@@ -71,6 +71,11 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                 jsonWriter.name("Description");
                 jsonWriter.value(description);
             }
+            if (createGeofenceCollectionRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createGeofenceCollectionRequest.getKmsKeyId();
+                jsonWriter.name("KmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
             if (createGeofenceCollectionRequest.getPricingPlan() != null) {
                 String pricingPlan = createGeofenceCollectionRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");
@@ -81,6 +86,19 @@ public class CreateGeofenceCollectionRequestMarshaller implements
                         .getPricingPlanDataSource();
                 jsonWriter.name("PricingPlanDataSource");
                 jsonWriter.value(pricingPlanDataSource);
+            }
+            if (createGeofenceCollectionRequest.getTags() != null) {
+                java.util.Map<String, String> tags = createGeofenceCollectionRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> tagsEntry : tags.entrySet()) {
+                    String tagsValue = tagsEntry.getValue();
+                    if (tagsValue != null) {
+                        jsonWriter.name(tagsEntry.getKey());
+                        jsonWriter.value(tagsValue);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

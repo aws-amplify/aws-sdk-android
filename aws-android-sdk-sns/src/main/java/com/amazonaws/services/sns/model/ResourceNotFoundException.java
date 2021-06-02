@@ -19,7 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Can't tag resource. Verify that the topic exists.
+ * Can’t perform the action on the specified resource. Make sure that the
+ * resource exists.
  * </p>
  */
 public class ResourceNotFoundException extends AmazonServiceException {

@@ -21,9 +21,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
- * <p>
  * Deletes an AppIntegration association from an Amazon Connect instance. The
  * association must not have any use cases associated with it.
  * </p>
