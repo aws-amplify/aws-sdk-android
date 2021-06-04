@@ -26,10 +26,11 @@ import com.amazonaws.logging.Log;
 import com.amazonaws.logging.LogFactory;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 class UploadPartTask implements Callable<Boolean> {
     private static final Log LOGGER = LogFactory.getLog(UploadPartTask.class);
-    private static final int RETRY_COUNT = 3;
+    private static final int RETRY_COUNT = 5;
 
     private final UploadTask.UploadPartTaskMetadata uploadPartTaskMetadata;
     private final UploadPartTaskProgressListener uploadPartTaskProgressListener;
@@ -96,6 +97,9 @@ class UploadPartTask implements Callable<Boolean> {
                     LOGGER.error("Encountered error uploading part ", e);
                     throw e;
                 }
+
+                // Sleep before retrying
+                TimeUnit.MILLISECONDS.sleep(jitteredExponentialBackoff(retried));
                 LOGGER.debug("Retry attempt: " + retried++, e);
             }
         }
@@ -140,5 +144,13 @@ class UploadPartTask implements Callable<Boolean> {
                     bytesTransferredSoFar
             );
         }
+    }
+
+    private long jitteredExponentialBackoff(int retryAttempt) {
+        final int baseTimeMs = 100;
+        final int jitterFactor = 100;
+        long delay = (2 << retryAttempt) * baseTimeMs;
+        int jitter = (int) (jitterFactor * Math.random());
+        return delay + jitter;
     }
 }
