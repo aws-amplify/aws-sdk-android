@@ -66,7 +66,7 @@ class UploadPartTask implements Callable<Boolean> {
                 return true;
             } catch (AbortedException e) {
                 // If request got aborted, operation was paused or canceled. do not retry.
-                LOGGER.error("Upload part aborted.");
+                LOGGER.debug("Upload part aborted.");
                 resetProgress();
                 return false;
             } catch (final Exception e) {
@@ -99,7 +99,9 @@ class UploadPartTask implements Callable<Boolean> {
                 }
 
                 // Sleep before retrying
-                TimeUnit.MILLISECONDS.sleep(jitteredExponentialBackoff(retried));
+                long delayMs = exponentialBackoffWithJitter(retried);
+                LOGGER.info("Retrying in " + delayMs + " ms.");
+                TimeUnit.MILLISECONDS.sleep(delayMs);
                 LOGGER.debug("Retry attempt: " + retried++, e);
             }
         }
@@ -146,9 +148,9 @@ class UploadPartTask implements Callable<Boolean> {
         }
     }
 
-    private long jitteredExponentialBackoff(int retryAttempt) {
-        final int baseTimeMs = 100;
-        final int jitterFactor = 100;
+    private long exponentialBackoffWithJitter(int retryAttempt) {
+        final int baseTimeMs = 1000;
+        final int jitterFactor = 1000;
         long delay = (2 << retryAttempt) * baseTimeMs;
         int jitter = (int) (jitterFactor * Math.random());
         return delay + jitter;
