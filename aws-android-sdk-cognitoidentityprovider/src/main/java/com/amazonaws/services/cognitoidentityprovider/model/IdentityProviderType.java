@@ -197,11 +197,6 @@ public class IdentityProviderType implements Serializable {
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -611,11 +606,6 @@ public class IdentityProviderType implements Serializable {
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -775,11 +765,6 @@ public class IdentityProviderType implements Serializable {
      *         <p>
      *         jwks_uri <i>if not available from discovery URL specified by
      *         oidc_issuer key</i>
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         authorize_scopes
      *         </p>
      *         </li>
      *         </ul>
@@ -948,11 +933,6 @@ public class IdentityProviderType implements Serializable {
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -1112,11 +1092,6 @@ public class IdentityProviderType implements Serializable {
      *            <p>
      *            jwks_uri <i>if not available from discovery URL specified by
      *            oidc_issuer key</i>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            authorize_scopes
      *            </p>
      *            </li>
      *            </ul>
@@ -1285,11 +1260,6 @@ public class IdentityProviderType implements Serializable {
      * key</i>
      * </p>
      * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
-     * </p>
-     * </li>
      * </ul>
      * </li>
      * <li>
@@ -1452,11 +1422,6 @@ public class IdentityProviderType implements Serializable {
      *            <p>
      *            jwks_uri <i>if not available from discovery URL specified by
      *            oidc_issuer key</i>
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            authorize_scopes
      *            </p>
      *            </li>
      *            </ul>
@@ -1626,11 +1591,6 @@ public class IdentityProviderType implements Serializable {
      * <p>
      * jwks_uri <i>if not available from discovery URL specified by oidc_issuer
      * key</i>
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * authorize_scopes
      * </p>
      * </li>
      * </ul>
