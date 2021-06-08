@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 class UploadPartTask implements Callable<Boolean> {
     private static final Log LOGGER = LogFactory.getLog(UploadPartTask.class);
-    private static final int RETRY_COUNT = 5;
+    private static final int RETRY_COUNT = 3;
 
     private final UploadTask.UploadPartTaskMetadata uploadPartTaskMetadata;
     private final UploadPartTaskProgressListener uploadPartTaskProgressListener;
@@ -61,7 +61,7 @@ class UploadPartTask implements Callable<Boolean> {
         while (true) {
             try {
                 final UploadPartResult putPartResult = s3.uploadPart(uploadPartRequest);
-                setTaskState(TransferState.PART_COMPLETED);
+                 setTaskState(TransferState.PART_COMPLETED);
                 dbUtil.updateETag(uploadPartRequest.getId(), putPartResult.getETag());
                 return true;
             } catch (AbortedException e) {
@@ -151,8 +151,8 @@ class UploadPartTask implements Callable<Boolean> {
     private long exponentialBackoffWithJitter(int retryAttempt) {
         final int baseTimeMs = 1000;
         final int jitterFactor = 1000;
-        long delay = (2 << retryAttempt) * baseTimeMs;
-        int jitter = (int) (jitterFactor * Math.random());
+        long delay = baseTimeMs * (1 << retryAttempt);
+        long jitter = (long) (jitterFactor * Math.random());
         return delay + jitter;
     }
 }
