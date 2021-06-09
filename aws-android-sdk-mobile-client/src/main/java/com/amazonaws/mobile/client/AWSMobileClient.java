@@ -1331,7 +1331,17 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                               final Callback<SignInResult> callback) {
 
         final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
-        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, internalCallback));
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, Collections.<String, String>emptyMap(), internalCallback));
+    }
+
+    @AnyThread
+    public void confirmSignIn(final String signInChallengeResponse,
+                              final Map<String, String> clientMetadata,
+                              final Map<String, String> userAttributes,
+                              final Callback<SignInResult> callback) {
+
+        final InternalCallback internalCallback = new InternalCallback<SignInResult>(callback);
+        internalCallback.async(_confirmSignIn(signInChallengeResponse, clientMetadata, userAttributes, internalCallback));
     }
 
     @WorkerThread
@@ -1344,11 +1354,21 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                       final Map<String, String> clientMetadata) throws Exception {
 
         final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
-        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, internalCallback));
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, Collections.<String, String>emptyMap(), internalCallback));
+    }
+
+    @WorkerThread
+    public SignInResult confirmSignIn(final String signInChallengeResponse,
+                                      final Map<String, String> clientMetadata,
+                                      final Map<String, String> userAttributes) throws Exception {
+
+        final InternalCallback<SignInResult> internalCallback = new InternalCallback<SignInResult>();
+        return internalCallback.await(_confirmSignIn(signInChallengeResponse, clientMetadata, userAttributes, internalCallback));
     }
 
     private Runnable _confirmSignIn(final String signInChallengeResponse,
                                     final Map<String, String> clientMetadata,
+                                    final Map<String, String> userAttributes,
                                     final Callback<SignInResult> callback) {
 
         return new Runnable() {
@@ -1373,6 +1393,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                         ((NewPasswordContinuation) signInChallengeContinuation)
                                 .setPassword(signInChallengeResponse);
                         signInChallengeContinuation.setClientMetaData(clientMetadata);
+                        for (final String key : userAttributes.keySet()) {
+                            signInChallengeContinuation.setChallengeResponse(CHALLENGE_RESPONSE_USER_ATTRIBUTES_PREFIX_KEY + key, userAttributes.get(key));
+                        }
                         detectedContinuation = signInChallengeContinuation;
                         signInCallback = new InternalCallback<SignInResult>(callback);
                         break;
