@@ -29,6 +29,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import androidx.annotation.AnyThread;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.browser.customtabs.CustomTabsCallback;
 import androidx.browser.customtabs.CustomTabsClient;
@@ -129,6 +130,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static com.amazonaws.mobile.client.results.SignInState.CUSTOM_CHALLENGE;
+import static com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants.AUTH_TYPE_INIT_CUSTOM_AUTH;
+import static com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants.AUTH_TYPE_INIT_USER_PASSWORD;
+import static com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants.CHLG_TYPE_USER_PASSWORD;
 
 /**
  * The AWSMobileClient provides client APIs and building blocks for developers who want to create
@@ -344,6 +348,25 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
             singleton = new AWSMobileClient();
         }
         return singleton;
+    }
+
+    /**
+     * For unit testing purposes only so we can force a new instance of
+     * mobile client to be created.
+     * @param forceGetNew True if a new instance of AWSMobileClient should be created.
+     * @return A new instance of AWSMobileClient.
+     */
+    @VisibleForTesting
+    static synchronized AWSMobileClient getInstance(boolean forceGetNew) {
+        if (forceGetNew) {
+            singleton = null;
+        }
+        return new AWSMobileClient();
+    }
+
+    @VisibleForTesting
+    void setUserPool(CognitoUserPool userpool) {
+        this.userpool = userpool;
     }
 
     /**
@@ -1213,23 +1236,40 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             @Override
                             public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
                                 Log.d(TAG, "Sending password.");
+                                final HashMap<String, String> authParameters = new HashMap<>();
+                                // Check if the auth flow type setting is in the configuration.
+                                boolean authFlowTypeInConfig =
+                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType");
+
                                 try {
-                                    if (
-                                            awsConfiguration.optJsonObject(AUTH_KEY) != null &&
-                                            awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
-                                            awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
-                                    ) {
-                                        final HashMap<String, String> authParameters = new HashMap<String, String>();
+                                    String authFlowType = authFlowTypeInConfig ?
+                                        awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
+                                        null;
+                                    if (authFlowTypeInConfig && AUTH_TYPE_INIT_CUSTOM_AUTH.equals(authFlowType)) {
+                                        // If there's a value in the config and it's CUSTOM_AUTH, we'll
+                                        // use one of the below constructors depending on what's passed in.
                                         if (password != null) {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, authParameters, validationData));
                                         } else {
                                             authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, authParameters, validationData));
                                         }
+                                    } else if (authFlowTypeInConfig && AUTH_TYPE_INIT_USER_PASSWORD.equals(authFlowType)) {
+                                        // If there's a value in the config and it's USER_PASSWORD_AUTH, set the auth type (challenge name)
+                                        // to be USER_PASSWORD.
+                                        AuthenticationDetails authenticationDetails = new AuthenticationDetails(username, password, validationData);
+                                        authenticationDetails.setAuthenticationType(CHLG_TYPE_USER_PASSWORD);
+                                        authenticationContinuation.setAuthenticationDetails(authenticationDetails);
+
                                     } else {
+                                        // Otherwise, auth flow is USER_SRP_AUTH and the auth type (challenge name)
+                                        // will default to PASSWORD_VERIFIER.
+                                        Log.d(TAG, "Using USER_SRP_AUTH for flow type.");
                                         authenticationContinuation.setAuthenticationDetails(new AuthenticationDetails(username, password, validationData));
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+
+                                } catch (JSONException exception) {
+                                    Log.w(TAG, "Exception while attempting to read authenticationFlowType from config.", exception);
                                 }
 
                                 authenticationContinuation.continueTask();
