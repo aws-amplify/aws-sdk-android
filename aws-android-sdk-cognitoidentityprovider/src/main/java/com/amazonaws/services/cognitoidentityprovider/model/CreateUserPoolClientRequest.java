@@ -23,6 +23,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates the user pool client.
  * </p>
+ * <p>
+ * When you create a new user pool client, token revocation is automatically
+ * enabled. For more information about revoking tokens, see <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+ * >RevokeToken</a>.
+ * </p>
  */
 public class CreateUserPoolClientRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -367,6 +373,20 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <b>Allowed Values: </b>LEGACY, ENABLED
      */
     private String preventUserExistenceErrors;
+
+    /**
+     * <p>
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <p>
+     * If you don't include this parameter, token revocation is automatically
+     * enabled for the new user pool client.
+     * </p>
+     */
+    private Boolean enableTokenRevocation;
 
     /**
      * <p>
@@ -3150,6 +3170,120 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <p>
+     * If you don't include this parameter, token revocation is automatically
+     * enabled for the new user pool client.
+     * </p>
+     *
+     * @return <p>
+     *         Enables or disables token revocation. For more information about
+     *         revoking tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
+     *         </p>
+     *         <p>
+     *         If you don't include this parameter, token revocation is
+     *         automatically enabled for the new user pool client.
+     *         </p>
+     */
+    public Boolean isEnableTokenRevocation() {
+        return enableTokenRevocation;
+    }
+
+    /**
+     * <p>
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <p>
+     * If you don't include this parameter, token revocation is automatically
+     * enabled for the new user pool client.
+     * </p>
+     *
+     * @return <p>
+     *         Enables or disables token revocation. For more information about
+     *         revoking tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
+     *         </p>
+     *         <p>
+     *         If you don't include this parameter, token revocation is
+     *         automatically enabled for the new user pool client.
+     *         </p>
+     */
+    public Boolean getEnableTokenRevocation() {
+        return enableTokenRevocation;
+    }
+
+    /**
+     * <p>
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <p>
+     * If you don't include this parameter, token revocation is automatically
+     * enabled for the new user pool client.
+     * </p>
+     *
+     * @param enableTokenRevocation <p>
+     *            Enables or disables token revocation. For more information
+     *            about revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
+     *            </p>
+     *            <p>
+     *            If you don't include this parameter, token revocation is
+     *            automatically enabled for the new user pool client.
+     *            </p>
+     */
+    public void setEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
+    }
+
+    /**
+     * <p>
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     * <p>
+     * If you don't include this parameter, token revocation is automatically
+     * enabled for the new user pool client.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param enableTokenRevocation <p>
+     *            Enables or disables token revocation. For more information
+     *            about revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
+     *            </p>
+     *            <p>
+     *            If you don't include this parameter, token revocation is
+     *            automatically enabled for the new user pool client.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateUserPoolClientRequest withEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -3198,7 +3332,9 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         if (getAnalyticsConfiguration() != null)
             sb.append("AnalyticsConfiguration: " + getAnalyticsConfiguration() + ",");
         if (getPreventUserExistenceErrors() != null)
-            sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors());
+            sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors() + ",");
+        if (getEnableTokenRevocation() != null)
+            sb.append("EnableTokenRevocation: " + getEnableTokenRevocation());
         sb.append("}");
         return sb.toString();
     }
@@ -3251,6 +3387,9 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
                 * hashCode
                 + ((getPreventUserExistenceErrors() == null) ? 0 : getPreventUserExistenceErrors()
                         .hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getEnableTokenRevocation() == null) ? 0 : getEnableTokenRevocation().hashCode());
         return hashCode;
     }
 
@@ -3365,6 +3504,11 @@ public class CreateUserPoolClientRequest extends AmazonWebServiceRequest impleme
         if (other.getPreventUserExistenceErrors() != null
                 && other.getPreventUserExistenceErrors().equals(
                         this.getPreventUserExistenceErrors()) == false)
+            return false;
+        if (other.getEnableTokenRevocation() == null ^ this.getEnableTokenRevocation() == null)
+            return false;
+        if (other.getEnableTokenRevocation() != null
+                && other.getEnableTokenRevocation().equals(this.getEnableTokenRevocation()) == false)
             return false;
         return true;
     }

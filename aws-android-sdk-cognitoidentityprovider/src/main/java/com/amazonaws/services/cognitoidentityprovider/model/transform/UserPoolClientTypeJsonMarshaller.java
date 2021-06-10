@@ -190,6 +190,11 @@ class UserPoolClientTypeJsonMarshaller {
             jsonWriter.name("PreventUserExistenceErrors");
             jsonWriter.value(preventUserExistenceErrors);
         }
+        if (userPoolClientType.getEnableTokenRevocation() != null) {
+            Boolean enableTokenRevocation = userPoolClientType.getEnableTokenRevocation();
+            jsonWriter.name("EnableTokenRevocation");
+            jsonWriter.value(enableTokenRevocation);
+        }
         jsonWriter.endObject();
     }
 

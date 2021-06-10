@@ -219,6 +219,12 @@ public class UpdateUserPoolClientRequestMarshaller implements
                 jsonWriter.name("PreventUserExistenceErrors");
                 jsonWriter.value(preventUserExistenceErrors);
             }
+            if (updateUserPoolClientRequest.getEnableTokenRevocation() != null) {
+                Boolean enableTokenRevocation = updateUserPoolClientRequest
+                        .getEnableTokenRevocation();
+                jsonWriter.name("EnableTokenRevocation");
+                jsonWriter.value(enableTokenRevocation);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
