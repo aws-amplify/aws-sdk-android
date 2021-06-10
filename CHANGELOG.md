@@ -1,3 +1,15 @@
+## [Release 2.25.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.25.0)
+
+### Features
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2510)
+
+### Bug Fixes
+- **aws-android-sdk-lex:** prioritize custom lex signer for all regions (#2506)
+- **mobileclient:** Honor auth flow setting from config (#2499)
+- **aws-android-sdk-polly:** use correct SignerConfig in all regions (#2505)
+
+[See all changes between 2.24.0 and 2.25.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.24.0...release_v2.25.0)
+
 ## [Release 2.24.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.24.0)
 
 ### Features
