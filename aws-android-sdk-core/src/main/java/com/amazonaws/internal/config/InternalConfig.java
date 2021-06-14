@@ -150,6 +150,10 @@ public class InternalConfig {
         ret.put("s3/ap-south-1", new SignerConfig("AWSS3V4SignerType"));
         ret.put("s3/ap-northeast-2", new SignerConfig("AWSS3V4SignerType"));
         ret.put("s3/eu-west-2", new SignerConfig("AWSS3V4SignerType"));
+        ret.put("lex/eu-central-1", new SignerConfig("AmazonLexV4Signer"));
+        ret.put("lex/cn-north-1", new SignerConfig("AmazonLexV4Signer"));
+        ret.put("polly/eu-central-1", new SignerConfig("AmazonPollyCustomPresigner"));
+        ret.put("polly/cn-north-1", new SignerConfig("AmazonPollyCustomPresigner"));
         return ret;
     }
 

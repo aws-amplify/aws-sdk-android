@@ -123,6 +123,9 @@ class UserPoolClientTypeJsonUnmarshaller implements
                 userPoolClientType.setPreventUserExistenceErrors(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("EnableTokenRevocation")) {
+                userPoolClientType.setEnableTokenRevocation(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
