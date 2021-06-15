@@ -375,6 +375,90 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
+     * Allows the specified Amazon Connect instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param associateBotRequest
+     * @return A Java Future object containing the response from the
+     *         AssociateBot service method, as returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> associateBotAsync(final AssociateBotRequest associateBotRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                associateBot(associateBotRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Allows the specified Amazon Connect instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param associateBotRequest
+     * @return A Java Future object containing the response from the
+     *         AssociateBot service method, as returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> associateBotAsync(final AssociateBotRequest associateBotRequest,
+            final AsyncHandler<AssociateBotRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    associateBot(associateBotRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(associateBotRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
      * for example, that you can't define an instance with multiple S3 buckets
@@ -3057,6 +3141,84 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
      * change.
      * </p>
      * <p>
+     * Revokes authorization from the specified instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param disassociateBotRequest
+     * @return A Java Future object containing the response from the
+     *         DisassociateBot service method, as returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> disassociateBotAsync(final DisassociateBotRequest disassociateBotRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                disassociateBot(disassociateBotRequest);
+                return null;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Revokes authorization from the specified instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param disassociateBotRequest
+     * @return A Java Future object containing the response from the
+     *         DisassociateBot service method, as returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<Void> disassociateBotAsync(final DisassociateBotRequest disassociateBotRequest,
+            final AsyncHandler<DisassociateBotRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<Void>() {
+            public Void call() throws Exception {
+                Void result = null;
+                try {
+                    disassociateBot(disassociateBotRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(disassociateBotRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Removes the storage type configurations for the specified resource type
      * and association ID.
      * </p>
@@ -3949,6 +4111,83 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(listApprovedOriginsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * For the specified version of Amazon Lex, returns a paginated list of all
+     * the Amazon Lex bots currently associated with the instance.
+     * </p>
+     * 
+     * @param listBotsRequest
+     * @return A Java Future object containing the response from the ListBots
+     *         service method, as returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListBotsResult> listBotsAsync(final ListBotsRequest listBotsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListBotsResult>() {
+            public ListBotsResult call() throws Exception {
+                return listBots(listBotsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * For the specified version of Amazon Lex, returns a paginated list of all
+     * the Amazon Lex bots currently associated with the instance.
+     * </p>
+     * 
+     * @param listBotsRequest
+     * @return A Java Future object containing the response from the ListBots
+     *         service method, as returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListBotsResult> listBotsAsync(final ListBotsRequest listBotsRequest,
+            final AsyncHandler<ListBotsRequest, ListBotsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListBotsResult>() {
+            public ListBotsResult call() throws Exception {
+                ListBotsResult result = null;
+                try {
+                    result = listBots(listBotsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listBotsRequest, result);
                 return result;
             }
         });

@@ -147,6 +147,35 @@ public interface AmazonConnect {
      * change.
      * </p>
      * <p>
+     * Allows the specified Amazon Connect instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param associateBotRequest
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void associateBot(AssociateBotRequest associateBotRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
      * for example, that you can't define an instance with multiple S3 buckets
@@ -1098,6 +1127,32 @@ public interface AmazonConnect {
      * change.
      * </p>
      * <p>
+     * Revokes authorization from the specified instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param disassociateBotRequest
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void disassociateBot(DisassociateBotRequest disassociateBotRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Removes the storage type configurations for the specified resource type
      * and association ID.
      * </p>
@@ -1402,6 +1457,34 @@ public interface AmazonConnect {
      */
     ListApprovedOriginsResult listApprovedOrigins(
             ListApprovedOriginsRequest listApprovedOriginsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * For the specified version of Amazon Lex, returns a paginated list of all
+     * the Amazon Lex bots currently associated with the instance.
+     * </p>
+     * 
+     * @param listBotsRequest
+     * @return listBotsResult The response from the ListBots service method, as
+     *         returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListBotsResult listBots(ListBotsRequest listBotsRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
