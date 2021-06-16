@@ -30,9 +30,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >custom key store</a>, specify the custom key store ID.
  * </p>
  * <p>
- * For more information about entropy and random number generation, see the <a
- * href="https://d0.awsstatic.com/whitepapers/KMS-Cryptographic-Details.pdf">AWS
- * Key Management Service Cryptographic Details</a> whitepaper.
+ * For more information about entropy and random number generation, see <a
+ * href="https://docs.aws.amazon.com/kms/latest/cryptographic-details/">AWS Key
+ * Management Service Cryptographic Details</a>.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
