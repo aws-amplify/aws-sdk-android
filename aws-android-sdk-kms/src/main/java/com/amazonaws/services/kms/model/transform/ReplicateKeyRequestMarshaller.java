@@ -38,19 +38,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreateKeyRequest
+ * JSON request marshaller for ReplicateKeyRequest
  */
-public class CreateKeyRequestMarshaller implements
-        Marshaller<Request<CreateKeyRequest>, CreateKeyRequest> {
+public class ReplicateKeyRequestMarshaller implements
+        Marshaller<Request<ReplicateKeyRequest>, ReplicateKeyRequest> {
 
-    public Request<CreateKeyRequest> marshall(CreateKeyRequest createKeyRequest) {
-        if (createKeyRequest == null) {
-            throw new AmazonClientException("Invalid argument passed to marshall(CreateKeyRequest)");
+    public Request<ReplicateKeyRequest> marshall(ReplicateKeyRequest replicateKeyRequest) {
+        if (replicateKeyRequest == null) {
+            throw new AmazonClientException(
+                    "Invalid argument passed to marshall(ReplicateKeyRequest)");
         }
 
-        Request<CreateKeyRequest> request = new DefaultRequest<CreateKeyRequest>(createKeyRequest,
-                "AWSKMS");
-        String target = "TrentService.CreateKey";
+        Request<ReplicateKeyRequest> request = new DefaultRequest<ReplicateKeyRequest>(
+                replicateKeyRequest, "AWSKMS");
+        String target = "TrentService.ReplicateKey";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -61,44 +62,34 @@ public class CreateKeyRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createKeyRequest.getPolicy() != null) {
-                String policy = createKeyRequest.getPolicy();
+            if (replicateKeyRequest.getKeyId() != null) {
+                String keyId = replicateKeyRequest.getKeyId();
+                jsonWriter.name("KeyId");
+                jsonWriter.value(keyId);
+            }
+            if (replicateKeyRequest.getReplicaRegion() != null) {
+                String replicaRegion = replicateKeyRequest.getReplicaRegion();
+                jsonWriter.name("ReplicaRegion");
+                jsonWriter.value(replicaRegion);
+            }
+            if (replicateKeyRequest.getPolicy() != null) {
+                String policy = replicateKeyRequest.getPolicy();
                 jsonWriter.name("Policy");
                 jsonWriter.value(policy);
             }
-            if (createKeyRequest.getDescription() != null) {
-                String description = createKeyRequest.getDescription();
-                jsonWriter.name("Description");
-                jsonWriter.value(description);
-            }
-            if (createKeyRequest.getKeyUsage() != null) {
-                String keyUsage = createKeyRequest.getKeyUsage();
-                jsonWriter.name("KeyUsage");
-                jsonWriter.value(keyUsage);
-            }
-            if (createKeyRequest.getCustomerMasterKeySpec() != null) {
-                String customerMasterKeySpec = createKeyRequest.getCustomerMasterKeySpec();
-                jsonWriter.name("CustomerMasterKeySpec");
-                jsonWriter.value(customerMasterKeySpec);
-            }
-            if (createKeyRequest.getOrigin() != null) {
-                String origin = createKeyRequest.getOrigin();
-                jsonWriter.name("Origin");
-                jsonWriter.value(origin);
-            }
-            if (createKeyRequest.getCustomKeyStoreId() != null) {
-                String customKeyStoreId = createKeyRequest.getCustomKeyStoreId();
-                jsonWriter.name("CustomKeyStoreId");
-                jsonWriter.value(customKeyStoreId);
-            }
-            if (createKeyRequest.getBypassPolicyLockoutSafetyCheck() != null) {
-                Boolean bypassPolicyLockoutSafetyCheck = createKeyRequest
+            if (replicateKeyRequest.getBypassPolicyLockoutSafetyCheck() != null) {
+                Boolean bypassPolicyLockoutSafetyCheck = replicateKeyRequest
                         .getBypassPolicyLockoutSafetyCheck();
                 jsonWriter.name("BypassPolicyLockoutSafetyCheck");
                 jsonWriter.value(bypassPolicyLockoutSafetyCheck);
             }
-            if (createKeyRequest.getTags() != null) {
-                java.util.List<Tag> tags = createKeyRequest.getTags();
+            if (replicateKeyRequest.getDescription() != null) {
+                String description = replicateKeyRequest.getDescription();
+                jsonWriter.name("Description");
+                jsonWriter.value(description);
+            }
+            if (replicateKeyRequest.getTags() != null) {
+                java.util.List<Tag> tags = replicateKeyRequest.getTags();
                 jsonWriter.name("Tags");
                 jsonWriter.beginArray();
                 for (Tag tagsItem : tags) {
@@ -107,11 +98,6 @@ public class CreateKeyRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
-            }
-            if (createKeyRequest.getMultiRegion() != null) {
-                Boolean multiRegion = createKeyRequest.getMultiRegion();
-                jsonWriter.name("MultiRegion");
-                jsonWriter.value(multiRegion);
             }
 
             jsonWriter.endObject();

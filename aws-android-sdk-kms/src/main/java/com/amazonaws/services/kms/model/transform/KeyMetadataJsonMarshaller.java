@@ -128,6 +128,23 @@ class KeyMetadataJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (keyMetadata.getMultiRegion() != null) {
+            Boolean multiRegion = keyMetadata.getMultiRegion();
+            jsonWriter.name("MultiRegion");
+            jsonWriter.value(multiRegion);
+        }
+        if (keyMetadata.getMultiRegionConfiguration() != null) {
+            MultiRegionConfiguration multiRegionConfiguration = keyMetadata
+                    .getMultiRegionConfiguration();
+            jsonWriter.name("MultiRegionConfiguration");
+            MultiRegionConfigurationJsonMarshaller.getInstance().marshall(multiRegionConfiguration,
+                    jsonWriter);
+        }
+        if (keyMetadata.getPendingDeletionWindowInDays() != null) {
+            Integer pendingDeletionWindowInDays = keyMetadata.getPendingDeletionWindowInDays();
+            jsonWriter.name("PendingDeletionWindowInDays");
+            jsonWriter.value(pendingDeletionWindowInDays);
+        }
         jsonWriter.endObject();
     }
 

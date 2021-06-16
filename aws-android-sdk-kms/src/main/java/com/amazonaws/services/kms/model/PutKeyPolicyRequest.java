@@ -52,10 +52,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Sets the key policy on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -172,10 +172,10 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Sets the key policy on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -202,10 +202,10 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key (CMK).
+     *         Sets the key policy on the specified customer master key (CMK).
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -234,10 +234,10 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Sets the key policy on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -264,11 +264,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Sets the key policy on the specified customer master key
+     *            (CMK).
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -297,10 +297,10 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK).
+     * Sets the key policy on the specified customer master key (CMK).
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -330,11 +330,11 @@ public class PutKeyPolicyRequest extends AmazonWebServiceRequest implements Seri
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK).
+     *            Sets the key policy on the specified customer master key
+     *            (CMK).
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

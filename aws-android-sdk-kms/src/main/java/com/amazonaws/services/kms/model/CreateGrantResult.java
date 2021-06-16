@@ -23,9 +23,11 @@ public class CreateGrantResult implements Serializable {
      * The grant token.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -53,9 +55,11 @@ public class CreateGrantResult implements Serializable {
      * The grant token.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -66,9 +70,11 @@ public class CreateGrantResult implements Serializable {
      *         The grant token.
      *         </p>
      *         <p>
-     *         For more information, see <a href=
+     *         Use a grant token when your permission to call this operation
+     *         comes from a new grant that has not yet achieved <i>eventual
+     *         consistency</i>. For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     *         >Grant token</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
      */
@@ -81,9 +87,11 @@ public class CreateGrantResult implements Serializable {
      * The grant token.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -94,9 +102,11 @@ public class CreateGrantResult implements Serializable {
      *            The grant token.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -109,9 +119,11 @@ public class CreateGrantResult implements Serializable {
      * The grant token.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -125,9 +137,11 @@ public class CreateGrantResult implements Serializable {
      *            The grant token.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

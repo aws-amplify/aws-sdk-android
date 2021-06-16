@@ -19,22 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Key State
+ * Multi Region Key Type
  */
-public enum KeyState {
+public enum MultiRegionKeyType {
 
-    Creating("Creating"),
-    Enabled("Enabled"),
-    Disabled("Disabled"),
-    PendingDeletion("PendingDeletion"),
-    PendingImport("PendingImport"),
-    PendingReplicaDeletion("PendingReplicaDeletion"),
-    Unavailable("Unavailable"),
-    Updating("Updating");
+    PRIMARY("PRIMARY"),
+    REPLICA("REPLICA");
 
     private String value;
 
-    private KeyState(String value) {
+    private MultiRegionKeyType(String value) {
         this.value = value;
     }
 
@@ -43,26 +37,20 @@ public enum KeyState {
         return value;
     }
 
-    private static final Map<String, KeyState> enumMap;
+    private static final Map<String, MultiRegionKeyType> enumMap;
     static {
-        enumMap = new HashMap<String, KeyState>();
-        enumMap.put("Creating", Creating);
-        enumMap.put("Enabled", Enabled);
-        enumMap.put("Disabled", Disabled);
-        enumMap.put("PendingDeletion", PendingDeletion);
-        enumMap.put("PendingImport", PendingImport);
-        enumMap.put("PendingReplicaDeletion", PendingReplicaDeletion);
-        enumMap.put("Unavailable", Unavailable);
-        enumMap.put("Updating", Updating);
+        enumMap = new HashMap<String, MultiRegionKeyType>();
+        enumMap.put("PRIMARY", PRIMARY);
+        enumMap.put("REPLICA", REPLICA);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return KeyState corresponding to the value
+     * @return MultiRegionKeyType corresponding to the value
      */
-    public static KeyState fromValue(String value) {
+    public static MultiRegionKeyType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

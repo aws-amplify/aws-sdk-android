@@ -22,6 +22,15 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A list of tags. Each tag consists of a tag key and a tag value.
      * </p>
+     * <note>
+     * <p>
+     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
+     * details, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      */
     private java.util.List<Tag> tags = new java.util.ArrayList<Tag>();
 
@@ -55,10 +64,28 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A list of tags. Each tag consists of a tag key and a tag value.
      * </p>
+     * <note>
+     * <p>
+     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
+     * details, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         A list of tags. Each tag consists of a tag key and a tag value.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Tagging or untagging a CMK can allow or deny permission to the
+     *         CMK. For details, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     *         >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     *         </note>
      */
     public java.util.List<Tag> getTags() {
         return tags;
@@ -68,11 +95,29 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A list of tags. Each tag consists of a tag key and a tag value.
      * </p>
+     * <note>
+     * <p>
+     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
+     * details, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      *
      * @param tags <p>
      *            A list of tags. Each tag consists of a tag key and a tag
      *            value.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Tagging or untagging a CMK can allow or deny permission to the
+     *            CMK. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     *            >Using ABAC in AWS KMS</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     *            </note>
      */
     public void setTags(java.util.Collection<Tag> tags) {
         if (tags == null) {
@@ -87,6 +132,15 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A list of tags. Each tag consists of a tag key and a tag value.
      * </p>
+     * <note>
+     * <p>
+     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
+     * details, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -95,6 +149,15 @@ public class ListResourceTagsResult implements Serializable {
      *            A list of tags. Each tag consists of a tag key and a tag
      *            value.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Tagging or untagging a CMK can allow or deny permission to the
+     *            CMK. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     *            >Using ABAC in AWS KMS</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -112,6 +175,15 @@ public class ListResourceTagsResult implements Serializable {
      * <p>
      * A list of tags. Each tag consists of a tag key and a tag value.
      * </p>
+     * <note>
+     * <p>
+     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
+     * details, see <a
+     * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -120,6 +192,15 @@ public class ListResourceTagsResult implements Serializable {
      *            A list of tags. Each tag consists of a tag key and a tag
      *            value.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Tagging or untagging a CMK can allow or deny permission to the
+     *            CMK. For details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
+     *            >Using ABAC in AWS KMS</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
