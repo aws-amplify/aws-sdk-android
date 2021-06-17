@@ -411,7 +411,7 @@ public final class AWSIotKeystoreHelper {
             newTokens.add(tokens[i].split(endDelimiter)[0]);
         }
 
-        byte[][] ders = new byte[2][];
+        byte[][] ders = new byte[newTokens.size()][];
         for (int i = 0; i < newTokens.size(); i++) {
             ders[i] = Base64.decode(newTokens.get(i));
         }
