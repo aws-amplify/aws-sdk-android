@@ -53,7 +53,7 @@ public class QuickConnect implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      */
     private String description;
 
@@ -221,7 +221,7 @@ public class QuickConnect implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @return <p>
      *         The description.
@@ -237,7 +237,7 @@ public class QuickConnect implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description.
@@ -256,7 +256,7 @@ public class QuickConnect implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description.

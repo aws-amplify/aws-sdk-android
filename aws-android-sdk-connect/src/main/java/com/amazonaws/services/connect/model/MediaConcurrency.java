@@ -44,7 +44,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
-     * 5.
+     * 10.
      * </p>
      * <p>
      * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
@@ -168,7 +168,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
-     * 5.
+     * 10.
      * </p>
      * <p>
      * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
@@ -188,7 +188,7 @@ public class MediaConcurrency implements Serializable {
      *         </p>
      *         <p>
      *         Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum
-     *         value of 5.
+     *         value of 10.
      *         </p>
      *         <p>
      *         Valid Range for <code>TASK</code>: Minimum value of 1. Maximum
@@ -209,7 +209,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
-     * 5.
+     * 10.
      * </p>
      * <p>
      * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
@@ -229,7 +229,7 @@ public class MediaConcurrency implements Serializable {
      *            </p>
      *            <p>
      *            Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum
-     *            value of 5.
+     *            value of 10.
      *            </p>
      *            <p>
      *            Valid Range for <code>TASK</code>: Minimum value of 1. Maximum
@@ -250,7 +250,7 @@ public class MediaConcurrency implements Serializable {
      * </p>
      * <p>
      * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
-     * 5.
+     * 10.
      * </p>
      * <p>
      * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
@@ -273,7 +273,7 @@ public class MediaConcurrency implements Serializable {
      *            </p>
      *            <p>
      *            Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum
-     *            value of 5.
+     *            value of 10.
      *            </p>
      *            <p>
      *            Valid Range for <code>TASK</code>: Minimum value of 1. Maximum
