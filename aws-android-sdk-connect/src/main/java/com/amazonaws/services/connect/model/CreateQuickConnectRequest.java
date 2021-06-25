@@ -21,9 +21,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
- * <p>
  * Creates a quick connect for the specified Amazon Connect instance.
  * </p>
  */
@@ -55,7 +52,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      */
     private String description;
 
@@ -193,7 +190,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @return <p>
      *         The description of the quick connect.
@@ -209,7 +206,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description of the quick connect.
@@ -228,7 +225,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description of the quick connect.
