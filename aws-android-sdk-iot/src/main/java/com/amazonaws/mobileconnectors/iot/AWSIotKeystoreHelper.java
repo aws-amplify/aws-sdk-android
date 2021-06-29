@@ -295,11 +295,17 @@ public final class AWSIotKeystoreHelper {
             KeyStore tempKeystore = KeyStore.getInstance(KeyStore.getDefaultType());
             tempKeystore.load(null);
 
-            X509Certificate[] certs = (X509Certificate[]) customerKeystore.getCertificateChain(certId);
-            tempKeystore.setCertificateEntry("cert-alias", certs[0]);
+            Certificate[] certs = customerKeystore.getCertificateChain(certId);
+            X509Certificate[] xcerts = new X509Certificate[certs.length];
+
+            for (int i = 0; i < certs.length; i++) {
+                xcerts[i] = (X509Certificate) certs[i];
+            }
+
+            tempKeystore.setCertificateEntry("cert-alias", xcerts[0]);
             Key key = customerKeystore.getKey(certId, customerKeystorePassword.toCharArray());
             tempKeystore.setKeyEntry("key-alias", key,
-                    AWS_IOT_INTERNAL_KEYSTORE_PASSWORD.toCharArray(), certs);
+                    AWS_IOT_INTERNAL_KEYSTORE_PASSWORD.toCharArray(), xcerts);
 
             return tempKeystore;
 
