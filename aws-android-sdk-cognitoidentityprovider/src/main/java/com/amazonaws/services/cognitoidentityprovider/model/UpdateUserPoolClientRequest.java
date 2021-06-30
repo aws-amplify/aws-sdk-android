@@ -32,6 +32,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * value.
  * </p>
  * </important>
+ * <p>
+ * You can also use this operation to enable token revocation for user pool
+ * clients. For more information about revoking tokens, see <a href=
+ * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+ * >RevokeToken</a>.
+ * </p>
  */
 public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -367,10 +373,13 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Updates the revocation request.
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
      * </p>
      */
-    private Boolean enableTokenIntrospectionRevocation;
+    private Boolean enableTokenRevocation;
 
     /**
      * <p>
@@ -3015,60 +3024,83 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * Updates the revocation request.
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
      * </p>
      *
      * @return <p>
-     *         Updates the revocation request.
+     *         Enables or disables token revocation. For more information about
+     *         revoking tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
      *         </p>
      */
-    public Boolean isEnableTokenIntrospectionRevocation() {
-        return enableTokenIntrospectionRevocation;
+    public Boolean isEnableTokenRevocation() {
+        return enableTokenRevocation;
     }
 
     /**
      * <p>
-     * Updates the revocation request.
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
      * </p>
      *
      * @return <p>
-     *         Updates the revocation request.
+     *         Enables or disables token revocation. For more information about
+     *         revoking tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
      *         </p>
      */
-    public Boolean getEnableTokenIntrospectionRevocation() {
-        return enableTokenIntrospectionRevocation;
+    public Boolean getEnableTokenRevocation() {
+        return enableTokenRevocation;
     }
 
     /**
      * <p>
-     * Updates the revocation request.
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
      * </p>
      *
-     * @param enableTokenIntrospectionRevocation <p>
-     *            Updates the revocation request.
+     * @param enableTokenRevocation <p>
+     *            Enables or disables token revocation. For more information
+     *            about revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
      *            </p>
      */
-    public void setEnableTokenIntrospectionRevocation(Boolean enableTokenIntrospectionRevocation) {
-        this.enableTokenIntrospectionRevocation = enableTokenIntrospectionRevocation;
+    public void setEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
     }
 
     /**
      * <p>
-     * Updates the revocation request.
+     * Enables or disables token revocation. For more information about revoking
+     * tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enableTokenIntrospectionRevocation <p>
-     *            Updates the revocation request.
+     * @param enableTokenRevocation <p>
+     *            Enables or disables token revocation. For more information
+     *            about revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UpdateUserPoolClientRequest withEnableTokenIntrospectionRevocation(
-            Boolean enableTokenIntrospectionRevocation) {
-        this.enableTokenIntrospectionRevocation = enableTokenIntrospectionRevocation;
+    public UpdateUserPoolClientRequest withEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
         return this;
     }
 
@@ -3122,9 +3154,8 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
             sb.append("AnalyticsConfiguration: " + getAnalyticsConfiguration() + ",");
         if (getPreventUserExistenceErrors() != null)
             sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors() + ",");
-        if (getEnableTokenIntrospectionRevocation() != null)
-            sb.append("EnableTokenIntrospectionRevocation: "
-                    + getEnableTokenIntrospectionRevocation());
+        if (getEnableTokenRevocation() != null)
+            sb.append("EnableTokenRevocation: " + getEnableTokenRevocation());
         sb.append("}");
         return sb.toString();
     }
@@ -3178,8 +3209,7 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
                         .hashCode());
         hashCode = prime
                 * hashCode
-                + ((getEnableTokenIntrospectionRevocation() == null) ? 0
-                        : getEnableTokenIntrospectionRevocation().hashCode());
+                + ((getEnableTokenRevocation() == null) ? 0 : getEnableTokenRevocation().hashCode());
         return hashCode;
     }
 
@@ -3294,12 +3324,10 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
                 && other.getPreventUserExistenceErrors().equals(
                         this.getPreventUserExistenceErrors()) == false)
             return false;
-        if (other.getEnableTokenIntrospectionRevocation() == null
-                ^ this.getEnableTokenIntrospectionRevocation() == null)
+        if (other.getEnableTokenRevocation() == null ^ this.getEnableTokenRevocation() == null)
             return false;
-        if (other.getEnableTokenIntrospectionRevocation() != null
-                && other.getEnableTokenIntrospectionRevocation().equals(
-                        this.getEnableTokenIntrospectionRevocation()) == false)
+        if (other.getEnableTokenRevocation() != null
+                && other.getEnableTokenRevocation().equals(this.getEnableTokenRevocation()) == false)
             return false;
         return true;
     }

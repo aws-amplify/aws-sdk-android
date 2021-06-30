@@ -41,7 +41,8 @@ class TransferThreadPool {
             executorMainTask = buildExecutor(poolSize);
         }
         if (executorPartTask == null) {
-            executorPartTask = buildExecutor(poolSize);
+            // Upload individual parts serially
+            executorPartTask = buildExecutor(1);
         }
     }
 

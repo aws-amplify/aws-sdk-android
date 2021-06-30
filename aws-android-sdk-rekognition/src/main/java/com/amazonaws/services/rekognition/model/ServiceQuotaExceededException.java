@@ -20,9 +20,8 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p/>
  * <p>
- * The size of the collection or tag list exceeds the allowed limit. For more
- * information, see Limits in Amazon Rekognition in the Amazon Rekognition
- * Developer Guide.
+ * The size of the collection exceeds the allowed limit. For more information,
+ * see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class ServiceQuotaExceededException extends AmazonServiceException {

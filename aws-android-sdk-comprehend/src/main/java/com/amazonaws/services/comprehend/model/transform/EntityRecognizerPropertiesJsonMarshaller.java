@@ -96,6 +96,11 @@ class EntityRecognizerPropertiesJsonMarshaller {
             jsonWriter.name("VpcConfig");
             VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
         }
+        if (entityRecognizerProperties.getModelKmsKeyId() != null) {
+            String modelKmsKeyId = entityRecognizerProperties.getModelKmsKeyId();
+            jsonWriter.name("ModelKmsKeyId");
+            jsonWriter.value(modelKmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

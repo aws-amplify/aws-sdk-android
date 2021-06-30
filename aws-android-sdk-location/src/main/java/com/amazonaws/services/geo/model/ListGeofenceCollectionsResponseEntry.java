@@ -71,8 +71,7 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      */
     private String pricingPlanDataSource;
@@ -415,13 +414,11 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      *
      * @return <p>
-     *         The data source selected for the geofence collection and
-     *         associated pricing plan.
+     *         The specified data provider for the geofence collection.
      *         </p>
      */
     public String getPricingPlanDataSource() {
@@ -430,13 +427,11 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      *
      * @param pricingPlanDataSource <p>
-     *            The data source selected for the geofence collection and
-     *            associated pricing plan.
+     *            The specified data provider for the geofence collection.
      *            </p>
      */
     public void setPricingPlanDataSource(String pricingPlanDataSource) {
@@ -445,16 +440,14 @@ public class ListGeofenceCollectionsResponseEntry implements Serializable {
 
     /**
      * <p>
-     * The data source selected for the geofence collection and associated
-     * pricing plan.
+     * The specified data provider for the geofence collection.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param pricingPlanDataSource <p>
-     *            The data source selected for the geofence collection and
-     *            associated pricing plan.
+     *            The specified data provider for the geofence collection.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

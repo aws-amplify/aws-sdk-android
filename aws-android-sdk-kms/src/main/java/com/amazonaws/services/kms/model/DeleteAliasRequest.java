@@ -23,6 +23,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes the specified alias.
  * </p>
+ * <note>
+ * <p>
+ * Adding, deleting, or updating an alias can allow or deny permission to the
+ * CMK. For details, see <a
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">Using
+ * ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * </p>
+ * </note>
  * <p>
  * Because an alias is not a property of a CMK, you can delete and change the
  * aliases of a CMK without affecting the CMK. Also, aliases do not appear in

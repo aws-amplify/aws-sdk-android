@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -44,12 +44,10 @@ public class RealtimeEndpointInfo implements Serializable {
      * The URI that specifies where to send real-time prediction requests for
      * the <code>MLModel</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * The application must wait until the real-time endpoint is ready before
-     * using this URI.
+     * <b>Note:</b> The application must wait until the real-time endpoint is
+     * ready before using this URI.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
@@ -63,11 +61,22 @@ public class RealtimeEndpointInfo implements Serializable {
      * . This element can have one of the following values:
      * </p>
      * <ul>
-     * <li> <code>NONE</code> - Endpoint does not exist or was previously
-     * deleted.</li>
-     * <li> <code>READY</code> - Endpoint is ready to be used for real-time
-     * predictions.</li>
-     * <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     * <li>
+     * <p>
+     * <code>NONE</code> - Endpoint does not exist or was previously deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>READY</code> - Endpoint is ready to be used for real-time
+     * predictions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Updating/creating the endpoint.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -187,12 +196,10 @@ public class RealtimeEndpointInfo implements Serializable {
      * The URI that specifies where to send real-time prediction requests for
      * the <code>MLModel</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * The application must wait until the real-time endpoint is ready before
-     * using this URI.
+     * <b>Note:</b> The application must wait until the real-time endpoint is
+     * ready before using this URI.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
@@ -202,12 +209,10 @@ public class RealtimeEndpointInfo implements Serializable {
      *         The URI that specifies where to send real-time prediction
      *         requests for the <code>MLModel</code>.
      *         </p>
-     *         <note><title>Note</title>
      *         <p>
-     *         The application must wait until the real-time endpoint is ready
-     *         before using this URI.
+     *         <b>Note:</b> The application must wait until the real-time
+     *         endpoint is ready before using this URI.
      *         </p>
-     *         </note>
      */
     public String getEndpointUrl() {
         return endpointUrl;
@@ -218,12 +223,10 @@ public class RealtimeEndpointInfo implements Serializable {
      * The URI that specifies where to send real-time prediction requests for
      * the <code>MLModel</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * The application must wait until the real-time endpoint is ready before
-     * using this URI.
+     * <b>Note:</b> The application must wait until the real-time endpoint is
+     * ready before using this URI.
      * </p>
-     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
@@ -233,12 +236,10 @@ public class RealtimeEndpointInfo implements Serializable {
      *            The URI that specifies where to send real-time prediction
      *            requests for the <code>MLModel</code>.
      *            </p>
-     *            <note><title>Note</title>
      *            <p>
-     *            The application must wait until the real-time endpoint is
-     *            ready before using this URI.
+     *            <b>Note:</b> The application must wait until the real-time
+     *            endpoint is ready before using this URI.
      *            </p>
-     *            </note>
      */
     public void setEndpointUrl(String endpointUrl) {
         this.endpointUrl = endpointUrl;
@@ -249,12 +250,10 @@ public class RealtimeEndpointInfo implements Serializable {
      * The URI that specifies where to send real-time prediction requests for
      * the <code>MLModel</code>.
      * </p>
-     * <note><title>Note</title>
      * <p>
-     * The application must wait until the real-time endpoint is ready before
-     * using this URI.
+     * <b>Note:</b> The application must wait until the real-time endpoint is
+     * ready before using this URI.
      * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -267,12 +266,10 @@ public class RealtimeEndpointInfo implements Serializable {
      *            The URI that specifies where to send real-time prediction
      *            requests for the <code>MLModel</code>.
      *            </p>
-     *            <note><title>Note</title>
      *            <p>
-     *            The application must wait until the real-time endpoint is
-     *            ready before using this URI.
+     *            <b>Note:</b> The application must wait until the real-time
+     *            endpoint is ready before using this URI.
      *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -287,11 +284,22 @@ public class RealtimeEndpointInfo implements Serializable {
      * . This element can have one of the following values:
      * </p>
      * <ul>
-     * <li> <code>NONE</code> - Endpoint does not exist or was previously
-     * deleted.</li>
-     * <li> <code>READY</code> - Endpoint is ready to be used for real-time
-     * predictions.</li>
-     * <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     * <li>
+     * <p>
+     * <code>NONE</code> - Endpoint does not exist or was previously deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>READY</code> - Endpoint is ready to be used for real-time
+     * predictions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Updating/creating the endpoint.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -303,11 +311,23 @@ public class RealtimeEndpointInfo implements Serializable {
      *         values:
      *         </p>
      *         <ul>
-     *         <li> <code>NONE</code> - Endpoint does not exist or was previously
-     *         deleted.</li>
-     *         <li> <code>READY</code> - Endpoint is ready to be used for
-     *         real-time predictions.</li>
-     *         <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     *         <li>
+     *         <p>
+     *         <code>NONE</code> - Endpoint does not exist or was previously
+     *         deleted.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>READY</code> - Endpoint is ready to be used for real-time
+     *         predictions.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>UPDATING</code> - Updating/creating the endpoint.
+     *         </p>
+     *         </li>
      *         </ul>
      * @see RealtimeEndpointStatus
      */
@@ -321,11 +341,22 @@ public class RealtimeEndpointInfo implements Serializable {
      * . This element can have one of the following values:
      * </p>
      * <ul>
-     * <li> <code>NONE</code> - Endpoint does not exist or was previously
-     * deleted.</li>
-     * <li> <code>READY</code> - Endpoint is ready to be used for real-time
-     * predictions.</li>
-     * <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     * <li>
+     * <p>
+     * <code>NONE</code> - Endpoint does not exist or was previously deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>READY</code> - Endpoint is ready to be used for real-time
+     * predictions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Updating/creating the endpoint.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -337,11 +368,23 @@ public class RealtimeEndpointInfo implements Serializable {
      *            following values:
      *            </p>
      *            <ul>
-     *            <li> <code>NONE</code> - Endpoint does not exist or was
-     *            previously deleted.</li>
-     *            <li> <code>READY</code> - Endpoint is ready to be used for
-     *            real-time predictions.</li>
-     *            <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - Endpoint does not exist or was previously
+     *            deleted.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>READY</code> - Endpoint is ready to be used for
+     *            real-time predictions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Updating/creating the endpoint.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see RealtimeEndpointStatus
      */
@@ -355,11 +398,22 @@ public class RealtimeEndpointInfo implements Serializable {
      * . This element can have one of the following values:
      * </p>
      * <ul>
-     * <li> <code>NONE</code> - Endpoint does not exist or was previously
-     * deleted.</li>
-     * <li> <code>READY</code> - Endpoint is ready to be used for real-time
-     * predictions.</li>
-     * <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     * <li>
+     * <p>
+     * <code>NONE</code> - Endpoint does not exist or was previously deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>READY</code> - Endpoint is ready to be used for real-time
+     * predictions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Updating/creating the endpoint.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -374,11 +428,23 @@ public class RealtimeEndpointInfo implements Serializable {
      *            following values:
      *            </p>
      *            <ul>
-     *            <li> <code>NONE</code> - Endpoint does not exist or was
-     *            previously deleted.</li>
-     *            <li> <code>READY</code> - Endpoint is ready to be used for
-     *            real-time predictions.</li>
-     *            <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - Endpoint does not exist or was previously
+     *            deleted.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>READY</code> - Endpoint is ready to be used for
+     *            real-time predictions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Updating/creating the endpoint.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -395,11 +461,22 @@ public class RealtimeEndpointInfo implements Serializable {
      * . This element can have one of the following values:
      * </p>
      * <ul>
-     * <li> <code>NONE</code> - Endpoint does not exist or was previously
-     * deleted.</li>
-     * <li> <code>READY</code> - Endpoint is ready to be used for real-time
-     * predictions.</li>
-     * <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     * <li>
+     * <p>
+     * <code>NONE</code> - Endpoint does not exist or was previously deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>READY</code> - Endpoint is ready to be used for real-time
+     * predictions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Updating/creating the endpoint.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
@@ -411,11 +488,23 @@ public class RealtimeEndpointInfo implements Serializable {
      *            following values:
      *            </p>
      *            <ul>
-     *            <li> <code>NONE</code> - Endpoint does not exist or was
-     *            previously deleted.</li>
-     *            <li> <code>READY</code> - Endpoint is ready to be used for
-     *            real-time predictions.</li>
-     *            <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - Endpoint does not exist or was previously
+     *            deleted.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>READY</code> - Endpoint is ready to be used for
+     *            real-time predictions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Updating/creating the endpoint.
+     *            </p>
+     *            </li>
      *            </ul>
      * @see RealtimeEndpointStatus
      */
@@ -429,11 +518,22 @@ public class RealtimeEndpointInfo implements Serializable {
      * . This element can have one of the following values:
      * </p>
      * <ul>
-     * <li> <code>NONE</code> - Endpoint does not exist or was previously
-     * deleted.</li>
-     * <li> <code>READY</code> - Endpoint is ready to be used for real-time
-     * predictions.</li>
-     * <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     * <li>
+     * <p>
+     * <code>NONE</code> - Endpoint does not exist or was previously deleted.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>READY</code> - Endpoint is ready to be used for real-time
+     * predictions.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>UPDATING</code> - Updating/creating the endpoint.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -448,11 +548,23 @@ public class RealtimeEndpointInfo implements Serializable {
      *            following values:
      *            </p>
      *            <ul>
-     *            <li> <code>NONE</code> - Endpoint does not exist or was
-     *            previously deleted.</li>
-     *            <li> <code>READY</code> - Endpoint is ready to be used for
-     *            real-time predictions.</li>
-     *            <li> <code>UPDATING</code> - Updating/creating the endpoint.</li>
+     *            <li>
+     *            <p>
+     *            <code>NONE</code> - Endpoint does not exist or was previously
+     *            deleted.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>READY</code> - Endpoint is ready to be used for
+     *            real-time predictions.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>UPDATING</code> - Updating/creating the endpoint.
+     *            </p>
+     *            </li>
      *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

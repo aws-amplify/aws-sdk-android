@@ -15,7 +15,7 @@
 
 package com.amazonaws;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * SDKGlobalConfiguration is to configure any global settings
@@ -131,27 +131,38 @@ public class SDKGlobalConfiguration {
      * this variable will adjust clock skew globally. Java SDK detects clock
      * skew errors and adjusts global clock skew automatically.
      */
-    private static final AtomicInteger GLOBAL_TIME_OFFSET = new AtomicInteger(0);
+    private static final AtomicLong GLOBAL_TIME_OFFSET = new AtomicLong(0);
 
     /**
      * Sets the global time offset. If this value is set then all the subsequent
      * requests will use this value to generate timestamps. To adjust clock skew
-     * per request use {@link Request#setTimeOffset(int)}
+     * per request use {@link Request#setTimeOffset(long)}
      *
      * @param timeOffset the time difference between local client and server
      */
-    public static void setGlobalTimeOffset(int timeOffset) {
+    public static void setGlobalTimeOffset(long timeOffset) {
         GLOBAL_TIME_OFFSET.set(timeOffset);
+    }
+
+    /**
+     * This method is deprecated, use {@link #setGlobalTimeOffset(long)} instead.
+     *
+     * @param timeOffset the time difference between local client and server
+     */
+    @Deprecated
+    public static void setGlobalTimeOffset(int timeOffset) {
+        setGlobalTimeOffset((long) timeOffset);
     }
 
     /**
      * Gets the global time offset. See {@link Request#getTimeOffset()} if
      * global time offset is not set.
      *
-     * @return GLOBAL_TIME_OFFSET an AtomicInteger that holds the value of time
+     * @return GLOBAL_TIME_OFFSET an AtomicLong that holds the value of time
      *         offset
      */
-    public static int getGlobalTimeOffset() {
+    public static long getGlobalTimeOffset() {
         return GLOBAL_TIME_OFFSET.get();
     }
+
 }

@@ -35,8 +35,46 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * The date and time after which AWS KMS deletes the customer master key
      * (CMK).
      * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replica keys, this field
+     * does not appear. The deletion date for the primary key isn't known until
+     * its last replica key is deleted.
+     * </p>
      */
     private java.util.Date deletionDate;
+
+    /**
+     * <p>
+     * The current status of the CMK.
+     * </p>
+     * <p>
+     * For more information about how key state affects the use of a CMK, see <a
+     * href
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Creating, Enabled, Disabled, PendingDeletion,
+     * PendingImport, PendingReplicaDeletion, Unavailable, Updating
+     */
+    private String keyState;
+
+    /**
+     * <p>
+     * The waiting period before the CMK is deleted.
+     * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * period begins when the last of its replica keys is deleted. Otherwise,
+     * the waiting period begins immediately.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 365<br/>
+     */
+    private Integer pendingWindowInDays;
 
     /**
      * <p>
@@ -109,10 +147,20 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * The date and time after which AWS KMS deletes the customer master key
      * (CMK).
      * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replica keys, this field
+     * does not appear. The deletion date for the primary key isn't known until
+     * its last replica key is deleted.
+     * </p>
      *
      * @return <p>
      *         The date and time after which AWS KMS deletes the customer master
      *         key (CMK).
+     *         </p>
+     *         <p>
+     *         If the CMK is a multi-Region primary key with replica keys, this
+     *         field does not appear. The deletion date for the primary key
+     *         isn't known until its last replica key is deleted.
      *         </p>
      */
     public java.util.Date getDeletionDate() {
@@ -124,10 +172,20 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * The date and time after which AWS KMS deletes the customer master key
      * (CMK).
      * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replica keys, this field
+     * does not appear. The deletion date for the primary key isn't known until
+     * its last replica key is deleted.
+     * </p>
      *
      * @param deletionDate <p>
      *            The date and time after which AWS KMS deletes the customer
      *            master key (CMK).
+     *            </p>
+     *            <p>
+     *            If the CMK is a multi-Region primary key with replica keys,
+     *            this field does not appear. The deletion date for the primary
+     *            key isn't known until its last replica key is deleted.
      *            </p>
      */
     public void setDeletionDate(java.util.Date deletionDate) {
@@ -140,6 +198,11 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * (CMK).
      * </p>
      * <p>
+     * If the CMK is a multi-Region primary key with replica keys, this field
+     * does not appear. The deletion date for the primary key isn't known until
+     * its last replica key is deleted.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
@@ -147,11 +210,272 @@ public class ScheduleKeyDeletionResult implements Serializable {
      *            The date and time after which AWS KMS deletes the customer
      *            master key (CMK).
      *            </p>
+     *            <p>
+     *            If the CMK is a multi-Region primary key with replica keys,
+     *            this field does not appear. The deletion date for the primary
+     *            key isn't known until its last replica key is deleted.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ScheduleKeyDeletionResult withDeletionDate(java.util.Date deletionDate) {
         this.deletionDate = deletionDate;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The current status of the CMK.
+     * </p>
+     * <p>
+     * For more information about how key state affects the use of a CMK, see <a
+     * href
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Creating, Enabled, Disabled, PendingDeletion,
+     * PendingImport, PendingReplicaDeletion, Unavailable, Updating
+     *
+     * @return <p>
+     *         The current status of the CMK.
+     *         </p>
+     *         <p>
+     *         For more information about how key state affects the use of a
+     *         CMK, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *         >Key state: Effect on your CMK</a> in the <i>AWS Key Management
+     *         Service Developer Guide</i>.
+     *         </p>
+     * @see KeyState
+     */
+    public String getKeyState() {
+        return keyState;
+    }
+
+    /**
+     * <p>
+     * The current status of the CMK.
+     * </p>
+     * <p>
+     * For more information about how key state affects the use of a CMK, see <a
+     * href
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Creating, Enabled, Disabled, PendingDeletion,
+     * PendingImport, PendingReplicaDeletion, Unavailable, Updating
+     *
+     * @param keyState <p>
+     *            The current status of the CMK.
+     *            </p>
+     *            <p>
+     *            For more information about how key state affects the use of a
+     *            CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
+     *            </p>
+     * @see KeyState
+     */
+    public void setKeyState(String keyState) {
+        this.keyState = keyState;
+    }
+
+    /**
+     * <p>
+     * The current status of the CMK.
+     * </p>
+     * <p>
+     * For more information about how key state affects the use of a CMK, see <a
+     * href
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Creating, Enabled, Disabled, PendingDeletion,
+     * PendingImport, PendingReplicaDeletion, Unavailable, Updating
+     *
+     * @param keyState <p>
+     *            The current status of the CMK.
+     *            </p>
+     *            <p>
+     *            For more information about how key state affects the use of a
+     *            CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see KeyState
+     */
+    public ScheduleKeyDeletionResult withKeyState(String keyState) {
+        this.keyState = keyState;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The current status of the CMK.
+     * </p>
+     * <p>
+     * For more information about how key state affects the use of a CMK, see <a
+     * href
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Creating, Enabled, Disabled, PendingDeletion,
+     * PendingImport, PendingReplicaDeletion, Unavailable, Updating
+     *
+     * @param keyState <p>
+     *            The current status of the CMK.
+     *            </p>
+     *            <p>
+     *            For more information about how key state affects the use of a
+     *            CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
+     *            </p>
+     * @see KeyState
+     */
+    public void setKeyState(KeyState keyState) {
+        this.keyState = keyState.toString();
+    }
+
+    /**
+     * <p>
+     * The current status of the CMK.
+     * </p>
+     * <p>
+     * For more information about how key state affects the use of a CMK, see <a
+     * href
+     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>Creating, Enabled, Disabled, PendingDeletion,
+     * PendingImport, PendingReplicaDeletion, Unavailable, Updating
+     *
+     * @param keyState <p>
+     *            The current status of the CMK.
+     *            </p>
+     *            <p>
+     *            For more information about how key state affects the use of a
+     *            CMK, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            Management Service Developer Guide</i>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see KeyState
+     */
+    public ScheduleKeyDeletionResult withKeyState(KeyState keyState) {
+        this.keyState = keyState.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The waiting period before the CMK is deleted.
+     * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * period begins when the last of its replica keys is deleted. Otherwise,
+     * the waiting period begins immediately.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 365<br/>
+     *
+     * @return <p>
+     *         The waiting period before the CMK is deleted.
+     *         </p>
+     *         <p>
+     *         If the CMK is a multi-Region primary key with replicas, the
+     *         waiting period begins when the last of its replica keys is
+     *         deleted. Otherwise, the waiting period begins immediately.
+     *         </p>
+     */
+    public Integer getPendingWindowInDays() {
+        return pendingWindowInDays;
+    }
+
+    /**
+     * <p>
+     * The waiting period before the CMK is deleted.
+     * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * period begins when the last of its replica keys is deleted. Otherwise,
+     * the waiting period begins immediately.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 365<br/>
+     *
+     * @param pendingWindowInDays <p>
+     *            The waiting period before the CMK is deleted.
+     *            </p>
+     *            <p>
+     *            If the CMK is a multi-Region primary key with replicas, the
+     *            waiting period begins when the last of its replica keys is
+     *            deleted. Otherwise, the waiting period begins immediately.
+     *            </p>
+     */
+    public void setPendingWindowInDays(Integer pendingWindowInDays) {
+        this.pendingWindowInDays = pendingWindowInDays;
+    }
+
+    /**
+     * <p>
+     * The waiting period before the CMK is deleted.
+     * </p>
+     * <p>
+     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * period begins when the last of its replica keys is deleted. Otherwise,
+     * the waiting period begins immediately.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>1 - 365<br/>
+     *
+     * @param pendingWindowInDays <p>
+     *            The waiting period before the CMK is deleted.
+     *            </p>
+     *            <p>
+     *            If the CMK is a multi-Region primary key with replicas, the
+     *            waiting period begins when the last of its replica keys is
+     *            deleted. Otherwise, the waiting period begins immediately.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ScheduleKeyDeletionResult withPendingWindowInDays(Integer pendingWindowInDays) {
+        this.pendingWindowInDays = pendingWindowInDays;
         return this;
     }
 
@@ -169,7 +493,11 @@ public class ScheduleKeyDeletionResult implements Serializable {
         if (getKeyId() != null)
             sb.append("KeyId: " + getKeyId() + ",");
         if (getDeletionDate() != null)
-            sb.append("DeletionDate: " + getDeletionDate());
+            sb.append("DeletionDate: " + getDeletionDate() + ",");
+        if (getKeyState() != null)
+            sb.append("KeyState: " + getKeyState() + ",");
+        if (getPendingWindowInDays() != null)
+            sb.append("PendingWindowInDays: " + getPendingWindowInDays());
         sb.append("}");
         return sb.toString();
     }
@@ -182,6 +510,9 @@ public class ScheduleKeyDeletionResult implements Serializable {
         hashCode = prime * hashCode + ((getKeyId() == null) ? 0 : getKeyId().hashCode());
         hashCode = prime * hashCode
                 + ((getDeletionDate() == null) ? 0 : getDeletionDate().hashCode());
+        hashCode = prime * hashCode + ((getKeyState() == null) ? 0 : getKeyState().hashCode());
+        hashCode = prime * hashCode
+                + ((getPendingWindowInDays() == null) ? 0 : getPendingWindowInDays().hashCode());
         return hashCode;
     }
 
@@ -204,6 +535,15 @@ public class ScheduleKeyDeletionResult implements Serializable {
             return false;
         if (other.getDeletionDate() != null
                 && other.getDeletionDate().equals(this.getDeletionDate()) == false)
+            return false;
+        if (other.getKeyState() == null ^ this.getKeyState() == null)
+            return false;
+        if (other.getKeyState() != null && other.getKeyState().equals(this.getKeyState()) == false)
+            return false;
+        if (other.getPendingWindowInDays() == null ^ this.getPendingWindowInDays() == null)
+            return false;
+        if (other.getPendingWindowInDays() != null
+                && other.getPendingWindowInDays().equals(this.getPendingWindowInDays()) == false)
             return false;
         return true;
     }

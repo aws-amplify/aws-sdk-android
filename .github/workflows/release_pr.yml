@@ -1,0 +1,50 @@
+name: Prepare Next Release
+on:
+  workflow_dispatch:
+env:
+  GIT_USER_NAME: awsmobilesdk-dev+ghops
+  GIT_USER_EMAIL: awsmobilesdk-dev+ghops@amazon.com
+  BASE_BRANCH: main
+jobs:
+  create_pr_for_next_release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update git
+      run: |
+        sudo add-apt-repository -y ppa:git-core/ppa
+        sudo apt-get update
+        sudo apt-get install git -y
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ env.BASE_BRANCH }}
+        fetch-depth: 0
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.7
+    - name: Install dependencies
+      run: |
+        cd build-support
+        gem install bundler
+        bundle install
+    - name: Configure git options
+      run: |
+        cd build-support
+        bundle exec fastlane android configure_git_options git_user_email:$GIT_USER_EMAIL git_user_name:$GIT_USER_NAME
+    - name: Create/checkout a branch for the release
+      run: |
+        branch_name=bump_version
+        git fetch --all
+        (git branch -D $branch_name &>/dev/null) && (echo 'Existing $branch_name branch deleted') || (echo 'No existing $branch_name branch to delete.')
+        git checkout -b $branch_name
+    - name: Create PR for next release
+      env:
+        RELEASE_MANAGER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd build-support
+        bundle exec fastlane android create_next_release_pr
+    - name: Check modified file content
+      run: |
+        cat gradle.properties
+        cat CHANGELOG.md
+        git status

@@ -147,6 +147,35 @@ public interface AmazonConnect {
      * change.
      * </p>
      * <p>
+     * Allows the specified Amazon Connect instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param associateBotRequest
+     * @throws ResourceNotFoundException
+     * @throws ResourceConflictException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws LimitExceededException
+     * @throws ServiceQuotaExceededException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void associateBot(AssociateBotRequest associateBotRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Associates a storage resource type for the first time. You can only
      * associate one type of storage configuration in a single call. This means,
      * for example, that you can't define an instance with multiple S3 buckets
@@ -365,6 +394,13 @@ public interface AmazonConnect {
      * Service (Amazon S3) or Amazon Kinesis. It also does not allow for any
      * configurations on features, such as Contact Lens for Amazon Connect.
      * </p>
+     * <p>
+     * Amazon Connect enforces a limit on the total number of instances that you
+     * can create or delete in 30 days. If you exceed this limit, you will get
+     * an error message indicating there has been an excessive number of
+     * attempts at creating or deleting instances. You must wait 30 days before
+     * you can restart creating and deleting instances in your account.
+     * </p>
      * 
      * @param createInstanceRequest
      * @return createInstanceResult The response from the CreateInstance service
@@ -386,10 +422,6 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Create an AppIntegration association with an Amazon Connect instance.
      * </p>
@@ -447,10 +479,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Creates a quick connect for the specified Amazon Connect instance.
      * </p>
      * 
@@ -504,10 +532,6 @@ public interface AmazonConnect {
             AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Creates a use case for an AppIntegration association.
      * </p>
@@ -599,6 +623,13 @@ public interface AmazonConnect {
      * <p>
      * Deletes the Amazon Connect instance.
      * </p>
+     * <p>
+     * Amazon Connect enforces a limit on the total number of instances that you
+     * can create or delete in 30 days. If you exceed this limit, you will get
+     * an error message indicating there has been an excessive number of
+     * attempts at creating or deleting instances. You must wait 30 days before
+     * you can restart creating and deleting instances in your account.
+     * </p>
      * 
      * @param deleteInstanceRequest
      * @throws ResourceNotFoundException
@@ -616,10 +647,6 @@ public interface AmazonConnect {
             AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes an AppIntegration association from an Amazon Connect instance.
      * The association must not have any use cases associated with it.
@@ -644,10 +671,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Deletes a quick connect.
      * </p>
      * 
@@ -669,10 +692,6 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes a use case from an AppIntegration association.
      * </p>
@@ -933,10 +952,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Describes the quick connect.
      * </p>
      * 
@@ -1092,6 +1107,32 @@ public interface AmazonConnect {
      */
     void disassociateApprovedOrigin(
             DisassociateApprovedOriginRequest disassociateApprovedOriginRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Revokes authorization from the specified instance to access the specified
+     * Amazon Lex or Amazon Lex V2 bot.
+     * </p>
+     * 
+     * @param disassociateBotRequest
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void disassociateBot(DisassociateBotRequest disassociateBotRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1314,6 +1355,16 @@ public interface AmazonConnect {
      * <p>
      * Retrieves a token for federation.
      * </p>
+     * <note>
+     * <p>
+     * This API doesn't support root users. If you try to invoke
+     * GetFederationToken with root credentials, an error message similar to the
+     * following one appears:
+     * </p>
+     * <p>
+     * <code>Provided identity: Principal: .... User: .... cannot be used for federation with Amazon Connect</code>
+     * </p>
+     * </note>
      * 
      * @param getFederationTokenRequest
      * @return getFederationTokenResult The response from the GetFederationToken
@@ -1394,6 +1445,34 @@ public interface AmazonConnect {
      */
     ListApprovedOriginsResult listApprovedOrigins(
             ListApprovedOriginsRequest listApprovedOriginsRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * For the specified version of Amazon Lex, returns a paginated list of all
+     * the Amazon Lex bots currently associated with the instance.
+     * </p>
+     * 
+     * @param listBotsRequest
+     * @return listBotsResult The response from the ListBots service method, as
+     *         returned by Amazon Connect.
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListBotsResult listBots(ListBotsRequest listBotsRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -1554,10 +1633,6 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Provides summary information about the AppIntegration associations for
      * the specified Amazon Connect instance.
@@ -1735,6 +1810,12 @@ public interface AmazonConnect {
      * instance.
      * </p>
      * <p>
+     * If you do not specify a <code>QueueTypes</code> parameter, both standard
+     * and agent queues are returned. This might cause an unexpected truncation
+     * of results if you have more than 1000 agents and you limit the number of
+     * results of the API call in code.
+     * </p>
+     * <p>
      * For more information about queues, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html"
      * >Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator
@@ -1761,10 +1842,6 @@ public interface AmazonConnect {
             AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Provides information about the quick connects for the specified Amazon
      * Connect instance.
@@ -1945,10 +2022,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Lists the use cases.
      * </p>
      * 
@@ -2083,7 +2156,7 @@ public interface AmazonConnect {
      * <li>
      * <p>
      * API rate limit is exceeded. API TPS throttling returns a
-     * <code>TooManyRequests</code> exception from the API Gateway.
+     * <code>TooManyRequests</code> exception.
      * </p>
      * </li>
      * <li>
@@ -2382,22 +2455,26 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Creates or updates the contact attributes associated with the specified
-     * contact.
+     * Creates or updates user-defined contact attributes associated with the
+     * specified contact.
      * </p>
      * <p>
-     * You can add or update attributes for both ongoing and completed contacts.
-     * For example, while the call is active, you can update the customer's name
-     * or the reason the customer called. You can add notes about steps that the
-     * agent took during the call that display to the next agent that takes the
-     * call. You can also update attributes for a contact using data from your
-     * CRM application and save the data with the contact in Amazon Connect. You
-     * could also flag calls for additional analysis, such as legal review or to
-     * identify abusive callers.
+     * You can create or update user-defined attributes for both ongoing and
+     * completed contacts. For example, while the call is active, you can update
+     * the customer's name or the reason the customer called. You can add notes
+     * about steps that the agent took during the call that display to the next
+     * agent that takes the call. You can also update attributes for a contact
+     * using data from your CRM application and save the data with the contact
+     * in Amazon Connect. You could also flag calls for additional analysis,
+     * such as legal review or to identify abusive callers.
      * </p>
      * <p>
      * Contact attributes are available in Amazon Connect for 24 months, and are
-     * then deleted.
+     * then deleted. For information about CTR retention and the maximum size of
+     * the CTR attributes section, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * >Feature specifications</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Important:</b> You cannot use the operation to update attributes for
@@ -2677,10 +2754,6 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Updates the configuration settings for the specified quick connect.
      * </p>
      * 
@@ -2702,10 +2775,6 @@ public interface AmazonConnect {
             throws AmazonClientException, AmazonServiceException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Updates the name and description of a quick connect. The request accepts
      * the following data in JSON format. At least <code>Name</code> or

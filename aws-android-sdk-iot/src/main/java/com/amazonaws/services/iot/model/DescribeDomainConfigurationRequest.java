@@ -23,12 +23,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets summary information about a domain configuration.
  * </p>
- * <note>
- * <p>
- * The domain configuration feature is in public preview and is subject to
- * change.
- * </p>
- * </note>
  */
 public class DescribeDomainConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {

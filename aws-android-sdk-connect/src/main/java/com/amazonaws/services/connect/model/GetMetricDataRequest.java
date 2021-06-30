@@ -33,7 +33,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetMetricDataRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,6 +76,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels
      * are supported.
      * </p>
+     * <note>
+     * <p>
+     * To filter by <code>Queues</code>, enter the queue ID/ARN, not the name of
+     * the queue.
+     * </p>
+     * </note>
      */
     private Filters filters;
 
@@ -84,9 +91,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * are grouped by queue, the metrics returned are grouped by queue. The
      * values returned apply to the metrics for each queue rather than
      * aggregated for all queues.
-     * </p>
-     * <p>
-     * The only supported grouping is <code>QUEUE</code>.
      * </p>
      * <p>
      * If no grouping is specified, a summary of metrics for all queues is
@@ -104,6 +108,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * >Historical Metrics Definitions</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * This API does not support a contacts incoming metric (there's no
+     * CONTACTS_INCOMING metric missing from the documented list).
+     * </p>
+     * </note>
      * <dl>
      * <dt>ABANDON_TIME</dt>
      * <dd>
@@ -324,15 +334,18 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <dt>SERVICE_LEVEL</dt>
      * <dd>
      * <p>
+     * You can include up to 20 SERVICE_LEVEL metrics in a request.
+     * </p>
+     * <p>
      * Unit: PERCENT
      * </p>
      * <p>
      * Statistic: AVG
      * </p>
      * <p>
-     * Threshold: Only "Less than" comparisons are supported, with the following
-     * service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-     * 600
+     * Threshold: For <code>ThresholdValue</code>, enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
      * </p>
      * </dd>
      * </dl>
@@ -360,14 +373,16 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -376,14 +391,16 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -392,7 +409,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -402,7 +420,8 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -593,6 +612,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels
      * are supported.
      * </p>
+     * <note>
+     * <p>
+     * To filter by <code>Queues</code>, enter the queue ID/ARN, not the name of
+     * the queue.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         The queues, up to 100, or channels, to use to filter the metrics
@@ -601,6 +626,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         You can include both queue IDs and queue ARNs in the same
      *         request. VOICE, CHAT, and TASK channels are supported.
      *         </p>
+     *         <note>
+     *         <p>
+     *         To filter by <code>Queues</code>, enter the queue ID/ARN, not the
+     *         name of the queue.
+     *         </p>
+     *         </note>
      */
     public Filters getFilters() {
         return filters;
@@ -614,6 +645,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels
      * are supported.
      * </p>
+     * <note>
+     * <p>
+     * To filter by <code>Queues</code>, enter the queue ID/ARN, not the name of
+     * the queue.
+     * </p>
+     * </note>
      *
      * @param filters <p>
      *            The queues, up to 100, or channels, to use to filter the
@@ -623,6 +660,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            the same request. VOICE, CHAT, and TASK channels are
      *            supported.
      *            </p>
+     *            <note>
+     *            <p>
+     *            To filter by <code>Queues</code>, enter the queue ID/ARN, not
+     *            the name of the queue.
+     *            </p>
+     *            </note>
      */
     public void setFilters(Filters filters) {
         this.filters = filters;
@@ -636,6 +679,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * IDs and queue ARNs in the same request. VOICE, CHAT, and TASK channels
      * are supported.
      * </p>
+     * <note>
+     * <p>
+     * To filter by <code>Queues</code>, enter the queue ID/ARN, not the name of
+     * the queue.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -648,6 +697,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            the same request. VOICE, CHAT, and TASK channels are
      *            supported.
      *            </p>
+     *            <note>
+     *            <p>
+     *            To filter by <code>Queues</code>, enter the queue ID/ARN, not
+     *            the name of the queue.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -664,9 +719,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * aggregated for all queues.
      * </p>
      * <p>
-     * The only supported grouping is <code>QUEUE</code>.
-     * </p>
-     * <p>
      * If no grouping is specified, a summary of metrics for all queues is
      * returned.
      * </p>
@@ -676,9 +728,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         results are grouped by queue, the metrics returned are grouped by
      *         queue. The values returned apply to the metrics for each queue
      *         rather than aggregated for all queues.
-     *         </p>
-     *         <p>
-     *         The only supported grouping is <code>QUEUE</code>.
      *         </p>
      *         <p>
      *         If no grouping is specified, a summary of metrics for all queues
@@ -697,9 +746,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * aggregated for all queues.
      * </p>
      * <p>
-     * The only supported grouping is <code>QUEUE</code>.
-     * </p>
-     * <p>
      * If no grouping is specified, a summary of metrics for all queues is
      * returned.
      * </p>
@@ -709,9 +755,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            when results are grouped by queue, the metrics returned are
      *            grouped by queue. The values returned apply to the metrics for
      *            each queue rather than aggregated for all queues.
-     *            </p>
-     *            <p>
-     *            The only supported grouping is <code>QUEUE</code>.
      *            </p>
      *            <p>
      *            If no grouping is specified, a summary of metrics for all
@@ -735,9 +778,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * aggregated for all queues.
      * </p>
      * <p>
-     * The only supported grouping is <code>QUEUE</code>.
-     * </p>
-     * <p>
      * If no grouping is specified, a summary of metrics for all queues is
      * returned.
      * </p>
@@ -750,9 +790,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            when results are grouped by queue, the metrics returned are
      *            grouped by queue. The values returned apply to the metrics for
      *            each queue rather than aggregated for all queues.
-     *            </p>
-     *            <p>
-     *            The only supported grouping is <code>QUEUE</code>.
      *            </p>
      *            <p>
      *            If no grouping is specified, a summary of metrics for all
@@ -779,9 +816,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * aggregated for all queues.
      * </p>
      * <p>
-     * The only supported grouping is <code>QUEUE</code>.
-     * </p>
-     * <p>
      * If no grouping is specified, a summary of metrics for all queues is
      * returned.
      * </p>
@@ -794,9 +828,6 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            when results are grouped by queue, the metrics returned are
      *            grouped by queue. The values returned apply to the metrics for
      *            each queue rather than aggregated for all queues.
-     *            </p>
-     *            <p>
-     *            The only supported grouping is <code>QUEUE</code>.
      *            </p>
      *            <p>
      *            If no grouping is specified, a summary of metrics for all
@@ -819,6 +850,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * >Historical Metrics Definitions</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * This API does not support a contacts incoming metric (there's no
+     * CONTACTS_INCOMING metric missing from the documented list).
+     * </p>
+     * </note>
      * <dl>
      * <dt>ABANDON_TIME</dt>
      * <dd>
@@ -1039,15 +1076,18 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <dt>SERVICE_LEVEL</dt>
      * <dd>
      * <p>
+     * You can include up to 20 SERVICE_LEVEL metrics in a request.
+     * </p>
+     * <p>
      * Unit: PERCENT
      * </p>
      * <p>
      * Statistic: AVG
      * </p>
      * <p>
-     * Threshold: Only "Less than" comparisons are supported, with the following
-     * service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-     * 600
+     * Threshold: For <code>ThresholdValue</code>, enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
      * </p>
      * </dd>
      * </dl>
@@ -1060,6 +1100,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         >Historical Metrics Definitions</a> in the <i>Amazon Connect
      *         Administrator Guide</i>.
      *         </p>
+     *         <note>
+     *         <p>
+     *         This API does not support a contacts incoming metric (there's no
+     *         CONTACTS_INCOMING metric missing from the documented list).
+     *         </p>
+     *         </note>
      *         <dl>
      *         <dt>ABANDON_TIME</dt>
      *         <dd>
@@ -1280,15 +1326,19 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *         <dt>SERVICE_LEVEL</dt>
      *         <dd>
      *         <p>
+     *         You can include up to 20 SERVICE_LEVEL metrics in a request.
+     *         </p>
+     *         <p>
      *         Unit: PERCENT
      *         </p>
      *         <p>
      *         Statistic: AVG
      *         </p>
      *         <p>
-     *         Threshold: Only "Less than" comparisons are supported, with the
-     *         following service level thresholds: 15, 20, 25, 30, 45, 60, 90,
-     *         120, 180, 240, 300, 600
+     *         Threshold: For <code>ThresholdValue</code>, enter any whole
+     *         number from 1 to 604800 (inclusive), in seconds. For
+     *         <code>Comparison</code>, you must enter <code>LT</code> (for
+     *         "Less than").
      *         </p>
      *         </dd>
      *         </dl>
@@ -1306,6 +1356,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * >Historical Metrics Definitions</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * This API does not support a contacts incoming metric (there's no
+     * CONTACTS_INCOMING metric missing from the documented list).
+     * </p>
+     * </note>
      * <dl>
      * <dt>ABANDON_TIME</dt>
      * <dd>
@@ -1526,15 +1582,18 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <dt>SERVICE_LEVEL</dt>
      * <dd>
      * <p>
+     * You can include up to 20 SERVICE_LEVEL metrics in a request.
+     * </p>
+     * <p>
      * Unit: PERCENT
      * </p>
      * <p>
      * Statistic: AVG
      * </p>
      * <p>
-     * Threshold: Only "Less than" comparisons are supported, with the following
-     * service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-     * 600
+     * Threshold: For <code>ThresholdValue</code>, enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
      * </p>
      * </dd>
      * </dl>
@@ -1547,6 +1606,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            >Historical Metrics Definitions</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            This API does not support a contacts incoming metric (there's
+     *            no CONTACTS_INCOMING metric missing from the documented list).
+     *            </p>
+     *            </note>
      *            <dl>
      *            <dt>ABANDON_TIME</dt>
      *            <dd>
@@ -1767,15 +1832,19 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            <dt>SERVICE_LEVEL</dt>
      *            <dd>
      *            <p>
+     *            You can include up to 20 SERVICE_LEVEL metrics in a request.
+     *            </p>
+     *            <p>
      *            Unit: PERCENT
      *            </p>
      *            <p>
      *            Statistic: AVG
      *            </p>
      *            <p>
-     *            Threshold: Only "Less than" comparisons are supported, with
-     *            the following service level thresholds: 15, 20, 25, 30, 45,
-     *            60, 90, 120, 180, 240, 300, 600
+     *            Threshold: For <code>ThresholdValue</code>, enter any whole
+     *            number from 1 to 604800 (inclusive), in seconds. For
+     *            <code>Comparison</code>, you must enter <code>LT</code> (for
+     *            "Less than").
      *            </p>
      *            </dd>
      *            </dl>
@@ -1798,6 +1867,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * >Historical Metrics Definitions</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * This API does not support a contacts incoming metric (there's no
+     * CONTACTS_INCOMING metric missing from the documented list).
+     * </p>
+     * </note>
      * <dl>
      * <dt>ABANDON_TIME</dt>
      * <dd>
@@ -2018,15 +2093,18 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <dt>SERVICE_LEVEL</dt>
      * <dd>
      * <p>
+     * You can include up to 20 SERVICE_LEVEL metrics in a request.
+     * </p>
+     * <p>
      * Unit: PERCENT
      * </p>
      * <p>
      * Statistic: AVG
      * </p>
      * <p>
-     * Threshold: Only "Less than" comparisons are supported, with the following
-     * service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-     * 600
+     * Threshold: For <code>ThresholdValue</code>, enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
      * </p>
      * </dd>
      * </dl>
@@ -2042,6 +2120,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            >Historical Metrics Definitions</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            This API does not support a contacts incoming metric (there's
+     *            no CONTACTS_INCOMING metric missing from the documented list).
+     *            </p>
+     *            </note>
      *            <dl>
      *            <dt>ABANDON_TIME</dt>
      *            <dd>
@@ -2262,15 +2346,19 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            <dt>SERVICE_LEVEL</dt>
      *            <dd>
      *            <p>
+     *            You can include up to 20 SERVICE_LEVEL metrics in a request.
+     *            </p>
+     *            <p>
      *            Unit: PERCENT
      *            </p>
      *            <p>
      *            Statistic: AVG
      *            </p>
      *            <p>
-     *            Threshold: Only "Less than" comparisons are supported, with
-     *            the following service level thresholds: 15, 20, 25, 30, 45,
-     *            60, 90, 120, 180, 240, 300, 600
+     *            Threshold: For <code>ThresholdValue</code>, enter any whole
+     *            number from 1 to 604800 (inclusive), in seconds. For
+     *            <code>Comparison</code>, you must enter <code>LT</code> (for
+     *            "Less than").
      *            </p>
      *            </dd>
      *            </dl>
@@ -2297,6 +2385,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * >Historical Metrics Definitions</a> in the <i>Amazon Connect
      * Administrator Guide</i>.
      * </p>
+     * <note>
+     * <p>
+     * This API does not support a contacts incoming metric (there's no
+     * CONTACTS_INCOMING metric missing from the documented list).
+     * </p>
+     * </note>
      * <dl>
      * <dt>ABANDON_TIME</dt>
      * <dd>
@@ -2517,15 +2611,18 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      * <dt>SERVICE_LEVEL</dt>
      * <dd>
      * <p>
+     * You can include up to 20 SERVICE_LEVEL metrics in a request.
+     * </p>
+     * <p>
      * Unit: PERCENT
      * </p>
      * <p>
      * Statistic: AVG
      * </p>
      * <p>
-     * Threshold: Only "Less than" comparisons are supported, with the following
-     * service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-     * 600
+     * Threshold: For <code>ThresholdValue</code>, enter any whole number from 1
+     * to 604800 (inclusive), in seconds. For <code>Comparison</code>, you must
+     * enter <code>LT</code> (for "Less than").
      * </p>
      * </dd>
      * </dl>
@@ -2541,6 +2638,12 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            >Historical Metrics Definitions</a> in the <i>Amazon Connect
      *            Administrator Guide</i>.
      *            </p>
+     *            <note>
+     *            <p>
+     *            This API does not support a contacts incoming metric (there's
+     *            no CONTACTS_INCOMING metric missing from the documented list).
+     *            </p>
+     *            </note>
      *            <dl>
      *            <dt>ABANDON_TIME</dt>
      *            <dd>
@@ -2761,15 +2864,19 @@ public class GetMetricDataRequest extends AmazonWebServiceRequest implements Ser
      *            <dt>SERVICE_LEVEL</dt>
      *            <dd>
      *            <p>
+     *            You can include up to 20 SERVICE_LEVEL metrics in a request.
+     *            </p>
+     *            <p>
      *            Unit: PERCENT
      *            </p>
      *            <p>
      *            Statistic: AVG
      *            </p>
      *            <p>
-     *            Threshold: Only "Less than" comparisons are supported, with
-     *            the following service level thresholds: 15, 20, 25, 30, 45,
-     *            60, 90, 120, 180, 240, 300, 600
+     *            Threshold: For <code>ThresholdValue</code>, enter any whole
+     *            number from 1 to 604800 (inclusive), in seconds. For
+     *            <code>Comparison</code>, you must enter <code>LT</code> (for
+     *            "Less than").
      *            </p>
      *            </dd>
      *            </dl>

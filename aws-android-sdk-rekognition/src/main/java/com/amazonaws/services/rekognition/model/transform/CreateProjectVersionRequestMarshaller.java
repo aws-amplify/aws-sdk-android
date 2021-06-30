@@ -101,6 +101,11 @@ public class CreateProjectVersionRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (createProjectVersionRequest.getKmsKeyId() != null) {
+                String kmsKeyId = createProjectVersionRequest.getKmsKeyId();
+                jsonWriter.name("KmsKeyId");
+                jsonWriter.value(kmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

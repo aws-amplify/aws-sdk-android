@@ -21,63 +21,56 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Adds a grant to a customer master key (CMK). The grant allows the grantee
- * principal to use the CMK when the conditions specified in the grant are met.
- * When setting permissions, grants are an alternative to key policies.
+ * Adds a grant to a customer master key (CMK).
  * </p>
  * <p>
- * To create a grant that allows a <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
- * >cryptographic operation</a> only when the request includes a particular <a
+ * A <i>grant</i> is a policy instrument that allows AWS principals to use AWS
+ * KMS customer master keys (CMKs) in cryptographic operations. It also can
+ * allow them to view a CMK (<a>DescribeKey</a>) and create and manage grants.
+ * When authorizing access to a CMK, grants are considered along with key
+ * policies and IAM policies. Grants are often used for temporary permissions
+ * because you can create one, use its permissions, and delete it without
+ * changing your key policies or IAM policies.
+ * </p>
+ * <p>
+ * For detailed information about grants, including grant terminology, see <a
+ * href
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Using
+ * grants</a> in the <i> <i>AWS Key Management Service Developer Guide</i> </i>.
+ * For examples of working with grants in several programming languages, see <a
  * href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
- * >encryption context</a>, use the <code>Constraints</code> parameter. For
- * details, see <a>GrantConstraints</a>.
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-grants.html"
+ * >Programming grants</a>.
  * </p>
  * <p>
- * You can create grants on symmetric and asymmetric CMKs. However, if the grant
- * allows an operation that the CMK does not support, <code>CreateGrant</code>
- * fails with a <code>ValidationException</code>.
+ * The <code>CreateGrant</code> operation returns a <code>GrantToken</code> and
+ * a <code>GrantId</code>.
  * </p>
  * <ul>
  * <li>
  * <p>
- * Grants for symmetric CMKs cannot allow operations that are not supported for
- * symmetric CMKs, including <a>Sign</a>, <a>Verify</a>, and
- * <a>GetPublicKey</a>. (There are limited exceptions to this rule for legacy
- * operations, but you should not create a grant for an operation that AWS KMS
- * does not support.)
+ * When you create, retire, or revoke a grant, there might be a brief delay,
+ * usually less than five minutes, until the grant is available throughout AWS
+ * KMS. This state is known as <i>eventual consistency</i>. Once the grant has
+ * achieved eventual consistency, the grantee principal can use the permissions
+ * in the grant without identifying the grant.
+ * </p>
+ * <p>
+ * However, to use the permissions in the grant immediately, use the
+ * <code>GrantToken</code> that <code>CreateGrant</code> returns. For details,
+ * see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/using-grant-token.html"
+ * >Using a grant token</a> in the <i> <i>AWS Key Management Service Developer
+ * Guide</i> </i>.
  * </p>
  * </li>
  * <li>
  * <p>
- * Grants for asymmetric CMKs cannot allow operations that are not supported for
- * asymmetric CMKs, including operations that <a href=
- * "https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKey"
- * >generate data keys</a> or <a href=
- * "https://docs.aws.amazon.com/kms/latest/APIReference/API_GenerateDataKeyPair"
- * >data key pairs</a>, or operations related to <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html"
- * >automatic key rotation</a>, <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
- * >imported key material</a>, or CMKs in <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
- * >custom key stores</a>.
- * </p>
- * </li>
- * <li>
- * <p>
- * Grants for asymmetric CMKs with a <code>KeyUsage</code> of
- * <code>ENCRYPT_DECRYPT</code> cannot allow the <a>Sign</a> or <a>Verify</a>
- * operations. Grants for asymmetric CMKs with a <code>KeyUsage</code> of
- * <code>SIGN_VERIFY</code> cannot allow the <a>Encrypt</a> or <a>Decrypt</a>
+ * The <code>CreateGrant</code> operation also returns a <code>GrantId</code>.
+ * You can use the <code>GrantId</code> and a key identifier to identify the
+ * grant in the <a>RetireGrant</a> and <a>RevokeGrant</a> operations. To find
+ * the grant ID, use the <a>ListGrants</a> or <a>ListRetirableGrants</a>
  * operations.
- * </p>
- * </li>
- * <li>
- * <p>
- * Grants for asymmetric CMKs cannot include an encryption context grant
- * constraint. An encryption context is not supported on asymmetric CMKs.
  * </p>
  * </li>
  * </ul>
@@ -94,8 +87,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The CMK that you use for this operation must be in a compatible key state.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
- * Management Service Developer Guide</i>.
+ * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: Yes. To perform this operation on a CMK in a
@@ -136,12 +129,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateGrantRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) that the grant
-     * applies to.
+     * Identifies the customer master key (CMK) for the grant. The grant gives
+     * principals permission to use this CMK.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To
-     * specify a CMK in a different AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
+     * AWS account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -171,8 +164,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The principal that is given permission to perform the operations that the
-     * grant permits.
+     * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
      * To specify the principal, use the <a href=
@@ -219,25 +211,50 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * A list of operations that the grant permits.
      * </p>
+     * <p>
+     * The operation must be supported on the CMK. For example, you cannot
+     * create a grant for a symmetric CMK that allows the <a>Sign</a> operation,
+     * or a grant for an asymmetric CMK that allows the <a>GenerateDataKey</a>
+     * operation. If you try, AWS KMS returns a <code>ValidationError</code>
+     * exception. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     * >Grant operations</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
      */
     private java.util.List<String> operations = new java.util.ArrayList<String>();
 
     /**
      * <p>
-     * Allows a <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operation</a> only when the encryption context matches or
-     * includes the encryption context specified in this structure. For more
-     * information about encryption context, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
-     * Developer Guide</i> </i>.
+     * Specifies a grant constraint.
      * </p>
      * <p>
-     * Grant constraints are not applied to operations that do not support an
-     * encryption context, such as cryptographic operations with asymmetric CMKs
-     * and management operations, such as <a>DescribeKey</a> or
-     * <a>RetireGrant</a>.
+     * AWS KMS supports the <code>EncryptionContextEquals</code> and
+     * <code>EncryptionContextSubset</code> grant constraints. Each constraint
+     * value can include up to 8 encryption context pairs. The encryption
+     * context value in each constraint cannot exceed 384 characters.
+     * </p>
+     * <p>
+     * These grant constraints allow a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context in the
+     * request matches (<code>EncryptionContextEquals</code>) or includes (
+     * <code>EncryptionContextSubset</code>) the encryption context specified in
+     * this structure. For more information about encryption context, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>. For information about grant constraints, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     * >Using grant constraints</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * The encryption context grant constraints are supported only on operations
+     * that include an encryption context. You cannot use an encryption context
+     * grant constraint for cryptographic operations with asymmetric CMKs or for
+     * management operations, such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      * </p>
      */
     private GrantConstraints constraints;
@@ -247,9 +264,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -284,12 +303,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) that the grant
-     * applies to.
+     * Identifies the customer master key (CMK) for the grant. The grant gives
+     * principals permission to use this CMK.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To
-     * specify a CMK in a different AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
+     * AWS account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -316,13 +335,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The unique identifier for the customer master key (CMK) that the
-     *         grant applies to.
+     *         Identifies the customer master key (CMK) for the grant. The grant
+     *         gives principals permission to use this CMK.
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
-     *         To specify a CMK in a different AWS account, you must use the key
-     *         ARN.
+     *         Specify the key ID or key ARN of the CMK. To specify a CMK in a
+     *         different AWS account, you must use the key ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -351,12 +369,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) that the grant
-     * applies to.
+     * Identifies the customer master key (CMK) for the grant. The grant gives
+     * principals permission to use this CMK.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To
-     * specify a CMK in a different AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
+     * AWS account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -383,13 +401,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier for the customer master key (CMK) that
-     *            the grant applies to.
+     *            Identifies the customer master key (CMK) for the grant. The
+     *            grant gives principals permission to use this CMK.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK. To specify a CMK in a different AWS account, you must use
-     *            the key ARN.
+     *            Specify the key ID or key ARN of the CMK. To specify a CMK in
+     *            a different AWS account, you must use the key ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -418,12 +435,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) that the grant
-     * applies to.
+     * Identifies the customer master key (CMK) for the grant. The grant gives
+     * principals permission to use this CMK.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK. To
-     * specify a CMK in a different AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
+     * AWS account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -453,13 +470,12 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier for the customer master key (CMK) that
-     *            the grant applies to.
+     *            Identifies the customer master key (CMK) for the grant. The
+     *            grant gives principals permission to use this CMK.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK. To specify a CMK in a different AWS account, you must use
-     *            the key ARN.
+     *            Specify the key ID or key ARN of the CMK. To specify a CMK in
+     *            a different AWS account, you must use the key ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -491,8 +507,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The principal that is given permission to perform the operations that the
-     * grant permits.
+     * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
      * To specify the principal, use the <a href=
@@ -511,8 +526,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @return <p>
-     *         The principal that is given permission to perform the operations
-     *         that the grant permits.
+     *         The identity that gets the permissions specified in the grant.
      *         </p>
      *         <p>
      *         To specify the principal, use the <a href=
@@ -532,8 +546,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The principal that is given permission to perform the operations that the
-     * grant permits.
+     * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
      * To specify the principal, use the <a href=
@@ -552,8 +565,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param granteePrincipal <p>
-     *            The principal that is given permission to perform the
-     *            operations that the grant permits.
+     *            The identity that gets the permissions specified in the grant.
      *            </p>
      *            <p>
      *            To specify the principal, use the <a href=
@@ -573,8 +585,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The principal that is given permission to perform the operations that the
-     * grant permits.
+     * The identity that gets the permissions specified in the grant.
      * </p>
      * <p>
      * To specify the principal, use the <a href=
@@ -596,8 +607,7 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Pattern: </b>^[\w+=,.@:/-]+$<br/>
      *
      * @param granteePrincipal <p>
-     *            The principal that is given permission to perform the
-     *            operations that the grant permits.
+     *            The identity that gets the permissions specified in the grant.
      *            </p>
      *            <p>
      *            To specify the principal, use the <a href=
@@ -751,9 +761,30 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * A list of operations that the grant permits.
      * </p>
+     * <p>
+     * The operation must be supported on the CMK. For example, you cannot
+     * create a grant for a symmetric CMK that allows the <a>Sign</a> operation,
+     * or a grant for an asymmetric CMK that allows the <a>GenerateDataKey</a>
+     * operation. If you try, AWS KMS returns a <code>ValidationError</code>
+     * exception. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     * >Grant operations</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
      *
      * @return <p>
      *         A list of operations that the grant permits.
+     *         </p>
+     *         <p>
+     *         The operation must be supported on the CMK. For example, you
+     *         cannot create a grant for a symmetric CMK that allows the
+     *         <a>Sign</a> operation, or a grant for an asymmetric CMK that
+     *         allows the <a>GenerateDataKey</a> operation. If you try, AWS KMS
+     *         returns a <code>ValidationError</code> exception. For details,
+     *         see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     *         >Grant operations</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      */
     public java.util.List<String> getOperations() {
@@ -764,9 +795,30 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * A list of operations that the grant permits.
      * </p>
+     * <p>
+     * The operation must be supported on the CMK. For example, you cannot
+     * create a grant for a symmetric CMK that allows the <a>Sign</a> operation,
+     * or a grant for an asymmetric CMK that allows the <a>GenerateDataKey</a>
+     * operation. If you try, AWS KMS returns a <code>ValidationError</code>
+     * exception. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     * >Grant operations</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
      *
      * @param operations <p>
      *            A list of operations that the grant permits.
+     *            </p>
+     *            <p>
+     *            The operation must be supported on the CMK. For example, you
+     *            cannot create a grant for a symmetric CMK that allows the
+     *            <a>Sign</a> operation, or a grant for an asymmetric CMK that
+     *            allows the <a>GenerateDataKey</a> operation. If you try, AWS
+     *            KMS returns a <code>ValidationError</code> exception. For
+     *            details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     *            >Grant operations</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setOperations(java.util.Collection<String> operations) {
@@ -783,11 +835,32 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of operations that the grant permits.
      * </p>
      * <p>
+     * The operation must be supported on the CMK. For example, you cannot
+     * create a grant for a symmetric CMK that allows the <a>Sign</a> operation,
+     * or a grant for an asymmetric CMK that allows the <a>GenerateDataKey</a>
+     * operation. If you try, AWS KMS returns a <code>ValidationError</code>
+     * exception. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     * >Grant operations</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param operations <p>
      *            A list of operations that the grant permits.
+     *            </p>
+     *            <p>
+     *            The operation must be supported on the CMK. For example, you
+     *            cannot create a grant for a symmetric CMK that allows the
+     *            <a>Sign</a> operation, or a grant for an asymmetric CMK that
+     *            allows the <a>GenerateDataKey</a> operation. If you try, AWS
+     *            KMS returns a <code>ValidationError</code> exception. For
+     *            details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     *            >Grant operations</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -807,11 +880,32 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of operations that the grant permits.
      * </p>
      * <p>
+     * The operation must be supported on the CMK. For example, you cannot
+     * create a grant for a symmetric CMK that allows the <a>Sign</a> operation,
+     * or a grant for an asymmetric CMK that allows the <a>GenerateDataKey</a>
+     * operation. If you try, AWS KMS returns a <code>ValidationError</code>
+     * exception. For details, see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     * >Grant operations</a> in the <i>AWS Key Management Service Developer
+     * Guide</i>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param operations <p>
      *            A list of operations that the grant permits.
+     *            </p>
+     *            <p>
+     *            The operation must be supported on the CMK. For example, you
+     *            cannot create a grant for a symmetric CMK that allows the
+     *            <a>Sign</a> operation, or a grant for an asymmetric CMK that
+     *            allows the <a>GenerateDataKey</a> operation. If you try, AWS
+     *            KMS returns a <code>ValidationError</code> exception. For
+     *            details, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-grant-operations"
+     *            >Grant operations</a> in the <i>AWS Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -823,37 +917,68 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operation</a> only when the encryption context matches or
-     * includes the encryption context specified in this structure. For more
-     * information about encryption context, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
-     * Developer Guide</i> </i>.
+     * Specifies a grant constraint.
      * </p>
      * <p>
-     * Grant constraints are not applied to operations that do not support an
-     * encryption context, such as cryptographic operations with asymmetric CMKs
-     * and management operations, such as <a>DescribeKey</a> or
-     * <a>RetireGrant</a>.
+     * AWS KMS supports the <code>EncryptionContextEquals</code> and
+     * <code>EncryptionContextSubset</code> grant constraints. Each constraint
+     * value can include up to 8 encryption context pairs. The encryption
+     * context value in each constraint cannot exceed 384 characters.
+     * </p>
+     * <p>
+     * These grant constraints allow a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context in the
+     * request matches (<code>EncryptionContextEquals</code>) or includes (
+     * <code>EncryptionContextSubset</code>) the encryption context specified in
+     * this structure. For more information about encryption context, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>. For information about grant constraints, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     * >Using grant constraints</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * The encryption context grant constraints are supported only on operations
+     * that include an encryption context. You cannot use an encryption context
+     * grant constraint for cryptographic operations with asymmetric CMKs or for
+     * management operations, such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      * </p>
      *
      * @return <p>
-     *         Allows a <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     *         >cryptographic operation</a> only when the encryption context
-     *         matches or includes the encryption context specified in this
-     *         structure. For more information about encryption context, see <a
-     *         href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *         >Encryption Context</a> in the <i> <i>AWS Key Management Service
-     *         Developer Guide</i> </i>.
+     *         Specifies a grant constraint.
      *         </p>
      *         <p>
-     *         Grant constraints are not applied to operations that do not
-     *         support an encryption context, such as cryptographic operations
-     *         with asymmetric CMKs and management operations, such as
+     *         AWS KMS supports the <code>EncryptionContextEquals</code> and
+     *         <code>EncryptionContextSubset</code> grant constraints. Each
+     *         constraint value can include up to 8 encryption context pairs.
+     *         The encryption context value in each constraint cannot exceed 384
+     *         characters.
+     *         </p>
+     *         <p>
+     *         These grant constraints allow a <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *         >cryptographic operation</a> only when the encryption context in
+     *         the request matches (<code>EncryptionContextEquals</code>) or
+     *         includes (<code>EncryptionContextSubset</code>) the encryption
+     *         context specified in this structure. For more information about
+     *         encryption context, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     *         >Encryption Context</a> in the <i> <i>AWS Key Management Service
+     *         Developer Guide</i> </i>. For information about grant
+     *         constraints, see <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     *         >Using grant constraints</a> in the <i>AWS Key Management Service
+     *         Developer Guide</i>.
+     *         </p>
+     *         <p>
+     *         The encryption context grant constraints are supported only on
+     *         operations that include an encryption context. You cannot use an
+     *         encryption context grant constraint for cryptographic operations
+     *         with asymmetric CMKs or for management operations, such as
      *         <a>DescribeKey</a> or <a>RetireGrant</a>.
      *         </p>
      */
@@ -863,37 +988,68 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operation</a> only when the encryption context matches or
-     * includes the encryption context specified in this structure. For more
-     * information about encryption context, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
-     * Developer Guide</i> </i>.
+     * Specifies a grant constraint.
      * </p>
      * <p>
-     * Grant constraints are not applied to operations that do not support an
-     * encryption context, such as cryptographic operations with asymmetric CMKs
-     * and management operations, such as <a>DescribeKey</a> or
-     * <a>RetireGrant</a>.
+     * AWS KMS supports the <code>EncryptionContextEquals</code> and
+     * <code>EncryptionContextSubset</code> grant constraints. Each constraint
+     * value can include up to 8 encryption context pairs. The encryption
+     * context value in each constraint cannot exceed 384 characters.
+     * </p>
+     * <p>
+     * These grant constraints allow a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context in the
+     * request matches (<code>EncryptionContextEquals</code>) or includes (
+     * <code>EncryptionContextSubset</code>) the encryption context specified in
+     * this structure. For more information about encryption context, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>. For information about grant constraints, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     * >Using grant constraints</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * The encryption context grant constraints are supported only on operations
+     * that include an encryption context. You cannot use an encryption context
+     * grant constraint for cryptographic operations with asymmetric CMKs or for
+     * management operations, such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      * </p>
      *
      * @param constraints <p>
-     *            Allows a <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     *            >cryptographic operation</a> only when the encryption context
-     *            matches or includes the encryption context specified in this
-     *            structure. For more information about encryption context, see
-     *            <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i> <i>AWS Key Management
-     *            Service Developer Guide</i> </i>.
+     *            Specifies a grant constraint.
      *            </p>
      *            <p>
-     *            Grant constraints are not applied to operations that do not
-     *            support an encryption context, such as cryptographic
-     *            operations with asymmetric CMKs and management operations,
+     *            AWS KMS supports the <code>EncryptionContextEquals</code> and
+     *            <code>EncryptionContextSubset</code> grant constraints. Each
+     *            constraint value can include up to 8 encryption context pairs.
+     *            The encryption context value in each constraint cannot exceed
+     *            384 characters.
+     *            </p>
+     *            <p>
+     *            These grant constraints allow a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> only when the encryption context
+     *            in the request matches (<code>EncryptionContextEquals</code>)
+     *            or includes (<code>EncryptionContextSubset</code>) the
+     *            encryption context specified in this structure. For more
+     *            information about encryption context, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     *            >Encryption Context</a> in the <i> <i>AWS Key Management
+     *            Service Developer Guide</i> </i>. For information about grant
+     *            constraints, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     *            >Using grant constraints</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            The encryption context grant constraints are supported only on
+     *            operations that include an encryption context. You cannot use
+     *            an encryption context grant constraint for cryptographic
+     *            operations with asymmetric CMKs or for management operations,
      *            such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      *            </p>
      */
@@ -903,40 +1059,71 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Allows a <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operation</a> only when the encryption context matches or
-     * includes the encryption context specified in this structure. For more
-     * information about encryption context, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
-     * Developer Guide</i> </i>.
+     * Specifies a grant constraint.
      * </p>
      * <p>
-     * Grant constraints are not applied to operations that do not support an
-     * encryption context, such as cryptographic operations with asymmetric CMKs
-     * and management operations, such as <a>DescribeKey</a> or
-     * <a>RetireGrant</a>.
+     * AWS KMS supports the <code>EncryptionContextEquals</code> and
+     * <code>EncryptionContextSubset</code> grant constraints. Each constraint
+     * value can include up to 8 encryption context pairs. The encryption
+     * context value in each constraint cannot exceed 384 characters.
+     * </p>
+     * <p>
+     * These grant constraints allow a <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     * >cryptographic operation</a> only when the encryption context in the
+     * request matches (<code>EncryptionContextEquals</code>) or includes (
+     * <code>EncryptionContextSubset</code>) the encryption context specified in
+     * this structure. For more information about encryption context, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     * >Encryption Context</a> in the <i> <i>AWS Key Management Service
+     * Developer Guide</i> </i>. For information about grant constraints, see <a
+     * href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     * >Using grant constraints</a> in the <i>AWS Key Management Service
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * The encryption context grant constraints are supported only on operations
+     * that include an encryption context. You cannot use an encryption context
+     * grant constraint for cryptographic operations with asymmetric CMKs or for
+     * management operations, such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param constraints <p>
-     *            Allows a <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     *            >cryptographic operation</a> only when the encryption context
-     *            matches or includes the encryption context specified in this
-     *            structure. For more information about encryption context, see
-     *            <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i> <i>AWS Key Management
-     *            Service Developer Guide</i> </i>.
+     *            Specifies a grant constraint.
      *            </p>
      *            <p>
-     *            Grant constraints are not applied to operations that do not
-     *            support an encryption context, such as cryptographic
-     *            operations with asymmetric CMKs and management operations,
+     *            AWS KMS supports the <code>EncryptionContextEquals</code> and
+     *            <code>EncryptionContextSubset</code> grant constraints. Each
+     *            constraint value can include up to 8 encryption context pairs.
+     *            The encryption context value in each constraint cannot exceed
+     *            384 characters.
+     *            </p>
+     *            <p>
+     *            These grant constraints allow a <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
+     *            >cryptographic operation</a> only when the encryption context
+     *            in the request matches (<code>EncryptionContextEquals</code>)
+     *            or includes (<code>EncryptionContextSubset</code>) the
+     *            encryption context specified in this structure. For more
+     *            information about encryption context, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
+     *            >Encryption Context</a> in the <i> <i>AWS Key Management
+     *            Service Developer Guide</i> </i>. For information about grant
+     *            constraints, see <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/create-grant-overview.html#grant-constraints"
+     *            >Using grant constraints</a> in the <i>AWS Key Management
+     *            Service Developer Guide</i>.
+     *            </p>
+     *            <p>
+     *            The encryption context grant constraints are supported only on
+     *            operations that include an encryption context. You cannot use
+     *            an encryption context grant constraint for cryptographic
+     *            operations with asymmetric CMKs or for management operations,
      *            such as <a>DescribeKey</a> or <a>RetireGrant</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -952,9 +1139,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -962,9 +1151,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *         A list of grant tokens.
      *         </p>
      *         <p>
-     *         For more information, see <a href=
+     *         Use a grant token when your permission to call this operation
+     *         comes from a new grant that has not yet achieved <i>eventual
+     *         consistency</i>. For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     *         >Grant token</a> in the <i>AWS Key Management Service Developer
      *         Guide</i>.
      *         </p>
      */
@@ -977,9 +1168,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -987,9 +1180,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -1007,9 +1202,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -1020,9 +1217,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1043,9 +1242,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      * A list of grant tokens.
      * </p>
      * <p>
-     * For more information, see <a href=
+     * Use a grant token when your permission to call this operation comes from
+     * a new grant that has not yet achieved <i>eventual consistency</i>. For
+     * more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant Tokens</a> in the <i>AWS Key Management Service Developer
+     * >Grant token</a> in the <i>AWS Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -1056,9 +1257,11 @@ public class CreateGrantRequest extends AmazonWebServiceRequest implements Seria
      *            A list of grant tokens.
      *            </p>
      *            <p>
-     *            For more information, see <a href=
+     *            Use a grant token when your permission to call this operation
+     *            comes from a new grant that has not yet achieved <i>eventual
+     *            consistency</i>. For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant Tokens</a> in the <i>AWS Key Management Service
+     *            >Grant token</a> in the <i>AWS Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

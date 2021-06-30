@@ -31,7 +31,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class AssociateLexBotRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -41,21 +42,23 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The Amazon Lex box to associate with the instance.
+     * The Amazon Lex bot to associate with the instance.
      * </p>
      */
     private LexBot lexBot;
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -64,14 +67,16 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -80,7 +85,8 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -90,7 +96,8 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -102,11 +109,11 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The Amazon Lex box to associate with the instance.
+     * The Amazon Lex bot to associate with the instance.
      * </p>
      *
      * @return <p>
-     *         The Amazon Lex box to associate with the instance.
+     *         The Amazon Lex bot to associate with the instance.
      *         </p>
      */
     public LexBot getLexBot() {
@@ -115,11 +122,11 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The Amazon Lex box to associate with the instance.
+     * The Amazon Lex bot to associate with the instance.
      * </p>
      *
      * @param lexBot <p>
-     *            The Amazon Lex box to associate with the instance.
+     *            The Amazon Lex bot to associate with the instance.
      *            </p>
      */
     public void setLexBot(LexBot lexBot) {
@@ -128,14 +135,14 @@ public class AssociateLexBotRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The Amazon Lex box to associate with the instance.
+     * The Amazon Lex bot to associate with the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param lexBot <p>
-     *            The Amazon Lex box to associate with the instance.
+     *            The Amazon Lex bot to associate with the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

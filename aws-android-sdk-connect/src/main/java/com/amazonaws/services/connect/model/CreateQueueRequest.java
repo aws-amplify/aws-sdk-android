@@ -30,7 +30,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CreateQueueRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -99,14 +100,16 @@ public class CreateQueueRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -115,14 +118,16 @@ public class CreateQueueRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -131,7 +136,8 @@ public class CreateQueueRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,7 +147,8 @@ public class CreateQueueRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

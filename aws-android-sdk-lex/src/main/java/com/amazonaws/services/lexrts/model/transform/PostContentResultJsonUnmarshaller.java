@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -48,6 +48,8 @@ public class PostContentResultJsonUnmarshaller implements
             postContentResult.setSentimentResponse(context.getHeader("x-amz-lex-sentiment"));
         if (context.getHeader("x-amz-lex-message") != null)
             postContentResult.setMessage(context.getHeader("x-amz-lex-message"));
+        if (context.getHeader("x-amz-lex-encoded-message") != null)
+            postContentResult.setEncodedMessage(context.getHeader("x-amz-lex-encoded-message"));
         if (context.getHeader("x-amz-lex-message-format") != null)
             postContentResult.setMessageFormat(context.getHeader("x-amz-lex-message-format"));
         if (context.getHeader("x-amz-lex-dialog-state") != null)
@@ -56,6 +58,9 @@ public class PostContentResultJsonUnmarshaller implements
             postContentResult.setSlotToElicit(context.getHeader("x-amz-lex-slot-to-elicit"));
         if (context.getHeader("x-amz-lex-input-transcript") != null)
             postContentResult.setInputTranscript(context.getHeader("x-amz-lex-input-transcript"));
+        if (context.getHeader("x-amz-lex-encoded-input-transcript") != null)
+            postContentResult.setEncodedInputTranscript(context
+                    .getHeader("x-amz-lex-encoded-input-transcript"));
         java.io.InputStream is = context.getHttpResponse().getContent();
         if (is != null) {
             byte[] bytes = com.amazonaws.util.IOUtils.toByteArray(is);
@@ -66,6 +71,8 @@ public class PostContentResultJsonUnmarshaller implements
             postContentResult.setBotVersion(context.getHeader("x-amz-lex-bot-version"));
         if (context.getHeader("x-amz-lex-session-id") != null)
             postContentResult.setSessionId(context.getHeader("x-amz-lex-session-id"));
+        if (context.getHeader("x-amz-lex-active-contexts") != null)
+            postContentResult.setActiveContexts(context.getHeader("x-amz-lex-active-contexts"));
         return postContentResult;
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ public enum VoiceId {
     Enrique("Enrique"),
     Ewa("Ewa"),
     Filiz("Filiz"),
+    Gabrielle("Gabrielle"),
     Geraint("Geraint"),
     Giorgio("Giorgio"),
     Gwyneth("Gwyneth"),
@@ -117,6 +118,7 @@ public enum VoiceId {
         enumMap.put("Enrique", Enrique);
         enumMap.put("Ewa", Ewa);
         enumMap.put("Filiz", Filiz);
+        enumMap.put("Gabrielle", Gabrielle);
         enumMap.put("Geraint", Geraint);
         enumMap.put("Giorgio", Giorgio);
         enumMap.put("Gwyneth", Gwyneth);

@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Retrieves a vector data tile from the map resource. Map tiles are used by
- * clients to render a map. They are addressed using a grid arrangement with an
- * X coordinate, Y coordinate, and Z (zoom) level.
+ * clients to render a map. they're addressed using a grid arrangement with an X
+ * coordinate, Y coordinate, and Z (zoom) level.
  * </p>
  * <p>
  * The origin (0, 0) is the top left of the map. Increasing the zoom level by 1

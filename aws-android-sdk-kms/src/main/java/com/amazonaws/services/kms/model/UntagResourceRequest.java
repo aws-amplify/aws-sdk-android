@@ -25,6 +25,14 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
  * >customer managed CMK</a>. To delete a tag, specify the tag key and the CMK.
  * </p>
+ * <note>
+ * <p>
+ * Tagging or untagging a CMK can allow or deny permission to the CMK. For
+ * details, see <a
+ * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">Using
+ * ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * </p>
+ * </note>
  * <p>
  * When it succeeds, the <code>UntagResource</code> operation doesn't return any
  * output. Also, if the specified tag key isn't found on the CMK, it doesn't
@@ -32,19 +40,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * worked, use the <a>ListResourceTags</a> operation.
  * </p>
  * <p>
- * For general information about tags, including the format and syntax, see <a
- * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
- * AWS resources</a> in the <i>Amazon Web Services General Reference</i>. For
- * information about using tags in AWS KMS, see <a href=
+ * For information about using tags in AWS KMS, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/tagging-keys.html"
- * >Tagging keys</a>.
+ * >Tagging keys</a>. For general information about tags, including the format
+ * and syntax, see <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
+ * AWS resources</a> in the <i>Amazon Web Services General Reference</i>.
  * </p>
  * <p>
  * The CMK that you use for this operation must be in a compatible key state.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
- * Management Service Developer Guide</i>.
+ * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
@@ -61,12 +69,22 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * <a>TagResource</a>
+ * <a>CreateKey</a>
  * </p>
  * </li>
  * <li>
  * <p>
  * <a>ListResourceTags</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>ReplicateKey</a>
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <a>TagResource</a>
  * </p>
  * </li>
  * </ul>
@@ -77,7 +95,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * Identifies the CMK from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -117,7 +135,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * Identifies the CMK from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -147,7 +165,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *         Identifies the CMK from which you are removing tags.
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -179,7 +197,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * Identifies the CMK from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -209,8 +227,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *            Identifies the CMK from which you are removing tags.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -242,7 +259,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * Identifies the CMK from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -275,8 +292,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *            Identifies the CMK from which you are removing tags.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

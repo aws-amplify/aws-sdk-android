@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class ListFragmentsResult implements Serializable {
     /**
      * <p>
-     * A list of fragment numbers that correspond to the time stamp range
-     * provided.
+     * A list of archived <a>Fragment</a> objects from the stream that meet the
+     * selector criteria. Results are in no specific order, even across pages.
      * </p>
      */
     private java.util.List<Fragment> fragments = new java.util.ArrayList<Fragment>();
@@ -34,19 +34,21 @@ public class ListFragmentsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      */
     private String nextToken;
 
     /**
      * <p>
-     * A list of fragment numbers that correspond to the time stamp range
-     * provided.
+     * A list of archived <a>Fragment</a> objects from the stream that meet the
+     * selector criteria. Results are in no specific order, even across pages.
      * </p>
      *
      * @return <p>
-     *         A list of fragment numbers that correspond to the time stamp
-     *         range provided.
+     *         A list of archived <a>Fragment</a> objects from the stream that
+     *         meet the selector criteria. Results are in no specific order,
+     *         even across pages.
      *         </p>
      */
     public java.util.List<Fragment> getFragments() {
@@ -55,13 +57,14 @@ public class ListFragmentsResult implements Serializable {
 
     /**
      * <p>
-     * A list of fragment numbers that correspond to the time stamp range
-     * provided.
+     * A list of archived <a>Fragment</a> objects from the stream that meet the
+     * selector criteria. Results are in no specific order, even across pages.
      * </p>
      *
      * @param fragments <p>
-     *            A list of fragment numbers that correspond to the time stamp
-     *            range provided.
+     *            A list of archived <a>Fragment</a> objects from the stream
+     *            that meet the selector criteria. Results are in no specific
+     *            order, even across pages.
      *            </p>
      */
     public void setFragments(java.util.Collection<Fragment> fragments) {
@@ -75,16 +78,17 @@ public class ListFragmentsResult implements Serializable {
 
     /**
      * <p>
-     * A list of fragment numbers that correspond to the time stamp range
-     * provided.
+     * A list of archived <a>Fragment</a> objects from the stream that meet the
+     * selector criteria. Results are in no specific order, even across pages.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param fragments <p>
-     *            A list of fragment numbers that correspond to the time stamp
-     *            range provided.
+     *            A list of archived <a>Fragment</a> objects from the stream
+     *            that meet the selector criteria. Results are in no specific
+     *            order, even across pages.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -101,16 +105,17 @@ public class ListFragmentsResult implements Serializable {
 
     /**
      * <p>
-     * A list of fragment numbers that correspond to the time stamp range
-     * provided.
+     * A list of archived <a>Fragment</a> objects from the stream that meet the
+     * selector criteria. Results are in no specific order, even across pages.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param fragments <p>
-     *            A list of fragment numbers that correspond to the time stamp
-     *            range provided.
+     *            A list of archived <a>Fragment</a> objects from the stream
+     *            that meet the selector criteria. Results are in no specific
+     *            order, even across pages.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -128,7 +133,8 @@ public class ListFragmentsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         If the returned list is truncated, the operation returns this
@@ -148,7 +154,8 @@ public class ListFragmentsResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      *
      * @param nextToken <p>
      *            If the returned list is truncated, the operation returns this
@@ -171,7 +178,8 @@ public class ListFragmentsResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      *
      * @param nextToken <p>
      *            If the returned list is truncated, the operation returns this

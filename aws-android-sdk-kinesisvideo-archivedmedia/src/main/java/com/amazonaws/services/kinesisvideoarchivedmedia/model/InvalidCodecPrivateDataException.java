@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -18,7 +18,10 @@ package com.amazonaws.services.kinesisvideoarchivedmedia.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * The codec private data in at least one of the tracks of the video stream is
+ * not valid for this operation.
+ * </p>
  */
 public class InvalidCodecPrivateDataException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

@@ -111,6 +111,11 @@ public class CreateEntityRecognizerRequestMarshaller implements
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
+            if (createEntityRecognizerRequest.getModelKmsKeyId() != null) {
+                String modelKmsKeyId = createEntityRecognizerRequest.getModelKmsKeyId();
+                jsonWriter.name("ModelKmsKeyId");
+                jsonWriter.value(modelKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

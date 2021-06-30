@@ -25,7 +25,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      */
     private String languageCode;
 
@@ -77,7 +77,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @return <p>
      *         The language code of the text you've used to create a custom
@@ -96,7 +96,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code of the text you've used to create a custom
@@ -118,7 +118,7 @@ public class CreateLanguageModelResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code of the text you've used to create a custom
@@ -140,7 +140,7 @@ public class CreateLanguageModelResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code of the text you've used to create a custom
@@ -162,7 +162,7 @@ public class CreateLanguageModelResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>en-US
+     * <b>Allowed Values: </b>en-US, hi-IN, es-US, en-GB, en-AU
      *
      * @param languageCode <p>
      *            The language code of the text you've used to create a custom

@@ -21,21 +21,25 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates or updates the contact attributes associated with the specified
- * contact.
+ * Creates or updates user-defined contact attributes associated with the
+ * specified contact.
  * </p>
  * <p>
- * You can add or update attributes for both ongoing and completed contacts. For
- * example, while the call is active, you can update the customer's name or the
- * reason the customer called. You can add notes about steps that the agent took
- * during the call that display to the next agent that takes the call. You can
- * also update attributes for a contact using data from your CRM application and
- * save the data with the contact in Amazon Connect. You could also flag calls
- * for additional analysis, such as legal review or to identify abusive callers.
+ * You can create or update user-defined attributes for both ongoing and
+ * completed contacts. For example, while the call is active, you can update the
+ * customer's name or the reason the customer called. You can add notes about
+ * steps that the agent took during the call that display to the next agent that
+ * takes the call. You can also update attributes for a contact using data from
+ * your CRM application and save the data with the contact in Amazon Connect.
+ * You could also flag calls for additional analysis, such as legal review or to
+ * identify abusive callers.
  * </p>
  * <p>
  * Contact attributes are available in Amazon Connect for 24 months, and are
- * then deleted.
+ * then deleted. For information about CTR retention and the maximum size of the
+ * CTR attributes section, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+ * >Feature specifications</a> in the <i>Amazon Connect Administrator Guide</i>.
  * </p>
  * <p>
  * <b>Important:</b> You cannot use the operation to update attributes for
@@ -61,7 +65,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -147,14 +152,16 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -163,14 +170,16 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -179,7 +188,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,7 +199,8 @@ public class UpdateContactAttributesRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,14 +21,63 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a list of <a>Fragment</a> objects from the specified stream and start
- * location within the archived data.
+ * Returns a list of <a>Fragment</a> objects from the specified stream and
+ * timestamp range within the archived data.
  * </p>
+ * <p>
+ * Listing fragments is eventually consistent. This means that even if the
+ * producer receives an acknowledgment that a fragment is persisted, the result
+ * might not be returned immediately from a request to
+ * <code>ListFragments</code>. However, results are typically available in less
+ * than one second.
+ * </p>
+ * <note>
+ * <p>
+ * You must first call the <code>GetDataEndpoint</code> API to get an endpoint.
+ * Then send the <code>ListFragments</code> requests to this endpoint using the
+ * <a href="https://docs.aws.amazon.com/cli/latest/reference/">--endpoint-url
+ * parameter</a>.
+ * </p>
+ * </note> <important>
+ * <p>
+ * If an error is thrown after invoking a Kinesis Video Streams archived media
+ * API, in addition to the HTTP status code and the response body, it includes
+ * the following pieces of information:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>x-amz-ErrorType</code> HTTP header – contains a more specific error
+ * type in addition to what the HTTP status code provides.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to
+ * AWS, the support team can better diagnose the problem if given the Request
+ * Id.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * Both the HTTP status code and the ErrorType header can be utilized to make
+ * programmatic decisions about whether errors are retry-able and under what
+ * conditions, as well as provide information on what actions the client
+ * programmer might need to take in order to successfully try again.
+ * </p>
+ * <p>
+ * For more information, see the <b>Errors</b> section at the bottom of this
+ * topic, as well as <a href=
+ * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/CommonErrors.html"
+ * >Common Errors</a>.
+ * </p>
+ * </important>
  */
 public class ListFragmentsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The name of the stream from which to retrieve a fragment list.
+     * The name of the stream from which to retrieve a fragment list. Specify
+     * either this parameter or the <code>StreamARN</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -36,6 +85,21 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      * <b>Pattern: </b>[a-zA-Z0-9_.-]+<br/>
      */
     private String streamName;
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream from which to retrieve a
+     * fragment list. Specify either this parameter or the
+     * <code>StreamName</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
+     */
+    private String streamARN;
 
     /**
      * <p>
@@ -58,13 +122,14 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      */
     private String nextToken;
 
     /**
      * <p>
-     * Describes the time stamp range and time stamp origin for the range of
+     * Describes the timestamp range and timestamp origin for the range of
      * fragments to return.
      * </p>
      */
@@ -72,7 +137,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the stream from which to retrieve a fragment list.
+     * The name of the stream from which to retrieve a fragment list. Specify
+     * either this parameter or the <code>StreamARN</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -81,6 +147,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      *
      * @return <p>
      *         The name of the stream from which to retrieve a fragment list.
+     *         Specify either this parameter or the <code>StreamARN</code>
+     *         parameter.
      *         </p>
      */
     public String getStreamName() {
@@ -89,7 +157,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the stream from which to retrieve a fragment list.
+     * The name of the stream from which to retrieve a fragment list. Specify
+     * either this parameter or the <code>StreamARN</code> parameter.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -98,6 +167,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param streamName <p>
      *            The name of the stream from which to retrieve a fragment list.
+     *            Specify either this parameter or the <code>StreamARN</code>
+     *            parameter.
      *            </p>
      */
     public void setStreamName(String streamName) {
@@ -106,7 +177,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The name of the stream from which to retrieve a fragment list.
+     * The name of the stream from which to retrieve a fragment list. Specify
+     * either this parameter or the <code>StreamARN</code> parameter.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,12 +190,89 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param streamName <p>
      *            The name of the stream from which to retrieve a fragment list.
+     *            Specify either this parameter or the <code>StreamARN</code>
+     *            parameter.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public ListFragmentsRequest withStreamName(String streamName) {
         this.streamName = streamName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream from which to retrieve a
+     * fragment list. Specify either this parameter or the
+     * <code>StreamName</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the stream from which to
+     *         retrieve a fragment list. Specify either this parameter or the
+     *         <code>StreamName</code> parameter.
+     *         </p>
+     */
+    public String getStreamARN() {
+        return streamARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream from which to retrieve a
+     * fragment list. Specify either this parameter or the
+     * <code>StreamName</code> parameter.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
+     *
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream from which to
+     *            retrieve a fragment list. Specify either this parameter or the
+     *            <code>StreamName</code> parameter.
+     *            </p>
+     */
+    public void setStreamARN(String streamARN) {
+        this.streamARN = streamARN;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the stream from which to retrieve a
+     * fragment list. Specify either this parameter or the
+     * <code>StreamName</code> parameter.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 1024<br/>
+     * <b>Pattern:
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
+     *
+     * @param streamARN <p>
+     *            The Amazon Resource Name (ARN) of the stream from which to
+     *            retrieve a fragment list. Specify either this parameter or the
+     *            <code>StreamName</code> parameter.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListFragmentsRequest withStreamARN(String streamARN) {
+        this.streamARN = streamARN;
         return this;
     }
 
@@ -210,7 +359,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      *
      * @return <p>
      *         A token to specify where to start paginating. This is the
@@ -230,7 +380,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      *
      * @param nextToken <p>
      *            A token to specify where to start paginating. This is the
@@ -253,7 +404,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - <br/>
+     * <b>Length: </b>1 - 4096<br/>
+     * <b>Pattern: </b>[a-zA-Z0-9+/]+={0,2}<br/>
      *
      * @param nextToken <p>
      *            A token to specify where to start paginating. This is the
@@ -270,13 +422,13 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Describes the time stamp range and time stamp origin for the range of
+     * Describes the timestamp range and timestamp origin for the range of
      * fragments to return.
      * </p>
      *
      * @return <p>
-     *         Describes the time stamp range and time stamp origin for the
-     *         range of fragments to return.
+     *         Describes the timestamp range and timestamp origin for the range
+     *         of fragments to return.
      *         </p>
      */
     public FragmentSelector getFragmentSelector() {
@@ -285,12 +437,12 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Describes the time stamp range and time stamp origin for the range of
+     * Describes the timestamp range and timestamp origin for the range of
      * fragments to return.
      * </p>
      *
      * @param fragmentSelector <p>
-     *            Describes the time stamp range and time stamp origin for the
+     *            Describes the timestamp range and timestamp origin for the
      *            range of fragments to return.
      *            </p>
      */
@@ -300,7 +452,7 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Describes the time stamp range and time stamp origin for the range of
+     * Describes the timestamp range and timestamp origin for the range of
      * fragments to return.
      * </p>
      * <p>
@@ -308,7 +460,7 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
      * together.
      *
      * @param fragmentSelector <p>
-     *            Describes the time stamp range and time stamp origin for the
+     *            Describes the timestamp range and timestamp origin for the
      *            range of fragments to return.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -332,6 +484,8 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
         sb.append("{");
         if (getStreamName() != null)
             sb.append("StreamName: " + getStreamName() + ",");
+        if (getStreamARN() != null)
+            sb.append("StreamARN: " + getStreamARN() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getNextToken() != null)
@@ -348,6 +502,7 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getStreamName() == null) ? 0 : getStreamName().hashCode());
+        hashCode = prime * hashCode + ((getStreamARN() == null) ? 0 : getStreamARN().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode
@@ -370,6 +525,11 @@ public class ListFragmentsRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getStreamName() != null
                 && other.getStreamName().equals(this.getStreamName()) == false)
+            return false;
+        if (other.getStreamARN() == null ^ this.getStreamARN() == null)
+            return false;
+        if (other.getStreamARN() != null
+                && other.getStreamARN().equals(this.getStreamARN()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;

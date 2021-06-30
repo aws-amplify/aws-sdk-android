@@ -1,4 +1,87 @@
-# Change Log - AWS SDK for Android
+## [Release 2.26.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.26.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2516)
+- **aws-android-sdk-kms:** update models to latest (#2518)
+
+### Bug Fixes
+- **aws-android-sdk-s3:** implement retry mechanism for upload part (#2504)
+
+[See all changes between 2.25.0 and 2.26.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.25.0...release_v2.26.0)
+
+## [Release 2.25.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.25.0)
+
+### Features
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2510)
+
+### Bug Fixes
+- **aws-android-sdk-lex:** prioritize custom lex signer for all regions (#2506)
+- **mobileclient:** Honor auth flow setting from config (#2499)
+- **aws-android-sdk-polly:** use correct SignerConfig in all regions (#2505)
+
+[See all changes between 2.24.0 and 2.25.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.24.0...release_v2.25.0)
+
+## [Release 2.24.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.24.0)
+
+### Features
+- **aws-android-sdk-sns:** update models to latest (#2461)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2456)
+- **aws-android-sdk-connect:** update models to latest (#2469)
+- **aws-android-sdk-transcribe:** update models to latest (#2476)
+- **aws-android-sdk-rekognition:** update models to latest (#2487)
+- **aws-android-sdk-iot:** update models to latest (#2490)
+- **aws-android-sdk-location:** update models to latest (#2494)
+- **aws-android-sdk-sns:** update models to latest (#2496)
+- **aws-android-sdk-polly:** update models to latest (#2497)
+- **aws-android-sdk-mobile-client:** adds signature with user attributes in confirmSignIn (#2492)
+- **aws-android-sdk-mobile-client:** hosted-ui auth response handler is now built into redirect activity (#2473)
+
+### Bug Fixes
+- hosted-ui sign-out flow is now launched correctly using custom tabs manager (#2472)
+- hostedUI auth response is now properly handled via `HostedUIRedirectActivity` (#2473)
+  - _note:_ applying above fix requires an update to `AndroidManifest.xml`. See the [documentation](https://docs.amplify.aws/sdk/auth/hosted-ui/q/platform/android#setup-amazon-cognito-hosted-ui-in-android-app) for more information.
+
+[See all changes between 2.23.0 and 2.24.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.23.0...release_v2.24.0)
+
+## [Release 2.23.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.23.0)
+
+### New Features
+- **aws-android-sdk-cognitoidentityprovider:** support custom endpoint (#2455)
+
+### Bug Fixes
+- **pinpoint:** add campaign attributes to push events (#2458)
+
+[See all changes between 2.22.7 and 2.23.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.7...release_v2.23.0)
+
+## [Release 2.22.7](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.22.7)
+
+### Features
+- **aws-android-sdk-core:** update models to latest (#2445)
+
+### Bug Fixes
+- **mobile-client:** missing optional dependency warning removed (#2427)
+- **s3:** remove eTag validation logic (#2419)
+- **s3:** force upload part tasks to be serial (#2447)
+
+### Miscellaneous
+- change the time offset precision from int to long (#2448)
+
+[See all changes between 2.22.6 and 2.22.7](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.22.6...release_v2.22.7)
+
+
+## [Release 2.22.6](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.6)
+
+### Bug fixes
+ - Updated Service name for Lex runtime
+
+### Model updates
+ - Amazon Comprehend
+ - Amazon Kinesis Video Streams Archived Media
+ - Amazon Lex
+ - Amazon Location Service
+ - Amazon Transcribe
+ - AWS Machine Learning
+ - AWS IoT
 
 ## [Release 2.22.5](https://github.com/aws/aws-sdk-android/releases/tag/release_v2.22.5)
 

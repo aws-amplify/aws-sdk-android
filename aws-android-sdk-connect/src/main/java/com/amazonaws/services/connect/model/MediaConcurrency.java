@@ -39,6 +39,18 @@ public class MediaConcurrency implements Serializable {
      * The number of contacts an agent can have on a channel simultaneously.
      * </p>
      * <p>
+     * Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of
+     * 1.
+     * </p>
+     * <p>
+     * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
+     * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10<br/>
      */
@@ -151,12 +163,36 @@ public class MediaConcurrency implements Serializable {
      * The number of contacts an agent can have on a channel simultaneously.
      * </p>
      * <p>
+     * Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of
+     * 1.
+     * </p>
+     * <p>
+     * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
+     * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10<br/>
      *
      * @return <p>
      *         The number of contacts an agent can have on a channel
      *         simultaneously.
+     *         </p>
+     *         <p>
+     *         Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum
+     *         value of 1.
+     *         </p>
+     *         <p>
+     *         Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum
+     *         value of 10.
+     *         </p>
+     *         <p>
+     *         Valid Range for <code>TASK</code>: Minimum value of 1. Maximum
+     *         value of 10.
      *         </p>
      */
     public Integer getConcurrency() {
@@ -168,12 +204,36 @@ public class MediaConcurrency implements Serializable {
      * The number of contacts an agent can have on a channel simultaneously.
      * </p>
      * <p>
+     * Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of
+     * 1.
+     * </p>
+     * <p>
+     * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
+     * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 10<br/>
      *
      * @param concurrency <p>
      *            The number of contacts an agent can have on a channel
      *            simultaneously.
+     *            </p>
+     *            <p>
+     *            Valid Range for <code>VOICE</code>: Minimum value of 1.
+     *            Maximum value of 1.
+     *            </p>
+     *            <p>
+     *            Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum
+     *            value of 10.
+     *            </p>
+     *            <p>
+     *            Valid Range for <code>TASK</code>: Minimum value of 1. Maximum
+     *            value of 10.
      *            </p>
      */
     public void setConcurrency(Integer concurrency) {
@@ -185,6 +245,18 @@ public class MediaConcurrency implements Serializable {
      * The number of contacts an agent can have on a channel simultaneously.
      * </p>
      * <p>
+     * Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of
+     * 1.
+     * </p>
+     * <p>
+     * Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
+     * Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of
+     * 10.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -194,6 +266,18 @@ public class MediaConcurrency implements Serializable {
      * @param concurrency <p>
      *            The number of contacts an agent can have on a channel
      *            simultaneously.
+     *            </p>
+     *            <p>
+     *            Valid Range for <code>VOICE</code>: Minimum value of 1.
+     *            Maximum value of 1.
+     *            </p>
+     *            <p>
+     *            Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum
+     *            value of 10.
+     *            </p>
+     *            <p>
+     *            Valid Range for <code>TASK</code>: Minimum value of 1. Maximum
+     *            value of 10.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -40,6 +40,9 @@ public enum SNSActions implements Action {
     /** Action for the CreatePlatformEndpoint operation. */
     CreatePlatformEndpoint("sns:CreatePlatformEndpoint"),
 
+    /** Action for the CreateSMSSandboxPhoneNumber operation. */
+    CreateSMSSandboxPhoneNumber("sns:CreateSMSSandboxPhoneNumber"),
+
     /** Action for the CreateTopic operation. */
     CreateTopic("sns:CreateTopic"),
 
@@ -48,6 +51,9 @@ public enum SNSActions implements Action {
 
     /** Action for the DeletePlatformApplication operation. */
     DeletePlatformApplication("sns:DeletePlatformApplication"),
+
+    /** Action for the DeleteSMSSandboxPhoneNumber operation. */
+    DeleteSMSSandboxPhoneNumber("sns:DeleteSMSSandboxPhoneNumber"),
 
     /** Action for the DeleteTopic operation. */
     DeleteTopic("sns:DeleteTopic"),
@@ -61,6 +67,9 @@ public enum SNSActions implements Action {
     /** Action for the GetSMSAttributes operation. */
     GetSMSAttributes("sns:GetSMSAttributes"),
 
+    /** Action for the GetSMSSandboxAccountStatus operation. */
+    GetSMSSandboxAccountStatus("sns:GetSMSSandboxAccountStatus"),
+
     /** Action for the GetSubscriptionAttributes operation. */
     GetSubscriptionAttributes("sns:GetSubscriptionAttributes"),
 
@@ -70,11 +79,17 @@ public enum SNSActions implements Action {
     /** Action for the ListEndpointsByPlatformApplication operation. */
     ListEndpointsByPlatformApplication("sns:ListEndpointsByPlatformApplication"),
 
+    /** Action for the ListOriginationNumbers operation. */
+    ListOriginationNumbers("sns:ListOriginationNumbers"),
+
     /** Action for the ListPhoneNumbersOptedOut operation. */
     ListPhoneNumbersOptedOut("sns:ListPhoneNumbersOptedOut"),
 
     /** Action for the ListPlatformApplications operation. */
     ListPlatformApplications("sns:ListPlatformApplications"),
+
+    /** Action for the ListSMSSandboxPhoneNumbers operation. */
+    ListSMSSandboxPhoneNumbers("sns:ListSMSSandboxPhoneNumbers"),
 
     /** Action for the ListSubscriptions operation. */
     ListSubscriptions("sns:ListSubscriptions"),
@@ -122,7 +137,10 @@ public enum SNSActions implements Action {
     Unsubscribe("sns:Unsubscribe"),
 
     /** Action for the UntagResource operation. */
-    UntagResource("sns:UntagResource");
+    UntagResource("sns:UntagResource"),
+
+    /** Action for the VerifySMSSandboxPhoneNumber operation. */
+    VerifySMSSandboxPhoneNumber("sns:VerifySMSSandboxPhoneNumber");
 
     private final String action;
 

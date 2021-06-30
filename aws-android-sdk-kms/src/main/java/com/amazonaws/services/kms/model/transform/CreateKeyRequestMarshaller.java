@@ -108,6 +108,11 @@ public class CreateKeyRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (createKeyRequest.getMultiRegion() != null) {
+                Boolean multiRegion = createKeyRequest.getMultiRegion();
+                jsonWriter.name("MultiRegion");
+                jsonWriter.value(multiRegion);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

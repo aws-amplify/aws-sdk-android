@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The range of time stamps for which to return fragments.
+ * The range of timestamps for which to return fragments.
  * </p>
  */
 public class TimestampRange implements Serializable {
     /**
      * <p>
-     * The starting time stamp in the range of time stamps for which to return
+     * The starting timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      */
@@ -33,7 +33,7 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The ending time stamp in the range of time stamps for which to return
+     * The ending timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      */
@@ -41,12 +41,12 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The starting time stamp in the range of time stamps for which to return
+     * The starting timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      *
      * @return <p>
-     *         The starting time stamp in the range of time stamps for which to
+     *         The starting timestamp in the range of timestamps for which to
      *         return fragments.
      *         </p>
      */
@@ -56,13 +56,13 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The starting time stamp in the range of time stamps for which to return
+     * The starting timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      *
      * @param startTimestamp <p>
-     *            The starting time stamp in the range of time stamps for which
-     *            to return fragments.
+     *            The starting timestamp in the range of timestamps for which to
+     *            return fragments.
      *            </p>
      */
     public void setStartTimestamp(java.util.Date startTimestamp) {
@@ -71,7 +71,7 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The starting time stamp in the range of time stamps for which to return
+     * The starting timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      * <p>
@@ -79,8 +79,8 @@ public class TimestampRange implements Serializable {
      * together.
      *
      * @param startTimestamp <p>
-     *            The starting time stamp in the range of time stamps for which
-     *            to return fragments.
+     *            The starting timestamp in the range of timestamps for which to
+     *            return fragments.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -92,12 +92,12 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The ending time stamp in the range of time stamps for which to return
+     * The ending timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      *
      * @return <p>
-     *         The ending time stamp in the range of time stamps for which to
+     *         The ending timestamp in the range of timestamps for which to
      *         return fragments.
      *         </p>
      */
@@ -107,12 +107,12 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The ending time stamp in the range of time stamps for which to return
+     * The ending timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      *
      * @param endTimestamp <p>
-     *            The ending time stamp in the range of time stamps for which to
+     *            The ending timestamp in the range of timestamps for which to
      *            return fragments.
      *            </p>
      */
@@ -122,7 +122,7 @@ public class TimestampRange implements Serializable {
 
     /**
      * <p>
-     * The ending time stamp in the range of time stamps for which to return
+     * The ending timestamp in the range of timestamps for which to return
      * fragments.
      * </p>
      * <p>
@@ -130,7 +130,7 @@ public class TimestampRange implements Serializable {
      * together.
      *
      * @param endTimestamp <p>
-     *            The ending time stamp in the range of time stamps for which to
+     *            The ending timestamp in the range of timestamps for which to
      *            return fragments.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -91,7 +91,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -158,7 +158,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -194,7 +194,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *         Region.
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -231,7 +231,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -267,8 +267,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *            and Region.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -305,7 +304,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -344,8 +343,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *            and Region.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

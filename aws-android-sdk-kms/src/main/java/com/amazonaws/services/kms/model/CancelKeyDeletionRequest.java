@@ -36,8 +36,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The CMK that you use for this operation must be in a compatible key state.
  * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >How Key State Affects Use of a Customer Master Key</a> in the <i>AWS Key
- * Management Service Developer Guide</i>.
+ * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * Developer Guide</i>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
@@ -55,11 +55,11 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) for which to
-     * cancel deletion.
+     * Identifies the customer master key (CMK) whose deletion is being
+     * canceled.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -89,11 +89,11 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) for which to
-     * cancel deletion.
+     * Identifies the customer master key (CMK) whose deletion is being
+     * canceled.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -120,11 +120,11 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The unique identifier for the customer master key (CMK) for which
-     *         to cancel deletion.
+     *         Identifies the customer master key (CMK) whose deletion is being
+     *         canceled.
      *         </p>
      *         <p>
-     *         Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     *         Specify the key ID or key ARN of the CMK.
      *         </p>
      *         <p>
      *         For example:
@@ -153,11 +153,11 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) for which to
-     * cancel deletion.
+     * Identifies the customer master key (CMK) whose deletion is being
+     * canceled.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -184,12 +184,11 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier for the customer master key (CMK) for
-     *            which to cancel deletion.
+     *            Identifies the customer master key (CMK) whose deletion is
+     *            being canceled.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:
@@ -218,11 +217,11 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The unique identifier for the customer master key (CMK) for which to
-     * cancel deletion.
+     * Identifies the customer master key (CMK) whose deletion is being
+     * canceled.
      * </p>
      * <p>
-     * Specify the key ID or the Amazon Resource Name (ARN) of the CMK.
+     * Specify the key ID or key ARN of the CMK.
      * </p>
      * <p>
      * For example:
@@ -252,12 +251,11 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The unique identifier for the customer master key (CMK) for
-     *            which to cancel deletion.
+     *            Identifies the customer master key (CMK) whose deletion is
+     *            being canceled.
      *            </p>
      *            <p>
-     *            Specify the key ID or the Amazon Resource Name (ARN) of the
-     *            CMK.
+     *            Specify the key ID or key ARN of the CMK.
      *            </p>
      *            <p>
      *            For example:

@@ -21,16 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
- * <p>
  * Creates a quick connect for the specified Amazon Connect instance.
  * </p>
  */
 public class CreateQuickConnectRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,7 +52,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      */
     private String description;
 
@@ -74,14 +72,16 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -90,14 +90,16 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -106,7 +108,8 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -116,7 +119,8 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -186,7 +190,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @return <p>
      *         The description of the quick connect.
@@ -202,7 +206,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description of the quick connect.
@@ -221,7 +225,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description of the quick connect.

@@ -28,9 +28,9 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriStreets</code>,
-     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
-     * <code>VectorEsriDarkGrayCanvas</code>,
+     * Valid styles: <code>RasterEsriImagery</code>,
+     * <code>VectorEsriStreets</code>, <code>VectorEsriTopographic</code>,
+     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
      * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
@@ -44,7 +44,7 @@ public class MapConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>^[-._\w]+$<br/>
      */
     private String style;
 
@@ -53,9 +53,9 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriStreets</code>,
-     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
-     * <code>VectorEsriDarkGrayCanvas</code>,
+     * Valid styles: <code>RasterEsriImagery</code>,
+     * <code>VectorEsriStreets</code>, <code>VectorEsriTopographic</code>,
+     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
      * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
@@ -69,13 +69,14 @@ public class MapConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
      *         Specifies the map style selected from an available data provider.
      *         </p>
      *         <p>
-     *         Valid styles: <code>VectorEsriStreets</code>,
+     *         Valid styles: <code>RasterEsriImagery</code>,
+     *         <code>VectorEsriStreets</code>,
      *         <code>VectorEsriTopographic</code>,
      *         <code>VectorEsriNavigation</code>,
      *         <code>VectorEsriDarkGrayCanvas</code>,
@@ -101,9 +102,9 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriStreets</code>,
-     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
-     * <code>VectorEsriDarkGrayCanvas</code>,
+     * Valid styles: <code>RasterEsriImagery</code>,
+     * <code>VectorEsriStreets</code>, <code>VectorEsriTopographic</code>,
+     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
      * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
@@ -117,14 +118,15 @@ public class MapConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param style <p>
      *            Specifies the map style selected from an available data
      *            provider.
      *            </p>
      *            <p>
-     *            Valid styles: <code>VectorEsriStreets</code>,
+     *            Valid styles: <code>RasterEsriImagery</code>,
+     *            <code>VectorEsriStreets</code>,
      *            <code>VectorEsriTopographic</code>,
      *            <code>VectorEsriNavigation</code>,
      *            <code>VectorEsriDarkGrayCanvas</code>,
@@ -150,9 +152,9 @@ public class MapConfiguration implements Serializable {
      * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
-     * Valid styles: <code>VectorEsriStreets</code>,
-     * <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>,
-     * <code>VectorEsriDarkGrayCanvas</code>,
+     * Valid styles: <code>RasterEsriImagery</code>,
+     * <code>VectorEsriStreets</code>, <code>VectorEsriTopographic</code>,
+     * <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>,
      * <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.
      * </p>
      * <note>
@@ -169,14 +171,15 @@ public class MapConfiguration implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
-     * <b>Pattern: </b>^[-._\p{L}\p{N}]+$<br/>
+     * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param style <p>
      *            Specifies the map style selected from an available data
      *            provider.
      *            </p>
      *            <p>
-     *            Valid styles: <code>VectorEsriStreets</code>,
+     *            Valid styles: <code>RasterEsriImagery</code>,
+     *            <code>VectorEsriStreets</code>,
      *            <code>VectorEsriTopographic</code>,
      *            <code>VectorEsriNavigation</code>,
      *            <code>VectorEsriDarkGrayCanvas</code>,

@@ -23,7 +23,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets information about <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
- * >custom key stores</a> in the account and region.
+ * >custom key stores</a> in the account and Region.
  * </p>
  * <p>
  * This operation is part of the <a href=
@@ -34,7 +34,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * By default, this operation returns information about all custom key stores in
- * the account and region. To get only information about a particular custom key
+ * the account and Region. To get only information about a particular custom key
  * store, use either the <code>CustomKeyStoreName</code> or
  * <code>CustomKeyStoreId</code> parameter (but not both).
  * </p>
@@ -109,7 +109,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -126,7 +126,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -168,7 +168,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -182,7 +182,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         <p>
      *         By default, this operation gets information about all custom key
-     *         stores in the account and region. To limit the output to a
+     *         stores in the account and Region. To limit the output to a
      *         particular custom key store, you can use either the
      *         <code>CustomKeyStoreId</code> or <code>CustomKeyStoreName</code>
      *         parameter, but not both.
@@ -199,7 +199,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -213,7 +213,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            By default, this operation gets information about all custom
-     *            key stores in the account and region. To limit the output to a
+     *            key stores in the account and Region. To limit the output to a
      *            particular custom key store, you can use either the
      *            <code>CustomKeyStoreId</code> or
      *            <code>CustomKeyStoreName</code> parameter, but not both.
@@ -230,7 +230,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -247,7 +247,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            By default, this operation gets information about all custom
-     *            key stores in the account and region. To limit the output to a
+     *            key stores in the account and Region. To limit the output to a
      *            particular custom key store, you can use either the
      *            <code>CustomKeyStoreId</code> or
      *            <code>CustomKeyStoreName</code> parameter, but not both.
@@ -267,7 +267,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -281,7 +281,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         <p>
      *         By default, this operation gets information about all custom key
-     *         stores in the account and region. To limit the output to a
+     *         stores in the account and Region. To limit the output to a
      *         particular custom key store, you can use either the
      *         <code>CustomKeyStoreId</code> or <code>CustomKeyStoreName</code>
      *         parameter, but not both.
@@ -298,7 +298,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -312,7 +312,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            By default, this operation gets information about all custom
-     *            key stores in the account and region. To limit the output to a
+     *            key stores in the account and Region. To limit the output to a
      *            particular custom key store, you can use either the
      *            <code>CustomKeyStoreId</code> or
      *            <code>CustomKeyStoreName</code> parameter, but not both.
@@ -329,7 +329,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * By default, this operation gets information about all custom key stores
-     * in the account and region. To limit the output to a particular custom key
+     * in the account and Region. To limit the output to a particular custom key
      * store, you can use either the <code>CustomKeyStoreId</code> or
      * <code>CustomKeyStoreName</code> parameter, but not both.
      * </p>
@@ -346,7 +346,7 @@ public class DescribeCustomKeyStoresRequest extends AmazonWebServiceRequest impl
      *            </p>
      *            <p>
      *            By default, this operation gets information about all custom
-     *            key stores in the account and region. To limit the output to a
+     *            key stores in the account and Region. To limit the output to a
      *            particular custom key store, you can use either the
      *            <code>CustomKeyStoreId</code> or
      *            <code>CustomKeyStoreName</code> parameter, but not both.

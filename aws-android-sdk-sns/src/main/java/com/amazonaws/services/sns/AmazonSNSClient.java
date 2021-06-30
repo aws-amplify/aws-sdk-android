@@ -363,6 +363,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new KMSOptInRequiredExceptionUnmarshaller());
         exceptionUnmarshallers.add(new KMSThrottlingExceptionUnmarshaller());
         exceptionUnmarshallers.add(new NotFoundExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new OptedOutExceptionUnmarshaller());
         exceptionUnmarshallers.add(new PlatformApplicationDisabledExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
         exceptionUnmarshallers.add(new StaleTagExceptionUnmarshaller());
@@ -371,6 +372,9 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new TagPolicyExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ThrottledExceptionUnmarshaller());
         exceptionUnmarshallers.add(new TopicLimitExceededExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new UserErrorExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new ValidationExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new VerificationExceptionUnmarshaller());
         exceptionUnmarshallers.add(new StandardErrorUnmarshaller());
 
         // calling this.setEndPoint(...) will also modify the signer accordingly
@@ -696,6 +700,63 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
+     * Adds a destination phone number to an AWS account in the SMS sandbox and
+     * sends a one-time password (OTP) to that phone number.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your AWS account is
+     * in the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment
+     * for you to try Amazon SNS features without risking your reputation as an
+     * SMS sender. While your account is in the SMS sandbox, you can use all of
+     * the features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param createSMSSandboxPhoneNumberRequest
+     * @return createSMSSandboxPhoneNumberResult The response from the
+     *         CreateSMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws OptedOutException
+     * @throws UserErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public CreateSMSSandboxPhoneNumberResult createSMSSandboxPhoneNumber(
+            CreateSMSSandboxPhoneNumberRequest createSMSSandboxPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createSMSSandboxPhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateSMSSandboxPhoneNumberRequest> request = null;
+        Response<CreateSMSSandboxPhoneNumberResult> response = null;
+        try {
+            request = new CreateSMSSandboxPhoneNumberRequestMarshaller()
+                    .marshall(createSMSSandboxPhoneNumberRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new CreateSMSSandboxPhoneNumberResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a topic to which notifications can be published. Users can create
      * at most 100,000 standard topics (at most 1,000 FIFO topics). For more
      * information, see <a
@@ -827,6 +888,63 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             invoke(request, null, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes an AWS account's verified or pending phone number from the SMS
+     * sandbox.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your AWS account is
+     * in the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment
+     * for you to try Amazon SNS features without risking your reputation as an
+     * SMS sender. While your account is in the SMS sandbox, you can use all of
+     * the features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param deleteSMSSandboxPhoneNumberRequest
+     * @return deleteSMSSandboxPhoneNumberResult The response from the
+     *         DeleteSMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws UserErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public DeleteSMSSandboxPhoneNumberResult deleteSMSSandboxPhoneNumber(
+            DeleteSMSSandboxPhoneNumberRequest deleteSMSSandboxPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteSMSSandboxPhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteSMSSandboxPhoneNumberRequest> request = null;
+        Response<DeleteSMSSandboxPhoneNumberResult> response = null;
+        try {
+            request = new DeleteSMSSandboxPhoneNumberRequestMarshaller()
+                    .marshall(deleteSMSSandboxPhoneNumberRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new DeleteSMSSandboxPhoneNumberResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response);
@@ -1021,6 +1139,60 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
+     * Retrieves the SMS sandbox status for the calling AWS account in the
+     * target AWS Region.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your AWS account is
+     * in the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment
+     * for you to try Amazon SNS features without risking your reputation as an
+     * SMS sender. While your account is in the SMS sandbox, you can use all of
+     * the features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param getSMSSandboxAccountStatusRequest
+     * @return getSMSSandboxAccountStatusResult The response from the
+     *         GetSMSSandboxAccountStatus service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public GetSMSSandboxAccountStatusResult getSMSSandboxAccountStatus(
+            GetSMSSandboxAccountStatusRequest getSMSSandboxAccountStatusRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getSMSSandboxAccountStatusRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetSMSSandboxAccountStatusRequest> request = null;
+        Response<GetSMSSandboxAccountStatusResult> response = null;
+        try {
+            request = new GetSMSSandboxAccountStatusRequestMarshaller()
+                    .marshall(getSMSSandboxAccountStatusRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new GetSMSSandboxAccountStatusResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
      * Returns all of the properties of a subscription.
      * </p>
      * 
@@ -1171,6 +1343,53 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
+     * Lists the calling AWS account's dedicated origination numbers and their
+     * metadata. For more information about origination numbers, see <a href=
+     * "https://docs.aws.amazon.com/sns/latest/dg/channels-sms-originating-identities-origination-numbers.html"
+     * >Origination numbers</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param listOriginationNumbersRequest
+     * @return listOriginationNumbersResult The response from the
+     *         ListOriginationNumbers service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws InternalErrorException
+     * @throws AuthorizationErrorException
+     * @throws ThrottledException
+     * @throws InvalidParameterException
+     * @throws ValidationException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public ListOriginationNumbersResult listOriginationNumbers(
+            ListOriginationNumbersRequest listOriginationNumbersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listOriginationNumbersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListOriginationNumbersRequest> request = null;
+        Response<ListOriginationNumbersResult> response = null;
+        try {
+            request = new ListOriginationNumbersRequestMarshaller()
+                    .marshall(listOriginationNumbersRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ListOriginationNumbersResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
      * Returns a list of phone numbers that are opted out, meaning you cannot
      * send SMS messages to them.
      * </p>
@@ -1274,6 +1493,62 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new ListPlatformApplicationsResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the calling AWS account's current verified and pending destination
+     * phone numbers in the SMS sandbox.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your AWS account is
+     * in the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment
+     * for you to try Amazon SNS features without risking your reputation as an
+     * SMS sender. While your account is in the SMS sandbox, you can use all of
+     * the features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param listSMSSandboxPhoneNumbersRequest
+     * @return listSMSSandboxPhoneNumbersResult The response from the
+     *         ListSMSSandboxPhoneNumbers service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public ListSMSSandboxPhoneNumbersResult listSMSSandboxPhoneNumbers(
+            ListSMSSandboxPhoneNumbersRequest listSMSSandboxPhoneNumbersRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listSMSSandboxPhoneNumbersRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListSMSSandboxPhoneNumbersRequest> request = null;
+        Response<ListSMSSandboxPhoneNumbersResult> response = null;
+        try {
+            request = new ListSMSSandboxPhoneNumbersRequestMarshaller()
+                    .marshall(listSMSSandboxPhoneNumbersRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new ListSMSSandboxPhoneNumbersResultStaxUnmarshaller(),
                     executionContext);
             return response.getAwsResponse();
         } finally {
@@ -2101,6 +2376,63 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
+     * Verifies a destination phone number with a one-time password (OTP) for
+     * the calling AWS account.
+     * </p>
+     * <p>
+     * When you start using Amazon SNS to send SMS messages, your AWS account is
+     * in the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment
+     * for you to try Amazon SNS features without risking your reputation as an
+     * SMS sender. While your account is in the SMS sandbox, you can use all of
+     * the features of Amazon SNS. However, you can send SMS messages only to
+     * verified destination phone numbers. For more information, including how
+     * to move out of the sandbox to send messages without restrictions, see <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
+     * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
+     * </p>
+     * 
+     * @param verifySMSSandboxPhoneNumberRequest
+     * @return verifySMSSandboxPhoneNumberResult The response from the
+     *         VerifySMSSandboxPhoneNumber service method, as returned by Amazon
+     *         Simple Notification Service.
+     * @throws AuthorizationErrorException
+     * @throws InternalErrorException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws VerificationException
+     * @throws ThrottledException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public VerifySMSSandboxPhoneNumberResult verifySMSSandboxPhoneNumber(
+            VerifySMSSandboxPhoneNumberRequest verifySMSSandboxPhoneNumberRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(verifySMSSandboxPhoneNumberRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<VerifySMSSandboxPhoneNumberRequest> request = null;
+        Response<VerifySMSSandboxPhoneNumberResult> response = null;
+        try {
+            request = new VerifySMSSandboxPhoneNumberRequestMarshaller()
+                    .marshall(verifySMSSandboxPhoneNumberRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new VerifySMSSandboxPhoneNumberResultStaxUnmarshaller(),
+                    executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
      * Allows a subscription owner to set an attribute of the subscription to a
      * new value.
      * </p>
@@ -2177,7 +2509,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            Specifying a valid ARN for this attribute is required for
      *            Kinesis Data Firehose delivery stream subscriptions. For more
      *            information, see <a href=
-     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html"
+     *            "https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html"
      *            >Fanout to Kinesis Data Firehose delivery streams</a> in the
      *            <i>Amazon SNS Developer Guide</i>.
      *            </p>
@@ -2759,8 +3091,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            </p>
      *            <p>
      *            (Optional) To override the generated value, you can specify a
-     *            value for the the <code>MessageDeduplicationId</code>
-     *            parameter for the <code>Publish</code> action.
+     *            value for the <code>MessageDeduplicationId</code> parameter
+     *            for the <code>Publish</code> action.
      *            </p>
      *            </li>
      *            </ul>

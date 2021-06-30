@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -21,12 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Retrieves an HTTP Live Streaming (HLS) URL for the stream. The URL can then
- * be opened in a browser or media player to view the stream contents.
+ * Retrieves an HTTP Live Streaming (HLS) URL for the stream. You can then open
+ * the URL in a browser or media player to view the stream contents.
  * </p>
  * <p>
- * You must specify either the <code>StreamName</code> or the
- * <code>StreamARN</code>.
+ * Both the <code>StreamName</code> and the <code>StreamARN</code> parameters
+ * are optional, but you must specify either the <code>StreamName</code> or the
+ * <code>StreamARN</code> when invoking this API operation.
  * </p>
  * <p>
  * An Amazon Kinesis video stream has the following requirements for providing
@@ -35,7 +36,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * The media type must be <code>video/h264</code>.
+ * The media must contain h.264 or h.265 encoded video and, optionally, AAC
+ * encoded audio. Specifically, the codec ID of track 1 should be
+ * <code>V_MPEG/ISO/AVC</code> (for h.264) or <code>V_MPEG/ISO/HEVC</code> (for
+ * h.265). Optionally, the codec ID of track 2 should be <code>A_AAC</code>.
  * </p>
  * </li>
  * <li>
@@ -45,21 +49,28 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * The fragments must contain codec private data in the AVC (Advanced Video
- * Coding) for H.264 format (<a
+ * The video track of each fragment must contain codec private data in the
+ * Advanced Video Coding (AVC) for H.264 format or HEVC for H.265 format (<a
  * href="https://www.iso.org/standard/55980.html">MPEG-4 specification ISO/IEC
  * 14496-15</a>). For information about adapting stream data to a given format,
  * see <a href=
- * "http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/latest/dg/producer-reference-nal.html"
+ * "http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/producer-reference-nal.html"
  * >NAL Adaptation Flags</a>.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * The audio track (if present) of each fragment must contain codec private data
+ * in the AAC format (<a href="https://www.iso.org/standard/43345.html">AAC
+ * specification ISO/IEC 13818-7</a>).
  * </p>
  * </li>
  * </ul>
  * <p>
  * Kinesis Video Streams HLS sessions contain fragments in the fragmented MPEG-4
- * form (also called fMP4 or CMAF), rather than the MPEG-2 form (also called TS
- * chunks, which the HLS specification also supports). For more information
- * about HLS fragment types, see the <a
+ * form (also called fMP4 or CMAF) or the MPEG-2 form (also called TS chunks,
+ * which the HLS specification also supports). For more information about HLS
+ * fragment types, see the <a
  * href="https://tools.ietf.org/html/draft-pantos-http-live-streaming-23">HLS
  * specification</a>.
  * </p>
@@ -94,7 +105,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * The media that is made available through the playlist consists only of the
  * requested stream, time range, and format. No other media data (such as frames
- * outside the requested window or alternate bit rates) is made available.
+ * outside the requested window or alternate bitrates) is made available.
  * </p>
  * </li>
  * <li>
@@ -104,8 +115,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Streams makes the HLS media playlist, initialization fragment, and media
  * fragments available through the master playlist URL. The initialization
  * fragment contains the codec private data for the stream, and other data
- * needed to set up the video decoder and renderer. The media fragments contain
- * H.264-encoded video frames and time stamps.
+ * needed to set up the video or audio decoder and renderer. The media fragments
+ * contain H.264-encoded video frames or AAC-encoded audio samples.
  * </p>
  * </li>
  * <li>
@@ -118,14 +129,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * <b>GetHLSMasterPlaylist:</b> Retrieves an HLS master playlist, which contains
- * a URL for the <code>GetHLSMediaPlaylist</code> action, and additional
- * metadata for the media player, including estimated bit rate and resolution.
+ * a URL for the <code>GetHLSMediaPlaylist</code> action for each track, and
+ * additional metadata for the media player, including estimated bitrate and
+ * resolution.
  * </p>
  * </li>
  * <li>
  * <p>
  * <b>GetHLSMediaPlaylist:</b> Retrieves an HLS media playlist, which contains a
- * URL to access the MP4 intitialization fragment with the
+ * URL to access the MP4 initialization fragment with the
  * <code>GetMP4InitFragment</code> action, and URLs to access the MP4 media
  * fragments with the <code>GetMP4MediaFragment</code> actions. The HLS media
  * playlist also contains metadata about the stream that the player needs to
@@ -133,7 +145,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * or <code>ON_DEMAND</code>. The HLS media playlist is typically static for
  * sessions with a <code>PlaybackType</code> of <code>ON_DEMAND</code>. The HLS
  * media playlist is continually updated with new fragments for sessions with a
- * <code>PlaybackType</code> of <code>LIVE</code>.
+ * <code>PlaybackType</code> of <code>LIVE</code>. There is a distinct HLS media
+ * playlist for the video track and the audio track (if applicable) that
+ * contains MP4 media URLs for the specific track.
  * </p>
  * </li>
  * <li>
@@ -146,54 +160,61 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The initialization fragment does not correspond to a fragment in a Kinesis
- * video stream. It contains only the codec private data for the stream, which
- * the media player needs to decode video frames.
+ * video stream. It contains only the codec private data for the stream and
+ * respective track, which the media player needs to decode the media frames.
  * </p>
  * </li>
  * <li>
  * <p>
  * <b>GetMP4MediaFragment:</b> Retrieves MP4 media fragments. These fragments
  * contain the "<code>moof</code>" and "<code>mdat</code>" MP4 atoms and their
- * child atoms, containing the encoded fragment's video frames and their time
- * stamps.
+ * child atoms, containing the encoded fragment's media frames and their
+ * timestamps.
  * </p>
  * <note>
  * <p>
  * After the first media fragment is made available in a streaming session, any
- * fragments that don't contain the same codec private data are excluded in the
- * HLS media playlist. Therefore, the codec private data does not change between
- * fragments in a session.
+ * fragments that don't contain the same codec private data cause an error to be
+ * returned when those different media fragments are loaded. Therefore, the
+ * codec private data should not change between fragments in a session. This
+ * also means that the session fails if the fragments in a stream change from
+ * having only video to having both audio and video.
  * </p>
- * </note></li>
+ * </note>
+ * <p>
+ * Data retrieved with this action is billable. See <a
+ * href="https://aws.amazon.com/kinesis/video-streams/pricing/">Pricing</a> for
+ * details.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <b>GetTSFragment:</b> Retrieves MPEG TS fragments containing both
+ * initialization and media data for all tracks in the stream.
+ * </p>
+ * <note>
+ * <p>
+ * If the <code>ContainerFormat</code> is <code>MPEG_TS</code>, this API is used
+ * instead of <code>GetMP4InitFragment</code> and
+ * <code>GetMP4MediaFragment</code> to retrieve stream media.
+ * </p>
+ * </note>
+ * <p>
+ * Data retrieved with this action is billable. For more information, see <a
+ * href="https://aws.amazon.com/kinesis/video-streams/pricing/">Kinesis Video
+ * Streams pricing</a>.
+ * </p>
+ * </li>
  * </ul>
  * </li>
  * </ol>
- * <note>
  * <p>
- * The following restrictions apply to HLS sessions:
- * </p>
- * <ul>
- * <li>
- * <p>
- * A streaming session URL should not be shared between players. The service
- * might throttle a session if multiple media players are sharing it. For
- * connection limits, see <a
+ * A streaming session URL must not be shared between players. The service might
+ * throttle a session if multiple media players are sharing it. For connection
+ * limits, see <a
  * href="http://docs.aws.amazon.com/kinesisvideostreams/latest/dg/limits.html"
  * >Kinesis Video Streams Limits</a>.
  * </p>
- * </li>
- * <li>
- * <p>
- * A Kinesis video stream can have a maximum of five active HLS streaming
- * sessions. If a new session is created when the maximum number of sessions is
- * already active, the oldest (earliest created) session is closed. The number
- * of active <code>GetMedia</code> connections on a Kinesis video stream does
- * not count against this limit, and the number of active HLS sessions does not
- * count against the active <code>GetMedia</code> connection limit.
- * </p>
- * </li>
- * </ul>
- * </note>
  * <p>
  * You can monitor the amount of data that the media player consumes by
  * monitoring the <code>GetMP4MediaFragment.OutgoingBytes</code> Amazon
@@ -210,6 +231,40 @@ import com.amazonaws.AmazonWebServiceRequest;
  * href="https://developer.apple.com/streaming/">HTTP Live Streaming</a> on the
  * <a href="https://developer.apple.com">Apple Developer site</a>.
  * </p>
+ * <important>
+ * <p>
+ * If an error is thrown after invoking a Kinesis Video Streams archived media
+ * API, in addition to the HTTP status code and the response body, it includes
+ * the following pieces of information:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * <code>x-amz-ErrorType</code> HTTP header – contains a more specific error
+ * type in addition to what the HTTP status code provides.
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * <code>x-amz-RequestId</code> HTTP header – if you want to report an issue to
+ * AWS, the support team can better diagnose the problem if given the Request
+ * Id.
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * Both the HTTP status code and the ErrorType header can be utilized to make
+ * programmatic decisions about whether errors are retry-able and under what
+ * conditions, as well as provide information on what actions the client
+ * programmer might need to take in order to successfully try again.
+ * </p>
+ * <p>
+ * For more information, see the <b>Errors</b> section at the bottom of this
+ * topic, as well as <a href=
+ * "https://docs.aws.amazon.com/kinesisvideostreams/latest/dg/CommonErrors.html"
+ * >Common Errors</a>.
+ * </p>
+ * </important>
  */
 public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -241,17 +296,17 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      */
     private String streamARN;
 
     /**
      * <p>
-     * Whether to retrieve live or archived, on-demand data.
+     * Whether to retrieve live, live replay, or archived, on-demand data.
      * </p>
      * <p>
-     * Features of the two types of session include the following:
+     * Features of the three types of sessions include the following:
      * </p>
      * <ul>
      * <li>
@@ -278,6 +333,22 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * </note></li>
      * <li>
      * <p>
+     * <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the HLS
+     * media playlist is updated similarly to how it is updated for
+     * <code>LIVE</code> mode except that it starts by including fragments from
+     * a given start time. Instead of fragments being added as they are
+     * ingested, fragments are added as the duration of the next fragment
+     * elapses. For example, if the fragments in the session are two seconds
+     * long, then a new fragment is added to the media playlist every two
+     * seconds. This mode is useful to be able to start playback from when an
+     * event is detected and continue live streaming media that has not yet been
+     * ingested as of the time of the session creation. This mode is also useful
+     * to stream previously archived media without being limited by the 1,000
+     * fragment limit in the <code>ON_DEMAND</code> mode.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the HLS media
      * playlist contains all the fragments for the session, up to the number
      * that is specified in <code>MaxMediaPlaylistFragmentResults</code>. The
@@ -286,55 +357,148 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * displays a scrubber control for choosing the position in the playback
      * window to display.
      * </p>
-     * <note>
-     * <p>
-     * The duration of the fragments in the HLS media playlists is typically
-     * reported as short by one frame (for example, 33 milliseconds for a 30 FPS
-     * fragment). This might cause the media player to report a shorter total
-     * duration until the media player decodes the fragments.
-     * </p>
-     * </note></li>
+     * </li>
      * </ul>
      * <p>
-     * In both playback modes, if there are multiple fragments with the same
-     * start time stamp, the fragment that has the larger fragment number (that
-     * is, the newer fragment) is included in the HLS media playlist. The other
-     * fragments are not included. Fragments that have different time stamps but
-     * have overlapping durations are still included in the HLS media playlist.
-     * This can lead to unexpected behavior in the media player.
+     * In all playback modes, if <code>FragmentSelectorType</code> is
+     * <code>PRODUCER_TIMESTAMP</code>, and if there are multiple fragments with
+     * the same start timestamp, the fragment that has the largest fragment
+     * number (that is, the newest fragment) is included in the HLS media
+     * playlist. The other fragments are not included. Fragments that have
+     * different timestamps but have overlapping durations are still included in
+     * the HLS media playlist. This can lead to unexpected behavior in the media
+     * player.
      * </p>
      * <p>
      * The default is <code>LIVE</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>LIVE, ON_DEMAND
+     * <b>Allowed Values: </b>LIVE, LIVE_REPLAY, ON_DEMAND
      */
     private String playbackMode;
 
     /**
      * <p>
-     * The time range of the requested fragment, and the source of the time
-     * stamp.
+     * The time range of the requested fragment and the source of the
+     * timestamps.
      * </p>
      * <p>
      * This parameter is required if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>. This parameter is optional if
-     * <code>PlaybackMode</code> is <code>LIVE</code>. If
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This parameter is
+     * optional if PlaybackMode is<code/> <code>LIVE</code>. If
      * <code>PlaybackMode</code> is <code>LIVE</code>, the
      * <code>FragmentSelectorType</code> can be set, but the
-     * <code>TimestampRange</code> should not be set.
+     * <code>TimestampRange</code> should not be set. If
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     * <code>LIVE_REPLAY</code>, both <code>FragmentSelectorType</code> and
+     * <code>TimestampRange</code> must be set.
      * </p>
      */
     private HLSFragmentSelector hLSFragmentSelector;
 
     /**
-     * The new value for the discontinuityMode property for this object.
+     * <p>
+     * Specifies which format should be used for packaging the media. Specifying
+     * the <code>FRAGMENTED_MP4</code> container format packages the media into
+     * MP4 fragments (fMP4 or CMAF). This is the recommended packaging because
+     * there is minimal packaging overhead. The other container format option is
+     * <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was
+     * released and is sometimes the only supported packaging on older HLS
+     * players. MPEG TS typically has a 5-25 percent packaging overhead. This
+     * means MPEG TS typically requires 5-25 percent more bandwidth and cost
+     * than fMP4.
+     * </p>
+     * <p>
+     * The default is <code>FRAGMENTED_MP4</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FRAGMENTED_MP4, MPEG_TS
+     */
+    private String containerFormat;
+
+    /**
+     * <p>
+     * Specifies when flags marking discontinuities between fragments are added
+     * to the media playlists.
+     * </p>
+     * <p>
+     * Media players typically build a timeline of media content to play, based
+     * on the timestamps of each fragment. This means that if there is any
+     * overlap or gap between fragments (as is typical if
+     * <a>HLSFragmentSelector</a> is set to <code>SERVER_TIMESTAMP</code>), the
+     * media player timeline will also have small gaps between fragments in some
+     * places, and will overwrite frames in other places. Gaps in the media
+     * player timeline can cause playback to stall and overlaps can cause
+     * playback to be jittery. When there are discontinuity flags between
+     * fragments, the media player is expected to reset the timeline, resulting
+     * in the next fragment being played immediately after the previous
+     * fragment.
+     * </p>
+     * <p>
+     * The following modes are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ALWAYS</code>: a discontinuity marker is placed between every
+     * fragment in the HLS media playlist. It is recommended to use a value of
+     * <code>ALWAYS</code> if the fragment timestamps are not accurate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEVER</code>: no discontinuity markers are placed anywhere. It is
+     * recommended to use a value of <code>NEVER</code> to ensure the media
+     * player timeline most accurately maps to the producer timestamps.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed between
+     * fragments that have a gap or overlap of more than 50 milliseconds. For
+     * most playback scenarios, it is recommended to use a value of
+     * <code>ON_DISCONTINUITY</code> so that the media player timeline is only
+     * reset when there is a significant issue with the media timeline (e.g. a
+     * missing fragment).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The default is <code>ALWAYS</code> when <a>HLSFragmentSelector</a> is set
+     * to <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is set
+     * to <code>PRODUCER_TIMESTAMP</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER, ON_DISCONTINUITY
+     */
+    private String discontinuityMode;
+
+    /**
+     * <p>
+     * Specifies when the fragment start timestamps should be included in the
+     * HLS media playlist. Typically, media players report the playhead position
+     * as a time relative to the start of the first fragment in the playback
+     * session. However, when the start timestamps are included in the HLS media
+     * playlist, some media players might report the current playhead as an
+     * absolute time based on the fragment timestamps. This can be useful for
+     * creating a playback experience that shows viewers the wall-clock time of
+     * the media.
+     * </p>
+     * <p>
+     * The default is <code>NEVER</code>. When <a>HLSFragmentSelector</a> is
+     * <code>SERVER_TIMESTAMP</code>, the timestamps will be the server start
+     * timestamps. Similarly, when <a>HLSFragmentSelector</a> is
+     * <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the producer
+     * start timestamps.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALWAYS, NEVER
      */
-    private String discontinuityMode;
+    private String displayFragmentTimestamp;
 
     /**
      * <p>
@@ -342,11 +506,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * be between 300 (5 minutes) and 43200 (12 hours).
      * </p>
      * <p>
-     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>, or
-     * <code>GetMP4MediaFragment</code> can be made for that session.
+     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>,
+     * <code>GetMP4MediaFragment</code>, or <code>GetTSFragment</code> can be
+     * made for that session.
      * </p>
      * <p>
-     * The default is 3600 (one hour).
+     * The default is 300 (5 minutes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -356,7 +521,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The maximum number of fragments that Kinesis Video Streams will return.
+     * The maximum number of fragments that are returned in the HLS media
+     * playlists.
      * </p>
      * <p>
      * When the <code>PlaybackMode</code> is <code>LIVE</code>, the most recent
@@ -365,26 +531,26 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * are returned, up to this maximum number.
      * </p>
      * <p>
-     * When there are more fragments available in a live HLS media playlist,
-     * video players often buffer content before starting playback. Increasing
-     * the buffer size increases the playback latency, but it decreases the
-     * likelihood that rebuffering will occur during playback. We recommend that
-     * a live HLS media playlist have a minimum of 3 fragments and a maximum of
-     * 10 fragments.
+     * When there are a higher number of fragments available in a live HLS media
+     * playlist, video players often buffer content before starting playback.
+     * Increasing the buffer size increases the playback latency, but it
+     * decreases the likelihood that rebuffering will occur during playback. We
+     * recommend that a live HLS media playlist have a minimum of 3 fragments
+     * and a maximum of 10 fragments.
      * </p>
      * <p>
      * The default is 5 fragments if <code>PlaybackMode</code> is
-     * <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>.
+     * <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      * </p>
      * <p>
-     * The maximum value of 1000 fragments corresponds to more than 16 minutes
-     * of video on streams with one-second fragments, and more than 2 1/2 hours
-     * of video on streams with ten-second fragments.
+     * The maximum value of 5,000 fragments corresponds to more than 80 minutes
+     * of video on streams with 1-second fragments, and more than 13 hours of
+     * video on streams with 10-second fragments.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Range: </b>1 - 5000<br/>
      */
     private Long maxMediaPlaylistFragmentResults;
 
@@ -485,8 +651,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the stream for which to
@@ -514,8 +680,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream for which to
@@ -546,8 +712,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1024<br/>
      * <b>Pattern:
-     * </b>arn:aws:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-Z0-9_.-]+/[0-9]+
-     * <br/>
+     * </b>arn:[a-z\d-]+:kinesisvideo:[a-z0-9-]+:[0-9]+:[a-z]+/[a-zA-
+     * Z0-9_.-]+/[0-9]+<br/>
      *
      * @param streamARN <p>
      *            The Amazon Resource Name (ARN) of the stream for which to
@@ -567,10 +733,10 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Whether to retrieve live or archived, on-demand data.
+     * Whether to retrieve live, live replay, or archived, on-demand data.
      * </p>
      * <p>
-     * Features of the two types of session include the following:
+     * Features of the three types of sessions include the following:
      * </p>
      * <ul>
      * <li>
@@ -597,6 +763,22 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * </note></li>
      * <li>
      * <p>
+     * <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the HLS
+     * media playlist is updated similarly to how it is updated for
+     * <code>LIVE</code> mode except that it starts by including fragments from
+     * a given start time. Instead of fragments being added as they are
+     * ingested, fragments are added as the duration of the next fragment
+     * elapses. For example, if the fragments in the session are two seconds
+     * long, then a new fragment is added to the media playlist every two
+     * seconds. This mode is useful to be able to start playback from when an
+     * event is detected and continue live streaming media that has not yet been
+     * ingested as of the time of the session creation. This mode is also useful
+     * to stream previously archived media without being limited by the 1,000
+     * fragment limit in the <code>ON_DEMAND</code> mode.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the HLS media
      * playlist contains all the fragments for the session, up to the number
      * that is specified in <code>MaxMediaPlaylistFragmentResults</code>. The
@@ -605,35 +787,31 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * displays a scrubber control for choosing the position in the playback
      * window to display.
      * </p>
-     * <note>
-     * <p>
-     * The duration of the fragments in the HLS media playlists is typically
-     * reported as short by one frame (for example, 33 milliseconds for a 30 FPS
-     * fragment). This might cause the media player to report a shorter total
-     * duration until the media player decodes the fragments.
-     * </p>
-     * </note></li>
+     * </li>
      * </ul>
      * <p>
-     * In both playback modes, if there are multiple fragments with the same
-     * start time stamp, the fragment that has the larger fragment number (that
-     * is, the newer fragment) is included in the HLS media playlist. The other
-     * fragments are not included. Fragments that have different time stamps but
-     * have overlapping durations are still included in the HLS media playlist.
-     * This can lead to unexpected behavior in the media player.
+     * In all playback modes, if <code>FragmentSelectorType</code> is
+     * <code>PRODUCER_TIMESTAMP</code>, and if there are multiple fragments with
+     * the same start timestamp, the fragment that has the largest fragment
+     * number (that is, the newest fragment) is included in the HLS media
+     * playlist. The other fragments are not included. Fragments that have
+     * different timestamps but have overlapping durations are still included in
+     * the HLS media playlist. This can lead to unexpected behavior in the media
+     * player.
      * </p>
      * <p>
      * The default is <code>LIVE</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>LIVE, ON_DEMAND
+     * <b>Allowed Values: </b>LIVE, LIVE_REPLAY, ON_DEMAND
      *
      * @return <p>
-     *         Whether to retrieve live or archived, on-demand data.
+     *         Whether to retrieve live, live replay, or archived, on-demand
+     *         data.
      *         </p>
      *         <p>
-     *         Features of the two types of session include the following:
+     *         Features of the three types of sessions include the following:
      *         </p>
      *         <ul>
      *         <li>
@@ -662,6 +840,23 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *         </note></li>
      *         <li>
      *         <p>
+     *         <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the
+     *         HLS media playlist is updated similarly to how it is updated for
+     *         <code>LIVE</code> mode except that it starts by including
+     *         fragments from a given start time. Instead of fragments being
+     *         added as they are ingested, fragments are added as the duration
+     *         of the next fragment elapses. For example, if the fragments in
+     *         the session are two seconds long, then a new fragment is added to
+     *         the media playlist every two seconds. This mode is useful to be
+     *         able to start playback from when an event is detected and
+     *         continue live streaming media that has not yet been ingested as
+     *         of the time of the session creation. This mode is also useful to
+     *         stream previously archived media without being limited by the
+     *         1,000 fragment limit in the <code>ON_DEMAND</code> mode.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
      *         <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the
      *         HLS media playlist contains all the fragments for the session, up
      *         to the number that is specified in
@@ -671,29 +866,23 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *         displays a scrubber control for choosing the position in the
      *         playback window to display.
      *         </p>
-     *         <note>
-     *         <p>
-     *         The duration of the fragments in the HLS media playlists is
-     *         typically reported as short by one frame (for example, 33
-     *         milliseconds for a 30 FPS fragment). This might cause the media
-     *         player to report a shorter total duration until the media player
-     *         decodes the fragments.
-     *         </p>
-     *         </note></li>
+     *         </li>
      *         </ul>
      *         <p>
-     *         In both playback modes, if there are multiple fragments with the
-     *         same start time stamp, the fragment that has the larger fragment
-     *         number (that is, the newer fragment) is included in the HLS media
-     *         playlist. The other fragments are not included. Fragments that
-     *         have different time stamps but have overlapping durations are
-     *         still included in the HLS media playlist. This can lead to
-     *         unexpected behavior in the media player.
+     *         In all playback modes, if <code>FragmentSelectorType</code> is
+     *         <code>PRODUCER_TIMESTAMP</code>, and if there are multiple
+     *         fragments with the same start timestamp, the fragment that has
+     *         the largest fragment number (that is, the newest fragment) is
+     *         included in the HLS media playlist. The other fragments are not
+     *         included. Fragments that have different timestamps but have
+     *         overlapping durations are still included in the HLS media
+     *         playlist. This can lead to unexpected behavior in the media
+     *         player.
      *         </p>
      *         <p>
      *         The default is <code>LIVE</code>.
      *         </p>
-     * @see PlaybackMode
+     * @see HLSPlaybackMode
      */
     public String getPlaybackMode() {
         return playbackMode;
@@ -701,10 +890,10 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Whether to retrieve live or archived, on-demand data.
+     * Whether to retrieve live, live replay, or archived, on-demand data.
      * </p>
      * <p>
-     * Features of the two types of session include the following:
+     * Features of the three types of sessions include the following:
      * </p>
      * <ul>
      * <li>
@@ -731,6 +920,22 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * </note></li>
      * <li>
      * <p>
+     * <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the HLS
+     * media playlist is updated similarly to how it is updated for
+     * <code>LIVE</code> mode except that it starts by including fragments from
+     * a given start time. Instead of fragments being added as they are
+     * ingested, fragments are added as the duration of the next fragment
+     * elapses. For example, if the fragments in the session are two seconds
+     * long, then a new fragment is added to the media playlist every two
+     * seconds. This mode is useful to be able to start playback from when an
+     * event is detected and continue live streaming media that has not yet been
+     * ingested as of the time of the session creation. This mode is also useful
+     * to stream previously archived media without being limited by the 1,000
+     * fragment limit in the <code>ON_DEMAND</code> mode.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the HLS media
      * playlist contains all the fragments for the session, up to the number
      * that is specified in <code>MaxMediaPlaylistFragmentResults</code>. The
@@ -739,35 +944,31 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * displays a scrubber control for choosing the position in the playback
      * window to display.
      * </p>
-     * <note>
-     * <p>
-     * The duration of the fragments in the HLS media playlists is typically
-     * reported as short by one frame (for example, 33 milliseconds for a 30 FPS
-     * fragment). This might cause the media player to report a shorter total
-     * duration until the media player decodes the fragments.
-     * </p>
-     * </note></li>
+     * </li>
      * </ul>
      * <p>
-     * In both playback modes, if there are multiple fragments with the same
-     * start time stamp, the fragment that has the larger fragment number (that
-     * is, the newer fragment) is included in the HLS media playlist. The other
-     * fragments are not included. Fragments that have different time stamps but
-     * have overlapping durations are still included in the HLS media playlist.
-     * This can lead to unexpected behavior in the media player.
+     * In all playback modes, if <code>FragmentSelectorType</code> is
+     * <code>PRODUCER_TIMESTAMP</code>, and if there are multiple fragments with
+     * the same start timestamp, the fragment that has the largest fragment
+     * number (that is, the newest fragment) is included in the HLS media
+     * playlist. The other fragments are not included. Fragments that have
+     * different timestamps but have overlapping durations are still included in
+     * the HLS media playlist. This can lead to unexpected behavior in the media
+     * player.
      * </p>
      * <p>
      * The default is <code>LIVE</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>LIVE, ON_DEMAND
+     * <b>Allowed Values: </b>LIVE, LIVE_REPLAY, ON_DEMAND
      *
      * @param playbackMode <p>
-     *            Whether to retrieve live or archived, on-demand data.
+     *            Whether to retrieve live, live replay, or archived, on-demand
+     *            data.
      *            </p>
      *            <p>
-     *            Features of the two types of session include the following:
+     *            Features of the three types of sessions include the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -796,6 +997,24 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            </note></li>
      *            <li>
      *            <p>
+     *            <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type,
+     *            the HLS media playlist is updated similarly to how it is
+     *            updated for <code>LIVE</code> mode except that it starts by
+     *            including fragments from a given start time. Instead of
+     *            fragments being added as they are ingested, fragments are
+     *            added as the duration of the next fragment elapses. For
+     *            example, if the fragments in the session are two seconds long,
+     *            then a new fragment is added to the media playlist every two
+     *            seconds. This mode is useful to be able to start playback from
+     *            when an event is detected and continue live streaming media
+     *            that has not yet been ingested as of the time of the session
+     *            creation. This mode is also useful to stream previously
+     *            archived media without being limited by the 1,000 fragment
+     *            limit in the <code>ON_DEMAND</code> mode.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <b> <code>ON_DEMAND</code> </b>: For sessions of this type,
      *            the HLS media playlist contains all the fragments for the
      *            session, up to the number that is specified in
@@ -805,29 +1024,23 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            typically displays a scrubber control for choosing the
      *            position in the playback window to display.
      *            </p>
-     *            <note>
-     *            <p>
-     *            The duration of the fragments in the HLS media playlists is
-     *            typically reported as short by one frame (for example, 33
-     *            milliseconds for a 30 FPS fragment). This might cause the
-     *            media player to report a shorter total duration until the
-     *            media player decodes the fragments.
-     *            </p>
-     *            </note></li>
+     *            </li>
      *            </ul>
      *            <p>
-     *            In both playback modes, if there are multiple fragments with
-     *            the same start time stamp, the fragment that has the larger
-     *            fragment number (that is, the newer fragment) is included in
-     *            the HLS media playlist. The other fragments are not included.
-     *            Fragments that have different time stamps but have overlapping
-     *            durations are still included in the HLS media playlist. This
-     *            can lead to unexpected behavior in the media player.
+     *            In all playback modes, if <code>FragmentSelectorType</code> is
+     *            <code>PRODUCER_TIMESTAMP</code>, and if there are multiple
+     *            fragments with the same start timestamp, the fragment that has
+     *            the largest fragment number (that is, the newest fragment) is
+     *            included in the HLS media playlist. The other fragments are
+     *            not included. Fragments that have different timestamps but
+     *            have overlapping durations are still included in the HLS media
+     *            playlist. This can lead to unexpected behavior in the media
+     *            player.
      *            </p>
      *            <p>
      *            The default is <code>LIVE</code>.
      *            </p>
-     * @see PlaybackMode
+     * @see HLSPlaybackMode
      */
     public void setPlaybackMode(String playbackMode) {
         this.playbackMode = playbackMode;
@@ -835,10 +1048,10 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Whether to retrieve live or archived, on-demand data.
+     * Whether to retrieve live, live replay, or archived, on-demand data.
      * </p>
      * <p>
-     * Features of the two types of session include the following:
+     * Features of the three types of sessions include the following:
      * </p>
      * <ul>
      * <li>
@@ -865,6 +1078,22 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * </note></li>
      * <li>
      * <p>
+     * <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the HLS
+     * media playlist is updated similarly to how it is updated for
+     * <code>LIVE</code> mode except that it starts by including fragments from
+     * a given start time. Instead of fragments being added as they are
+     * ingested, fragments are added as the duration of the next fragment
+     * elapses. For example, if the fragments in the session are two seconds
+     * long, then a new fragment is added to the media playlist every two
+     * seconds. This mode is useful to be able to start playback from when an
+     * event is detected and continue live streaming media that has not yet been
+     * ingested as of the time of the session creation. This mode is also useful
+     * to stream previously archived media without being limited by the 1,000
+     * fragment limit in the <code>ON_DEMAND</code> mode.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the HLS media
      * playlist contains all the fragments for the session, up to the number
      * that is specified in <code>MaxMediaPlaylistFragmentResults</code>. The
@@ -873,22 +1102,17 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * displays a scrubber control for choosing the position in the playback
      * window to display.
      * </p>
-     * <note>
-     * <p>
-     * The duration of the fragments in the HLS media playlists is typically
-     * reported as short by one frame (for example, 33 milliseconds for a 30 FPS
-     * fragment). This might cause the media player to report a shorter total
-     * duration until the media player decodes the fragments.
-     * </p>
-     * </note></li>
+     * </li>
      * </ul>
      * <p>
-     * In both playback modes, if there are multiple fragments with the same
-     * start time stamp, the fragment that has the larger fragment number (that
-     * is, the newer fragment) is included in the HLS media playlist. The other
-     * fragments are not included. Fragments that have different time stamps but
-     * have overlapping durations are still included in the HLS media playlist.
-     * This can lead to unexpected behavior in the media player.
+     * In all playback modes, if <code>FragmentSelectorType</code> is
+     * <code>PRODUCER_TIMESTAMP</code>, and if there are multiple fragments with
+     * the same start timestamp, the fragment that has the largest fragment
+     * number (that is, the newest fragment) is included in the HLS media
+     * playlist. The other fragments are not included. Fragments that have
+     * different timestamps but have overlapping durations are still included in
+     * the HLS media playlist. This can lead to unexpected behavior in the media
+     * player.
      * </p>
      * <p>
      * The default is <code>LIVE</code>.
@@ -898,13 +1122,14 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>LIVE, ON_DEMAND
+     * <b>Allowed Values: </b>LIVE, LIVE_REPLAY, ON_DEMAND
      *
      * @param playbackMode <p>
-     *            Whether to retrieve live or archived, on-demand data.
+     *            Whether to retrieve live, live replay, or archived, on-demand
+     *            data.
      *            </p>
      *            <p>
-     *            Features of the two types of session include the following:
+     *            Features of the three types of sessions include the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -933,6 +1158,24 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            </note></li>
      *            <li>
      *            <p>
+     *            <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type,
+     *            the HLS media playlist is updated similarly to how it is
+     *            updated for <code>LIVE</code> mode except that it starts by
+     *            including fragments from a given start time. Instead of
+     *            fragments being added as they are ingested, fragments are
+     *            added as the duration of the next fragment elapses. For
+     *            example, if the fragments in the session are two seconds long,
+     *            then a new fragment is added to the media playlist every two
+     *            seconds. This mode is useful to be able to start playback from
+     *            when an event is detected and continue live streaming media
+     *            that has not yet been ingested as of the time of the session
+     *            creation. This mode is also useful to stream previously
+     *            archived media without being limited by the 1,000 fragment
+     *            limit in the <code>ON_DEMAND</code> mode.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <b> <code>ON_DEMAND</code> </b>: For sessions of this type,
      *            the HLS media playlist contains all the fragments for the
      *            session, up to the number that is specified in
@@ -942,31 +1185,25 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            typically displays a scrubber control for choosing the
      *            position in the playback window to display.
      *            </p>
-     *            <note>
-     *            <p>
-     *            The duration of the fragments in the HLS media playlists is
-     *            typically reported as short by one frame (for example, 33
-     *            milliseconds for a 30 FPS fragment). This might cause the
-     *            media player to report a shorter total duration until the
-     *            media player decodes the fragments.
-     *            </p>
-     *            </note></li>
+     *            </li>
      *            </ul>
      *            <p>
-     *            In both playback modes, if there are multiple fragments with
-     *            the same start time stamp, the fragment that has the larger
-     *            fragment number (that is, the newer fragment) is included in
-     *            the HLS media playlist. The other fragments are not included.
-     *            Fragments that have different time stamps but have overlapping
-     *            durations are still included in the HLS media playlist. This
-     *            can lead to unexpected behavior in the media player.
+     *            In all playback modes, if <code>FragmentSelectorType</code> is
+     *            <code>PRODUCER_TIMESTAMP</code>, and if there are multiple
+     *            fragments with the same start timestamp, the fragment that has
+     *            the largest fragment number (that is, the newest fragment) is
+     *            included in the HLS media playlist. The other fragments are
+     *            not included. Fragments that have different timestamps but
+     *            have overlapping durations are still included in the HLS media
+     *            playlist. This can lead to unexpected behavior in the media
+     *            player.
      *            </p>
      *            <p>
      *            The default is <code>LIVE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see PlaybackMode
+     * @see HLSPlaybackMode
      */
     public GetHLSStreamingSessionURLRequest withPlaybackMode(String playbackMode) {
         this.playbackMode = playbackMode;
@@ -975,10 +1212,10 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * Whether to retrieve live or archived, on-demand data.
+     * Whether to retrieve live, live replay, or archived, on-demand data.
      * </p>
      * <p>
-     * Features of the two types of session include the following:
+     * Features of the three types of sessions include the following:
      * </p>
      * <ul>
      * <li>
@@ -1005,6 +1242,22 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * </note></li>
      * <li>
      * <p>
+     * <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the HLS
+     * media playlist is updated similarly to how it is updated for
+     * <code>LIVE</code> mode except that it starts by including fragments from
+     * a given start time. Instead of fragments being added as they are
+     * ingested, fragments are added as the duration of the next fragment
+     * elapses. For example, if the fragments in the session are two seconds
+     * long, then a new fragment is added to the media playlist every two
+     * seconds. This mode is useful to be able to start playback from when an
+     * event is detected and continue live streaming media that has not yet been
+     * ingested as of the time of the session creation. This mode is also useful
+     * to stream previously archived media without being limited by the 1,000
+     * fragment limit in the <code>ON_DEMAND</code> mode.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the HLS media
      * playlist contains all the fragments for the session, up to the number
      * that is specified in <code>MaxMediaPlaylistFragmentResults</code>. The
@@ -1013,35 +1266,31 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * displays a scrubber control for choosing the position in the playback
      * window to display.
      * </p>
-     * <note>
-     * <p>
-     * The duration of the fragments in the HLS media playlists is typically
-     * reported as short by one frame (for example, 33 milliseconds for a 30 FPS
-     * fragment). This might cause the media player to report a shorter total
-     * duration until the media player decodes the fragments.
-     * </p>
-     * </note></li>
+     * </li>
      * </ul>
      * <p>
-     * In both playback modes, if there are multiple fragments with the same
-     * start time stamp, the fragment that has the larger fragment number (that
-     * is, the newer fragment) is included in the HLS media playlist. The other
-     * fragments are not included. Fragments that have different time stamps but
-     * have overlapping durations are still included in the HLS media playlist.
-     * This can lead to unexpected behavior in the media player.
+     * In all playback modes, if <code>FragmentSelectorType</code> is
+     * <code>PRODUCER_TIMESTAMP</code>, and if there are multiple fragments with
+     * the same start timestamp, the fragment that has the largest fragment
+     * number (that is, the newest fragment) is included in the HLS media
+     * playlist. The other fragments are not included. Fragments that have
+     * different timestamps but have overlapping durations are still included in
+     * the HLS media playlist. This can lead to unexpected behavior in the media
+     * player.
      * </p>
      * <p>
      * The default is <code>LIVE</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>LIVE, ON_DEMAND
+     * <b>Allowed Values: </b>LIVE, LIVE_REPLAY, ON_DEMAND
      *
      * @param playbackMode <p>
-     *            Whether to retrieve live or archived, on-demand data.
+     *            Whether to retrieve live, live replay, or archived, on-demand
+     *            data.
      *            </p>
      *            <p>
-     *            Features of the two types of session include the following:
+     *            Features of the three types of sessions include the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -1070,6 +1319,24 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            </note></li>
      *            <li>
      *            <p>
+     *            <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type,
+     *            the HLS media playlist is updated similarly to how it is
+     *            updated for <code>LIVE</code> mode except that it starts by
+     *            including fragments from a given start time. Instead of
+     *            fragments being added as they are ingested, fragments are
+     *            added as the duration of the next fragment elapses. For
+     *            example, if the fragments in the session are two seconds long,
+     *            then a new fragment is added to the media playlist every two
+     *            seconds. This mode is useful to be able to start playback from
+     *            when an event is detected and continue live streaming media
+     *            that has not yet been ingested as of the time of the session
+     *            creation. This mode is also useful to stream previously
+     *            archived media without being limited by the 1,000 fragment
+     *            limit in the <code>ON_DEMAND</code> mode.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <b> <code>ON_DEMAND</code> </b>: For sessions of this type,
      *            the HLS media playlist contains all the fragments for the
      *            session, up to the number that is specified in
@@ -1079,40 +1346,34 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            typically displays a scrubber control for choosing the
      *            position in the playback window to display.
      *            </p>
-     *            <note>
-     *            <p>
-     *            The duration of the fragments in the HLS media playlists is
-     *            typically reported as short by one frame (for example, 33
-     *            milliseconds for a 30 FPS fragment). This might cause the
-     *            media player to report a shorter total duration until the
-     *            media player decodes the fragments.
-     *            </p>
-     *            </note></li>
+     *            </li>
      *            </ul>
      *            <p>
-     *            In both playback modes, if there are multiple fragments with
-     *            the same start time stamp, the fragment that has the larger
-     *            fragment number (that is, the newer fragment) is included in
-     *            the HLS media playlist. The other fragments are not included.
-     *            Fragments that have different time stamps but have overlapping
-     *            durations are still included in the HLS media playlist. This
-     *            can lead to unexpected behavior in the media player.
+     *            In all playback modes, if <code>FragmentSelectorType</code> is
+     *            <code>PRODUCER_TIMESTAMP</code>, and if there are multiple
+     *            fragments with the same start timestamp, the fragment that has
+     *            the largest fragment number (that is, the newest fragment) is
+     *            included in the HLS media playlist. The other fragments are
+     *            not included. Fragments that have different timestamps but
+     *            have overlapping durations are still included in the HLS media
+     *            playlist. This can lead to unexpected behavior in the media
+     *            player.
      *            </p>
      *            <p>
      *            The default is <code>LIVE</code>.
      *            </p>
-     * @see PlaybackMode
+     * @see HLSPlaybackMode
      */
-    public void setPlaybackMode(PlaybackMode playbackMode) {
+    public void setPlaybackMode(HLSPlaybackMode playbackMode) {
         this.playbackMode = playbackMode.toString();
     }
 
     /**
      * <p>
-     * Whether to retrieve live or archived, on-demand data.
+     * Whether to retrieve live, live replay, or archived, on-demand data.
      * </p>
      * <p>
-     * Features of the two types of session include the following:
+     * Features of the three types of sessions include the following:
      * </p>
      * <ul>
      * <li>
@@ -1139,6 +1400,22 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * </note></li>
      * <li>
      * <p>
+     * <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type, the HLS
+     * media playlist is updated similarly to how it is updated for
+     * <code>LIVE</code> mode except that it starts by including fragments from
+     * a given start time. Instead of fragments being added as they are
+     * ingested, fragments are added as the duration of the next fragment
+     * elapses. For example, if the fragments in the session are two seconds
+     * long, then a new fragment is added to the media playlist every two
+     * seconds. This mode is useful to be able to start playback from when an
+     * event is detected and continue live streaming media that has not yet been
+     * ingested as of the time of the session creation. This mode is also useful
+     * to stream previously archived media without being limited by the 1,000
+     * fragment limit in the <code>ON_DEMAND</code> mode.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
      * <b> <code>ON_DEMAND</code> </b>: For sessions of this type, the HLS media
      * playlist contains all the fragments for the session, up to the number
      * that is specified in <code>MaxMediaPlaylistFragmentResults</code>. The
@@ -1147,22 +1424,17 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * displays a scrubber control for choosing the position in the playback
      * window to display.
      * </p>
-     * <note>
-     * <p>
-     * The duration of the fragments in the HLS media playlists is typically
-     * reported as short by one frame (for example, 33 milliseconds for a 30 FPS
-     * fragment). This might cause the media player to report a shorter total
-     * duration until the media player decodes the fragments.
-     * </p>
-     * </note></li>
+     * </li>
      * </ul>
      * <p>
-     * In both playback modes, if there are multiple fragments with the same
-     * start time stamp, the fragment that has the larger fragment number (that
-     * is, the newer fragment) is included in the HLS media playlist. The other
-     * fragments are not included. Fragments that have different time stamps but
-     * have overlapping durations are still included in the HLS media playlist.
-     * This can lead to unexpected behavior in the media player.
+     * In all playback modes, if <code>FragmentSelectorType</code> is
+     * <code>PRODUCER_TIMESTAMP</code>, and if there are multiple fragments with
+     * the same start timestamp, the fragment that has the largest fragment
+     * number (that is, the newest fragment) is included in the HLS media
+     * playlist. The other fragments are not included. Fragments that have
+     * different timestamps but have overlapping durations are still included in
+     * the HLS media playlist. This can lead to unexpected behavior in the media
+     * player.
      * </p>
      * <p>
      * The default is <code>LIVE</code>.
@@ -1172,13 +1444,14 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>LIVE, ON_DEMAND
+     * <b>Allowed Values: </b>LIVE, LIVE_REPLAY, ON_DEMAND
      *
      * @param playbackMode <p>
-     *            Whether to retrieve live or archived, on-demand data.
+     *            Whether to retrieve live, live replay, or archived, on-demand
+     *            data.
      *            </p>
      *            <p>
-     *            Features of the two types of session include the following:
+     *            Features of the three types of sessions include the following:
      *            </p>
      *            <ul>
      *            <li>
@@ -1207,6 +1480,24 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            </note></li>
      *            <li>
      *            <p>
+     *            <b> <code>LIVE_REPLAY</code> </b>: For sessions of this type,
+     *            the HLS media playlist is updated similarly to how it is
+     *            updated for <code>LIVE</code> mode except that it starts by
+     *            including fragments from a given start time. Instead of
+     *            fragments being added as they are ingested, fragments are
+     *            added as the duration of the next fragment elapses. For
+     *            example, if the fragments in the session are two seconds long,
+     *            then a new fragment is added to the media playlist every two
+     *            seconds. This mode is useful to be able to start playback from
+     *            when an event is detected and continue live streaming media
+     *            that has not yet been ingested as of the time of the session
+     *            creation. This mode is also useful to stream previously
+     *            archived media without being limited by the 1,000 fragment
+     *            limit in the <code>ON_DEMAND</code> mode.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
      *            <b> <code>ON_DEMAND</code> </b>: For sessions of this type,
      *            the HLS media playlist contains all the fragments for the
      *            session, up to the number that is specified in
@@ -1216,62 +1507,62 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            typically displays a scrubber control for choosing the
      *            position in the playback window to display.
      *            </p>
-     *            <note>
-     *            <p>
-     *            The duration of the fragments in the HLS media playlists is
-     *            typically reported as short by one frame (for example, 33
-     *            milliseconds for a 30 FPS fragment). This might cause the
-     *            media player to report a shorter total duration until the
-     *            media player decodes the fragments.
-     *            </p>
-     *            </note></li>
+     *            </li>
      *            </ul>
      *            <p>
-     *            In both playback modes, if there are multiple fragments with
-     *            the same start time stamp, the fragment that has the larger
-     *            fragment number (that is, the newer fragment) is included in
-     *            the HLS media playlist. The other fragments are not included.
-     *            Fragments that have different time stamps but have overlapping
-     *            durations are still included in the HLS media playlist. This
-     *            can lead to unexpected behavior in the media player.
+     *            In all playback modes, if <code>FragmentSelectorType</code> is
+     *            <code>PRODUCER_TIMESTAMP</code>, and if there are multiple
+     *            fragments with the same start timestamp, the fragment that has
+     *            the largest fragment number (that is, the newest fragment) is
+     *            included in the HLS media playlist. The other fragments are
+     *            not included. Fragments that have different timestamps but
+     *            have overlapping durations are still included in the HLS media
+     *            playlist. This can lead to unexpected behavior in the media
+     *            player.
      *            </p>
      *            <p>
      *            The default is <code>LIVE</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see PlaybackMode
+     * @see HLSPlaybackMode
      */
-    public GetHLSStreamingSessionURLRequest withPlaybackMode(PlaybackMode playbackMode) {
+    public GetHLSStreamingSessionURLRequest withPlaybackMode(HLSPlaybackMode playbackMode) {
         this.playbackMode = playbackMode.toString();
         return this;
     }
 
     /**
      * <p>
-     * The time range of the requested fragment, and the source of the time
-     * stamp.
+     * The time range of the requested fragment and the source of the
+     * timestamps.
      * </p>
      * <p>
      * This parameter is required if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>. This parameter is optional if
-     * <code>PlaybackMode</code> is <code>LIVE</code>. If
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This parameter is
+     * optional if PlaybackMode is<code/> <code>LIVE</code>. If
      * <code>PlaybackMode</code> is <code>LIVE</code>, the
      * <code>FragmentSelectorType</code> can be set, but the
-     * <code>TimestampRange</code> should not be set.
+     * <code>TimestampRange</code> should not be set. If
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     * <code>LIVE_REPLAY</code>, both <code>FragmentSelectorType</code> and
+     * <code>TimestampRange</code> must be set.
      * </p>
      *
      * @return <p>
-     *         The time range of the requested fragment, and the source of the
-     *         time stamp.
+     *         The time range of the requested fragment and the source of the
+     *         timestamps.
      *         </p>
      *         <p>
      *         This parameter is required if <code>PlaybackMode</code> is
-     *         <code>ON_DEMAND</code>. This parameter is optional if
-     *         <code>PlaybackMode</code> is <code>LIVE</code>. If
-     *         <code>PlaybackMode</code> is <code>LIVE</code>, the
+     *         <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This
+     *         parameter is optional if PlaybackMode is<code/> <code>LIVE</code>
+     *         . If <code>PlaybackMode</code> is <code>LIVE</code>, the
      *         <code>FragmentSelectorType</code> can be set, but the
-     *         <code>TimestampRange</code> should not be set.
+     *         <code>TimestampRange</code> should not be set. If
+     *         <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     *         <code>LIVE_REPLAY</code>, both <code>FragmentSelectorType</code>
+     *         and <code>TimestampRange</code> must be set.
      *         </p>
      */
     public HLSFragmentSelector getHLSFragmentSelector() {
@@ -1280,29 +1571,36 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The time range of the requested fragment, and the source of the time
-     * stamp.
+     * The time range of the requested fragment and the source of the
+     * timestamps.
      * </p>
      * <p>
      * This parameter is required if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>. This parameter is optional if
-     * <code>PlaybackMode</code> is <code>LIVE</code>. If
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This parameter is
+     * optional if PlaybackMode is<code/> <code>LIVE</code>. If
      * <code>PlaybackMode</code> is <code>LIVE</code>, the
      * <code>FragmentSelectorType</code> can be set, but the
-     * <code>TimestampRange</code> should not be set.
+     * <code>TimestampRange</code> should not be set. If
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     * <code>LIVE_REPLAY</code>, both <code>FragmentSelectorType</code> and
+     * <code>TimestampRange</code> must be set.
      * </p>
      *
      * @param hLSFragmentSelector <p>
-     *            The time range of the requested fragment, and the source of
-     *            the time stamp.
+     *            The time range of the requested fragment and the source of the
+     *            timestamps.
      *            </p>
      *            <p>
      *            This parameter is required if <code>PlaybackMode</code> is
-     *            <code>ON_DEMAND</code>. This parameter is optional if
-     *            <code>PlaybackMode</code> is <code>LIVE</code>. If
-     *            <code>PlaybackMode</code> is <code>LIVE</code>, the
-     *            <code>FragmentSelectorType</code> can be set, but the
-     *            <code>TimestampRange</code> should not be set.
+     *            <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This
+     *            parameter is optional if PlaybackMode is
+     *            <code/> <code>LIVE</code>. If <code>PlaybackMode</code> is
+     *            <code>LIVE</code>, the <code>FragmentSelectorType</code> can
+     *            be set, but the <code>TimestampRange</code> should not be set.
+     *            If <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     *            <code>LIVE_REPLAY</code>, both
+     *            <code>FragmentSelectorType</code> and
+     *            <code>TimestampRange</code> must be set.
      *            </p>
      */
     public void setHLSFragmentSelector(HLSFragmentSelector hLSFragmentSelector) {
@@ -1311,32 +1609,39 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The time range of the requested fragment, and the source of the time
-     * stamp.
+     * The time range of the requested fragment and the source of the
+     * timestamps.
      * </p>
      * <p>
      * This parameter is required if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>. This parameter is optional if
-     * <code>PlaybackMode</code> is <code>LIVE</code>. If
+     * <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This parameter is
+     * optional if PlaybackMode is<code/> <code>LIVE</code>. If
      * <code>PlaybackMode</code> is <code>LIVE</code>, the
      * <code>FragmentSelectorType</code> can be set, but the
-     * <code>TimestampRange</code> should not be set.
+     * <code>TimestampRange</code> should not be set. If
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     * <code>LIVE_REPLAY</code>, both <code>FragmentSelectorType</code> and
+     * <code>TimestampRange</code> must be set.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param hLSFragmentSelector <p>
-     *            The time range of the requested fragment, and the source of
-     *            the time stamp.
+     *            The time range of the requested fragment and the source of the
+     *            timestamps.
      *            </p>
      *            <p>
      *            This parameter is required if <code>PlaybackMode</code> is
-     *            <code>ON_DEMAND</code>. This parameter is optional if
-     *            <code>PlaybackMode</code> is <code>LIVE</code>. If
-     *            <code>PlaybackMode</code> is <code>LIVE</code>, the
-     *            <code>FragmentSelectorType</code> can be set, but the
-     *            <code>TimestampRange</code> should not be set.
+     *            <code>ON_DEMAND</code> or <code>LIVE_REPLAY</code>. This
+     *            parameter is optional if PlaybackMode is
+     *            <code/> <code>LIVE</code>. If <code>PlaybackMode</code> is
+     *            <code>LIVE</code>, the <code>FragmentSelectorType</code> can
+     *            be set, but the <code>TimestampRange</code> should not be set.
+     *            If <code>PlaybackMode</code> is <code>ON_DEMAND</code> or
+     *            <code>LIVE_REPLAY</code>, both
+     *            <code>FragmentSelectorType</code> and
+     *            <code>TimestampRange</code> must be set.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1348,46 +1653,570 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Returns the value of the discontinuityMode property for this object.
+     * <p>
+     * Specifies which format should be used for packaging the media. Specifying
+     * the <code>FRAGMENTED_MP4</code> container format packages the media into
+     * MP4 fragments (fMP4 or CMAF). This is the recommended packaging because
+     * there is minimal packaging overhead. The other container format option is
+     * <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was
+     * released and is sometimes the only supported packaging on older HLS
+     * players. MPEG TS typically has a 5-25 percent packaging overhead. This
+     * means MPEG TS typically requires 5-25 percent more bandwidth and cost
+     * than fMP4.
+     * </p>
+     * <p>
+     * The default is <code>FRAGMENTED_MP4</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALWAYS, NEVER
+     * <b>Allowed Values: </b>FRAGMENTED_MP4, MPEG_TS
      *
-     * @return The value of the discontinuityMode property for this object.
-     * @see DiscontinuityMode
+     * @return <p>
+     *         Specifies which format should be used for packaging the media.
+     *         Specifying the <code>FRAGMENTED_MP4</code> container format
+     *         packages the media into MP4 fragments (fMP4 or CMAF). This is the
+     *         recommended packaging because there is minimal packaging
+     *         overhead. The other container format option is
+     *         <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it
+     *         was released and is sometimes the only supported packaging on
+     *         older HLS players. MPEG TS typically has a 5-25 percent packaging
+     *         overhead. This means MPEG TS typically requires 5-25 percent more
+     *         bandwidth and cost than fMP4.
+     *         </p>
+     *         <p>
+     *         The default is <code>FRAGMENTED_MP4</code>.
+     *         </p>
+     * @see ContainerFormat
+     */
+    public String getContainerFormat() {
+        return containerFormat;
+    }
+
+    /**
+     * <p>
+     * Specifies which format should be used for packaging the media. Specifying
+     * the <code>FRAGMENTED_MP4</code> container format packages the media into
+     * MP4 fragments (fMP4 or CMAF). This is the recommended packaging because
+     * there is minimal packaging overhead. The other container format option is
+     * <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was
+     * released and is sometimes the only supported packaging on older HLS
+     * players. MPEG TS typically has a 5-25 percent packaging overhead. This
+     * means MPEG TS typically requires 5-25 percent more bandwidth and cost
+     * than fMP4.
+     * </p>
+     * <p>
+     * The default is <code>FRAGMENTED_MP4</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FRAGMENTED_MP4, MPEG_TS
+     *
+     * @param containerFormat <p>
+     *            Specifies which format should be used for packaging the media.
+     *            Specifying the <code>FRAGMENTED_MP4</code> container format
+     *            packages the media into MP4 fragments (fMP4 or CMAF). This is
+     *            the recommended packaging because there is minimal packaging
+     *            overhead. The other container format option is
+     *            <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since
+     *            it was released and is sometimes the only supported packaging
+     *            on older HLS players. MPEG TS typically has a 5-25 percent
+     *            packaging overhead. This means MPEG TS typically requires 5-25
+     *            percent more bandwidth and cost than fMP4.
+     *            </p>
+     *            <p>
+     *            The default is <code>FRAGMENTED_MP4</code>.
+     *            </p>
+     * @see ContainerFormat
+     */
+    public void setContainerFormat(String containerFormat) {
+        this.containerFormat = containerFormat;
+    }
+
+    /**
+     * <p>
+     * Specifies which format should be used for packaging the media. Specifying
+     * the <code>FRAGMENTED_MP4</code> container format packages the media into
+     * MP4 fragments (fMP4 or CMAF). This is the recommended packaging because
+     * there is minimal packaging overhead. The other container format option is
+     * <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was
+     * released and is sometimes the only supported packaging on older HLS
+     * players. MPEG TS typically has a 5-25 percent packaging overhead. This
+     * means MPEG TS typically requires 5-25 percent more bandwidth and cost
+     * than fMP4.
+     * </p>
+     * <p>
+     * The default is <code>FRAGMENTED_MP4</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FRAGMENTED_MP4, MPEG_TS
+     *
+     * @param containerFormat <p>
+     *            Specifies which format should be used for packaging the media.
+     *            Specifying the <code>FRAGMENTED_MP4</code> container format
+     *            packages the media into MP4 fragments (fMP4 or CMAF). This is
+     *            the recommended packaging because there is minimal packaging
+     *            overhead. The other container format option is
+     *            <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since
+     *            it was released and is sometimes the only supported packaging
+     *            on older HLS players. MPEG TS typically has a 5-25 percent
+     *            packaging overhead. This means MPEG TS typically requires 5-25
+     *            percent more bandwidth and cost than fMP4.
+     *            </p>
+     *            <p>
+     *            The default is <code>FRAGMENTED_MP4</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContainerFormat
+     */
+    public GetHLSStreamingSessionURLRequest withContainerFormat(String containerFormat) {
+        this.containerFormat = containerFormat;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies which format should be used for packaging the media. Specifying
+     * the <code>FRAGMENTED_MP4</code> container format packages the media into
+     * MP4 fragments (fMP4 or CMAF). This is the recommended packaging because
+     * there is minimal packaging overhead. The other container format option is
+     * <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was
+     * released and is sometimes the only supported packaging on older HLS
+     * players. MPEG TS typically has a 5-25 percent packaging overhead. This
+     * means MPEG TS typically requires 5-25 percent more bandwidth and cost
+     * than fMP4.
+     * </p>
+     * <p>
+     * The default is <code>FRAGMENTED_MP4</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FRAGMENTED_MP4, MPEG_TS
+     *
+     * @param containerFormat <p>
+     *            Specifies which format should be used for packaging the media.
+     *            Specifying the <code>FRAGMENTED_MP4</code> container format
+     *            packages the media into MP4 fragments (fMP4 or CMAF). This is
+     *            the recommended packaging because there is minimal packaging
+     *            overhead. The other container format option is
+     *            <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since
+     *            it was released and is sometimes the only supported packaging
+     *            on older HLS players. MPEG TS typically has a 5-25 percent
+     *            packaging overhead. This means MPEG TS typically requires 5-25
+     *            percent more bandwidth and cost than fMP4.
+     *            </p>
+     *            <p>
+     *            The default is <code>FRAGMENTED_MP4</code>.
+     *            </p>
+     * @see ContainerFormat
+     */
+    public void setContainerFormat(ContainerFormat containerFormat) {
+        this.containerFormat = containerFormat.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies which format should be used for packaging the media. Specifying
+     * the <code>FRAGMENTED_MP4</code> container format packages the media into
+     * MP4 fragments (fMP4 or CMAF). This is the recommended packaging because
+     * there is minimal packaging overhead. The other container format option is
+     * <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since it was
+     * released and is sometimes the only supported packaging on older HLS
+     * players. MPEG TS typically has a 5-25 percent packaging overhead. This
+     * means MPEG TS typically requires 5-25 percent more bandwidth and cost
+     * than fMP4.
+     * </p>
+     * <p>
+     * The default is <code>FRAGMENTED_MP4</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FRAGMENTED_MP4, MPEG_TS
+     *
+     * @param containerFormat <p>
+     *            Specifies which format should be used for packaging the media.
+     *            Specifying the <code>FRAGMENTED_MP4</code> container format
+     *            packages the media into MP4 fragments (fMP4 or CMAF). This is
+     *            the recommended packaging because there is minimal packaging
+     *            overhead. The other container format option is
+     *            <code>MPEG_TS</code>. HLS has supported MPEG TS chunks since
+     *            it was released and is sometimes the only supported packaging
+     *            on older HLS players. MPEG TS typically has a 5-25 percent
+     *            packaging overhead. This means MPEG TS typically requires 5-25
+     *            percent more bandwidth and cost than fMP4.
+     *            </p>
+     *            <p>
+     *            The default is <code>FRAGMENTED_MP4</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContainerFormat
+     */
+    public GetHLSStreamingSessionURLRequest withContainerFormat(ContainerFormat containerFormat) {
+        this.containerFormat = containerFormat.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies when flags marking discontinuities between fragments are added
+     * to the media playlists.
+     * </p>
+     * <p>
+     * Media players typically build a timeline of media content to play, based
+     * on the timestamps of each fragment. This means that if there is any
+     * overlap or gap between fragments (as is typical if
+     * <a>HLSFragmentSelector</a> is set to <code>SERVER_TIMESTAMP</code>), the
+     * media player timeline will also have small gaps between fragments in some
+     * places, and will overwrite frames in other places. Gaps in the media
+     * player timeline can cause playback to stall and overlaps can cause
+     * playback to be jittery. When there are discontinuity flags between
+     * fragments, the media player is expected to reset the timeline, resulting
+     * in the next fragment being played immediately after the previous
+     * fragment.
+     * </p>
+     * <p>
+     * The following modes are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ALWAYS</code>: a discontinuity marker is placed between every
+     * fragment in the HLS media playlist. It is recommended to use a value of
+     * <code>ALWAYS</code> if the fragment timestamps are not accurate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEVER</code>: no discontinuity markers are placed anywhere. It is
+     * recommended to use a value of <code>NEVER</code> to ensure the media
+     * player timeline most accurately maps to the producer timestamps.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed between
+     * fragments that have a gap or overlap of more than 50 milliseconds. For
+     * most playback scenarios, it is recommended to use a value of
+     * <code>ON_DISCONTINUITY</code> so that the media player timeline is only
+     * reset when there is a significant issue with the media timeline (e.g. a
+     * missing fragment).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The default is <code>ALWAYS</code> when <a>HLSFragmentSelector</a> is set
+     * to <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is set
+     * to <code>PRODUCER_TIMESTAMP</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER, ON_DISCONTINUITY
+     *
+     * @return <p>
+     *         Specifies when flags marking discontinuities between fragments
+     *         are added to the media playlists.
+     *         </p>
+     *         <p>
+     *         Media players typically build a timeline of media content to
+     *         play, based on the timestamps of each fragment. This means that
+     *         if there is any overlap or gap between fragments (as is typical
+     *         if <a>HLSFragmentSelector</a> is set to
+     *         <code>SERVER_TIMESTAMP</code>), the media player timeline will
+     *         also have small gaps between fragments in some places, and will
+     *         overwrite frames in other places. Gaps in the media player
+     *         timeline can cause playback to stall and overlaps can cause
+     *         playback to be jittery. When there are discontinuity flags
+     *         between fragments, the media player is expected to reset the
+     *         timeline, resulting in the next fragment being played immediately
+     *         after the previous fragment.
+     *         </p>
+     *         <p>
+     *         The following modes are supported:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>ALWAYS</code>: a discontinuity marker is placed between
+     *         every fragment in the HLS media playlist. It is recommended to
+     *         use a value of <code>ALWAYS</code> if the fragment timestamps are
+     *         not accurate.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>NEVER</code>: no discontinuity markers are placed anywhere.
+     *         It is recommended to use a value of <code>NEVER</code> to ensure
+     *         the media player timeline most accurately maps to the producer
+     *         timestamps.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed
+     *         between fragments that have a gap or overlap of more than 50
+     *         milliseconds. For most playback scenarios, it is recommended to
+     *         use a value of <code>ON_DISCONTINUITY</code> so that the media
+     *         player timeline is only reset when there is a significant issue
+     *         with the media timeline (e.g. a missing fragment).
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         The default is <code>ALWAYS</code> when
+     *         <a>HLSFragmentSelector</a> is set to
+     *         <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is
+     *         set to <code>PRODUCER_TIMESTAMP</code>.
+     *         </p>
+     * @see HLSDiscontinuityMode
      */
     public String getDiscontinuityMode() {
         return discontinuityMode;
     }
 
     /**
-     * Sets the value of discontinuityMode
+     * <p>
+     * Specifies when flags marking discontinuities between fragments are added
+     * to the media playlists.
+     * </p>
+     * <p>
+     * Media players typically build a timeline of media content to play, based
+     * on the timestamps of each fragment. This means that if there is any
+     * overlap or gap between fragments (as is typical if
+     * <a>HLSFragmentSelector</a> is set to <code>SERVER_TIMESTAMP</code>), the
+     * media player timeline will also have small gaps between fragments in some
+     * places, and will overwrite frames in other places. Gaps in the media
+     * player timeline can cause playback to stall and overlaps can cause
+     * playback to be jittery. When there are discontinuity flags between
+     * fragments, the media player is expected to reset the timeline, resulting
+     * in the next fragment being played immediately after the previous
+     * fragment.
+     * </p>
+     * <p>
+     * The following modes are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ALWAYS</code>: a discontinuity marker is placed between every
+     * fragment in the HLS media playlist. It is recommended to use a value of
+     * <code>ALWAYS</code> if the fragment timestamps are not accurate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEVER</code>: no discontinuity markers are placed anywhere. It is
+     * recommended to use a value of <code>NEVER</code> to ensure the media
+     * player timeline most accurately maps to the producer timestamps.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed between
+     * fragments that have a gap or overlap of more than 50 milliseconds. For
+     * most playback scenarios, it is recommended to use a value of
+     * <code>ON_DISCONTINUITY</code> so that the media player timeline is only
+     * reset when there is a significant issue with the media timeline (e.g. a
+     * missing fragment).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The default is <code>ALWAYS</code> when <a>HLSFragmentSelector</a> is set
+     * to <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is set
+     * to <code>PRODUCER_TIMESTAMP</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALWAYS, NEVER
+     * <b>Allowed Values: </b>ALWAYS, NEVER, ON_DISCONTINUITY
      *
-     * @param discontinuityMode The new value for the discontinuityMode property
-     *            for this object.
-     * @see DiscontinuityMode
+     * @param discontinuityMode <p>
+     *            Specifies when flags marking discontinuities between fragments
+     *            are added to the media playlists.
+     *            </p>
+     *            <p>
+     *            Media players typically build a timeline of media content to
+     *            play, based on the timestamps of each fragment. This means
+     *            that if there is any overlap or gap between fragments (as is
+     *            typical if <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>), the media player timeline will
+     *            also have small gaps between fragments in some places, and
+     *            will overwrite frames in other places. Gaps in the media
+     *            player timeline can cause playback to stall and overlaps can
+     *            cause playback to be jittery. When there are discontinuity
+     *            flags between fragments, the media player is expected to reset
+     *            the timeline, resulting in the next fragment being played
+     *            immediately after the previous fragment.
+     *            </p>
+     *            <p>
+     *            The following modes are supported:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ALWAYS</code>: a discontinuity marker is placed between
+     *            every fragment in the HLS media playlist. It is recommended to
+     *            use a value of <code>ALWAYS</code> if the fragment timestamps
+     *            are not accurate.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEVER</code>: no discontinuity markers are placed
+     *            anywhere. It is recommended to use a value of
+     *            <code>NEVER</code> to ensure the media player timeline most
+     *            accurately maps to the producer timestamps.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON_DISCONTINUITY</code>: a discontinuity marker is
+     *            placed between fragments that have a gap or overlap of more
+     *            than 50 milliseconds. For most playback scenarios, it is
+     *            recommended to use a value of <code>ON_DISCONTINUITY</code> so
+     *            that the media player timeline is only reset when there is a
+     *            significant issue with the media timeline (e.g. a missing
+     *            fragment).
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The default is <code>ALWAYS</code> when
+     *            <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it
+     *            is set to <code>PRODUCER_TIMESTAMP</code>.
+     *            </p>
+     * @see HLSDiscontinuityMode
      */
     public void setDiscontinuityMode(String discontinuityMode) {
         this.discontinuityMode = discontinuityMode;
     }
 
     /**
-     * Sets the value of the discontinuityMode property for this object.
+     * <p>
+     * Specifies when flags marking discontinuities between fragments are added
+     * to the media playlists.
+     * </p>
+     * <p>
+     * Media players typically build a timeline of media content to play, based
+     * on the timestamps of each fragment. This means that if there is any
+     * overlap or gap between fragments (as is typical if
+     * <a>HLSFragmentSelector</a> is set to <code>SERVER_TIMESTAMP</code>), the
+     * media player timeline will also have small gaps between fragments in some
+     * places, and will overwrite frames in other places. Gaps in the media
+     * player timeline can cause playback to stall and overlaps can cause
+     * playback to be jittery. When there are discontinuity flags between
+     * fragments, the media player is expected to reset the timeline, resulting
+     * in the next fragment being played immediately after the previous
+     * fragment.
+     * </p>
+     * <p>
+     * The following modes are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ALWAYS</code>: a discontinuity marker is placed between every
+     * fragment in the HLS media playlist. It is recommended to use a value of
+     * <code>ALWAYS</code> if the fragment timestamps are not accurate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEVER</code>: no discontinuity markers are placed anywhere. It is
+     * recommended to use a value of <code>NEVER</code> to ensure the media
+     * player timeline most accurately maps to the producer timestamps.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed between
+     * fragments that have a gap or overlap of more than 50 milliseconds. For
+     * most playback scenarios, it is recommended to use a value of
+     * <code>ON_DISCONTINUITY</code> so that the media player timeline is only
+     * reset when there is a significant issue with the media timeline (e.g. a
+     * missing fragment).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The default is <code>ALWAYS</code> when <a>HLSFragmentSelector</a> is set
+     * to <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is set
+     * to <code>PRODUCER_TIMESTAMP</code>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALWAYS, NEVER
+     * <b>Allowed Values: </b>ALWAYS, NEVER, ON_DISCONTINUITY
      *
-     * @param discontinuityMode The new value for the discontinuityMode property
-     *            for this object.
+     * @param discontinuityMode <p>
+     *            Specifies when flags marking discontinuities between fragments
+     *            are added to the media playlists.
+     *            </p>
+     *            <p>
+     *            Media players typically build a timeline of media content to
+     *            play, based on the timestamps of each fragment. This means
+     *            that if there is any overlap or gap between fragments (as is
+     *            typical if <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>), the media player timeline will
+     *            also have small gaps between fragments in some places, and
+     *            will overwrite frames in other places. Gaps in the media
+     *            player timeline can cause playback to stall and overlaps can
+     *            cause playback to be jittery. When there are discontinuity
+     *            flags between fragments, the media player is expected to reset
+     *            the timeline, resulting in the next fragment being played
+     *            immediately after the previous fragment.
+     *            </p>
+     *            <p>
+     *            The following modes are supported:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ALWAYS</code>: a discontinuity marker is placed between
+     *            every fragment in the HLS media playlist. It is recommended to
+     *            use a value of <code>ALWAYS</code> if the fragment timestamps
+     *            are not accurate.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEVER</code>: no discontinuity markers are placed
+     *            anywhere. It is recommended to use a value of
+     *            <code>NEVER</code> to ensure the media player timeline most
+     *            accurately maps to the producer timestamps.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON_DISCONTINUITY</code>: a discontinuity marker is
+     *            placed between fragments that have a gap or overlap of more
+     *            than 50 milliseconds. For most playback scenarios, it is
+     *            recommended to use a value of <code>ON_DISCONTINUITY</code> so
+     *            that the media player timeline is only reset when there is a
+     *            significant issue with the media timeline (e.g. a missing
+     *            fragment).
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The default is <code>ALWAYS</code> when
+     *            <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it
+     *            is set to <code>PRODUCER_TIMESTAMP</code>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see DiscontinuityMode
+     * @see HLSDiscontinuityMode
      */
     public GetHLSStreamingSessionURLRequest withDiscontinuityMode(String discontinuityMode) {
         this.discontinuityMode = discontinuityMode;
@@ -1395,21 +2224,359 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
     }
 
     /**
-     * Sets the value of discontinuityMode
+     * <p>
+     * Specifies when flags marking discontinuities between fragments are added
+     * to the media playlists.
+     * </p>
+     * <p>
+     * Media players typically build a timeline of media content to play, based
+     * on the timestamps of each fragment. This means that if there is any
+     * overlap or gap between fragments (as is typical if
+     * <a>HLSFragmentSelector</a> is set to <code>SERVER_TIMESTAMP</code>), the
+     * media player timeline will also have small gaps between fragments in some
+     * places, and will overwrite frames in other places. Gaps in the media
+     * player timeline can cause playback to stall and overlaps can cause
+     * playback to be jittery. When there are discontinuity flags between
+     * fragments, the media player is expected to reset the timeline, resulting
+     * in the next fragment being played immediately after the previous
+     * fragment.
+     * </p>
+     * <p>
+     * The following modes are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ALWAYS</code>: a discontinuity marker is placed between every
+     * fragment in the HLS media playlist. It is recommended to use a value of
+     * <code>ALWAYS</code> if the fragment timestamps are not accurate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEVER</code>: no discontinuity markers are placed anywhere. It is
+     * recommended to use a value of <code>NEVER</code> to ensure the media
+     * player timeline most accurately maps to the producer timestamps.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed between
+     * fragments that have a gap or overlap of more than 50 milliseconds. For
+     * most playback scenarios, it is recommended to use a value of
+     * <code>ON_DISCONTINUITY</code> so that the media player timeline is only
+     * reset when there is a significant issue with the media timeline (e.g. a
+     * missing fragment).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The default is <code>ALWAYS</code> when <a>HLSFragmentSelector</a> is set
+     * to <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is set
+     * to <code>PRODUCER_TIMESTAMP</code>.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ALWAYS, NEVER
+     * <b>Allowed Values: </b>ALWAYS, NEVER, ON_DISCONTINUITY
      *
-     * @param discontinuityMode The new value for the discontinuityMode property
-     *            for this object.
-     * @see DiscontinuityMode
+     * @param discontinuityMode <p>
+     *            Specifies when flags marking discontinuities between fragments
+     *            are added to the media playlists.
+     *            </p>
+     *            <p>
+     *            Media players typically build a timeline of media content to
+     *            play, based on the timestamps of each fragment. This means
+     *            that if there is any overlap or gap between fragments (as is
+     *            typical if <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>), the media player timeline will
+     *            also have small gaps between fragments in some places, and
+     *            will overwrite frames in other places. Gaps in the media
+     *            player timeline can cause playback to stall and overlaps can
+     *            cause playback to be jittery. When there are discontinuity
+     *            flags between fragments, the media player is expected to reset
+     *            the timeline, resulting in the next fragment being played
+     *            immediately after the previous fragment.
+     *            </p>
+     *            <p>
+     *            The following modes are supported:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ALWAYS</code>: a discontinuity marker is placed between
+     *            every fragment in the HLS media playlist. It is recommended to
+     *            use a value of <code>ALWAYS</code> if the fragment timestamps
+     *            are not accurate.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEVER</code>: no discontinuity markers are placed
+     *            anywhere. It is recommended to use a value of
+     *            <code>NEVER</code> to ensure the media player timeline most
+     *            accurately maps to the producer timestamps.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON_DISCONTINUITY</code>: a discontinuity marker is
+     *            placed between fragments that have a gap or overlap of more
+     *            than 50 milliseconds. For most playback scenarios, it is
+     *            recommended to use a value of <code>ON_DISCONTINUITY</code> so
+     *            that the media player timeline is only reset when there is a
+     *            significant issue with the media timeline (e.g. a missing
+     *            fragment).
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The default is <code>ALWAYS</code> when
+     *            <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it
+     *            is set to <code>PRODUCER_TIMESTAMP</code>.
+     *            </p>
+     * @see HLSDiscontinuityMode
      */
-    public void setDiscontinuityMode(DiscontinuityMode discontinuityMode) {
+    public void setDiscontinuityMode(HLSDiscontinuityMode discontinuityMode) {
         this.discontinuityMode = discontinuityMode.toString();
     }
 
     /**
-     * Sets the value of the discontinuityMode property for this object.
+     * <p>
+     * Specifies when flags marking discontinuities between fragments are added
+     * to the media playlists.
+     * </p>
+     * <p>
+     * Media players typically build a timeline of media content to play, based
+     * on the timestamps of each fragment. This means that if there is any
+     * overlap or gap between fragments (as is typical if
+     * <a>HLSFragmentSelector</a> is set to <code>SERVER_TIMESTAMP</code>), the
+     * media player timeline will also have small gaps between fragments in some
+     * places, and will overwrite frames in other places. Gaps in the media
+     * player timeline can cause playback to stall and overlaps can cause
+     * playback to be jittery. When there are discontinuity flags between
+     * fragments, the media player is expected to reset the timeline, resulting
+     * in the next fragment being played immediately after the previous
+     * fragment.
+     * </p>
+     * <p>
+     * The following modes are supported:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ALWAYS</code>: a discontinuity marker is placed between every
+     * fragment in the HLS media playlist. It is recommended to use a value of
+     * <code>ALWAYS</code> if the fragment timestamps are not accurate.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>NEVER</code>: no discontinuity markers are placed anywhere. It is
+     * recommended to use a value of <code>NEVER</code> to ensure the media
+     * player timeline most accurately maps to the producer timestamps.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>ON_DISCONTINUITY</code>: a discontinuity marker is placed between
+     * fragments that have a gap or overlap of more than 50 milliseconds. For
+     * most playback scenarios, it is recommended to use a value of
+     * <code>ON_DISCONTINUITY</code> so that the media player timeline is only
+     * reset when there is a significant issue with the media timeline (e.g. a
+     * missing fragment).
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * The default is <code>ALWAYS</code> when <a>HLSFragmentSelector</a> is set
+     * to <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it is set
+     * to <code>PRODUCER_TIMESTAMP</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER, ON_DISCONTINUITY
+     *
+     * @param discontinuityMode <p>
+     *            Specifies when flags marking discontinuities between fragments
+     *            are added to the media playlists.
+     *            </p>
+     *            <p>
+     *            Media players typically build a timeline of media content to
+     *            play, based on the timestamps of each fragment. This means
+     *            that if there is any overlap or gap between fragments (as is
+     *            typical if <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>), the media player timeline will
+     *            also have small gaps between fragments in some places, and
+     *            will overwrite frames in other places. Gaps in the media
+     *            player timeline can cause playback to stall and overlaps can
+     *            cause playback to be jittery. When there are discontinuity
+     *            flags between fragments, the media player is expected to reset
+     *            the timeline, resulting in the next fragment being played
+     *            immediately after the previous fragment.
+     *            </p>
+     *            <p>
+     *            The following modes are supported:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>ALWAYS</code>: a discontinuity marker is placed between
+     *            every fragment in the HLS media playlist. It is recommended to
+     *            use a value of <code>ALWAYS</code> if the fragment timestamps
+     *            are not accurate.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>NEVER</code>: no discontinuity markers are placed
+     *            anywhere. It is recommended to use a value of
+     *            <code>NEVER</code> to ensure the media player timeline most
+     *            accurately maps to the producer timestamps.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>ON_DISCONTINUITY</code>: a discontinuity marker is
+     *            placed between fragments that have a gap or overlap of more
+     *            than 50 milliseconds. For most playback scenarios, it is
+     *            recommended to use a value of <code>ON_DISCONTINUITY</code> so
+     *            that the media player timeline is only reset when there is a
+     *            significant issue with the media timeline (e.g. a missing
+     *            fragment).
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            The default is <code>ALWAYS</code> when
+     *            <a>HLSFragmentSelector</a> is set to
+     *            <code>SERVER_TIMESTAMP</code>, and <code>NEVER</code> when it
+     *            is set to <code>PRODUCER_TIMESTAMP</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see HLSDiscontinuityMode
+     */
+    public GetHLSStreamingSessionURLRequest withDiscontinuityMode(
+            HLSDiscontinuityMode discontinuityMode) {
+        this.discontinuityMode = discontinuityMode.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies when the fragment start timestamps should be included in the
+     * HLS media playlist. Typically, media players report the playhead position
+     * as a time relative to the start of the first fragment in the playback
+     * session. However, when the start timestamps are included in the HLS media
+     * playlist, some media players might report the current playhead as an
+     * absolute time based on the fragment timestamps. This can be useful for
+     * creating a playback experience that shows viewers the wall-clock time of
+     * the media.
+     * </p>
+     * <p>
+     * The default is <code>NEVER</code>. When <a>HLSFragmentSelector</a> is
+     * <code>SERVER_TIMESTAMP</code>, the timestamps will be the server start
+     * timestamps. Similarly, when <a>HLSFragmentSelector</a> is
+     * <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the producer
+     * start timestamps.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER
+     *
+     * @return <p>
+     *         Specifies when the fragment start timestamps should be included
+     *         in the HLS media playlist. Typically, media players report the
+     *         playhead position as a time relative to the start of the first
+     *         fragment in the playback session. However, when the start
+     *         timestamps are included in the HLS media playlist, some media
+     *         players might report the current playhead as an absolute time
+     *         based on the fragment timestamps. This can be useful for creating
+     *         a playback experience that shows viewers the wall-clock time of
+     *         the media.
+     *         </p>
+     *         <p>
+     *         The default is <code>NEVER</code>. When
+     *         <a>HLSFragmentSelector</a> is <code>SERVER_TIMESTAMP</code>, the
+     *         timestamps will be the server start timestamps. Similarly, when
+     *         <a>HLSFragmentSelector</a> is <code>PRODUCER_TIMESTAMP</code>,
+     *         the timestamps will be the producer start timestamps.
+     *         </p>
+     * @see HLSDisplayFragmentTimestamp
+     */
+    public String getDisplayFragmentTimestamp() {
+        return displayFragmentTimestamp;
+    }
+
+    /**
+     * <p>
+     * Specifies when the fragment start timestamps should be included in the
+     * HLS media playlist. Typically, media players report the playhead position
+     * as a time relative to the start of the first fragment in the playback
+     * session. However, when the start timestamps are included in the HLS media
+     * playlist, some media players might report the current playhead as an
+     * absolute time based on the fragment timestamps. This can be useful for
+     * creating a playback experience that shows viewers the wall-clock time of
+     * the media.
+     * </p>
+     * <p>
+     * The default is <code>NEVER</code>. When <a>HLSFragmentSelector</a> is
+     * <code>SERVER_TIMESTAMP</code>, the timestamps will be the server start
+     * timestamps. Similarly, when <a>HLSFragmentSelector</a> is
+     * <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the producer
+     * start timestamps.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER
+     *
+     * @param displayFragmentTimestamp <p>
+     *            Specifies when the fragment start timestamps should be
+     *            included in the HLS media playlist. Typically, media players
+     *            report the playhead position as a time relative to the start
+     *            of the first fragment in the playback session. However, when
+     *            the start timestamps are included in the HLS media playlist,
+     *            some media players might report the current playhead as an
+     *            absolute time based on the fragment timestamps. This can be
+     *            useful for creating a playback experience that shows viewers
+     *            the wall-clock time of the media.
+     *            </p>
+     *            <p>
+     *            The default is <code>NEVER</code>. When
+     *            <a>HLSFragmentSelector</a> is <code>SERVER_TIMESTAMP</code>,
+     *            the timestamps will be the server start timestamps. Similarly,
+     *            when <a>HLSFragmentSelector</a> is
+     *            <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the
+     *            producer start timestamps.
+     *            </p>
+     * @see HLSDisplayFragmentTimestamp
+     */
+    public void setDisplayFragmentTimestamp(String displayFragmentTimestamp) {
+        this.displayFragmentTimestamp = displayFragmentTimestamp;
+    }
+
+    /**
+     * <p>
+     * Specifies when the fragment start timestamps should be included in the
+     * HLS media playlist. Typically, media players report the playhead position
+     * as a time relative to the start of the first fragment in the playback
+     * session. However, when the start timestamps are included in the HLS media
+     * playlist, some media players might report the current playhead as an
+     * absolute time based on the fragment timestamps. This can be useful for
+     * creating a playback experience that shows viewers the wall-clock time of
+     * the media.
+     * </p>
+     * <p>
+     * The default is <code>NEVER</code>. When <a>HLSFragmentSelector</a> is
+     * <code>SERVER_TIMESTAMP</code>, the timestamps will be the server start
+     * timestamps. Similarly, when <a>HLSFragmentSelector</a> is
+     * <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the producer
+     * start timestamps.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1417,15 +2584,133 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>ALWAYS, NEVER
      *
-     * @param discontinuityMode The new value for the discontinuityMode property
-     *            for this object.
+     * @param displayFragmentTimestamp <p>
+     *            Specifies when the fragment start timestamps should be
+     *            included in the HLS media playlist. Typically, media players
+     *            report the playhead position as a time relative to the start
+     *            of the first fragment in the playback session. However, when
+     *            the start timestamps are included in the HLS media playlist,
+     *            some media players might report the current playhead as an
+     *            absolute time based on the fragment timestamps. This can be
+     *            useful for creating a playback experience that shows viewers
+     *            the wall-clock time of the media.
+     *            </p>
+     *            <p>
+     *            The default is <code>NEVER</code>. When
+     *            <a>HLSFragmentSelector</a> is <code>SERVER_TIMESTAMP</code>,
+     *            the timestamps will be the server start timestamps. Similarly,
+     *            when <a>HLSFragmentSelector</a> is
+     *            <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the
+     *            producer start timestamps.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see DiscontinuityMode
+     * @see HLSDisplayFragmentTimestamp
      */
-    public GetHLSStreamingSessionURLRequest withDiscontinuityMode(
-            DiscontinuityMode discontinuityMode) {
-        this.discontinuityMode = discontinuityMode.toString();
+    public GetHLSStreamingSessionURLRequest withDisplayFragmentTimestamp(
+            String displayFragmentTimestamp) {
+        this.displayFragmentTimestamp = displayFragmentTimestamp;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies when the fragment start timestamps should be included in the
+     * HLS media playlist. Typically, media players report the playhead position
+     * as a time relative to the start of the first fragment in the playback
+     * session. However, when the start timestamps are included in the HLS media
+     * playlist, some media players might report the current playhead as an
+     * absolute time based on the fragment timestamps. This can be useful for
+     * creating a playback experience that shows viewers the wall-clock time of
+     * the media.
+     * </p>
+     * <p>
+     * The default is <code>NEVER</code>. When <a>HLSFragmentSelector</a> is
+     * <code>SERVER_TIMESTAMP</code>, the timestamps will be the server start
+     * timestamps. Similarly, when <a>HLSFragmentSelector</a> is
+     * <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the producer
+     * start timestamps.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER
+     *
+     * @param displayFragmentTimestamp <p>
+     *            Specifies when the fragment start timestamps should be
+     *            included in the HLS media playlist. Typically, media players
+     *            report the playhead position as a time relative to the start
+     *            of the first fragment in the playback session. However, when
+     *            the start timestamps are included in the HLS media playlist,
+     *            some media players might report the current playhead as an
+     *            absolute time based on the fragment timestamps. This can be
+     *            useful for creating a playback experience that shows viewers
+     *            the wall-clock time of the media.
+     *            </p>
+     *            <p>
+     *            The default is <code>NEVER</code>. When
+     *            <a>HLSFragmentSelector</a> is <code>SERVER_TIMESTAMP</code>,
+     *            the timestamps will be the server start timestamps. Similarly,
+     *            when <a>HLSFragmentSelector</a> is
+     *            <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the
+     *            producer start timestamps.
+     *            </p>
+     * @see HLSDisplayFragmentTimestamp
+     */
+    public void setDisplayFragmentTimestamp(HLSDisplayFragmentTimestamp displayFragmentTimestamp) {
+        this.displayFragmentTimestamp = displayFragmentTimestamp.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies when the fragment start timestamps should be included in the
+     * HLS media playlist. Typically, media players report the playhead position
+     * as a time relative to the start of the first fragment in the playback
+     * session. However, when the start timestamps are included in the HLS media
+     * playlist, some media players might report the current playhead as an
+     * absolute time based on the fragment timestamps. This can be useful for
+     * creating a playback experience that shows viewers the wall-clock time of
+     * the media.
+     * </p>
+     * <p>
+     * The default is <code>NEVER</code>. When <a>HLSFragmentSelector</a> is
+     * <code>SERVER_TIMESTAMP</code>, the timestamps will be the server start
+     * timestamps. Similarly, when <a>HLSFragmentSelector</a> is
+     * <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the producer
+     * start timestamps.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ALWAYS, NEVER
+     *
+     * @param displayFragmentTimestamp <p>
+     *            Specifies when the fragment start timestamps should be
+     *            included in the HLS media playlist. Typically, media players
+     *            report the playhead position as a time relative to the start
+     *            of the first fragment in the playback session. However, when
+     *            the start timestamps are included in the HLS media playlist,
+     *            some media players might report the current playhead as an
+     *            absolute time based on the fragment timestamps. This can be
+     *            useful for creating a playback experience that shows viewers
+     *            the wall-clock time of the media.
+     *            </p>
+     *            <p>
+     *            The default is <code>NEVER</code>. When
+     *            <a>HLSFragmentSelector</a> is <code>SERVER_TIMESTAMP</code>,
+     *            the timestamps will be the server start timestamps. Similarly,
+     *            when <a>HLSFragmentSelector</a> is
+     *            <code>PRODUCER_TIMESTAMP</code>, the timestamps will be the
+     *            producer start timestamps.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see HLSDisplayFragmentTimestamp
+     */
+    public GetHLSStreamingSessionURLRequest withDisplayFragmentTimestamp(
+            HLSDisplayFragmentTimestamp displayFragmentTimestamp) {
+        this.displayFragmentTimestamp = displayFragmentTimestamp.toString();
         return this;
     }
 
@@ -1435,11 +2720,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * be between 300 (5 minutes) and 43200 (12 hours).
      * </p>
      * <p>
-     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>, or
-     * <code>GetMP4MediaFragment</code> can be made for that session.
+     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>,
+     * <code>GetMP4MediaFragment</code>, or <code>GetTSFragment</code> can be
+     * made for that session.
      * </p>
      * <p>
-     * The default is 3600 (one hour).
+     * The default is 300 (5 minutes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1452,12 +2738,11 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *         <p>
      *         When a session expires, no new calls to
      *         <code>GetHLSMasterPlaylist</code>,
-     *         <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>
-     *         , or <code>GetMP4MediaFragment</code> can be made for that
-     *         session.
+     *         <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>, <code>GetMP4MediaFragment</code>, or <code>GetTSFragment</code>
+     *         can be made for that session.
      *         </p>
      *         <p>
-     *         The default is 3600 (one hour).
+     *         The default is 300 (5 minutes).
      *         </p>
      */
     public Integer getExpires() {
@@ -1470,11 +2755,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * be between 300 (5 minutes) and 43200 (12 hours).
      * </p>
      * <p>
-     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>, or
-     * <code>GetMP4MediaFragment</code> can be made for that session.
+     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>,
+     * <code>GetMP4MediaFragment</code>, or <code>GetTSFragment</code> can be
+     * made for that session.
      * </p>
      * <p>
-     * The default is 3600 (one hour).
+     * The default is 300 (5 minutes).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1488,11 +2774,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            When a session expires, no new calls to
      *            <code>GetHLSMasterPlaylist</code>,
      *            <code>GetHLSMediaPlaylist</code>,
-     *            <code>GetMP4InitFragment</code>, or
-     *            <code>GetMP4MediaFragment</code> can be made for that session.
+     *            <code>GetMP4InitFragment</code>,
+     *            <code>GetMP4MediaFragment</code>, or
+     *            <code>GetTSFragment</code> can be made for that session.
      *            </p>
      *            <p>
-     *            The default is 3600 (one hour).
+     *            The default is 300 (5 minutes).
      *            </p>
      */
     public void setExpires(Integer expires) {
@@ -1505,11 +2792,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * be between 300 (5 minutes) and 43200 (12 hours).
      * </p>
      * <p>
-     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>, or
-     * <code>GetMP4MediaFragment</code> can be made for that session.
+     * When a session expires, no new calls to <code>GetHLSMasterPlaylist</code>, <code>GetHLSMediaPlaylist</code>, <code>GetMP4InitFragment</code>,
+     * <code>GetMP4MediaFragment</code>, or <code>GetTSFragment</code> can be
+     * made for that session.
      * </p>
      * <p>
-     * The default is 3600 (one hour).
+     * The default is 300 (5 minutes).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1526,11 +2814,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            When a session expires, no new calls to
      *            <code>GetHLSMasterPlaylist</code>,
      *            <code>GetHLSMediaPlaylist</code>,
-     *            <code>GetMP4InitFragment</code>, or
-     *            <code>GetMP4MediaFragment</code> can be made for that session.
+     *            <code>GetMP4InitFragment</code>,
+     *            <code>GetMP4MediaFragment</code>, or
+     *            <code>GetTSFragment</code> can be made for that session.
      *            </p>
      *            <p>
-     *            The default is 3600 (one hour).
+     *            The default is 300 (5 minutes).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1542,7 +2831,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The maximum number of fragments that Kinesis Video Streams will return.
+     * The maximum number of fragments that are returned in the HLS media
+     * playlists.
      * </p>
      * <p>
      * When the <code>PlaybackMode</code> is <code>LIVE</code>, the most recent
@@ -1551,30 +2841,30 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * are returned, up to this maximum number.
      * </p>
      * <p>
-     * When there are more fragments available in a live HLS media playlist,
-     * video players often buffer content before starting playback. Increasing
-     * the buffer size increases the playback latency, but it decreases the
-     * likelihood that rebuffering will occur during playback. We recommend that
-     * a live HLS media playlist have a minimum of 3 fragments and a maximum of
-     * 10 fragments.
+     * When there are a higher number of fragments available in a live HLS media
+     * playlist, video players often buffer content before starting playback.
+     * Increasing the buffer size increases the playback latency, but it
+     * decreases the likelihood that rebuffering will occur during playback. We
+     * recommend that a live HLS media playlist have a minimum of 3 fragments
+     * and a maximum of 10 fragments.
      * </p>
      * <p>
      * The default is 5 fragments if <code>PlaybackMode</code> is
-     * <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>.
+     * <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      * </p>
      * <p>
-     * The maximum value of 1000 fragments corresponds to more than 16 minutes
-     * of video on streams with one-second fragments, and more than 2 1/2 hours
-     * of video on streams with ten-second fragments.
+     * The maximum value of 5,000 fragments corresponds to more than 80 minutes
+     * of video on streams with 1-second fragments, and more than 13 hours of
+     * video on streams with 10-second fragments.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Range: </b>1 - 5000<br/>
      *
      * @return <p>
-     *         The maximum number of fragments that Kinesis Video Streams will
-     *         return.
+     *         The maximum number of fragments that are returned in the HLS
+     *         media playlists.
      *         </p>
      *         <p>
      *         When the <code>PlaybackMode</code> is <code>LIVE</code>, the most
@@ -1583,23 +2873,23 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *         fragments are returned, up to this maximum number.
      *         </p>
      *         <p>
-     *         When there are more fragments available in a live HLS media
-     *         playlist, video players often buffer content before starting
-     *         playback. Increasing the buffer size increases the playback
-     *         latency, but it decreases the likelihood that rebuffering will
-     *         occur during playback. We recommend that a live HLS media
-     *         playlist have a minimum of 3 fragments and a maximum of 10
-     *         fragments.
+     *         When there are a higher number of fragments available in a live
+     *         HLS media playlist, video players often buffer content before
+     *         starting playback. Increasing the buffer size increases the
+     *         playback latency, but it decreases the likelihood that
+     *         rebuffering will occur during playback. We recommend that a live
+     *         HLS media playlist have a minimum of 3 fragments and a maximum of
+     *         10 fragments.
      *         </p>
      *         <p>
      *         The default is 5 fragments if <code>PlaybackMode</code> is
-     *         <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     *         <code>ON_DEMAND</code>.
+     *         <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     *         <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      *         </p>
      *         <p>
-     *         The maximum value of 1000 fragments corresponds to more than 16
-     *         minutes of video on streams with one-second fragments, and more
-     *         than 2 1/2 hours of video on streams with ten-second fragments.
+     *         The maximum value of 5,000 fragments corresponds to more than 80
+     *         minutes of video on streams with 1-second fragments, and more
+     *         than 13 hours of video on streams with 10-second fragments.
      *         </p>
      */
     public Long getMaxMediaPlaylistFragmentResults() {
@@ -1608,7 +2898,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The maximum number of fragments that Kinesis Video Streams will return.
+     * The maximum number of fragments that are returned in the HLS media
+     * playlists.
      * </p>
      * <p>
      * When the <code>PlaybackMode</code> is <code>LIVE</code>, the most recent
@@ -1617,30 +2908,30 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * are returned, up to this maximum number.
      * </p>
      * <p>
-     * When there are more fragments available in a live HLS media playlist,
-     * video players often buffer content before starting playback. Increasing
-     * the buffer size increases the playback latency, but it decreases the
-     * likelihood that rebuffering will occur during playback. We recommend that
-     * a live HLS media playlist have a minimum of 3 fragments and a maximum of
-     * 10 fragments.
+     * When there are a higher number of fragments available in a live HLS media
+     * playlist, video players often buffer content before starting playback.
+     * Increasing the buffer size increases the playback latency, but it
+     * decreases the likelihood that rebuffering will occur during playback. We
+     * recommend that a live HLS media playlist have a minimum of 3 fragments
+     * and a maximum of 10 fragments.
      * </p>
      * <p>
      * The default is 5 fragments if <code>PlaybackMode</code> is
-     * <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>.
+     * <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      * </p>
      * <p>
-     * The maximum value of 1000 fragments corresponds to more than 16 minutes
-     * of video on streams with one-second fragments, and more than 2 1/2 hours
-     * of video on streams with ten-second fragments.
+     * The maximum value of 5,000 fragments corresponds to more than 80 minutes
+     * of video on streams with 1-second fragments, and more than 13 hours of
+     * video on streams with 10-second fragments.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Range: </b>1 - 5000<br/>
      *
      * @param maxMediaPlaylistFragmentResults <p>
-     *            The maximum number of fragments that Kinesis Video Streams
-     *            will return.
+     *            The maximum number of fragments that are returned in the HLS
+     *            media playlists.
      *            </p>
      *            <p>
      *            When the <code>PlaybackMode</code> is <code>LIVE</code>, the
@@ -1649,23 +2940,23 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            oldest fragments are returned, up to this maximum number.
      *            </p>
      *            <p>
-     *            When there are more fragments available in a live HLS media
-     *            playlist, video players often buffer content before starting
-     *            playback. Increasing the buffer size increases the playback
-     *            latency, but it decreases the likelihood that rebuffering will
-     *            occur during playback. We recommend that a live HLS media
-     *            playlist have a minimum of 3 fragments and a maximum of 10
-     *            fragments.
+     *            When there are a higher number of fragments available in a
+     *            live HLS media playlist, video players often buffer content
+     *            before starting playback. Increasing the buffer size increases
+     *            the playback latency, but it decreases the likelihood that
+     *            rebuffering will occur during playback. We recommend that a
+     *            live HLS media playlist have a minimum of 3 fragments and a
+     *            maximum of 10 fragments.
      *            </p>
      *            <p>
      *            The default is 5 fragments if <code>PlaybackMode</code> is
-     *            <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     *            <code>ON_DEMAND</code>.
+     *            <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     *            <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      *            </p>
      *            <p>
-     *            The maximum value of 1000 fragments corresponds to more than
-     *            16 minutes of video on streams with one-second fragments, and
-     *            more than 2 1/2 hours of video on streams with ten-second
+     *            The maximum value of 5,000 fragments corresponds to more than
+     *            80 minutes of video on streams with 1-second fragments, and
+     *            more than 13 hours of video on streams with 10-second
      *            fragments.
      *            </p>
      */
@@ -1675,7 +2966,8 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The maximum number of fragments that Kinesis Video Streams will return.
+     * The maximum number of fragments that are returned in the HLS media
+     * playlists.
      * </p>
      * <p>
      * When the <code>PlaybackMode</code> is <code>LIVE</code>, the most recent
@@ -1684,33 +2976,33 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      * are returned, up to this maximum number.
      * </p>
      * <p>
-     * When there are more fragments available in a live HLS media playlist,
-     * video players often buffer content before starting playback. Increasing
-     * the buffer size increases the playback latency, but it decreases the
-     * likelihood that rebuffering will occur during playback. We recommend that
-     * a live HLS media playlist have a minimum of 3 fragments and a maximum of
-     * 10 fragments.
+     * When there are a higher number of fragments available in a live HLS media
+     * playlist, video players often buffer content before starting playback.
+     * Increasing the buffer size increases the playback latency, but it
+     * decreases the likelihood that rebuffering will occur during playback. We
+     * recommend that a live HLS media playlist have a minimum of 3 fragments
+     * and a maximum of 10 fragments.
      * </p>
      * <p>
      * The default is 5 fragments if <code>PlaybackMode</code> is
-     * <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     * <code>ON_DEMAND</code>.
+     * <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     * <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      * </p>
      * <p>
-     * The maximum value of 1000 fragments corresponds to more than 16 minutes
-     * of video on streams with one-second fragments, and more than 2 1/2 hours
-     * of video on streams with ten-second fragments.
+     * The maximum value of 5,000 fragments corresponds to more than 80 minutes
+     * of video on streams with 1-second fragments, and more than 13 hours of
+     * video on streams with 10-second fragments.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Range: </b>1 - 5000<br/>
      *
      * @param maxMediaPlaylistFragmentResults <p>
-     *            The maximum number of fragments that Kinesis Video Streams
-     *            will return.
+     *            The maximum number of fragments that are returned in the HLS
+     *            media playlists.
      *            </p>
      *            <p>
      *            When the <code>PlaybackMode</code> is <code>LIVE</code>, the
@@ -1719,23 +3011,23 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
      *            oldest fragments are returned, up to this maximum number.
      *            </p>
      *            <p>
-     *            When there are more fragments available in a live HLS media
-     *            playlist, video players often buffer content before starting
-     *            playback. Increasing the buffer size increases the playback
-     *            latency, but it decreases the likelihood that rebuffering will
-     *            occur during playback. We recommend that a live HLS media
-     *            playlist have a minimum of 3 fragments and a maximum of 10
-     *            fragments.
+     *            When there are a higher number of fragments available in a
+     *            live HLS media playlist, video players often buffer content
+     *            before starting playback. Increasing the buffer size increases
+     *            the playback latency, but it decreases the likelihood that
+     *            rebuffering will occur during playback. We recommend that a
+     *            live HLS media playlist have a minimum of 3 fragments and a
+     *            maximum of 10 fragments.
      *            </p>
      *            <p>
      *            The default is 5 fragments if <code>PlaybackMode</code> is
-     *            <code>LIVE</code>, and 1000 if <code>PlaybackMode</code> is
-     *            <code>ON_DEMAND</code>.
+     *            <code>LIVE</code> or <code>LIVE_REPLAY</code>, and 1,000 if
+     *            <code>PlaybackMode</code> is <code>ON_DEMAND</code>.
      *            </p>
      *            <p>
-     *            The maximum value of 1000 fragments corresponds to more than
-     *            16 minutes of video on streams with one-second fragments, and
-     *            more than 2 1/2 hours of video on streams with ten-second
+     *            The maximum value of 5,000 fragments corresponds to more than
+     *            80 minutes of video on streams with 1-second fragments, and
+     *            more than 13 hours of video on streams with 10-second
      *            fragments.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1766,8 +3058,12 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
             sb.append("PlaybackMode: " + getPlaybackMode() + ",");
         if (getHLSFragmentSelector() != null)
             sb.append("HLSFragmentSelector: " + getHLSFragmentSelector() + ",");
+        if (getContainerFormat() != null)
+            sb.append("ContainerFormat: " + getContainerFormat() + ",");
         if (getDiscontinuityMode() != null)
             sb.append("DiscontinuityMode: " + getDiscontinuityMode() + ",");
+        if (getDisplayFragmentTimestamp() != null)
+            sb.append("DisplayFragmentTimestamp: " + getDisplayFragmentTimestamp() + ",");
         if (getExpires() != null)
             sb.append("Expires: " + getExpires() + ",");
         if (getMaxMediaPlaylistFragmentResults() != null)
@@ -1788,7 +3084,13 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
         hashCode = prime * hashCode
                 + ((getHLSFragmentSelector() == null) ? 0 : getHLSFragmentSelector().hashCode());
         hashCode = prime * hashCode
+                + ((getContainerFormat() == null) ? 0 : getContainerFormat().hashCode());
+        hashCode = prime * hashCode
                 + ((getDiscontinuityMode() == null) ? 0 : getDiscontinuityMode().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDisplayFragmentTimestamp() == null) ? 0 : getDisplayFragmentTimestamp()
+                        .hashCode());
         hashCode = prime * hashCode + ((getExpires() == null) ? 0 : getExpires().hashCode());
         hashCode = prime
                 * hashCode
@@ -1828,10 +3130,21 @@ public class GetHLSStreamingSessionURLRequest extends AmazonWebServiceRequest im
         if (other.getHLSFragmentSelector() != null
                 && other.getHLSFragmentSelector().equals(this.getHLSFragmentSelector()) == false)
             return false;
+        if (other.getContainerFormat() == null ^ this.getContainerFormat() == null)
+            return false;
+        if (other.getContainerFormat() != null
+                && other.getContainerFormat().equals(this.getContainerFormat()) == false)
+            return false;
         if (other.getDiscontinuityMode() == null ^ this.getDiscontinuityMode() == null)
             return false;
         if (other.getDiscontinuityMode() != null
                 && other.getDiscontinuityMode().equals(this.getDiscontinuityMode()) == false)
+            return false;
+        if (other.getDisplayFragmentTimestamp() == null
+                ^ this.getDisplayFragmentTimestamp() == null)
+            return false;
+        if (other.getDisplayFragmentTimestamp() != null
+                && other.getDisplayFragmentTimestamp().equals(this.getDisplayFragmentTimestamp()) == false)
             return false;
         if (other.getExpires() == null ^ this.getExpires() == null)
             return false;

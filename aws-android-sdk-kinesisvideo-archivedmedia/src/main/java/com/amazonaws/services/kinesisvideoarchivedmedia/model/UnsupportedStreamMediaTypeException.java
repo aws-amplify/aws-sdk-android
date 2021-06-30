@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,8 +19,11 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * An HLS streaming session was requested for a stream with a media type that is
- * not <code>video/h264</code>.
+ * The type of the media (for example, h.264 or h.265 video or ACC or G.711
+ * audio) could not be determined from the codec IDs of the tracks in the first
+ * fragment for a playback session. The codec ID for track 1 should be
+ * <code>V_MPEG/ISO/AVC</code> and, optionally, the codec ID for track 2 should
+ * be <code>A_AAC</code>.
  * </p>
  */
 public class UnsupportedStreamMediaTypeException extends AmazonServiceException {
