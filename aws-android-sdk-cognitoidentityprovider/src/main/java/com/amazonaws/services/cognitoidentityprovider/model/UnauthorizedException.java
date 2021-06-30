@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when the request is not authorized. This can happen
+ * due to an invalid access token in the request.
+ * </p>
  */
 public class UnauthorizedException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;

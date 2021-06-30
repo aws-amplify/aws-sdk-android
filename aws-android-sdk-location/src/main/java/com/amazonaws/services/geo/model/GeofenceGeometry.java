@@ -23,9 +23,8 @@ import java.io.Serializable;
  * </p>
  * <note>
  * <p>
- * Amazon Location does not currently support polygons with holes,
- * multipolygons, polygons that are wound clockwise, or that cross the
- * antimeridian.
+ * Amazon Location doesn't currently support polygons with holes, multipolygons,
+ * polygons that are wound clockwise, or that cross the antimeridian.
  * </p>
  * </note>
  */

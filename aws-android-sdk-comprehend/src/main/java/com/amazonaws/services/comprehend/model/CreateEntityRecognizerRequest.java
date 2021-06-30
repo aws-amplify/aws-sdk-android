@@ -136,6 +136,31 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
+     * the following formats
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     */
+    private String modelKmsKeyId;
+
+    /**
+     * <p>
      * The name given to the newly created recognizer. Recognizer names can be a
      * maximum of 256 characters. Alphanumeric characters, hyphens (-) and
      * underscores (_) are allowed. The name must be unique in the
@@ -849,6 +874,152 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
     }
 
     /**
+     * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
+     * the following formats
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     *
+     * @return <p>
+     *         ID for the AWS Key Management Service (KMS) key that Amazon
+     *         Comprehend uses to encrypt trained custom models. The
+     *         ModelKmsKeyId can be either of the following formats
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Amazon Resource Name (ARN) of a KMS Key:
+     *         <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *         </p>
+     *         </li>
+     *         </ul>
+     */
+    public String getModelKmsKeyId() {
+        return modelKmsKeyId;
+    }
+
+    /**
+     * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
+     * the following formats
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     *
+     * @param modelKmsKeyId <p>
+     *            ID for the AWS Key Management Service (KMS) key that Amazon
+     *            Comprehend uses to encrypt trained custom models. The
+     *            ModelKmsKeyId can be either of the following formats
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            KMS Key ID:
+     *            <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Resource Name (ARN) of a KMS Key:
+     *            <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     */
+    public void setModelKmsKeyId(String modelKmsKeyId) {
+        this.modelKmsKeyId = modelKmsKeyId;
+    }
+
+    /**
+     * <p>
+     * ID for the AWS Key Management Service (KMS) key that Amazon Comprehend
+     * uses to encrypt trained custom models. The ModelKmsKeyId can be either of
+     * the following formats
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * KMS Key ID: <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Amazon Resource Name (ARN) of a KMS Key:
+     * <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 2048<br/>
+     *
+     * @param modelKmsKeyId <p>
+     *            ID for the AWS Key Management Service (KMS) key that Amazon
+     *            Comprehend uses to encrypt trained custom models. The
+     *            ModelKmsKeyId can be either of the following formats
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            KMS Key ID:
+     *            <code>"1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Amazon Resource Name (ARN) of a KMS Key:
+     *            <code>"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"</code>
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEntityRecognizerRequest withModelKmsKeyId(String modelKmsKeyId) {
+        this.modelKmsKeyId = modelKmsKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -874,7 +1045,9 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
         if (getVolumeKmsKeyId() != null)
             sb.append("VolumeKmsKeyId: " + getVolumeKmsKeyId() + ",");
         if (getVpcConfig() != null)
-            sb.append("VpcConfig: " + getVpcConfig());
+            sb.append("VpcConfig: " + getVpcConfig() + ",");
+        if (getModelKmsKeyId() != null)
+            sb.append("ModelKmsKeyId: " + getModelKmsKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -898,6 +1071,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
         hashCode = prime * hashCode
                 + ((getVolumeKmsKeyId() == null) ? 0 : getVolumeKmsKeyId().hashCode());
         hashCode = prime * hashCode + ((getVpcConfig() == null) ? 0 : getVpcConfig().hashCode());
+        hashCode = prime * hashCode
+                + ((getModelKmsKeyId() == null) ? 0 : getModelKmsKeyId().hashCode());
         return hashCode;
     }
 
@@ -950,6 +1125,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getVpcConfig() != null
                 && other.getVpcConfig().equals(this.getVpcConfig()) == false)
+            return false;
+        if (other.getModelKmsKeyId() == null ^ this.getModelKmsKeyId() == null)
+            return false;
+        if (other.getModelKmsKeyId() != null
+                && other.getModelKmsKeyId().equals(this.getModelKmsKeyId()) == false)
             return false;
         return true;
     }

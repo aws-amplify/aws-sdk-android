@@ -39,6 +39,13 @@ public class ScheduleKeyDeletionResultJsonUnmarshaller implements
             } else if (name.equals("DeletionDate")) {
                 scheduleKeyDeletionResult.setDeletionDate(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KeyState")) {
+                scheduleKeyDeletionResult.setKeyState(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PendingWindowInDays")) {
+                scheduleKeyDeletionResult.setPendingWindowInDays(IntegerJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

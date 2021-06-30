@@ -33,7 +33,7 @@ public class ClockSkewIntegrationTest extends S3IntegrationTestBase {
      */
     @Test
     public void testClockSkewS3() {
-        SDKGlobalConfiguration.setGlobalTimeOffset(3600);
+        SDKGlobalConfiguration.setGlobalTimeOffset(3600L);
         s3.listBuckets();
         assertTrue(SDKGlobalConfiguration.getGlobalTimeOffset() < 60);
     }

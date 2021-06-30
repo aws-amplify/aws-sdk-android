@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * A collection with the specified ID already exists.
+ * A resource with the specified ID already exists.
  * </p>
  */
 public class ResourceAlreadyExistsException extends AmazonServiceException {

@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class DescribePlaceIndexResult implements Serializable {
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -61,7 +61,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -71,9 +71,17 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -85,7 +93,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource being described.
+     * The name of the place index resource being described.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -96,7 +104,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified Place index resource.
+     * The pricing plan selected for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -112,7 +120,14 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * Tags associated with place index resource.
+     * </p>
+     */
+    private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -121,13 +136,13 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the Place index resource was created in <a
+     *         The timestamp for when the place index resource was created in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      *         </p>
@@ -138,13 +153,13 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param createTime <p>
-     *            The timestamp for when the Place index resource was created in
+     *            The timestamp for when the place index resource was created in
      *            <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -156,7 +171,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was created in <a
+     * The timestamp for when the place index resource was created in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -165,7 +180,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * together.
      *
      * @param createTime <p>
-     *            The timestamp for when the Place index resource was created in
+     *            The timestamp for when the place index resource was created in
      *            <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -379,14 +394,14 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1000<br/>
      *
      * @return <p>
-     *         The optional description for the Place index resource.
+     *         The optional description for the place index resource.
      *         </p>
      */
     public String getDescription() {
@@ -395,14 +410,14 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1000<br/>
      *
      * @param description <p>
-     *            The optional description for the Place index resource.
+     *            The optional description for the place index resource.
      *            </p>
      */
     public void setDescription(String description) {
@@ -411,7 +426,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The optional description for the Place index resource.
+     * The optional description for the place index resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -421,7 +436,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Length: </b>0 - 1000<br/>
      *
      * @param description <p>
-     *            The optional description for the Place index resource.
+     *            The optional description for the place index resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -433,9 +448,17 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -444,9 +467,17 @@ public class DescribePlaceIndexResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for the Place index resource. Used
-     *         when you need to specify a resource across all AWS.
+     *         The Amazon Resource Name (ARN) for the place index resource. Used
+     *         to specify a resource across all AWS.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getIndexArn() {
         return indexArn;
@@ -454,9 +485,17 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -465,9 +504,17 @@ public class DescribePlaceIndexResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param indexArn <p>
-     *            The Amazon Resource Name (ARN) for the Place index resource.
-     *            Used when you need to specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) for the place index resource.
+     *            Used to specify a resource across all AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setIndexArn(String indexArn) {
         this.indexArn = indexArn;
@@ -475,9 +522,17 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the Place index resource. Used when
-     * you need to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the place index resource. Used to
+     * specify a resource across all AWS.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -489,9 +544,17 @@ public class DescribePlaceIndexResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param indexArn <p>
-     *            The Amazon Resource Name (ARN) for the Place index resource.
-     *            Used when you need to specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) for the place index resource.
+     *            Used to specify a resource across all AWS.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -502,7 +565,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource being described.
+     * The name of the place index resource being described.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -510,7 +573,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the Place index resource being described.
+     *         The name of the place index resource being described.
      *         </p>
      */
     public String getIndexName() {
@@ -519,7 +582,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource being described.
+     * The name of the place index resource being described.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -527,7 +590,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource being described.
+     *            The name of the place index resource being described.
      *            </p>
      */
     public void setIndexName(String indexName) {
@@ -536,7 +599,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The name of the Place index resource being described.
+     * The name of the place index resource being described.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -547,7 +610,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param indexName <p>
-     *            The name of the Place index resource being described.
+     *            The name of the place index resource being described.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -559,7 +622,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified Place index resource.
+     * The pricing plan selected for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -572,7 +635,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * MobileAssetManagement
      *
      * @return <p>
-     *         The pricing plan selected for the specified Place index resource.
+     *         The pricing plan selected for the specified place index resource.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -588,7 +651,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified Place index resource.
+     * The pricing plan selected for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -601,7 +664,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified Place index
+     *            The pricing plan selected for the specified place index
      *            resource.
      *            </p>
      *            <p>
@@ -618,7 +681,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified Place index resource.
+     * The pricing plan selected for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -634,7 +697,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified Place index
+     *            The pricing plan selected for the specified place index
      *            resource.
      *            </p>
      *            <p>
@@ -654,7 +717,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified Place index resource.
+     * The pricing plan selected for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -667,7 +730,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified Place index
+     *            The pricing plan selected for the specified place index
      *            resource.
      *            </p>
      *            <p>
@@ -684,7 +747,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The pricing plan selected for the specified Place index resource.
+     * The pricing plan selected for the specified place index resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -700,7 +763,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            The pricing plan selected for the specified Place index
+     *            The pricing plan selected for the specified place index
      *            resource.
      *            </p>
      *            <p>
@@ -720,13 +783,93 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * Tags associated with place index resource.
+     * </p>
+     *
+     * @return <p>
+     *         Tags associated with place index resource.
+     *         </p>
+     */
+    public java.util.Map<String, String> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Tags associated with place index resource.
+     * </p>
+     *
+     * @param tags <p>
+     *            Tags associated with place index resource.
+     *            </p>
+     */
+    public void setTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+    }
+
+    /**
+     * <p>
+     * Tags associated with place index resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Tags associated with place index resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlaceIndexResult withTags(java.util.Map<String, String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Tags associated with place index resource.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into Tags parameter, and returns a
+     * reference to this object so that method calls can be chained together.
+     *
+     * @param key The key of the entry to be added into Tags.
+     * @param value The corresponding value of the entry to be added into Tags.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribePlaceIndexResult addTagsEntry(String key, String value) {
+        if (null == this.tags) {
+            this.tags = new java.util.HashMap<String, String>();
+        }
+        if (this.tags.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.tags.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into Tags.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DescribePlaceIndexResult clearTagsEntries() {
+        this.tags = null;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @return <p>
-     *         The timestamp for when the Place index resource was last updated
+     *         The timestamp for when the place index resource was last updated
      *         in <a
      *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -738,13 +881,13 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
      *
      * @param updateTime <p>
-     *            The timestamp for when the Place index resource was last
+     *            The timestamp for when the place index resource was last
      *            updated in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -756,7 +899,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the Place index resource was last updated in <a
+     * The timestamp for when the place index resource was last updated in <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
@@ -765,7 +908,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * together.
      *
      * @param updateTime <p>
-     *            The timestamp for when the Place index resource was last
+     *            The timestamp for when the place index resource was last
      *            updated in <a href=
      *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -803,6 +946,8 @@ public class DescribePlaceIndexResult implements Serializable {
             sb.append("IndexName: " + getIndexName() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
         if (getUpdateTime() != null)
             sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
@@ -826,6 +971,7 @@ public class DescribePlaceIndexResult implements Serializable {
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
@@ -874,6 +1020,10 @@ public class DescribePlaceIndexResult implements Serializable {
             return false;
         if (other.getPricingPlan() != null
                 && other.getPricingPlan().equals(this.getPricingPlan()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
             return false;

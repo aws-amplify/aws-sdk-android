@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,57 +19,54 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The start and end of the time stamp range for the requested media.
+ * The start and end of the timestamp range for the requested media.
  * </p>
  * <p>
  * This value should not be present if <code>PlaybackType</code> is
  * <code>LIVE</code>.
  * </p>
- * <note>
- * <p>
- * The values in the <code>HLSTimestampRange</code> are inclusive. Fragments
- * that begin before the start time but continue past it, or fragments that
- * begin before the end time but continue past it, are included in the session.
- * </p>
- * </note>
  */
 public class HLSTimestampRange implements Serializable {
     /**
      * <p>
-     * The start of the time stamp range for the requested media.
+     * The start of the timestamp range for the requested media.
      * </p>
      * <p>
      * If the <code>HLSTimestampRange</code> value is specified, the
      * <code>StartTimestamp</code> value is required.
      * </p>
-     * <note>
      * <p>
-     * This value is inclusive. Fragments that start before the
-     * <code>StartingTimestamp</code> and continue past it are included in the
-     * session.
+     * Only fragments that start exactly at or after <code>StartTimestamp</code>
+     * are included in the session. Fragments that start before
+     * <code>StartTimestamp</code> and continue past it aren't included in the
+     * session. If <code>FragmentSelectorType</code> is
+     * <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be
+     * later than the stream head.
      * </p>
-     * </note>
      */
     private java.util.Date startTimestamp;
 
     /**
      * <p>
-     * The end of the time stamp range for the requested media. This value must
-     * be within three hours of the specified <code>StartTimestamp</code>, and
-     * it must be later than the <code>StartTimestamp</code> value.
+     * The end of the timestamp range for the requested media. This value must
+     * be within 24 hours of the specified <code>StartTimestamp</code>, and it
+     * must be later than the <code>StartTimestamp</code> value.
      * </p>
      * <p>
      * If <code>FragmentSelectorType</code> for the request is
      * <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      * </p>
      * <p>
-     * If the <code>HLSTimestampRange</code> value is specified, the
-     * <code>EndTimestamp</code> value is required.
+     * The <code>EndTimestamp</code> value is required for
+     * <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code>
+     * mode. If the <code>EndTimestamp</code> is not set for
+     * <code>LIVE_REPLAY</code> mode then the session will continue to include
+     * newly ingested fragments until the session expires.
      * </p>
      * <note>
      * <p>
      * This value is inclusive. The <code>EndTimestamp</code> is compared to the
-     * (starting) time stamp of the fragment. Fragments that start before the
+     * (starting) timestamp of the fragment. Fragments that start before the
      * <code>EndTimestamp</code> value and continue past it are included in the
      * session.
      * </p>
@@ -79,34 +76,37 @@ public class HLSTimestampRange implements Serializable {
 
     /**
      * <p>
-     * The start of the time stamp range for the requested media.
+     * The start of the timestamp range for the requested media.
      * </p>
      * <p>
      * If the <code>HLSTimestampRange</code> value is specified, the
      * <code>StartTimestamp</code> value is required.
      * </p>
-     * <note>
      * <p>
-     * This value is inclusive. Fragments that start before the
-     * <code>StartingTimestamp</code> and continue past it are included in the
-     * session.
+     * Only fragments that start exactly at or after <code>StartTimestamp</code>
+     * are included in the session. Fragments that start before
+     * <code>StartTimestamp</code> and continue past it aren't included in the
+     * session. If <code>FragmentSelectorType</code> is
+     * <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be
+     * later than the stream head.
      * </p>
-     * </note>
      *
      * @return <p>
-     *         The start of the time stamp range for the requested media.
+     *         The start of the timestamp range for the requested media.
      *         </p>
      *         <p>
      *         If the <code>HLSTimestampRange</code> value is specified, the
      *         <code>StartTimestamp</code> value is required.
      *         </p>
-     *         <note>
      *         <p>
-     *         This value is inclusive. Fragments that start before the
-     *         <code>StartingTimestamp</code> and continue past it are included
-     *         in the session.
+     *         Only fragments that start exactly at or after
+     *         <code>StartTimestamp</code> are included in the session.
+     *         Fragments that start before <code>StartTimestamp</code> and
+     *         continue past it aren't included in the session. If
+     *         <code>FragmentSelectorType</code> is
+     *         <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code>
+     *         must be later than the stream head.
      *         </p>
-     *         </note>
      */
     public java.util.Date getStartTimestamp() {
         return startTimestamp;
@@ -114,34 +114,37 @@ public class HLSTimestampRange implements Serializable {
 
     /**
      * <p>
-     * The start of the time stamp range for the requested media.
+     * The start of the timestamp range for the requested media.
      * </p>
      * <p>
      * If the <code>HLSTimestampRange</code> value is specified, the
      * <code>StartTimestamp</code> value is required.
      * </p>
-     * <note>
      * <p>
-     * This value is inclusive. Fragments that start before the
-     * <code>StartingTimestamp</code> and continue past it are included in the
-     * session.
+     * Only fragments that start exactly at or after <code>StartTimestamp</code>
+     * are included in the session. Fragments that start before
+     * <code>StartTimestamp</code> and continue past it aren't included in the
+     * session. If <code>FragmentSelectorType</code> is
+     * <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be
+     * later than the stream head.
      * </p>
-     * </note>
      *
      * @param startTimestamp <p>
-     *            The start of the time stamp range for the requested media.
+     *            The start of the timestamp range for the requested media.
      *            </p>
      *            <p>
      *            If the <code>HLSTimestampRange</code> value is specified, the
      *            <code>StartTimestamp</code> value is required.
      *            </p>
-     *            <note>
      *            <p>
-     *            This value is inclusive. Fragments that start before the
-     *            <code>StartingTimestamp</code> and continue past it are
-     *            included in the session.
+     *            Only fragments that start exactly at or after
+     *            <code>StartTimestamp</code> are included in the session.
+     *            Fragments that start before <code>StartTimestamp</code> and
+     *            continue past it aren't included in the session. If
+     *            <code>FragmentSelectorType</code> is
+     *            <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code>
+     *            must be later than the stream head.
      *            </p>
-     *            </note>
      */
     public void setStartTimestamp(java.util.Date startTimestamp) {
         this.startTimestamp = startTimestamp;
@@ -149,37 +152,40 @@ public class HLSTimestampRange implements Serializable {
 
     /**
      * <p>
-     * The start of the time stamp range for the requested media.
+     * The start of the timestamp range for the requested media.
      * </p>
      * <p>
      * If the <code>HLSTimestampRange</code> value is specified, the
      * <code>StartTimestamp</code> value is required.
      * </p>
-     * <note>
      * <p>
-     * This value is inclusive. Fragments that start before the
-     * <code>StartingTimestamp</code> and continue past it are included in the
-     * session.
+     * Only fragments that start exactly at or after <code>StartTimestamp</code>
+     * are included in the session. Fragments that start before
+     * <code>StartTimestamp</code> and continue past it aren't included in the
+     * session. If <code>FragmentSelectorType</code> is
+     * <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code> must be
+     * later than the stream head.
      * </p>
-     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTimestamp <p>
-     *            The start of the time stamp range for the requested media.
+     *            The start of the timestamp range for the requested media.
      *            </p>
      *            <p>
      *            If the <code>HLSTimestampRange</code> value is specified, the
      *            <code>StartTimestamp</code> value is required.
      *            </p>
-     *            <note>
      *            <p>
-     *            This value is inclusive. Fragments that start before the
-     *            <code>StartingTimestamp</code> and continue past it are
-     *            included in the session.
+     *            Only fragments that start exactly at or after
+     *            <code>StartTimestamp</code> are included in the session.
+     *            Fragments that start before <code>StartTimestamp</code> and
+     *            continue past it aren't included in the session. If
+     *            <code>FragmentSelectorType</code> is
+     *            <code>SERVER_TIMESTAMP</code>, the <code>StartTimestamp</code>
+     *            must be later than the stream head.
      *            </p>
-     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -190,30 +196,33 @@ public class HLSTimestampRange implements Serializable {
 
     /**
      * <p>
-     * The end of the time stamp range for the requested media. This value must
-     * be within three hours of the specified <code>StartTimestamp</code>, and
-     * it must be later than the <code>StartTimestamp</code> value.
+     * The end of the timestamp range for the requested media. This value must
+     * be within 24 hours of the specified <code>StartTimestamp</code>, and it
+     * must be later than the <code>StartTimestamp</code> value.
      * </p>
      * <p>
      * If <code>FragmentSelectorType</code> for the request is
      * <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      * </p>
      * <p>
-     * If the <code>HLSTimestampRange</code> value is specified, the
-     * <code>EndTimestamp</code> value is required.
+     * The <code>EndTimestamp</code> value is required for
+     * <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code>
+     * mode. If the <code>EndTimestamp</code> is not set for
+     * <code>LIVE_REPLAY</code> mode then the session will continue to include
+     * newly ingested fragments until the session expires.
      * </p>
      * <note>
      * <p>
      * This value is inclusive. The <code>EndTimestamp</code> is compared to the
-     * (starting) time stamp of the fragment. Fragments that start before the
+     * (starting) timestamp of the fragment. Fragments that start before the
      * <code>EndTimestamp</code> value and continue past it are included in the
      * session.
      * </p>
      * </note>
      *
      * @return <p>
-     *         The end of the time stamp range for the requested media. This
-     *         value must be within three hours of the specified
+     *         The end of the timestamp range for the requested media. This
+     *         value must be within 24 hours of the specified
      *         <code>StartTimestamp</code>, and it must be later than the
      *         <code>StartTimestamp</code> value.
      *         </p>
@@ -222,13 +231,17 @@ public class HLSTimestampRange implements Serializable {
      *         <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      *         </p>
      *         <p>
-     *         If the <code>HLSTimestampRange</code> value is specified, the
-     *         <code>EndTimestamp</code> value is required.
+     *         The <code>EndTimestamp</code> value is required for
+     *         <code>ON_DEMAND</code> mode, but optional for
+     *         <code>LIVE_REPLAY</code> mode. If the <code>EndTimestamp</code>
+     *         is not set for <code>LIVE_REPLAY</code> mode then the session
+     *         will continue to include newly ingested fragments until the
+     *         session expires.
      *         </p>
      *         <note>
      *         <p>
      *         This value is inclusive. The <code>EndTimestamp</code> is
-     *         compared to the (starting) time stamp of the fragment. Fragments
+     *         compared to the (starting) timestamp of the fragment. Fragments
      *         that start before the <code>EndTimestamp</code> value and
      *         continue past it are included in the session.
      *         </p>
@@ -240,30 +253,33 @@ public class HLSTimestampRange implements Serializable {
 
     /**
      * <p>
-     * The end of the time stamp range for the requested media. This value must
-     * be within three hours of the specified <code>StartTimestamp</code>, and
-     * it must be later than the <code>StartTimestamp</code> value.
+     * The end of the timestamp range for the requested media. This value must
+     * be within 24 hours of the specified <code>StartTimestamp</code>, and it
+     * must be later than the <code>StartTimestamp</code> value.
      * </p>
      * <p>
      * If <code>FragmentSelectorType</code> for the request is
      * <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      * </p>
      * <p>
-     * If the <code>HLSTimestampRange</code> value is specified, the
-     * <code>EndTimestamp</code> value is required.
+     * The <code>EndTimestamp</code> value is required for
+     * <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code>
+     * mode. If the <code>EndTimestamp</code> is not set for
+     * <code>LIVE_REPLAY</code> mode then the session will continue to include
+     * newly ingested fragments until the session expires.
      * </p>
      * <note>
      * <p>
      * This value is inclusive. The <code>EndTimestamp</code> is compared to the
-     * (starting) time stamp of the fragment. Fragments that start before the
+     * (starting) timestamp of the fragment. Fragments that start before the
      * <code>EndTimestamp</code> value and continue past it are included in the
      * session.
      * </p>
      * </note>
      *
      * @param endTimestamp <p>
-     *            The end of the time stamp range for the requested media. This
-     *            value must be within three hours of the specified
+     *            The end of the timestamp range for the requested media. This
+     *            value must be within 24 hours of the specified
      *            <code>StartTimestamp</code>, and it must be later than the
      *            <code>StartTimestamp</code> value.
      *            </p>
@@ -272,13 +288,17 @@ public class HLSTimestampRange implements Serializable {
      *            <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      *            </p>
      *            <p>
-     *            If the <code>HLSTimestampRange</code> value is specified, the
-     *            <code>EndTimestamp</code> value is required.
+     *            The <code>EndTimestamp</code> value is required for
+     *            <code>ON_DEMAND</code> mode, but optional for
+     *            <code>LIVE_REPLAY</code> mode. If the
+     *            <code>EndTimestamp</code> is not set for
+     *            <code>LIVE_REPLAY</code> mode then the session will continue
+     *            to include newly ingested fragments until the session expires.
      *            </p>
      *            <note>
      *            <p>
      *            This value is inclusive. The <code>EndTimestamp</code> is
-     *            compared to the (starting) time stamp of the fragment.
+     *            compared to the (starting) timestamp of the fragment.
      *            Fragments that start before the <code>EndTimestamp</code>
      *            value and continue past it are included in the session.
      *            </p>
@@ -290,22 +310,25 @@ public class HLSTimestampRange implements Serializable {
 
     /**
      * <p>
-     * The end of the time stamp range for the requested media. This value must
-     * be within three hours of the specified <code>StartTimestamp</code>, and
-     * it must be later than the <code>StartTimestamp</code> value.
+     * The end of the timestamp range for the requested media. This value must
+     * be within 24 hours of the specified <code>StartTimestamp</code>, and it
+     * must be later than the <code>StartTimestamp</code> value.
      * </p>
      * <p>
      * If <code>FragmentSelectorType</code> for the request is
      * <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      * </p>
      * <p>
-     * If the <code>HLSTimestampRange</code> value is specified, the
-     * <code>EndTimestamp</code> value is required.
+     * The <code>EndTimestamp</code> value is required for
+     * <code>ON_DEMAND</code> mode, but optional for <code>LIVE_REPLAY</code>
+     * mode. If the <code>EndTimestamp</code> is not set for
+     * <code>LIVE_REPLAY</code> mode then the session will continue to include
+     * newly ingested fragments until the session expires.
      * </p>
      * <note>
      * <p>
      * This value is inclusive. The <code>EndTimestamp</code> is compared to the
-     * (starting) time stamp of the fragment. Fragments that start before the
+     * (starting) timestamp of the fragment. Fragments that start before the
      * <code>EndTimestamp</code> value and continue past it are included in the
      * session.
      * </p>
@@ -315,8 +338,8 @@ public class HLSTimestampRange implements Serializable {
      * together.
      *
      * @param endTimestamp <p>
-     *            The end of the time stamp range for the requested media. This
-     *            value must be within three hours of the specified
+     *            The end of the timestamp range for the requested media. This
+     *            value must be within 24 hours of the specified
      *            <code>StartTimestamp</code>, and it must be later than the
      *            <code>StartTimestamp</code> value.
      *            </p>
@@ -325,13 +348,17 @@ public class HLSTimestampRange implements Serializable {
      *            <code>SERVER_TIMESTAMP</code>, this value must be in the past.
      *            </p>
      *            <p>
-     *            If the <code>HLSTimestampRange</code> value is specified, the
-     *            <code>EndTimestamp</code> value is required.
+     *            The <code>EndTimestamp</code> value is required for
+     *            <code>ON_DEMAND</code> mode, but optional for
+     *            <code>LIVE_REPLAY</code> mode. If the
+     *            <code>EndTimestamp</code> is not set for
+     *            <code>LIVE_REPLAY</code> mode then the session will continue
+     *            to include newly ingested fragments until the session expires.
      *            </p>
      *            <note>
      *            <p>
      *            This value is inclusive. The <code>EndTimestamp</code> is
-     *            compared to the (starting) time stamp of the fragment.
+     *            compared to the (starting) timestamp of the fragment.
      *            Fragments that start before the <code>EndTimestamp</code>
      *            value and continue past it are included in the session.
      *            </p>

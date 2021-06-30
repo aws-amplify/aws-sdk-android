@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,8 +35,7 @@ public class PostTextResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex natural language
-     * understanding (NLU) model.
+     * change based on improvements to Amazon Lex.
      * </p>
      */
     private IntentConfidence nluIntentConfidence;
@@ -270,22 +269,24 @@ public class PostTextResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
      */
     private String botVersion;
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     */
+    private java.util.List<ActiveContext> activeContexts;
 
     /**
      * <p>
@@ -342,8 +343,7 @@ public class PostTextResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex natural language
-     * understanding (NLU) model.
+     * change based on improvements to Amazon Lex.
      * </p>
      *
      * @return <p>
@@ -356,8 +356,7 @@ public class PostTextResult implements Serializable {
      *         </p>
      *         <p>
      *         The score is a relative score, not an absolute score. The score
-     *         may change based on improvements to the Amazon Lex natural
-     *         language understanding (NLU) model.
+     *         may change based on improvements to Amazon Lex.
      *         </p>
      */
     public IntentConfidence getNluIntentConfidence() {
@@ -374,8 +373,7 @@ public class PostTextResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex natural language
-     * understanding (NLU) model.
+     * change based on improvements to Amazon Lex.
      * </p>
      *
      * @param nluIntentConfidence <p>
@@ -388,8 +386,7 @@ public class PostTextResult implements Serializable {
      *            </p>
      *            <p>
      *            The score is a relative score, not an absolute score. The
-     *            score may change based on improvements to the Amazon Lex
-     *            natural language understanding (NLU) model.
+     *            score may change based on improvements to Amazon Lex.
      *            </p>
      */
     public void setNluIntentConfidence(IntentConfidence nluIntentConfidence) {
@@ -406,8 +403,7 @@ public class PostTextResult implements Serializable {
      * </p>
      * <p>
      * The score is a relative score, not an absolute score. The score may
-     * change based on improvements to the Amazon Lex natural language
-     * understanding (NLU) model.
+     * change based on improvements to Amazon Lex.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -423,8 +419,7 @@ public class PostTextResult implements Serializable {
      *            </p>
      *            <p>
      *            The score is a relative score, not an absolute score. The
-     *            score may change based on improvements to the Amazon Lex
-     *            natural language understanding (NLU) model.
+     *            score may change based on improvements to Amazon Lex.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -2429,17 +2424,6 @@ public class PostTextResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
@@ -2448,17 +2432,6 @@ public class PostTextResult implements Serializable {
      *         The version of the bot that responded to the conversation. You
      *         can use this information to help determine if one version of a
      *         bot is performing better than another version.
-     *         </p>
-     *         <p>
-     *         If you have enabled the new natural language understanding (NLU)
-     *         model, you can use this to determine if the improvement is due to
-     *         changes to the bot or changes to the NLU.
-     *         </p>
-     *         <p>
-     *         For more information about enabling the new NLU, see the <a href=
-     *         "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     *         >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     *         operation.
      *         </p>
      */
     public String getBotVersion() {
@@ -2472,17 +2445,6 @@ public class PostTextResult implements Serializable {
      * better than another version.
      * </p>
      * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
-     * </p>
-     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 64<br/>
      * <b>Pattern: </b>[0-9]+|\$LATEST<br/>
@@ -2491,18 +2453,6 @@ public class PostTextResult implements Serializable {
      *            The version of the bot that responded to the conversation. You
      *            can use this information to help determine if one version of a
      *            bot is performing better than another version.
-     *            </p>
-     *            <p>
-     *            If you have enabled the new natural language understanding
-     *            (NLU) model, you can use this to determine if the improvement
-     *            is due to changes to the bot or changes to the NLU.
-     *            </p>
-     *            <p>
-     *            For more information about enabling the new NLU, see the <a
-     *            href=
-     *            "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     *            >enableModelImprovements</a> parameter of the
-     *            <code>PutBot</code> operation.
      *            </p>
      */
     public void setBotVersion(String botVersion) {
@@ -2514,17 +2464,6 @@ public class PostTextResult implements Serializable {
      * The version of the bot that responded to the conversation. You can use
      * this information to help determine if one version of a bot is performing
      * better than another version.
-     * </p>
-     * <p>
-     * If you have enabled the new natural language understanding (NLU) model,
-     * you can use this to determine if the improvement is due to changes to the
-     * bot or changes to the NLU.
-     * </p>
-     * <p>
-     * For more information about enabling the new NLU, see the <a href=
-     * "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     * >enableModelImprovements</a> parameter of the <code>PutBot</code>
-     * operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -2539,23 +2478,137 @@ public class PostTextResult implements Serializable {
      *            can use this information to help determine if one version of a
      *            bot is performing better than another version.
      *            </p>
-     *            <p>
-     *            If you have enabled the new natural language understanding
-     *            (NLU) model, you can use this to determine if the improvement
-     *            is due to changes to the bot or changes to the NLU.
-     *            </p>
-     *            <p>
-     *            For more information about enabling the new NLU, see the <a
-     *            href=
-     *            "https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements"
-     *            >enableModelImprovements</a> parameter of the
-     *            <code>PutBot</code> operation.
-     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public PostTextResult withBotVersion(String botVersion) {
         this.botVersion = botVersion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     *
+     * @return <p>
+     *         A list of active contexts for the session. A context can be set
+     *         when an intent is fulfilled or by calling the
+     *         <code>PostContent</code>, <code>PostText</code>, or
+     *         <code>PutSession</code> operation.
+     *         </p>
+     *         <p>
+     *         You can use a context to control the intents that can follow up
+     *         an intent, or to modify the operation of your application.
+     *         </p>
+     */
+    public java.util.List<ActiveContext> getActiveContexts() {
+        return activeContexts;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     */
+    public void setActiveContexts(java.util.Collection<ActiveContext> activeContexts) {
+        if (activeContexts == null) {
+            this.activeContexts = null;
+            return;
+        }
+
+        this.activeContexts = new java.util.ArrayList<ActiveContext>(activeContexts);
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withActiveContexts(ActiveContext... activeContexts) {
+        if (getActiveContexts() == null) {
+            this.activeContexts = new java.util.ArrayList<ActiveContext>(activeContexts.length);
+        }
+        for (ActiveContext value : activeContexts) {
+            this.activeContexts.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of active contexts for the session. A context can be set when an
+     * intent is fulfilled or by calling the <code>PostContent</code>,
+     * <code>PostText</code>, or <code>PutSession</code> operation.
+     * </p>
+     * <p>
+     * You can use a context to control the intents that can follow up an
+     * intent, or to modify the operation of your application.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param activeContexts <p>
+     *            A list of active contexts for the session. A context can be
+     *            set when an intent is fulfilled or by calling the
+     *            <code>PostContent</code>, <code>PostText</code>, or
+     *            <code>PutSession</code> operation.
+     *            </p>
+     *            <p>
+     *            You can use a context to control the intents that can follow
+     *            up an intent, or to modify the operation of your application.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public PostTextResult withActiveContexts(java.util.Collection<ActiveContext> activeContexts) {
+        setActiveContexts(activeContexts);
         return this;
     }
 
@@ -2595,7 +2648,9 @@ public class PostTextResult implements Serializable {
         if (getSessionId() != null)
             sb.append("sessionId: " + getSessionId() + ",");
         if (getBotVersion() != null)
-            sb.append("botVersion: " + getBotVersion());
+            sb.append("botVersion: " + getBotVersion() + ",");
+        if (getActiveContexts() != null)
+            sb.append("activeContexts: " + getActiveContexts());
         sb.append("}");
         return sb.toString();
     }
@@ -2626,6 +2681,8 @@ public class PostTextResult implements Serializable {
                 + ((getResponseCard() == null) ? 0 : getResponseCard().hashCode());
         hashCode = prime * hashCode + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
         hashCode = prime * hashCode + ((getBotVersion() == null) ? 0 : getBotVersion().hashCode());
+        hashCode = prime * hashCode
+                + ((getActiveContexts() == null) ? 0 : getActiveContexts().hashCode());
         return hashCode;
     }
 
@@ -2702,6 +2759,11 @@ public class PostTextResult implements Serializable {
             return false;
         if (other.getBotVersion() != null
                 && other.getBotVersion().equals(this.getBotVersion()) == false)
+            return false;
+        if (other.getActiveContexts() == null ^ this.getActiveContexts() == null)
+            return false;
+        if (other.getActiveContexts() != null
+                && other.getActiveContexts().equals(this.getActiveContexts()) == false)
             return false;
         return true;
     }

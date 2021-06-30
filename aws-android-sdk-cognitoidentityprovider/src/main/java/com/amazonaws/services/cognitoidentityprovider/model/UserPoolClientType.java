@@ -384,6 +384,17 @@ public class UserPoolClientType implements Serializable {
 
     /**
      * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
+     */
+    private Boolean enableTokenRevocation;
+
+    /**
+     * <p>
      * The user pool ID for the user pool client.
      * </p>
      * <p>
@@ -3152,52 +3163,96 @@ public class UserPoolClientType implements Serializable {
     }
 
     /**
-     * Returns the value of the enableTokenIntrospectionRevocation property for
-     * this object.
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
      *
-     * @return The value of the enableTokenIntrospectionRevocation property for
-     *         this object.
+     * @return <p>
+     *         Indicates whether token revocation is enabled for the user pool
+     *         client. When you create a new user pool client, token revocation
+     *         is enabled by default. For more information about revoking
+     *         tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
+     *         </p>
      */
-    public Boolean isEnableTokenIntrospectionRevocation() {
-        return enableTokenIntrospectionRevocation;
+    public Boolean isEnableTokenRevocation() {
+        return enableTokenRevocation;
     }
 
     /**
-     * Returns the value of the enableTokenIntrospectionRevocation property for
-     * this object.
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
      *
-     * @return The value of the enableTokenIntrospectionRevocation property for
-     *         this object.
+     * @return <p>
+     *         Indicates whether token revocation is enabled for the user pool
+     *         client. When you create a new user pool client, token revocation
+     *         is enabled by default. For more information about revoking
+     *         tokens, see <a href=
+     *         "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *         >RevokeToken</a>.
+     *         </p>
      */
-    public Boolean getEnableTokenIntrospectionRevocation() {
-        return enableTokenIntrospectionRevocation;
+    public Boolean getEnableTokenRevocation() {
+        return enableTokenRevocation;
     }
 
     /**
-     * Sets the value of enableTokenIntrospectionRevocation
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
      *
-     * @param enableTokenIntrospectionRevocation The new value for the
-     *            enableTokenIntrospectionRevocation property for this object.
+     * @param enableTokenRevocation <p>
+     *            Indicates whether token revocation is enabled for the user
+     *            pool client. When you create a new user pool client, token
+     *            revocation is enabled by default. For more information about
+     *            revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
+     *            </p>
      */
-    public void setEnableTokenIntrospectionRevocation(Boolean enableTokenIntrospectionRevocation) {
-        this.enableTokenIntrospectionRevocation = enableTokenIntrospectionRevocation;
+    public void setEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
     }
 
     /**
-     * Sets the value of the enableTokenIntrospectionRevocation property for
-     * this object.
+     * <p>
+     * Indicates whether token revocation is enabled for the user pool client.
+     * When you create a new user pool client, token revocation is enabled by
+     * default. For more information about revoking tokens, see <a href=
+     * "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     * >RevokeToken</a>.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param enableTokenIntrospectionRevocation The new value for the
-     *            enableTokenIntrospectionRevocation property for this object.
+     * @param enableTokenRevocation <p>
+     *            Indicates whether token revocation is enabled for the user
+     *            pool client. When you create a new user pool client, token
+     *            revocation is enabled by default. For more information about
+     *            revoking tokens, see <a href=
+     *            "https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html"
+     *            >RevokeToken</a>.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public UserPoolClientType withEnableTokenIntrospectionRevocation(
-            Boolean enableTokenIntrospectionRevocation) {
-        this.enableTokenIntrospectionRevocation = enableTokenIntrospectionRevocation;
+    public UserPoolClientType withEnableTokenRevocation(Boolean enableTokenRevocation) {
+        this.enableTokenRevocation = enableTokenRevocation;
         return this;
     }
 
@@ -3257,9 +3312,8 @@ public class UserPoolClientType implements Serializable {
             sb.append("AnalyticsConfiguration: " + getAnalyticsConfiguration() + ",");
         if (getPreventUserExistenceErrors() != null)
             sb.append("PreventUserExistenceErrors: " + getPreventUserExistenceErrors() + ",");
-        if (getEnableTokenIntrospectionRevocation() != null)
-            sb.append("EnableTokenIntrospectionRevocation: "
-                    + getEnableTokenIntrospectionRevocation());
+        if (getEnableTokenRevocation() != null)
+            sb.append("EnableTokenRevocation: " + getEnableTokenRevocation());
         sb.append("}");
         return sb.toString();
     }
@@ -3319,8 +3373,7 @@ public class UserPoolClientType implements Serializable {
                         .hashCode());
         hashCode = prime
                 * hashCode
-                + ((getEnableTokenIntrospectionRevocation() == null) ? 0
-                        : getEnableTokenIntrospectionRevocation().hashCode());
+                + ((getEnableTokenRevocation() == null) ? 0 : getEnableTokenRevocation().hashCode());
         return hashCode;
     }
 
@@ -3450,12 +3503,10 @@ public class UserPoolClientType implements Serializable {
                 && other.getPreventUserExistenceErrors().equals(
                         this.getPreventUserExistenceErrors()) == false)
             return false;
-        if (other.getEnableTokenIntrospectionRevocation() == null
-                ^ this.getEnableTokenIntrospectionRevocation() == null)
+        if (other.getEnableTokenRevocation() == null ^ this.getEnableTokenRevocation() == null)
             return false;
-        if (other.getEnableTokenIntrospectionRevocation() != null
-                && other.getEnableTokenIntrospectionRevocation().equals(
-                        this.getEnableTokenIntrospectionRevocation()) == false)
+        if (other.getEnableTokenRevocation() != null
+                && other.getEnableTokenRevocation().equals(this.getEnableTokenRevocation()) == false)
             return false;
         return true;
     }

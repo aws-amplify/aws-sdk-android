@@ -317,7 +317,7 @@ public class AWS4Signer extends AbstractAWSSigner
     }
 
     protected final long getDateFromRequest(Request<?> request) {
-        final int timeOffset = getTimeOffset(request);
+        final long timeOffset = getTimeOffset(request);
         Date date = getSignatureDate(timeOffset);
         if (overriddenDate != null) {
             date = overriddenDate;

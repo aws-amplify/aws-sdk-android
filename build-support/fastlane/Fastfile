@@ -1,0 +1,30 @@
+default_platform(:android)
+
+import_from_git(
+    url: 'https://github.com/aws-amplify/amplify-ci-support',
+    branch: 'android/fastlane-actions',
+    path: './src/fastlane/release_actions/fastlane/AndroidAppsFastfile'
+)
+
+# When testing against local changes, comment out the above and use the line below instead.
+# import '~/github/aws-amplify/amplify-ci-support/src/fastlane/release_actions/fastlane/AndroidAppsFastfile'
+
+platform :android do |options|
+    override_lane :build_parameters do
+      project_root = File.expand_path("#{Dir.pwd()}/../..")
+      {
+        repo: 'aws-amplify/aws-sdk-android',
+        product_name: 'AWS SDK for Android',
+        releases: [
+          {
+            release_tag_prefix: 'release_v',
+            gradle_properties_path: "#{project_root}/gradle.properties",
+            doc_files_to_update: [],
+            release_title: 'AWS SDK for Android',
+            changelog_path: "#{project_root}/CHANGELOG.md",
+          }
+        ]
+      }
+    end
+  end
+  

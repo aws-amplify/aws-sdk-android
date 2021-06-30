@@ -100,6 +100,27 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
+     * The identifier for your AWS Key Management Service (AWS KMS) customer
+     * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
+     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
+     * encrypt training and test images copied into the service for model
+     * training. Your source images are unaffected. The key is also used to
+     * encrypt training results and manifest files written to the output Amazon
+     * S3 bucket (<code>OutputConfig</code>).
+     * </p>
+     * <p>
+     * If you don't specify a value for <code>KmsKeyId</code>, images copied
+     * into the service are encrypted using a key that AWS owns and manages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     */
+    private String kmsKeyId;
+
+    /**
+     * <p>
      * The ARN of the Amazon Rekognition Custom Labels project that manages the
      * model that you want to train.
      * </p>
@@ -445,6 +466,129 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
     }
 
     /**
+     * <p>
+     * The identifier for your AWS Key Management Service (AWS KMS) customer
+     * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
+     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
+     * encrypt training and test images copied into the service for model
+     * training. Your source images are unaffected. The key is also used to
+     * encrypt training results and manifest files written to the output Amazon
+     * S3 bucket (<code>OutputConfig</code>).
+     * </p>
+     * <p>
+     * If you don't specify a value for <code>KmsKeyId</code>, images copied
+     * into the service are encrypted using a key that AWS owns and manages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @return <p>
+     *         The identifier for your AWS Key Management Service (AWS KMS)
+     *         customer master key (CMK). You can supply the Amazon Resource
+     *         Name (ARN) of your CMK, the ID of your CMK, or an alias for your
+     *         CMK. The key is used to encrypt training and test images copied
+     *         into the service for model training. Your source images are
+     *         unaffected. The key is also used to encrypt training results and
+     *         manifest files written to the output Amazon S3 bucket (
+     *         <code>OutputConfig</code>).
+     *         </p>
+     *         <p>
+     *         If you don't specify a value for <code>KmsKeyId</code>, images
+     *         copied into the service are encrypted using a key that AWS owns
+     *         and manages.
+     *         </p>
+     */
+    public String getKmsKeyId() {
+        return kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The identifier for your AWS Key Management Service (AWS KMS) customer
+     * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
+     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
+     * encrypt training and test images copied into the service for model
+     * training. Your source images are unaffected. The key is also used to
+     * encrypt training results and manifest files written to the output Amazon
+     * S3 bucket (<code>OutputConfig</code>).
+     * </p>
+     * <p>
+     * If you don't specify a value for <code>KmsKeyId</code>, images copied
+     * into the service are encrypted using a key that AWS owns and manages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The identifier for your AWS Key Management Service (AWS KMS)
+     *            customer master key (CMK). You can supply the Amazon Resource
+     *            Name (ARN) of your CMK, the ID of your CMK, or an alias for
+     *            your CMK. The key is used to encrypt training and test images
+     *            copied into the service for model training. Your source images
+     *            are unaffected. The key is also used to encrypt training
+     *            results and manifest files written to the output Amazon S3
+     *            bucket (<code>OutputConfig</code>).
+     *            </p>
+     *            <p>
+     *            If you don't specify a value for <code>KmsKeyId</code>, images
+     *            copied into the service are encrypted using a key that AWS
+     *            owns and manages.
+     *            </p>
+     */
+    public void setKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+    }
+
+    /**
+     * <p>
+     * The identifier for your AWS Key Management Service (AWS KMS) customer
+     * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
+     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
+     * encrypt training and test images copied into the service for model
+     * training. Your source images are unaffected. The key is also used to
+     * encrypt training results and manifest files written to the output Amazon
+     * S3 bucket (<code>OutputConfig</code>).
+     * </p>
+     * <p>
+     * If you don't specify a value for <code>KmsKeyId</code>, images copied
+     * into the service are encrypted using a key that AWS owns and manages.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2048<br/>
+     * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
+     *
+     * @param kmsKeyId <p>
+     *            The identifier for your AWS Key Management Service (AWS KMS)
+     *            customer master key (CMK). You can supply the Amazon Resource
+     *            Name (ARN) of your CMK, the ID of your CMK, or an alias for
+     *            your CMK. The key is used to encrypt training and test images
+     *            copied into the service for model training. Your source images
+     *            are unaffected. The key is also used to encrypt training
+     *            results and manifest files written to the output Amazon S3
+     *            bucket (<code>OutputConfig</code>).
+     *            </p>
+     *            <p>
+     *            If you don't specify a value for <code>KmsKeyId</code>, images
+     *            copied into the service are encrypted using a key that AWS
+     *            owns and manages.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateProjectVersionRequest withKmsKeyId(String kmsKeyId) {
+        this.kmsKeyId = kmsKeyId;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -466,7 +610,9 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
         if (getTestingData() != null)
             sb.append("TestingData: " + getTestingData() + ",");
         if (getTags() != null)
-            sb.append("Tags: " + getTags());
+            sb.append("Tags: " + getTags() + ",");
+        if (getKmsKeyId() != null)
+            sb.append("KmsKeyId: " + getKmsKeyId());
         sb.append("}");
         return sb.toString();
     }
@@ -486,6 +632,7 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
         hashCode = prime * hashCode
                 + ((getTestingData() == null) ? 0 : getTestingData().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
         return hashCode;
     }
 
@@ -528,6 +675,10 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
         if (other.getTags() == null ^ this.getTags() == null)
             return false;
         if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
+            return false;
+        if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
             return false;
         return true;
     }

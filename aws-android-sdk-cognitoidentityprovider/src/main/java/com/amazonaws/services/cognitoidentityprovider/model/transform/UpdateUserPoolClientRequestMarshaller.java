@@ -219,11 +219,11 @@ public class UpdateUserPoolClientRequestMarshaller implements
                 jsonWriter.name("PreventUserExistenceErrors");
                 jsonWriter.value(preventUserExistenceErrors);
             }
-            if (updateUserPoolClientRequest.getEnableTokenIntrospectionRevocation() != null) {
-                Boolean enableTokenIntrospectionRevocation = updateUserPoolClientRequest
-                        .getEnableTokenIntrospectionRevocation();
-                jsonWriter.name("EnableTokenIntrospectionRevocation");
-                jsonWriter.value(enableTokenIntrospectionRevocation);
+            if (updateUserPoolClientRequest.getEnableTokenRevocation() != null) {
+                Boolean enableTokenRevocation = updateUserPoolClientRequest
+                        .getEnableTokenRevocation();
+                jsonWriter.name("EnableTokenRevocation");
+                jsonWriter.value(enableTokenRevocation);
             }
 
             jsonWriter.endObject();

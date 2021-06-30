@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -19,13 +19,45 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the time stamp range and time stamp origin of a range of fragments.
+ * Describes the timestamp range and timestamp origin of a range of fragments.
+ * </p>
+ * <p>
+ * Only fragments with a start timestamp greater than or equal to the given
+ * start time and less than or equal to the end time are returned. For example,
+ * if a stream contains fragments with the following start timestamps:
+ * </p>
+ * <ul>
+ * <li>
+ * <p>
+ * 00:00:00
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * 00:00:02
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * 00:00:04
+ * </p>
+ * </li>
+ * <li>
+ * <p>
+ * 00:00:06
+ * </p>
+ * </li>
+ * </ul>
+ * <p>
+ * A fragment selector range with a start time of 00:00:01 and end time of
+ * 00:00:04 would return the fragments with start times of 00:00:02 and
+ * 00:00:04.
  * </p>
  */
 public class FragmentSelector implements Serializable {
     /**
      * <p>
-     * The origin of the time stamps to use (Server or Producer).
+     * The origin of the timestamps to use (Server or Producer).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,21 +67,21 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The range of time stamps to return.
+     * The range of timestamps to return.
      * </p>
      */
     private TimestampRange timestampRange;
 
     /**
      * <p>
-     * The origin of the time stamps to use (Server or Producer).
+     * The origin of the timestamps to use (Server or Producer).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @return <p>
-     *         The origin of the time stamps to use (Server or Producer).
+     *         The origin of the timestamps to use (Server or Producer).
      *         </p>
      * @see FragmentSelectorType
      */
@@ -59,14 +91,14 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The origin of the time stamps to use (Server or Producer).
+     * The origin of the timestamps to use (Server or Producer).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The origin of the time stamps to use (Server or Producer).
+     *            The origin of the timestamps to use (Server or Producer).
      *            </p>
      * @see FragmentSelectorType
      */
@@ -76,7 +108,7 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The origin of the time stamps to use (Server or Producer).
+     * The origin of the timestamps to use (Server or Producer).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,7 +118,7 @@ public class FragmentSelector implements Serializable {
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The origin of the time stamps to use (Server or Producer).
+     *            The origin of the timestamps to use (Server or Producer).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -99,14 +131,14 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The origin of the time stamps to use (Server or Producer).
+     * The origin of the timestamps to use (Server or Producer).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The origin of the time stamps to use (Server or Producer).
+     *            The origin of the timestamps to use (Server or Producer).
      *            </p>
      * @see FragmentSelectorType
      */
@@ -116,7 +148,7 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The origin of the time stamps to use (Server or Producer).
+     * The origin of the timestamps to use (Server or Producer).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -126,7 +158,7 @@ public class FragmentSelector implements Serializable {
      * <b>Allowed Values: </b>PRODUCER_TIMESTAMP, SERVER_TIMESTAMP
      *
      * @param fragmentSelectorType <p>
-     *            The origin of the time stamps to use (Server or Producer).
+     *            The origin of the timestamps to use (Server or Producer).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -139,11 +171,11 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The range of time stamps to return.
+     * The range of timestamps to return.
      * </p>
      *
      * @return <p>
-     *         The range of time stamps to return.
+     *         The range of timestamps to return.
      *         </p>
      */
     public TimestampRange getTimestampRange() {
@@ -152,11 +184,11 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The range of time stamps to return.
+     * The range of timestamps to return.
      * </p>
      *
      * @param timestampRange <p>
-     *            The range of time stamps to return.
+     *            The range of timestamps to return.
      *            </p>
      */
     public void setTimestampRange(TimestampRange timestampRange) {
@@ -165,14 +197,14 @@ public class FragmentSelector implements Serializable {
 
     /**
      * <p>
-     * The range of time stamps to return.
+     * The range of timestamps to return.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param timestampRange <p>
-     *            The range of time stamps to return.
+     *            The range of timestamps to return.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

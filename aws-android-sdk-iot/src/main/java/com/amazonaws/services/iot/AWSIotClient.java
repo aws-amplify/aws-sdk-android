@@ -354,6 +354,7 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
         jsonErrorUnmarshallers.add(new CertificateConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CertificateStateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new CertificateValidationExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ConflictingResourceUpdateExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new DeleteConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new IndexNotReadyExceptionUnmarshaller());
@@ -1636,12 +1637,6 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <p>
      * Creates a domain configuration.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param createDomainConfigurationRequest
      * @return createDomainConfigurationResult The response from the
@@ -1787,6 +1782,59 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<CreateJobResult, JsonUnmarshallerContext> unmarshaller = new CreateJobResultJsonUnmarshaller();
             JsonResponseHandler<CreateJobResult> responseHandler = new JsonResponseHandler<CreateJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Creates a job template.
+     * </p>
+     * 
+     * @param createJobTemplateRequest
+     * @return createJobTemplateResult The response from the CreateJobTemplate
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ConflictException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public CreateJobTemplateResult createJobTemplate(
+            CreateJobTemplateRequest createJobTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createJobTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateJobTemplateRequest> request = null;
+        Response<CreateJobTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateJobTemplateRequestMarshaller()
+                        .marshall(createJobTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateJobTemplateResult, JsonUnmarshallerContext> unmarshaller = new CreateJobTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<CreateJobTemplateResult> responseHandler = new JsonResponseHandler<CreateJobTemplateResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -3178,12 +3226,6 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <p>
      * Deletes the specified domain configuration.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param deleteDomainConfigurationRequest
      * @return deleteDomainConfigurationResult The response from the
@@ -3370,6 +3412,49 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             try {
                 request = new DeleteJobExecutionRequestMarshaller()
                         .marshall(deleteJobExecutionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes the specified job template.
+     * </p>
+     * 
+     * @param deleteJobTemplateRequest
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public void deleteJobTemplate(DeleteJobTemplateRequest deleteJobTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteJobTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteJobTemplateRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteJobTemplateRequestMarshaller()
+                        .marshall(deleteJobTemplateRequest);
                 // Binds the request metrics to the current request.
                 request.setAWSRequestMetrics(awsRequestMetrics);
             } finally {
@@ -5012,12 +5097,6 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * <p>
      * Gets summary information about a domain configuration.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param describeDomainConfigurationRequest
      * @return describeDomainConfigurationResult The response from the
@@ -5309,6 +5388,57 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<DescribeJobExecutionResult, JsonUnmarshallerContext> unmarshaller = new DescribeJobExecutionResultJsonUnmarshaller();
             JsonResponseHandler<DescribeJobExecutionResult> responseHandler = new JsonResponseHandler<DescribeJobExecutionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns information about a job template.
+     * </p>
+     * 
+     * @param describeJobTemplateRequest
+     * @return describeJobTemplateResult The response from the
+     *         DescribeJobTemplate service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public DescribeJobTemplateResult describeJobTemplate(
+            DescribeJobTemplateRequest describeJobTemplateRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeJobTemplateRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeJobTemplateRequest> request = null;
+        Response<DescribeJobTemplateResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeJobTemplateRequestMarshaller()
+                        .marshall(describeJobTemplateRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeJobTemplateResult, JsonUnmarshallerContext> unmarshaller = new DescribeJobTemplateResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeJobTemplateResult> responseHandler = new JsonResponseHandler<DescribeJobTemplateResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -7835,12 +7965,6 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * Gets a list of domain configurations for the user. This list is sorted
      * alphabetically by domain configuration name.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param listDomainConfigurationsRequest
      * @return listDomainConfigurationsResult The response from the
@@ -8030,6 +8154,54 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
             }
             Unmarshaller<ListJobExecutionsForThingResult, JsonUnmarshallerContext> unmarshaller = new ListJobExecutionsForThingResultJsonUnmarshaller();
             JsonResponseHandler<ListJobExecutionsForThingResult> responseHandler = new JsonResponseHandler<ListJobExecutionsForThingResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns a list of job templates.
+     * </p>
+     * 
+     * @param listJobTemplatesRequest
+     * @return listJobTemplatesResult The response from the ListJobTemplates
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public ListJobTemplatesResult listJobTemplates(ListJobTemplatesRequest listJobTemplatesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listJobTemplatesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListJobTemplatesRequest> request = null;
+        Response<ListJobTemplatesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListJobTemplatesRequestMarshaller().marshall(listJobTemplatesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListJobTemplatesResult, JsonUnmarshallerContext> unmarshaller = new ListJobTemplatesResultJsonUnmarshaller();
+            JsonResponseHandler<ListJobTemplatesResult> responseHandler = new JsonResponseHandler<ListJobTemplatesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -11456,12 +11628,6 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
      * Updates values stored in the domain configuration. Domain configurations
      * for default endpoints can't be updated.
      * </p>
-     * <note>
-     * <p>
-     * The domain configuration feature is in public preview and is subject to
-     * change.
-     * </p>
-     * </note>
      * 
      * @param updateDomainConfigurationRequest
      * @return updateDomainConfigurationResult The response from the

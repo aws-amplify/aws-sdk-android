@@ -29,6 +29,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * S3) or Amazon Kinesis. It also does not allow for any configurations on
  * features, such as Contact Lens for Amazon Connect.
  * </p>
+ * <p>
+ * Amazon Connect enforces a limit on the total number of instances that you can
+ * create or delete in 30 days. If you exceed this limit, you will get an error
+ * message indicating there has been an excessive number of attempts at creating
+ * or deleting instances. You must wait 30 days before you can restart creating
+ * and deleting instances in your account.
+ * </p>
  */
 public class CreateInstanceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

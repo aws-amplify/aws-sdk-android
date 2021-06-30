@@ -93,6 +93,16 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("MultiRegion")) {
+                keyMetadata.setMultiRegion(BooleanJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MultiRegionConfiguration")) {
+                keyMetadata.setMultiRegionConfiguration(MultiRegionConfigurationJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("PendingDeletionWindowInDays")) {
+                keyMetadata.setPendingDeletionWindowInDays(IntegerJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

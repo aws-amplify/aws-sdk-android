@@ -68,7 +68,7 @@ public class DefaultRequest<T> implements Request<T> {
     private InputStream content;
 
     /** An optional time offset to account for clock skew */
-    private int timeOffset;
+    private long timeOffset;
 
     /** All AWS Request metrics are collected into this object. */
     private AWSRequestMetrics metrics;
@@ -264,15 +264,24 @@ public class DefaultRequest<T> implements Request<T> {
      * {@inheritDoc}
      */
     @Override
-    public int getTimeOffset() {
+    public long getTimeOffset() {
         return timeOffset;
     }
 
     /**
      * {@inheritDoc}
      */
+    @Deprecated
     @Override
     public void setTimeOffset(int timeOffset) {
+        this.setTimeOffset((long) timeOffset);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setTimeOffset(long timeOffset) {
         this.timeOffset = timeOffset;
     }
 
@@ -280,8 +289,18 @@ public class DefaultRequest<T> implements Request<T> {
      * {@inheritDoc}
      */
     @Override
+    @Deprecated
     @SuppressWarnings("checkstyle:hiddenfield")
     public Request<T> withTimeOffset(int timeOffset) {
+        return withTimeOffset((long) timeOffset);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @SuppressWarnings("checkstyle:hiddenfield")
+    public Request<T> withTimeOffset(long timeOffset) {
         setTimeOffset(timeOffset);
         return this;
     }

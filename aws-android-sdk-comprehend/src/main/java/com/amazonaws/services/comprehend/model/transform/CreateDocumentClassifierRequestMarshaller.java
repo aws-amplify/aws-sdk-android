@@ -124,6 +124,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 jsonWriter.name("Mode");
                 jsonWriter.value(mode);
             }
+            if (createDocumentClassifierRequest.getModelKmsKeyId() != null) {
+                String modelKmsKeyId = createDocumentClassifierRequest.getModelKmsKeyId();
+                jsonWriter.name("ModelKmsKeyId");
+                jsonWriter.value(modelKmsKeyId);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

@@ -193,7 +193,16 @@ public interface Request<T> {
      *
      * @return The optional value for time offset (in seconds) for this request.
      */
-    public int getTimeOffset();
+    public long getTimeOffset();
+
+    /**
+     * This is deprecated, use {@link #setTimeOffset(long)} instead.
+     *
+     * @param timeOffset The optional value for time offset (in seconds) for
+     *                   this request.
+     */
+    @Deprecated
+    public void setTimeOffset(int timeOffset);
 
     /**
      * Sets the optional value for time offset for this request. This will be
@@ -204,7 +213,16 @@ public interface Request<T> {
      * @param timeOffset The optional value for time offset (in seconds) for
      *            this request.
      */
-    public void setTimeOffset(int timeOffset);
+    public void setTimeOffset(long timeOffset);
+
+    /**
+     * This is deprecated, use {@link #withTimeOffset(long)} instead.
+     * @param timeOffset the time offset for the request.
+     *
+     * @return The updated request object.
+     */
+    @Deprecated
+    public Request<T> withTimeOffset(int timeOffset);
 
     /**
      * Sets the optional value for time offset for this request. This will be
@@ -215,7 +233,7 @@ public interface Request<T> {
      *
      * @return The updated request object.
      */
-    public Request<T> withTimeOffset(int timeOffset);
+    public Request<T> withTimeOffset(long timeOffset);
 
     /**
      * @return the request metrics.

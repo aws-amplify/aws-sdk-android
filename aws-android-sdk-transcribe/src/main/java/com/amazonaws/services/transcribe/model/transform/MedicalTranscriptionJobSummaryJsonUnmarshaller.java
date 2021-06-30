@@ -68,6 +68,10 @@ class MedicalTranscriptionJobSummaryJsonUnmarshaller implements
             } else if (name.equals("Specialty")) {
                 medicalTranscriptionJobSummary.setSpecialty(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ContentIdentificationType")) {
+                medicalTranscriptionJobSummary.setContentIdentificationType(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Type")) {
                 medicalTranscriptionJobSummary.setType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -55,6 +55,11 @@ public class DescribeMapResultJsonUnmarshaller implements
             } else if (name.equals("PricingPlan")) {
                 describeMapResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Tags")) {
+                describeMapResult.setTags(new MapUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("UpdateTime")) {
                 describeMapResult.setUpdateTime(DateJsonUnmarshaller.getInstance(
                         TimestampFormat.ISO_8601)

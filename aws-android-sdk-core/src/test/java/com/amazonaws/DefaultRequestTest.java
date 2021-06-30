@@ -31,8 +31,8 @@ public class DefaultRequestTest {
     @Test
     public void testWithTimeOffset() {
         DefaultRequest r = new DefaultRequest("test");
-        r.withTimeOffset(1000);
-        assertEquals(r.getTimeOffset(), 1000);
+        r.withTimeOffset(1000L);
+        assertEquals(r.getTimeOffset(), 1000L);
     }
 
 }

@@ -91,6 +91,9 @@ class JobJsonUnmarshaller implements Unmarshaller<Job, JsonUnmarshallerContext> 
             } else if (name.equals("namespaceId")) {
                 job.setNamespaceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("jobTemplateArn")) {
+                job.setJobTemplateArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

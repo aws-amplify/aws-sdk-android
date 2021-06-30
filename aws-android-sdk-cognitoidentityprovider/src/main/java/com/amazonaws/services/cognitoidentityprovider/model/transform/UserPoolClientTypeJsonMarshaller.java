@@ -190,11 +190,10 @@ class UserPoolClientTypeJsonMarshaller {
             jsonWriter.name("PreventUserExistenceErrors");
             jsonWriter.value(preventUserExistenceErrors);
         }
-        if (userPoolClientType.getEnableTokenIntrospectionRevocation() != null) {
-            Boolean enableTokenIntrospectionRevocation = userPoolClientType
-                    .getEnableTokenIntrospectionRevocation();
-            jsonWriter.name("EnableTokenIntrospectionRevocation");
-            jsonWriter.value(enableTokenIntrospectionRevocation);
+        if (userPoolClientType.getEnableTokenRevocation() != null) {
+            Boolean enableTokenRevocation = userPoolClientType.getEnableTokenRevocation();
+            jsonWriter.name("EnableTokenRevocation");
+            jsonWriter.value(enableTokenRevocation);
         }
         jsonWriter.endObject();
     }

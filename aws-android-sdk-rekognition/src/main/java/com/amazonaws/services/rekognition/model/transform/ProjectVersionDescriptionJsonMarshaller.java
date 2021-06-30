@@ -90,6 +90,11 @@ class ProjectVersionDescriptionJsonMarshaller {
             jsonWriter.name("ManifestSummary");
             GroundTruthManifestJsonMarshaller.getInstance().marshall(manifestSummary, jsonWriter);
         }
+        if (projectVersionDescription.getKmsKeyId() != null) {
+            String kmsKeyId = projectVersionDescription.getKmsKeyId();
+            jsonWriter.name("KmsKeyId");
+            jsonWriter.value(kmsKeyId);
+        }
         jsonWriter.endObject();
     }
 

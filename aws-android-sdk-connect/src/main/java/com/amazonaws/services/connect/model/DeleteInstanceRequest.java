@@ -26,11 +26,19 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes the Amazon Connect instance.
  * </p>
+ * <p>
+ * Amazon Connect enforces a limit on the total number of instances that you can
+ * create or delete in 30 days. If you exceed this limit, you will get an error
+ * message indicating there has been an excessive number of attempts at creating
+ * or deleting instances. You must wait 30 days before you can restart creating
+ * and deleting instances in your account.
+ * </p>
  */
 public class DeleteInstanceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,14 +48,16 @@ public class DeleteInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
     public String getInstanceId() {
@@ -56,14 +66,16 @@ public class DeleteInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
     public void setInstanceId(String instanceId) {
@@ -72,7 +84,8 @@ public class DeleteInstanceRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -82,7 +95,8 @@ public class DeleteInstanceRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 100<br/>
      *
      * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance.
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

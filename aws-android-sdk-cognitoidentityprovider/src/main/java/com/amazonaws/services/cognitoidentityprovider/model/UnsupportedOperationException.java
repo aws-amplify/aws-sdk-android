@@ -18,7 +18,10 @@ package com.amazonaws.services.cognitoidentityprovider.model;
 import com.amazonaws.AmazonServiceException;
 
 /**
- * 
+ * <p>
+ * This exception is thrown when you attempt to perform an operation that is not
+ * enabled for the user pool client.
+ * </p>
  */
 public class UnsupportedOperationException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
