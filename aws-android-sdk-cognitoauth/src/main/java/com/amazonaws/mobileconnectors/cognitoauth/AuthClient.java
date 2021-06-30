@@ -273,7 +273,7 @@ public class AuthClient {
      * </p>
      */
     public void signOut() {
-        signOut(DEFAULT_BROWSER_PACKAGE);
+        signOut(getSupportedBrowserPackage());
     }
 
     /**
@@ -300,7 +300,7 @@ public class AuthClient {
      *                             but the session may still be alive from the browser.
      */
     public void signOut(final boolean clearLocalTokensOnly) {
-        signOut(clearLocalTokensOnly, DEFAULT_BROWSER_PACKAGE);
+        signOut(clearLocalTokensOnly, getSupportedBrowserPackage());
     }
 
     /**
