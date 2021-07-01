@@ -21,9 +21,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
- * <p>
  * Updates the name and description of a quick connect. The request accepts the
  * following data in JSON format. At least <code>Name</code> or
  * <code>Description</code> must be provided.

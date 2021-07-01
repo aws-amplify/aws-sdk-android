@@ -1,3 +1,14 @@
+## [Release 2.26.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.26.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2516)
+- **aws-android-sdk-kms:** update models to latest (#2518)
+
+### Bug Fixes
+- **aws-android-sdk-s3:** implement retry mechanism for upload part (#2504)
+
+[See all changes between 2.25.0 and 2.26.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.25.0...release_v2.26.0)
+
 ## [Release 2.25.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.25.0)
 
 ### Features
