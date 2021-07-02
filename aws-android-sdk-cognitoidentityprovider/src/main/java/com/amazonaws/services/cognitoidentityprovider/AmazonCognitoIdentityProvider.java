@@ -2495,31 +2495,6 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * The Introspect token is used to check the status of Cognito User Pool
-     * tokens.
-     * </p>
-     * 
-     * @param introspectTokenRequest
-     * @return introspectTokenResult The response from the IntrospectToken
-     *         service method, as returned by Amazon Cognito Your User Pool.
-     * @throws TooManyRequestsException
-     * @throws InternalErrorException
-     * @throws UnauthorizedException
-     * @throws InvalidParameterException
-     * @throws UnsupportedOperationException
-     * @throws AmazonClientException If any internal errors are encountered
-     *             inside the client while attempting to make the request or
-     *             handle the response. For example if a network connection is
-     *             not available.
-     * @throws AmazonServiceException If an error response is returned by Amazon
-     *             Cognito Your User Pool indicating either a problem with the
-     *             data in the request, or a server side issue.
-     */
-    IntrospectTokenResult introspectToken(IntrospectTokenRequest introspectTokenRequest)
-            throws AmazonClientException, AmazonServiceException;
-
-    /**
-     * <p>
      * Lists the devices.
      * </p>
      * 

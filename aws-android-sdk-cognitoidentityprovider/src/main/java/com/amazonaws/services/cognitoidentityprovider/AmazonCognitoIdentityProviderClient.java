@@ -4536,57 +4536,6 @@ public class AmazonCognitoIdentityProviderClient extends AmazonWebServiceClient 
 
     /**
      * <p>
-     * The Introspect token is used to check the status of Cognito User Pool
-     * tokens.
-     * </p>
-     * 
-     * @param introspectTokenRequest
-     * @return introspectTokenResult The response from the IntrospectToken
-     *         service method, as returned by Amazon Cognito Your User Pool.
-     * @throws TooManyRequestsException
-     * @throws InternalErrorException
-     * @throws UnauthorizedException
-     * @throws InvalidParameterException
-     * @throws UnsupportedOperationException
-     * @throws AmazonClientException If any internal errors are encountered
-     *             inside the client while attempting to make the request or
-     *             handle the response. For example if a network connection is
-     *             not available.
-     * @throws AmazonServiceException If an error response is returned by Amazon
-     *             Cognito Your User Pool indicating either a problem with the
-     *             data in the request, or a server side issue.
-     */
-    public IntrospectTokenResult introspectToken(IntrospectTokenRequest introspectTokenRequest)
-            throws AmazonServiceException, AmazonClientException {
-        ExecutionContext executionContext = createExecutionContext(introspectTokenRequest);
-        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
-        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
-        Request<IntrospectTokenRequest> request = null;
-        Response<IntrospectTokenResult> response = null;
-        try {
-            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
-            try {
-                request = new IntrospectTokenRequestMarshaller().marshall(introspectTokenRequest);
-                // Binds the request metrics to the current request.
-                request.setAWSRequestMetrics(awsRequestMetrics);
-            } finally {
-                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
-            }
-            Unmarshaller<IntrospectTokenResult, JsonUnmarshallerContext> unmarshaller = new IntrospectTokenResultJsonUnmarshaller();
-            JsonResponseHandler<IntrospectTokenResult> responseHandler = new JsonResponseHandler<IntrospectTokenResult>(
-                    unmarshaller);
-
-            response = invoke(request, responseHandler, executionContext);
-
-            return response.getAwsResponse();
-        } finally {
-            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
-            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
-        }
-    }
-
-    /**
-     * <p>
      * Lists the devices.
      * </p>
      * 

@@ -377,12 +377,6 @@ public class UserPoolClientType implements Serializable {
     private String preventUserExistenceErrors;
 
     /**
-     * The new value for the enableTokenIntrospectionRevocation property for
-     * this object.
-     */
-    private Boolean enableTokenIntrospectionRevocation;
-
-    /**
      * <p>
      * Indicates whether token revocation is enabled for the user pool client.
      * When you create a new user pool client, token revocation is enabled by
