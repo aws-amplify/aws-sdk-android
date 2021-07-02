@@ -85,7 +85,6 @@ import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundExce
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 import com.amazonaws.services.cognitoidentityprovider.model.RevokeTokenRequest;
-import com.amazonaws.services.cognitoidentityprovider.model.RevokeTokenResult;
 import com.amazonaws.services.cognitoidentityprovider.model.SMSMfaSettingsType;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserMFAPreferenceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserMFAPreferenceResult;
@@ -113,7 +112,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -2338,9 +2336,9 @@ public class CognitoUser {
 
     public void revokeTokens() {
         CognitoUserSession cognitoUserSession = getCachedSession();
-        String idToken = cognitoUserSession.getIdToken().getJWTToken();
-        if (!CognitoJWTParser.hasClaim(idToken, "jti")) {
-            // Only attempt token revocation if ID token stores the jti claim
+        String accessToken = cognitoUserSession.getAccessToken().getJWTToken();
+        if (!CognitoJWTParser.hasClaim(accessToken, "origin_jti")) {
+            LOGGER.debug("Access Token does not contain `origin_jti` claim. Skip revoking tokens.");
             return;
         }
         String refreshToken = cognitoUserSession.getRefreshToken().getToken();
@@ -2348,7 +2346,9 @@ public class CognitoUser {
         RevokeTokenRequest request = new RevokeTokenRequest();
         request.setToken(refreshToken);
         request.setClientId(clientId);
-        request.setClientSecret(clientSecret);
+        if (!StringUtils.isBlank((clientSecret))) {
+            request.setClientSecret(clientSecret);
+        }
         cognitoIdentityProviderClient.revokeToken(request);
     }
 
