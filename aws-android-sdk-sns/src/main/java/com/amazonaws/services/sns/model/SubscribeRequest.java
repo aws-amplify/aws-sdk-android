@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S
- * or email, or if the endpoint and the topic are not in the same AWS account,
- * the endpoint owner must run the <code>ConfirmSubscription</code> action to
+ * or email, or if the endpoint and the topic are not in the same account, the
+ * endpoint owner must run the <code>ConfirmSubscription</code> action to
  * confirm the subscription.
  * </p>
  * <p>
@@ -86,7 +86,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an Lambda
      * function
      * </p>
      * </li>
@@ -149,7 +149,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
      * Lambda function.
      * </p>
      * </li>
@@ -169,7 +169,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that the <code>Subscribe</code> action uses:
      * </p>
      * <ul>
      * <li>
@@ -325,7 +325,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            <code>lambda</code> – delivery of JSON-encoded message to an
-     *            AWS Lambda function
+     *            Lambda function
      *            </p>
      *            </li>
      *            <li>
@@ -385,7 +385,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>lambda</code> protocol, the endpoint is the ARN
-     *            of an AWS Lambda function.
+     *            of an Lambda function.
      *            </p>
      *            </li>
      *            <li>
@@ -491,7 +491,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an Lambda
      * function
      * </p>
      * </li>
@@ -549,7 +549,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         </li>
      *         <li>
      *         <p>
-     *         <code>lambda</code> – delivery of JSON-encoded message to an AWS
+     *         <code>lambda</code> – delivery of JSON-encoded message to an
      *         Lambda function
      *         </p>
      *         </li>
@@ -609,7 +609,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an Lambda
      * function
      * </p>
      * </li>
@@ -669,7 +669,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            <code>lambda</code> – delivery of JSON-encoded message to an
-     *            AWS Lambda function
+     *            Lambda function
      *            </p>
      *            </li>
      *            <li>
@@ -728,7 +728,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * <code>lambda</code> – delivery of JSON-encoded message to an AWS Lambda
+     * <code>lambda</code> – delivery of JSON-encoded message to an Lambda
      * function
      * </p>
      * </li>
@@ -791,7 +791,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            <code>lambda</code> – delivery of JSON-encoded message to an
-     *            AWS Lambda function
+     *            Lambda function
      *            </p>
      *            </li>
      *            <li>
@@ -858,7 +858,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
      * Lambda function.
      * </p>
      * </li>
@@ -920,7 +920,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         <li>
      *         <p>
      *         For the <code>lambda</code> protocol, the endpoint is the ARN of
-     *         an AWS Lambda function.
+     *         an Lambda function.
      *         </p>
      *         </li>
      *         <li>
@@ -984,7 +984,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
      * Lambda function.
      * </p>
      * </li>
@@ -1046,7 +1046,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>lambda</code> protocol, the endpoint is the ARN
-     *            of an AWS Lambda function.
+     *            of an Lambda function.
      *            </p>
      *            </li>
      *            <li>
@@ -1110,7 +1110,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </li>
      * <li>
      * <p>
-     * For the <code>lambda</code> protocol, the endpoint is the ARN of an AWS
+     * For the <code>lambda</code> protocol, the endpoint is the ARN of an
      * Lambda function.
      * </p>
      * </li>
@@ -1175,7 +1175,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            <li>
      *            <p>
      *            For the <code>lambda</code> protocol, the endpoint is the ARN
-     *            of an AWS Lambda function.
+     *            of an Lambda function.
      *            </p>
      *            </li>
      *            <li>
@@ -1199,7 +1199,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that the <code>Subscribe</code> action uses:
      * </p>
      * <ul>
      * <li>
@@ -1272,8 +1272,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *         </p>
      *         <p>
      *         The following lists the names, descriptions, and values of the
-     *         special request parameters that the
-     *         <code>SetTopicAttributes</code> action uses:
+     *         special request parameters that the <code>Subscribe</code> action
+     *         uses:
      *         </p>
      *         <ul>
      *         <li>
@@ -1352,7 +1352,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that the <code>Subscribe</code> action uses:
      * </p>
      * <ul>
      * <li>
@@ -1425,8 +1425,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that the <code>Subscribe</code>
+     *            action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -1507,7 +1507,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that the <code>Subscribe</code> action uses:
      * </p>
      * <ul>
      * <li>
@@ -1583,8 +1583,8 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      *            </p>
      *            <p>
      *            The following lists the names, descriptions, and values of the
-     *            special request parameters that the
-     *            <code>SetTopicAttributes</code> action uses:
+     *            special request parameters that the <code>Subscribe</code>
+     *            action uses:
      *            </p>
      *            <ul>
      *            <li>
@@ -1668,7 +1668,7 @@ public class SubscribeRequest extends AmazonWebServiceRequest implements Seriali
      * </p>
      * <p>
      * The following lists the names, descriptions, and values of the special
-     * request parameters that the <code>SetTopicAttributes</code> action uses:
+     * request parameters that the <code>Subscribe</code> action uses:
      * </p>
      * <ul>
      * <li>

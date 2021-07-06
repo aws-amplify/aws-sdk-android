@@ -59,7 +59,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The AWS account ID of the subscription's owner.
+     * <code>Owner</code> – The account ID of the subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -169,7 +169,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The AWS account ID of the subscription's owner.
+     * <code>Owner</code> – The account ID of the subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -276,8 +276,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Owner</code> – The AWS account ID of the subscription's
-     *         owner.
+     *         <code>Owner</code> – The account ID of the subscription's owner.
      *         </p>
      *         </li>
      *         <li>
@@ -392,7 +391,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The AWS account ID of the subscription's owner.
+     * <code>Owner</code> – The account ID of the subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -500,7 +499,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Owner</code> – The AWS account ID of the subscription's
+     *            <code>Owner</code> – The account ID of the subscription's
      *            owner.
      *            </p>
      *            </li>
@@ -617,7 +616,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The AWS account ID of the subscription's owner.
+     * <code>Owner</code> – The account ID of the subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -728,7 +727,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Owner</code> – The AWS account ID of the subscription's
+     *            <code>Owner</code> – The account ID of the subscription's
      *            owner.
      *            </p>
      *            </li>
@@ -848,7 +847,7 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The AWS account ID of the subscription's owner.
+     * <code>Owner</code> – The account ID of the subscription's owner.
      * </p>
      * </li>
      * <li>
