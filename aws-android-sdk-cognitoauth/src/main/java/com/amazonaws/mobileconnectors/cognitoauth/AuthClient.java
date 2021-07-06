@@ -203,7 +203,7 @@ public class AuthClient {
      *                 This must not be null when showSignInIfExpired is true.
      */
     protected void getSession(final boolean showSignInIfExpired, final Activity activity) {
-        getSession(showSignInIfExpired, activity, getSupportedBrowserPackage());
+        getSession(showSignInIfExpired, activity, null);
     }
 
     /**
@@ -273,7 +273,7 @@ public class AuthClient {
      * </p>
      */
     public void signOut() {
-        signOut(getSupportedBrowserPackage());
+        signOut(null);
     }
 
     /**
@@ -300,7 +300,7 @@ public class AuthClient {
      *                             but the session may still be alive from the browser.
      */
     public void signOut(final boolean clearLocalTokensOnly) {
-        signOut(clearLocalTokensOnly, getSupportedBrowserPackage());
+        signOut(clearLocalTokensOnly, null);
     }
 
     /**
@@ -714,44 +714,11 @@ public class AuthClient {
     }
 
     /**
-     * Returns a package that support Custom Tabs.
-     * Default Chrome if available, else return first supported package in the list.
-     */
-    private String getSupportedBrowserPackage(){
-        PackageManager packageManager = context.getPackageManager();
-        // Get default VIEW intent handler.
-        Intent activityIntent = new Intent()
-                .setAction(Intent.ACTION_VIEW)
-                .addCategory(Intent.CATEGORY_BROWSABLE)
-                .setData(Uri.fromParts("http", "", null));
-
-        // Get all apps that can handle VIEW intents.
-        List<ResolveInfo> resolvedActivityList = packageManager.queryIntentActivities(activityIntent, 0);
-        ArrayList<String> packageNamesSupportingCustomTabs = new ArrayList<>();
-        for (ResolveInfo info : resolvedActivityList) {
-            Intent serviceIntent = new Intent()
-                .setAction(ACTION_CUSTOM_TABS_CONNECTION)
-                .setPackage(info.activityInfo.packageName);
-            // Check if this package also resolves the Custom Tabs service.
-            if(packageManager.resolveService(serviceIntent, 0) != null) {
-                packageNamesSupportingCustomTabs.add(info.activityInfo.packageName);
-            }
-        }
-
-        if (!packageNamesSupportingCustomTabs.contains(DEFAULT_BROWSER_PACKAGE)) {
-            return packageNamesSupportingCustomTabs.get(0);
-        }
-
-        return DEFAULT_BROWSER_PACKAGE;
-    }
-
-    /**
      * Launches the HostedUI webpage on a Custom Tab.
      * @param uri Required: {@link Uri}.
      * @param activity Activity to launch custom tabs from and which will listen for the intent completion.
      * @param browserPackage Optional string specifying the browser package to launch the specified url.
-     *                       Launches intent chooser if set to "customtabs.intent.chooser".
-     *                       Defaults to Chrome(if available, else use the first supported browser in the list) if null.
+     *                       Launches intent chooser if set to null.
      */
     private void launchCustomTabs(final Uri uri, final Activity activity, final String browserPackage) {
     	try {
@@ -759,9 +726,8 @@ public class AuthClient {
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
 	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
-	        if(browserPackage != "customtabs.intent.chooser") {
-	            mCustomTabsIntent.intent.setPackage(
-	                browserPackage != null ? browserPackage : getSupportedBrowserPackage());
+	        if(browserPackage != null) {
+	            mCustomTabsIntent.intent.setPackage(browserPackage);
             }
             mCustomTabsIntent.intent.setData(uri);
             if (activity != null) {
