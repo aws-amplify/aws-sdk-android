@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * AWS Lambda received an unexpected EC2 client exception while setting up for
- * the Lambda function.
+ * Lambda received an unexpected EC2 client exception while setting up for the
+ * Lambda function.
  * </p>
  */
 public class EC2UnexpectedException extends AmazonServiceException {
