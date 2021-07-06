@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * AWS Lambda was not able to create an elastic network interface in the VPC,
+ * Lambda was not able to create an elastic network interface in the VPC,
  * specified as part of Lambda function configuration, because the limit for
  * network interfaces has been reached.
  * </p>

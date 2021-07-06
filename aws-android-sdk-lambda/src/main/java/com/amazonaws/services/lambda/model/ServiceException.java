@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The AWS Lambda service encountered an internal error.
+ * The Lambda service encountered an internal error.
  * </p>
  */
 public class ServiceException extends AmazonServiceException {
