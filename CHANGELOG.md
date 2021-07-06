@@ -1,3 +1,12 @@
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---lambda
+---sns
 ## [Release 2.26.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.26.0)
 
 ### Features
