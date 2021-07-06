@@ -19,9 +19,9 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Indicates that the number of filter polices in your AWS account exceeds the
+ * Indicates that the number of filter polices in your account exceeds the
  * limit. To add more filter polices, submit an SNS Limit Increase case in the
- * AWS Support Center.
+ * Amazon Web Services Support Center.
  * </p>
  */
 public class FilterPolicyLimitExceededException extends AmazonServiceException {
