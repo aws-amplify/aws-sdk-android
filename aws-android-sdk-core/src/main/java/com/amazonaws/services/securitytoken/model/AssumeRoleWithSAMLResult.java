@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Contains the response to a successful <a>AssumeRoleWithSAML</a> request,
- * including temporary AWS credentials that can be used to make AWS requests.
+ * including temporary Amazon Web Services credentials that can be used to make
+ * Amazon Web Services requests.
  * </p>
  */
 public class AssumeRoleWithSAMLResult implements Serializable {
@@ -113,7 +114,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The AWS account ID.
+     * The Amazon Web Services account ID.
      * </p>
      * </li>
      * <li>
@@ -668,7 +669,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The AWS account ID.
+     * The Amazon Web Services account ID.
      * </p>
      * </li>
      * <li>
@@ -699,7 +700,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         The AWS account ID.
+     *         The Amazon Web Services account ID.
      *         </p>
      *         </li>
      *         <li>
@@ -737,7 +738,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The AWS account ID.
+     * The Amazon Web Services account ID.
      * </p>
      * </li>
      * <li>
@@ -768,7 +769,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            The AWS account ID.
+     *            The Amazon Web Services account ID.
      *            </p>
      *            </li>
      *            <li>
@@ -807,7 +808,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The AWS account ID.
+     * The Amazon Web Services account ID.
      * </p>
      * </li>
      * <li>
@@ -841,7 +842,7 @@ public class AssumeRoleWithSAMLResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            The AWS account ID.
+     *            The Amazon Web Services account ID.
      *            </p>
      *            </li>
      *            <li>

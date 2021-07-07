@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * AWS credentials for API authentication.
+ * Amazon Web Services credentials for API authentication.
  * </p>
  */
 public class Credentials implements Serializable {
