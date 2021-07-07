@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
+ * Lambda was throttled by Amazon EC2 during Lambda function initialization
  * using the execution role provided for the Lambda function.
  * </p>
  */

@@ -24,9 +24,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a topic to which notifications can be published. Users can create at
  * most 100,000 standard topics (at most 1,000 FIFO topics). For more
  * information, see <a
- * href="http://aws.amazon.com/sns/">https://aws.amazon.com/sns</a>. This action
- * is idempotent, so if the requester already owns a topic with the specified
- * name, that topic's ARN is returned without creating a new topic.
+ * href="https://docs.aws.amazon.com/sns/latest/dg/sns-create-topic.html"
+ * >Creating an Amazon SNS topic</a> in the <i>Amazon SNS Developer Guide</i>.
+ * This action is idempotent, so if the requester already owns a topic with the
+ * specified name, that topic's ARN is returned without creating a new topic.
  * </p>
  */
 public class CreateTopicRequest extends AmazonWebServiceRequest implements Serializable {
@@ -87,13 +88,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
-     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
-     * href=
+     * <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+     * customer master key (CMK) for Amazon SNS or a custom CMK. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * >KeyId</a> in the <i>Key Management Service API Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -328,13 +329,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
-     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
-     * href=
+     * <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+     * customer master key (CMK) for Amazon SNS or a custom CMK. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * >KeyId</a> in the <i>Key Management Service API Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -425,14 +426,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>KmsMasterKeyId</code> – The ID of an AWS managed customer
-     *         master key (CMK) for Amazon SNS or a custom CMK. For more
-     *         information, see <a href=
+     *         <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services
+     *         managed customer master key (CMK) for Amazon SNS or a custom CMK.
+     *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      *         >Key Terms</a>. For more examples, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     *         >KeyId</a> in the <i>AWS Key Management Service API
-     *         Reference</i>.
+     *         >KeyId</a> in the <i>Key Management Service API Reference</i>.
      *         </p>
      *         </li>
      *         </ul>
@@ -526,13 +526,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
-     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
-     * href=
+     * <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+     * customer master key (CMK) for Amazon SNS or a custom CMK. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * >KeyId</a> in the <i>Key Management Service API Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -623,14 +623,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> – The ID of an AWS managed
-     *            customer master key (CMK) for Amazon SNS or a custom CMK. For
-     *            more information, see <a href=
+     *            <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services
+     *            managed customer master key (CMK) for Amazon SNS or a custom
+     *            CMK. For more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      *            >Key Terms</a>. For more examples, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     *            >KeyId</a> in the <i>AWS Key Management Service API
-     *            Reference</i>.
+     *            >KeyId</a> in the <i>Key Management Service API Reference</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -725,13 +724,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
-     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
-     * href=
+     * <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+     * customer master key (CMK) for Amazon SNS or a custom CMK. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * >KeyId</a> in the <i>Key Management Service API Reference</i>.
      * </p>
      * </li>
      * </ul>
@@ -825,14 +824,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>KmsMasterKeyId</code> – The ID of an AWS managed
-     *            customer master key (CMK) for Amazon SNS or a custom CMK. For
-     *            more information, see <a href=
+     *            <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services
+     *            managed customer master key (CMK) for Amazon SNS or a custom
+     *            CMK. For more information, see <a href=
      *            "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      *            >Key Terms</a>. For more examples, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     *            >KeyId</a> in the <i>AWS Key Management Service API
-     *            Reference</i>.
+     *            >KeyId</a> in the <i>Key Management Service API Reference</i>.
      *            </p>
      *            </li>
      *            </ul>
@@ -930,13 +928,13 @@ public class CreateTopicRequest extends AmazonWebServiceRequest implements Seria
      * <ul>
      * <li>
      * <p>
-     * <code>KmsMasterKeyId</code> – The ID of an AWS managed customer master
-     * key (CMK) for Amazon SNS or a custom CMK. For more information, see <a
-     * href=
+     * <code>KmsMasterKeyId</code> – The ID of an Amazon Web Services managed
+     * customer master key (CMK) for Amazon SNS or a custom CMK. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms"
      * >Key Terms</a>. For more examples, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters"
-     * >KeyId</a> in the <i>AWS Key Management Service API Reference</i>.
+     * >KeyId</a> in the <i>Key Management Service API Reference</i>.
      * </p>
      * </li>
      * </ul>

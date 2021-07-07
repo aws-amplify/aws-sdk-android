@@ -47,7 +47,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <important>
  * <p>
- * You can publish messages only to topics and endpoints in the same AWS Region.
+ * You can publish messages only to topics and endpoints in the same Region.
  * </p>
  * </important>
  */
