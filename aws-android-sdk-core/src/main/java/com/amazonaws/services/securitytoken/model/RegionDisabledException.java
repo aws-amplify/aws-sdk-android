@@ -23,8 +23,8 @@ import com.amazonaws.AmazonServiceException;
  * asked to generate credentials. The account administrator must use the IAM
  * console to activate STS in that region. For more information, see <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html"
- * >Activating and Deactivating AWS STS in an AWS Region</a> in the <i>IAM User
- * Guide</i>.
+ * >Activating and Deactivating Amazon Web Services STS in an Amazon Web
+ * Services Region</a> in the <i>IAM User Guide</i>.
  * </p>
  */
 public class RegionDisabledException extends AmazonServiceException {

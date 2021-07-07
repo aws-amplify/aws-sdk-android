@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The AWS access key ID needs a subscription for the service.
+ * The Amazon Web Services access key ID needs a subscription for the service.
  * </p>
  */
 public class KMSOptInRequiredException extends AmazonServiceException {

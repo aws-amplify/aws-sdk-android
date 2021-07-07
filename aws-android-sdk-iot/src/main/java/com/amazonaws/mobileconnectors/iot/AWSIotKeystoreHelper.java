@@ -38,6 +38,8 @@ import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.security.spec.InvalidKeySpecException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Utility class for working with keystores, private and public keys, and
@@ -116,12 +118,16 @@ public final class AWSIotKeystoreHelper {
             throw new IllegalArgumentException("keystorePassword cannot be null");
         }
 
-        byte[] certBytes = parseDERFromPEM(certPem, AWS_IOT_PEM_BEGIN_CERT_TAG,
+        byte[][] certBytes = parseDERFromPEM(certPem, AWS_IOT_PEM_BEGIN_CERT_TAG,
                 AWS_IOT_PEM_END_CERT_TAG);
 
         try {
 
-            X509Certificate cert = generateCertificateFromDER(certBytes);
+            X509Certificate[] xCerts = new X509Certificate[certBytes.length];
+
+            for (int i = 0; i < certBytes.length; i++) {
+                xCerts[i] = generateCertificateFromDER(certBytes[i]);
+            }
 
             KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
             File keystoreFile = new File(keystorePath, keystoreName);
@@ -134,11 +140,9 @@ public final class AWSIotKeystoreHelper {
             keystore.load(fis, keystorePassword.toCharArray());
             fis.close();
 
-            keystore.setCertificateEntry(certId, cert);
+            keystore.setCertificateEntry(certId, xCerts[0]);
             keystore.setKeyEntry(certId, privKey, keystorePassword.toCharArray(),
-                    new Certificate[] {
-                        cert
-                    });
+                    xCerts); // we store the chain
 
             String keystoreFileAndPath;
 
@@ -291,13 +295,17 @@ public final class AWSIotKeystoreHelper {
             KeyStore tempKeystore = KeyStore.getInstance(KeyStore.getDefaultType());
             tempKeystore.load(null);
 
-            X509Certificate cert = (X509Certificate) customerKeystore.getCertificate(certId);
-            tempKeystore.setCertificateEntry("cert-alias", cert);
+            Certificate[] certs = customerKeystore.getCertificateChain(certId);
+            X509Certificate[] xcerts = new X509Certificate[certs.length];
+
+            for (int i = 0; i < certs.length; i++) {
+                xcerts[i] = (X509Certificate) certs[i];
+            }
+
+            tempKeystore.setCertificateEntry("cert-alias", xcerts[0]);
             Key key = customerKeystore.getKey(certId, customerKeystorePassword.toCharArray());
             tempKeystore.setKeyEntry("key-alias", key,
-                    AWS_IOT_INTERNAL_KEYSTORE_PASSWORD.toCharArray(), new Certificate[] {
-                        cert
-                    });
+                    AWS_IOT_INTERNAL_KEYSTORE_PASSWORD.toCharArray(), xcerts);
 
             return tempKeystore;
 
@@ -402,10 +410,18 @@ public final class AWSIotKeystoreHelper {
      * @param endDelimiter beginning delimiter of PEM (ala ----END ...).
      * @return byte array containing certificate data parsed from PEM.
      */
-    static byte[] parseDERFromPEM(String data, String beginDelimiter, String endDelimiter) {
+    static byte[][] parseDERFromPEM(String data, String beginDelimiter, String endDelimiter) {
         String[] tokens = data.split(beginDelimiter);
-        tokens = tokens[1].split(endDelimiter);
-        return Base64.decode(tokens[0]);
+        List<String> newTokens = new ArrayList<>();
+        for (int i = 1; i < tokens.length; i++) {
+            newTokens.add(tokens[i].split(endDelimiter)[0]);
+        }
+
+        byte[][] ders = new byte[newTokens.size()][];
+        for (int i = 0; i < newTokens.size(); i++) {
+            ders[i] = Base64.decode(newTokens.get(i));
+        }
+        return ders;
     }
 
     /**

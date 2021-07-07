@@ -20,8 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * Indicates that the specified phone number opted out of receiving SMS messages
- * from your AWS account. You can't send SMS messages to phone numbers that opt
- * out.
+ * from your account. You can't send SMS messages to phone numbers that opt out.
  * </p>
  */
 public class OptedOutException extends AmazonServiceException {
