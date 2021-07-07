@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Handler;
 import androidx.browser.customtabs.CustomTabsClient;
@@ -49,15 +48,12 @@ import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 
 import java.net.URL;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-
-import static androidx.browser.customtabs.CustomTabsService.ACTION_CUSTOM_TABS_CONNECTION;
 
 /**
  * Local client for {@link Auth}.
