@@ -20,7 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Contains the response to a successful <a>GetFederationToken</a> request,
- * including temporary AWS credentials that can be used to make AWS requests.
+ * including temporary Amazon Web Services credentials that can be used to make
+ * Amazon Web Services requests.
  * </p>
  */
 public class GetFederationTokenResult implements Serializable {

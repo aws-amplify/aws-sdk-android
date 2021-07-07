@@ -30,8 +30,8 @@ public class PolicyDescriptorType implements Serializable {
      * session policy for the role. For more information about ARNs, see <a
      * href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     * <i>AWS General Reference</i>.
+     * >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     * Namespaces</a> in the <i>Amazon Web Services General Reference</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -47,8 +47,8 @@ public class PolicyDescriptorType implements Serializable {
      * session policy for the role. For more information about ARNs, see <a
      * href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     * <i>AWS General Reference</i>.
+     * >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     * Namespaces</a> in the <i>Amazon Web Services General Reference</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,8 +61,9 @@ public class PolicyDescriptorType implements Serializable {
      *         as a session policy for the role. For more information about
      *         ARNs, see <a href=
      *         "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *         >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in
-     *         the <i>AWS General Reference</i>.
+     *         >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     *         Namespaces</a> in the <i>Amazon Web Services General
+     *         Reference</i>.
      *         </p>
      */
     public String getArn() {
@@ -75,8 +76,8 @@ public class PolicyDescriptorType implements Serializable {
      * session policy for the role. For more information about ARNs, see <a
      * href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     * <i>AWS General Reference</i>.
+     * >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     * Namespaces</a> in the <i>Amazon Web Services General Reference</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,8 +90,9 @@ public class PolicyDescriptorType implements Serializable {
      *            use as a session policy for the role. For more information
      *            about ARNs, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
-     *            in the <i>AWS General Reference</i>.
+     *            >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     *            Namespaces</a> in the <i>Amazon Web Services General
+     *            Reference</i>.
      *            </p>
      */
     public void setArn(String arn) {
@@ -103,8 +105,8 @@ public class PolicyDescriptorType implements Serializable {
      * session policy for the role. For more information about ARNs, see <a
      * href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     * >Amazon Resource Names (ARNs) and AWS Service Namespaces</a> in the
-     * <i>AWS General Reference</i>.
+     * >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     * Namespaces</a> in the <i>Amazon Web Services General Reference</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -120,8 +122,9 @@ public class PolicyDescriptorType implements Serializable {
      *            use as a session policy for the role. For more information
      *            about ARNs, see <a href=
      *            "https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html"
-     *            >Amazon Resource Names (ARNs) and AWS Service Namespaces</a>
-     *            in the <i>AWS General Reference</i>.
+     *            >Amazon Resource Names (ARNs) and Amazon Web Services Service
+     *            Namespaces</a> in the <i>Amazon Web Services General
+     *            Reference</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
