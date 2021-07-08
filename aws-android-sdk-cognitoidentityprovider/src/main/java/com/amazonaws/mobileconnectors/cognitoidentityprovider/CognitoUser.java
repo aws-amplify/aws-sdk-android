@@ -2346,7 +2346,7 @@ public class CognitoUser {
         RevokeTokenRequest request = new RevokeTokenRequest();
         request.setToken(refreshToken);
         request.setClientId(clientId);
-        if (!StringUtils.isBlank((clientSecret))) {
+        if (!StringUtils.isBlank(clientSecret)) {
             request.setClientSecret(clientSecret);
         }
         cognitoIdentityProviderClient.revokeToken(request);
