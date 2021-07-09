@@ -2335,21 +2335,25 @@ public class CognitoUser {
     }
 
     public void revokeTokens() {
-        CognitoUserSession cognitoUserSession = getCachedSession();
-        String accessToken = cognitoUserSession.getAccessToken().getJWTToken();
-        if (!CognitoJWTParser.hasClaim(accessToken, "origin_jti")) {
-            LOGGER.debug("Access Token does not contain `origin_jti` claim. Skip revoking tokens.");
-            return;
-        }
-        String refreshToken = cognitoUserSession.getRefreshToken().getToken();
+        try {
+            CognitoUserSession cognitoUserSession = getCachedSession();
+            String accessToken = cognitoUserSession.getAccessToken().getJWTToken();
+            if (!CognitoJWTParser.hasClaim(accessToken, "origin_jti")) {
+                LOGGER.debug("Access Token does not contain `origin_jti` claim. Skip revoking tokens.");
+                return;
+            }
+            String refreshToken = cognitoUserSession.getRefreshToken().getToken();
 
-        RevokeTokenRequest request = new RevokeTokenRequest();
-        request.setToken(refreshToken);
-        request.setClientId(clientId);
-        if (!StringUtils.isBlank(clientSecret)) {
-            request.setClientSecret(clientSecret);
+            RevokeTokenRequest request = new RevokeTokenRequest();
+            request.setToken(refreshToken);
+            request.setClientId(clientId);
+            if (!StringUtils.isBlank(clientSecret)) {
+                request.setClientSecret(clientSecret);
+            }
+            cognitoIdentityProviderClient.revokeToken(request);
+        } catch (final Exception e) {
+            LOGGER.warn("Failed to revoke tokens.", e);
         }
-        cognitoIdentityProviderClient.revokeToken(request);
     }
 
     /**
