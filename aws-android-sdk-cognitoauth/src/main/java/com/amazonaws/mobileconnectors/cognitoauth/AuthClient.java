@@ -709,6 +709,17 @@ public class AuthClient {
         launchCustomTabs(fqdn, null, browserPackage);
     }
 
+    /***
+     * Check if a browser is installed on the device to launch HostedUI.
+     * @return true if a browser exists else false.
+     */
+    public Boolean isBrowserInstalled() {
+        String url = "https://docs.amplify.aws/";
+        Uri webAddress = Uri.parse(url);
+        Intent intentWeb = new Intent(Intent.ACTION_VIEW, webAddress);
+        return (intentWeb.resolveActivity(context.getPackageManager()) != null);
+    }
+
     /**
      * Launches the HostedUI webpage on a Custom Tab.
      * @param uri Required: {@link Uri}.
@@ -718,6 +729,10 @@ public class AuthClient {
      */
     private void launchCustomTabs(final Uri uri, final Activity activity, final String browserPackage) {
     	try {
+    	    if(!isBrowserInstalled()) {
+                userHandler.onFailure(new Exception("No browsers installed."));
+                return;
+            }
 	        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
 	        mCustomTabsIntent = builder.build();
 	        if(pool.getCustomTabExtras() != null)
@@ -737,8 +752,8 @@ public class AuthClient {
                 context.startActivity(startIntent);
             }
     	} catch (final Exception e) {
-    		userHandler.onFailure(e);
-    	}
+            userHandler.onFailure(e);
+        }
     }
 
     private String getUserContextData() {
