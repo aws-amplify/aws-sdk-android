@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Specifies the configuration for AWS Lambda triggers.
+ * Specifies the configuration for Lambda triggers.
  * </p>
  */
 public class LambdaConfigType implements Serializable {
     /**
      * <p>
-     * A pre-registration AWS Lambda trigger.
+     * A pre-registration Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -38,7 +38,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom Message AWS Lambda trigger.
+     * A custom Message Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -51,7 +51,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-confirmation AWS Lambda trigger.
+     * A post-confirmation Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -64,7 +64,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-authentication AWS Lambda trigger.
+     * A pre-authentication Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -77,7 +77,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-authentication AWS Lambda trigger.
+     * A post-authentication Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -155,14 +155,14 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom SMS sender AWS Lambda trigger.
+     * A custom SMS sender Lambda trigger.
      * </p>
      */
     private CustomSMSLambdaVersionConfigType customSMSSender;
 
     /**
      * <p>
-     * A custom email sender AWS Lambda trigger.
+     * A custom email sender Lambda trigger.
      * </p>
      */
     private CustomEmailLambdaVersionConfigType customEmailSender;
@@ -186,7 +186,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-registration AWS Lambda trigger.
+     * A pre-registration Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,7 +196,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         A pre-registration AWS Lambda trigger.
+     *         A pre-registration Lambda trigger.
      *         </p>
      */
     public String getPreSignUp() {
@@ -205,7 +205,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-registration AWS Lambda trigger.
+     * A pre-registration Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -215,7 +215,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param preSignUp <p>
-     *            A pre-registration AWS Lambda trigger.
+     *            A pre-registration Lambda trigger.
      *            </p>
      */
     public void setPreSignUp(String preSignUp) {
@@ -224,7 +224,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-registration AWS Lambda trigger.
+     * A pre-registration Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -237,7 +237,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param preSignUp <p>
-     *            A pre-registration AWS Lambda trigger.
+     *            A pre-registration Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -249,7 +249,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom Message AWS Lambda trigger.
+     * A custom Message Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -259,7 +259,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         A custom Message AWS Lambda trigger.
+     *         A custom Message Lambda trigger.
      *         </p>
      */
     public String getCustomMessage() {
@@ -268,7 +268,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom Message AWS Lambda trigger.
+     * A custom Message Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -278,7 +278,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param customMessage <p>
-     *            A custom Message AWS Lambda trigger.
+     *            A custom Message Lambda trigger.
      *            </p>
      */
     public void setCustomMessage(String customMessage) {
@@ -287,7 +287,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom Message AWS Lambda trigger.
+     * A custom Message Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -300,7 +300,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param customMessage <p>
-     *            A custom Message AWS Lambda trigger.
+     *            A custom Message Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -312,7 +312,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-confirmation AWS Lambda trigger.
+     * A post-confirmation Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -322,7 +322,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         A post-confirmation AWS Lambda trigger.
+     *         A post-confirmation Lambda trigger.
      *         </p>
      */
     public String getPostConfirmation() {
@@ -331,7 +331,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-confirmation AWS Lambda trigger.
+     * A post-confirmation Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -341,7 +341,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param postConfirmation <p>
-     *            A post-confirmation AWS Lambda trigger.
+     *            A post-confirmation Lambda trigger.
      *            </p>
      */
     public void setPostConfirmation(String postConfirmation) {
@@ -350,7 +350,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-confirmation AWS Lambda trigger.
+     * A post-confirmation Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -363,7 +363,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param postConfirmation <p>
-     *            A post-confirmation AWS Lambda trigger.
+     *            A post-confirmation Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -375,7 +375,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-authentication AWS Lambda trigger.
+     * A pre-authentication Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -385,7 +385,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         A pre-authentication AWS Lambda trigger.
+     *         A pre-authentication Lambda trigger.
      *         </p>
      */
     public String getPreAuthentication() {
@@ -394,7 +394,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-authentication AWS Lambda trigger.
+     * A pre-authentication Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -404,7 +404,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param preAuthentication <p>
-     *            A pre-authentication AWS Lambda trigger.
+     *            A pre-authentication Lambda trigger.
      *            </p>
      */
     public void setPreAuthentication(String preAuthentication) {
@@ -413,7 +413,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A pre-authentication AWS Lambda trigger.
+     * A pre-authentication Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -426,7 +426,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param preAuthentication <p>
-     *            A pre-authentication AWS Lambda trigger.
+     *            A pre-authentication Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -438,7 +438,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-authentication AWS Lambda trigger.
+     * A post-authentication Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -448,7 +448,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @return <p>
-     *         A post-authentication AWS Lambda trigger.
+     *         A post-authentication Lambda trigger.
      *         </p>
      */
     public String getPostAuthentication() {
@@ -457,7 +457,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-authentication AWS Lambda trigger.
+     * A post-authentication Lambda trigger.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -467,7 +467,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param postAuthentication <p>
-     *            A post-authentication AWS Lambda trigger.
+     *            A post-authentication Lambda trigger.
      *            </p>
      */
     public void setPostAuthentication(String postAuthentication) {
@@ -476,7 +476,7 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A post-authentication AWS Lambda trigger.
+     * A post-authentication Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -489,7 +489,7 @@ public class LambdaConfigType implements Serializable {
      * /,.@-]+(:[\w+=/,.@-]+)?(:[\w+=/,.@-]+)?<br/>
      *
      * @param postAuthentication <p>
-     *            A post-authentication AWS Lambda trigger.
+     *            A post-authentication Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -816,11 +816,11 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom SMS sender AWS Lambda trigger.
+     * A custom SMS sender Lambda trigger.
      * </p>
      *
      * @return <p>
-     *         A custom SMS sender AWS Lambda trigger.
+     *         A custom SMS sender Lambda trigger.
      *         </p>
      */
     public CustomSMSLambdaVersionConfigType getCustomSMSSender() {
@@ -829,11 +829,11 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom SMS sender AWS Lambda trigger.
+     * A custom SMS sender Lambda trigger.
      * </p>
      *
      * @param customSMSSender <p>
-     *            A custom SMS sender AWS Lambda trigger.
+     *            A custom SMS sender Lambda trigger.
      *            </p>
      */
     public void setCustomSMSSender(CustomSMSLambdaVersionConfigType customSMSSender) {
@@ -842,14 +842,14 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom SMS sender AWS Lambda trigger.
+     * A custom SMS sender Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param customSMSSender <p>
-     *            A custom SMS sender AWS Lambda trigger.
+     *            A custom SMS sender Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -861,11 +861,11 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom email sender AWS Lambda trigger.
+     * A custom email sender Lambda trigger.
      * </p>
      *
      * @return <p>
-     *         A custom email sender AWS Lambda trigger.
+     *         A custom email sender Lambda trigger.
      *         </p>
      */
     public CustomEmailLambdaVersionConfigType getCustomEmailSender() {
@@ -874,11 +874,11 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom email sender AWS Lambda trigger.
+     * A custom email sender Lambda trigger.
      * </p>
      *
      * @param customEmailSender <p>
-     *            A custom email sender AWS Lambda trigger.
+     *            A custom email sender Lambda trigger.
      *            </p>
      */
     public void setCustomEmailSender(CustomEmailLambdaVersionConfigType customEmailSender) {
@@ -887,14 +887,14 @@ public class LambdaConfigType implements Serializable {
 
     /**
      * <p>
-     * A custom email sender AWS Lambda trigger.
+     * A custom email sender Lambda trigger.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param customEmailSender <p>
-     *            A custom email sender AWS Lambda trigger.
+     *            A custom email sender Lambda trigger.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
