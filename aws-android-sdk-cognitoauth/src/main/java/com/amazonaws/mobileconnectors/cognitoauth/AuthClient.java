@@ -50,6 +50,7 @@ import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import java.net.URL;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -747,7 +748,7 @@ public class AuthClient {
      * Get list of browser packages that support Custom Tabs Service.
      * @return list of package names that support Custom Tabs.
      */
-    private ArrayList<String> getSupportedBrowserPackage(){
+    private Collection<String> getSupportedBrowserPackage(){
         PackageManager packageManager = context.getPackageManager();
         // Get default VIEW intent handler.
         Intent activityIntent = new Intent()
@@ -757,7 +758,7 @@ public class AuthClient {
 
         // Get all apps that can handle VIEW intents.
         List<ResolveInfo> resolvedActivityList = packageManager.queryIntentActivities(activityIntent, 0);
-        ArrayList<String> packageNamesSupportingCustomTabs = new ArrayList<>();
+        List<String> packageNamesSupportingCustomTabs = new ArrayList<>();
         for (ResolveInfo info : resolvedActivityList) {
             Intent serviceIntent = new Intent()
                     .setAction(ACTION_CUSTOM_TABS_CONNECTION)
@@ -802,12 +803,12 @@ public class AuthClient {
                 userHandler.onFailure(new Exception("Browser with custom tabs support not found."));
                 return;
             }
-	        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
-	        mCustomTabsIntent = builder.build();
-	        if(pool.getCustomTabExtras() != null)
-	            mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
-	        if(browserPackage != null) {
-	            mCustomTabsIntent.intent.setPackage(browserPackage);
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
+            mCustomTabsIntent = builder.build();
+            if(pool.getCustomTabExtras() != null)
+                mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
+            if(browserPackage != null) {
+                mCustomTabsIntent.intent.setPackage(browserPackage);
             }
             mCustomTabsIntent.intent.setData(uri);
             if (activity != null) {
