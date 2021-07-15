@@ -40,6 +40,8 @@ import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthClientException
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthNavigationException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthServiceException;
+import com.amazonaws.mobileconnectors.cognitoauth.exceptions.BrowserNotInstalledException;
+import com.amazonaws.mobileconnectors.cognitoauth.exceptions.CustomTabsNotSupportedException;
 import com.amazonaws.mobileconnectors.cognitoauth.util.AuthHttpResponseParser;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
 import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
@@ -796,11 +798,11 @@ public class AuthClient {
     private void launchCustomTabs(final Uri uri, final Activity activity, final String browserPackage) {
     	try {
             if(!isBrowserInstalled()) {
-                userHandler.onFailure(new Exception("No browsers installed."));
+                userHandler.onFailure(new BrowserNotInstalledException("No browsers installed."));
                 return;
             }
             if(!isCustomTabSupported()) {
-                userHandler.onFailure(new Exception("Browser with custom tabs support not found."));
+                userHandler.onFailure(new CustomTabsNotSupportedException("Browser with custom tabs support not found."));
                 return;
             }
             CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
