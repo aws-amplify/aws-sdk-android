@@ -136,6 +136,16 @@ public class AuthClient {
      */
     private boolean isRedirectActivityDeclared;
 
+    /**
+     * Cache whether browser is installed on the device.
+     */
+    private boolean isBrowserInstalled;
+
+    /**
+     * Cache whether there is browser that supports custom tabs on the device.
+     */
+    private boolean isCustomTabSupported;
+
 
     // - Chrome Custom Tabs Controls
     private CustomTabsClient mCustomTabsClient;
@@ -165,6 +175,8 @@ public class AuthClient {
         this.pool = pool;
         this.userId = username;
         this.isRedirectActivityDeclared = false;
+        this.isBrowserInstalled = false;
+        this.isCustomTabSupported = false;
         preWarmChrome();
     }
 
@@ -717,11 +729,18 @@ public class AuthClient {
      * Check if a browser is installed on the device to launch HostedUI.
      * @return true if a browser exists else false.
      */
-    public Boolean isBrowserInstalled() {
+    private boolean isBrowserInstalled() {
+        if (isBrowserInstalled) {
+            return true;
+        }
         String url = "https://docs.amplify.aws/";
         Uri webAddress = Uri.parse(url);
         Intent intentWeb = new Intent(Intent.ACTION_VIEW, webAddress);
-        return (intentWeb.resolveActivity(context.getPackageManager()) != null);
+        if (intentWeb.resolveActivity(context.getPackageManager()) != null) {
+            isBrowserInstalled = true;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -751,6 +770,21 @@ public class AuthClient {
         return packageNamesSupportingCustomTabs;
     }
 
+    /***
+     * Check if there are any browsers on the deivce that support custom tabs.
+     * @return true if custom tabs is supported by any browsers on the device else false.
+     */
+    private boolean isCustomTabSupported() {
+        if (isCustomTabSupported) {
+            return true;
+        }
+        if (getSupportedBrowserPackage().size() > 0) {
+            isCustomTabSupported = true;
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Launches the HostedUI webpage on a Custom Tab.
      * @param uri Required: {@link Uri}.
@@ -760,11 +794,11 @@ public class AuthClient {
      */
     private void launchCustomTabs(final Uri uri, final Activity activity, final String browserPackage) {
     	try {
-    	    if(!isBrowserInstalled()) {
+            if(!isBrowserInstalled()) {
                 userHandler.onFailure(new Exception("No browsers installed."));
                 return;
             }
-    	    if(getSupportedBrowserPackage().size() == 0) {
+            if(!isCustomTabSupported()) {
                 userHandler.onFailure(new Exception("Browser with custom tabs support not found."));
                 return;
             }
