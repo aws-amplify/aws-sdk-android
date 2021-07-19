@@ -61,6 +61,7 @@ public interface Request<T> {
      *
      * @param path The path to the resource being requested.
      */
+    @Deprecated
     public void setResourcePath(String path);
 
     /**
@@ -68,6 +69,7 @@ public interface Request<T> {
      *
      * @return The path to the resource being requested.
      */
+    @Deprecated
     public String getResourcePath();
 
     /**
@@ -262,4 +264,16 @@ public interface Request<T> {
      * @param streaming the streaming flag.
      */
     public void setStreaming(boolean streaming);
+
+    /**
+     * Get Encoded Uri Resource Path
+     */
+    String getEncodedUriResourcePath();
+
+    /**
+     *
+     * Set Encoded Uri Resource Path
+     * @param encodedUriResourcePath encoded uri resource path
+     */
+    void setEncodedResourcePath(String encodedUriResourcePath);
 }

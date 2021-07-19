@@ -258,6 +258,24 @@ public class HttpUtils {
     }
 
     /**
+     * Append the given path to the given baseUri.
+     * <p>
+     * This method will encode the given path but not the given baseUri.
+     * </p>
+     *
+     * @param baseUri The URI to append to (required, may be relative)
+     * @param paths The path array to append (may be null or empty)
+     * @return The baseUri with the (encoded) path appended
+     */
+    public static String appendUriEncoded(final String baseUri, String paths) {
+        String resultUri = baseUri;
+        if (paths != null) {
+            resultUri += paths;
+        }
+        return resultUri;
+    }
+
+    /**
      * Fetches a file from the URI given and returns an input stream to it.
      *
      * @param uri the uri of the file to fetch
