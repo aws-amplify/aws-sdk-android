@@ -318,6 +318,13 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     boolean mIsPersistenceEnabled = true;
 
     /**
+     * Flag that indicates if the SRP password verification is used in
+     * a custom authentication Flow. By default, this is set to false.
+     * If set to true custom authentication would be enabled.
+     */
+    boolean mCustomAuthEnabled = true;
+
+    /**
      * Constructor invoked by getInstance.
      *
      * @throws AssertionError when this is called with context more than once.
@@ -492,6 +499,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     }
 
                     mIsPersistenceEnabled = true; // Default value
+                    mCustomAuthEnabled = false; // Default value
+
+                    // Read Persistence key from the awsconfiguration.json and set the flags
                     // Read Persistence key from the awsconfiguration.json and set the flag
                     // appropriately.
                     try {
@@ -500,6 +510,15 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                             mIsPersistenceEnabled = awsConfiguration
                                     .optJsonObject(AUTH_KEY)
                                     .getBoolean("Persistence");
+
+                            if (
+                                    awsConfiguration.optJsonObject(AUTH_KEY) != null &&
+                                    awsConfiguration.optJsonObject(AUTH_KEY).has("authenticationFlowType") &&
+                                    awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType").equals("CUSTOM_AUTH")
+                            ) {
+                                mCustomAuthEnabled = true;
+                            }
+
                         }
                     } catch (final Exception ex) {
                         // If reading from awsconfiguration.json fails, invoke callback.
@@ -788,6 +807,12 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 }
             }
         }
+    }
+
+    public boolean isCustomAuthEnabled() { return mCustomAuthEnabled; }
+
+    public void setCustomAuthEnabled(boolean customAuthEnabled) {
+        mCustomAuthEnabled = customAuthEnabled;
     }
 
     /**
@@ -1246,7 +1271,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                                     String authFlowType = authFlowTypeInConfig ?
                                         awsConfiguration.optJsonObject(AUTH_KEY).getString("authenticationFlowType") :
                                         null;
-                                    if (authFlowTypeInConfig && AUTH_TYPE_INIT_CUSTOM_AUTH.equals(authFlowType)) {
+                                    if (mCustomAuthEnabled) {
                                         // If there's a value in the config and it's CUSTOM_AUTH, we'll
                                         // use one of the below constructors depending on what's passed in.
                                         if (password != null) {

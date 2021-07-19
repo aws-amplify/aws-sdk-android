@@ -167,7 +167,7 @@ public class EventRecorderTest {
         assertNotNull(event.getSession());
     }
 
-    @Test (expected=IllegalStateException.class)
+    @Test (expected=NoSuchFieldException.class)
     public void testReadEventFromCursorThrowsException() throws Exception {
         final Log mockLog = mock(Log.class);
         Mockito.doThrow(new IllegalStateException()).when(mockLog)
