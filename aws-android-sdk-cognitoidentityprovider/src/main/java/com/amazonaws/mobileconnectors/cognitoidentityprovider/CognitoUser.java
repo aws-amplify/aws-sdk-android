@@ -85,6 +85,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundExce
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.RespondToAuthChallengeResult;
 import com.amazonaws.services.cognitoidentityprovider.model.RevokeTokenRequest;
+import com.amazonaws.services.cognitoidentityprovider.model.RevokeTokenResult;
 import com.amazonaws.services.cognitoidentityprovider.model.SMSMfaSettingsType;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserMFAPreferenceRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.SetUserMFAPreferenceResult;
@@ -2334,26 +2335,26 @@ public class CognitoUser {
         cognitoIdentityProviderClient.deleteUserAttributes(deleteUserAttributesRequest);
     }
 
-    public void revokeTokens() {
+    public RevokeTokenResult revokeTokens() {
         try {
             CognitoUserSession cognitoUserSession = getCachedSession();
             String accessToken = cognitoUserSession.getAccessToken().getJWTToken();
-            if (!CognitoJWTParser.hasClaim(accessToken, "origin_jti")) {
+            if (CognitoJWTParser.hasClaim(accessToken, "origin_jti")) {
+                String refreshToken = cognitoUserSession.getRefreshToken().getToken();
+                RevokeTokenRequest request = new RevokeTokenRequest();
+                request.setToken(refreshToken);
+                request.setClientId(clientId);
+                if (!StringUtils.isBlank(clientSecret)) {
+                    request.setClientSecret(clientSecret);
+                }
+                return cognitoIdentityProviderClient.revokeToken(request);
+            } else {
                 LOGGER.debug("Access Token does not contain `origin_jti` claim. Skip revoking tokens.");
-                return;
             }
-            String refreshToken = cognitoUserSession.getRefreshToken().getToken();
-
-            RevokeTokenRequest request = new RevokeTokenRequest();
-            request.setToken(refreshToken);
-            request.setClientId(clientId);
-            if (!StringUtils.isBlank(clientSecret)) {
-                request.setClientSecret(clientSecret);
-            }
-            cognitoIdentityProviderClient.revokeToken(request);
         } catch (final Exception e) {
             LOGGER.warn("Failed to revoke tokens.", e);
         }
+        return null;
     }
 
     /**
