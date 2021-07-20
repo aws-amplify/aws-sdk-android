@@ -268,12 +268,12 @@ public interface Request<T> {
     /**
      * Get Encoded Uri Resource Path
      */
-    String getEncodedUriResourcePath();
+    public String getEncodedUriResourcePath();
 
     /**
      *
      * Set Encoded Uri Resource Path
      * @param encodedUriResourcePath encoded uri resource path
      */
-    void setEncodedResourcePath(String encodedUriResourcePath);
+    public void setEncodedResourcePath(String encodedUriResourcePath);
 }
