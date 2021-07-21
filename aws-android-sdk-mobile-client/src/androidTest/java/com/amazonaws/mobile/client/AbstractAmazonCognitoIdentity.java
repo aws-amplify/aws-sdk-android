@@ -42,6 +42,8 @@ import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperId
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenForDeveloperIdentityResult;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenRequest;
 import com.amazonaws.services.cognitoidentity.model.GetOpenIdTokenResult;
+import com.amazonaws.services.cognitoidentity.model.GetPrincipalTagAttributeMapRequest;
+import com.amazonaws.services.cognitoidentity.model.GetPrincipalTagAttributeMapResult;
 import com.amazonaws.services.cognitoidentity.model.ListIdentitiesRequest;
 import com.amazonaws.services.cognitoidentity.model.ListIdentitiesResult;
 import com.amazonaws.services.cognitoidentity.model.ListIdentityPoolsRequest;
@@ -53,6 +55,8 @@ import com.amazonaws.services.cognitoidentity.model.LookupDeveloperIdentityResul
 import com.amazonaws.services.cognitoidentity.model.MergeDeveloperIdentitiesRequest;
 import com.amazonaws.services.cognitoidentity.model.MergeDeveloperIdentitiesResult;
 import com.amazonaws.services.cognitoidentity.model.SetIdentityPoolRolesRequest;
+import com.amazonaws.services.cognitoidentity.model.SetPrincipalTagAttributeMapRequest;
+import com.amazonaws.services.cognitoidentity.model.SetPrincipalTagAttributeMapResult;
 import com.amazonaws.services.cognitoidentity.model.TagResourceRequest;
 import com.amazonaws.services.cognitoidentity.model.TagResourceResult;
 import com.amazonaws.services.cognitoidentity.model.UnlinkDeveloperIdentityRequest;
@@ -124,6 +128,11 @@ public class AbstractAmazonCognitoIdentity implements AmazonCognitoIdentity {
     }
 
     @Override
+    public GetPrincipalTagAttributeMapResult getPrincipalTagAttributeMap(GetPrincipalTagAttributeMapRequest getPrincipalTagAttributeMapRequest) throws AmazonClientException, AmazonServiceException {
+        return null;
+    }
+
+    @Override
     public ListIdentitiesResult listIdentities(ListIdentitiesRequest listIdentitiesRequest) throws AmazonClientException, AmazonServiceException {
         return null;
     }
@@ -151,6 +160,11 @@ public class AbstractAmazonCognitoIdentity implements AmazonCognitoIdentity {
     @Override
     public void setIdentityPoolRoles(SetIdentityPoolRolesRequest setIdentityPoolRolesRequest) throws AmazonClientException, AmazonServiceException {
 
+    }
+
+    @Override
+    public SetPrincipalTagAttributeMapResult setPrincipalTagAttributeMap(SetPrincipalTagAttributeMapRequest setPrincipalTagAttributeMapRequest) throws AmazonClientException, AmazonServiceException {
+        return null;
     }
 
     @Override

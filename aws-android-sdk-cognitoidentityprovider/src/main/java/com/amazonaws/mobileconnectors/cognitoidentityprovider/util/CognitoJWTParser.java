@@ -116,6 +116,20 @@ public class CognitoJWTParser {
     }
 
     /**
+     * Checks if a JWT token contains a claim.
+     * @param jwt A string, possibly not event a JWT
+     * @param key Key for a claim, e.g., "jti" or "aud"
+     * @return True if JWT is a valid JWT and contains the requested claim, false otherwise
+     */
+    public static boolean hasClaim(String jwt, String key) {
+        try {
+            return getPayload(jwt).has(key);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
      * Checks if {@code JWT} is a valid JSON Web Token.
      *
      * @param jwt REQUIRED: The JWT as a {@link String}.

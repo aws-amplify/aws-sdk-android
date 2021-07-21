@@ -71,6 +71,14 @@ public abstract class AWSMobileClientTestBase extends AWSTestBase {
         awsKeyValueStore.put(storeFieldPrefix + "refreshToken", "DummyRefresh");
     }
 
+    public static void setAccessToken(final Context appContext, final String clientId, final String username, final String accessToken) {
+        final AWSKeyValueStore awsKeyValueStore = new AWSKeyValueStore(appContext,
+                "CognitoIdentityProviderCache",
+                true);
+        String storeFieldPrefix = "CognitoIdentityProvider." + clientId + "." + username + ".";
+        awsKeyValueStore.put(storeFieldPrefix + "accessToken", accessToken);
+    }
+
     public static void writeUserPoolsTokens(final Context appContext,
                                             final String clientId,
                                             final String userId,

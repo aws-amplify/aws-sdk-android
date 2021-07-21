@@ -435,6 +435,11 @@ public class AbstractAmazonCognitoIdentityProvider implements AmazonCognitoIdent
     }
 
     @Override
+    public RevokeTokenResult revokeToken(RevokeTokenRequest revokeTokenRequest) throws AmazonClientException, AmazonServiceException {
+        return null;
+    }
+
+    @Override
     public SetRiskConfigurationResult setRiskConfiguration(SetRiskConfigurationRequest setRiskConfigurationRequest) throws AmazonClientException, AmazonServiceException {
         return null;
     }
