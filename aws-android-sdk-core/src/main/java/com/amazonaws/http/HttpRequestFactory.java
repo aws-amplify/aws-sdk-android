@@ -54,7 +54,13 @@ public class HttpRequestFactory {
          * have to escape the double-slash between endpoint and resource-path
          * into "/%2F"
          */
-        String uri = HttpUtils.appendUri(endpoint.toString(), request.getResourcePath(), true);
+        String uri;
+        //The if here is for backward compatibility
+        if(request.getEncodedUriResourcePath()!= null){
+            uri = HttpUtils.appendUriEncoded(endpoint.toString(), request.getEncodedUriResourcePath());
+        }else{
+            uri = HttpUtils.appendUri(endpoint.toString(), request.getResourcePath(), true);
+        }
         final String encodedParams = HttpUtils.encodeParameters(request);
         HttpMethodName method = request.getHttpMethod();
 
