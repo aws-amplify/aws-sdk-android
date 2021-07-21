@@ -92,6 +92,10 @@ public interface AmazonLocation {
      * resource. This allows the tracker resource to communicate location data
      * to the linked geofence collection.
      * </p>
+     * <p>
+     * You can associate up to five geofence collections to each tracker
+     * resource.
+     * </p>
      * <note>
      * <p>
      * Currently not supported — Cross-account configurations, such as creating
@@ -109,6 +113,7 @@ public interface AmazonLocation {
      * @throws ConflictException
      * @throws AccessDeniedException
      * @throws ValidationException
+     * @throws ServiceQuotaExceededException
      * @throws ThrottlingException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -183,14 +188,32 @@ public interface AmazonLocation {
     /**
      * <p>
      * Evaluates device positions against the geofence geometries from a given
-     * geofence collection. The evaluation determines if the device has entered
-     * or exited a geofenced area, which publishes ENTER or EXIT geofence events
-     * to Amazon EventBridge.
+     * geofence collection.
      * </p>
+     * <p>
+     * This operation always returns an empty response because geofences are
+     * asynchronously evaluated. The evaluation determines if the device has
+     * entered or exited a geofenced area, and then publishes one of the
+     * following events to Amazon EventBridge:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ENTER</code> if Amazon Location determines that the tracked device
+     * has entered a geofenced area.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>EXIT</code> if Amazon Location determines that the tracked device
+     * has exited a geofenced area.
+     * </p>
+     * </li>
+     * </ul>
      * <note>
      * <p>
-     * The last geofence that a device was observed within, if any, is tracked
-     * for 30 days after the most recent device position update
+     * The last geofence that a device was observed within is tracked for 30
+     * days after the most recent device position update.
      * </p>
      * </note>
      * 
@@ -217,7 +240,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * A batch request to retrieve all device positions.
+     * Lists the latest device positions for requested devices.
      * </p>
      * 
      * @param batchGetDevicePositionRequest
@@ -310,7 +333,7 @@ public interface AmazonLocation {
      * <code>DeparturePostiton</code> and <code>DestinationPosition</code>.
      * Requires that you first <a href=
      * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
-     * >create aroute calculator resource</a>
+     * >create a route calculator resource</a>
      * </p>
      * <p>
      * By default, a request that doesn't specify a departure time uses the best
@@ -340,7 +363,7 @@ public interface AmazonLocation {
      * <p>
      * <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode"
-     * >Specifying a travel mode</a> using TravelMode. This lets you specify
+     * >Specifying a travel mode</a> using TravelMode. This lets you specify an
      * additional route preference such as <code>CarModeOptions</code> if
      * traveling by <code>Car</code>, or <code>TruckModeOptions</code> if
      * traveling by <code>Truck</code>.
@@ -1014,7 +1037,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Lists the latest device positions for requested devices.
+     * A batch request to retrieve all device positions.
      * </p>
      * 
      * @param listDevicePositionsRequest
@@ -1159,7 +1182,8 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Returns the tags for the specified Amazon Location Service resource.
+     * Returns a list of tags that are applied to the specified Amazon Location
+     * resource.
      * </p>
      * 
      * @param listTagsForResourceRequest
@@ -1333,7 +1357,7 @@ public interface AmazonLocation {
      * </p>
      * 
      * <pre>
-     * <code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; action with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate as many as 50 tags with a resource.&lt;/p&gt; </code>
+     * <code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; operation with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that's already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate up to 50 tags with a resource.&lt;/p&gt; </code>
      * </pre>
      * 
      * @param tagResourceRequest
@@ -1357,8 +1381,7 @@ public interface AmazonLocation {
 
     /**
      * <p>
-     * Removes one or more tags from the specified Amazon Location Service
-     * resource.
+     * Removes one or more tags from the specified Amazon Location resource.
      * </p>
      * 
      * @param untagResourceRequest
@@ -1378,6 +1401,130 @@ public interface AmazonLocation {
      *             the request, or a server side issue.
      */
     UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified properties of a given geofence collection.
+     * </p>
+     * 
+     * @param updateGeofenceCollectionRequest
+     * @return updateGeofenceCollectionResult The response from the
+     *         UpdateGeofenceCollection service method, as returned by AWS
+     *         Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UpdateGeofenceCollectionResult updateGeofenceCollection(
+            UpdateGeofenceCollectionRequest updateGeofenceCollectionRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified properties of a given map resource.
+     * </p>
+     * 
+     * @param updateMapRequest
+     * @return updateMapResult The response from the UpdateMap service method,
+     *         as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UpdateMapResult updateMap(UpdateMapRequest updateMapRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified properties of a given place index resource.
+     * </p>
+     * 
+     * @param updatePlaceIndexRequest
+     * @return updatePlaceIndexResult The response from the UpdatePlaceIndex
+     *         service method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UpdatePlaceIndexResult updatePlaceIndex(UpdatePlaceIndexRequest updatePlaceIndexRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified properties for a given route calculator resource.
+     * </p>
+     * 
+     * @param updateRouteCalculatorRequest
+     * @return updateRouteCalculatorResult The response from the
+     *         UpdateRouteCalculator service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UpdateRouteCalculatorResult updateRouteCalculator(
+            UpdateRouteCalculatorRequest updateRouteCalculatorRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the specified properties of a given tracker resource.
+     * </p>
+     * 
+     * @param updateTrackerRequest
+     * @return updateTrackerResult The response from the UpdateTracker service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    UpdateTrackerResult updateTracker(UpdateTrackerRequest updateTrackerRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

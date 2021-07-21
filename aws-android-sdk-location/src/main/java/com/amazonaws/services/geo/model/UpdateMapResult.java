@@ -17,20 +17,11 @@ package com.amazonaws.services.geo.model;
 
 import java.io.Serializable;
 
-public class CreateMapResult implements Serializable {
+public class UpdateMapResult implements Serializable {
     /**
      * <p>
-     * The timestamp for when the map resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     */
-    private java.util.Date createTime;
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * The Amazon Resource Name (ARN) of the updated map resource. Used to
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -51,7 +42,7 @@ public class CreateMapResult implements Serializable {
 
     /**
      * <p>
-     * The name of the map resource.
+     * The name of the updated map resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,67 +53,17 @@ public class CreateMapResult implements Serializable {
 
     /**
      * <p>
-     * The timestamp for when the map resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
+     * The timestamp for when the map resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
      * </p>
-     *
-     * @return <p>
-     *         The timestamp for when the map resource was created in <a
-     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *         8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *         </p>
      */
-    public java.util.Date getCreateTime() {
-        return createTime;
-    }
+    private java.util.Date updateTime;
 
     /**
      * <p>
-     * The timestamp for when the map resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     *
-     * @param createTime <p>
-     *            The timestamp for when the map resource was created in <a
-     *            href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *            </p>
-     */
-    public void setCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * <p>
-     * The timestamp for when the map resource was created in <a
-     * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param createTime <p>
-     *            The timestamp for when the map resource was created in <a
-     *            href=
-     *            "https://www.iso.org/iso-8601-date-and-time-format.html">ISO
-     *            8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateMapResult withCreateTime(java.util.Date createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * The Amazon Resource Name (ARN) of the updated map resource. Used to
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -140,8 +81,8 @@ public class CreateMapResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for the map resource. Used to
-     *         specify a resource across all AWS.
+     *         The Amazon Resource Name (ARN) of the updated map resource. Used
+     *         to specify a resource across AWS.
      *         </p>
      *         <ul>
      *         <li>
@@ -158,8 +99,8 @@ public class CreateMapResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * The Amazon Resource Name (ARN) of the updated map resource. Used to
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -177,8 +118,8 @@ public class CreateMapResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param mapArn <p>
-     *            The Amazon Resource Name (ARN) for the map resource. Used to
-     *            specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) of the updated map resource.
+     *            Used to specify a resource across AWS.
      *            </p>
      *            <ul>
      *            <li>
@@ -195,8 +136,8 @@ public class CreateMapResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
-     * resource across all AWS.
+     * The Amazon Resource Name (ARN) of the updated map resource. Used to
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -217,8 +158,8 @@ public class CreateMapResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param mapArn <p>
-     *            The Amazon Resource Name (ARN) for the map resource. Used to
-     *            specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) of the updated map resource.
+     *            Used to specify a resource across AWS.
      *            </p>
      *            <ul>
      *            <li>
@@ -231,14 +172,14 @@ public class CreateMapResult implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateMapResult withMapArn(String mapArn) {
+    public UpdateMapResult withMapArn(String mapArn) {
         this.mapArn = mapArn;
         return this;
     }
 
     /**
      * <p>
-     * The name of the map resource.
+     * The name of the updated map resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -246,7 +187,7 @@ public class CreateMapResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @return <p>
-     *         The name of the map resource.
+     *         The name of the updated map resource.
      *         </p>
      */
     public String getMapName() {
@@ -255,7 +196,7 @@ public class CreateMapResult implements Serializable {
 
     /**
      * <p>
-     * The name of the map resource.
+     * The name of the updated map resource.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -263,7 +204,7 @@ public class CreateMapResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param mapName <p>
-     *            The name of the map resource.
+     *            The name of the updated map resource.
      *            </p>
      */
     public void setMapName(String mapName) {
@@ -272,7 +213,7 @@ public class CreateMapResult implements Serializable {
 
     /**
      * <p>
-     * The name of the map resource.
+     * The name of the updated map resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -283,13 +224,70 @@ public class CreateMapResult implements Serializable {
      * <b>Pattern: </b>^[-._\w]+$<br/>
      *
      * @param mapName <p>
-     *            The name of the map resource.
+     *            The name of the updated map resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateMapResult withMapName(String mapName) {
+    public UpdateMapResult withMapName(String mapName) {
         this.mapName = mapName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the map resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp for when the map resource was last updated in <a
+     *         href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *         ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *         </p>
+     */
+    public java.util.Date getUpdateTime() {
+        return updateTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the map resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     *
+     * @param updateTime <p>
+     *            The timestamp for when the map resource was last updated in <a
+     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     */
+    public void setUpdateTime(java.util.Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp for when the map resource was last updated in <a
+     * href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
+     * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param updateTime <p>
+     *            The timestamp for when the map resource was last updated in <a
+     *            href="https://www.iso.org/iso-8601-date-and-time-format.html">
+     *            ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateMapResult withUpdateTime(java.util.Date updateTime) {
+        this.updateTime = updateTime;
         return this;
     }
 
@@ -304,12 +302,12 @@ public class CreateMapResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCreateTime() != null)
-            sb.append("CreateTime: " + getCreateTime() + ",");
         if (getMapArn() != null)
             sb.append("MapArn: " + getMapArn() + ",");
         if (getMapName() != null)
-            sb.append("MapName: " + getMapName());
+            sb.append("MapName: " + getMapName() + ",");
+        if (getUpdateTime() != null)
+            sb.append("UpdateTime: " + getUpdateTime());
         sb.append("}");
         return sb.toString();
     }
@@ -319,9 +317,9 @@ public class CreateMapResult implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         hashCode = prime * hashCode + ((getMapArn() == null) ? 0 : getMapArn().hashCode());
         hashCode = prime * hashCode + ((getMapName() == null) ? 0 : getMapName().hashCode());
+        hashCode = prime * hashCode + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return hashCode;
     }
 
@@ -332,15 +330,10 @@ public class CreateMapResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof CreateMapResult == false)
+        if (obj instanceof UpdateMapResult == false)
             return false;
-        CreateMapResult other = (CreateMapResult) obj;
+        UpdateMapResult other = (UpdateMapResult) obj;
 
-        if (other.getCreateTime() == null ^ this.getCreateTime() == null)
-            return false;
-        if (other.getCreateTime() != null
-                && other.getCreateTime().equals(this.getCreateTime()) == false)
-            return false;
         if (other.getMapArn() == null ^ this.getMapArn() == null)
             return false;
         if (other.getMapArn() != null && other.getMapArn().equals(this.getMapArn()) == false)
@@ -348,6 +341,11 @@ public class CreateMapResult implements Serializable {
         if (other.getMapName() == null ^ this.getMapName() == null)
             return false;
         if (other.getMapName() != null && other.getMapName().equals(this.getMapName()) == false)
+            return false;
+        if (other.getUpdateTime() == null ^ this.getUpdateTime() == null)
+            return false;
+        if (other.getUpdateTime() != null
+                && other.getUpdateTime().equals(this.getUpdateTime()) == false)
             return false;
         return true;
     }

@@ -20,8 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * Contains the calculated route's details for each path between a pair of
- * positions. The number of legs returned corresponds to one less than the total
- * number of positions in the request.
+ * positions. The number of legs returned corresponds to one fewer than the
+ * total number of positions in the request.
  * </p>
  * <p>
  * For example, a route with a departure position and destination position
@@ -43,7 +43,7 @@ import java.io.Serializable;
  * </ul>
  * <p>
  * A route with a waypoint between the departure and destination position
- * returns two legs with the positions snapped to a nearby road.:
+ * returns two legs with the positions snapped to a nearby road:
  * </p>
  * <ul>
  * <li>

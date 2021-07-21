@@ -72,7 +72,7 @@ public class DescribePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across all AWS.
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -449,7 +449,7 @@ public class DescribePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across all AWS.
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -468,7 +468,7 @@ public class DescribePlaceIndexResult implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) for the place index resource. Used
-     *         to specify a resource across all AWS.
+     *         to specify a resource across AWS.
      *         </p>
      *         <ul>
      *         <li>
@@ -486,7 +486,7 @@ public class DescribePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across all AWS.
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -505,7 +505,7 @@ public class DescribePlaceIndexResult implements Serializable {
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) for the place index resource.
-     *            Used to specify a resource across all AWS.
+     *            Used to specify a resource across AWS.
      *            </p>
      *            <ul>
      *            <li>
@@ -523,7 +523,7 @@ public class DescribePlaceIndexResult implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) for the place index resource. Used to
-     * specify a resource across all AWS.
+     * specify a resource across AWS.
      * </p>
      * <ul>
      * <li>
@@ -545,7 +545,7 @@ public class DescribePlaceIndexResult implements Serializable {
      *
      * @param indexArn <p>
      *            The Amazon Resource Name (ARN) for the place index resource.
-     *            Used to specify a resource across all AWS.
+     *            Used to specify a resource across AWS.
      *            </p>
      *            <ul>
      *            <li>
