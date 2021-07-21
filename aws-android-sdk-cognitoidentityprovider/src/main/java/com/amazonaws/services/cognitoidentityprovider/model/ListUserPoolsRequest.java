@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the user pools associated with an AWS account.
+ * Lists the user pools associated with an account.
  * </p>
  */
 public class ListUserPoolsRequest extends AmazonWebServiceRequest implements Serializable {

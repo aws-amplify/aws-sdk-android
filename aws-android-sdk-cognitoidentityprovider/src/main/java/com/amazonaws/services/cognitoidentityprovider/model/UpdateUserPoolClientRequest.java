@@ -298,8 +298,8 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      */
@@ -2312,17 +2312,17 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      *
      * @return <p>
      *         The allowed OAuth scopes. Possible values provided by OAuth are:
      *         <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     *         <code>profile</code>. Possible values provided by AWS are:
-     *         <code>aws.cognito.signin.user.admin</code>. Custom scopes created
-     *         in Resource Servers are also supported.
+     *         <code>profile</code>. Possible values provided by Amazon Web
+     *         Services are: <code>aws.cognito.signin.user.admin</code>. Custom
+     *         scopes created in Resource Servers are also supported.
      *         </p>
      */
     public java.util.List<String> getAllowedOAuthScopes() {
@@ -2333,8 +2333,8 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      *
@@ -2342,7 +2342,7 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            The allowed OAuth scopes. Possible values provided by OAuth
      *            are: <code>phone</code>, <code>email</code>,
      *            <code>openid</code>, and <code>profile</code>. Possible values
-     *            provided by AWS are:
+     *            provided by Amazon Web Services are:
      *            <code>aws.cognito.signin.user.admin</code>. Custom scopes
      *            created in Resource Servers are also supported.
      *            </p>
@@ -2360,8 +2360,8 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      * <p>
@@ -2372,7 +2372,7 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            The allowed OAuth scopes. Possible values provided by OAuth
      *            are: <code>phone</code>, <code>email</code>,
      *            <code>openid</code>, and <code>profile</code>. Possible values
-     *            provided by AWS are:
+     *            provided by Amazon Web Services are:
      *            <code>aws.cognito.signin.user.admin</code>. Custom scopes
      *            created in Resource Servers are also supported.
      *            </p>
@@ -2393,8 +2393,8 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The allowed OAuth scopes. Possible values provided by OAuth are:
      * <code>phone</code>, <code>email</code>, <code>openid</code>, and
-     * <code>profile</code>. Possible values provided by AWS are:
-     * <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
+     * <code>profile</code>. Possible values provided by Amazon Web Services
+     * are: <code>aws.cognito.signin.user.admin</code>. Custom scopes created in
      * Resource Servers are also supported.
      * </p>
      * <p>
@@ -2405,7 +2405,7 @@ public class UpdateUserPoolClientRequest extends AmazonWebServiceRequest impleme
      *            The allowed OAuth scopes. Possible values provided by OAuth
      *            are: <code>phone</code>, <code>email</code>,
      *            <code>openid</code>, and <code>profile</code>. Possible values
-     *            provided by AWS are:
+     *            provided by Amazon Web Services are:
      *            <code>aws.cognito.signin.user.admin</code>. Custom scopes
      *            created in Resource Servers are also supported.
      *            </p>
