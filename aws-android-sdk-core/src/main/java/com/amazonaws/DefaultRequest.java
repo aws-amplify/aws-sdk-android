@@ -76,6 +76,9 @@ public class DefaultRequest<T> implements Request<T> {
     /** An optional prefix to prepend to the request endpoint host */
     private String hostPrefix;
 
+    /** encoded uri resource path */
+    private String encodedUriResourcePath;
+
     /**
      * Constructs a new DefaultRequest with the specified service name and the
      * original, user facing request object.
@@ -370,5 +373,15 @@ public class DefaultRequest<T> implements Request<T> {
     @Override
     public void setStreaming(boolean streaming) {
         this.streaming = streaming;
+    }
+
+    @Override
+    public String getEncodedUriResourcePath() {
+        return encodedUriResourcePath;
+    }
+
+    @Override
+    public void setEncodedResourcePath(String encodedUriResourcePath) {
+        this.encodedUriResourcePath = encodedUriResourcePath;
     }
 }

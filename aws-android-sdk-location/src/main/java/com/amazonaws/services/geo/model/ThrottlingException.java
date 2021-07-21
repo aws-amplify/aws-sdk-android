@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was denied due to request throttling.
+ * The request was denied because of request throttling.
  * </p>
  */
 public class ThrottlingException extends AmazonServiceException {

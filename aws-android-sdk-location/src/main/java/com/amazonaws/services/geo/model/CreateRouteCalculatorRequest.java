@@ -73,12 +73,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * </p>
      * </note>
      * <p>
-     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * Valid values include:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * For more information about data providers, see <a href=
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     * >Esri details on street networks and traffic coverage</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     * >HERE car routing coverage</a> and <a href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     * >HERE truck routing coverage</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      */
     private String dataSource;
@@ -357,12 +381,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * </p>
      * </note>
      * <p>
-     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * Valid values include:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * For more information about data providers, see <a href=
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     * >Esri details on street networks and traffic coverage</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     * >HERE car routing coverage</a> and <a href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     * >HERE truck routing coverage</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      *
      * @return <p>
@@ -375,12 +423,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *         </p>
      *         </note>
      *         <p>
-     *         Valid Values: <code>Esri</code> | <code>Here</code>
+     *         Valid values include:
      *         </p>
+     *         <ul>
+     *         <li>
      *         <p>
-     *         For more information about data providers, see <a href=
+     *         <code>Esri</code> – For additional information about <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     *         >Esri</a>'s coverage in your region of interest, see <a href=
+     *         "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     *         >Esri details on street networks and traffic coverage</a>.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>Here</code> – For additional information about <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     *         >HERE Technologies</a>'s coverage in your region of interest, see
+     *         <a href=
+     *         "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     *         >HERE car routing coverage</a> and <a href=
+     *         "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     *         >HERE truck routing coverage</a>.
+     *         </p>
+     *         </li>
+     *         </ul>
+     *         <p>
+     *         For additional information , see <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *         >Amazon Location Service data providers</a>.
+     *         >Data providers</a> on the <i>Amazon Location Service Developer
+     *         Guide</i>.
      *         </p>
      */
     public String getDataSource() {
@@ -398,12 +470,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * </p>
      * </note>
      * <p>
-     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * Valid values include:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * For more information about data providers, see <a href=
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     * >Esri details on street networks and traffic coverage</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     * >HERE car routing coverage</a> and <a href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     * >HERE truck routing coverage</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      *
      * @param dataSource <p>
@@ -416,12 +512,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            </note>
      *            <p>
-     *            Valid Values: <code>Esri</code> | <code>Here</code>
+     *            Valid values include:
      *            </p>
+     *            <ul>
+     *            <li>
      *            <p>
-     *            For more information about data providers, see <a href=
+     *            <code>Esri</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     *            >Esri</a>'s coverage in your region of interest, see <a href=
+     *            "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     *            >Esri details on street networks and traffic coverage</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Here</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            see <a href=
+     *            "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     *            >HERE car routing coverage</a> and <a href=
+     *            "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     *            >HERE truck routing coverage</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For additional information , see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers</a>.
+     *            >Data providers</a> on the <i>Amazon Location Service
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setDataSource(String dataSource) {
@@ -439,12 +559,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * </p>
      * </note>
      * <p>
-     * Valid Values: <code>Esri</code> | <code>Here</code>
+     * Valid values include:
      * </p>
+     * <ul>
+     * <li>
      * <p>
-     * For more information about data providers, see <a href=
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     * >Esri details on street networks and traffic coverage</a>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     * >HERE car routing coverage</a> and <a href=
+     * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     * >HERE truck routing coverage</a>.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -460,12 +604,36 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            </note>
      *            <p>
-     *            Valid Values: <code>Esri</code> | <code>Here</code>
+     *            Valid values include:
      *            </p>
+     *            <ul>
+     *            <li>
      *            <p>
-     *            For more information about data providers, see <a href=
+     *            <code>Esri</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     *            >Esri</a>'s coverage in your region of interest, see <a href=
+     *            "https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm"
+     *            >Esri details on street networks and traffic coverage</a>.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>Here</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            see <a href=
+     *            "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
+     *            >HERE car routing coverage</a> and <a href=
+     *            "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
+     *            >HERE truck routing coverage</a>.
+     *            </p>
+     *            </li>
+     *            </ul>
+     *            <p>
+     *            For additional information , see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers</a>.
+     *            >Data providers</a> on the <i>Amazon Location Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

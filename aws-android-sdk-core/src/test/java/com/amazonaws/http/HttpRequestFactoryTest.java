@@ -35,12 +35,12 @@ public class HttpRequestFactoryTest {
     private Request<?> request;
     private ClientConfiguration clientConfiguration;
     private ExecutionContext context;
-
+    private final String endpoint = "https://s3.amazonaws.com";
     @Before
     public void setup() {
         factory = new HttpRequestFactory();
         request = new DefaultRequest<Object>("dummy");
-        request.setEndpoint(URI.create("https://s3.amazonaws.com"));
+        request.setEndpoint(URI.create(endpoint));
         clientConfiguration = new ClientConfiguration();
         context = new ExecutionContext();
     }
@@ -70,4 +70,15 @@ public class HttpRequestFactoryTest {
         final Map<String, String> headers = httpRequest.getHeaders();
         assertEquals("accept encoding is gzip", "gzip", headers.get("Accept-Encoding"));
     }
+
+    @Test
+    public void testHttpRequestCreatedWithEncodedResourcePath() {
+        String expectedResourcePath = "/android%2F/sdk";
+        String expectedUri = endpoint+expectedResourcePath;
+        clientConfiguration.withEnableGzip(true);
+        request.setEncodedResourcePath(expectedResourcePath);
+        final HttpRequest httpRequest = factory.createHttpRequest(request, clientConfiguration, context);
+        assertEquals(URI.create(expectedUri), httpRequest.getUri());
+    }
+
 }
