@@ -250,8 +250,14 @@ public class AWS4Signer extends AbstractAWSSigner
 
     protected String getCanonicalRequest(Request<?> request, String contentSha256) {
         /* This would url-encode the resource path for the first time */
-        final String path = HttpUtils.appendUri(request.getEndpoint().getPath(),
-                request.getResourcePath());
+        String path;
+        if(request.getEncodedUriResourcePath()!= null){
+            path = HttpUtils.appendUriEncoded(request.getEndpoint().getPath(),
+                    request.getEncodedUriResourcePath());
+        }else{
+            path = HttpUtils.appendUri(request.getEndpoint().getPath(),
+                    request.getResourcePath());
+        };
 
         final String canonicalRequest =
                 request.getHttpMethod().toString() + "\n" +
