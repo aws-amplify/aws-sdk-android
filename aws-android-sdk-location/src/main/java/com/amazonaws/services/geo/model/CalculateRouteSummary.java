@@ -91,7 +91,7 @@ public class CalculateRouteSummary implements Serializable {
      * <p>
      * Specifies a geographical box surrounding a route. Used to zoom into a
      * route when displaying it in a map. For example,
-     * <code>[min x, min y, max x, max y]</code>
+     * <code>[min x, min y, max x, max y]</code>.
      * </p>
      * <p>
      * The first 2 <code>bbox</code> parameters describe the lower southwest
@@ -548,7 +548,7 @@ public class CalculateRouteSummary implements Serializable {
      * <p>
      * Specifies a geographical box surrounding a route. Used to zoom into a
      * route when displaying it in a map. For example,
-     * <code>[min x, min y, max x, max y]</code>
+     * <code>[min x, min y, max x, max y]</code>.
      * </p>
      * <p>
      * The first 2 <code>bbox</code> parameters describe the lower southwest
@@ -590,7 +590,7 @@ public class CalculateRouteSummary implements Serializable {
      * @return <p>
      *         Specifies a geographical box surrounding a route. Used to zoom
      *         into a route when displaying it in a map. For example,
-     *         <code>[min x, min y, max x, max y]</code>
+     *         <code>[min x, min y, max x, max y]</code>.
      *         </p>
      *         <p>
      *         The first 2 <code>bbox</code> parameters describe the lower
@@ -637,7 +637,7 @@ public class CalculateRouteSummary implements Serializable {
      * <p>
      * Specifies a geographical box surrounding a route. Used to zoom into a
      * route when displaying it in a map. For example,
-     * <code>[min x, min y, max x, max y]</code>
+     * <code>[min x, min y, max x, max y]</code>.
      * </p>
      * <p>
      * The first 2 <code>bbox</code> parameters describe the lower southwest
@@ -679,7 +679,7 @@ public class CalculateRouteSummary implements Serializable {
      * @param routeBBox <p>
      *            Specifies a geographical box surrounding a route. Used to zoom
      *            into a route when displaying it in a map. For example,
-     *            <code>[min x, min y, max x, max y]</code>
+     *            <code>[min x, min y, max x, max y]</code>.
      *            </p>
      *            <p>
      *            The first 2 <code>bbox</code> parameters describe the lower
@@ -731,7 +731,7 @@ public class CalculateRouteSummary implements Serializable {
      * <p>
      * Specifies a geographical box surrounding a route. Used to zoom into a
      * route when displaying it in a map. For example,
-     * <code>[min x, min y, max x, max y]</code>
+     * <code>[min x, min y, max x, max y]</code>.
      * </p>
      * <p>
      * The first 2 <code>bbox</code> parameters describe the lower southwest
@@ -776,7 +776,7 @@ public class CalculateRouteSummary implements Serializable {
      * @param routeBBox <p>
      *            Specifies a geographical box surrounding a route. Used to zoom
      *            into a route when displaying it in a map. For example,
-     *            <code>[min x, min y, max x, max y]</code>
+     *            <code>[min x, min y, max x, max y]</code>.
      *            </p>
      *            <p>
      *            The first 2 <code>bbox</code> parameters describe the lower
@@ -831,7 +831,7 @@ public class CalculateRouteSummary implements Serializable {
      * <p>
      * Specifies a geographical box surrounding a route. Used to zoom into a
      * route when displaying it in a map. For example,
-     * <code>[min x, min y, max x, max y]</code>
+     * <code>[min x, min y, max x, max y]</code>.
      * </p>
      * <p>
      * The first 2 <code>bbox</code> parameters describe the lower southwest
@@ -876,7 +876,7 @@ public class CalculateRouteSummary implements Serializable {
      * @param routeBBox <p>
      *            Specifies a geographical box surrounding a route. Used to zoom
      *            into a route when displaying it in a map. For example,
-     *            <code>[min x, min y, max x, max y]</code>
+     *            <code>[min x, min y, max x, max y]</code>.
      *            </p>
      *            <p>
      *            The first 2 <code>bbox</code> parameters describe the lower

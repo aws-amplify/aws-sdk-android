@@ -33,7 +33,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> will return an error.
+     * example, entering <code>HERE</code> returns an error.
      * </p>
      * </note>
      * <p>
@@ -42,35 +42,45 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Esri</code>
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     * >Esri details on geocoding coverage</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Here</code>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     * >HERE details on goecoding coverage</a>.
      * </p>
      * <important>
      * <p>
-     * Place index resources using HERE as a data provider can't be used to <a
+     * Place index resources using HERE Technologies as a data provider can't <a
      * href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     * >store</a> results for locations in Japan. For more information, see the
+     * >store results</a> for locations in Japan. For more information, see the
      * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
      * Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      */
     private String dataSource;
 
     /**
      * <p>
-     * Specifies the data storage option for requesting Places.
+     * Specifies the data storage option requesting Places.
      * </p>
      */
     private DataSourceConfiguration dataSourceConfiguration;
@@ -183,7 +193,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> will return an error.
+     * example, entering <code>HERE</code> returns an error.
      * </p>
      * </note>
      * <p>
@@ -192,28 +202,38 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Esri</code>
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     * >Esri details on geocoding coverage</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Here</code>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     * >HERE details on goecoding coverage</a>.
      * </p>
      * <important>
      * <p>
-     * Place index resources using HERE as a data provider can't be used to <a
+     * Place index resources using HERE Technologies as a data provider can't <a
      * href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     * >store</a> results for locations in Japan. For more information, see the
+     * >store results</a> for locations in Japan. For more information, see the
      * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
      * Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      *
      * @return <p>
@@ -222,7 +242,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         <note>
      *         <p>
      *         This field is case-sensitive. Enter the valid values as shown.
-     *         For example, entering <code>HERE</code> will return an error.
+     *         For example, entering <code>HERE</code> returns an error.
      *         </p>
      *         </note>
      *         <p>
@@ -231,28 +251,38 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>Esri</code>
+     *         <code>Esri</code> – For additional information about <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     *         >Esri</a>'s coverage in your region of interest, see <a href=
+     *         "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     *         >Esri details on geocoding coverage</a>.
      *         </p>
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Here</code>
+     *         <code>Here</code> – For additional information about <a href=
+     *         "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     *         >HERE Technologies</a>'s coverage in your region of interest, see
+     *         <a href=
+     *         "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     *         >HERE details on goecoding coverage</a>.
      *         </p>
      *         <important>
      *         <p>
-     *         Place index resources using HERE as a data provider can't be used
-     *         to <a href=
+     *         Place index resources using HERE Technologies as a data provider
+     *         can't <a href=
      *         "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     *         >store</a> results for locations in Japan. For more information,
+     *         >store results</a> for locations in Japan. For more information,
      *         see the <a href="https://aws.amazon.com/service-terms/">AWS
      *         Service Terms</a> for Amazon Location Service.
      *         </p>
      *         </important></li>
      *         </ul>
      *         <p>
-     *         For additional details on data providers, see the <a href=
+     *         For additional information , see <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *         >Amazon Location Service data providers page</a>.
+     *         >Data providers</a> on the <i>Amazon Location Service Developer
+     *         Guide</i>.
      *         </p>
      */
     public String getDataSource() {
@@ -266,7 +296,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> will return an error.
+     * example, entering <code>HERE</code> returns an error.
      * </p>
      * </note>
      * <p>
@@ -275,28 +305,38 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Esri</code>
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     * >Esri details on geocoding coverage</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Here</code>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     * >HERE details on goecoding coverage</a>.
      * </p>
      * <important>
      * <p>
-     * Place index resources using HERE as a data provider can't be used to <a
+     * Place index resources using HERE Technologies as a data provider can't <a
      * href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     * >store</a> results for locations in Japan. For more information, see the
+     * >store results</a> for locations in Japan. For more information, see the
      * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
      * Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      *
      * @param dataSource <p>
@@ -305,7 +345,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <note>
      *            <p>
      *            This field is case-sensitive. Enter the valid values as shown.
-     *            For example, entering <code>HERE</code> will return an error.
+     *            For example, entering <code>HERE</code> returns an error.
      *            </p>
      *            </note>
      *            <p>
@@ -314,19 +354,28 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Esri</code>
+     *            <code>Esri</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     *            >Esri</a>'s coverage in your region of interest, see <a href=
+     *            "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     *            >Esri details on geocoding coverage</a>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Here</code>
+     *            <code>Here</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            see <a href=
+     *            "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     *            >HERE details on goecoding coverage</a>.
      *            </p>
      *            <important>
      *            <p>
-     *            Place index resources using HERE as a data provider can't be
-     *            used to <a href=
+     *            Place index resources using HERE Technologies as a data
+     *            provider can't <a href=
      *            "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     *            >store</a> results for locations in Japan. For more
+     *            >store results</a> for locations in Japan. For more
      *            information, see the <a
      *            href="https://aws.amazon.com/service-terms/">AWS Service
      *            Terms</a> for Amazon Location Service.
@@ -334,9 +383,10 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            </important></li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see the <a href=
+     *            For additional information , see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers page</a>.
+     *            >Data providers</a> on the <i>Amazon Location Service
+     *            Developer Guide</i>.
      *            </p>
      */
     public void setDataSource(String dataSource) {
@@ -350,7 +400,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> will return an error.
+     * example, entering <code>HERE</code> returns an error.
      * </p>
      * </note>
      * <p>
@@ -359,28 +409,38 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>Esri</code>
+     * <code>Esri</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     * >Esri</a>'s coverage in your region of interest, see <a href=
+     * "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     * >Esri details on geocoding coverage</a>.
      * </p>
      * </li>
      * <li>
      * <p>
-     * <code>Here</code>
+     * <code>Here</code> – For additional information about <a href=
+     * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     * >HERE Technologies</a>'s coverage in your region of interest, see <a
+     * href=
+     * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     * >HERE details on goecoding coverage</a>.
      * </p>
      * <important>
      * <p>
-     * Place index resources using HERE as a data provider can't be used to <a
+     * Place index resources using HERE Technologies as a data provider can't <a
      * href=
      * "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     * >store</a> results for locations in Japan. For more information, see the
+     * >store results</a> for locations in Japan. For more information, see the
      * <a href="https://aws.amazon.com/service-terms/">AWS Service Terms</a> for
      * Amazon Location Service.
      * </p>
      * </important></li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional information , see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Data providers</a> on the <i>Amazon Location Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -392,7 +452,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <note>
      *            <p>
      *            This field is case-sensitive. Enter the valid values as shown.
-     *            For example, entering <code>HERE</code> will return an error.
+     *            For example, entering <code>HERE</code> returns an error.
      *            </p>
      *            </note>
      *            <p>
@@ -401,19 +461,28 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>Esri</code>
+     *            <code>Esri</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
+     *            >Esri</a>'s coverage in your region of interest, see <a href=
+     *            "https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm"
+     *            >Esri details on geocoding coverage</a>.
      *            </p>
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Here</code>
+     *            <code>Here</code> – For additional information about <a href=
+     *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
+     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            see <a href=
+     *            "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
+     *            >HERE details on goecoding coverage</a>.
      *            </p>
      *            <important>
      *            <p>
-     *            Place index resources using HERE as a data provider can't be
-     *            used to <a href=
+     *            Place index resources using HERE Technologies as a data
+     *            provider can't <a href=
      *            "https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html"
-     *            >store</a> results for locations in Japan. For more
+     *            >store results</a> for locations in Japan. For more
      *            information, see the <a
      *            href="https://aws.amazon.com/service-terms/">AWS Service
      *            Terms</a> for Amazon Location Service.
@@ -421,9 +490,10 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            </important></li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see the <a href=
+     *            For additional information , see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers page</a>.
+     *            >Data providers</a> on the <i>Amazon Location Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -435,11 +505,11 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the data storage option for requesting Places.
+     * Specifies the data storage option requesting Places.
      * </p>
      *
      * @return <p>
-     *         Specifies the data storage option for requesting Places.
+     *         Specifies the data storage option requesting Places.
      *         </p>
      */
     public DataSourceConfiguration getDataSourceConfiguration() {
@@ -448,11 +518,11 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the data storage option for requesting Places.
+     * Specifies the data storage option requesting Places.
      * </p>
      *
      * @param dataSourceConfiguration <p>
-     *            Specifies the data storage option for requesting Places.
+     *            Specifies the data storage option requesting Places.
      *            </p>
      */
     public void setDataSourceConfiguration(DataSourceConfiguration dataSourceConfiguration) {
@@ -461,14 +531,14 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the data storage option for requesting Places.
+     * Specifies the data storage option requesting Places.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param dataSourceConfiguration <p>
-     *            Specifies the data storage option for requesting Places.
+     *            Specifies the data storage option requesting Places.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

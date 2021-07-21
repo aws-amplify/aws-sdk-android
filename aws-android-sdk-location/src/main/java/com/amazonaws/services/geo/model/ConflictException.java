@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was unsuccessful due to a conflict.
+ * The request was unsuccessful because of a conflict.
  * </p>
  */
 public class ConflictException extends AmazonServiceException {

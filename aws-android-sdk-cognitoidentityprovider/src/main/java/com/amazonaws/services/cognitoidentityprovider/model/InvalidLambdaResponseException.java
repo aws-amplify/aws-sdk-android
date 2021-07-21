@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * This exception is thrown when the Amazon Cognito service encounters an
- * invalid AWS Lambda response.
+ * invalid Lambda response.
  * </p>
  */
 public class InvalidLambdaResponseException extends AmazonServiceException {

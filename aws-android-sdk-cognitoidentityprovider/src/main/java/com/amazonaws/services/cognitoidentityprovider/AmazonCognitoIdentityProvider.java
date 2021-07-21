@@ -209,9 +209,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -575,9 +576,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -822,9 +824,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -886,9 +889,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -1136,9 +1140,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -1529,9 +1534,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -2076,9 +2082,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -2331,9 +2338,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -2451,9 +2459,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -2692,7 +2701,7 @@ public interface AmazonCognitoIdentityProvider {
 
     /**
      * <p>
-     * Lists the user pools associated with an AWS account.
+     * Lists the user pools associated with an account.
      * </p>
      * 
      * @param listUserPoolsRequest <p>
@@ -2786,9 +2795,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -2847,9 +2857,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -3055,9 +3066,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -3140,9 +3152,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -3374,12 +3387,6 @@ public interface AmazonCognitoIdentityProvider {
      * <p>
      * Calling this action requires developer credentials.
      * </p>
-     * <important>
-     * <p>
-     * If you don't provide a value for an attribute, it will be set to the
-     * default value.
-     * </p>
-     * </important>
      * 
      * @param updateGroupRequest
      * @return updateGroupResult The response from the UpdateGroup service
@@ -3477,9 +3484,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -3546,9 +3554,10 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * If you have never used SMS text messages with Amazon Cognito or any other
-     * AWS service, Amazon SNS might place your account in SMS sandbox. In <i>
-     * <a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">
-     * sandbox mode</a> </i>, you’ll have limitations, such as sending messages
+     * Amazon Web Service, Amazon SNS might place your account in SMS sandbox.
+     * In <i> <a
+     * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html"
+     * >sandbox mode</a> </i>, you’ll have limitations, such as sending messages
      * to only verified phone numbers. After testing in the sandbox environment,
      * you can move out of the SMS sandbox and into production. For more
      * information, see <a href=
@@ -3645,7 +3654,7 @@ public interface AmazonCognitoIdentityProvider {
      * <p>
      * A custom domain is used to host the Amazon Cognito hosted UI, which
      * provides sign-up and sign-in pages for your application. When you set up
-     * a custom domain, you provide a certificate that you manage with AWS
+     * a custom domain, you provide a certificate that you manage with
      * Certificate Manager (ACM). When necessary, you can use this operation to
      * change the certificate that you applied to your custom domain.
      * </p>
@@ -3662,7 +3671,7 @@ public interface AmazonCognitoIdentityProvider {
      * </p>
      * <p>
      * When you add your new certificate in ACM, you must choose US East (N.
-     * Virginia) as the AWS Region.
+     * Virginia) as the Region.
      * </p>
      * <p>
      * After you submit your request, Amazon Cognito requires up to 1 hour to

@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * This exception is thrown when a user exceeds the limit for a requested AWS
- * resource.
+ * This exception is thrown when a user exceeds the limit for a requested Amazon
+ * Web Services resource.
  * </p>
  */
 public class LimitExceededException extends AmazonServiceException {
