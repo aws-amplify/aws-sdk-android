@@ -19,18 +19,22 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was unsuccessful because of a conflict.
+ * The operation was denied because the request would exceed the maximum <a
+ * href=
+ * "https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html"
+ * >quota</a> set for Amazon Location Service.
  * </p>
  */
-public class ConflictException extends AmazonServiceException {
+public class ServiceQuotaExceededException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ConflictException with the specified error message.
+     * Constructs a new ServiceQuotaExceededException with the specified error
+     * message.
      *
      * @param message Describes the error encountered.
      */
-    public ConflictException(String message) {
+    public ServiceQuotaExceededException(String message) {
         super(message);
     }
 }
