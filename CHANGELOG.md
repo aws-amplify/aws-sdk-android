@@ -1,3 +1,21 @@
+## [Release 2.27.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.27.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2526)
+- **aws-android-sdk-sns:** update models to latest (#2534)
+- **aws-android-sdk-lambda:** update models to latest (#2535)
+- **aws-android-sdk-core:** update models to latest (#2537)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2541)
+- **aws-android-sdk-location:** update models to latest (#2544)
+- Changes to support encoded resource path coming in request. (#2546)
+
+### Bug Fixes
+- **aws-android-sdk-iot:** Use cert chain to connect to IoT Core (#2521)
+- **aws-android-sdk-cognitoauth:** custom tabs app crash when chrome not available (#2529)
+
+
+[See all changes between 2.26.0 and 2.27.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.26.0...release_v2.27.0)
+
 ## [Release 2.26.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.26.0)
 
 ### Features
