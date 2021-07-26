@@ -30,7 +30,7 @@ public class CalculateRouteResult implements Serializable {
      * along a route such as: <code>StartPosition</code>,
      * <code>EndPosition</code>, <code>Distance</code>,
      * <code>DurationSeconds</code>, <code>Geometry</code>, and
-     * <code>Steps</code>. The number of legs returned corresponds to one less
+     * <code>Steps</code>. The number of legs returned corresponds to one fewer
      * than the total number of positions in the request.
      * </p>
      * <p>
@@ -53,7 +53,7 @@ public class CalculateRouteResult implements Serializable {
      * </ul>
      * <p>
      * A route with a waypoint between the departure and destination position
-     * returns two legs with the positions snapped to a nearby road.:
+     * returns two legs with the positions snapped to a nearby road:
      * </p>
      * <ul>
      * <li>
@@ -76,7 +76,7 @@ public class CalculateRouteResult implements Serializable {
      * <p>
      * Contains information about the whole route, such as:
      * <code>RouteBBox</code>, <code>DataSource</code>, <code>Distance</code>,
-     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>
+     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>.
      * </p>
      */
     private CalculateRouteSummary summary;
@@ -87,7 +87,7 @@ public class CalculateRouteResult implements Serializable {
      * along a route such as: <code>StartPosition</code>,
      * <code>EndPosition</code>, <code>Distance</code>,
      * <code>DurationSeconds</code>, <code>Geometry</code>, and
-     * <code>Steps</code>. The number of legs returned corresponds to one less
+     * <code>Steps</code>. The number of legs returned corresponds to one fewer
      * than the total number of positions in the request.
      * </p>
      * <p>
@@ -110,7 +110,7 @@ public class CalculateRouteResult implements Serializable {
      * </ul>
      * <p>
      * A route with a waypoint between the departure and destination position
-     * returns two legs with the positions snapped to a nearby road.:
+     * returns two legs with the positions snapped to a nearby road:
      * </p>
      * <ul>
      * <li>
@@ -133,7 +133,7 @@ public class CalculateRouteResult implements Serializable {
      *         <code>EndPosition</code>, <code>Distance</code>,
      *         <code>DurationSeconds</code>, <code>Geometry</code>, and
      *         <code>Steps</code>. The number of legs returned corresponds to
-     *         one less than the total number of positions in the request.
+     *         one fewer than the total number of positions in the request.
      *         </p>
      *         <p>
      *         For example, a route with a departure position and destination
@@ -156,7 +156,7 @@ public class CalculateRouteResult implements Serializable {
      *         <p>
      *         A route with a waypoint between the departure and destination
      *         position returns two legs with the positions snapped to a nearby
-     *         road.:
+     *         road:
      *         </p>
      *         <ul>
      *         <li>
@@ -183,7 +183,7 @@ public class CalculateRouteResult implements Serializable {
      * along a route such as: <code>StartPosition</code>,
      * <code>EndPosition</code>, <code>Distance</code>,
      * <code>DurationSeconds</code>, <code>Geometry</code>, and
-     * <code>Steps</code>. The number of legs returned corresponds to one less
+     * <code>Steps</code>. The number of legs returned corresponds to one fewer
      * than the total number of positions in the request.
      * </p>
      * <p>
@@ -206,7 +206,7 @@ public class CalculateRouteResult implements Serializable {
      * </ul>
      * <p>
      * A route with a waypoint between the departure and destination position
-     * returns two legs with the positions snapped to a nearby road.:
+     * returns two legs with the positions snapped to a nearby road:
      * </p>
      * <ul>
      * <li>
@@ -229,7 +229,7 @@ public class CalculateRouteResult implements Serializable {
      *            <code>EndPosition</code>, <code>Distance</code>,
      *            <code>DurationSeconds</code>, <code>Geometry</code>, and
      *            <code>Steps</code>. The number of legs returned corresponds to
-     *            one less than the total number of positions in the request.
+     *            one fewer than the total number of positions in the request.
      *            </p>
      *            <p>
      *            For example, a route with a departure position and destination
@@ -252,7 +252,7 @@ public class CalculateRouteResult implements Serializable {
      *            <p>
      *            A route with a waypoint between the departure and destination
      *            position returns two legs with the positions snapped to a
-     *            nearby road.:
+     *            nearby road:
      *            </p>
      *            <ul>
      *            <li>
@@ -286,7 +286,7 @@ public class CalculateRouteResult implements Serializable {
      * along a route such as: <code>StartPosition</code>,
      * <code>EndPosition</code>, <code>Distance</code>,
      * <code>DurationSeconds</code>, <code>Geometry</code>, and
-     * <code>Steps</code>. The number of legs returned corresponds to one less
+     * <code>Steps</code>. The number of legs returned corresponds to one fewer
      * than the total number of positions in the request.
      * </p>
      * <p>
@@ -309,7 +309,7 @@ public class CalculateRouteResult implements Serializable {
      * </ul>
      * <p>
      * A route with a waypoint between the departure and destination position
-     * returns two legs with the positions snapped to a nearby road.:
+     * returns two legs with the positions snapped to a nearby road:
      * </p>
      * <ul>
      * <li>
@@ -335,7 +335,7 @@ public class CalculateRouteResult implements Serializable {
      *            <code>EndPosition</code>, <code>Distance</code>,
      *            <code>DurationSeconds</code>, <code>Geometry</code>, and
      *            <code>Steps</code>. The number of legs returned corresponds to
-     *            one less than the total number of positions in the request.
+     *            one fewer than the total number of positions in the request.
      *            </p>
      *            <p>
      *            For example, a route with a departure position and destination
@@ -358,7 +358,7 @@ public class CalculateRouteResult implements Serializable {
      *            <p>
      *            A route with a waypoint between the departure and destination
      *            position returns two legs with the positions snapped to a
-     *            nearby road.:
+     *            nearby road:
      *            </p>
      *            <ul>
      *            <li>
@@ -395,7 +395,7 @@ public class CalculateRouteResult implements Serializable {
      * along a route such as: <code>StartPosition</code>,
      * <code>EndPosition</code>, <code>Distance</code>,
      * <code>DurationSeconds</code>, <code>Geometry</code>, and
-     * <code>Steps</code>. The number of legs returned corresponds to one less
+     * <code>Steps</code>. The number of legs returned corresponds to one fewer
      * than the total number of positions in the request.
      * </p>
      * <p>
@@ -418,7 +418,7 @@ public class CalculateRouteResult implements Serializable {
      * </ul>
      * <p>
      * A route with a waypoint between the departure and destination position
-     * returns two legs with the positions snapped to a nearby road.:
+     * returns two legs with the positions snapped to a nearby road:
      * </p>
      * <ul>
      * <li>
@@ -444,7 +444,7 @@ public class CalculateRouteResult implements Serializable {
      *            <code>EndPosition</code>, <code>Distance</code>,
      *            <code>DurationSeconds</code>, <code>Geometry</code>, and
      *            <code>Steps</code>. The number of legs returned corresponds to
-     *            one less than the total number of positions in the request.
+     *            one fewer than the total number of positions in the request.
      *            </p>
      *            <p>
      *            For example, a route with a departure position and destination
@@ -467,7 +467,7 @@ public class CalculateRouteResult implements Serializable {
      *            <p>
      *            A route with a waypoint between the departure and destination
      *            position returns two legs with the positions snapped to a
-     *            nearby road.:
+     *            nearby road:
      *            </p>
      *            <ul>
      *            <li>
@@ -497,14 +497,14 @@ public class CalculateRouteResult implements Serializable {
      * <p>
      * Contains information about the whole route, such as:
      * <code>RouteBBox</code>, <code>DataSource</code>, <code>Distance</code>,
-     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>
+     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>.
      * </p>
      *
      * @return <p>
      *         Contains information about the whole route, such as:
      *         <code>RouteBBox</code>, <code>DataSource</code>,
      *         <code>Distance</code>, <code>DistanceUnit</code>, and
-     *         <code>DurationSeconds</code>
+     *         <code>DurationSeconds</code>.
      *         </p>
      */
     public CalculateRouteSummary getSummary() {
@@ -515,14 +515,14 @@ public class CalculateRouteResult implements Serializable {
      * <p>
      * Contains information about the whole route, such as:
      * <code>RouteBBox</code>, <code>DataSource</code>, <code>Distance</code>,
-     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>
+     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>.
      * </p>
      *
      * @param summary <p>
      *            Contains information about the whole route, such as:
      *            <code>RouteBBox</code>, <code>DataSource</code>,
      *            <code>Distance</code>, <code>DistanceUnit</code>, and
-     *            <code>DurationSeconds</code>
+     *            <code>DurationSeconds</code>.
      *            </p>
      */
     public void setSummary(CalculateRouteSummary summary) {
@@ -533,7 +533,7 @@ public class CalculateRouteResult implements Serializable {
      * <p>
      * Contains information about the whole route, such as:
      * <code>RouteBBox</code>, <code>DataSource</code>, <code>Distance</code>,
-     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>
+     * <code>DistanceUnit</code>, and <code>DurationSeconds</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -543,7 +543,7 @@ public class CalculateRouteResult implements Serializable {
      *            Contains information about the whole route, such as:
      *            <code>RouteBBox</code>, <code>DataSource</code>,
      *            <code>Distance</code>, <code>DistanceUnit</code>, and
-     *            <code>DurationSeconds</code>
+     *            <code>DurationSeconds</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

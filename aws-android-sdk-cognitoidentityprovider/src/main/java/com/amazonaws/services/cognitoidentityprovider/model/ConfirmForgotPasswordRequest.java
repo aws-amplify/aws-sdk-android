@@ -109,16 +109,16 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the ConfirmForgotPassword API action, Amazon
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the ConfirmForgotPassword API action, Amazon
      * Cognito invokes the function that is assigned to the <i>post
      * confirmation</i> trigger. When Amazon Cognito invokes this function, it
      * passes a JSON payload, which the function receives as input. This payload
      * contains a <code>clientMetadata</code> attribute, which provides the data
      * that you assigned to the ClientMetadata parameter in your
-     * ConfirmForgotPassword request. In your function code in AWS Lambda, you
-     * can process the <code>clientMetadata</code> value to enhance your
-     * workflow for your specific needs.
+     * ConfirmForgotPassword request. In your function code in Lambda, you can
+     * process the <code>clientMetadata</code> value to enhance your workflow
+     * for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -135,7 +135,7 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -595,16 +595,16 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the ConfirmForgotPassword API action, Amazon
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the ConfirmForgotPassword API action, Amazon
      * Cognito invokes the function that is assigned to the <i>post
      * confirmation</i> trigger. When Amazon Cognito invokes this function, it
      * passes a JSON payload, which the function receives as input. This payload
      * contains a <code>clientMetadata</code> attribute, which provides the data
      * that you assigned to the ClientMetadata parameter in your
-     * ConfirmForgotPassword request. In your function code in AWS Lambda, you
-     * can process the <code>clientMetadata</code> value to enhance your
-     * workflow for your specific needs.
+     * ConfirmForgotPassword request. In your function code in Lambda, you can
+     * process the <code>clientMetadata</code> value to enhance your workflow
+     * for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -621,7 +621,7 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -645,17 +645,17 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *         any custom workflows that this action triggers.
      *         </p>
      *         <p>
-     *         You create custom workflows by assigning AWS Lambda functions to
-     *         user pool triggers. When you use the ConfirmForgotPassword API
-     *         action, Amazon Cognito invokes the function that is assigned to
-     *         the <i>post confirmation</i> trigger. When Amazon Cognito invokes
+     *         You create custom workflows by assigning Lambda functions to user
+     *         pool triggers. When you use the ConfirmForgotPassword API action,
+     *         Amazon Cognito invokes the function that is assigned to the
+     *         <i>post confirmation</i> trigger. When Amazon Cognito invokes
      *         this function, it passes a JSON payload, which the function
      *         receives as input. This payload contains a
      *         <code>clientMetadata</code> attribute, which provides the data
      *         that you assigned to the ClientMetadata parameter in your
-     *         ConfirmForgotPassword request. In your function code in AWS
-     *         Lambda, you can process the <code>clientMetadata</code> value to
-     *         enhance your workflow for your specific needs.
+     *         ConfirmForgotPassword request. In your function code in Lambda,
+     *         you can process the <code>clientMetadata</code> value to enhance
+     *         your workflow for your specific needs.
      *         </p>
      *         <p>
      *         For more information, see <a href=
@@ -672,10 +672,10 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *         <li>
      *         <p>
      *         Amazon Cognito does not store the ClientMetadata value. This data
-     *         is available only to AWS Lambda triggers that are assigned to a
-     *         user pool to support custom workflows. If your user pool
-     *         configuration does not include triggers, the ClientMetadata
-     *         parameter serves no purpose.
+     *         is available only to Lambda triggers that are assigned to a user
+     *         pool to support custom workflows. If your user pool configuration
+     *         does not include triggers, the ClientMetadata parameter serves no
+     *         purpose.
      *         </p>
      *         </li>
      *         <li>
@@ -702,16 +702,16 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the ConfirmForgotPassword API action, Amazon
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the ConfirmForgotPassword API action, Amazon
      * Cognito invokes the function that is assigned to the <i>post
      * confirmation</i> trigger. When Amazon Cognito invokes this function, it
      * passes a JSON payload, which the function receives as input. This payload
      * contains a <code>clientMetadata</code> attribute, which provides the data
      * that you assigned to the ClientMetadata parameter in your
-     * ConfirmForgotPassword request. In your function code in AWS Lambda, you
-     * can process the <code>clientMetadata</code> value to enhance your
-     * workflow for your specific needs.
+     * ConfirmForgotPassword request. In your function code in Lambda, you can
+     * process the <code>clientMetadata</code> value to enhance your workflow
+     * for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -728,7 +728,7 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -752,15 +752,15 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *            for any custom workflows that this action triggers.
      *            </p>
      *            <p>
-     *            You create custom workflows by assigning AWS Lambda functions
-     *            to user pool triggers. When you use the ConfirmForgotPassword
-     *            API action, Amazon Cognito invokes the function that is
-     *            assigned to the <i>post confirmation</i> trigger. When Amazon
-     *            Cognito invokes this function, it passes a JSON payload, which
-     *            the function receives as input. This payload contains a
+     *            You create custom workflows by assigning Lambda functions to
+     *            user pool triggers. When you use the ConfirmForgotPassword API
+     *            action, Amazon Cognito invokes the function that is assigned
+     *            to the <i>post confirmation</i> trigger. When Amazon Cognito
+     *            invokes this function, it passes a JSON payload, which the
+     *            function receives as input. This payload contains a
      *            <code>clientMetadata</code> attribute, which provides the data
      *            that you assigned to the ClientMetadata parameter in your
-     *            ConfirmForgotPassword request. In your function code in AWS
+     *            ConfirmForgotPassword request. In your function code in
      *            Lambda, you can process the <code>clientMetadata</code> value
      *            to enhance your workflow for your specific needs.
      *            </p>
@@ -779,10 +779,10 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *            <li>
      *            <p>
      *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to AWS Lambda triggers that are
-     *            assigned to a user pool to support custom workflows. If your
-     *            user pool configuration does not include triggers, the
-     *            ClientMetadata parameter serves no purpose.
+     *            data is available only to Lambda triggers that are assigned to
+     *            a user pool to support custom workflows. If your user pool
+     *            configuration does not include triggers, the ClientMetadata
+     *            parameter serves no purpose.
      *            </p>
      *            </li>
      *            <li>
@@ -809,16 +809,16 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the ConfirmForgotPassword API action, Amazon
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the ConfirmForgotPassword API action, Amazon
      * Cognito invokes the function that is assigned to the <i>post
      * confirmation</i> trigger. When Amazon Cognito invokes this function, it
      * passes a JSON payload, which the function receives as input. This payload
      * contains a <code>clientMetadata</code> attribute, which provides the data
      * that you assigned to the ClientMetadata parameter in your
-     * ConfirmForgotPassword request. In your function code in AWS Lambda, you
-     * can process the <code>clientMetadata</code> value to enhance your
-     * workflow for your specific needs.
+     * ConfirmForgotPassword request. In your function code in Lambda, you can
+     * process the <code>clientMetadata</code> value to enhance your workflow
+     * for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -835,7 +835,7 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>
@@ -862,15 +862,15 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *            for any custom workflows that this action triggers.
      *            </p>
      *            <p>
-     *            You create custom workflows by assigning AWS Lambda functions
-     *            to user pool triggers. When you use the ConfirmForgotPassword
-     *            API action, Amazon Cognito invokes the function that is
-     *            assigned to the <i>post confirmation</i> trigger. When Amazon
-     *            Cognito invokes this function, it passes a JSON payload, which
-     *            the function receives as input. This payload contains a
+     *            You create custom workflows by assigning Lambda functions to
+     *            user pool triggers. When you use the ConfirmForgotPassword API
+     *            action, Amazon Cognito invokes the function that is assigned
+     *            to the <i>post confirmation</i> trigger. When Amazon Cognito
+     *            invokes this function, it passes a JSON payload, which the
+     *            function receives as input. This payload contains a
      *            <code>clientMetadata</code> attribute, which provides the data
      *            that you assigned to the ClientMetadata parameter in your
-     *            ConfirmForgotPassword request. In your function code in AWS
+     *            ConfirmForgotPassword request. In your function code in
      *            Lambda, you can process the <code>clientMetadata</code> value
      *            to enhance your workflow for your specific needs.
      *            </p>
@@ -889,10 +889,10 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      *            <li>
      *            <p>
      *            Amazon Cognito does not store the ClientMetadata value. This
-     *            data is available only to AWS Lambda triggers that are
-     *            assigned to a user pool to support custom workflows. If your
-     *            user pool configuration does not include triggers, the
-     *            ClientMetadata parameter serves no purpose.
+     *            data is available only to Lambda triggers that are assigned to
+     *            a user pool to support custom workflows. If your user pool
+     *            configuration does not include triggers, the ClientMetadata
+     *            parameter serves no purpose.
      *            </p>
      *            </li>
      *            <li>
@@ -923,16 +923,16 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * custom workflows that this action triggers.
      * </p>
      * <p>
-     * You create custom workflows by assigning AWS Lambda functions to user
-     * pool triggers. When you use the ConfirmForgotPassword API action, Amazon
+     * You create custom workflows by assigning Lambda functions to user pool
+     * triggers. When you use the ConfirmForgotPassword API action, Amazon
      * Cognito invokes the function that is assigned to the <i>post
      * confirmation</i> trigger. When Amazon Cognito invokes this function, it
      * passes a JSON payload, which the function receives as input. This payload
      * contains a <code>clientMetadata</code> attribute, which provides the data
      * that you assigned to the ClientMetadata parameter in your
-     * ConfirmForgotPassword request. In your function code in AWS Lambda, you
-     * can process the <code>clientMetadata</code> value to enhance your
-     * workflow for your specific needs.
+     * ConfirmForgotPassword request. In your function code in Lambda, you can
+     * process the <code>clientMetadata</code> value to enhance your workflow
+     * for your specific needs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -949,7 +949,7 @@ public class ConfirmForgotPasswordRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * Amazon Cognito does not store the ClientMetadata value. This data is
-     * available only to AWS Lambda triggers that are assigned to a user pool to
+     * available only to Lambda triggers that are assigned to a user pool to
      * support custom workflows. If your user pool configuration does not
      * include triggers, the ClientMetadata parameter serves no purpose.
      * </p>

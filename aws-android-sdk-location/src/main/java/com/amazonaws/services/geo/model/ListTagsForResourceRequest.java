@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the tags for the specified Amazon Location Service resource.
+ * Returns a list of tags that are applied to the specified Amazon Location
+ * resource.
  * </p>
  */
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
@@ -30,6 +31,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * The Amazon Resource Name (ARN) of the resource whose tags you want to
      * retrieve.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -44,6 +53,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * The Amazon Resource Name (ARN) of the resource whose tags you want to
      * retrieve.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -55,6 +72,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      *         The Amazon Resource Name (ARN) of the resource whose tags you
      *         want to retrieve.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public String getResourceArn() {
         return resourceArn;
@@ -65,6 +90,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * The Amazon Resource Name (ARN) of the resource whose tags you want to
      * retrieve.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 1600<br/>
@@ -76,6 +109,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      *            The Amazon Resource Name (ARN) of the resource whose tags you
      *            want to retrieve.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setResourceArn(String resourceArn) {
         this.resourceArn = resourceArn;
@@ -86,6 +127,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * The Amazon Resource Name (ARN) of the resource whose tags you want to
      * retrieve.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example:
+     * <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -100,6 +149,14 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      *            The Amazon Resource Name (ARN) of the resource whose tags you
      *            want to retrieve.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

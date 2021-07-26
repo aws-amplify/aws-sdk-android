@@ -53,8 +53,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used when you need
-     * to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all AWS.
      * </p>
      * <ul>
      * <li>
@@ -323,8 +323,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used when you need
-     * to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all AWS.
      * </p>
      * <ul>
      * <li>
@@ -342,8 +342,8 @@ public class DescribeMapResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) for the map resource. Used when
-     *         you need to specify a resource across all AWS.
+     *         The Amazon Resource Name (ARN) for the map resource. Used to
+     *         specify a resource across all AWS.
      *         </p>
      *         <ul>
      *         <li>
@@ -360,8 +360,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used when you need
-     * to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all AWS.
      * </p>
      * <ul>
      * <li>
@@ -379,8 +379,8 @@ public class DescribeMapResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param mapArn <p>
-     *            The Amazon Resource Name (ARN) for the map resource. Used when
-     *            you need to specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) for the map resource. Used to
+     *            specify a resource across all AWS.
      *            </p>
      *            <ul>
      *            <li>
@@ -397,8 +397,8 @@ public class DescribeMapResult implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the map resource. Used when you need
-     * to specify a resource across all AWS.
+     * The Amazon Resource Name (ARN) for the map resource. Used to specify a
+     * resource across all AWS.
      * </p>
      * <ul>
      * <li>
@@ -419,8 +419,8 @@ public class DescribeMapResult implements Serializable {
      * 9]+)*)?){2}:([^/].*)?$<br/>
      *
      * @param mapArn <p>
-     *            The Amazon Resource Name (ARN) for the map resource. Used when
-     *            you need to specify a resource across all AWS.
+     *            The Amazon Resource Name (ARN) for the map resource. Used to
+     *            specify a resource across all AWS.
      *            </p>
      *            <ul>
      *            <li>

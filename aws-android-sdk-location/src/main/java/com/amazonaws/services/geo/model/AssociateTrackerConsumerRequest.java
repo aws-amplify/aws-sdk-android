@@ -25,6 +25,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This allows the tracker resource to communicate location data to the linked
  * geofence collection.
  * </p>
+ * <p>
+ * You can associate up to five geofence collections to each tracker resource.
+ * </p>
  * <note>
  * <p>
  * Currently not supported — Cross-account configurations, such as creating

@@ -224,4 +224,13 @@ public class HttpUtilsTest {
         Assert.assertEquals(HttpUtils.appendUri(host, resourcePath, false),
                 "foo.com/aws//android/sdk");
     }
+
+    @Test
+    public void testAppendEncodedUri() {
+        final String host = "foo.com";
+        final String resourcePath = "/android%2F/sdk";
+        Assert.assertEquals(HttpUtils.appendUriEncoded(host, resourcePath),
+                "foo.com/android%2F/sdk");
+    }
+
 }
