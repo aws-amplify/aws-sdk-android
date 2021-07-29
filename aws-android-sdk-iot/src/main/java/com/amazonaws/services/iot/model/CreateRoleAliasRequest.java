@@ -53,7 +53,7 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      */
     private Integer credentialDurationSeconds;
 
@@ -200,7 +200,7 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @return <p>
      *         How long (in seconds) the credentials will be valid.
@@ -216,7 +216,7 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @param credentialDurationSeconds <p>
      *            How long (in seconds) the credentials will be valid.
@@ -235,7 +235,7 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>900 - 3600<br/>
+     * <b>Range: </b>900 - 43200<br/>
      *
      * @param credentialDurationSeconds <p>
      *            How long (in seconds) the credentials will be valid.
