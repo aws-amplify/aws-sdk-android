@@ -1631,6 +1631,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     userpoolLL.globalSignOut(globalSignOutRequest);
                 }
                 if (signOutOptions.isInvalidateTokens()) {
+                    if (userpool != null) {
+                        userpool.getCurrentUser().revokeTokens();
+                    }
                     if (hostedUI != null) {
                         if (signOutOptions.getBrowserPackage() != null) {
                             hostedUI.setBrowserPackage(signOutOptions.getBrowserPackage());
