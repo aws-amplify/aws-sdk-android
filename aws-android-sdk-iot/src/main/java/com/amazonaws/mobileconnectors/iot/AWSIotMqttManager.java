@@ -1665,7 +1665,7 @@ public class AWSIotMqttManager {
      * if the client is unable to publish (offline).
      * Behavior on a full queue is defined by fullQueueKeepsOldest.  If this is true
      * we keep the oldest values so we skip adding on a full queue.  If this is false
-     * we want the queue to always have the latest values so pop the first element out
+     * we want the queue to always have the latest values so poll the first element out
      * and append.
      *
      * @param data  byte array of message payload.
@@ -1685,7 +1685,7 @@ public class AWSIotMqttManager {
                         new AmazonClientException("Failed to publish the message. Queue is full and set to hold onto the oldest messages."));
                 return;
             } else {
-                mqttMessageQueue.remove(0);
+                mqttMessageQueue.poll();
             }
         }
 
