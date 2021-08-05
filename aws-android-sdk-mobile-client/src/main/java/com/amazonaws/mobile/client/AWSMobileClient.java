@@ -3223,7 +3223,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 final Map<String, String> tokensBody = new HashMap<String, String>();
                 try {
                     tokensUriBuilder = Uri.parse(hostedUIJSON.getString("TokenURI")).buildUpon();
-                    if (hostedUIOptions.getSignInQueryParameters() != null) {
+                    if (hostedUIOptions.getTokenQueryParameters() != null) {
                         for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
                             tokensUriBuilder.appendQueryParameter(e.getKey(), e.getValue());
                         }
