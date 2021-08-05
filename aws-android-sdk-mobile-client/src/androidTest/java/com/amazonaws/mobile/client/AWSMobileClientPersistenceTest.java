@@ -271,6 +271,12 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
         assertNotNull(auth.getUserSub());
 
         deleteAllEncryptionKeys();
+        
+        try {
+            auth.signOut();
+        } catch (Exception ex) {
+            fail(ex.getMessage());
+        }
 
         assertNull(auth.getUserSub());
 
