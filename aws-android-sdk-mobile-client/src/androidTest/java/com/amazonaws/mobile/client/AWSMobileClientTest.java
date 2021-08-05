@@ -31,6 +31,16 @@ import com.amazonaws.mobile.client.results.Token;
 import com.amazonaws.mobile.client.results.Tokens;
 import com.amazonaws.mobile.client.results.UserCodeDeliveryDetails;
 import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoDevice;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserDetails;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserPool;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUserSession;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.AuthenticationContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.ChallengeContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.continuations.MultiFactorAuthenticationContinuation;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.AuthenticationHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetailsHandler;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.cognitoidentity.AmazonCognitoIdentity;
@@ -50,6 +60,7 @@ import com.amazonaws.services.cognitoidentityprovider.model.InvalidParameterExce
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersRequest;
 import com.amazonaws.services.cognitoidentityprovider.model.ListUsersResult;
 import com.amazonaws.services.cognitoidentityprovider.model.MessageActionType;
+import com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException;
 import com.amazonaws.services.cognitoidentityprovider.model.ResourceNotFoundException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserNotConfirmedException;
 import com.amazonaws.services.cognitoidentityprovider.model.UserType;
@@ -104,6 +115,7 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     private static final int THROTTLED_DELAY = 5000;
 
     static AmazonCognitoIdentityProvider userpoolLL;
+    static CognitoUserPool userPool;
 
     static {
         try {
@@ -117,6 +129,8 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     static Regions clientRegion = Regions.US_WEST_2;
     static String userPoolId;
     static String identityPoolId;
+    static String clientId;
+    static String clientSecret;
 
     Context appContext;
     AWSMobileClient auth;
@@ -226,12 +240,16 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         assertNotNull(userPoolConfig);
         clientRegion = Regions.fromName(userPoolConfig.getString("Region"));
         userPoolId = userPoolConfig.getString("PoolId");
+        clientId = userPoolConfig.getString("AppClientId");
+        clientSecret = userPoolConfig.optString("AppClientSecret");
 
         JSONObject identityPoolConfig =
                 awsConfiguration.optJsonObject("CredentialsProvider").getJSONObject(
                         "CognitoIdentity").getJSONObject("Default");
         assertNotNull(identityPoolConfig);
         identityPoolId = identityPoolConfig.getString("PoolId");
+
+        userPool = new CognitoUserPool(appContext, userPoolId, clientId, clientSecret, clientRegion);
 
         deleteAllUsers(userPoolId);
         createUserViaAdminAPI(userPoolId, USERNAME_ADMIN_API_USER, EMAIL_ADMIN_API_USER);
@@ -414,6 +432,124 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
     }
 
     @Test
+    public void testRevokeTokenWithSignedInUser() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        assertTrue("isSignedIn is true", auth.isSignedIn());
+
+        final AtomicReference<Boolean> tokenRevoked = new AtomicReference<Boolean>(false);
+        final CountDownLatch revokeTokenLatch = new CountDownLatch(2);
+        final CognitoUser user = userPool.getCurrentUser();
+        user.getSession(new AuthenticationHandler() {
+            @Override
+            public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+                revokeTokenLatch.countDown();
+            }
+
+            @Override
+            public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
+
+            }
+
+            @Override
+            public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
+
+            }
+
+            @Override
+            public void authenticationChallenge(ChallengeContinuation continuation) {
+
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                exception.printStackTrace();
+                fail("Sign in failed.");
+            }
+        });
+
+        user.getDetails(new GetDetailsHandler() {
+            @Override
+            public void onSuccess(CognitoUserDetails cognitoUserDetails) {
+                revokeTokenLatch.countDown();
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                exception.printStackTrace();
+                fail("Get user details failed.");
+            }
+        });
+
+        try {
+            user.revokeTokens();
+            tokenRevoked.set(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        revokeTokenLatch.await(5, TimeUnit.SECONDS);
+        assertTrue(tokenRevoked.get());
+
+        user.getDetails(new GetDetailsHandler() {
+            @Override
+            public void onSuccess(CognitoUserDetails cognitoUserDetails) {
+                fail("Request to get user details should fail with NotAuthorizedException after token is revoked.");
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                assertTrue(exception instanceof NotAuthorizedException);
+            }
+        });
+    }
+
+    @Test
+    public void testRevokeTokenWithSignedOutUser() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        assertTrue("isSignedIn is true", auth.isSignedIn());
+
+        final CountDownLatch revokeTokenLatch = new CountDownLatch(1);
+        final CognitoUser user = userPool.getCurrentUser();
+        user.getSession(new AuthenticationHandler() {
+            @Override
+            public void onSuccess(CognitoUserSession userSession, CognitoDevice newDevice) {
+                revokeTokenLatch.countDown();
+            }
+
+            @Override
+            public void getAuthenticationDetails(AuthenticationContinuation authenticationContinuation, String userId) {
+
+            }
+
+            @Override
+            public void getMFACode(MultiFactorAuthenticationContinuation continuation) {
+
+            }
+
+            @Override
+            public void authenticationChallenge(ChallengeContinuation continuation) {
+
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                exception.printStackTrace();
+                fail("Sign in failed.");
+            }
+        });
+        revokeTokenLatch.await(5, TimeUnit.SECONDS);
+
+        auth.signOut();
+        assertFalse("isSignedIn is false", auth.isSignedIn());
+
+        try {
+            user.revokeTokens();
+        } catch (Exception e) {
+            assertTrue(e instanceof InvalidParameterException);
+        }
+    }
+
+    @Test
     public void testIdentityId() throws Exception {
         try {
             createUser(AWSMobileClient.getInstance(), userPoolId, USERNAME, PASSWORD, EMAIL);
@@ -522,6 +658,28 @@ public class AWSMobileClientTest extends AWSMobileClientTestBase {
         } catch (Exception e) {
             assertEquals("getTokens does not support retrieving tokens while signed-out", e.getMessage());
         }
+    }
+
+    @Test
+    public void testSignedOutWithRevokeToken() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        assertTrue("isSignedIn is true", auth.isSignedIn());
+
+        String tokenWithOriginJTI = "eyJraWQiOiIwTmxhQUhzbmtwQW5zbHBzUFhHWkJKcVJoR3E5WTkwckwweXpaWUV1OTJZPSIsImFsZyI6IlJTMjU2In0.eyJvcmlnaW5fanRpIjoiMzM2MWFkZDMtMDIwNS00NTY1LTk0MjQtMDQ3YWQ2N2Y0MjhmZWwifQ.a";
+        setAccessToken(appContext, clientId, username, tokenWithOriginJTI);
+        auth.signOut();
+        assertFalse("isSignedIn is false", auth.isSignedIn());
+    }
+
+    @Test
+    public void testSignedOutWithoutRevokeToken() throws Exception {
+        auth.signIn(username, PASSWORD, null);
+        assertTrue("isSignedIn is true", auth.isSignedIn());
+
+        String tokenWithSub = "eyJraWQiOiJzU01EYmZyQ21pb3FrbEVRZFprNXl6UmszekxSTlo4aGlGMnlxdVFZbVM0PSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI3YTQyNTFmMS04MmEyLTQxNzgtOWZhOS1mNmE3MTc1RCJ9.a";
+        setAccessToken(appContext, clientId, username, tokenWithSub);
+        auth.signOut();
+        assertFalse("isSignedIn is false", auth.isSignedIn());
     }
 
     @Test(expected = com.amazonaws.services.cognitoidentityprovider.model.NotAuthorizedException.class)
