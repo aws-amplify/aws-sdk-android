@@ -194,6 +194,11 @@ public class CognitoUser {
     private CognitoUserSession cipSession;
 
     /**
+     * The UUID of the authenticated user. This is not the same as userId.
+     */
+    private String userSub;
+
+    /**
      * Lock for getCachedSession.
      */
     private static final Object GET_CACHED_SESSION_LOCK = new Object();
@@ -222,7 +227,7 @@ public class CognitoUser {
         this.clientSecret = clientSecret;
         this.secretHash = secretHash;
         this.deviceKey = null;
-        cipSession = null;
+        this.cipSession = null;
     }
 
     /**
@@ -241,6 +246,24 @@ public class CognitoUser {
      */
     public String getUserPoolId() {
         return pool.getUserPoolId();
+    }
+
+    /**
+     * Returns the subject of this user.
+     *
+     * @return subject claim of this user.
+     */
+    public String getUserSub() {
+        if (userSub != null) {
+            return userSub;
+        }
+        try {
+            final String token = getCachedSession().getAccessToken().getJWTToken();
+            userSub = CognitoJWTParser.getClaim(token, "sub");
+            return userSub;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

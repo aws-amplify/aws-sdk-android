@@ -845,6 +845,24 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
     }
 
     /**
+     * Returns the Cognito User Sub attribute of the current access token.
+     * @return The sub attribute of the current access token.
+     * @see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html#amazon-cognito-user-pools-using-the-access-token">Using the Access Token</a>
+     * from Cognito documentation.
+     */
+    @AnyThread
+    public String getUserSub() {
+        try {
+            if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
+                return userpool.getCurrentUser().getUserSub();
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
      * Performs a check on the current UserState. When online, this method will attempt to
      * refresh tokens when they expired. Failing a refresh may cause the UserState to change.
      *
