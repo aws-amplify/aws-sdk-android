@@ -2331,13 +2331,11 @@ public class AWSIotMqttManagerTest {
         
         // queue is now full - publish one more message to ensure queue keeps newest messages
         testClient.publishString("test payload 10", "test/topic", AWSIotMqttQos.QOS0);
-        assertEquals(11, testClient.getMqttMessageQueue().size());
+        assertEquals(10, testClient.getMqttMessageQueue().size());
 
         // verify the payload
-        checkOfflinePublishingQueue(testClient);
-
-        testClient.getMqttMessageQueue().poll().getMessage();
-        assertEquals(10, testClient.getMqttMessageQueue().size());
+        // 0th (oldest) message has been removed so it should contain 1-10
+        checkOfflinePublishingQueue(testClient, 1);
     }
 
     @Test
@@ -3138,16 +3136,18 @@ public class AWSIotMqttManagerTest {
      * This method checks if the offline publishing queue has the right
      * payload data. The queue is cloned in order to be polled for verification.
      */
-    private void checkOfflinePublishingQueue(AWSIotMqttManager testClient) {
-        ConcurrentLinkedQueue<AWSIotMqttQueueMessage> queue = 
+    private void checkOfflinePublishingQueue(AWSIotMqttManager testClient, int start) {
+        ConcurrentLinkedQueue<AWSIotMqttQueueMessage> queue =
             new ConcurrentLinkedQueue<AWSIotMqttQueueMessage>(testClient.getMqttMessageQueue());
-        int i = 0;
+        int i = start;
         while (!queue.isEmpty()) {
             AWSIotMqttQueueMessage message = queue.poll();
             System.out.println("Message = " + new String(message.getMessage()));
-            assertEquals("test payload " + i,
-                  new String(message.getMessage()));
-            i++;
+            assertEquals("test payload " + i++, new String(message.getMessage()));
         }
+    }
+
+    private void checkOfflinePublishingQueue(AWSIotMqttManager testClient) {
+        checkOfflinePublishingQueue(testClient, 0);
     }
 }
