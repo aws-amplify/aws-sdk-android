@@ -31,6 +31,11 @@ class MediaJsonMarshaller {
             jsonWriter.name("MediaFileUri");
             jsonWriter.value(mediaFileUri);
         }
+        if (media.getRedactedMediaFileUri() != null) {
+            String redactedMediaFileUri = media.getRedactedMediaFileUri();
+            jsonWriter.name("RedactedMediaFileUri");
+            jsonWriter.value(redactedMediaFileUri);
+        }
         jsonWriter.endObject();
     }
 
