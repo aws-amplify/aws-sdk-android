@@ -17,29 +17,31 @@ package com.amazonaws.services.connect.model;
 
 import java.io.Serializable;
 
+import com.amazonaws.AmazonWebServiceRequest;
+
 /**
  * <p>
- * Information about of the hours of operation.
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
+ * Creates hours of operation.
  * </p>
  */
-public class HoursOfOperation implements Serializable {
+public class CreateHoursOfOperationRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier for the hours of operation.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
      */
-    private String hoursOfOperationId;
+    private String instanceId;
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the hours of operation.
-     * </p>
-     */
-    private String hoursOfOperationArn;
-
-    /**
-     * <p>
-     * The name for the hours of operation.
+     * The name of the hours of operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -49,7 +51,7 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The description for the hours of operation.
+     * The description of the hours of operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -59,14 +61,15 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The time zone for the hours of operation.
+     * The time zone of the hours of operation.
      * </p>
      */
     private String timeZone;
 
     /**
      * <p>
-     * Configuration information for the hours of operation.
+     * Configuration information for the hours of operation: day, start time,
+     * and end time.
      * </p>
      */
     private java.util.List<HoursOfOperationConfig> config;
@@ -80,104 +83,74 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The identifier for the hours of operation.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier for the hours of operation.
+     *         The identifier of the Amazon Connect instance. You can find the
+     *         instanceId in the ARN of the instance.
      *         </p>
      */
-    public String getHoursOfOperationId() {
-        return hoursOfOperationId;
+    public String getInstanceId() {
+        return instanceId;
     }
 
     /**
      * <p>
-     * The identifier for the hours of operation.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
      *
-     * @param hoursOfOperationId <p>
-     *            The identifier for the hours of operation.
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      */
-    public void setHoursOfOperationId(String hoursOfOperationId) {
-        this.hoursOfOperationId = hoursOfOperationId;
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
     }
 
     /**
      * <p>
-     * The identifier for the hours of operation.
+     * The identifier of the Amazon Connect instance. You can find the
+     * instanceId in the ARN of the instance.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
      *
-     * @param hoursOfOperationId <p>
-     *            The identifier for the hours of operation.
+     * @param instanceId <p>
+     *            The identifier of the Amazon Connect instance. You can find
+     *            the instanceId in the ARN of the instance.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withHoursOfOperationId(String hoursOfOperationId) {
-        this.hoursOfOperationId = hoursOfOperationId;
+    public CreateHoursOfOperationRequest withInstanceId(String instanceId) {
+        this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) for the hours of operation.
-     * </p>
-     *
-     * @return <p>
-     *         The Amazon Resource Name (ARN) for the hours of operation.
-     *         </p>
-     */
-    public String getHoursOfOperationArn() {
-        return hoursOfOperationArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the hours of operation.
-     * </p>
-     *
-     * @param hoursOfOperationArn <p>
-     *            The Amazon Resource Name (ARN) for the hours of operation.
-     *            </p>
-     */
-    public void setHoursOfOperationArn(String hoursOfOperationArn) {
-        this.hoursOfOperationArn = hoursOfOperationArn;
-    }
-
-    /**
-     * <p>
-     * The Amazon Resource Name (ARN) for the hours of operation.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param hoursOfOperationArn <p>
-     *            The Amazon Resource Name (ARN) for the hours of operation.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public HoursOfOperation withHoursOfOperationArn(String hoursOfOperationArn) {
-        this.hoursOfOperationArn = hoursOfOperationArn;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name for the hours of operation.
+     * The name of the hours of operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         The name for the hours of operation.
+     *         The name of the hours of operation.
      *         </p>
      */
     public String getName() {
@@ -186,14 +159,14 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The name for the hours of operation.
+     * The name of the hours of operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name for the hours of operation.
+     *            The name of the hours of operation.
      *            </p>
      */
     public void setName(String name) {
@@ -202,7 +175,7 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The name for the hours of operation.
+     * The name of the hours of operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -212,26 +185,26 @@ public class HoursOfOperation implements Serializable {
      * <b>Length: </b>1 - 127<br/>
      *
      * @param name <p>
-     *            The name for the hours of operation.
+     *            The name of the hours of operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withName(String name) {
+    public CreateHoursOfOperationRequest withName(String name) {
         this.name = name;
         return this;
     }
 
     /**
      * <p>
-     * The description for the hours of operation.
+     * The description of the hours of operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 250<br/>
      *
      * @return <p>
-     *         The description for the hours of operation.
+     *         The description of the hours of operation.
      *         </p>
      */
     public String getDescription() {
@@ -240,14 +213,14 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The description for the hours of operation.
+     * The description of the hours of operation.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
-     *            The description for the hours of operation.
+     *            The description of the hours of operation.
      *            </p>
      */
     public void setDescription(String description) {
@@ -256,7 +229,7 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The description for the hours of operation.
+     * The description of the hours of operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -266,23 +239,23 @@ public class HoursOfOperation implements Serializable {
      * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
-     *            The description for the hours of operation.
+     *            The description of the hours of operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withDescription(String description) {
+    public CreateHoursOfOperationRequest withDescription(String description) {
         this.description = description;
         return this;
     }
 
     /**
      * <p>
-     * The time zone for the hours of operation.
+     * The time zone of the hours of operation.
      * </p>
      *
      * @return <p>
-     *         The time zone for the hours of operation.
+     *         The time zone of the hours of operation.
      *         </p>
      */
     public String getTimeZone() {
@@ -291,11 +264,11 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The time zone for the hours of operation.
+     * The time zone of the hours of operation.
      * </p>
      *
      * @param timeZone <p>
-     *            The time zone for the hours of operation.
+     *            The time zone of the hours of operation.
      *            </p>
      */
     public void setTimeZone(String timeZone) {
@@ -304,30 +277,32 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * The time zone for the hours of operation.
+     * The time zone of the hours of operation.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param timeZone <p>
-     *            The time zone for the hours of operation.
+     *            The time zone of the hours of operation.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withTimeZone(String timeZone) {
+    public CreateHoursOfOperationRequest withTimeZone(String timeZone) {
         this.timeZone = timeZone;
         return this;
     }
 
     /**
      * <p>
-     * Configuration information for the hours of operation.
+     * Configuration information for the hours of operation: day, start time,
+     * and end time.
      * </p>
      *
      * @return <p>
-     *         Configuration information for the hours of operation.
+     *         Configuration information for the hours of operation: day, start
+     *         time, and end time.
      *         </p>
      */
     public java.util.List<HoursOfOperationConfig> getConfig() {
@@ -336,11 +311,13 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * Configuration information for the hours of operation.
+     * Configuration information for the hours of operation: day, start time,
+     * and end time.
      * </p>
      *
      * @param config <p>
-     *            Configuration information for the hours of operation.
+     *            Configuration information for the hours of operation: day,
+     *            start time, and end time.
      *            </p>
      */
     public void setConfig(java.util.Collection<HoursOfOperationConfig> config) {
@@ -354,19 +331,21 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * Configuration information for the hours of operation.
+     * Configuration information for the hours of operation: day, start time,
+     * and end time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param config <p>
-     *            Configuration information for the hours of operation.
+     *            Configuration information for the hours of operation: day,
+     *            start time, and end time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withConfig(HoursOfOperationConfig... config) {
+    public CreateHoursOfOperationRequest withConfig(HoursOfOperationConfig... config) {
         if (getConfig() == null) {
             this.config = new java.util.ArrayList<HoursOfOperationConfig>(config.length);
         }
@@ -378,19 +357,22 @@ public class HoursOfOperation implements Serializable {
 
     /**
      * <p>
-     * Configuration information for the hours of operation.
+     * Configuration information for the hours of operation: day, start time,
+     * and end time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param config <p>
-     *            Configuration information for the hours of operation.
+     *            Configuration information for the hours of operation: day,
+     *            start time, and end time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withConfig(java.util.Collection<HoursOfOperationConfig> config) {
+    public CreateHoursOfOperationRequest withConfig(
+            java.util.Collection<HoursOfOperationConfig> config) {
         setConfig(config);
         return this;
     }
@@ -435,7 +417,7 @@ public class HoursOfOperation implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation withTags(java.util.Map<String, String> tags) {
+    public CreateHoursOfOperationRequest withTags(java.util.Map<String, String> tags) {
         this.tags = tags;
         return this;
     }
@@ -453,7 +435,7 @@ public class HoursOfOperation implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public HoursOfOperation addTagsEntry(String key, String value) {
+    public CreateHoursOfOperationRequest addTagsEntry(String key, String value) {
         if (null == this.tags) {
             this.tags = new java.util.HashMap<String, String>();
         }
@@ -470,7 +452,7 @@ public class HoursOfOperation implements Serializable {
      * Returns a reference to this object so that method calls can be chained
      * together.
      */
-    public HoursOfOperation clearTagsEntries() {
+    public CreateHoursOfOperationRequest clearTagsEntries() {
         this.tags = null;
         return this;
     }
@@ -486,10 +468,8 @@ public class HoursOfOperation implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getHoursOfOperationId() != null)
-            sb.append("HoursOfOperationId: " + getHoursOfOperationId() + ",");
-        if (getHoursOfOperationArn() != null)
-            sb.append("HoursOfOperationArn: " + getHoursOfOperationArn() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getDescription() != null)
@@ -509,10 +489,7 @@ public class HoursOfOperation implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode
-                + ((getHoursOfOperationId() == null) ? 0 : getHoursOfOperationId().hashCode());
-        hashCode = prime * hashCode
-                + ((getHoursOfOperationArn() == null) ? 0 : getHoursOfOperationArn().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
@@ -529,19 +506,14 @@ public class HoursOfOperation implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof HoursOfOperation == false)
+        if (obj instanceof CreateHoursOfOperationRequest == false)
             return false;
-        HoursOfOperation other = (HoursOfOperation) obj;
+        CreateHoursOfOperationRequest other = (CreateHoursOfOperationRequest) obj;
 
-        if (other.getHoursOfOperationId() == null ^ this.getHoursOfOperationId() == null)
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
-        if (other.getHoursOfOperationId() != null
-                && other.getHoursOfOperationId().equals(this.getHoursOfOperationId()) == false)
-            return false;
-        if (other.getHoursOfOperationArn() == null ^ this.getHoursOfOperationArn() == null)
-            return false;
-        if (other.getHoursOfOperationArn() != null
-                && other.getHoursOfOperationArn().equals(this.getHoursOfOperationArn()) == false)
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         if (other.getName() == null ^ this.getName() == null)
             return false;
