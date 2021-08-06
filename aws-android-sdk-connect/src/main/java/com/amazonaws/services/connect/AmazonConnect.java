@@ -353,6 +353,36 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates an agent status for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createAgentStatusRequest
+     * @return createAgentStatusResult The response from the CreateAgentStatus
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateAgentStatusResult createAgentStatus(CreateAgentStatusRequest createAgentStatusRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a contact flow for the specified Amazon Connect instance.
      * </p>
      * <p>
@@ -381,6 +411,38 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     CreateContactFlowResult createContactFlow(CreateContactFlowRequest createContactFlowRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates hours of operation.
+     * </p>
+     * 
+     * @param createHoursOfOperationRequest
+     * @return createHoursOfOperationResult The response from the
+     *         CreateHoursOfOperation service method, as returned by Amazon
+     *         Connect.
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateHoursOfOperationResult createHoursOfOperation(
+            CreateHoursOfOperationRequest createHoursOfOperationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -621,6 +683,32 @@ public interface AmazonConnect {
      * change.
      * </p>
      * <p>
+     * Deletes an hours of operation.
+     * </p>
+     * 
+     * @param deleteHoursOfOperationRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteHoursOfOperation(DeleteHoursOfOperationRequest deleteHoursOfOperationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Deletes the Amazon Connect instance.
      * </p>
      * <p>
@@ -764,6 +852,36 @@ public interface AmazonConnect {
      */
     void deleteUserHierarchyGroup(DeleteUserHierarchyGroupRequest deleteUserHierarchyGroupRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes an agent status.
+     * </p>
+     * 
+     * @param describeAgentStatusRequest
+     * @return describeAgentStatusResult The response from the
+     *         DescribeAgentStatus service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeAgentStatusResult describeAgentStatus(
+            DescribeAgentStatusRequest describeAgentStatusRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -1414,6 +1532,34 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     GetMetricDataResult getMetricData(GetMetricDataRequest getMetricDataRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists agent statuses.
+     * </p>
+     * 
+     * @param listAgentStatusesRequest
+     * @return listAgentStatusesResult The response from the ListAgentStatuses
+     *         service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListAgentStatusesResult listAgentStatuses(ListAgentStatusesRequest listAgentStatusesRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -2405,7 +2551,7 @@ public interface AmazonConnect {
      * </p>
      * <p>
      * The supported resource types are users, routing profiles, queues, quick
-     * connects, and contact flows.
+     * connects, contact flows, agent status, and hours of operation.
      * </p>
      * <p>
      * For sample policies that use tags, see <a href=
@@ -2452,6 +2598,34 @@ public interface AmazonConnect {
      */
     void untagResource(UntagResourceRequest untagResourceRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates agent status.
+     * </p>
+     * 
+     * @param updateAgentStatusRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws LimitExceededException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateAgentStatus(UpdateAgentStatusRequest updateAgentStatusRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -2560,6 +2734,33 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void updateContactFlowName(UpdateContactFlowNameRequest updateContactFlowNameRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates the hours of operation.
+     * </p>
+     * 
+     * @param updateHoursOfOperationRequest
+     * @throws DuplicateResourceException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateHoursOfOperation(UpdateHoursOfOperationRequest updateHoursOfOperationRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
