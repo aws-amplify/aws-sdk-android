@@ -259,6 +259,89 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Creates an analytics category. Amazon Transcribe applies the conditions
+     * specified by your analytics categories to your call analytics jobs. For
+     * each analytics category, you specify one or more rules. For example, you
+     * can specify a rule that the customer sentiment was neutral or negative
+     * within that category. If you start a call analytics job, Amazon
+     * Transcribe applies the category to the analytics job that you've
+     * specified.
+     * </p>
+     * 
+     * @param createCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         CreateCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateCallAnalyticsCategoryResult> createCallAnalyticsCategoryAsync(
+            final CreateCallAnalyticsCategoryRequest createCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateCallAnalyticsCategoryResult>() {
+            public CreateCallAnalyticsCategoryResult call() throws Exception {
+                return createCallAnalyticsCategory(createCallAnalyticsCategoryRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Creates an analytics category. Amazon Transcribe applies the conditions
+     * specified by your analytics categories to your call analytics jobs. For
+     * each analytics category, you specify one or more rules. For example, you
+     * can specify a rule that the customer sentiment was neutral or negative
+     * within that category. If you start a call analytics job, Amazon
+     * Transcribe applies the category to the analytics job that you've
+     * specified.
+     * </p>
+     * 
+     * @param createCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         CreateCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<CreateCallAnalyticsCategoryResult> createCallAnalyticsCategoryAsync(
+            final CreateCallAnalyticsCategoryRequest createCallAnalyticsCategoryRequest,
+            final AsyncHandler<CreateCallAnalyticsCategoryRequest, CreateCallAnalyticsCategoryResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<CreateCallAnalyticsCategoryResult>() {
+            public CreateCallAnalyticsCategoryResult call() throws Exception {
+                CreateCallAnalyticsCategoryResult result = null;
+                try {
+                    result = createCallAnalyticsCategory(createCallAnalyticsCategoryRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(createCallAnalyticsCategoryRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Creates a new custom language model. Use Amazon S3 prefixes to provide
      * the location of your input files. The time it takes to create your model
      * depends on the size of your training data.
@@ -546,6 +629,146 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(createVocabularyFilterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a call analytics category using its name.
+     * </p>
+     * 
+     * @param deleteCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteCallAnalyticsCategoryResult> deleteCallAnalyticsCategoryAsync(
+            final DeleteCallAnalyticsCategoryRequest deleteCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteCallAnalyticsCategoryResult>() {
+            public DeleteCallAnalyticsCategoryResult call() throws Exception {
+                return deleteCallAnalyticsCategory(deleteCallAnalyticsCategoryRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a call analytics category using its name.
+     * </p>
+     * 
+     * @param deleteCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteCallAnalyticsCategoryResult> deleteCallAnalyticsCategoryAsync(
+            final DeleteCallAnalyticsCategoryRequest deleteCallAnalyticsCategoryRequest,
+            final AsyncHandler<DeleteCallAnalyticsCategoryRequest, DeleteCallAnalyticsCategoryResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteCallAnalyticsCategoryResult>() {
+            public DeleteCallAnalyticsCategoryResult call() throws Exception {
+                DeleteCallAnalyticsCategoryResult result = null;
+                try {
+                    result = deleteCallAnalyticsCategory(deleteCallAnalyticsCategoryRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteCallAnalyticsCategoryRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a call analytics job using its name.
+     * </p>
+     * 
+     * @param deleteCallAnalyticsJobRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteCallAnalyticsJobResult> deleteCallAnalyticsJobAsync(
+            final DeleteCallAnalyticsJobRequest deleteCallAnalyticsJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteCallAnalyticsJobResult>() {
+            public DeleteCallAnalyticsJobResult call() throws Exception {
+                return deleteCallAnalyticsJob(deleteCallAnalyticsJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Deletes a call analytics job using its name.
+     * </p>
+     * 
+     * @param deleteCallAnalyticsJobRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<DeleteCallAnalyticsJobResult> deleteCallAnalyticsJobAsync(
+            final DeleteCallAnalyticsJobRequest deleteCallAnalyticsJobRequest,
+            final AsyncHandler<DeleteCallAnalyticsJobRequest, DeleteCallAnalyticsJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<DeleteCallAnalyticsJobResult>() {
+            public DeleteCallAnalyticsJobResult call() throws Exception {
+                DeleteCallAnalyticsJobResult result = null;
+                try {
+                    result = deleteCallAnalyticsJob(deleteCallAnalyticsJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(deleteCallAnalyticsJobRequest, result);
                 return result;
             }
         });
@@ -983,12 +1206,13 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
     /**
      * <p>
      * Gets information about a single custom language model. Use this
-     * information to see details about the language model in your AWS account.
-     * You can also see whether the base language model used to create your
-     * custom language model has been updated. If Amazon Transcribe has updated
-     * the base model, you can create a new custom language model using the
-     * updated base model. If the language model wasn't created, you can use
-     * this operation to understand why Amazon Transcribe couldn't create it.
+     * information to see details about the language model in your Amazon Web
+     * Services account. You can also see whether the base language model used
+     * to create your custom language model has been updated. If Amazon
+     * Transcribe has updated the base model, you can create a new custom
+     * language model using the updated base model. If the language model wasn't
+     * created, you can use this operation to understand why Amazon Transcribe
+     * couldn't create it.
      * </p>
      * 
      * @param describeLanguageModelRequest
@@ -1020,12 +1244,13 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
     /**
      * <p>
      * Gets information about a single custom language model. Use this
-     * information to see details about the language model in your AWS account.
-     * You can also see whether the base language model used to create your
-     * custom language model has been updated. If Amazon Transcribe has updated
-     * the base model, you can create a new custom language model using the
-     * updated base model. If the language model wasn't created, you can use
-     * this operation to understand why Amazon Transcribe couldn't create it.
+     * information to see details about the language model in your Amazon Web
+     * Services account. You can also see whether the base language model used
+     * to create your custom language model has been updated. If Amazon
+     * Transcribe has updated the base model, you can create a new custom
+     * language model using the updated base model. If the language model wasn't
+     * created, you can use this operation to understand why Amazon Transcribe
+     * couldn't create it.
      * </p>
      * 
      * @param describeLanguageModelRequest
@@ -1058,6 +1283,160 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(describeLanguageModelRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a call analytics category.
+     * </p>
+     * 
+     * @param getCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         GetCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetCallAnalyticsCategoryResult> getCallAnalyticsCategoryAsync(
+            final GetCallAnalyticsCategoryRequest getCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetCallAnalyticsCategoryResult>() {
+            public GetCallAnalyticsCategoryResult call() throws Exception {
+                return getCallAnalyticsCategory(getCallAnalyticsCategoryRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a call analytics category.
+     * </p>
+     * 
+     * @param getCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         GetCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetCallAnalyticsCategoryResult> getCallAnalyticsCategoryAsync(
+            final GetCallAnalyticsCategoryRequest getCallAnalyticsCategoryRequest,
+            final AsyncHandler<GetCallAnalyticsCategoryRequest, GetCallAnalyticsCategoryResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetCallAnalyticsCategoryResult>() {
+            public GetCallAnalyticsCategoryResult call() throws Exception {
+                GetCallAnalyticsCategoryResult result = null;
+                try {
+                    result = getCallAnalyticsCategory(getCallAnalyticsCategoryRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getCallAnalyticsCategoryRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns information about a call analytics job. To see the status of the
+     * job, check the <code>CallAnalyticsJobStatus</code> field. If the status
+     * is <code>COMPLETED</code>, the job is finished and you can find the
+     * results at the location specified in the <code>TranscriptFileUri</code>
+     * field. If you enable personally identifiable information (PII) redaction,
+     * the redacted transcript appears in the
+     * <code>RedactedTranscriptFileUri</code> field.
+     * </p>
+     * 
+     * @param getCallAnalyticsJobRequest
+     * @return A Java Future object containing the response from the
+     *         GetCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetCallAnalyticsJobResult> getCallAnalyticsJobAsync(
+            final GetCallAnalyticsJobRequest getCallAnalyticsJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetCallAnalyticsJobResult>() {
+            public GetCallAnalyticsJobResult call() throws Exception {
+                return getCallAnalyticsJob(getCallAnalyticsJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Returns information about a call analytics job. To see the status of the
+     * job, check the <code>CallAnalyticsJobStatus</code> field. If the status
+     * is <code>COMPLETED</code>, the job is finished and you can find the
+     * results at the location specified in the <code>TranscriptFileUri</code>
+     * field. If you enable personally identifiable information (PII) redaction,
+     * the redacted transcript appears in the
+     * <code>RedactedTranscriptFileUri</code> field.
+     * </p>
+     * 
+     * @param getCallAnalyticsJobRequest
+     * @return A Java Future object containing the response from the
+     *         GetCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetCallAnalyticsJobResult> getCallAnalyticsJobAsync(
+            final GetCallAnalyticsJobRequest getCallAnalyticsJobRequest,
+            final AsyncHandler<GetCallAnalyticsJobRequest, GetCallAnalyticsJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetCallAnalyticsJobResult>() {
+            public GetCallAnalyticsJobResult call() throws Exception {
+                GetCallAnalyticsJobResult result = null;
+                try {
+                    result = getCallAnalyticsJob(getCallAnalyticsJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getCallAnalyticsJobRequest, result);
                 return result;
             }
         });
@@ -1429,6 +1808,152 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(getVocabularyFilterRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides more information about the call analytics categories that you've
+     * created. You can use the information in this list to find a specific
+     * category. You can then use the operation to get more information about
+     * it.
+     * </p>
+     * 
+     * @param listCallAnalyticsCategoriesRequest
+     * @return A Java Future object containing the response from the
+     *         ListCallAnalyticsCategories service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListCallAnalyticsCategoriesResult> listCallAnalyticsCategoriesAsync(
+            final ListCallAnalyticsCategoriesRequest listCallAnalyticsCategoriesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListCallAnalyticsCategoriesResult>() {
+            public ListCallAnalyticsCategoriesResult call() throws Exception {
+                return listCallAnalyticsCategories(listCallAnalyticsCategoriesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Provides more information about the call analytics categories that you've
+     * created. You can use the information in this list to find a specific
+     * category. You can then use the operation to get more information about
+     * it.
+     * </p>
+     * 
+     * @param listCallAnalyticsCategoriesRequest
+     * @return A Java Future object containing the response from the
+     *         ListCallAnalyticsCategories service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListCallAnalyticsCategoriesResult> listCallAnalyticsCategoriesAsync(
+            final ListCallAnalyticsCategoriesRequest listCallAnalyticsCategoriesRequest,
+            final AsyncHandler<ListCallAnalyticsCategoriesRequest, ListCallAnalyticsCategoriesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListCallAnalyticsCategoriesResult>() {
+            public ListCallAnalyticsCategoriesResult call() throws Exception {
+                ListCallAnalyticsCategoriesResult result = null;
+                try {
+                    result = listCallAnalyticsCategories(listCallAnalyticsCategoriesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listCallAnalyticsCategoriesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * List call analytics jobs with a specified status or substring that
+     * matches their names.
+     * </p>
+     * 
+     * @param listCallAnalyticsJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListCallAnalyticsJobs service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListCallAnalyticsJobsResult> listCallAnalyticsJobsAsync(
+            final ListCallAnalyticsJobsRequest listCallAnalyticsJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListCallAnalyticsJobsResult>() {
+            public ListCallAnalyticsJobsResult call() throws Exception {
+                return listCallAnalyticsJobs(listCallAnalyticsJobsRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * List call analytics jobs with a specified status or substring that
+     * matches their names.
+     * </p>
+     * 
+     * @param listCallAnalyticsJobsRequest
+     * @return A Java Future object containing the response from the
+     *         ListCallAnalyticsJobs service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListCallAnalyticsJobsResult> listCallAnalyticsJobsAsync(
+            final ListCallAnalyticsJobsRequest listCallAnalyticsJobsRequest,
+            final AsyncHandler<ListCallAnalyticsJobsRequest, ListCallAnalyticsJobsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListCallAnalyticsJobsResult>() {
+            public ListCallAnalyticsJobsResult call() throws Exception {
+                ListCallAnalyticsJobsResult result = null;
+                try {
+                    result = listCallAnalyticsJobs(listCallAnalyticsJobsRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listCallAnalyticsJobsRequest, result);
                 return result;
             }
         });
@@ -1864,6 +2389,89 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
 
     /**
      * <p>
+     * Starts an asynchronous analytics job that not only transcribes the audio
+     * recording of a caller and agent, but also returns additional insights.
+     * These insights include how quickly or loudly the caller or agent was
+     * speaking. To retrieve additional insights with your analytics jobs,
+     * create categories. A category is a way to classify analytics jobs based
+     * on attributes, such as a customer's sentiment or a particular phrase
+     * being used during the call. For more information, see the operation.
+     * </p>
+     * 
+     * @param startCallAnalyticsJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartCallAnalyticsJobResult> startCallAnalyticsJobAsync(
+            final StartCallAnalyticsJobRequest startCallAnalyticsJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartCallAnalyticsJobResult>() {
+            public StartCallAnalyticsJobResult call() throws Exception {
+                return startCallAnalyticsJob(startCallAnalyticsJobRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Starts an asynchronous analytics job that not only transcribes the audio
+     * recording of a caller and agent, but also returns additional insights.
+     * These insights include how quickly or loudly the caller or agent was
+     * speaking. To retrieve additional insights with your analytics jobs,
+     * create categories. A category is a way to classify analytics jobs based
+     * on attributes, such as a customer's sentiment or a particular phrase
+     * being used during the call. For more information, see the operation.
+     * </p>
+     * 
+     * @param startCallAnalyticsJobRequest
+     * @return A Java Future object containing the response from the
+     *         StartCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartCallAnalyticsJobResult> startCallAnalyticsJobAsync(
+            final StartCallAnalyticsJobRequest startCallAnalyticsJobRequest,
+            final AsyncHandler<StartCallAnalyticsJobRequest, StartCallAnalyticsJobResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartCallAnalyticsJobResult>() {
+            public StartCallAnalyticsJobResult call() throws Exception {
+                StartCallAnalyticsJobResult result = null;
+                try {
+                    result = startCallAnalyticsJob(startCallAnalyticsJobRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startCallAnalyticsJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Starts a batch job to transcribe medical speech to text.
      * </p>
      * 
@@ -1999,6 +2607,83 @@ public class AmazonTranscribeAsyncClient extends AmazonTranscribeClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(startTranscriptionJobRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates the call analytics category with new values. The
+     * <code>UpdateCallAnalyticsCategory</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateCallAnalyticsCategoryResult> updateCallAnalyticsCategoryAsync(
+            final UpdateCallAnalyticsCategoryRequest updateCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateCallAnalyticsCategoryResult>() {
+            public UpdateCallAnalyticsCategoryResult call() throws Exception {
+                return updateCallAnalyticsCategory(updateCallAnalyticsCategoryRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Updates the call analytics category with new values. The
+     * <code>UpdateCallAnalyticsCategory</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateCallAnalyticsCategoryRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<UpdateCallAnalyticsCategoryResult> updateCallAnalyticsCategoryAsync(
+            final UpdateCallAnalyticsCategoryRequest updateCallAnalyticsCategoryRequest,
+            final AsyncHandler<UpdateCallAnalyticsCategoryRequest, UpdateCallAnalyticsCategoryResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<UpdateCallAnalyticsCategoryResult>() {
+            public UpdateCallAnalyticsCategoryResult call() throws Exception {
+                UpdateCallAnalyticsCategoryResult result = null;
+                try {
+                    result = updateCallAnalyticsCategory(updateCallAnalyticsCategoryRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(updateCallAnalyticsCategoryRequest, result);
                 return result;
             }
         });
