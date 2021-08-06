@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Attaches a policy to the specified target.
+ * Attaches the specified policy to the specified principal (certificate or
+ * other credential).
  * </p>
  */
 public class AttachPolicyRequest extends AmazonWebServiceRequest implements Serializable {
