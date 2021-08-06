@@ -351,6 +351,64 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Creates an analytics category. Amazon Transcribe applies the conditions
+     * specified by your analytics categories to your call analytics jobs. For
+     * each analytics category, you specify one or more rules. For example, you
+     * can specify a rule that the customer sentiment was neutral or negative
+     * within that category. If you start a call analytics job, Amazon
+     * Transcribe applies the category to the analytics job that you've
+     * specified.
+     * </p>
+     * 
+     * @param createCallAnalyticsCategoryRequest
+     * @return createCallAnalyticsCategoryResult The response from the
+     *         CreateCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateCallAnalyticsCategoryResult createCallAnalyticsCategory(
+            CreateCallAnalyticsCategoryRequest createCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createCallAnalyticsCategoryRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateCallAnalyticsCategoryRequest> request = null;
+        Response<CreateCallAnalyticsCategoryResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateCallAnalyticsCategoryRequestMarshaller()
+                        .marshall(createCallAnalyticsCategoryRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateCallAnalyticsCategoryResult, JsonUnmarshallerContext> unmarshaller = new CreateCallAnalyticsCategoryResultJsonUnmarshaller();
+            JsonResponseHandler<CreateCallAnalyticsCategoryResult> responseHandler = new JsonResponseHandler<CreateCallAnalyticsCategoryResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a new custom language model. Use Amazon S3 prefixes to provide
      * the location of your input files. The time it takes to create your model
      * depends on the size of your training data.
@@ -548,6 +606,109 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<CreateVocabularyFilterResult, JsonUnmarshallerContext> unmarshaller = new CreateVocabularyFilterResultJsonUnmarshaller();
             JsonResponseHandler<CreateVocabularyFilterResult> responseHandler = new JsonResponseHandler<CreateVocabularyFilterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a call analytics category using its name.
+     * </p>
+     * 
+     * @param deleteCallAnalyticsCategoryRequest
+     * @return deleteCallAnalyticsCategoryResult The response from the
+     *         DeleteCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteCallAnalyticsCategoryResult deleteCallAnalyticsCategory(
+            DeleteCallAnalyticsCategoryRequest deleteCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteCallAnalyticsCategoryRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteCallAnalyticsCategoryRequest> request = null;
+        Response<DeleteCallAnalyticsCategoryResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteCallAnalyticsCategoryRequestMarshaller()
+                        .marshall(deleteCallAnalyticsCategoryRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteCallAnalyticsCategoryResult, JsonUnmarshallerContext> unmarshaller = new DeleteCallAnalyticsCategoryResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteCallAnalyticsCategoryResult> responseHandler = new JsonResponseHandler<DeleteCallAnalyticsCategoryResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Deletes a call analytics job using its name.
+     * </p>
+     * 
+     * @param deleteCallAnalyticsJobRequest
+     * @return deleteCallAnalyticsJobResult The response from the
+     *         DeleteCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteCallAnalyticsJobResult deleteCallAnalyticsJob(
+            DeleteCallAnalyticsJobRequest deleteCallAnalyticsJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteCallAnalyticsJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteCallAnalyticsJobRequest> request = null;
+        Response<DeleteCallAnalyticsJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteCallAnalyticsJobRequestMarshaller()
+                        .marshall(deleteCallAnalyticsJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteCallAnalyticsJobResult, JsonUnmarshallerContext> unmarshaller = new DeleteCallAnalyticsJobResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteCallAnalyticsJobResult> responseHandler = new JsonResponseHandler<DeleteCallAnalyticsJobResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -820,12 +981,13 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
     /**
      * <p>
      * Gets information about a single custom language model. Use this
-     * information to see details about the language model in your AWS account.
-     * You can also see whether the base language model used to create your
-     * custom language model has been updated. If Amazon Transcribe has updated
-     * the base model, you can create a new custom language model using the
-     * updated base model. If the language model wasn't created, you can use
-     * this operation to understand why Amazon Transcribe couldn't create it.
+     * information to see details about the language model in your Amazon Web
+     * Services account. You can also see whether the base language model used
+     * to create your custom language model has been updated. If Amazon
+     * Transcribe has updated the base model, you can create a new custom
+     * language model using the updated base model. If the language model wasn't
+     * created, you can use this operation to understand why Amazon Transcribe
+     * couldn't create it.
      * </p>
      * 
      * @param describeLanguageModelRequest
@@ -864,6 +1026,116 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<DescribeLanguageModelResult, JsonUnmarshallerContext> unmarshaller = new DescribeLanguageModelResultJsonUnmarshaller();
             JsonResponseHandler<DescribeLanguageModelResult> responseHandler = new JsonResponseHandler<DescribeLanguageModelResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Retrieves information about a call analytics category.
+     * </p>
+     * 
+     * @param getCallAnalyticsCategoryRequest
+     * @return getCallAnalyticsCategoryResult The response from the
+     *         GetCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws BadRequestException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetCallAnalyticsCategoryResult getCallAnalyticsCategory(
+            GetCallAnalyticsCategoryRequest getCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getCallAnalyticsCategoryRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetCallAnalyticsCategoryRequest> request = null;
+        Response<GetCallAnalyticsCategoryResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetCallAnalyticsCategoryRequestMarshaller()
+                        .marshall(getCallAnalyticsCategoryRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetCallAnalyticsCategoryResult, JsonUnmarshallerContext> unmarshaller = new GetCallAnalyticsCategoryResultJsonUnmarshaller();
+            JsonResponseHandler<GetCallAnalyticsCategoryResult> responseHandler = new JsonResponseHandler<GetCallAnalyticsCategoryResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Returns information about a call analytics job. To see the status of the
+     * job, check the <code>CallAnalyticsJobStatus</code> field. If the status
+     * is <code>COMPLETED</code>, the job is finished and you can find the
+     * results at the location specified in the <code>TranscriptFileUri</code>
+     * field. If you enable personally identifiable information (PII) redaction,
+     * the redacted transcript appears in the
+     * <code>RedactedTranscriptFileUri</code> field.
+     * </p>
+     * 
+     * @param getCallAnalyticsJobRequest
+     * @return getCallAnalyticsJobResult The response from the
+     *         GetCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetCallAnalyticsJobResult getCallAnalyticsJob(
+            GetCallAnalyticsJobRequest getCallAnalyticsJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getCallAnalyticsJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetCallAnalyticsJobRequest> request = null;
+        Response<GetCallAnalyticsJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetCallAnalyticsJobRequestMarshaller()
+                        .marshall(getCallAnalyticsJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetCallAnalyticsJobResult, JsonUnmarshallerContext> unmarshaller = new GetCallAnalyticsJobResultJsonUnmarshaller();
+            JsonResponseHandler<GetCallAnalyticsJobResult> responseHandler = new JsonResponseHandler<GetCallAnalyticsJobResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1130,6 +1402,112 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<GetVocabularyFilterResult, JsonUnmarshallerContext> unmarshaller = new GetVocabularyFilterResultJsonUnmarshaller();
             JsonResponseHandler<GetVocabularyFilterResult> responseHandler = new JsonResponseHandler<GetVocabularyFilterResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Provides more information about the call analytics categories that you've
+     * created. You can use the information in this list to find a specific
+     * category. You can then use the operation to get more information about
+     * it.
+     * </p>
+     * 
+     * @param listCallAnalyticsCategoriesRequest
+     * @return listCallAnalyticsCategoriesResult The response from the
+     *         ListCallAnalyticsCategories service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListCallAnalyticsCategoriesResult listCallAnalyticsCategories(
+            ListCallAnalyticsCategoriesRequest listCallAnalyticsCategoriesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listCallAnalyticsCategoriesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListCallAnalyticsCategoriesRequest> request = null;
+        Response<ListCallAnalyticsCategoriesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListCallAnalyticsCategoriesRequestMarshaller()
+                        .marshall(listCallAnalyticsCategoriesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListCallAnalyticsCategoriesResult, JsonUnmarshallerContext> unmarshaller = new ListCallAnalyticsCategoriesResultJsonUnmarshaller();
+            JsonResponseHandler<ListCallAnalyticsCategoriesResult> responseHandler = new JsonResponseHandler<ListCallAnalyticsCategoriesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * List call analytics jobs with a specified status or substring that
+     * matches their names.
+     * </p>
+     * 
+     * @param listCallAnalyticsJobsRequest
+     * @return listCallAnalyticsJobsResult The response from the
+     *         ListCallAnalyticsJobs service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListCallAnalyticsJobsResult listCallAnalyticsJobs(
+            ListCallAnalyticsJobsRequest listCallAnalyticsJobsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listCallAnalyticsJobsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListCallAnalyticsJobsRequest> request = null;
+        Response<ListCallAnalyticsJobsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListCallAnalyticsJobsRequestMarshaller()
+                        .marshall(listCallAnalyticsJobsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListCallAnalyticsJobsResult, JsonUnmarshallerContext> unmarshaller = new ListCallAnalyticsJobsResultJsonUnmarshaller();
+            JsonResponseHandler<ListCallAnalyticsJobsResult> responseHandler = new JsonResponseHandler<ListCallAnalyticsJobsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1452,6 +1830,64 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Starts an asynchronous analytics job that not only transcribes the audio
+     * recording of a caller and agent, but also returns additional insights.
+     * These insights include how quickly or loudly the caller or agent was
+     * speaking. To retrieve additional insights with your analytics jobs,
+     * create categories. A category is a way to classify analytics jobs based
+     * on attributes, such as a customer's sentiment or a particular phrase
+     * being used during the call. For more information, see the operation.
+     * </p>
+     * 
+     * @param startCallAnalyticsJobRequest
+     * @return startCallAnalyticsJobResult The response from the
+     *         StartCallAnalyticsJob service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartCallAnalyticsJobResult startCallAnalyticsJob(
+            StartCallAnalyticsJobRequest startCallAnalyticsJobRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startCallAnalyticsJobRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartCallAnalyticsJobRequest> request = null;
+        Response<StartCallAnalyticsJobResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartCallAnalyticsJobRequestMarshaller()
+                        .marshall(startCallAnalyticsJobRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartCallAnalyticsJobResult, JsonUnmarshallerContext> unmarshaller = new StartCallAnalyticsJobResultJsonUnmarshaller();
+            JsonResponseHandler<StartCallAnalyticsJobResult> responseHandler = new JsonResponseHandler<StartCallAnalyticsJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Starts a batch job to transcribe medical speech to text.
      * </p>
      * 
@@ -1543,6 +1979,61 @@ public class AmazonTranscribeClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<StartTranscriptionJobResult, JsonUnmarshallerContext> unmarshaller = new StartTranscriptionJobResultJsonUnmarshaller();
             JsonResponseHandler<StartTranscriptionJobResult> responseHandler = new JsonResponseHandler<StartTranscriptionJobResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the call analytics category with new values. The
+     * <code>UpdateCallAnalyticsCategory</code> operation overwrites all of the
+     * existing information with the values that you provide in the request.
+     * </p>
+     * 
+     * @param updateCallAnalyticsCategoryRequest
+     * @return updateCallAnalyticsCategoryResult The response from the
+     *         UpdateCallAnalyticsCategory service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws NotFoundException
+     * @throws ConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateCallAnalyticsCategoryResult updateCallAnalyticsCategory(
+            UpdateCallAnalyticsCategoryRequest updateCallAnalyticsCategoryRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateCallAnalyticsCategoryRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateCallAnalyticsCategoryRequest> request = null;
+        Response<UpdateCallAnalyticsCategoryResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateCallAnalyticsCategoryRequestMarshaller()
+                        .marshall(updateCallAnalyticsCategoryRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateCallAnalyticsCategoryResult, JsonUnmarshallerContext> unmarshaller = new UpdateCallAnalyticsCategoryResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateCallAnalyticsCategoryResult> responseHandler = new JsonResponseHandler<UpdateCallAnalyticsCategoryResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
