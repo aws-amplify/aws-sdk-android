@@ -30,9 +30,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "
      * <code>.</code>" or "<code>..</code>" by themselves as the job name. The
-     * name must also be unique within an AWS account. If you try to create a
-     * medical transcription job with the same name as a previous medical
-     * transcription job, you get a <code>ConflictException</code> error.
+     * name must also be unique within an Amazon Web Services account. If you
+     * try to create a medical transcription job with the same name as a
+     * previous medical transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -107,8 +108,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * You can specify an AWS Key Management Service (KMS) key to encrypt the
-     * output of your transcription using the
+     * You can specify an Amazon Web Services Key Management Service (KMS) key
+     * to encrypt the output of your transcription using the
      * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
      * KMS key, Amazon Transcribe Medical uses the default Amazon S3 key for
      * server-side encryption of transcripts that are placed in your S3 bucket.
@@ -153,10 +154,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
-     * key used to encrypt the output of the transcription job. The user calling
-     * the <a>StartMedicalTranscriptionJob</a> operation must have permission to
-     * use the specified KMS key.
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+     * Service (KMS) key used to encrypt the output of the transcription job.
+     * The user calling the <a>StartMedicalTranscriptionJob</a> operation must
+     * have permission to use the specified KMS key.
      * </p>
      * <p>
      * You use either of the following to identify a KMS key in the current
@@ -255,9 +256,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "
      * <code>.</code>" or "<code>..</code>" by themselves as the job name. The
-     * name must also be unique within an AWS account. If you try to create a
-     * medical transcription job with the same name as a previous medical
-     * transcription job, you get a <code>ConflictException</code> error.
+     * name must also be unique within an Amazon Web Services account. If you
+     * try to create a medical transcription job with the same name as a
+     * previous medical transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -267,10 +269,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * @return <p>
      *         The name of the medical transcription job. You can't use the
      *         strings "<code>.</code>" or "<code>..</code>" by themselves as
-     *         the job name. The name must also be unique within an AWS account.
-     *         If you try to create a medical transcription job with the same
-     *         name as a previous medical transcription job, you get a
-     *         <code>ConflictException</code> error.
+     *         the job name. The name must also be unique within an Amazon Web
+     *         Services account. If you try to create a medical transcription
+     *         job with the same name as a previous medical transcription job,
+     *         you get a <code>ConflictException</code> error.
      *         </p>
      */
     public String getMedicalTranscriptionJobName() {
@@ -281,9 +283,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "
      * <code>.</code>" or "<code>..</code>" by themselves as the job name. The
-     * name must also be unique within an AWS account. If you try to create a
-     * medical transcription job with the same name as a previous medical
-     * transcription job, you get a <code>ConflictException</code> error.
+     * name must also be unique within an Amazon Web Services account. If you
+     * try to create a medical transcription job with the same name as a
+     * previous medical transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -293,10 +296,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * @param medicalTranscriptionJobName <p>
      *            The name of the medical transcription job. You can't use the
      *            strings "<code>.</code>" or "<code>..</code>" by themselves as
-     *            the job name. The name must also be unique within an AWS
-     *            account. If you try to create a medical transcription job with
-     *            the same name as a previous medical transcription job, you get
-     *            a <code>ConflictException</code> error.
+     *            the job name. The name must also be unique within an Amazon
+     *            Web Services account. If you try to create a medical
+     *            transcription job with the same name as a previous medical
+     *            transcription job, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      */
     public void setMedicalTranscriptionJobName(String medicalTranscriptionJobName) {
@@ -307,9 +311,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <p>
      * The name of the medical transcription job. You can't use the strings "
      * <code>.</code>" or "<code>..</code>" by themselves as the job name. The
-     * name must also be unique within an AWS account. If you try to create a
-     * medical transcription job with the same name as a previous medical
-     * transcription job, you get a <code>ConflictException</code> error.
+     * name must also be unique within an Amazon Web Services account. If you
+     * try to create a medical transcription job with the same name as a
+     * previous medical transcription job, you get a
+     * <code>ConflictException</code> error.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -322,10 +327,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * @param medicalTranscriptionJobName <p>
      *            The name of the medical transcription job. You can't use the
      *            strings "<code>.</code>" or "<code>..</code>" by themselves as
-     *            the job name. The name must also be unique within an AWS
-     *            account. If you try to create a medical transcription job with
-     *            the same name as a previous medical transcription job, you get
-     *            a <code>ConflictException</code> error.
+     *            the job name. The name must also be unique within an Amazon
+     *            Web Services account. If you try to create a medical
+     *            transcription job with the same name as a previous medical
+     *            transcription job, you get a <code>ConflictException</code>
+     *            error.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -738,8 +744,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * You can specify an AWS Key Management Service (KMS) key to encrypt the
-     * output of your transcription using the
+     * You can specify an Amazon Web Services Key Management Service (KMS) key
+     * to encrypt the output of your transcription using the
      * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
      * KMS key, Amazon Transcribe Medical uses the default Amazon S3 key for
      * server-side encryption of transcripts that are placed in your S3 bucket.
@@ -764,8 +770,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *         >Permissions Required for IAM User Roles</a>.
      *         </p>
      *         <p>
-     *         You can specify an AWS Key Management Service (KMS) key to
-     *         encrypt the output of your transcription using the
+     *         You can specify an Amazon Web Services Key Management Service
+     *         (KMS) key to encrypt the output of your transcription using the
      *         <code>OutputEncryptionKMSKeyId</code> parameter. If you don't
      *         specify a KMS key, Amazon Transcribe Medical uses the default
      *         Amazon S3 key for server-side encryption of transcripts that are
@@ -792,8 +798,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * You can specify an AWS Key Management Service (KMS) key to encrypt the
-     * output of your transcription using the
+     * You can specify an Amazon Web Services Key Management Service (KMS) key
+     * to encrypt the output of your transcription using the
      * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
      * KMS key, Amazon Transcribe Medical uses the default Amazon S3 key for
      * server-side encryption of transcripts that are placed in your S3 bucket.
@@ -819,12 +825,12 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            >Permissions Required for IAM User Roles</a>.
      *            </p>
      *            <p>
-     *            You can specify an AWS Key Management Service (KMS) key to
-     *            encrypt the output of your transcription using the
-     *            <code>OutputEncryptionKMSKeyId</code> parameter. If you don't
-     *            specify a KMS key, Amazon Transcribe Medical uses the default
-     *            Amazon S3 key for server-side encryption of transcripts that
-     *            are placed in your S3 bucket.
+     *            You can specify an Amazon Web Services Key Management Service
+     *            (KMS) key to encrypt the output of your transcription using
+     *            the <code>OutputEncryptionKMSKeyId</code> parameter. If you
+     *            don't specify a KMS key, Amazon Transcribe Medical uses the
+     *            default Amazon S3 key for server-side encryption of
+     *            transcripts that are placed in your S3 bucket.
      *            </p>
      */
     public void setOutputBucketName(String outputBucketName) {
@@ -847,8 +853,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * >Permissions Required for IAM User Roles</a>.
      * </p>
      * <p>
-     * You can specify an AWS Key Management Service (KMS) key to encrypt the
-     * output of your transcription using the
+     * You can specify an Amazon Web Services Key Management Service (KMS) key
+     * to encrypt the output of your transcription using the
      * <code>OutputEncryptionKMSKeyId</code> parameter. If you don't specify a
      * KMS key, Amazon Transcribe Medical uses the default Amazon S3 key for
      * server-side encryption of transcripts that are placed in your S3 bucket.
@@ -877,12 +883,12 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            >Permissions Required for IAM User Roles</a>.
      *            </p>
      *            <p>
-     *            You can specify an AWS Key Management Service (KMS) key to
-     *            encrypt the output of your transcription using the
-     *            <code>OutputEncryptionKMSKeyId</code> parameter. If you don't
-     *            specify a KMS key, Amazon Transcribe Medical uses the default
-     *            Amazon S3 key for server-side encryption of transcripts that
-     *            are placed in your S3 bucket.
+     *            You can specify an Amazon Web Services Key Management Service
+     *            (KMS) key to encrypt the output of your transcription using
+     *            the <code>OutputEncryptionKMSKeyId</code> parameter. If you
+     *            don't specify a KMS key, Amazon Transcribe Medical uses the
+     *            default Amazon S3 key for server-side encryption of
+     *            transcripts that are placed in your S3 bucket.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1077,10 +1083,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
-     * key used to encrypt the output of the transcription job. The user calling
-     * the <a>StartMedicalTranscriptionJob</a> operation must have permission to
-     * use the specified KMS key.
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+     * Service (KMS) key used to encrypt the output of the transcription job.
+     * The user calling the <a>StartMedicalTranscriptionJob</a> operation must
+     * have permission to use the specified KMS key.
      * </p>
      * <p>
      * You use either of the following to identify a KMS key in the current
@@ -1131,10 +1137,11 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of the AWS Key Management Service
-     *         (KMS) key used to encrypt the output of the transcription job.
-     *         The user calling the <a>StartMedicalTranscriptionJob</a>
-     *         operation must have permission to use the specified KMS key.
+     *         The Amazon Resource Name (ARN) of the Amazon Web Services Key
+     *         Management Service (KMS) key used to encrypt the output of the
+     *         transcription job. The user calling the
+     *         <a>StartMedicalTranscriptionJob</a> operation must have
+     *         permission to use the specified KMS key.
      *         </p>
      *         <p>
      *         You use either of the following to identify a KMS key in the
@@ -1188,10 +1195,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
-     * key used to encrypt the output of the transcription job. The user calling
-     * the <a>StartMedicalTranscriptionJob</a> operation must have permission to
-     * use the specified KMS key.
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+     * Service (KMS) key used to encrypt the output of the transcription job.
+     * The user calling the <a>StartMedicalTranscriptionJob</a> operation must
+     * have permission to use the specified KMS key.
      * </p>
      * <p>
      * You use either of the following to identify a KMS key in the current
@@ -1242,8 +1249,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
      * @param outputEncryptionKMSKeyId <p>
-     *            The Amazon Resource Name (ARN) of the AWS Key Management
-     *            Service (KMS) key used to encrypt the output of the
+     *            The Amazon Resource Name (ARN) of the Amazon Web Services Key
+     *            Management Service (KMS) key used to encrypt the output of the
      *            transcription job. The user calling the
      *            <a>StartMedicalTranscriptionJob</a> operation must have
      *            permission to use the specified KMS key.
@@ -1300,10 +1307,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS)
-     * key used to encrypt the output of the transcription job. The user calling
-     * the <a>StartMedicalTranscriptionJob</a> operation must have permission to
-     * use the specified KMS key.
+     * The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+     * Service (KMS) key used to encrypt the output of the transcription job.
+     * The user calling the <a>StartMedicalTranscriptionJob</a> operation must
+     * have permission to use the specified KMS key.
      * </p>
      * <p>
      * You use either of the following to identify a KMS key in the current
@@ -1357,8 +1364,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
      * @param outputEncryptionKMSKeyId <p>
-     *            The Amazon Resource Name (ARN) of the AWS Key Management
-     *            Service (KMS) key used to encrypt the output of the
+     *            The Amazon Resource Name (ARN) of the Amazon Web Services Key
+     *            Management Service (KMS) key used to encrypt the output of the
      *            transcription job. The user calling the
      *            <a>StartMedicalTranscriptionJob</a> operation must have
      *            permission to use the specified KMS key.
