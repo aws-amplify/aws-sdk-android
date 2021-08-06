@@ -1611,6 +1611,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     userpoolLL.globalSignOut(globalSignOutRequest);
                 }
                 if (signOutOptions.isInvalidateTokens()) {
+                    if (userpool != null) {
+                        userpool.getCurrentUser().revokeTokens();
+                    }
                     if (hostedUI != null) {
                         if (signOutOptions.getBrowserPackage() != null) {
                             hostedUI.setBrowserPackage(signOutOptions.getBrowserPackage());
@@ -3200,7 +3203,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 final Map<String, String> tokensBody = new HashMap<String, String>();
                 try {
                     tokensUriBuilder = Uri.parse(hostedUIJSON.getString("TokenURI")).buildUpon();
-                    if (hostedUIOptions.getSignInQueryParameters() != null) {
+                    if (hostedUIOptions.getTokenQueryParameters() != null) {
                         for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
                             tokensUriBuilder.appendQueryParameter(e.getKey(), e.getValue());
                         }

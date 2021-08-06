@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -199,6 +199,107 @@ public interface AmazonTextractAsync extends AmazonTextract {
 
     /**
      * <p>
+     * Analyzes an input document for financially related relationships between
+     * text.
+     * </p>
+     * <p>
+     * Information is returned as <code>ExpenseDocuments</code> and seperated as
+     * follows.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>LineItemGroups</code>- A data set containing <code>LineItems</code>
+     * which store information about the lines of text, such as an item
+     * purchased and its price on a receipt.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SummaryFields</code>- Contains all other information a receipt,
+     * such as header information or the vendors name.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param analyzeExpenseRequest
+     * @return A Java Future object containing the response from the
+     *         AnalyzeExpense service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<AnalyzeExpenseResult> analyzeExpenseAsync(AnalyzeExpenseRequest analyzeExpenseRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Analyzes an input document for financially related relationships between
+     * text.
+     * </p>
+     * <p>
+     * Information is returned as <code>ExpenseDocuments</code> and seperated as
+     * follows.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>LineItemGroups</code>- A data set containing <code>LineItems</code>
+     * which store information about the lines of text, such as an item
+     * purchased and its price on a receipt.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>SummaryFields</code>- Contains all other information a receipt,
+     * such as header information or the vendors name.
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param analyzeExpenseRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         AnalyzeExpense service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<AnalyzeExpenseResult> analyzeExpenseAsync(AnalyzeExpenseRequest analyzeExpenseRequest,
+            AsyncHandler<AnalyzeExpenseRequest, AnalyzeExpenseResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Detects text in the input document. Amazon Textract can detect lines of
      * text and the words that make up a line of text. The input document must
      * be an image in JPEG or PNG format. <code>DetectDocumentText</code>
@@ -384,6 +485,7 @@ public interface AmazonTextractAsync extends AmazonTextract {
      * @throws InternalServerErrorException
      * @throws ThrottlingException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -482,6 +584,7 @@ public interface AmazonTextractAsync extends AmazonTextract {
      * @throws InternalServerErrorException
      * @throws ThrottlingException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -553,6 +656,7 @@ public interface AmazonTextractAsync extends AmazonTextract {
      * @throws InternalServerErrorException
      * @throws ThrottlingException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is
@@ -627,6 +731,7 @@ public interface AmazonTextractAsync extends AmazonTextract {
      * @throws InternalServerErrorException
      * @throws ThrottlingException
      * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
      *             handle the response. For example if a network connection is

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ import java.io.Serializable;
 public class S3Object implements Serializable {
     /**
      * <p>
-     * The name of the S3 bucket.
+     * The name of the S3 bucket. Note that the # character is not valid in the
+     * file name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +69,8 @@ public class S3Object implements Serializable {
 
     /**
      * <p>
-     * The name of the S3 bucket.
+     * The name of the S3 bucket. Note that the # character is not valid in the
+     * file name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,7 +78,8 @@ public class S3Object implements Serializable {
      * <b>Pattern: </b>[0-9A-Za-z\.\-_]*<br/>
      *
      * @return <p>
-     *         The name of the S3 bucket.
+     *         The name of the S3 bucket. Note that the # character is not valid
+     *         in the file name.
      *         </p>
      */
     public String getBucket() {
@@ -85,7 +88,8 @@ public class S3Object implements Serializable {
 
     /**
      * <p>
-     * The name of the S3 bucket.
+     * The name of the S3 bucket. Note that the # character is not valid in the
+     * file name.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -93,7 +97,8 @@ public class S3Object implements Serializable {
      * <b>Pattern: </b>[0-9A-Za-z\.\-_]*<br/>
      *
      * @param bucket <p>
-     *            The name of the S3 bucket.
+     *            The name of the S3 bucket. Note that the # character is not
+     *            valid in the file name.
      *            </p>
      */
     public void setBucket(String bucket) {
@@ -102,7 +107,8 @@ public class S3Object implements Serializable {
 
     /**
      * <p>
-     * The name of the S3 bucket.
+     * The name of the S3 bucket. Note that the # character is not valid in the
+     * file name.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -113,7 +119,8 @@ public class S3Object implements Serializable {
      * <b>Pattern: </b>[0-9A-Za-z\.\-_]*<br/>
      *
      * @param bucket <p>
-     *            The name of the S3 bucket.
+     *            The name of the S3 bucket. Note that the # character is not
+     *            valid in the file name.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
