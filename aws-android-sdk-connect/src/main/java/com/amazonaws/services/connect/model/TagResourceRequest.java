@@ -25,7 +25,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The supported resource types are users, routing profiles, queues, quick
- * connects, and contact flows.
+ * connects, contact flows, agent status, and hours of operation.
  * </p>
  * <p>
  * For sample policies that use tags, see <a href=

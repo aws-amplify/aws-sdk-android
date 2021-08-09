@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class CreateMedicalVocabularyResult implements Serializable {
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS account
-     * and is case sensitive.
+     * The name of the vocabulary. The name must be unique within an Amazon Web
+     * Services account and is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -73,8 +73,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS account
-     * and is case sensitive.
+     * The name of the vocabulary. The name must be unique within an Amazon Web
+     * Services account and is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -82,8 +82,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
      * <b>Pattern: </b>^[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>
-     *         The name of the vocabulary. The name must be unique within an AWS
-     *         account and is case sensitive.
+     *         The name of the vocabulary. The name must be unique within an
+     *         Amazon Web Services account and is case sensitive.
      *         </p>
      */
     public String getVocabularyName() {
@@ -92,8 +92,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS account
-     * and is case sensitive.
+     * The name of the vocabulary. The name must be unique within an Amazon Web
+     * Services account and is case sensitive.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,7 +102,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary. The name must be unique within an
-     *            AWS account and is case sensitive.
+     *            Amazon Web Services account and is case sensitive.
      *            </p>
      */
     public void setVocabularyName(String vocabularyName) {
@@ -111,8 +111,8 @@ public class CreateMedicalVocabularyResult implements Serializable {
 
     /**
      * <p>
-     * The name of the vocabulary. The name must be unique within an AWS account
-     * and is case sensitive.
+     * The name of the vocabulary. The name must be unique within an Amazon Web
+     * Services account and is case sensitive.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -124,7 +124,7 @@ public class CreateMedicalVocabularyResult implements Serializable {
      *
      * @param vocabularyName <p>
      *            The name of the vocabulary. The name must be unique within an
-     *            AWS account and is case sensitive.
+     *            Amazon Web Services account and is case sensitive.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

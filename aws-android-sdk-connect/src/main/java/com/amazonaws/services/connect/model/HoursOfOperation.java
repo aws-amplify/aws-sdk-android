@@ -53,7 +53,7 @@ public class HoursOfOperation implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      */
     private String description;
 
@@ -228,7 +228,7 @@ public class HoursOfOperation implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @return <p>
      *         The description for the hours of operation.
@@ -244,7 +244,7 @@ public class HoursOfOperation implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description for the hours of operation.
@@ -263,7 +263,7 @@ public class HoursOfOperation implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>0 - 250<br/>
+     * <b>Length: </b>1 - 250<br/>
      *
      * @param description <p>
      *            The description for the hours of operation.
