@@ -19,21 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Technical Cue Type
+ * Video Color Range
  */
-public enum TechnicalCueType {
+public enum VideoColorRange {
 
-    ColorBars("ColorBars"),
-    EndCredits("EndCredits"),
-    BlackFrames("BlackFrames"),
-    OpeningCredits("OpeningCredits"),
-    StudioLogo("StudioLogo"),
-    Slate("Slate"),
-    Content("Content");
+    FULL("FULL"),
+    LIMITED("LIMITED");
 
     private String value;
 
-    private TechnicalCueType(String value) {
+    private VideoColorRange(String value) {
         this.value = value;
     }
 
@@ -42,25 +37,20 @@ public enum TechnicalCueType {
         return value;
     }
 
-    private static final Map<String, TechnicalCueType> enumMap;
+    private static final Map<String, VideoColorRange> enumMap;
     static {
-        enumMap = new HashMap<String, TechnicalCueType>();
-        enumMap.put("ColorBars", ColorBars);
-        enumMap.put("EndCredits", EndCredits);
-        enumMap.put("BlackFrames", BlackFrames);
-        enumMap.put("OpeningCredits", OpeningCredits);
-        enumMap.put("StudioLogo", StudioLogo);
-        enumMap.put("Slate", Slate);
-        enumMap.put("Content", Content);
+        enumMap = new HashMap<String, VideoColorRange>();
+        enumMap.put("FULL", FULL);
+        enumMap.put("LIMITED", LIMITED);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return TechnicalCueType corresponding to the value
+     * @return VideoColorRange corresponding to the value
      */
-    public static TechnicalCueType fromValue(String value) {
+    public static VideoColorRange fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
