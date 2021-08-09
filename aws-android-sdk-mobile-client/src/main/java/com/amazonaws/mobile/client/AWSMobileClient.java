@@ -856,7 +856,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         try {
             if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
                 String token = mStore.get("token");
-                return (String) CognitoJWTParser.getPayload(token).get("sub");
+                return CognitoJWTParser.getClaim(token, "sub");
             }
             return null;
         } catch (Exception e) {
