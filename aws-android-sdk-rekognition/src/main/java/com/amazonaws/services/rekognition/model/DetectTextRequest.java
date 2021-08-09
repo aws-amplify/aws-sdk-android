@@ -38,7 +38,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * A word is one or more ISO basic latin script characters that are not
- * separated by spaces. <code>DetectText</code> can detect up to 50 words in an
+ * separated by spaces. <code>DetectText</code> can detect up to 100 words in an
  * image.
  * </p>
  * <p>

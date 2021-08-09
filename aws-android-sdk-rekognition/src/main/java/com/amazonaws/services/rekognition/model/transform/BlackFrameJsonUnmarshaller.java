@@ -21,43 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO StartTechnicalCueDetectionFilter
+ * JSON unmarshaller for POJO BlackFrame
  */
-class StartTechnicalCueDetectionFilterJsonUnmarshaller implements
-        Unmarshaller<StartTechnicalCueDetectionFilter, JsonUnmarshallerContext> {
+class BlackFrameJsonUnmarshaller implements Unmarshaller<BlackFrame, JsonUnmarshallerContext> {
 
-    public StartTechnicalCueDetectionFilter unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
+    public BlackFrame unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        StartTechnicalCueDetectionFilter startTechnicalCueDetectionFilter = new StartTechnicalCueDetectionFilter();
+        BlackFrame blackFrame = new BlackFrame();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("MinSegmentConfidence")) {
-                startTechnicalCueDetectionFilter.setMinSegmentConfidence(FloatJsonUnmarshaller
-                        .getInstance()
+            if (name.equals("MaxPixelThreshold")) {
+                blackFrame.setMaxPixelThreshold(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("BlackFrame")) {
-                startTechnicalCueDetectionFilter.setBlackFrame(BlackFrameJsonUnmarshaller
-                        .getInstance()
+            } else if (name.equals("MinCoveragePercentage")) {
+                blackFrame.setMinCoveragePercentage(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return startTechnicalCueDetectionFilter;
+        return blackFrame;
     }
 
-    private static StartTechnicalCueDetectionFilterJsonUnmarshaller instance;
+    private static BlackFrameJsonUnmarshaller instance;
 
-    public static StartTechnicalCueDetectionFilterJsonUnmarshaller getInstance() {
+    public static BlackFrameJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new StartTechnicalCueDetectionFilterJsonUnmarshaller();
+            instance = new BlackFrameJsonUnmarshaller();
         return instance;
     }
 }

@@ -73,6 +73,21 @@ class SegmentDetectionJsonMarshaller {
             jsonWriter.name("ShotSegment");
             ShotSegmentJsonMarshaller.getInstance().marshall(shotSegment, jsonWriter);
         }
+        if (segmentDetection.getStartFrameNumber() != null) {
+            Long startFrameNumber = segmentDetection.getStartFrameNumber();
+            jsonWriter.name("StartFrameNumber");
+            jsonWriter.value(startFrameNumber);
+        }
+        if (segmentDetection.getEndFrameNumber() != null) {
+            Long endFrameNumber = segmentDetection.getEndFrameNumber();
+            jsonWriter.name("EndFrameNumber");
+            jsonWriter.value(endFrameNumber);
+        }
+        if (segmentDetection.getDurationFrames() != null) {
+            Long durationFrames = segmentDetection.getDurationFrames();
+            jsonWriter.name("DurationFrames");
+            jsonWriter.value(durationFrames);
+        }
         jsonWriter.endObject();
     }
 
