@@ -1,3 +1,22 @@
+## [Release 2.28.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.28.0)
+
+### Features
+- revoke tokens during auth sign out  (#2415)
+- **aws-android-sdk-textract:** update models to latest (#2553)
+- **aws-android-sdk-iot:** update models to latest (#2556)
+- **aws-android-sdk-transcribe:** update models to latest (#2562)
+- **aws-android-sdk-connect:** update models to latest (#2570)
+- **aws-android-chimesdkmessaging:** update models to latest (#2568)
+- **aws-android-chimesdkidentity:** update models to latest (#2569)
+- add support for Amazon Chime SDK (#2572)
+- **aws-android-sdk-rekognition:** update models to latest (#2573)
+
+### Bug Fixes
+- **aws-android-sdk-mobile-client:** fix NPE in hosted UI options (#2564)
+- **aws-android-sdk-iot:** fix message queue not respecting size limit (#2565)
+
+[See all changes between 2.27.0 and 2.28.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.27.0...release_v2.28.0)
+
 ## [Release 2.27.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.27.0)
 
 ### Features
