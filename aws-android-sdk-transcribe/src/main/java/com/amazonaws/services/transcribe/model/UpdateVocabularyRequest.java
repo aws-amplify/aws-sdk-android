@@ -72,12 +72,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -371,12 +371,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -394,12 +394,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
-     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *         </p>
      *         <p>
      *         For more information about custom vocabularies, see <a href=
-     *         "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      *         >Custom Vocabularies</a>.
      *         </p>
      */
@@ -418,12 +418,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -441,12 +441,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      *            >Custom Vocabularies</a>.
      *            </p>
      */
@@ -465,12 +465,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -491,12 +491,12 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
      *            For more information about custom vocabularies, see <a href=
-     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      *            >Custom Vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

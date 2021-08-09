@@ -19,10 +19,10 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Provides information about a single type of unsafe content found in an image
- * or video. Each type of moderated content has a label within a hierarchical
- * taxonomy. For more information, see Detecting Unsafe Content in the Amazon
- * Rekognition Developer Guide.
+ * Provides information about a single type of inappropriate, unwanted, or
+ * offensive content found in an image or video. Each type of moderated content
+ * has a label within a hierarchical taxonomy. For more information, see Content
+ * moderation in the Amazon Rekognition Developer Guide.
  * </p>
  */
 public class ModerationLabel implements Serializable {

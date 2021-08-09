@@ -34,7 +34,7 @@ public class Media implements Serializable {
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
@@ -43,6 +43,18 @@ public class Media implements Serializable {
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String mediaFileUri;
+
+    /**
+     * <p>
+     * The S3 object location for your redacted output media file. This is only
+     * supported for call analytics jobs.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     */
+    private String redactedMediaFileUri;
 
     /**
      * <p>
@@ -55,7 +67,7 @@ public class Media implements Serializable {
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
@@ -73,7 +85,7 @@ public class Media implements Serializable {
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
-     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *         </p>
      */
@@ -92,7 +104,7 @@ public class Media implements Serializable {
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
@@ -110,7 +122,7 @@ public class Media implements Serializable {
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      */
@@ -129,7 +141,7 @@ public class Media implements Serializable {
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
@@ -150,7 +162,7 @@ public class Media implements Serializable {
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -158,6 +170,69 @@ public class Media implements Serializable {
      */
     public Media withMediaFileUri(String mediaFileUri) {
         this.mediaFileUri = mediaFileUri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The S3 object location for your redacted output media file. This is only
+     * supported for call analytics jobs.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     *
+     * @return <p>
+     *         The S3 object location for your redacted output media file. This
+     *         is only supported for call analytics jobs.
+     *         </p>
+     */
+    public String getRedactedMediaFileUri() {
+        return redactedMediaFileUri;
+    }
+
+    /**
+     * <p>
+     * The S3 object location for your redacted output media file. This is only
+     * supported for call analytics jobs.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     *
+     * @param redactedMediaFileUri <p>
+     *            The S3 object location for your redacted output media file.
+     *            This is only supported for call analytics jobs.
+     *            </p>
+     */
+    public void setRedactedMediaFileUri(String redactedMediaFileUri) {
+        this.redactedMediaFileUri = redactedMediaFileUri;
+    }
+
+    /**
+     * <p>
+     * The S3 object location for your redacted output media file. This is only
+     * supported for call analytics jobs.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 2000<br/>
+     * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
+     *
+     * @param redactedMediaFileUri <p>
+     *            The S3 object location for your redacted output media file.
+     *            This is only supported for call analytics jobs.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Media withRedactedMediaFileUri(String redactedMediaFileUri) {
+        this.redactedMediaFileUri = redactedMediaFileUri;
         return this;
     }
 
@@ -173,7 +248,9 @@ public class Media implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getMediaFileUri() != null)
-            sb.append("MediaFileUri: " + getMediaFileUri());
+            sb.append("MediaFileUri: " + getMediaFileUri() + ",");
+        if (getRedactedMediaFileUri() != null)
+            sb.append("RedactedMediaFileUri: " + getRedactedMediaFileUri());
         sb.append("}");
         return sb.toString();
     }
@@ -185,6 +262,8 @@ public class Media implements Serializable {
 
         hashCode = prime * hashCode
                 + ((getMediaFileUri() == null) ? 0 : getMediaFileUri().hashCode());
+        hashCode = prime * hashCode
+                + ((getRedactedMediaFileUri() == null) ? 0 : getRedactedMediaFileUri().hashCode());
         return hashCode;
     }
 
@@ -203,6 +282,11 @@ public class Media implements Serializable {
             return false;
         if (other.getMediaFileUri() != null
                 && other.getMediaFileUri().equals(this.getMediaFileUri()) == false)
+            return false;
+        if (other.getRedactedMediaFileUri() == null ^ this.getRedactedMediaFileUri() == null)
+            return false;
+        if (other.getRedactedMediaFileUri() != null
+                && other.getRedactedMediaFileUri().equals(this.getRedactedMediaFileUri()) == false)
             return false;
         return true;
     }

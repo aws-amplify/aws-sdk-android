@@ -238,7 +238,8 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Attaches a policy to the specified target.
+     * Attaches the specified policy to the specified principal (certificate or
+     * other credential).
      * </p>
      * 
      * @param attachPolicyRequest
