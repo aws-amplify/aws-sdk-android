@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class StartContentModerationResult implements Serializable {
     /**
      * <p>
-     * The identifier for the unsafe content analysis job. Use
-     * <code>JobId</code> to identify the job in a subsequent call to
+     * The identifier for the content analysis job. Use <code>JobId</code> to
+     * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
      * <p>
@@ -33,8 +33,8 @@ public class StartContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The identifier for the unsafe content analysis job. Use
-     * <code>JobId</code> to identify the job in a subsequent call to
+     * The identifier for the content analysis job. Use <code>JobId</code> to
+     * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
      * <p>
@@ -43,7 +43,7 @@ public class StartContentModerationResult implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @return <p>
-     *         The identifier for the unsafe content analysis job. Use
+     *         The identifier for the content analysis job. Use
      *         <code>JobId</code> to identify the job in a subsequent call to
      *         <code>GetContentModeration</code>.
      *         </p>
@@ -54,8 +54,8 @@ public class StartContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The identifier for the unsafe content analysis job. Use
-     * <code>JobId</code> to identify the job in a subsequent call to
+     * The identifier for the content analysis job. Use <code>JobId</code> to
+     * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
      * <p>
@@ -64,7 +64,7 @@ public class StartContentModerationResult implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            The identifier for the unsafe content analysis job. Use
+     *            The identifier for the content analysis job. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
      *            <code>GetContentModeration</code>.
      *            </p>
@@ -75,8 +75,8 @@ public class StartContentModerationResult implements Serializable {
 
     /**
      * <p>
-     * The identifier for the unsafe content analysis job. Use
-     * <code>JobId</code> to identify the job in a subsequent call to
+     * The identifier for the content analysis job. Use <code>JobId</code> to
+     * identify the job in a subsequent call to
      * <code>GetContentModeration</code>.
      * </p>
      * <p>
@@ -88,7 +88,7 @@ public class StartContentModerationResult implements Serializable {
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param jobId <p>
-     *            The identifier for the unsafe content analysis job. Use
+     *            The identifier for the content analysis job. Use
      *            <code>JobId</code> to identify the job in a subsequent call to
      *            <code>GetContentModeration</code>.
      *            </p>

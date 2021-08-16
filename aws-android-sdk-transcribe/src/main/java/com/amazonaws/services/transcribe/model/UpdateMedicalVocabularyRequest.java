@@ -59,8 +59,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same AWS Region as the
-     * resource that you are calling. The following is the format for a URI:
+     * your custom vocabulary. The URI must be in the same Amazon Web Services
+     * Region as the resource that you are calling. The following is the format
+     * for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -73,13 +74,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about Amazon S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -296,8 +297,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same AWS Region as the
-     * resource that you are calling. The following is the format for a URI:
+     * your custom vocabulary. The URI must be in the same Amazon Web Services
+     * Region as the resource that you are calling. The following is the format
+     * for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -310,13 +312,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about Amazon S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -326,9 +328,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         The location in Amazon S3 of the text file that contains the you
-     *         use for your custom vocabulary. The URI must be in the same AWS
-     *         Region as the resource that you are calling. The following is the
-     *         format for a URI:
+     *         use for your custom vocabulary. The URI must be in the same
+     *         Amazon Web Services Region as the resource that you are calling.
+     *         The following is the format for a URI:
      *         </p>
      *         <p>
      *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -341,13 +343,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *         </p>
      *         <p>
      *         For more information about Amazon S3 object names, see <a href=
-     *         "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *         "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *         >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *         </p>
      *         <p>
      *         For more information about custom vocabularies in Amazon
      *         Transcribe Medical, see <a href=
-     *         "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      *         >Medical Custom Vocabularies</a>.
      *         </p>
      */
@@ -358,8 +360,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same AWS Region as the
-     * resource that you are calling. The following is the format for a URI:
+     * your custom vocabulary. The URI must be in the same Amazon Web Services
+     * Region as the resource that you are calling. The following is the format
+     * for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -372,13 +375,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about Amazon S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -389,8 +392,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * @param vocabularyFileUri <p>
      *            The location in Amazon S3 of the text file that contains the
      *            you use for your custom vocabulary. The URI must be in the
-     *            same AWS Region as the resource that you are calling. The
-     *            following is the format for a URI:
+     *            same Amazon Web Services Region as the resource that you are
+     *            calling. The following is the format for a URI:
      *            </p>
      *            <p>
      *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -404,13 +407,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            <p>
      *            For more information about Amazon S3 object names, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
      *            For more information about custom vocabularies in Amazon
      *            Transcribe Medical, see <a href=
-     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      *            >Medical Custom Vocabularies</a>.
      *            </p>
      */
@@ -421,8 +424,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same AWS Region as the
-     * resource that you are calling. The following is the format for a URI:
+     * your custom vocabulary. The URI must be in the same Amazon Web Services
+     * Region as the resource that you are calling. The following is the format
+     * for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -435,13 +439,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * </p>
      * <p>
      * For more information about Amazon S3 object names, see <a href=
-     * "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     * "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      * >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      * </p>
      * <p>
      * For more information about custom vocabularies in Amazon Transcribe
      * Medical, see <a href=
-     * "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      * >Medical Custom Vocabularies</a>.
      * </p>
      * <p>
@@ -455,8 +459,8 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * @param vocabularyFileUri <p>
      *            The location in Amazon S3 of the text file that contains the
      *            you use for your custom vocabulary. The URI must be in the
-     *            same AWS Region as the resource that you are calling. The
-     *            following is the format for a URI:
+     *            same Amazon Web Services Region as the resource that you are
+     *            calling. The following is the format for a URI:
      *            </p>
      *            <p>
      *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -470,13 +474,13 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      *            <p>
      *            For more information about Amazon S3 object names, see <a
      *            href=
-     *            "http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
+     *            "https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys"
      *            >Object Keys</a> in the <i>Amazon S3 Developer Guide</i>.
      *            </p>
      *            <p>
      *            For more information about custom vocabularies in Amazon
      *            Transcribe Medical, see <a href=
-     *            "http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary"
      *            >Medical Custom Vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

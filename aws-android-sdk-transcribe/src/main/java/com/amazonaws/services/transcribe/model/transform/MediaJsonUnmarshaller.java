@@ -38,6 +38,9 @@ class MediaJsonUnmarshaller implements Unmarshaller<Media, JsonUnmarshallerConte
             if (name.equals("MediaFileUri")) {
                 media.setMediaFileUri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("RedactedMediaFileUri")) {
+                media.setRedactedMediaFileUri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

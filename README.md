@@ -32,6 +32,8 @@ Above, SERVICE might be `s3`, `ddb`, `pinpoint`, etc. A full list is provided be
  * auth-google
  * auth-ui
  * auth-userpools
+ * chimesdkidentity
+ * chimesdkmessaging
  * cloudwatch
  * cognitoauth
  * cognitoidentityprovider

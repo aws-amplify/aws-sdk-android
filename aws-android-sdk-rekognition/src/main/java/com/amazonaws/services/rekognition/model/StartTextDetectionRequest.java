@@ -68,7 +68,12 @@ public class StartTextDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The Amazon Simple Notification Service topic to which Amazon Rekognition
      * publishes the completion status of a video analysis operation. For more
-     * information, see <a>api-video</a>.
+     * information, see <a>api-video</a>. Note that the Amazon SNS topic must
+     * have a topic name that begins with <i>AmazonRekognition</i> if you are
+     * using the AmazonRekognitionServiceRole permissions policy to access the
+     * topic. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     * >Giving access to multiple Amazon SNS topics</a>.
      * </p>
      */
     private NotificationChannel notificationChannel;
@@ -242,13 +247,24 @@ public class StartTextDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The Amazon Simple Notification Service topic to which Amazon Rekognition
      * publishes the completion status of a video analysis operation. For more
-     * information, see <a>api-video</a>.
+     * information, see <a>api-video</a>. Note that the Amazon SNS topic must
+     * have a topic name that begins with <i>AmazonRekognition</i> if you are
+     * using the AmazonRekognitionServiceRole permissions policy to access the
+     * topic. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     * >Giving access to multiple Amazon SNS topics</a>.
      * </p>
      *
      * @return <p>
      *         The Amazon Simple Notification Service topic to which Amazon
      *         Rekognition publishes the completion status of a video analysis
-     *         operation. For more information, see <a>api-video</a>.
+     *         operation. For more information, see <a>api-video</a>. Note that
+     *         the Amazon SNS topic must have a topic name that begins with
+     *         <i>AmazonRekognition</i> if you are using the
+     *         AmazonRekognitionServiceRole permissions policy to access the
+     *         topic. For more information, see <a href=
+     *         "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     *         >Giving access to multiple Amazon SNS topics</a>.
      *         </p>
      */
     public NotificationChannel getNotificationChannel() {
@@ -259,14 +275,24 @@ public class StartTextDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The Amazon Simple Notification Service topic to which Amazon Rekognition
      * publishes the completion status of a video analysis operation. For more
-     * information, see <a>api-video</a>.
+     * information, see <a>api-video</a>. Note that the Amazon SNS topic must
+     * have a topic name that begins with <i>AmazonRekognition</i> if you are
+     * using the AmazonRekognitionServiceRole permissions policy to access the
+     * topic. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     * >Giving access to multiple Amazon SNS topics</a>.
      * </p>
      *
      * @param notificationChannel <p>
      *            The Amazon Simple Notification Service topic to which Amazon
      *            Rekognition publishes the completion status of a video
      *            analysis operation. For more information, see
-     *            <a>api-video</a>.
+     *            <a>api-video</a>. Note that the Amazon SNS topic must have a
+     *            topic name that begins with <i>AmazonRekognition</i> if you
+     *            are using the AmazonRekognitionServiceRole permissions policy
+     *            to access the topic. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     *            >Giving access to multiple Amazon SNS topics</a>.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -277,7 +303,12 @@ public class StartTextDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The Amazon Simple Notification Service topic to which Amazon Rekognition
      * publishes the completion status of a video analysis operation. For more
-     * information, see <a>api-video</a>.
+     * information, see <a>api-video</a>. Note that the Amazon SNS topic must
+     * have a topic name that begins with <i>AmazonRekognition</i> if you are
+     * using the AmazonRekognitionServiceRole permissions policy to access the
+     * topic. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     * >Giving access to multiple Amazon SNS topics</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -287,7 +318,12 @@ public class StartTextDetectionRequest extends AmazonWebServiceRequest implement
      *            The Amazon Simple Notification Service topic to which Amazon
      *            Rekognition publishes the completion status of a video
      *            analysis operation. For more information, see
-     *            <a>api-video</a>.
+     *            <a>api-video</a>. Note that the Amazon SNS topic must have a
+     *            topic name that begins with <i>AmazonRekognition</i> if you
+     *            are using the AmazonRekognitionServiceRole permissions policy
+     *            to access the topic. For more information, see <a href=
+     *            "https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics"
+     *            >Giving access to multiple Amazon SNS topics</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
