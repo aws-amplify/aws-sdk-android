@@ -2,8 +2,6 @@ package com.amazonaws.kinesisvideo.producer;
 
 /**
  * Class to represent the stream description object coming from a successful call to the DescribeStream service API.
- *
- * @author dduc
  */
 public class StreamDescription {
     /**
