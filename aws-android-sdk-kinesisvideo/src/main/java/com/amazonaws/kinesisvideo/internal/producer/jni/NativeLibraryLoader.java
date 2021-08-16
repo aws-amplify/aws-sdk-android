@@ -21,12 +21,10 @@ import com.amazonaws.kinesisvideo.common.logging.Log;
 import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 
 import androidx.annotation.NonNull;
-//import androidx.annotation.AnyThread;
 
 /**
  * Static helper for loading libraries
  */
-//@AnyThread
 class NativeLibraryLoader {
 
     private final Log mLog;
