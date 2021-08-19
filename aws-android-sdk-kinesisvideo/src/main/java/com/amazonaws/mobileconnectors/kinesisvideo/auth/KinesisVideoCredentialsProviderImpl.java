@@ -75,8 +75,7 @@ public class KinesisVideoCredentialsProviderImpl extends AbstractKinesisVideoCre
                 expiration = awsMobileClient.getTokens().getAccessToken().getExpiration();
                 log.debug("Refreshed token expiration is %s", expiration);
             } catch (Exception e) {
-                log.debug("Failed to set the next token refresh time. Defaulting to 40 minutes. %s", e.getMessage());
-                expiration.setTime(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(40L));
+                throw new KinesisVideoException("Failed to refresh! " + e.getMessage());
             }
         }
 
