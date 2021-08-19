@@ -30,7 +30,8 @@ public class TechnicalCueSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames
+     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames,
+     * OpeningCredits, StudioLogo, Slate, Content
      */
     private String type;
 
@@ -51,7 +52,8 @@ public class TechnicalCueSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames
+     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames,
+     * OpeningCredits, StudioLogo, Slate, Content
      *
      * @return <p>
      *         The type of the technical cue.
@@ -68,7 +70,8 @@ public class TechnicalCueSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames
+     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames,
+     * OpeningCredits, StudioLogo, Slate, Content
      *
      * @param type <p>
      *            The type of the technical cue.
@@ -88,7 +91,8 @@ public class TechnicalCueSegment implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames
+     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames,
+     * OpeningCredits, StudioLogo, Slate, Content
      *
      * @param type <p>
      *            The type of the technical cue.
@@ -108,7 +112,8 @@ public class TechnicalCueSegment implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames
+     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames,
+     * OpeningCredits, StudioLogo, Slate, Content
      *
      * @param type <p>
      *            The type of the technical cue.
@@ -128,7 +133,8 @@ public class TechnicalCueSegment implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames
+     * <b>Allowed Values: </b>ColorBars, EndCredits, BlackFrames,
+     * OpeningCredits, StudioLogo, Slate, Content
      *
      * @param type <p>
      *            The type of the technical cue.

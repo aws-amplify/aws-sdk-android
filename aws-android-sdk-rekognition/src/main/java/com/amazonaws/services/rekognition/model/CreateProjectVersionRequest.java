@@ -72,7 +72,9 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 location to store the results of training.
+     * The Amazon S3 bucket location to store the results of training. The S3
+     * bucket can be in any AWS account as long as the caller has
+     * <code>s3:PutObject</code> permissions on the S3 bucket.
      * </p>
      */
     private OutputConfig outputConfig;
@@ -102,12 +104,38 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The identifier for your AWS Key Management Service (AWS KMS) customer
      * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
-     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * CMK, the ID of your CMK, an alias for your CMK, or an alias ARN. The key
+     * is used to encrypt training and test images copied into the service for
+     * model training. Your source images are unaffected. The key is also used
+     * to encrypt training results and manifest files written to the output
+     * Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
+     * <p>
+     * If you choose to use your own CMK, you need the following permissions on
+     * the CMK.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * kms:CreateGrant
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:DescribeKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:GenerateDataKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:Decrypt
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If you don't specify a value for <code>KmsKeyId</code>, images copied
      * into the service are encrypted using a key that AWS owns and manages.
@@ -249,11 +277,15 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 location to store the results of training.
+     * The Amazon S3 bucket location to store the results of training. The S3
+     * bucket can be in any AWS account as long as the caller has
+     * <code>s3:PutObject</code> permissions on the S3 bucket.
      * </p>
      *
      * @return <p>
-     *         The Amazon S3 location to store the results of training.
+     *         The Amazon S3 bucket location to store the results of training.
+     *         The S3 bucket can be in any AWS account as long as the caller has
+     *         <code>s3:PutObject</code> permissions on the S3 bucket.
      *         </p>
      */
     public OutputConfig getOutputConfig() {
@@ -262,11 +294,16 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 location to store the results of training.
+     * The Amazon S3 bucket location to store the results of training. The S3
+     * bucket can be in any AWS account as long as the caller has
+     * <code>s3:PutObject</code> permissions on the S3 bucket.
      * </p>
      *
      * @param outputConfig <p>
-     *            The Amazon S3 location to store the results of training.
+     *            The Amazon S3 bucket location to store the results of
+     *            training. The S3 bucket can be in any AWS account as long as
+     *            the caller has <code>s3:PutObject</code> permissions on the S3
+     *            bucket.
      *            </p>
      */
     public void setOutputConfig(OutputConfig outputConfig) {
@@ -275,14 +312,19 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The Amazon S3 location to store the results of training.
+     * The Amazon S3 bucket location to store the results of training. The S3
+     * bucket can be in any AWS account as long as the caller has
+     * <code>s3:PutObject</code> permissions on the S3 bucket.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param outputConfig <p>
-     *            The Amazon S3 location to store the results of training.
+     *            The Amazon S3 bucket location to store the results of
+     *            training. The S3 bucket can be in any AWS account as long as
+     *            the caller has <code>s3:PutObject</code> permissions on the S3
+     *            bucket.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -469,12 +511,38 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The identifier for your AWS Key Management Service (AWS KMS) customer
      * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
-     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * CMK, the ID of your CMK, an alias for your CMK, or an alias ARN. The key
+     * is used to encrypt training and test images copied into the service for
+     * model training. Your source images are unaffected. The key is also used
+     * to encrypt training results and manifest files written to the output
+     * Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
+     * <p>
+     * If you choose to use your own CMK, you need the following permissions on
+     * the CMK.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * kms:CreateGrant
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:DescribeKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:GenerateDataKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:Decrypt
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If you don't specify a value for <code>KmsKeyId</code>, images copied
      * into the service are encrypted using a key that AWS owns and manages.
@@ -487,13 +555,39 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * @return <p>
      *         The identifier for your AWS Key Management Service (AWS KMS)
      *         customer master key (CMK). You can supply the Amazon Resource
-     *         Name (ARN) of your CMK, the ID of your CMK, or an alias for your
-     *         CMK. The key is used to encrypt training and test images copied
-     *         into the service for model training. Your source images are
-     *         unaffected. The key is also used to encrypt training results and
-     *         manifest files written to the output Amazon S3 bucket (
-     *         <code>OutputConfig</code>).
+     *         Name (ARN) of your CMK, the ID of your CMK, an alias for your
+     *         CMK, or an alias ARN. The key is used to encrypt training and
+     *         test images copied into the service for model training. Your
+     *         source images are unaffected. The key is also used to encrypt
+     *         training results and manifest files written to the output Amazon
+     *         S3 bucket (<code>OutputConfig</code>).
      *         </p>
+     *         <p>
+     *         If you choose to use your own CMK, you need the following
+     *         permissions on the CMK.
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         kms:CreateGrant
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         kms:DescribeKey
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         kms:GenerateDataKey
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         kms:Decrypt
+     *         </p>
+     *         </li>
+     *         </ul>
      *         <p>
      *         If you don't specify a value for <code>KmsKeyId</code>, images
      *         copied into the service are encrypted using a key that AWS owns
@@ -508,12 +602,38 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The identifier for your AWS Key Management Service (AWS KMS) customer
      * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
-     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * CMK, the ID of your CMK, an alias for your CMK, or an alias ARN. The key
+     * is used to encrypt training and test images copied into the service for
+     * model training. Your source images are unaffected. The key is also used
+     * to encrypt training results and manifest files written to the output
+     * Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
+     * <p>
+     * If you choose to use your own CMK, you need the following permissions on
+     * the CMK.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * kms:CreateGrant
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:DescribeKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:GenerateDataKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:Decrypt
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If you don't specify a value for <code>KmsKeyId</code>, images copied
      * into the service are encrypted using a key that AWS owns and manages.
@@ -526,13 +646,39 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * @param kmsKeyId <p>
      *            The identifier for your AWS Key Management Service (AWS KMS)
      *            customer master key (CMK). You can supply the Amazon Resource
-     *            Name (ARN) of your CMK, the ID of your CMK, or an alias for
-     *            your CMK. The key is used to encrypt training and test images
-     *            copied into the service for model training. Your source images
-     *            are unaffected. The key is also used to encrypt training
-     *            results and manifest files written to the output Amazon S3
-     *            bucket (<code>OutputConfig</code>).
+     *            Name (ARN) of your CMK, the ID of your CMK, an alias for your
+     *            CMK, or an alias ARN. The key is used to encrypt training and
+     *            test images copied into the service for model training. Your
+     *            source images are unaffected. The key is also used to encrypt
+     *            training results and manifest files written to the output
+     *            Amazon S3 bucket (<code>OutputConfig</code>).
      *            </p>
+     *            <p>
+     *            If you choose to use your own CMK, you need the following
+     *            permissions on the CMK.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            kms:CreateGrant
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            kms:DescribeKey
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            kms:GenerateDataKey
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            kms:Decrypt
+     *            </p>
+     *            </li>
+     *            </ul>
      *            <p>
      *            If you don't specify a value for <code>KmsKeyId</code>, images
      *            copied into the service are encrypted using a key that AWS
@@ -547,12 +693,38 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * <p>
      * The identifier for your AWS Key Management Service (AWS KMS) customer
      * master key (CMK). You can supply the Amazon Resource Name (ARN) of your
-     * CMK, the ID of your CMK, or an alias for your CMK. The key is used to
-     * encrypt training and test images copied into the service for model
-     * training. Your source images are unaffected. The key is also used to
-     * encrypt training results and manifest files written to the output Amazon
-     * S3 bucket (<code>OutputConfig</code>).
+     * CMK, the ID of your CMK, an alias for your CMK, or an alias ARN. The key
+     * is used to encrypt training and test images copied into the service for
+     * model training. Your source images are unaffected. The key is also used
+     * to encrypt training results and manifest files written to the output
+     * Amazon S3 bucket (<code>OutputConfig</code>).
      * </p>
+     * <p>
+     * If you choose to use your own CMK, you need the following permissions on
+     * the CMK.
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * kms:CreateGrant
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:DescribeKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:GenerateDataKey
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * kms:Decrypt
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * If you don't specify a value for <code>KmsKeyId</code>, images copied
      * into the service are encrypted using a key that AWS owns and manages.
@@ -568,13 +740,39 @@ public class CreateProjectVersionRequest extends AmazonWebServiceRequest impleme
      * @param kmsKeyId <p>
      *            The identifier for your AWS Key Management Service (AWS KMS)
      *            customer master key (CMK). You can supply the Amazon Resource
-     *            Name (ARN) of your CMK, the ID of your CMK, or an alias for
-     *            your CMK. The key is used to encrypt training and test images
-     *            copied into the service for model training. Your source images
-     *            are unaffected. The key is also used to encrypt training
-     *            results and manifest files written to the output Amazon S3
-     *            bucket (<code>OutputConfig</code>).
+     *            Name (ARN) of your CMK, the ID of your CMK, an alias for your
+     *            CMK, or an alias ARN. The key is used to encrypt training and
+     *            test images copied into the service for model training. Your
+     *            source images are unaffected. The key is also used to encrypt
+     *            training results and manifest files written to the output
+     *            Amazon S3 bucket (<code>OutputConfig</code>).
      *            </p>
+     *            <p>
+     *            If you choose to use your own CMK, you need the following
+     *            permissions on the CMK.
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            kms:CreateGrant
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            kms:DescribeKey
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            kms:GenerateDataKey
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            kms:Decrypt
+     *            </p>
+     *            </li>
+     *            </ul>
      *            <p>
      *            If you don't specify a value for <code>KmsKeyId</code>, images
      *            copied into the service are encrypted using a key that AWS

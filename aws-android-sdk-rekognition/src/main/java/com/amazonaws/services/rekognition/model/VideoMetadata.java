@@ -78,6 +78,17 @@ public class VideoMetadata implements Serializable {
 
     /**
      * <p>
+     * A description of the range of luminance values in a video, either LIMITED
+     * (16 to 235) or FULL (0 to 255).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL, LIMITED
+     */
+    private String colorRange;
+
+    /**
+     * <p>
      * Type of compression used in the analyzed video.
      * </p>
      *
@@ -377,6 +388,113 @@ public class VideoMetadata implements Serializable {
     }
 
     /**
+     * <p>
+     * A description of the range of luminance values in a video, either LIMITED
+     * (16 to 235) or FULL (0 to 255).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL, LIMITED
+     *
+     * @return <p>
+     *         A description of the range of luminance values in a video, either
+     *         LIMITED (16 to 235) or FULL (0 to 255).
+     *         </p>
+     * @see VideoColorRange
+     */
+    public String getColorRange() {
+        return colorRange;
+    }
+
+    /**
+     * <p>
+     * A description of the range of luminance values in a video, either LIMITED
+     * (16 to 235) or FULL (0 to 255).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL, LIMITED
+     *
+     * @param colorRange <p>
+     *            A description of the range of luminance values in a video,
+     *            either LIMITED (16 to 235) or FULL (0 to 255).
+     *            </p>
+     * @see VideoColorRange
+     */
+    public void setColorRange(String colorRange) {
+        this.colorRange = colorRange;
+    }
+
+    /**
+     * <p>
+     * A description of the range of luminance values in a video, either LIMITED
+     * (16 to 235) or FULL (0 to 255).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL, LIMITED
+     *
+     * @param colorRange <p>
+     *            A description of the range of luminance values in a video,
+     *            either LIMITED (16 to 235) or FULL (0 to 255).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VideoColorRange
+     */
+    public VideoMetadata withColorRange(String colorRange) {
+        this.colorRange = colorRange;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A description of the range of luminance values in a video, either LIMITED
+     * (16 to 235) or FULL (0 to 255).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL, LIMITED
+     *
+     * @param colorRange <p>
+     *            A description of the range of luminance values in a video,
+     *            either LIMITED (16 to 235) or FULL (0 to 255).
+     *            </p>
+     * @see VideoColorRange
+     */
+    public void setColorRange(VideoColorRange colorRange) {
+        this.colorRange = colorRange.toString();
+    }
+
+    /**
+     * <p>
+     * A description of the range of luminance values in a video, either LIMITED
+     * (16 to 235) or FULL (0 to 255).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FULL, LIMITED
+     *
+     * @param colorRange <p>
+     *            A description of the range of luminance values in a video,
+     *            either LIMITED (16 to 235) or FULL (0 to 255).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VideoColorRange
+     */
+    public VideoMetadata withColorRange(VideoColorRange colorRange) {
+        this.colorRange = colorRange.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -398,7 +516,9 @@ public class VideoMetadata implements Serializable {
         if (getFrameHeight() != null)
             sb.append("FrameHeight: " + getFrameHeight() + ",");
         if (getFrameWidth() != null)
-            sb.append("FrameWidth: " + getFrameWidth());
+            sb.append("FrameWidth: " + getFrameWidth() + ",");
+        if (getColorRange() != null)
+            sb.append("ColorRange: " + getColorRange());
         sb.append("}");
         return sb.toString();
     }
@@ -416,6 +536,7 @@ public class VideoMetadata implements Serializable {
         hashCode = prime * hashCode
                 + ((getFrameHeight() == null) ? 0 : getFrameHeight().hashCode());
         hashCode = prime * hashCode + ((getFrameWidth() == null) ? 0 : getFrameWidth().hashCode());
+        hashCode = prime * hashCode + ((getColorRange() == null) ? 0 : getColorRange().hashCode());
         return hashCode;
     }
 
@@ -457,6 +578,11 @@ public class VideoMetadata implements Serializable {
             return false;
         if (other.getFrameWidth() != null
                 && other.getFrameWidth().equals(this.getFrameWidth()) == false)
+            return false;
+        if (other.getColorRange() == null ^ this.getColorRange() == null)
+            return false;
+        if (other.getColorRange() != null
+                && other.getColorRange().equals(this.getColorRange()) == false)
             return false;
         return true;
     }
