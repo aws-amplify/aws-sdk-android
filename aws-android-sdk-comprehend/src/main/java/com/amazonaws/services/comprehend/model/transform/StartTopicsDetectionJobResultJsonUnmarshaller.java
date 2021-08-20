@@ -37,6 +37,9 @@ public class StartTopicsDetectionJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startTopicsDetectionJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startTopicsDetectionJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startTopicsDetectionJobResult.setJobStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

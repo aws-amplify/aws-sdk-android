@@ -33,6 +33,11 @@ class DominantLanguageDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (dominantLanguageDetectionJobProperties.getJobArn() != null) {
+            String jobArn = dominantLanguageDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (dominantLanguageDetectionJobProperties.getJobName() != null) {
             String jobName = dominantLanguageDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");

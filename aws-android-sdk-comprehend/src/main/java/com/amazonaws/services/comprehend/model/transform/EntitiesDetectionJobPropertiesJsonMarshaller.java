@@ -32,6 +32,11 @@ class EntitiesDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (entitiesDetectionJobProperties.getJobArn() != null) {
+            String jobArn = entitiesDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (entitiesDetectionJobProperties.getJobName() != null) {
             String jobName = entitiesDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");

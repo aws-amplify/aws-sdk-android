@@ -40,6 +40,9 @@ class DocumentClassificationJobPropertiesJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 documentClassificationJobProperties.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                documentClassificationJobProperties.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 documentClassificationJobProperties.setJobName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -37,6 +37,9 @@ public class StartDocumentClassificationJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startDocumentClassificationJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startDocumentClassificationJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startDocumentClassificationJobResult.setJobStatus(StringJsonUnmarshaller
                         .getInstance()

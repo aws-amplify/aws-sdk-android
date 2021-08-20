@@ -112,6 +112,17 @@ public class StartEntitiesDetectionJobRequestMarshaller implements
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
+            if (startEntitiesDetectionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startEntitiesDetectionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
