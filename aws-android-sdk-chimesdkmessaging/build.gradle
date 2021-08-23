@@ -1,0 +1,16 @@
+apply from: rootProject.file('publishing.gradle')
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 30
+    }
+}
+
+dependencies {
+    api project(':aws-android-sdk-core')
+}
+

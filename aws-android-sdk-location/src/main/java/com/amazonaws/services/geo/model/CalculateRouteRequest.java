@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>DeparturePostiton</code> and <code>DestinationPosition</code>. Requires
  * that you first <a href=
  * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
- * >create aroute calculator resource</a>
+ * >create a route calculator resource</a>
  * </p>
  * <p>
  * By default, a request that doesn't specify a departure time uses the best
@@ -57,7 +57,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <a href=
  * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode"
- * >Specifying a travel mode</a> using TravelMode. This lets you specify
+ * >Specifying a travel mode</a> using TravelMode. This lets you specify an
  * additional route preference such as <code>CarModeOptions</code> if traveling
  * by <code>Car</code>, or <code>TruckModeOptions</code> if traveling by
  * <code>Truck</code>.

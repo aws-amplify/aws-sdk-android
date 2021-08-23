@@ -107,6 +107,38 @@ public class SegmentDetection implements Serializable {
 
     /**
      * <p>
+     * The frame number of the start of a video segment, using a frame index
+     * that starts with 0.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Long startFrameNumber;
+
+    /**
+     * <p>
+     * The frame number at the end of a video segment, using a frame index that
+     * starts with 0.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Long endFrameNumber;
+
+    /**
+     * <p>
+     * The duration of a video segment, expressed in frames.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     */
+    private Long durationFrames;
+
+    /**
+     * <p>
      * The type of the segment. Valid values are <code>TECHNICAL_CUE</code> and
      * <code>SHOT</code>.
      * </p>
@@ -649,6 +681,180 @@ public class SegmentDetection implements Serializable {
     }
 
     /**
+     * <p>
+     * The frame number of the start of a video segment, using a frame index
+     * that starts with 0.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         The frame number of the start of a video segment, using a frame
+     *         index that starts with 0.
+     *         </p>
+     */
+    public Long getStartFrameNumber() {
+        return startFrameNumber;
+    }
+
+    /**
+     * <p>
+     * The frame number of the start of a video segment, using a frame index
+     * that starts with 0.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param startFrameNumber <p>
+     *            The frame number of the start of a video segment, using a
+     *            frame index that starts with 0.
+     *            </p>
+     */
+    public void setStartFrameNumber(Long startFrameNumber) {
+        this.startFrameNumber = startFrameNumber;
+    }
+
+    /**
+     * <p>
+     * The frame number of the start of a video segment, using a frame index
+     * that starts with 0.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param startFrameNumber <p>
+     *            The frame number of the start of a video segment, using a
+     *            frame index that starts with 0.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDetection withStartFrameNumber(Long startFrameNumber) {
+        this.startFrameNumber = startFrameNumber;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The frame number at the end of a video segment, using a frame index that
+     * starts with 0.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         The frame number at the end of a video segment, using a frame
+     *         index that starts with 0.
+     *         </p>
+     */
+    public Long getEndFrameNumber() {
+        return endFrameNumber;
+    }
+
+    /**
+     * <p>
+     * The frame number at the end of a video segment, using a frame index that
+     * starts with 0.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param endFrameNumber <p>
+     *            The frame number at the end of a video segment, using a frame
+     *            index that starts with 0.
+     *            </p>
+     */
+    public void setEndFrameNumber(Long endFrameNumber) {
+        this.endFrameNumber = endFrameNumber;
+    }
+
+    /**
+     * <p>
+     * The frame number at the end of a video segment, using a frame index that
+     * starts with 0.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param endFrameNumber <p>
+     *            The frame number at the end of a video segment, using a frame
+     *            index that starts with 0.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDetection withEndFrameNumber(Long endFrameNumber) {
+        this.endFrameNumber = endFrameNumber;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The duration of a video segment, expressed in frames.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @return <p>
+     *         The duration of a video segment, expressed in frames.
+     *         </p>
+     */
+    public Long getDurationFrames() {
+        return durationFrames;
+    }
+
+    /**
+     * <p>
+     * The duration of a video segment, expressed in frames.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param durationFrames <p>
+     *            The duration of a video segment, expressed in frames.
+     *            </p>
+     */
+    public void setDurationFrames(Long durationFrames) {
+        this.durationFrames = durationFrames;
+    }
+
+    /**
+     * <p>
+     * The duration of a video segment, expressed in frames.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Range: </b>0 - <br/>
+     *
+     * @param durationFrames <p>
+     *            The duration of a video segment, expressed in frames.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SegmentDetection withDurationFrames(Long durationFrames) {
+        this.durationFrames = durationFrames;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -676,7 +882,13 @@ public class SegmentDetection implements Serializable {
         if (getTechnicalCueSegment() != null)
             sb.append("TechnicalCueSegment: " + getTechnicalCueSegment() + ",");
         if (getShotSegment() != null)
-            sb.append("ShotSegment: " + getShotSegment());
+            sb.append("ShotSegment: " + getShotSegment() + ",");
+        if (getStartFrameNumber() != null)
+            sb.append("StartFrameNumber: " + getStartFrameNumber() + ",");
+        if (getEndFrameNumber() != null)
+            sb.append("EndFrameNumber: " + getEndFrameNumber() + ",");
+        if (getDurationFrames() != null)
+            sb.append("DurationFrames: " + getDurationFrames());
         sb.append("}");
         return sb.toString();
     }
@@ -703,6 +915,12 @@ public class SegmentDetection implements Serializable {
                 + ((getTechnicalCueSegment() == null) ? 0 : getTechnicalCueSegment().hashCode());
         hashCode = prime * hashCode
                 + ((getShotSegment() == null) ? 0 : getShotSegment().hashCode());
+        hashCode = prime * hashCode
+                + ((getStartFrameNumber() == null) ? 0 : getStartFrameNumber().hashCode());
+        hashCode = prime * hashCode
+                + ((getEndFrameNumber() == null) ? 0 : getEndFrameNumber().hashCode());
+        hashCode = prime * hashCode
+                + ((getDurationFrames() == null) ? 0 : getDurationFrames().hashCode());
         return hashCode;
     }
 
@@ -760,6 +978,21 @@ public class SegmentDetection implements Serializable {
             return false;
         if (other.getShotSegment() != null
                 && other.getShotSegment().equals(this.getShotSegment()) == false)
+            return false;
+        if (other.getStartFrameNumber() == null ^ this.getStartFrameNumber() == null)
+            return false;
+        if (other.getStartFrameNumber() != null
+                && other.getStartFrameNumber().equals(this.getStartFrameNumber()) == false)
+            return false;
+        if (other.getEndFrameNumber() == null ^ this.getEndFrameNumber() == null)
+            return false;
+        if (other.getEndFrameNumber() != null
+                && other.getEndFrameNumber().equals(this.getEndFrameNumber()) == false)
+            return false;
+        if (other.getDurationFrames() == null ^ this.getDurationFrames() == null)
+            return false;
+        if (other.getDurationFrames() != null
+                && other.getDurationFrames().equals(this.getDurationFrames()) == false)
             return false;
         return true;
     }

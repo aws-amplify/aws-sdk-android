@@ -41,6 +41,10 @@ class StartTechnicalCueDetectionFilterJsonUnmarshaller implements
                 startTechnicalCueDetectionFilter.setMinSegmentConfidence(FloatJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("BlackFrame")) {
+                startTechnicalCueDetectionFilter.setBlackFrame(BlackFrameJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

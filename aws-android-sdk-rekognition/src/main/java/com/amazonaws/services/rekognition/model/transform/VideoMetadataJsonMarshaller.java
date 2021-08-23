@@ -56,6 +56,11 @@ class VideoMetadataJsonMarshaller {
             jsonWriter.name("FrameWidth");
             jsonWriter.value(frameWidth);
         }
+        if (videoMetadata.getColorRange() != null) {
+            String colorRange = videoMetadata.getColorRange();
+            jsonWriter.name("ColorRange");
+            jsonWriter.value(colorRange);
+        }
         jsonWriter.endObject();
     }
 

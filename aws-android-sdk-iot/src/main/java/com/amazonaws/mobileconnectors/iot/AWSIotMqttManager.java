@@ -1685,7 +1685,7 @@ public class AWSIotMqttManager {
                         new AmazonClientException("Failed to publish the message. Queue is full and set to hold onto the oldest messages."));
                 return;
             } else {
-                mqttMessageQueue.remove(0);
+                mqttMessageQueue.remove();
             }
         }
 

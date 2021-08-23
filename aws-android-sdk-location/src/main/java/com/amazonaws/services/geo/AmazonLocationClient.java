@@ -328,6 +328,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
         jsonErrorUnmarshallers.add(new ConflictExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new InternalServerExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ResourceNotFoundExceptionUnmarshaller());
+        jsonErrorUnmarshallers.add(new ServiceQuotaExceededExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ThrottlingExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new ValidationExceptionUnmarshaller());
         jsonErrorUnmarshallers.add(new JsonErrorUnmarshaller());
@@ -356,6 +357,10 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * resource. This allows the tracker resource to communicate location data
      * to the linked geofence collection.
      * </p>
+     * <p>
+     * You can associate up to five geofence collections to each tracker
+     * resource.
+     * </p>
      * <note>
      * <p>
      * Currently not supported — Cross-account configurations, such as creating
@@ -373,6 +378,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * @throws ConflictException
      * @throws AccessDeniedException
      * @throws ValidationException
+     * @throws ServiceQuotaExceededException
      * @throws ThrottlingException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -528,14 +534,32 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
     /**
      * <p>
      * Evaluates device positions against the geofence geometries from a given
-     * geofence collection. The evaluation determines if the device has entered
-     * or exited a geofenced area, which publishes ENTER or EXIT geofence events
-     * to Amazon EventBridge.
+     * geofence collection.
      * </p>
+     * <p>
+     * This operation always returns an empty response because geofences are
+     * asynchronously evaluated. The evaluation determines if the device has
+     * entered or exited a geofenced area, and then publishes one of the
+     * following events to Amazon EventBridge:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>ENTER</code> if Amazon Location determines that the tracked device
+     * has entered a geofenced area.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>EXIT</code> if Amazon Location determines that the tracked device
+     * has exited a geofenced area.
+     * </p>
+     * </li>
+     * </ul>
      * <note>
      * <p>
-     * The last geofence that a device was observed within, if any, is tracked
-     * for 30 days after the most recent device position update
+     * The last geofence that a device was observed within is tracked for 30
+     * days after the most recent device position update.
      * </p>
      * </note>
      * 
@@ -589,7 +613,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * A batch request to retrieve all device positions.
+     * Lists the latest device positions for requested devices.
      * </p>
      * 
      * @param batchGetDevicePositionRequest
@@ -762,7 +786,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * <code>DeparturePostiton</code> and <code>DestinationPosition</code>.
      * Requires that you first <a href=
      * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
-     * >create aroute calculator resource</a>
+     * >create a route calculator resource</a>
      * </p>
      * <p>
      * By default, a request that doesn't specify a departure time uses the best
@@ -792,7 +816,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * <p>
      * <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode"
-     * >Specifying a travel mode</a> using TravelMode. This lets you specify
+     * >Specifying a travel mode</a> using TravelMode. This lets you specify an
      * additional route preference such as <code>CarModeOptions</code> if
      * traveling by <code>Car</code>, or <code>TruckModeOptions</code> if
      * traveling by <code>Truck</code>.
@@ -2103,7 +2127,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Lists the latest device positions for requested devices.
+     * A batch request to retrieve all device positions.
      * </p>
      * 
      * @param listDevicePositionsRequest
@@ -2407,7 +2431,8 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Returns the tags for the specified Amazon Location Service resource.
+     * Returns a list of tags that are applied to the specified Amazon Location
+     * resource.
      * </p>
      * 
      * @param listTagsForResourceRequest
@@ -2741,7 +2766,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * 
      * <pre>
-     * <code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; action with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate as many as 50 tags with a resource.&lt;/p&gt; </code>
+     * <code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; operation with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that's already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate up to 50 tags with a resource.&lt;/p&gt; </code>
      * </pre>
      * 
      * @param tagResourceRequest
@@ -2791,8 +2816,7 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Removes one or more tags from the specified Amazon Location Service
-     * resource.
+     * Removes one or more tags from the specified Amazon Location resource.
      * </p>
      * 
      * @param untagResourceRequest
@@ -2829,6 +2853,262 @@ public class AmazonLocationClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
             JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified properties of a given geofence collection.
+     * </p>
+     * 
+     * @param updateGeofenceCollectionRequest
+     * @return updateGeofenceCollectionResult The response from the
+     *         UpdateGeofenceCollection service method, as returned by AWS
+     *         Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public UpdateGeofenceCollectionResult updateGeofenceCollection(
+            UpdateGeofenceCollectionRequest updateGeofenceCollectionRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateGeofenceCollectionRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateGeofenceCollectionRequest> request = null;
+        Response<UpdateGeofenceCollectionResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateGeofenceCollectionRequestMarshaller()
+                        .marshall(updateGeofenceCollectionRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateGeofenceCollectionResult, JsonUnmarshallerContext> unmarshaller = new UpdateGeofenceCollectionResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateGeofenceCollectionResult> responseHandler = new JsonResponseHandler<UpdateGeofenceCollectionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified properties of a given map resource.
+     * </p>
+     * 
+     * @param updateMapRequest
+     * @return updateMapResult The response from the UpdateMap service method,
+     *         as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public UpdateMapResult updateMap(UpdateMapRequest updateMapRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateMapRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateMapRequest> request = null;
+        Response<UpdateMapResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateMapRequestMarshaller().marshall(updateMapRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateMapResult, JsonUnmarshallerContext> unmarshaller = new UpdateMapResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateMapResult> responseHandler = new JsonResponseHandler<UpdateMapResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified properties of a given place index resource.
+     * </p>
+     * 
+     * @param updatePlaceIndexRequest
+     * @return updatePlaceIndexResult The response from the UpdatePlaceIndex
+     *         service method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public UpdatePlaceIndexResult updatePlaceIndex(UpdatePlaceIndexRequest updatePlaceIndexRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updatePlaceIndexRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdatePlaceIndexRequest> request = null;
+        Response<UpdatePlaceIndexResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdatePlaceIndexRequestMarshaller().marshall(updatePlaceIndexRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdatePlaceIndexResult, JsonUnmarshallerContext> unmarshaller = new UpdatePlaceIndexResultJsonUnmarshaller();
+            JsonResponseHandler<UpdatePlaceIndexResult> responseHandler = new JsonResponseHandler<UpdatePlaceIndexResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified properties for a given route calculator resource.
+     * </p>
+     * 
+     * @param updateRouteCalculatorRequest
+     * @return updateRouteCalculatorResult The response from the
+     *         UpdateRouteCalculator service method, as returned by AWS Location
+     *         service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public UpdateRouteCalculatorResult updateRouteCalculator(
+            UpdateRouteCalculatorRequest updateRouteCalculatorRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateRouteCalculatorRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateRouteCalculatorRequest> request = null;
+        Response<UpdateRouteCalculatorResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateRouteCalculatorRequestMarshaller()
+                        .marshall(updateRouteCalculatorRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateRouteCalculatorResult, JsonUnmarshallerContext> unmarshaller = new UpdateRouteCalculatorResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateRouteCalculatorResult> responseHandler = new JsonResponseHandler<UpdateRouteCalculatorResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the specified properties of a given tracker resource.
+     * </p>
+     * 
+     * @param updateTrackerRequest
+     * @return updateTrackerResult The response from the UpdateTracker service
+     *         method, as returned by AWS Location service.
+     * @throws InternalServerException
+     * @throws ResourceNotFoundException
+     * @throws AccessDeniedException
+     * @throws ValidationException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             Location service indicating either a problem with the data in
+     *             the request, or a server side issue.
+     */
+    public UpdateTrackerResult updateTracker(UpdateTrackerRequest updateTrackerRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateTrackerRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateTrackerRequest> request = null;
+        Response<UpdateTrackerResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateTrackerRequestMarshaller().marshall(updateTrackerRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateTrackerResult, JsonUnmarshallerContext> unmarshaller = new UpdateTrackerResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateTrackerResult> responseHandler = new JsonResponseHandler<UpdateTrackerResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

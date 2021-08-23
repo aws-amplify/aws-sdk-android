@@ -1,3 +1,39 @@
+## [Release 2.28.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.28.0)
+
+### Features
+- **aws-android-sdk-mobile-client:** revoke tokens during auth sign out  (#2415)
+- **aws-android-sdk-textract:** update models to latest (#2553)
+- **aws-android-sdk-iot:** update models to latest (#2556)
+- **aws-android-sdk-transcribe:** update models to latest (#2562)
+- **aws-android-sdk-connect:** update models to latest (#2570)
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2568)
+- **aws-android-sdk-chimesdkidentity:** update models to latest (#2569)
+- **aws-android-sdk-rekognition:** update models to latest (#2573)
+
+### Bug Fixes
+- **aws-android-sdk-mobile-client:** fix NPE in hosted UI options (#2564)
+- **aws-android-sdk-iot:** fix message queue not respecting size limit (#2565)
+
+[See all changes between 2.27.0 and 2.28.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.27.0...release_v2.28.0)
+
+## [Release 2.27.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.27.0)
+
+### Features
+- **aws-android-sdk-connect:** update models to latest (#2526)
+- **aws-android-sdk-sns:** update models to latest (#2534)
+- **aws-android-sdk-lambda:** update models to latest (#2535)
+- **aws-android-sdk-core:** update models to latest (#2537)
+- **aws-android-sdk-cognitoidentityprovider:** update models to latest (#2541)
+- **aws-android-sdk-location:** update models to latest (#2544)
+- Changes to support encoded resource path coming in request. (#2546)
+
+### Bug Fixes
+- **aws-android-sdk-iot:** Use cert chain to connect to IoT Core (#2521)
+- **aws-android-sdk-cognitoauth:** custom tabs app crash when chrome not available (#2529)
+
+
+[See all changes between 2.26.0 and 2.27.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.26.0...release_v2.27.0)
+
 ## [Release 2.26.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.26.0)
 
 ### Features
