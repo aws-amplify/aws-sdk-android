@@ -623,10 +623,13 @@ abstract class NotificationClientBase {
 
             return (Notification) buildMethod.invoke(notificationBuilder);
         } catch (final InvocationTargetException ex) {
-            log.debug("Can't invoke notification builder methods. : " + ex.getMessage(), ex);
+            log.error("Can't invoke notification builder methods. : " + ex.getMessage(), ex);
             return createLegacyNotification(iconResId, title, contentText, contentIntent);
         } catch (final IllegalAccessException ex) {
-            log.debug("Can't access notification builder methods. : " + ex.getMessage(), ex);
+            log.error("Can't access notification builder methods. : " + ex.getMessage(), ex);
+            return createLegacyNotification(iconResId, title, contentText, contentIntent);
+        } catch (final NullPointerException ex) {
+            log.error("Can't access notification builder methods. : " + ex.getMessage(), ex);
             return createLegacyNotification(iconResId, title, contentText, contentIntent);
         }
     }
@@ -723,7 +726,7 @@ abstract class NotificationClientBase {
         final int requestID = getNotificationRequestId(pinpointObjectId, activityId);
 
         log.debug("Displaying Notification for campaign/journey: " + pinpointObjectId +
-            " ; activity: " + activityId + 
+            " ; activity: " + activityId +
             " ; notification requestId: " + requestID);
 
         new Thread(new Runnable() {
