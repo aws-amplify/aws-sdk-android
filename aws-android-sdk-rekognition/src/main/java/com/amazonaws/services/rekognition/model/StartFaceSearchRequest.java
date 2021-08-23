@@ -87,7 +87,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
-     * Video to publish the completion status of the search.
+     * Video to publish the completion status of the search. The Amazon SNS
+     * topic must have a topic name that begins with <i>AmazonRekognition</i> if
+     * you are using the AmazonRekognitionServiceRole permissions policy to
+     * access the topic.
      * </p>
      */
     private NotificationChannel notificationChannel;
@@ -364,12 +367,19 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
-     * Video to publish the completion status of the search.
+     * Video to publish the completion status of the search. The Amazon SNS
+     * topic must have a topic name that begins with <i>AmazonRekognition</i> if
+     * you are using the AmazonRekognitionServiceRole permissions policy to
+     * access the topic.
      * </p>
      *
      * @return <p>
      *         The ARN of the Amazon SNS topic to which you want Amazon
      *         Rekognition Video to publish the completion status of the search.
+     *         The Amazon SNS topic must have a topic name that begins with
+     *         <i>AmazonRekognition</i> if you are using the
+     *         AmazonRekognitionServiceRole permissions policy to access the
+     *         topic.
      *         </p>
      */
     public NotificationChannel getNotificationChannel() {
@@ -379,13 +389,19 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
-     * Video to publish the completion status of the search.
+     * Video to publish the completion status of the search. The Amazon SNS
+     * topic must have a topic name that begins with <i>AmazonRekognition</i> if
+     * you are using the AmazonRekognitionServiceRole permissions policy to
+     * access the topic.
      * </p>
      *
      * @param notificationChannel <p>
      *            The ARN of the Amazon SNS topic to which you want Amazon
      *            Rekognition Video to publish the completion status of the
-     *            search.
+     *            search. The Amazon SNS topic must have a topic name that
+     *            begins with <i>AmazonRekognition</i> if you are using the
+     *            AmazonRekognitionServiceRole permissions policy to access the
+     *            topic.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -395,7 +411,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
-     * Video to publish the completion status of the search.
+     * Video to publish the completion status of the search. The Amazon SNS
+     * topic must have a topic name that begins with <i>AmazonRekognition</i> if
+     * you are using the AmazonRekognitionServiceRole permissions policy to
+     * access the topic.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -404,7 +423,10 @@ public class StartFaceSearchRequest extends AmazonWebServiceRequest implements S
      * @param notificationChannel <p>
      *            The ARN of the Amazon SNS topic to which you want Amazon
      *            Rekognition Video to publish the completion status of the
-     *            search.
+     *            search. The Amazon SNS topic must have a topic name that
+     *            begins with <i>AmazonRekognition</i> if you are using the
+     *            AmazonRekognitionServiceRole permissions policy to access the
+     *            topic.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -23,7 +23,7 @@ import java.io.Serializable;
  * federate a user. These are called session tags. You can then use the session
  * tags to control access to resources. For more information, see <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_session-tags.html"
- * >Tagging AWS STS Sessions</a> in the <i>IAM User Guide</i>.
+ * >Tagging STS Sessions</a> in the <i>IAM User Guide</i>.
  * </p>
  */
 public class Tag implements Serializable {

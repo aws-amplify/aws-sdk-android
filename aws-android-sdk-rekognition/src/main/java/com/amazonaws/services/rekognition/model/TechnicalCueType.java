@@ -25,7 +25,11 @@ public enum TechnicalCueType {
 
     ColorBars("ColorBars"),
     EndCredits("EndCredits"),
-    BlackFrames("BlackFrames");
+    BlackFrames("BlackFrames"),
+    OpeningCredits("OpeningCredits"),
+    StudioLogo("StudioLogo"),
+    Slate("Slate"),
+    Content("Content");
 
     private String value;
 
@@ -44,6 +48,10 @@ public enum TechnicalCueType {
         enumMap.put("ColorBars", ColorBars);
         enumMap.put("EndCredits", EndCredits);
         enumMap.put("BlackFrames", BlackFrames);
+        enumMap.put("OpeningCredits", OpeningCredits);
+        enumMap.put("StudioLogo", StudioLogo);
+        enumMap.put("Slate", Slate);
+        enumMap.put("Content", Content);
     }
 
     /**

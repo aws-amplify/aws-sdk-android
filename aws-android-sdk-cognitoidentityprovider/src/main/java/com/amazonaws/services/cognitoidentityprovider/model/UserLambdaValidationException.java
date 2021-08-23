@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * This exception is thrown when the Amazon Cognito service encounters a user
- * validation exception with the AWS Lambda service.
+ * validation exception with the Lambda service.
  * </p>
  */
 public class UserLambdaValidationException extends AmazonServiceException {

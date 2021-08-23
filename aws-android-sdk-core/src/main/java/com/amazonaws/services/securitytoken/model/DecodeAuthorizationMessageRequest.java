@@ -22,20 +22,21 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Decodes additional information about the authorization status of a request
- * from an encoded message returned in response to an AWS request.
+ * from an encoded message returned in response to an Amazon Web Services
+ * request.
  * </p>
  * <p>
  * For example, if a user is not authorized to perform an operation that he or
  * she has requested, the request returns a
  * <code>Client.UnauthorizedOperation</code> response (an HTTP 403 response).
- * Some AWS operations additionally return an encoded message that can provide
- * details about this authorization failure.
+ * Some Amazon Web Services operations additionally return an encoded message
+ * that can provide details about this authorization failure.
  * </p>
  * <note>
  * <p>
- * Only certain AWS operations return an encoded authorization message. The
- * documentation for an individual operation indicates whether that operation
- * returns an encoded message in addition to returning an HTTP code.
+ * Only certain Amazon Web Services operations return an encoded authorization
+ * message. The documentation for an individual operation indicates whether that
+ * operation returns an encoded message in addition to returning an HTTP code.
  * </p>
  * </note>
  * <p>

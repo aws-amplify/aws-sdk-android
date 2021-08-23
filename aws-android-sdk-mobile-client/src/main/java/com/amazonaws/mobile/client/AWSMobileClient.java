@@ -99,6 +99,7 @@ import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.GetDetail
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.SignUpHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.UpdateAttributesHandler;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.handlers.VerificationHandler;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoJWTParser;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoPinpointSharedContext;
 import com.amazonaws.mobileconnectors.cognitoidentityprovider.util.CognitoServiceConstants;
 import com.amazonaws.regions.Region;
@@ -837,6 +838,25 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         try {
             if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
                 return userpool.getCurrentUser().getUserId();
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the Cognito User Sub attribute of the current access token.
+     * @return The sub attribute of the current access token.
+     * @see <a href="https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html#amazon-cognito-user-pools-using-the-access-token">Using the Access Token</a>
+     * from Cognito documentation.
+     */
+    @AnyThread
+    public String getUserSub() {
+        try {
+            if (userpoolsLoginKey.equals(mStore.get(PROVIDER_KEY))) {
+                String token = mStore.get("token");
+                return CognitoJWTParser.getClaim(token, "sub");
             }
             return null;
         } catch (Exception e) {
@@ -1611,6 +1631,9 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                     userpoolLL.globalSignOut(globalSignOutRequest);
                 }
                 if (signOutOptions.isInvalidateTokens()) {
+                    if (userpool != null) {
+                        userpool.getCurrentUser().revokeTokens();
+                    }
                     if (hostedUI != null) {
                         if (signOutOptions.getBrowserPackage() != null) {
                             hostedUI.setBrowserPackage(signOutOptions.getBrowserPackage());
@@ -3200,7 +3223,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
                 final Map<String, String> tokensBody = new HashMap<String, String>();
                 try {
                     tokensUriBuilder = Uri.parse(hostedUIJSON.getString("TokenURI")).buildUpon();
-                    if (hostedUIOptions.getSignInQueryParameters() != null) {
+                    if (hostedUIOptions.getTokenQueryParameters() != null) {
                         for (Map.Entry<String, String> e : hostedUIOptions.getTokenQueryParameters().entrySet()) {
                             tokensUriBuilder.appendQueryParameter(e.getKey(), e.getValue());
                         }

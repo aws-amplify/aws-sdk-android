@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the latest device positions for requested devices.
+ * A batch request to retrieve all device positions.
  * </p>
  */
 public class ListDevicePositionsRequest extends AmazonWebServiceRequest implements Serializable {

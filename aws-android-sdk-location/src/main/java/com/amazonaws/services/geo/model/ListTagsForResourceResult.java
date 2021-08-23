@@ -20,22 +20,45 @@ import java.io.Serializable;
 public class ListTagsForResourceResult implements Serializable {
     /**
      * <p>
-     * The mapping from tag key to tag value for each tag associated with the
-     * specified resource.
+     * Tags that have been applied to the specified resource. Tags are mapped
+     * from the tag key to the tag value: <code>"TagKey" : "TagValue"</code>.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     * </p>
+     * </li>
+     * </ul>
      */
     private java.util.Map<String, String> tags;
 
     /**
      * <p>
-     * The mapping from tag key to tag value for each tag associated with the
-     * specified resource.
+     * Tags that have been applied to the specified resource. Tags are mapped
+     * from the tag key to the tag value: <code>"TagKey" : "TagValue"</code>.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     * </p>
+     * </li>
+     * </ul>
      *
      * @return <p>
-     *         The mapping from tag key to tag value for each tag associated
-     *         with the specified resource.
+     *         Tags that have been applied to the specified resource. Tags are
+     *         mapped from the tag key to the tag value:
+     *         <code>"TagKey" : "TagValue"</code>.
      *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         Format example:
+     *         <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     *         </p>
+     *         </li>
+     *         </ul>
      */
     public java.util.Map<String, String> getTags() {
         return tags;
@@ -43,14 +66,30 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * The mapping from tag key to tag value for each tag associated with the
-     * specified resource.
+     * Tags that have been applied to the specified resource. Tags are mapped
+     * from the tag key to the tag value: <code>"TagKey" : "TagValue"</code>.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     * </p>
+     * </li>
+     * </ul>
      *
      * @param tags <p>
-     *            The mapping from tag key to tag value for each tag associated
-     *            with the specified resource.
+     *            Tags that have been applied to the specified resource. Tags
+     *            are mapped from the tag key to the tag value:
+     *            <code>"TagKey" : "TagValue"</code>.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     *            </p>
+     *            </li>
+     *            </ul>
      */
     public void setTags(java.util.Map<String, String> tags) {
         this.tags = tags;
@@ -58,17 +97,33 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * The mapping from tag key to tag value for each tag associated with the
-     * specified resource.
+     * Tags that have been applied to the specified resource. Tags are mapped
+     * from the tag key to the tag value: <code>"TagKey" : "TagValue"</code>.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            The mapping from tag key to tag value for each tag associated
-     *            with the specified resource.
+     *            Tags that have been applied to the specified resource. Tags
+     *            are mapped from the tag key to the tag value:
+     *            <code>"TagKey" : "TagValue"</code>.
      *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            Format example:
+     *            <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     *            </p>
+     *            </li>
+     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -79,9 +134,16 @@ public class ListTagsForResourceResult implements Serializable {
 
     /**
      * <p>
-     * The mapping from tag key to tag value for each tag associated with the
-     * specified resource.
+     * Tags that have been applied to the specified resource. Tags are mapped
+     * from the tag key to the tag value: <code>"TagKey" : "TagValue"</code>.
      * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Format example: <code>{"tag1" : "value1", "tag2" : "value2"} </code>
+     * </p>
+     * </li>
+     * </ul>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
      * reference to this object so that method calls can be chained together.

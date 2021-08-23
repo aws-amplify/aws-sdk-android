@@ -32,6 +32,11 @@ class StartTechnicalCueDetectionFilterJsonMarshaller {
             jsonWriter.name("MinSegmentConfidence");
             jsonWriter.value(minSegmentConfidence);
         }
+        if (startTechnicalCueDetectionFilter.getBlackFrame() != null) {
+            BlackFrame blackFrame = startTechnicalCueDetectionFilter.getBlackFrame();
+            jsonWriter.name("BlackFrame");
+            BlackFrameJsonMarshaller.getInstance().marshall(blackFrame, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

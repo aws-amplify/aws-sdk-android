@@ -68,6 +68,9 @@ public class StartFaceDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
      * Video to publish the completion status of the face detection operation.
+     * The Amazon SNS topic must have a topic name that begins with
+     * <i>AmazonRekognition</i> if you are using the
+     * AmazonRekognitionServiceRole permissions policy.
      * </p>
      */
     private NotificationChannel notificationChannel;
@@ -238,12 +241,17 @@ public class StartFaceDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
      * Video to publish the completion status of the face detection operation.
+     * The Amazon SNS topic must have a topic name that begins with
+     * <i>AmazonRekognition</i> if you are using the
+     * AmazonRekognitionServiceRole permissions policy.
      * </p>
      *
      * @return <p>
      *         The ARN of the Amazon SNS topic to which you want Amazon
      *         Rekognition Video to publish the completion status of the face
-     *         detection operation.
+     *         detection operation. The Amazon SNS topic must have a topic name
+     *         that begins with <i>AmazonRekognition</i> if you are using the
+     *         AmazonRekognitionServiceRole permissions policy.
      *         </p>
      */
     public NotificationChannel getNotificationChannel() {
@@ -254,12 +262,17 @@ public class StartFaceDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
      * Video to publish the completion status of the face detection operation.
+     * The Amazon SNS topic must have a topic name that begins with
+     * <i>AmazonRekognition</i> if you are using the
+     * AmazonRekognitionServiceRole permissions policy.
      * </p>
      *
      * @param notificationChannel <p>
      *            The ARN of the Amazon SNS topic to which you want Amazon
      *            Rekognition Video to publish the completion status of the face
-     *            detection operation.
+     *            detection operation. The Amazon SNS topic must have a topic
+     *            name that begins with <i>AmazonRekognition</i> if you are
+     *            using the AmazonRekognitionServiceRole permissions policy.
      *            </p>
      */
     public void setNotificationChannel(NotificationChannel notificationChannel) {
@@ -270,6 +283,9 @@ public class StartFaceDetectionRequest extends AmazonWebServiceRequest implement
      * <p>
      * The ARN of the Amazon SNS topic to which you want Amazon Rekognition
      * Video to publish the completion status of the face detection operation.
+     * The Amazon SNS topic must have a topic name that begins with
+     * <i>AmazonRekognition</i> if you are using the
+     * AmazonRekognitionServiceRole permissions policy.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -278,7 +294,9 @@ public class StartFaceDetectionRequest extends AmazonWebServiceRequest implement
      * @param notificationChannel <p>
      *            The ARN of the Amazon SNS topic to which you want Amazon
      *            Rekognition Video to publish the completion status of the face
-     *            detection operation.
+     *            detection operation. The Amazon SNS topic must have a topic
+     *            name that begins with <i>AmazonRekognition</i> if you are
+     *            using the AmazonRekognitionServiceRole permissions policy.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

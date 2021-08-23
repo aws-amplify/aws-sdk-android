@@ -64,6 +64,15 @@ class SegmentDetectionJsonUnmarshaller implements
             } else if (name.equals("ShotSegment")) {
                 segmentDetection.setShotSegment(ShotSegmentJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("StartFrameNumber")) {
+                segmentDetection.setStartFrameNumber(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("EndFrameNumber")) {
+                segmentDetection.setEndFrameNumber(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DurationFrames")) {
+                segmentDetection.setDurationFrames(LongJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
