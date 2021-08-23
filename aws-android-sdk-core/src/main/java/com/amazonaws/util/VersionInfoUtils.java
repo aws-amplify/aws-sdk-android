@@ -131,6 +131,9 @@ public class VersionInfoUtils {
      * @return the input with spaces replaced by underscores
      */
     private static String replaceSpaces(final String input) {
-        return input.replace(' ', '_');
+        if (input != null){
+            return input.replace(' ', '_');
+        }
+        return input;
     }
 }
