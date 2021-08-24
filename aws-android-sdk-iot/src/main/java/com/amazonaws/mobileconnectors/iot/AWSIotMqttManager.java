@@ -1578,7 +1578,27 @@ public class AWSIotMqttManager {
      *                 callback is invoked.
      */
     public void publishString(String str, String topic, AWSIotMqttQos qos,
-            AWSIotMqttMessageDeliveryCallback cb, Object userData) {
+                              AWSIotMqttMessageDeliveryCallback cb, Object userData) {
+        publishString(str, topic, qos, cb, userData, false);
+    }
+
+    /**
+     * Send a message to an MQTT topic.
+     *
+     * @param str The message payload to be sent (as a String).
+     * @param topic The topic on which to publish.
+     * @param qos The quality of service requested for this message.
+     * @param cb Callback for message status.
+     * @param userData User defined data which will be passed back to the user when the
+     *                 callback is invoked.
+     * @param isRetained Publish it as a persistent message.
+     */
+    public void publishString(String str,
+                              String topic,
+                              AWSIotMqttQos qos,
+                              AWSIotMqttMessageDeliveryCallback cb,
+                              Object userData,
+                              boolean isRetained) {
 
         if (str == null) {
             throw new IllegalArgumentException("publish string is null");
@@ -1592,7 +1612,7 @@ public class AWSIotMqttManager {
             throw new IllegalArgumentException("QoS cannot be null");
         }
 
-        publishData(str.getBytes(StringUtils.UTF8), topic, qos, cb, userData);
+        publishData(str.getBytes(StringUtils.UTF8), topic, qos, cb, userData, isRetained);
     }
 
     /**
@@ -1618,7 +1638,27 @@ public class AWSIotMqttManager {
      *                 callback is invoked.
      */
     public void publishData(byte[] data, String topic, AWSIotMqttQos qos,
-            AWSIotMqttMessageDeliveryCallback callback, Object userData) {
+                            AWSIotMqttMessageDeliveryCallback callback, Object userData) {
+        publishData(data, topic, qos, callback, userData, false);
+    }
+
+    /**
+     * Publish data to an MQTT topic.
+     *
+     * @param data The message payload to be sent as a byte array.
+     * @param topic The topic on which to publish.
+     * @param qos The quality of service requested for this message.
+     * @param callback Callback for message status.
+     * @param userData User defined data which will be passed back to the user when the
+     *                 callback is invoked.
+     * @param isRetained Publish it as a persistent message.
+     */
+    public void publishData(byte[] data,
+                            String topic,
+                            AWSIotMqttQos qos,
+                            AWSIotMqttMessageDeliveryCallback callback,
+                            Object userData,
+                            boolean isRetained) {
 
         if (TextUtils.isEmpty(topic)) {
             throw new IllegalArgumentException("topic is null or empty");
@@ -1637,7 +1677,7 @@ public class AWSIotMqttManager {
         if (connectionState == MqttManagerConnectionState.Connected) {
             if (mqttMessageQueue.isEmpty()) {
                 try {
-                    mqttClient.publish(topic, data, qos.asInt(), false, publishMessageUserData, null);
+                    mqttClient.publish(topic, data, qos.asInt(), isRetained, publishMessageUserData, null);
                 } catch (final MqttException e) {
                     notifyPublishResult(callback, AWSIotMqttMessageDeliveryCallback.MessageDeliveryStatus.Fail,
                             userData, new AmazonClientException("Client error while publishing.", e));
