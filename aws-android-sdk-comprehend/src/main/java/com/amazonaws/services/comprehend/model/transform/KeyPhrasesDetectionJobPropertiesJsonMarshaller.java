@@ -32,6 +32,11 @@ class KeyPhrasesDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (keyPhrasesDetectionJobProperties.getJobArn() != null) {
+            String jobArn = keyPhrasesDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (keyPhrasesDetectionJobProperties.getJobName() != null) {
             String jobName = keyPhrasesDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");

@@ -37,6 +37,9 @@ public class StartSentimentDetectionJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startSentimentDetectionJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startSentimentDetectionJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startSentimentDetectionJobResult.setJobStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

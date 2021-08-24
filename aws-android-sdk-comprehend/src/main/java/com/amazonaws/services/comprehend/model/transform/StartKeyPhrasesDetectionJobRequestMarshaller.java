@@ -107,6 +107,17 @@ public class StartKeyPhrasesDetectionJobRequestMarshaller implements
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
+            if (startKeyPhrasesDetectionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startKeyPhrasesDetectionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

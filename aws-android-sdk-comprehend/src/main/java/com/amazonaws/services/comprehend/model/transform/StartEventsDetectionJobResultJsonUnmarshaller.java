@@ -37,6 +37,9 @@ public class StartEventsDetectionJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startEventsDetectionJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startEventsDetectionJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startEventsDetectionJobResult.setJobStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

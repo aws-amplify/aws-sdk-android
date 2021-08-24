@@ -32,6 +32,11 @@ class TopicsDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (topicsDetectionJobProperties.getJobArn() != null) {
+            String jobArn = topicsDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (topicsDetectionJobProperties.getJobName() != null) {
             String jobName = topicsDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");

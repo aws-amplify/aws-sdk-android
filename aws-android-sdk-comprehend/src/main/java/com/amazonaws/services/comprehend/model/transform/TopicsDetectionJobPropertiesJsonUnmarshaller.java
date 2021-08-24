@@ -40,6 +40,9 @@ class TopicsDetectionJobPropertiesJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 topicsDetectionJobProperties.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                topicsDetectionJobProperties.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 topicsDetectionJobProperties.setJobName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

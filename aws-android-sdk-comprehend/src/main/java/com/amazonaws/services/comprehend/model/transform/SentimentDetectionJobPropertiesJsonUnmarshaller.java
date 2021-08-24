@@ -40,6 +40,9 @@ class SentimentDetectionJobPropertiesJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 sentimentDetectionJobProperties.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                sentimentDetectionJobProperties.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 sentimentDetectionJobProperties.setJobName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

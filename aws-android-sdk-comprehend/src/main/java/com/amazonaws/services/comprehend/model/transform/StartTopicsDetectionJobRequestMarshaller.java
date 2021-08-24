@@ -105,6 +105,17 @@ public class StartTopicsDetectionJobRequestMarshaller implements
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
+            if (startTopicsDetectionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startTopicsDetectionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

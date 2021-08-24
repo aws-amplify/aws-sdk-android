@@ -36,6 +36,30 @@ public class DocumentClassificationJobProperties implements Serializable {
 
     /**
      * <p>
+     * The Amazon Resource Name (ARN) of the document classification job. It is
+     * a unique, fully qualified identifier for the job. It includes the AWS
+     * account, Region, and the job ID. The format of the ARN is as follows:
+     * </p>
+     * <p>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     * </p>
+     * <p>
+     * The following is an example job ARN:
+     * </p>
+     * <p>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
+     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     */
+    private String jobArn;
+
+    /**
+     * <p>
      * The name that you assigned to the document classification job.
      * </p>
      * <p>
@@ -212,6 +236,138 @@ public class DocumentClassificationJobProperties implements Serializable {
      */
     public DocumentClassificationJobProperties withJobId(String jobId) {
         this.jobId = jobId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the document classification job. It is
+     * a unique, fully qualified identifier for the job. It includes the AWS
+     * account, Region, and the job ID. The format of the ARN is as follows:
+     * </p>
+     * <p>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     * </p>
+     * <p>
+     * The following is an example job ARN:
+     * </p>
+     * <p>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
+     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @return <p>
+     *         The Amazon Resource Name (ARN) of the document classification
+     *         job. It is a unique, fully qualified identifier for the job. It
+     *         includes the AWS account, Region, and the job ID. The format of
+     *         the ARN is as follows:
+     *         </p>
+     *         <p>
+     *         <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     *         </p>
+     *         <p>
+     *         The following is an example job ARN:
+     *         </p>
+     *         <p>
+     *         <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     *         </p>
+     */
+    public String getJobArn() {
+        return jobArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the document classification job. It is
+     * a unique, fully qualified identifier for the job. It includes the AWS
+     * account, Region, and the job ID. The format of the ARN is as follows:
+     * </p>
+     * <p>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     * </p>
+     * <p>
+     * The following is an example job ARN:
+     * </p>
+     * <p>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
+     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param jobArn <p>
+     *            The Amazon Resource Name (ARN) of the document classification
+     *            job. It is a unique, fully qualified identifier for the job.
+     *            It includes the AWS account, Region, and the job ID. The
+     *            format of the ARN is as follows:
+     *            </p>
+     *            <p>
+     *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     *            </p>
+     *            <p>
+     *            The following is an example job ARN:
+     *            </p>
+     *            <p>
+     *            <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     *            </p>
+     */
+    public void setJobArn(String jobArn) {
+        this.jobArn = jobArn;
+    }
+
+    /**
+     * <p>
+     * The Amazon Resource Name (ARN) of the document classification job. It is
+     * a unique, fully qualified identifier for the job. It includes the AWS
+     * account, Region, and the job ID. The format of the ARN is as follows:
+     * </p>
+     * <p>
+     * <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     * </p>
+     * <p>
+     * The following is an example job ARN:
+     * </p>
+     * <p>
+     * <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
+     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     *
+     * @param jobArn <p>
+     *            The Amazon Resource Name (ARN) of the document classification
+     *            job. It is a unique, fully qualified identifier for the job.
+     *            It includes the AWS account, Region, and the job ID. The
+     *            format of the ARN is as follows:
+     *            </p>
+     *            <p>
+     *            <code>arn:&lt;partition&gt;:comprehend:&lt;region&gt;:&lt;account-id&gt;:document-classification-job/&lt;job-id&gt;</code>
+     *            </p>
+     *            <p>
+     *            The following is an example job ARN:
+     *            </p>
+     *            <p>
+     *            <code>arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassificationJobProperties withJobArn(String jobArn) {
+        this.jobArn = jobArn;
         return this;
     }
 
@@ -1005,6 +1161,8 @@ public class DocumentClassificationJobProperties implements Serializable {
         sb.append("{");
         if (getJobId() != null)
             sb.append("JobId: " + getJobId() + ",");
+        if (getJobArn() != null)
+            sb.append("JobArn: " + getJobArn() + ",");
         if (getJobName() != null)
             sb.append("JobName: " + getJobName() + ",");
         if (getJobStatus() != null)
@@ -1037,6 +1195,7 @@ public class DocumentClassificationJobProperties implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getJobId() == null) ? 0 : getJobId().hashCode());
+        hashCode = prime * hashCode + ((getJobArn() == null) ? 0 : getJobArn().hashCode());
         hashCode = prime * hashCode + ((getJobName() == null) ? 0 : getJobName().hashCode());
         hashCode = prime * hashCode + ((getJobStatus() == null) ? 0 : getJobStatus().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
@@ -1071,6 +1230,10 @@ public class DocumentClassificationJobProperties implements Serializable {
         if (other.getJobId() == null ^ this.getJobId() == null)
             return false;
         if (other.getJobId() != null && other.getJobId().equals(this.getJobId()) == false)
+            return false;
+        if (other.getJobArn() == null ^ this.getJobArn() == null)
+            return false;
+        if (other.getJobArn() != null && other.getJobArn().equals(this.getJobArn()) == false)
             return false;
         if (other.getJobName() == null ^ this.getJobName() == null)
             return false;

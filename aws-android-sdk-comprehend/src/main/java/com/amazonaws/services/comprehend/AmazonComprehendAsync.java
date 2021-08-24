@@ -2516,6 +2516,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2548,6 +2549,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2575,6 +2577,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2605,6 +2608,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2640,6 +2644,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2678,6 +2683,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws ResourceNotFoundException
      * @throws ResourceUnavailableException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2704,6 +2710,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2733,6 +2740,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2760,6 +2768,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2790,6 +2799,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2817,6 +2827,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2847,6 +2858,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2874,6 +2886,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2904,6 +2917,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2932,6 +2946,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -2963,6 +2978,7 @@ public interface AmazonComprehendAsync extends AmazonComprehend {
      * @throws InvalidRequestException
      * @throws TooManyRequestsException
      * @throws KmsKeyValidationException
+     * @throws TooManyTagsException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

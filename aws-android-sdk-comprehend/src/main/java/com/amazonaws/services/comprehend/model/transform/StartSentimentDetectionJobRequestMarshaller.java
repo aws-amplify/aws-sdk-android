@@ -106,6 +106,17 @@ public class StartSentimentDetectionJobRequestMarshaller implements
                 jsonWriter.name("VpcConfig");
                 VpcConfigJsonMarshaller.getInstance().marshall(vpcConfig, jsonWriter);
             }
+            if (startSentimentDetectionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startSentimentDetectionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
