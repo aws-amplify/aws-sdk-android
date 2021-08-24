@@ -1,3 +1,18 @@
+## [Release 2.29.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.29.0)
+
+### Features
+- **aws-android-sdk-lambda:** update models to latest (#2579)
+- **aws-android-sdk-mobile-client:** adds getUserSub method (#2555)
+- add support for retained messages (#2587)
+
+### Bug Fixes
+- Adding a null check for string replace in VersionInfoUtils.
+
+### Miscellaneous
+- Update README.md (#2576)
+
+[See all changes between 2.28.0 and 2.29.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.28.0...release_v2.29.0)
+
 ## [Release 2.28.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.28.0)
 
 ### Features
