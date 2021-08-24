@@ -11,6 +11,10 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.VersionInfoUtils;
 
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.junit.After;
@@ -18,6 +22,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -37,6 +43,13 @@ import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, sdk = 16)
@@ -1872,6 +1885,56 @@ public class AWSIotMqttManagerTest {
         assertEquals(1, mockClient.mostRecentPublishQoS);
         assertEquals(false, mockClient.mostRecentPublishRetained);
         assertEquals("test1", new String(mockClient.mostRecentPublishPayload, StringUtils.UTF8));
+    }
+
+    @Test
+    public void testPublishDataQos2AndRetainedFlag() throws Exception {
+        final byte[] payload = "test1".getBytes(StringUtils.UTF8);
+        final String topic = "unit/test/topic";
+        final MqttAsyncClient mockClient = mock(MqttAsyncClient.class);
+        AWSIotMqttManager testClient = new AWSIotMqttManager("test-client",
+                                                             Region.getRegion(Regions.US_EAST_1),
+                                                             TEST_ENDPOINT_PREFIX);
+        testClient.setMqttClient(mockClient);
+        TestClientStatusCallback csb = new TestClientStatusCallback();
+        KeyStore testKeystore = AWSIotKeystoreHelper.getIotKeystore(CERT_ID, KEYSTORE_PATH,
+                                                                    KEYSTORE_NAME, KEYSTORE_PASSWORD);
+
+        // Mock answer for the connect method and invoke the callback passed.
+        doAnswer(new Answer() {
+            @Override
+            public Object answer(InvocationOnMock invocation) throws Throwable {
+                IMqttActionListener callback = invocation.getArgumentAt(2, IMqttActionListener.class);
+                IMqttToken mockMqttToken = mock(IMqttToken.class);
+                when(mockMqttToken.getSessionPresent()).thenReturn(true);
+                callback.onSuccess(mockMqttToken);
+                return null;
+            }
+        }).when(mockClient).connect(any(MqttConnectOptions.class), any(), any(IMqttActionListener.class));
+
+        // Connect and publish data.
+        testClient.connect(testKeystore, csb);
+        testClient.publishData(payload,
+                               topic,
+                               AWSIotMqttQos.QOS1,
+                               new AWSIotMqttMessageDeliveryCallback() {
+                                   @Override
+                                   public void statusChanged(MessageDeliveryStatus status, Object userData) {
+
+                                   }
+                               },
+                               null,
+                               true);
+
+        // Verify connect was called once.
+        verify(mockClient, times(1)).connect(any(MqttConnectOptions.class), any(), any(IMqttActionListener.class));
+        // Verify publish was called with the correct parameters.
+        verify(mockClient, times(1)).publish(eq(topic),
+                                             eq(payload),
+                                             eq(AWSIotMqttQos.QOS1.asInt()),
+                                             eq(true), // retained = true
+                                             any(),
+                                             any(IMqttActionListener.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
