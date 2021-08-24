@@ -43,7 +43,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -162,7 +162,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -174,7 +174,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         The language code of the vocabulary entries. For a list of
      *         languages and their corresponding language codes, see
-     *         <a>what-is-transcribe</a>.
+     *         <a>transcribe-whatis</a>.
      *         </p>
      * @see LanguageCode
      */
@@ -185,7 +185,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -197,7 +197,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -208,7 +208,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -223,7 +223,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -237,7 +237,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -249,7 +249,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -260,7 +260,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -275,7 +275,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

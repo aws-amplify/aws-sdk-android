@@ -41,9 +41,10 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of vocabularies to return in the response. If there
-     * are fewer results in the list, this response contains only the actual
-     * results.
+     * The maximum number of vocabularies to return in each page of results. If
+     * there are fewer results than the value you specify, only the actual
+     * results are returned. If you do not specify a value, the default of 5 is
+     * used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -147,18 +148,20 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of vocabularies to return in the response. If there
-     * are fewer results in the list, this response contains only the actual
-     * results.
+     * The maximum number of vocabularies to return in each page of results. If
+     * there are fewer results than the value you specify, only the actual
+     * results are returned. If you do not specify a value, the default of 5 is
+     * used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximum number of vocabularies to return in the response. If
-     *         there are fewer results in the list, this response contains only
-     *         the actual results.
+     *         The maximum number of vocabularies to return in each page of
+     *         results. If there are fewer results than the value you specify,
+     *         only the actual results are returned. If you do not specify a
+     *         value, the default of 5 is used.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -167,18 +170,20 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of vocabularies to return in the response. If there
-     * are fewer results in the list, this response contains only the actual
-     * results.
+     * The maximum number of vocabularies to return in each page of results. If
+     * there are fewer results than the value you specify, only the actual
+     * results are returned. If you do not specify a value, the default of 5 is
+     * used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of vocabularies to return in the response.
-     *            If there are fewer results in the list, this response contains
-     *            only the actual results.
+     *            The maximum number of vocabularies to return in each page of
+     *            results. If there are fewer results than the value you
+     *            specify, only the actual results are returned. If you do not
+     *            specify a value, the default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -187,9 +192,10 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The maximum number of vocabularies to return in the response. If there
-     * are fewer results in the list, this response contains only the actual
-     * results.
+     * The maximum number of vocabularies to return in each page of results. If
+     * there are fewer results than the value you specify, only the actual
+     * results are returned. If you do not specify a value, the default of 5 is
+     * used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -199,9 +205,10 @@ public class ListVocabulariesRequest extends AmazonWebServiceRequest implements 
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of vocabularies to return in the response.
-     *            If there are fewer results in the list, this response contains
-     *            only the actual results.
+     *            The maximum number of vocabularies to return in each page of
+     *            results. If there are fewer results than the value you
+     *            specify, only the actual results are returned. If you do not
+     *            specify a value, the default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

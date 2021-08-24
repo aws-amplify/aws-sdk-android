@@ -58,10 +58,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same Amazon Web Services
-     * Region as the resource that you are calling. The following is the format
-     * for a URI:
+     * The location in Amazon S3 of the text file that contains your custom
+     * vocabulary. The URI must be in the same Amazon Web Services Region as the
+     * resource that you are calling. The following is the format for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -296,10 +295,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same Amazon Web Services
-     * Region as the resource that you are calling. The following is the format
-     * for a URI:
+     * The location in Amazon S3 of the text file that contains your custom
+     * vocabulary. The URI must be in the same Amazon Web Services Region as the
+     * resource that you are calling. The following is the format for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -327,10 +325,10 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @return <p>
-     *         The location in Amazon S3 of the text file that contains the you
-     *         use for your custom vocabulary. The URI must be in the same
-     *         Amazon Web Services Region as the resource that you are calling.
-     *         The following is the format for a URI:
+     *         The location in Amazon S3 of the text file that contains your
+     *         custom vocabulary. The URI must be in the same Amazon Web
+     *         Services Region as the resource that you are calling. The
+     *         following is the format for a URI:
      *         </p>
      *         <p>
      *         <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -359,10 +357,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same Amazon Web Services
-     * Region as the resource that you are calling. The following is the format
-     * for a URI:
+     * The location in Amazon S3 of the text file that contains your custom
+     * vocabulary. The URI must be in the same Amazon Web Services Region as the
+     * resource that you are calling. The following is the format for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -390,10 +387,10 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
-     *            The location in Amazon S3 of the text file that contains the
-     *            you use for your custom vocabulary. The URI must be in the
-     *            same Amazon Web Services Region as the resource that you are
-     *            calling. The following is the format for a URI:
+     *            The location in Amazon S3 of the text file that contains your
+     *            custom vocabulary. The URI must be in the same Amazon Web
+     *            Services Region as the resource that you are calling. The
+     *            following is the format for a URI:
      *            </p>
      *            <p>
      *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -423,10 +420,9 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The location in Amazon S3 of the text file that contains the you use for
-     * your custom vocabulary. The URI must be in the same Amazon Web Services
-     * Region as the resource that you are calling. The following is the format
-     * for a URI:
+     * The location in Amazon S3 of the text file that contains your custom
+     * vocabulary. The URI must be in the same Amazon Web Services Region as the
+     * resource that you are calling. The following is the format for a URI:
      * </p>
      * <p>
      * <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>
@@ -457,10 +453,10 @@ public class UpdateMedicalVocabularyRequest extends AmazonWebServiceRequest impl
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      *
      * @param vocabularyFileUri <p>
-     *            The location in Amazon S3 of the text file that contains the
-     *            you use for your custom vocabulary. The URI must be in the
-     *            same Amazon Web Services Region as the resource that you are
-     *            calling. The following is the format for a URI:
+     *            The location in Amazon S3 of the text file that contains your
+     *            custom vocabulary. The URI must be in the same Amazon Web
+     *            Services Region as the resource that you are calling. The
+     *            following is the format for a URI:
      *            </p>
      *            <p>
      *            <code> https://s3.&lt;aws-region&gt;.amazonaws.com/&lt;bucket-name&gt;/&lt;keyprefix&gt;/&lt;objectkey&gt; </code>

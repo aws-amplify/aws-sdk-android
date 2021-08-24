@@ -88,11 +88,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output.
-     * </p>
-     * <p>
-     * The <code>CUSTOMER_BUCKET</code> is the S3 location provided in the
-     * <code>OutputBucketName</code> field when the
+     * Indicates the location of the transcription job's output. This field must
+     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
+     * is created based on the path you add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -102,8 +100,10 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. <code>Primary care</code>
-     * is the only valid value.
+     * The medical specialty of the transcription job. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     * >Transcribing a medical conversation</a>for a list of supported
+     * specialties.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -593,22 +593,18 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output.
-     * </p>
-     * <p>
-     * The <code>CUSTOMER_BUCKET</code> is the S3 location provided in the
-     * <code>OutputBucketName</code> field when the
+     * Indicates the location of the transcription job's output. This field must
+     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
+     * is created based on the path you add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @return <p>
-     *         Indicates the location of the transcription job's output.
-     *         </p>
-     *         <p>
-     *         The <code>CUSTOMER_BUCKET</code> is the S3 location provided in
-     *         the <code>OutputBucketName</code> field when the
+     *         Indicates the location of the transcription job's output. This
+     *         field must be the path of an S3 bucket; if you don't already have
+     *         an S3 bucket, one is created based on the path you add.
      *         </p>
      * @see OutputLocationType
      */
@@ -618,22 +614,18 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output.
-     * </p>
-     * <p>
-     * The <code>CUSTOMER_BUCKET</code> is the S3 location provided in the
-     * <code>OutputBucketName</code> field when the
+     * Indicates the location of the transcription job's output. This field must
+     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
+     * is created based on the path you add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output.
-     *            </p>
-     *            <p>
-     *            The <code>CUSTOMER_BUCKET</code> is the S3 location provided
-     *            in the <code>OutputBucketName</code> field when the
+     *            Indicates the location of the transcription job's output. This
+     *            field must be the path of an S3 bucket; if you don't already
+     *            have an S3 bucket, one is created based on the path you add.
      *            </p>
      * @see OutputLocationType
      */
@@ -643,11 +635,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output.
-     * </p>
-     * <p>
-     * The <code>CUSTOMER_BUCKET</code> is the S3 location provided in the
-     * <code>OutputBucketName</code> field when the
+     * Indicates the location of the transcription job's output. This field must
+     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
+     * is created based on the path you add.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -657,11 +647,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output.
-     *            </p>
-     *            <p>
-     *            The <code>CUSTOMER_BUCKET</code> is the S3 location provided
-     *            in the <code>OutputBucketName</code> field when the
+     *            Indicates the location of the transcription job's output. This
+     *            field must be the path of an S3 bucket; if you don't already
+     *            have an S3 bucket, one is created based on the path you add.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -674,22 +662,18 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output.
-     * </p>
-     * <p>
-     * The <code>CUSTOMER_BUCKET</code> is the S3 location provided in the
-     * <code>OutputBucketName</code> field when the
+     * Indicates the location of the transcription job's output. This field must
+     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
+     * is created based on the path you add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output.
-     *            </p>
-     *            <p>
-     *            The <code>CUSTOMER_BUCKET</code> is the S3 location provided
-     *            in the <code>OutputBucketName</code> field when the
+     *            Indicates the location of the transcription job's output. This
+     *            field must be the path of an S3 bucket; if you don't already
+     *            have an S3 bucket, one is created based on the path you add.
      *            </p>
      * @see OutputLocationType
      */
@@ -699,11 +683,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * Indicates the location of the transcription job's output.
-     * </p>
-     * <p>
-     * The <code>CUSTOMER_BUCKET</code> is the S3 location provided in the
-     * <code>OutputBucketName</code> field when the
+     * Indicates the location of the transcription job's output. This field must
+     * be the path of an S3 bucket; if you don't already have an S3 bucket, one
+     * is created based on the path you add.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -713,11 +695,9 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>CUSTOMER_BUCKET, SERVICE_BUCKET
      *
      * @param outputLocationType <p>
-     *            Indicates the location of the transcription job's output.
-     *            </p>
-     *            <p>
-     *            The <code>CUSTOMER_BUCKET</code> is the S3 location provided
-     *            in the <code>OutputBucketName</code> field when the
+     *            Indicates the location of the transcription job's output. This
+     *            field must be the path of an S3 bucket; if you don't already
+     *            have an S3 bucket, one is created based on the path you add.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -731,16 +711,20 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. <code>Primary care</code>
-     * is the only valid value.
+     * The medical specialty of the transcription job. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     * >Transcribing a medical conversation</a>for a list of supported
+     * specialties.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @return <p>
-     *         The medical specialty of the transcription job.
-     *         <code>Primary care</code> is the only valid value.
+     *         The medical specialty of the transcription job. Refer to <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     *         >Transcribing a medical conversation</a>for a list of supported
+     *         specialties.
      *         </p>
      * @see Specialty
      */
@@ -750,16 +734,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. <code>Primary care</code>
-     * is the only valid value.
+     * The medical specialty of the transcription job. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     * >Transcribing a medical conversation</a>for a list of supported
+     * specialties.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job.
-     *            <code>Primary care</code> is the only valid value.
+     *            The medical specialty of the transcription job. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     *            >Transcribing a medical conversation</a>for a list of
+     *            supported specialties.
      *            </p>
      * @see Specialty
      */
@@ -769,8 +758,10 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. <code>Primary care</code>
-     * is the only valid value.
+     * The medical specialty of the transcription job. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     * >Transcribing a medical conversation</a>for a list of supported
+     * specialties.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -780,8 +771,11 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job.
-     *            <code>Primary care</code> is the only valid value.
+     *            The medical specialty of the transcription job. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     *            >Transcribing a medical conversation</a>for a list of
+     *            supported specialties.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -794,16 +788,21 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. <code>Primary care</code>
-     * is the only valid value.
+     * The medical specialty of the transcription job. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     * >Transcribing a medical conversation</a>for a list of supported
+     * specialties.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job.
-     *            <code>Primary care</code> is the only valid value.
+     *            The medical specialty of the transcription job. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     *            >Transcribing a medical conversation</a>for a list of
+     *            supported specialties.
      *            </p>
      * @see Specialty
      */
@@ -813,8 +812,10 @@ public class MedicalTranscriptionJobSummary implements Serializable {
 
     /**
      * <p>
-     * The medical specialty of the transcription job. <code>Primary care</code>
-     * is the only valid value.
+     * The medical specialty of the transcription job. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     * >Transcribing a medical conversation</a>for a list of supported
+     * specialties.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -824,8 +825,11 @@ public class MedicalTranscriptionJobSummary implements Serializable {
      * <b>Allowed Values: </b>PRIMARYCARE
      *
      * @param specialty <p>
-     *            The medical specialty of the transcription job.
-     *            <code>Primary care</code> is the only valid value.
+     *            The medical specialty of the transcription job. Refer to <a
+     *            href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html"
+     *            >Transcribing a medical conversation</a>for a list of
+     *            supported specialties.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
