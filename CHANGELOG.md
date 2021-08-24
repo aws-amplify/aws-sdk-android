@@ -1,3 +1,7 @@
+
+
+
+=======
 ## [Release 2.29.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.29.0)
 
 ### Features
@@ -10,6 +14,8 @@
 
 ### Miscellaneous
 - Update README.md (#2576)
+- Model updates for the following services
+---comprehend
 
 [See all changes between 2.28.0 and 2.29.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.28.0...release_v2.29.0)
 
