@@ -3,7 +3,7 @@
 ### Features
 - **aws-android-sdk-lambda:** update models to latest (#2579)
 - **aws-android-sdk-mobile-client:** adds getUserSub method (#2555)
-- add support for retained messages (#2587)
+- **aws-android-sdk-iot:** add support for retained messages (#2587)
 
 ### Bug Fixes
 - Adding a null check for string replace in VersionInfoUtils.
