@@ -40,6 +40,9 @@ class KeyPhrasesDetectionJobPropertiesJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 keyPhrasesDetectionJobProperties.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                keyPhrasesDetectionJobProperties.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 keyPhrasesDetectionJobProperties.setJobName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

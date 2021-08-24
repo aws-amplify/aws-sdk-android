@@ -40,6 +40,9 @@ class PiiEntitiesDetectionJobPropertiesJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 piiEntitiesDetectionJobProperties.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                piiEntitiesDetectionJobProperties.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 piiEntitiesDetectionJobProperties.setJobName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

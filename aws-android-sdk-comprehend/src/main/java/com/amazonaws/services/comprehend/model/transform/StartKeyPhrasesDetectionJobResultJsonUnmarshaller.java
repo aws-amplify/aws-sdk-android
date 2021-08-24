@@ -37,6 +37,9 @@ public class StartKeyPhrasesDetectionJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startKeyPhrasesDetectionJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startKeyPhrasesDetectionJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startKeyPhrasesDetectionJobResult.setJobStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

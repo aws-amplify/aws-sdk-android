@@ -38,6 +38,10 @@ public class StartDominantLanguageDetectionJobResultJsonUnmarshaller implements
                 startDominantLanguageDetectionJobResult.setJobId(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startDominantLanguageDetectionJobResult.setJobArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startDominantLanguageDetectionJobResult.setJobStatus(StringJsonUnmarshaller
                         .getInstance()

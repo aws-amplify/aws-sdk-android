@@ -32,6 +32,11 @@ class PiiEntitiesDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (piiEntitiesDetectionJobProperties.getJobArn() != null) {
+            String jobArn = piiEntitiesDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (piiEntitiesDetectionJobProperties.getJobName() != null) {
             String jobName = piiEntitiesDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");

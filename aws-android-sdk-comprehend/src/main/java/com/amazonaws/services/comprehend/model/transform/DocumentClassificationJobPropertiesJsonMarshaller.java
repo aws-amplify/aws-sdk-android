@@ -32,6 +32,11 @@ class DocumentClassificationJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (documentClassificationJobProperties.getJobArn() != null) {
+            String jobArn = documentClassificationJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (documentClassificationJobProperties.getJobName() != null) {
             String jobName = documentClassificationJobProperties.getJobName();
             jsonWriter.name("JobName");

@@ -37,6 +37,9 @@ public class StartPiiEntitiesDetectionJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startPiiEntitiesDetectionJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startPiiEntitiesDetectionJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startPiiEntitiesDetectionJobResult.setJobStatus(StringJsonUnmarshaller
                         .getInstance()

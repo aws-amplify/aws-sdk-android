@@ -37,6 +37,9 @@ public class StartEntitiesDetectionJobResultJsonUnmarshaller implements
             if (name.equals("JobId")) {
                 startEntitiesDetectionJobResult.setJobId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                startEntitiesDetectionJobResult.setJobArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobStatus")) {
                 startEntitiesDetectionJobResult.setJobStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
