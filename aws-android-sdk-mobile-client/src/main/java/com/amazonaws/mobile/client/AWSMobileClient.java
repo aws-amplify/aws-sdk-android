@@ -2535,7 +2535,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         };
 
         this.forgotPasswordContinuation = new ForgotPasswordContinuation(userpool.getUser(username),
-                                                                         null, //TODO: Check if we can pass null here.
+                                                                         null,
                                                                          true,
                                                                          forgotPasswordHandler);
         internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse,
