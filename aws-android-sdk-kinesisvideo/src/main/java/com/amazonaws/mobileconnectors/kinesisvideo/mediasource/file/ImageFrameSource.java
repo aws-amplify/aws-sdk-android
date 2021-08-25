@@ -20,7 +20,8 @@ import static com.amazonaws.kinesisvideo.producer.FrameFlags.FRAME_FLAG_NONE;
 import static com.amazonaws.kinesisvideo.producer.Time.HUNDREDS_OF_NANOS_IN_A_MILLISECOND;
 
 /**
- * Frame source backed by local image files.
+ * Frame source backed by local image files. Once start() is called, this will continuously loop through
+ * all the frames in order.
  */
 public class ImageFrameSource {
     public static final int METADATA_INTERVAL = 8;
