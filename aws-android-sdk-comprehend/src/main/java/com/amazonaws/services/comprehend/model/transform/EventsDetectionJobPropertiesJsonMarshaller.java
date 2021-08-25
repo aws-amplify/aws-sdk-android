@@ -32,6 +32,11 @@ class EventsDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (eventsDetectionJobProperties.getJobArn() != null) {
+            String jobArn = eventsDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (eventsDetectionJobProperties.getJobName() != null) {
             String jobName = eventsDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");

@@ -41,6 +41,10 @@ class DominantLanguageDetectionJobPropertiesJsonUnmarshaller implements
                 dominantLanguageDetectionJobProperties.setJobId(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("JobArn")) {
+                dominantLanguageDetectionJobProperties.setJobArn(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("JobName")) {
                 dominantLanguageDetectionJobProperties.setJobName(StringJsonUnmarshaller
                         .getInstance()

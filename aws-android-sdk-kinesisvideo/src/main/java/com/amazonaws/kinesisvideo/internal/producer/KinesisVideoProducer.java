@@ -1,20 +1,3 @@
-/**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.amazonaws.kinesisvideo.internal.producer;
 
 import com.amazonaws.kinesisvideo.producer.DeviceInfo;
@@ -121,58 +104,69 @@ public interface KinesisVideoProducer {
     /**
      * DescribeStream result event
      *
-     * @param customData        Custom data that should be passed to the engine
+     * @param stream            Stream object for the result event callback
+     * @param streamHandle      Stream handle returned by PIC
      * @param streamDescription Stream description object
      * @param httpStatusCode    HTTP status code
      * @throws ProducerException
      */
-    void describeStreamResult(final long customData,
+    void describeStreamResult(final KinesisVideoProducerStream stream,
+                              final long streamHandle,
                               final @Nullable StreamDescription streamDescription,
                               int httpStatusCode) throws ProducerException;
 
     /**
      * GetStreamingEndpoint result event
      *
-     * @param customData     Custom data that should be passed to the engine
+     * @param stream         Stream object for the result event callback
+     * @param streamHandle   Stream handle returned by PIC
      * @param endpoint       Streaming endpoint if successful
      * @param httpStatusCode HTTP status code
      * @throws ProducerException
      */
-    void getStreamingEndpointResult(final long customData, final @Nullable String endpoint,
+    void getStreamingEndpointResult(final KinesisVideoProducerStream stream,
+                                    final long streamHandle,
+                                    final @Nullable String endpoint,
                                     int httpStatusCode)
             throws ProducerException;
 
     /**
      * GetStreamingToken result event
      *
-     * @param customData     Custom data that should be passed to the engine
+     * @param stream         Stream object for the result event callback
+     * @param streamHandle   Stream handle returned by PIC
      * @param token          Streaming token if successful
      * @param expiration     Streaming token expiration in absolute time in 100ns
      * @param httpStatusCode HTTP status code
      * @throws ProducerException
      */
-    void getStreamingTokenResult(final long customData, final @Nullable byte[] token, long expiration, int httpStatusCode)
+    void getStreamingTokenResult(final KinesisVideoProducerStream stream,
+                                 final long streamHandle,
+                                 final @Nullable byte[] token, long expiration,
+                                 int httpStatusCode)
             throws ProducerException;
 
     /**
      * PutStream result event
      *
-     * @param customData         Custom data that should be passed to the engine
-     * @param clientStreamHandle A stream handle identifier from the client side
+     * @param stream             Stream object for the result event callback
+     * @param uploadHandle       A stream upload handle identifier from the client side
      * @param httpStatusCode     HTTP status code
      * @throws ProducerException
      */
-    void putStreamResult(final long customData, long clientStreamHandle, int httpStatusCode)
+    void putStreamResult(final KinesisVideoProducerStream stream, long uploadHandle, int httpStatusCode)
             throws ProducerException;
 
     /**
      * TagResource result event
      *
-     * @param customData     Custom data that should be passed to the engine
+     * @param stream         Stream object for the result event callback
+     * @param streamHandle   Stream handle returned by PIC
      * @param httpStatusCode HTTP status code
      * @throws ProducerException
      */
-    void tagResourceResult(final long customData, int httpStatusCode)
+    void tagResourceResult(final KinesisVideoProducerStream stream,
+                           final long streamHandle, int httpStatusCode)
             throws ProducerException;
 
     /**

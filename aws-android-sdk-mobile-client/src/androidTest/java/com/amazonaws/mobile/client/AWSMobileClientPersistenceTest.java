@@ -266,6 +266,32 @@ public class AWSMobileClientPersistenceTest extends AWSMobileClientTestBase {
     }
 
     @Test
+    public void testGetUserSub() {
+        signInAndVerifySignIn();
+        assertNotNull(auth.getUserSub());
+
+        deleteAllEncryptionKeys();
+        
+        try {
+            auth.signOut();
+        } catch (Exception ex) {
+            fail(ex.getMessage());
+        }
+
+        assertNull(auth.getUserSub());
+
+        try {
+            final SignInResult signInResult = auth.signIn(username, PASSWORD, null);
+            assertNotNull(signInResult);
+            assertEquals(SignInState.DONE, signInResult.getSignInState());
+        } catch (Exception ex) {
+            fail(ex.getMessage());
+        }
+
+        assertNotNull(auth.getUserSub());
+    }
+
+    @Test
     public void testGetUserAttributes() throws Exception {
         signInAndVerifySignIn();
 

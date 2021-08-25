@@ -32,6 +32,11 @@ class SentimentDetectionJobPropertiesJsonMarshaller {
             jsonWriter.name("JobId");
             jsonWriter.value(jobId);
         }
+        if (sentimentDetectionJobProperties.getJobArn() != null) {
+            String jobArn = sentimentDetectionJobProperties.getJobArn();
+            jsonWriter.name("JobArn");
+            jsonWriter.value(jobArn);
+        }
         if (sentimentDetectionJobProperties.getJobName() != null) {
             String jobName = sentimentDetectionJobProperties.getJobName();
             jsonWriter.name("JobName");
