@@ -4,6 +4,9 @@ import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceSink;
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 
+/**
+ * This class demonstrates a sample OnStreamDataAvailable handler.
+ */
 public class DefaultOnStreamDataAvailable implements OnStreamDataAvailable {
     final MediaSourceSink mediaSourceSink;
 

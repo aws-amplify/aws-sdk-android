@@ -39,7 +39,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * MediaSource based on local image files. Currently, this MediaSource expects
- * a series of H264 frames.
+ * a series of H264 frames located somewhere within an Android Assets folder.
  */
 public class ImageFileMediaSource implements MediaSource {
     // Codec private data could be extracted using gstreamer plugin

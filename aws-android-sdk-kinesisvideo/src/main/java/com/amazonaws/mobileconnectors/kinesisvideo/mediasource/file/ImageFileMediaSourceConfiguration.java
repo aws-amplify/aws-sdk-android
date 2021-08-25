@@ -5,6 +5,11 @@ import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfigu
 
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_CONTENT_TYPE;
 
+/**
+ * This class represents a MediaSourceConfiguration for a MediaSource based on local image
+ * files. Currently, this MediaSourceConfiguration expects a series of H264 frames located
+ * somewhere within an Android Assets folder.
+ */
 public class ImageFileMediaSourceConfiguration implements MediaSourceConfiguration {
 
     private final int fps;
