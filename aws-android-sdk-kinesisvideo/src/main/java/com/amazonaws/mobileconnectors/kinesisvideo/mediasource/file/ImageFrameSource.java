@@ -136,7 +136,6 @@ public class ImageFrameSource {
         return frameCounter % configuration.getFps() == 0;
     }
 
-
     private void stopFrameGenerator() {
         executor.shutdown();
     }

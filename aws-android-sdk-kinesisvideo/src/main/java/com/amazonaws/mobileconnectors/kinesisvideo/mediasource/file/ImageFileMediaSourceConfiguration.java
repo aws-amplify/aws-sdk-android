@@ -3,8 +3,6 @@ package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.file;
 import android.content.res.AssetManager;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceConfiguration;
 
-import java.util.Optional;
-
 import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_CONTENT_TYPE;
 
 public class ImageFileMediaSourceConfiguration implements MediaSourceConfiguration {
@@ -39,7 +37,9 @@ public class ImageFileMediaSourceConfiguration implements MediaSourceConfigurati
         return dir;
     }
 
-    public AssetManager getAssetManager() { return assetManager; }
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
 
     public String getFilenameFormat() {
         return filenameFormat;

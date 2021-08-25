@@ -34,8 +34,6 @@ import com.amazonaws.kinesisvideo.client.mediasource.MediaSourceState;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
 import com.amazonaws.kinesisvideo.producer.StreamInfo;
 import com.amazonaws.kinesisvideo.producer.Tag;
-import com.amazonaws.mobileconnectors.kinesisvideo.mediasource.file.ImageFileMediaSourceConfiguration;
-import com.amazonaws.mobileconnectors.kinesisvideo.mediasource.file.ImageFrameSource;
 
 import java.util.concurrent.CompletableFuture;
 
