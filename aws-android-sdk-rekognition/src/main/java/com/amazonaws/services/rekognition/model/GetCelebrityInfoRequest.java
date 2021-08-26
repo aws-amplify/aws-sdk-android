@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the name and additional information about a celebrity based on his or
- * her Amazon Rekognition ID. The additional information is returned as an array
- * of URLs. If there is no additional information about the celebrity, this list
- * is empty.
+ * Gets the name and additional information about a celebrity based on their
+ * Amazon Rekognition ID. The additional information is returned as an array of
+ * URLs. If there is no additional information about the celebrity, this list is
+ * empty.
  * </p>
  * <p>
  * For more information, see Recognizing Celebrities in an Image in the Amazon
