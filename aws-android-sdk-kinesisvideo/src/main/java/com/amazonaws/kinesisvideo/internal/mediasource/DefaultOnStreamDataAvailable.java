@@ -1,6 +1,8 @@
 package com.amazonaws.kinesisvideo.internal.mediasource;
 
+import androidx.annotation.NonNull;
 import com.amazonaws.kinesisvideo.common.exception.KinesisVideoException;
+import com.amazonaws.kinesisvideo.common.preconditions.Preconditions;
 import com.amazonaws.kinesisvideo.internal.client.mediasource.MediaSourceSink;
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 
@@ -16,6 +18,7 @@ public class DefaultOnStreamDataAvailable implements OnStreamDataAvailable {
 
     @Override
     public void onFrameDataAvailable(final KinesisVideoFrame frame) throws KinesisVideoException {
+        Preconditions.checkNotNull(frame);
         // ignore frame of size 0
         if (frame.getSize() == 0) {
             throw new KinesisVideoException("Empty frame is provided in frame data available.");

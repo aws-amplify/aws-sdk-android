@@ -39,7 +39,8 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * MediaSource based on local image files. Currently, this MediaSource expects
- * a series of H264 frames located somewhere within an Android Assets folder.
+ * a series of H264 frames located within an Android Assets folder.
+ * See https://github.com/awslabs/aws-sdk-android-samples/tree/main/AmazonKinesisVideoDemoApp/src/main/assets/sample_frames
  */
 public class ImageFileMediaSource implements MediaSource {
     // Codec private data could be extracted using gstreamer plugin

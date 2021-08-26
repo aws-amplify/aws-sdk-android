@@ -7,13 +7,10 @@ import com.amazonaws.kinesisvideo.producer.KinesisVideoFrame;
 
 public interface OnStreamDataAvailable {
     default void onFrameDataAvailable(final ByteBuffer frame) throws KinesisVideoException {
-        // no-op
     }
     default void onFrameDataAvailable(final KinesisVideoFrame frame) throws KinesisVideoException {
-        // no-op
     }
     default void onFragmentMetadataAvailable(final String metadataName, final String metadataValue,
                                              final boolean persistent) throws KinesisVideoException {
-        // no-op
     }
 }

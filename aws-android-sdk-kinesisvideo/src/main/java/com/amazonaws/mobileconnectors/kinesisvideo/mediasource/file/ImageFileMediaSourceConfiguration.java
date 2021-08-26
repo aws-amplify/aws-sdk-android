@@ -8,7 +8,8 @@ import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.VIDEO_CONTENT_
 /**
  * This class represents a MediaSourceConfiguration for a MediaSource based on local image
  * files. Currently, this MediaSourceConfiguration expects a series of H264 frames located
- * somewhere within an Android Assets folder.
+ * within an Android Assets folder.
+ * See https://github.com/awslabs/aws-sdk-android-samples/tree/main/AmazonKinesisVideoDemoApp/src/main/assets/sample_frames
  */
 public class ImageFileMediaSourceConfiguration implements MediaSourceConfiguration {
 
@@ -79,7 +80,7 @@ public class ImageFileMediaSourceConfiguration implements MediaSourceConfigurati
         private String filenameFormat;
         private int startFileIndex;
         private int endFileIndex;
-        private String contentType = VIDEO_CONTENT_TYPE;
+        private String contentType = VIDEO_CONTENT_TYPE; // content type should be video only
 
         public Builder fps(final int fps) {
             this.fps = fps;

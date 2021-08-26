@@ -74,7 +74,7 @@ public class ImageFrameSource {
                 try {
                     generateFrameAndNotifyListener();
                 } catch (final KinesisVideoException e) {
-                    log.error("Failed to keep generating frames with Exception", e);
+                    log.error("Failed to keep generating frames with Exception " + e.getMessage());
                 }
             }
         });
@@ -94,7 +94,7 @@ public class ImageFrameSource {
             try {
                 Thread.sleep(TimeUnit.SECONDS.toMillis(1L) / fps);
             } catch (final InterruptedException e) {
-                log.error("Frame interval wait interrupted by Exception ", e);
+                log.error("Frame interval wait interrupted by Exception " + e.getMessage());
             }
         }
     }
@@ -127,12 +127,14 @@ public class ImageFrameSource {
                     FRAME_DURATION_20_MS * HUNDREDS_OF_NANOS_IN_A_MILLISECOND,
                     ByteBuffer.wrap(data));
         } catch (final IOException e) {
-            log.error("Read file failed with Exception ", e);
+            log.error("Read file failed with Exception " + e.getMessage());
         }
 
         return null;
     }
 
+    // Setting the FPS correctly in the configuration is important
+    // See https://github.com/awslabs/aws-sdk-android-samples/blob/main/AmazonKinesisVideoDemoApp/src/main/java/com/amazonaws/kinesisvideo/demoapp/fragment/FramesFragment.java
     private boolean isKeyFrame() {
         return frameCounter % configuration.getFps() == 0;
     }
