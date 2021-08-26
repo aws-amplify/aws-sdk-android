@@ -124,6 +124,17 @@ class TranscriptionJobJsonMarshaller {
             jsonWriter.name("IdentifiedLanguageScore");
             jsonWriter.value(identifiedLanguageScore);
         }
+        if (transcriptionJob.getTags() != null) {
+            java.util.List<Tag> tags = transcriptionJob.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginArray();
+            for (Tag tagsItem : tags) {
+                if (tagsItem != null) {
+                    TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

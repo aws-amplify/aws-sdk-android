@@ -38,21 +38,20 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for CreateMedicalVocabularyRequest
+ * JSON request marshaller for UntagResourceRequest
  */
-public class CreateMedicalVocabularyRequestMarshaller implements
-        Marshaller<Request<CreateMedicalVocabularyRequest>, CreateMedicalVocabularyRequest> {
+public class UntagResourceRequestMarshaller implements
+        Marshaller<Request<UntagResourceRequest>, UntagResourceRequest> {
 
-    public Request<CreateMedicalVocabularyRequest> marshall(
-            CreateMedicalVocabularyRequest createMedicalVocabularyRequest) {
-        if (createMedicalVocabularyRequest == null) {
+    public Request<UntagResourceRequest> marshall(UntagResourceRequest untagResourceRequest) {
+        if (untagResourceRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(CreateMedicalVocabularyRequest)");
+                    "Invalid argument passed to marshall(UntagResourceRequest)");
         }
 
-        Request<CreateMedicalVocabularyRequest> request = new DefaultRequest<CreateMedicalVocabularyRequest>(
-                createMedicalVocabularyRequest, "AmazonTranscribe");
-        String target = "Transcribe.CreateMedicalVocabulary";
+        Request<UntagResourceRequest> request = new DefaultRequest<UntagResourceRequest>(
+                untagResourceRequest, "AmazonTranscribe");
+        String target = "Transcribe.UntagResource";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -63,28 +62,18 @@ public class CreateMedicalVocabularyRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (createMedicalVocabularyRequest.getVocabularyName() != null) {
-                String vocabularyName = createMedicalVocabularyRequest.getVocabularyName();
-                jsonWriter.name("VocabularyName");
-                jsonWriter.value(vocabularyName);
+            if (untagResourceRequest.getResourceArn() != null) {
+                String resourceArn = untagResourceRequest.getResourceArn();
+                jsonWriter.name("ResourceArn");
+                jsonWriter.value(resourceArn);
             }
-            if (createMedicalVocabularyRequest.getLanguageCode() != null) {
-                String languageCode = createMedicalVocabularyRequest.getLanguageCode();
-                jsonWriter.name("LanguageCode");
-                jsonWriter.value(languageCode);
-            }
-            if (createMedicalVocabularyRequest.getVocabularyFileUri() != null) {
-                String vocabularyFileUri = createMedicalVocabularyRequest.getVocabularyFileUri();
-                jsonWriter.name("VocabularyFileUri");
-                jsonWriter.value(vocabularyFileUri);
-            }
-            if (createMedicalVocabularyRequest.getTags() != null) {
-                java.util.List<Tag> tags = createMedicalVocabularyRequest.getTags();
-                jsonWriter.name("Tags");
+            if (untagResourceRequest.getTagKeys() != null) {
+                java.util.List<String> tagKeys = untagResourceRequest.getTagKeys();
+                jsonWriter.name("TagKeys");
                 jsonWriter.beginArray();
-                for (Tag tagsItem : tags) {
-                    if (tagsItem != null) {
-                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                for (String tagKeysItem : tagKeys) {
+                    if (tagKeysItem != null) {
+                        jsonWriter.value(tagKeysItem);
                     }
                 }
                 jsonWriter.endArray();

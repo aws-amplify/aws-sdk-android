@@ -130,6 +130,17 @@ public class StartMedicalTranscriptionJobRequestMarshaller
                 jsonWriter.name("Type");
                 jsonWriter.value(type);
             }
+            if (startMedicalTranscriptionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startMedicalTranscriptionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

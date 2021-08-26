@@ -54,7 +54,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      */
     private String languageCode;
 
@@ -244,13 +245,20 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The type of speech in the input audio. <code>CONVERSATION</code> refers
      * to conversations between two or more speakers, e.g., a conversations
      * between doctors and patients. <code>DICTATION</code> refers to
-     * single-speaker dictated speech, e.g., for clinical notes.
+     * single-speaker dictated speech, such as clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>CONVERSATION, DICTATION
      */
     private String type;
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe medical transcription job.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -354,7 +362,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @return <p>
      *         The language code for the language spoken in the input media
@@ -380,7 +389,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language spoken in the input media
@@ -409,7 +419,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language spoken in the input media
@@ -438,7 +449,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language spoken in the input media
@@ -467,7 +479,8 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language spoken in the input media
@@ -1710,7 +1723,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The type of speech in the input audio. <code>CONVERSATION</code> refers
      * to conversations between two or more speakers, e.g., a conversations
      * between doctors and patients. <code>DICTATION</code> refers to
-     * single-speaker dictated speech, e.g., for clinical notes.
+     * single-speaker dictated speech, such as clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1721,7 +1734,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *         refers to conversations between two or more speakers, e.g., a
      *         conversations between doctors and patients.
      *         <code>DICTATION</code> refers to single-speaker dictated speech,
-     *         e.g., for clinical notes.
+     *         such as clinical notes.
      *         </p>
      * @see Type
      */
@@ -1734,7 +1747,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The type of speech in the input audio. <code>CONVERSATION</code> refers
      * to conversations between two or more speakers, e.g., a conversations
      * between doctors and patients. <code>DICTATION</code> refers to
-     * single-speaker dictated speech, e.g., for clinical notes.
+     * single-speaker dictated speech, such as clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1745,7 +1758,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            <code>CONVERSATION</code> refers to conversations between two
      *            or more speakers, e.g., a conversations between doctors and
      *            patients. <code>DICTATION</code> refers to single-speaker
-     *            dictated speech, e.g., for clinical notes.
+     *            dictated speech, such as clinical notes.
      *            </p>
      * @see Type
      */
@@ -1758,7 +1771,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The type of speech in the input audio. <code>CONVERSATION</code> refers
      * to conversations between two or more speakers, e.g., a conversations
      * between doctors and patients. <code>DICTATION</code> refers to
-     * single-speaker dictated speech, e.g., for clinical notes.
+     * single-speaker dictated speech, such as clinical notes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1772,7 +1785,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            <code>CONVERSATION</code> refers to conversations between two
      *            or more speakers, e.g., a conversations between doctors and
      *            patients. <code>DICTATION</code> refers to single-speaker
-     *            dictated speech, e.g., for clinical notes.
+     *            dictated speech, such as clinical notes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1788,7 +1801,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The type of speech in the input audio. <code>CONVERSATION</code> refers
      * to conversations between two or more speakers, e.g., a conversations
      * between doctors and patients. <code>DICTATION</code> refers to
-     * single-speaker dictated speech, e.g., for clinical notes.
+     * single-speaker dictated speech, such as clinical notes.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1799,7 +1812,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            <code>CONVERSATION</code> refers to conversations between two
      *            or more speakers, e.g., a conversations between doctors and
      *            patients. <code>DICTATION</code> refers to single-speaker
-     *            dictated speech, e.g., for clinical notes.
+     *            dictated speech, such as clinical notes.
      *            </p>
      * @see Type
      */
@@ -1812,7 +1825,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      * The type of speech in the input audio. <code>CONVERSATION</code> refers
      * to conversations between two or more speakers, e.g., a conversations
      * between doctors and patients. <code>DICTATION</code> refers to
-     * single-speaker dictated speech, e.g., for clinical notes.
+     * single-speaker dictated speech, such as clinical notes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1826,7 +1839,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      *            <code>CONVERSATION</code> refers to conversations between two
      *            or more speakers, e.g., a conversations between doctors and
      *            patients. <code>DICTATION</code> refers to single-speaker
-     *            dictated speech, e.g., for clinical notes.
+     *            dictated speech, such as clinical notes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1834,6 +1847,80 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
      */
     public StartMedicalTranscriptionJobRequest withType(Type type) {
         this.type = type.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe medical transcription job.
+     * </p>
+     *
+     * @return <p>
+     *         Add tags to an Amazon Transcribe medical transcription job.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe medical transcription job.
+     * </p>
+     *
+     * @param tags <p>
+     *            Add tags to an Amazon Transcribe medical transcription job.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe medical transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Add tags to an Amazon Transcribe medical transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartMedicalTranscriptionJobRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe medical transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Add tags to an Amazon Transcribe medical transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartMedicalTranscriptionJobRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
         return this;
     }
 
@@ -1871,7 +1958,9 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
         if (getSpecialty() != null)
             sb.append("Specialty: " + getSpecialty() + ",");
         if (getType() != null)
-            sb.append("Type: " + getType());
+            sb.append("Type: " + getType() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -1906,6 +1995,7 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
                         .hashCode());
         hashCode = prime * hashCode + ((getSpecialty() == null) ? 0 : getSpecialty().hashCode());
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -1980,6 +2070,10 @@ public class StartMedicalTranscriptionJobRequest extends AmazonWebServiceRequest
         if (other.getType() == null ^ this.getType() == null)
             return false;
         if (other.getType() != null && other.getType().equals(this.getType()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }
