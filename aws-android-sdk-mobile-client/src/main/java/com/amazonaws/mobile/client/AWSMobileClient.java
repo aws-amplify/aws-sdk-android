@@ -2483,6 +2483,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      *                 confirm forgot password operation
      */
     @AnyThread
+    @Deprecated
     public void confirmForgotPassword(final String password,
                                       final String forgotPasswordChallengeResponse,
                                       final Callback<ForgotPasswordResult> callback) {
