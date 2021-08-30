@@ -21,43 +21,36 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response GetCelebrityInfoResult
+ * JSON unmarshaller for POJO KnownGender
  */
-public class GetCelebrityInfoResultJsonUnmarshaller implements
-        Unmarshaller<GetCelebrityInfoResult, JsonUnmarshallerContext> {
+class KnownGenderJsonUnmarshaller implements Unmarshaller<KnownGender, JsonUnmarshallerContext> {
 
-    public GetCelebrityInfoResult unmarshall(JsonUnmarshallerContext context) throws Exception {
-        GetCelebrityInfoResult getCelebrityInfoResult = new GetCelebrityInfoResult();
-
+    public KnownGender unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
+        if (!reader.isContainer()) {
+            reader.skipValue();
+            return null;
+        }
+        KnownGender knownGender = new KnownGender();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Urls")) {
-                getCelebrityInfoResult.setUrls(new ListUnmarshaller<String>(StringJsonUnmarshaller
-                        .getInstance()
-                        )
-                                .unmarshall(context));
-            } else if (name.equals("Name")) {
-                getCelebrityInfoResult.setName(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("KnownGender")) {
-                getCelebrityInfoResult.setKnownGender(KnownGenderJsonUnmarshaller.getInstance()
+            if (name.equals("Type")) {
+                knownGender.setType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-
-        return getCelebrityInfoResult;
+        return knownGender;
     }
 
-    private static GetCelebrityInfoResultJsonUnmarshaller instance;
+    private static KnownGenderJsonUnmarshaller instance;
 
-    public static GetCelebrityInfoResultJsonUnmarshaller getInstance() {
+    public static KnownGenderJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new GetCelebrityInfoResultJsonUnmarshaller();
+            instance = new KnownGenderJsonUnmarshaller();
         return instance;
     }
 }

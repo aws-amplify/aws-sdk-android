@@ -71,6 +71,13 @@ public class Celebrity implements Serializable {
 
     /**
      * <p>
+     * The known gender identity for the celebrity that matches the provided ID.
+     * </p>
+     */
+    private KnownGender knownGender;
+
+    /**
+     * <p>
      * An array of URLs pointing to additional information about the celebrity.
      * If there is no additional information about the celebrity, this list is
      * empty.
@@ -370,6 +377,54 @@ public class Celebrity implements Serializable {
     }
 
     /**
+     * <p>
+     * The known gender identity for the celebrity that matches the provided ID.
+     * </p>
+     *
+     * @return <p>
+     *         The known gender identity for the celebrity that matches the
+     *         provided ID.
+     *         </p>
+     */
+    public KnownGender getKnownGender() {
+        return knownGender;
+    }
+
+    /**
+     * <p>
+     * The known gender identity for the celebrity that matches the provided ID.
+     * </p>
+     *
+     * @param knownGender <p>
+     *            The known gender identity for the celebrity that matches the
+     *            provided ID.
+     *            </p>
+     */
+    public void setKnownGender(KnownGender knownGender) {
+        this.knownGender = knownGender;
+    }
+
+    /**
+     * <p>
+     * The known gender identity for the celebrity that matches the provided ID.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param knownGender <p>
+     *            The known gender identity for the celebrity that matches the
+     *            provided ID.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Celebrity withKnownGender(KnownGender knownGender) {
+        this.knownGender = knownGender;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -389,7 +444,9 @@ public class Celebrity implements Serializable {
         if (getFace() != null)
             sb.append("Face: " + getFace() + ",");
         if (getMatchConfidence() != null)
-            sb.append("MatchConfidence: " + getMatchConfidence());
+            sb.append("MatchConfidence: " + getMatchConfidence() + ",");
+        if (getKnownGender() != null)
+            sb.append("KnownGender: " + getKnownGender());
         sb.append("}");
         return sb.toString();
     }
@@ -405,6 +462,8 @@ public class Celebrity implements Serializable {
         hashCode = prime * hashCode + ((getFace() == null) ? 0 : getFace().hashCode());
         hashCode = prime * hashCode
                 + ((getMatchConfidence() == null) ? 0 : getMatchConfidence().hashCode());
+        hashCode = prime * hashCode
+                + ((getKnownGender() == null) ? 0 : getKnownGender().hashCode());
         return hashCode;
     }
 
@@ -439,6 +498,11 @@ public class Celebrity implements Serializable {
             return false;
         if (other.getMatchConfidence() != null
                 && other.getMatchConfidence().equals(this.getMatchConfidence()) == false)
+            return false;
+        if (other.getKnownGender() == null ^ this.getKnownGender() == null)
+            return false;
+        if (other.getKnownGender() != null
+                && other.getKnownGender().equals(this.getKnownGender()) == false)
             return false;
         return true;
     }
