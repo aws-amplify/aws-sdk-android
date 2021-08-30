@@ -1,20 +1,3 @@
-/**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.amazonaws.kinesisvideo.util;
 
 import static com.amazonaws.kinesisvideo.producer.Time.HUNDREDS_OF_NANOS_IN_AN_HOUR;
@@ -24,6 +7,15 @@ import static com.amazonaws.kinesisvideo.producer.Time.HUNDREDS_OF_NANOS_IN_A_SE
  * All the time unit used in this class is 100 ns (minimum unit used in producer SDK)
  */
 public final class StreamInfoConstants {
+    public static final int HTTP_OK = 200;
+    public static final int HTTP_BAD_REQUEST = 400;
+    public static final int HTTP_NOT_FOUND = 404;
+    public static final int HTTP_RESOURCE_IN_USE = 10003;
+    public static final int HTTP_ACCESS_DENIED = 403;
+    public static final String RESOURCE_NOT_FOUND = "ResourceNotFoundException";
+    public static final String RESOURCE_IN_USE = "ResourceInUseException";
+    public static final String ACCESS_DENIED = "AccessDeniedException";
+
     public static final boolean NOT_ADAPTIVE = false;
     public static final boolean KEYFRAME_FRAGMENTATION = true;
     public static final boolean SDK_GENERATES_TIMECODES = false;
@@ -45,6 +37,14 @@ public final class StreamInfoConstants {
     public static final boolean ABSOLUTE_TIMECODES = true;
     public static final boolean RELATIVE_TIMECODES = false;
     public static final boolean RECALCULATE_METRICS = true;
+    public static final int DEFAULT_TRACK_ID = 1;
+    public static final int VIDEO_TRACK_ID = DEFAULT_TRACK_ID;
+    public static final int AUDIO_TRACK_ID = DEFAULT_TRACK_ID + 1;
+    public static final String VIDEO_CONTENT_TYPE = "video/h264";
+    public static final String AUDIO_VIDEO_CONTENT_TYPE = "video/h264,audio/aac";
+    public static final long FRAME_DURATION_0_MS = 0L;
+    public static final String VIDEO_CODEC_ID = "V_MPEG4/ISO/AVC";
+    public static final String AUDIO_CODEC_ID = "A_AAC";
 
     /**
      * Default buffer duration for a stream
@@ -65,4 +65,3 @@ public final class StreamInfoConstants {
         throw new UnsupportedOperationException();
     }
 }
-

@@ -1,20 +1,3 @@
-/**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.amazonaws.kinesisvideo.streaming;
 
 import com.amazonaws.kinesisvideo.producer.KinesisVideoFragmentAck;
@@ -40,7 +23,7 @@ public class DefaultStreamCallbacks implements StreamCallbacks {
     }
 
     @Override
-    public void fragmentAckReceived(@NonNull final KinesisVideoFragmentAck fragmentAck) throws ProducerException {
+    public void fragmentAckReceived(final long uploadHandle, @NonNull final KinesisVideoFragmentAck fragmentAck) throws ProducerException {
         // no-op
     }
 
@@ -50,7 +33,7 @@ public class DefaultStreamCallbacks implements StreamCallbacks {
     }
 
     @Override
-    public void streamErrorReport(final long frameTimecode, final long statusCode) throws ProducerException {
+    public void streamErrorReport(final long uploadHandle, final long frameTimecode, final long statusCode) throws ProducerException {
         // no-op
     }
 
@@ -72,6 +55,11 @@ public class DefaultStreamCallbacks implements StreamCallbacks {
 
     @Override
     public void streamClosed(final long uploadHandle) throws ProducerException {
+        // no-op
+    }
+
+    @Override
+    public void bufferDurationOverflowPressure(final long remainDuration) throws ProducerException {
         // no-op
     }
 }
