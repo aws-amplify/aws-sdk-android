@@ -1,3 +1,15 @@
+## [Release 2.30.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.30.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#2592)
+- **aws-android-sdk-polly:** update models to latest (#2593)
+- **aws-android-sdk-rekognition:** update models to latest (#2599)
+
+### Miscellaneous
+- Kinesis Video Update (#2581)
+
+[See all changes between 2.29.0 and 2.30.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.29.0...release_v2.30.0)
+
 
 
 
