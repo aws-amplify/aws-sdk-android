@@ -38,31 +38,27 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DeleteThingShadowRequest
+ * JSON request marshaller for GetRetainedMessageRequest
  */
-public class DeleteThingShadowRequestMarshaller implements
-        Marshaller<Request<DeleteThingShadowRequest>, DeleteThingShadowRequest> {
+public class GetRetainedMessageRequestMarshaller implements
+        Marshaller<Request<GetRetainedMessageRequest>, GetRetainedMessageRequest> {
 
-    public Request<DeleteThingShadowRequest> marshall(
-            DeleteThingShadowRequest deleteThingShadowRequest) {
-        if (deleteThingShadowRequest == null) {
+    public Request<GetRetainedMessageRequest> marshall(
+            GetRetainedMessageRequest getRetainedMessageRequest) {
+        if (getRetainedMessageRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DeleteThingShadowRequest)");
+                    "Invalid argument passed to marshall(GetRetainedMessageRequest)");
         }
 
-        Request<DeleteThingShadowRequest> request = new DefaultRequest<DeleteThingShadowRequest>(
-                deleteThingShadowRequest, "AWSIotData");
-        request.setHttpMethod(HttpMethodName.DELETE);
+        Request<GetRetainedMessageRequest> request = new DefaultRequest<GetRetainedMessageRequest>(
+                getRetainedMessageRequest, "AWSIotData");
+        request.setHttpMethod(HttpMethodName.GET);
 
-        String uriResourcePath = "/things/{thingName}/shadow";
+        String uriResourcePath = "/retainedMessage/{topic}";
         uriResourcePath = uriResourcePath.replace(
-                "{thingName}",
-                (deleteThingShadowRequest.getThingName() == null) ? "" : StringUtils
-                        .fromString(deleteThingShadowRequest.getThingName()));
-        if (deleteThingShadowRequest.getShadowName() != null) {
-            request.addParameter("name",
-                    StringUtils.fromString(deleteThingShadowRequest.getShadowName()));
-        }
+                "{topic}",
+                (getRetainedMessageRequest.getTopic() == null) ? "" : StringUtils
+                        .fromString(getRetainedMessageRequest.getTopic()));
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
             request.addHeader("Content-Type", "application/x-amz-json-1.0");

@@ -38,30 +38,30 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for DeleteThingShadowRequest
+ * JSON request marshaller for ListRetainedMessagesRequest
  */
-public class DeleteThingShadowRequestMarshaller implements
-        Marshaller<Request<DeleteThingShadowRequest>, DeleteThingShadowRequest> {
+public class ListRetainedMessagesRequestMarshaller implements
+        Marshaller<Request<ListRetainedMessagesRequest>, ListRetainedMessagesRequest> {
 
-    public Request<DeleteThingShadowRequest> marshall(
-            DeleteThingShadowRequest deleteThingShadowRequest) {
-        if (deleteThingShadowRequest == null) {
+    public Request<ListRetainedMessagesRequest> marshall(
+            ListRetainedMessagesRequest listRetainedMessagesRequest) {
+        if (listRetainedMessagesRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(DeleteThingShadowRequest)");
+                    "Invalid argument passed to marshall(ListRetainedMessagesRequest)");
         }
 
-        Request<DeleteThingShadowRequest> request = new DefaultRequest<DeleteThingShadowRequest>(
-                deleteThingShadowRequest, "AWSIotData");
-        request.setHttpMethod(HttpMethodName.DELETE);
+        Request<ListRetainedMessagesRequest> request = new DefaultRequest<ListRetainedMessagesRequest>(
+                listRetainedMessagesRequest, "AWSIotData");
+        request.setHttpMethod(HttpMethodName.GET);
 
-        String uriResourcePath = "/things/{thingName}/shadow";
-        uriResourcePath = uriResourcePath.replace(
-                "{thingName}",
-                (deleteThingShadowRequest.getThingName() == null) ? "" : StringUtils
-                        .fromString(deleteThingShadowRequest.getThingName()));
-        if (deleteThingShadowRequest.getShadowName() != null) {
-            request.addParameter("name",
-                    StringUtils.fromString(deleteThingShadowRequest.getShadowName()));
+        String uriResourcePath = "/retainedMessage";
+        if (listRetainedMessagesRequest.getNextToken() != null) {
+            request.addParameter("nextToken",
+                    StringUtils.fromString(listRetainedMessagesRequest.getNextToken()));
+        }
+        if (listRetainedMessagesRequest.getMaxResults() != null) {
+            request.addParameter("maxResults",
+                    StringUtils.fromInteger(listRetainedMessagesRequest.getMaxResults()));
         }
         request.setResourcePath(uriResourcePath);
         if (!request.getHeaders().containsKey("Content-Type")) {
