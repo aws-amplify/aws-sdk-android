@@ -55,5 +55,4 @@ public class AndroidCameraMediaSourceConfigurationTest {
         assertThat(configuration.getNalAdaptationFlags()).isEqualTo(NAL_ADAPTION_FLAGS);
         assertThat(configuration.getIsAbsoluteTimecode()).isEqualTo(IS_ABSOLUTE_TIMECODE);
     }
-
 }
