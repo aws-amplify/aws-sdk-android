@@ -21,29 +21,26 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for response ListNamedShadowsForThingResult
+ * JSON unmarshaller for response ListRetainedMessagesResult
  */
-public class ListNamedShadowsForThingResultJsonUnmarshaller implements
-        Unmarshaller<ListNamedShadowsForThingResult, JsonUnmarshallerContext> {
+public class ListRetainedMessagesResultJsonUnmarshaller implements
+        Unmarshaller<ListRetainedMessagesResult, JsonUnmarshallerContext> {
 
-    public ListNamedShadowsForThingResult unmarshall(JsonUnmarshallerContext context)
-            throws Exception {
-        ListNamedShadowsForThingResult listNamedShadowsForThingResult = new ListNamedShadowsForThingResult();
+    public ListRetainedMessagesResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+        ListRetainedMessagesResult listRetainedMessagesResult = new ListRetainedMessagesResult();
 
         AwsJsonReader reader = context.getReader();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("results")) {
-                listNamedShadowsForThingResult.setResults(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
+            if (name.equals("retainedTopics")) {
+                listRetainedMessagesResult
+                        .setRetainedTopics(new ListUnmarshaller<RetainedMessageSummary>(
+                                RetainedMessageSummaryJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else if (name.equals("nextToken")) {
-                listNamedShadowsForThingResult.setNextToken(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("timestamp")) {
-                listNamedShadowsForThingResult.setTimestamp(LongJsonUnmarshaller.getInstance()
+                listRetainedMessagesResult.setNextToken(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
@@ -51,14 +48,14 @@ public class ListNamedShadowsForThingResultJsonUnmarshaller implements
         }
         reader.endObject();
 
-        return listNamedShadowsForThingResult;
+        return listRetainedMessagesResult;
     }
 
-    private static ListNamedShadowsForThingResultJsonUnmarshaller instance;
+    private static ListRetainedMessagesResultJsonUnmarshaller instance;
 
-    public static ListNamedShadowsForThingResultJsonUnmarshaller getInstance() {
+    public static ListRetainedMessagesResultJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new ListNamedShadowsForThingResultJsonUnmarshaller();
+            instance = new ListRetainedMessagesResultJsonUnmarshaller();
         return instance;
     }
 }

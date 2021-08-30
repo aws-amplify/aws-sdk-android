@@ -51,7 +51,8 @@ public enum LanguageCode {
     RoRO("ro-RO"),
     RuRU("ru-RU"),
     SvSE("sv-SE"),
-    TrTR("tr-TR");
+    TrTR("tr-TR"),
+    EnNZ("en-NZ");
 
     private String value;
 
@@ -96,6 +97,7 @@ public enum LanguageCode {
         enumMap.put("ru-RU", RuRU);
         enumMap.put("sv-SE", SvSE);
         enumMap.put("tr-TR", TrTR);
+        enumMap.put("en-NZ", EnNZ);
     }
 
     /**

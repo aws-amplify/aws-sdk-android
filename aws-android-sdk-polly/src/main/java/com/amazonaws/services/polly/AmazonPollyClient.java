@@ -371,10 +371,10 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
 
     /**
      * <p>
-     * Deletes the specified pronunciation lexicon stored in an AWS Region. A
-     * lexicon which has been deleted is not available for speech synthesis, nor
-     * is it possible to retrieve it using either the <code>GetLexicon</code> or
-     * <code>ListLexicon</code> APIs.
+     * Deletes the specified pronunciation lexicon stored in an Amazon Web
+     * Services Region. A lexicon which has been deleted is not available for
+     * speech synthesis, nor is it possible to retrieve it using either the
+     * <code>GetLexicon</code> or <code>ListLexicon</code> APIs.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -497,7 +497,7 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
     /**
      * <p>
      * Returns the content of the specified pronunciation lexicon stored in an
-     * AWS Region. For more information, see <a href=
+     * Amazon Web Services Region. For more information, see <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
      * >Managing Lexicons</a>.
      * </p>
@@ -600,8 +600,8 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
 
     /**
      * <p>
-     * Returns a list of pronunciation lexicons stored in an AWS Region. For
-     * more information, see <a href=
+     * Returns a list of pronunciation lexicons stored in an Amazon Web Services
+     * Region. For more information, see <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
      * >Managing Lexicons</a>.
      * </p>
@@ -702,11 +702,11 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
 
     /**
      * <p>
-     * Stores a pronunciation lexicon in an AWS Region. If a lexicon with the
-     * same name already exists in the region, it is overwritten by the new
-     * lexicon. Lexicon operations have eventual consistency, therefore, it
-     * might take some time before the lexicon is available to the
-     * SynthesizeSpeech operation.
+     * Stores a pronunciation lexicon in an Amazon Web Services Region. If a
+     * lexicon with the same name already exists in the region, it is
+     * overwritten by the new lexicon. Lexicon operations have eventual
+     * consistency, therefore, it might take some time before the lexicon is
+     * available to the SynthesizeSpeech operation.
      * </p>
      * <p>
      * For more information, see <a href=
@@ -767,10 +767,12 @@ public class AmazonPollyClient extends AmazonWebServiceClient implements AmazonP
      * <code>SpeechSynthesisTask</code>. This operation requires all the
      * standard information needed for speech synthesis, plus the name of an
      * Amazon S3 bucket for the service to store the output of the synthesis
-     * task and two optional parameters (OutputS3KeyPrefix and SnsTopicArn).
-     * Once the synthesis task is created, this operation will return a
-     * SpeechSynthesisTask object, which will include an identifier of this task
-     * as well as the current status.
+     * task and two optional parameters (<code>OutputS3KeyPrefix</code> and
+     * <code>SnsTopicArn</code>). Once the synthesis task is created, this
+     * operation will return a <code>SpeechSynthesisTask</code> object, which
+     * will include an identifier of this task as well as the current status.
+     * The <code>SpeechSynthesisTask</code> object is available for 72 hours
+     * after starting the asynchronous synthesis task.
      * </p>
      * 
      * @param startSpeechSynthesisTaskRequest

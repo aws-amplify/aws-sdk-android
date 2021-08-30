@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the content of the specified pronunciation lexicon stored in an AWS
- * Region. For more information, see <a
+ * Returns the content of the specified pronunciation lexicon stored in an
+ * Amazon Web Services Region. For more information, see <a
  * href="https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html"
  * >Managing Lexicons</a>.
  * </p>
