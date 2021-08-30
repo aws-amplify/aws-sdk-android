@@ -21,14 +21,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets the names of the key policies that are attached to a customer master key
- * (CMK). This operation is designed to get policy names that you can use in a
+ * Gets the names of the key policies that are attached to a KMS key. This
+ * operation is designed to get policy names that you can use in a
  * <a>GetKeyPolicy</a> operation. However, the only valid policy name is
  * <code>default</code>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
- * different AWS account.
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS key
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -54,11 +54,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Gets the names of key policies for the specified customer master key
-     * (CMK).
+     * Gets the names of key policies for the specified KMS key.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -77,7 +76,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -89,8 +88,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -120,11 +119,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Gets the names of key policies for the specified customer master key
-     * (CMK).
+     * Gets the names of key policies for the specified KMS key.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -143,7 +141,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -151,11 +149,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Gets the names of key policies for the specified customer master
-     *         key (CMK).
+     *         Gets the names of key policies for the specified KMS key.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -174,8 +171,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -184,11 +181,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Gets the names of key policies for the specified customer master key
-     * (CMK).
+     * Gets the names of key policies for the specified KMS key.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -207,7 +203,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -215,11 +211,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Gets the names of key policies for the specified customer
-     *            master key (CMK).
+     *            Gets the names of key policies for the specified KMS key.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -238,8 +233,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -248,11 +243,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * Gets the names of key policies for the specified customer master key
-     * (CMK).
+     * Gets the names of key policies for the specified KMS key.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -271,7 +265,7 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -282,11 +276,10 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Gets the names of key policies for the specified customer
-     *            master key (CMK).
+     *            Gets the names of key policies for the specified KMS key.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -305,8 +298,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -319,8 +312,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -335,8 +328,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *
      * @return <p>
      *         Use this parameter to specify the maximum number of items to
-     *         return. When this value is present, AWS KMS does not return more
-     *         than the specified number of items, but it might return fewer.
+     *         return. When this value is present, KMS does not return more than
+     *         the specified number of items, but it might return fewer.
      *         </p>
      *         <p>
      *         This value is optional. If you include a value, it must be
@@ -354,8 +347,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -370,9 +363,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *
      * @param limit <p>
      *            Use this parameter to specify the maximum number of items to
-     *            return. When this value is present, AWS KMS does not return
-     *            more than the specified number of items, but it might return
-     *            fewer.
+     *            return. When this value is present, KMS does not return more
+     *            than the specified number of items, but it might return fewer.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be
@@ -390,8 +382,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -409,9 +401,8 @@ public class ListKeyPoliciesRequest extends AmazonWebServiceRequest implements S
      *
      * @param limit <p>
      *            Use this parameter to specify the maximum number of items to
-     *            return. When this value is present, AWS KMS does not return
-     *            more than the specified number of items, but it might return
-     *            fewer.
+     *            return. When this value is present, KMS does not return more
+     *            than the specified number of items, but it might return fewer.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be

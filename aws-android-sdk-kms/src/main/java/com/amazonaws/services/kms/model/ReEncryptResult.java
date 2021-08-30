@@ -20,8 +20,9 @@ import java.io.Serializable;
 public class ReEncryptResult implements Serializable {
     /**
      * <p>
-     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
-     * is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The reencrypted data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -31,7 +32,7 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to originally encrypt the data.
+     * Unique identifier of the KMS key used to originally encrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +44,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to reencrypt the data.
+     * >key ARN</a>) of the KMS key that was used to reencrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -76,16 +77,18 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
-     * is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The reencrypted data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The reencrypted data. When you use the HTTP API or the AWS CLI,
-     *         the value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     *         The reencrypted data. When you use the HTTP API or the Amazon Web
+     *         Services CLI, the value is Base64-encoded. Otherwise, it is not
+     *         Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -94,17 +97,18 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
-     * is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The reencrypted data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The reencrypted data. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            Base64-encoded.
+     *            The reencrypted data. When you use the HTTP API or the Amazon
+     *            Web Services CLI, the value is Base64-encoded. Otherwise, it
+     *            is not Base64-encoded.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -113,8 +117,9 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * The reencrypted data. When you use the HTTP API or the AWS CLI, the value
-     * is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The reencrypted data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -124,9 +129,9 @@ public class ReEncryptResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The reencrypted data. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            Base64-encoded.
+     *            The reencrypted data. When you use the HTTP API or the Amazon
+     *            Web Services CLI, the value is Base64-encoded. Otherwise, it
+     *            is not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -138,14 +143,15 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to originally encrypt the data.
+     * Unique identifier of the KMS key used to originally encrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Unique identifier of the CMK used to originally encrypt the data.
+     *         Unique identifier of the KMS key used to originally encrypt the
+     *         data.
      *         </p>
      */
     public String getSourceKeyId() {
@@ -154,15 +160,15 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to originally encrypt the data.
+     * Unique identifier of the KMS key used to originally encrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param sourceKeyId <p>
-     *            Unique identifier of the CMK used to originally encrypt the
-     *            data.
+     *            Unique identifier of the KMS key used to originally encrypt
+     *            the data.
      *            </p>
      */
     public void setSourceKeyId(String sourceKeyId) {
@@ -171,7 +177,7 @@ public class ReEncryptResult implements Serializable {
 
     /**
      * <p>
-     * Unique identifier of the CMK used to originally encrypt the data.
+     * Unique identifier of the KMS key used to originally encrypt the data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -181,8 +187,8 @@ public class ReEncryptResult implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param sourceKeyId <p>
-     *            Unique identifier of the CMK used to originally encrypt the
-     *            data.
+     *            Unique identifier of the KMS key used to originally encrypt
+     *            the data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -196,7 +202,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to reencrypt the data.
+     * >key ARN</a>) of the KMS key that was used to reencrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -205,7 +211,7 @@ public class ReEncryptResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the CMK that was used to reencrypt the data.
+     *         >key ARN</a>) of the KMS key that was used to reencrypt the data.
      *         </p>
      */
     public String getKeyId() {
@@ -216,7 +222,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to reencrypt the data.
+     * >key ARN</a>) of the KMS key that was used to reencrypt the data.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -225,7 +231,8 @@ public class ReEncryptResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that was used to reencrypt the data.
+     *            >key ARN</a>) of the KMS key that was used to reencrypt the
+     *            data.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -236,7 +243,7 @@ public class ReEncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to reencrypt the data.
+     * >key ARN</a>) of the KMS key that was used to reencrypt the data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -248,7 +255,8 @@ public class ReEncryptResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that was used to reencrypt the data.
+     *            >key ARN</a>) of the KMS key that was used to reencrypt the
+     *            data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

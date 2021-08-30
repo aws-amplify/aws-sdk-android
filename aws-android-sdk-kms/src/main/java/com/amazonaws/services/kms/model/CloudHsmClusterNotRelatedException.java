@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the specified AWS CloudHSM cluster has a
+ * The request was rejected because the specified CloudHSM cluster has a
  * different cluster certificate than the original cluster. You cannot use the
  * operation to specify an unrelated cluster.
  * </p>

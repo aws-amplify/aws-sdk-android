@@ -24,15 +24,15 @@ import com.amazonaws.AmazonServiceException;
  * <ul>
  * <li>
  * <p>
- * The <code>KeyUsage</code> value of the CMK is incompatible with the API
+ * The <code>KeyUsage</code> value of the KMS key is incompatible with the API
  * operation.
  * </p>
  * </li>
  * <li>
  * <p>
  * The encryption algorithm or signing algorithm specified for the operation is
- * incompatible with the type of key material in the CMK
- * <code>(CustomerMasterKeySpec</code>).
+ * incompatible with the type of key material in the KMS key
+ * <code>(KeySpec</code>).
  * </p>
  * </li>
  * </ul>
@@ -40,12 +40,12 @@ import com.amazonaws.AmazonServiceException;
  * For encrypting, decrypting, re-encrypting, and generating data keys, the
  * <code>KeyUsage</code> must be <code>ENCRYPT_DECRYPT</code>. For signing and
  * verifying, the <code>KeyUsage</code> must be <code>SIGN_VERIFY</code>. To
- * find the <code>KeyUsage</code> of a CMK, use the <a>DescribeKey</a>
+ * find the <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a>
  * operation.
  * </p>
  * <p>
- * To find the encryption or signing algorithms supported for a particular CMK,
- * use the <a>DescribeKey</a> operation.
+ * To find the encryption or signing algorithms supported for a particular KMS
+ * key, use the <a>DescribeKey</a> operation.
  * </p>
  */
 public class InvalidKeyUsageException extends AmazonServiceException {
