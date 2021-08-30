@@ -1,22 +1,6 @@
-/**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.amazonaws.kinesisvideo.producer;
 
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.DEFAULT_TRACK_ID;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.ByteBuffer;
@@ -31,6 +15,16 @@ import androidx.annotation.NonNull;
  */
 
 public class KinesisVideoFrame {
+    /**
+     * Current version for the structure as defined in the native code
+     */
+    public static final int FRAME_CURRENT_VERSION = 0;
+
+    /**
+     * Version of frame structure
+     */
+    private final int mVersion;
+
     /**
      * Index of the frame
      */
@@ -57,21 +51,32 @@ public class KinesisVideoFrame {
     private final long mDuration;
 
     /**
+     * The track id of the frame
+     */
+    private final long mTrackId;
+
+    /**
      * The actual frame data
      */
     private final ByteBuffer mData;
+    private final int mSize;
 
     public KinesisVideoFrame(int index, int flags, long decodingTs, long presentationTs, long duration,
-            @NonNull ByteBuffer data) {
+            @NonNull ByteBuffer data, long trackId) {
+        mVersion = FRAME_CURRENT_VERSION;
         mIndex = index;
         mFlags = flags;
         mDecodingTs = decodingTs;
         mPresentationTs = presentationTs;
         mDuration = duration;
         mData = requireNonNull(data);
-        // In some devices encoder would generate frames with more than 3 trailing zeros
-        // which is not allowed by AnnexB specification
-        removeTrailingZeros();
+        mTrackId = trackId;
+        mSize = data.remaining();
+    }
+
+    public KinesisVideoFrame(int index, int flags, long decodingTs, long presentationTs, long duration,
+                             @NonNull ByteBuffer data) {
+        this(index, flags, decodingTs, presentationTs, duration, data, DEFAULT_TRACK_ID);
     }
 
     public int getIndex() {
@@ -95,7 +100,7 @@ public class KinesisVideoFrame {
     }
 
     public int getSize() {
-        return mData.remaining();
+        return mSize;
     }
 
     @NonNull
@@ -103,8 +108,10 @@ public class KinesisVideoFrame {
         ByteBuffer byteBuffer = mData;
         try {
             if (mData.hasArray()) {
-                byteBuffer = ByteBuffer.allocateDirect(mData.remaining());
+                byteBuffer = ByteBuffer.allocateDirect(mSize);
                 byteBuffer.put(mData);
+                mData.rewind();
+                byteBuffer.flip();
             }
         } catch(final Exception e) {
             // Some Android implementations throw when accessing hasArray() API. We will ignore it
@@ -113,19 +120,19 @@ public class KinesisVideoFrame {
         return byteBuffer;
     }
 
+    public long getTrackId() {
+        return mTrackId;
+    }
+
     @Override public String toString() {
         return new StringBuilder().append(getClass().getSimpleName()).append("{").append("mIndex=").append(mIndex)
                 .append(", mFlags=").append(mFlags).append(", mDecodingTs=").append(mDecodingTs)
                 .append(", mPresentationTs=").append(mPresentationTs).append(", mDuration=").append(mDuration)
-                .append(", mData=").append(mData).append("}").toString();
+                .append(", mData=").append(mData).append(", mTrackId=").append(mTrackId).append("}")
+                .toString();
     }
 
-    private void removeTrailingZeros() {
-        for (int index = mData.limit() - 1; index > mData.position(); index--) {
-            if (mData.get(index) != 0) {
-                mData.limit(index + 1);
-                break;
-            }
-        }
+    public int getVersion() {
+        return mVersion;
     }
 }

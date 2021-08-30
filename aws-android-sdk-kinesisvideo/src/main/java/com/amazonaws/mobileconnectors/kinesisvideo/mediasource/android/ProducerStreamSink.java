@@ -1,23 +1,7 @@
-/**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.amazonaws.mobileconnectors.kinesisvideo.mediasource.android;
 
 import static com.amazonaws.kinesisvideo.common.preconditions.Preconditions.checkNotNull;
+import static com.amazonaws.kinesisvideo.util.StreamInfoConstants.DEFAULT_TRACK_ID;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,31 +24,36 @@ import com.amazonaws.kinesisvideo.internal.producer.KinesisVideoProducerStream;
  * it has been initialized with
  */
 public class ProducerStreamSink implements MediaSourceSink {
-    private final KinesisVideoProducerStream mProducerStream;
+    private final KinesisVideoProducerStream producerStream;
 
     public ProducerStreamSink(final KinesisVideoProducerStream producerStream) {
-        mProducerStream = producerStream;
+        this.producerStream = producerStream;
     }
 
     @Override
     public void onFrame(@NonNull final KinesisVideoFrame kinesisVideoFrame) throws KinesisVideoException {
         checkNotNull(kinesisVideoFrame);
-        mProducerStream.putFrame(kinesisVideoFrame);
+        producerStream.putFrame(kinesisVideoFrame);
     }
 
     @Override
-    public void onCodecPrivateData(@Nullable final byte[] bytes) throws KinesisVideoException {
-        mProducerStream.streamFormatChanged(bytes);
+    public void onCodecPrivateData(@Nullable final byte[] codecPrivateData) throws KinesisVideoException {
+        onCodecPrivateData(codecPrivateData, DEFAULT_TRACK_ID);
     }
 
     @Override
-    public void onFragmentMetadata(@NonNull String metadataName, @NonNull String metadataValue, boolean persistent)
+    public void onCodecPrivateData(@Nullable final byte[] bytes, int trackId) throws KinesisVideoException {
+        producerStream.streamFormatChanged(bytes, trackId);
+    }
+
+    @Override
+    public void onFragmentMetadata(final String metadataName, final String metadataValue, final boolean persistent)
             throws KinesisVideoException {
-        mProducerStream.putFragmentMetadata(metadataName, metadataValue, persistent);
+        producerStream.putFragmentMetadata(metadataName, metadataValue, persistent);
     }
 
     @Override
     public KinesisVideoProducerStream getProducerStream() {
-        return mProducerStream;
+        return producerStream;
     }
 }

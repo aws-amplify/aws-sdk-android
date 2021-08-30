@@ -1,20 +1,3 @@
-/**
- * Copyright 2017-2018 Amazon.com,
- * Inc. or its affiliates. All Rights Reserved.
- *
- * Licensed under the Amazon Software License (the "License").
- * You may not use this file except in compliance with the
- * License. A copy of the License is located at
- *
- *     http://aws.amazon.com/asl/
- *
- * or in the "license" file accompanying this file. This file is
- * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, express or implied. See the License
- * for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.amazonaws.kinesisvideo.producer;
 
 /**
@@ -24,7 +7,7 @@ public class StreamDescription {
     /**
      * Current version for the structure as defined in the native code
      */
-    public static final int STREAM_DESCRIPTION_CURRENT_VERSION = 0;
+    public static final int STREAM_DESCRIPTION_CURRENT_VERSION = 1;
 
     private final int mVersion;
     private final String mDeviceName;
@@ -34,8 +17,16 @@ public class StreamDescription {
     private final String mStreamArn;
     private final StreamStatus mStreamStatus;
     private final long mCreationTime;
+    private final long mRetention;
+    private final String mKmsKeyId;
 
     public StreamDescription(int version, String deviceName, String streamName, String contentType, String updateVersion, String streamArn, StreamStatus streamStatus, long creationTime) {
+        this(version, deviceName, streamName, contentType, updateVersion, streamArn, streamStatus, creationTime, 0,"");
+    }
+
+    public StreamDescription(int version, String deviceName, String streamName, String contentType,
+                             String updateVersion, String streamArn, StreamStatus streamStatus, long creationTime,
+                             long retention, String kmsKeyId) {
         this.mVersion = version;
         this.mDeviceName = deviceName;
         this.mStreamName = streamName;
@@ -44,6 +35,8 @@ public class StreamDescription {
         this.mStreamArn = streamArn;
         this.mStreamStatus = streamStatus;
         this.mCreationTime = creationTime;
+        this.mRetention = retention;
+        this.mKmsKeyId = kmsKeyId;
     }
 
     public int getVersion() {
@@ -76,5 +69,13 @@ public class StreamDescription {
 
     public long getCreationTime() {
         return mCreationTime;
+    }
+
+    public long getRetention() {
+        return mRetention;
+    }
+
+    public String getKmsKeyId() {
+        return mKmsKeyId;
     }
 }
