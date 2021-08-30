@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,17 +27,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Applications using these operations are referred to as producers.
  * </p>
  * <p>
- * By default, each delivery stream can take in up to 2,000 transactions per
- * second, 5,000 records per second, or 5 MB per second. If you use
- * <a>PutRecord</a> and <a>PutRecordBatch</a>, the limits are an aggregate
- * across these two operations for each delivery stream. For more information
- * about limits, see <a
+ * For information about service quota, see <a
  * href="https://docs.aws.amazon.com/firehose/latest/dev/limits.html">Amazon
- * Kinesis Data Firehose Limits</a>.
+ * Kinesis Data Firehose Quota</a>.
  * </p>
  * <p>
  * Each <a>PutRecordBatch</a> request supports up to 500 records. Each record in
- * the request can be as large as 1,000 KB (before 64-bit encoding), up to a
+ * the request can be as large as 1,000 KB (before base64 encoding), up to a
  * limit of 4 MB for the entire request. These limits cannot be changed.
  * </p>
  * <p>
