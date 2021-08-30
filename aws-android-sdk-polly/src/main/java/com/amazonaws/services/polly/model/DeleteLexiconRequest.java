@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes the specified pronunciation lexicon stored in an AWS Region. A
- * lexicon which has been deleted is not available for speech synthesis, nor is
- * it possible to retrieve it using either the <code>GetLexicon</code> or
- * <code>ListLexicon</code> APIs.
+ * Deletes the specified pronunciation lexicon stored in an Amazon Web Services
+ * Region. A lexicon which has been deleted is not available for speech
+ * synthesis, nor is it possible to retrieve it using either the
+ * <code>GetLexicon</code> or <code>ListLexicon</code> APIs.
  * </p>
  * <p>
  * For more information, see <a
