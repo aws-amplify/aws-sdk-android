@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes a CA certificate registration code.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteRegistrationCode</a> action.
+ * </p>
  */
 public class DeleteRegistrationCodeRequest extends AmazonWebServiceRequest implements Serializable {
     /**

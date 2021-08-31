@@ -40,8 +40,8 @@ public class ExponentialRolloutRate implements Serializable {
      * The exponential factor to increase the rate of rollout for a job.
      * </p>
      * <p>
-     * AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-     * not 1.55).
+     * Amazon Web Services IoT Core supports up to one digit after the decimal
+     * (for example, 1.5, but not 1.55).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -127,8 +127,8 @@ public class ExponentialRolloutRate implements Serializable {
      * The exponential factor to increase the rate of rollout for a job.
      * </p>
      * <p>
-     * AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-     * not 1.55).
+     * Amazon Web Services IoT Core supports up to one digit after the decimal
+     * (for example, 1.5, but not 1.55).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,8 +138,8 @@ public class ExponentialRolloutRate implements Serializable {
      *         The exponential factor to increase the rate of rollout for a job.
      *         </p>
      *         <p>
-     *         AWS IoT supports up to one digit after the decimal (for example,
-     *         1.5, but not 1.55).
+     *         Amazon Web Services IoT Core supports up to one digit after the
+     *         decimal (for example, 1.5, but not 1.55).
      *         </p>
      */
     public Double getIncrementFactor() {
@@ -151,8 +151,8 @@ public class ExponentialRolloutRate implements Serializable {
      * The exponential factor to increase the rate of rollout for a job.
      * </p>
      * <p>
-     * AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-     * not 1.55).
+     * Amazon Web Services IoT Core supports up to one digit after the decimal
+     * (for example, 1.5, but not 1.55).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,8 +163,8 @@ public class ExponentialRolloutRate implements Serializable {
      *            job.
      *            </p>
      *            <p>
-     *            AWS IoT supports up to one digit after the decimal (for
-     *            example, 1.5, but not 1.55).
+     *            Amazon Web Services IoT Core supports up to one digit after
+     *            the decimal (for example, 1.5, but not 1.55).
      *            </p>
      */
     public void setIncrementFactor(Double incrementFactor) {
@@ -176,8 +176,8 @@ public class ExponentialRolloutRate implements Serializable {
      * The exponential factor to increase the rate of rollout for a job.
      * </p>
      * <p>
-     * AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-     * not 1.55).
+     * Amazon Web Services IoT Core supports up to one digit after the decimal
+     * (for example, 1.5, but not 1.55).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -191,8 +191,8 @@ public class ExponentialRolloutRate implements Serializable {
      *            job.
      *            </p>
      *            <p>
-     *            AWS IoT supports up to one digit after the decimal (for
-     *            example, 1.5, but not 1.55).
+     *            Amazon Web Services IoT Core supports up to one digit after
+     *            the decimal (for example, 1.5, but not 1.55).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

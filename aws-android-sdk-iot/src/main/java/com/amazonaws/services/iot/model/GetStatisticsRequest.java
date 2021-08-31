@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * and standard deviation for the specified aggregated field. If the aggregation
  * field is of type <code>String</code>, only the count statistic is returned.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >GetStatistics</a> action.
+ * </p>
  */
 public class GetStatisticsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -42,7 +47,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * the count of all indexed things in your Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -133,7 +138,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * the count of all indexed things in your Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -141,8 +146,8 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      *
      * @return <p>
      *         The query used to search. You can specify "*" for the query
-     *         string to get the count of all indexed things in your AWS
-     *         account.
+     *         string to get the count of all indexed things in your Amazon Web
+     *         Services account.
      *         </p>
      */
     public String getQueryString() {
@@ -152,7 +157,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * the count of all indexed things in your Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -160,8 +165,8 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param queryString <p>
      *            The query used to search. You can specify "*" for the query
-     *            string to get the count of all indexed things in your AWS
-     *            account.
+     *            string to get the count of all indexed things in your Amazon
+     *            Web Services account.
      *            </p>
      */
     public void setQueryString(String queryString) {
@@ -171,7 +176,7 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
     /**
      * <p>
      * The query used to search. You can specify "*" for the query string to get
-     * the count of all indexed things in your AWS account.
+     * the count of all indexed things in your Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -182,8 +187,8 @@ public class GetStatisticsRequest extends AmazonWebServiceRequest implements Ser
      *
      * @param queryString <p>
      *            The query used to search. You can specify "*" for the query
-     *            string to get the count of all indexed things in your AWS
-     *            account.
+     *            string to get the count of all indexed things in your Amazon
+     *            Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

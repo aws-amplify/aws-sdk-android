@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Creates a topic rule destination. The destination must be confirmed prior to
  * use.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateTopicRuleDestination</a> action.
+ * </p>
  */
 public class CreateTopicRuleDestinationRequest extends AmazonWebServiceRequest implements
         Serializable {

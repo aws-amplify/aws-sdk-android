@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Describes an authorizer.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeAuthorizer</a> action.
+ * </p>
  */
 public class DescribeAuthorizerRequest extends AmazonWebServiceRequest implements Serializable {
     /**

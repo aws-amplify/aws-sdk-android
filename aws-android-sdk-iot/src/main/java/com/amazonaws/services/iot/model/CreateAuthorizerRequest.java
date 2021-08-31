@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates an authorizer.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateAuthorizer</a> action.
+ * </p>
  */
 public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -98,8 +103,8 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      */
     private Boolean signingDisabled;
@@ -649,12 +654,12 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      *
      * @return <p>
-     *         Specifies whether AWS IoT validates the token signature in an
+     *         Specifies whether IoT validates the token signature in an
      *         authorization request.
      *         </p>
      */
@@ -664,12 +669,12 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      *
      * @return <p>
-     *         Specifies whether AWS IoT validates the token signature in an
+     *         Specifies whether IoT validates the token signature in an
      *         authorization request.
      *         </p>
      */
@@ -679,12 +684,12 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      *
      * @param signingDisabled <p>
-     *            Specifies whether AWS IoT validates the token signature in an
+     *            Specifies whether IoT validates the token signature in an
      *            authorization request.
      *            </p>
      */
@@ -694,15 +699,15 @@ public class CreateAuthorizerRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param signingDisabled <p>
-     *            Specifies whether AWS IoT validates the token signature in an
+     *            Specifies whether IoT validates the token signature in an
      *            authorization request.
      *            </p>
      * @return A reference to this updated object so that method calls can be

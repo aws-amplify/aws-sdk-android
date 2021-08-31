@@ -21,13 +21,18 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Registers a CA certificate with AWS IoT. This CA certificate can then be used
- * to sign device certificates, which can be then registered with AWS IoT. You
- * can register up to 10 CA certificates per AWS account that have the same
- * subject field. This enables you to have up to 10 certificate authorities sign
- * your device certificates. If you have more than one CA certificate
- * registered, make sure you pass the CA certificate when you register your
- * device certificates with the RegisterCertificate API.
+ * Registers a CA certificate with IoT. This CA certificate can then be used to
+ * sign device certificates, which can be then registered with IoT. You can
+ * register up to 10 CA certificates per Amazon Web Services account that have
+ * the same subject field. This enables you to have up to 10 certificate
+ * authorities sign your device certificates. If you have more than one CA
+ * certificate registered, make sure you pass the CA certificate when you
+ * register your device certificates with the <a>RegisterCertificate</a> action.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >RegisterCACertificate</a> action.
  * </p>
  */
 public class RegisterCACertificateRequest extends AmazonWebServiceRequest implements Serializable {

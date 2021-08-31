@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Returns information about a billing group.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeBillingGroup</a> action.
+ * </p>
  */
 public class DescribeBillingGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

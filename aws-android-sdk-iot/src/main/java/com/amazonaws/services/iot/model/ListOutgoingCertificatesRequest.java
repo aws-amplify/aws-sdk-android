@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists certificates that are being transferred but not yet accepted.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListOutgoingCertificates</a> action.
+ * </p>
  */
 public class ListOutgoingCertificatesRequest extends AmazonWebServiceRequest implements
         Serializable {

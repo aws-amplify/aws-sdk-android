@@ -60,8 +60,8 @@ public class MitigationActionParams implements Serializable {
 
     /**
      * <p>
-     * Parameters to define a mitigation action that enables AWS IoT logging at
-     * a specified level of detail.
+     * Parameters to define a mitigation action that enables Amazon Web Services
+     * IoT Core logging at a specified level of detail.
      * </p>
      */
     private EnableIoTLoggingParams enableIoTLoggingParams;
@@ -294,13 +294,13 @@ public class MitigationActionParams implements Serializable {
 
     /**
      * <p>
-     * Parameters to define a mitigation action that enables AWS IoT logging at
-     * a specified level of detail.
+     * Parameters to define a mitigation action that enables Amazon Web Services
+     * IoT Core logging at a specified level of detail.
      * </p>
      *
      * @return <p>
-     *         Parameters to define a mitigation action that enables AWS IoT
-     *         logging at a specified level of detail.
+     *         Parameters to define a mitigation action that enables Amazon Web
+     *         Services IoT Core logging at a specified level of detail.
      *         </p>
      */
     public EnableIoTLoggingParams getEnableIoTLoggingParams() {
@@ -309,13 +309,13 @@ public class MitigationActionParams implements Serializable {
 
     /**
      * <p>
-     * Parameters to define a mitigation action that enables AWS IoT logging at
-     * a specified level of detail.
+     * Parameters to define a mitigation action that enables Amazon Web Services
+     * IoT Core logging at a specified level of detail.
      * </p>
      *
      * @param enableIoTLoggingParams <p>
-     *            Parameters to define a mitigation action that enables AWS IoT
-     *            logging at a specified level of detail.
+     *            Parameters to define a mitigation action that enables Amazon
+     *            Web Services IoT Core logging at a specified level of detail.
      *            </p>
      */
     public void setEnableIoTLoggingParams(EnableIoTLoggingParams enableIoTLoggingParams) {
@@ -324,16 +324,16 @@ public class MitigationActionParams implements Serializable {
 
     /**
      * <p>
-     * Parameters to define a mitigation action that enables AWS IoT logging at
-     * a specified level of detail.
+     * Parameters to define a mitigation action that enables Amazon Web Services
+     * IoT Core logging at a specified level of detail.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param enableIoTLoggingParams <p>
-     *            Parameters to define a mitigation action that enables AWS IoT
-     *            logging at a specified level of detail.
+     *            Parameters to define a mitigation action that enables Amazon
+     *            Web Services IoT Core logging at a specified level of detail.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class CodeSigning implements Serializable {
     /**
      * <p>
-     * The ID of the AWSSignerJob which was created to sign the file.
+     * The ID of the <code>AWSSignerJob</code> which was created to sign the
+     * file.
      * </p>
      */
     private String awsSignerJobId;
@@ -46,11 +47,13 @@ public class CodeSigning implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWSSignerJob which was created to sign the file.
+     * The ID of the <code>AWSSignerJob</code> which was created to sign the
+     * file.
      * </p>
      *
      * @return <p>
-     *         The ID of the AWSSignerJob which was created to sign the file.
+     *         The ID of the <code>AWSSignerJob</code> which was created to sign
+     *         the file.
      *         </p>
      */
     public String getAwsSignerJobId() {
@@ -59,11 +62,13 @@ public class CodeSigning implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWSSignerJob which was created to sign the file.
+     * The ID of the <code>AWSSignerJob</code> which was created to sign the
+     * file.
      * </p>
      *
      * @param awsSignerJobId <p>
-     *            The ID of the AWSSignerJob which was created to sign the file.
+     *            The ID of the <code>AWSSignerJob</code> which was created to
+     *            sign the file.
      *            </p>
      */
     public void setAwsSignerJobId(String awsSignerJobId) {
@@ -72,14 +77,16 @@ public class CodeSigning implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWSSignerJob which was created to sign the file.
+     * The ID of the <code>AWSSignerJob</code> which was created to sign the
+     * file.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param awsSignerJobId <p>
-     *            The ID of the AWSSignerJob which was created to sign the file.
+     *            The ID of the <code>AWSSignerJob</code> which was created to
+     *            sign the file.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

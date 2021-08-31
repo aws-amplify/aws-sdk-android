@@ -43,7 +43,7 @@ public class OutgoingCertificate implements Serializable {
 
     /**
      * <p>
-     * The AWS account to which the transfer was made.
+     * The Amazon Web Services account to which the transfer was made.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -180,7 +180,7 @@ public class OutgoingCertificate implements Serializable {
 
     /**
      * <p>
-     * The AWS account to which the transfer was made.
+     * The Amazon Web Services account to which the transfer was made.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -188,7 +188,7 @@ public class OutgoingCertificate implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
-     *         The AWS account to which the transfer was made.
+     *         The Amazon Web Services account to which the transfer was made.
      *         </p>
      */
     public String getTransferredTo() {
@@ -197,7 +197,7 @@ public class OutgoingCertificate implements Serializable {
 
     /**
      * <p>
-     * The AWS account to which the transfer was made.
+     * The Amazon Web Services account to which the transfer was made.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -205,7 +205,8 @@ public class OutgoingCertificate implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param transferredTo <p>
-     *            The AWS account to which the transfer was made.
+     *            The Amazon Web Services account to which the transfer was
+     *            made.
      *            </p>
      */
     public void setTransferredTo(String transferredTo) {
@@ -214,7 +215,7 @@ public class OutgoingCertificate implements Serializable {
 
     /**
      * <p>
-     * The AWS account to which the transfer was made.
+     * The Amazon Web Services account to which the transfer was made.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -225,7 +226,8 @@ public class OutgoingCertificate implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param transferredTo <p>
-     *            The AWS account to which the transfer was made.
+     *            The Amazon Web Services account to which the transfer was
+     *            made.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

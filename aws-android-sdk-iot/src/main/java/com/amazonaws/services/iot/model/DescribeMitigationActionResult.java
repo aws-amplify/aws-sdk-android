@@ -75,8 +75,8 @@ public class DescribeMitigationActionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time when the mitigation action was added to your AWS
-     * account.
+     * The date and time when the mitigation action was added to your Amazon Web
+     * Services accounts.
      * </p>
      */
     private java.util.Date creationDate;
@@ -451,13 +451,13 @@ public class DescribeMitigationActionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time when the mitigation action was added to your AWS
-     * account.
+     * The date and time when the mitigation action was added to your Amazon Web
+     * Services accounts.
      * </p>
      *
      * @return <p>
      *         The date and time when the mitigation action was added to your
-     *         AWS account.
+     *         Amazon Web Services accounts.
      *         </p>
      */
     public java.util.Date getCreationDate() {
@@ -466,13 +466,13 @@ public class DescribeMitigationActionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time when the mitigation action was added to your AWS
-     * account.
+     * The date and time when the mitigation action was added to your Amazon Web
+     * Services accounts.
      * </p>
      *
      * @param creationDate <p>
      *            The date and time when the mitigation action was added to your
-     *            AWS account.
+     *            Amazon Web Services accounts.
      *            </p>
      */
     public void setCreationDate(java.util.Date creationDate) {
@@ -481,8 +481,8 @@ public class DescribeMitigationActionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time when the mitigation action was added to your AWS
-     * account.
+     * The date and time when the mitigation action was added to your Amazon Web
+     * Services accounts.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -490,7 +490,7 @@ public class DescribeMitigationActionResult implements Serializable {
      *
      * @param creationDate <p>
      *            The date and time when the mitigation action was added to your
-     *            AWS account.
+     *            Amazon Web Services accounts.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

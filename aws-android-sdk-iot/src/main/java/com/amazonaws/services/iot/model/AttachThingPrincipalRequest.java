@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
  * or federated identities.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >AttachThingPrincipal</a> action.
+ * </p>
  */
 public class AttachThingPrincipalRequest extends AmazonWebServiceRequest implements Serializable {
     /**

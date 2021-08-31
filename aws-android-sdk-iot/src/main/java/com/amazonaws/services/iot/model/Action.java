@@ -125,22 +125,22 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends message data to an AWS IoT Analytics channel.
+     * Sends message data to an IoT Analytics channel.
      * </p>
      */
     private IotAnalyticsAction iotAnalytics;
 
     /**
      * <p>
-     * Sends an input to an AWS IoT Events detector.
+     * Sends an input to an IoT Events detector.
      * </p>
      */
     private IotEventsAction iotEvents;
 
     /**
      * <p>
-     * Sends data from the MQTT message that triggered the rule to AWS IoT
-     * SiteWise asset properties.
+     * Sends data from the MQTT message that triggered the rule to IoT SiteWise
+     * asset properties.
      * </p>
      */
     private IotSiteWiseAction iotSiteWise;
@@ -822,11 +822,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends message data to an AWS IoT Analytics channel.
+     * Sends message data to an IoT Analytics channel.
      * </p>
      *
      * @return <p>
-     *         Sends message data to an AWS IoT Analytics channel.
+     *         Sends message data to an IoT Analytics channel.
      *         </p>
      */
     public IotAnalyticsAction getIotAnalytics() {
@@ -835,11 +835,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends message data to an AWS IoT Analytics channel.
+     * Sends message data to an IoT Analytics channel.
      * </p>
      *
      * @param iotAnalytics <p>
-     *            Sends message data to an AWS IoT Analytics channel.
+     *            Sends message data to an IoT Analytics channel.
      *            </p>
      */
     public void setIotAnalytics(IotAnalyticsAction iotAnalytics) {
@@ -848,14 +848,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends message data to an AWS IoT Analytics channel.
+     * Sends message data to an IoT Analytics channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param iotAnalytics <p>
-     *            Sends message data to an AWS IoT Analytics channel.
+     *            Sends message data to an IoT Analytics channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -867,11 +867,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends an input to an AWS IoT Events detector.
+     * Sends an input to an IoT Events detector.
      * </p>
      *
      * @return <p>
-     *         Sends an input to an AWS IoT Events detector.
+     *         Sends an input to an IoT Events detector.
      *         </p>
      */
     public IotEventsAction getIotEvents() {
@@ -880,11 +880,11 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends an input to an AWS IoT Events detector.
+     * Sends an input to an IoT Events detector.
      * </p>
      *
      * @param iotEvents <p>
-     *            Sends an input to an AWS IoT Events detector.
+     *            Sends an input to an IoT Events detector.
      *            </p>
      */
     public void setIotEvents(IotEventsAction iotEvents) {
@@ -893,14 +893,14 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends an input to an AWS IoT Events detector.
+     * Sends an input to an IoT Events detector.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param iotEvents <p>
-     *            Sends an input to an AWS IoT Events detector.
+     *            Sends an input to an IoT Events detector.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -912,13 +912,13 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends data from the MQTT message that triggered the rule to AWS IoT
-     * SiteWise asset properties.
+     * Sends data from the MQTT message that triggered the rule to IoT SiteWise
+     * asset properties.
      * </p>
      *
      * @return <p>
-     *         Sends data from the MQTT message that triggered the rule to AWS
-     *         IoT SiteWise asset properties.
+     *         Sends data from the MQTT message that triggered the rule to IoT
+     *         SiteWise asset properties.
      *         </p>
      */
     public IotSiteWiseAction getIotSiteWise() {
@@ -927,13 +927,13 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends data from the MQTT message that triggered the rule to AWS IoT
-     * SiteWise asset properties.
+     * Sends data from the MQTT message that triggered the rule to IoT SiteWise
+     * asset properties.
      * </p>
      *
      * @param iotSiteWise <p>
      *            Sends data from the MQTT message that triggered the rule to
-     *            AWS IoT SiteWise asset properties.
+     *            IoT SiteWise asset properties.
      *            </p>
      */
     public void setIotSiteWise(IotSiteWiseAction iotSiteWise) {
@@ -942,8 +942,8 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Sends data from the MQTT message that triggered the rule to AWS IoT
-     * SiteWise asset properties.
+     * Sends data from the MQTT message that triggered the rule to IoT SiteWise
+     * asset properties.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -951,7 +951,7 @@ public class Action implements Serializable {
      *
      * @param iotSiteWise <p>
      *            Sends data from the MQTT message that triggered the rule to
-     *            AWS IoT SiteWise asset properties.
+     *            IoT SiteWise asset properties.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
