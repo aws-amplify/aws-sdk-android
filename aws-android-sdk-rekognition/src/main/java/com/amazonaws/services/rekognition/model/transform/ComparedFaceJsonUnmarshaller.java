@@ -52,6 +52,14 @@ class ComparedFaceJsonUnmarshaller implements Unmarshaller<ComparedFace, JsonUnm
             } else if (name.equals("Quality")) {
                 comparedFace.setQuality(ImageQualityJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Emotions")) {
+                comparedFace.setEmotions(new ListUnmarshaller<Emotion>(EmotionJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("Smile")) {
+                comparedFace.setSmile(SmileJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

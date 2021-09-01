@@ -43,19 +43,24 @@ import com.amazonaws.AmazonWebServiceRequest;
  * exists, for the label on the image (<code>Geometry</code>).
  * </p>
  * <p>
- * During training model calculates a threshold value that determines if a
- * prediction for a label is true. By default, <code>DetectCustomLabels</code>
- * doesn't return labels whose confidence value is below the model's calculated
- * threshold value. To filter labels that are returned, specify a value for
- * <code>MinConfidence</code> that is higher than the model's calculated
- * threshold. You can get the model's calculated threshold from the model's
- * training results shown in the Amazon Rekognition Custom Labels console. To
- * get all labels, regardless of confidence, specify a
- * <code>MinConfidence</code> value of 0.
+ * To filter labels that are returned, specify a value for
+ * <code>MinConfidence</code>. <code>DetectCustomLabelsLabels</code> only
+ * returns labels with a confidence that's higher than the specified value. The
+ * value of <code>MinConfidence</code> maps to the assumed threshold values
+ * created during training. For more information, see <i>Assumed threshold</i>
+ * in the Amazon Rekognition Custom Labels Developer Guide. Amazon Rekognition
+ * Custom Labels metrics expresses an assumed threshold as a floating point
+ * value between 0-1. The range of <code>MinConfidence</code> normalizes the
+ * threshold value to a percentage value (0-100). Confidence responses from
+ * <code>DetectCustomLabels</code> are also returned as a percentage. You can
+ * use <code>MinConfidence</code> to change the precision and recall or your
+ * model. For more information, see <i>Analyzing an image</i> in the Amazon
+ * Rekognition Custom Labels Developer Guide.
  * </p>
  * <p>
- * You can also add the <code>MaxResults</code> parameter to limit the number of
- * labels returned.
+ * If you don't specify a value for <code>MinConfidence</code>,
+ * <code>DetectCustomLabels</code> returns labels based on the assumed threshold
+ * of each label.
  * </p>
  * <p>
  * This is a stateless API operation. That is, the operation does not persist
@@ -64,6 +69,10 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:DetectCustomLabels</code> action.
+ * </p>
+ * <p>
+ * For more information, see <i>Analyzing an image</i> in the Amazon Rekognition
+ * Custom Labels Developer Guide.
  * </p>
  */
 public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implements Serializable {
@@ -133,10 +142,14 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Specifies the minimum confidence level for the labels to return. Amazon
-     * Rekognition doesn't return any labels with a confidence lower than this
-     * specified value. If you specify a value of 0, all labels are return,
-     * regardless of the default thresholds that the model version applies.
+     * Specifies the minimum confidence level for the labels to return.
+     * <code>DetectCustomLabels</code> doesn't return any labels with a
+     * confidence value that's lower than this specified value. If you specify a
+     * value of 0, <code>DetectCustomLabels</code> returns all labels,
+     * regardless of the assumed threshold applied to each label. If you don't
+     * specify a value for <code>MinConfidence</code>,
+     * <code>DetectCustomLabels</code> returns labels based on the assumed
+     * threshold of each label.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -522,10 +535,14 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Specifies the minimum confidence level for the labels to return. Amazon
-     * Rekognition doesn't return any labels with a confidence lower than this
-     * specified value. If you specify a value of 0, all labels are return,
-     * regardless of the default thresholds that the model version applies.
+     * Specifies the minimum confidence level for the labels to return.
+     * <code>DetectCustomLabels</code> doesn't return any labels with a
+     * confidence value that's lower than this specified value. If you specify a
+     * value of 0, <code>DetectCustomLabels</code> returns all labels,
+     * regardless of the assumed threshold applied to each label. If you don't
+     * specify a value for <code>MinConfidence</code>,
+     * <code>DetectCustomLabels</code> returns labels based on the assumed
+     * threshold of each label.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -533,10 +550,13 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      *
      * @return <p>
      *         Specifies the minimum confidence level for the labels to return.
-     *         Amazon Rekognition doesn't return any labels with a confidence
-     *         lower than this specified value. If you specify a value of 0, all
-     *         labels are return, regardless of the default thresholds that the
-     *         model version applies.
+     *         <code>DetectCustomLabels</code> doesn't return any labels with a
+     *         confidence value that's lower than this specified value. If you
+     *         specify a value of 0, <code>DetectCustomLabels</code> returns all
+     *         labels, regardless of the assumed threshold applied to each
+     *         label. If you don't specify a value for
+     *         <code>MinConfidence</code>, <code>DetectCustomLabels</code>
+     *         returns labels based on the assumed threshold of each label.
      *         </p>
      */
     public Float getMinConfidence() {
@@ -545,10 +565,14 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Specifies the minimum confidence level for the labels to return. Amazon
-     * Rekognition doesn't return any labels with a confidence lower than this
-     * specified value. If you specify a value of 0, all labels are return,
-     * regardless of the default thresholds that the model version applies.
+     * Specifies the minimum confidence level for the labels to return.
+     * <code>DetectCustomLabels</code> doesn't return any labels with a
+     * confidence value that's lower than this specified value. If you specify a
+     * value of 0, <code>DetectCustomLabels</code> returns all labels,
+     * regardless of the assumed threshold applied to each label. If you don't
+     * specify a value for <code>MinConfidence</code>,
+     * <code>DetectCustomLabels</code> returns labels based on the assumed
+     * threshold of each label.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -556,10 +580,14 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to
-     *            return. Amazon Rekognition doesn't return any labels with a
-     *            confidence lower than this specified value. If you specify a
-     *            value of 0, all labels are return, regardless of the default
-     *            thresholds that the model version applies.
+     *            return. <code>DetectCustomLabels</code> doesn't return any
+     *            labels with a confidence value that's lower than this
+     *            specified value. If you specify a value of 0,
+     *            <code>DetectCustomLabels</code> returns all labels, regardless
+     *            of the assumed threshold applied to each label. If you don't
+     *            specify a value for <code>MinConfidence</code>,
+     *            <code>DetectCustomLabels</code> returns labels based on the
+     *            assumed threshold of each label.
      *            </p>
      */
     public void setMinConfidence(Float minConfidence) {
@@ -568,10 +596,14 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * Specifies the minimum confidence level for the labels to return. Amazon
-     * Rekognition doesn't return any labels with a confidence lower than this
-     * specified value. If you specify a value of 0, all labels are return,
-     * regardless of the default thresholds that the model version applies.
+     * Specifies the minimum confidence level for the labels to return.
+     * <code>DetectCustomLabels</code> doesn't return any labels with a
+     * confidence value that's lower than this specified value. If you specify a
+     * value of 0, <code>DetectCustomLabels</code> returns all labels,
+     * regardless of the assumed threshold applied to each label. If you don't
+     * specify a value for <code>MinConfidence</code>,
+     * <code>DetectCustomLabels</code> returns labels based on the assumed
+     * threshold of each label.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -582,10 +614,14 @@ public class DetectCustomLabelsRequest extends AmazonWebServiceRequest implement
      *
      * @param minConfidence <p>
      *            Specifies the minimum confidence level for the labels to
-     *            return. Amazon Rekognition doesn't return any labels with a
-     *            confidence lower than this specified value. If you specify a
-     *            value of 0, all labels are return, regardless of the default
-     *            thresholds that the model version applies.
+     *            return. <code>DetectCustomLabels</code> doesn't return any
+     *            labels with a confidence value that's lower than this
+     *            specified value. If you specify a value of 0,
+     *            <code>DetectCustomLabels</code> returns all labels, regardless
+     *            of the assumed threshold applied to each label. If you don't
+     *            specify a value for <code>MinConfidence</code>,
+     *            <code>DetectCustomLabels</code> returns labels based on the
+     *            assumed threshold of each label.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

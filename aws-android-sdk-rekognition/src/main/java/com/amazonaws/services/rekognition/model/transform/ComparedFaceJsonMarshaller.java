@@ -57,6 +57,22 @@ class ComparedFaceJsonMarshaller {
             jsonWriter.name("Quality");
             ImageQualityJsonMarshaller.getInstance().marshall(quality, jsonWriter);
         }
+        if (comparedFace.getEmotions() != null) {
+            java.util.List<Emotion> emotions = comparedFace.getEmotions();
+            jsonWriter.name("Emotions");
+            jsonWriter.beginArray();
+            for (Emotion emotionsItem : emotions) {
+                if (emotionsItem != null) {
+                    EmotionJsonMarshaller.getInstance().marshall(emotionsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (comparedFace.getSmile() != null) {
+            Smile smile = comparedFace.getSmile();
+            jsonWriter.name("Smile");
+            SmileJsonMarshaller.getInstance().marshall(smile, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
