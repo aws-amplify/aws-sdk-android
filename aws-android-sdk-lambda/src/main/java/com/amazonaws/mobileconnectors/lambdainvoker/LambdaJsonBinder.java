@@ -15,6 +15,9 @@
 
 package com.amazonaws.mobileconnectors.lambdainvoker;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.amazonaws.util.StringUtils;
 import com.google.gson.Gson;
 
@@ -28,17 +31,23 @@ import java.io.Reader;
  */
 public class LambdaJsonBinder implements LambdaDataBinder {
 
+    @NonNull
     private final Gson gson;
 
     /**
      * Constructs a Lambda Json binder.
      */
     public LambdaJsonBinder() {
-        this.gson = new Gson();
+        this(new Gson());
     }
 
+    public LambdaJsonBinder(@NonNull final Gson gson) {
+        this.gson = gson;
+    }
+
+    @Nullable
     @Override
-    public <T> T deserialize(byte[] content, Class<T> clazz) {
+    public <T> T deserialize(@Nullable final byte[] content, @NonNull final Class<T> clazz) {
         if (content == null) {
             return null;
         }
@@ -48,7 +57,7 @@ public class LambdaJsonBinder implements LambdaDataBinder {
     }
 
     @Override
-    public byte[] serialize(Object object) {
+    public byte[] serialize(@Nullable final Object object) {
         return gson.toJson(object).getBytes(StringUtils.UTF8);
     }
 }
