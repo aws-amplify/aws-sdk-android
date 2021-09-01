@@ -216,6 +216,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (>= 2.8.0)
   fastlane
   fastlane-plugin-release_actions!
   fastlane-plugin-semantic_release
