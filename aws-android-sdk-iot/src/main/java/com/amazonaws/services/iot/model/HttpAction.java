@@ -38,13 +38,13 @@ public class HttpAction implements Serializable {
 
     /**
      * <p>
-     * The URL to which AWS IoT sends a confirmation message. The value of the
+     * The URL to which IoT sends a confirmation message. The value of the
      * confirmation URL must be a prefix of the endpoint URL. If you do not
-     * specify a confirmation URL AWS IoT uses the endpoint URL as the
-     * confirmation URL. If you use substitution templates in the
-     * confirmationUrl, you must create and enable topic rule destinations that
-     * match each possible value of the substitution template before traffic is
-     * allowed to your endpoint URL.
+     * specify a confirmation URL IoT uses the endpoint URL as the confirmation
+     * URL. If you use substitution templates in the confirmationUrl, you must
+     * create and enable topic rule destinations that match each possible value
+     * of the substitution template before traffic is allowed to your endpoint
+     * URL.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -140,24 +140,24 @@ public class HttpAction implements Serializable {
 
     /**
      * <p>
-     * The URL to which AWS IoT sends a confirmation message. The value of the
+     * The URL to which IoT sends a confirmation message. The value of the
      * confirmation URL must be a prefix of the endpoint URL. If you do not
-     * specify a confirmation URL AWS IoT uses the endpoint URL as the
-     * confirmation URL. If you use substitution templates in the
-     * confirmationUrl, you must create and enable topic rule destinations that
-     * match each possible value of the substitution template before traffic is
-     * allowed to your endpoint URL.
+     * specify a confirmation URL IoT uses the endpoint URL as the confirmation
+     * URL. If you use substitution templates in the confirmationUrl, you must
+     * create and enable topic rule destinations that match each possible value
+     * of the substitution template before traffic is allowed to your endpoint
+     * URL.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2000<br/>
      *
      * @return <p>
-     *         The URL to which AWS IoT sends a confirmation message. The value
-     *         of the confirmation URL must be a prefix of the endpoint URL. If
-     *         you do not specify a confirmation URL AWS IoT uses the endpoint
-     *         URL as the confirmation URL. If you use substitution templates in
-     *         the confirmationUrl, you must create and enable topic rule
+     *         The URL to which IoT sends a confirmation message. The value of
+     *         the confirmation URL must be a prefix of the endpoint URL. If you
+     *         do not specify a confirmation URL IoT uses the endpoint URL as
+     *         the confirmation URL. If you use substitution templates in the
+     *         confirmationUrl, you must create and enable topic rule
      *         destinations that match each possible value of the substitution
      *         template before traffic is allowed to your endpoint URL.
      *         </p>
@@ -168,25 +168,25 @@ public class HttpAction implements Serializable {
 
     /**
      * <p>
-     * The URL to which AWS IoT sends a confirmation message. The value of the
+     * The URL to which IoT sends a confirmation message. The value of the
      * confirmation URL must be a prefix of the endpoint URL. If you do not
-     * specify a confirmation URL AWS IoT uses the endpoint URL as the
-     * confirmation URL. If you use substitution templates in the
-     * confirmationUrl, you must create and enable topic rule destinations that
-     * match each possible value of the substitution template before traffic is
-     * allowed to your endpoint URL.
+     * specify a confirmation URL IoT uses the endpoint URL as the confirmation
+     * URL. If you use substitution templates in the confirmationUrl, you must
+     * create and enable topic rule destinations that match each possible value
+     * of the substitution template before traffic is allowed to your endpoint
+     * URL.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2000<br/>
      *
      * @param confirmationUrl <p>
-     *            The URL to which AWS IoT sends a confirmation message. The
-     *            value of the confirmation URL must be a prefix of the endpoint
-     *            URL. If you do not specify a confirmation URL AWS IoT uses the
-     *            endpoint URL as the confirmation URL. If you use substitution
-     *            templates in the confirmationUrl, you must create and enable
-     *            topic rule destinations that match each possible value of the
+     *            The URL to which IoT sends a confirmation message. The value
+     *            of the confirmation URL must be a prefix of the endpoint URL.
+     *            If you do not specify a confirmation URL IoT uses the endpoint
+     *            URL as the confirmation URL. If you use substitution templates
+     *            in the confirmationUrl, you must create and enable topic rule
+     *            destinations that match each possible value of the
      *            substitution template before traffic is allowed to your
      *            endpoint URL.
      *            </p>
@@ -197,13 +197,13 @@ public class HttpAction implements Serializable {
 
     /**
      * <p>
-     * The URL to which AWS IoT sends a confirmation message. The value of the
+     * The URL to which IoT sends a confirmation message. The value of the
      * confirmation URL must be a prefix of the endpoint URL. If you do not
-     * specify a confirmation URL AWS IoT uses the endpoint URL as the
-     * confirmation URL. If you use substitution templates in the
-     * confirmationUrl, you must create and enable topic rule destinations that
-     * match each possible value of the substitution template before traffic is
-     * allowed to your endpoint URL.
+     * specify a confirmation URL IoT uses the endpoint URL as the confirmation
+     * URL. If you use substitution templates in the confirmationUrl, you must
+     * create and enable topic rule destinations that match each possible value
+     * of the substitution template before traffic is allowed to your endpoint
+     * URL.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -213,12 +213,12 @@ public class HttpAction implements Serializable {
      * <b>Length: </b> - 2000<br/>
      *
      * @param confirmationUrl <p>
-     *            The URL to which AWS IoT sends a confirmation message. The
-     *            value of the confirmation URL must be a prefix of the endpoint
-     *            URL. If you do not specify a confirmation URL AWS IoT uses the
-     *            endpoint URL as the confirmation URL. If you use substitution
-     *            templates in the confirmationUrl, you must create and enable
-     *            topic rule destinations that match each possible value of the
+     *            The URL to which IoT sends a confirmation message. The value
+     *            of the confirmation URL must be a prefix of the endpoint URL.
+     *            If you do not specify a confirmation URL IoT uses the endpoint
+     *            URL as the confirmation URL. If you use substitution templates
+     *            in the confirmationUrl, you must create and enable topic rule
+     *            destinations that match each possible value of the
      *            substitution template before traffic is allowed to your
      *            endpoint URL.
      *            </p>

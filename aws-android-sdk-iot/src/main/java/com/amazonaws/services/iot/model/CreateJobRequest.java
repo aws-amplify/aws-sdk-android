@@ -23,13 +23,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a job.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateJob</a> action.
+ * </p>
  */
 public class CreateJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A job identifier which must be unique for your AWS account. We recommend
-     * using a UUID. Alpha-numeric characters, "-" and "_" are valid for use
-     * here.
+     * A job identifier which must be unique for your Amazon Web Services
+     * account. We recommend using a UUID. Alpha-numeric characters, "-" and "_"
+     * are valid for use here.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,9 +158,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -185,9 +190,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A job identifier which must be unique for your AWS account. We recommend
-     * using a UUID. Alpha-numeric characters, "-" and "_" are valid for use
-     * here.
+     * A job identifier which must be unique for your Amazon Web Services
+     * account. We recommend using a UUID. Alpha-numeric characters, "-" and "_"
+     * are valid for use here.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -195,9 +200,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @return <p>
-     *         A job identifier which must be unique for your AWS account. We
-     *         recommend using a UUID. Alpha-numeric characters, "-" and "_" are
-     *         valid for use here.
+     *         A job identifier which must be unique for your Amazon Web
+     *         Services account. We recommend using a UUID. Alpha-numeric
+     *         characters, "-" and "_" are valid for use here.
      *         </p>
      */
     public String getJobId() {
@@ -206,9 +211,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A job identifier which must be unique for your AWS account. We recommend
-     * using a UUID. Alpha-numeric characters, "-" and "_" are valid for use
-     * here.
+     * A job identifier which must be unique for your Amazon Web Services
+     * account. We recommend using a UUID. Alpha-numeric characters, "-" and "_"
+     * are valid for use here.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -216,9 +221,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param jobId <p>
-     *            A job identifier which must be unique for your AWS account. We
-     *            recommend using a UUID. Alpha-numeric characters, "-" and "_"
-     *            are valid for use here.
+     *            A job identifier which must be unique for your Amazon Web
+     *            Services account. We recommend using a UUID. Alpha-numeric
+     *            characters, "-" and "_" are valid for use here.
      *            </p>
      */
     public void setJobId(String jobId) {
@@ -227,9 +232,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * A job identifier which must be unique for your AWS account. We recommend
-     * using a UUID. Alpha-numeric characters, "-" and "_" are valid for use
-     * here.
+     * A job identifier which must be unique for your Amazon Web Services
+     * account. We recommend using a UUID. Alpha-numeric characters, "-" and "_"
+     * are valid for use here.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,9 +245,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * <b>Pattern: </b>[a-zA-Z0-9_-]+<br/>
      *
      * @param jobId <p>
-     *            A job identifier which must be unique for your AWS account. We
-     *            recommend using a UUID. Alpha-numeric characters, "-" and "_"
-     *            are valid for use here.
+     *            A job identifier which must be unique for your Amazon Web
+     *            Services account. We recommend using a UUID. Alpha-numeric
+     *            characters, "-" and "_" are valid for use here.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1041,9 +1046,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -1063,9 +1068,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *         job.
      *         </p>
      *         <p>
-     *         When you specify a value for this parameter, AWS IoT Core sends
-     *         jobs notifications to MQTT topics that contain the value in the
-     *         following format.
+     *         When you specify a value for this parameter, Amazon Web Services
+     *         IoT Core sends jobs notifications to MQTT topics that contain the
+     *         value in the following format.
      *         </p>
      *         <p>
      *         <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -1085,9 +1090,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -1107,9 +1112,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            customer-managed job.
      *            </p>
      *            <p>
-     *            When you specify a value for this parameter, AWS IoT Core
-     *            sends jobs notifications to MQTT topics that contain the value
-     *            in the following format.
+     *            When you specify a value for this parameter, Amazon Web
+     *            Services IoT Core sends jobs notifications to MQTT topics that
+     *            contain the value in the following format.
      *            </p>
      *            <p>
      *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -1129,9 +1134,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -1154,9 +1159,9 @@ public class CreateJobRequest extends AmazonWebServiceRequest implements Seriali
      *            customer-managed job.
      *            </p>
      *            <p>
-     *            When you specify a value for this parameter, AWS IoT Core
-     *            sends jobs notifications to MQTT topics that contain the value
-     *            in the following format.
+     *            When you specify a value for this parameter, Amazon Web
+     *            Services IoT Core sends jobs notifications to MQTT topics that
+     *            contain the value in the following format.
      *            </p>
      *            <p>
      *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>

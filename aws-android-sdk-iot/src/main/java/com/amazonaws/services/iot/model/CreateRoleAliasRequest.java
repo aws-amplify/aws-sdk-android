@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a role alias.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateRoleAlias</a> action.
+ * </p>
  */
 public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -49,7 +54,8 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * How long (in seconds) the credentials will be valid.
+     * How long (in seconds) the credentials will be valid. The default value is
+     * 3,600 seconds.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,14 +202,16 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * How long (in seconds) the credentials will be valid.
+     * How long (in seconds) the credentials will be valid. The default value is
+     * 3,600 seconds.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>900 - 43200<br/>
      *
      * @return <p>
-     *         How long (in seconds) the credentials will be valid.
+     *         How long (in seconds) the credentials will be valid. The default
+     *         value is 3,600 seconds.
      *         </p>
      */
     public Integer getCredentialDurationSeconds() {
@@ -212,14 +220,16 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * How long (in seconds) the credentials will be valid.
+     * How long (in seconds) the credentials will be valid. The default value is
+     * 3,600 seconds.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>900 - 43200<br/>
      *
      * @param credentialDurationSeconds <p>
-     *            How long (in seconds) the credentials will be valid.
+     *            How long (in seconds) the credentials will be valid. The
+     *            default value is 3,600 seconds.
      *            </p>
      */
     public void setCredentialDurationSeconds(Integer credentialDurationSeconds) {
@@ -228,7 +238,8 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * How long (in seconds) the credentials will be valid.
+     * How long (in seconds) the credentials will be valid. The default value is
+     * 3,600 seconds.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,7 +249,8 @@ public class CreateRoleAliasRequest extends AmazonWebServiceRequest implements S
      * <b>Range: </b>900 - 43200<br/>
      *
      * @param credentialDurationSeconds <p>
-     *            How long (in seconds) the credentials will be valid.
+     *            How long (in seconds) the credentials will be valid. The
+     *            default value is 3,600 seconds.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

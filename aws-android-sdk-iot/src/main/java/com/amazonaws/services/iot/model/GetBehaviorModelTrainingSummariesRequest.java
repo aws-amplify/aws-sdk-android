@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Returns a Device Defender's ML Detect Security Profile training model's
  * status.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >GetBehaviorModelTrainingSummaries</a> action.
+ * </p>
  */
 public class GetBehaviorModelTrainingSummariesRequest extends AmazonWebServiceRequest implements
         Serializable {

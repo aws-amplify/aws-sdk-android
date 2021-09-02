@@ -28,6 +28,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * associated thing, and finally use <a>DeleteThingType</a> to delete the thing
  * type.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteThingType</a> action.
+ * </p>
  */
 public class DeleteThingTypeRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a bulk thing provisioning task.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >StartThingRegistrationTask</a> action.
+ * </p>
  */
 public class StartThingRegistrationTaskRequest extends AmazonWebServiceRequest implements
         Serializable {

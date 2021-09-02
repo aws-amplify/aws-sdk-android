@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * List targets for the specified policy.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListTargetsForPolicy</a> action.
+ * </p>
  */
 public class ListTargetsForPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**

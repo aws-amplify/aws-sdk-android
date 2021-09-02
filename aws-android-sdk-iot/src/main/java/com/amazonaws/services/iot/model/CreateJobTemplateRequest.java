@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a job template.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateJobTemplate</a> action.
+ * </p>
  */
 public class CreateJobTemplateRequest extends AmazonWebServiceRequest implements Serializable {
     /**

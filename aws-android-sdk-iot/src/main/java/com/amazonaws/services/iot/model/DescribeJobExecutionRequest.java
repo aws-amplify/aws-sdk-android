@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Describes a job execution.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeJobExecution</a> action.
+ * </p>
  */
 public class DescribeJobExecutionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -49,8 +49,8 @@ public class AbortCriteria implements Serializable {
      * initiate the job abort.
      * </p>
      * <p>
-     * AWS IoT supports up to two digits after the decimal (for example, 10.9
-     * and 10.99, but not 10.999).
+     * Amazon Web Services IoT Core supports up to two digits after the decimal
+     * (for example, 10.9 and 10.99, but not 10.999).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -273,8 +273,8 @@ public class AbortCriteria implements Serializable {
      * initiate the job abort.
      * </p>
      * <p>
-     * AWS IoT supports up to two digits after the decimal (for example, 10.9
-     * and 10.99, but not 10.999).
+     * Amazon Web Services IoT Core supports up to two digits after the decimal
+     * (for example, 10.9 and 10.99, but not 10.999).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -285,8 +285,8 @@ public class AbortCriteria implements Serializable {
      *         to initiate the job abort.
      *         </p>
      *         <p>
-     *         AWS IoT supports up to two digits after the decimal (for example,
-     *         10.9 and 10.99, but not 10.999).
+     *         Amazon Web Services IoT Core supports up to two digits after the
+     *         decimal (for example, 10.9 and 10.99, but not 10.999).
      *         </p>
      */
     public Double getThresholdPercentage() {
@@ -299,8 +299,8 @@ public class AbortCriteria implements Serializable {
      * initiate the job abort.
      * </p>
      * <p>
-     * AWS IoT supports up to two digits after the decimal (for example, 10.9
-     * and 10.99, but not 10.999).
+     * Amazon Web Services IoT Core supports up to two digits after the decimal
+     * (for example, 10.9 and 10.99, but not 10.999).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -311,8 +311,8 @@ public class AbortCriteria implements Serializable {
      *            occur to initiate the job abort.
      *            </p>
      *            <p>
-     *            AWS IoT supports up to two digits after the decimal (for
-     *            example, 10.9 and 10.99, but not 10.999).
+     *            Amazon Web Services IoT Core supports up to two digits after
+     *            the decimal (for example, 10.9 and 10.99, but not 10.999).
      *            </p>
      */
     public void setThresholdPercentage(Double thresholdPercentage) {
@@ -325,8 +325,8 @@ public class AbortCriteria implements Serializable {
      * initiate the job abort.
      * </p>
      * <p>
-     * AWS IoT supports up to two digits after the decimal (for example, 10.9
-     * and 10.99, but not 10.999).
+     * Amazon Web Services IoT Core supports up to two digits after the decimal
+     * (for example, 10.9 and 10.99, but not 10.999).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -340,8 +340,8 @@ public class AbortCriteria implements Serializable {
      *            occur to initiate the job abort.
      *            </p>
      *            <p>
-     *            AWS IoT supports up to two digits after the decimal (for
-     *            example, 10.9 and 10.99, but not 10.999).
+     *            Amazon Web Services IoT Core supports up to two digits after
+     *            the decimal (for example, 10.9 and 10.99, but not 10.999).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

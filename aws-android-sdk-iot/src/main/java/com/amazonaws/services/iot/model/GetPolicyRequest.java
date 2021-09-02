@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets information about the specified policy with the policy document of the
  * default version.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >GetPolicy</a> action.
+ * </p>
  */
 public class GetPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
