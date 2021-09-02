@@ -19,10 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Customer Master Key Spec
+ * Key Spec
  */
-@Deprecated
-public enum CustomerMasterKeySpec {
+public enum KeySpec {
 
     RSA_2048("RSA_2048"),
     RSA_3072("RSA_3072"),
@@ -35,7 +34,7 @@ public enum CustomerMasterKeySpec {
 
     private String value;
 
-    private CustomerMasterKeySpec(String value) {
+    private KeySpec(String value) {
         this.value = value;
     }
 
@@ -44,9 +43,9 @@ public enum CustomerMasterKeySpec {
         return value;
     }
 
-    private static final Map<String, CustomerMasterKeySpec> enumMap;
+    private static final Map<String, KeySpec> enumMap;
     static {
-        enumMap = new HashMap<String, CustomerMasterKeySpec>();
+        enumMap = new HashMap<String, KeySpec>();
         enumMap.put("RSA_2048", RSA_2048);
         enumMap.put("RSA_3072", RSA_3072);
         enumMap.put("RSA_4096", RSA_4096);
@@ -61,9 +60,9 @@ public enum CustomerMasterKeySpec {
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return CustomerMasterKeySpec corresponding to the value
+     * @return KeySpec corresponding to the value
      */
-    public static CustomerMasterKeySpec fromValue(String value) {
+    public static KeySpec fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

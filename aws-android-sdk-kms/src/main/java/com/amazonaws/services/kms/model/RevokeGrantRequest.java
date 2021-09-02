@@ -24,22 +24,31 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deletes the specified grant. You revoke a grant to terminate the permissions
  * that the grant allows. For more information, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/managing-grants.html#grant-delete"
- * >Retiring and revoking grants</a> in the <i> <i>AWS Key Management Service
+ * >Retiring and revoking grants</a> in the <i> <i>Key Management Service
  * Developer Guide</i> </i>.
  * </p>
  * <p>
  * When you create, retire, or revoke a grant, there might be a brief delay,
- * usually less than five minutes, until the grant is available throughout AWS
- * KMS. This state is known as <i>eventual consistency</i>. For details, see <a
- * href=
+ * usually less than five minutes, until the grant is available throughout KMS.
+ * This state is known as <i>eventual consistency</i>. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
- * >Eventual consistency</a> in the <i> <i>AWS Key Management Service Developer
+ * >Eventual consistency</a> in the <i> <i>Key Management Service Developer
  * Guide</i> </i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: Yes. To perform this operation on a CMK in a
- * different AWS account, specify the key ARN in the value of the
- * <code>KeyId</code> parameter.
+ * For detailed information about grants, including grant terminology, see <a
+ * href
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Using
+ * grants</a> in the <i> <i>Key Management Service Developer Guide</i> </i>. For
+ * examples of working with grants in several programming languages, see <a
+ * href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-grants.html"
+ * >Programming grants</a>.
+ * </p>
+ * <p>
+ * <b>Cross-account use</b>: Yes. To perform this operation on a KMS key in a
+ * different Amazon Web Services account, specify the key ARN in the value of
+ * the <code>KeyId</code> parameter.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -75,13 +84,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class RevokeGrantRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK) associated with the
-     * grant. To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * A unique identifier for the KMS key associated with the grant. To get the
+     * key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
-     * AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the KMS key. To specify a KMS key in a
+     * different Amazon Web Services account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -100,7 +109,7 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -122,13 +131,13 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK) associated with the
-     * grant. To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * A unique identifier for the KMS key associated with the grant. To get the
+     * key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
-     * AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the KMS key. To specify a KMS key in a
+     * different Amazon Web Services account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -147,7 +156,7 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -155,13 +164,14 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         A unique identifier for the customer master key (CMK) associated
-     *         with the grant. To get the key ID and key ARN for a CMK, use
-     *         <a>ListKeys</a> or <a>DescribeKey</a>.
+     *         A unique identifier for the KMS key associated with the grant. To
+     *         get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
+     *         <a>DescribeKey</a>.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK. To specify a CMK in a
-     *         different AWS account, you must use the key ARN.
+     *         Specify the key ID or key ARN of the KMS key. To specify a KMS
+     *         key in a different Amazon Web Services account, you must use the
+     *         key ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -180,8 +190,8 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -190,13 +200,13 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK) associated with the
-     * grant. To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * A unique identifier for the KMS key associated with the grant. To get the
+     * key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
-     * AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the KMS key. To specify a KMS key in a
+     * different Amazon Web Services account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -215,7 +225,7 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -223,13 +233,14 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK)
-     *            associated with the grant. To get the key ID and key ARN for a
-     *            CMK, use <a>ListKeys</a> or <a>DescribeKey</a>.
+     *            A unique identifier for the KMS key associated with the grant.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK. To specify a CMK in
-     *            a different AWS account, you must use the key ARN.
+     *            Specify the key ID or key ARN of the KMS key. To specify a KMS
+     *            key in a different Amazon Web Services account, you must use
+     *            the key ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -248,8 +259,8 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -258,13 +269,13 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * A unique identifier for the customer master key (CMK) associated with the
-     * grant. To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * A unique identifier for the KMS key associated with the grant. To get the
+     * key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK. To specify a CMK in a different
-     * AWS account, you must use the key ARN.
+     * Specify the key ID or key ARN of the KMS key. To specify a KMS key in a
+     * different Amazon Web Services account, you must use the key ARN.
      * </p>
      * <p>
      * For example:
@@ -283,7 +294,7 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -294,13 +305,14 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            A unique identifier for the customer master key (CMK)
-     *            associated with the grant. To get the key ID and key ARN for a
-     *            CMK, use <a>ListKeys</a> or <a>DescribeKey</a>.
+     *            A unique identifier for the KMS key associated with the grant.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK. To specify a CMK in
-     *            a different AWS account, you must use the key ARN.
+     *            Specify the key ID or key ARN of the KMS key. To specify a KMS
+     *            key in a different Amazon Web Services account, you must use
+     *            the key ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -319,8 +331,8 @@ public class RevokeGrantRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

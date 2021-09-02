@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because the specified CMK is not enabled.
+ * The request was rejected because the specified KMS key is not enabled.
  * </p>
  */
 public class DisabledException extends AmazonServiceException {
