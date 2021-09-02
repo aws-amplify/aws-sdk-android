@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Removes the specified dimension from your AWS account.
+ * Removes the specified dimension from your Amazon Web Services accounts.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteDimension</a> action.
  * </p>
  */
 public class DeleteDimensionRequest extends AmazonWebServiceRequest implements Serializable {

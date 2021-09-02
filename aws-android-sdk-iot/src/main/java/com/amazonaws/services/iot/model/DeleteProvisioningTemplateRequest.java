@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes a fleet provisioning template.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteProvisioningTemplate</a> action.
+ * </p>
  */
 public class DeleteProvisioningTemplateRequest extends AmazonWebServiceRequest implements
         Serializable {

@@ -21,12 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provisions a thing in the device registry. RegisterThing calls other AWS IoT
+ * Provisions a thing in the device registry. RegisterThing calls other IoT
  * control plane APIs. These calls might exceed your account level <a href=
  * "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot"
- * > AWS IoT Throttling Limits</a> and cause throttle errors. Please contact <a
- * href="https://console.aws.amazon.com/support/home">AWS Customer Support</a>
- * to raise your throttling limits if necessary.
+ * > IoT Throttling Limits</a> and cause throttle errors. Please contact <a
+ * href="https://console.aws.amazon.com/support/home">Amazon Web Services
+ * Customer Support</a> to raise your throttling limits if necessary.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >RegisterThing</a> action.
  * </p>
  */
 public class RegisterThingRequest extends AmazonWebServiceRequest implements Serializable {

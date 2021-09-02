@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Deprecates a thing type. You can not associate new things with deprecated
  * thing type.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeprecateThingType</a> action.
+ * </p>
  */
 public class DeprecateThingTypeRequest extends AmazonWebServiceRequest implements Serializable {
     /**

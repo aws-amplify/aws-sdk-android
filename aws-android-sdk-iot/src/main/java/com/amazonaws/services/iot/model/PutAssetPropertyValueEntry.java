@@ -34,7 +34,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS IoT SiteWise asset. You must specify either a
+     * The ID of the IoT SiteWise asset. You must specify either a
      * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
@@ -132,13 +132,13 @@ public class PutAssetPropertyValueEntry implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS IoT SiteWise asset. You must specify either a
+     * The ID of the IoT SiteWise asset. You must specify either a
      * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      *
      * @return <p>
-     *         The ID of the AWS IoT SiteWise asset. You must specify either a
+     *         The ID of the IoT SiteWise asset. You must specify either a
      *         <code>propertyAlias</code> or both an <code>aliasId</code> and a
      *         <code>propertyId</code>. Accepts substitution templates.
      *         </p>
@@ -149,15 +149,15 @@ public class PutAssetPropertyValueEntry implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS IoT SiteWise asset. You must specify either a
+     * The ID of the IoT SiteWise asset. You must specify either a
      * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
      *
      * @param assetId <p>
-     *            The ID of the AWS IoT SiteWise asset. You must specify either
-     *            a <code>propertyAlias</code> or both an <code>aliasId</code>
-     *            and a <code>propertyId</code>. Accepts substitution templates.
+     *            The ID of the IoT SiteWise asset. You must specify either a
+     *            <code>propertyAlias</code> or both an <code>aliasId</code> and
+     *            a <code>propertyId</code>. Accepts substitution templates.
      *            </p>
      */
     public void setAssetId(String assetId) {
@@ -166,7 +166,7 @@ public class PutAssetPropertyValueEntry implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS IoT SiteWise asset. You must specify either a
+     * The ID of the IoT SiteWise asset. You must specify either a
      * <code>propertyAlias</code> or both an <code>aliasId</code> and a
      * <code>propertyId</code>. Accepts substitution templates.
      * </p>
@@ -175,9 +175,9 @@ public class PutAssetPropertyValueEntry implements Serializable {
      * together.
      *
      * @param assetId <p>
-     *            The ID of the AWS IoT SiteWise asset. You must specify either
-     *            a <code>propertyAlias</code> or both an <code>aliasId</code>
-     *            and a <code>propertyId</code>. Accepts substitution templates.
+     *            The ID of the IoT SiteWise asset. You must specify either a
+     *            <code>propertyAlias</code> or both an <code>aliasId</code> and
+     *            a <code>propertyId</code>. Accepts substitution templates.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

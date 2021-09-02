@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets information about the specified thing.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeThing</a> action.
+ * </p>
  */
 public class DescribeThingRequest extends AmazonWebServiceRequest implements Serializable {
     /**

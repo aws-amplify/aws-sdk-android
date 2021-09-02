@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates an AWS IoT OTAUpdate on a target group of things or groups.
+ * Creates an IoT OTA update on a target group of things or groups.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateOTAUpdate</a> action.
  * </p>
  */
 public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements Serializable {
@@ -120,8 +125,9 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
-     * and AWS Code Signing resources to create an OTA update job.
+     * The IAM role that grants Amazon Web Services IoT Core access to the
+     * Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to
+     * create an OTA update job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -870,16 +876,18 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
-     * and AWS Code Signing resources to create an OTA update job.
+     * The IAM role that grants Amazon Web Services IoT Core access to the
+     * Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to
+     * create an OTA update job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT
-     *         jobs and AWS Code Signing resources to create an OTA update job.
+     *         The IAM role that grants Amazon Web Services IoT Core access to
+     *         the Amazon S3, IoT jobs and Amazon Web Services Code Signing
+     *         resources to create an OTA update job.
      *         </p>
      */
     public String getRoleArn() {
@@ -888,17 +896,18 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
-     * and AWS Code Signing resources to create an OTA update job.
+     * The IAM role that grants Amazon Web Services IoT Core access to the
+     * Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to
+     * create an OTA update job.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The IAM role that grants AWS IoT access to the Amazon S3, AWS
-     *            IoT jobs and AWS Code Signing resources to create an OTA
-     *            update job.
+     *            The IAM role that grants Amazon Web Services IoT Core access
+     *            to the Amazon S3, IoT jobs and Amazon Web Services Code
+     *            Signing resources to create an OTA update job.
      *            </p>
      */
     public void setRoleArn(String roleArn) {
@@ -907,8 +916,9 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
 
     /**
      * <p>
-     * The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs
-     * and AWS Code Signing resources to create an OTA update job.
+     * The IAM role that grants Amazon Web Services IoT Core access to the
+     * Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to
+     * create an OTA update job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -918,9 +928,9 @@ public class CreateOTAUpdateRequest extends AmazonWebServiceRequest implements S
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The IAM role that grants AWS IoT access to the Amazon S3, AWS
-     *            IoT jobs and AWS Code Signing resources to create an OTA
-     *            update job.
+     *            The IAM role that grants Amazon Web Services IoT Core access
+     *            to the Amazon S3, IoT jobs and Amazon Web Services Code
+     *            Signing resources to create an OTA update job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

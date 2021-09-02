@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets a list of all mitigation actions that match the specified filter
  * criteria.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListMitigationActions</a> action.
+ * </p>
  */
 public class ListMitigationActionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**
