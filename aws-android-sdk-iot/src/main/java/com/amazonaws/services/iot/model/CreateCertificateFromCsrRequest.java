@@ -33,6 +33,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * distinct certificate.
  * </p>
  * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateCertificateFromCsr</a> action.
+ * </p>
+ * <p>
  * You can create multiple certificates in a batch by creating a directory,
  * copying multiple .csr files into that directory, and then specifying that
  * directory on the command line. The following commands show how to create a
@@ -50,8 +55,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * This command lists all of the CSRs in my-csr-directory and pipes each CSR
- * file name to the aws iot create-certificate-from-csr AWS CLI command to
- * create a certificate for the corresponding CSR.
+ * file name to the aws iot create-certificate-from-csr Amazon Web Services CLI
+ * command to create a certificate for the corresponding CSR.
  * </p>
  * <p>
  * The aws iot create-certificate-from-csr part of the command can also be run

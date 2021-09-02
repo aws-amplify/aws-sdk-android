@@ -75,7 +75,8 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the Amazon Web Services IoT
+     * Core service.
      * </p>
      */
     private ThingConnectivity connectivity;
@@ -442,11 +443,13 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the Amazon Web Services IoT
+     * Core service.
      * </p>
      *
      * @return <p>
-     *         Indicates whether the thing is connected to the AWS IoT service.
+     *         Indicates whether the thing is connected to the Amazon Web
+     *         Services IoT Core service.
      *         </p>
      */
     public ThingConnectivity getConnectivity() {
@@ -455,12 +458,13 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the Amazon Web Services IoT
+     * Core service.
      * </p>
      *
      * @param connectivity <p>
-     *            Indicates whether the thing is connected to the AWS IoT
-     *            service.
+     *            Indicates whether the thing is connected to the Amazon Web
+     *            Services IoT Core service.
      *            </p>
      */
     public void setConnectivity(ThingConnectivity connectivity) {
@@ -469,15 +473,16 @@ public class ThingDocument implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the thing is connected to the AWS IoT service.
+     * Indicates whether the thing is connected to the Amazon Web Services IoT
+     * Core service.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param connectivity <p>
-     *            Indicates whether the thing is connected to the AWS IoT
-     *            service.
+     *            Indicates whether the thing is connected to the Amazon Web
+     *            Services IoT Core service.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

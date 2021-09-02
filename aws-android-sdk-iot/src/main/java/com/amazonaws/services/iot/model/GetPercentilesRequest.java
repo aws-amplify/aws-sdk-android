@@ -32,6 +32,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * so on. The result is an approximation, the more values that match the query,
  * the more accurate the percentile values.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >GetPercentiles</a> action.
+ * </p>
  */
 public class GetPercentilesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -47,7 +52,7 @@ public class GetPercentilesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The query string.
+     * The search query string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,14 +143,14 @@ public class GetPercentilesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The query string.
+     * The search query string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @return <p>
-     *         The query string.
+     *         The search query string.
      *         </p>
      */
     public String getQueryString() {
@@ -154,14 +159,14 @@ public class GetPercentilesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The query string.
+     * The search query string.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The query string.
+     *            The search query string.
      *            </p>
      */
     public void setQueryString(String queryString) {
@@ -170,7 +175,7 @@ public class GetPercentilesRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * The query string.
+     * The search query string.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -180,7 +185,7 @@ public class GetPercentilesRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - <br/>
      *
      * @param queryString <p>
-     *            The query string.
+     *            The search query string.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

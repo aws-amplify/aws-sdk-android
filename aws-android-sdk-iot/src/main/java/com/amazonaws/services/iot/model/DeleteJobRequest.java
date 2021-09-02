@@ -34,6 +34,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Only 10 jobs may have status "DELETION_IN_PROGRESS" at the same time, or a
  * LimitExceededException will occur.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteJob</a> action.
+ * </p>
  */
 public class DeleteJobRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -75,9 +80,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -339,9 +344,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -361,9 +366,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      *         job.
      *         </p>
      *         <p>
-     *         When you specify a value for this parameter, AWS IoT Core sends
-     *         jobs notifications to MQTT topics that contain the value in the
-     *         following format.
+     *         When you specify a value for this parameter, Amazon Web Services
+     *         IoT Core sends jobs notifications to MQTT topics that contain the
+     *         value in the following format.
      *         </p>
      *         <p>
      *         <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -383,9 +388,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -405,9 +410,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      *            customer-managed job.
      *            </p>
      *            <p>
-     *            When you specify a value for this parameter, AWS IoT Core
-     *            sends jobs notifications to MQTT topics that contain the value
-     *            in the following format.
+     *            When you specify a value for this parameter, Amazon Web
+     *            Services IoT Core sends jobs notifications to MQTT topics that
+     *            contain the value in the following format.
      *            </p>
      *            <p>
      *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -427,9 +432,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      * The namespace used to indicate that a job is a customer-managed job.
      * </p>
      * <p>
-     * When you specify a value for this parameter, AWS IoT Core sends jobs
-     * notifications to MQTT topics that contain the value in the following
-     * format.
+     * When you specify a value for this parameter, Amazon Web Services IoT Core
+     * sends jobs notifications to MQTT topics that contain the value in the
+     * following format.
      * </p>
      * <p>
      * <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>
@@ -452,9 +457,9 @@ public class DeleteJobRequest extends AmazonWebServiceRequest implements Seriali
      *            customer-managed job.
      *            </p>
      *            <p>
-     *            When you specify a value for this parameter, AWS IoT Core
-     *            sends jobs notifications to MQTT topics that contain the value
-     *            in the following format.
+     *            When you specify a value for this parameter, Amazon Web
+     *            Services IoT Core sends jobs notifications to MQTT topics that
+     *            contain the value in the following format.
      *            </p>
      *            <p>
      *            <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code>

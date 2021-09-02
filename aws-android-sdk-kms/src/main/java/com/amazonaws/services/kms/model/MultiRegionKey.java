@@ -35,8 +35,8 @@ public class MultiRegionKey implements Serializable {
 
     /**
      * <p>
-     * Displays the AWS Region of a primary or replica key in a multi-Region
-     * key.
+     * Displays the Amazon Web Services Region of a primary or replica key in a
+     * multi-Region key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -104,8 +104,8 @@ public class MultiRegionKey implements Serializable {
 
     /**
      * <p>
-     * Displays the AWS Region of a primary or replica key in a multi-Region
-     * key.
+     * Displays the Amazon Web Services Region of a primary or replica key in a
+     * multi-Region key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -113,8 +113,8 @@ public class MultiRegionKey implements Serializable {
      * <b>Pattern: </b>^([a-z]+-){2,3}\d+$<br/>
      *
      * @return <p>
-     *         Displays the AWS Region of a primary or replica key in a
-     *         multi-Region key.
+     *         Displays the Amazon Web Services Region of a primary or replica
+     *         key in a multi-Region key.
      *         </p>
      */
     public String getRegion() {
@@ -123,8 +123,8 @@ public class MultiRegionKey implements Serializable {
 
     /**
      * <p>
-     * Displays the AWS Region of a primary or replica key in a multi-Region
-     * key.
+     * Displays the Amazon Web Services Region of a primary or replica key in a
+     * multi-Region key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -132,8 +132,8 @@ public class MultiRegionKey implements Serializable {
      * <b>Pattern: </b>^([a-z]+-){2,3}\d+$<br/>
      *
      * @param region <p>
-     *            Displays the AWS Region of a primary or replica key in a
-     *            multi-Region key.
+     *            Displays the Amazon Web Services Region of a primary or
+     *            replica key in a multi-Region key.
      *            </p>
      */
     public void setRegion(String region) {
@@ -142,8 +142,8 @@ public class MultiRegionKey implements Serializable {
 
     /**
      * <p>
-     * Displays the AWS Region of a primary or replica key in a multi-Region
-     * key.
+     * Displays the Amazon Web Services Region of a primary or replica key in a
+     * multi-Region key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -154,8 +154,8 @@ public class MultiRegionKey implements Serializable {
      * <b>Pattern: </b>^([a-z]+-){2,3}\d+$<br/>
      *
      * @param region <p>
-     *            Displays the AWS Region of a primary or replica key in a
-     *            multi-Region key.
+     *            Displays the Amazon Web Services Region of a primary or
+     *            replica key in a multi-Region key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

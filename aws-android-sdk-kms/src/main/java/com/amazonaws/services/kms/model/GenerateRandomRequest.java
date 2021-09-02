@@ -24,14 +24,23 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Returns a random byte string that is cryptographically secure.
  * </p>
  * <p>
- * By default, the random byte string is generated in AWS KMS. To generate the
- * byte string in the AWS CloudHSM cluster that is associated with a <a href=
+ * By default, the random byte string is generated in KMS. To generate the byte
+ * string in the CloudHSM cluster that is associated with a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
  * >custom key store</a>, specify the custom key store ID.
  * </p>
  * <p>
+ * Applications in Amazon Web Services Nitro Enclaves can call this operation by
+ * using the <a href="https://github.com/aws/aws-nitro-enclaves-sdk-c">Amazon
+ * Web Services Nitro Enclaves Development Kit</a>. For information about the
+ * supporting parameters, see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/services-nitro-enclaves.html"
+ * >How Amazon Web Services Nitro Enclaves use KMS</a> in the <i>Key Management
+ * Service Developer Guide</i>.
+ * </p>
+ * <p>
  * For more information about entropy and random number generation, see <a
- * href="https://docs.aws.amazon.com/kms/latest/cryptographic-details/">AWS Key
+ * href="https://docs.aws.amazon.com/kms/latest/cryptographic-details/">Key
  * Management Service Cryptographic Details</a>.
  * </p>
  * <p>
@@ -53,7 +62,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Generates the random byte string in the AWS CloudHSM cluster that is
+     * Generates the random byte string in the CloudHSM cluster that is
      * associated with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>. To find the ID of a custom key store, use the
@@ -121,7 +130,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Generates the random byte string in the AWS CloudHSM cluster that is
+     * Generates the random byte string in the CloudHSM cluster that is
      * associated with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>. To find the ID of a custom key store, use the
@@ -132,8 +141,8 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 64<br/>
      *
      * @return <p>
-     *         Generates the random byte string in the AWS CloudHSM cluster that
-     *         is associated with the specified <a href=
+     *         Generates the random byte string in the CloudHSM cluster that is
+     *         associated with the specified <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *         >custom key store</a>. To find the ID of a custom key store, use
      *         the <a>DescribeCustomKeyStores</a> operation.
@@ -145,7 +154,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Generates the random byte string in the AWS CloudHSM cluster that is
+     * Generates the random byte string in the CloudHSM cluster that is
      * associated with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>. To find the ID of a custom key store, use the
@@ -156,8 +165,8 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 64<br/>
      *
      * @param customKeyStoreId <p>
-     *            Generates the random byte string in the AWS CloudHSM cluster
-     *            that is associated with the specified <a href=
+     *            Generates the random byte string in the CloudHSM cluster that
+     *            is associated with the specified <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a>. To find the ID of a custom key store,
      *            use the <a>DescribeCustomKeyStores</a> operation.
@@ -169,7 +178,7 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
-     * Generates the random byte string in the AWS CloudHSM cluster that is
+     * Generates the random byte string in the CloudHSM cluster that is
      * associated with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      * >custom key store</a>. To find the ID of a custom key store, use the
@@ -183,8 +192,8 @@ public class GenerateRandomRequest extends AmazonWebServiceRequest implements Se
      * <b>Length: </b>1 - 64<br/>
      *
      * @param customKeyStoreId <p>
-     *            Generates the random byte string in the AWS CloudHSM cluster
-     *            that is associated with the specified <a href=
+     *            Generates the random byte string in the CloudHSM cluster that
+     *            is associated with the specified <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/custom-key-store-overview.html"
      *            >custom key store</a>. To find the ID of a custom key store,
      *            use the <a>DescribeCustomKeyStores</a> operation.

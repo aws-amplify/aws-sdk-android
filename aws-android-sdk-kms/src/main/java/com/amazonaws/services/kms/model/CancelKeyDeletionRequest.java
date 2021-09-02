@@ -21,27 +21,26 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Cancels the deletion of a customer master key (CMK). When this operation
- * succeeds, the key state of the CMK is <code>Disabled</code>. To enable the
- * CMK, use <a>EnableKey</a>.
+ * Cancels the deletion of a KMS key. When this operation succeeds, the key
+ * state of the KMS key is <code>Disabled</code>. To enable the KMS key, use
+ * <a>EnableKey</a>.
  * </p>
  * <p>
- * For more information about scheduling and canceling deletion of a CMK, see <a
- * href
- * ="https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"
- * >Deleting Customer Master Keys</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
+ * For more information about scheduling and canceling deletion of a KMS key,
+ * see <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html"
+ * >Deleting KMS keys</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
- * different AWS account.
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS key
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -55,11 +54,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Identifies the customer master key (CMK) whose deletion is being
-     * canceled.
+     * Identifies the KMS key whose deletion is being canceled.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -78,7 +76,7 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -89,11 +87,10 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Identifies the customer master key (CMK) whose deletion is being
-     * canceled.
+     * Identifies the KMS key whose deletion is being canceled.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -112,7 +109,7 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -120,11 +117,10 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Identifies the customer master key (CMK) whose deletion is being
-     *         canceled.
+     *         Identifies the KMS key whose deletion is being canceled.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -143,8 +139,8 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -153,11 +149,10 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Identifies the customer master key (CMK) whose deletion is being
-     * canceled.
+     * Identifies the KMS key whose deletion is being canceled.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -176,7 +171,7 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -184,11 +179,10 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies the customer master key (CMK) whose deletion is
-     *            being canceled.
+     *            Identifies the KMS key whose deletion is being canceled.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -207,8 +201,8 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -217,11 +211,10 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * Identifies the customer master key (CMK) whose deletion is being
-     * canceled.
+     * Identifies the KMS key whose deletion is being canceled.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -240,7 +233,7 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -251,11 +244,10 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies the customer master key (CMK) whose deletion is
-     *            being canceled.
+     *            Identifies the KMS key whose deletion is being canceled.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -274,8 +266,8 @@ public class CancelKeyDeletionRequest extends AmazonWebServiceRequest implements
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

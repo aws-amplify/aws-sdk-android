@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates a scheduled audit, including which checks are performed and how often
  * the audit takes place.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UpdateScheduledAudit</a> action.
+ * </p>
  */
 public class UpdateScheduledAuditRequest extends AmazonWebServiceRequest implements Serializable {
     /**

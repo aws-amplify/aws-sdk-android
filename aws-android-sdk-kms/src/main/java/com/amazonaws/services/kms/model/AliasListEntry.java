@@ -47,8 +47,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier of the KMS key associated with
+     * the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,8 +66,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
+     * Date and time that the alias was most recently associated with a KMS key
+     * in the account and Region. Formatted as Unix time.
      * </p>
      */
     private java.util.Date lastUpdatedDate;
@@ -191,15 +191,15 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier of the KMS key associated with
+     * the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         String that contains the key identifier of the CMK associated
+     *         String that contains the key identifier of the KMS key associated
      *         with the alias.
      *         </p>
      */
@@ -209,16 +209,16 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier of the KMS key associated with
+     * the alias.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier of the CMK associated
-     *            with the alias.
+     *            String that contains the key identifier of the KMS key
+     *            associated with the alias.
      *            </p>
      */
     public void setTargetKeyId(String targetKeyId) {
@@ -227,8 +227,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * String that contains the key identifier of the CMK associated with the
-     * alias.
+     * String that contains the key identifier of the KMS key associated with
+     * the alias.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -238,8 +238,8 @@ public class AliasListEntry implements Serializable {
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param targetKeyId <p>
-     *            String that contains the key identifier of the CMK associated
-     *            with the alias.
+     *            String that contains the key identifier of the KMS key
+     *            associated with the alias.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -302,13 +302,13 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
+     * Date and time that the alias was most recently associated with a KMS key
+     * in the account and Region. Formatted as Unix time.
      * </p>
      *
      * @return <p>
      *         Date and time that the alias was most recently associated with a
-     *         CMK in the account and Region. Formatted as Unix time.
+     *         KMS key in the account and Region. Formatted as Unix time.
      *         </p>
      */
     public java.util.Date getLastUpdatedDate() {
@@ -317,13 +317,13 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
+     * Date and time that the alias was most recently associated with a KMS key
+     * in the account and Region. Formatted as Unix time.
      * </p>
      *
      * @param lastUpdatedDate <p>
      *            Date and time that the alias was most recently associated with
-     *            a CMK in the account and Region. Formatted as Unix time.
+     *            a KMS key in the account and Region. Formatted as Unix time.
      *            </p>
      */
     public void setLastUpdatedDate(java.util.Date lastUpdatedDate) {
@@ -332,8 +332,8 @@ public class AliasListEntry implements Serializable {
 
     /**
      * <p>
-     * Date and time that the alias was most recently associated with a CMK in
-     * the account and Region. Formatted as Unix time.
+     * Date and time that the alias was most recently associated with a KMS key
+     * in the account and Region. Formatted as Unix time.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -341,7 +341,7 @@ public class AliasListEntry implements Serializable {
      *
      * @param lastUpdatedDate <p>
      *            Date and time that the alias was most recently associated with
-     *            a CMK in the account and Region. Formatted as Unix time.
+     *            a KMS key in the account and Region. Formatted as Unix time.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

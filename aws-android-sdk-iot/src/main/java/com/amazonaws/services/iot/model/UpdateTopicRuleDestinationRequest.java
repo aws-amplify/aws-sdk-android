@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates a topic rule destination. You use this to change the status, endpoint
  * URL, or confirmation URL of the destination.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UpdateTopicRuleDestination</a> action.
+ * </p>
  */
 public class UpdateTopicRuleDestinationRequest extends AmazonWebServiceRequest implements
         Serializable {

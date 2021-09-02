@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the things in the specified group.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListThingsInThingGroup</a> action.
+ * </p>
  */
 public class ListThingsInThingGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Attaches the specified policy to the specified principal (certificate or
  * other credential).
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >AttachPolicy</a> action.
+ * </p>
  */
 public class AttachPolicyRequest extends AmazonWebServiceRequest implements Serializable {
     /**

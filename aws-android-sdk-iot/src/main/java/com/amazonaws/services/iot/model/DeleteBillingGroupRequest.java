@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes the billing group.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteBillingGroup</a> action.
+ * </p>
  */
 public class DeleteBillingGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

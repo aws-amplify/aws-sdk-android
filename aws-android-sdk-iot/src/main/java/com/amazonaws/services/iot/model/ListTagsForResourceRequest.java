@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the tags (metadata) you have assigned to the resource.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListTagsForResource</a> action.
+ * </p>
  */
 public class ListTagsForResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

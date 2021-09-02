@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an AWS IoT policy.
+ * Describes an IoT policy.
  * </p>
  */
 public class Policy implements Serializable {

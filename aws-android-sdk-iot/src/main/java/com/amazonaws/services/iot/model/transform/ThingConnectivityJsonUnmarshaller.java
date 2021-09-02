@@ -42,6 +42,9 @@ class ThingConnectivityJsonUnmarshaller implements
             } else if (name.equals("timestamp")) {
                 thingConnectivity.setTimestamp(LongJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("disconnectReason")) {
+                thingConnectivity.setDisconnectReason(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

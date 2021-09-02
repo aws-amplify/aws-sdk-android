@@ -21,12 +21,17 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates an AWS IoT policy.
+ * Creates an IoT policy.
  * </p>
  * <p>
  * The created policy is the default version for the policy. This operation
  * creates a policy version with a version identifier of <b>1</b> and sets
  * <b>1</b> as the policy's default version.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreatePolicy</a> action.
  * </p>
  */
 public class CreatePolicyRequest extends AmazonWebServiceRequest implements Serializable {
