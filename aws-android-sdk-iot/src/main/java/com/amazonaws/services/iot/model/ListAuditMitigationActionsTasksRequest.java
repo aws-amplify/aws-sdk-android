@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets a list of audit mitigation action tasks that match the specified
  * filters.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListAuditMitigationActionsTasks</a> action.
+ * </p>
  */
 public class ListAuditMitigationActionsTasksRequest extends AmazonWebServiceRequest implements
         Serializable {

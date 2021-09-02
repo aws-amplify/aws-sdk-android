@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Removes the given tags (metadata) from the resource.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UntagResource</a> action.
+ * </p>
  */
 public class UntagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

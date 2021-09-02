@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes the specified domain configuration.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteDomainConfiguration</a> action.
+ * </p>
  */
 public class DeleteDomainConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {

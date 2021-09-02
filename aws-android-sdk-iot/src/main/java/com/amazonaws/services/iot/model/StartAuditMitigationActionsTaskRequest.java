@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Starts a task that applies a set of mitigation actions to the specified
  * target.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >StartAuditMitigationActionsTask</a> action.
+ * </p>
  */
 public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -51,7 +56,7 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * For an audit check, specifies which mitigation actions to apply. Those
-     * actions must be defined in your AWS account.
+     * actions must be defined in your Amazon Web Services accounts.
      * </p>
      */
     private java.util.Map<String, java.util.List<String>> auditCheckToActionsMapping;
@@ -193,12 +198,13 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * For an audit check, specifies which mitigation actions to apply. Those
-     * actions must be defined in your AWS account.
+     * actions must be defined in your Amazon Web Services accounts.
      * </p>
      *
      * @return <p>
      *         For an audit check, specifies which mitigation actions to apply.
-     *         Those actions must be defined in your AWS account.
+     *         Those actions must be defined in your Amazon Web Services
+     *         accounts.
      *         </p>
      */
     public java.util.Map<String, java.util.List<String>> getAuditCheckToActionsMapping() {
@@ -208,12 +214,13 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * For an audit check, specifies which mitigation actions to apply. Those
-     * actions must be defined in your AWS account.
+     * actions must be defined in your Amazon Web Services accounts.
      * </p>
      *
      * @param auditCheckToActionsMapping <p>
      *            For an audit check, specifies which mitigation actions to
-     *            apply. Those actions must be defined in your AWS account.
+     *            apply. Those actions must be defined in your Amazon Web
+     *            Services accounts.
      *            </p>
      */
     public void setAuditCheckToActionsMapping(
@@ -224,7 +231,7 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * For an audit check, specifies which mitigation actions to apply. Those
-     * actions must be defined in your AWS account.
+     * actions must be defined in your Amazon Web Services accounts.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -232,7 +239,8 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
      *
      * @param auditCheckToActionsMapping <p>
      *            For an audit check, specifies which mitigation actions to
-     *            apply. Those actions must be defined in your AWS account.
+     *            apply. Those actions must be defined in your Amazon Web
+     *            Services accounts.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -246,7 +254,7 @@ public class StartAuditMitigationActionsTaskRequest extends AmazonWebServiceRequ
     /**
      * <p>
      * For an audit check, specifies which mitigation actions to apply. Those
-     * actions must be defined in your AWS account.
+     * actions must be defined in your Amazon Web Services accounts.
      * </p>
      * <p>
      * The method adds a new key-value pair into auditCheckToActionsMapping

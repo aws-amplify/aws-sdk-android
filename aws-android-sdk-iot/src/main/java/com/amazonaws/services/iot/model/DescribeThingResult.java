@@ -33,7 +33,7 @@ public class DescribeThingResult implements Serializable {
      * service.
      * </p>
      * <p>
-     * This lets you better organize your AWS IoT fleet without removing the
+     * This lets you better organize your IoT fleet without removing the
      * flexibility of the underlying device certificate model or shadows.
      * </p>
      */
@@ -118,7 +118,7 @@ public class DescribeThingResult implements Serializable {
      * service.
      * </p>
      * <p>
-     * This lets you better organize your AWS IoT fleet without removing the
+     * This lets you better organize your IoT fleet without removing the
      * flexibility of the underlying device certificate model or shadows.
      * </p>
      *
@@ -131,8 +131,8 @@ public class DescribeThingResult implements Serializable {
      *         registry and the Device Shadow service.
      *         </p>
      *         <p>
-     *         This lets you better organize your AWS IoT fleet without removing
-     *         the flexibility of the underlying device certificate model or
+     *         This lets you better organize your IoT fleet without removing the
+     *         flexibility of the underlying device certificate model or
      *         shadows.
      *         </p>
      */
@@ -150,7 +150,7 @@ public class DescribeThingResult implements Serializable {
      * service.
      * </p>
      * <p>
-     * This lets you better organize your AWS IoT fleet without removing the
+     * This lets you better organize your IoT fleet without removing the
      * flexibility of the underlying device certificate model or shadows.
      * </p>
      *
@@ -163,9 +163,9 @@ public class DescribeThingResult implements Serializable {
      *            client ID for the registry and the Device Shadow service.
      *            </p>
      *            <p>
-     *            This lets you better organize your AWS IoT fleet without
-     *            removing the flexibility of the underlying device certificate
-     *            model or shadows.
+     *            This lets you better organize your IoT fleet without removing
+     *            the flexibility of the underlying device certificate model or
+     *            shadows.
      *            </p>
      */
     public void setDefaultClientId(String defaultClientId) {
@@ -182,7 +182,7 @@ public class DescribeThingResult implements Serializable {
      * service.
      * </p>
      * <p>
-     * This lets you better organize your AWS IoT fleet without removing the
+     * This lets you better organize your IoT fleet without removing the
      * flexibility of the underlying device certificate model or shadows.
      * </p>
      * <p>
@@ -198,9 +198,9 @@ public class DescribeThingResult implements Serializable {
      *            client ID for the registry and the Device Shadow service.
      *            </p>
      *            <p>
-     *            This lets you better organize your AWS IoT fleet without
-     *            removing the flexibility of the underlying device certificate
-     *            model or shadows.
+     *            This lets you better organize your IoT fleet without removing
+     *            the flexibility of the underlying device certificate model or
+     *            shadows.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

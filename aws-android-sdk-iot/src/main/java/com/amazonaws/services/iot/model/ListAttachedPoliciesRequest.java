@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the policies attached to the specified thing group.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListAttachedPolicies</a> action.
+ * </p>
  */
 public class ListAttachedPoliciesRequest extends AmazonWebServiceRequest implements Serializable {
     /**

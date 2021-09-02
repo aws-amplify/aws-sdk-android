@@ -31,7 +31,7 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ID associated with the OTA update.
+     * The IoT job ID associated with the OTA update.
      * </p>
      */
     private String awsIotJobId;
@@ -45,7 +45,7 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ARN associated with the OTA update.
+     * The IoT job ARN associated with the OTA update.
      * </p>
      */
     private String awsIotJobArn;
@@ -120,11 +120,11 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ID associated with the OTA update.
+     * The IoT job ID associated with the OTA update.
      * </p>
      *
      * @return <p>
-     *         The AWS IoT job ID associated with the OTA update.
+     *         The IoT job ID associated with the OTA update.
      *         </p>
      */
     public String getAwsIotJobId() {
@@ -133,11 +133,11 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ID associated with the OTA update.
+     * The IoT job ID associated with the OTA update.
      * </p>
      *
      * @param awsIotJobId <p>
-     *            The AWS IoT job ID associated with the OTA update.
+     *            The IoT job ID associated with the OTA update.
      *            </p>
      */
     public void setAwsIotJobId(String awsIotJobId) {
@@ -146,14 +146,14 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ID associated with the OTA update.
+     * The IoT job ID associated with the OTA update.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param awsIotJobId <p>
-     *            The AWS IoT job ID associated with the OTA update.
+     *            The IoT job ID associated with the OTA update.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -210,11 +210,11 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ARN associated with the OTA update.
+     * The IoT job ARN associated with the OTA update.
      * </p>
      *
      * @return <p>
-     *         The AWS IoT job ARN associated with the OTA update.
+     *         The IoT job ARN associated with the OTA update.
      *         </p>
      */
     public String getAwsIotJobArn() {
@@ -223,11 +223,11 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ARN associated with the OTA update.
+     * The IoT job ARN associated with the OTA update.
      * </p>
      *
      * @param awsIotJobArn <p>
-     *            The AWS IoT job ARN associated with the OTA update.
+     *            The IoT job ARN associated with the OTA update.
      *            </p>
      */
     public void setAwsIotJobArn(String awsIotJobArn) {
@@ -236,14 +236,14 @@ public class CreateOTAUpdateResult implements Serializable {
 
     /**
      * <p>
-     * The AWS IoT job ARN associated with the OTA update.
+     * The IoT job ARN associated with the OTA update.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param awsIotJobArn <p>
-     *            The AWS IoT job ARN associated with the OTA update.
+     *            The IoT job ARN associated with the OTA update.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Any configuration data you entered is deleted and all audit checks are reset
  * to disabled.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteAccountAuditConfiguration</a> action.
+ * </p>
  */
 public class DeleteAccountAuditConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {

@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes a thing group.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteThingGroup</a> action.
+ * </p>
  */
 public class DeleteThingGroupRequest extends AmazonWebServiceRequest implements Serializable {
     /**

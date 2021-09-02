@@ -75,7 +75,7 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account that owns the certificate.
+     * The ID of the Amazon Web Services account that owns the certificate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -86,7 +86,8 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account of the previous owner of the certificate.
+     * The ID of the Amazon Web Services account of the previous owner of the
+     * certificate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -470,7 +471,7 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account that owns the certificate.
+     * The ID of the Amazon Web Services account that owns the certificate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -478,7 +479,8 @@ public class CertificateDescription implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
-     *         The ID of the AWS account that owns the certificate.
+     *         The ID of the Amazon Web Services account that owns the
+     *         certificate.
      *         </p>
      */
     public String getOwnedBy() {
@@ -487,7 +489,7 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account that owns the certificate.
+     * The ID of the Amazon Web Services account that owns the certificate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -495,7 +497,8 @@ public class CertificateDescription implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param ownedBy <p>
-     *            The ID of the AWS account that owns the certificate.
+     *            The ID of the Amazon Web Services account that owns the
+     *            certificate.
      *            </p>
      */
     public void setOwnedBy(String ownedBy) {
@@ -504,7 +507,7 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account that owns the certificate.
+     * The ID of the Amazon Web Services account that owns the certificate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -515,7 +518,8 @@ public class CertificateDescription implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param ownedBy <p>
-     *            The ID of the AWS account that owns the certificate.
+     *            The ID of the Amazon Web Services account that owns the
+     *            certificate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -527,7 +531,8 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account of the previous owner of the certificate.
+     * The ID of the Amazon Web Services account of the previous owner of the
+     * certificate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -535,8 +540,8 @@ public class CertificateDescription implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
-     *         The ID of the AWS account of the previous owner of the
-     *         certificate.
+     *         The ID of the Amazon Web Services account of the previous owner
+     *         of the certificate.
      *         </p>
      */
     public String getPreviousOwnedBy() {
@@ -545,7 +550,8 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account of the previous owner of the certificate.
+     * The ID of the Amazon Web Services account of the previous owner of the
+     * certificate.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -553,8 +559,8 @@ public class CertificateDescription implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param previousOwnedBy <p>
-     *            The ID of the AWS account of the previous owner of the
-     *            certificate.
+     *            The ID of the Amazon Web Services account of the previous
+     *            owner of the certificate.
      *            </p>
      */
     public void setPreviousOwnedBy(String previousOwnedBy) {
@@ -563,7 +569,8 @@ public class CertificateDescription implements Serializable {
 
     /**
      * <p>
-     * The ID of the AWS account of the previous owner of the certificate.
+     * The ID of the Amazon Web Services account of the previous owner of the
+     * certificate.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -574,8 +581,8 @@ public class CertificateDescription implements Serializable {
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param previousOwnedBy <p>
-     *            The ID of the AWS account of the previous owner of the
-     *            certificate.
+     *            The ID of the Amazon Web Services account of the previous
+     *            owner of the certificate.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
