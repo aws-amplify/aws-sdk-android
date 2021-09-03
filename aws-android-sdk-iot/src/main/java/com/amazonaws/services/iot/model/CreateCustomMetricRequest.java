@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Use this API to define a Custom Metric published by your devices to Device
  * Defender.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateCustomMetric</a> action.
+ * </p>
  */
 public class CreateCustomMetricRequest extends AmazonWebServiceRequest implements Serializable {
     /**
@@ -75,8 +80,8 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      * <p>
      * Each custom metric must have a unique client request token. If you try to
      * create a new custom metric that already exists with a different token, an
-     * exception occurs. If you omit this value, AWS SDKs will automatically
-     * generate a unique client request.
+     * exception occurs. If you omit this value, Amazon Web Services SDKs will
+     * automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -421,8 +426,8 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      * <p>
      * Each custom metric must have a unique client request token. If you try to
      * create a new custom metric that already exists with a different token, an
-     * exception occurs. If you omit this value, AWS SDKs will automatically
-     * generate a unique client request.
+     * exception occurs. If you omit this value, Amazon Web Services SDKs will
+     * automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -432,8 +437,9 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      * @return <p>
      *         Each custom metric must have a unique client request token. If
      *         you try to create a new custom metric that already exists with a
-     *         different token, an exception occurs. If you omit this value, AWS
-     *         SDKs will automatically generate a unique client request.
+     *         different token, an exception occurs. If you omit this value,
+     *         Amazon Web Services SDKs will automatically generate a unique
+     *         client request.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -444,8 +450,8 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      * <p>
      * Each custom metric must have a unique client request token. If you try to
      * create a new custom metric that already exists with a different token, an
-     * exception occurs. If you omit this value, AWS SDKs will automatically
-     * generate a unique client request.
+     * exception occurs. If you omit this value, Amazon Web Services SDKs will
+     * automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -456,8 +462,8 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      *            Each custom metric must have a unique client request token. If
      *            you try to create a new custom metric that already exists with
      *            a different token, an exception occurs. If you omit this
-     *            value, AWS SDKs will automatically generate a unique client
-     *            request.
+     *            value, Amazon Web Services SDKs will automatically generate a
+     *            unique client request.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -468,8 +474,8 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      * <p>
      * Each custom metric must have a unique client request token. If you try to
      * create a new custom metric that already exists with a different token, an
-     * exception occurs. If you omit this value, AWS SDKs will automatically
-     * generate a unique client request.
+     * exception occurs. If you omit this value, Amazon Web Services SDKs will
+     * automatically generate a unique client request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -483,8 +489,8 @@ public class CreateCustomMetricRequest extends AmazonWebServiceRequest implement
      *            Each custom metric must have a unique client request token. If
      *            you try to create a new custom metric that already exists with
      *            a different token, an exception occurs. If you omit this
-     *            value, AWS SDKs will automatically generate a unique client
-     *            request.
+     *            value, Amazon Web Services SDKs will automatically generate a
+     *            unique client request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

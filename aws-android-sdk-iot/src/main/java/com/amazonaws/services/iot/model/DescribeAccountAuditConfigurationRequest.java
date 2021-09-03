@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Settings include how audit notifications are sent and which audit checks are
  * enabled or disabled.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeAccountAuditConfiguration</a> action.
+ * </p>
  */
 public class DescribeAccountAuditConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {

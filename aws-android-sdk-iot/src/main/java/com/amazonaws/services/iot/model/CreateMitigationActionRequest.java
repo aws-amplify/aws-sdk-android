@@ -28,6 +28,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Mitigation actions</a>. Each mitigation action can apply only one type of
  * change.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateMitigationAction</a> action.
+ * </p>
  */
 public class CreateMitigationActionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

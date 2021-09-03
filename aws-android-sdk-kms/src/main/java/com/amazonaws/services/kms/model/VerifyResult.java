@@ -22,7 +22,7 @@ public class VerifyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to verify the
+     * >key ARN</a>) of the asymmetric KMS key that was used to verify the
      * signature.
      * </p>
      * <p>
@@ -59,7 +59,7 @@ public class VerifyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to verify the
+     * >key ARN</a>) of the asymmetric KMS key that was used to verify the
      * signature.
      * </p>
      * <p>
@@ -69,8 +69,8 @@ public class VerifyResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the asymmetric CMK that was used to verify the
-     *         signature.
+     *         >key ARN</a>) of the asymmetric KMS key that was used to verify
+     *         the signature.
      *         </p>
      */
     public String getKeyId() {
@@ -81,7 +81,7 @@ public class VerifyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to verify the
+     * >key ARN</a>) of the asymmetric KMS key that was used to verify the
      * signature.
      * </p>
      * <p>
@@ -91,8 +91,8 @@ public class VerifyResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the asymmetric CMK that was used to verify
-     *            the signature.
+     *            >key ARN</a>) of the asymmetric KMS key that was used to
+     *            verify the signature.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -103,7 +103,7 @@ public class VerifyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to verify the
+     * >key ARN</a>) of the asymmetric KMS key that was used to verify the
      * signature.
      * </p>
      * <p>
@@ -116,8 +116,8 @@ public class VerifyResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the asymmetric CMK that was used to verify
-     *            the signature.
+     *            >key ARN</a>) of the asymmetric KMS key that was used to
+     *            verify the signature.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

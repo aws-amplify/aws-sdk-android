@@ -22,10 +22,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Create a dimension that you can use to limit the scope of a metric used in a
- * security profile for AWS IoT Device Defender. For example, using a
+ * security profile for IoT Device Defender. For example, using a
  * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
  * metric only to MQTT topics whose name match the pattern specified in the
  * dimension.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateDimension</a> action.
  * </p>
  */
 public class CreateDimensionRequest extends AmazonWebServiceRequest implements Serializable {
@@ -72,8 +77,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      * <p>
      * Each dimension must have a unique client request token. If you try to
      * create a new dimension with the same token as a dimension that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -423,8 +428,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      * <p>
      * Each dimension must have a unique client request token. If you try to
      * create a new dimension with the same token as a dimension that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -435,7 +440,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      *         Each dimension must have a unique client request token. If you
      *         try to create a new dimension with the same token as a dimension
      *         that already exists, an exception occurs. If you omit this value,
-     *         AWS SDKs will automatically generate a unique client request.
+     *         Amazon Web Services SDKs will automatically generate a unique
+     *         client request.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -446,8 +452,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      * <p>
      * Each dimension must have a unique client request token. If you try to
      * create a new dimension with the same token as a dimension that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -458,8 +464,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      *            Each dimension must have a unique client request token. If you
      *            try to create a new dimension with the same token as a
      *            dimension that already exists, an exception occurs. If you
-     *            omit this value, AWS SDKs will automatically generate a unique
-     *            client request.
+     *            omit this value, Amazon Web Services SDKs will automatically
+     *            generate a unique client request.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -470,8 +476,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      * <p>
      * Each dimension must have a unique client request token. If you try to
      * create a new dimension with the same token as a dimension that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -485,8 +491,8 @@ public class CreateDimensionRequest extends AmazonWebServiceRequest implements S
      *            Each dimension must have a unique client request token. If you
      *            try to create a new dimension with the same token as a
      *            dimension that already exists, an exception occurs. If you
-     *            omit this value, AWS SDKs will automatically generate a unique
-     *            client request.
+     *            omit this value, Amazon Web Services SDKs will automatically
+     *            generate a unique client request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a registration code used to register a CA certificate with AWS IoT.
+ * Gets a registration code used to register a CA certificate with IoT.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >GetRegistrationCode</a> action.
  * </p>
  */
 public class GetRegistrationCodeRequest extends AmazonWebServiceRequest implements Serializable {

@@ -20,9 +20,9 @@ import java.io.Serializable;
 public class DescribeAccountAuditConfigurationResult implements Serializable {
     /**
      * <p>
-     * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates, and other items
-     * as required when performing an audit.
+     * The ARN of the role that grants permission to IoT to access information
+     * about your devices, policies, certificates, and other items as required
+     * when performing an audit.
      * </p>
      * <p>
      * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
@@ -51,9 +51,9 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates, and other items
-     * as required when performing an audit.
+     * The ARN of the role that grants permission to IoT to access information
+     * about your devices, policies, certificates, and other items as required
+     * when performing an audit.
      * </p>
      * <p>
      * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
@@ -64,7 +64,7 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         The ARN of the role that grants permission to AWS IoT to access
+     *         The ARN of the role that grants permission to IoT to access
      *         information about your devices, policies, certificates, and other
      *         items as required when performing an audit.
      *         </p>
@@ -79,9 +79,9 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates, and other items
-     * as required when performing an audit.
+     * The ARN of the role that grants permission to IoT to access information
+     * about your devices, policies, certificates, and other items as required
+     * when performing an audit.
      * </p>
      * <p>
      * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
@@ -92,9 +92,9 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The ARN of the role that grants permission to AWS IoT to
-     *            access information about your devices, policies, certificates,
-     *            and other items as required when performing an audit.
+     *            The ARN of the role that grants permission to IoT to access
+     *            information about your devices, policies, certificates, and
+     *            other items as required when performing an audit.
      *            </p>
      *            <p>
      *            On the first call to
@@ -108,9 +108,9 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants permission to AWS IoT to access
-     * information about your devices, policies, certificates, and other items
-     * as required when performing an audit.
+     * The ARN of the role that grants permission to IoT to access information
+     * about your devices, policies, certificates, and other items as required
+     * when performing an audit.
      * </p>
      * <p>
      * On the first call to <code>UpdateAccountAuditConfiguration</code>, this
@@ -124,9 +124,9 @@ public class DescribeAccountAuditConfigurationResult implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            The ARN of the role that grants permission to AWS IoT to
-     *            access information about your devices, policies, certificates,
-     *            and other items as required when performing an audit.
+     *            The ARN of the role that grants permission to IoT to access
+     *            information about your devices, policies, certificates, and
+     *            other items as required when performing an audit.
      *            </p>
      *            <p>
      *            On the first call to

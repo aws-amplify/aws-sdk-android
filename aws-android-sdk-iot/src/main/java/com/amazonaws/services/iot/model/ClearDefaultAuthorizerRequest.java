@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Clears the default authorizer.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ClearDefaultAuthorizer</a> action.
+ * </p>
  */
 public class ClearDefaultAuthorizerRequest extends AmazonWebServiceRequest implements Serializable {
     /**

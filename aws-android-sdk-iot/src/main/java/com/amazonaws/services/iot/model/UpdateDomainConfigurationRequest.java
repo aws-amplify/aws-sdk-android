@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Updates values stored in the domain configuration. Domain configurations for
  * default endpoints can't be updated.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UpdateDomainConfiguration</a> action.
+ * </p>
  */
 public class UpdateDomainConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {

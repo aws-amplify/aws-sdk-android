@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists logging levels.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListV2LoggingLevels</a> action.
+ * </p>
  */
 public class ListV2LoggingLevelsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

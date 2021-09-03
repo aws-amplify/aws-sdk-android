@@ -25,13 +25,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * account. Settings include how audit notifications are sent and which audit
  * checks are enabled or disabled.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UpdateAccountAuditConfiguration</a> action.
+ * </p>
  */
 public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the role that grants permission to AWS
-     * IoT to access information about your devices, policies, certificates, and
+     * The Amazon Resource Name (ARN) of the role that grants permission to IoT
+     * to access information about your devices, policies, certificates, and
      * other items as required when performing an audit.
      * </p>
      * <p>
@@ -72,8 +77,8 @@ public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the role that grants permission to AWS
-     * IoT to access information about your devices, policies, certificates, and
+     * The Amazon Resource Name (ARN) of the role that grants permission to IoT
+     * to access information about your devices, policies, certificates, and
      * other items as required when performing an audit.
      * </p>
      * <p>
@@ -82,7 +87,7 @@ public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequ
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the role that grants permission
-     *         to AWS IoT to access information about your devices, policies,
+     *         to IoT to access information about your devices, policies,
      *         certificates, and other items as required when performing an
      *         audit.
      *         </p>
@@ -93,8 +98,8 @@ public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the role that grants permission to AWS
-     * IoT to access information about your devices, policies, certificates, and
+     * The Amazon Resource Name (ARN) of the role that grants permission to IoT
+     * to access information about your devices, policies, certificates, and
      * other items as required when performing an audit.
      * </p>
      * <p>
@@ -103,9 +108,9 @@ public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequ
      *
      * @param roleArn <p>
      *            The Amazon Resource Name (ARN) of the role that grants
-     *            permission to AWS IoT to access information about your
-     *            devices, policies, certificates, and other items as required
-     *            when performing an audit.
+     *            permission to IoT to access information about your devices,
+     *            policies, certificates, and other items as required when
+     *            performing an audit.
      *            </p>
      */
     public void setRoleArn(String roleArn) {
@@ -114,8 +119,8 @@ public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequ
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of the role that grants permission to AWS
-     * IoT to access information about your devices, policies, certificates, and
+     * The Amazon Resource Name (ARN) of the role that grants permission to IoT
+     * to access information about your devices, policies, certificates, and
      * other items as required when performing an audit.
      * </p>
      * <p>
@@ -127,9 +132,9 @@ public class UpdateAccountAuditConfigurationRequest extends AmazonWebServiceRequ
      *
      * @param roleArn <p>
      *            The Amazon Resource Name (ARN) of the role that grants
-     *            permission to AWS IoT to access information about your
-     *            devices, policies, certificates, and other items as required
-     *            when performing an audit.
+     *            permission to IoT to access information about your devices,
+     *            policies, certificates, and other items as required when
+     *            performing an audit.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

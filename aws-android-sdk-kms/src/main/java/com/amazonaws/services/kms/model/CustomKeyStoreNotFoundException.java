@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because AWS KMS cannot find a custom key store with
- * the specified key store name or ID.
+ * The request was rejected because KMS cannot find a custom key store with the
+ * specified key store name or ID.
  * </p>
  */
 public class CustomKeyStoreNotFoundException extends AmazonServiceException {

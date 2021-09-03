@@ -28,6 +28,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * To check for pending certificate transfers, call <a>ListCertificates</a> to
  * enumerate your certificates.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >AcceptCertificateTransfer</a> action.
+ * </p>
  */
 public class AcceptCertificateTransferRequest extends AmazonWebServiceRequest implements
         Serializable {

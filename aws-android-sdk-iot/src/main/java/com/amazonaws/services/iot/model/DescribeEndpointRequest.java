@@ -21,7 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns a unique endpoint specific to the AWS account making the call.
+ * Returns a unique endpoint specific to the Amazon Web Services account making
+ * the call.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeEndpoint</a> action.
  * </p>
  */
 public class DescribeEndpointRequest extends AmazonWebServiceRequest implements Serializable {
@@ -46,15 +52,15 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials
-     * provider API endpoint.
+     * <code>iot:CredentialProvider</code> - Returns an IoT credentials provider
+     * API endpoint.
      * </p>
      * </li>
      * </ul>
      * <ul>
      * <li>
      * <p>
-     * <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API
+     * <code>iot:Jobs</code> - Returns an IoT device management Jobs API
      * endpoint.
      * </p>
      * </li>
@@ -91,15 +97,15 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials
-     * provider API endpoint.
+     * <code>iot:CredentialProvider</code> - Returns an IoT credentials provider
+     * API endpoint.
      * </p>
      * </li>
      * </ul>
      * <ul>
      * <li>
      * <p>
-     * <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API
+     * <code>iot:Jobs</code> - Returns an IoT device management Jobs API
      * endpoint.
      * </p>
      * </li>
@@ -133,16 +139,16 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>iot:CredentialProvider</code> - Returns an AWS IoT
-     *         credentials provider API endpoint.
+     *         <code>iot:CredentialProvider</code> - Returns an IoT credentials
+     *         provider API endpoint.
      *         </p>
      *         </li>
      *         </ul>
      *         <ul>
      *         <li>
      *         <p>
-     *         <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs
-     *         API endpoint.
+     *         <code>iot:Jobs</code> - Returns an IoT device management Jobs API
+     *         endpoint.
      *         </p>
      *         </li>
      *         </ul>
@@ -177,15 +183,15 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials
-     * provider API endpoint.
+     * <code>iot:CredentialProvider</code> - Returns an IoT credentials provider
+     * API endpoint.
      * </p>
      * </li>
      * </ul>
      * <ul>
      * <li>
      * <p>
-     * <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API
+     * <code>iot:Jobs</code> - Returns an IoT device management Jobs API
      * endpoint.
      * </p>
      * </li>
@@ -221,7 +227,7 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>iot:CredentialProvider</code> - Returns an AWS IoT
+     *            <code>iot:CredentialProvider</code> - Returns an IoT
      *            credentials provider API endpoint.
      *            </p>
      *            </li>
@@ -229,8 +235,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>iot:Jobs</code> - Returns an AWS IoT device management
-     *            Jobs API endpoint.
+     *            <code>iot:Jobs</code> - Returns an IoT device management Jobs
+     *            API endpoint.
      *            </p>
      *            </li>
      *            </ul>
@@ -266,15 +272,15 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      * <ul>
      * <li>
      * <p>
-     * <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials
-     * provider API endpoint.
+     * <code>iot:CredentialProvider</code> - Returns an IoT credentials provider
+     * API endpoint.
      * </p>
      * </li>
      * </ul>
      * <ul>
      * <li>
      * <p>
-     * <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API
+     * <code>iot:Jobs</code> - Returns an IoT device management Jobs API
      * endpoint.
      * </p>
      * </li>
@@ -313,7 +319,7 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>iot:CredentialProvider</code> - Returns an AWS IoT
+     *            <code>iot:CredentialProvider</code> - Returns an IoT
      *            credentials provider API endpoint.
      *            </p>
      *            </li>
@@ -321,8 +327,8 @@ public class DescribeEndpointRequest extends AmazonWebServiceRequest implements 
      *            <ul>
      *            <li>
      *            <p>
-     *            <code>iot:Jobs</code> - Returns an AWS IoT device management
-     *            Jobs API endpoint.
+     *            <code>iot:Jobs</code> - Returns an IoT device management Jobs
+     *            API endpoint.
      *            </p>
      *            </li>
      *            </ul>

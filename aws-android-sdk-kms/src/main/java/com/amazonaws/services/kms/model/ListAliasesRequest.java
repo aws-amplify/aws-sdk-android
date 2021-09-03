@@ -21,32 +21,34 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Gets a list of aliases in the caller's AWS account and region. For more
- * information about aliases, see <a>CreateAlias</a>.
+ * Gets a list of aliases in the caller's Amazon Web Services account and
+ * region. For more information about aliases, see <a>CreateAlias</a>.
  * </p>
  * <p>
  * By default, the <code>ListAliases</code> operation returns all aliases in the
- * account and region. To get only the aliases associated with a particular
- * customer master key (CMK), use the <code>KeyId</code> parameter.
+ * account and region. To get only the aliases associated with a particular KMS
+ * key, use the <code>KeyId</code> parameter.
  * </p>
  * <p>
  * The <code>ListAliases</code> response can include aliases that you created
- * and associated with your customer managed CMKs, and aliases that AWS created
- * and associated with AWS managed CMKs in your account. You can recognize AWS
- * aliases because their names have the format
- * <code>aws/&lt;service-name&gt;</code>, such as <code>aws/dynamodb</code>.
+ * and associated with your customer managed keys, and aliases that Amazon Web
+ * Services created and associated with Amazon Web Services managed keys in your
+ * account. You can recognize Amazon Web Services aliases because their names
+ * have the format <code>aws/&lt;service-name&gt;</code>, such as
+ * <code>aws/dynamodb</code>.
  * </p>
  * <p>
  * The response might also include aliases that have no <code>TargetKeyId</code>
- * field. These are predefined aliases that AWS has created but has not yet
- * associated with a CMK. Aliases that AWS creates in your account, including
- * predefined aliases, do not count against your <a href=
+ * field. These are predefined aliases that Amazon Web Services has created but
+ * has not yet associated with a KMS key. Aliases that Amazon Web Services
+ * creates in your account, including predefined aliases, do not count against
+ * your <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/limits.html#aliases-limit"
- * >AWS KMS aliases quota</a>.
+ * >KMS aliases quota</a>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: No. <code>ListAliases</code> does not return
- * aliases in other AWS accounts.
+ * aliases in other Amazon Web Services accounts.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -56,8 +58,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html#alias-access"
- * >Controlling access to aliases</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
+ * >Controlling access to aliases</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
  * <b>Related operations:</b>
@@ -83,15 +85,15 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ListAliasesRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Lists only aliases that are associated with the specified CMK. Enter a
-     * CMK in your AWS account.
+     * Lists only aliases that are associated with the specified KMS key. Enter
+     * a KMS key in your Amazon Web Services account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -110,7 +112,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -122,8 +124,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -150,15 +152,15 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Lists only aliases that are associated with the specified CMK. Enter a
-     * CMK in your AWS account.
+     * Lists only aliases that are associated with the specified KMS key. Enter
+     * a KMS key in your Amazon Web Services account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -177,7 +179,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -185,8 +187,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Lists only aliases that are associated with the specified CMK.
-     *         Enter a CMK in your AWS account.
+     *         Lists only aliases that are associated with the specified KMS
+     *         key. Enter a KMS key in your Amazon Web Services account.
      *         </p>
      *         <p>
      *         This parameter is optional. If you omit it,
@@ -194,7 +196,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *         Region.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -213,8 +215,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -223,15 +225,15 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Lists only aliases that are associated with the specified CMK. Enter a
-     * CMK in your AWS account.
+     * Lists only aliases that are associated with the specified KMS key. Enter
+     * a KMS key in your Amazon Web Services account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -250,7 +252,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -258,8 +260,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Lists only aliases that are associated with the specified CMK.
-     *            Enter a CMK in your AWS account.
+     *            Lists only aliases that are associated with the specified KMS
+     *            key. Enter a KMS key in your Amazon Web Services account.
      *            </p>
      *            <p>
      *            This parameter is optional. If you omit it,
@@ -267,7 +269,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *            and Region.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -286,8 +288,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -296,15 +298,15 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Lists only aliases that are associated with the specified CMK. Enter a
-     * CMK in your AWS account.
+     * Lists only aliases that are associated with the specified KMS key. Enter
+     * a KMS key in your Amazon Web Services account.
      * </p>
      * <p>
      * This parameter is optional. If you omit it, <code>ListAliases</code>
      * returns all aliases in the account and Region.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -323,7 +325,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -334,8 +336,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Lists only aliases that are associated with the specified CMK.
-     *            Enter a CMK in your AWS account.
+     *            Lists only aliases that are associated with the specified KMS
+     *            key. Enter a KMS key in your Amazon Web Services account.
      *            </p>
      *            <p>
      *            This parameter is optional. If you omit it,
@@ -343,7 +345,7 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *            and Region.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -362,8 +364,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -376,8 +378,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -389,8 +391,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *
      * @return <p>
      *         Use this parameter to specify the maximum number of items to
-     *         return. When this value is present, AWS KMS does not return more
-     *         than the specified number of items, but it might return fewer.
+     *         return. When this value is present, KMS does not return more than
+     *         the specified number of items, but it might return fewer.
      *         </p>
      *         <p>
      *         This value is optional. If you include a value, it must be
@@ -405,8 +407,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -418,9 +420,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param limit <p>
      *            Use this parameter to specify the maximum number of items to
-     *            return. When this value is present, AWS KMS does not return
-     *            more than the specified number of items, but it might return
-     *            fewer.
+     *            return. When this value is present, KMS does not return more
+     *            than the specified number of items, but it might return fewer.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be
@@ -435,8 +436,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
     /**
      * <p>
      * Use this parameter to specify the maximum number of items to return. When
-     * this value is present, AWS KMS does not return more than the specified
-     * number of items, but it might return fewer.
+     * this value is present, KMS does not return more than the specified number
+     * of items, but it might return fewer.
      * </p>
      * <p>
      * This value is optional. If you include a value, it must be between 1 and
@@ -451,9 +452,8 @@ public class ListAliasesRequest extends AmazonWebServiceRequest implements Seria
      *
      * @param limit <p>
      *            Use this parameter to specify the maximum number of items to
-     *            return. When this value is present, AWS KMS does not return
-     *            more than the specified number of items, but it might return
-     *            fewer.
+     *            return. When this value is present, KMS does not return more
+     *            than the specified number of items, but it might return fewer.
      *            </p>
      *            <p>
      *            This value is optional. If you include a value, it must be

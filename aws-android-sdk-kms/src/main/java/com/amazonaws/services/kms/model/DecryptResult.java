@@ -22,7 +22,7 @@ public class DecryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
+     * >key ARN</a>) of the KMS key that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,8 +32,9 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * Decrypted plaintext data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -56,7 +57,7 @@ public class DecryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
+     * >key ARN</a>) of the KMS key that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +66,8 @@ public class DecryptResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
+     *         >key ARN</a>) of the KMS key that was used to decrypt the
+     *         ciphertext.
      *         </p>
      */
     public String getKeyId() {
@@ -76,7 +78,7 @@ public class DecryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
+     * >key ARN</a>) of the KMS key that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -85,7 +87,7 @@ public class DecryptResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that was used to decrypt the
+     *            >key ARN</a>) of the KMS key that was used to decrypt the
      *            ciphertext.
      *            </p>
      */
@@ -97,7 +99,7 @@ public class DecryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to decrypt the ciphertext.
+     * >key ARN</a>) of the KMS key that was used to decrypt the ciphertext.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,7 +111,7 @@ public class DecryptResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that was used to decrypt the
+     *            >key ARN</a>) of the KMS key that was used to decrypt the
      *            ciphertext.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -122,17 +124,18 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * Decrypted plaintext data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
      * @return <p>
-     *         Decrypted plaintext data. When you use the HTTP API or the AWS
-     *         CLI, the value is Base64-encoded. Otherwise, it is not
-     *         Base64-encoded.
+     *         Decrypted plaintext data. When you use the HTTP API or the Amazon
+     *         Web Services CLI, the value is Base64-encoded. Otherwise, it is
+     *         not Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getPlaintext() {
@@ -141,17 +144,18 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * Decrypted plaintext data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 4096<br/>
      *
      * @param plaintext <p>
-     *            Decrypted plaintext data. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            Base64-encoded.
+     *            Decrypted plaintext data. When you use the HTTP API or the
+     *            Amazon Web Services CLI, the value is Base64-encoded.
+     *            Otherwise, it is not Base64-encoded.
      *            </p>
      */
     public void setPlaintext(java.nio.ByteBuffer plaintext) {
@@ -160,8 +164,9 @@ public class DecryptResult implements Serializable {
 
     /**
      * <p>
-     * Decrypted plaintext data. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * Decrypted plaintext data. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -171,9 +176,9 @@ public class DecryptResult implements Serializable {
      * <b>Length: </b>1 - 4096<br/>
      *
      * @param plaintext <p>
-     *            Decrypted plaintext data. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            Base64-encoded.
+     *            Decrypted plaintext data. When you use the HTTP API or the
+     *            Amazon Web Services CLI, the value is Base64-encoded.
+     *            Otherwise, it is not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

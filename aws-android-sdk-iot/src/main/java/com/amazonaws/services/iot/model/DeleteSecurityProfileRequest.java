@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes a Device Defender security profile.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteSecurityProfile</a> action.
+ * </p>
  */
 public class DeleteSecurityProfileRequest extends AmazonWebServiceRequest implements Serializable {
     /**

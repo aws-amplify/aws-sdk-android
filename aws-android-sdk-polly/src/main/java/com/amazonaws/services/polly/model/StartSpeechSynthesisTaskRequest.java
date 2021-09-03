@@ -25,9 +25,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>SpeechSynthesisTask</code>. This operation requires all the standard
  * information needed for speech synthesis, plus the name of an Amazon S3 bucket
  * for the service to store the output of the synthesis task and two optional
- * parameters (OutputS3KeyPrefix and SnsTopicArn). Once the synthesis task is
- * created, this operation will return a SpeechSynthesisTask object, which will
- * include an identifier of this task as well as the current status.
+ * parameters (<code>OutputS3KeyPrefix</code> and <code>SnsTopicArn</code>).
+ * Once the synthesis task is created, this operation will return a
+ * <code>SpeechSynthesisTask</code> object, which will include an identifier of
+ * this task as well as the current status. The <code>SpeechSynthesisTask</code>
+ * object is available for 72 hours after starting the asynchronous synthesis
+ * task.
  * </p>
  */
 public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest implements
@@ -53,7 +56,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * If a bilingual voice is used and no language code is specified, Amazon
-     * Polly will use the default language of the bilingual voice. The default
+     * Polly uses the default language of the bilingual voice. The default
      * language for any voice is the one returned by the <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      * >DescribeVoices</a> operation for the <code>LanguageCode</code>
@@ -65,7 +68,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR
+     * sv-SE, tr-TR, en-NZ, en-ZA
      */
     private String languageCode;
 
@@ -175,7 +178,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Joanna, Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte,
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
-     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
+     * Ayanda
      */
     private String voiceId;
 
@@ -314,7 +318,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * If a bilingual voice is used and no language code is specified, Amazon
-     * Polly will use the default language of the bilingual voice. The default
+     * Polly uses the default language of the bilingual voice. The default
      * language for any voice is the one returned by the <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      * >DescribeVoices</a> operation for the <code>LanguageCode</code>
@@ -326,7 +330,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR
+     * sv-SE, tr-TR, en-NZ, en-ZA
      *
      * @return <p>
      *         Optional language code for the Speech Synthesis request. This is
@@ -335,9 +339,9 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *         </p>
      *         <p>
      *         If a bilingual voice is used and no language code is specified,
-     *         Amazon Polly will use the default language of the bilingual
-     *         voice. The default language for any voice is the one returned by
-     *         the <a href=
+     *         Amazon Polly uses the default language of the bilingual voice.
+     *         The default language for any voice is the one returned by the <a
+     *         href=
      *         "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      *         >DescribeVoices</a> operation for the <code>LanguageCode</code>
      *         parameter. For example, if no language code is specified, Aditi
@@ -357,7 +361,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * If a bilingual voice is used and no language code is specified, Amazon
-     * Polly will use the default language of the bilingual voice. The default
+     * Polly uses the default language of the bilingual voice. The default
      * language for any voice is the one returned by the <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      * >DescribeVoices</a> operation for the <code>LanguageCode</code>
@@ -369,7 +373,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR
+     * sv-SE, tr-TR, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -379,7 +383,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *            </p>
      *            <p>
      *            If a bilingual voice is used and no language code is
-     *            specified, Amazon Polly will use the default language of the
+     *            specified, Amazon Polly uses the default language of the
      *            bilingual voice. The default language for any voice is the one
      *            returned by the <a href=
      *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
@@ -402,7 +406,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * If a bilingual voice is used and no language code is specified, Amazon
-     * Polly will use the default language of the bilingual voice. The default
+     * Polly uses the default language of the bilingual voice. The default
      * language for any voice is the one returned by the <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      * >DescribeVoices</a> operation for the <code>LanguageCode</code>
@@ -417,7 +421,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR
+     * sv-SE, tr-TR, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -427,7 +431,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *            </p>
      *            <p>
      *            If a bilingual voice is used and no language code is
-     *            specified, Amazon Polly will use the default language of the
+     *            specified, Amazon Polly uses the default language of the
      *            bilingual voice. The default language for any voice is the one
      *            returned by the <a href=
      *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
@@ -453,7 +457,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * If a bilingual voice is used and no language code is specified, Amazon
-     * Polly will use the default language of the bilingual voice. The default
+     * Polly uses the default language of the bilingual voice. The default
      * language for any voice is the one returned by the <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      * >DescribeVoices</a> operation for the <code>LanguageCode</code>
@@ -465,7 +469,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR
+     * sv-SE, tr-TR, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -475,7 +479,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *            </p>
      *            <p>
      *            If a bilingual voice is used and no language code is
-     *            specified, Amazon Polly will use the default language of the
+     *            specified, Amazon Polly uses the default language of the
      *            bilingual voice. The default language for any voice is the one
      *            returned by the <a href=
      *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
@@ -498,7 +502,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * </p>
      * <p>
      * If a bilingual voice is used and no language code is specified, Amazon
-     * Polly will use the default language of the bilingual voice. The default
+     * Polly uses the default language of the bilingual voice. The default
      * language for any voice is the one returned by the <a href=
      * "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
      * >DescribeVoices</a> operation for the <code>LanguageCode</code>
@@ -513,7 +517,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * <b>Allowed Values: </b>arb, cmn-CN, cy-GB, da-DK, de-DE, en-AU, en-GB,
      * en-GB-WLS, en-IN, en-US, es-ES, es-MX, es-US, fr-CA, fr-FR, is-IS, it-IT,
      * ja-JP, hi-IN, ko-KR, nb-NO, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU,
-     * sv-SE, tr-TR
+     * sv-SE, tr-TR, en-NZ, en-ZA
      *
      * @param languageCode <p>
      *            Optional language code for the Speech Synthesis request. This
@@ -523,7 +527,7 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      *            </p>
      *            <p>
      *            If a bilingual voice is used and no language code is
-     *            specified, Amazon Polly will use the default language of the
+     *            specified, Amazon Polly uses the default language of the
      *            bilingual voice. The default language for any voice is the one
      *            returned by the <a href=
      *            "https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html"
@@ -1265,7 +1269,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Joanna, Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte,
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
-     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
+     * Ayanda
      *
      * @return <p>
      *         Voice ID to use for the synthesis.
@@ -1288,7 +1293,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Joanna, Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte,
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
-     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
+     * Ayanda
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1314,7 +1320,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Joanna, Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte,
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
-     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
+     * Ayanda
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1340,7 +1347,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Joanna, Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte,
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
-     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
+     * Ayanda
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.
@@ -1366,7 +1374,8 @@ public class StartSpeechSynthesisTaskRequest extends AmazonWebServiceRequest imp
      * Joanna, Joey, Justin, Karl, Kendra, Kevin, Kimberly, Lea, Liv, Lotte,
      * Lucia, Lupe, Mads, Maja, Marlene, Mathieu, Matthew, Maxim, Mia, Miguel,
      * Mizuki, Naja, Nicole, Olivia, Penelope, Raveena, Ricardo, Ruben, Russell,
-     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu
+     * Salli, Seoyeon, Takumi, Tatyana, Vicki, Vitoria, Zeina, Zhiyu, Aria,
+     * Ayanda
      *
      * @param voiceId <p>
      *            Voice ID to use for the synthesis.

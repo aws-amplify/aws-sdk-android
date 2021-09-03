@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets information about a topic rule destination.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >GetTopicRuleDestination</a> action.
+ * </p>
  */
 public class GetTopicRuleDestinationRequest extends AmazonWebServiceRequest implements Serializable {
     /**

@@ -99,8 +99,8 @@ public class AuthorizerDescription implements Serializable {
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      */
     private Boolean signingDisabled;
@@ -606,12 +606,12 @@ public class AuthorizerDescription implements Serializable {
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      *
      * @return <p>
-     *         Specifies whether AWS IoT validates the token signature in an
+     *         Specifies whether IoT validates the token signature in an
      *         authorization request.
      *         </p>
      */
@@ -621,12 +621,12 @@ public class AuthorizerDescription implements Serializable {
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      *
      * @return <p>
-     *         Specifies whether AWS IoT validates the token signature in an
+     *         Specifies whether IoT validates the token signature in an
      *         authorization request.
      *         </p>
      */
@@ -636,12 +636,12 @@ public class AuthorizerDescription implements Serializable {
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      *
      * @param signingDisabled <p>
-     *            Specifies whether AWS IoT validates the token signature in an
+     *            Specifies whether IoT validates the token signature in an
      *            authorization request.
      *            </p>
      */
@@ -651,15 +651,15 @@ public class AuthorizerDescription implements Serializable {
 
     /**
      * <p>
-     * Specifies whether AWS IoT validates the token signature in an
-     * authorization request.
+     * Specifies whether IoT validates the token signature in an authorization
+     * request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param signingDisabled <p>
-     *            Specifies whether AWS IoT validates the token signature in an
+     *            Specifies whether IoT validates the token signature in an
      *            authorization request.
      *            </p>
      * @return A reference to this updated object so that method calls can be

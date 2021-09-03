@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Sends an input to an AWS IoT Events detector.
+ * Sends an input to an IoT Events detector.
  * </p>
  */
 public class IotEventsAction implements Serializable {
     /**
      * <p>
-     * The name of the AWS IoT Events input.
+     * The name of the IoT Events input.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,8 +44,8 @@ public class IotEventsAction implements Serializable {
      * </p>
      * <p>
      * Assign a value to this property to ensure that only one input (message)
-     * with a given <code>messageId</code> will be processed by an AWS IoT
-     * Events detector.
+     * with a given <code>messageId</code> will be processed by an IoT Events
+     * detector.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -65,7 +65,7 @@ public class IotEventsAction implements Serializable {
      * <p>
      * When <code>batchMode</code> is <code>true</code> and the rule SQL
      * statement evaluates to an Array, each Array element is treated as a
-     * separate message when it's sent to AWS IoT Events by calling <a href=
+     * separate message when it's sent to IoT Events by calling <a href=
      * "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      * > <code>BatchPutMessage</code> </a>. The resulting array can't have more
      * than 10 messages.
@@ -75,22 +75,22 @@ public class IotEventsAction implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants AWS IoT permission to send an input to an
-     * AWS IoT Events detector. ("Action":"iotevents:BatchPutMessage").
+     * The ARN of the role that grants IoT permission to send an input to an IoT
+     * Events detector. ("Action":"iotevents:BatchPutMessage").
      * </p>
      */
     private String roleArn;
 
     /**
      * <p>
-     * The name of the AWS IoT Events input.
+     * The name of the IoT Events input.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
      * @return <p>
-     *         The name of the AWS IoT Events input.
+     *         The name of the IoT Events input.
      *         </p>
      */
     public String getInputName() {
@@ -99,14 +99,14 @@ public class IotEventsAction implements Serializable {
 
     /**
      * <p>
-     * The name of the AWS IoT Events input.
+     * The name of the IoT Events input.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
      * @param inputName <p>
-     *            The name of the AWS IoT Events input.
+     *            The name of the IoT Events input.
      *            </p>
      */
     public void setInputName(String inputName) {
@@ -115,7 +115,7 @@ public class IotEventsAction implements Serializable {
 
     /**
      * <p>
-     * The name of the AWS IoT Events input.
+     * The name of the IoT Events input.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -125,7 +125,7 @@ public class IotEventsAction implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      *
      * @param inputName <p>
-     *            The name of the AWS IoT Events input.
+     *            The name of the IoT Events input.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -146,8 +146,8 @@ public class IotEventsAction implements Serializable {
      * </p>
      * <p>
      * Assign a value to this property to ensure that only one input (message)
-     * with a given <code>messageId</code> will be processed by an AWS IoT
-     * Events detector.
+     * with a given <code>messageId</code> will be processed by an IoT Events
+     * detector.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,7 +165,7 @@ public class IotEventsAction implements Serializable {
      *         <p>
      *         Assign a value to this property to ensure that only one input
      *         (message) with a given <code>messageId</code> will be processed
-     *         by an AWS IoT Events detector.
+     *         by an IoT Events detector.
      *         </p>
      */
     public String getMessageId() {
@@ -183,8 +183,8 @@ public class IotEventsAction implements Serializable {
      * </p>
      * <p>
      * Assign a value to this property to ensure that only one input (message)
-     * with a given <code>messageId</code> will be processed by an AWS IoT
-     * Events detector.
+     * with a given <code>messageId</code> will be processed by an IoT Events
+     * detector.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -202,7 +202,7 @@ public class IotEventsAction implements Serializable {
      *            <p>
      *            Assign a value to this property to ensure that only one input
      *            (message) with a given <code>messageId</code> will be
-     *            processed by an AWS IoT Events detector.
+     *            processed by an IoT Events detector.
      *            </p>
      */
     public void setMessageId(String messageId) {
@@ -220,8 +220,8 @@ public class IotEventsAction implements Serializable {
      * </p>
      * <p>
      * Assign a value to this property to ensure that only one input (message)
-     * with a given <code>messageId</code> will be processed by an AWS IoT
-     * Events detector.
+     * with a given <code>messageId</code> will be processed by an IoT Events
+     * detector.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -242,7 +242,7 @@ public class IotEventsAction implements Serializable {
      *            <p>
      *            Assign a value to this property to ensure that only one input
      *            (message) with a given <code>messageId</code> will be
-     *            processed by an AWS IoT Events detector.
+     *            processed by an IoT Events detector.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -264,7 +264,7 @@ public class IotEventsAction implements Serializable {
      * <p>
      * When <code>batchMode</code> is <code>true</code> and the rule SQL
      * statement evaluates to an Array, each Array element is treated as a
-     * separate message when it's sent to AWS IoT Events by calling <a href=
+     * separate message when it's sent to IoT Events by calling <a href=
      * "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      * > <code>BatchPutMessage</code> </a>. The resulting array can't have more
      * than 10 messages.
@@ -281,7 +281,7 @@ public class IotEventsAction implements Serializable {
      *         <p>
      *         When <code>batchMode</code> is <code>true</code> and the rule SQL
      *         statement evaluates to an Array, each Array element is treated as
-     *         a separate message when it's sent to AWS IoT Events by calling <a
+     *         a separate message when it's sent to IoT Events by calling <a
      *         href=
      *         "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      *         > <code>BatchPutMessage</code> </a>. The resulting array can't
@@ -304,7 +304,7 @@ public class IotEventsAction implements Serializable {
      * <p>
      * When <code>batchMode</code> is <code>true</code> and the rule SQL
      * statement evaluates to an Array, each Array element is treated as a
-     * separate message when it's sent to AWS IoT Events by calling <a href=
+     * separate message when it's sent to IoT Events by calling <a href=
      * "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      * > <code>BatchPutMessage</code> </a>. The resulting array can't have more
      * than 10 messages.
@@ -321,7 +321,7 @@ public class IotEventsAction implements Serializable {
      *         <p>
      *         When <code>batchMode</code> is <code>true</code> and the rule SQL
      *         statement evaluates to an Array, each Array element is treated as
-     *         a separate message when it's sent to AWS IoT Events by calling <a
+     *         a separate message when it's sent to IoT Events by calling <a
      *         href=
      *         "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      *         > <code>BatchPutMessage</code> </a>. The resulting array can't
@@ -344,7 +344,7 @@ public class IotEventsAction implements Serializable {
      * <p>
      * When <code>batchMode</code> is <code>true</code> and the rule SQL
      * statement evaluates to an Array, each Array element is treated as a
-     * separate message when it's sent to AWS IoT Events by calling <a href=
+     * separate message when it's sent to IoT Events by calling <a href=
      * "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      * > <code>BatchPutMessage</code> </a>. The resulting array can't have more
      * than 10 messages.
@@ -361,8 +361,8 @@ public class IotEventsAction implements Serializable {
      *            <p>
      *            When <code>batchMode</code> is <code>true</code> and the rule
      *            SQL statement evaluates to an Array, each Array element is
-     *            treated as a separate message when it's sent to AWS IoT Events
-     *            by calling <a href=
+     *            treated as a separate message when it's sent to IoT Events by
+     *            calling <a href=
      *            "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      *            > <code>BatchPutMessage</code> </a>. The resulting array can't
      *            have more than 10 messages.
@@ -384,7 +384,7 @@ public class IotEventsAction implements Serializable {
      * <p>
      * When <code>batchMode</code> is <code>true</code> and the rule SQL
      * statement evaluates to an Array, each Array element is treated as a
-     * separate message when it's sent to AWS IoT Events by calling <a href=
+     * separate message when it's sent to IoT Events by calling <a href=
      * "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      * > <code>BatchPutMessage</code> </a>. The resulting array can't have more
      * than 10 messages.
@@ -404,8 +404,8 @@ public class IotEventsAction implements Serializable {
      *            <p>
      *            When <code>batchMode</code> is <code>true</code> and the rule
      *            SQL statement evaluates to an Array, each Array element is
-     *            treated as a separate message when it's sent to AWS IoT Events
-     *            by calling <a href=
+     *            treated as a separate message when it's sent to IoT Events by
+     *            calling <a href=
      *            "https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html"
      *            > <code>BatchPutMessage</code> </a>. The resulting array can't
      *            have more than 10 messages.
@@ -420,13 +420,13 @@ public class IotEventsAction implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants AWS IoT permission to send an input to an
-     * AWS IoT Events detector. ("Action":"iotevents:BatchPutMessage").
+     * The ARN of the role that grants IoT permission to send an input to an IoT
+     * Events detector. ("Action":"iotevents:BatchPutMessage").
      * </p>
      *
      * @return <p>
-     *         The ARN of the role that grants AWS IoT permission to send an
-     *         input to an AWS IoT Events detector.
+     *         The ARN of the role that grants IoT permission to send an input
+     *         to an IoT Events detector.
      *         ("Action":"iotevents:BatchPutMessage").
      *         </p>
      */
@@ -436,13 +436,13 @@ public class IotEventsAction implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants AWS IoT permission to send an input to an
-     * AWS IoT Events detector. ("Action":"iotevents:BatchPutMessage").
+     * The ARN of the role that grants IoT permission to send an input to an IoT
+     * Events detector. ("Action":"iotevents:BatchPutMessage").
      * </p>
      *
      * @param roleArn <p>
-     *            The ARN of the role that grants AWS IoT permission to send an
-     *            input to an AWS IoT Events detector.
+     *            The ARN of the role that grants IoT permission to send an
+     *            input to an IoT Events detector.
      *            ("Action":"iotevents:BatchPutMessage").
      *            </p>
      */
@@ -452,16 +452,16 @@ public class IotEventsAction implements Serializable {
 
     /**
      * <p>
-     * The ARN of the role that grants AWS IoT permission to send an input to an
-     * AWS IoT Events detector. ("Action":"iotevents:BatchPutMessage").
+     * The ARN of the role that grants IoT permission to send an input to an IoT
+     * Events detector. ("Action":"iotevents:BatchPutMessage").
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param roleArn <p>
-     *            The ARN of the role that grants AWS IoT permission to send an
-     *            input to an AWS IoT Events detector.
+     *            The ARN of the role that grants IoT permission to send an
+     *            input to an IoT Events detector.
      *            ("Action":"iotevents:BatchPutMessage").
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * rules is an administrator-level action. Any user who has permission to create
  * rules will be able to access data processed by the rule.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ReplaceTopicRule</a> action.
+ * </p>
  */
 public class ReplaceTopicRuleRequest extends AmazonWebServiceRequest implements Serializable {
     /**
