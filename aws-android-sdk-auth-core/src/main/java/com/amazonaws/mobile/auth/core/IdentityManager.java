@@ -772,7 +772,7 @@ public class IdentityManager {
                                                         provider.getDisplayName(), ex.getMessage()), ex);
                                     } else {
                                         Log.e(LOG_TAG,
-                                                String.format("Federate with Cognito with failed. Error: %s"
+                                                String.format("Federate with Cognito failed. Error: %s"
                                                         , ex.getMessage()), ex);
                                     }
 
