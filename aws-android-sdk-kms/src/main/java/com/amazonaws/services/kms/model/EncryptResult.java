@@ -20,8 +20,9 @@ import java.io.Serializable;
 public class EncryptResult implements Serializable {
     /**
      * <p>
-     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The encrypted plaintext. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -33,7 +34,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
+     * >key ARN</a>) of the KMS key that was used to encrypt the plaintext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,17 +55,18 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The encrypted plaintext. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @return <p>
-     *         The encrypted plaintext. When you use the HTTP API or the AWS
-     *         CLI, the value is Base64-encoded. Otherwise, it is not
-     *         Base64-encoded.
+     *         The encrypted plaintext. When you use the HTTP API or the Amazon
+     *         Web Services CLI, the value is Base64-encoded. Otherwise, it is
+     *         not Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getCiphertextBlob() {
@@ -73,17 +75,18 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The encrypted plaintext. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The encrypted plaintext. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            Base64-encoded.
+     *            The encrypted plaintext. When you use the HTTP API or the
+     *            Amazon Web Services CLI, the value is Base64-encoded.
+     *            Otherwise, it is not Base64-encoded.
      *            </p>
      */
     public void setCiphertextBlob(java.nio.ByteBuffer ciphertextBlob) {
@@ -92,8 +95,9 @@ public class EncryptResult implements Serializable {
 
     /**
      * <p>
-     * The encrypted plaintext. When you use the HTTP API or the AWS CLI, the
-     * value is Base64-encoded. Otherwise, it is not Base64-encoded.
+     * The encrypted plaintext. When you use the HTTP API or the Amazon Web
+     * Services CLI, the value is Base64-encoded. Otherwise, it is not
+     * Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -103,9 +107,9 @@ public class EncryptResult implements Serializable {
      * <b>Length: </b>1 - 6144<br/>
      *
      * @param ciphertextBlob <p>
-     *            The encrypted plaintext. When you use the HTTP API or the AWS
-     *            CLI, the value is Base64-encoded. Otherwise, it is not
-     *            Base64-encoded.
+     *            The encrypted plaintext. When you use the HTTP API or the
+     *            Amazon Web Services CLI, the value is Base64-encoded.
+     *            Otherwise, it is not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -119,7 +123,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
+     * >key ARN</a>) of the KMS key that was used to encrypt the plaintext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -128,7 +132,8 @@ public class EncryptResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the CMK that was used to encrypt the plaintext.
+     *         >key ARN</a>) of the KMS key that was used to encrypt the
+     *         plaintext.
      *         </p>
      */
     public String getKeyId() {
@@ -139,7 +144,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
+     * >key ARN</a>) of the KMS key that was used to encrypt the plaintext.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -148,7 +153,7 @@ public class EncryptResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that was used to encrypt the
+     *            >key ARN</a>) of the KMS key that was used to encrypt the
      *            plaintext.
      *            </p>
      */
@@ -160,7 +165,7 @@ public class EncryptResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that was used to encrypt the plaintext.
+     * >key ARN</a>) of the KMS key that was used to encrypt the plaintext.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -172,7 +177,7 @@ public class EncryptResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that was used to encrypt the
+     *            >key ARN</a>) of the KMS key that was used to encrypt the
      *            plaintext.
      *            </p>
      * @return A reference to this updated object so that method calls can be

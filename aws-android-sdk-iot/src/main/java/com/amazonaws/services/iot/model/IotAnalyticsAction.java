@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Sends message data to an AWS IoT Analytics channel.
+ * Sends message data to an IoT Analytics channel.
  * </p>
  */
 public class IotAnalyticsAction implements Serializable {
@@ -48,7 +48,7 @@ public class IotAnalyticsAction implements Serializable {
      * statement evaluates to an Array, each Array element is delivered as a
      * separate message when passed by <a href=
      * "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     * > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics channel. The
+     * > <code>BatchPutMessage</code> </a> to the IoT Analytics channel. The
      * resulting array can't have more than 100 messages.
      * </p>
      */
@@ -172,7 +172,7 @@ public class IotAnalyticsAction implements Serializable {
      * statement evaluates to an Array, each Array element is delivered as a
      * separate message when passed by <a href=
      * "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     * > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics channel. The
+     * > <code>BatchPutMessage</code> </a> to the IoT Analytics channel. The
      * resulting array can't have more than 100 messages.
      * </p>
      *
@@ -185,8 +185,8 @@ public class IotAnalyticsAction implements Serializable {
      *         statement evaluates to an Array, each Array element is delivered
      *         as a separate message when passed by <a href=
      *         "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     *         > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics
-     *         channel. The resulting array can't have more than 100 messages.
+     *         > <code>BatchPutMessage</code> </a> to the IoT Analytics channel.
+     *         The resulting array can't have more than 100 messages.
      *         </p>
      */
     public Boolean isBatchMode() {
@@ -203,7 +203,7 @@ public class IotAnalyticsAction implements Serializable {
      * statement evaluates to an Array, each Array element is delivered as a
      * separate message when passed by <a href=
      * "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     * > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics channel. The
+     * > <code>BatchPutMessage</code> </a> to the IoT Analytics channel. The
      * resulting array can't have more than 100 messages.
      * </p>
      *
@@ -216,8 +216,8 @@ public class IotAnalyticsAction implements Serializable {
      *         statement evaluates to an Array, each Array element is delivered
      *         as a separate message when passed by <a href=
      *         "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     *         > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics
-     *         channel. The resulting array can't have more than 100 messages.
+     *         > <code>BatchPutMessage</code> </a> to the IoT Analytics channel.
+     *         The resulting array can't have more than 100 messages.
      *         </p>
      */
     public Boolean getBatchMode() {
@@ -234,7 +234,7 @@ public class IotAnalyticsAction implements Serializable {
      * statement evaluates to an Array, each Array element is delivered as a
      * separate message when passed by <a href=
      * "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     * > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics channel. The
+     * > <code>BatchPutMessage</code> </a> to the IoT Analytics channel. The
      * resulting array can't have more than 100 messages.
      * </p>
      *
@@ -247,7 +247,7 @@ public class IotAnalyticsAction implements Serializable {
      *            SQL statement evaluates to an Array, each Array element is
      *            delivered as a separate message when passed by <a href=
      *            "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     *            > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics
+     *            > <code>BatchPutMessage</code> </a> to the IoT Analytics
      *            channel. The resulting array can't have more than 100
      *            messages.
      *            </p>
@@ -266,7 +266,7 @@ public class IotAnalyticsAction implements Serializable {
      * statement evaluates to an Array, each Array element is delivered as a
      * separate message when passed by <a href=
      * "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     * > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics channel. The
+     * > <code>BatchPutMessage</code> </a> to the IoT Analytics channel. The
      * resulting array can't have more than 100 messages.
      * </p>
      * <p>
@@ -282,7 +282,7 @@ public class IotAnalyticsAction implements Serializable {
      *            SQL statement evaluates to an Array, each Array element is
      *            delivered as a separate message when passed by <a href=
      *            "https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html"
-     *            > <code>BatchPutMessage</code> </a> to the AWS IoT Analytics
+     *            > <code>BatchPutMessage</code> </a> to the IoT Analytics
      *            channel. The resulting array can't have more than 100
      *            messages.
      *            </p>

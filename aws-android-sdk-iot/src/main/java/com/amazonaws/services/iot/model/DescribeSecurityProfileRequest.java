@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets information about a Device Defender security profile.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeSecurityProfile</a> action.
+ * </p>
  */
 public class DescribeSecurityProfileRequest extends AmazonWebServiceRequest implements Serializable {
     /**

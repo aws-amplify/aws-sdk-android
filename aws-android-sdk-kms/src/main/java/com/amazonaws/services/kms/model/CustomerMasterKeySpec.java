@@ -21,6 +21,7 @@ import java.util.Map;
 /**
  * Customer Master Key Spec
  */
+@Deprecated
 public enum CustomerMasterKeySpec {
 
     RSA_2048("RSA_2048"),

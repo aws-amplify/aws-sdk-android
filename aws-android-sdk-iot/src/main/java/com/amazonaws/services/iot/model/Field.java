@@ -32,7 +32,7 @@ public class Field implements Serializable {
 
     /**
      * <p>
-     * The datatype of the field.
+     * The data type of the field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,14 +87,14 @@ public class Field implements Serializable {
 
     /**
      * <p>
-     * The datatype of the field.
+     * The data type of the field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Number, String, Boolean
      *
      * @return <p>
-     *         The datatype of the field.
+     *         The data type of the field.
      *         </p>
      * @see FieldType
      */
@@ -104,14 +104,14 @@ public class Field implements Serializable {
 
     /**
      * <p>
-     * The datatype of the field.
+     * The data type of the field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Number, String, Boolean
      *
      * @param type <p>
-     *            The datatype of the field.
+     *            The data type of the field.
      *            </p>
      * @see FieldType
      */
@@ -121,7 +121,7 @@ public class Field implements Serializable {
 
     /**
      * <p>
-     * The datatype of the field.
+     * The data type of the field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -131,7 +131,7 @@ public class Field implements Serializable {
      * <b>Allowed Values: </b>Number, String, Boolean
      *
      * @param type <p>
-     *            The datatype of the field.
+     *            The data type of the field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -144,14 +144,14 @@ public class Field implements Serializable {
 
     /**
      * <p>
-     * The datatype of the field.
+     * The data type of the field.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>Number, String, Boolean
      *
      * @param type <p>
-     *            The datatype of the field.
+     *            The data type of the field.
      *            </p>
      * @see FieldType
      */
@@ -161,7 +161,7 @@ public class Field implements Serializable {
 
     /**
      * <p>
-     * The datatype of the field.
+     * The data type of the field.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -171,7 +171,7 @@ public class Field implements Serializable {
      * <b>Allowed Values: </b>Number, String, Boolean
      *
      * @param type <p>
-     *            The datatype of the field.
+     *            The data type of the field.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

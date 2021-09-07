@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * account. Each thing group or account can have up to five security profiles
  * associated with it.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >AttachSecurityProfile</a> action.
+ * </p>
  */
 public class AttachSecurityProfileRequest extends AmazonWebServiceRequest implements Serializable {
     /**

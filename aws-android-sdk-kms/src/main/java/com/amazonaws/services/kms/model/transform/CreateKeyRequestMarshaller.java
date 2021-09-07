@@ -81,6 +81,11 @@ public class CreateKeyRequestMarshaller implements
                 jsonWriter.name("CustomerMasterKeySpec");
                 jsonWriter.value(customerMasterKeySpec);
             }
+            if (createKeyRequest.getKeySpec() != null) {
+                String keySpec = createKeyRequest.getKeySpec();
+                jsonWriter.name("KeySpec");
+                jsonWriter.value(keySpec);
+            }
             if (createKeyRequest.getOrigin() != null) {
                 String origin = createKeyRequest.getOrigin();
                 jsonWriter.name("Origin");

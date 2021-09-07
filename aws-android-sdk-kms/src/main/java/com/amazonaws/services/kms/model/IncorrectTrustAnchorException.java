@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The request was rejected because the trust anchor certificate in the request
- * is not the trust anchor certificate for the specified AWS CloudHSM cluster.
+ * is not the trust anchor certificate for the specified CloudHSM cluster.
  * </p>
  * <p>
  * When you <a href=

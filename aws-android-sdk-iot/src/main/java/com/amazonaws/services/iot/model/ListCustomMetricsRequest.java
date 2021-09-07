@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists your Device Defender detect custom metrics.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListCustomMetrics</a> action.
+ * </p>
  */
 public class ListCustomMetricsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

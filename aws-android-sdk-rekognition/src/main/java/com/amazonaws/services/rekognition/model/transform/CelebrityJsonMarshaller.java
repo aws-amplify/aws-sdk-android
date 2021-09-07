@@ -57,6 +57,11 @@ class CelebrityJsonMarshaller {
             jsonWriter.name("MatchConfidence");
             jsonWriter.value(matchConfidence);
         }
+        if (celebrity.getKnownGender() != null) {
+            KnownGender knownGender = celebrity.getKnownGender();
+            jsonWriter.name("KnownGender");
+            KnownGenderJsonMarshaller.getInstance().marshall(knownGender, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

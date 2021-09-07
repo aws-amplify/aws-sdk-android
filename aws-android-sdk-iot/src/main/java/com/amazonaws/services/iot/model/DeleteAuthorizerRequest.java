@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes an authorizer.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteAuthorizer</a> action.
+ * </p>
  */
 public class DeleteAuthorizerRequest extends AmazonWebServiceRequest implements Serializable {
     /**

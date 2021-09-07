@@ -27,6 +27,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * NOTE: use of this command is not recommended. Use
  * <code>SetV2LoggingOptions</code> instead.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >SetLoggingOptions</a> action.
+ * </p>
  */
 public class SetLoggingOptionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

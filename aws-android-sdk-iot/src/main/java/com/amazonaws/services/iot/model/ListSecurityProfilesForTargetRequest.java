@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Lists the Device Defender security profiles attached to a target (thing
  * group).
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListSecurityProfilesForTarget</a> action.
+ * </p>
  */
 public class ListSecurityProfilesForTargetRequest extends AmazonWebServiceRequest implements
         Serializable {

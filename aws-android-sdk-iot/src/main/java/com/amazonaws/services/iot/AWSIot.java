@@ -20,11 +20,11 @@ import com.amazonaws.regions.*;
 import com.amazonaws.services.iot.model.*;
 
 /**
- * Interface for accessing AWS IoT <fullname>AWS IoT</fullname>
+ * Interface for accessing AWS IoT <fullname>IoT</fullname>
  * <p>
- * AWS IoT provides secure, bi-directional communication between
- * Internet-connected devices (such as sensors, actuators, embedded devices, or
- * smart appliances) and the AWS cloud. You can discover your custom IoT-Data
+ * IoT provides secure, bi-directional communication between Internet-connected
+ * devices (such as sensors, actuators, embedded devices, or smart appliances)
+ * and the Amazon Web Services cloud. You can discover your custom IoT-Data
  * endpoint to communicate with, configure rules for data processing and
  * integration with other services, organize resources associated with each
  * device (Registry), configure logging, and create and manage policies and
@@ -32,25 +32,26 @@ import com.amazonaws.services.iot.model.*;
  * </p>
  * <p>
  * The service endpoints that expose this API are listed in <a
- * href="https://docs.aws.amazon.com/general/latest/gr/iot-core.html">AWS IoT
- * Core Endpoints and Quotas</a>. You must use the endpoint for the region that
- * has the resources you want to access.
+ * href="https://docs.aws.amazon.com/general/latest/gr/iot-core.html">Amazon Web
+ * Services IoT Core Endpoints and Quotas</a>. You must use the endpoint for the
+ * region that has the resources you want to access.
  * </p>
  * <p>
  * The service name used by <a href=
- * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html">AWS
- * Signature Version 4</a> to sign the request is: <i>execute-api</i>.
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+ * >Amazon Web Services Signature Version 4</a> to sign the request is:
+ * <i>execute-api</i>.
  * </p>
  * <p>
- * For more information about how AWS IoT works, see the <a href=
+ * For more information about how IoT works, see the <a href=
  * "https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html"
  * >Developer Guide</a>.
  * </p>
  * <p>
- * For information about how to use the credentials provider for AWS IoT, see <a
+ * For information about how to use the credentials provider for IoT, see <a
  * href=
  * "https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html"
- * >Authorizing Direct Calls to AWS Services</a>.
+ * >Authorizing Direct Calls to Amazon Web Services Services</a>.
  * </p>
  **/
 public interface AWSIot {
@@ -122,6 +123,11 @@ public interface AWSIot {
      * To check for pending certificate transfers, call <a>ListCertificates</a>
      * to enumerate your certificates.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AcceptCertificateTransfer</a> action.
+     * </p>
      * 
      * @param acceptCertificateTransferRequest <p>
      *            The input for the AcceptCertificateTransfer operation.
@@ -148,6 +154,11 @@ public interface AWSIot {
      * <p>
      * Adds a thing to a billing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AddThingToBillingGroup</a> action.
+     * </p>
      * 
      * @param addThingToBillingGroupRequest
      * @return addThingToBillingGroupResult The response from the
@@ -171,6 +182,11 @@ public interface AWSIot {
     /**
      * <p>
      * Adds a thing to a thing group.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AddThingToThingGroup</a> action.
      * </p>
      * 
      * @param addThingToThingGroupRequest
@@ -215,6 +231,11 @@ public interface AWSIot {
      * </p>
      * </li>
      * </ul>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AssociateTargetsWithJob</a> action.
+     * </p>
      * 
      * @param associateTargetsWithJobRequest
      * @return associateTargetsWithJobResult The response from the
@@ -240,6 +261,11 @@ public interface AWSIot {
      * <p>
      * Attaches the specified policy to the specified principal (certificate or
      * other credential).
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AttachPolicy</a> action.
      * </p>
      * 
      * @param attachPolicyRequest
@@ -267,8 +293,13 @@ public interface AWSIot {
      * other credential).
      * </p>
      * <p>
-     * <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a>
+     * <b>Note:</b> This action is deprecated. Please use <a>AttachPolicy</a>
      * instead.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AttachPrincipalPolicy</a> action.
      * </p>
      * 
      * @param attachPrincipalPolicyRequest <p>
@@ -299,6 +330,11 @@ public interface AWSIot {
      * account. Each thing group or account can have up to five security
      * profiles associated with it.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AttachSecurityProfile</a> action.
+     * </p>
      * 
      * @param attachSecurityProfileRequest
      * @return attachSecurityProfileResult The response from the
@@ -326,6 +362,11 @@ public interface AWSIot {
      * Attaches the specified principal to the specified thing. A principal can
      * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
      * identities or federated identities.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >AttachThingPrincipal</a> action.
      * </p>
      * 
      * @param attachThingPrincipalRequest <p>
@@ -356,6 +397,11 @@ public interface AWSIot {
      * Cancels a mitigation action task that is in progress. If the task is not
      * in progress, an InvalidRequestException occurs.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CancelAuditMitigationActionsTask</a> action.
+     * </p>
      * 
      * @param cancelAuditMitigationActionsTaskRequest
      * @return cancelAuditMitigationActionsTaskResult The response from the
@@ -383,6 +429,11 @@ public interface AWSIot {
      * or on demand. If the audit isn't in progress, an
      * "InvalidRequestException" occurs.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CancelAuditTask</a> action.
+     * </p>
      * 
      * @param cancelAuditTaskRequest
      * @return cancelAuditTaskResult The response from the CancelAuditTask
@@ -409,14 +460,19 @@ public interface AWSIot {
      * <p>
      * <b>Note</b> Only the transfer source account can use this operation to
      * cancel a transfer. (Transfer destinations can use
-     * <a>RejectCertificateTransfer</a> instead.) After transfer, AWS IoT
-     * returns the certificate to the source account in the INACTIVE state.
-     * After the destination account has accepted the transfer, the transfer
-     * cannot be cancelled.
+     * <a>RejectCertificateTransfer</a> instead.) After transfer, IoT returns
+     * the certificate to the source account in the INACTIVE state. After the
+     * destination account has accepted the transfer, the transfer cannot be
+     * cancelled.
      * </p>
      * <p>
      * After a certificate transfer is cancelled, the status of the certificate
      * changes from PENDING_TRANSFER to INACTIVE.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CancelCertificateTransfer</a> action.
      * </p>
      * 
      * @param cancelCertificateTransferRequest <p>
@@ -444,6 +500,11 @@ public interface AWSIot {
      * <p>
      * Cancels a Device Defender ML Detect mitigation action.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CancelDetectMitigationActionsTask</a> action.
+     * </p>
      * 
      * @param cancelDetectMitigationActionsTaskRequest
      * @return cancelDetectMitigationActionsTaskResult The response from the
@@ -469,6 +530,11 @@ public interface AWSIot {
      * <p>
      * Cancels a job.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CancelJob</a> action.
+     * </p>
      * 
      * @param cancelJobRequest
      * @return cancelJobResult The response from the CancelJob service method,
@@ -492,6 +558,11 @@ public interface AWSIot {
      * <p>
      * Cancels the execution of a job for a given thing.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CancelJobExecution</a> action.
+     * </p>
      * 
      * @param cancelJobExecutionRequest
      * @throws InvalidRequestException
@@ -514,6 +585,11 @@ public interface AWSIot {
     /**
      * <p>
      * Clears the default authorizer.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ClearDefaultAuthorizer</a> action.
      * </p>
      * 
      * @param clearDefaultAuthorizerRequest
@@ -540,10 +616,15 @@ public interface AWSIot {
     /**
      * <p>
      * Confirms a topic rule destination. When you create a rule requiring a
-     * destination, AWS IoT sends a confirmation message to the endpoint or base
+     * destination, IoT sends a confirmation message to the endpoint or base
      * address you specify. The message includes a token which you pass back
      * when calling <code>ConfirmTopicRuleDestination</code> to confirm that you
      * own or have access to the endpoint.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ConfirmTopicRuleDestination</a> action.
      * </p>
      * 
      * @param confirmTopicRuleDestinationRequest
@@ -571,6 +652,11 @@ public interface AWSIot {
      * <p>
      * Creates a Device Defender audit suppression.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateAuditSuppression</a> action.
+     * </p>
      * 
      * @param createAuditSuppressionRequest
      * @return createAuditSuppressionResult The response from the
@@ -595,6 +681,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates an authorizer.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateAuthorizer</a> action.
      * </p>
      * 
      * @param createAuthorizerRequest
@@ -621,6 +712,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a billing group.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateBillingGroup</a> action.
      * </p>
      * 
      * @param createBillingGroupRequest
@@ -656,6 +752,11 @@ public interface AWSIot {
      * in a distinct certificate.
      * </p>
      * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateCertificateFromCsr</a> action.
+     * </p>
+     * <p>
      * You can create multiple certificates in a batch by creating a directory,
      * copying multiple .csr files into that directory, and then specifying that
      * directory on the command line. The following commands show how to create
@@ -674,8 +775,8 @@ public interface AWSIot {
      * </p>
      * <p>
      * This command lists all of the CSRs in my-csr-directory and pipes each CSR
-     * file name to the aws iot create-certificate-from-csr AWS CLI command to
-     * create a certificate for the corresponding CSR.
+     * file name to the aws iot create-certificate-from-csr Amazon Web Services
+     * CLI command to create a certificate for the corresponding CSR.
      * </p>
      * <p>
      * The aws iot create-certificate-from-csr part of the command can also be
@@ -730,6 +831,11 @@ public interface AWSIot {
      * Use this API to define a Custom Metric published by your devices to
      * Device Defender.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateCustomMetric</a> action.
+     * </p>
      * 
      * @param createCustomMetricRequest
      * @return createCustomMetricResult The response from the CreateCustomMetric
@@ -753,10 +859,15 @@ public interface AWSIot {
     /**
      * <p>
      * Create a dimension that you can use to limit the scope of a metric used
-     * in a security profile for AWS IoT Device Defender. For example, using a
+     * in a security profile for IoT Device Defender. For example, using a
      * <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the
      * metric only to MQTT topics whose name match the pattern specified in the
      * dimension.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateDimension</a> action.
      * </p>
      * 
      * @param createDimensionRequest
@@ -781,6 +892,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a domain configuration.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateDomainConfiguration</a> action.
      * </p>
      * 
      * @param createDomainConfigurationRequest
@@ -810,6 +926,11 @@ public interface AWSIot {
      * <p>
      * Creates a dynamic thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateDynamicThingGroup</a> action.
+     * </p>
      * 
      * @param createDynamicThingGroupRequest
      * @return createDynamicThingGroupResult The response from the
@@ -835,7 +956,47 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Creates a fleet metric.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateFleetMetric</a> action.
+     * </p>
+     * 
+     * @param createFleetMetricRequest
+     * @return createFleetMetricResult The response from the CreateFleetMetric
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws LimitExceededException
+     * @throws ResourceAlreadyExistsException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws InvalidAggregationException
+     * @throws IndexNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    CreateFleetMetricResult createFleetMetric(CreateFleetMetricRequest createFleetMetricRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Creates a job.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateJob</a> action.
      * </p>
      * 
      * @param createJobRequest
@@ -861,6 +1022,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a job template.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateJobTemplate</a> action.
      * </p>
      * 
      * @param createJobTemplateRequest
@@ -893,12 +1059,22 @@ public interface AWSIot {
      * >Provisioning MQTT API</a>.
      * </p>
      * <p>
-     * <b>Note</b> This is the only time AWS IoT issues the private key for this
+     * <b>Note</b> This is the only time IoT issues the private key for this
      * certificate, so it is important to keep it in a secure location.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateKeysAndCertificate</a> action.
      * </p>
      * 
      * @param createKeysAndCertificateRequest <p>
      *            The input for the CreateKeysAndCertificate operation.
+     *            </p>
+     *            <p>
+     *            Requires permission to access the <a href=
+     *            "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     *            >CreateKeysAndCertificateRequest</a> action.
      *            </p>
      * @return createKeysAndCertificateResult The response from the
      *         CreateKeysAndCertificate service method, as returned by AWS IoT.
@@ -929,6 +1105,11 @@ public interface AWSIot {
      * >Mitigation actions</a>. Each mitigation action can apply only one type
      * of change.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateMitigationAction</a> action.
+     * </p>
      * 
      * @param createMitigationActionRequest
      * @return createMitigationActionResult The response from the
@@ -952,7 +1133,12 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Creates an AWS IoT OTAUpdate on a target group of things or groups.
+     * Creates an IoT OTA update on a target group of things or groups.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateOTAUpdate</a> action.
      * </p>
      * 
      * @param createOTAUpdateRequest
@@ -979,12 +1165,17 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Creates an AWS IoT policy.
+     * Creates an IoT policy.
      * </p>
      * <p>
      * The created policy is the default version for the policy. This operation
      * creates a policy version with a version identifier of <b>1</b> and sets
      * <b>1</b> as the policy's default version.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreatePolicy</a> action.
      * </p>
      * 
      * @param createPolicyRequest <p>
@@ -1012,8 +1203,8 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Creates a new version of the specified AWS IoT policy. To update a
-     * policy, create a new policy version. A managed policy can have up to five
+     * Creates a new version of the specified IoT policy. To update a policy,
+     * create a new policy version. A managed policy can have up to five
      * versions. If the policy has five versions, you must use
      * <a>DeletePolicyVersion</a> to delete an existing version before you
      * create a new one.
@@ -1022,6 +1213,11 @@ public interface AWSIot {
      * Optionally, you can set the new version as the policy's default version.
      * The default version is the operative version (that is, the version that
      * is in effect for the certificates to which the policy is attached).
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreatePolicyVersion</a> action.
      * </p>
      * 
      * @param createPolicyVersionRequest <p>
@@ -1053,6 +1249,11 @@ public interface AWSIot {
      * <p>
      * Creates a provisioning claim.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateProvisioningClaim</a> action.
+     * </p>
      * 
      * @param createProvisioningClaimRequest
      * @return createProvisioningClaimResult The response from the
@@ -1078,6 +1279,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a fleet provisioning template.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateProvisioningTemplate</a> action.
      * </p>
      * 
      * @param createProvisioningTemplateRequest
@@ -1105,6 +1311,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a new version of a fleet provisioning template.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateProvisioningTemplateVersion</a> action.
      * </p>
      * 
      * @param createProvisioningTemplateVersionRequest
@@ -1134,6 +1345,11 @@ public interface AWSIot {
      * <p>
      * Creates a role alias.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateRoleAlias</a> action.
+     * </p>
      * 
      * @param createRoleAliasRequest
      * @return createRoleAliasResult The response from the CreateRoleAlias
@@ -1160,6 +1376,11 @@ public interface AWSIot {
      * <p>
      * Creates a scheduled audit that is run at a specified time interval.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateScheduledAudit</a> action.
+     * </p>
      * 
      * @param createScheduledAuditRequest
      * @return createScheduledAuditResult The response from the
@@ -1184,6 +1405,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a Device Defender security profile.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateSecurityProfile</a> action.
      * </p>
      * 
      * @param createSecurityProfileRequest
@@ -1211,6 +1437,11 @@ public interface AWSIot {
      * MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT
      * messages from a source like S3. You can have one or more files associated
      * with a stream.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateStream</a> action.
      * </p>
      * 
      * @param createStreamRequest
@@ -1250,6 +1481,11 @@ public interface AWSIot {
      * actions.
      * </p>
      * </note>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateThing</a> action.
+     * </p>
      * 
      * @param createThingRequest <p>
      *            The input for the CreateThing operation.
@@ -1286,6 +1522,11 @@ public interface AWSIot {
      * actions.
      * </p>
      * </note>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateThingGroup</a> action.
+     * </p>
      * 
      * @param createThingGroupRequest
      * @return createThingGroupResult The response from the CreateThingGroup
@@ -1308,6 +1549,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a new thing type.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateThingType</a> action.
      * </p>
      * 
      * @param createThingTypeRequest <p>
@@ -1338,6 +1584,11 @@ public interface AWSIot {
      * who has permission to create rules will be able to access data processed
      * by the rule.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateTopicRule</a> action.
+     * </p>
      * 
      * @param createTopicRuleRequest <p>
      *            The input for the CreateTopicRule operation.
@@ -1363,6 +1614,11 @@ public interface AWSIot {
      * <p>
      * Creates a topic rule destination. The destination must be confirmed prior
      * to use.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >CreateTopicRuleDestination</a> action.
      * </p>
      * 
      * @param createTopicRuleDestinationRequest
@@ -1392,6 +1648,11 @@ public interface AWSIot {
      * account. Any configuration data you entered is deleted and all audit
      * checks are reset to disabled.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteAccountAuditConfiguration</a> action.
+     * </p>
      * 
      * @param deleteAccountAuditConfigurationRequest
      * @return deleteAccountAuditConfigurationResult The response from the
@@ -1417,6 +1678,11 @@ public interface AWSIot {
      * <p>
      * Deletes a Device Defender audit suppression.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteAuditSuppression</a> action.
+     * </p>
      * 
      * @param deleteAuditSuppressionRequest
      * @return deleteAuditSuppressionResult The response from the
@@ -1439,6 +1705,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes an authorizer.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteAuthorizer</a> action.
      * </p>
      * 
      * @param deleteAuthorizerRequest
@@ -1466,6 +1737,11 @@ public interface AWSIot {
      * <p>
      * Deletes the billing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteBillingGroup</a> action.
+     * </p>
      * 
      * @param deleteBillingGroupRequest
      * @return deleteBillingGroupResult The response from the DeleteBillingGroup
@@ -1488,6 +1764,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes a registered CA certificate.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteCACertificate</a> action.
      * </p>
      * 
      * @param deleteCACertificateRequest <p>
@@ -1521,9 +1802,14 @@ public interface AWSIot {
      * <p>
      * A certificate cannot be deleted if it has a policy or IoT thing attached
      * to it or if its status is set to ACTIVE. To delete a certificate, first
-     * use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next,
-     * use the <a>UpdateCertificate</a> API to set the certificate to the
-     * INACTIVE status.
+     * use the <a>DetachPolicy</a> action to detach all policies. Next, use the
+     * <a>UpdateCertificate</a> action to set the certificate to the INACTIVE
+     * status.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteCertificate</a> action.
      * </p>
      * 
      * @param deleteCertificateRequest <p>
@@ -1549,6 +1835,14 @@ public interface AWSIot {
             throws AmazonClientException, AmazonServiceException;
 
     /**
+     * <p>
+     * Deletes a Device Defender detect custom metric.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteCustomMetric</a> action.
+     * </p>
      * <note>
      * <p>
      * Before you can delete a custom metric, you must first remove the custom
@@ -1559,9 +1853,6 @@ public interface AWSIot {
      * custom metric name.
      * </p>
      * </note>
-     * <p>
-     * Deletes a Device Defender detect custom metric.
-     * </p>
      * 
      * @param deleteCustomMetricRequest
      * @return deleteCustomMetricResult The response from the DeleteCustomMetric
@@ -1582,7 +1873,12 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Removes the specified dimension from your AWS account.
+     * Removes the specified dimension from your Amazon Web Services accounts.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteDimension</a> action.
      * </p>
      * 
      * @param deleteDimensionRequest
@@ -1605,6 +1901,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes the specified domain configuration.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteDomainConfiguration</a> action.
      * </p>
      * 
      * @param deleteDomainConfigurationRequest
@@ -1632,6 +1933,11 @@ public interface AWSIot {
      * <p>
      * Deletes a dynamic thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteDynamicThingGroup</a> action.
+     * </p>
      * 
      * @param deleteDynamicThingGroupRequest
      * @return deleteDynamicThingGroupResult The response from the
@@ -1654,6 +1960,36 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Deletes the specified fleet metric. Returns successfully with no error if
+     * the deletion is successful or you specify a fleet metric that doesn't
+     * exist.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteFleetMetric</a> action.
+     * </p>
+     * 
+     * @param deleteFleetMetricRequest
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws VersionConflictException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void deleteFleetMetric(DeleteFleetMetricRequest deleteFleetMetricRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Deletes a job and its related job executions.
      * </p>
      * <p>
@@ -1666,6 +2002,11 @@ public interface AWSIot {
      * <p>
      * Only 10 jobs may have status "DELETION_IN_PROGRESS" at the same time, or
      * a LimitExceededException will occur.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteJob</a> action.
      * </p>
      * 
      * @param deleteJobRequest
@@ -1689,6 +2030,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes a job execution.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteJobExecution</a> action.
      * </p>
      * 
      * @param deleteJobExecutionRequest
@@ -1731,7 +2077,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Deletes a defined mitigation action from your AWS account.
+     * Deletes a defined mitigation action from your Amazon Web Services
+     * accounts.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteMitigationAction</a> action.
      * </p>
      * 
      * @param deleteMitigationActionRequest
@@ -1755,6 +2107,11 @@ public interface AWSIot {
     /**
      * <p>
      * Delete an OTA update.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteOTAUpdate</a> action.
      * </p>
      * 
      * @param deleteOTAUpdateRequest
@@ -1787,14 +2144,26 @@ public interface AWSIot {
      * attached to any certificate.
      * </p>
      * <p>
-     * To delete a policy, use the DeletePolicyVersion API to delete all
-     * non-default versions of the policy; use the DetachPrincipalPolicy API to
-     * detach the policy from any certificate; and then use the DeletePolicy API
-     * to delete the policy.
+     * To delete a policy, use the <a>DeletePolicyVersion</a> action to delete
+     * all non-default versions of the policy; use the <a>DetachPolicy</a>
+     * action to detach the policy from any certificate; and then use the
+     * DeletePolicy action to delete the policy.
      * </p>
      * <p>
      * When a policy is deleted using DeletePolicy, its default version is
      * deleted with it.
+     * </p>
+     * <note>
+     * <p>
+     * Because of the distributed nature of Amazon Web Services, it can take up
+     * to five minutes after a policy is detached before it's ready to be
+     * deleted.
+     * </p>
+     * </note>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeletePolicy</a> action.
      * </p>
      * 
      * @param deletePolicyRequest <p>
@@ -1821,9 +2190,14 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes the specified version of the specified policy. You cannot delete
-     * the default version of a policy using this API. To delete the default
+     * the default version of a policy using this action. To delete the default
      * version of a policy, use <a>DeletePolicy</a>. To find out which version
      * of a policy is marked as the default version, use ListPolicyVersions.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeletePolicyVersion</a> action.
      * </p>
      * 
      * @param deletePolicyVersionRequest <p>
@@ -1850,6 +2224,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes a fleet provisioning template.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteProvisioningTemplate</a> action.
      * </p>
      * 
      * @param deleteProvisioningTemplateRequest
@@ -1879,6 +2258,11 @@ public interface AWSIot {
      * <p>
      * Deletes a fleet provisioning template version.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteProvisioningTemplateVersion</a> action.
+     * </p>
      * 
      * @param deleteProvisioningTemplateVersionRequest
      * @return deleteProvisioningTemplateVersionResult The response from the
@@ -1907,6 +2291,11 @@ public interface AWSIot {
      * <p>
      * Deletes a CA certificate registration code.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteRegistrationCode</a> action.
+     * </p>
      * 
      * @param deleteRegistrationCodeRequest <p>
      *            The input for the DeleteRegistrationCode operation.
@@ -1934,6 +2323,11 @@ public interface AWSIot {
      * <p>
      * Deletes a role alias
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteRoleAlias</a> action.
+     * </p>
      * 
      * @param deleteRoleAliasRequest
      * @return deleteRoleAliasResult The response from the DeleteRoleAlias
@@ -1960,6 +2354,11 @@ public interface AWSIot {
      * <p>
      * Deletes a scheduled audit.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteScheduledAudit</a> action.
+     * </p>
      * 
      * @param deleteScheduledAuditRequest
      * @return deleteScheduledAuditResult The response from the
@@ -1984,6 +2383,11 @@ public interface AWSIot {
      * <p>
      * Deletes a Device Defender security profile.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteSecurityProfile</a> action.
+     * </p>
      * 
      * @param deleteSecurityProfileRequest
      * @return deleteSecurityProfileResult The response from the
@@ -2007,6 +2411,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes a stream.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteStream</a> action.
      * </p>
      * 
      * @param deleteStreamRequest
@@ -2034,6 +2443,11 @@ public interface AWSIot {
      * <p>
      * Deletes the specified thing. Returns successfully with no error if the
      * deletion is successful or you specify a thing that doesn't exist.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteThing</a> action.
      * </p>
      * 
      * @param deleteThingRequest <p>
@@ -2063,6 +2477,11 @@ public interface AWSIot {
      * <p>
      * Deletes a thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteThingGroup</a> action.
+     * </p>
      * 
      * @param deleteThingGroupRequest
      * @return deleteThingGroupResult The response from the DeleteThingGroup
@@ -2091,6 +2510,11 @@ public interface AWSIot {
      * on any associated thing, and finally use <a>DeleteThingType</a> to delete
      * the thing type.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteThingType</a> action.
+     * </p>
      * 
      * @param deleteThingTypeRequest <p>
      *            The input for the DeleteThingType operation.
@@ -2118,6 +2542,11 @@ public interface AWSIot {
      * <p>
      * Deletes the rule.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteTopicRule</a> action.
+     * </p>
      * 
      * @param deleteTopicRuleRequest <p>
      *            The input for the DeleteTopicRule operation.
@@ -2141,6 +2570,11 @@ public interface AWSIot {
     /**
      * <p>
      * Deletes a topic rule destination.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteTopicRuleDestination</a> action.
      * </p>
      * 
      * @param deleteTopicRuleDestinationRequest
@@ -2168,6 +2602,11 @@ public interface AWSIot {
      * <p>
      * Deletes a logging level.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeleteV2LoggingLevel</a> action.
+     * </p>
      * 
      * @param deleteV2LoggingLevelRequest
      * @throws InternalException
@@ -2188,6 +2627,11 @@ public interface AWSIot {
      * <p>
      * Deprecates a thing type. You can not associate new things with deprecated
      * thing type.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DeprecateThingType</a> action.
      * </p>
      * 
      * @param deprecateThingTypeRequest <p>
@@ -2218,6 +2662,11 @@ public interface AWSIot {
      * account. Settings include how audit notifications are sent and which
      * audit checks are enabled or disabled.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeAccountAuditConfiguration</a> action.
+     * </p>
      * 
      * @param describeAccountAuditConfigurationRequest
      * @return describeAccountAuditConfigurationResult The response from the
@@ -2242,6 +2691,11 @@ public interface AWSIot {
      * Gets information about a single audit finding. Properties include the
      * reason for noncompliance, the severity of the issue, and the start time
      * when the audit that returned the finding.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeAuditFinding</a> action.
      * </p>
      * 
      * @param describeAuditFindingRequest
@@ -2319,6 +2773,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a Device Defender audit.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeAuditTask</a> action.
+     * </p>
      * 
      * @param describeAuditTaskRequest
      * @return describeAuditTaskResult The response from the DescribeAuditTask
@@ -2341,6 +2800,11 @@ public interface AWSIot {
     /**
      * <p>
      * Describes an authorizer.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeAuthorizer</a> action.
      * </p>
      * 
      * @param describeAuthorizerRequest
@@ -2367,6 +2831,11 @@ public interface AWSIot {
      * <p>
      * Returns information about a billing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeBillingGroup</a> action.
+     * </p>
      * 
      * @param describeBillingGroupRequest
      * @return describeBillingGroupResult The response from the
@@ -2390,6 +2859,11 @@ public interface AWSIot {
     /**
      * <p>
      * Describes a registered CA certificate.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeCACertificate</a> action.
      * </p>
      * 
      * @param describeCACertificateRequest <p>
@@ -2419,6 +2893,11 @@ public interface AWSIot {
      * <p>
      * Gets information about the specified certificate.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeCertificate</a> action.
+     * </p>
      * 
      * @param describeCertificateRequest <p>
      *            The input for the DescribeCertificate operation.
@@ -2447,6 +2926,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a Device Defender detect custom metric.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeCustomMetric</a> action.
+     * </p>
      * 
      * @param describeCustomMetricRequest
      * @return describeCustomMetricResult The response from the
@@ -2470,6 +2954,11 @@ public interface AWSIot {
     /**
      * <p>
      * Describes the default authorizer.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeDefaultAuthorizer</a> action.
      * </p>
      * 
      * @param describeDefaultAuthorizerRequest
@@ -2497,6 +2986,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a Device Defender ML Detect mitigation action.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeDetectMitigationActionsTask</a> action.
+     * </p>
      * 
      * @param describeDetectMitigationActionsTaskRequest
      * @return describeDetectMitigationActionsTaskResult The response from the
@@ -2520,7 +3014,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Provides details about a dimension that is defined in your AWS account.
+     * Provides details about a dimension that is defined in your Amazon Web
+     * Services accounts.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeDimension</a> action.
      * </p>
      * 
      * @param describeDimensionRequest
@@ -2544,6 +3044,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets summary information about a domain configuration.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeDomainConfiguration</a> action.
      * </p>
      * 
      * @param describeDomainConfigurationRequest
@@ -2570,7 +3075,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Returns a unique endpoint specific to the AWS account making the call.
+     * Returns a unique endpoint specific to the Amazon Web Services account
+     * making the call.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeEndpoint</a> action.
      * </p>
      * 
      * @param describeEndpointRequest <p>
@@ -2597,6 +3108,11 @@ public interface AWSIot {
      * <p>
      * Describes event configurations.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeEventConfigurations</a> action.
+     * </p>
      * 
      * @param describeEventConfigurationsRequest
      * @return describeEventConfigurationsResult The response from the
@@ -2618,7 +3134,43 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Gets information about the specified fleet metric.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeFleetMetric</a> action.
+     * </p>
+     * 
+     * @param describeFleetMetricRequest
+     * @return describeFleetMetricResult The response from the
+     *         DescribeFleetMetric service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    DescribeFleetMetricResult describeFleetMetric(
+            DescribeFleetMetricRequest describeFleetMetricRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Describes a search index.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeIndex</a> action.
      * </p>
      * 
      * @param describeIndexRequest
@@ -2645,6 +3197,11 @@ public interface AWSIot {
      * <p>
      * Describes a job.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeJob</a> action.
+     * </p>
      * 
      * @param describeJobRequest
      * @return describeJobResult The response from the DescribeJob service
@@ -2667,6 +3224,11 @@ public interface AWSIot {
     /**
      * <p>
      * Describes a job execution.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeJobExecution</a> action.
      * </p>
      * 
      * @param describeJobExecutionRequest
@@ -2716,6 +3278,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a mitigation action.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeMitigationAction</a> action.
+     * </p>
      * 
      * @param describeMitigationActionRequest
      * @return describeMitigationActionResult The response from the
@@ -2739,6 +3306,11 @@ public interface AWSIot {
     /**
      * <p>
      * Returns information about a fleet provisioning template.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeProvisioningTemplate</a> action.
      * </p>
      * 
      * @param describeProvisioningTemplateRequest
@@ -2766,6 +3338,11 @@ public interface AWSIot {
      * <p>
      * Returns information about a fleet provisioning template version.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeProvisioningTemplateVersion</a> action.
+     * </p>
      * 
      * @param describeProvisioningTemplateVersionRequest
      * @return describeProvisioningTemplateVersionResult The response from the
@@ -2792,6 +3369,11 @@ public interface AWSIot {
      * <p>
      * Describes a role alias.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeRoleAlias</a> action.
+     * </p>
      * 
      * @param describeRoleAliasRequest
      * @return describeRoleAliasResult The response from the DescribeRoleAlias
@@ -2817,6 +3399,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a scheduled audit.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeScheduledAudit</a> action.
+     * </p>
      * 
      * @param describeScheduledAuditRequest
      * @return describeScheduledAuditResult The response from the
@@ -2840,6 +3427,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets information about a Device Defender security profile.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeSecurityProfile</a> action.
      * </p>
      * 
      * @param describeSecurityProfileRequest
@@ -2865,6 +3457,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a stream.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeStream</a> action.
+     * </p>
      * 
      * @param describeStreamRequest
      * @return describeStreamResult The response from the DescribeStream service
@@ -2889,6 +3486,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets information about the specified thing.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeThing</a> action.
      * </p>
      * 
      * @param describeThingRequest <p>
@@ -2917,6 +3519,11 @@ public interface AWSIot {
      * <p>
      * Describe a thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeThingGroup</a> action.
+     * </p>
      * 
      * @param describeThingGroupRequest
      * @return describeThingGroupResult The response from the DescribeThingGroup
@@ -2939,6 +3546,11 @@ public interface AWSIot {
     /**
      * <p>
      * Describes a bulk thing provisioning task.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeThingRegistrationTask</a> action.
      * </p>
      * 
      * @param describeThingRegistrationTaskRequest
@@ -2965,6 +3577,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets information about the specified thing type.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DescribeThingType</a> action.
      * </p>
      * 
      * @param describeThingTypeRequest <p>
@@ -2993,6 +3610,18 @@ public interface AWSIot {
      * <p>
      * Detaches a policy from the specified target.
      * </p>
+     * <note>
+     * <p>
+     * Because of the distributed nature of Amazon Web Services, it can take up
+     * to five minutes after a policy is detached before it's ready to be
+     * deleted.
+     * </p>
+     * </note>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DetachPolicy</a> action.
+     * </p>
      * 
      * @param detachPolicyRequest
      * @throws InvalidRequestException
@@ -3016,9 +3645,15 @@ public interface AWSIot {
      * <p>
      * Removes the specified policy from the specified certificate.
      * </p>
+     * <note>
      * <p>
-     * <b>Note:</b> This API is deprecated. Please use <a>DetachPolicy</a>
-     * instead.
+     * This action is deprecated. Please use <a>DetachPolicy</a> instead.
+     * </p>
+     * </note>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DetachPrincipalPolicy</a> action.
      * </p>
      * 
      * @param detachPrincipalPolicyRequest <p>
@@ -3046,6 +3681,11 @@ public interface AWSIot {
      * <p>
      * Disassociates a Device Defender security profile from a thing group or
      * from this account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DetachSecurityProfile</a> action.
      * </p>
      * 
      * @param detachSecurityProfileRequest
@@ -3079,6 +3719,11 @@ public interface AWSIot {
      * detachment to propagate.
      * </p>
      * </note>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DetachThingPrincipal</a> action.
+     * </p>
      * 
      * @param detachThingPrincipalRequest <p>
      *            The input for the DetachThingPrincipal operation.
@@ -3107,6 +3752,11 @@ public interface AWSIot {
      * <p>
      * Disables the rule.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >DisableTopicRule</a> action.
+     * </p>
      * 
      * @param disableTopicRuleRequest <p>
      *            The input for the DisableTopicRuleRequest operation.
@@ -3130,6 +3780,11 @@ public interface AWSIot {
     /**
      * <p>
      * Enables the rule.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >EnableTopicRule</a> action.
      * </p>
      * 
      * @param enableTopicRuleRequest <p>
@@ -3156,6 +3811,11 @@ public interface AWSIot {
      * Returns a Device Defender's ML Detect Security Profile training model's
      * status.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetBehaviorModelTrainingSummaries</a> action.
+     * </p>
      * 
      * @param getBehaviorModelTrainingSummariesRequest
      * @return getBehaviorModelTrainingSummariesResult The response from the
@@ -3179,7 +3839,47 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Aggregates on indexed data with search queries pertaining to particular
+     * fields.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetBucketsAggregation</a> action.
+     * </p>
+     * 
+     * @param getBucketsAggregationRequest
+     * @return getBucketsAggregationResult The response from the
+     *         GetBucketsAggregation service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws InvalidAggregationException
+     * @throws IndexNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    GetBucketsAggregationResult getBucketsAggregation(
+            GetBucketsAggregationRequest getBucketsAggregationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns the approximate count of unique values that match the query.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetCardinality</a> action.
      * </p>
      * 
      * @param getCardinalityRequest
@@ -3208,8 +3908,13 @@ public interface AWSIot {
     /**
      * <p>
      * Gets a list of the policies that have an effect on the authorization
-     * behavior of the specified device when it connects to the AWS IoT device
+     * behavior of the specified device when it connects to the IoT device
      * gateway.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetEffectivePolicies</a> action.
      * </p>
      * 
      * @param getEffectivePoliciesRequest
@@ -3238,6 +3943,11 @@ public interface AWSIot {
      * <p>
      * Gets the indexing configuration.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetIndexingConfiguration</a> action.
+     * </p>
      * 
      * @param getIndexingConfigurationRequest
      * @return getIndexingConfigurationResult The response from the
@@ -3262,6 +3972,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets a job document.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetJobDocument</a> action.
      * </p>
      * 
      * @param getJobDocumentRequest
@@ -3290,6 +4005,11 @@ public interface AWSIot {
      * NOTE: use of this command is not recommended. Use
      * <code>GetV2LoggingOptions</code> instead.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetLoggingOptions</a> action.
+     * </p>
      * 
      * @param getLoggingOptionsRequest <p>
      *            The input for the GetLoggingOptions operation.
@@ -3313,6 +4033,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets an OTA update.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetOTAUpdate</a> action.
      * </p>
      * 
      * @param getOTAUpdateRequest
@@ -3349,6 +4074,11 @@ public interface AWSIot {
      * The result is an approximation, the more values that match the query, the
      * more accurate the percentile values.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetPercentiles</a> action.
+     * </p>
      * 
      * @param getPercentilesRequest
      * @return getPercentilesResult The response from the GetPercentiles service
@@ -3378,6 +4108,11 @@ public interface AWSIot {
      * Gets information about the specified policy with the policy document of
      * the default version.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetPolicy</a> action.
+     * </p>
      * 
      * @param getPolicyRequest <p>
      *            The input for the GetPolicy operation.
@@ -3405,6 +4140,11 @@ public interface AWSIot {
      * <p>
      * Gets information about the specified policy version.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetPolicyVersion</a> action.
+     * </p>
      * 
      * @param getPolicyVersionRequest <p>
      *            The input for the GetPolicyVersion operation.
@@ -3430,7 +4170,12 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Gets a registration code used to register a CA certificate with AWS IoT.
+     * Gets a registration code used to register a CA certificate with IoT.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetRegistrationCode</a> action.
      * </p>
      * 
      * @param getRegistrationCodeRequest <p>
@@ -3462,6 +4207,11 @@ public interface AWSIot {
      * the aggregation field is of type <code>String</code>, only the count
      * statistic is returned.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetStatistics</a> action.
+     * </p>
      * 
      * @param getStatisticsRequest
      * @return getStatisticsResult The response from the GetStatistics service
@@ -3490,6 +4240,11 @@ public interface AWSIot {
      * <p>
      * Gets information about the rule.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetTopicRule</a> action.
+     * </p>
      * 
      * @param getTopicRuleRequest <p>
      *            The input for the GetTopicRule operation.
@@ -3515,6 +4270,11 @@ public interface AWSIot {
      * <p>
      * Gets information about a topic rule destination.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetTopicRuleDestination</a> action.
+     * </p>
      * 
      * @param getTopicRuleDestinationRequest
      * @return getTopicRuleDestinationResult The response from the
@@ -3539,6 +4299,11 @@ public interface AWSIot {
      * <p>
      * Gets the fine grained logging options.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >GetV2LoggingOptions</a> action.
+     * </p>
      * 
      * @param getV2LoggingOptionsRequest
      * @return getV2LoggingOptionsResult The response from the
@@ -3561,6 +4326,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists the active violations for a given Device Defender security profile.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListActiveViolations</a> action.
      * </p>
      * 
      * @param listActiveViolationsRequest
@@ -3585,6 +4355,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists the policies attached to the specified thing group.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAttachedPolicies</a> action.
      * </p>
      * 
      * @param listAttachedPoliciesRequest
@@ -3615,6 +4390,11 @@ public interface AWSIot {
      * performed during a specified time period. (Findings are retained for 90
      * days.)
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAuditFindings</a> action.
+     * </p>
      * 
      * @param listAuditFindingsRequest
      * @return listAuditFindingsResult The response from the ListAuditFindings
@@ -3636,6 +4416,11 @@ public interface AWSIot {
     /**
      * <p>
      * Gets the status of audit mitigation action tasks that were executed.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAuditMitigationActionsExecutions</a> action.
      * </p>
      * 
      * @param listAuditMitigationActionsExecutionsRequest
@@ -3662,6 +4447,11 @@ public interface AWSIot {
      * Gets a list of audit mitigation action tasks that match the specified
      * filters.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAuditMitigationActionsTasks</a> action.
+     * </p>
      * 
      * @param listAuditMitigationActionsTasksRequest
      * @return listAuditMitigationActionsTasksResult The response from the
@@ -3685,6 +4475,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists your Device Defender audit listings.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAuditSuppressions</a> action.
      * </p>
      * 
      * @param listAuditSuppressionsRequest
@@ -3710,6 +4505,11 @@ public interface AWSIot {
      * Lists the Device Defender audits that have been performed during a given
      * time period.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAuditTasks</a> action.
+     * </p>
      * 
      * @param listAuditTasksRequest
      * @return listAuditTasksResult The response from the ListAuditTasks service
@@ -3731,6 +4531,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists the authorizers registered in your account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListAuthorizers</a> action.
      * </p>
      * 
      * @param listAuthorizersRequest
@@ -3756,6 +4561,11 @@ public interface AWSIot {
      * <p>
      * Lists the billing groups you have created.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListBillingGroups</a> action.
+     * </p>
      * 
      * @param listBillingGroupsRequest
      * @return listBillingGroupsResult The response from the ListBillingGroups
@@ -3777,11 +4587,17 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists the CA certificates registered for your AWS account.
+     * Lists the CA certificates registered for your Amazon Web Services
+     * account.
      * </p>
      * <p>
      * The results are paginated with a default page size of 25. You can use the
      * returned marker to retrieve additional results.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListCACertificates</a> action.
      * </p>
      * 
      * @param listCACertificatesRequest <p>
@@ -3807,11 +4623,16 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists the certificates registered in your AWS account.
+     * Lists the certificates registered in your Amazon Web Services account.
      * </p>
      * <p>
      * The results are paginated with a default page size of 25. You can use the
      * returned marker to retrieve additional results.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListCertificates</a> action.
      * </p>
      * 
      * @param listCertificatesRequest <p>
@@ -3838,6 +4659,11 @@ public interface AWSIot {
     /**
      * <p>
      * List the device certificates signed by the specified CA certificate.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListCertificatesByCA</a> action.
      * </p>
      * 
      * @param listCertificatesByCARequest <p>
@@ -3866,6 +4692,11 @@ public interface AWSIot {
      * <p>
      * Lists your Device Defender detect custom metrics.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListCustomMetrics</a> action.
+     * </p>
      * 
      * @param listCustomMetricsRequest
      * @return listCustomMetricsResult The response from the ListCustomMetrics
@@ -3888,6 +4719,11 @@ public interface AWSIot {
      * <p>
      * Lists mitigation actions executions for a Device Defender ML Detect
      * Security Profile.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListDetectMitigationActionsExecutions</a> action.
      * </p>
      * 
      * @param listDetectMitigationActionsExecutionsRequest
@@ -3913,6 +4749,11 @@ public interface AWSIot {
      * <p>
      * List of Device Defender ML Detect mitigation actions tasks.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListDetectMitigationActionsTasks</a> action.
+     * </p>
      * 
      * @param listDetectMitigationActionsTasksRequest
      * @return listDetectMitigationActionsTasksResult The response from the
@@ -3935,7 +4776,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * List the set of dimensions that are defined for your AWS account.
+     * List the set of dimensions that are defined for your Amazon Web Services
+     * accounts.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListDimensions</a> action.
      * </p>
      * 
      * @param listDimensionsRequest
@@ -3960,6 +4807,11 @@ public interface AWSIot {
      * Gets a list of domain configurations for the user. This list is sorted
      * alphabetically by domain configuration name.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListDomainConfigurations</a> action.
+     * </p>
      * 
      * @param listDomainConfigurationsRequest
      * @return listDomainConfigurationsResult The response from the
@@ -3983,7 +4835,41 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Lists all your fleet metrics.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListFleetMetrics</a> action.
+     * </p>
+     * 
+     * @param listFleetMetricsRequest
+     * @return listFleetMetricsResult The response from the ListFleetMetrics
+     *         service method, as returned by AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    ListFleetMetricsResult listFleetMetrics(ListFleetMetricsRequest listFleetMetricsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Lists the search indices.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListIndices</a> action.
      * </p>
      * 
      * @param listIndicesRequest
@@ -4009,6 +4895,11 @@ public interface AWSIot {
      * <p>
      * Lists the job executions for a job.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListJobExecutionsForJob</a> action.
+     * </p>
      * 
      * @param listJobExecutionsForJobRequest
      * @return listJobExecutionsForJobResult The response from the
@@ -4032,6 +4923,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists the job executions for the specified thing.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListJobExecutionsForThing</a> action.
      * </p>
      * 
      * @param listJobExecutionsForThingRequest
@@ -4057,6 +4953,11 @@ public interface AWSIot {
      * <p>
      * Returns a list of job templates.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListJobTemplates</a> action.
+     * </p>
      * 
      * @param listJobTemplatesRequest
      * @return listJobTemplatesResult The response from the ListJobTemplates
@@ -4078,6 +4979,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists jobs.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListJobs</a> action.
      * </p>
      * 
      * @param listJobsRequest
@@ -4103,6 +5009,11 @@ public interface AWSIot {
      * Gets a list of all mitigation actions that match the specified filter
      * criteria.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListMitigationActions</a> action.
+     * </p>
      * 
      * @param listMitigationActionsRequest
      * @return listMitigationActionsResult The response from the
@@ -4125,6 +5036,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists OTA updates.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListOTAUpdates</a> action.
      * </p>
      * 
      * @param listOTAUpdatesRequest
@@ -4149,6 +5065,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists certificates that are being transferred but not yet accepted.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListOutgoingCertificates</a> action.
      * </p>
      * 
      * @param listOutgoingCertificatesRequest <p>
@@ -4177,6 +5098,11 @@ public interface AWSIot {
      * <p>
      * Lists your policies.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPolicies</a> action.
+     * </p>
      * 
      * @param listPoliciesRequest <p>
      *            The input for the ListPolicies operation.
@@ -4204,8 +5130,13 @@ public interface AWSIot {
      * Lists the principals associated with the specified policy.
      * </p>
      * <p>
-     * <b>Note:</b> This API is deprecated. Please use
+     * <b>Note:</b> This action is deprecated. Please use
      * <a>ListTargetsForPolicy</a> instead.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPolicyPrincipals</a> action.
      * </p>
      * 
      * @param listPolicyPrincipalsRequest <p>
@@ -4236,6 +5167,11 @@ public interface AWSIot {
      * <p>
      * Lists the versions of the specified policy and identifies the default
      * version.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPolicyVersions</a> action.
      * </p>
      * 
      * @param listPolicyVersionsRequest <p>
@@ -4268,8 +5204,13 @@ public interface AWSIot {
      * >AmazonCognito Identity format</a>.
      * </p>
      * <p>
-     * <b>Note:</b> This API is deprecated. Please use
+     * <b>Note:</b> This action is deprecated. Please use
      * <a>ListAttachedPolicies</a> instead.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPrincipalPolicies</a> action.
      * </p>
      * 
      * @param listPrincipalPoliciesRequest <p>
@@ -4302,6 +5243,11 @@ public interface AWSIot {
      * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
      * identities or federated identities.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListPrincipalThings</a> action.
+     * </p>
      * 
      * @param listPrincipalThingsRequest <p>
      *            The input for the ListPrincipalThings operation.
@@ -4330,6 +5276,11 @@ public interface AWSIot {
      * <p>
      * A list of fleet provisioning template versions.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListProvisioningTemplateVersions</a> action.
+     * </p>
      * 
      * @param listProvisioningTemplateVersionsRequest
      * @return listProvisioningTemplateVersionsResult The response from the
@@ -4354,7 +5305,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists the fleet provisioning templates in your AWS account.
+     * Lists the fleet provisioning templates in your Amazon Web Services
+     * account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListProvisioningTemplates</a> action.
      * </p>
      * 
      * @param listProvisioningTemplatesRequest
@@ -4380,6 +5337,11 @@ public interface AWSIot {
      * <p>
      * Lists the role aliases registered in your account.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListRoleAliases</a> action.
+     * </p>
      * 
      * @param listRoleAliasesRequest
      * @return listRoleAliasesResult The response from the ListRoleAliases
@@ -4404,6 +5366,11 @@ public interface AWSIot {
      * <p>
      * Lists all of your scheduled audits.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListScheduledAudits</a> action.
+     * </p>
      * 
      * @param listScheduledAuditsRequest
      * @return listScheduledAuditsResult The response from the
@@ -4427,6 +5394,11 @@ public interface AWSIot {
      * <p>
      * Lists the Device Defender security profiles you've created. You can
      * filter security profiles by dimension or custom metric.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListSecurityProfiles</a> action.
      * </p>
      * <note>
      * <p>
@@ -4459,6 +5431,11 @@ public interface AWSIot {
      * Lists the Device Defender security profiles attached to a target (thing
      * group).
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListSecurityProfilesForTarget</a> action.
+     * </p>
      * 
      * @param listSecurityProfilesForTargetRequest
      * @return listSecurityProfilesForTargetResult The response from the
@@ -4482,7 +5459,12 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists all of the streams in your AWS account.
+     * Lists all of the streams in your Amazon Web Services account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListStreams</a> action.
      * </p>
      * 
      * @param listStreamsRequest
@@ -4508,6 +5490,11 @@ public interface AWSIot {
      * <p>
      * Lists the tags (metadata) you have assigned to the resource.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListTagsForResource</a> action.
+     * </p>
      * 
      * @param listTagsForResourceRequest
      * @return listTagsForResourceResult The response from the
@@ -4531,6 +5518,11 @@ public interface AWSIot {
     /**
      * <p>
      * List targets for the specified policy.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListTargetsForPolicy</a> action.
      * </p>
      * 
      * @param listTargetsForPolicyRequest
@@ -4560,6 +5552,11 @@ public interface AWSIot {
      * Lists the targets (thing groups) associated with a given Device Defender
      * security profile.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListTargetsForSecurityProfile</a> action.
+     * </p>
      * 
      * @param listTargetsForSecurityProfileRequest
      * @return listTargetsForSecurityProfileResult The response from the
@@ -4585,6 +5582,11 @@ public interface AWSIot {
      * <p>
      * List the thing groups in your account.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingGroups</a> action.
+     * </p>
      * 
      * @param listThingGroupsRequest
      * @return listThingGroupsResult The response from the ListThingGroups
@@ -4607,6 +5609,11 @@ public interface AWSIot {
     /**
      * <p>
      * List the thing groups to which the specified thing belongs.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingGroupsForThing</a> action.
      * </p>
      * 
      * @param listThingGroupsForThingRequest
@@ -4633,6 +5640,11 @@ public interface AWSIot {
      * Lists the principals associated with the specified thing. A principal can
      * be X.509 certificates, IAM users, groups, and roles, Amazon Cognito
      * identities or federated identities.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingPrincipals</a> action.
      * </p>
      * 
      * @param listThingPrincipalsRequest <p>
@@ -4687,6 +5699,11 @@ public interface AWSIot {
      * <p>
      * List bulk thing provisioning tasks.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingRegistrationTasks</a> action.
+     * </p>
      * 
      * @param listThingRegistrationTasksRequest
      * @return listThingRegistrationTasksResult The response from the
@@ -4711,6 +5728,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists the existing thing types.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingTypes</a> action.
      * </p>
      * 
      * @param listThingTypesRequest <p>
@@ -4741,6 +5763,11 @@ public interface AWSIot {
      * <code>ListThings</code> with attributeName=Color and attributeValue=Red
      * retrieves all things in the registry that contain an attribute
      * <b>Color</b> with the value <b>Red</b>.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThings</a> action.
      * </p>
      * <note>
      * <p>
@@ -4776,6 +5803,11 @@ public interface AWSIot {
      * <p>
      * Lists the things you have added to the given billing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingsInBillingGroup</a> action.
+     * </p>
      * 
      * @param listThingsInBillingGroupRequest
      * @return listThingsInBillingGroupResult The response from the
@@ -4800,6 +5832,11 @@ public interface AWSIot {
      * <p>
      * Lists the things in the specified group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListThingsInThingGroup</a> action.
+     * </p>
      * 
      * @param listThingsInThingGroupRequest
      * @return listThingsInThingGroupResult The response from the
@@ -4822,7 +5859,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Lists all the topic rule destinations in your AWS account.
+     * Lists all the topic rule destinations in your Amazon Web Services
+     * account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListTopicRuleDestinations</a> action.
      * </p>
      * 
      * @param listTopicRuleDestinationsRequest
@@ -4848,6 +5891,11 @@ public interface AWSIot {
      * <p>
      * Lists the rules for the specific topic.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListTopicRules</a> action.
+     * </p>
      * 
      * @param listTopicRulesRequest <p>
      *            The input for the ListTopicRules operation.
@@ -4871,6 +5919,11 @@ public interface AWSIot {
     /**
      * <p>
      * Lists logging levels.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListV2LoggingLevels</a> action.
      * </p>
      * 
      * @param listV2LoggingLevelsRequest
@@ -4899,6 +5952,11 @@ public interface AWSIot {
      * alerts issued for a particular security profile, behavior, or thing
      * (device).
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ListViolationEvents</a> action.
+     * </p>
      * 
      * @param listViolationEventsRequest
      * @return listViolationEventsResult The response from the
@@ -4920,13 +5978,19 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Registers a CA certificate with AWS IoT. This CA certificate can then be
-     * used to sign device certificates, which can be then registered with AWS
-     * IoT. You can register up to 10 CA certificates per AWS account that have
-     * the same subject field. This enables you to have up to 10 certificate
-     * authorities sign your device certificates. If you have more than one CA
-     * certificate registered, make sure you pass the CA certificate when you
-     * register your device certificates with the RegisterCertificate API.
+     * Registers a CA certificate with IoT. This CA certificate can then be used
+     * to sign device certificates, which can be then registered with IoT. You
+     * can register up to 10 CA certificates per Amazon Web Services account
+     * that have the same subject field. This enables you to have up to 10
+     * certificate authorities sign your device certificates. If you have more
+     * than one CA certificate registered, make sure you pass the CA certificate
+     * when you register your device certificates with the
+     * <a>RegisterCertificate</a> action.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >RegisterCACertificate</a> action.
      * </p>
      * 
      * @param registerCACertificateRequest <p>
@@ -4957,10 +6021,15 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Registers a device certificate with AWS IoT. If you have more than one CA
+     * Registers a device certificate with IoT. If you have more than one CA
      * certificate that has the same subject field, you must specify the CA
      * certificate that was used to sign the device certificate being
      * registered.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >RegisterCertificate</a> action.
      * </p>
      * 
      * @param registerCertificateRequest <p>
@@ -5020,13 +6089,17 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Provisions a thing in the device registry. RegisterThing calls other AWS
-     * IoT control plane APIs. These calls might exceed your account level <a
-     * href=
+     * Provisions a thing in the device registry. RegisterThing calls other IoT
+     * control plane APIs. These calls might exceed your account level <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot"
-     * > AWS IoT Throttling Limits</a> and cause throttle errors. Please contact
-     * <a href="https://console.aws.amazon.com/support/home">AWS Customer
-     * Support</a> to raise your throttling limits if necessary.
+     * > IoT Throttling Limits</a> and cause throttle errors. Please contact <a
+     * href="https://console.aws.amazon.com/support/home">Amazon Web Services
+     * Customer Support</a> to raise your throttling limits if necessary.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >RegisterThing</a> action.
      * </p>
      * 
      * @param registerThingRequest
@@ -5052,9 +6125,9 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Rejects a pending certificate transfer. After AWS IoT rejects a
-     * certificate transfer, the certificate status changes from
-     * <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.
+     * Rejects a pending certificate transfer. After IoT rejects a certificate
+     * transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to
+     * <b>INACTIVE</b>.
      * </p>
      * <p>
      * To check for pending certificate transfers, call <a>ListCertificates</a>
@@ -5064,6 +6137,11 @@ public interface AWSIot {
      * This operation can only be called by the transfer destination. After it
      * is called, the certificate will be returned to the source's account in
      * the INACTIVE state.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >RejectCertificateTransfer</a> action.
      * </p>
      * 
      * @param rejectCertificateTransferRequest <p>
@@ -5090,6 +6168,11 @@ public interface AWSIot {
     /**
      * <p>
      * Removes the given thing from the billing group.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >RemoveThingFromBillingGroup</a> action.
      * </p>
      * 
      * @param removeThingFromBillingGroupRequest
@@ -5122,6 +6205,11 @@ public interface AWSIot {
      * <code>thingArn</code> or a <code>thingName</code> to identify the thing
      * to remove from the thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >RemoveThingFromThingGroup</a> action.
+     * </p>
      * 
      * @param removeThingFromThingGroupRequest
      * @return removeThingFromThingGroupResult The response from the
@@ -5149,6 +6237,11 @@ public interface AWSIot {
      * permission to create rules will be able to access data processed by the
      * rule.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ReplaceTopicRule</a> action.
+     * </p>
      * 
      * @param replaceTopicRuleRequest <p>
      *            The input for the ReplaceTopicRule operation.
@@ -5173,6 +6266,11 @@ public interface AWSIot {
     /**
      * <p>
      * The query search index.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >SearchIndex</a> action.
      * </p>
      * 
      * @param searchIndexRequest
@@ -5202,6 +6300,11 @@ public interface AWSIot {
      * Sets the default authorizer. This will be used if a websocket connection
      * is made without specifying an authorizer.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >SetDefaultAuthorizer</a> action.
+     * </p>
      * 
      * @param setDefaultAuthorizerRequest
      * @return setDefaultAuthorizerResult The response from the
@@ -5230,7 +6333,12 @@ public interface AWSIot {
      * Sets the specified version of the specified policy as the policy's
      * default (operative) version. This action affects all certificates to
      * which the policy is attached. To list the principals the policy is
-     * attached to, use the ListPrincipalPolicy API.
+     * attached to, use the <a>ListPrincipalPolicies</a> action.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >SetDefaultPolicyVersion</a> action.
      * </p>
      * 
      * @param setDefaultPolicyVersionRequest <p>
@@ -5261,6 +6369,11 @@ public interface AWSIot {
      * NOTE: use of this command is not recommended. Use
      * <code>SetV2LoggingOptions</code> instead.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >SetLoggingOptions</a> action.
+     * </p>
      * 
      * @param setLoggingOptionsRequest <p>
      *            The input for the SetLoggingOptions operation.
@@ -5282,6 +6395,11 @@ public interface AWSIot {
     /**
      * <p>
      * Sets the logging level.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >SetV2LoggingLevel</a> action.
      * </p>
      * 
      * @param setV2LoggingLevelRequest
@@ -5305,6 +6423,11 @@ public interface AWSIot {
      * <p>
      * Sets the logging options for the V2 logging service.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >SetV2LoggingOptions</a> action.
+     * </p>
      * 
      * @param setV2LoggingOptionsRequest
      * @throws InternalException
@@ -5325,6 +6448,11 @@ public interface AWSIot {
      * <p>
      * Starts a task that applies a set of mitigation actions to the specified
      * target.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >StartAuditMitigationActionsTask</a> action.
      * </p>
      * 
      * @param startAuditMitigationActionsTaskRequest
@@ -5352,6 +6480,11 @@ public interface AWSIot {
      * <p>
      * Starts a Device Defender ML Detect mitigation actions task.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >StartDetectMitigationActionsTask</a> action.
+     * </p>
      * 
      * @param startDetectMitigationActionsTaskRequest
      * @return startDetectMitigationActionsTaskResult The response from the
@@ -5378,6 +6511,11 @@ public interface AWSIot {
      * <p>
      * Starts an on-demand Device Defender audit.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >StartOnDemandAuditTask</a> action.
+     * </p>
      * 
      * @param startOnDemandAuditTaskRequest
      * @return startOnDemandAuditTaskResult The response from the
@@ -5401,6 +6539,11 @@ public interface AWSIot {
     /**
      * <p>
      * Creates a bulk thing provisioning task.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >StartThingRegistrationTask</a> action.
      * </p>
      * 
      * @param startThingRegistrationTaskRequest
@@ -5426,6 +6569,11 @@ public interface AWSIot {
     /**
      * <p>
      * Cancels a bulk thing provisioning task.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >StopThingRegistrationTask</a> action.
      * </p>
      * 
      * @param stopThingRegistrationTaskRequest
@@ -5453,6 +6601,11 @@ public interface AWSIot {
      * Adds to or modifies the tags of the given resource. Tags are metadata
      * which can be used to manage a resource.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >TagResource</a> action.
+     * </p>
      * 
      * @param tagResourceRequest
      * @return tagResourceResult The response from the TagResource service
@@ -5475,9 +6628,14 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Tests if a specified principal is authorized to perform an AWS IoT action
-     * on a specified resource. Use this to test and debug the authorization
-     * behavior of devices that connect to the AWS IoT device gateway.
+     * Tests if a specified principal is authorized to perform an IoT action on
+     * a specified resource. Use this to test and debug the authorization
+     * behavior of devices that connect to the IoT device gateway.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >TestAuthorization</a> action.
      * </p>
      * 
      * @param testAuthorizationRequest
@@ -5505,7 +6663,12 @@ public interface AWSIot {
      * <p>
      * Tests a custom authorization behavior by invoking a specified custom
      * authorizer. Use this to test and debug the custom authorization behavior
-     * of devices that connect to the AWS IoT device gateway.
+     * of devices that connect to the IoT device gateway.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >TestInvokeAuthorizer</a> action.
      * </p>
      * 
      * @param testInvokeAuthorizerRequest
@@ -5532,7 +6695,13 @@ public interface AWSIot {
 
     /**
      * <p>
-     * Transfers the specified certificate to the specified AWS account.
+     * Transfers the specified certificate to the specified Amazon Web Services
+     * account.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >TransferCertificate</a> action.
      * </p>
      * <p>
      * You can cancel the transfer until it is acknowledged by the recipient.
@@ -5543,11 +6712,11 @@ public interface AWSIot {
      * </p>
      * <p>
      * The certificate being transferred must not be in the ACTIVE state. You
-     * can use the UpdateCertificate API to deactivate it.
+     * can use the <a>UpdateCertificate</a> action to deactivate it.
      * </p>
      * <p>
      * The certificate must not have any policies attached to it. You can use
-     * the DetachPrincipalPolicy API to detach them.
+     * the <a>DetachPolicy</a> action to detach them.
      * </p>
      * 
      * @param transferCertificateRequest <p>
@@ -5579,6 +6748,11 @@ public interface AWSIot {
      * <p>
      * Removes the given tags (metadata) from the resource.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UntagResource</a> action.
+     * </p>
      * 
      * @param untagResourceRequest
      * @return untagResourceResult The response from the UntagResource service
@@ -5603,6 +6777,11 @@ public interface AWSIot {
      * Configures or reconfigures the Device Defender audit settings for this
      * account. Settings include how audit notifications are sent and which
      * audit checks are enabled or disabled.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateAccountAuditConfiguration</a> action.
      * </p>
      * 
      * @param updateAccountAuditConfigurationRequest
@@ -5652,6 +6831,11 @@ public interface AWSIot {
      * <p>
      * Updates an authorizer.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateAuthorizer</a> action.
+     * </p>
      * 
      * @param updateAuthorizerRequest
      * @return updateAuthorizerResult The response from the UpdateAuthorizer
@@ -5678,6 +6862,11 @@ public interface AWSIot {
      * <p>
      * Updates information about the billing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateBillingGroup</a> action.
+     * </p>
      * 
      * @param updateBillingGroupRequest
      * @return updateBillingGroupResult The response from the UpdateBillingGroup
@@ -5701,6 +6890,11 @@ public interface AWSIot {
     /**
      * <p>
      * Updates a registered CA certificate.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateCACertificate</a> action.
      * </p>
      * 
      * @param updateCACertificateRequest <p>
@@ -5729,14 +6923,19 @@ public interface AWSIot {
      * idempotent.
      * </p>
      * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateCertificate</a> action.
+     * </p>
+     * <p>
      * Certificates must be in the ACTIVE state to authenticate devices that use
-     * a certificate to connect to AWS IoT.
+     * a certificate to connect to IoT.
      * </p>
      * <p>
      * Within a few minutes of updating a certificate from the ACTIVE state to
-     * any other state, AWS IoT disconnects all devices that used that
-     * certificate to connect. Devices cannot use a certificate that is not in
-     * the ACTIVE state to reconnect.
+     * any other state, IoT disconnects all devices that used that certificate
+     * to connect. Devices cannot use a certificate that is not in the ACTIVE
+     * state to reconnect.
      * </p>
      * 
      * @param updateCertificateRequest <p>
@@ -5764,6 +6963,11 @@ public interface AWSIot {
      * <p>
      * Updates a Device Defender detect custom metric.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateCustomMetric</a> action.
+     * </p>
      * 
      * @param updateCustomMetricRequest
      * @return updateCustomMetricResult The response from the UpdateCustomMetric
@@ -5788,6 +6992,11 @@ public interface AWSIot {
      * Updates the definition for a dimension. You cannot change the type of a
      * dimension after it is created (you can delete it and recreate it).
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateDimension</a> action.
+     * </p>
      * 
      * @param updateDimensionRequest
      * @return updateDimensionResult The response from the UpdateDimension
@@ -5811,6 +7020,11 @@ public interface AWSIot {
      * <p>
      * Updates values stored in the domain configuration. Domain configurations
      * for default endpoints can't be updated.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateDomainConfiguration</a> action.
      * </p>
      * 
      * @param updateDomainConfigurationRequest
@@ -5839,6 +7053,11 @@ public interface AWSIot {
      * <p>
      * Updates a dynamic thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateDynamicThingGroup</a> action.
+     * </p>
      * 
      * @param updateDynamicThingGroupRequest
      * @return updateDynamicThingGroupResult The response from the
@@ -5865,6 +7084,11 @@ public interface AWSIot {
      * <p>
      * Updates the event configurations.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateEventConfigurations</a> action.
+     * </p>
      * 
      * @param updateEventConfigurationsRequest
      * @return updateEventConfigurationsResult The response from the
@@ -5886,7 +7110,44 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Updates the data for a fleet metric.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateFleetMetric</a> action.
+     * </p>
+     * 
+     * @param updateFleetMetricRequest
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws UnauthorizedException
+     * @throws ServiceUnavailableException
+     * @throws InternalFailureException
+     * @throws ResourceNotFoundException
+     * @throws InvalidQueryException
+     * @throws InvalidAggregationException
+     * @throws VersionConflictException
+     * @throws IndexNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    void updateFleetMetric(UpdateFleetMetricRequest updateFleetMetricRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Updates the search configuration.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateIndexingConfiguration</a> action.
      * </p>
      * 
      * @param updateIndexingConfigurationRequest
@@ -5914,6 +7175,11 @@ public interface AWSIot {
      * <p>
      * Updates supported fields of the specified job.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateJob</a> action.
+     * </p>
      * 
      * @param updateJobRequest
      * @throws InvalidRequestException
@@ -5934,6 +7200,11 @@ public interface AWSIot {
     /**
      * <p>
      * Updates the definition for the specified mitigation action.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateMitigationAction</a> action.
      * </p>
      * 
      * @param updateMitigationActionRequest
@@ -5958,6 +7229,11 @@ public interface AWSIot {
     /**
      * <p>
      * Updates a fleet provisioning template.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateProvisioningTemplate</a> action.
      * </p>
      * 
      * @param updateProvisioningTemplateRequest
@@ -5985,6 +7261,11 @@ public interface AWSIot {
      * <p>
      * Updates a role alias.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateRoleAlias</a> action.
+     * </p>
      * 
      * @param updateRoleAliasRequest
      * @return updateRoleAliasResult The response from the UpdateRoleAlias
@@ -6011,6 +7292,11 @@ public interface AWSIot {
      * Updates a scheduled audit, including which checks are performed and how
      * often the audit takes place.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateScheduledAudit</a> action.
+     * </p>
      * 
      * @param updateScheduledAuditRequest
      * @return updateScheduledAuditResult The response from the
@@ -6034,6 +7320,11 @@ public interface AWSIot {
     /**
      * <p>
      * Updates a Device Defender security profile.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateSecurityProfile</a> action.
      * </p>
      * 
      * @param updateSecurityProfileRequest
@@ -6061,6 +7352,11 @@ public interface AWSIot {
      * Updates an existing stream. The stream version will be incremented by
      * one.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateStream</a> action.
+     * </p>
      * 
      * @param updateStreamRequest
      * @return updateStreamResult The response from the UpdateStream service
@@ -6085,6 +7381,11 @@ public interface AWSIot {
     /**
      * <p>
      * Updates the data for a thing.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateThing</a> action.
      * </p>
      * 
      * @param updateThingRequest <p>
@@ -6114,6 +7415,11 @@ public interface AWSIot {
      * <p>
      * Update a thing group.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateThingGroup</a> action.
+     * </p>
      * 
      * @param updateThingGroupRequest
      * @return updateThingGroupResult The response from the UpdateThingGroup
@@ -6137,6 +7443,11 @@ public interface AWSIot {
     /**
      * <p>
      * Updates the groups to which the thing belongs.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateThingGroupsForThing</a> action.
      * </p>
      * 
      * @param updateThingGroupsForThingRequest
@@ -6163,6 +7474,11 @@ public interface AWSIot {
      * Updates a topic rule destination. You use this to change the status,
      * endpoint URL, or confirmation URL of the destination.
      * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >UpdateTopicRuleDestination</a> action.
+     * </p>
      * 
      * @param updateTopicRuleDestinationRequest
      * @return updateTopicRuleDestinationResult The response from the
@@ -6188,6 +7504,11 @@ public interface AWSIot {
     /**
      * <p>
      * Validates a Device Defender security profile behaviors specification.
+     * </p>
+     * <p>
+     * Requires permission to access the <a href=
+     * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+     * >ValidateSecurityProfileBehaviors</a> action.
      * </p>
      * 
      * @param validateSecurityProfileBehaviorsRequest

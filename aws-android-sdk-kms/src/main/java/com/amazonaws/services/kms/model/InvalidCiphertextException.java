@@ -26,7 +26,7 @@ import com.amazonaws.AmazonServiceException;
  * </p>
  * <p>
  * From the <a>ImportKeyMaterial</a> operation, the request was rejected because
- * AWS KMS could not decrypt the encrypted (wrapped) key material.
+ * KMS could not decrypt the encrypted (wrapped) key material.
  * </p>
  */
 public class InvalidCiphertextException extends AmazonServiceException {

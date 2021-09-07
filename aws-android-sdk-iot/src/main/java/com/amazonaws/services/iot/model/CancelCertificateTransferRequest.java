@@ -26,13 +26,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <b>Note</b> Only the transfer source account can use this operation to cancel
  * a transfer. (Transfer destinations can use <a>RejectCertificateTransfer</a>
- * instead.) After transfer, AWS IoT returns the certificate to the source
- * account in the INACTIVE state. After the destination account has accepted the
+ * instead.) After transfer, IoT returns the certificate to the source account
+ * in the INACTIVE state. After the destination account has accepted the
  * transfer, the transfer cannot be cancelled.
  * </p>
  * <p>
  * After a certificate transfer is cancelled, the status of the certificate
  * changes from PENDING_TRANSFER to INACTIVE.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CancelCertificateTransfer</a> action.
  * </p>
  */
 public class CancelCertificateTransferRequest extends AmazonWebServiceRequest implements

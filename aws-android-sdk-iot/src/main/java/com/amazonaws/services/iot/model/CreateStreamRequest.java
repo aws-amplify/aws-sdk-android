@@ -26,6 +26,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * from a source like S3. You can have one or more files associated with a
  * stream.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateStream</a> action.
+ * </p>
  */
 public class CreateStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**

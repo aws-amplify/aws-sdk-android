@@ -51,6 +51,9 @@ class CelebrityJsonUnmarshaller implements Unmarshaller<Celebrity, JsonUnmarshal
             } else if (name.equals("MatchConfidence")) {
                 celebrity.setMatchConfidence(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KnownGender")) {
+                celebrity.setKnownGender(KnownGenderJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

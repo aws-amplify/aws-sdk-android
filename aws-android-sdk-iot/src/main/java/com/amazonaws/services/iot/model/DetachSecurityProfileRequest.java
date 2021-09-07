@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Disassociates a Device Defender security profile from a thing group or from
  * this account.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DetachSecurityProfile</a> action.
+ * </p>
  */
 public class DetachSecurityProfileRequest extends AmazonWebServiceRequest implements Serializable {
     /**

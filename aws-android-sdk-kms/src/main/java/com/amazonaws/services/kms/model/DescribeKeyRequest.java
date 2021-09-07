@@ -21,23 +21,24 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Provides detailed information about a customer master key (CMK). You can run
+ * Provides detailed information about a KMS key. You can run
  * <code>DescribeKey</code> on a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
- * >customer managed CMK</a> or an <a href=
+ * >customer managed key</a> or an <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
- * >AWS managed CMK</a>.
+ * >Amazon Web Services managed key</a>.
  * </p>
  * <p>
  * This detailed information includes the key ARN, creation date (and deletion
  * date, if applicable), the key state, and the origin and expiration date (if
- * any) of the key material. For CMKs in custom key stores, it includes
- * information about the custom key store, such as the key store ID and the AWS
- * CloudHSM cluster ID. It includes fields, like <code>KeySpec</code>, that help
- * you distinguish symmetric from asymmetric CMKs. It also provides information
- * that is particularly important to asymmetric CMKs, such as the key usage
- * (encryption or signing) and the encryption algorithms or signing algorithms
- * that the CMK supports.
+ * any) of the key material. It includes fields, like <code>KeySpec</code>, that
+ * help you distinguish symmetric from asymmetric KMS keys. It also provides
+ * information that is particularly important to asymmetric keys, such as the
+ * key usage (encryption or signing) and the encryption algorithms or signing
+ * algorithms that the KMS key supports. For KMS keys in custom key stores, it
+ * includes information about the custom key store, such as the key store ID and
+ * the CloudHSM cluster ID. For multi-Region keys, it displays the primary key
+ * and all related replica keys.
  * </p>
  * <p>
  * <code>DescribeKey</code> does not return the following information:
@@ -45,44 +46,45 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * Aliases associated with the CMK. To get this information, use
+ * Aliases associated with the KMS key. To get this information, use
  * <a>ListAliases</a>.
  * </p>
  * </li>
  * <li>
  * <p>
- * Whether automatic key rotation is enabled on the CMK. To get this
+ * Whether automatic key rotation is enabled on the KMS key. To get this
  * information, use <a>GetKeyRotationStatus</a>. Also, some key states prevent a
- * CMK from being automatically rotated. For details, see <a href=
+ * KMS key from being automatically rotated. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html#rotate-keys-how-it-works"
- * >How Automatic Key Rotation Works</a> in <i>AWS Key Management Service
- * Developer Guide</i>.
+ * >How Automatic Key Rotation Works</a> in <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * </li>
  * <li>
  * <p>
- * Tags on the CMK. To get this information, use <a>ListResourceTags</a>.
+ * Tags on the KMS key. To get this information, use <a>ListResourceTags</a>.
  * </p>
  * </li>
  * <li>
  * <p>
- * Key policies and grants on the CMK. To get this information, use
+ * Key policies and grants on the KMS key. To get this information, use
  * <a>GetKeyPolicy</a> and <a>ListGrants</a>.
  * </p>
  * </li>
  * </ul>
  * <p>
- * If you call the <code>DescribeKey</code> operation on a <i>predefined AWS
- * alias</i>, that is, an AWS alias with no key ID, AWS KMS creates an <a href=
- * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
- * >AWS managed CMK</a>. Then, it associates the alias with the new CMK, and
- * returns the <code>KeyId</code> and <code>Arn</code> of the new CMK in the
- * response.
+ * If you call the <code>DescribeKey</code> operation on a <i>predefined Amazon
+ * Web Services alias</i>, that is, an Amazon Web Services alias with no key ID,
+ * KMS creates an <a href=
+ * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
+ * >Amazon Web Services managed key</a>. Then, it associates the alias with the
+ * new KMS key, and returns the <code>KeyId</code> and <code>Arn</code> of the
+ * new KMS key in the response.
  * </p>
  * <p>
- * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
- * different AWS account, specify the key ARN or alias ARN in the value of the
- * <code>KeyId</code> parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a
+ * different Amazon Web Services account, specify the key ARN or alias ARN in
+ * the value of the <code>KeyId</code> parameter.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -133,19 +135,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class DescribeKeyRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Describes the specified customer master key (CMK).
+     * Describes the specified KMS key.
      * </p>
      * <p>
-     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
-     * associates the alias with an <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     * <code>Arn</code> in the response.
+     * If you specify a predefined Amazon Web Services alias (an Amazon Web
+     * Services alias with no key ID), KMS associates the alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     * >Amazon Web Services managed key</a> and returns its <code>KeyId</code>
+     * and <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -175,7 +178,7 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -193,8 +196,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -202,19 +207,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Describes the specified customer master key (CMK).
+     * Describes the specified KMS key.
      * </p>
      * <p>
-     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
-     * associates the alias with an <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     * <code>Arn</code> in the response.
+     * If you specify a predefined Amazon Web Services alias (an Amazon Web
+     * Services alias with no key ID), KMS associates the alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     * >Amazon Web Services managed key</a> and returns its <code>KeyId</code>
+     * and <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -244,7 +250,7 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -253,20 +259,21 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Describes the specified customer master key (CMK).
+     *         Describes the specified KMS key.
      *         </p>
      *         <p>
-     *         If you specify a predefined AWS alias (an AWS alias with no key
-     *         ID), KMS associates the alias with an <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     *         >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     *         <code>Arn</code> in the response.
+     *         If you specify a predefined Amazon Web Services alias (an Amazon
+     *         Web Services alias with no key ID), KMS associates the alias with
+     *         an <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     *         >Amazon Web Services managed key</a> and returns its
+     *         <code>KeyId</code> and <code>Arn</code> in the response.
      *         </p>
      *         <p>
-     *         To specify a CMK, use its key ID, key ARN, alias name, or alias
-     *         ARN. When using an alias name, prefix it with
-     *         <code>"alias/"</code>. To specify a CMK in a different AWS
-     *         account, you must use the key ARN or alias ARN.
+     *         To specify a KMS key, use its key ID, key ARN, alias name, or
+     *         alias ARN. When using an alias name, prefix it with
+     *         <code>"alias/"</code>. To specify a KMS key in a different Amazon
+     *         Web Services account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -296,8 +303,8 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>. To get the alias name and alias ARN, use
      *         <a>ListAliases</a>.
      *         </p>
      */
@@ -307,19 +314,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Describes the specified customer master key (CMK).
+     * Describes the specified KMS key.
      * </p>
      * <p>
-     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
-     * associates the alias with an <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     * <code>Arn</code> in the response.
+     * If you specify a predefined Amazon Web Services alias (an Amazon Web
+     * Services alias with no key ID), KMS associates the alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     * >Amazon Web Services managed key</a> and returns its <code>KeyId</code>
+     * and <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -349,7 +357,7 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -358,20 +366,22 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Describes the specified customer master key (CMK).
+     *            Describes the specified KMS key.
      *            </p>
      *            <p>
-     *            If you specify a predefined AWS alias (an AWS alias with no
-     *            key ID), KMS associates the alias with an <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     *            >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     *            <code>Arn</code> in the response.
+     *            If you specify a predefined Amazon Web Services alias (an
+     *            Amazon Web Services alias with no key ID), KMS associates the
+     *            alias with an <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     *            >Amazon Web Services managed key</a> and returns its
+     *            <code>KeyId</code> and <code>Arn</code> in the response.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            To specify a KMS key, use its key ID, key ARN, alias name, or
      *            alias ARN. When using an alias name, prefix it with
-     *            <code>"alias/"</code>. To specify a CMK in a different AWS
-     *            account, you must use the key ARN or alias ARN.
+     *            <code>"alias/"</code>. To specify a KMS key in a different
+     *            Amazon Web Services account, you must use the key ARN or alias
+     *            ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -401,9 +411,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
-     *            use <a>ListAliases</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>. To get the alias name
+     *            and alias ARN, use <a>ListAliases</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -412,19 +422,20 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * Describes the specified customer master key (CMK).
+     * Describes the specified KMS key.
      * </p>
      * <p>
-     * If you specify a predefined AWS alias (an AWS alias with no key ID), KMS
-     * associates the alias with an <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     * >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     * <code>Arn</code> in the response.
+     * If you specify a predefined Amazon Web Services alias (an Amazon Web
+     * Services alias with no key ID), KMS associates the alias with an <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     * >Amazon Web Services managed key</a> and returns its <code>KeyId</code>
+     * and <code>Arn</code> in the response.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -454,7 +465,7 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -466,20 +477,22 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Describes the specified customer master key (CMK).
+     *            Describes the specified KMS key.
      *            </p>
      *            <p>
-     *            If you specify a predefined AWS alias (an AWS alias with no
-     *            key ID), KMS associates the alias with an <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#master_keys"
-     *            >AWS managed CMK</a> and returns its <code>KeyId</code> and
-     *            <code>Arn</code> in the response.
+     *            If you specify a predefined Amazon Web Services alias (an
+     *            Amazon Web Services alias with no key ID), KMS associates the
+     *            alias with an <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html##aws-managed-cmk"
+     *            >Amazon Web Services managed key</a> and returns its
+     *            <code>KeyId</code> and <code>Arn</code> in the response.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            To specify a KMS key, use its key ID, key ARN, alias name, or
      *            alias ARN. When using an alias name, prefix it with
-     *            <code>"alias/"</code>. To specify a CMK in a different AWS
-     *            account, you must use the key ARN or alias ARN.
+     *            <code>"alias/"</code>. To specify a KMS key in a different
+     *            Amazon Web Services account, you must use the key ARN or alias
+     *            ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -509,9 +522,9 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
-     *            use <a>ListAliases</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>. To get the alias name
+     *            and alias ARN, use <a>ListAliases</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -529,8 +542,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -541,9 +556,11 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *         Use a grant token when your permission to call this operation
      *         comes from a new grant that has not yet achieved <i>eventual
      *         consistency</i>. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant token</a> in the <i>AWS Key Management Service Developer
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *         >Grant token</a> and <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *         >Using a grant token</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      */
     public java.util.List<String> getGrantTokens() {
@@ -558,8 +575,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -570,8 +589,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -592,8 +613,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -607,8 +630,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -632,8 +657,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -647,8 +674,10 @@ public class DescribeKeyRequest extends AmazonWebServiceRequest implements Seria
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be

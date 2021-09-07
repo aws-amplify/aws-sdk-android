@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * List of Device Defender ML Detect mitigation actions tasks.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListDetectMitigationActionsTasks</a> action.
+ * </p>
  */
 public class ListDetectMitigationActionsTasksRequest extends AmazonWebServiceRequest implements
         Serializable {

@@ -60,7 +60,7 @@ public class ThingIndexingConfiguration implements Serializable {
      * <li>
      * <p>
      * STATUS – Your thing index contains connectivity status. To enable thing
-     * connectivity indexing, thingIndexMode must not be set to OFF.
+     * connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.
      * </p>
      * </li>
      * <li>
@@ -370,7 +370,7 @@ public class ThingIndexingConfiguration implements Serializable {
      * <li>
      * <p>
      * STATUS – Your thing index contains connectivity status. To enable thing
-     * connectivity indexing, thingIndexMode must not be set to OFF.
+     * connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.
      * </p>
      * </li>
      * <li>
@@ -390,8 +390,8 @@ public class ThingIndexingConfiguration implements Serializable {
      *         <li>
      *         <p>
      *         STATUS – Your thing index contains connectivity status. To enable
-     *         thing connectivity indexing, thingIndexMode must not be set to
-     *         OFF.
+     *         thing connectivity indexing, <i>thingIndexMode</i> must not be
+     *         set to OFF.
      *         </p>
      *         </li>
      *         <li>
@@ -414,7 +414,7 @@ public class ThingIndexingConfiguration implements Serializable {
      * <li>
      * <p>
      * STATUS – Your thing index contains connectivity status. To enable thing
-     * connectivity indexing, thingIndexMode must not be set to OFF.
+     * connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.
      * </p>
      * </li>
      * <li>
@@ -434,8 +434,8 @@ public class ThingIndexingConfiguration implements Serializable {
      *            <li>
      *            <p>
      *            STATUS – Your thing index contains connectivity status. To
-     *            enable thing connectivity indexing, thingIndexMode must not be
-     *            set to OFF.
+     *            enable thing connectivity indexing, <i>thingIndexMode</i> must
+     *            not be set to OFF.
      *            </p>
      *            </li>
      *            <li>
@@ -458,7 +458,7 @@ public class ThingIndexingConfiguration implements Serializable {
      * <li>
      * <p>
      * STATUS – Your thing index contains connectivity status. To enable thing
-     * connectivity indexing, thingIndexMode must not be set to OFF.
+     * connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.
      * </p>
      * </li>
      * <li>
@@ -481,8 +481,8 @@ public class ThingIndexingConfiguration implements Serializable {
      *            <li>
      *            <p>
      *            STATUS – Your thing index contains connectivity status. To
-     *            enable thing connectivity indexing, thingIndexMode must not be
-     *            set to OFF.
+     *            enable thing connectivity indexing, <i>thingIndexMode</i> must
+     *            not be set to OFF.
      *            </p>
      *            </li>
      *            <li>
@@ -509,7 +509,7 @@ public class ThingIndexingConfiguration implements Serializable {
      * <li>
      * <p>
      * STATUS – Your thing index contains connectivity status. To enable thing
-     * connectivity indexing, thingIndexMode must not be set to OFF.
+     * connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.
      * </p>
      * </li>
      * <li>
@@ -529,8 +529,8 @@ public class ThingIndexingConfiguration implements Serializable {
      *            <li>
      *            <p>
      *            STATUS – Your thing index contains connectivity status. To
-     *            enable thing connectivity indexing, thingIndexMode must not be
-     *            set to OFF.
+     *            enable thing connectivity indexing, <i>thingIndexMode</i> must
+     *            not be set to OFF.
      *            </p>
      *            </li>
      *            <li>
@@ -554,7 +554,7 @@ public class ThingIndexingConfiguration implements Serializable {
      * <li>
      * <p>
      * STATUS – Your thing index contains connectivity status. To enable thing
-     * connectivity indexing, thingIndexMode must not be set to OFF.
+     * connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.
      * </p>
      * </li>
      * <li>
@@ -577,8 +577,8 @@ public class ThingIndexingConfiguration implements Serializable {
      *            <li>
      *            <p>
      *            STATUS – Your thing index contains connectivity status. To
-     *            enable thing connectivity indexing, thingIndexMode must not be
-     *            set to OFF.
+     *            enable thing connectivity indexing, <i>thingIndexMode</i> must
+     *            not be set to OFF.
      *            </p>
      *            </li>
      *            <li>
