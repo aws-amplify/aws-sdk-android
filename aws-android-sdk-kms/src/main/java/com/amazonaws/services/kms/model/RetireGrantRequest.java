@@ -25,39 +25,38 @@ import com.amazonaws.AmazonWebServiceRequest;
  * permissions. To identify the grant to retire, use a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
  * >grant token</a>, or both the grant ID and a key identifier (key ID or key
- * ARN) of the customer master key (CMK). The <a>CreateGrant</a> operation
- * returns both values.
+ * ARN) of the KMS key. The <a>CreateGrant</a> operation returns both values.
  * </p>
  * <p>
  * This operation can be called by the <i>retiring principal</i> for a grant, by
  * the <i>grantee principal</i> if the grant allows the <code>RetireGrant</code>
- * operation, and by the AWS account (root user) in which the grant is created.
- * It can also be called by principals to whom permission for retiring a grant
- * is delegated. For details, see <a href=
+ * operation, and by the Amazon Web Services account (root user) in which the
+ * grant is created. It can also be called by principals to whom permission for
+ * retiring a grant is delegated. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
- * >Retiring and revoking grants</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
+ * >Retiring and revoking grants</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
  * For detailed information about grants, including grant terminology, see <a
  * href
  * ="https://docs.aws.amazon.com/kms/latest/developerguide/grants.html">Using
- * grants</a> in the <i> <i>AWS Key Management Service Developer Guide</i> </i>.
- * For examples of working with grants in several programming languages, see <a
+ * grants</a> in the <i> <i>Key Management Service Developer Guide</i> </i>. For
+ * examples of working with grants in several programming languages, see <a
  * href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/programming-grants.html"
  * >Programming grants</a>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: Yes. You can retire a grant on a CMK in a different
- * AWS account.
+ * <b>Cross-account use</b>: Yes. You can retire a grant on a KMS key in a
+ * different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions:</b>:Permission to retire a grant is determined
  * primarily by the grant. For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#grant-delete"
- * >Retiring and revoking grants</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
+ * >Retiring and revoking grants</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
  * <b>Related operations:</b>
@@ -97,7 +96,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      * >Grant token</a> and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     * >Eventual consistency</a> in the <i>AWS Key Management Service Developer
+     * >Eventual consistency</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -108,8 +107,8 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The key ARN CMK associated with the grant. To find the key ARN, use the
-     * <a>ListKeys</a> operation.
+     * The key ARN KMS key associated with the grant. To find the key ARN, use
+     * the <a>ListKeys</a> operation.
      * </p>
      * <p>
      * For example:
@@ -151,7 +150,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      * >Grant token</a> and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     * >Eventual consistency</a> in the <i>AWS Key Management Service Developer
+     * >Eventual consistency</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -169,7 +168,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      *         >Grant token</a> and <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     *         >Eventual consistency</a> in the <i>AWS Key Management Service
+     *         >Eventual consistency</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -188,7 +187,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      * >Grant token</a> and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     * >Eventual consistency</a> in the <i>AWS Key Management Service Developer
+     * >Eventual consistency</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -206,7 +205,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      *            >Grant token</a> and <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     *            >Eventual consistency</a> in the <i>AWS Key Management Service
+     *            >Eventual consistency</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -225,7 +224,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      * >Grant token</a> and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     * >Eventual consistency</a> in the <i>AWS Key Management Service Developer
+     * >Eventual consistency</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -246,7 +245,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
      *            >Grant token</a> and <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#terms-eventual-consistency"
-     *            >Eventual consistency</a> in the <i>AWS Key Management Service
+     *            >Eventual consistency</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -259,8 +258,8 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The key ARN CMK associated with the grant. To find the key ARN, use the
-     * <a>ListKeys</a> operation.
+     * The key ARN KMS key associated with the grant. To find the key ARN, use
+     * the <a>ListKeys</a> operation.
      * </p>
      * <p>
      * For example:
@@ -271,8 +270,8 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The key ARN CMK associated with the grant. To find the key ARN,
-     *         use the <a>ListKeys</a> operation.
+     *         The key ARN KMS key associated with the grant. To find the key
+     *         ARN, use the <a>ListKeys</a> operation.
      *         </p>
      *         <p>
      *         For example:
@@ -285,8 +284,8 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The key ARN CMK associated with the grant. To find the key ARN, use the
-     * <a>ListKeys</a> operation.
+     * The key ARN KMS key associated with the grant. To find the key ARN, use
+     * the <a>ListKeys</a> operation.
      * </p>
      * <p>
      * For example:
@@ -297,7 +296,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The key ARN CMK associated with the grant. To find the key
+     *            The key ARN KMS key associated with the grant. To find the key
      *            ARN, use the <a>ListKeys</a> operation.
      *            </p>
      *            <p>
@@ -311,8 +310,8 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
 
     /**
      * <p>
-     * The key ARN CMK associated with the grant. To find the key ARN, use the
-     * <a>ListKeys</a> operation.
+     * The key ARN KMS key associated with the grant. To find the key ARN, use
+     * the <a>ListKeys</a> operation.
      * </p>
      * <p>
      * For example:
@@ -326,7 +325,7 @@ public class RetireGrantRequest extends AmazonWebServiceRequest implements Seria
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The key ARN CMK associated with the grant. To find the key
+     *            The key ARN KMS key associated with the grant. To find the key
      *            ARN, use the <a>ListKeys</a> operation.
      *            </p>
      *            <p>

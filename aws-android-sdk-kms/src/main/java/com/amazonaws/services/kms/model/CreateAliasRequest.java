@@ -21,52 +21,52 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a friendly name for a customer master key (CMK).
+ * Creates a friendly name for a KMS key.
  * </p>
  * <note>
  * <p>
  * Adding, deleting, or updating an alias can allow or deny permission to the
- * CMK. For details, see <a
+ * KMS key. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">Using
- * ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * </note>
  * <p>
- * You can use an alias to identify a CMK in the AWS KMS console, in the
+ * You can use an alias to identify a KMS key in the KMS console, in the
  * <a>DescribeKey</a> operation and in <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
  * >cryptographic operations</a>, such as <a>Encrypt</a> and
- * <a>GenerateDataKey</a>. You can also change the CMK that's associated with
- * the alias (<a>UpdateAlias</a>) or delete the alias (<a>DeleteAlias</a>) at
- * any time. These operations don't affect the underlying CMK.
+ * <a>GenerateDataKey</a>. You can also change the KMS key that's associated
+ * with the alias (<a>UpdateAlias</a>) or delete the alias (<a>DeleteAlias</a>)
+ * at any time. These operations don't affect the underlying KMS key.
  * </p>
  * <p>
- * You can associate the alias with any customer managed CMK in the same AWS
- * Region. Each alias is associated with only one CMK at a time, but a CMK can
- * have multiple aliases. A valid CMK is required. You can't create an alias
- * without a CMK.
+ * You can associate the alias with any customer managed key in the same Amazon
+ * Web Services Region. Each alias is associated with only one KMS key at a
+ * time, but a KMS key can have multiple aliases. A valid KMS key is required.
+ * You can't create an alias without a KMS key.
  * </p>
  * <p>
  * The alias must be unique in the account and Region, but you can have aliases
  * with the same name in different Regions. For detailed information about
  * aliases, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html"
- * >Using aliases</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * >Using aliases</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * <p>
  * This operation does not return a response. To get the alias that you created,
  * use the <a>ListAliases</a> operation.
  * </p>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
  * <b>Cross-account use</b>: No. You cannot perform this operation on an alias
- * in a different AWS account.
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions</b>
@@ -83,15 +83,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-api-permissions-reference.html"
- * >kms:CreateAlias</a> on the CMK (key policy).
+ * >kms:CreateAlias</a> on the KMS key (key policy).
  * </p>
  * </li>
  * </ul>
  * <p>
  * For details, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/kms-alias.html#alias-access"
- * >Controlling access to aliases</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
+ * >Controlling access to aliases</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
  * <b>Related operations:</b>
@@ -127,7 +127,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/aws/</code>. The <code>alias/aws/</code> prefix is reserved
      * for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     * >AWS managed CMKs</a>.
+     * >Amazon Web Services managed keys</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -140,20 +140,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Associates the alias with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     * >customer managed CMK</a>. The CMK must be in the same AWS Region.
+     * >customer managed key</a>. The KMS key must be in the same Amazon Web
+     * Services Region.
      * </p>
      * <p>
-     * A valid CMK ID is required. If you supply a null or empty string value,
+     * A valid key ID is required. If you supply a null or empty string value,
      * this operation returns an error.
      * </p>
      * <p>
      * For help finding the key ID and ARN, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Finding the Key ID and ARN</a> in the <i> <i>Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -172,7 +173,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -193,7 +194,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/aws/</code>. The <code>alias/aws/</code> prefix is reserved
      * for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     * >AWS managed CMKs</a>.
+     * >Amazon Web Services managed keys</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -212,7 +213,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      *         cannot begin with <code>alias/aws/</code>. The
      *         <code>alias/aws/</code> prefix is reserved for <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     *         >AWS managed CMKs</a>.
+     *         >Amazon Web Services managed keys</a>.
      *         </p>
      */
     public String getAliasName() {
@@ -231,7 +232,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/aws/</code>. The <code>alias/aws/</code> prefix is reserved
      * for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     * >AWS managed CMKs</a>.
+     * >Amazon Web Services managed keys</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -250,7 +251,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            alias name cannot begin with <code>alias/aws/</code>. The
      *            <code>alias/aws/</code> prefix is reserved for <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     *            >AWS managed CMKs</a>.
+     *            >Amazon Web Services managed keys</a>.
      *            </p>
      */
     public void setAliasName(String aliasName) {
@@ -269,7 +270,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <code>alias/aws/</code>. The <code>alias/aws/</code> prefix is reserved
      * for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     * >AWS managed CMKs</a>.
+     * >Amazon Web Services managed keys</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -291,7 +292,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            alias name cannot begin with <code>alias/aws/</code>. The
      *            <code>alias/aws/</code> prefix is reserved for <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk"
-     *            >AWS managed CMKs</a>.
+     *            >Amazon Web Services managed keys</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -305,20 +306,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Associates the alias with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     * >customer managed CMK</a>. The CMK must be in the same AWS Region.
+     * >customer managed key</a>. The KMS key must be in the same Amazon Web
+     * Services Region.
      * </p>
      * <p>
-     * A valid CMK ID is required. If you supply a null or empty string value,
+     * A valid key ID is required. If you supply a null or empty string value,
      * this operation returns an error.
      * </p>
      * <p>
      * For help finding the key ID and ARN, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Finding the Key ID and ARN</a> in the <i> <i>Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -337,7 +339,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -347,21 +349,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * @return <p>
      *         Associates the alias with the specified <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     *         >customer managed CMK</a>. The CMK must be in the same AWS
-     *         Region.
+     *         >customer managed key</a>. The KMS key must be in the same Amazon
+     *         Web Services Region.
      *         </p>
      *         <p>
-     *         A valid CMK ID is required. If you supply a null or empty string
+     *         A valid key ID is required. If you supply a null or empty string
      *         value, this operation returns an error.
      *         </p>
      *         <p>
      *         For help finding the key ID and ARN, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     *         >Finding the Key ID and ARN</a> in the <i>AWS Key Management
-     *         Service Developer Guide</i>.
+     *         >Finding the Key ID and ARN</a> in the <i> <i>Key Management
+     *         Service Developer Guide</i> </i>.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -380,8 +382,8 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getTargetKeyId() {
@@ -392,20 +394,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Associates the alias with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     * >customer managed CMK</a>. The CMK must be in the same AWS Region.
+     * >customer managed key</a>. The KMS key must be in the same Amazon Web
+     * Services Region.
      * </p>
      * <p>
-     * A valid CMK ID is required. If you supply a null or empty string value,
+     * A valid key ID is required. If you supply a null or empty string value,
      * this operation returns an error.
      * </p>
      * <p>
      * For help finding the key ID and ARN, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Finding the Key ID and ARN</a> in the <i> <i>Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -424,7 +427,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -434,21 +437,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * @param targetKeyId <p>
      *            Associates the alias with the specified <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     *            >customer managed CMK</a>. The CMK must be in the same AWS
-     *            Region.
+     *            >customer managed key</a>. The KMS key must be in the same
+     *            Amazon Web Services Region.
      *            </p>
      *            <p>
-     *            A valid CMK ID is required. If you supply a null or empty
+     *            A valid key ID is required. If you supply a null or empty
      *            string value, this operation returns an error.
      *            </p>
      *            <p>
      *            For help finding the key ID and ARN, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     *            >Finding the Key ID and ARN</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Finding the Key ID and ARN</a> in the <i> <i>Key Management
+     *            Service Developer Guide</i> </i>.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -467,8 +470,8 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setTargetKeyId(String targetKeyId) {
@@ -479,20 +482,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * <p>
      * Associates the alias with the specified <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     * >customer managed CMK</a>. The CMK must be in the same AWS Region.
+     * >customer managed key</a>. The KMS key must be in the same Amazon Web
+     * Services Region.
      * </p>
      * <p>
-     * A valid CMK ID is required. If you supply a null or empty string value,
+     * A valid key ID is required. If you supply a null or empty string value,
      * this operation returns an error.
      * </p>
      * <p>
      * For help finding the key ID and ARN, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     * >Finding the Key ID and ARN</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Finding the Key ID and ARN</a> in the <i> <i>Key Management Service
+     * Developer Guide</i> </i>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -511,7 +515,7 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -524,21 +528,21 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      * @param targetKeyId <p>
      *            Associates the alias with the specified <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
-     *            >customer managed CMK</a>. The CMK must be in the same AWS
-     *            Region.
+     *            >customer managed key</a>. The KMS key must be in the same
+     *            Amazon Web Services Region.
      *            </p>
      *            <p>
-     *            A valid CMK ID is required. If you supply a null or empty
+     *            A valid key ID is required. If you supply a null or empty
      *            string value, this operation returns an error.
      *            </p>
      *            <p>
      *            For help finding the key ID and ARN, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/viewing-keys.html#find-cmk-id-arn"
-     *            >Finding the Key ID and ARN</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Finding the Key ID and ARN</a> in the <i> <i>Key Management
+     *            Service Developer Guide</i> </i>.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -557,8 +561,8 @@ public class CreateAliasRequest extends AmazonWebServiceRequest implements Seria
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

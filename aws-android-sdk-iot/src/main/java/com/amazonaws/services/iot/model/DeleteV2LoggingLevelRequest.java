@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes a logging level.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteV2LoggingLevel</a> action.
+ * </p>
  */
 public class DeleteV2LoggingLevelRequest extends AmazonWebServiceRequest implements Serializable {
     /**

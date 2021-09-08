@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Gets a list of domain configurations for the user. This list is sorted
  * alphabetically by domain configuration name.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListDomainConfigurations</a> action.
+ * </p>
  */
 public class ListDomainConfigurationsRequest extends AmazonWebServiceRequest implements
         Serializable {

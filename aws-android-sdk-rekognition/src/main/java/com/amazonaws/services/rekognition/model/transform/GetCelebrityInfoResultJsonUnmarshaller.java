@@ -41,6 +41,9 @@ public class GetCelebrityInfoResultJsonUnmarshaller implements
             } else if (name.equals("Name")) {
                 getCelebrityInfoResult.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KnownGender")) {
+                getCelebrityInfoResult.setKnownGender(KnownGenderJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

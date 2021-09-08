@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a defined mitigation action from your AWS account.
+ * Deletes a defined mitigation action from your Amazon Web Services accounts.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteMitigationAction</a> action.
  * </p>
  */
 public class DeleteMitigationActionRequest extends AmazonWebServiceRequest implements Serializable {

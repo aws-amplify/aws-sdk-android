@@ -28,14 +28,25 @@ import com.amazonaws.AmazonWebServiceRequest;
  * to any certificate.
  * </p>
  * <p>
- * To delete a policy, use the DeletePolicyVersion API to delete all non-default
- * versions of the policy; use the DetachPrincipalPolicy API to detach the
- * policy from any certificate; and then use the DeletePolicy API to delete the
- * policy.
+ * To delete a policy, use the <a>DeletePolicyVersion</a> action to delete all
+ * non-default versions of the policy; use the <a>DetachPolicy</a> action to
+ * detach the policy from any certificate; and then use the DeletePolicy action
+ * to delete the policy.
  * </p>
  * <p>
  * When a policy is deleted using DeletePolicy, its default version is deleted
  * with it.
+ * </p>
+ * <note>
+ * <p>
+ * Because of the distributed nature of Amazon Web Services, it can take up to
+ * five minutes after a policy is detached before it's ready to be deleted.
+ * </p>
+ * </note>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeletePolicy</a> action.
  * </p>
  */
 public class DeletePolicyRequest extends AmazonWebServiceRequest implements Serializable {

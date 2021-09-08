@@ -64,6 +64,23 @@ public class ComparedFace implements Serializable {
 
     /**
      * <p>
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. Valid values include "Happy", "Sad", "Angry",
+     * "Confused", "Disgusted", "Surprised", "Calm", "Unknown", and "Fear".
+     * </p>
+     */
+    private java.util.List<Emotion> emotions;
+
+    /**
+     * <p>
+     * Indicates whether or not the face is smiling, and the confidence level in
+     * the determination.
+     * </p>
+     */
+    private Smile smile;
+
+    /**
+     * <p>
      * Bounding box of the face.
      * </p>
      *
@@ -332,6 +349,151 @@ public class ComparedFace implements Serializable {
     }
 
     /**
+     * <p>
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. Valid values include "Happy", "Sad", "Angry",
+     * "Confused", "Disgusted", "Surprised", "Calm", "Unknown", and "Fear".
+     * </p>
+     *
+     * @return <p>
+     *         The emotions that appear to be expressed on the face, and the
+     *         confidence level in the determination. Valid values include
+     *         "Happy", "Sad", "Angry", "Confused", "Disgusted", "Surprised",
+     *         "Calm", "Unknown", and "Fear".
+     *         </p>
+     */
+    public java.util.List<Emotion> getEmotions() {
+        return emotions;
+    }
+
+    /**
+     * <p>
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. Valid values include "Happy", "Sad", "Angry",
+     * "Confused", "Disgusted", "Surprised", "Calm", "Unknown", and "Fear".
+     * </p>
+     *
+     * @param emotions <p>
+     *            The emotions that appear to be expressed on the face, and the
+     *            confidence level in the determination. Valid values include
+     *            "Happy", "Sad", "Angry", "Confused", "Disgusted", "Surprised",
+     *            "Calm", "Unknown", and "Fear".
+     *            </p>
+     */
+    public void setEmotions(java.util.Collection<Emotion> emotions) {
+        if (emotions == null) {
+            this.emotions = null;
+            return;
+        }
+
+        this.emotions = new java.util.ArrayList<Emotion>(emotions);
+    }
+
+    /**
+     * <p>
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. Valid values include "Happy", "Sad", "Angry",
+     * "Confused", "Disgusted", "Surprised", "Calm", "Unknown", and "Fear".
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param emotions <p>
+     *            The emotions that appear to be expressed on the face, and the
+     *            confidence level in the determination. Valid values include
+     *            "Happy", "Sad", "Angry", "Confused", "Disgusted", "Surprised",
+     *            "Calm", "Unknown", and "Fear".
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withEmotions(Emotion... emotions) {
+        if (getEmotions() == null) {
+            this.emotions = new java.util.ArrayList<Emotion>(emotions.length);
+        }
+        for (Emotion value : emotions) {
+            this.emotions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The emotions that appear to be expressed on the face, and the confidence
+     * level in the determination. Valid values include "Happy", "Sad", "Angry",
+     * "Confused", "Disgusted", "Surprised", "Calm", "Unknown", and "Fear".
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param emotions <p>
+     *            The emotions that appear to be expressed on the face, and the
+     *            confidence level in the determination. Valid values include
+     *            "Happy", "Sad", "Angry", "Confused", "Disgusted", "Surprised",
+     *            "Calm", "Unknown", and "Fear".
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withEmotions(java.util.Collection<Emotion> emotions) {
+        setEmotions(emotions);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Indicates whether or not the face is smiling, and the confidence level in
+     * the determination.
+     * </p>
+     *
+     * @return <p>
+     *         Indicates whether or not the face is smiling, and the confidence
+     *         level in the determination.
+     *         </p>
+     */
+    public Smile getSmile() {
+        return smile;
+    }
+
+    /**
+     * <p>
+     * Indicates whether or not the face is smiling, and the confidence level in
+     * the determination.
+     * </p>
+     *
+     * @param smile <p>
+     *            Indicates whether or not the face is smiling, and the
+     *            confidence level in the determination.
+     *            </p>
+     */
+    public void setSmile(Smile smile) {
+        this.smile = smile;
+    }
+
+    /**
+     * <p>
+     * Indicates whether or not the face is smiling, and the confidence level in
+     * the determination.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param smile <p>
+     *            Indicates whether or not the face is smiling, and the
+     *            confidence level in the determination.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ComparedFace withSmile(Smile smile) {
+        this.smile = smile;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -351,7 +513,11 @@ public class ComparedFace implements Serializable {
         if (getPose() != null)
             sb.append("Pose: " + getPose() + ",");
         if (getQuality() != null)
-            sb.append("Quality: " + getQuality());
+            sb.append("Quality: " + getQuality() + ",");
+        if (getEmotions() != null)
+            sb.append("Emotions: " + getEmotions() + ",");
+        if (getSmile() != null)
+            sb.append("Smile: " + getSmile());
         sb.append("}");
         return sb.toString();
     }
@@ -367,6 +533,8 @@ public class ComparedFace implements Serializable {
         hashCode = prime * hashCode + ((getLandmarks() == null) ? 0 : getLandmarks().hashCode());
         hashCode = prime * hashCode + ((getPose() == null) ? 0 : getPose().hashCode());
         hashCode = prime * hashCode + ((getQuality() == null) ? 0 : getQuality().hashCode());
+        hashCode = prime * hashCode + ((getEmotions() == null) ? 0 : getEmotions().hashCode());
+        hashCode = prime * hashCode + ((getSmile() == null) ? 0 : getSmile().hashCode());
         return hashCode;
     }
 
@@ -403,6 +571,14 @@ public class ComparedFace implements Serializable {
         if (other.getQuality() == null ^ this.getQuality() == null)
             return false;
         if (other.getQuality() != null && other.getQuality().equals(this.getQuality()) == false)
+            return false;
+        if (other.getEmotions() == null ^ this.getEmotions() == null)
+            return false;
+        if (other.getEmotions() != null && other.getEmotions().equals(this.getEmotions()) == false)
+            return false;
+        if (other.getSmile() == null ^ this.getSmile() == null)
+            return false;
+        if (other.getSmile() != null && other.getSmile().equals(this.getSmile()) == false)
             return false;
         return true;
     }

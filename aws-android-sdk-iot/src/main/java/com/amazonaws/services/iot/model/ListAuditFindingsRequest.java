@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * performed during a specified time period. (Findings are retained for 90
  * days.)
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListAuditFindings</a> action.
+ * </p>
  */
 public class ListAuditFindingsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

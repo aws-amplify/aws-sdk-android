@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListKeysResult implements Serializable {
     /**
      * <p>
-     * A list of customer master keys (CMKs).
+     * A list of KMS keys.
      * </p>
      */
     private java.util.List<KeyListEntry> keys = new java.util.ArrayList<KeyListEntry>();
@@ -50,11 +50,11 @@ public class ListKeysResult implements Serializable {
 
     /**
      * <p>
-     * A list of customer master keys (CMKs).
+     * A list of KMS keys.
      * </p>
      *
      * @return <p>
-     *         A list of customer master keys (CMKs).
+     *         A list of KMS keys.
      *         </p>
      */
     public java.util.List<KeyListEntry> getKeys() {
@@ -63,11 +63,11 @@ public class ListKeysResult implements Serializable {
 
     /**
      * <p>
-     * A list of customer master keys (CMKs).
+     * A list of KMS keys.
      * </p>
      *
      * @param keys <p>
-     *            A list of customer master keys (CMKs).
+     *            A list of KMS keys.
      *            </p>
      */
     public void setKeys(java.util.Collection<KeyListEntry> keys) {
@@ -81,14 +81,14 @@ public class ListKeysResult implements Serializable {
 
     /**
      * <p>
-     * A list of customer master keys (CMKs).
+     * A list of KMS keys.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param keys <p>
-     *            A list of customer master keys (CMKs).
+     *            A list of KMS keys.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -105,14 +105,14 @@ public class ListKeysResult implements Serializable {
 
     /**
      * <p>
-     * A list of customer master keys (CMKs).
+     * A list of KMS keys.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param keys <p>
-     *            A list of customer master keys (CMKs).
+     *            A list of KMS keys.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

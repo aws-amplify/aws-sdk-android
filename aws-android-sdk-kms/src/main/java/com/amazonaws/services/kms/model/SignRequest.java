@@ -23,20 +23,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Creates a <a href="https://en.wikipedia.org/wiki/Digital_signature">digital
  * signature</a> for a message or message digest by using the private key in an
- * asymmetric CMK. To verify the signature, use the <a>Verify</a> operation, or
- * use the public key in the same asymmetric CMK outside of AWS KMS. For
- * information about symmetric and asymmetric CMKs, see <a href=
+ * asymmetric KMS key. To verify the signature, use the <a>Verify</a> operation,
+ * or use the public key in the same asymmetric KMS key outside of KMS. For
+ * information about symmetric and asymmetric KMS keys, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html"
- * >Using Symmetric and Asymmetric CMKs</a> in the <i>AWS Key Management Service
+ * >Using Symmetric and Asymmetric KMS keys</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
  * Digital signatures are generated and verified by using asymmetric key pair,
- * such as an RSA or ECC pair that is represented by an asymmetric customer
- * master key (CMK). The key owner (or an authorized user) uses their private
- * key to sign a message. Anyone with the public key can verify that the message
- * was signed with that particular private key and that the message hasn't
- * changed since it was signed.
+ * such as an RSA or ECC pair that is represented by an asymmetric KMS key. The
+ * key owner (or an authorized user) uses their private key to sign a message.
+ * Anyone with the public key can verify that the message was signed with that
+ * particular private key and that the message hasn't changed since it was
+ * signed.
  * </p>
  * <p>
  * To use the <code>Sign</code> operation, provide the following information:
@@ -44,10 +44,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * Use the <code>KeyId</code> parameter to identify an asymmetric CMK with a
+ * Use the <code>KeyId</code> parameter to identify an asymmetric KMS key with a
  * <code>KeyUsage</code> value of <code>SIGN_VERIFY</code>. To get the
- * <code>KeyUsage</code> value of a CMK, use the <a>DescribeKey</a> operation.
- * The caller must have <code>kms:Sign</code> permission on the CMK.
+ * <code>KeyUsage</code> value of a KMS key, use the <a>DescribeKey</a>
+ * operation. The caller must have <code>kms:Sign</code> permission on the KMS
+ * key.
  * </p>
  * </li>
  * <li>
@@ -61,32 +62,32 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Choose a signing algorithm that is compatible with the CMK.
+ * Choose a signing algorithm that is compatible with the KMS key.
  * </p>
  * </li>
  * </ul>
  * <important>
  * <p>
- * When signing a message, be sure to record the CMK and the signing algorithm.
- * This information is required to verify the signature.
+ * When signing a message, be sure to record the KMS key and the signing
+ * algorithm. This information is required to verify the signature.
  * </p>
  * </important>
  * <p>
  * To verify the signature that this operation generates, use the <a>Verify</a>
  * operation. Or use the <a>GetPublicKey</a> operation to download the public
- * key and then use the public key to verify the signature outside of AWS KMS.
+ * key and then use the public key to verify the signature outside of KMS.
  * </p>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
- * different AWS account, specify the key ARN or alias ARN in the value of the
- * <code>KeyId</code> parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a
+ * different Amazon Web Services account, specify the key ARN or alias ARN in
+ * the value of the <code>KeyId</code> parameter.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -100,15 +101,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class SignRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Identifies an asymmetric CMK. AWS KMS uses the private key in the
-     * asymmetric CMK to sign the message. The <code>KeyUsage</code> type of the
-     * CMK must be <code>SIGN_VERIFY</code>. To find the <code>KeyUsage</code>
-     * of a CMK, use the <a>DescribeKey</a> operation.
+     * Identifies an asymmetric KMS key. KMS uses the private key in the
+     * asymmetric KMS key to sign the message. The <code>KeyUsage</code> type of
+     * the KMS key must be <code>SIGN_VERIFY</code>. To find the
+     * <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -138,7 +140,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -154,8 +156,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * bytes. To sign a larger message, provide the message digest.
      * </p>
      * <p>
-     * If you provide a message, AWS KMS generates a hash digest of the message
-     * and then signs it.
+     * If you provide a message, KMS generates a hash digest of the message and
+     * then signs it.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,8 +167,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. The default value, RAW, indicates a message.
+     * Tells KMS whether the value of the <code>Message</code> parameter is a
+     * message or message digest. The default value, RAW, indicates a message.
      * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
@@ -183,8 +185,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -196,7 +200,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </p>
      * <p>
      * Choose an algorithm that is compatible with the type and size of the
-     * specified asymmetric CMK.
+     * specified asymmetric KMS key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -208,15 +212,16 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Identifies an asymmetric CMK. AWS KMS uses the private key in the
-     * asymmetric CMK to sign the message. The <code>KeyUsage</code> type of the
-     * CMK must be <code>SIGN_VERIFY</code>. To find the <code>KeyUsage</code>
-     * of a CMK, use the <a>DescribeKey</a> operation.
+     * Identifies an asymmetric KMS key. KMS uses the private key in the
+     * asymmetric KMS key to sign the message. The <code>KeyUsage</code> type of
+     * the KMS key must be <code>SIGN_VERIFY</code>. To find the
+     * <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -246,7 +251,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -255,17 +260,17 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Identifies an asymmetric CMK. AWS KMS uses the private key in the
-     *         asymmetric CMK to sign the message. The <code>KeyUsage</code>
-     *         type of the CMK must be <code>SIGN_VERIFY</code>. To find the
-     *         <code>KeyUsage</code> of a CMK, use the <a>DescribeKey</a>
+     *         Identifies an asymmetric KMS key. KMS uses the private key in the
+     *         asymmetric KMS key to sign the message. The <code>KeyUsage</code>
+     *         type of the KMS key must be <code>SIGN_VERIFY</code>. To find the
+     *         <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a>
      *         operation.
      *         </p>
      *         <p>
-     *         To specify a CMK, use its key ID, key ARN, alias name, or alias
-     *         ARN. When using an alias name, prefix it with
-     *         <code>"alias/"</code>. To specify a CMK in a different AWS
-     *         account, you must use the key ARN or alias ARN.
+     *         To specify a KMS key, use its key ID, key ARN, alias name, or
+     *         alias ARN. When using an alias name, prefix it with
+     *         <code>"alias/"</code>. To specify a KMS key in a different Amazon
+     *         Web Services account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -295,8 +300,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>. To get the alias name and alias ARN, use
      *         <a>ListAliases</a>.
      *         </p>
      */
@@ -306,15 +311,16 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Identifies an asymmetric CMK. AWS KMS uses the private key in the
-     * asymmetric CMK to sign the message. The <code>KeyUsage</code> type of the
-     * CMK must be <code>SIGN_VERIFY</code>. To find the <code>KeyUsage</code>
-     * of a CMK, use the <a>DescribeKey</a> operation.
+     * Identifies an asymmetric KMS key. KMS uses the private key in the
+     * asymmetric KMS key to sign the message. The <code>KeyUsage</code> type of
+     * the KMS key must be <code>SIGN_VERIFY</code>. To find the
+     * <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -344,7 +350,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -353,17 +359,18 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies an asymmetric CMK. AWS KMS uses the private key in
-     *            the asymmetric CMK to sign the message. The
-     *            <code>KeyUsage</code> type of the CMK must be
+     *            Identifies an asymmetric KMS key. KMS uses the private key in
+     *            the asymmetric KMS key to sign the message. The
+     *            <code>KeyUsage</code> type of the KMS key must be
      *            <code>SIGN_VERIFY</code>. To find the <code>KeyUsage</code> of
-     *            a CMK, use the <a>DescribeKey</a> operation.
+     *            a KMS key, use the <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            To specify a KMS key, use its key ID, key ARN, alias name, or
      *            alias ARN. When using an alias name, prefix it with
-     *            <code>"alias/"</code>. To specify a CMK in a different AWS
-     *            account, you must use the key ARN or alias ARN.
+     *            <code>"alias/"</code>. To specify a KMS key in a different
+     *            Amazon Web Services account, you must use the key ARN or alias
+     *            ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -393,9 +400,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
-     *            use <a>ListAliases</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>. To get the alias name
+     *            and alias ARN, use <a>ListAliases</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -404,15 +411,16 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Identifies an asymmetric CMK. AWS KMS uses the private key in the
-     * asymmetric CMK to sign the message. The <code>KeyUsage</code> type of the
-     * CMK must be <code>SIGN_VERIFY</code>. To find the <code>KeyUsage</code>
-     * of a CMK, use the <a>DescribeKey</a> operation.
+     * Identifies an asymmetric KMS key. KMS uses the private key in the
+     * asymmetric KMS key to sign the message. The <code>KeyUsage</code> type of
+     * the KMS key must be <code>SIGN_VERIFY</code>. To find the
+     * <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a> operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -442,7 +450,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -454,17 +462,18 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies an asymmetric CMK. AWS KMS uses the private key in
-     *            the asymmetric CMK to sign the message. The
-     *            <code>KeyUsage</code> type of the CMK must be
+     *            Identifies an asymmetric KMS key. KMS uses the private key in
+     *            the asymmetric KMS key to sign the message. The
+     *            <code>KeyUsage</code> type of the KMS key must be
      *            <code>SIGN_VERIFY</code>. To find the <code>KeyUsage</code> of
-     *            a CMK, use the <a>DescribeKey</a> operation.
+     *            a KMS key, use the <a>DescribeKey</a> operation.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            To specify a KMS key, use its key ID, key ARN, alias name, or
      *            alias ARN. When using an alias name, prefix it with
-     *            <code>"alias/"</code>. To specify a CMK in a different AWS
-     *            account, you must use the key ARN or alias ARN.
+     *            <code>"alias/"</code>. To specify a KMS key in a different
+     *            Amazon Web Services account, you must use the key ARN or alias
+     *            ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -494,9 +503,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
-     *            use <a>ListAliases</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>. To get the alias name
+     *            and alias ARN, use <a>ListAliases</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -512,8 +521,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * bytes. To sign a larger message, provide the message digest.
      * </p>
      * <p>
-     * If you provide a message, AWS KMS generates a hash digest of the message
-     * and then signs it.
+     * If you provide a message, KMS generates a hash digest of the message and
+     * then signs it.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -525,7 +534,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *         digest.
      *         </p>
      *         <p>
-     *         If you provide a message, AWS KMS generates a hash digest of the
+     *         If you provide a message, KMS generates a hash digest of the
      *         message and then signs it.
      *         </p>
      */
@@ -539,8 +548,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * bytes. To sign a larger message, provide the message digest.
      * </p>
      * <p>
-     * If you provide a message, AWS KMS generates a hash digest of the message
-     * and then signs it.
+     * If you provide a message, KMS generates a hash digest of the message and
+     * then signs it.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -552,8 +561,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            digest.
      *            </p>
      *            <p>
-     *            If you provide a message, AWS KMS generates a hash digest of
-     *            the message and then signs it.
+     *            If you provide a message, KMS generates a hash digest of the
+     *            message and then signs it.
      *            </p>
      */
     public void setMessage(java.nio.ByteBuffer message) {
@@ -566,8 +575,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * bytes. To sign a larger message, provide the message digest.
      * </p>
      * <p>
-     * If you provide a message, AWS KMS generates a hash digest of the message
-     * and then signs it.
+     * If you provide a message, KMS generates a hash digest of the message and
+     * then signs it.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -582,8 +591,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            digest.
      *            </p>
      *            <p>
-     *            If you provide a message, AWS KMS generates a hash digest of
-     *            the message and then signs it.
+     *            If you provide a message, KMS generates a hash digest of the
+     *            message and then signs it.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -595,8 +604,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. The default value, RAW, indicates a message.
+     * Tells KMS whether the value of the <code>Message</code> parameter is a
+     * message or message digest. The default value, RAW, indicates a message.
      * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
@@ -604,9 +613,9 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @return <p>
-     *         Tells AWS KMS whether the value of the <code>Message</code>
-     *         parameter is a message or message digest. The default value, RAW,
-     *         indicates a message. To indicate a message digest, enter
+     *         Tells KMS whether the value of the <code>Message</code> parameter
+     *         is a message or message digest. The default value, RAW, indicates
+     *         a message. To indicate a message digest, enter
      *         <code>DIGEST</code>.
      *         </p>
      * @see MessageType
@@ -617,8 +626,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. The default value, RAW, indicates a message.
+     * Tells KMS whether the value of the <code>Message</code> parameter is a
+     * message or message digest. The default value, RAW, indicates a message.
      * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
@@ -626,7 +635,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @param messageType <p>
-     *            Tells AWS KMS whether the value of the <code>Message</code>
+     *            Tells KMS whether the value of the <code>Message</code>
      *            parameter is a message or message digest. The default value,
      *            RAW, indicates a message. To indicate a message digest, enter
      *            <code>DIGEST</code>.
@@ -639,8 +648,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. The default value, RAW, indicates a message.
+     * Tells KMS whether the value of the <code>Message</code> parameter is a
+     * message or message digest. The default value, RAW, indicates a message.
      * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
@@ -651,7 +660,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @param messageType <p>
-     *            Tells AWS KMS whether the value of the <code>Message</code>
+     *            Tells KMS whether the value of the <code>Message</code>
      *            parameter is a message or message digest. The default value,
      *            RAW, indicates a message. To indicate a message digest, enter
      *            <code>DIGEST</code>.
@@ -667,8 +676,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. The default value, RAW, indicates a message.
+     * Tells KMS whether the value of the <code>Message</code> parameter is a
+     * message or message digest. The default value, RAW, indicates a message.
      * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
@@ -676,7 +685,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @param messageType <p>
-     *            Tells AWS KMS whether the value of the <code>Message</code>
+     *            Tells KMS whether the value of the <code>Message</code>
      *            parameter is a message or message digest. The default value,
      *            RAW, indicates a message. To indicate a message digest, enter
      *            <code>DIGEST</code>.
@@ -689,8 +698,8 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
 
     /**
      * <p>
-     * Tells AWS KMS whether the value of the <code>Message</code> parameter is
-     * a message or message digest. The default value, RAW, indicates a message.
+     * Tells KMS whether the value of the <code>Message</code> parameter is a
+     * message or message digest. The default value, RAW, indicates a message.
      * To indicate a message digest, enter <code>DIGEST</code>.
      * </p>
      * <p>
@@ -701,7 +710,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * <b>Allowed Values: </b>RAW, DIGEST
      *
      * @param messageType <p>
-     *            Tells AWS KMS whether the value of the <code>Message</code>
+     *            Tells KMS whether the value of the <code>Message</code>
      *            parameter is a message or message digest. The default value,
      *            RAW, indicates a message. To indicate a message digest, enter
      *            <code>DIGEST</code>.
@@ -723,8 +732,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -735,9 +746,11 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *         Use a grant token when your permission to call this operation
      *         comes from a new grant that has not yet achieved <i>eventual
      *         consistency</i>. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant token</a> in the <i>AWS Key Management Service Developer
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *         >Grant token</a> and <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *         >Using a grant token</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      */
     public java.util.List<String> getGrantTokens() {
@@ -752,8 +765,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -764,8 +779,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -786,8 +803,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -801,8 +820,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -826,8 +847,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -841,8 +864,10 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -859,7 +884,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </p>
      * <p>
      * Choose an algorithm that is compatible with the type and size of the
-     * specified asymmetric CMK.
+     * specified asymmetric KMS key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -872,7 +897,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *         </p>
      *         <p>
      *         Choose an algorithm that is compatible with the type and size of
-     *         the specified asymmetric CMK.
+     *         the specified asymmetric KMS key.
      *         </p>
      * @see SigningAlgorithmSpec
      */
@@ -886,7 +911,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </p>
      * <p>
      * Choose an algorithm that is compatible with the type and size of the
-     * specified asymmetric CMK.
+     * specified asymmetric KMS key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -900,7 +925,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            </p>
      *            <p>
      *            Choose an algorithm that is compatible with the type and size
-     *            of the specified asymmetric CMK.
+     *            of the specified asymmetric KMS key.
      *            </p>
      * @see SigningAlgorithmSpec
      */
@@ -914,7 +939,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </p>
      * <p>
      * Choose an algorithm that is compatible with the type and size of the
-     * specified asymmetric CMK.
+     * specified asymmetric KMS key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -931,7 +956,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            </p>
      *            <p>
      *            Choose an algorithm that is compatible with the type and size
-     *            of the specified asymmetric CMK.
+     *            of the specified asymmetric KMS key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -948,7 +973,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </p>
      * <p>
      * Choose an algorithm that is compatible with the type and size of the
-     * specified asymmetric CMK.
+     * specified asymmetric KMS key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -962,7 +987,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            </p>
      *            <p>
      *            Choose an algorithm that is compatible with the type and size
-     *            of the specified asymmetric CMK.
+     *            of the specified asymmetric KMS key.
      *            </p>
      * @see SigningAlgorithmSpec
      */
@@ -976,7 +1001,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      * </p>
      * <p>
      * Choose an algorithm that is compatible with the type and size of the
-     * specified asymmetric CMK.
+     * specified asymmetric KMS key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -993,7 +1018,7 @@ public class SignRequest extends AmazonWebServiceRequest implements Serializable
      *            </p>
      *            <p>
      *            Choose an algorithm that is compatible with the type and size
-     *            of the specified asymmetric CMK.
+     *            of the specified asymmetric KMS key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

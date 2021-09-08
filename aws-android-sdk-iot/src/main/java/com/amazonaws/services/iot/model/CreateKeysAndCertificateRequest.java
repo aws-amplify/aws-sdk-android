@@ -28,8 +28,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Provisioning MQTT API</a>.
  * </p>
  * <p>
- * <b>Note</b> This is the only time AWS IoT issues the private key for this
+ * <b>Note</b> This is the only time IoT issues the private key for this
  * certificate, so it is important to keep it in a secure location.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateKeysAndCertificate</a> action.
  * </p>
  */
 public class CreateKeysAndCertificateRequest extends AmazonWebServiceRequest implements

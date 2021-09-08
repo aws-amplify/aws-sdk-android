@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Describes event configurations.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeEventConfigurations</a> action.
+ * </p>
  */
 public class DescribeEventConfigurationsRequest extends AmazonWebServiceRequest implements
         Serializable {

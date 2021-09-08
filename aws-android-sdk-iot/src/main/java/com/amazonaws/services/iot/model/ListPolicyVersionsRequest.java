@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Lists the versions of the specified policy and identifies the default
  * version.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListPolicyVersions</a> action.
+ * </p>
  */
 public class ListPolicyVersionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

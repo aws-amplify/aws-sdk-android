@@ -21,11 +21,16 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the CA certificates registered for your AWS account.
+ * Lists the CA certificates registered for your Amazon Web Services account.
  * </p>
  * <p>
  * The results are paginated with a default page size of 25. You can use the
  * returned marker to retrieve additional results.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListCACertificates</a> action.
  * </p>
  */
 public class ListCACertificatesRequest extends AmazonWebServiceRequest implements Serializable {

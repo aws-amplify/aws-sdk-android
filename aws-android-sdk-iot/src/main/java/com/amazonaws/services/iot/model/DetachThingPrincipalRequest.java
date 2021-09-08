@@ -31,6 +31,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * to propagate.
  * </p>
  * </note>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DetachThingPrincipal</a> action.
+ * </p>
  */
 public class DetachThingPrincipalRequest extends AmazonWebServiceRequest implements Serializable {
     /**

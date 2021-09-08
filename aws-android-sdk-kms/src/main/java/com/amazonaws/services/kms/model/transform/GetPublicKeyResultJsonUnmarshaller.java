@@ -42,6 +42,9 @@ public class GetPublicKeyResultJsonUnmarshaller implements
             } else if (name.equals("CustomerMasterKeySpec")) {
                 getPublicKeyResult.setCustomerMasterKeySpec(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KeySpec")) {
+                getPublicKeyResult.setKeySpec(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("KeyUsage")) {
                 getPublicKeyResult.setKeyUsage(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
