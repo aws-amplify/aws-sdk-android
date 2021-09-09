@@ -15,6 +15,9 @@
 
 package com.amazonaws.mobileconnectors.lambdainvoker;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 /**
  * An interface for databinding between POJO and byte array.
  */
@@ -28,7 +31,7 @@ public interface LambdaDataBinder {
      * @param <T> the type of the class
      * @return a POJO
      */
-    <T> T deserialize(byte[] content, Class<T> clazz);
+    <T> T deserialize(@Nullable byte[] content, @NonNull Class<T> clazz);
 
     /**
      * Serializes an object into encoded byte array.
@@ -36,5 +39,5 @@ public interface LambdaDataBinder {
      * @param object object to be serialized
      * @return a byte array
      */
-    byte[] serialize(Object object);
+    byte[] serialize(@Nullable Object object);
 }
