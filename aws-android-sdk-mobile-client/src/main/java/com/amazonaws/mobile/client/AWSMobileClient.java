@@ -2483,6 +2483,7 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
      *                 confirm forgot password operation
      */
     @AnyThread
+    @Deprecated
     public void confirmForgotPassword(final String password,
                                       final String forgotPasswordChallengeResponse,
                                       final Callback<ForgotPasswordResult> callback) {
@@ -2490,6 +2491,56 @@ public final class AWSMobileClient implements AWSCredentialsProvider {
         final InternalCallback internalCallback = new InternalCallback<ForgotPasswordResult>(callback);
         internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse,
                 Collections.<String, String>emptyMap(), internalCallback));
+    }
+
+    /**
+     * Second method to call after {@link #forgotPassword(String)} to respond to any challenges
+     * that the service may request.
+     *
+     * @param password new password.
+     * @param forgotPasswordChallengeResponse response to the forgot password challenge posted.
+     * @param callback callback will be invoked to notify the success or failure of the
+     *                 confirm forgot password operation
+     */
+    @AnyThread
+    public void confirmForgotPassword(final String username,
+                                      final String password,
+                                      final String forgotPasswordChallengeResponse,
+                                      final Callback<ForgotPasswordResult> callback) {
+
+        final InternalCallback internalCallback = new InternalCallback<>(callback);
+
+        ForgotPasswordHandler forgotPasswordHandler = new ForgotPasswordHandler() {
+            @Override
+            public void onSuccess() {
+                callback.onResult(
+                    new ForgotPasswordResult(
+                        ForgotPasswordState.DONE
+                    )
+                );
+            }
+
+            @Override
+            public void getResetCode(ForgotPasswordContinuation continuation) {
+                callback.onResult(
+                    new ForgotPasswordResult(
+                        ForgotPasswordState.CONFIRMATION_CODE
+                    )
+                );
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                callback.onError(exception);
+            }
+        };
+
+        this.forgotPasswordContinuation = new ForgotPasswordContinuation(userpool.getUser(username),
+                                                                         null,
+                                                                         true,
+                                                                         forgotPasswordHandler);
+        internalCallback.async(_confirmForgotPassword(password, forgotPasswordChallengeResponse,
+                                                      Collections.<String, String>emptyMap(), internalCallback));
     }
 
     /**
