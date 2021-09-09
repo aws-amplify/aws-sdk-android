@@ -25,7 +25,7 @@ import java.io.Serializable;
 public class HttpUrlDestinationConfiguration implements Serializable {
     /**
      * <p>
-     * The URL AWS IoT uses to confirm ownership of or access to the topic rule
+     * The URL IoT uses to confirm ownership of or access to the topic rule
      * destination URL.
      * </p>
      * <p>
@@ -36,7 +36,7 @@ public class HttpUrlDestinationConfiguration implements Serializable {
 
     /**
      * <p>
-     * The URL AWS IoT uses to confirm ownership of or access to the topic rule
+     * The URL IoT uses to confirm ownership of or access to the topic rule
      * destination URL.
      * </p>
      * <p>
@@ -44,8 +44,8 @@ public class HttpUrlDestinationConfiguration implements Serializable {
      * <b>Length: </b> - 2000<br/>
      *
      * @return <p>
-     *         The URL AWS IoT uses to confirm ownership of or access to the
-     *         topic rule destination URL.
+     *         The URL IoT uses to confirm ownership of or access to the topic
+     *         rule destination URL.
      *         </p>
      */
     public String getConfirmationUrl() {
@@ -54,7 +54,7 @@ public class HttpUrlDestinationConfiguration implements Serializable {
 
     /**
      * <p>
-     * The URL AWS IoT uses to confirm ownership of or access to the topic rule
+     * The URL IoT uses to confirm ownership of or access to the topic rule
      * destination URL.
      * </p>
      * <p>
@@ -62,7 +62,7 @@ public class HttpUrlDestinationConfiguration implements Serializable {
      * <b>Length: </b> - 2000<br/>
      *
      * @param confirmationUrl <p>
-     *            The URL AWS IoT uses to confirm ownership of or access to the
+     *            The URL IoT uses to confirm ownership of or access to the
      *            topic rule destination URL.
      *            </p>
      */
@@ -72,7 +72,7 @@ public class HttpUrlDestinationConfiguration implements Serializable {
 
     /**
      * <p>
-     * The URL AWS IoT uses to confirm ownership of or access to the topic rule
+     * The URL IoT uses to confirm ownership of or access to the topic rule
      * destination URL.
      * </p>
      * <p>
@@ -83,7 +83,7 @@ public class HttpUrlDestinationConfiguration implements Serializable {
      * <b>Length: </b> - 2000<br/>
      *
      * @param confirmationUrl <p>
-     *            The URL AWS IoT uses to confirm ownership of or access to the
+     *            The URL IoT uses to confirm ownership of or access to the
      *            topic rule destination URL.
      *            </p>
      * @return A reference to this updated object so that method calls can be

@@ -20,6 +20,14 @@ import java.io.Serializable;
 import com.amazonaws.AmazonWebServiceRequest;
 
 /**
+ * <p>
+ * Deletes a Device Defender detect custom metric.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeleteCustomMetric</a> action.
+ * </p>
  * <note>
  * <p>
  * Before you can delete a custom metric, you must first remove the custom
@@ -30,9 +38,6 @@ import com.amazonaws.AmazonWebServiceRequest;
  * metric name.
  * </p>
  * </note>
- * <p>
- * Deletes a Device Defender detect custom metric.
- * </p>
  */
 public class DeleteCustomMetricRequest extends AmazonWebServiceRequest implements Serializable {
     /**

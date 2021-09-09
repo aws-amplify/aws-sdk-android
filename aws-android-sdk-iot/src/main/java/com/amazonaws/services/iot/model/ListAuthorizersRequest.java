@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the authorizers registered in your account.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListAuthorizers</a> action.
+ * </p>
  */
 public class ListAuthorizersRequest extends AmazonWebServiceRequest implements Serializable {
     /**

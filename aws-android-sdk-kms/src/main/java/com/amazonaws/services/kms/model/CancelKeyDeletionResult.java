@@ -22,7 +22,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is canceled.
+     * >key ARN</a>) of the KMS key whose deletion is canceled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -34,7 +34,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is canceled.
+     * >key ARN</a>) of the KMS key whose deletion is canceled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -43,7 +43,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the CMK whose deletion is canceled.
+     *         >key ARN</a>) of the KMS key whose deletion is canceled.
      *         </p>
      */
     public String getKeyId() {
@@ -54,7 +54,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is canceled.
+     * >key ARN</a>) of the KMS key whose deletion is canceled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -63,7 +63,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK whose deletion is canceled.
+     *            >key ARN</a>) of the KMS key whose deletion is canceled.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -74,7 +74,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is canceled.
+     * >key ARN</a>) of the KMS key whose deletion is canceled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -86,7 +86,7 @@ public class CancelKeyDeletionResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK whose deletion is canceled.
+     *            >key ARN</a>) of the KMS key whose deletion is canceled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

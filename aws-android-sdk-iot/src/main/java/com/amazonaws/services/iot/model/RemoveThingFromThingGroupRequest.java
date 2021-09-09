@@ -29,6 +29,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>thingArn</code> or a <code>thingName</code> to identify the thing to
  * remove from the thing group.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >RemoveThingFromThingGroup</a> action.
+ * </p>
  */
 public class RemoveThingFromThingGroupRequest extends AmazonWebServiceRequest implements
         Serializable {

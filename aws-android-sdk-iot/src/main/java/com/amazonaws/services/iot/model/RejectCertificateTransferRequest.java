@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Rejects a pending certificate transfer. After AWS IoT rejects a certificate
+ * Rejects a pending certificate transfer. After IoT rejects a certificate
  * transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to
  * <b>INACTIVE</b>.
  * </p>
@@ -33,6 +33,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This operation can only be called by the transfer destination. After it is
  * called, the certificate will be returned to the source's account in the
  * INACTIVE state.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >RejectCertificateTransfer</a> action.
  * </p>
  */
 public class RejectCertificateTransferRequest extends AmazonWebServiceRequest implements

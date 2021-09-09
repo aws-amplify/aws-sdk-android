@@ -19,18 +19,18 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes the configuration of this multi-Region CMK. This field appears only
- * when the CMK is a primary or replica of a multi-Region CMK.
+ * Describes the configuration of this multi-Region key. This field appears only
+ * when the KMS key is a primary or replica of a multi-Region key.
  * </p>
  * <p>
- * For more information about any listed CMK, use the <a>DescribeKey</a>
+ * For more information about any listed KMS key, use the <a>DescribeKey</a>
  * operation.
  * </p>
  */
 public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
-     * Indicates whether the CMK is a <code>PRIMARY</code> or
+     * Indicates whether the KMS key is a <code>PRIMARY</code> or
      * <code>REPLICA</code> key.
      * </p>
      * <p>
@@ -42,7 +42,7 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * Displays the key ARN and Region of the primary key. This field includes
-     * the current CMK if it is the primary key.
+     * the current KMS key if it is the primary key.
      * </p>
      */
     private MultiRegionKey primaryKey;
@@ -50,14 +50,14 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * displays the key ARNs and Regions of all replica keys. This field
-     * includes the current CMK if it is a replica key.
+     * includes the current KMS key if it is a replica key.
      * </p>
      */
     private java.util.List<MultiRegionKey> replicaKeys = new java.util.ArrayList<MultiRegionKey>();
 
     /**
      * <p>
-     * Indicates whether the CMK is a <code>PRIMARY</code> or
+     * Indicates whether the KMS key is a <code>PRIMARY</code> or
      * <code>REPLICA</code> key.
      * </p>
      * <p>
@@ -65,7 +65,7 @@ public class MultiRegionConfiguration implements Serializable {
      * <b>Allowed Values: </b>PRIMARY, REPLICA
      *
      * @return <p>
-     *         Indicates whether the CMK is a <code>PRIMARY</code> or
+     *         Indicates whether the KMS key is a <code>PRIMARY</code> or
      *         <code>REPLICA</code> key.
      *         </p>
      * @see MultiRegionKeyType
@@ -76,7 +76,7 @@ public class MultiRegionConfiguration implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the CMK is a <code>PRIMARY</code> or
+     * Indicates whether the KMS key is a <code>PRIMARY</code> or
      * <code>REPLICA</code> key.
      * </p>
      * <p>
@@ -84,7 +84,7 @@ public class MultiRegionConfiguration implements Serializable {
      * <b>Allowed Values: </b>PRIMARY, REPLICA
      *
      * @param multiRegionKeyType <p>
-     *            Indicates whether the CMK is a <code>PRIMARY</code> or
+     *            Indicates whether the KMS key is a <code>PRIMARY</code> or
      *            <code>REPLICA</code> key.
      *            </p>
      * @see MultiRegionKeyType
@@ -95,7 +95,7 @@ public class MultiRegionConfiguration implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the CMK is a <code>PRIMARY</code> or
+     * Indicates whether the KMS key is a <code>PRIMARY</code> or
      * <code>REPLICA</code> key.
      * </p>
      * <p>
@@ -106,7 +106,7 @@ public class MultiRegionConfiguration implements Serializable {
      * <b>Allowed Values: </b>PRIMARY, REPLICA
      *
      * @param multiRegionKeyType <p>
-     *            Indicates whether the CMK is a <code>PRIMARY</code> or
+     *            Indicates whether the KMS key is a <code>PRIMARY</code> or
      *            <code>REPLICA</code> key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -120,7 +120,7 @@ public class MultiRegionConfiguration implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the CMK is a <code>PRIMARY</code> or
+     * Indicates whether the KMS key is a <code>PRIMARY</code> or
      * <code>REPLICA</code> key.
      * </p>
      * <p>
@@ -128,7 +128,7 @@ public class MultiRegionConfiguration implements Serializable {
      * <b>Allowed Values: </b>PRIMARY, REPLICA
      *
      * @param multiRegionKeyType <p>
-     *            Indicates whether the CMK is a <code>PRIMARY</code> or
+     *            Indicates whether the KMS key is a <code>PRIMARY</code> or
      *            <code>REPLICA</code> key.
      *            </p>
      * @see MultiRegionKeyType
@@ -139,7 +139,7 @@ public class MultiRegionConfiguration implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the CMK is a <code>PRIMARY</code> or
+     * Indicates whether the KMS key is a <code>PRIMARY</code> or
      * <code>REPLICA</code> key.
      * </p>
      * <p>
@@ -150,7 +150,7 @@ public class MultiRegionConfiguration implements Serializable {
      * <b>Allowed Values: </b>PRIMARY, REPLICA
      *
      * @param multiRegionKeyType <p>
-     *            Indicates whether the CMK is a <code>PRIMARY</code> or
+     *            Indicates whether the KMS key is a <code>PRIMARY</code> or
      *            <code>REPLICA</code> key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -165,12 +165,12 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * Displays the key ARN and Region of the primary key. This field includes
-     * the current CMK if it is the primary key.
+     * the current KMS key if it is the primary key.
      * </p>
      *
      * @return <p>
      *         Displays the key ARN and Region of the primary key. This field
-     *         includes the current CMK if it is the primary key.
+     *         includes the current KMS key if it is the primary key.
      *         </p>
      */
     public MultiRegionKey getPrimaryKey() {
@@ -180,12 +180,12 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * Displays the key ARN and Region of the primary key. This field includes
-     * the current CMK if it is the primary key.
+     * the current KMS key if it is the primary key.
      * </p>
      *
      * @param primaryKey <p>
      *            Displays the key ARN and Region of the primary key. This field
-     *            includes the current CMK if it is the primary key.
+     *            includes the current KMS key if it is the primary key.
      *            </p>
      */
     public void setPrimaryKey(MultiRegionKey primaryKey) {
@@ -195,7 +195,7 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * Displays the key ARN and Region of the primary key. This field includes
-     * the current CMK if it is the primary key.
+     * the current KMS key if it is the primary key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -203,7 +203,7 @@ public class MultiRegionConfiguration implements Serializable {
      *
      * @param primaryKey <p>
      *            Displays the key ARN and Region of the primary key. This field
-     *            includes the current CMK if it is the primary key.
+     *            includes the current KMS key if it is the primary key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -216,12 +216,12 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * displays the key ARNs and Regions of all replica keys. This field
-     * includes the current CMK if it is a replica key.
+     * includes the current KMS key if it is a replica key.
      * </p>
      *
      * @return <p>
      *         displays the key ARNs and Regions of all replica keys. This field
-     *         includes the current CMK if it is a replica key.
+     *         includes the current KMS key if it is a replica key.
      *         </p>
      */
     public java.util.List<MultiRegionKey> getReplicaKeys() {
@@ -231,12 +231,12 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * displays the key ARNs and Regions of all replica keys. This field
-     * includes the current CMK if it is a replica key.
+     * includes the current KMS key if it is a replica key.
      * </p>
      *
      * @param replicaKeys <p>
      *            displays the key ARNs and Regions of all replica keys. This
-     *            field includes the current CMK if it is a replica key.
+     *            field includes the current KMS key if it is a replica key.
      *            </p>
      */
     public void setReplicaKeys(java.util.Collection<MultiRegionKey> replicaKeys) {
@@ -251,7 +251,7 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * displays the key ARNs and Regions of all replica keys. This field
-     * includes the current CMK if it is a replica key.
+     * includes the current KMS key if it is a replica key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -259,7 +259,7 @@ public class MultiRegionConfiguration implements Serializable {
      *
      * @param replicaKeys <p>
      *            displays the key ARNs and Regions of all replica keys. This
-     *            field includes the current CMK if it is a replica key.
+     *            field includes the current KMS key if it is a replica key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -277,7 +277,7 @@ public class MultiRegionConfiguration implements Serializable {
     /**
      * <p>
      * displays the key ARNs and Regions of all replica keys. This field
-     * includes the current CMK if it is a replica key.
+     * includes the current KMS key if it is a replica key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -285,7 +285,7 @@ public class MultiRegionConfiguration implements Serializable {
      *
      * @param replicaKeys <p>
      *            displays the key ARNs and Regions of all replica keys. This
-     *            field includes the current CMK if it is a replica key.
+     *            field includes the current KMS key if it is a replica key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

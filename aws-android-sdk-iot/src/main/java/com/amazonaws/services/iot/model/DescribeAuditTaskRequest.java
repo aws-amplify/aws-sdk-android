@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets information about a Device Defender audit.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeAuditTask</a> action.
+ * </p>
  */
 public class DescribeAuditTaskRequest extends AmazonWebServiceRequest implements Serializable {
     /**

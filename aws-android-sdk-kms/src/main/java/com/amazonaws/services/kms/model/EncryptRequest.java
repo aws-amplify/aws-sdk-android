@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Encrypts plaintext into ciphertext by using a customer master key (CMK). The
+ * Encrypts plaintext into ciphertext by using a KMS key. The
  * <code>Encrypt</code> operation has two primary use cases:
  * </p>
  * <ul>
@@ -34,12 +34,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * You can use the <code>Encrypt</code> operation to move encrypted data from
- * one AWS Region to another. For example, in Region A, generate a data key and
- * use the plaintext key to encrypt your data. Then, in Region A, use the
- * <code>Encrypt</code> operation to encrypt the plaintext data key under a CMK
- * in Region B. Now, you can move the encrypted data and the encrypted data key
- * to Region B. When necessary, you can decrypt the encrypted data key and the
- * encrypted data entirely within in Region B.
+ * one Amazon Web Services Region to another. For example, in Region A, generate
+ * a data key and use the plaintext key to encrypt your data. Then, in Region A,
+ * use the <code>Encrypt</code> operation to encrypt the plaintext data key
+ * under a KMS key in Region B. Now, you can move the encrypted data and the
+ * encrypted data key to Region B. When necessary, you can decrypt the encrypted
+ * data key and the encrypted data entirely within in Region B.
  * </p>
  * </li>
  * </ul>
@@ -49,50 +49,49 @@ import com.amazonaws.AmazonWebServiceRequest;
  * return a plaintext data key and an encrypted copy of that data key.
  * </p>
  * <p>
- * When you encrypt data, you must specify a symmetric or asymmetric CMK to use
- * in the encryption operation. The CMK must have a <code>KeyUsage</code> value
- * of <code>ENCRYPT_DECRYPT.</code> To find the <code>KeyUsage</code> of a CMK,
- * use the <a>DescribeKey</a> operation.
+ * When you encrypt data, you must specify a symmetric or asymmetric KMS key to
+ * use in the encryption operation. The KMS key must have a
+ * <code>KeyUsage</code> value of <code>ENCRYPT_DECRYPT.</code> To find the
+ * <code>KeyUsage</code> of a KMS key, use the <a>DescribeKey</a> operation.
  * </p>
  * <p>
- * If you use a symmetric CMK, you can use an encryption context to add
+ * If you use a symmetric KMS key, you can use an encryption context to add
  * additional security to your encryption operation. If you specify an
  * <code>EncryptionContext</code> when encrypting data, you must specify the
  * same encryption context (a case-sensitive exact match) when decrypting the
  * data. Otherwise, the request to decrypt fails with an
  * <code>InvalidCiphertextException</code>. For more information, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
- * >Encryption Context</a> in the <i>AWS Key Management Service Developer
- * Guide</i>.
+ * >Encryption Context</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * <p>
- * If you specify an asymmetric CMK, you must also specify the encryption
- * algorithm. The algorithm must be compatible with the CMK type.
+ * If you specify an asymmetric KMS key, you must also specify the encryption
+ * algorithm. The algorithm must be compatible with the KMS key type.
  * </p>
  * <important>
  * <p>
- * When you use an asymmetric CMK to encrypt or reencrypt data, be sure to
- * record the CMK and encryption algorithm that you choose. You will be required
- * to provide the same CMK and encryption algorithm when you decrypt the data.
- * If the CMK and algorithm do not match the values used to encrypt the data,
- * the decrypt operation fails.
+ * When you use an asymmetric KMS key to encrypt or reencrypt data, be sure to
+ * record the KMS key and encryption algorithm that you choose. You will be
+ * required to provide the same KMS key and encryption algorithm when you
+ * decrypt the data. If the KMS key and algorithm do not match the values used
+ * to encrypt the data, the decrypt operation fails.
  * </p>
  * <p>
- * You are not required to supply the CMK ID and encryption algorithm when you
- * decrypt with symmetric CMKs because AWS KMS stores this information in the
- * ciphertext blob. AWS KMS cannot store metadata in ciphertext generated with
+ * You are not required to supply the key ID and encryption algorithm when you
+ * decrypt with symmetric KMS keys because KMS stores this information in the
+ * ciphertext blob. KMS cannot store metadata in ciphertext generated with
  * asymmetric keys. The standard format for asymmetric key ciphertext does not
  * include configurable fields.
  * </p>
  * </important>
  * <p>
- * The maximum size of the data that you can encrypt varies with the type of CMK
- * and the encryption algorithm that you choose.
+ * The maximum size of the data that you can encrypt varies with the type of KMS
+ * key and the encryption algorithm that you choose.
  * </p>
  * <ul>
  * <li>
  * <p>
- * Symmetric CMKs
+ * Symmetric KMS keys
  * </p>
  * <ul>
  * <li>
@@ -155,16 +154,16 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * </ul>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: Yes. To perform this operation with a CMK in a
- * different AWS account, specify the key ARN or alias ARN in the value of the
- * <code>KeyId</code> parameter.
+ * <b>Cross-account use</b>: Yes. To perform this operation with a KMS key in a
+ * different Amazon Web Services account, specify the key ARN or alias ARN in
+ * the value of the <code>KeyId</code> parameter.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -195,13 +194,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class EncryptRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Identifies the customer master key (CMK) to use in the encryption
-     * operation.
+     * Identifies the KMS key to use in the encryption operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -231,7 +230,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -256,8 +255,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Specifies the encryption context that will be used to encrypt the data.
      * An encryption context is valid only for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operations</a> with a symmetric CMK. The standard
-     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * >cryptographic operations</a> with a symmetric KMS key. The standard
+     * asymmetric encryption algorithms that KMS uses do not support an
      * encryption context.
      * </p>
      * <p>
@@ -265,13 +264,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * pairs that represents additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric CMK, but
-     * it is highly recommended.
+     * encryption context is optional when encrypting with a symmetric KMS key,
+     * but it is highly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * >Encryption Context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -285,8 +284,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      */
@@ -294,14 +295,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
-     * plaintext message. The algorithm must be compatible with the CMK that you
-     * specify.
+     * Specifies the encryption algorithm that KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the KMS key that
+     * you specify.
      * </p>
      * <p>
-     * This parameter is required only for asymmetric CMKs. The default value,
-     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
-     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * This parameter is required only for asymmetric KMS keys. The default
+     * value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     * symmetric KMS keys. If you are using an asymmetric KMS key, we recommend
+     * RSAES_OAEP_SHA_256.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -312,13 +314,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Identifies the customer master key (CMK) to use in the encryption
-     * operation.
+     * Identifies the KMS key to use in the encryption operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -348,7 +350,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -357,14 +359,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Identifies the customer master key (CMK) to use in the encryption
-     *         operation.
+     *         Identifies the KMS key to use in the encryption operation.
      *         </p>
      *         <p>
-     *         To specify a CMK, use its key ID, key ARN, alias name, or alias
-     *         ARN. When using an alias name, prefix it with
-     *         <code>"alias/"</code>. To specify a CMK in a different AWS
-     *         account, you must use the key ARN or alias ARN.
+     *         To specify a KMS key, use its key ID, key ARN, alias name, or
+     *         alias ARN. When using an alias name, prefix it with
+     *         <code>"alias/"</code>. To specify a KMS key in a different Amazon
+     *         Web Services account, you must use the key ARN or alias ARN.
      *         </p>
      *         <p>
      *         For example:
@@ -394,8 +395,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>. To get the alias name and alias ARN, use
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>. To get the alias name and alias ARN, use
      *         <a>ListAliases</a>.
      *         </p>
      */
@@ -405,13 +406,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Identifies the customer master key (CMK) to use in the encryption
-     * operation.
+     * Identifies the KMS key to use in the encryption operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -441,7 +442,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -450,14 +451,14 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies the customer master key (CMK) to use in the
-     *            encryption operation.
+     *            Identifies the KMS key to use in the encryption operation.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            To specify a KMS key, use its key ID, key ARN, alias name, or
      *            alias ARN. When using an alias name, prefix it with
-     *            <code>"alias/"</code>. To specify a CMK in a different AWS
-     *            account, you must use the key ARN or alias ARN.
+     *            <code>"alias/"</code>. To specify a KMS key in a different
+     *            Amazon Web Services account, you must use the key ARN or alias
+     *            ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -487,9 +488,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
-     *            use <a>ListAliases</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>. To get the alias name
+     *            and alias ARN, use <a>ListAliases</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -498,13 +499,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Identifies the customer master key (CMK) to use in the encryption
-     * operation.
+     * Identifies the KMS key to use in the encryption operation.
      * </p>
      * <p>
-     * To specify a CMK, use its key ID, key ARN, alias name, or alias ARN. When
-     * using an alias name, prefix it with <code>"alias/"</code>. To specify a
-     * CMK in a different AWS account, you must use the key ARN or alias ARN.
+     * To specify a KMS key, use its key ID, key ARN, alias name, or alias ARN.
+     * When using an alias name, prefix it with <code>"alias/"</code>. To
+     * specify a KMS key in a different Amazon Web Services account, you must
+     * use the key ARN or alias ARN.
      * </p>
      * <p>
      * For example:
@@ -534,7 +535,7 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>. To get the alias name and alias ARN, use
      * <a>ListAliases</a>.
      * </p>
@@ -546,14 +547,14 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies the customer master key (CMK) to use in the
-     *            encryption operation.
+     *            Identifies the KMS key to use in the encryption operation.
      *            </p>
      *            <p>
-     *            To specify a CMK, use its key ID, key ARN, alias name, or
+     *            To specify a KMS key, use its key ID, key ARN, alias name, or
      *            alias ARN. When using an alias name, prefix it with
-     *            <code>"alias/"</code>. To specify a CMK in a different AWS
-     *            account, you must use the key ARN or alias ARN.
+     *            <code>"alias/"</code>. To specify a KMS key in a different
+     *            Amazon Web Services account, you must use the key ARN or alias
+     *            ARN.
      *            </p>
      *            <p>
      *            For example:
@@ -583,9 +584,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>. To get the alias name and alias ARN,
-     *            use <a>ListAliases</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>. To get the alias name
+     *            and alias ARN, use <a>ListAliases</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -654,8 +655,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Specifies the encryption context that will be used to encrypt the data.
      * An encryption context is valid only for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operations</a> with a symmetric CMK. The standard
-     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * >cryptographic operations</a> with a symmetric KMS key. The standard
+     * asymmetric encryption algorithms that KMS uses do not support an
      * encryption context.
      * </p>
      * <p>
@@ -663,13 +664,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * pairs that represents additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric CMK, but
-     * it is highly recommended.
+     * encryption context is optional when encrypting with a symmetric KMS key,
+     * but it is highly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * >Encryption Context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -677,9 +678,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         Specifies the encryption context that will be used to encrypt the
      *         data. An encryption context is valid only for <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     *         >cryptographic operations</a> with a symmetric CMK. The standard
-     *         asymmetric encryption algorithms that AWS KMS uses do not support
-     *         an encryption context.
+     *         >cryptographic operations</a> with a symmetric KMS key. The
+     *         standard asymmetric encryption algorithms that KMS uses do not
+     *         support an encryption context.
      *         </p>
      *         <p>
      *         An <i>encryption context</i> is a collection of non-secret
@@ -687,13 +688,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         When you use an encryption context to encrypt data, you must
      *         specify the same (an exact case-sensitive match) encryption
      *         context to decrypt the data. An encryption context is optional
-     *         when encrypting with a symmetric CMK, but it is highly
+     *         when encrypting with a symmetric KMS key, but it is highly
      *         recommended.
      *         </p>
      *         <p>
      *         For more information, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *         >Encryption Context</a> in the <i>AWS Key Management Service
+     *         >Encryption Context</a> in the <i>Key Management Service
      *         Developer Guide</i>.
      *         </p>
      */
@@ -706,8 +707,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Specifies the encryption context that will be used to encrypt the data.
      * An encryption context is valid only for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operations</a> with a symmetric CMK. The standard
-     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * >cryptographic operations</a> with a symmetric KMS key. The standard
+     * asymmetric encryption algorithms that KMS uses do not support an
      * encryption context.
      * </p>
      * <p>
@@ -715,13 +716,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * pairs that represents additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric CMK, but
-     * it is highly recommended.
+     * encryption context is optional when encrypting with a symmetric KMS key,
+     * but it is highly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * >Encryption Context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -729,9 +730,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            Specifies the encryption context that will be used to encrypt
      *            the data. An encryption context is valid only for <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     *            >cryptographic operations</a> with a symmetric CMK. The
-     *            standard asymmetric encryption algorithms that AWS KMS uses do
-     *            not support an encryption context.
+     *            >cryptographic operations</a> with a symmetric KMS key. The
+     *            standard asymmetric encryption algorithms that KMS uses do not
+     *            support an encryption context.
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
@@ -739,13 +740,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
      *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric CMK, but it is highly
+     *            when encrypting with a symmetric KMS key, but it is highly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>AWS Key Management Service
+     *            >Encryption Context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -758,8 +759,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Specifies the encryption context that will be used to encrypt the data.
      * An encryption context is valid only for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operations</a> with a symmetric CMK. The standard
-     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * >cryptographic operations</a> with a symmetric KMS key. The standard
+     * asymmetric encryption algorithms that KMS uses do not support an
      * encryption context.
      * </p>
      * <p>
@@ -767,13 +768,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * pairs that represents additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric CMK, but
-     * it is highly recommended.
+     * encryption context is optional when encrypting with a symmetric KMS key,
+     * but it is highly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * >Encryption Context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -784,9 +785,9 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            Specifies the encryption context that will be used to encrypt
      *            the data. An encryption context is valid only for <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     *            >cryptographic operations</a> with a symmetric CMK. The
-     *            standard asymmetric encryption algorithms that AWS KMS uses do
-     *            not support an encryption context.
+     *            >cryptographic operations</a> with a symmetric KMS key. The
+     *            standard asymmetric encryption algorithms that KMS uses do not
+     *            support an encryption context.
      *            </p>
      *            <p>
      *            An <i>encryption context</i> is a collection of non-secret
@@ -794,13 +795,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            When you use an encryption context to encrypt data, you must
      *            specify the same (an exact case-sensitive match) encryption
      *            context to decrypt the data. An encryption context is optional
-     *            when encrypting with a symmetric CMK, but it is highly
+     *            when encrypting with a symmetric KMS key, but it is highly
      *            recommended.
      *            </p>
      *            <p>
      *            For more information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     *            >Encryption Context</a> in the <i>AWS Key Management Service
+     *            >Encryption Context</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -816,8 +817,8 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Specifies the encryption context that will be used to encrypt the data.
      * An encryption context is valid only for <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#cryptographic-operations"
-     * >cryptographic operations</a> with a symmetric CMK. The standard
-     * asymmetric encryption algorithms that AWS KMS uses do not support an
+     * >cryptographic operations</a> with a symmetric KMS key. The standard
+     * asymmetric encryption algorithms that KMS uses do not support an
      * encryption context.
      * </p>
      * <p>
@@ -825,13 +826,13 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * pairs that represents additional authenticated data. When you use an
      * encryption context to encrypt data, you must specify the same (an exact
      * case-sensitive match) encryption context to decrypt the data. An
-     * encryption context is optional when encrypting with a symmetric CMK, but
-     * it is highly recommended.
+     * encryption context is optional when encrypting with a symmetric KMS key,
+     * but it is highly recommended.
      * </p>
      * <p>
      * For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context"
-     * >Encryption Context</a> in the <i>AWS Key Management Service Developer
+     * >Encryption Context</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -875,8 +876,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -887,9 +890,11 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *         Use a grant token when your permission to call this operation
      *         comes from a new grant that has not yet achieved <i>eventual
      *         consistency</i>. For more information, see <a href=
-     *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *         >Grant token</a> in the <i>AWS Key Management Service Developer
-     *         Guide</i>.
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *         >Grant token</a> and <a href=
+     *         "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *         >Using a grant token</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      */
     public java.util.List<String> getGrantTokens() {
@@ -904,8 +909,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      *
@@ -916,8 +923,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      */
@@ -938,8 +947,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -953,8 +964,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -978,8 +991,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * Use a grant token when your permission to call this operation comes from
      * a new grant that has not yet achieved <i>eventual consistency</i>. For
      * more information, see <a href=
-     * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     * >Grant token</a> in the <i>AWS Key Management Service Developer
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     * >Grant token</a> and <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     * >Using a grant token</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * <p>
@@ -993,8 +1008,10 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      *            Use a grant token when your permission to call this operation
      *            comes from a new grant that has not yet achieved <i>eventual
      *            consistency</i>. For more information, see <a href=
-     *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#grant_token"
-     *            >Grant token</a> in the <i>AWS Key Management Service
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grants.html#grant_token"
+     *            >Grant token</a> and <a href=
+     *            "https://docs.aws.amazon.com/kms/latest/developerguide/grant-manage.html#using-grant-token"
+     *            >Using a grant token</a> in the <i>Key Management Service
      *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1007,14 +1024,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
-     * plaintext message. The algorithm must be compatible with the CMK that you
-     * specify.
+     * Specifies the encryption algorithm that KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the KMS key that
+     * you specify.
      * </p>
      * <p>
-     * This parameter is required only for asymmetric CMKs. The default value,
-     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
-     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * This parameter is required only for asymmetric KMS keys. The default
+     * value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     * symmetric KMS keys. If you are using an asymmetric KMS key, we recommend
+     * RSAES_OAEP_SHA_256.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1022,15 +1040,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * RSAES_OAEP_SHA_256
      *
      * @return <p>
-     *         Specifies the encryption algorithm that AWS KMS will use to
-     *         encrypt the plaintext message. The algorithm must be compatible
-     *         with the CMK that you specify.
+     *         Specifies the encryption algorithm that KMS will use to encrypt
+     *         the plaintext message. The algorithm must be compatible with the
+     *         KMS key that you specify.
      *         </p>
      *         <p>
-     *         This parameter is required only for asymmetric CMKs. The default
-     *         value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
-     *         symmetric CMKs. If you are using an asymmetric CMK, we recommend
-     *         RSAES_OAEP_SHA_256.
+     *         This parameter is required only for asymmetric KMS keys. The
+     *         default value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm
+     *         used for symmetric KMS keys. If you are using an asymmetric KMS
+     *         key, we recommend RSAES_OAEP_SHA_256.
      *         </p>
      * @see EncryptionAlgorithmSpec
      */
@@ -1040,14 +1058,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
-     * plaintext message. The algorithm must be compatible with the CMK that you
-     * specify.
+     * Specifies the encryption algorithm that KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the KMS key that
+     * you specify.
      * </p>
      * <p>
-     * This parameter is required only for asymmetric CMKs. The default value,
-     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
-     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * This parameter is required only for asymmetric KMS keys. The default
+     * value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     * symmetric KMS keys. If you are using an asymmetric KMS key, we recommend
+     * RSAES_OAEP_SHA_256.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1055,15 +1074,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * RSAES_OAEP_SHA_256
      *
      * @param encryptionAlgorithm <p>
-     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            Specifies the encryption algorithm that KMS will use to
      *            encrypt the plaintext message. The algorithm must be
-     *            compatible with the CMK that you specify.
+     *            compatible with the KMS key that you specify.
      *            </p>
      *            <p>
-     *            This parameter is required only for asymmetric CMKs. The
+     *            This parameter is required only for asymmetric KMS keys. The
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
-     *            algorithm used for symmetric CMKs. If you are using an
-     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            algorithm used for symmetric KMS keys. If you are using an
+     *            asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
      *            </p>
      * @see EncryptionAlgorithmSpec
      */
@@ -1073,14 +1092,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
-     * plaintext message. The algorithm must be compatible with the CMK that you
-     * specify.
+     * Specifies the encryption algorithm that KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the KMS key that
+     * you specify.
      * </p>
      * <p>
-     * This parameter is required only for asymmetric CMKs. The default value,
-     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
-     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * This parameter is required only for asymmetric KMS keys. The default
+     * value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     * symmetric KMS keys. If you are using an asymmetric KMS key, we recommend
+     * RSAES_OAEP_SHA_256.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1091,15 +1111,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * RSAES_OAEP_SHA_256
      *
      * @param encryptionAlgorithm <p>
-     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            Specifies the encryption algorithm that KMS will use to
      *            encrypt the plaintext message. The algorithm must be
-     *            compatible with the CMK that you specify.
+     *            compatible with the KMS key that you specify.
      *            </p>
      *            <p>
-     *            This parameter is required only for asymmetric CMKs. The
+     *            This parameter is required only for asymmetric KMS keys. The
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
-     *            algorithm used for symmetric CMKs. If you are using an
-     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            algorithm used for symmetric KMS keys. If you are using an
+     *            asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -1112,14 +1132,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
-     * plaintext message. The algorithm must be compatible with the CMK that you
-     * specify.
+     * Specifies the encryption algorithm that KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the KMS key that
+     * you specify.
      * </p>
      * <p>
-     * This parameter is required only for asymmetric CMKs. The default value,
-     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
-     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * This parameter is required only for asymmetric KMS keys. The default
+     * value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     * symmetric KMS keys. If you are using an asymmetric KMS key, we recommend
+     * RSAES_OAEP_SHA_256.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -1127,15 +1148,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * RSAES_OAEP_SHA_256
      *
      * @param encryptionAlgorithm <p>
-     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            Specifies the encryption algorithm that KMS will use to
      *            encrypt the plaintext message. The algorithm must be
-     *            compatible with the CMK that you specify.
+     *            compatible with the KMS key that you specify.
      *            </p>
      *            <p>
-     *            This parameter is required only for asymmetric CMKs. The
+     *            This parameter is required only for asymmetric KMS keys. The
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
-     *            algorithm used for symmetric CMKs. If you are using an
-     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            algorithm used for symmetric KMS keys. If you are using an
+     *            asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
      *            </p>
      * @see EncryptionAlgorithmSpec
      */
@@ -1145,14 +1166,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
 
     /**
      * <p>
-     * Specifies the encryption algorithm that AWS KMS will use to encrypt the
-     * plaintext message. The algorithm must be compatible with the CMK that you
-     * specify.
+     * Specifies the encryption algorithm that KMS will use to encrypt the
+     * plaintext message. The algorithm must be compatible with the KMS key that
+     * you specify.
      * </p>
      * <p>
-     * This parameter is required only for asymmetric CMKs. The default value,
-     * <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for symmetric CMKs.
-     * If you are using an asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     * This parameter is required only for asymmetric KMS keys. The default
+     * value, <code>SYMMETRIC_DEFAULT</code>, is the algorithm used for
+     * symmetric KMS keys. If you are using an asymmetric KMS key, we recommend
+     * RSAES_OAEP_SHA_256.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1163,15 +1185,15 @@ public class EncryptRequest extends AmazonWebServiceRequest implements Serializa
      * RSAES_OAEP_SHA_256
      *
      * @param encryptionAlgorithm <p>
-     *            Specifies the encryption algorithm that AWS KMS will use to
+     *            Specifies the encryption algorithm that KMS will use to
      *            encrypt the plaintext message. The algorithm must be
-     *            compatible with the CMK that you specify.
+     *            compatible with the KMS key that you specify.
      *            </p>
      *            <p>
-     *            This parameter is required only for asymmetric CMKs. The
+     *            This parameter is required only for asymmetric KMS keys. The
      *            default value, <code>SYMMETRIC_DEFAULT</code>, is the
-     *            algorithm used for symmetric CMKs. If you are using an
-     *            asymmetric CMK, we recommend RSAES_OAEP_SHA_256.
+     *            algorithm used for symmetric KMS keys. If you are using an
+     *            asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

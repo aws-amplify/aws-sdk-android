@@ -23,40 +23,42 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Deletes tags from a <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk"
- * >customer managed CMK</a>. To delete a tag, specify the tag key and the CMK.
+ * >customer managed key</a>. To delete a tag, specify the tag key and the KMS
+ * key.
  * </p>
  * <note>
  * <p>
- * Tagging or untagging a CMK can allow or deny permission to the CMK. For
- * details, see <a
+ * Tagging or untagging a KMS key can allow or deny permission to the KMS key.
+ * For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html">Using
- * ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.
+ * ABAC in KMS</a> in the <i>Key Management Service Developer Guide</i>.
  * </p>
  * </note>
  * <p>
  * When it succeeds, the <code>UntagResource</code> operation doesn't return any
- * output. Also, if the specified tag key isn't found on the CMK, it doesn't
+ * output. Also, if the specified tag key isn't found on the KMS key, it doesn't
  * throw an exception or return a response. To confirm that the operation
  * worked, use the <a>ListResourceTags</a> operation.
  * </p>
  * <p>
- * For information about using tags in AWS KMS, see <a href=
+ * For information about using tags in KMS, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/tagging-keys.html"
  * >Tagging keys</a>. For general information about tags, including the format
  * and syntax, see <a
  * href="https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html">Tagging
- * AWS resources</a> in the <i>Amazon Web Services General Reference</i>.
+ * Amazon Web Services resources</a> in the <i>Amazon Web Services General
+ * Reference</i>.
  * </p>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
- * different AWS account.
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS key
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -92,10 +94,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class UntagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Identifies the CMK from which you are removing tags.
+     * Identifies the KMS key from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -114,7 +116,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -132,10 +134,10 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Identifies the CMK from which you are removing tags.
+     * Identifies the KMS key from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -154,7 +156,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -162,10 +164,10 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         Identifies the CMK from which you are removing tags.
+     *         Identifies the KMS key from which you are removing tags.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -184,8 +186,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -194,10 +196,10 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Identifies the CMK from which you are removing tags.
+     * Identifies the KMS key from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -216,7 +218,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -224,10 +226,10 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies the CMK from which you are removing tags.
+     *            Identifies the KMS key from which you are removing tags.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -246,8 +248,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -256,10 +258,10 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * Identifies the CMK from which you are removing tags.
+     * Identifies the KMS key from which you are removing tags.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -278,7 +280,7 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -289,10 +291,10 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            Identifies the CMK from which you are removing tags.
+     *            Identifies the KMS key from which you are removing tags.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -311,8 +313,8 @@ public class UntagResourceRequest extends AmazonWebServiceRequest implements Ser
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

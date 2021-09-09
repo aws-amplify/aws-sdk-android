@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Data used to transfer a certificate to an AWS account.
+ * Data used to transfer a certificate to an Amazon Web Services account.
  * </p>
  */
 public class TransferData implements Serializable {

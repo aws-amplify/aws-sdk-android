@@ -25,6 +25,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * given time period. You can use filters to limit the results to those alerts
  * issued for a particular security profile, behavior, or thing (device).
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListViolationEvents</a> action.
+ * </p>
  */
 public class ListViolationEventsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

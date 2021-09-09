@@ -23,11 +23,11 @@ import com.amazonaws.AmazonServiceException;
  * valid for this request.
  * </p>
  * <p>
- * For more information about how key state affects the use of a CMK, see <a
+ * For more information about how key state affects the use of a KMS key, see <a
  * href
- * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">How
- * Key State Affects Use of a Customer Master Key</a> in the <i> <i>AWS Key
- * Management Service Developer Guide</i> </i>.
+ * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html">Key
+ * state: Effect on your KMS key</a> in the <i> <i>Key Management Service
+ * Developer Guide</i> </i>.
  * </p>
  */
 public class KMSInvalidStateException extends AmazonServiceException {

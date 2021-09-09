@@ -24,10 +24,10 @@ public class ListResourceTagsResult implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
-     * details, see <a
+     * Tagging or untagging a KMS key can allow or deny permission to the KMS
+     * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * </note>
@@ -66,10 +66,10 @@ public class ListResourceTagsResult implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
-     * details, see <a
+     * Tagging or untagging a KMS key can allow or deny permission to the KMS
+     * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * </note>
@@ -79,11 +79,11 @@ public class ListResourceTagsResult implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         Tagging or untagging a CMK can allow or deny permission to the
-     *         CMK. For details, see <a href=
+     *         Tagging or untagging a KMS key can allow or deny permission to
+     *         the KMS key. For details, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *         >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service
-     *         Developer Guide</i>.
+     *         >Using ABAC in KMS</a> in the <i>Key Management Service Developer
+     *         Guide</i>.
      *         </p>
      *         </note>
      */
@@ -97,10 +97,10 @@ public class ListResourceTagsResult implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
-     * details, see <a
+     * Tagging or untagging a KMS key can allow or deny permission to the KMS
+     * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * </note>
@@ -111,11 +111,11 @@ public class ListResourceTagsResult implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Tagging or untagging a CMK can allow or deny permission to the
-     *            CMK. For details, see <a href=
+     *            Tagging or untagging a KMS key can allow or deny permission to
+     *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >Using ABAC in AWS KMS</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Using ABAC in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      *            </note>
      */
@@ -134,10 +134,10 @@ public class ListResourceTagsResult implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
-     * details, see <a
+     * Tagging or untagging a KMS key can allow or deny permission to the KMS
+     * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * </note>
@@ -151,11 +151,11 @@ public class ListResourceTagsResult implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Tagging or untagging a CMK can allow or deny permission to the
-     *            CMK. For details, see <a href=
+     *            Tagging or untagging a KMS key can allow or deny permission to
+     *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >Using ABAC in AWS KMS</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Using ABAC in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be
@@ -177,10 +177,10 @@ public class ListResourceTagsResult implements Serializable {
      * </p>
      * <note>
      * <p>
-     * Tagging or untagging a CMK can allow or deny permission to the CMK. For
-     * details, see <a
+     * Tagging or untagging a KMS key can allow or deny permission to the KMS
+     * key. For details, see <a
      * href="https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     * >Using ABAC in AWS KMS</a> in the <i>AWS Key Management Service Developer
+     * >Using ABAC in KMS</a> in the <i>Key Management Service Developer
      * Guide</i>.
      * </p>
      * </note>
@@ -194,11 +194,11 @@ public class ListResourceTagsResult implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            Tagging or untagging a CMK can allow or deny permission to the
-     *            CMK. For details, see <a href=
+     *            Tagging or untagging a KMS key can allow or deny permission to
+     *            the KMS key. For details, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/abac.html"
-     *            >Using ABAC in AWS KMS</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Using ABAC in KMS</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

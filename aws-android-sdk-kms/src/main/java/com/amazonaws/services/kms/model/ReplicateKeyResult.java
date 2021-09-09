@@ -20,13 +20,13 @@ import java.io.Serializable;
 public class ReplicateKeyResult implements Serializable {
     /**
      * <p>
-     * Displays details about the new replica CMK, including its Amazon Resource
+     * Displays details about the new replica key, including its Amazon Resource
      * Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and AWS Region of its primary
-     * key and other replica keys.
+     * >key state</a>. It also includes the ARN and Amazon Web Services Region
+     * of its primary key and other replica keys.
      * </p>
      */
     private KeyMetadata replicaKeyMetadata;
@@ -53,23 +53,23 @@ public class ReplicateKeyResult implements Serializable {
 
     /**
      * <p>
-     * Displays details about the new replica CMK, including its Amazon Resource
+     * Displays details about the new replica key, including its Amazon Resource
      * Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and AWS Region of its primary
-     * key and other replica keys.
+     * >key state</a>. It also includes the ARN and Amazon Web Services Region
+     * of its primary key and other replica keys.
      * </p>
      *
      * @return <p>
-     *         Displays details about the new replica CMK, including its Amazon
+     *         Displays details about the new replica key, including its Amazon
      *         Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      *         >key ARN</a>) and <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *         >key state</a>. It also includes the ARN and AWS Region of its
-     *         primary key and other replica keys.
+     *         >key state</a>. It also includes the ARN and Amazon Web Services
+     *         Region of its primary key and other replica keys.
      *         </p>
      */
     public KeyMetadata getReplicaKeyMetadata() {
@@ -78,23 +78,23 @@ public class ReplicateKeyResult implements Serializable {
 
     /**
      * <p>
-     * Displays details about the new replica CMK, including its Amazon Resource
+     * Displays details about the new replica key, including its Amazon Resource
      * Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and AWS Region of its primary
-     * key and other replica keys.
+     * >key state</a>. It also includes the ARN and Amazon Web Services Region
+     * of its primary key and other replica keys.
      * </p>
      *
      * @param replicaKeyMetadata <p>
-     *            Displays details about the new replica CMK, including its
+     *            Displays details about the new replica key, including its
      *            Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      *            >key ARN</a>) and <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >key state</a>. It also includes the ARN and AWS Region of its
-     *            primary key and other replica keys.
+     *            >key state</a>. It also includes the ARN and Amazon Web
+     *            Services Region of its primary key and other replica keys.
      *            </p>
      */
     public void setReplicaKeyMetadata(KeyMetadata replicaKeyMetadata) {
@@ -103,26 +103,26 @@ public class ReplicateKeyResult implements Serializable {
 
     /**
      * <p>
-     * Displays details about the new replica CMK, including its Amazon Resource
+     * Displays details about the new replica key, including its Amazon Resource
      * Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      * >key ARN</a>) and <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >key state</a>. It also includes the ARN and AWS Region of its primary
-     * key and other replica keys.
+     * >key state</a>. It also includes the ARN and Amazon Web Services Region
+     * of its primary key and other replica keys.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param replicaKeyMetadata <p>
-     *            Displays details about the new replica CMK, including its
+     *            Displays details about the new replica key, including its
      *            Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
      *            >key ARN</a>) and <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >key state</a>. It also includes the ARN and AWS Region of its
-     *            primary key and other replica keys.
+     *            >key state</a>. It also includes the ARN and Amazon Web
+     *            Services Region of its primary key and other replica keys.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

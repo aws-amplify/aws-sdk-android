@@ -19,8 +19,8 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * The request was rejected because AWS KMS cannot find the AWS CloudHSM cluster
- * with the specified cluster ID. Retry the request with a different cluster ID.
+ * The request was rejected because KMS cannot find the CloudHSM cluster with
+ * the specified cluster ID. Retry the request with a different cluster ID.
  * </p>
  */
 public class CloudHsmClusterNotFoundException extends AmazonServiceException {

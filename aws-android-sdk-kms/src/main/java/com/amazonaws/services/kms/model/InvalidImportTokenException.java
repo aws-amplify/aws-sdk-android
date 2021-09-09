@@ -20,7 +20,7 @@ import com.amazonaws.AmazonServiceException;
 /**
  * <p>
  * The request was rejected because the provided import token is invalid or is
- * associated with a different customer master key (CMK).
+ * associated with a different KMS key.
  * </p>
  */
 public class InvalidImportTokenException extends AmazonServiceException {

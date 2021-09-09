@@ -21,7 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Transfers the specified certificate to the specified AWS account.
+ * Transfers the specified certificate to the specified Amazon Web Services
+ * account.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >TransferCertificate</a> action.
  * </p>
  * <p>
  * You can cancel the transfer until it is acknowledged by the recipient.
@@ -32,11 +38,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <p>
  * The certificate being transferred must not be in the ACTIVE state. You can
- * use the UpdateCertificate API to deactivate it.
+ * use the <a>UpdateCertificate</a> action to deactivate it.
  * </p>
  * <p>
  * The certificate must not have any policies attached to it. You can use the
- * DetachPrincipalPolicy API to detach them.
+ * <a>DetachPolicy</a> action to detach them.
  * </p>
  */
 public class TransferCertificateRequest extends AmazonWebServiceRequest implements Serializable {
@@ -54,7 +60,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The AWS account.
+     * The Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -138,7 +144,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The AWS account.
+     * The Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +152,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @return <p>
-     *         The AWS account.
+     *         The Amazon Web Services account.
      *         </p>
      */
     public String getTargetAwsAccount() {
@@ -155,7 +161,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The AWS account.
+     * The Amazon Web Services account.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -163,7 +169,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param targetAwsAccount <p>
-     *            The AWS account.
+     *            The Amazon Web Services account.
      *            </p>
      */
     public void setTargetAwsAccount(String targetAwsAccount) {
@@ -172,7 +178,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
-     * The AWS account.
+     * The Amazon Web Services account.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -183,7 +189,7 @@ public class TransferCertificateRequest extends AmazonWebServiceRequest implemen
      * <b>Pattern: </b>[0-9]+<br/>
      *
      * @param targetAwsAccount <p>
-     *            The AWS account.
+     *            The Amazon Web Services account.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

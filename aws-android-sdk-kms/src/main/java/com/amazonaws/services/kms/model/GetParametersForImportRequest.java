@@ -22,10 +22,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Returns the items you need to import key material into a symmetric, customer
- * managed customer master key (CMK). For more information about importing key
- * material into AWS KMS, see <a href=
+ * managed KMS key. For more information about importing key material into KMS,
+ * see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
- * >Importing Key Material</a> in the <i>AWS Key Management Service Developer
+ * >Importing Key Material</a> in the <i>Key Management Service Developer
  * Guide</i>.
  * </p>
  * <p>
@@ -34,11 +34,12 @@ import com.amazonaws.AmazonWebServiceRequest;
  * subsequent <a>ImportKeyMaterial</a> request.
  * </p>
  * <p>
- * You must specify the key ID of the symmetric CMK into which you will import
- * key material. This CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
- * You must also specify the wrapping algorithm and type of wrapping key (public
- * key) that you will use to encrypt the key material. You cannot perform this
- * operation on an asymmetric CMK or on any CMK in a different AWS account.
+ * You must specify the key ID of the symmetric KMS key into which you will
+ * import key material. This KMS key's <code>Origin</code> must be
+ * <code>EXTERNAL</code>. You must also specify the wrapping algorithm and type
+ * of wrapping key (public key) that you will use to encrypt the key material.
+ * You cannot perform this operation on an asymmetric KMS key or on any KMS key
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * To import key material, you must use the public key and import token from the
@@ -48,15 +49,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * token expire, send another <code>GetParametersForImport</code> request.
  * </p>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
- * different AWS account.
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS key
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -82,12 +83,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class GetParametersForImportRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the symmetric CMK into which you will import key
-     * material. The <code>Origin</code> of the CMK must be
+     * The identifier of the symmetric KMS key into which you will import key
+     * material. The <code>Origin</code> of the KMS key must be
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -106,7 +107,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -120,8 +121,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * The algorithm you will use to encrypt the key material before importing
      * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,12 +144,12 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the symmetric CMK into which you will import key
-     * material. The <code>Origin</code> of the CMK must be
+     * The identifier of the symmetric KMS key into which you will import key
+     * material. The <code>Origin</code> of the KMS key must be
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -167,7 +168,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -175,12 +176,12 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the symmetric CMK into which you will import
-     *         key material. The <code>Origin</code> of the CMK must be
-     *         <code>EXTERNAL</code>.
+     *         The identifier of the symmetric KMS key into which you will
+     *         import key material. The <code>Origin</code> of the KMS key must
+     *         be <code>EXTERNAL</code>.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -199,8 +200,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -209,12 +210,12 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the symmetric CMK into which you will import key
-     * material. The <code>Origin</code> of the CMK must be
+     * The identifier of the symmetric KMS key into which you will import key
+     * material. The <code>Origin</code> of the KMS key must be
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -233,7 +234,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -241,12 +242,12 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the symmetric CMK into which you will import
-     *            key material. The <code>Origin</code> of the CMK must be
-     *            <code>EXTERNAL</code>.
+     *            The identifier of the symmetric KMS key into which you will
+     *            import key material. The <code>Origin</code> of the KMS key
+     *            must be <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -265,8 +266,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -275,12 +276,12 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The identifier of the symmetric CMK into which you will import key
-     * material. The <code>Origin</code> of the CMK must be
+     * The identifier of the symmetric KMS key into which you will import key
+     * material. The <code>Origin</code> of the KMS key must be
      * <code>EXTERNAL</code>.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -299,7 +300,7 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -310,12 +311,12 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the symmetric CMK into which you will import
-     *            key material. The <code>Origin</code> of the CMK must be
-     *            <code>EXTERNAL</code>.
+     *            The identifier of the symmetric KMS key into which you will
+     *            import key material. The <code>Origin</code> of the KMS key
+     *            must be <code>EXTERNAL</code>.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -334,8 +335,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -350,8 +351,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * The algorithm you will use to encrypt the key material before importing
      * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -363,8 +364,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *         importing it with <a>ImportKeyMaterial</a>. For more information,
      *         see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *         >Encrypt the Key Material</a> in the <i>AWS Key Management
-     *         Service Developer Guide</i>.
+     *         >Encrypt the Key Material</a> in the <i>Key Management Service
+     *         Developer Guide</i>.
      *         </p>
      * @see AlgorithmSpec
      */
@@ -377,8 +378,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * The algorithm you will use to encrypt the key material before importing
      * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -390,8 +391,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            importing it with <a>ImportKeyMaterial</a>. For more
      *            information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @see AlgorithmSpec
      */
@@ -404,8 +405,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * The algorithm you will use to encrypt the key material before importing
      * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -420,8 +421,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            importing it with <a>ImportKeyMaterial</a>. For more
      *            information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -437,8 +438,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * The algorithm you will use to encrypt the key material before importing
      * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -450,8 +451,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            importing it with <a>ImportKeyMaterial</a>. For more
      *            information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @see AlgorithmSpec
      */
@@ -464,8 +465,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      * The algorithm you will use to encrypt the key material before importing
      * it with <a>ImportKeyMaterial</a>. For more information, see <a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     * >Encrypt the Key Material</a> in the <i>AWS Key Management Service
-     * Developer Guide</i>.
+     * >Encrypt the Key Material</a> in the <i>Key Management Service Developer
+     * Guide</i>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -480,8 +481,8 @@ public class GetParametersForImportRequest extends AmazonWebServiceRequest imple
      *            importing it with <a>ImportKeyMaterial</a>. For more
      *            information, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys-encrypt-key-material.html"
-     *            >Encrypt the Key Material</a> in the <i>AWS Key Management
-     *            Service Developer Guide</i>.
+     *            >Encrypt the Key Material</a> in the <i>Key Management Service
+     *            Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
