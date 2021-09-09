@@ -16,10 +16,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import static com.google.common.truth.Truth.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
+@Config(sdk = {Config.OLDEST_SDK})
 public class AndroidCameraMediaSourceTest {
 
     private final String STREAM_NAME = "Test_Name";
