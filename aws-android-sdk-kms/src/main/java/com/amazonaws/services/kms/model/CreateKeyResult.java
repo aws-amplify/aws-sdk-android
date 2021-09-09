@@ -20,18 +20,18 @@ import java.io.Serializable;
 public class CreateKeyResult implements Serializable {
     /**
      * <p>
-     * Metadata associated with the CMK.
+     * Metadata associated with the KMS key.
      * </p>
      */
     private KeyMetadata keyMetadata;
 
     /**
      * <p>
-     * Metadata associated with the CMK.
+     * Metadata associated with the KMS key.
      * </p>
      *
      * @return <p>
-     *         Metadata associated with the CMK.
+     *         Metadata associated with the KMS key.
      *         </p>
      */
     public KeyMetadata getKeyMetadata() {
@@ -40,11 +40,11 @@ public class CreateKeyResult implements Serializable {
 
     /**
      * <p>
-     * Metadata associated with the CMK.
+     * Metadata associated with the KMS key.
      * </p>
      *
      * @param keyMetadata <p>
-     *            Metadata associated with the CMK.
+     *            Metadata associated with the KMS key.
      *            </p>
      */
     public void setKeyMetadata(KeyMetadata keyMetadata) {
@@ -53,14 +53,14 @@ public class CreateKeyResult implements Serializable {
 
     /**
      * <p>
-     * Metadata associated with the CMK.
+     * Metadata associated with the KMS key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param keyMetadata <p>
-     *            Metadata associated with the CMK.
+     *            Metadata associated with the KMS key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

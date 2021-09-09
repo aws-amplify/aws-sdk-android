@@ -21,19 +21,20 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Imports key material into an existing symmetric AWS KMS customer master key
- * (CMK) that was created without key material. After you successfully import
- * key material into a CMK, you can <a href=
+ * Imports key material into an existing symmetric KMS KMS key that was created
+ * without key material. After you successfully import key material into a KMS
+ * key, you can <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html#reimport-key-material"
- * >reimport the same key material</a> into that CMK, but you cannot import
+ * >reimport the same key material</a> into that KMS key, but you cannot import
  * different key material.
  * </p>
  * <p>
- * You cannot perform this operation on an asymmetric CMK or on any CMK in a
- * different AWS account. For more information about creating CMKs with no key
- * material and then importing key material, see <a href=
+ * You cannot perform this operation on an asymmetric KMS key or on any KMS key
+ * in a different Amazon Web Services account. For more information about
+ * creating KMS keys with no key material and then importing key material, see
+ * <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html"
- * >Importing Key Material</a> in the <i>AWS Key Management Service Developer
+ * >Importing Key Material</a> in the <i>Key Management Service Developer
  * Guide</i>.
  * </p>
  * <p>
@@ -48,13 +49,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <ul>
  * <li>
  * <p>
- * The key ID or key ARN of a CMK with no key material. Its <code>Origin</code>
- * must be <code>EXTERNAL</code>.
+ * The key ID or key ARN of a KMS key with no key material. Its
+ * <code>Origin</code> must be <code>EXTERNAL</code>.
  * </p>
  * <p>
- * To create a CMK with no key material, call <a>CreateKey</a> and set the value
- * of its <code>Origin</code> parameter to <code>EXTERNAL</code>. To get the
- * <code>Origin</code> of a CMK, call <a>DescribeKey</a>.)
+ * To create a KMS key with no key material, call <a>CreateKey</a> and set the
+ * value of its <code>Origin</code> parameter to <code>EXTERNAL</code>. To get
+ * the <code>Origin</code> of a KMS key, call <a>DescribeKey</a>.)
  * </p>
  * </li>
  * <li>
@@ -73,36 +74,37 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <li>
  * <p>
  * Whether the key material expires and if so, when. If you set an expiration
- * date, AWS KMS deletes the key material from the CMK on the specified date,
- * and the CMK becomes unusable. To use the CMK again, you must reimport the
- * same key material. The only way to change an expiration date is by
+ * date, KMS deletes the key material from the KMS key on the specified date,
+ * and the KMS key becomes unusable. To use the KMS key again, you must reimport
+ * the same key material. The only way to change an expiration date is by
  * reimporting the same key material and specifying a new expiration date.
  * </p>
  * </li>
  * </ul>
  * <p>
- * When this operation is successful, the key state of the CMK changes from
- * <code>PendingImport</code> to <code>Enabled</code>, and you can use the CMK.
+ * When this operation is successful, the key state of the KMS key changes from
+ * <code>PendingImport</code> to <code>Enabled</code>, and you can use the KMS
+ * key.
  * </p>
  * <p>
  * If this operation fails, use the exception to help determine the problem. If
  * the error is related to the key material, the import token, or wrapping key,
  * use <a>GetParametersForImport</a> to get a new public key and import token
- * for the CMK and repeat the import procedure. For help, see <a href=
+ * for the KMS key and repeat the import procedure. For help, see <a href=
  * "https://docs.aws.amazon.com/kms/latest/developerguide/importing-keys.html#importing-keys-overview"
- * >How To Import Key Material</a> in the <i>AWS Key Management Service
- * Developer Guide</i>.
+ * >How To Import Key Material</a> in the <i>Key Management Service Developer
+ * Guide</i>.
  * </p>
  * <p>
- * The CMK that you use for this operation must be in a compatible key state.
- * For details, see <a
+ * The KMS key that you use for this operation must be in a compatible key
+ * state. For details, see <a
  * href="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
- * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+ * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
  * Developer Guide</i>.
  * </p>
  * <p>
- * <b>Cross-account use</b>: No. You cannot perform this operation on a CMK in a
- * different AWS account.
+ * <b>Cross-account use</b>: No. You cannot perform this operation on a KMS key
+ * in a different Amazon Web Services account.
  * </p>
  * <p>
  * <b>Required permissions</b>: <a href=
@@ -128,13 +130,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * The identifier of the symmetric CMK that receives the imported key
-     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
-     * This must be the same CMK specified in the <code>KeyID</code> parameter
-     * of the corresponding <a>GetParametersForImport</a> request.
+     * The identifier of the symmetric KMS key that receives the imported key
+     * material. The KMS key's <code>Origin</code> must be <code>EXTERNAL</code>
+     * . This must be the same KMS key specified in the <code>KeyID</code>
+     * parameter of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -153,7 +155,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -190,7 +192,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The time at which the imported key material expires. When the key
-     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * material expires, KMS deletes the key material and the KMS key becomes
      * unusable. You must omit this parameter when the
      * <code>ExpirationModel</code> parameter is set to
      * <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is required.
@@ -214,13 +216,13 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the symmetric CMK that receives the imported key
-     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
-     * This must be the same CMK specified in the <code>KeyID</code> parameter
-     * of the corresponding <a>GetParametersForImport</a> request.
+     * The identifier of the symmetric KMS key that receives the imported key
+     * material. The KMS key's <code>Origin</code> must be <code>EXTERNAL</code>
+     * . This must be the same KMS key specified in the <code>KeyID</code>
+     * parameter of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -239,7 +241,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -247,14 +249,14 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @return <p>
-     *         The identifier of the symmetric CMK that receives the imported
-     *         key material. The CMK's <code>Origin</code> must be
-     *         <code>EXTERNAL</code>. This must be the same CMK specified in the
-     *         <code>KeyID</code> parameter of the corresponding
+     *         The identifier of the symmetric KMS key that receives the
+     *         imported key material. The KMS key's <code>Origin</code> must be
+     *         <code>EXTERNAL</code>. This must be the same KMS key specified in
+     *         the <code>KeyID</code> parameter of the corresponding
      *         <a>GetParametersForImport</a> request.
      *         </p>
      *         <p>
-     *         Specify the key ID or key ARN of the CMK.
+     *         Specify the key ID or key ARN of the KMS key.
      *         </p>
      *         <p>
      *         For example:
@@ -273,8 +275,8 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *         </li>
      *         </ul>
      *         <p>
-     *         To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
-     *         <a>DescribeKey</a>.
+     *         To get the key ID and key ARN for a KMS key, use <a>ListKeys</a>
+     *         or <a>DescribeKey</a>.
      *         </p>
      */
     public String getKeyId() {
@@ -283,13 +285,13 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the symmetric CMK that receives the imported key
-     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
-     * This must be the same CMK specified in the <code>KeyID</code> parameter
-     * of the corresponding <a>GetParametersForImport</a> request.
+     * The identifier of the symmetric KMS key that receives the imported key
+     * material. The KMS key's <code>Origin</code> must be <code>EXTERNAL</code>
+     * . This must be the same KMS key specified in the <code>KeyID</code>
+     * parameter of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -308,7 +310,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -316,14 +318,14 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the symmetric CMK that receives the imported
-     *            key material. The CMK's <code>Origin</code> must be
-     *            <code>EXTERNAL</code>. This must be the same CMK specified in
-     *            the <code>KeyID</code> parameter of the corresponding
-     *            <a>GetParametersForImport</a> request.
+     *            The identifier of the symmetric KMS key that receives the
+     *            imported key material. The KMS key's <code>Origin</code> must
+     *            be <code>EXTERNAL</code>. This must be the same KMS key
+     *            specified in the <code>KeyID</code> parameter of the
+     *            corresponding <a>GetParametersForImport</a> request.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -342,8 +344,8 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -352,13 +354,13 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The identifier of the symmetric CMK that receives the imported key
-     * material. The CMK's <code>Origin</code> must be <code>EXTERNAL</code>.
-     * This must be the same CMK specified in the <code>KeyID</code> parameter
-     * of the corresponding <a>GetParametersForImport</a> request.
+     * The identifier of the symmetric KMS key that receives the imported key
+     * material. The KMS key's <code>Origin</code> must be <code>EXTERNAL</code>
+     * . This must be the same KMS key specified in the <code>KeyID</code>
+     * parameter of the corresponding <a>GetParametersForImport</a> request.
      * </p>
      * <p>
-     * Specify the key ID or key ARN of the CMK.
+     * Specify the key ID or key ARN of the KMS key.
      * </p>
      * <p>
      * For example:
@@ -377,7 +379,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * </li>
      * </ul>
      * <p>
-     * To get the key ID and key ARN for a CMK, use <a>ListKeys</a> or
+     * To get the key ID and key ARN for a KMS key, use <a>ListKeys</a> or
      * <a>DescribeKey</a>.
      * </p>
      * <p>
@@ -388,14 +390,14 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      * <b>Length: </b>1 - 2048<br/>
      *
      * @param keyId <p>
-     *            The identifier of the symmetric CMK that receives the imported
-     *            key material. The CMK's <code>Origin</code> must be
-     *            <code>EXTERNAL</code>. This must be the same CMK specified in
-     *            the <code>KeyID</code> parameter of the corresponding
-     *            <a>GetParametersForImport</a> request.
+     *            The identifier of the symmetric KMS key that receives the
+     *            imported key material. The KMS key's <code>Origin</code> must
+     *            be <code>EXTERNAL</code>. This must be the same KMS key
+     *            specified in the <code>KeyID</code> parameter of the
+     *            corresponding <a>GetParametersForImport</a> request.
      *            </p>
      *            <p>
-     *            Specify the key ID or key ARN of the CMK.
+     *            Specify the key ID or key ARN of the KMS key.
      *            </p>
      *            <p>
      *            For example:
@@ -414,8 +416,8 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *            </li>
      *            </ul>
      *            <p>
-     *            To get the key ID and key ARN for a CMK, use <a>ListKeys</a>
-     *            or <a>DescribeKey</a>.
+     *            To get the key ID and key ARN for a KMS key, use
+     *            <a>ListKeys</a> or <a>DescribeKey</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -573,7 +575,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The time at which the imported key material expires. When the key
-     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * material expires, KMS deletes the key material and the KMS key becomes
      * unusable. You must omit this parameter when the
      * <code>ExpirationModel</code> parameter is set to
      * <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is required.
@@ -581,7 +583,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *
      * @return <p>
      *         The time at which the imported key material expires. When the key
-     *         material expires, AWS KMS deletes the key material and the CMK
+     *         material expires, KMS deletes the key material and the KMS key
      *         becomes unusable. You must omit this parameter when the
      *         <code>ExpirationModel</code> parameter is set to
      *         <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is
@@ -595,7 +597,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The time at which the imported key material expires. When the key
-     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * material expires, KMS deletes the key material and the KMS key becomes
      * unusable. You must omit this parameter when the
      * <code>ExpirationModel</code> parameter is set to
      * <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is required.
@@ -603,8 +605,8 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *
      * @param validTo <p>
      *            The time at which the imported key material expires. When the
-     *            key material expires, AWS KMS deletes the key material and the
-     *            CMK becomes unusable. You must omit this parameter when the
+     *            key material expires, KMS deletes the key material and the KMS
+     *            key becomes unusable. You must omit this parameter when the
      *            <code>ExpirationModel</code> parameter is set to
      *            <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is
      *            required.
@@ -617,7 +619,7 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
     /**
      * <p>
      * The time at which the imported key material expires. When the key
-     * material expires, AWS KMS deletes the key material and the CMK becomes
+     * material expires, KMS deletes the key material and the KMS key becomes
      * unusable. You must omit this parameter when the
      * <code>ExpirationModel</code> parameter is set to
      * <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is required.
@@ -628,8 +630,8 @@ public class ImportKeyMaterialRequest extends AmazonWebServiceRequest implements
      *
      * @param validTo <p>
      *            The time at which the imported key material expires. When the
-     *            key material expires, AWS KMS deletes the key material and the
-     *            CMK becomes unusable. You must omit this parameter when the
+     *            key material expires, KMS deletes the key material and the KMS
+     *            key becomes unusable. You must omit this parameter when the
      *            <code>ExpirationModel</code> parameter is set to
      *            <code>KEY_MATERIAL_DOES_NOT_EXPIRE</code>. Otherwise it is
      *            required.

@@ -766,9 +766,15 @@ public class IdentityManager {
 
                                 @Override
                                 public void onError(final IdentityProvider provider, final Exception ex) {
-                                    Log.e(LOG_TAG,
-                                            String.format("Federate with Cognito with %s Sign-in provider failed. Error: %s",
-                                                    provider.getDisplayName(), ex.getMessage()), ex);
+                                    if (provider!= null) {
+                                        Log.e(LOG_TAG,
+                                                String.format("Federate with Cognito with %s Sign-in provider failed. Error: %s",
+                                                        provider.getDisplayName(), ex.getMessage()), ex);
+                                    } else {
+                                        Log.e(LOG_TAG,
+                                                String.format("Federate with Cognito failed. Error: %s"
+                                                        , ex.getMessage()), ex);
+                                    }
 
                                     if (ex instanceof AuthException) {
                                         completeHandler(callingActivity, startupAuthResultHandler,

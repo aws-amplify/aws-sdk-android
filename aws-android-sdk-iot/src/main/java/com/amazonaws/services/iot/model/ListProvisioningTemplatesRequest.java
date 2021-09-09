@@ -21,7 +21,12 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the fleet provisioning templates in your AWS account.
+ * Lists the fleet provisioning templates in your Amazon Web Services account.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListProvisioningTemplates</a> action.
  * </p>
  */
 public class ListProvisioningTemplatesRequest extends AmazonWebServiceRequest implements

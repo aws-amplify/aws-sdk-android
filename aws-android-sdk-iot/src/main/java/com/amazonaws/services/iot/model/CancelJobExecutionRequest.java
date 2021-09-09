@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Cancels the execution of a job for a given thing.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CancelJobExecution</a> action.
+ * </p>
  */
 public class CancelJobExecutionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

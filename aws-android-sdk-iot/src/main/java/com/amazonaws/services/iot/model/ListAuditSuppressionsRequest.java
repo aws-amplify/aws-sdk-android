@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists your Device Defender audit listings.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListAuditSuppressions</a> action.
+ * </p>
  */
 public class ListAuditSuppressionsRequest extends AmazonWebServiceRequest implements Serializable {
     /**

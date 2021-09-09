@@ -106,6 +106,11 @@ class KeyMetadataJsonMarshaller {
             jsonWriter.name("CustomerMasterKeySpec");
             jsonWriter.value(customerMasterKeySpec);
         }
+        if (keyMetadata.getKeySpec() != null) {
+            String keySpec = keyMetadata.getKeySpec();
+            jsonWriter.name("KeySpec");
+            jsonWriter.value(keySpec);
+        }
         if (keyMetadata.getEncryptionAlgorithms() != null) {
             java.util.List<String> encryptionAlgorithms = keyMetadata.getEncryptionAlgorithms();
             jsonWriter.name("EncryptionAlgorithms");

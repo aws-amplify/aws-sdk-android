@@ -12,6 +12,7 @@ android {
 
 dependencies {
     api project(':aws-android-sdk-core')
+    implementation 'androidx.annotation:annotation:1.1.0'
 
     testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.mockito:mockito-all:1.10.19'

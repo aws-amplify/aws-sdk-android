@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Validates a Device Defender security profile behaviors specification.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ValidateSecurityProfileBehaviors</a> action.
+ * </p>
  */
 public class ValidateSecurityProfileBehaviorsRequest extends AmazonWebServiceRequest implements
         Serializable {

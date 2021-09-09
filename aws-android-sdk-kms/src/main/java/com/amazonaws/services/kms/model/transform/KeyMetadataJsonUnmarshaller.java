@@ -83,6 +83,9 @@ class KeyMetadataJsonUnmarshaller implements Unmarshaller<KeyMetadata, JsonUnmar
             } else if (name.equals("CustomerMasterKeySpec")) {
                 keyMetadata.setCustomerMasterKeySpec(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KeySpec")) {
+                keyMetadata.setKeySpec(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("EncryptionAlgorithms")) {
                 keyMetadata.setEncryptionAlgorithms(new ListUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()

@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Gets summary information about a domain configuration.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DescribeDomainConfiguration</a> action.
+ * </p>
  */
 public class DescribeDomainConfigurationRequest extends AmazonWebServiceRequest implements
         Serializable {
