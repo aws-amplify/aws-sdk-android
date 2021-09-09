@@ -22,7 +22,7 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK from which the public key was
+     * >key ARN</a>) of the asymmetric KMS key from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -39,8 +39,8 @@ public class GetPublicKeyResult implements Serializable {
      * The value is a DER-encoded X.509 public key, also known as
      * <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      * href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When you use the
-     * HTTP API or the AWS CLI, the value is Base64-encoded. Otherwise, it is
-     * not Base64-encoded.
+     * HTTP API or the Amazon Web Services CLI, the value is Base64-encoded.
+     * Otherwise, it is not Base64-encoded.
      * </p>
      * <p/>
      * <p>
@@ -51,7 +51,14 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The type of the of the public key that was downloaded.
+     * Instead, use the <code>KeySpec</code> field in the
+     * <code>GetPublicKey</code> response.
+     * </p>
+     * <p>
+     * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
+     * have the same value. We recommend that you use the <code>KeySpec</code>
+     * field in your code. However, to avoid breaking changes, KMS will support
+     * both fields.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -62,12 +69,23 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
+     * The type of the of the public key that was downloaded.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     */
+    private String keySpec;
+
+    /**
+     * <p>
      * The permitted use of the public key. Valid values are
      * <code>ENCRYPT_DECRYPT</code> or <code>SIGN_VERIFY</code>.
      * </p>
      * <p>
      * This information is critical. If a public key with
-     * <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS KMS, the
+     * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
@@ -78,12 +96,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The encryption algorithms that AWS KMS supports for this key.
+     * The encryption algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This information is critical. If a public key encrypts data outside of
-     * AWS KMS by using an unsupported encryption algorithm, the ciphertext
-     * cannot be decrypted.
+     * KMS by using an unsupported encryption algorithm, the ciphertext cannot
+     * be decrypted.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -94,7 +112,7 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The signing algorithms that AWS KMS supports for this key.
+     * The signing algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -107,7 +125,7 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK from which the public key was
+     * >key ARN</a>) of the asymmetric KMS key from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -117,8 +135,8 @@ public class GetPublicKeyResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the asymmetric CMK from which the public key was
-     *         downloaded.
+     *         >key ARN</a>) of the asymmetric KMS key from which the public key
+     *         was downloaded.
      *         </p>
      */
     public String getKeyId() {
@@ -129,7 +147,7 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK from which the public key was
+     * >key ARN</a>) of the asymmetric KMS key from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -139,8 +157,8 @@ public class GetPublicKeyResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the asymmetric CMK from which the public key
-     *            was downloaded.
+     *            >key ARN</a>) of the asymmetric KMS key from which the public
+     *            key was downloaded.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -151,7 +169,7 @@ public class GetPublicKeyResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK from which the public key was
+     * >key ARN</a>) of the asymmetric KMS key from which the public key was
      * downloaded.
      * </p>
      * <p>
@@ -164,8 +182,8 @@ public class GetPublicKeyResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the asymmetric CMK from which the public key
-     *            was downloaded.
+     *            >key ARN</a>) of the asymmetric KMS key from which the public
+     *            key was downloaded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -183,8 +201,8 @@ public class GetPublicKeyResult implements Serializable {
      * The value is a DER-encoded X.509 public key, also known as
      * <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      * href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When you use the
-     * HTTP API or the AWS CLI, the value is Base64-encoded. Otherwise, it is
-     * not Base64-encoded.
+     * HTTP API or the Amazon Web Services CLI, the value is Base64-encoded.
+     * Otherwise, it is not Base64-encoded.
      * </p>
      * <p/>
      * <p>
@@ -198,8 +216,8 @@ public class GetPublicKeyResult implements Serializable {
      *         The value is a DER-encoded X.509 public key, also known as
      *         <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      *         href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When you
-     *         use the HTTP API or the AWS CLI, the value is Base64-encoded.
-     *         Otherwise, it is not Base64-encoded.
+     *         use the HTTP API or the Amazon Web Services CLI, the value is
+     *         Base64-encoded. Otherwise, it is not Base64-encoded.
      *         </p>
      *         <p/>
      */
@@ -215,8 +233,8 @@ public class GetPublicKeyResult implements Serializable {
      * The value is a DER-encoded X.509 public key, also known as
      * <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      * href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When you use the
-     * HTTP API or the AWS CLI, the value is Base64-encoded. Otherwise, it is
-     * not Base64-encoded.
+     * HTTP API or the Amazon Web Services CLI, the value is Base64-encoded.
+     * Otherwise, it is not Base64-encoded.
      * </p>
      * <p/>
      * <p>
@@ -230,8 +248,8 @@ public class GetPublicKeyResult implements Serializable {
      *            The value is a DER-encoded X.509 public key, also known as
      *            <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      *            href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When
-     *            you use the HTTP API or the AWS CLI, the value is
-     *            Base64-encoded. Otherwise, it is not Base64-encoded.
+     *            you use the HTTP API or the Amazon Web Services CLI, the value
+     *            is Base64-encoded. Otherwise, it is not Base64-encoded.
      *            </p>
      *            <p/>
      */
@@ -247,8 +265,8 @@ public class GetPublicKeyResult implements Serializable {
      * The value is a DER-encoded X.509 public key, also known as
      * <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      * href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When you use the
-     * HTTP API or the AWS CLI, the value is Base64-encoded. Otherwise, it is
-     * not Base64-encoded.
+     * HTTP API or the Amazon Web Services CLI, the value is Base64-encoded.
+     * Otherwise, it is not Base64-encoded.
      * </p>
      * <p/>
      * <p>
@@ -265,8 +283,8 @@ public class GetPublicKeyResult implements Serializable {
      *            The value is a DER-encoded X.509 public key, also known as
      *            <code>SubjectPublicKeyInfo</code> (SPKI), as defined in <a
      *            href="https://tools.ietf.org/html/rfc5280">RFC 5280</a>. When
-     *            you use the HTTP API or the AWS CLI, the value is
-     *            Base64-encoded. Otherwise, it is not Base64-encoded.
+     *            you use the HTTP API or the Amazon Web Services CLI, the value
+     *            is Base64-encoded. Otherwise, it is not Base64-encoded.
      *            </p>
      *            <p/>
      * @return A reference to this updated object so that method calls can be
@@ -274,6 +292,182 @@ public class GetPublicKeyResult implements Serializable {
      */
     public GetPublicKeyResult withPublicKey(java.nio.ByteBuffer publicKey) {
         this.publicKey = publicKey;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Instead, use the <code>KeySpec</code> field in the
+     * <code>GetPublicKey</code> response.
+     * </p>
+     * <p>
+     * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
+     * have the same value. We recommend that you use the <code>KeySpec</code>
+     * field in your code. However, to avoid breaking changes, KMS will support
+     * both fields.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     *
+     * @return <p>
+     *         Instead, use the <code>KeySpec</code> field in the
+     *         <code>GetPublicKey</code> response.
+     *         </p>
+     *         <p>
+     *         The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code>
+     *         fields have the same value. We recommend that you use the
+     *         <code>KeySpec</code> field in your code. However, to avoid
+     *         breaking changes, KMS will support both fields.
+     *         </p>
+     * @see CustomerMasterKeySpec
+     */
+    public String getCustomerMasterKeySpec() {
+        return customerMasterKeySpec;
+    }
+
+    /**
+     * <p>
+     * Instead, use the <code>KeySpec</code> field in the
+     * <code>GetPublicKey</code> response.
+     * </p>
+     * <p>
+     * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
+     * have the same value. We recommend that you use the <code>KeySpec</code>
+     * field in your code. However, to avoid breaking changes, KMS will support
+     * both fields.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     *
+     * @param customerMasterKeySpec <p>
+     *            Instead, use the <code>KeySpec</code> field in the
+     *            <code>GetPublicKey</code> response.
+     *            </p>
+     *            <p>
+     *            The <code>KeySpec</code> and
+     *            <code>CustomerMasterKeySpec</code> fields have the same value.
+     *            We recommend that you use the <code>KeySpec</code> field in
+     *            your code. However, to avoid breaking changes, KMS will
+     *            support both fields.
+     *            </p>
+     * @see CustomerMasterKeySpec
+     */
+    public void setCustomerMasterKeySpec(String customerMasterKeySpec) {
+        this.customerMasterKeySpec = customerMasterKeySpec;
+    }
+
+    /**
+     * <p>
+     * Instead, use the <code>KeySpec</code> field in the
+     * <code>GetPublicKey</code> response.
+     * </p>
+     * <p>
+     * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
+     * have the same value. We recommend that you use the <code>KeySpec</code>
+     * field in your code. However, to avoid breaking changes, KMS will support
+     * both fields.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     *
+     * @param customerMasterKeySpec <p>
+     *            Instead, use the <code>KeySpec</code> field in the
+     *            <code>GetPublicKey</code> response.
+     *            </p>
+     *            <p>
+     *            The <code>KeySpec</code> and
+     *            <code>CustomerMasterKeySpec</code> fields have the same value.
+     *            We recommend that you use the <code>KeySpec</code> field in
+     *            your code. However, to avoid breaking changes, KMS will
+     *            support both fields.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CustomerMasterKeySpec
+     */
+    public GetPublicKeyResult withCustomerMasterKeySpec(String customerMasterKeySpec) {
+        this.customerMasterKeySpec = customerMasterKeySpec;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Instead, use the <code>KeySpec</code> field in the
+     * <code>GetPublicKey</code> response.
+     * </p>
+     * <p>
+     * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
+     * have the same value. We recommend that you use the <code>KeySpec</code>
+     * field in your code. However, to avoid breaking changes, KMS will support
+     * both fields.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     *
+     * @param customerMasterKeySpec <p>
+     *            Instead, use the <code>KeySpec</code> field in the
+     *            <code>GetPublicKey</code> response.
+     *            </p>
+     *            <p>
+     *            The <code>KeySpec</code> and
+     *            <code>CustomerMasterKeySpec</code> fields have the same value.
+     *            We recommend that you use the <code>KeySpec</code> field in
+     *            your code. However, to avoid breaking changes, KMS will
+     *            support both fields.
+     *            </p>
+     * @see CustomerMasterKeySpec
+     */
+    public void setCustomerMasterKeySpec(CustomerMasterKeySpec customerMasterKeySpec) {
+        this.customerMasterKeySpec = customerMasterKeySpec.toString();
+    }
+
+    /**
+     * <p>
+     * Instead, use the <code>KeySpec</code> field in the
+     * <code>GetPublicKey</code> response.
+     * </p>
+     * <p>
+     * The <code>KeySpec</code> and <code>CustomerMasterKeySpec</code> fields
+     * have the same value. We recommend that you use the <code>KeySpec</code>
+     * field in your code. However, to avoid breaking changes, KMS will support
+     * both fields.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
+     * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
+     *
+     * @param customerMasterKeySpec <p>
+     *            Instead, use the <code>KeySpec</code> field in the
+     *            <code>GetPublicKey</code> response.
+     *            </p>
+     *            <p>
+     *            The <code>KeySpec</code> and
+     *            <code>CustomerMasterKeySpec</code> fields have the same value.
+     *            We recommend that you use the <code>KeySpec</code> field in
+     *            your code. However, to avoid breaking changes, KMS will
+     *            support both fields.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see CustomerMasterKeySpec
+     */
+    public GetPublicKeyResult withCustomerMasterKeySpec(CustomerMasterKeySpec customerMasterKeySpec) {
+        this.customerMasterKeySpec = customerMasterKeySpec.toString();
         return this;
     }
 
@@ -289,10 +483,10 @@ public class GetPublicKeyResult implements Serializable {
      * @return <p>
      *         The type of the of the public key that was downloaded.
      *         </p>
-     * @see CustomerMasterKeySpec
+     * @see KeySpec
      */
-    public String getCustomerMasterKeySpec() {
-        return customerMasterKeySpec;
+    public String getKeySpec() {
+        return keySpec;
     }
 
     /**
@@ -304,13 +498,13 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
-     * @param customerMasterKeySpec <p>
+     * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
      *            </p>
-     * @see CustomerMasterKeySpec
+     * @see KeySpec
      */
-    public void setCustomerMasterKeySpec(String customerMasterKeySpec) {
-        this.customerMasterKeySpec = customerMasterKeySpec;
+    public void setKeySpec(String keySpec) {
+        this.keySpec = keySpec;
     }
 
     /**
@@ -325,15 +519,15 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
-     * @param customerMasterKeySpec <p>
+     * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see CustomerMasterKeySpec
+     * @see KeySpec
      */
-    public GetPublicKeyResult withCustomerMasterKeySpec(String customerMasterKeySpec) {
-        this.customerMasterKeySpec = customerMasterKeySpec;
+    public GetPublicKeyResult withKeySpec(String keySpec) {
+        this.keySpec = keySpec;
         return this;
     }
 
@@ -346,13 +540,13 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
-     * @param customerMasterKeySpec <p>
+     * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
      *            </p>
-     * @see CustomerMasterKeySpec
+     * @see KeySpec
      */
-    public void setCustomerMasterKeySpec(CustomerMasterKeySpec customerMasterKeySpec) {
-        this.customerMasterKeySpec = customerMasterKeySpec.toString();
+    public void setKeySpec(KeySpec keySpec) {
+        this.keySpec = keySpec.toString();
     }
 
     /**
@@ -367,15 +561,15 @@ public class GetPublicKeyResult implements Serializable {
      * <b>Allowed Values: </b>RSA_2048, RSA_3072, RSA_4096, ECC_NIST_P256,
      * ECC_NIST_P384, ECC_NIST_P521, ECC_SECG_P256K1, SYMMETRIC_DEFAULT
      *
-     * @param customerMasterKeySpec <p>
+     * @param keySpec <p>
      *            The type of the of the public key that was downloaded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
-     * @see CustomerMasterKeySpec
+     * @see KeySpec
      */
-    public GetPublicKeyResult withCustomerMasterKeySpec(CustomerMasterKeySpec customerMasterKeySpec) {
-        this.customerMasterKeySpec = customerMasterKeySpec.toString();
+    public GetPublicKeyResult withKeySpec(KeySpec keySpec) {
+        this.keySpec = keySpec.toString();
         return this;
     }
 
@@ -386,7 +580,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * This information is critical. If a public key with
-     * <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS KMS, the
+     * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
@@ -399,8 +593,8 @@ public class GetPublicKeyResult implements Serializable {
      *         </p>
      *         <p>
      *         This information is critical. If a public key with
-     *         <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS
-     *         KMS, the ciphertext cannot be decrypted.
+     *         <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS,
+     *         the ciphertext cannot be decrypted.
      *         </p>
      * @see KeyUsageType
      */
@@ -415,7 +609,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * This information is critical. If a public key with
-     * <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS KMS, the
+     * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
@@ -429,7 +623,7 @@ public class GetPublicKeyResult implements Serializable {
      *            <p>
      *            This information is critical. If a public key with
      *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            AWS KMS, the ciphertext cannot be decrypted.
+     *            KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @see KeyUsageType
      */
@@ -444,7 +638,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * This information is critical. If a public key with
-     * <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS KMS, the
+     * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
@@ -461,7 +655,7 @@ public class GetPublicKeyResult implements Serializable {
      *            <p>
      *            This information is critical. If a public key with
      *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            AWS KMS, the ciphertext cannot be decrypted.
+     *            KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -479,7 +673,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * This information is critical. If a public key with
-     * <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS KMS, the
+     * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
@@ -493,7 +687,7 @@ public class GetPublicKeyResult implements Serializable {
      *            <p>
      *            This information is critical. If a public key with
      *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            AWS KMS, the ciphertext cannot be decrypted.
+     *            KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @see KeyUsageType
      */
@@ -508,7 +702,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      * <p>
      * This information is critical. If a public key with
-     * <code>SIGN_VERIFY</code> key usage encrypts data outside of AWS KMS, the
+     * <code>SIGN_VERIFY</code> key usage encrypts data outside of KMS, the
      * ciphertext cannot be decrypted.
      * </p>
      * <p>
@@ -525,7 +719,7 @@ public class GetPublicKeyResult implements Serializable {
      *            <p>
      *            This information is critical. If a public key with
      *            <code>SIGN_VERIFY</code> key usage encrypts data outside of
-     *            AWS KMS, the ciphertext cannot be decrypted.
+     *            KMS, the ciphertext cannot be decrypted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -538,12 +732,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The encryption algorithms that AWS KMS supports for this key.
+     * The encryption algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This information is critical. If a public key encrypts data outside of
-     * AWS KMS by using an unsupported encryption algorithm, the ciphertext
-     * cannot be decrypted.
+     * KMS by using an unsupported encryption algorithm, the ciphertext cannot
+     * be decrypted.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -551,12 +745,12 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The encryption algorithms that AWS KMS supports for this key.
+     *         The encryption algorithms that KMS supports for this key.
      *         </p>
      *         <p>
      *         This information is critical. If a public key encrypts data
-     *         outside of AWS KMS by using an unsupported encryption algorithm,
-     *         the ciphertext cannot be decrypted.
+     *         outside of KMS by using an unsupported encryption algorithm, the
+     *         ciphertext cannot be decrypted.
      *         </p>
      *         <p>
      *         This field appears in the response only when the
@@ -570,12 +764,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The encryption algorithms that AWS KMS supports for this key.
+     * The encryption algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This information is critical. If a public key encrypts data outside of
-     * AWS KMS by using an unsupported encryption algorithm, the ciphertext
-     * cannot be decrypted.
+     * KMS by using an unsupported encryption algorithm, the ciphertext cannot
+     * be decrypted.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -583,12 +777,12 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      *
      * @param encryptionAlgorithms <p>
-     *            The encryption algorithms that AWS KMS supports for this key.
+     *            The encryption algorithms that KMS supports for this key.
      *            </p>
      *            <p>
      *            This information is critical. If a public key encrypts data
-     *            outside of AWS KMS by using an unsupported encryption
-     *            algorithm, the ciphertext cannot be decrypted.
+     *            outside of KMS by using an unsupported encryption algorithm,
+     *            the ciphertext cannot be decrypted.
      *            </p>
      *            <p>
      *            This field appears in the response only when the
@@ -607,12 +801,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The encryption algorithms that AWS KMS supports for this key.
+     * The encryption algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This information is critical. If a public key encrypts data outside of
-     * AWS KMS by using an unsupported encryption algorithm, the ciphertext
-     * cannot be decrypted.
+     * KMS by using an unsupported encryption algorithm, the ciphertext cannot
+     * be decrypted.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -623,12 +817,12 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      *
      * @param encryptionAlgorithms <p>
-     *            The encryption algorithms that AWS KMS supports for this key.
+     *            The encryption algorithms that KMS supports for this key.
      *            </p>
      *            <p>
      *            This information is critical. If a public key encrypts data
-     *            outside of AWS KMS by using an unsupported encryption
-     *            algorithm, the ciphertext cannot be decrypted.
+     *            outside of KMS by using an unsupported encryption algorithm,
+     *            the ciphertext cannot be decrypted.
      *            </p>
      *            <p>
      *            This field appears in the response only when the
@@ -650,12 +844,12 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The encryption algorithms that AWS KMS supports for this key.
+     * The encryption algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This information is critical. If a public key encrypts data outside of
-     * AWS KMS by using an unsupported encryption algorithm, the ciphertext
-     * cannot be decrypted.
+     * KMS by using an unsupported encryption algorithm, the ciphertext cannot
+     * be decrypted.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -666,12 +860,12 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      *
      * @param encryptionAlgorithms <p>
-     *            The encryption algorithms that AWS KMS supports for this key.
+     *            The encryption algorithms that KMS supports for this key.
      *            </p>
      *            <p>
      *            This information is critical. If a public key encrypts data
-     *            outside of AWS KMS by using an unsupported encryption
-     *            algorithm, the ciphertext cannot be decrypted.
+     *            outside of KMS by using an unsupported encryption algorithm,
+     *            the ciphertext cannot be decrypted.
      *            </p>
      *            <p>
      *            This field appears in the response only when the
@@ -689,7 +883,7 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The signing algorithms that AWS KMS supports for this key.
+     * The signing algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -697,7 +891,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      *
      * @return <p>
-     *         The signing algorithms that AWS KMS supports for this key.
+     *         The signing algorithms that KMS supports for this key.
      *         </p>
      *         <p>
      *         This field appears in the response only when the
@@ -711,7 +905,7 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The signing algorithms that AWS KMS supports for this key.
+     * The signing algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -719,7 +913,7 @@ public class GetPublicKeyResult implements Serializable {
      * </p>
      *
      * @param signingAlgorithms <p>
-     *            The signing algorithms that AWS KMS supports for this key.
+     *            The signing algorithms that KMS supports for this key.
      *            </p>
      *            <p>
      *            This field appears in the response only when the
@@ -738,7 +932,7 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The signing algorithms that AWS KMS supports for this key.
+     * The signing algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -749,7 +943,7 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      *
      * @param signingAlgorithms <p>
-     *            The signing algorithms that AWS KMS supports for this key.
+     *            The signing algorithms that KMS supports for this key.
      *            </p>
      *            <p>
      *            This field appears in the response only when the
@@ -771,7 +965,7 @@ public class GetPublicKeyResult implements Serializable {
 
     /**
      * <p>
-     * The signing algorithms that AWS KMS supports for this key.
+     * The signing algorithms that KMS supports for this key.
      * </p>
      * <p>
      * This field appears in the response only when the <code>KeyUsage</code> of
@@ -782,7 +976,7 @@ public class GetPublicKeyResult implements Serializable {
      * together.
      *
      * @param signingAlgorithms <p>
-     *            The signing algorithms that AWS KMS supports for this key.
+     *            The signing algorithms that KMS supports for this key.
      *            </p>
      *            <p>
      *            This field appears in the response only when the
@@ -814,6 +1008,8 @@ public class GetPublicKeyResult implements Serializable {
             sb.append("PublicKey: " + getPublicKey() + ",");
         if (getCustomerMasterKeySpec() != null)
             sb.append("CustomerMasterKeySpec: " + getCustomerMasterKeySpec() + ",");
+        if (getKeySpec() != null)
+            sb.append("KeySpec: " + getKeySpec() + ",");
         if (getKeyUsage() != null)
             sb.append("KeyUsage: " + getKeyUsage() + ",");
         if (getEncryptionAlgorithms() != null)
@@ -834,6 +1030,7 @@ public class GetPublicKeyResult implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getCustomerMasterKeySpec() == null) ? 0 : getCustomerMasterKeySpec().hashCode());
+        hashCode = prime * hashCode + ((getKeySpec() == null) ? 0 : getKeySpec().hashCode());
         hashCode = prime * hashCode + ((getKeyUsage() == null) ? 0 : getKeyUsage().hashCode());
         hashCode = prime * hashCode
                 + ((getEncryptionAlgorithms() == null) ? 0 : getEncryptionAlgorithms().hashCode());
@@ -866,6 +1063,10 @@ public class GetPublicKeyResult implements Serializable {
             return false;
         if (other.getCustomerMasterKeySpec() != null
                 && other.getCustomerMasterKeySpec().equals(this.getCustomerMasterKeySpec()) == false)
+            return false;
+        if (other.getKeySpec() == null ^ this.getKeySpec() == null)
+            return false;
+        if (other.getKeySpec() != null && other.getKeySpec().equals(this.getKeySpec()) == false)
             return false;
         if (other.getKeyUsage() == null ^ this.getKeyUsage() == null)
             return false;

@@ -37,6 +37,11 @@ class ThingConnectivityJsonMarshaller {
             jsonWriter.name("timestamp");
             jsonWriter.value(timestamp);
         }
+        if (thingConnectivity.getDisconnectReason() != null) {
+            String disconnectReason = thingConnectivity.getDisconnectReason();
+            jsonWriter.name("disconnectReason");
+            jsonWriter.value(disconnectReason);
+        }
         jsonWriter.endObject();
     }
 

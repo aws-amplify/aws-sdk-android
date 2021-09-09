@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates the definition for the specified mitigation action.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UpdateMitigationAction</a> action.
+ * </p>
  */
 public class UpdateMitigationActionRequest extends AmazonWebServiceRequest implements Serializable {
     /**

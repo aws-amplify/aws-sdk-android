@@ -33,6 +33,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Authorization</a> for information about authorizing control plane actions.
  * </p>
  * </note>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >CreateThing</a> action.
+ * </p>
  */
 public class CreateThingRequest extends AmazonWebServiceRequest implements Serializable {
     /**

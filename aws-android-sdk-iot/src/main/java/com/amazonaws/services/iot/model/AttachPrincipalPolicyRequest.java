@@ -25,7 +25,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * other credential).
  * </p>
  * <p>
- * <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a> instead.
+ * <b>Note:</b> This action is deprecated. Please use <a>AttachPolicy</a>
+ * instead.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >AttachPrincipalPolicy</a> action.
  * </p>
  */
 public class AttachPrincipalPolicyRequest extends AmazonWebServiceRequest implements Serializable {

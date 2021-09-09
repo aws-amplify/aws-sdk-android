@@ -24,8 +24,13 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Lists the principals associated with the specified policy.
  * </p>
  * <p>
- * <b>Note:</b> This API is deprecated. Please use <a>ListTargetsForPolicy</a>
- * instead.
+ * <b>Note:</b> This action is deprecated. Please use
+ * <a>ListTargetsForPolicy</a> instead.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListPolicyPrincipals</a> action.
  * </p>
  */
 public class ListPolicyPrincipalsRequest extends AmazonWebServiceRequest implements Serializable {

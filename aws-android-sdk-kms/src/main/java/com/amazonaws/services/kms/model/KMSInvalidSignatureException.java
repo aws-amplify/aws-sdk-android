@@ -21,7 +21,8 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * The request was rejected because the signature verification failed. Signature
  * verification fails when it cannot confirm that signature was produced by
- * signing the specified message with the specified CMK and signing algorithm.
+ * signing the specified message with the specified KMS key and signing
+ * algorithm.
  * </p>
  */
 public class KMSInvalidSignatureException extends AmazonServiceException {

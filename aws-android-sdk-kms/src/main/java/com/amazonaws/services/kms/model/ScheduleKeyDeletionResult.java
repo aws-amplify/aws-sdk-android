@@ -22,7 +22,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is scheduled.
+     * >key ARN</a>) of the KMS key whose deletion is scheduled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -32,26 +32,25 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK).
+     * The date and time after which KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replica keys, this field
-     * does not appear. The deletion date for the primary key isn't known until
-     * its last replica key is deleted.
+     * If the KMS key is a multi-Region primary key with replica keys, this
+     * field does not appear. The deletion date for the primary key isn't known
+     * until its last replica key is deleted.
      * </p>
      */
     private java.util.Date deletionDate;
 
     /**
      * <p>
-     * The current status of the CMK.
+     * The current status of the KMS key.
      * </p>
      * <p>
-     * For more information about how key state affects the use of a CMK, see <a
-     * href
-     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * For more information about how key state affects the use of a KMS key,
+     * see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
@@ -63,10 +62,10 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The waiting period before the CMK is deleted.
+     * The waiting period before the KMS key is deleted.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * If the KMS key is a multi-Region primary key with replicas, the waiting
      * period begins when the last of its replica keys is deleted. Otherwise,
      * the waiting period begins immediately.
      * </p>
@@ -80,7 +79,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is scheduled.
+     * >key ARN</a>) of the KMS key whose deletion is scheduled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -89,7 +88,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the CMK whose deletion is scheduled.
+     *         >key ARN</a>) of the KMS key whose deletion is scheduled.
      *         </p>
      */
     public String getKeyId() {
@@ -100,7 +99,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is scheduled.
+     * >key ARN</a>) of the KMS key whose deletion is scheduled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,7 +108,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK whose deletion is scheduled.
+     *            >key ARN</a>) of the KMS key whose deletion is scheduled.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -120,7 +119,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK whose deletion is scheduled.
+     * >key ARN</a>) of the KMS key whose deletion is scheduled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -132,7 +131,7 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK whose deletion is scheduled.
+     *            >key ARN</a>) of the KMS key whose deletion is scheduled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -144,22 +143,20 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK).
+     * The date and time after which KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replica keys, this field
-     * does not appear. The deletion date for the primary key isn't known until
-     * its last replica key is deleted.
+     * If the KMS key is a multi-Region primary key with replica keys, this
+     * field does not appear. The deletion date for the primary key isn't known
+     * until its last replica key is deleted.
      * </p>
      *
      * @return <p>
-     *         The date and time after which AWS KMS deletes the customer master
-     *         key (CMK).
+     *         The date and time after which KMS deletes the KMS key.
      *         </p>
      *         <p>
-     *         If the CMK is a multi-Region primary key with replica keys, this
-     *         field does not appear. The deletion date for the primary key
+     *         If the KMS key is a multi-Region primary key with replica keys,
+     *         this field does not appear. The deletion date for the primary key
      *         isn't known until its last replica key is deleted.
      *         </p>
      */
@@ -169,23 +166,21 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK).
+     * The date and time after which KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replica keys, this field
-     * does not appear. The deletion date for the primary key isn't known until
-     * its last replica key is deleted.
+     * If the KMS key is a multi-Region primary key with replica keys, this
+     * field does not appear. The deletion date for the primary key isn't known
+     * until its last replica key is deleted.
      * </p>
      *
      * @param deletionDate <p>
-     *            The date and time after which AWS KMS deletes the customer
-     *            master key (CMK).
+     *            The date and time after which KMS deletes the KMS key.
      *            </p>
      *            <p>
-     *            If the CMK is a multi-Region primary key with replica keys,
-     *            this field does not appear. The deletion date for the primary
-     *            key isn't known until its last replica key is deleted.
+     *            If the KMS key is a multi-Region primary key with replica
+     *            keys, this field does not appear. The deletion date for the
+     *            primary key isn't known until its last replica key is deleted.
      *            </p>
      */
     public void setDeletionDate(java.util.Date deletionDate) {
@@ -194,26 +189,24 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The date and time after which AWS KMS deletes the customer master key
-     * (CMK).
+     * The date and time after which KMS deletes the KMS key.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replica keys, this field
-     * does not appear. The deletion date for the primary key isn't known until
-     * its last replica key is deleted.
+     * If the KMS key is a multi-Region primary key with replica keys, this
+     * field does not appear. The deletion date for the primary key isn't known
+     * until its last replica key is deleted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param deletionDate <p>
-     *            The date and time after which AWS KMS deletes the customer
-     *            master key (CMK).
+     *            The date and time after which KMS deletes the KMS key.
      *            </p>
      *            <p>
-     *            If the CMK is a multi-Region primary key with replica keys,
-     *            this field does not appear. The deletion date for the primary
-     *            key isn't known until its last replica key is deleted.
+     *            If the KMS key is a multi-Region primary key with replica
+     *            keys, this field does not appear. The deletion date for the
+     *            primary key isn't known until its last replica key is deleted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -225,13 +218,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the CMK.
+     * The current status of the KMS key.
      * </p>
      * <p>
-     * For more information about how key state affects the use of a CMK, see <a
-     * href
-     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * For more information about how key state affects the use of a KMS key,
+     * see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
@@ -240,13 +233,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * PendingImport, PendingReplicaDeletion, Unavailable, Updating
      *
      * @return <p>
-     *         The current status of the CMK.
+     *         The current status of the KMS key.
      *         </p>
      *         <p>
-     *         For more information about how key state affects the use of a
-     *         CMK, see <a href=
+     *         For more information about how key state affects the use of a KMS
+     *         key, see <a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *         >Key state: Effect on your CMK</a> in the <i>AWS Key Management
+     *         >Key state: Effect on your KMS key</a> in the <i>Key Management
      *         Service Developer Guide</i>.
      *         </p>
      * @see KeyState
@@ -257,13 +250,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the CMK.
+     * The current status of the KMS key.
      * </p>
      * <p>
-     * For more information about how key state affects the use of a CMK, see <a
-     * href
-     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * For more information about how key state affects the use of a KMS key,
+     * see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
@@ -272,13 +265,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * PendingImport, PendingReplicaDeletion, Unavailable, Updating
      *
      * @param keyState <p>
-     *            The current status of the CMK.
+     *            The current status of the KMS key.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
-     *            CMK, see <a href=
+     *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            >Key state: Effect on your KMS key</a> in the <i>Key
      *            Management Service Developer Guide</i>.
      *            </p>
      * @see KeyState
@@ -289,13 +282,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the CMK.
+     * The current status of the KMS key.
      * </p>
      * <p>
-     * For more information about how key state affects the use of a CMK, see <a
-     * href
-     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * For more information about how key state affects the use of a KMS key,
+     * see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
@@ -307,13 +300,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * PendingImport, PendingReplicaDeletion, Unavailable, Updating
      *
      * @param keyState <p>
-     *            The current status of the CMK.
+     *            The current status of the KMS key.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
-     *            CMK, see <a href=
+     *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            >Key state: Effect on your KMS key</a> in the <i>Key
      *            Management Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -327,13 +320,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the CMK.
+     * The current status of the KMS key.
      * </p>
      * <p>
-     * For more information about how key state affects the use of a CMK, see <a
-     * href
-     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * For more information about how key state affects the use of a KMS key,
+     * see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
@@ -342,13 +335,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * PendingImport, PendingReplicaDeletion, Unavailable, Updating
      *
      * @param keyState <p>
-     *            The current status of the CMK.
+     *            The current status of the KMS key.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
-     *            CMK, see <a href=
+     *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            >Key state: Effect on your KMS key</a> in the <i>Key
      *            Management Service Developer Guide</i>.
      *            </p>
      * @see KeyState
@@ -359,13 +352,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The current status of the CMK.
+     * The current status of the KMS key.
      * </p>
      * <p>
-     * For more information about how key state affects the use of a CMK, see <a
-     * href
-     * ="https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     * >Key state: Effect on your CMK</a> in the <i>AWS Key Management Service
+     * For more information about how key state affects the use of a KMS key,
+     * see <a href=
+     * "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
+     * >Key state: Effect on your KMS key</a> in the <i>Key Management Service
      * Developer Guide</i>.
      * </p>
      * <p>
@@ -377,13 +370,13 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * PendingImport, PendingReplicaDeletion, Unavailable, Updating
      *
      * @param keyState <p>
-     *            The current status of the CMK.
+     *            The current status of the KMS key.
      *            </p>
      *            <p>
      *            For more information about how key state affects the use of a
-     *            CMK, see <a href=
+     *            KMS key, see <a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/key-state.html"
-     *            >Key state: Effect on your CMK</a> in the <i>AWS Key
+     *            >Key state: Effect on your KMS key</a> in the <i>Key
      *            Management Service Developer Guide</i>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -397,10 +390,10 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The waiting period before the CMK is deleted.
+     * The waiting period before the KMS key is deleted.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * If the KMS key is a multi-Region primary key with replicas, the waiting
      * period begins when the last of its replica keys is deleted. Otherwise,
      * the waiting period begins immediately.
      * </p>
@@ -409,10 +402,10 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <b>Range: </b>1 - 365<br/>
      *
      * @return <p>
-     *         The waiting period before the CMK is deleted.
+     *         The waiting period before the KMS key is deleted.
      *         </p>
      *         <p>
-     *         If the CMK is a multi-Region primary key with replicas, the
+     *         If the KMS key is a multi-Region primary key with replicas, the
      *         waiting period begins when the last of its replica keys is
      *         deleted. Otherwise, the waiting period begins immediately.
      *         </p>
@@ -423,10 +416,10 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The waiting period before the CMK is deleted.
+     * The waiting period before the KMS key is deleted.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * If the KMS key is a multi-Region primary key with replicas, the waiting
      * period begins when the last of its replica keys is deleted. Otherwise,
      * the waiting period begins immediately.
      * </p>
@@ -435,11 +428,11 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <b>Range: </b>1 - 365<br/>
      *
      * @param pendingWindowInDays <p>
-     *            The waiting period before the CMK is deleted.
+     *            The waiting period before the KMS key is deleted.
      *            </p>
      *            <p>
-     *            If the CMK is a multi-Region primary key with replicas, the
-     *            waiting period begins when the last of its replica keys is
+     *            If the KMS key is a multi-Region primary key with replicas,
+     *            the waiting period begins when the last of its replica keys is
      *            deleted. Otherwise, the waiting period begins immediately.
      *            </p>
      */
@@ -449,10 +442,10 @@ public class ScheduleKeyDeletionResult implements Serializable {
 
     /**
      * <p>
-     * The waiting period before the CMK is deleted.
+     * The waiting period before the KMS key is deleted.
      * </p>
      * <p>
-     * If the CMK is a multi-Region primary key with replicas, the waiting
+     * If the KMS key is a multi-Region primary key with replicas, the waiting
      * period begins when the last of its replica keys is deleted. Otherwise,
      * the waiting period begins immediately.
      * </p>
@@ -464,11 +457,11 @@ public class ScheduleKeyDeletionResult implements Serializable {
      * <b>Range: </b>1 - 365<br/>
      *
      * @param pendingWindowInDays <p>
-     *            The waiting period before the CMK is deleted.
+     *            The waiting period before the KMS key is deleted.
      *            </p>
      *            <p>
-     *            If the CMK is a multi-Region primary key with replicas, the
-     *            waiting period begins when the last of its replica keys is
+     *            If the KMS key is a multi-Region primary key with replicas,
+     *            the waiting period begins when the last of its replica keys is
      *            deleted. Otherwise, the waiting period begins immediately.
      *            </p>
      * @return A reference to this updated object so that method calls can be

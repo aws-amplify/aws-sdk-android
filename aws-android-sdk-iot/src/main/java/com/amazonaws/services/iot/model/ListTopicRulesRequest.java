@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Lists the rules for the specific topic.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListTopicRules</a> action.
+ * </p>
  */
 public class ListTopicRulesRequest extends AmazonWebServiceRequest implements Serializable {
     /**

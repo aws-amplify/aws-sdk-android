@@ -85,7 +85,7 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * An IAM role AWS IoT assumes to access your S3 files.
+     * An IAM role IoT assumes to access your S3 files.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -472,14 +472,14 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * An IAM role AWS IoT assumes to access your S3 files.
+     * An IAM role IoT assumes to access your S3 files.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @return <p>
-     *         An IAM role AWS IoT assumes to access your S3 files.
+     *         An IAM role IoT assumes to access your S3 files.
      *         </p>
      */
     public String getRoleArn() {
@@ -488,14 +488,14 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * An IAM role AWS IoT assumes to access your S3 files.
+     * An IAM role IoT assumes to access your S3 files.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            An IAM role AWS IoT assumes to access your S3 files.
+     *            An IAM role IoT assumes to access your S3 files.
      *            </p>
      */
     public void setRoleArn(String roleArn) {
@@ -504,7 +504,7 @@ public class StreamInfo implements Serializable {
 
     /**
      * <p>
-     * An IAM role AWS IoT assumes to access your S3 files.
+     * An IAM role IoT assumes to access your S3 files.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -514,7 +514,7 @@ public class StreamInfo implements Serializable {
      * <b>Length: </b>20 - 2048<br/>
      *
      * @param roleArn <p>
-     *            An IAM role AWS IoT assumes to access your S3 files.
+     *            An IAM role IoT assumes to access your S3 files.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

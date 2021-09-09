@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Adds to or modifies the tags of the given resource. Tags are metadata which
  * can be used to manage a resource.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >TagResource</a> action.
+ * </p>
  */
 public class TagResourceRequest extends AmazonWebServiceRequest implements Serializable {
     /**

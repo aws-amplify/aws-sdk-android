@@ -22,7 +22,8 @@ public class SignResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
+     * >key ARN</a>) of the asymmetric KMS key that was used to sign the
+     * message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -54,8 +55,8 @@ public class SignResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * When you use the HTTP API or the AWS CLI, the value is Base64-encoded.
-     * Otherwise, it is not Base64-encoded.
+     * When you use the HTTP API or the Amazon Web Services CLI, the value is
+     * Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -79,7 +80,8 @@ public class SignResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
+     * >key ARN</a>) of the asymmetric KMS key that was used to sign the
+     * message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -88,7 +90,7 @@ public class SignResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the asymmetric CMK that was used to sign the
+     *         >key ARN</a>) of the asymmetric KMS key that was used to sign the
      *         message.
      *         </p>
      */
@@ -100,7 +102,8 @@ public class SignResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
+     * >key ARN</a>) of the asymmetric KMS key that was used to sign the
+     * message.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -109,8 +112,8 @@ public class SignResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the asymmetric CMK that was used to sign the
-     *            message.
+     *            >key ARN</a>) of the asymmetric KMS key that was used to sign
+     *            the message.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -121,7 +124,8 @@ public class SignResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the asymmetric CMK that was used to sign the message.
+     * >key ARN</a>) of the asymmetric KMS key that was used to sign the
+     * message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -133,8 +137,8 @@ public class SignResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the asymmetric CMK that was used to sign the
-     *            message.
+     *            >key ARN</a>) of the asymmetric KMS key that was used to sign
+     *            the message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -168,8 +172,8 @@ public class SignResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * When you use the HTTP API or the AWS CLI, the value is Base64-encoded.
-     * Otherwise, it is not Base64-encoded.
+     * When you use the HTTP API or the Amazon Web Services CLI, the value is
+     * Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -200,8 +204,8 @@ public class SignResult implements Serializable {
      *         </li>
      *         </ul>
      *         <p>
-     *         When you use the HTTP API or the AWS CLI, the value is
-     *         Base64-encoded. Otherwise, it is not Base64-encoded.
+     *         When you use the HTTP API or the Amazon Web Services CLI, the
+     *         value is Base64-encoded. Otherwise, it is not Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getSignature() {
@@ -232,8 +236,8 @@ public class SignResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * When you use the HTTP API or the AWS CLI, the value is Base64-encoded.
-     * Otherwise, it is not Base64-encoded.
+     * When you use the HTTP API or the Amazon Web Services CLI, the value is
+     * Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -265,8 +269,8 @@ public class SignResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            When you use the HTTP API or the AWS CLI, the value is
-     *            Base64-encoded. Otherwise, it is not Base64-encoded.
+     *            When you use the HTTP API or the Amazon Web Services CLI, the
+     *            value is Base64-encoded. Otherwise, it is not Base64-encoded.
      *            </p>
      */
     public void setSignature(java.nio.ByteBuffer signature) {
@@ -297,8 +301,8 @@ public class SignResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * When you use the HTTP API or the AWS CLI, the value is Base64-encoded.
-     * Otherwise, it is not Base64-encoded.
+     * When you use the HTTP API or the Amazon Web Services CLI, the value is
+     * Base64-encoded. Otherwise, it is not Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -333,8 +337,8 @@ public class SignResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            When you use the HTTP API or the AWS CLI, the value is
-     *            Base64-encoded. Otherwise, it is not Base64-encoded.
+     *            When you use the HTTP API or the Amazon Web Services CLI, the
+     *            value is Base64-encoded. Otherwise, it is not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Updates an existing stream. The stream version will be incremented by one.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >UpdateStream</a> action.
+ * </p>
  */
 public class UpdateStreamRequest extends AmazonWebServiceRequest implements Serializable {
     /**

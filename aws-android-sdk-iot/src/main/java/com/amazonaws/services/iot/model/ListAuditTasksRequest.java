@@ -24,6 +24,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * Lists the Device Defender audits that have been performed during a given time
  * period.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >ListAuditTasks</a> action.
+ * </p>
  */
 public class ListAuditTasksRequest extends AmazonWebServiceRequest implements Serializable {
     /**

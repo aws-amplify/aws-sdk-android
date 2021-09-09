@@ -22,9 +22,14 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Deletes the specified version of the specified policy. You cannot delete the
- * default version of a policy using this API. To delete the default version of
- * a policy, use <a>DeletePolicy</a>. To find out which version of a policy is
- * marked as the default version, use ListPolicyVersions.
+ * default version of a policy using this action. To delete the default version
+ * of a policy, use <a>DeletePolicy</a>. To find out which version of a policy
+ * is marked as the default version, use ListPolicyVersions.
+ * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >DeletePolicyVersion</a> action.
  * </p>
  */
 public class DeletePolicyVersionRequest extends AmazonWebServiceRequest implements Serializable {

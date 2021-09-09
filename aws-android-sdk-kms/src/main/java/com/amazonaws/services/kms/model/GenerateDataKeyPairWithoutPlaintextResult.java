@@ -21,8 +21,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the private key. When you use the HTTP API or the
-     * AWS CLI, the value is Base64-encoded. Otherwise, it is not
-     * Base64-encoded.
+     * Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is
+     * not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -44,7 +44,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that encrypted the private key.
+     * >key ARN</a>) of the KMS key that encrypted the private key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,8 +66,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the private key. When you use the HTTP API or the
-     * AWS CLI, the value is Base64-encoded. Otherwise, it is not
-     * Base64-encoded.
+     * Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is
+     * not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,8 +75,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      *
      * @return <p>
      *         The encrypted copy of the private key. When you use the HTTP API
-     *         or the AWS CLI, the value is Base64-encoded. Otherwise, it is not
-     *         Base64-encoded.
+     *         or the Amazon Web Services CLI, the value is Base64-encoded.
+     *         Otherwise, it is not Base64-encoded.
      *         </p>
      */
     public java.nio.ByteBuffer getPrivateKeyCiphertextBlob() {
@@ -86,8 +86,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the private key. When you use the HTTP API or the
-     * AWS CLI, the value is Base64-encoded. Otherwise, it is not
-     * Base64-encoded.
+     * Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is
+     * not Base64-encoded.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -95,8 +95,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      *
      * @param privateKeyCiphertextBlob <p>
      *            The encrypted copy of the private key. When you use the HTTP
-     *            API or the AWS CLI, the value is Base64-encoded. Otherwise, it
-     *            is not Base64-encoded.
+     *            API or the Amazon Web Services CLI, the value is
+     *            Base64-encoded. Otherwise, it is not Base64-encoded.
      *            </p>
      */
     public void setPrivateKeyCiphertextBlob(java.nio.ByteBuffer privateKeyCiphertextBlob) {
@@ -106,8 +106,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
     /**
      * <p>
      * The encrypted copy of the private key. When you use the HTTP API or the
-     * AWS CLI, the value is Base64-encoded. Otherwise, it is not
-     * Base64-encoded.
+     * Amazon Web Services CLI, the value is Base64-encoded. Otherwise, it is
+     * not Base64-encoded.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,8 +118,8 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      *
      * @param privateKeyCiphertextBlob <p>
      *            The encrypted copy of the private key. When you use the HTTP
-     *            API or the AWS CLI, the value is Base64-encoded. Otherwise, it
-     *            is not Base64-encoded.
+     *            API or the Amazon Web Services CLI, the value is
+     *            Base64-encoded. Otherwise, it is not Base64-encoded.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -188,7 +188,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that encrypted the private key.
+     * >key ARN</a>) of the KMS key that encrypted the private key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -197,7 +197,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (<a href=
      *         "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *         >key ARN</a>) of the CMK that encrypted the private key.
+     *         >key ARN</a>) of the KMS key that encrypted the private key.
      *         </p>
      */
     public String getKeyId() {
@@ -208,7 +208,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that encrypted the private key.
+     * >key ARN</a>) of the KMS key that encrypted the private key.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -217,7 +217,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that encrypted the private key.
+     *            >key ARN</a>) of the KMS key that encrypted the private key.
      *            </p>
      */
     public void setKeyId(String keyId) {
@@ -228,7 +228,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * <p>
      * The Amazon Resource Name (<a href=
      * "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     * >key ARN</a>) of the CMK that encrypted the private key.
+     * >key ARN</a>) of the KMS key that encrypted the private key.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -240,7 +240,7 @@ public class GenerateDataKeyPairWithoutPlaintextResult implements Serializable {
      * @param keyId <p>
      *            The Amazon Resource Name (<a href=
      *            "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id-key-ARN"
-     *            >key ARN</a>) of the CMK that encrypted the private key.
+     *            >key ARN</a>) of the KMS key that encrypted the private key.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

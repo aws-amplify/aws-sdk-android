@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Starts a Device Defender ML Detect mitigation actions task.
  * </p>
+ * <p>
+ * Requires permission to access the <a href=
+ * "https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions"
+ * >StartDetectMitigationActionsTask</a> action.
+ * </p>
  */
 public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceRequest implements
         Serializable {
@@ -77,8 +82,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      * <p>
      * Each mitigation action task must have a unique client request token. If
      * you try to create a new task with the same token as a task that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -446,8 +451,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      * <p>
      * Each mitigation action task must have a unique client request token. If
      * you try to create a new task with the same token as a task that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -458,8 +463,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      *         Each mitigation action task must have a unique client request
      *         token. If you try to create a new task with the same token as a
      *         task that already exists, an exception occurs. If you omit this
-     *         value, AWS SDKs will automatically generate a unique client
-     *         request.
+     *         value, Amazon Web Services SDKs will automatically generate a
+     *         unique client request.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -470,8 +475,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      * <p>
      * Each mitigation action task must have a unique client request token. If
      * you try to create a new task with the same token as a task that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -482,8 +487,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      *            Each mitigation action task must have a unique client request
      *            token. If you try to create a new task with the same token as
      *            a task that already exists, an exception occurs. If you omit
-     *            this value, AWS SDKs will automatically generate a unique
-     *            client request.
+     *            this value, Amazon Web Services SDKs will automatically
+     *            generate a unique client request.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -494,8 +499,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      * <p>
      * Each mitigation action task must have a unique client request token. If
      * you try to create a new task with the same token as a task that already
-     * exists, an exception occurs. If you omit this value, AWS SDKs will
-     * automatically generate a unique client request.
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -509,8 +514,8 @@ public class StartDetectMitigationActionsTaskRequest extends AmazonWebServiceReq
      *            Each mitigation action task must have a unique client request
      *            token. If you try to create a new task with the same token as
      *            a task that already exists, an exception occurs. If you omit
-     *            this value, AWS SDKs will automatically generate a unique
-     *            client request.
+     *            this value, Amazon Web Services SDKs will automatically
+     *            generate a unique client request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
