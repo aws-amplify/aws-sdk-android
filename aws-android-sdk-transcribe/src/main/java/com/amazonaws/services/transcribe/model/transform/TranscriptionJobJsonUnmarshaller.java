@@ -93,6 +93,11 @@ class TranscriptionJobJsonUnmarshaller implements
             } else if (name.equals("IdentifiedLanguageScore")) {
                 transcriptionJob.setIdentifiedLanguageScore(FloatJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Tags")) {
+                transcriptionJob.setTags(new ListUnmarshaller<Tag>(TagJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

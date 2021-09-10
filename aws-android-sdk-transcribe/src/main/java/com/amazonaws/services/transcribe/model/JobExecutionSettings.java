@@ -33,6 +33,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -70,6 +73,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -82,6 +88,10 @@ public class JobExecutionSettings implements Serializable {
      *         the concurrent execution limit. If the field is false, Amazon
      *         Transcribe returns a <code>LimitExceededException</code>
      *         exception.
+     *         </p>
+     *         <p>
+     *         Note that job queuing is enabled by default for call analytics
+     *         jobs.
      *         </p>
      *         <p>
      *         If you specify the <code>AllowDeferredExecution</code> field, you
@@ -102,6 +112,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -114,6 +127,10 @@ public class JobExecutionSettings implements Serializable {
      *         the concurrent execution limit. If the field is false, Amazon
      *         Transcribe returns a <code>LimitExceededException</code>
      *         exception.
+     *         </p>
+     *         <p>
+     *         Note that job queuing is enabled by default for call analytics
+     *         jobs.
      *         </p>
      *         <p>
      *         If you specify the <code>AllowDeferredExecution</code> field, you
@@ -134,6 +151,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -146,6 +166,10 @@ public class JobExecutionSettings implements Serializable {
      *            below the concurrent execution limit. If the field is false,
      *            Amazon Transcribe returns a
      *            <code>LimitExceededException</code> exception.
+     *            </p>
+     *            <p>
+     *            Note that job queuing is enabled by default for call analytics
+     *            jobs.
      *            </p>
      *            <p>
      *            If you specify the <code>AllowDeferredExecution</code> field,
@@ -166,6 +190,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -181,6 +208,10 @@ public class JobExecutionSettings implements Serializable {
      *            below the concurrent execution limit. If the field is false,
      *            Amazon Transcribe returns a
      *            <code>LimitExceededException</code> exception.
+     *            </p>
+     *            <p>
+     *            Note that job queuing is enabled by default for call analytics
+     *            jobs.
      *            </p>
      *            <p>
      *            If you specify the <code>AllowDeferredExecution</code> field,
