@@ -1,3 +1,24 @@
+## [Release 2.31.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.31.0)
+
+### Features
+- **aws-android-sdk-iot:** update models to latest (#2609)
+- **aws-android-sdk-polly:** update models to latest (#2608)
+- **aws-android-sdk-kms:** update models to latest (#2606)
+- **aws-android-sdk-kinesis:** update models to latest (#2605)
+- **aws-android-sdk-chimesdkidentity:** update models to latest (#2621)
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2622)
+- **aws-android-sdk-kinesisvideo:** add file media source (#2596)
+- **aws-android-sdk-kinesisvideo:** Update ReadResult (#2611)
+
+### Bug Fixes
+- add overload of confirmResetPassword with user (#2547)
+
+### Miscellaneous
+- Fixing NPE on identityProvider.getdisplayname in onError (#2602)
+- misc(aws-android-sdk-lambda): LambdaJsonBinder: Injectable Gson (#2613)
+
+[See all changes between 2.30.0 and 2.31.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.30.0...release_v2.31.0)
+
 ## [Release 2.30.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.30.0)
 
 ### Features
