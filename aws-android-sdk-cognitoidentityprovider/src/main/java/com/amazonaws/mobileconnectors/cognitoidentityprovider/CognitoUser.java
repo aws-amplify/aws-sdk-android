@@ -1284,6 +1284,7 @@ public class CognitoUser {
 
             if (cipSession != null) {
                 if (cipSession.isValidForThreshold()) {
+                    cacheLastAuthUser();
                     return cipSession;
                 }
             }
@@ -1292,6 +1293,7 @@ public class CognitoUser {
 
             if (cognitoUserSessionFromStore.isValidForThreshold()) {
                 cipSession = cognitoUserSessionFromStore;
+                cacheLastAuthUser();
                 return cipSession;
             }
 
@@ -2795,6 +2797,16 @@ public class CognitoUser {
                 pool.awsKeyValueStore.put(csiAccessTokenKey, session.getAccessToken() != null ? session.getAccessToken().getJWTToken() : null);
                 pool.awsKeyValueStore.put(csiRefreshTokenKey, session.getRefreshToken() != null ? session.getRefreshToken().getToken() : null);
             }
+            pool.awsKeyValueStore.put(csiLastUserKey, userId);
+        } catch (final Exception e) {
+            // Logging exception, this is not a fatal error
+            LOGGER.error("Error while writing to SharedPreferences.", e);
+        }
+    }
+
+    void cacheLastAuthUser() {
+        try {
+            final String csiLastUserKey = "CognitoIdentityProvider." + clientId + ".LastAuthUser";
             pool.awsKeyValueStore.put(csiLastUserKey, userId);
         } catch (final Exception e) {
             // Logging exception, this is not a fatal error
