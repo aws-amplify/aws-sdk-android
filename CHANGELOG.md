@@ -15,7 +15,7 @@
 
 ### Miscellaneous
 - Fixing NPE on identityProvider.getdisplayname in onError (#2602)
-- misc(aws-android-sdk-lambda): LambdaJsonBinder: Injectable Gson (#2613)
+- Lambda: LambdaJsonBinder: Injectable Gson (#2613) Thanks, @yongjhih!
 
 [See all changes between 2.30.0 and 2.31.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.30.0...release_v2.31.0)
 
