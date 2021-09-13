@@ -98,6 +98,9 @@ class ActionJsonUnmarshaller implements Unmarshaller<Action, JsonUnmarshallerCon
             } else if (name.equals("kafka")) {
                 action.setKafka(KafkaActionJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("openSearch")) {
+                action.setOpenSearch(OpenSearchActionJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
