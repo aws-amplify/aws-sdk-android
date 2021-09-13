@@ -113,6 +113,13 @@ public class Action implements Serializable {
      * <p>
      * Write data to an Amazon Elasticsearch Service domain.
      * </p>
+     * <note>
+     * <p>
+     * This action is deprecated. Use the <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     * >OpenSearch action</a> instead.
+     * </p>
+     * </note>
      */
     private ElasticsearchAction elasticsearch;
 
@@ -177,6 +184,13 @@ public class Action implements Serializable {
      * </p>
      */
     private KafkaAction kafka;
+
+    /**
+     * <p>
+     * Write data to an Amazon OpenSearch Service domain.
+     * </p>
+     */
+    private OpenSearchAction openSearch;
 
     /**
      * <p>
@@ -734,10 +748,24 @@ public class Action implements Serializable {
      * <p>
      * Write data to an Amazon Elasticsearch Service domain.
      * </p>
+     * <note>
+     * <p>
+     * This action is deprecated. Use the <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     * >OpenSearch action</a> instead.
+     * </p>
+     * </note>
      *
      * @return <p>
      *         Write data to an Amazon Elasticsearch Service domain.
      *         </p>
+     *         <note>
+     *         <p>
+     *         This action is deprecated. Use the <a href=
+     *         "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     *         >OpenSearch action</a> instead.
+     *         </p>
+     *         </note>
      */
     public ElasticsearchAction getElasticsearch() {
         return elasticsearch;
@@ -747,10 +775,24 @@ public class Action implements Serializable {
      * <p>
      * Write data to an Amazon Elasticsearch Service domain.
      * </p>
+     * <note>
+     * <p>
+     * This action is deprecated. Use the <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     * >OpenSearch action</a> instead.
+     * </p>
+     * </note>
      *
      * @param elasticsearch <p>
      *            Write data to an Amazon Elasticsearch Service domain.
      *            </p>
+     *            <note>
+     *            <p>
+     *            This action is deprecated. Use the <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     *            >OpenSearch action</a> instead.
+     *            </p>
+     *            </note>
      */
     public void setElasticsearch(ElasticsearchAction elasticsearch) {
         this.elasticsearch = elasticsearch;
@@ -760,6 +802,13 @@ public class Action implements Serializable {
      * <p>
      * Write data to an Amazon Elasticsearch Service domain.
      * </p>
+     * <note>
+     * <p>
+     * This action is deprecated. Use the <a href=
+     * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     * >OpenSearch action</a> instead.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -767,6 +816,13 @@ public class Action implements Serializable {
      * @param elasticsearch <p>
      *            Write data to an Amazon Elasticsearch Service domain.
      *            </p>
+     *            <note>
+     *            <p>
+     *            This action is deprecated. Use the <a href=
+     *            "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
+     *            >OpenSearch action</a> instead.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1172,6 +1228,51 @@ public class Action implements Serializable {
     }
 
     /**
+     * <p>
+     * Write data to an Amazon OpenSearch Service domain.
+     * </p>
+     *
+     * @return <p>
+     *         Write data to an Amazon OpenSearch Service domain.
+     *         </p>
+     */
+    public OpenSearchAction getOpenSearch() {
+        return openSearch;
+    }
+
+    /**
+     * <p>
+     * Write data to an Amazon OpenSearch Service domain.
+     * </p>
+     *
+     * @param openSearch <p>
+     *            Write data to an Amazon OpenSearch Service domain.
+     *            </p>
+     */
+    public void setOpenSearch(OpenSearchAction openSearch) {
+        this.openSearch = openSearch;
+    }
+
+    /**
+     * <p>
+     * Write data to an Amazon OpenSearch Service domain.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param openSearch <p>
+     *            Write data to an Amazon OpenSearch Service domain.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Action withOpenSearch(OpenSearchAction openSearch) {
+        this.openSearch = openSearch;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1223,7 +1324,9 @@ public class Action implements Serializable {
         if (getHttp() != null)
             sb.append("http: " + getHttp() + ",");
         if (getKafka() != null)
-            sb.append("kafka: " + getKafka());
+            sb.append("kafka: " + getKafka() + ",");
+        if (getOpenSearch() != null)
+            sb.append("openSearch: " + getOpenSearch());
         sb.append("}");
         return sb.toString();
     }
@@ -1261,6 +1364,7 @@ public class Action implements Serializable {
         hashCode = prime * hashCode + ((getTimestream() == null) ? 0 : getTimestream().hashCode());
         hashCode = prime * hashCode + ((getHttp() == null) ? 0 : getHttp().hashCode());
         hashCode = prime * hashCode + ((getKafka() == null) ? 0 : getKafka().hashCode());
+        hashCode = prime * hashCode + ((getOpenSearch() == null) ? 0 : getOpenSearch().hashCode());
         return hashCode;
     }
 
@@ -1370,6 +1474,11 @@ public class Action implements Serializable {
         if (other.getKafka() == null ^ this.getKafka() == null)
             return false;
         if (other.getKafka() != null && other.getKafka().equals(this.getKafka()) == false)
+            return false;
+        if (other.getOpenSearch() == null ^ this.getOpenSearch() == null)
+            return false;
+        if (other.getOpenSearch() != null
+                && other.getOpenSearch().equals(this.getOpenSearch()) == false)
             return false;
         return true;
     }
