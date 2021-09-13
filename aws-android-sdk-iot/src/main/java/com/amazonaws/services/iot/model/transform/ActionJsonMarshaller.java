@@ -132,6 +132,11 @@ class ActionJsonMarshaller {
             jsonWriter.name("kafka");
             KafkaActionJsonMarshaller.getInstance().marshall(kafka, jsonWriter);
         }
+        if (action.getOpenSearch() != null) {
+            OpenSearchAction openSearch = action.getOpenSearch();
+            jsonWriter.name("openSearch");
+            OpenSearchActionJsonMarshaller.getInstance().marshall(openSearch, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
