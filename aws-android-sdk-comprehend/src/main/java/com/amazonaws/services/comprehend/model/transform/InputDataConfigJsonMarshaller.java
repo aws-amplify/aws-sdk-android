@@ -37,6 +37,12 @@ class InputDataConfigJsonMarshaller {
             jsonWriter.name("InputFormat");
             jsonWriter.value(inputFormat);
         }
+        if (inputDataConfig.getDocumentReaderConfig() != null) {
+            DocumentReaderConfig documentReaderConfig = inputDataConfig.getDocumentReaderConfig();
+            jsonWriter.name("DocumentReaderConfig");
+            DocumentReaderConfigJsonMarshaller.getInstance().marshall(documentReaderConfig,
+                    jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

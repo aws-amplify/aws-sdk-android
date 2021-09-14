@@ -32,7 +32,8 @@ public class EntityRecognizerProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      */
     private String entityRecognizerArn;
 
@@ -142,6 +143,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
     private String volumeKmsKeyId;
 
@@ -178,6 +180,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
     private String modelKmsKeyId;
 
@@ -190,7 +193,8 @@ public class EntityRecognizerProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) that identifies the entity
@@ -210,7 +214,8 @@ public class EntityRecognizerProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param entityRecognizerArn <p>
      *            The Amazon Resource Name (ARN) that identifies the entity
@@ -233,7 +238,8 @@ public class EntityRecognizerProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity
-     * -recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -recognizer/
+     * [a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param entityRecognizerArn <p>
      *            The Amazon Resource Name (ARN) that identifies the entity
@@ -862,6 +868,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -910,6 +917,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -962,6 +970,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1082,6 +1091,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1128,6 +1138,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param modelKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1178,6 +1189,7 @@ public class EntityRecognizerProperties implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param modelKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
