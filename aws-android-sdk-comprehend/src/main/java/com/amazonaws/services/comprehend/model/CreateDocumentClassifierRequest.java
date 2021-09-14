@@ -126,6 +126,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
     private String volumeKmsKeyId;
 
@@ -177,6 +178,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
     private String modelKmsKeyId;
 
@@ -723,6 +725,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -771,6 +774,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -823,6 +827,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1095,6 +1100,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1141,6 +1147,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param modelKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -1191,6 +1198,7 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param modelKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon

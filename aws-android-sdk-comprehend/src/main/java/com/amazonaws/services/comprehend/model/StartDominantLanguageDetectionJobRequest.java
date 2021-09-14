@@ -103,6 +103,7 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
     private String volumeKmsKeyId;
 
@@ -451,6 +452,7 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -499,6 +501,7 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -551,6 +554,7 @@ public class StartDominantLanguageDetectionJobRequest extends AmazonWebServiceRe
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param volumeKmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon

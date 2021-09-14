@@ -45,7 +45,8 @@ public class DeleteDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      */
     private String documentClassifierArn;
 
@@ -58,7 +59,8 @@ public class DeleteDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) that identifies the document
@@ -78,7 +80,8 @@ public class DeleteDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param documentClassifierArn <p>
      *            The Amazon Resource Name (ARN) that identifies the document
@@ -101,7 +104,8 @@ public class DeleteDocumentClassifierRequest extends AmazonWebServiceRequest imp
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document
-     * -classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param documentClassifierArn <p>
      *            The Amazon Resource Name (ARN) that identifies the document
