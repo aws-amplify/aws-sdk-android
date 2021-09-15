@@ -79,6 +79,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      */
     private String kmsKeyId;
 
@@ -240,6 +241,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @return <p>
      *         ID for the AWS Key Management Service (KMS) key that Amazon
@@ -308,6 +310,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param kmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon
@@ -380,6 +383,7 @@ public class OutputDataConfig implements Serializable {
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b> - 2048<br/>
+     * <b>Pattern: </b>.*<br/>
      *
      * @param kmsKeyId <p>
      *            ID for the AWS Key Management Service (KMS) key that Amazon

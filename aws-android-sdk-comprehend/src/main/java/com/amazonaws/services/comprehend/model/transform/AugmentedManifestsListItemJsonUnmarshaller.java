@@ -44,6 +44,17 @@ class AugmentedManifestsListItemJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("AnnotationDataS3Uri")) {
+                augmentedManifestsListItem.setAnnotationDataS3Uri(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("SourceDocumentsS3Uri")) {
+                augmentedManifestsListItem.setSourceDocumentsS3Uri(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DocumentType")) {
+                augmentedManifestsListItem.setDocumentType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

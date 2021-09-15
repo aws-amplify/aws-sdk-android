@@ -21,44 +21,45 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO InputDataConfig
+ * JSON unmarshaller for POJO DocumentReaderConfig
  */
-class InputDataConfigJsonUnmarshaller implements
-        Unmarshaller<InputDataConfig, JsonUnmarshallerContext> {
+class DocumentReaderConfigJsonUnmarshaller implements
+        Unmarshaller<DocumentReaderConfig, JsonUnmarshallerContext> {
 
-    public InputDataConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public DocumentReaderConfig unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        InputDataConfig inputDataConfig = new InputDataConfig();
+        DocumentReaderConfig documentReaderConfig = new DocumentReaderConfig();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("S3Uri")) {
-                inputDataConfig.setS3Uri(StringJsonUnmarshaller.getInstance()
+            if (name.equals("DocumentReadAction")) {
+                documentReaderConfig.setDocumentReadAction(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("InputFormat")) {
-                inputDataConfig.setInputFormat(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("DocumentReadMode")) {
+                documentReaderConfig.setDocumentReadMode(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("DocumentReaderConfig")) {
-                inputDataConfig.setDocumentReaderConfig(DocumentReaderConfigJsonUnmarshaller
-                        .getInstance()
-                        .unmarshall(context));
+            } else if (name.equals("FeatureTypes")) {
+                documentReaderConfig.setFeatureTypes(new ListUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return inputDataConfig;
+        return documentReaderConfig;
     }
 
-    private static InputDataConfigJsonUnmarshaller instance;
+    private static DocumentReaderConfigJsonUnmarshaller instance;
 
-    public static InputDataConfigJsonUnmarshaller getInstance() {
+    public static DocumentReaderConfigJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new InputDataConfigJsonUnmarshaller();
+            instance = new DocumentReaderConfigJsonUnmarshaller();
         return instance;
     }
 }
