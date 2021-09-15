@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The input properties for a topic detection job.
+ * The input properties for an inference job.
  * </p>
  */
 public class InputDataConfig implements Serializable {
@@ -67,6 +67,19 @@ public class InputDataConfig implements Serializable {
      * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
      */
     private String inputFormat;
+
+    /**
+     * <p>
+     * The document reader config field applies only for InputDataConfig of
+     * StartEntitiesDetectionJob.
+     * </p>
+     * <p>
+     * Use DocumentReaderConfig to provide specifications about how you want
+     * your inference documents read. Currently it applies for PDF documents in
+     * StartEntitiesDetectionJob custom inference.
+     * </p>
+     */
+    private DocumentReaderConfig documentReaderConfig;
 
     /**
      * <p>
@@ -441,6 +454,89 @@ public class InputDataConfig implements Serializable {
     }
 
     /**
+     * <p>
+     * The document reader config field applies only for InputDataConfig of
+     * StartEntitiesDetectionJob.
+     * </p>
+     * <p>
+     * Use DocumentReaderConfig to provide specifications about how you want
+     * your inference documents read. Currently it applies for PDF documents in
+     * StartEntitiesDetectionJob custom inference.
+     * </p>
+     *
+     * @return <p>
+     *         The document reader config field applies only for InputDataConfig
+     *         of StartEntitiesDetectionJob.
+     *         </p>
+     *         <p>
+     *         Use DocumentReaderConfig to provide specifications about how you
+     *         want your inference documents read. Currently it applies for PDF
+     *         documents in StartEntitiesDetectionJob custom inference.
+     *         </p>
+     */
+    public DocumentReaderConfig getDocumentReaderConfig() {
+        return documentReaderConfig;
+    }
+
+    /**
+     * <p>
+     * The document reader config field applies only for InputDataConfig of
+     * StartEntitiesDetectionJob.
+     * </p>
+     * <p>
+     * Use DocumentReaderConfig to provide specifications about how you want
+     * your inference documents read. Currently it applies for PDF documents in
+     * StartEntitiesDetectionJob custom inference.
+     * </p>
+     *
+     * @param documentReaderConfig <p>
+     *            The document reader config field applies only for
+     *            InputDataConfig of StartEntitiesDetectionJob.
+     *            </p>
+     *            <p>
+     *            Use DocumentReaderConfig to provide specifications about how
+     *            you want your inference documents read. Currently it applies
+     *            for PDF documents in StartEntitiesDetectionJob custom
+     *            inference.
+     *            </p>
+     */
+    public void setDocumentReaderConfig(DocumentReaderConfig documentReaderConfig) {
+        this.documentReaderConfig = documentReaderConfig;
+    }
+
+    /**
+     * <p>
+     * The document reader config field applies only for InputDataConfig of
+     * StartEntitiesDetectionJob.
+     * </p>
+     * <p>
+     * Use DocumentReaderConfig to provide specifications about how you want
+     * your inference documents read. Currently it applies for PDF documents in
+     * StartEntitiesDetectionJob custom inference.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param documentReaderConfig <p>
+     *            The document reader config field applies only for
+     *            InputDataConfig of StartEntitiesDetectionJob.
+     *            </p>
+     *            <p>
+     *            Use DocumentReaderConfig to provide specifications about how
+     *            you want your inference documents read. Currently it applies
+     *            for PDF documents in StartEntitiesDetectionJob custom
+     *            inference.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public InputDataConfig withDocumentReaderConfig(DocumentReaderConfig documentReaderConfig) {
+        this.documentReaderConfig = documentReaderConfig;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -454,7 +550,9 @@ public class InputDataConfig implements Serializable {
         if (getS3Uri() != null)
             sb.append("S3Uri: " + getS3Uri() + ",");
         if (getInputFormat() != null)
-            sb.append("InputFormat: " + getInputFormat());
+            sb.append("InputFormat: " + getInputFormat() + ",");
+        if (getDocumentReaderConfig() != null)
+            sb.append("DocumentReaderConfig: " + getDocumentReaderConfig());
         sb.append("}");
         return sb.toString();
     }
@@ -467,6 +565,8 @@ public class InputDataConfig implements Serializable {
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
         hashCode = prime * hashCode
                 + ((getInputFormat() == null) ? 0 : getInputFormat().hashCode());
+        hashCode = prime * hashCode
+                + ((getDocumentReaderConfig() == null) ? 0 : getDocumentReaderConfig().hashCode());
         return hashCode;
     }
 
@@ -489,6 +589,11 @@ public class InputDataConfig implements Serializable {
             return false;
         if (other.getInputFormat() != null
                 && other.getInputFormat().equals(this.getInputFormat()) == false)
+            return false;
+        if (other.getDocumentReaderConfig() == null ^ this.getDocumentReaderConfig() == null)
+            return false;
+        if (other.getDocumentReaderConfig() != null
+                && other.getDocumentReaderConfig().equals(this.getDocumentReaderConfig()) == false)
             return false;
         return true;
     }
