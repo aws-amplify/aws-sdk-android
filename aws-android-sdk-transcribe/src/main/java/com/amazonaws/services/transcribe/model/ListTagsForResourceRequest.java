@@ -27,7 +27,7 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1011<br/>
-     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]{@literal *}/[0-9a-zA-Z._-]+<br/>
      */
     private String resourceArn;
 
@@ -36,7 +36,7 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1011<br/>
-     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]{@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @return <p>Lists all tags associated with a given Amazon Resource Name (ARN).</p>
      */
@@ -49,7 +49,7 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1011<br/>
-     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]{@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>Lists all tags associated with a given Amazon Resource Name (ARN).</p>
      */
@@ -64,7 +64,7 @@ public class ListTagsForResourceRequest extends AmazonWebServiceRequest implemen
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 1011<br/>
-     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]{@literal *}/[0-9a-zA-Z._-]+<br/>
      *
      * @param resourceArn <p>Lists all tags associated with a given Amazon Resource Name (ARN).</p>
      *
