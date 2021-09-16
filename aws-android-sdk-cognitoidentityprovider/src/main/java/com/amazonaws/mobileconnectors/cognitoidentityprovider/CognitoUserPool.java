@@ -20,6 +20,8 @@ package com.amazonaws.mobileconnectors.cognitoidentityprovider;
 import android.content.Context;
 import android.os.Handler;
 
+import androidx.annotation.VisibleForTesting;
+
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AnonymousAWSCredentials;
 import com.amazonaws.internal.keyvaluestore.AWSKeyValueStore;
@@ -97,7 +99,7 @@ public class CognitoUserPool {
     /**
      * CIP low-level client.
      */
-    private final AmazonCognitoIdentityProvider client;
+    private AmazonCognitoIdentityProvider client;
 
     /**
      * Calculated with {@code userId}, {@code clientId} and {@code clientSecret}
@@ -330,6 +332,11 @@ public class CognitoUserPool {
         if(cognitoUserPoolCustomEndpoint != null && !cognitoUserPoolCustomEndpoint.isEmpty()) {
             this.client.setEndpoint(cognitoUserPoolCustomEndpoint);
         }
+    }
+
+    @VisibleForTesting
+    void setIdentityProvider(AmazonCognitoIdentityProvider userpool) {
+        this.client = userpool;
     }
 
 
