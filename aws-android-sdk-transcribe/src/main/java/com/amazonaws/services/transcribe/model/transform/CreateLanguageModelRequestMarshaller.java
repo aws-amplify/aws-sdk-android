@@ -83,6 +83,17 @@ public class CreateLanguageModelRequestMarshaller implements
                 jsonWriter.name("InputDataConfig");
                 InputDataConfigJsonMarshaller.getInstance().marshall(inputDataConfig, jsonWriter);
             }
+            if (createLanguageModelRequest.getTags() != null) {
+                java.util.List<Tag> tags = createLanguageModelRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

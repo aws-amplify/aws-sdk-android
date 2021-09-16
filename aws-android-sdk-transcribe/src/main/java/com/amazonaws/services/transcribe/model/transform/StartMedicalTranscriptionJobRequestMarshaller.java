@@ -107,6 +107,21 @@ public class StartMedicalTranscriptionJobRequestMarshaller
                 jsonWriter.name("OutputEncryptionKMSKeyId");
                 jsonWriter.value(outputEncryptionKMSKeyId);
             }
+            if (startMedicalTranscriptionJobRequest.getKMSEncryptionContext() != null) {
+                java.util.Map<String, String> kMSEncryptionContext = startMedicalTranscriptionJobRequest
+                        .getKMSEncryptionContext();
+                jsonWriter.name("KMSEncryptionContext");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> kMSEncryptionContextEntry : kMSEncryptionContext
+                        .entrySet()) {
+                    String kMSEncryptionContextValue = kMSEncryptionContextEntry.getValue();
+                    if (kMSEncryptionContextValue != null) {
+                        jsonWriter.name(kMSEncryptionContextEntry.getKey());
+                        jsonWriter.value(kMSEncryptionContextValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
             if (startMedicalTranscriptionJobRequest.getSettings() != null) {
                 MedicalTranscriptionSetting settings = startMedicalTranscriptionJobRequest
                         .getSettings();
@@ -129,6 +144,17 @@ public class StartMedicalTranscriptionJobRequestMarshaller
                 String type = startMedicalTranscriptionJobRequest.getType();
                 jsonWriter.name("Type");
                 jsonWriter.value(type);
+            }
+            if (startMedicalTranscriptionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startMedicalTranscriptionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
             }
 
             jsonWriter.endObject();

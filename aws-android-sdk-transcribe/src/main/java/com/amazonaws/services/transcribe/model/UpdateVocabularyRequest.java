@@ -43,14 +43,15 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      */
     private String languageCode;
 
@@ -162,19 +163,20 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @return <p>
      *         The language code of the vocabulary entries. For a list of
      *         languages and their corresponding language codes, see
-     *         <a>what-is-transcribe</a>.
+     *         <a>transcribe-whatis</a>.
      *         </p>
      * @see LanguageCode
      */
@@ -185,19 +187,20 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -208,7 +211,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -218,12 +221,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -237,19 +241,20 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -260,7 +265,7 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -270,12 +275,13 @@ public class UpdateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

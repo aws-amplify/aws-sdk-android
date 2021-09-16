@@ -43,14 +43,15 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      */
     private String languageCode;
 
@@ -65,7 +66,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The S3 location of the text file that contains the definition of the
      * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * that you are calling. The general form is:
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -75,7 +76,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * For more information about custom vocabularies, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Custom vocabularies</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -83,6 +84,14 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Pattern: </b>(s3://|http(s*)://).+<br/>
      */
     private String vocabularyFileUri;
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * Amazon Transcribe vocabulary at the time you create this new vocabulary.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -165,19 +174,20 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @return <p>
      *         The language code of the vocabulary entries. For a list of
      *         languages and their corresponding language codes, see
-     *         <a>what-is-transcribe</a>.
+     *         <a>transcribe-whatis</a>.
      *         </p>
      * @see LanguageCode
      */
@@ -188,19 +198,20 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -211,7 +222,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -221,12 +232,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -240,19 +252,20 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @see LanguageCode
      */
@@ -263,7 +276,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
     /**
      * <p>
      * The language code of the vocabulary entries. For a list of languages and
-     * their corresponding language codes, see <a>what-is-transcribe</a>.
+     * their corresponding language codes, see <a>transcribe-whatis</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -273,12 +286,13 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code of the vocabulary entries. For a list of
      *            languages and their corresponding language codes, see
-     *            <a>what-is-transcribe</a>.
+     *            <a>transcribe-whatis</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -367,7 +381,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The S3 location of the text file that contains the definition of the
      * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * that you are calling. The general form is:
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -377,7 +391,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * For more information about custom vocabularies, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Custom vocabularies</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -387,7 +401,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @return <p>
      *         The S3 location of the text file that contains the definition of
      *         the custom vocabulary. The URI must be in the same region as the
-     *         API endpoint that you are calling. The general form is
+     *         API endpoint that you are calling. The general form is:
      *         </p>
      *         <p>
      *         For more information about S3 object names, see <a href=
@@ -397,7 +411,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *         <p>
      *         For more information about custom vocabularies, see <a href=
      *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     *         >Custom Vocabularies</a>.
+     *         >Custom vocabularies</a>.
      *         </p>
      */
     public String getVocabularyFileUri() {
@@ -408,7 +422,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The S3 location of the text file that contains the definition of the
      * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * that you are calling. The general form is:
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -418,7 +432,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * For more information about custom vocabularies, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Custom vocabularies</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -428,7 +442,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param vocabularyFileUri <p>
      *            The S3 location of the text file that contains the definition
      *            of the custom vocabulary. The URI must be in the same region
-     *            as the API endpoint that you are calling. The general form is
+     *            as the API endpoint that you are calling. The general form is:
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -438,7 +452,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            For more information about custom vocabularies, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     *            >Custom Vocabularies</a>.
+     *            >Custom vocabularies</a>.
      *            </p>
      */
     public void setVocabularyFileUri(String vocabularyFileUri) {
@@ -449,7 +463,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * The S3 location of the text file that contains the definition of the
      * custom vocabulary. The URI must be in the same region as the API endpoint
-     * that you are calling. The general form is
+     * that you are calling. The general form is:
      * </p>
      * <p>
      * For more information about S3 object names, see <a href=
@@ -459,7 +473,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * <p>
      * For more information about custom vocabularies, see <a
      * href="https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     * >Custom Vocabularies</a>.
+     * >Custom vocabularies</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -472,7 +486,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      * @param vocabularyFileUri <p>
      *            The S3 location of the text file that contains the definition
      *            of the custom vocabulary. The URI must be in the same region
-     *            as the API endpoint that you are calling. The general form is
+     *            as the API endpoint that you are calling. The general form is:
      *            </p>
      *            <p>
      *            For more information about S3 object names, see <a href=
@@ -482,13 +496,99 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            For more information about custom vocabularies, see <a href=
      *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary"
-     *            >Custom Vocabularies</a>.
+     *            >Custom vocabularies</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public CreateVocabularyRequest withVocabularyFileUri(String vocabularyFileUri) {
         this.vocabularyFileUri = vocabularyFileUri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * Amazon Transcribe vocabulary at the time you create this new vocabulary.
+     * </p>
+     *
+     * @return <p>
+     *         Adds one or more tags, each in the form of a key:value pair, to a
+     *         new Amazon Transcribe vocabulary at the time you create this new
+     *         vocabulary.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * Amazon Transcribe vocabulary at the time you create this new vocabulary.
+     * </p>
+     *
+     * @param tags <p>
+     *            Adds one or more tags, each in the form of a key:value pair,
+     *            to a new Amazon Transcribe vocabulary at the time you create
+     *            this new vocabulary.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * Amazon Transcribe vocabulary at the time you create this new vocabulary.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Adds one or more tags, each in the form of a key:value pair,
+     *            to a new Amazon Transcribe vocabulary at the time you create
+     *            this new vocabulary.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateVocabularyRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * Amazon Transcribe vocabulary at the time you create this new vocabulary.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Adds one or more tags, each in the form of a key:value pair,
+     *            to a new Amazon Transcribe vocabulary at the time you create
+     *            this new vocabulary.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateVocabularyRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
         return this;
     }
 
@@ -510,7 +610,9 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
         if (getPhrases() != null)
             sb.append("Phrases: " + getPhrases() + ",");
         if (getVocabularyFileUri() != null)
-            sb.append("VocabularyFileUri: " + getVocabularyFileUri());
+            sb.append("VocabularyFileUri: " + getVocabularyFileUri() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -527,6 +629,7 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
         hashCode = prime * hashCode + ((getPhrases() == null) ? 0 : getPhrases().hashCode());
         hashCode = prime * hashCode
                 + ((getVocabularyFileUri() == null) ? 0 : getVocabularyFileUri().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -559,6 +662,10 @@ public class CreateVocabularyRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getVocabularyFileUri() != null
                 && other.getVocabularyFileUri().equals(this.getVocabularyFileUri()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }

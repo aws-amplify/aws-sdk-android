@@ -45,11 +45,11 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16 kHz or greater, choose <code>Wideband</code>.
+     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16 kHz, choose <code>Narrowband</code>.
+     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -75,6 +75,14 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      */
     private InputDataConfig inputDataConfig;
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * language model at the time you create this new model.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
 
     /**
      * <p>
@@ -190,11 +198,11 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16 kHz or greater, choose <code>Wideband</code>.
+     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16 kHz, choose <code>Narrowband</code>.
+     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -206,12 +214,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      *         </p>
      *         <p>
      *         If you want to use your custom language model to transcribe audio
-     *         with a sample rate of 16 kHz or greater, choose
+     *         with a sample rate of 16,000 Hz or greater, choose
      *         <code>Wideband</code>.
      *         </p>
      *         <p>
      *         If you want to use your custom language model to transcribe audio
-     *         with a sample rate that is less than 16 kHz, choose
+     *         with a sample rate that is less than 16,000 Hz, choose
      *         <code>Narrowband</code>.
      *         </p>
      * @see BaseModelName
@@ -227,11 +235,11 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16 kHz or greater, choose <code>Wideband</code>.
+     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16 kHz, choose <code>Narrowband</code>.
+     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -243,12 +251,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16 kHz or greater, choose
+     *            audio with a sample rate of 16,000 Hz or greater, choose
      *            <code>Wideband</code>.
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16 kHz, choose
+     *            audio with a sample rate that is less than 16,000 Hz, choose
      *            <code>Narrowband</code>.
      *            </p>
      * @see BaseModelName
@@ -264,11 +272,11 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16 kHz or greater, choose <code>Wideband</code>.
+     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16 kHz, choose <code>Narrowband</code>.
+     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -283,12 +291,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16 kHz or greater, choose
+     *            audio with a sample rate of 16,000 Hz or greater, choose
      *            <code>Wideband</code>.
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16 kHz, choose
+     *            audio with a sample rate that is less than 16,000 Hz, choose
      *            <code>Narrowband</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -307,11 +315,11 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16 kHz or greater, choose <code>Wideband</code>.
+     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16 kHz, choose <code>Narrowband</code>.
+     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -323,12 +331,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16 kHz or greater, choose
+     *            audio with a sample rate of 16,000 Hz or greater, choose
      *            <code>Wideband</code>.
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16 kHz, choose
+     *            audio with a sample rate that is less than 16,000 Hz, choose
      *            <code>Narrowband</code>.
      *            </p>
      * @see BaseModelName
@@ -344,11 +352,11 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate of 16 kHz or greater, choose <code>Wideband</code>.
+     * sample rate of 16,000 Hz or greater, choose <code>Wideband</code>.
      * </p>
      * <p>
      * If you want to use your custom language model to transcribe audio with a
-     * sample rate that is less than 16 kHz, choose <code>Narrowband</code>.
+     * sample rate that is less than 16,000 Hz, choose <code>Narrowband</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -363,12 +371,12 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate of 16 kHz or greater, choose
+     *            audio with a sample rate of 16,000 Hz or greater, choose
      *            <code>Wideband</code>.
      *            </p>
      *            <p>
      *            If you want to use your custom language model to transcribe
-     *            audio with a sample rate that is less than 16 kHz, choose
+     *            audio with a sample rate that is less than 16,000 Hz, choose
      *            <code>Narrowband</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -494,6 +502,88 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
     }
 
     /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * language model at the time you create this new model.
+     * </p>
+     *
+     * @return <p>
+     *         Adds one or more tags, each in the form of a key:value pair, to a
+     *         new language model at the time you create this new model.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * language model at the time you create this new model.
+     * </p>
+     *
+     * @param tags <p>
+     *            Adds one or more tags, each in the form of a key:value pair,
+     *            to a new language model at the time you create this new model.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * language model at the time you create this new model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Adds one or more tags, each in the form of a key:value pair,
+     *            to a new language model at the time you create this new model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateLanguageModelRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Adds one or more tags, each in the form of a key:value pair, to a new
+     * language model at the time you create this new model.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Adds one or more tags, each in the form of a key:value pair,
+     *            to a new language model at the time you create this new model.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateLanguageModelRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -511,7 +601,9 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
         if (getModelName() != null)
             sb.append("ModelName: " + getModelName() + ",");
         if (getInputDataConfig() != null)
-            sb.append("InputDataConfig: " + getInputDataConfig());
+            sb.append("InputDataConfig: " + getInputDataConfig() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags());
         sb.append("}");
         return sb.toString();
     }
@@ -528,6 +620,7 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
         hashCode = prime * hashCode + ((getModelName() == null) ? 0 : getModelName().hashCode());
         hashCode = prime * hashCode
                 + ((getInputDataConfig() == null) ? 0 : getInputDataConfig().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
 
@@ -561,6 +654,10 @@ public class CreateLanguageModelRequest extends AmazonWebServiceRequest implemen
             return false;
         if (other.getInputDataConfig() != null
                 && other.getInputDataConfig().equals(this.getInputDataConfig()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
             return false;
         return true;
     }
