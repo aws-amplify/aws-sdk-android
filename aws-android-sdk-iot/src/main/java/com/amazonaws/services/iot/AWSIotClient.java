@@ -11103,6 +11103,58 @@ public class AWSIotClient extends AmazonWebServiceClient implements AWSIot {
 
     /**
      * <p>
+     * Set a verification state and provide a description of that verification
+     * state on a violation (detect alarm).
+     * </p>
+     * 
+     * @param putVerificationStateOnViolationRequest
+     * @return putVerificationStateOnViolationResult The response from the
+     *         PutVerificationStateOnViolation service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    public PutVerificationStateOnViolationResult putVerificationStateOnViolation(
+            PutVerificationStateOnViolationRequest putVerificationStateOnViolationRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putVerificationStateOnViolationRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutVerificationStateOnViolationRequest> request = null;
+        Response<PutVerificationStateOnViolationResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutVerificationStateOnViolationRequestMarshaller()
+                        .marshall(putVerificationStateOnViolationRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutVerificationStateOnViolationResult, JsonUnmarshallerContext> unmarshaller = new PutVerificationStateOnViolationResultJsonUnmarshaller();
+            JsonResponseHandler<PutVerificationStateOnViolationResult> responseHandler = new JsonResponseHandler<PutVerificationStateOnViolationResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Registers a CA certificate with IoT. This CA certificate can then be used
      * to sign device certificates, which can be then registered with IoT. You
      * can register up to 10 CA certificates per Amazon Web Services account

@@ -87,6 +87,17 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     */
+    private String verificationState;
+
+    /**
+     * <p>
      * The token for the next set of results.
      * </p>
      */
@@ -470,6 +481,108 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
 
     /**
      * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @return <p>
+     *         The verification state of the violation (detect alarm).
+     *         </p>
+     * @see VerificationState
+     */
+    public String getVerificationState() {
+        return verificationState;
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @see VerificationState
+     */
+    public void setVerificationState(String verificationState) {
+        this.verificationState = verificationState;
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VerificationState
+     */
+    public ListViolationEventsRequest withVerificationState(String verificationState) {
+        this.verificationState = verificationState;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @see VerificationState
+     */
+    public void setVerificationState(VerificationState verificationState) {
+        this.verificationState = verificationState.toString();
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VerificationState
+     */
+    public ListViolationEventsRequest withVerificationState(VerificationState verificationState) {
+        this.verificationState = verificationState.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The token for the next set of results.
      * </p>
      *
@@ -590,6 +703,8 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
             sb.append("behaviorCriteriaType: " + getBehaviorCriteriaType() + ",");
         if (getListSuppressedAlerts() != null)
             sb.append("listSuppressedAlerts: " + getListSuppressedAlerts() + ",");
+        if (getVerificationState() != null)
+            sb.append("verificationState: " + getVerificationState() + ",");
         if (getNextToken() != null)
             sb.append("nextToken: " + getNextToken() + ",");
         if (getMaxResults() != null)
@@ -612,6 +727,8 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
                 + ((getBehaviorCriteriaType() == null) ? 0 : getBehaviorCriteriaType().hashCode());
         hashCode = prime * hashCode
                 + ((getListSuppressedAlerts() == null) ? 0 : getListSuppressedAlerts().hashCode());
+        hashCode = prime * hashCode
+                + ((getVerificationState() == null) ? 0 : getVerificationState().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         return hashCode;
@@ -656,6 +773,11 @@ public class ListViolationEventsRequest extends AmazonWebServiceRequest implemen
             return false;
         if (other.getListSuppressedAlerts() != null
                 && other.getListSuppressedAlerts().equals(this.getListSuppressedAlerts()) == false)
+            return false;
+        if (other.getVerificationState() == null ^ this.getVerificationState() == null)
+            return false;
+        if (other.getVerificationState() != null
+                && other.getVerificationState().equals(this.getVerificationState()) == false)
             return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;

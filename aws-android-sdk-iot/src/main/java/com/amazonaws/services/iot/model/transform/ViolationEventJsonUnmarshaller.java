@@ -59,6 +59,12 @@ class ViolationEventJsonUnmarshaller implements
             } else if (name.equals("violationEventType")) {
                 violationEvent.setViolationEventType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("verificationState")) {
+                violationEvent.setVerificationState(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("verificationStateDescription")) {
+                violationEvent.setVerificationStateDescription(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("violationEventTime")) {
                 violationEvent.setViolationEventTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
