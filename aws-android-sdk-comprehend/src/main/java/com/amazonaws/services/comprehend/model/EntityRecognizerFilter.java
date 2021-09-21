@@ -38,6 +38,17 @@ public class EntityRecognizerFilter implements Serializable {
 
     /**
      * <p>
+     * The name that you assigned the entity recognizer.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     */
+    private String recognizerName;
+
+    /**
+     * <p>
      * Filters the list of entities based on the time that the list was
      * submitted for processing. Returns only jobs submitted before the
      * specified time. Jobs are returned in descending order, newest to oldest.
@@ -153,6 +164,63 @@ public class EntityRecognizerFilter implements Serializable {
      */
     public EntityRecognizerFilter withStatus(ModelStatus status) {
         this.status = status.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The name that you assigned the entity recognizer.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @return <p>
+     *         The name that you assigned the entity recognizer.
+     *         </p>
+     */
+    public String getRecognizerName() {
+        return recognizerName;
+    }
+
+    /**
+     * <p>
+     * The name that you assigned the entity recognizer.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @param recognizerName <p>
+     *            The name that you assigned the entity recognizer.
+     *            </p>
+     */
+    public void setRecognizerName(String recognizerName) {
+        this.recognizerName = recognizerName;
+    }
+
+    /**
+     * <p>
+     * The name that you assigned the entity recognizer.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @param recognizerName <p>
+     *            The name that you assigned the entity recognizer.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntityRecognizerFilter withRecognizerName(String recognizerName) {
+        this.recognizerName = recognizerName;
         return this;
     }
 
@@ -289,6 +357,8 @@ public class EntityRecognizerFilter implements Serializable {
         sb.append("{");
         if (getStatus() != null)
             sb.append("Status: " + getStatus() + ",");
+        if (getRecognizerName() != null)
+            sb.append("RecognizerName: " + getRecognizerName() + ",");
         if (getSubmitTimeBefore() != null)
             sb.append("SubmitTimeBefore: " + getSubmitTimeBefore() + ",");
         if (getSubmitTimeAfter() != null)
@@ -303,6 +373,8 @@ public class EntityRecognizerFilter implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getRecognizerName() == null) ? 0 : getRecognizerName().hashCode());
         hashCode = prime * hashCode
                 + ((getSubmitTimeBefore() == null) ? 0 : getSubmitTimeBefore().hashCode());
         hashCode = prime * hashCode
@@ -324,6 +396,11 @@ public class EntityRecognizerFilter implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getRecognizerName() == null ^ this.getRecognizerName() == null)
+            return false;
+        if (other.getRecognizerName() != null
+                && other.getRecognizerName().equals(this.getRecognizerName()) == false)
             return false;
         if (other.getSubmitTimeBefore() == null ^ this.getSubmitTimeBefore() == null)
             return false;

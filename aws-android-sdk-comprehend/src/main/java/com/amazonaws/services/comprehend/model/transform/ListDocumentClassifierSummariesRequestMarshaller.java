@@ -38,20 +38,22 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for UpdateEndpointRequest
+ * JSON request marshaller for ListDocumentClassifierSummariesRequest
  */
-public class UpdateEndpointRequestMarshaller implements
-        Marshaller<Request<UpdateEndpointRequest>, UpdateEndpointRequest> {
+public class ListDocumentClassifierSummariesRequestMarshaller
+        implements
+        Marshaller<Request<ListDocumentClassifierSummariesRequest>, ListDocumentClassifierSummariesRequest> {
 
-    public Request<UpdateEndpointRequest> marshall(UpdateEndpointRequest updateEndpointRequest) {
-        if (updateEndpointRequest == null) {
+    public Request<ListDocumentClassifierSummariesRequest> marshall(
+            ListDocumentClassifierSummariesRequest listDocumentClassifierSummariesRequest) {
+        if (listDocumentClassifierSummariesRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(UpdateEndpointRequest)");
+                    "Invalid argument passed to marshall(ListDocumentClassifierSummariesRequest)");
         }
 
-        Request<UpdateEndpointRequest> request = new DefaultRequest<UpdateEndpointRequest>(
-                updateEndpointRequest, "AmazonComprehend");
-        String target = "Comprehend_20171127.UpdateEndpoint";
+        Request<ListDocumentClassifierSummariesRequest> request = new DefaultRequest<ListDocumentClassifierSummariesRequest>(
+                listDocumentClassifierSummariesRequest, "AmazonComprehend");
+        String target = "Comprehend_20171127.ListDocumentClassifierSummaries";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -62,26 +64,15 @@ public class UpdateEndpointRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (updateEndpointRequest.getEndpointArn() != null) {
-                String endpointArn = updateEndpointRequest.getEndpointArn();
-                jsonWriter.name("EndpointArn");
-                jsonWriter.value(endpointArn);
+            if (listDocumentClassifierSummariesRequest.getNextToken() != null) {
+                String nextToken = listDocumentClassifierSummariesRequest.getNextToken();
+                jsonWriter.name("NextToken");
+                jsonWriter.value(nextToken);
             }
-            if (updateEndpointRequest.getDesiredModelArn() != null) {
-                String desiredModelArn = updateEndpointRequest.getDesiredModelArn();
-                jsonWriter.name("DesiredModelArn");
-                jsonWriter.value(desiredModelArn);
-            }
-            if (updateEndpointRequest.getDesiredInferenceUnits() != null) {
-                Integer desiredInferenceUnits = updateEndpointRequest.getDesiredInferenceUnits();
-                jsonWriter.name("DesiredInferenceUnits");
-                jsonWriter.value(desiredInferenceUnits);
-            }
-            if (updateEndpointRequest.getDesiredDataAccessRoleArn() != null) {
-                String desiredDataAccessRoleArn = updateEndpointRequest
-                        .getDesiredDataAccessRoleArn();
-                jsonWriter.name("DesiredDataAccessRoleArn");
-                jsonWriter.value(desiredDataAccessRoleArn);
+            if (listDocumentClassifierSummariesRequest.getMaxResults() != null) {
+                Integer maxResults = listDocumentClassifierSummariesRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
             }
 
             jsonWriter.endObject();

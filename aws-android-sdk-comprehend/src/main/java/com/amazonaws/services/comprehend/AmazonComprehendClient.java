@@ -2035,6 +2035,58 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
 
     /**
      * <p>
+     * Gets a list of summaries of the document classifiers that you have
+     * created
+     * </p>
+     * 
+     * @param listDocumentClassifierSummariesRequest
+     * @return listDocumentClassifierSummariesResult The response from the
+     *         ListDocumentClassifierSummaries service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListDocumentClassifierSummariesResult listDocumentClassifierSummaries(
+            ListDocumentClassifierSummariesRequest listDocumentClassifierSummariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDocumentClassifierSummariesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDocumentClassifierSummariesRequest> request = null;
+        Response<ListDocumentClassifierSummariesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDocumentClassifierSummariesRequestMarshaller()
+                        .marshall(listDocumentClassifierSummariesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDocumentClassifierSummariesResult, JsonUnmarshallerContext> unmarshaller = new ListDocumentClassifierSummariesResultJsonUnmarshaller();
+            JsonResponseHandler<ListDocumentClassifierSummariesResult> responseHandler = new JsonResponseHandler<ListDocumentClassifierSummariesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets a list of the document classifiers that you have created.
      * </p>
      * 
@@ -2227,6 +2279,58 @@ public class AmazonComprehendClient extends AmazonWebServiceClient implements Am
             }
             Unmarshaller<ListEntitiesDetectionJobsResult, JsonUnmarshallerContext> unmarshaller = new ListEntitiesDetectionJobsResultJsonUnmarshaller();
             JsonResponseHandler<ListEntitiesDetectionJobsResult> responseHandler = new JsonResponseHandler<ListEntitiesDetectionJobsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets a list of summaries for the entity recognizers that you have
+     * created.
+     * </p>
+     * 
+     * @param listEntityRecognizerSummariesRequest
+     * @return listEntityRecognizerSummariesResult The response from the
+     *         ListEntityRecognizerSummaries service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListEntityRecognizerSummariesResult listEntityRecognizerSummaries(
+            ListEntityRecognizerSummariesRequest listEntityRecognizerSummariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listEntityRecognizerSummariesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListEntityRecognizerSummariesRequest> request = null;
+        Response<ListEntityRecognizerSummariesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListEntityRecognizerSummariesRequestMarshaller()
+                        .marshall(listEntityRecognizerSummariesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListEntityRecognizerSummariesResult, JsonUnmarshallerContext> unmarshaller = new ListEntityRecognizerSummariesResultJsonUnmarshaller();
+            JsonResponseHandler<ListEntityRecognizerSummariesResult> responseHandler = new JsonResponseHandler<ListEntityRecognizerSummariesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

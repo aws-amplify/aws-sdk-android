@@ -50,7 +50,8 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
-     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * Z0-9-]{1,64}
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      */
     private String jobArn;
 
@@ -171,7 +172,8 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
-     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * Z0-9-]{1,64}
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the key phrase detection job.
@@ -213,7 +215,8 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
-     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * Z0-9-]{1,64}
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the key phrase detection
@@ -258,7 +261,8 @@ public class StartKeyPhrasesDetectionJobResult implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-
-     * Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * Z0-9-]{1,64}
+     * /[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param jobArn <p>
      *            The Amazon Resource Name (ARN) of the key phrase detection

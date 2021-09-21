@@ -39,6 +39,9 @@ class EntityRecognizerAnnotationsJsonUnmarshaller implements
             if (name.equals("S3Uri")) {
                 entityRecognizerAnnotations.setS3Uri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TestS3Uri")) {
+                entityRecognizerAnnotations.setTestS3Uri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

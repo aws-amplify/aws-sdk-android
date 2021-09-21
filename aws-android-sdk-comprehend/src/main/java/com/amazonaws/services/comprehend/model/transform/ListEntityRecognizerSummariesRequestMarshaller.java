@@ -38,20 +38,22 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for UpdateEndpointRequest
+ * JSON request marshaller for ListEntityRecognizerSummariesRequest
  */
-public class UpdateEndpointRequestMarshaller implements
-        Marshaller<Request<UpdateEndpointRequest>, UpdateEndpointRequest> {
+public class ListEntityRecognizerSummariesRequestMarshaller
+        implements
+        Marshaller<Request<ListEntityRecognizerSummariesRequest>, ListEntityRecognizerSummariesRequest> {
 
-    public Request<UpdateEndpointRequest> marshall(UpdateEndpointRequest updateEndpointRequest) {
-        if (updateEndpointRequest == null) {
+    public Request<ListEntityRecognizerSummariesRequest> marshall(
+            ListEntityRecognizerSummariesRequest listEntityRecognizerSummariesRequest) {
+        if (listEntityRecognizerSummariesRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(UpdateEndpointRequest)");
+                    "Invalid argument passed to marshall(ListEntityRecognizerSummariesRequest)");
         }
 
-        Request<UpdateEndpointRequest> request = new DefaultRequest<UpdateEndpointRequest>(
-                updateEndpointRequest, "AmazonComprehend");
-        String target = "Comprehend_20171127.UpdateEndpoint";
+        Request<ListEntityRecognizerSummariesRequest> request = new DefaultRequest<ListEntityRecognizerSummariesRequest>(
+                listEntityRecognizerSummariesRequest, "AmazonComprehend");
+        String target = "Comprehend_20171127.ListEntityRecognizerSummaries";
         request.addHeader("X-Amz-Target", target);
         request.setHttpMethod(HttpMethodName.POST);
 
@@ -62,26 +64,15 @@ public class UpdateEndpointRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (updateEndpointRequest.getEndpointArn() != null) {
-                String endpointArn = updateEndpointRequest.getEndpointArn();
-                jsonWriter.name("EndpointArn");
-                jsonWriter.value(endpointArn);
+            if (listEntityRecognizerSummariesRequest.getNextToken() != null) {
+                String nextToken = listEntityRecognizerSummariesRequest.getNextToken();
+                jsonWriter.name("NextToken");
+                jsonWriter.value(nextToken);
             }
-            if (updateEndpointRequest.getDesiredModelArn() != null) {
-                String desiredModelArn = updateEndpointRequest.getDesiredModelArn();
-                jsonWriter.name("DesiredModelArn");
-                jsonWriter.value(desiredModelArn);
-            }
-            if (updateEndpointRequest.getDesiredInferenceUnits() != null) {
-                Integer desiredInferenceUnits = updateEndpointRequest.getDesiredInferenceUnits();
-                jsonWriter.name("DesiredInferenceUnits");
-                jsonWriter.value(desiredInferenceUnits);
-            }
-            if (updateEndpointRequest.getDesiredDataAccessRoleArn() != null) {
-                String desiredDataAccessRoleArn = updateEndpointRequest
-                        .getDesiredDataAccessRoleArn();
-                jsonWriter.name("DesiredDataAccessRoleArn");
-                jsonWriter.value(desiredDataAccessRoleArn);
+            if (listEntityRecognizerSummariesRequest.getMaxResults() != null) {
+                Integer maxResults = listEntityRecognizerSummariesRequest.getMaxResults();
+                jsonWriter.name("MaxResults");
+                jsonWriter.value(maxResults);
             }
 
             jsonWriter.endObject();

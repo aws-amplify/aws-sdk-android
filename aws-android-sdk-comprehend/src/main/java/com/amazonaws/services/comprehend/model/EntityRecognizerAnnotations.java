@@ -38,6 +38,19 @@ public class EntityRecognizerAnnotations implements Serializable {
 
     /**
      * <p>
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     */
+    private String testS3Uri;
+
+    /**
+     * <p>
      * Specifies the Amazon S3 location where the annotations for an entity
      * recognizer are located. The URI must be in the same region as the API
      * endpoint that you are calling.
@@ -106,6 +119,77 @@ public class EntityRecognizerAnnotations implements Serializable {
     }
 
     /**
+     * <p>
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @return <p>
+     *         This specifies the Amazon S3 location where the test annotations
+     *         for an entity recognizer are located. The URI must be in the same
+     *         AWS Region as the API endpoint that you are calling.
+     *         </p>
+     */
+    public String getTestS3Uri() {
+        return testS3Uri;
+    }
+
+    /**
+     * <p>
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            This specifies the Amazon S3 location where the test
+     *            annotations for an entity recognizer are located. The URI must
+     *            be in the same AWS Region as the API endpoint that you are
+     *            calling.
+     *            </p>
+     */
+    public void setTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+    }
+
+    /**
+     * <p>
+     * This specifies the Amazon S3 location where the test annotations for an
+     * entity recognizer are located. The URI must be in the same AWS Region as
+     * the API endpoint that you are calling.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            This specifies the Amazon S3 location where the test
+     *            annotations for an entity recognizer are located. The URI must
+     *            be in the same AWS Region as the API endpoint that you are
+     *            calling.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntityRecognizerAnnotations withTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -117,7 +201,9 @@ public class EntityRecognizerAnnotations implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getS3Uri() != null)
-            sb.append("S3Uri: " + getS3Uri());
+            sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getTestS3Uri() != null)
+            sb.append("TestS3Uri: " + getTestS3Uri());
         sb.append("}");
         return sb.toString();
     }
@@ -128,6 +214,7 @@ public class EntityRecognizerAnnotations implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode + ((getTestS3Uri() == null) ? 0 : getTestS3Uri().hashCode());
         return hashCode;
     }
 
@@ -145,6 +232,11 @@ public class EntityRecognizerAnnotations implements Serializable {
         if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
         if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getTestS3Uri() == null ^ this.getTestS3Uri() == null)
+            return false;
+        if (other.getTestS3Uri() != null
+                && other.getTestS3Uri().equals(this.getTestS3Uri()) == false)
             return false;
         return true;
     }

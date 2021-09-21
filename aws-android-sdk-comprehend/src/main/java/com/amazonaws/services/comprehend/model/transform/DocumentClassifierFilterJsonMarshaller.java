@@ -32,6 +32,11 @@ class DocumentClassifierFilterJsonMarshaller {
             jsonWriter.name("Status");
             jsonWriter.value(status);
         }
+        if (documentClassifierFilter.getDocumentClassifierName() != null) {
+            String documentClassifierName = documentClassifierFilter.getDocumentClassifierName();
+            jsonWriter.name("DocumentClassifierName");
+            jsonWriter.value(documentClassifierName);
+        }
         if (documentClassifierFilter.getSubmitTimeBefore() != null) {
             java.util.Date submitTimeBefore = documentClassifierFilter.getSubmitTimeBefore();
             jsonWriter.name("SubmitTimeBefore");
