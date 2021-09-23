@@ -78,6 +78,7 @@ public class CognitoUserPool {
     private static final Log logger = LogFactory.getLog(CognitoUserPool.class);
 
     private static final int USER_POOL_ID_MAX_LENGTH = 55;
+    private static final String USER_POOL_ID_PATTERN = "^[\\w-]+_[0-9a-zA-Z]+$";
 
     /**
      * Cognito Your Identity Pool ID
@@ -275,7 +276,7 @@ public class CognitoUserPool {
         if (userPoolId.isEmpty() || clientId.isEmpty()) {
             throw new IllegalArgumentException("Both UserPoolId and ClientId are required. ");
         }
-        if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches("[\\w-]+_[0-9a-zA-Z]+", userPoolId)) {
+        if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches(USER_POOL_ID_PATTERN, userPoolId)) {
             throw new IllegalArgumentException("Invalid userPoolId format. ");
         }
         this.userPoolId = userPoolId;
@@ -335,7 +336,7 @@ public class CognitoUserPool {
         if (userPoolId.isEmpty() || clientId.isEmpty()) {
             throw new IllegalArgumentException("Both UserPoolId and ClientId are required. ");
         }
-        if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches("[\\w-]+_[0-9a-zA-Z]+", userPoolId)) {
+        if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches(USER_POOL_ID_PATTERN, userPoolId)) {
             throw new IllegalArgumentException("Invalid userPoolId format. ");
         }
         this.userPoolId = userPoolId;
