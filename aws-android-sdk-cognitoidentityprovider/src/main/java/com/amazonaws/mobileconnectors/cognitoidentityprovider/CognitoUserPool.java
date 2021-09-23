@@ -274,10 +274,10 @@ public class CognitoUserPool {
         initialize(context);
         this.context = context;
         if (userPoolId.isEmpty() || clientId.isEmpty()) {
-            throw new IllegalArgumentException("Both UserPoolId and ClientId are required. ");
+            throw new IllegalArgumentException("Both UserPoolId and ClientId are required.");
         }
         if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches(USER_POOL_ID_PATTERN, userPoolId)) {
-            throw new IllegalArgumentException("Invalid userPoolId format. ");
+            throw new IllegalArgumentException("Invalid userPoolId format.");
         }
         this.userPoolId = userPoolId;
         this.clientId = clientId;
@@ -334,10 +334,10 @@ public class CognitoUserPool {
         initialize(context);
         this.context = context;
         if (userPoolId.isEmpty() || clientId.isEmpty()) {
-            throw new IllegalArgumentException("Both UserPoolId and ClientId are required. ");
+            throw new IllegalArgumentException("Both UserPoolId and ClientId are required.");
         }
         if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches(USER_POOL_ID_PATTERN, userPoolId)) {
-            throw new IllegalArgumentException("Invalid userPoolId format. ");
+            throw new IllegalArgumentException("Invalid userPoolId format.");
         }
         this.userPoolId = userPoolId;
         this.clientId = clientId;
