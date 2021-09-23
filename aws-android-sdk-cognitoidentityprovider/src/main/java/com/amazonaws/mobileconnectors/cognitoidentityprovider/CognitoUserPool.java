@@ -49,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * This represents a user-pool in a Cognito identity provider account. The user-pools are called as
@@ -75,6 +76,9 @@ import java.util.Map;
 public class CognitoUserPool {
 
     private static final Log logger = LogFactory.getLog(CognitoUserPool.class);
+
+    private static final int USER_POOL_ID_MAX_LENGTH = 55;
+
     /**
      * Cognito Your Identity Pool ID
      */
@@ -184,7 +188,11 @@ public class CognitoUserPool {
 
             final JSONObject userPoolConfiguration = awsConfiguration.optJsonObject("CognitoUserPool");
             this.context = context;
-            this.userPoolId = userPoolConfiguration.getString("PoolId");
+            String userPoolId = userPoolConfiguration.getString("PoolId");
+            if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches("/^[\\w-]+_[0-9a-zA-Z]+$/", userPoolId)) {
+                throw new IllegalArgumentException("Invalid userPoolId format.");
+            }
+            this.userPoolId = userPoolId;
             this.clientId = userPoolConfiguration.getString("AppClientId");
             this.clientSecret = userPoolConfiguration.optString("AppClientSecret");
             this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolConfiguration.optString("PinpointAppId"));
