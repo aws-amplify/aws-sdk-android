@@ -33,7 +33,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 public class CognitoIdentityProviderCustomEndPointTest {
 
     private CognitoUserPool testPool;
-    public static final String TEST_USER_POOL           = "DummyUserPool";
+    public static final String TEST_USER_POOL           = "us-east-1_xxxxx";
     public static final String TEST_CLIENT_ID           = "DummyClientId";
     public static final String TEST_CLIENT_SECRET       = "DummyClientSecret";
     public static final String TEST_PINPOINT_APP_ID     = "DummyPinpointAppId";

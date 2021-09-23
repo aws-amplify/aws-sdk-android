@@ -61,7 +61,7 @@ public class CognitoUserPoolTest {
     public void setup() {
         ShadowLog.stream = System.out;
         mockProvider = mock(AmazonCognitoIdentityProvider.class);
-        cognitoUserPool = new CognitoUserPool(getApplicationContext(), "us_east_1_xxxxx", "dummyclientid", "dummysecret", Regions.US_EAST_1);
+        cognitoUserPool = new CognitoUserPool(getApplicationContext(), "us-east-1_xxxxx", "dummyclientid", "dummysecret", Regions.US_EAST_1);
         cognitoUserPool.setAdvancedSecurityDataCollectionFlag(false);
         cognitoUserPool.setIdentityProvider(mockProvider);
     }

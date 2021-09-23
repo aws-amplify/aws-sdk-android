@@ -188,11 +188,7 @@ public class CognitoUserPool {
 
             final JSONObject userPoolConfiguration = awsConfiguration.optJsonObject("CognitoUserPool");
             this.context = context;
-            String userPoolId = userPoolConfiguration.getString("PoolId");
-            if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches("/^[\\w-]+_[0-9a-zA-Z]+$/", userPoolId)) {
-                throw new IllegalArgumentException("Invalid userPoolId format.");
-            }
-            this.userPoolId = userPoolId;
+            this.userPoolId = userPoolConfiguration.getString("PoolId");
             this.clientId = userPoolConfiguration.getString("AppClientId");
             this.clientSecret = userPoolConfiguration.optString("AppClientSecret");
             this.pinpointEndpointId = CognitoPinpointSharedContext.getPinpointEndpoint(context, userPoolConfiguration.optString("PinpointAppId"));
@@ -276,6 +272,12 @@ public class CognitoUserPool {
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, ClientConfiguration clientConfiguration, Regions region, String pinpointAppId) {
         initialize(context);
         this.context = context;
+        if (userPoolId.isEmpty() || clientId.isEmpty()) {
+            throw new IllegalArgumentException("Both UserPoolId and ClientId are required. ");
+        }
+        if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches("[\\w-]+_[0-9a-zA-Z]+", userPoolId)) {
+            throw new IllegalArgumentException("Invalid userPoolId format. ");
+        }
         this.userPoolId = userPoolId;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
@@ -330,6 +332,12 @@ public class CognitoUserPool {
     public CognitoUserPool(Context context, String userPoolId, String clientId, String clientSecret, AmazonCognitoIdentityProvider client, String pinpointAppId, String cognitoUserPoolCustomEndpoint) {
         initialize(context);
         this.context = context;
+        if (userPoolId.isEmpty() || clientId.isEmpty()) {
+            throw new IllegalArgumentException("Both UserPoolId and ClientId are required. ");
+        }
+        if (userPoolId.length() > USER_POOL_ID_MAX_LENGTH || !Pattern.matches("[\\w-]+_[0-9a-zA-Z]+", userPoolId)) {
+            throw new IllegalArgumentException("Invalid userPoolId format. ");
+        }
         this.userPoolId = userPoolId;
         this.clientId = clientId;
         this.clientSecret = clientSecret;
