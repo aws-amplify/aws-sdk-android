@@ -23,7 +23,11 @@ import java.util.Map;
  */
 public enum IntegrationType {
 
-    EVENT("EVENT");
+    EVENT("EVENT"),
+    VOICE_ID("VOICE_ID"),
+    PINPOINT_APP("PINPOINT_APP"),
+    WISDOM_ASSISTANT("WISDOM_ASSISTANT"),
+    WISDOM_KNOWLEDGE_BASE("WISDOM_KNOWLEDGE_BASE");
 
     private String value;
 
@@ -40,6 +44,10 @@ public enum IntegrationType {
     static {
         enumMap = new HashMap<String, IntegrationType>();
         enumMap.put("EVENT", EVENT);
+        enumMap.put("VOICE_ID", VOICE_ID);
+        enumMap.put("PINPOINT_APP", PINPOINT_APP);
+        enumMap.put("WISDOM_ASSISTANT", WISDOM_ASSISTANT);
+        enumMap.put("WISDOM_KNOWLEDGE_BASE", WISDOM_KNOWLEDGE_BASE);
     }
 
     /**

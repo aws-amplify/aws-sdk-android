@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Creates a use case for an AppIntegration association.
+ * Creates a use case for an integration association.
  * </p>
  */
 public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -48,12 +48,12 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      */
     private String useCaseType;
 
@@ -126,14 +126,14 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @return <p>
-     *         The identifier for the AppIntegration association.
+     *         The identifier for the integration association.
      *         </p>
      */
     public String getIntegrationAssociationId() {
@@ -142,14 +142,14 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @param integrationAssociationId <p>
-     *            The identifier for the AppIntegration association.
+     *            The identifier for the integration association.
      *            </p>
      */
     public void setIntegrationAssociationId(String integrationAssociationId) {
@@ -158,7 +158,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -168,7 +168,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 200<br/>
      *
      * @param integrationAssociationId <p>
-     *            The identifier for the AppIntegration association.
+     *            The identifier for the integration association.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -180,17 +180,17 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @return <p>
-     *         The type of use case to associate to the AppIntegration
-     *         association. Each AppIntegration association can have only one of
-     *         each use case type.
+     *         The type of use case to associate to the integration association.
+     *         Each integration association can have only one of each use case
+     *         type.
      *         </p>
      * @see UseCaseType
      */
@@ -200,17 +200,17 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @see UseCaseType
      */
@@ -220,20 +220,20 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -246,17 +246,17 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @see UseCaseType
      */
@@ -266,20 +266,20 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

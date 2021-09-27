@@ -43,6 +43,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <p>
      * The type of attribute.
      * </p>
+     * <note>
+     * <p>
+     * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
+     * this feature, contact AWS Support for allowlisting.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
@@ -125,6 +131,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <p>
      * The type of attribute.
      * </p>
+     * <note>
+     * <p>
+     * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
+     * this feature, contact AWS Support for allowlisting.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
@@ -134,6 +146,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * @return <p>
      *         The type of attribute.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To
+     *         access this feature, contact AWS Support for allowlisting.
+     *         </p>
+     *         </note>
      * @see InstanceAttributeType
      */
     public String getAttributeType() {
@@ -144,6 +162,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <p>
      * The type of attribute.
      * </p>
+     * <note>
+     * <p>
+     * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
+     * this feature, contact AWS Support for allowlisting.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
@@ -153,6 +177,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * @param attributeType <p>
      *            The type of attribute.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
+     *            To access this feature, contact AWS Support for allowlisting.
+     *            </p>
+     *            </note>
      * @see InstanceAttributeType
      */
     public void setAttributeType(String attributeType) {
@@ -163,6 +193,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <p>
      * The type of attribute.
      * </p>
+     * <note>
+     * <p>
+     * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
+     * this feature, contact AWS Support for allowlisting.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -175,6 +211,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * @param attributeType <p>
      *            The type of attribute.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
+     *            To access this feature, contact AWS Support for allowlisting.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see InstanceAttributeType
@@ -188,6 +230,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <p>
      * The type of attribute.
      * </p>
+     * <note>
+     * <p>
+     * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
+     * this feature, contact AWS Support for allowlisting.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>INBOUND_CALLS, OUTBOUND_CALLS, CONTACTFLOW_LOGS,
@@ -197,6 +245,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * @param attributeType <p>
      *            The type of attribute.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
+     *            To access this feature, contact AWS Support for allowlisting.
+     *            </p>
+     *            </note>
      * @see InstanceAttributeType
      */
     public void setAttributeType(InstanceAttributeType attributeType) {
@@ -207,6 +261,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * <p>
      * The type of attribute.
      * </p>
+     * <note>
+     * <p>
+     * Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access
+     * this feature, contact AWS Support for allowlisting.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -219,6 +279,12 @@ public class UpdateInstanceAttributeRequest extends AmazonWebServiceRequest impl
      * @param attributeType <p>
      *            The type of attribute.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES.
+     *            To access this feature, contact AWS Support for allowlisting.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see InstanceAttributeType

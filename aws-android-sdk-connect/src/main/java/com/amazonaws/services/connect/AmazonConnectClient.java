@@ -1054,7 +1054,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Create an AppIntegration association with an Amazon Connect instance.
+     * Creates an AWS resource association with an Amazon Connect instance.
      * </p>
      * 
      * @param createIntegrationAssociationRequest
@@ -1272,7 +1272,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Creates a use case for an AppIntegration association.
+     * Creates a use case for an integration association.
      * </p>
      * 
      * @param createUseCaseRequest
@@ -1535,8 +1535,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Deletes an AppIntegration association from an Amazon Connect instance.
-     * The association must not have any use cases associated with it.
+     * Deletes an AWS resource association from an Amazon Connect instance. The
+     * association must not have any use cases associated with it.
      * </p>
      * 
      * @param deleteIntegrationAssociationRequest
@@ -1624,7 +1624,7 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Deletes a use case from an AppIntegration association.
+     * Deletes a use case from an integration association.
      * </p>
      * 
      * @param deleteUseCaseRequest
@@ -3507,8 +3507,8 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Provides summary information about the AppIntegration associations for
-     * the specified Amazon Connect instance.
+     * Provides summary information about the AWS resource associations for the
+     * specified Amazon Connect instance.
      * </p>
      * 
      * @param listIntegrationAssociationsRequest
@@ -4242,12 +4242,12 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
 
     /**
      * <p>
-     * Lists the use cases.
+     * Lists the use cases for the integration association.
      * </p>
      * 
      * @param listUseCasesRequest <p>
      *            Provides summary information about the use cases for the
-     *            specified Amazon Connect AppIntegration association.
+     *            specified integration association.
      *            </p>
      * @return listUseCasesResult The response from the ListUseCases service
      *         method, as returned by Amazon Connect.
@@ -4633,6 +4633,15 @@ public class AmazonConnectClient extends AmazonWebServiceClient implements Amazo
      * UK numbers with a 447 prefix are not allowed by default. Before you can
      * dial these UK mobile numbers, you must submit a service quota increase
      * request. For more information, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+     * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
+     * </note> <note>
+     * <p>
+     * Campaign calls are not allowed by default. Before you can make a call
+     * with <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a
+     * service quota increase request. For more information, see <a href=
      * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
      * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
      * Guide</i>.

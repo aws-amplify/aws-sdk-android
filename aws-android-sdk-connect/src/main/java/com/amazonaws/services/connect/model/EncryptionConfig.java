@@ -35,8 +35,13 @@ public class EncryptionConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the encryption key.
+     * The full ARN of the encryption key.
      * </p>
+     * <note>
+     * <p>
+     * Be sure to provide the full ARN of the encryption key, not just the ID.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
@@ -142,15 +147,26 @@ public class EncryptionConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the encryption key.
+     * The full ARN of the encryption key.
      * </p>
+     * <note>
+     * <p>
+     * Be sure to provide the full ARN of the encryption key, not just the ID.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
      * @return <p>
-     *         The identifier of the encryption key.
+     *         The full ARN of the encryption key.
      *         </p>
+     *         <note>
+     *         <p>
+     *         Be sure to provide the full ARN of the encryption key, not just
+     *         the ID.
+     *         </p>
+     *         </note>
      */
     public String getKeyId() {
         return keyId;
@@ -158,15 +174,26 @@ public class EncryptionConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the encryption key.
+     * The full ARN of the encryption key.
      * </p>
+     * <note>
+     * <p>
+     * Be sure to provide the full ARN of the encryption key, not just the ID.
+     * </p>
+     * </note>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
      * @param keyId <p>
-     *            The identifier of the encryption key.
+     *            The full ARN of the encryption key.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Be sure to provide the full ARN of the encryption key, not
+     *            just the ID.
+     *            </p>
+     *            </note>
      */
     public void setKeyId(String keyId) {
         this.keyId = keyId;
@@ -174,8 +201,13 @@ public class EncryptionConfig implements Serializable {
 
     /**
      * <p>
-     * The identifier of the encryption key.
+     * The full ARN of the encryption key.
      * </p>
+     * <note>
+     * <p>
+     * Be sure to provide the full ARN of the encryption key, not just the ID.
+     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -184,8 +216,14 @@ public class EncryptionConfig implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      *
      * @param keyId <p>
-     *            The identifier of the encryption key.
+     *            The full ARN of the encryption key.
      *            </p>
+     *            <note>
+     *            <p>
+     *            Be sure to provide the full ARN of the encryption key, not
+     *            just the ID.
+     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */

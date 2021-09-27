@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes a use case from an AppIntegration association.
+ * Deletes a use case from an integration association.
  * </p>
  */
 public class DeleteUseCaseRequest extends AmazonWebServiceRequest implements Serializable {
@@ -38,7 +38,7 @@ public class DeleteUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -118,14 +118,14 @@ public class DeleteUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @return <p>
-     *         The identifier for the AppIntegration association.
+     *         The identifier for the integration association.
      *         </p>
      */
     public String getIntegrationAssociationId() {
@@ -134,14 +134,14 @@ public class DeleteUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @param integrationAssociationId <p>
-     *            The identifier for the AppIntegration association.
+     *            The identifier for the integration association.
      *            </p>
      */
     public void setIntegrationAssociationId(String integrationAssociationId) {
@@ -150,7 +150,7 @@ public class DeleteUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -160,7 +160,7 @@ public class DeleteUseCaseRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>1 - 200<br/>
      *
      * @param integrationAssociationId <p>
-     *            The identifier for the AppIntegration association.
+     *            The identifier for the integration association.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an AppIntegration association from an Amazon Connect instance. The
+ * Deletes an AWS resource association from an Amazon Connect instance. The
  * association must not have any use cases associated with it.
  * </p>
  */
@@ -40,7 +40,7 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -110,14 +110,14 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @return <p>
-     *         The identifier for the AppIntegration association.
+     *         The identifier for the integration association.
      *         </p>
      */
     public String getIntegrationAssociationId() {
@@ -126,14 +126,14 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @param integrationAssociationId <p>
-     *            The identifier for the AppIntegration association.
+     *            The identifier for the integration association.
      *            </p>
      */
     public void setIntegrationAssociationId(String integrationAssociationId) {
@@ -142,7 +142,7 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The identifier for the AppIntegration association.
+     * The identifier for the integration association.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -152,7 +152,7 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Length: </b>1 - 200<br/>
      *
      * @param integrationAssociationId <p>
-     *            The identifier for the AppIntegration association.
+     *            The identifier for the integration association.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
