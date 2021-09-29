@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Create an AppIntegration association with an Amazon Connect instance.
+ * Creates an AWS resource association with an Amazon Connect instance.
  * </p>
  */
 public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest implements
@@ -43,7 +43,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      */
     private String integrationType;
 
@@ -56,7 +57,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The URL for the external application.
+     * The URL for the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -66,7 +68,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The name of the external application.
+     * The name of the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -77,7 +80,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of the data source.
+     * The type of the data source. This field is only required for the EVENT
+     * integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -158,7 +162,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @return <p>
      *         The type of information to be ingested.
@@ -175,7 +180,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -195,7 +201,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -215,7 +222,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -235,7 +243,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The type of information to be ingested.
@@ -296,14 +305,16 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The URL for the external application.
+     * The URL for the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
      *
      * @return <p>
-     *         The URL for the external application.
+     *         The URL for the external application. This field is only required
+     *         for the EVENT integration type.
      *         </p>
      */
     public String getSourceApplicationUrl() {
@@ -312,14 +323,16 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The URL for the external application.
+     * The URL for the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
      *
      * @param sourceApplicationUrl <p>
-     *            The URL for the external application.
+     *            The URL for the external application. This field is only
+     *            required for the EVENT integration type.
      *            </p>
      */
     public void setSourceApplicationUrl(String sourceApplicationUrl) {
@@ -328,7 +341,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The URL for the external application.
+     * The URL for the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -338,7 +352,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Length: </b>1 - 2000<br/>
      *
      * @param sourceApplicationUrl <p>
-     *            The URL for the external application.
+     *            The URL for the external application. This field is only
+     *            required for the EVENT integration type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -350,7 +365,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The name of the external application.
+     * The name of the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -358,7 +374,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>^[a-zA-Z0-9_ -]+$<br/>
      *
      * @return <p>
-     *         The name of the external application.
+     *         The name of the external application. This field is only required
+     *         for the EVENT integration type.
      *         </p>
      */
     public String getSourceApplicationName() {
@@ -367,7 +384,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The name of the external application.
+     * The name of the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -375,7 +393,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>^[a-zA-Z0-9_ -]+$<br/>
      *
      * @param sourceApplicationName <p>
-     *            The name of the external application.
+     *            The name of the external application. This field is only
+     *            required for the EVENT integration type.
      *            </p>
      */
     public void setSourceApplicationName(String sourceApplicationName) {
@@ -384,7 +403,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The name of the external application.
+     * The name of the external application. This field is only required for the
+     * EVENT integration type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -395,7 +415,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Pattern: </b>^[a-zA-Z0-9_ -]+$<br/>
      *
      * @param sourceApplicationName <p>
-     *            The name of the external application.
+     *            The name of the external application. This field is only
+     *            required for the EVENT integration type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -408,14 +429,16 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of the data source.
+     * The type of the data source. This field is only required for the EVENT
+     * integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SALESFORCE, ZENDESK
      *
      * @return <p>
-     *         The type of the data source.
+     *         The type of the data source. This field is only required for the
+     *         EVENT integration type.
      *         </p>
      * @see SourceType
      */
@@ -425,14 +448,16 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of the data source.
+     * The type of the data source. This field is only required for the EVENT
+     * integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SALESFORCE, ZENDESK
      *
      * @param sourceType <p>
-     *            The type of the data source.
+     *            The type of the data source. This field is only required for
+     *            the EVENT integration type.
      *            </p>
      * @see SourceType
      */
@@ -442,7 +467,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of the data source.
+     * The type of the data source. This field is only required for the EVENT
+     * integration type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -452,7 +478,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>SALESFORCE, ZENDESK
      *
      * @param sourceType <p>
-     *            The type of the data source.
+     *            The type of the data source. This field is only required for
+     *            the EVENT integration type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -465,14 +492,16 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of the data source.
+     * The type of the data source. This field is only required for the EVENT
+     * integration type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>SALESFORCE, ZENDESK
      *
      * @param sourceType <p>
-     *            The type of the data source.
+     *            The type of the data source. This field is only required for
+     *            the EVENT integration type.
      *            </p>
      * @see SourceType
      */
@@ -482,7 +511,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The type of the data source.
+     * The type of the data source. This field is only required for the EVENT
+     * integration type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -492,7 +522,8 @@ public class CreateIntegrationAssociationRequest extends AmazonWebServiceRequest
      * <b>Allowed Values: </b>SALESFORCE, ZENDESK
      *
      * @param sourceType <p>
-     *            The type of the data source.
+     *            The type of the data source. This field is only required for
+     *            the EVENT integration type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

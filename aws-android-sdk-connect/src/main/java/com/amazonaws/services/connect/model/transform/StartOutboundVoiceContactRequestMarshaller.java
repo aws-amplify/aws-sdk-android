@@ -106,6 +106,23 @@ public class StartOutboundVoiceContactRequestMarshaller implements
                 }
                 jsonWriter.endObject();
             }
+            if (startOutboundVoiceContactRequest.getAnswerMachineDetectionConfig() != null) {
+                AnswerMachineDetectionConfig answerMachineDetectionConfig = startOutboundVoiceContactRequest
+                        .getAnswerMachineDetectionConfig();
+                jsonWriter.name("AnswerMachineDetectionConfig");
+                AnswerMachineDetectionConfigJsonMarshaller.getInstance().marshall(
+                        answerMachineDetectionConfig, jsonWriter);
+            }
+            if (startOutboundVoiceContactRequest.getCampaignId() != null) {
+                String campaignId = startOutboundVoiceContactRequest.getCampaignId();
+                jsonWriter.name("CampaignId");
+                jsonWriter.value(campaignId);
+            }
+            if (startOutboundVoiceContactRequest.getTrafficType() != null) {
+                String trafficType = startOutboundVoiceContactRequest.getTrafficType();
+                jsonWriter.name("TrafficType");
+                jsonWriter.value(trafficType);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();
