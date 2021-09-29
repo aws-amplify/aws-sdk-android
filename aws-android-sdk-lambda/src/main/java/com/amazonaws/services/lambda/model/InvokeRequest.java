@@ -157,6 +157,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Set to <code>Tail</code> to include the execution log in the response.
+     * Applies to synchronously invoked functions only.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -762,6 +763,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Set to <code>Tail</code> to include the execution log in the response.
+     * Applies to synchronously invoked functions only.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -769,7 +771,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @return <p>
      *         Set to <code>Tail</code> to include the execution log in the
-     *         response.
+     *         response. Applies to synchronously invoked functions only.
      *         </p>
      * @see LogType
      */
@@ -780,6 +782,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Set to <code>Tail</code> to include the execution log in the response.
+     * Applies to synchronously invoked functions only.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -787,7 +790,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param logType <p>
      *            Set to <code>Tail</code> to include the execution log in the
-     *            response.
+     *            response. Applies to synchronously invoked functions only.
      *            </p>
      * @see LogType
      */
@@ -798,6 +801,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Set to <code>Tail</code> to include the execution log in the response.
+     * Applies to synchronously invoked functions only.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -808,7 +812,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param logType <p>
      *            Set to <code>Tail</code> to include the execution log in the
-     *            response.
+     *            response. Applies to synchronously invoked functions only.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -822,6 +826,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Set to <code>Tail</code> to include the execution log in the response.
+     * Applies to synchronously invoked functions only.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -829,7 +834,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param logType <p>
      *            Set to <code>Tail</code> to include the execution log in the
-     *            response.
+     *            response. Applies to synchronously invoked functions only.
      *            </p>
      * @see LogType
      */
@@ -840,6 +845,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
     /**
      * <p>
      * Set to <code>Tail</code> to include the execution log in the response.
+     * Applies to synchronously invoked functions only.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -850,7 +856,7 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      *
      * @param logType <p>
      *            Set to <code>Tail</code> to include the execution log in the
-     *            response.
+     *            response. Applies to synchronously invoked functions only.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -19,16 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Use Case Type
+ * Traffic Type
  */
-public enum UseCaseType {
+public enum TrafficType {
 
-    RULES_EVALUATION("RULES_EVALUATION"),
-    CONNECT_CAMPAIGNS("CONNECT_CAMPAIGNS");
+    GENERAL("GENERAL"),
+    CAMPAIGN("CAMPAIGN");
 
     private String value;
 
-    private UseCaseType(String value) {
+    private TrafficType(String value) {
         this.value = value;
     }
 
@@ -37,20 +37,20 @@ public enum UseCaseType {
         return value;
     }
 
-    private static final Map<String, UseCaseType> enumMap;
+    private static final Map<String, TrafficType> enumMap;
     static {
-        enumMap = new HashMap<String, UseCaseType>();
-        enumMap.put("RULES_EVALUATION", RULES_EVALUATION);
-        enumMap.put("CONNECT_CAMPAIGNS", CONNECT_CAMPAIGNS);
+        enumMap = new HashMap<String, TrafficType>();
+        enumMap.put("GENERAL", GENERAL);
+        enumMap.put("CAMPAIGN", CAMPAIGN);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return UseCaseType corresponding to the value
+     * @return TrafficType corresponding to the value
      */
-    public static UseCaseType fromValue(String value) {
+    public static TrafficType fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
