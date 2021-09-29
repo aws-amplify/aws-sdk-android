@@ -19,7 +19,7 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * An error occured when reading from or writing to a connected file system.
+ * An error occurred when reading from or writing to a connected file system.
  * </p>
  */
 public class EFSIOException extends AmazonServiceException {
