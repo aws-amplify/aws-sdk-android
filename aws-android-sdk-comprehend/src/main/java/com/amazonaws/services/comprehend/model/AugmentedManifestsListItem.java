@@ -38,6 +38,26 @@ public class AugmentedManifestsListItem implements Serializable {
 
     /**
      * <p>
+     * The purpose of the data you've provided in the augmented manifest. You
+     * can either train or test this data. If you don't specify, the default is
+     * train.
+     * </p>
+     * <p>
+     * TRAIN - all of the documents in the manifest will be used for training.
+     * If no test documents are provided, Amazon Comprehend will automatically
+     * reserve a portion of the training documents for testing.
+     * </p>
+     * <p>
+     * TEST - all of the documents in the manifest will be used for testing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TRAIN, TEST
+     */
+    private String split;
+
+    /**
+     * <p>
      * The JSON attribute that contains the annotations for your training
      * documents. The number of attribute names that you specify depends on
      * whether your augmented manifest file is the output of a single labeling
@@ -162,6 +182,213 @@ public class AugmentedManifestsListItem implements Serializable {
      */
     public AugmentedManifestsListItem withS3Uri(String s3Uri) {
         this.s3Uri = s3Uri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The purpose of the data you've provided in the augmented manifest. You
+     * can either train or test this data. If you don't specify, the default is
+     * train.
+     * </p>
+     * <p>
+     * TRAIN - all of the documents in the manifest will be used for training.
+     * If no test documents are provided, Amazon Comprehend will automatically
+     * reserve a portion of the training documents for testing.
+     * </p>
+     * <p>
+     * TEST - all of the documents in the manifest will be used for testing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TRAIN, TEST
+     *
+     * @return <p>
+     *         The purpose of the data you've provided in the augmented
+     *         manifest. You can either train or test this data. If you don't
+     *         specify, the default is train.
+     *         </p>
+     *         <p>
+     *         TRAIN - all of the documents in the manifest will be used for
+     *         training. If no test documents are provided, Amazon Comprehend
+     *         will automatically reserve a portion of the training documents
+     *         for testing.
+     *         </p>
+     *         <p>
+     *         TEST - all of the documents in the manifest will be used for
+     *         testing.
+     *         </p>
+     * @see Split
+     */
+    public String getSplit() {
+        return split;
+    }
+
+    /**
+     * <p>
+     * The purpose of the data you've provided in the augmented manifest. You
+     * can either train or test this data. If you don't specify, the default is
+     * train.
+     * </p>
+     * <p>
+     * TRAIN - all of the documents in the manifest will be used for training.
+     * If no test documents are provided, Amazon Comprehend will automatically
+     * reserve a portion of the training documents for testing.
+     * </p>
+     * <p>
+     * TEST - all of the documents in the manifest will be used for testing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TRAIN, TEST
+     *
+     * @param split <p>
+     *            The purpose of the data you've provided in the augmented
+     *            manifest. You can either train or test this data. If you don't
+     *            specify, the default is train.
+     *            </p>
+     *            <p>
+     *            TRAIN - all of the documents in the manifest will be used for
+     *            training. If no test documents are provided, Amazon Comprehend
+     *            will automatically reserve a portion of the training documents
+     *            for testing.
+     *            </p>
+     *            <p>
+     *            TEST - all of the documents in the manifest will be used for
+     *            testing.
+     *            </p>
+     * @see Split
+     */
+    public void setSplit(String split) {
+        this.split = split;
+    }
+
+    /**
+     * <p>
+     * The purpose of the data you've provided in the augmented manifest. You
+     * can either train or test this data. If you don't specify, the default is
+     * train.
+     * </p>
+     * <p>
+     * TRAIN - all of the documents in the manifest will be used for training.
+     * If no test documents are provided, Amazon Comprehend will automatically
+     * reserve a portion of the training documents for testing.
+     * </p>
+     * <p>
+     * TEST - all of the documents in the manifest will be used for testing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TRAIN, TEST
+     *
+     * @param split <p>
+     *            The purpose of the data you've provided in the augmented
+     *            manifest. You can either train or test this data. If you don't
+     *            specify, the default is train.
+     *            </p>
+     *            <p>
+     *            TRAIN - all of the documents in the manifest will be used for
+     *            training. If no test documents are provided, Amazon Comprehend
+     *            will automatically reserve a portion of the training documents
+     *            for testing.
+     *            </p>
+     *            <p>
+     *            TEST - all of the documents in the manifest will be used for
+     *            testing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Split
+     */
+    public AugmentedManifestsListItem withSplit(String split) {
+        this.split = split;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The purpose of the data you've provided in the augmented manifest. You
+     * can either train or test this data. If you don't specify, the default is
+     * train.
+     * </p>
+     * <p>
+     * TRAIN - all of the documents in the manifest will be used for training.
+     * If no test documents are provided, Amazon Comprehend will automatically
+     * reserve a portion of the training documents for testing.
+     * </p>
+     * <p>
+     * TEST - all of the documents in the manifest will be used for testing.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TRAIN, TEST
+     *
+     * @param split <p>
+     *            The purpose of the data you've provided in the augmented
+     *            manifest. You can either train or test this data. If you don't
+     *            specify, the default is train.
+     *            </p>
+     *            <p>
+     *            TRAIN - all of the documents in the manifest will be used for
+     *            training. If no test documents are provided, Amazon Comprehend
+     *            will automatically reserve a portion of the training documents
+     *            for testing.
+     *            </p>
+     *            <p>
+     *            TEST - all of the documents in the manifest will be used for
+     *            testing.
+     *            </p>
+     * @see Split
+     */
+    public void setSplit(Split split) {
+        this.split = split.toString();
+    }
+
+    /**
+     * <p>
+     * The purpose of the data you've provided in the augmented manifest. You
+     * can either train or test this data. If you don't specify, the default is
+     * train.
+     * </p>
+     * <p>
+     * TRAIN - all of the documents in the manifest will be used for training.
+     * If no test documents are provided, Amazon Comprehend will automatically
+     * reserve a portion of the training documents for testing.
+     * </p>
+     * <p>
+     * TEST - all of the documents in the manifest will be used for testing.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TRAIN, TEST
+     *
+     * @param split <p>
+     *            The purpose of the data you've provided in the augmented
+     *            manifest. You can either train or test this data. If you don't
+     *            specify, the default is train.
+     *            </p>
+     *            <p>
+     *            TRAIN - all of the documents in the manifest will be used for
+     *            training. If no test documents are provided, Amazon Comprehend
+     *            will automatically reserve a portion of the training documents
+     *            for testing.
+     *            </p>
+     *            <p>
+     *            TEST - all of the documents in the manifest will be used for
+     *            testing.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see Split
+     */
+    public AugmentedManifestsListItem withSplit(Split split) {
+        this.split = split.toString();
         return this;
     }
 
@@ -764,6 +991,8 @@ public class AugmentedManifestsListItem implements Serializable {
         sb.append("{");
         if (getS3Uri() != null)
             sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getSplit() != null)
+            sb.append("Split: " + getSplit() + ",");
         if (getAttributeNames() != null)
             sb.append("AttributeNames: " + getAttributeNames() + ",");
         if (getAnnotationDataS3Uri() != null)
@@ -782,6 +1011,7 @@ public class AugmentedManifestsListItem implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode + ((getSplit() == null) ? 0 : getSplit().hashCode());
         hashCode = prime * hashCode
                 + ((getAttributeNames() == null) ? 0 : getAttributeNames().hashCode());
         hashCode = prime * hashCode
@@ -807,6 +1037,10 @@ public class AugmentedManifestsListItem implements Serializable {
         if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
         if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getSplit() == null ^ this.getSplit() == null)
+            return false;
+        if (other.getSplit() != null && other.getSplit().equals(this.getSplit()) == false)
             return false;
         if (other.getAttributeNames() == null ^ this.getAttributeNames() == null)
             return false;

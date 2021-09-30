@@ -84,6 +84,9 @@ class EntityRecognizerPropertiesJsonUnmarshaller implements
             } else if (name.equals("ModelKmsKeyId")) {
                 entityRecognizerProperties.setModelKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VersionName")) {
+                entityRecognizerProperties.setVersionName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

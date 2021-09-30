@@ -39,6 +39,9 @@ class AugmentedManifestsListItemJsonUnmarshaller implements
             if (name.equals("S3Uri")) {
                 augmentedManifestsListItem.setS3Uri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Split")) {
+                augmentedManifestsListItem.setSplit(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("AttributeNames")) {
                 augmentedManifestsListItem.setAttributeNames(new ListUnmarshaller<String>(
                         StringJsonUnmarshaller.getInstance()

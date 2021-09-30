@@ -67,10 +67,21 @@ public class UpdateEndpointRequestMarshaller implements
                 jsonWriter.name("EndpointArn");
                 jsonWriter.value(endpointArn);
             }
+            if (updateEndpointRequest.getDesiredModelArn() != null) {
+                String desiredModelArn = updateEndpointRequest.getDesiredModelArn();
+                jsonWriter.name("DesiredModelArn");
+                jsonWriter.value(desiredModelArn);
+            }
             if (updateEndpointRequest.getDesiredInferenceUnits() != null) {
                 Integer desiredInferenceUnits = updateEndpointRequest.getDesiredInferenceUnits();
                 jsonWriter.name("DesiredInferenceUnits");
                 jsonWriter.value(desiredInferenceUnits);
+            }
+            if (updateEndpointRequest.getDesiredDataAccessRoleArn() != null) {
+                String desiredDataAccessRoleArn = updateEndpointRequest
+                        .getDesiredDataAccessRoleArn();
+                jsonWriter.name("DesiredDataAccessRoleArn");
+                jsonWriter.value(desiredDataAccessRoleArn);
             }
 
             jsonWriter.endObject();

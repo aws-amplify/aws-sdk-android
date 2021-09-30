@@ -32,6 +32,16 @@ class EntityRecognizerDocumentsJsonMarshaller {
             jsonWriter.name("S3Uri");
             jsonWriter.value(s3Uri);
         }
+        if (entityRecognizerDocuments.getTestS3Uri() != null) {
+            String testS3Uri = entityRecognizerDocuments.getTestS3Uri();
+            jsonWriter.name("TestS3Uri");
+            jsonWriter.value(testS3Uri);
+        }
+        if (entityRecognizerDocuments.getInputFormat() != null) {
+            String inputFormat = entityRecognizerDocuments.getInputFormat();
+            jsonWriter.name("InputFormat");
+            jsonWriter.value(inputFormat);
+        }
         jsonWriter.endObject();
     }
 

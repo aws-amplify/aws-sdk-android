@@ -42,12 +42,12 @@ public class UseCase implements Serializable {
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      */
     private String useCaseType;
 
@@ -152,17 +152,17 @@ public class UseCase implements Serializable {
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @return <p>
-     *         The type of use case to associate to the AppIntegration
-     *         association. Each AppIntegration association can have only one of
-     *         each use case type.
+     *         The type of use case to associate to the integration association.
+     *         Each integration association can have only one of each use case
+     *         type.
      *         </p>
      * @see UseCaseType
      */
@@ -172,17 +172,17 @@ public class UseCase implements Serializable {
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @see UseCaseType
      */
@@ -192,20 +192,20 @@ public class UseCase implements Serializable {
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -218,17 +218,17 @@ public class UseCase implements Serializable {
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @see UseCaseType
      */
@@ -238,20 +238,20 @@ public class UseCase implements Serializable {
 
     /**
      * <p>
-     * The type of use case to associate to the AppIntegration association. Each
-     * AppIntegration association can have only one of each use case type.
+     * The type of use case to associate to the integration association. Each
+     * integration association can have only one of each use case type.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>RULES_EVALUATION
+     * <b>Allowed Values: </b>RULES_EVALUATION, CONNECT_CAMPAIGNS
      *
      * @param useCaseType <p>
-     *            The type of use case to associate to the AppIntegration
-     *            association. Each AppIntegration association can have only one
-     *            of each use case type.
+     *            The type of use case to associate to the integration
+     *            association. Each integration association can have only one of
+     *            each use case type.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

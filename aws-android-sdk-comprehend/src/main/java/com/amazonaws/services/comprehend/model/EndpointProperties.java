@@ -67,9 +67,28 @@ public class EndpointProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
-     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      */
     private String modelArn;
+
+    /**
+     * <p>
+     * ARN of the new model to use for updating an existing endpoint. This ARN
+     * is going to be different from the model ARN when the update is in
+     * progress
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String desiredModelArn;
 
     /**
      * <p>
@@ -120,6 +139,18 @@ public class EndpointProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
+
+    /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer KMS key.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     */
+    private String desiredDataAccessRoleArn;
 
     /**
      * <p>
@@ -372,7 +403,9 @@ public class EndpointProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
-     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @return <p>
      *         The Amazon Resource Number (ARN) of the model to which the
@@ -393,7 +426,9 @@ public class EndpointProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
-     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param modelArn <p>
      *            The Amazon Resource Number (ARN) of the model to which the
@@ -417,7 +452,9 @@ public class EndpointProperties implements Serializable {
      * <b>Length: </b> - 256<br/>
      * <b>Pattern:
      * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
-     * -classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*<br/>
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
      *
      * @param modelArn <p>
      *            The Amazon Resource Number (ARN) of the model to which the
@@ -428,6 +465,87 @@ public class EndpointProperties implements Serializable {
      */
     public EndpointProperties withModelArn(String modelArn) {
         this.modelArn = modelArn;
+        return this;
+    }
+
+    /**
+     * <p>
+     * ARN of the new model to use for updating an existing endpoint. This ARN
+     * is going to be different from the model ARN when the update is in
+     * progress
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         ARN of the new model to use for updating an existing endpoint.
+     *         This ARN is going to be different from the model ARN when the
+     *         update is in progress
+     *         </p>
+     */
+    public String getDesiredModelArn() {
+        return desiredModelArn;
+    }
+
+    /**
+     * <p>
+     * ARN of the new model to use for updating an existing endpoint. This ARN
+     * is going to be different from the model ARN when the update is in
+     * progress
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param desiredModelArn <p>
+     *            ARN of the new model to use for updating an existing endpoint.
+     *            This ARN is going to be different from the model ARN when the
+     *            update is in progress
+     *            </p>
+     */
+    public void setDesiredModelArn(String desiredModelArn) {
+        this.desiredModelArn = desiredModelArn;
+    }
+
+    /**
+     * <p>
+     * ARN of the new model to use for updating an existing endpoint. This ARN
+     * is going to be different from the model ARN when the update is in
+     * progress
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param desiredModelArn <p>
+     *            ARN of the new model to use for updating an existing endpoint.
+     *            This ARN is going to be different from the model ARN when the
+     *            update is in progress
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EndpointProperties withDesiredModelArn(String desiredModelArn) {
+        this.desiredModelArn = desiredModelArn;
         return this;
     }
 
@@ -720,6 +838,69 @@ public class EndpointProperties implements Serializable {
     }
 
     /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer KMS key.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @return <p>
+     *         Data access role ARN to use in case the new model is encrypted
+     *         with a customer KMS key.
+     *         </p>
+     */
+    public String getDesiredDataAccessRoleArn() {
+        return desiredDataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer KMS key.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param desiredDataAccessRoleArn <p>
+     *            Data access role ARN to use in case the new model is encrypted
+     *            with a customer KMS key.
+     *            </p>
+     */
+    public void setDesiredDataAccessRoleArn(String desiredDataAccessRoleArn) {
+        this.desiredDataAccessRoleArn = desiredDataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer KMS key.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param desiredDataAccessRoleArn <p>
+     *            Data access role ARN to use in case the new model is encrypted
+     *            with a customer KMS key.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EndpointProperties withDesiredDataAccessRoleArn(String desiredDataAccessRoleArn) {
+        this.desiredDataAccessRoleArn = desiredDataAccessRoleArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -738,6 +919,8 @@ public class EndpointProperties implements Serializable {
             sb.append("Message: " + getMessage() + ",");
         if (getModelArn() != null)
             sb.append("ModelArn: " + getModelArn() + ",");
+        if (getDesiredModelArn() != null)
+            sb.append("DesiredModelArn: " + getDesiredModelArn() + ",");
         if (getDesiredInferenceUnits() != null)
             sb.append("DesiredInferenceUnits: " + getDesiredInferenceUnits() + ",");
         if (getCurrentInferenceUnits() != null)
@@ -747,7 +930,9 @@ public class EndpointProperties implements Serializable {
         if (getLastModifiedTime() != null)
             sb.append("LastModifiedTime: " + getLastModifiedTime() + ",");
         if (getDataAccessRoleArn() != null)
-            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn());
+            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
+        if (getDesiredDataAccessRoleArn() != null)
+            sb.append("DesiredDataAccessRoleArn: " + getDesiredDataAccessRoleArn());
         sb.append("}");
         return sb.toString();
     }
@@ -762,6 +947,8 @@ public class EndpointProperties implements Serializable {
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         hashCode = prime * hashCode + ((getMessage() == null) ? 0 : getMessage().hashCode());
         hashCode = prime * hashCode + ((getModelArn() == null) ? 0 : getModelArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getDesiredModelArn() == null) ? 0 : getDesiredModelArn().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getDesiredInferenceUnits() == null) ? 0 : getDesiredInferenceUnits().hashCode());
@@ -774,6 +961,10 @@ public class EndpointProperties implements Serializable {
                 + ((getLastModifiedTime() == null) ? 0 : getLastModifiedTime().hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDesiredDataAccessRoleArn() == null) ? 0 : getDesiredDataAccessRoleArn()
+                        .hashCode());
         return hashCode;
     }
 
@@ -805,6 +996,11 @@ public class EndpointProperties implements Serializable {
             return false;
         if (other.getModelArn() != null && other.getModelArn().equals(this.getModelArn()) == false)
             return false;
+        if (other.getDesiredModelArn() == null ^ this.getDesiredModelArn() == null)
+            return false;
+        if (other.getDesiredModelArn() != null
+                && other.getDesiredModelArn().equals(this.getDesiredModelArn()) == false)
+            return false;
         if (other.getDesiredInferenceUnits() == null ^ this.getDesiredInferenceUnits() == null)
             return false;
         if (other.getDesiredInferenceUnits() != null
@@ -829,6 +1025,12 @@ public class EndpointProperties implements Serializable {
             return false;
         if (other.getDataAccessRoleArn() != null
                 && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
+            return false;
+        if (other.getDesiredDataAccessRoleArn() == null
+                ^ this.getDesiredDataAccessRoleArn() == null)
+            return false;
+        if (other.getDesiredDataAccessRoleArn() != null
+                && other.getDesiredDataAccessRoleArn().equals(this.getDesiredDataAccessRoleArn()) == false)
             return false;
         return true;
     }

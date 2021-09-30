@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class ListIntegrationAssociationsResult implements Serializable {
     /**
      * <p>
-     * The AppIntegration associations.
+     * The associations.
      * </p>
      */
     private java.util.List<IntegrationAssociationSummary> integrationAssociationSummaryList;
@@ -35,11 +35,11 @@ public class ListIntegrationAssociationsResult implements Serializable {
 
     /**
      * <p>
-     * The AppIntegration associations.
+     * The associations.
      * </p>
      *
      * @return <p>
-     *         The AppIntegration associations.
+     *         The associations.
      *         </p>
      */
     public java.util.List<IntegrationAssociationSummary> getIntegrationAssociationSummaryList() {
@@ -48,11 +48,11 @@ public class ListIntegrationAssociationsResult implements Serializable {
 
     /**
      * <p>
-     * The AppIntegration associations.
+     * The associations.
      * </p>
      *
      * @param integrationAssociationSummaryList <p>
-     *            The AppIntegration associations.
+     *            The associations.
      *            </p>
      */
     public void setIntegrationAssociationSummaryList(
@@ -68,14 +68,14 @@ public class ListIntegrationAssociationsResult implements Serializable {
 
     /**
      * <p>
-     * The AppIntegration associations.
+     * The associations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param integrationAssociationSummaryList <p>
-     *            The AppIntegration associations.
+     *            The associations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -94,14 +94,14 @@ public class ListIntegrationAssociationsResult implements Serializable {
 
     /**
      * <p>
-     * The AppIntegration associations.
+     * The associations.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param integrationAssociationSummaryList <p>
-     *            The AppIntegration associations.
+     *            The associations.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

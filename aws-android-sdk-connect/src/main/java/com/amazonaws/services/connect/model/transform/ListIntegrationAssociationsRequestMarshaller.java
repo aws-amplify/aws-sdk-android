@@ -59,6 +59,10 @@ public class ListIntegrationAssociationsRequestMarshaller implements
                 "{InstanceId}",
                 (listIntegrationAssociationsRequest.getInstanceId() == null) ? "" : StringUtils
                         .fromString(listIntegrationAssociationsRequest.getInstanceId()));
+        if (listIntegrationAssociationsRequest.getIntegrationType() != null) {
+            request.addParameter("integrationType",
+                    StringUtils.fromString(listIntegrationAssociationsRequest.getIntegrationType()));
+        }
         if (listIntegrationAssociationsRequest.getNextToken() != null) {
             request.addParameter("nextToken",
                     StringUtils.fromString(listIntegrationAssociationsRequest.getNextToken()));

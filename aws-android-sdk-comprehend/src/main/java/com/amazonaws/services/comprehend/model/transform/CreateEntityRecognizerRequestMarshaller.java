@@ -68,6 +68,11 @@ public class CreateEntityRecognizerRequestMarshaller implements
                 jsonWriter.name("RecognizerName");
                 jsonWriter.value(recognizerName);
             }
+            if (createEntityRecognizerRequest.getVersionName() != null) {
+                String versionName = createEntityRecognizerRequest.getVersionName();
+                jsonWriter.name("VersionName");
+                jsonWriter.value(versionName);
+            }
             if (createEntityRecognizerRequest.getDataAccessRoleArn() != null) {
                 String dataAccessRoleArn = createEntityRecognizerRequest.getDataAccessRoleArn();
                 jsonWriter.name("DataAccessRoleArn");

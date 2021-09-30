@@ -39,6 +39,12 @@ class EntityRecognizerDocumentsJsonUnmarshaller implements
             if (name.equals("S3Uri")) {
                 entityRecognizerDocuments.setS3Uri(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("TestS3Uri")) {
+                entityRecognizerDocuments.setTestS3Uri(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("InputFormat")) {
+                entityRecognizerDocuments.setInputFormat(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

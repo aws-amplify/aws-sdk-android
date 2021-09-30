@@ -44,6 +44,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
  * Guide</i>.
  * </p>
+ * </note> <note>
+ * <p>
+ * Campaign calls are not allowed by default. Before you can make a call with
+ * <code>TrafficType</code> = <code>CAMPAIGN</code>, you must submit a service
+ * quota increase request. For more information, see <a href=
+ * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html"
+ * >Amazon Connect Service Quotas</a> in the <i>Amazon Connect Administrator
+ * Guide</i>.
+ * </p>
  * </note>
  */
 public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest implements
@@ -129,6 +138,37 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
      * </p>
      */
     private java.util.Map<String, String> attributes;
+
+    /**
+     * <p>
+     * Configuration of the answering machine detection for this outbound call.
+     * </p>
+     */
+    private AnswerMachineDetectionConfig answerMachineDetectionConfig;
+
+    /**
+     * <p>
+     * The campaign identifier of the outbound communication.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String campaignId;
+
+    /**
+     * <p>
+     * Denotes the class of traffic. Calls with different traffic types are
+     * handled differently by Amazon Connect. The default value is
+     * <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     * <code>EnableAnswerMachineDetection</code> is set to <code>true</code>.
+     * For all other cases, use <code>GENERAL</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>GENERAL, CAMPAIGN
+     */
+    private String trafficType;
 
     /**
      * <p>
@@ -673,6 +713,251 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
     }
 
     /**
+     * <p>
+     * Configuration of the answering machine detection for this outbound call.
+     * </p>
+     *
+     * @return <p>
+     *         Configuration of the answering machine detection for this
+     *         outbound call.
+     *         </p>
+     */
+    public AnswerMachineDetectionConfig getAnswerMachineDetectionConfig() {
+        return answerMachineDetectionConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration of the answering machine detection for this outbound call.
+     * </p>
+     *
+     * @param answerMachineDetectionConfig <p>
+     *            Configuration of the answering machine detection for this
+     *            outbound call.
+     *            </p>
+     */
+    public void setAnswerMachineDetectionConfig(
+            AnswerMachineDetectionConfig answerMachineDetectionConfig) {
+        this.answerMachineDetectionConfig = answerMachineDetectionConfig;
+    }
+
+    /**
+     * <p>
+     * Configuration of the answering machine detection for this outbound call.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param answerMachineDetectionConfig <p>
+     *            Configuration of the answering machine detection for this
+     *            outbound call.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest withAnswerMachineDetectionConfig(
+            AnswerMachineDetectionConfig answerMachineDetectionConfig) {
+        this.answerMachineDetectionConfig = answerMachineDetectionConfig;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The campaign identifier of the outbound communication.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @return <p>
+     *         The campaign identifier of the outbound communication.
+     *         </p>
+     */
+    public String getCampaignId() {
+        return campaignId;
+    }
+
+    /**
+     * <p>
+     * The campaign identifier of the outbound communication.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param campaignId <p>
+     *            The campaign identifier of the outbound communication.
+     *            </p>
+     */
+    public void setCampaignId(String campaignId) {
+        this.campaignId = campaignId;
+    }
+
+    /**
+     * <p>
+     * The campaign identifier of the outbound communication.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     *
+     * @param campaignId <p>
+     *            The campaign identifier of the outbound communication.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartOutboundVoiceContactRequest withCampaignId(String campaignId) {
+        this.campaignId = campaignId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Denotes the class of traffic. Calls with different traffic types are
+     * handled differently by Amazon Connect. The default value is
+     * <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     * <code>EnableAnswerMachineDetection</code> is set to <code>true</code>.
+     * For all other cases, use <code>GENERAL</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>GENERAL, CAMPAIGN
+     *
+     * @return <p>
+     *         Denotes the class of traffic. Calls with different traffic types
+     *         are handled differently by Amazon Connect. The default value is
+     *         <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     *         <code>EnableAnswerMachineDetection</code> is set to
+     *         <code>true</code>. For all other cases, use <code>GENERAL</code>.
+     *         </p>
+     * @see TrafficType
+     */
+    public String getTrafficType() {
+        return trafficType;
+    }
+
+    /**
+     * <p>
+     * Denotes the class of traffic. Calls with different traffic types are
+     * handled differently by Amazon Connect. The default value is
+     * <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     * <code>EnableAnswerMachineDetection</code> is set to <code>true</code>.
+     * For all other cases, use <code>GENERAL</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>GENERAL, CAMPAIGN
+     *
+     * @param trafficType <p>
+     *            Denotes the class of traffic. Calls with different traffic
+     *            types are handled differently by Amazon Connect. The default
+     *            value is <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     *            <code>EnableAnswerMachineDetection</code> is set to
+     *            <code>true</code>. For all other cases, use
+     *            <code>GENERAL</code>.
+     *            </p>
+     * @see TrafficType
+     */
+    public void setTrafficType(String trafficType) {
+        this.trafficType = trafficType;
+    }
+
+    /**
+     * <p>
+     * Denotes the class of traffic. Calls with different traffic types are
+     * handled differently by Amazon Connect. The default value is
+     * <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     * <code>EnableAnswerMachineDetection</code> is set to <code>true</code>.
+     * For all other cases, use <code>GENERAL</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>GENERAL, CAMPAIGN
+     *
+     * @param trafficType <p>
+     *            Denotes the class of traffic. Calls with different traffic
+     *            types are handled differently by Amazon Connect. The default
+     *            value is <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     *            <code>EnableAnswerMachineDetection</code> is set to
+     *            <code>true</code>. For all other cases, use
+     *            <code>GENERAL</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TrafficType
+     */
+    public StartOutboundVoiceContactRequest withTrafficType(String trafficType) {
+        this.trafficType = trafficType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Denotes the class of traffic. Calls with different traffic types are
+     * handled differently by Amazon Connect. The default value is
+     * <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     * <code>EnableAnswerMachineDetection</code> is set to <code>true</code>.
+     * For all other cases, use <code>GENERAL</code>.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>GENERAL, CAMPAIGN
+     *
+     * @param trafficType <p>
+     *            Denotes the class of traffic. Calls with different traffic
+     *            types are handled differently by Amazon Connect. The default
+     *            value is <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     *            <code>EnableAnswerMachineDetection</code> is set to
+     *            <code>true</code>. For all other cases, use
+     *            <code>GENERAL</code>.
+     *            </p>
+     * @see TrafficType
+     */
+    public void setTrafficType(TrafficType trafficType) {
+        this.trafficType = trafficType.toString();
+    }
+
+    /**
+     * <p>
+     * Denotes the class of traffic. Calls with different traffic types are
+     * handled differently by Amazon Connect. The default value is
+     * <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     * <code>EnableAnswerMachineDetection</code> is set to <code>true</code>.
+     * For all other cases, use <code>GENERAL</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>GENERAL, CAMPAIGN
+     *
+     * @param trafficType <p>
+     *            Denotes the class of traffic. Calls with different traffic
+     *            types are handled differently by Amazon Connect. The default
+     *            value is <code>GENERAL</code>. Use <code>CAMPAIGN</code> if
+     *            <code>EnableAnswerMachineDetection</code> is set to
+     *            <code>true</code>. For all other cases, use
+     *            <code>GENERAL</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see TrafficType
+     */
+    public StartOutboundVoiceContactRequest withTrafficType(TrafficType trafficType) {
+        this.trafficType = trafficType.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -696,7 +981,13 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
         if (getQueueId() != null)
             sb.append("QueueId: " + getQueueId() + ",");
         if (getAttributes() != null)
-            sb.append("Attributes: " + getAttributes());
+            sb.append("Attributes: " + getAttributes() + ",");
+        if (getAnswerMachineDetectionConfig() != null)
+            sb.append("AnswerMachineDetectionConfig: " + getAnswerMachineDetectionConfig() + ",");
+        if (getCampaignId() != null)
+            sb.append("CampaignId: " + getCampaignId() + ",");
+        if (getTrafficType() != null)
+            sb.append("TrafficType: " + getTrafficType());
         sb.append("}");
         return sb.toString();
     }
@@ -719,6 +1010,13 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
                 + ((getSourcePhoneNumber() == null) ? 0 : getSourcePhoneNumber().hashCode());
         hashCode = prime * hashCode + ((getQueueId() == null) ? 0 : getQueueId().hashCode());
         hashCode = prime * hashCode + ((getAttributes() == null) ? 0 : getAttributes().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAnswerMachineDetectionConfig() == null) ? 0
+                        : getAnswerMachineDetectionConfig().hashCode());
+        hashCode = prime * hashCode + ((getCampaignId() == null) ? 0 : getCampaignId().hashCode());
+        hashCode = prime * hashCode
+                + ((getTrafficType() == null) ? 0 : getTrafficType().hashCode());
         return hashCode;
     }
 
@@ -766,6 +1064,23 @@ public class StartOutboundVoiceContactRequest extends AmazonWebServiceRequest im
             return false;
         if (other.getAttributes() != null
                 && other.getAttributes().equals(this.getAttributes()) == false)
+            return false;
+        if (other.getAnswerMachineDetectionConfig() == null
+                ^ this.getAnswerMachineDetectionConfig() == null)
+            return false;
+        if (other.getAnswerMachineDetectionConfig() != null
+                && other.getAnswerMachineDetectionConfig().equals(
+                        this.getAnswerMachineDetectionConfig()) == false)
+            return false;
+        if (other.getCampaignId() == null ^ this.getCampaignId() == null)
+            return false;
+        if (other.getCampaignId() != null
+                && other.getCampaignId().equals(this.getCampaignId()) == false)
+            return false;
+        if (other.getTrafficType() == null ^ this.getTrafficType() == null)
+            return false;
+        if (other.getTrafficType() != null
+                && other.getTrafficType().equals(this.getTrafficType()) == false)
             return false;
         return true;
     }
