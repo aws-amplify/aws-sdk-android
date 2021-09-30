@@ -59,6 +59,16 @@ class ActiveViolationJsonMarshaller {
             ViolationEventAdditionalInfoJsonMarshaller.getInstance().marshall(
                     violationEventAdditionalInfo, jsonWriter);
         }
+        if (activeViolation.getVerificationState() != null) {
+            String verificationState = activeViolation.getVerificationState();
+            jsonWriter.name("verificationState");
+            jsonWriter.value(verificationState);
+        }
+        if (activeViolation.getVerificationStateDescription() != null) {
+            String verificationStateDescription = activeViolation.getVerificationStateDescription();
+            jsonWriter.name("verificationStateDescription");
+            jsonWriter.value(verificationStateDescription);
+        }
         if (activeViolation.getLastViolationTime() != null) {
             java.util.Date lastViolationTime = activeViolation.getLastViolationTime();
             jsonWriter.name("lastViolationTime");

@@ -80,6 +80,28 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     */
+    private String verificationState;
+
+    /**
+     * <p>
+     * The description of the verification state of the violation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1000<br/>
+     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     */
+    private String verificationStateDescription;
+
+    /**
+     * <p>
      * The time the most recent violation occurred.
      * </p>
      */
@@ -405,6 +427,165 @@ public class ActiveViolation implements Serializable {
 
     /**
      * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @return <p>
+     *         The verification state of the violation (detect alarm).
+     *         </p>
+     * @see VerificationState
+     */
+    public String getVerificationState() {
+        return verificationState;
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @see VerificationState
+     */
+    public void setVerificationState(String verificationState) {
+        this.verificationState = verificationState;
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VerificationState
+     */
+    public ActiveViolation withVerificationState(String verificationState) {
+        this.verificationState = verificationState;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @see VerificationState
+     */
+    public void setVerificationState(VerificationState verificationState) {
+        this.verificationState = verificationState.toString();
+    }
+
+    /**
+     * <p>
+     * The verification state of the violation (detect alarm).
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>FALSE_POSITIVE, BENIGN_POSITIVE, TRUE_POSITIVE,
+     * UNKNOWN
+     *
+     * @param verificationState <p>
+     *            The verification state of the violation (detect alarm).
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see VerificationState
+     */
+    public ActiveViolation withVerificationState(VerificationState verificationState) {
+        this.verificationState = verificationState.toString();
+        return this;
+    }
+
+    /**
+     * <p>
+     * The description of the verification state of the violation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1000<br/>
+     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     *
+     * @return <p>
+     *         The description of the verification state of the violation.
+     *         </p>
+     */
+    public String getVerificationStateDescription() {
+        return verificationStateDescription;
+    }
+
+    /**
+     * <p>
+     * The description of the verification state of the violation.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1000<br/>
+     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     *
+     * @param verificationStateDescription <p>
+     *            The description of the verification state of the violation.
+     *            </p>
+     */
+    public void setVerificationStateDescription(String verificationStateDescription) {
+        this.verificationStateDescription = verificationStateDescription;
+    }
+
+    /**
+     * <p>
+     * The description of the verification state of the violation.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1000<br/>
+     * <b>Pattern: </b>[\p{Graph}\x20]*<br/>
+     *
+     * @param verificationStateDescription <p>
+     *            The description of the verification state of the violation.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ActiveViolation withVerificationStateDescription(String verificationStateDescription) {
+        this.verificationStateDescription = verificationStateDescription;
+        return this;
+    }
+
+    /**
+     * <p>
      * The time the most recent violation occurred.
      * </p>
      *
@@ -516,6 +697,10 @@ public class ActiveViolation implements Serializable {
             sb.append("lastViolationValue: " + getLastViolationValue() + ",");
         if (getViolationEventAdditionalInfo() != null)
             sb.append("violationEventAdditionalInfo: " + getViolationEventAdditionalInfo() + ",");
+        if (getVerificationState() != null)
+            sb.append("verificationState: " + getVerificationState() + ",");
+        if (getVerificationStateDescription() != null)
+            sb.append("verificationStateDescription: " + getVerificationStateDescription() + ",");
         if (getLastViolationTime() != null)
             sb.append("lastViolationTime: " + getLastViolationTime() + ",");
         if (getViolationStartTime() != null)
@@ -541,6 +726,12 @@ public class ActiveViolation implements Serializable {
                 * hashCode
                 + ((getViolationEventAdditionalInfo() == null) ? 0
                         : getViolationEventAdditionalInfo().hashCode());
+        hashCode = prime * hashCode
+                + ((getVerificationState() == null) ? 0 : getVerificationState().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getVerificationStateDescription() == null) ? 0
+                        : getVerificationStateDescription().hashCode());
         hashCode = prime * hashCode
                 + ((getLastViolationTime() == null) ? 0 : getLastViolationTime().hashCode());
         hashCode = prime * hashCode
@@ -589,6 +780,18 @@ public class ActiveViolation implements Serializable {
         if (other.getViolationEventAdditionalInfo() != null
                 && other.getViolationEventAdditionalInfo().equals(
                         this.getViolationEventAdditionalInfo()) == false)
+            return false;
+        if (other.getVerificationState() == null ^ this.getVerificationState() == null)
+            return false;
+        if (other.getVerificationState() != null
+                && other.getVerificationState().equals(this.getVerificationState()) == false)
+            return false;
+        if (other.getVerificationStateDescription() == null
+                ^ this.getVerificationStateDescription() == null)
+            return false;
+        if (other.getVerificationStateDescription() != null
+                && other.getVerificationStateDescription().equals(
+                        this.getVerificationStateDescription()) == false)
             return false;
         if (other.getLastViolationTime() == null ^ this.getLastViolationTime() == null)
             return false;

@@ -79,6 +79,10 @@ public class ListViolationEventsRequestMarshaller implements
             request.addParameter("listSuppressedAlerts",
                     StringUtils.fromBoolean(listViolationEventsRequest.getListSuppressedAlerts()));
         }
+        if (listViolationEventsRequest.getVerificationState() != null) {
+            request.addParameter("verificationState",
+                    StringUtils.fromString(listViolationEventsRequest.getVerificationState()));
+        }
         if (listViolationEventsRequest.getNextToken() != null) {
             request.addParameter("nextToken",
                     StringUtils.fromString(listViolationEventsRequest.getNextToken()));

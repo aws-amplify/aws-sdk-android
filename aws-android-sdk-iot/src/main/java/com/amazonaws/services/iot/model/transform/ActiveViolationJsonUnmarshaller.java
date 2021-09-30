@@ -56,6 +56,13 @@ class ActiveViolationJsonUnmarshaller implements
                         .setViolationEventAdditionalInfo(ViolationEventAdditionalInfoJsonUnmarshaller
                                 .getInstance()
                                 .unmarshall(context));
+            } else if (name.equals("verificationState")) {
+                activeViolation.setVerificationState(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("verificationStateDescription")) {
+                activeViolation.setVerificationStateDescription(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("lastViolationTime")) {
                 activeViolation.setLastViolationTime(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

@@ -71,6 +71,10 @@ public class ListActiveViolationsRequestMarshaller implements
             request.addParameter("listSuppressedAlerts",
                     StringUtils.fromBoolean(listActiveViolationsRequest.getListSuppressedAlerts()));
         }
+        if (listActiveViolationsRequest.getVerificationState() != null) {
+            request.addParameter("verificationState",
+                    StringUtils.fromString(listActiveViolationsRequest.getVerificationState()));
+        }
         if (listActiveViolationsRequest.getNextToken() != null) {
             request.addParameter("nextToken",
                     StringUtils.fromString(listActiveViolationsRequest.getNextToken()));

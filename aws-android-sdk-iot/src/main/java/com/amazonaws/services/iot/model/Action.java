@@ -111,13 +111,16 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service domain.
+     * Write data to an Amazon OpenSearch Service domain.
      * </p>
      * <note>
      * <p>
-     * This action is deprecated. Use the <a href=
+     * The <code>Elasticsearch</code> action can only be used by existing rule
+     * actions. To create a new rule action or to update an existing rule
+     * action, use the <code>OpenSearch</code> rule action instead. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     * >OpenSearch action</a> instead.
+     * >OpenSearchAction</a>.
      * </p>
      * </note>
      */
@@ -746,24 +749,30 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service domain.
+     * Write data to an Amazon OpenSearch Service domain.
      * </p>
      * <note>
      * <p>
-     * This action is deprecated. Use the <a href=
+     * The <code>Elasticsearch</code> action can only be used by existing rule
+     * actions. To create a new rule action or to update an existing rule
+     * action, use the <code>OpenSearch</code> rule action instead. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     * >OpenSearch action</a> instead.
+     * >OpenSearchAction</a>.
      * </p>
      * </note>
      *
      * @return <p>
-     *         Write data to an Amazon Elasticsearch Service domain.
+     *         Write data to an Amazon OpenSearch Service domain.
      *         </p>
      *         <note>
      *         <p>
-     *         This action is deprecated. Use the <a href=
+     *         The <code>Elasticsearch</code> action can only be used by
+     *         existing rule actions. To create a new rule action or to update
+     *         an existing rule action, use the <code>OpenSearch</code> rule
+     *         action instead. For more information, see <a href=
      *         "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     *         >OpenSearch action</a> instead.
+     *         >OpenSearchAction</a>.
      *         </p>
      *         </note>
      */
@@ -773,24 +782,31 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service domain.
+     * Write data to an Amazon OpenSearch Service domain.
      * </p>
      * <note>
      * <p>
-     * This action is deprecated. Use the <a href=
+     * The <code>Elasticsearch</code> action can only be used by existing rule
+     * actions. To create a new rule action or to update an existing rule
+     * action, use the <code>OpenSearch</code> rule action instead. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     * >OpenSearch action</a> instead.
+     * >OpenSearchAction</a>.
      * </p>
      * </note>
      *
      * @param elasticsearch <p>
-     *            Write data to an Amazon Elasticsearch Service domain.
+     *            Write data to an Amazon OpenSearch Service domain.
      *            </p>
      *            <note>
      *            <p>
-     *            This action is deprecated. Use the <a href=
+     *            The <code>Elasticsearch</code> action can only be used by
+     *            existing rule actions. To create a new rule action or to
+     *            update an existing rule action, use the
+     *            <code>OpenSearch</code> rule action instead. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     *            >OpenSearch action</a> instead.
+     *            >OpenSearchAction</a>.
      *            </p>
      *            </note>
      */
@@ -800,13 +816,16 @@ public class Action implements Serializable {
 
     /**
      * <p>
-     * Write data to an Amazon Elasticsearch Service domain.
+     * Write data to an Amazon OpenSearch Service domain.
      * </p>
      * <note>
      * <p>
-     * This action is deprecated. Use the <a href=
+     * The <code>Elasticsearch</code> action can only be used by existing rule
+     * actions. To create a new rule action or to update an existing rule
+     * action, use the <code>OpenSearch</code> rule action instead. For more
+     * information, see <a href=
      * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     * >OpenSearch action</a> instead.
+     * >OpenSearchAction</a>.
      * </p>
      * </note>
      * <p>
@@ -814,13 +833,17 @@ public class Action implements Serializable {
      * together.
      *
      * @param elasticsearch <p>
-     *            Write data to an Amazon Elasticsearch Service domain.
+     *            Write data to an Amazon OpenSearch Service domain.
      *            </p>
      *            <note>
      *            <p>
-     *            This action is deprecated. Use the <a href=
+     *            The <code>Elasticsearch</code> action can only be used by
+     *            existing rule actions. To create a new rule action or to
+     *            update an existing rule action, use the
+     *            <code>OpenSearch</code> rule action instead. For more
+     *            information, see <a href=
      *            "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
-     *            >OpenSearch action</a> instead.
+     *            >OpenSearchAction</a>.
      *            </p>
      *            </note>
      * @return A reference to this updated object so that method calls can be

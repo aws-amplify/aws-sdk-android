@@ -5978,6 +5978,31 @@ public interface AWSIot {
 
     /**
      * <p>
+     * Set a verification state and provide a description of that verification
+     * state on a violation (detect alarm).
+     * </p>
+     * 
+     * @param putVerificationStateOnViolationRequest
+     * @return putVerificationStateOnViolationResult The response from the
+     *         PutVerificationStateOnViolation service method, as returned by
+     *         AWS IoT.
+     * @throws InvalidRequestException
+     * @throws ThrottlingException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by AWS
+     *             IoT indicating either a problem with the data in the request,
+     *             or a server side issue.
+     */
+    PutVerificationStateOnViolationResult putVerificationStateOnViolation(
+            PutVerificationStateOnViolationRequest putVerificationStateOnViolationRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Registers a CA certificate with IoT. This CA certificate can then be used
      * to sign device certificates, which can be then registered with IoT. You
      * can register up to 10 CA certificates per Amazon Web Services account

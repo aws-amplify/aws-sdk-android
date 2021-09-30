@@ -63,6 +63,16 @@ class ViolationEventJsonMarshaller {
             jsonWriter.name("violationEventType");
             jsonWriter.value(violationEventType);
         }
+        if (violationEvent.getVerificationState() != null) {
+            String verificationState = violationEvent.getVerificationState();
+            jsonWriter.name("verificationState");
+            jsonWriter.value(verificationState);
+        }
+        if (violationEvent.getVerificationStateDescription() != null) {
+            String verificationStateDescription = violationEvent.getVerificationStateDescription();
+            jsonWriter.name("verificationStateDescription");
+            jsonWriter.value(verificationStateDescription);
+        }
         if (violationEvent.getViolationEventTime() != null) {
             java.util.Date violationEventTime = violationEvent.getViolationEventTime();
             jsonWriter.name("violationEventTime");
