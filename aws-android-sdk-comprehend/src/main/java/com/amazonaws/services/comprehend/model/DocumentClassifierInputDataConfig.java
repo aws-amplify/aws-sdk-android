@@ -89,6 +89,20 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
+     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
+     * same AWS Region as the API endpoint that you are calling. The URI can
+     * point to a single input file or it can provide the prefix for a
+     * collection of input files.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     */
+    private String testS3Uri;
+
+    /**
+     * <p>
      * Indicates the delimiter used to separate each label for training a
      * multi-label classifier. The default delimiter between labels is a pipe
      * (|). You can use a different character as a delimiter (if it's an allowed
@@ -614,6 +628,81 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
     /**
      * <p>
+     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
+     * same AWS Region as the API endpoint that you are calling. The URI can
+     * point to a single input file or it can provide the prefix for a
+     * collection of input files.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @return <p>
+     *         The Amazon S3 URI for the input data. The Amazon S3 bucket must
+     *         be in the same AWS Region as the API endpoint that you are
+     *         calling. The URI can point to a single input file or it can
+     *         provide the prefix for a collection of input files.
+     *         </p>
+     */
+    public String getTestS3Uri() {
+        return testS3Uri;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
+     * same AWS Region as the API endpoint that you are calling. The URI can
+     * point to a single input file or it can provide the prefix for a
+     * collection of input files.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            The Amazon S3 URI for the input data. The Amazon S3 bucket
+     *            must be in the same AWS Region as the API endpoint that you
+     *            are calling. The URI can point to a single input file or it
+     *            can provide the prefix for a collection of input files.
+     *            </p>
+     */
+    public void setTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
+     * same AWS Region as the API endpoint that you are calling. The URI can
+     * point to a single input file or it can provide the prefix for a
+     * collection of input files.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            The Amazon S3 URI for the input data. The Amazon S3 bucket
+     *            must be in the same AWS Region as the API endpoint that you
+     *            are calling. The URI can point to a single input file or it
+     *            can provide the prefix for a collection of input files.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DocumentClassifierInputDataConfig withTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+        return this;
+    }
+
+    /**
+     * <p>
      * Indicates the delimiter used to separate each label for training a
      * multi-label classifier. The default delimiter between labels is a pipe
      * (|). You can use a different character as a delimiter (if it's an allowed
@@ -852,6 +941,8 @@ public class DocumentClassifierInputDataConfig implements Serializable {
             sb.append("DataFormat: " + getDataFormat() + ",");
         if (getS3Uri() != null)
             sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getTestS3Uri() != null)
+            sb.append("TestS3Uri: " + getTestS3Uri() + ",");
         if (getLabelDelimiter() != null)
             sb.append("LabelDelimiter: " + getLabelDelimiter() + ",");
         if (getAugmentedManifests() != null)
@@ -867,6 +958,7 @@ public class DocumentClassifierInputDataConfig implements Serializable {
 
         hashCode = prime * hashCode + ((getDataFormat() == null) ? 0 : getDataFormat().hashCode());
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode + ((getTestS3Uri() == null) ? 0 : getTestS3Uri().hashCode());
         hashCode = prime * hashCode
                 + ((getLabelDelimiter() == null) ? 0 : getLabelDelimiter().hashCode());
         hashCode = prime * hashCode
@@ -893,6 +985,11 @@ public class DocumentClassifierInputDataConfig implements Serializable {
         if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
         if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getTestS3Uri() == null ^ this.getTestS3Uri() == null)
+            return false;
+        if (other.getTestS3Uri() != null
+                && other.getTestS3Uri().equals(this.getTestS3Uri()) == false)
             return false;
         if (other.getLabelDelimiter() == null ^ this.getLabelDelimiter() == null)
             return false;

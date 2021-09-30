@@ -93,6 +93,9 @@ class DocumentClassifierPropertiesJsonUnmarshaller implements
             } else if (name.equals("ModelKmsKeyId")) {
                 documentClassifierProperties.setModelKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("VersionName")) {
+                documentClassifierProperties.setVersionName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

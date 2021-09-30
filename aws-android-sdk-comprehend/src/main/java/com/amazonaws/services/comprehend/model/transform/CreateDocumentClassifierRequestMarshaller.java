@@ -69,6 +69,11 @@ public class CreateDocumentClassifierRequestMarshaller implements
                 jsonWriter.name("DocumentClassifierName");
                 jsonWriter.value(documentClassifierName);
             }
+            if (createDocumentClassifierRequest.getVersionName() != null) {
+                String versionName = createDocumentClassifierRequest.getVersionName();
+                jsonWriter.name("VersionName");
+                jsonWriter.value(versionName);
+            }
             if (createDocumentClassifierRequest.getDataAccessRoleArn() != null) {
                 String dataAccessRoleArn = createDocumentClassifierRequest.getDataAccessRoleArn();
                 jsonWriter.name("DataAccessRoleArn");

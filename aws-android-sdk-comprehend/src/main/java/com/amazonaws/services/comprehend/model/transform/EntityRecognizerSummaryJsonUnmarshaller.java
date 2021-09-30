@@ -21,46 +21,50 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO EntityRecognizerFilter
+ * JSON unmarshaller for POJO EntityRecognizerSummary
  */
-class EntityRecognizerFilterJsonUnmarshaller implements
-        Unmarshaller<EntityRecognizerFilter, JsonUnmarshallerContext> {
+class EntityRecognizerSummaryJsonUnmarshaller implements
+        Unmarshaller<EntityRecognizerSummary, JsonUnmarshallerContext> {
 
-    public EntityRecognizerFilter unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public EntityRecognizerSummary unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        EntityRecognizerFilter entityRecognizerFilter = new EntityRecognizerFilter();
+        EntityRecognizerSummary entityRecognizerSummary = new EntityRecognizerSummary();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Status")) {
-                entityRecognizerFilter.setStatus(StringJsonUnmarshaller.getInstance()
+            if (name.equals("RecognizerName")) {
+                entityRecognizerSummary.setRecognizerName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("RecognizerName")) {
-                entityRecognizerFilter.setRecognizerName(StringJsonUnmarshaller.getInstance()
+            } else if (name.equals("NumberOfVersions")) {
+                entityRecognizerSummary.setNumberOfVersions(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("SubmitTimeBefore")) {
-                entityRecognizerFilter.setSubmitTimeBefore(DateJsonUnmarshaller.getInstance()
+            } else if (name.equals("LatestVersionCreatedAt")) {
+                entityRecognizerSummary.setLatestVersionCreatedAt(DateJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("SubmitTimeAfter")) {
-                entityRecognizerFilter.setSubmitTimeAfter(DateJsonUnmarshaller.getInstance()
+            } else if (name.equals("LatestVersionName")) {
+                entityRecognizerSummary.setLatestVersionName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("LatestVersionStatus")) {
+                entityRecognizerSummary.setLatestVersionStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return entityRecognizerFilter;
+        return entityRecognizerSummary;
     }
 
-    private static EntityRecognizerFilterJsonUnmarshaller instance;
+    private static EntityRecognizerSummaryJsonUnmarshaller instance;
 
-    public static EntityRecognizerFilterJsonUnmarshaller getInstance() {
+    public static EntityRecognizerSummaryJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new EntityRecognizerFilterJsonUnmarshaller();
+            instance = new EntityRecognizerSummaryJsonUnmarshaller();
         return instance;
     }
 }

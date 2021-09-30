@@ -43,6 +43,20 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
 
     /**
      * <p>
+     * The version name given to the newly created classifier. Version names can
+     * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
+     * and underscores (_) are allowed. The version name must be unique among
+     * all models with the same classifier name in the account/AWS Region.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     */
+    private String versionName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
      * role that grants Amazon Comprehend read access to your input data.
      * </p>
@@ -236,6 +250,84 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
      */
     public CreateDocumentClassifierRequest withDocumentClassifierName(String documentClassifierName) {
         this.documentClassifierName = documentClassifierName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The version name given to the newly created classifier. Version names can
+     * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
+     * and underscores (_) are allowed. The version name must be unique among
+     * all models with the same classifier name in the account/AWS Region.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @return <p>
+     *         The version name given to the newly created classifier. Version
+     *         names can have a maximum of 256 characters. Alphanumeric
+     *         characters, hyphens (-) and underscores (_) are allowed. The
+     *         version name must be unique among all models with the same
+     *         classifier name in the account/AWS Region.
+     *         </p>
+     */
+    public String getVersionName() {
+        return versionName;
+    }
+
+    /**
+     * <p>
+     * The version name given to the newly created classifier. Version names can
+     * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
+     * and underscores (_) are allowed. The version name must be unique among
+     * all models with the same classifier name in the account/AWS Region.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @param versionName <p>
+     *            The version name given to the newly created classifier.
+     *            Version names can have a maximum of 256 characters.
+     *            Alphanumeric characters, hyphens (-) and underscores (_) are
+     *            allowed. The version name must be unique among all models with
+     *            the same classifier name in the account/AWS Region.
+     *            </p>
+     */
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
+    }
+
+    /**
+     * <p>
+     * The version name given to the newly created classifier. Version names can
+     * have a maximum of 256 characters. Alphanumeric characters, hyphens (-)
+     * and underscores (_) are allowed. The version name must be unique among
+     * all models with the same classifier name in the account/AWS Region.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @param versionName <p>
+     *            The version name given to the newly created classifier.
+     *            Version names can have a maximum of 256 characters.
+     *            Alphanumeric characters, hyphens (-) and underscores (_) are
+     *            allowed. The version name must be unique among all models with
+     *            the same classifier name in the account/AWS Region.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateDocumentClassifierRequest withVersionName(String versionName) {
+        this.versionName = versionName;
         return this;
     }
 
@@ -1240,6 +1332,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
         sb.append("{");
         if (getDocumentClassifierName() != null)
             sb.append("DocumentClassifierName: " + getDocumentClassifierName() + ",");
+        if (getVersionName() != null)
+            sb.append("VersionName: " + getVersionName() + ",");
         if (getDataAccessRoleArn() != null)
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
         if (getTags() != null)
@@ -1273,6 +1367,8 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
                 * hashCode
                 + ((getDocumentClassifierName() == null) ? 0 : getDocumentClassifierName()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getVersionName() == null) ? 0 : getVersionName().hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
@@ -1308,6 +1404,11 @@ public class CreateDocumentClassifierRequest extends AmazonWebServiceRequest imp
             return false;
         if (other.getDocumentClassifierName() != null
                 && other.getDocumentClassifierName().equals(this.getDocumentClassifierName()) == false)
+            return false;
+        if (other.getVersionName() == null ^ this.getVersionName() == null)
+            return false;
+        if (other.getVersionName() != null
+                && other.getVersionName().equals(this.getVersionName()) == false)
             return false;
         if (other.getDataAccessRoleArn() == null ^ this.getDataAccessRoleArn() == null)
             return false;

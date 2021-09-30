@@ -48,6 +48,9 @@ class EndpointPropertiesJsonUnmarshaller implements
             } else if (name.equals("ModelArn")) {
                 endpointProperties.setModelArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DesiredModelArn")) {
+                endpointProperties.setDesiredModelArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("DesiredInferenceUnits")) {
                 endpointProperties.setDesiredInferenceUnits(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
@@ -62,6 +65,9 @@ class EndpointPropertiesJsonUnmarshaller implements
                         .unmarshall(context));
             } else if (name.equals("DataAccessRoleArn")) {
                 endpointProperties.setDataAccessRoleArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DesiredDataAccessRoleArn")) {
+                endpointProperties.setDesiredDataAccessRoleArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

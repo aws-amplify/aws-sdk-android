@@ -32,6 +32,11 @@ class EntityRecognizerFilterJsonMarshaller {
             jsonWriter.name("Status");
             jsonWriter.value(status);
         }
+        if (entityRecognizerFilter.getRecognizerName() != null) {
+            String recognizerName = entityRecognizerFilter.getRecognizerName();
+            jsonWriter.name("RecognizerName");
+            jsonWriter.value(recognizerName);
+        }
         if (entityRecognizerFilter.getSubmitTimeBefore() != null) {
             java.util.Date submitTimeBefore = entityRecognizerFilter.getSubmitTimeBefore();
             jsonWriter.name("SubmitTimeBefore");

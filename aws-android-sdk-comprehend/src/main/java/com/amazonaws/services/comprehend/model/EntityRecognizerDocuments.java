@@ -38,6 +38,35 @@ public class EntityRecognizerDocuments implements Serializable {
 
     /**
      * <p>
+     * Specifies the Amazon S3 location where the test documents for an entity
+     * recognizer are located. The URI must be in the same AWS Region as the API
+     * endpoint that you are calling.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     */
+    private String testS3Uri;
+
+    /**
+     * <p>
+     * Specifies how the text in an input file should be processed. This is
+     * optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each
+     * file is considered a separate document. Use this option when you are
+     * processing large documents, such as newspaper articles or scientific
+     * papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate
+     * document. Use this option when you are processing many short documents,
+     * such as text messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
+     */
+    private String inputFormat;
+
+    /**
+     * <p>
      * Specifies the Amazon S3 location where the training documents for an
      * entity recognizer are located. The URI must be in the same region as the
      * API endpoint that you are calling.
@@ -106,6 +135,237 @@ public class EntityRecognizerDocuments implements Serializable {
     }
 
     /**
+     * <p>
+     * Specifies the Amazon S3 location where the test documents for an entity
+     * recognizer are located. The URI must be in the same AWS Region as the API
+     * endpoint that you are calling.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @return <p>
+     *         Specifies the Amazon S3 location where the test documents for an
+     *         entity recognizer are located. The URI must be in the same AWS
+     *         Region as the API endpoint that you are calling.
+     *         </p>
+     */
+    public String getTestS3Uri() {
+        return testS3Uri;
+    }
+
+    /**
+     * <p>
+     * Specifies the Amazon S3 location where the test documents for an entity
+     * recognizer are located. The URI must be in the same AWS Region as the API
+     * endpoint that you are calling.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            Specifies the Amazon S3 location where the test documents for
+     *            an entity recognizer are located. The URI must be in the same
+     *            AWS Region as the API endpoint that you are calling.
+     *            </p>
+     */
+    public void setTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+    }
+
+    /**
+     * <p>
+     * Specifies the Amazon S3 location where the test documents for an entity
+     * recognizer are located. The URI must be in the same AWS Region as the API
+     * endpoint that you are calling.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 1024<br/>
+     * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
+     *
+     * @param testS3Uri <p>
+     *            Specifies the Amazon S3 location where the test documents for
+     *            an entity recognizer are located. The URI must be in the same
+     *            AWS Region as the API endpoint that you are calling.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public EntityRecognizerDocuments withTestS3Uri(String testS3Uri) {
+        this.testS3Uri = testS3Uri;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies how the text in an input file should be processed. This is
+     * optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each
+     * file is considered a separate document. Use this option when you are
+     * processing large documents, such as newspaper articles or scientific
+     * papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate
+     * document. Use this option when you are processing many short documents,
+     * such as text messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
+     *
+     * @return <p>
+     *         Specifies how the text in an input file should be processed. This
+     *         is optional, and the default is ONE_DOC_PER_LINE.
+     *         ONE_DOC_PER_FILE - Each file is considered a separate document.
+     *         Use this option when you are processing large documents, such as
+     *         newspaper articles or scientific papers. ONE_DOC_PER_LINE - Each
+     *         line in a file is considered a separate document. Use this option
+     *         when you are processing many short documents, such as text
+     *         messages.
+     *         </p>
+     * @see InputFormat
+     */
+    public String getInputFormat() {
+        return inputFormat;
+    }
+
+    /**
+     * <p>
+     * Specifies how the text in an input file should be processed. This is
+     * optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each
+     * file is considered a separate document. Use this option when you are
+     * processing large documents, such as newspaper articles or scientific
+     * papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate
+     * document. Use this option when you are processing many short documents,
+     * such as text messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
+     *
+     * @param inputFormat <p>
+     *            Specifies how the text in an input file should be processed.
+     *            This is optional, and the default is ONE_DOC_PER_LINE.
+     *            ONE_DOC_PER_FILE - Each file is considered a separate
+     *            document. Use this option when you are processing large
+     *            documents, such as newspaper articles or scientific papers.
+     *            ONE_DOC_PER_LINE - Each line in a file is considered a
+     *            separate document. Use this option when you are processing
+     *            many short documents, such as text messages.
+     *            </p>
+     * @see InputFormat
+     */
+    public void setInputFormat(String inputFormat) {
+        this.inputFormat = inputFormat;
+    }
+
+    /**
+     * <p>
+     * Specifies how the text in an input file should be processed. This is
+     * optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each
+     * file is considered a separate document. Use this option when you are
+     * processing large documents, such as newspaper articles or scientific
+     * papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate
+     * document. Use this option when you are processing many short documents,
+     * such as text messages.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
+     *
+     * @param inputFormat <p>
+     *            Specifies how the text in an input file should be processed.
+     *            This is optional, and the default is ONE_DOC_PER_LINE.
+     *            ONE_DOC_PER_FILE - Each file is considered a separate
+     *            document. Use this option when you are processing large
+     *            documents, such as newspaper articles or scientific papers.
+     *            ONE_DOC_PER_LINE - Each line in a file is considered a
+     *            separate document. Use this option when you are processing
+     *            many short documents, such as text messages.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see InputFormat
+     */
+    public EntityRecognizerDocuments withInputFormat(String inputFormat) {
+        this.inputFormat = inputFormat;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Specifies how the text in an input file should be processed. This is
+     * optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each
+     * file is considered a separate document. Use this option when you are
+     * processing large documents, such as newspaper articles or scientific
+     * papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate
+     * document. Use this option when you are processing many short documents,
+     * such as text messages.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
+     *
+     * @param inputFormat <p>
+     *            Specifies how the text in an input file should be processed.
+     *            This is optional, and the default is ONE_DOC_PER_LINE.
+     *            ONE_DOC_PER_FILE - Each file is considered a separate
+     *            document. Use this option when you are processing large
+     *            documents, such as newspaper articles or scientific papers.
+     *            ONE_DOC_PER_LINE - Each line in a file is considered a
+     *            separate document. Use this option when you are processing
+     *            many short documents, such as text messages.
+     *            </p>
+     * @see InputFormat
+     */
+    public void setInputFormat(InputFormat inputFormat) {
+        this.inputFormat = inputFormat.toString();
+    }
+
+    /**
+     * <p>
+     * Specifies how the text in an input file should be processed. This is
+     * optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each
+     * file is considered a separate document. Use this option when you are
+     * processing large documents, such as newspaper articles or scientific
+     * papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate
+     * document. Use this option when you are processing many short documents,
+     * such as text messages.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ONE_DOC_PER_FILE, ONE_DOC_PER_LINE
+     *
+     * @param inputFormat <p>
+     *            Specifies how the text in an input file should be processed.
+     *            This is optional, and the default is ONE_DOC_PER_LINE.
+     *            ONE_DOC_PER_FILE - Each file is considered a separate
+     *            document. Use this option when you are processing large
+     *            documents, such as newspaper articles or scientific papers.
+     *            ONE_DOC_PER_LINE - Each line in a file is considered a
+     *            separate document. Use this option when you are processing
+     *            many short documents, such as text messages.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see InputFormat
+     */
+    public EntityRecognizerDocuments withInputFormat(InputFormat inputFormat) {
+        this.inputFormat = inputFormat.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -117,7 +377,11 @@ public class EntityRecognizerDocuments implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getS3Uri() != null)
-            sb.append("S3Uri: " + getS3Uri());
+            sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getTestS3Uri() != null)
+            sb.append("TestS3Uri: " + getTestS3Uri() + ",");
+        if (getInputFormat() != null)
+            sb.append("InputFormat: " + getInputFormat());
         sb.append("}");
         return sb.toString();
     }
@@ -128,6 +392,9 @@ public class EntityRecognizerDocuments implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode + ((getTestS3Uri() == null) ? 0 : getTestS3Uri().hashCode());
+        hashCode = prime * hashCode
+                + ((getInputFormat() == null) ? 0 : getInputFormat().hashCode());
         return hashCode;
     }
 
@@ -145,6 +412,16 @@ public class EntityRecognizerDocuments implements Serializable {
         if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
         if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getTestS3Uri() == null ^ this.getTestS3Uri() == null)
+            return false;
+        if (other.getTestS3Uri() != null
+                && other.getTestS3Uri().equals(this.getTestS3Uri()) == false)
+            return false;
+        if (other.getInputFormat() == null ^ this.getInputFormat() == null)
+            return false;
+        if (other.getInputFormat() != null
+                && other.getInputFormat().equals(this.getInputFormat()) == false)
             return false;
         return true;
     }
