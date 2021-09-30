@@ -23,7 +23,8 @@ import java.util.Map;
  */
 public enum UseCaseType {
 
-    RULES_EVALUATION("RULES_EVALUATION");
+    RULES_EVALUATION("RULES_EVALUATION"),
+    CONNECT_CAMPAIGNS("CONNECT_CAMPAIGNS");
 
     private String value;
 
@@ -40,6 +41,7 @@ public enum UseCaseType {
     static {
         enumMap = new HashMap<String, UseCaseType>();
         enumMap.put("RULES_EVALUATION", RULES_EVALUATION);
+        enumMap.put("CONNECT_CAMPAIGNS", CONNECT_CAMPAIGNS);
     }
 
     /**

@@ -39,6 +39,9 @@ class EntityRecognizerFilterJsonUnmarshaller implements
             if (name.equals("Status")) {
                 entityRecognizerFilter.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("RecognizerName")) {
+                entityRecognizerFilter.setRecognizerName(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SubmitTimeBefore")) {
                 entityRecognizerFilter.setSubmitTimeBefore(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

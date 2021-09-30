@@ -19,28 +19,30 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes an action that writes data to an Amazon Elasticsearch Service
- * domain.
+ * Describes an action that writes data to an Amazon OpenSearch Service domain.
  * </p>
  * <note>
  * <p>
- * This action is deprecated. Use the <a href=
+ * The <code>Elasticsearch</code> action can only be used by existing rule
+ * actions. To create a new rule action or to update an existing rule action,
+ * use the <code>OpenSearch</code> rule action instead. For more information,
+ * see <a href=
  * "https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html"
- * >OpenSearch action</a> instead.
+ * >OpenSearchAction</a>.
  * </p>
  * </note>
  */
 public class ElasticsearchAction implements Serializable {
     /**
      * <p>
-     * The IAM role ARN that has access to Elasticsearch.
+     * The IAM role ARN that has access to OpenSearch.
      * </p>
      */
     private String roleArn;
 
     /**
      * <p>
-     * The endpoint of your Elasticsearch domain.
+     * The endpoint of your OpenSearch domain.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -50,7 +52,7 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The Elasticsearch index where you want to store your data.
+     * The index where you want to store your data.
      * </p>
      */
     private String index;
@@ -71,11 +73,11 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The IAM role ARN that has access to Elasticsearch.
+     * The IAM role ARN that has access to OpenSearch.
      * </p>
      *
      * @return <p>
-     *         The IAM role ARN that has access to Elasticsearch.
+     *         The IAM role ARN that has access to OpenSearch.
      *         </p>
      */
     public String getRoleArn() {
@@ -84,11 +86,11 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The IAM role ARN that has access to Elasticsearch.
+     * The IAM role ARN that has access to OpenSearch.
      * </p>
      *
      * @param roleArn <p>
-     *            The IAM role ARN that has access to Elasticsearch.
+     *            The IAM role ARN that has access to OpenSearch.
      *            </p>
      */
     public void setRoleArn(String roleArn) {
@@ -97,14 +99,14 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The IAM role ARN that has access to Elasticsearch.
+     * The IAM role ARN that has access to OpenSearch.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param roleArn <p>
-     *            The IAM role ARN that has access to Elasticsearch.
+     *            The IAM role ARN that has access to OpenSearch.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -116,14 +118,14 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The endpoint of your Elasticsearch domain.
+     * The endpoint of your OpenSearch domain.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>https?://.*<br/>
      *
      * @return <p>
-     *         The endpoint of your Elasticsearch domain.
+     *         The endpoint of your OpenSearch domain.
      *         </p>
      */
     public String getEndpoint() {
@@ -132,14 +134,14 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The endpoint of your Elasticsearch domain.
+     * The endpoint of your OpenSearch domain.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Pattern: </b>https?://.*<br/>
      *
      * @param endpoint <p>
-     *            The endpoint of your Elasticsearch domain.
+     *            The endpoint of your OpenSearch domain.
      *            </p>
      */
     public void setEndpoint(String endpoint) {
@@ -148,7 +150,7 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The endpoint of your Elasticsearch domain.
+     * The endpoint of your OpenSearch domain.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -158,7 +160,7 @@ public class ElasticsearchAction implements Serializable {
      * <b>Pattern: </b>https?://.*<br/>
      *
      * @param endpoint <p>
-     *            The endpoint of your Elasticsearch domain.
+     *            The endpoint of your OpenSearch domain.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -170,11 +172,11 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The Elasticsearch index where you want to store your data.
+     * The index where you want to store your data.
      * </p>
      *
      * @return <p>
-     *         The Elasticsearch index where you want to store your data.
+     *         The index where you want to store your data.
      *         </p>
      */
     public String getIndex() {
@@ -183,11 +185,11 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The Elasticsearch index where you want to store your data.
+     * The index where you want to store your data.
      * </p>
      *
      * @param index <p>
-     *            The Elasticsearch index where you want to store your data.
+     *            The index where you want to store your data.
      *            </p>
      */
     public void setIndex(String index) {
@@ -196,14 +198,14 @@ public class ElasticsearchAction implements Serializable {
 
     /**
      * <p>
-     * The Elasticsearch index where you want to store your data.
+     * The index where you want to store your data.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param index <p>
-     *            The Elasticsearch index where you want to store your data.
+     *            The index where you want to store your data.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

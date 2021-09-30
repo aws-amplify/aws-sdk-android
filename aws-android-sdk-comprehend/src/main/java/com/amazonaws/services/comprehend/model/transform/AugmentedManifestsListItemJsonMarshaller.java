@@ -32,6 +32,11 @@ class AugmentedManifestsListItemJsonMarshaller {
             jsonWriter.name("S3Uri");
             jsonWriter.value(s3Uri);
         }
+        if (augmentedManifestsListItem.getSplit() != null) {
+            String split = augmentedManifestsListItem.getSplit();
+            jsonWriter.name("Split");
+            jsonWriter.value(split);
+        }
         if (augmentedManifestsListItem.getAttributeNames() != null) {
             java.util.List<String> attributeNames = augmentedManifestsListItem.getAttributeNames();
             jsonWriter.name("AttributeNames");

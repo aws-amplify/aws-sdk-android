@@ -21,7 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists the use cases.
+ * Lists the use cases for the integration association.
  * </p>
  */
 public class ListUseCasesRequest extends AmazonWebServiceRequest implements Serializable {

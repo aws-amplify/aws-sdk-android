@@ -32,6 +32,11 @@ class EntityRecognizerAnnotationsJsonMarshaller {
             jsonWriter.name("S3Uri");
             jsonWriter.value(s3Uri);
         }
+        if (entityRecognizerAnnotations.getTestS3Uri() != null) {
+            String testS3Uri = entityRecognizerAnnotations.getTestS3Uri();
+            jsonWriter.name("TestS3Uri");
+            jsonWriter.value(testS3Uri);
+        }
         jsonWriter.endObject();
     }
 

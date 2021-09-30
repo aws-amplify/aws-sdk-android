@@ -37,6 +37,11 @@ class DocumentClassifierInputDataConfigJsonMarshaller {
             jsonWriter.name("S3Uri");
             jsonWriter.value(s3Uri);
         }
+        if (documentClassifierInputDataConfig.getTestS3Uri() != null) {
+            String testS3Uri = documentClassifierInputDataConfig.getTestS3Uri();
+            jsonWriter.name("TestS3Uri");
+            jsonWriter.value(testS3Uri);
+        }
         if (documentClassifierInputDataConfig.getLabelDelimiter() != null) {
             String labelDelimiter = documentClassifierInputDataConfig.getLabelDelimiter();
             jsonWriter.name("LabelDelimiter");

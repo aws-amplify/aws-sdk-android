@@ -43,6 +43,20 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
+     * The version name given to the newly created recognizer. Version names can
+     * be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and
+     * underscores (_) are allowed. The version name must be unique among all
+     * models with the same recognizer name in the account/ AWS Region.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     */
+    private String versionName;
+
+    /**
+     * <p>
      * The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM)
      * role that grants Amazon Comprehend read access to your input data.
      * </p>
@@ -233,6 +247,84 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
      */
     public CreateEntityRecognizerRequest withRecognizerName(String recognizerName) {
         this.recognizerName = recognizerName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The version name given to the newly created recognizer. Version names can
+     * be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and
+     * underscores (_) are allowed. The version name must be unique among all
+     * models with the same recognizer name in the account/ AWS Region.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @return <p>
+     *         The version name given to the newly created recognizer. Version
+     *         names can be a maximum of 256 characters. Alphanumeric
+     *         characters, hyphens (-) and underscores (_) are allowed. The
+     *         version name must be unique among all models with the same
+     *         recognizer name in the account/ AWS Region.
+     *         </p>
+     */
+    public String getVersionName() {
+        return versionName;
+    }
+
+    /**
+     * <p>
+     * The version name given to the newly created recognizer. Version names can
+     * be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and
+     * underscores (_) are allowed. The version name must be unique among all
+     * models with the same recognizer name in the account/ AWS Region.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @param versionName <p>
+     *            The version name given to the newly created recognizer.
+     *            Version names can be a maximum of 256 characters. Alphanumeric
+     *            characters, hyphens (-) and underscores (_) are allowed. The
+     *            version name must be unique among all models with the same
+     *            recognizer name in the account/ AWS Region.
+     *            </p>
+     */
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
+    }
+
+    /**
+     * <p>
+     * The version name given to the newly created recognizer. Version names can
+     * be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and
+     * underscores (_) are allowed. The version name must be unique among all
+     * models with the same recognizer name in the account/ AWS Region.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 63<br/>
+     * <b>Pattern: </b>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$<br/>
+     *
+     * @param versionName <p>
+     *            The version name given to the newly created recognizer.
+     *            Version names can be a maximum of 256 characters. Alphanumeric
+     *            characters, hyphens (-) and underscores (_) are allowed. The
+     *            version name must be unique among all models with the same
+     *            recognizer name in the account/ AWS Region.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateEntityRecognizerRequest withVersionName(String versionName) {
+        this.versionName = versionName;
         return this;
     }
 
@@ -1040,6 +1132,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
         sb.append("{");
         if (getRecognizerName() != null)
             sb.append("RecognizerName: " + getRecognizerName() + ",");
+        if (getVersionName() != null)
+            sb.append("VersionName: " + getVersionName() + ",");
         if (getDataAccessRoleArn() != null)
             sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
         if (getTags() != null)
@@ -1067,6 +1161,8 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
 
         hashCode = prime * hashCode
                 + ((getRecognizerName() == null) ? 0 : getRecognizerName().hashCode());
+        hashCode = prime * hashCode
+                + ((getVersionName() == null) ? 0 : getVersionName().hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
@@ -1099,6 +1195,11 @@ public class CreateEntityRecognizerRequest extends AmazonWebServiceRequest imple
             return false;
         if (other.getRecognizerName() != null
                 && other.getRecognizerName().equals(this.getRecognizerName()) == false)
+            return false;
+        if (other.getVersionName() == null ^ this.getVersionName() == null)
+            return false;
+        if (other.getVersionName() != null
+                && other.getVersionName().equals(this.getVersionName()) == false)
             return false;
         if (other.getDataAccessRoleArn() == null ^ this.getDataAccessRoleArn() == null)
             return false;

@@ -75,7 +75,10 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The epoch timestamp in seconds at which this suppression expires.
+     * Each audit supression must have a unique client request token. If you try
+     * to create a new audit suppression with the same token as one that already
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -365,7 +368,10 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The epoch timestamp in seconds at which this suppression expires.
+     * Each audit supression must have a unique client request token. If you try
+     * to create a new audit suppression with the same token as one that already
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -373,7 +379,11 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @return <p>
-     *         The epoch timestamp in seconds at which this suppression expires.
+     *         Each audit supression must have a unique client request token. If
+     *         you try to create a new audit suppression with the same token as
+     *         one that already exists, an exception occurs. If you omit this
+     *         value, Amazon Web Services SDKs will automatically generate a
+     *         unique client request.
      *         </p>
      */
     public String getClientRequestToken() {
@@ -382,7 +392,10 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The epoch timestamp in seconds at which this suppression expires.
+     * Each audit supression must have a unique client request token. If you try
+     * to create a new audit suppression with the same token as one that already
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -390,8 +403,11 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param clientRequestToken <p>
-     *            The epoch timestamp in seconds at which this suppression
-     *            expires.
+     *            Each audit supression must have a unique client request token.
+     *            If you try to create a new audit suppression with the same
+     *            token as one that already exists, an exception occurs. If you
+     *            omit this value, Amazon Web Services SDKs will automatically
+     *            generate a unique client request.
      *            </p>
      */
     public void setClientRequestToken(String clientRequestToken) {
@@ -400,7 +416,10 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The epoch timestamp in seconds at which this suppression expires.
+     * Each audit supression must have a unique client request token. If you try
+     * to create a new audit suppression with the same token as one that already
+     * exists, an exception occurs. If you omit this value, Amazon Web Services
+     * SDKs will automatically generate a unique client request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -411,8 +430,11 @@ public class CreateAuditSuppressionRequest extends AmazonWebServiceRequest imple
      * <b>Pattern: </b>^[a-zA-Z0-9-_]+$<br/>
      *
      * @param clientRequestToken <p>
-     *            The epoch timestamp in seconds at which this suppression
-     *            expires.
+     *            Each audit supression must have a unique client request token.
+     *            If you try to create a new audit suppression with the same
+     *            token as one that already exists, an exception occurs. If you
+     *            omit this value, Amazon Web Services SDKs will automatically
+     *            generate a unique client request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

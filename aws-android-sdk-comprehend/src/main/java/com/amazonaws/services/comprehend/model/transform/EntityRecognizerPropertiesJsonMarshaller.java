@@ -101,6 +101,11 @@ class EntityRecognizerPropertiesJsonMarshaller {
             jsonWriter.name("ModelKmsKeyId");
             jsonWriter.value(modelKmsKeyId);
         }
+        if (entityRecognizerProperties.getVersionName() != null) {
+            String versionName = entityRecognizerProperties.getVersionName();
+            jsonWriter.name("VersionName");
+            jsonWriter.value(versionName);
+        }
         jsonWriter.endObject();
     }
 

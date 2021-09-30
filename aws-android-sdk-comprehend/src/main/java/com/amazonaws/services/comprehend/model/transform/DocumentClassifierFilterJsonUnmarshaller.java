@@ -39,6 +39,10 @@ class DocumentClassifierFilterJsonUnmarshaller implements
             if (name.equals("Status")) {
                 documentClassifierFilter.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("DocumentClassifierName")) {
+                documentClassifierFilter.setDocumentClassifierName(StringJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else if (name.equals("SubmitTimeBefore")) {
                 documentClassifierFilter.setSubmitTimeBefore(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));

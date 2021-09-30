@@ -47,6 +47,11 @@ class EndpointPropertiesJsonMarshaller {
             jsonWriter.name("ModelArn");
             jsonWriter.value(modelArn);
         }
+        if (endpointProperties.getDesiredModelArn() != null) {
+            String desiredModelArn = endpointProperties.getDesiredModelArn();
+            jsonWriter.name("DesiredModelArn");
+            jsonWriter.value(desiredModelArn);
+        }
         if (endpointProperties.getDesiredInferenceUnits() != null) {
             Integer desiredInferenceUnits = endpointProperties.getDesiredInferenceUnits();
             jsonWriter.name("DesiredInferenceUnits");
@@ -71,6 +76,11 @@ class EndpointPropertiesJsonMarshaller {
             String dataAccessRoleArn = endpointProperties.getDataAccessRoleArn();
             jsonWriter.name("DataAccessRoleArn");
             jsonWriter.value(dataAccessRoleArn);
+        }
+        if (endpointProperties.getDesiredDataAccessRoleArn() != null) {
+            String desiredDataAccessRoleArn = endpointProperties.getDesiredDataAccessRoleArn();
+            jsonWriter.name("DesiredDataAccessRoleArn");
+            jsonWriter.value(desiredDataAccessRoleArn);
         }
         jsonWriter.endObject();
     }

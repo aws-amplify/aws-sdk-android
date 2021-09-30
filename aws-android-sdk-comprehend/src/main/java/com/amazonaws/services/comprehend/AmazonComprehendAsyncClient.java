@@ -2621,6 +2621,77 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
 
     /**
      * <p>
+     * Gets a list of summaries of the document classifiers that you have
+     * created
+     * </p>
+     * 
+     * @param listDocumentClassifierSummariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListDocumentClassifierSummaries service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListDocumentClassifierSummariesResult> listDocumentClassifierSummariesAsync(
+            final ListDocumentClassifierSummariesRequest listDocumentClassifierSummariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDocumentClassifierSummariesResult>() {
+            public ListDocumentClassifierSummariesResult call() throws Exception {
+                return listDocumentClassifierSummaries(listDocumentClassifierSummariesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of summaries of the document classifiers that you have
+     * created
+     * </p>
+     * 
+     * @param listDocumentClassifierSummariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListDocumentClassifierSummaries service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListDocumentClassifierSummariesResult> listDocumentClassifierSummariesAsync(
+            final ListDocumentClassifierSummariesRequest listDocumentClassifierSummariesRequest,
+            final AsyncHandler<ListDocumentClassifierSummariesRequest, ListDocumentClassifierSummariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListDocumentClassifierSummariesResult>() {
+            public ListDocumentClassifierSummariesResult call() throws Exception {
+                ListDocumentClassifierSummariesResult result = null;
+                try {
+                    result = listDocumentClassifierSummaries(listDocumentClassifierSummariesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listDocumentClassifierSummariesRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Gets a list of the document classifiers that you have created.
      * </p>
      * 
@@ -2896,6 +2967,77 @@ public class AmazonComprehendAsyncClient extends AmazonComprehendClient implemen
                     throw ex;
                 }
                 asyncHandler.onSuccess(listEntitiesDetectionJobsRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of summaries for the entity recognizers that you have
+     * created.
+     * </p>
+     * 
+     * @param listEntityRecognizerSummariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListEntityRecognizerSummaries service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListEntityRecognizerSummariesResult> listEntityRecognizerSummariesAsync(
+            final ListEntityRecognizerSummariesRequest listEntityRecognizerSummariesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListEntityRecognizerSummariesResult>() {
+            public ListEntityRecognizerSummariesResult call() throws Exception {
+                return listEntityRecognizerSummaries(listEntityRecognizerSummariesRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets a list of summaries for the entity recognizers that you have
+     * created.
+     * </p>
+     * 
+     * @param listEntityRecognizerSummariesRequest
+     * @return A Java Future object containing the response from the
+     *         ListEntityRecognizerSummaries service method, as returned by
+     *         Amazon Comprehend.
+     * @throws InvalidRequestException
+     * @throws TooManyRequestsException
+     * @throws InternalServerException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Comprehend indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<ListEntityRecognizerSummariesResult> listEntityRecognizerSummariesAsync(
+            final ListEntityRecognizerSummariesRequest listEntityRecognizerSummariesRequest,
+            final AsyncHandler<ListEntityRecognizerSummariesRequest, ListEntityRecognizerSummariesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<ListEntityRecognizerSummariesResult>() {
+            public ListEntityRecognizerSummariesResult call() throws Exception {
+                ListEntityRecognizerSummariesResult result = null;
+                try {
+                    result = listEntityRecognizerSummaries(listEntityRecognizerSummariesRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(listEntityRecognizerSummariesRequest, result);
                 return result;
             }
         });

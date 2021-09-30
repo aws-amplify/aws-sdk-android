@@ -57,7 +57,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      */
     private String integrationType;
 
@@ -269,7 +270,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @return <p>
      *         The integration type.
@@ -286,7 +288,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The integration type.
@@ -306,7 +309,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The integration type.
@@ -326,7 +330,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The integration type.
@@ -346,7 +351,8 @@ public class IntegrationAssociationSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>EVENT
+     * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
+     * WISDOM_KNOWLEDGE_BASE
      *
      * @param integrationType <p>
      *            The integration type.

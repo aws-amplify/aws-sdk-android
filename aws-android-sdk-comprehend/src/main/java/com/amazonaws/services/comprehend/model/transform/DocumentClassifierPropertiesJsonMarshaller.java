@@ -112,6 +112,11 @@ class DocumentClassifierPropertiesJsonMarshaller {
             jsonWriter.name("ModelKmsKeyId");
             jsonWriter.value(modelKmsKeyId);
         }
+        if (documentClassifierProperties.getVersionName() != null) {
+            String versionName = documentClassifierProperties.getVersionName();
+            jsonWriter.name("VersionName");
+            jsonWriter.value(versionName);
+        }
         jsonWriter.endObject();
     }
 

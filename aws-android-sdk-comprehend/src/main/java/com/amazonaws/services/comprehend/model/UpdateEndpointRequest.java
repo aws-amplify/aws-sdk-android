@@ -41,6 +41,21 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The ARN of the new model to use when updating an existing endpoint.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     */
+    private String desiredModelArn;
+
+    /**
+     * <p>
      * The desired number of inference units to be used by the model using this
      * endpoint. Each inference unit represents of a throughput of 100
      * characters per second.
@@ -50,6 +65,18 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
      * <b>Range: </b>1 - <br/>
      */
     private Integer desiredInferenceUnits;
+
+    /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer CMK.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     */
+    private String desiredDataAccessRoleArn;
 
     /**
      * <p>
@@ -121,6 +148,78 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
 
     /**
      * <p>
+     * The ARN of the new model to use when updating an existing endpoint.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @return <p>
+     *         The ARN of the new model to use when updating an existing
+     *         endpoint.
+     *         </p>
+     */
+    public String getDesiredModelArn() {
+        return desiredModelArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the new model to use when updating an existing endpoint.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param desiredModelArn <p>
+     *            The ARN of the new model to use when updating an existing
+     *            endpoint.
+     *            </p>
+     */
+    public void setDesiredModelArn(String desiredModelArn) {
+        this.desiredModelArn = desiredModelArn;
+    }
+
+    /**
+     * <p>
+     * The ARN of the new model to use when updating an existing endpoint.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 256<br/>
+     * <b>Pattern:
+     * </b>arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document
+     * -classifier
+     * |entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-
+     * Z0-9](-*[a-zA-Z0-9])*)?<br/>
+     *
+     * @param desiredModelArn <p>
+     *            The ARN of the new model to use when updating an existing
+     *            endpoint.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateEndpointRequest withDesiredModelArn(String desiredModelArn) {
+        this.desiredModelArn = desiredModelArn;
+        return this;
+    }
+
+    /**
+     * <p>
      * The desired number of inference units to be used by the model using this
      * endpoint. Each inference unit represents of a throughput of 100
      * characters per second.
@@ -186,6 +285,69 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
     }
 
     /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer CMK.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @return <p>
+     *         Data access role ARN to use in case the new model is encrypted
+     *         with a customer CMK.
+     *         </p>
+     */
+    public String getDesiredDataAccessRoleArn() {
+        return desiredDataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer CMK.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param desiredDataAccessRoleArn <p>
+     *            Data access role ARN to use in case the new model is encrypted
+     *            with a customer CMK.
+     *            </p>
+     */
+    public void setDesiredDataAccessRoleArn(String desiredDataAccessRoleArn) {
+        this.desiredDataAccessRoleArn = desiredDataAccessRoleArn;
+    }
+
+    /**
+     * <p>
+     * Data access role ARN to use in case the new model is encrypted with a
+     * customer CMK.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>20 - 2048<br/>
+     * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
+     *
+     * @param desiredDataAccessRoleArn <p>
+     *            Data access role ARN to use in case the new model is encrypted
+     *            with a customer CMK.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public UpdateEndpointRequest withDesiredDataAccessRoleArn(String desiredDataAccessRoleArn) {
+        this.desiredDataAccessRoleArn = desiredDataAccessRoleArn;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -198,8 +360,12 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
         sb.append("{");
         if (getEndpointArn() != null)
             sb.append("EndpointArn: " + getEndpointArn() + ",");
+        if (getDesiredModelArn() != null)
+            sb.append("DesiredModelArn: " + getDesiredModelArn() + ",");
         if (getDesiredInferenceUnits() != null)
-            sb.append("DesiredInferenceUnits: " + getDesiredInferenceUnits());
+            sb.append("DesiredInferenceUnits: " + getDesiredInferenceUnits() + ",");
+        if (getDesiredDataAccessRoleArn() != null)
+            sb.append("DesiredDataAccessRoleArn: " + getDesiredDataAccessRoleArn());
         sb.append("}");
         return sb.toString();
     }
@@ -211,9 +377,15 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
 
         hashCode = prime * hashCode
                 + ((getEndpointArn() == null) ? 0 : getEndpointArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getDesiredModelArn() == null) ? 0 : getDesiredModelArn().hashCode());
         hashCode = prime
                 * hashCode
                 + ((getDesiredInferenceUnits() == null) ? 0 : getDesiredInferenceUnits().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getDesiredDataAccessRoleArn() == null) ? 0 : getDesiredDataAccessRoleArn()
+                        .hashCode());
         return hashCode;
     }
 
@@ -233,10 +405,21 @@ public class UpdateEndpointRequest extends AmazonWebServiceRequest implements Se
         if (other.getEndpointArn() != null
                 && other.getEndpointArn().equals(this.getEndpointArn()) == false)
             return false;
+        if (other.getDesiredModelArn() == null ^ this.getDesiredModelArn() == null)
+            return false;
+        if (other.getDesiredModelArn() != null
+                && other.getDesiredModelArn().equals(this.getDesiredModelArn()) == false)
+            return false;
         if (other.getDesiredInferenceUnits() == null ^ this.getDesiredInferenceUnits() == null)
             return false;
         if (other.getDesiredInferenceUnits() != null
                 && other.getDesiredInferenceUnits().equals(this.getDesiredInferenceUnits()) == false)
+            return false;
+        if (other.getDesiredDataAccessRoleArn() == null
+                ^ this.getDesiredDataAccessRoleArn() == null)
+            return false;
+        if (other.getDesiredDataAccessRoleArn() != null
+                && other.getDesiredDataAccessRoleArn().equals(this.getDesiredDataAccessRoleArn()) == false)
             return false;
         return true;
     }
