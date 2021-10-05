@@ -43,6 +43,9 @@ public class DescribeTrackerResultJsonUnmarshaller implements
             } else if (name.equals("KmsKeyId")) {
                 describeTrackerResult.setKmsKeyId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("PositionFiltering")) {
+                describeTrackerResult.setPositionFiltering(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("PricingPlan")) {
                 describeTrackerResult.setPricingPlan(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
