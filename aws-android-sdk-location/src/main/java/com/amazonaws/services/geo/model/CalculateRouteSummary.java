@@ -55,9 +55,9 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <note>
      * <p>
-     * The route <code>distance</code> can't be greater than 250 km. If the
-     * route exceeds 250 km, the response returns a
-     * <code>400 RoutesValidationException</code> error.
+     * If Esri is the data source for the route calculator, the route distance
+     * can’t be greater than 400 km. If the route exceeds 400 km, the response
+     * is a <code>400 RoutesValidationException</code> error.
      * </p>
      * </note>
      * <p>
@@ -124,8 +124,8 @@ public class CalculateRouteSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
+     * The fourth <code>bbox</code> position is the Y coordinate, or latitude of
+     * the upper northeast corner.
      * </p>
      * </li>
      * </ul>
@@ -292,9 +292,9 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <note>
      * <p>
-     * The route <code>distance</code> can't be greater than 250 km. If the
-     * route exceeds 250 km, the response returns a
-     * <code>400 RoutesValidationException</code> error.
+     * If Esri is the data source for the route calculator, the route distance
+     * can’t be greater than 400 km. If the route exceeds 400 km, the response
+     * is a <code>400 RoutesValidationException</code> error.
      * </p>
      * </note>
      * <p>
@@ -307,9 +307,10 @@ public class CalculateRouteSummary implements Serializable {
      *         </p>
      *         <note>
      *         <p>
-     *         The route <code>distance</code> can't be greater than 250 km. If
-     *         the route exceeds 250 km, the response returns a
-     *         <code>400 RoutesValidationException</code> error.
+     *         If Esri is the data source for the route calculator, the route
+     *         distance can’t be greater than 400 km. If the route exceeds 400
+     *         km, the response is a <code>400 RoutesValidationException</code>
+     *         error.
      *         </p>
      *         </note>
      */
@@ -324,9 +325,9 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <note>
      * <p>
-     * The route <code>distance</code> can't be greater than 250 km. If the
-     * route exceeds 250 km, the response returns a
-     * <code>400 RoutesValidationException</code> error.
+     * If Esri is the data source for the route calculator, the route distance
+     * can’t be greater than 400 km. If the route exceeds 400 km, the response
+     * is a <code>400 RoutesValidationException</code> error.
      * </p>
      * </note>
      * <p>
@@ -339,8 +340,9 @@ public class CalculateRouteSummary implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            The route <code>distance</code> can't be greater than 250 km.
-     *            If the route exceeds 250 km, the response returns a
+     *            If Esri is the data source for the route calculator, the route
+     *            distance can’t be greater than 400 km. If the route exceeds
+     *            400 km, the response is a
      *            <code>400 RoutesValidationException</code> error.
      *            </p>
      *            </note>
@@ -356,9 +358,9 @@ public class CalculateRouteSummary implements Serializable {
      * </p>
      * <note>
      * <p>
-     * The route <code>distance</code> can't be greater than 250 km. If the
-     * route exceeds 250 km, the response returns a
-     * <code>400 RoutesValidationException</code> error.
+     * If Esri is the data source for the route calculator, the route distance
+     * can’t be greater than 400 km. If the route exceeds 400 km, the response
+     * is a <code>400 RoutesValidationException</code> error.
      * </p>
      * </note>
      * <p>
@@ -374,8 +376,9 @@ public class CalculateRouteSummary implements Serializable {
      *            </p>
      *            <note>
      *            <p>
-     *            The route <code>distance</code> can't be greater than 250 km.
-     *            If the route exceeds 250 km, the response returns a
+     *            If Esri is the data source for the route calculator, the route
+     *            distance can’t be greater than 400 km. If the route exceeds
+     *            400 km, the response is a
      *            <code>400 RoutesValidationException</code> error.
      *            </p>
      *            </note>
@@ -581,8 +584,8 @@ public class CalculateRouteSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
+     * The fourth <code>bbox</code> position is the Y coordinate, or latitude of
+     * the upper northeast corner.
      * </p>
      * </li>
      * </ul>
@@ -624,7 +627,7 @@ public class CalculateRouteSummary implements Serializable {
      *         <li>
      *         <p>
      *         The fourth <code>bbox</code> position is the Y coordinate, or
-     *         longitude of the upper northeast corner.
+     *         latitude of the upper northeast corner.
      *         </p>
      *         </li>
      *         </ul>
@@ -670,8 +673,8 @@ public class CalculateRouteSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
+     * The fourth <code>bbox</code> position is the Y coordinate, or latitude of
+     * the upper northeast corner.
      * </p>
      * </li>
      * </ul>
@@ -713,7 +716,7 @@ public class CalculateRouteSummary implements Serializable {
      *            <li>
      *            <p>
      *            The fourth <code>bbox</code> position is the Y coordinate, or
-     *            longitude of the upper northeast corner.
+     *            latitude of the upper northeast corner.
      *            </p>
      *            </li>
      *            </ul>
@@ -764,8 +767,8 @@ public class CalculateRouteSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
+     * The fourth <code>bbox</code> position is the Y coordinate, or latitude of
+     * the upper northeast corner.
      * </p>
      * </li>
      * </ul>
@@ -810,7 +813,7 @@ public class CalculateRouteSummary implements Serializable {
      *            <li>
      *            <p>
      *            The fourth <code>bbox</code> position is the Y coordinate, or
-     *            longitude of the upper northeast corner.
+     *            latitude of the upper northeast corner.
      *            </p>
      *            </li>
      *            </ul>
@@ -864,8 +867,8 @@ public class CalculateRouteSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
+     * The fourth <code>bbox</code> position is the Y coordinate, or latitude of
+     * the upper northeast corner.
      * </p>
      * </li>
      * </ul>
@@ -910,7 +913,7 @@ public class CalculateRouteSummary implements Serializable {
      *            <li>
      *            <p>
      *            The fourth <code>bbox</code> position is the Y coordinate, or
-     *            longitude of the upper northeast corner.
+     *            latitude of the upper northeast corner.
      *            </p>
      *            </li>
      *            </ul>

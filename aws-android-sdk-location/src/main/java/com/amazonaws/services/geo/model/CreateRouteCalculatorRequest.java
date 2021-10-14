@@ -69,7 +69,9 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> returns an error.
+     * example, entering <code>HERE</code> returns an error. Route calculators
+     * that use Esri as a data source only calculate routes that are shorter
+     * than 400 km.
      * </p>
      * </note>
      * <p>
@@ -89,8 +91,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      * >HERE car routing coverage</a> and <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
@@ -377,7 +378,9 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> returns an error.
+     * example, entering <code>HERE</code> returns an error. Route calculators
+     * that use Esri as a data source only calculate routes that are shorter
+     * than 400 km.
      * </p>
      * </note>
      * <p>
@@ -397,8 +400,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      * >HERE car routing coverage</a> and <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
@@ -419,7 +421,9 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *         <note>
      *         <p>
      *         This field is case-sensitive. Enter the valid values as shown.
-     *         For example, entering <code>HERE</code> returns an error.
+     *         For example, entering <code>HERE</code> returns an error. Route
+     *         calculators that use Esri as a data source only calculate routes
+     *         that are shorter than 400 km.
      *         </p>
      *         </note>
      *         <p>
@@ -439,7 +443,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *         <p>
      *         <code>Here</code> – For additional information about <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *         >HERE Technologies</a>'s coverage in your region of interest, see
+     *         >HERE Technologies</a>' coverage in your region of interest, see
      *         <a href=
      *         "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      *         >HERE car routing coverage</a> and <a href=
@@ -466,7 +470,9 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> returns an error.
+     * example, entering <code>HERE</code> returns an error. Route calculators
+     * that use Esri as a data source only calculate routes that are shorter
+     * than 400 km.
      * </p>
      * </note>
      * <p>
@@ -486,8 +492,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      * >HERE car routing coverage</a> and <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
@@ -509,6 +514,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            <p>
      *            This field is case-sensitive. Enter the valid values as shown.
      *            For example, entering <code>HERE</code> returns an error.
+     *            Route calculators that use Esri as a data source only
+     *            calculate routes that are shorter than 400 km.
      *            </p>
      *            </note>
      *            <p>
@@ -528,7 +535,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            <p>
      *            <code>Here</code> – For additional information about <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            >HERE Technologies</a>' coverage in your region of interest,
      *            see <a href=
      *            "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      *            >HERE car routing coverage</a> and <a href=
@@ -555,7 +562,9 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <note>
      * <p>
      * This field is case-sensitive. Enter the valid values as shown. For
-     * example, entering <code>HERE</code> returns an error.
+     * example, entering <code>HERE</code> returns an error. Route calculators
+     * that use Esri as a data source only calculate routes that are shorter
+     * than 400 km.
      * </p>
      * </note>
      * <p>
@@ -575,8 +584,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      * >HERE car routing coverage</a> and <a href=
      * "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html"
@@ -601,6 +609,8 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            <p>
      *            This field is case-sensitive. Enter the valid values as shown.
      *            For example, entering <code>HERE</code> returns an error.
+     *            Route calculators that use Esri as a data source only
+     *            calculate routes that are shorter than 400 km.
      *            </p>
      *            </note>
      *            <p>
@@ -620,7 +630,7 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            <p>
      *            <code>Here</code> – For additional information about <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            >HERE Technologies</a>' coverage in your region of interest,
      *            see <a href=
      *            "https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html"
      *            >HERE car routing coverage</a> and <a href=
