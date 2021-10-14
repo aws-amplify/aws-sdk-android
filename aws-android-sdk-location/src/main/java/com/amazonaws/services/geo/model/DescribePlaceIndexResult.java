@@ -45,9 +45,9 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      */
     private String dataSource;
@@ -108,8 +108,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -211,9 +211,9 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @return <p>
@@ -233,9 +233,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *         </li>
      *         </ul>
      *         <p>
-     *         For additional details on data providers, see the <a href=
+     *         For additional details on data providers, see <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *         >Amazon Location Service data providers page</a>.
+     *         >Amazon Location Service data providers</a>.
      *         </p>
      */
     public String getDataSource() {
@@ -260,9 +260,9 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @param dataSource <p>
@@ -282,9 +282,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see the <a href=
+     *            For additional details on data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers page</a>.
+     *            >Amazon Location Service data providers</a>.
      *            </p>
      */
     public void setDataSource(String dataSource) {
@@ -309,9 +309,9 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -334,9 +334,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see the <a href=
+     *            For additional details on data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers page</a>.
+     *            >Amazon Location Service data providers</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -626,8 +626,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -639,9 +639,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
-     *         option, see the <a
+     *         option, see <a
      *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing page</a>.
+     *         Service pricing</a>.
      *         </p>
      * @see PricingPlan
      */
@@ -655,8 +655,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -669,9 +669,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -685,8 +685,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -702,9 +702,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -721,8 +721,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -735,9 +735,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -751,8 +751,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -768,9 +768,9 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

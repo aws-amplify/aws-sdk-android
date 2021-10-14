@@ -70,6 +70,11 @@ public class CreateTrackerRequestMarshaller implements
                 jsonWriter.name("KmsKeyId");
                 jsonWriter.value(kmsKeyId);
             }
+            if (createTrackerRequest.getPositionFiltering() != null) {
+                String positionFiltering = createTrackerRequest.getPositionFiltering();
+                jsonWriter.name("PositionFiltering");
+                jsonWriter.value(positionFiltering);
+            }
             if (createTrackerRequest.getPricingPlan() != null) {
                 String pricingPlan = createTrackerRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");

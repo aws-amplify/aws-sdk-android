@@ -37,6 +37,39 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
+     * Updates the position filtering for the tracker resource.
+     * </p>
+     * <p>
+     * Valid values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TimeBased</code> - Location updates are evaluated against linked
+     * geofence collections, but not every location update is stored. If your
+     * update frequency is more often than 30 seconds, only one update per 30
+     * seconds is stored for each unique device ID.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DistanceBased</code> - If the device has moved less than 30 m (98.4
+     * ft), location updates are ignored. Location updates within this distance
+     * are neither evaluated against linked geofence collections, nor stored.
+     * This helps control costs by reducing the number of geofence evaluations
+     * and device positions to retrieve. Distance-based filtering can also
+     * reduce the jitter effect when displaying device trajectory on a map.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     */
+    private String positionFiltering;
+
+    /**
+     * <p>
      * Updates the pricing plan for the tracker resource.
      * </p>
      * <p>
@@ -142,6 +175,347 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      */
     public UpdateTrackerRequest withDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Updates the position filtering for the tracker resource.
+     * </p>
+     * <p>
+     * Valid values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TimeBased</code> - Location updates are evaluated against linked
+     * geofence collections, but not every location update is stored. If your
+     * update frequency is more often than 30 seconds, only one update per 30
+     * seconds is stored for each unique device ID.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DistanceBased</code> - If the device has moved less than 30 m (98.4
+     * ft), location updates are ignored. Location updates within this distance
+     * are neither evaluated against linked geofence collections, nor stored.
+     * This helps control costs by reducing the number of geofence evaluations
+     * and device positions to retrieve. Distance-based filtering can also
+     * reduce the jitter effect when displaying device trajectory on a map.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @return <p>
+     *         Updates the position filtering for the tracker resource.
+     *         </p>
+     *         <p>
+     *         Valid values:
+     *         </p>
+     *         <ul>
+     *         <li>
+     *         <p>
+     *         <code>TimeBased</code> - Location updates are evaluated against
+     *         linked geofence collections, but not every location update is
+     *         stored. If your update frequency is more often than 30 seconds,
+     *         only one update per 30 seconds is stored for each unique device
+     *         ID.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         <code>DistanceBased</code> - If the device has moved less than 30
+     *         m (98.4 ft), location updates are ignored. Location updates
+     *         within this distance are neither evaluated against linked
+     *         geofence collections, nor stored. This helps control costs by
+     *         reducing the number of geofence evaluations and device positions
+     *         to retrieve. Distance-based filtering can also reduce the jitter
+     *         effect when displaying device trajectory on a map.
+     *         </p>
+     *         </li>
+     *         </ul>
+     * @see PositionFiltering
+     */
+    public String getPositionFiltering() {
+        return positionFiltering;
+    }
+
+    /**
+     * <p>
+     * Updates the position filtering for the tracker resource.
+     * </p>
+     * <p>
+     * Valid values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TimeBased</code> - Location updates are evaluated against linked
+     * geofence collections, but not every location update is stored. If your
+     * update frequency is more often than 30 seconds, only one update per 30
+     * seconds is stored for each unique device ID.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DistanceBased</code> - If the device has moved less than 30 m (98.4
+     * ft), location updates are ignored. Location updates within this distance
+     * are neither evaluated against linked geofence collections, nor stored.
+     * This helps control costs by reducing the number of geofence evaluations
+     * and device positions to retrieve. Distance-based filtering can also
+     * reduce the jitter effect when displaying device trajectory on a map.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            Updates the position filtering for the tracker resource.
+     *            </p>
+     *            <p>
+     *            Valid values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TimeBased</code> - Location updates are evaluated
+     *            against linked geofence collections, but not every location
+     *            update is stored. If your update frequency is more often than
+     *            30 seconds, only one update per 30 seconds is stored for each
+     *            unique device ID.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DistanceBased</code> - If the device has moved less than
+     *            30 m (98.4 ft), location updates are ignored. Location updates
+     *            within this distance are neither evaluated against linked
+     *            geofence collections, nor stored. This helps control costs by
+     *            reducing the number of geofence evaluations and device
+     *            positions to retrieve. Distance-based filtering can also
+     *            reduce the jitter effect when displaying device trajectory on
+     *            a map.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see PositionFiltering
+     */
+    public void setPositionFiltering(String positionFiltering) {
+        this.positionFiltering = positionFiltering;
+    }
+
+    /**
+     * <p>
+     * Updates the position filtering for the tracker resource.
+     * </p>
+     * <p>
+     * Valid values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TimeBased</code> - Location updates are evaluated against linked
+     * geofence collections, but not every location update is stored. If your
+     * update frequency is more often than 30 seconds, only one update per 30
+     * seconds is stored for each unique device ID.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DistanceBased</code> - If the device has moved less than 30 m (98.4
+     * ft), location updates are ignored. Location updates within this distance
+     * are neither evaluated against linked geofence collections, nor stored.
+     * This helps control costs by reducing the number of geofence evaluations
+     * and device positions to retrieve. Distance-based filtering can also
+     * reduce the jitter effect when displaying device trajectory on a map.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            Updates the position filtering for the tracker resource.
+     *            </p>
+     *            <p>
+     *            Valid values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TimeBased</code> - Location updates are evaluated
+     *            against linked geofence collections, but not every location
+     *            update is stored. If your update frequency is more often than
+     *            30 seconds, only one update per 30 seconds is stored for each
+     *            unique device ID.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DistanceBased</code> - If the device has moved less than
+     *            30 m (98.4 ft), location updates are ignored. Location updates
+     *            within this distance are neither evaluated against linked
+     *            geofence collections, nor stored. This helps control costs by
+     *            reducing the number of geofence evaluations and device
+     *            positions to retrieve. Distance-based filtering can also
+     *            reduce the jitter effect when displaying device trajectory on
+     *            a map.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PositionFiltering
+     */
+    public UpdateTrackerRequest withPositionFiltering(String positionFiltering) {
+        this.positionFiltering = positionFiltering;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Updates the position filtering for the tracker resource.
+     * </p>
+     * <p>
+     * Valid values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TimeBased</code> - Location updates are evaluated against linked
+     * geofence collections, but not every location update is stored. If your
+     * update frequency is more often than 30 seconds, only one update per 30
+     * seconds is stored for each unique device ID.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DistanceBased</code> - If the device has moved less than 30 m (98.4
+     * ft), location updates are ignored. Location updates within this distance
+     * are neither evaluated against linked geofence collections, nor stored.
+     * This helps control costs by reducing the number of geofence evaluations
+     * and device positions to retrieve. Distance-based filtering can also
+     * reduce the jitter effect when displaying device trajectory on a map.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            Updates the position filtering for the tracker resource.
+     *            </p>
+     *            <p>
+     *            Valid values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TimeBased</code> - Location updates are evaluated
+     *            against linked geofence collections, but not every location
+     *            update is stored. If your update frequency is more often than
+     *            30 seconds, only one update per 30 seconds is stored for each
+     *            unique device ID.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DistanceBased</code> - If the device has moved less than
+     *            30 m (98.4 ft), location updates are ignored. Location updates
+     *            within this distance are neither evaluated against linked
+     *            geofence collections, nor stored. This helps control costs by
+     *            reducing the number of geofence evaluations and device
+     *            positions to retrieve. Distance-based filtering can also
+     *            reduce the jitter effect when displaying device trajectory on
+     *            a map.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @see PositionFiltering
+     */
+    public void setPositionFiltering(PositionFiltering positionFiltering) {
+        this.positionFiltering = positionFiltering.toString();
+    }
+
+    /**
+     * <p>
+     * Updates the position filtering for the tracker resource.
+     * </p>
+     * <p>
+     * Valid values:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * <code>TimeBased</code> - Location updates are evaluated against linked
+     * geofence collections, but not every location update is stored. If your
+     * update frequency is more often than 30 seconds, only one update per 30
+     * seconds is stored for each unique device ID.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * <code>DistanceBased</code> - If the device has moved less than 30 m (98.4
+     * ft), location updates are ignored. Location updates within this distance
+     * are neither evaluated against linked geofence collections, nor stored.
+     * This helps control costs by reducing the number of geofence evaluations
+     * and device positions to retrieve. Distance-based filtering can also
+     * reduce the jitter effect when displaying device trajectory on a map.
+     * </p>
+     * </li>
+     * </ul>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            Updates the position filtering for the tracker resource.
+     *            </p>
+     *            <p>
+     *            Valid values:
+     *            </p>
+     *            <ul>
+     *            <li>
+     *            <p>
+     *            <code>TimeBased</code> - Location updates are evaluated
+     *            against linked geofence collections, but not every location
+     *            update is stored. If your update frequency is more often than
+     *            30 seconds, only one update per 30 seconds is stored for each
+     *            unique device ID.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            <code>DistanceBased</code> - If the device has moved less than
+     *            30 m (98.4 ft), location updates are ignored. Location updates
+     *            within this distance are neither evaluated against linked
+     *            geofence collections, nor stored. This helps control costs by
+     *            reducing the number of geofence evaluations and device
+     *            positions to retrieve. Distance-based filtering can also
+     *            reduce the jitter effect when displaying device trajectory on
+     *            a map.
+     *            </p>
+     *            </li>
+     *            </ul>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PositionFiltering
+     */
+    public UpdateTrackerRequest withPositionFiltering(PositionFiltering positionFiltering) {
+        this.positionFiltering = positionFiltering.toString();
         return this;
     }
 
@@ -556,6 +930,8 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
         sb.append("{");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
+        if (getPositionFiltering() != null)
+            sb.append("PositionFiltering: " + getPositionFiltering() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getPricingPlanDataSource() != null)
@@ -573,6 +949,8 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
 
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
+        hashCode = prime * hashCode
+                + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime
@@ -598,6 +976,11 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
+            return false;
+        if (other.getPositionFiltering() == null ^ this.getPositionFiltering() == null)
+            return false;
+        if (other.getPositionFiltering() != null
+                && other.getPositionFiltering().equals(this.getPositionFiltering()) == false)
             return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;

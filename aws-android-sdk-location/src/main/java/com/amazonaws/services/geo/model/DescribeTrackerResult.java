@@ -52,12 +52,22 @@ public class DescribeTrackerResult implements Serializable {
 
     /**
      * <p>
+     * The position filtering method of the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     */
+    private String positionFiltering;
+
+    /**
+     * <p>
      * The pricing plan selected for the specified tracker resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -307,12 +317,109 @@ public class DescribeTrackerResult implements Serializable {
 
     /**
      * <p>
+     * The position filtering method of the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @return <p>
+     *         The position filtering method of the tracker resource.
+     *         </p>
+     * @see PositionFiltering
+     */
+    public String getPositionFiltering() {
+        return positionFiltering;
+    }
+
+    /**
+     * <p>
+     * The position filtering method of the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            The position filtering method of the tracker resource.
+     *            </p>
+     * @see PositionFiltering
+     */
+    public void setPositionFiltering(String positionFiltering) {
+        this.positionFiltering = positionFiltering;
+    }
+
+    /**
+     * <p>
+     * The position filtering method of the tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            The position filtering method of the tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PositionFiltering
+     */
+    public DescribeTrackerResult withPositionFiltering(String positionFiltering) {
+        this.positionFiltering = positionFiltering;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The position filtering method of the tracker resource.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            The position filtering method of the tracker resource.
+     *            </p>
+     * @see PositionFiltering
+     */
+    public void setPositionFiltering(PositionFiltering positionFiltering) {
+        this.positionFiltering = positionFiltering.toString();
+    }
+
+    /**
+     * <p>
+     * The position filtering method of the tracker resource.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     *
+     * @param positionFiltering <p>
+     *            The position filtering method of the tracker resource.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see PositionFiltering
+     */
+    public DescribeTrackerResult withPositionFiltering(PositionFiltering positionFiltering) {
+        this.positionFiltering = positionFiltering.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The pricing plan selected for the specified tracker resource.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -324,9 +431,9 @@ public class DescribeTrackerResult implements Serializable {
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
-     *         option, see the <a
+     *         option, see <a
      *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing page</a>.
+     *         Service pricing</a>.
      *         </p>
      * @see PricingPlan
      */
@@ -340,8 +447,8 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -353,9 +460,9 @@ public class DescribeTrackerResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -369,8 +476,8 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -385,9 +492,9 @@ public class DescribeTrackerResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -404,8 +511,8 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -417,9 +524,9 @@ public class DescribeTrackerResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -433,8 +540,8 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -449,9 +556,9 @@ public class DescribeTrackerResult implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -837,6 +944,8 @@ public class DescribeTrackerResult implements Serializable {
             sb.append("Description: " + getDescription() + ",");
         if (getKmsKeyId() != null)
             sb.append("KmsKeyId: " + getKmsKeyId() + ",");
+        if (getPositionFiltering() != null)
+            sb.append("PositionFiltering: " + getPositionFiltering() + ",");
         if (getPricingPlan() != null)
             sb.append("PricingPlan: " + getPricingPlan() + ",");
         if (getPricingPlanDataSource() != null)
@@ -862,6 +971,8 @@ public class DescribeTrackerResult implements Serializable {
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getKmsKeyId() == null) ? 0 : getKmsKeyId().hashCode());
+        hashCode = prime * hashCode
+                + ((getPositionFiltering() == null) ? 0 : getPositionFiltering().hashCode());
         hashCode = prime * hashCode
                 + ((getPricingPlan() == null) ? 0 : getPricingPlan().hashCode());
         hashCode = prime
@@ -899,6 +1010,11 @@ public class DescribeTrackerResult implements Serializable {
         if (other.getKmsKeyId() == null ^ this.getKmsKeyId() == null)
             return false;
         if (other.getKmsKeyId() != null && other.getKmsKeyId().equals(this.getKmsKeyId()) == false)
+            return false;
+        if (other.getPositionFiltering() == null ^ this.getPositionFiltering() == null)
+            return false;
+        if (other.getPositionFiltering() != null
+                && other.getPositionFiltering().equals(this.getPositionFiltering()) == false)
             return false;
         if (other.getPricingPlan() == null ^ this.getPricingPlan() == null)
             return false;
