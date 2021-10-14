@@ -1,3 +1,11 @@
+## [Release 2.34.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.34.0)
+
+### Features
+- **aws-android-sdk-kms:** update models to latest (#2656)
+- **aws-android-sdk-location:** update models to latest (#2658)
+
+[See all changes between 2.33.0 and 2.34.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.33.0...release_v2.34.0)
+
 ## [Release 2.33.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.33.0)
 
 ### Features
