@@ -103,6 +103,15 @@ public class ChannelMessageSummary implements Serializable {
 
     /**
      * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     */
+    private ChannelMessageStatusStructure status;
+
+    /**
+     * <p>
      * The ID of the message.
      * </p>
      * <p>
@@ -608,6 +617,66 @@ public class ChannelMessageSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     *
+     * @return <p>
+     *         The message status. The status value is <code>SENT</code> for
+     *         messages sent to a channel without a channel flow. For channels
+     *         associated with channel flow, the value determines the processing
+     *         stage.
+     *         </p>
+     */
+    public ChannelMessageStatusStructure getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     *
+     * @param status <p>
+     *            The message status. The status value is <code>SENT</code> for
+     *            messages sent to a channel without a channel flow. For
+     *            channels associated with channel flow, the value determines
+     *            the processing stage.
+     *            </p>
+     */
+    public void setStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param status <p>
+     *            The message status. The status value is <code>SENT</code> for
+     *            messages sent to a channel without a channel flow. For
+     *            channels associated with channel flow, the value determines
+     *            the processing stage.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageSummary withStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -635,7 +704,9 @@ public class ChannelMessageSummary implements Serializable {
         if (getSender() != null)
             sb.append("Sender: " + getSender() + ",");
         if (getRedacted() != null)
-            sb.append("Redacted: " + getRedacted());
+            sb.append("Redacted: " + getRedacted() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -657,6 +728,7 @@ public class ChannelMessageSummary implements Serializable {
                 + ((getLastEditedTimestamp() == null) ? 0 : getLastEditedTimestamp().hashCode());
         hashCode = prime * hashCode + ((getSender() == null) ? 0 : getSender().hashCode());
         hashCode = prime * hashCode + ((getRedacted() == null) ? 0 : getRedacted().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -710,6 +782,10 @@ public class ChannelMessageSummary implements Serializable {
         if (other.getRedacted() == null ^ this.getRedacted() == null)
             return false;
         if (other.getRedacted() != null && other.getRedacted().equals(this.getRedacted()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }

@@ -72,6 +72,11 @@ class ChannelMessageSummaryJsonMarshaller {
             jsonWriter.name("Redacted");
             jsonWriter.value(redacted);
         }
+        if (channelMessageSummary.getStatus() != null) {
+            ChannelMessageStatusStructure status = channelMessageSummary.getStatus();
+            jsonWriter.name("Status");
+            ChannelMessageStatusStructureJsonMarshaller.getInstance().marshall(status, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 

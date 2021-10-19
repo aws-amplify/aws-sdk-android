@@ -126,6 +126,13 @@ public class ChannelMessage implements Serializable {
 
     /**
      * <p>
+     * The status of the channel message.
+     * </p>
+     */
+    private ChannelMessageStatusStructure status;
+
+    /**
+     * <p>
      * The ARN of the channel.
      * </p>
      * <p>
@@ -791,6 +798,51 @@ public class ChannelMessage implements Serializable {
     }
 
     /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     *
+     * @return <p>
+     *         The status of the channel message.
+     *         </p>
+     */
+    public ChannelMessageStatusStructure getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     *
+     * @param status <p>
+     *            The status of the channel message.
+     *            </p>
+     */
+    public void setStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param status <p>
+     *            The status of the channel message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessage withStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -822,7 +874,9 @@ public class ChannelMessage implements Serializable {
         if (getRedacted() != null)
             sb.append("Redacted: " + getRedacted() + ",");
         if (getPersistence() != null)
-            sb.append("Persistence: " + getPersistence());
+            sb.append("Persistence: " + getPersistence() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -847,6 +901,7 @@ public class ChannelMessage implements Serializable {
         hashCode = prime * hashCode + ((getRedacted() == null) ? 0 : getRedacted().hashCode());
         hashCode = prime * hashCode
                 + ((getPersistence() == null) ? 0 : getPersistence().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -910,6 +965,10 @@ public class ChannelMessage implements Serializable {
             return false;
         if (other.getPersistence() != null
                 && other.getPersistence().equals(this.getPersistence()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }
