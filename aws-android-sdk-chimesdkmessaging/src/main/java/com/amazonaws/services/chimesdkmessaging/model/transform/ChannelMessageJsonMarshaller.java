@@ -81,6 +81,11 @@ class ChannelMessageJsonMarshaller {
             jsonWriter.name("Persistence");
             jsonWriter.value(persistence);
         }
+        if (channelMessage.getStatus() != null) {
+            ChannelMessageStatusStructure status = channelMessage.getStatus();
+            jsonWriter.name("Status");
+            ChannelMessageStatusStructureJsonMarshaller.getInstance().marshall(status, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
