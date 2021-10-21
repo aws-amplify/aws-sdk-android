@@ -749,10 +749,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Creates hours of operation.
      * </p>
      * 
@@ -780,10 +776,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Creates hours of operation.
      * </p>
@@ -1324,10 +1316,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Deletes an hours of operation.
      * </p>
      * 
@@ -1353,10 +1341,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Deletes an hours of operation.
      * </p>
@@ -1883,10 +1867,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Describes the hours of operation.
      * </p>
      * 
@@ -1912,10 +1892,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Describes the hours of operation.
      * </p>
@@ -5935,10 +5911,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
-     * <p>
      * Updates the hours of operation.
      * </p>
      * 
@@ -5965,10 +5937,6 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
-     * <p>
-     * This API is in preview release for Amazon Connect and is subject to
-     * change.
-     * </p>
      * <p>
      * Updates the hours of operation.
      * </p>
