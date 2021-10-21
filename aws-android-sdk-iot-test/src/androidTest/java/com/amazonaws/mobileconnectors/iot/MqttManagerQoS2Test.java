@@ -15,7 +15,7 @@
 
 package com.amazonaws.mobileconnectors.iot;
 
-import static com.amazonaws.mobileconnectors.iot.MqttManagerTestUtils.GAMMA_ENDPOINT;
+import static com.amazonaws.mobileconnectors.iot.MqttManagerTestUtils.CUSTOM_ENDPOINT;
 import static com.amazonaws.mobileconnectors.iot.MqttManagerTestUtils.MQTT_CLIENT_ID;
 import static org.junit.Assert.assertEquals;
 
@@ -32,12 +32,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
-class MqttManagerQoS2Test {
+public class MqttManagerQoS2Test {
     private static final String KEYSTORE_NAME = "integration_test.bks";
     private static final String KEYSTORE_PASSWORD = "test password";
 
     @Test
-    public void mqttConnect_test_qos2_GammaEndpoint() throws Exception {
+    public void mqttConnect_test_qos2_customEndpoint() throws Exception {
         Context appContext = ApplicationProvider.getApplicationContext();
         String keyStorePath = appContext.getFilesDir().toString() + "/";
         System.out.println(keyStorePath);
@@ -45,7 +45,7 @@ class MqttManagerQoS2Test {
         final CountDownLatch publishMessageLatch = new CountDownLatch(1);
         final CountDownLatch receiveMessageLatch = new CountDownLatch(1);
         final AWSIotMqttManager mqttManager = new AWSIotMqttManager(MQTT_CLIENT_ID + "-QOS2",
-                                                                    GAMMA_ENDPOINT);
+                                                                    CUSTOM_ENDPOINT);
         // Initialize this with the value returned by a call to CreateKeyAndCertificate API or CLI call
         // Once it's live in prod, we can remove this since the test in MqttManagerIntegrationTest will pass.
         CreateKeysAndCertificateResult createKeysAndCertificateResult = null;

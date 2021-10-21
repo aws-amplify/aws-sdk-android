@@ -37,7 +37,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 
 class MqttManagerTestUtils {
-    public static final String GAMMA_ENDPOINT = "<some test endpoint";
+    public static final String CUSTOM_ENDPOINT = "<some test endpoint>";
     public static final String MQTT_CLIENT_ID = "TEST-MQTT-CLIENT";
 
     /**
