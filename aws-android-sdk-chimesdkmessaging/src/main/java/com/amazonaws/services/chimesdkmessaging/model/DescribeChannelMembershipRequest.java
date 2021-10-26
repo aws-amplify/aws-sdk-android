@@ -48,7 +48,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The ARN of the member.
+     * The <code>AppInstanceUserArn</code> of the member.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -137,7 +137,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The ARN of the member.
+     * The <code>AppInstanceUserArn</code> of the member.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -147,7 +147,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the member.
+     *         The <code>AppInstanceUserArn</code> of the member.
      *         </p>
      */
     public String getMemberArn() {
@@ -156,7 +156,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The ARN of the member.
+     * The <code>AppInstanceUserArn</code> of the member.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -166,7 +166,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member.
+     *            The <code>AppInstanceUserArn</code> of the member.
      *            </p>
      */
     public void setMemberArn(String memberArn) {
@@ -175,7 +175,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
 
     /**
      * <p>
-     * The ARN of the member.
+     * The <code>AppInstanceUserArn</code> of the member.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -188,7 +188,7 @@ public class DescribeChannelMembershipRequest extends AmazonWebServiceRequest im
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member.
+     *            The <code>AppInstanceUserArn</code> of the member.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -62,6 +62,9 @@ class ChannelJsonUnmarshaller implements Unmarshaller<Channel, JsonUnmarshallerC
             } else if (name.equals("LastUpdatedTimestamp")) {
                 channel.setLastUpdatedTimestamp(DateJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ChannelFlowArn")) {
+                channel.setChannelFlowArn(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
