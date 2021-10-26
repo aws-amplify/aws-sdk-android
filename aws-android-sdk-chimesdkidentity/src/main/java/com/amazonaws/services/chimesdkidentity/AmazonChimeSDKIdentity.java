@@ -282,6 +282,30 @@ public interface AmazonChimeSDKIdentity {
 
     /**
      * <p>
+     * Deregisters an <code>AppInstanceUserEndpoint</code>.
+     * </p>
+     * 
+     * @param deregisterAppInstanceUserEndpointRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    void deregisterAppInstanceUserEndpoint(
+            DeregisterAppInstanceUserEndpointRequest deregisterAppInstanceUserEndpointRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Returns the full details of an <code>AppInstance</code>.
      * </p>
      * 
@@ -363,6 +387,33 @@ public interface AmazonChimeSDKIdentity {
 
     /**
      * <p>
+     * Returns the full details of an <code>AppInstanceUserEndpoint</code>.
+     * </p>
+     * 
+     * @param describeAppInstanceUserEndpointRequest
+     * @return describeAppInstanceUserEndpointResult The response from the
+     *         DescribeAppInstanceUserEndpoint service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    DescribeAppInstanceUserEndpointResult describeAppInstanceUserEndpoint(
+            DescribeAppInstanceUserEndpointRequest describeAppInstanceUserEndpointRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Gets the retention settings for an <code>AppInstance</code>.
      * </p>
      * 
@@ -414,6 +465,34 @@ public interface AmazonChimeSDKIdentity {
      */
     ListAppInstanceAdminsResult listAppInstanceAdmins(
             ListAppInstanceAdminsRequest listAppInstanceAdminsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Lists all the <code>AppInstanceUserEndpoints</code> created under a
+     * single <code>AppInstanceUser</code>.
+     * </p>
+     * 
+     * @param listAppInstanceUserEndpointsRequest
+     * @return listAppInstanceUserEndpointsResult The response from the
+     *         ListAppInstanceUserEndpoints service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    ListAppInstanceUserEndpointsResult listAppInstanceUserEndpoints(
+            ListAppInstanceUserEndpointsRequest listAppInstanceUserEndpointsRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -472,6 +551,33 @@ public interface AmazonChimeSDKIdentity {
 
     /**
      * <p>
+     * Lists the tags applied to an Amazon Chime SDK identity resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Sets the amount of time in days that a given <code>AppInstance</code>
      * retains data.
      * </p>
@@ -497,6 +603,87 @@ public interface AmazonChimeSDKIdentity {
     PutAppInstanceRetentionSettingsResult putAppInstanceRetentionSettings(
             PutAppInstanceRetentionSettingsRequest putAppInstanceRetentionSettingsRequest)
             throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Registers an endpoint under an Amazon Chime <code>AppInstanceUser</code>.
+     * The endpoint receives messages for a user. For push notifications, the
+     * endpoint is a mobile device used to receive mobile push notifications for
+     * a user.
+     * </p>
+     * 
+     * @param registerAppInstanceUserEndpointRequest
+     * @return registerAppInstanceUserEndpointResult The response from the
+     *         RegisterAppInstanceUserEndpoint service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    RegisterAppInstanceUserEndpointResult registerAppInstanceUserEndpoint(
+            RegisterAppInstanceUserEndpointRequest registerAppInstanceUserEndpointRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Applies the specified tags to the specified Amazon Chime SDK identity
+     * resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    void tagResource(TagResourceRequest tagResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes the specified tags from the specified Amazon Chime SDK identity
+     * resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    void untagResource(UntagResourceRequest untagResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
 
     /**
      * <p>
@@ -552,6 +739,35 @@ public interface AmazonChimeSDKIdentity {
      */
     UpdateAppInstanceUserResult updateAppInstanceUser(
             UpdateAppInstanceUserRequest updateAppInstanceUserRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Updates the details of an <code>AppInstanceUserEndpoint</code>. You can
+     * update the name and <code>AllowMessage</code> values.
+     * </p>
+     * 
+     * @param updateAppInstanceUserEndpointRequest
+     * @return updateAppInstanceUserEndpointResult The response from the
+     *         UpdateAppInstanceUserEndpoint service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    UpdateAppInstanceUserEndpointResult updateAppInstanceUserEndpoint(
+            UpdateAppInstanceUserEndpointRequest updateAppInstanceUserEndpointRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
