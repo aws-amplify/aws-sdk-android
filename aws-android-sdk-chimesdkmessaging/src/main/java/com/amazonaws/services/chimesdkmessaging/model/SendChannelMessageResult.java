@@ -44,6 +44,13 @@ public class SendChannelMessageResult implements Serializable {
 
     /**
      * <p>
+     * The status of the channel message.
+     * </p>
+     */
+    private ChannelMessageStatusStructure status;
+
+    /**
+     * <p>
      * The ARN of the channel.
      * </p>
      * <p>
@@ -163,6 +170,51 @@ public class SendChannelMessageResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     *
+     * @return <p>
+     *         The status of the channel message.
+     *         </p>
+     */
+    public ChannelMessageStatusStructure getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     *
+     * @param status <p>
+     *            The status of the channel message.
+     *            </p>
+     */
+    public void setStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param status <p>
+     *            The status of the channel message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SendChannelMessageResult withStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -176,7 +228,9 @@ public class SendChannelMessageResult implements Serializable {
         if (getChannelArn() != null)
             sb.append("ChannelArn: " + getChannelArn() + ",");
         if (getMessageId() != null)
-            sb.append("MessageId: " + getMessageId());
+            sb.append("MessageId: " + getMessageId() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus());
         sb.append("}");
         return sb.toString();
     }
@@ -188,6 +242,7 @@ public class SendChannelMessageResult implements Serializable {
 
         hashCode = prime * hashCode + ((getChannelArn() == null) ? 0 : getChannelArn().hashCode());
         hashCode = prime * hashCode + ((getMessageId() == null) ? 0 : getMessageId().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return hashCode;
     }
 
@@ -211,6 +266,10 @@ public class SendChannelMessageResult implements Serializable {
             return false;
         if (other.getMessageId() != null
                 && other.getMessageId().equals(this.getMessageId()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
             return false;
         return true;
     }

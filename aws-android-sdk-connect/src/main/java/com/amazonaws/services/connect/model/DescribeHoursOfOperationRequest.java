@@ -21,9 +21,6 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
- * <p>
  * Describes the hours of operation.
  * </p>
  */

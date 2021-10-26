@@ -56,7 +56,8 @@ public class BatchCreateChannelMembershipRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The ARNs of the members you want to add to the channel.
+     * The <code>AppInstanceUserArn</code>s of the members you want to add to
+     * the channel.
      * </p>
      */
     private java.util.List<String> memberArns;
@@ -291,11 +292,13 @@ public class BatchCreateChannelMembershipRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The ARNs of the members you want to add to the channel.
+     * The <code>AppInstanceUserArn</code>s of the members you want to add to
+     * the channel.
      * </p>
      *
      * @return <p>
-     *         The ARNs of the members you want to add to the channel.
+     *         The <code>AppInstanceUserArn</code>s of the members you want to
+     *         add to the channel.
      *         </p>
      */
     public java.util.List<String> getMemberArns() {
@@ -304,11 +307,13 @@ public class BatchCreateChannelMembershipRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The ARNs of the members you want to add to the channel.
+     * The <code>AppInstanceUserArn</code>s of the members you want to add to
+     * the channel.
      * </p>
      *
      * @param memberArns <p>
-     *            The ARNs of the members you want to add to the channel.
+     *            The <code>AppInstanceUserArn</code>s of the members you want
+     *            to add to the channel.
      *            </p>
      */
     public void setMemberArns(java.util.Collection<String> memberArns) {
@@ -322,14 +327,16 @@ public class BatchCreateChannelMembershipRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The ARNs of the members you want to add to the channel.
+     * The <code>AppInstanceUserArn</code>s of the members you want to add to
+     * the channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param memberArns <p>
-     *            The ARNs of the members you want to add to the channel.
+     *            The <code>AppInstanceUserArn</code>s of the members you want
+     *            to add to the channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -346,14 +353,16 @@ public class BatchCreateChannelMembershipRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The ARNs of the members you want to add to the channel.
+     * The <code>AppInstanceUserArn</code>s of the members you want to add to
+     * the channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param memberArns <p>
-     *            The ARNs of the members you want to add to the channel.
+     *            The <code>AppInstanceUserArn</code>s of the members you want
+     *            to add to the channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
