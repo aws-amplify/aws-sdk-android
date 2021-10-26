@@ -1,3 +1,12 @@
+## [Release 2.35.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.35.0)
+
+### Features
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2676)
+- **aws-android-sdk-connect:** update models to latest (#2672)
+- **aws-android-sdk-chimesdkidentity:** update models to latest (#2675)
+
+[See all changes between 2.34.0 and 2.35.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.34.0...release_v2.35.0)
+
 ---
 
 MOVE THIS SECTION TO THE CORRECT LOCATION
