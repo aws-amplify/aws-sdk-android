@@ -21,8 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Adds a user to a channel. The <code>InvitedBy</code> response field is
- * derived from the request header. A channel member can:
+ * Adds a user to a channel. The <code>InvitedBy</code> field in
+ * <code>ChannelMembership</code> is derived from the request header. A channel
+ * member can:
  * </p>
  * <ul>
  * <li>
@@ -91,7 +92,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member you want to add to the channel.
+     * The <code>AppInstanceUserArn</code> of the member you want to add to the
+     * channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -195,7 +197,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member you want to add to the channel.
+     * The <code>AppInstanceUserArn</code> of the member you want to add to the
+     * channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -205,7 +208,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the member you want to add to the channel.
+     *         The <code>AppInstanceUserArn</code> of the member you want to add
+     *         to the channel.
      *         </p>
      */
     public String getMemberArn() {
@@ -214,7 +218,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member you want to add to the channel.
+     * The <code>AppInstanceUserArn</code> of the member you want to add to the
+     * channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -224,7 +229,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member you want to add to the channel.
+     *            The <code>AppInstanceUserArn</code> of the member you want to
+     *            add to the channel.
      *            </p>
      */
     public void setMemberArn(String memberArn) {
@@ -233,7 +239,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member you want to add to the channel.
+     * The <code>AppInstanceUserArn</code> of the member you want to add to the
+     * channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -246,7 +253,8 @@ public class CreateChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member you want to add to the channel.
+     *            The <code>AppInstanceUserArn</code> of the member you want to
+     *            add to the channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

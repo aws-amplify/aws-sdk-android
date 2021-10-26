@@ -25,7 +25,8 @@ import java.io.Serializable;
 public class BatchCreateChannelMembershipError implements Serializable {
     /**
      * <p>
-     * The ARN of the member that the service couldn't add.
+     * The <code>AppInstanceUserArn</code> of the member that the service
+     * couldn't add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -58,7 +59,8 @@ public class BatchCreateChannelMembershipError implements Serializable {
 
     /**
      * <p>
-     * The ARN of the member that the service couldn't add.
+     * The <code>AppInstanceUserArn</code> of the member that the service
+     * couldn't add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -68,7 +70,8 @@ public class BatchCreateChannelMembershipError implements Serializable {
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the member that the service couldn't add.
+     *         The <code>AppInstanceUserArn</code> of the member that the
+     *         service couldn't add.
      *         </p>
      */
     public String getMemberArn() {
@@ -77,7 +80,8 @@ public class BatchCreateChannelMembershipError implements Serializable {
 
     /**
      * <p>
-     * The ARN of the member that the service couldn't add.
+     * The <code>AppInstanceUserArn</code> of the member that the service
+     * couldn't add.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -87,7 +91,8 @@ public class BatchCreateChannelMembershipError implements Serializable {
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member that the service couldn't add.
+     *            The <code>AppInstanceUserArn</code> of the member that the
+     *            service couldn't add.
      *            </p>
      */
     public void setMemberArn(String memberArn) {
@@ -96,7 +101,8 @@ public class BatchCreateChannelMembershipError implements Serializable {
 
     /**
      * <p>
-     * The ARN of the member that the service couldn't add.
+     * The <code>AppInstanceUserArn</code> of the member that the service
+     * couldn't add.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -109,7 +115,8 @@ public class BatchCreateChannelMembershipError implements Serializable {
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member that the service couldn't add.
+     *            The <code>AppInstanceUserArn</code> of the member that the
+     *            service couldn't add.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

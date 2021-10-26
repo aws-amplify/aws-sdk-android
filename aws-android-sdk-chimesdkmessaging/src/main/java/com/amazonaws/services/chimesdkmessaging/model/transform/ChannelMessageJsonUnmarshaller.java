@@ -69,6 +69,15 @@ class ChannelMessageJsonUnmarshaller implements
             } else if (name.equals("Persistence")) {
                 channelMessage.setPersistence(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Status")) {
+                channelMessage.setStatus(ChannelMessageStatusStructureJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MessageAttributes")) {
+                channelMessage.setMessageAttributes(new MapUnmarshaller<MessageAttributeValue>(
+                        MessageAttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }
