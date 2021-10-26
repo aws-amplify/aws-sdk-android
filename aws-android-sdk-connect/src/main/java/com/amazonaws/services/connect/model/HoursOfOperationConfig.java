@@ -36,14 +36,14 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The start time that your contact center is open.
+     * The start time that your contact center opens.
      * </p>
      */
     private HoursOfOperationTimeSlice startTime;
 
     /**
      * <p>
-     * The end time that your contact center is closes.
+     * The end time that your contact center closes.
      * </p>
      */
     private HoursOfOperationTimeSlice endTime;
@@ -152,11 +152,11 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The start time that your contact center is open.
+     * The start time that your contact center opens.
      * </p>
      *
      * @return <p>
-     *         The start time that your contact center is open.
+     *         The start time that your contact center opens.
      *         </p>
      */
     public HoursOfOperationTimeSlice getStartTime() {
@@ -165,11 +165,11 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The start time that your contact center is open.
+     * The start time that your contact center opens.
      * </p>
      *
      * @param startTime <p>
-     *            The start time that your contact center is open.
+     *            The start time that your contact center opens.
      *            </p>
      */
     public void setStartTime(HoursOfOperationTimeSlice startTime) {
@@ -178,14 +178,14 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The start time that your contact center is open.
+     * The start time that your contact center opens.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param startTime <p>
-     *            The start time that your contact center is open.
+     *            The start time that your contact center opens.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -197,11 +197,11 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The end time that your contact center is closes.
+     * The end time that your contact center closes.
      * </p>
      *
      * @return <p>
-     *         The end time that your contact center is closes.
+     *         The end time that your contact center closes.
      *         </p>
      */
     public HoursOfOperationTimeSlice getEndTime() {
@@ -210,11 +210,11 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The end time that your contact center is closes.
+     * The end time that your contact center closes.
      * </p>
      *
      * @param endTime <p>
-     *            The end time that your contact center is closes.
+     *            The end time that your contact center closes.
      *            </p>
      */
     public void setEndTime(HoursOfOperationTimeSlice endTime) {
@@ -223,14 +223,14 @@ public class HoursOfOperationConfig implements Serializable {
 
     /**
      * <p>
-     * The end time that your contact center is closes.
+     * The end time that your contact center closes.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param endTime <p>
-     *            The end time that your contact center is closes.
+     *            The end time that your contact center closes.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
