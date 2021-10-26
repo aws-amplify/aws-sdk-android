@@ -19,13 +19,13 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Describes a tag applied to a resource.
+ * A tag object containing a key-value pair.
  * </p>
  */
 public class Tag implements Serializable {
     /**
      * <p>
-     * The key of the tag.
+     * The key in a tag.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -35,7 +35,7 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag.
+     * The value in a tag.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -45,14 +45,14 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The key of the tag.
+     * The key in a tag.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
      * @return <p>
-     *         The key of the tag.
+     *         The key in a tag.
      *         </p>
      */
     public String getKey() {
@@ -61,14 +61,14 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The key of the tag.
+     * The key in a tag.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 128<br/>
      *
      * @param key <p>
-     *            The key of the tag.
+     *            The key in a tag.
      *            </p>
      */
     public void setKey(String key) {
@@ -77,7 +77,7 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The key of the tag.
+     * The key in a tag.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,7 +87,7 @@ public class Tag implements Serializable {
      * <b>Length: </b>1 - 128<br/>
      *
      * @param key <p>
-     *            The key of the tag.
+     *            The key in a tag.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -99,14 +99,14 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag.
+     * The value in a tag.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The value of the tag.
+     *         The value in a tag.
      *         </p>
      */
     public String getValue() {
@@ -115,14 +115,14 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag.
+     * The value in a tag.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 256<br/>
      *
      * @param value <p>
-     *            The value of the tag.
+     *            The value in a tag.
      *            </p>
      */
     public void setValue(String value) {
@@ -131,7 +131,7 @@ public class Tag implements Serializable {
 
     /**
      * <p>
-     * The value of the tag.
+     * The value in a tag.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -141,7 +141,7 @@ public class Tag implements Serializable {
      * <b>Length: </b>1 - 256<br/>
      *
      * @param value <p>
-     *            The value of the tag.
+     *            The value in a tag.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

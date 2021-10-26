@@ -72,6 +72,27 @@ class ChannelMessageSummaryJsonMarshaller {
             jsonWriter.name("Redacted");
             jsonWriter.value(redacted);
         }
+        if (channelMessageSummary.getStatus() != null) {
+            ChannelMessageStatusStructure status = channelMessageSummary.getStatus();
+            jsonWriter.name("Status");
+            ChannelMessageStatusStructureJsonMarshaller.getInstance().marshall(status, jsonWriter);
+        }
+        if (channelMessageSummary.getMessageAttributes() != null) {
+            java.util.Map<String, MessageAttributeValue> messageAttributes = channelMessageSummary
+                    .getMessageAttributes();
+            jsonWriter.name("MessageAttributes");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
+                    .entrySet()) {
+                MessageAttributeValue messageAttributesValue = messageAttributesEntry.getValue();
+                if (messageAttributesValue != null) {
+                    jsonWriter.name(messageAttributesEntry.getKey());
+                    MessageAttributeValueJsonMarshaller.getInstance().marshall(
+                            messageAttributesValue, jsonWriter);
+                }
+            }
+            jsonWriter.endObject();
+        }
         jsonWriter.endObject();
     }
 

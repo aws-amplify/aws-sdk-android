@@ -63,6 +63,16 @@ class ChannelMessageSummaryJsonUnmarshaller implements
             } else if (name.equals("Redacted")) {
                 channelMessageSummary.setRedacted(BooleanJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Status")) {
+                channelMessageSummary.setStatus(ChannelMessageStatusStructureJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("MessageAttributes")) {
+                channelMessageSummary
+                        .setMessageAttributes(new MapUnmarshaller<MessageAttributeValue>(
+                                MessageAttributeValueJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

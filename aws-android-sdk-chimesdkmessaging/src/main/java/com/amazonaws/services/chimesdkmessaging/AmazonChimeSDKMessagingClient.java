@@ -369,6 +369,63 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Associates a channel flow with a channel. Once associated, all messages
+     * to that channel go through channel flow processors. To stop processing,
+     * use the <code>DisassociateChannelFlow</code> API.
+     * </p>
+     * <note>
+     * <p>
+     * Only administrators or channel moderators can associate a channel flow.
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * <code>AppInstanceUserArn</code> of the user that makes the API call as
+     * the value in the header.
+     * </p>
+     * </note>
+     * 
+     * @param associateChannelFlowRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws UnauthorizedClientException
+     * @throws ConflictException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void associateChannelFlow(AssociateChannelFlowRequest associateChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(associateChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AssociateChannelFlowRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AssociateChannelFlowRequestMarshaller()
+                        .marshall(associateChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Adds a specified number of users to a channel.
      * </p>
      * 
@@ -410,6 +467,82 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<BatchCreateChannelMembershipResult, JsonUnmarshallerContext> unmarshaller = new BatchCreateChannelMembershipResultJsonUnmarshaller();
             JsonResponseHandler<BatchCreateChannelMembershipResult> responseHandler = new JsonResponseHandler<BatchCreateChannelMembershipResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Calls back Chime SDK Messaging with a processing response message. This
+     * should be invoked from the processor Lambda. This is a developer API.
+     * </p>
+     * <p>
+     * You can return one of the following processing responses:
+     * </p>
+     * <ul>
+     * <li>
+     * <p>
+     * Update message content or metadata
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Deny a message
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Make no changes to the message
+     * </p>
+     * </li>
+     * </ul>
+     * 
+     * @param channelFlowCallbackRequest
+     * @return channelFlowCallbackResult The response from the
+     *         ChannelFlowCallback service method, as returned by Amazon
+     *         ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ConflictException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ChannelFlowCallbackResult channelFlowCallback(
+            ChannelFlowCallbackRequest channelFlowCallbackRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(channelFlowCallbackRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ChannelFlowCallbackRequest> request = null;
+        Response<ChannelFlowCallbackResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ChannelFlowCallbackRequestMarshaller()
+                        .marshall(channelFlowCallbackRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ChannelFlowCallbackResult, JsonUnmarshallerContext> unmarshaller = new ChannelFlowCallbackResultJsonUnmarshaller();
+            JsonResponseHandler<ChannelFlowCallbackResult> responseHandler = new JsonResponseHandler<ChannelFlowCallbackResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -554,8 +687,97 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
-     * Adds a user to a channel. The <code>InvitedBy</code> response field is
-     * derived from the request header. A channel member can:
+     * Creates a channel flow, a container for processors. Processors are AWS
+     * Lambda functions that perform actions on chat messages, such as stripping
+     * out profanity. You can associate channel flows with channels, and the
+     * processors in the channel flow then take action on all messages sent to
+     * that channel. This is a developer API.
+     * </p>
+     * <p>
+     * Channel flows process the following items:
+     * </p>
+     * <ol>
+     * <li>
+     * <p>
+     * New and updated messages
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Persistent and non-persistent messages
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The Standard message type
+     * </p>
+     * </li>
+     * </ol>
+     * <note>
+     * <p>
+     * Channel flows don't process Control or System messages. For more
+     * information about the message types provided by Chime SDK Messaging,
+     * refer to <a href=
+     * "https://docs.aws.amazon.com/chime/latest/dg/using-the-messaging-sdk.html#msg-types"
+     * >Message types</a> in the <i>Amazon Chime developer guide</i>.
+     * </p>
+     * </note>
+     * 
+     * @param createChannelFlowRequest
+     * @return createChannelFlowResult The response from the CreateChannelFlow
+     *         service method, as returned by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ConflictException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public CreateChannelFlowResult createChannelFlow(
+            CreateChannelFlowRequest createChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateChannelFlowRequest> request = null;
+        Response<CreateChannelFlowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateChannelFlowRequestMarshaller()
+                        .marshall(createChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateChannelFlowResult, JsonUnmarshallerContext> unmarshaller = new CreateChannelFlowResultJsonUnmarshaller();
+            JsonResponseHandler<CreateChannelFlowResult> responseHandler = new JsonResponseHandler<CreateChannelFlowResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds a user to a channel. The <code>InvitedBy</code> field in
+     * <code>ChannelMembership</code> is derived from the request header. A
+     * channel member can:
      * </p>
      * <ul>
      * <li>
@@ -854,6 +1076,61 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Deletes a channel flow, an irreversible process. This is a developer API.
+     * </p>
+     * <note>
+     * <p>
+     * This API works only when the channel flow is not associated with any
+     * channel. To get a list of all channels that a channel flow is associated
+     * with, use the <code>ListChannelsAssociatedWithChannelFlow</code> API. Use
+     * the <code>DisassociateChannelFlow</code> API to disassociate a channel
+     * flow from all channels.
+     * </p>
+     * </note>
+     * 
+     * @param deleteChannelFlowRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ConflictException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void deleteChannelFlow(DeleteChannelFlowRequest deleteChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteChannelFlowRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteChannelFlowRequestMarshaller()
+                        .marshall(deleteChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Removes a member from a channel.
      * </p>
      * <note>
@@ -1134,6 +1411,61 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Returns the full details of a channel flow in an Amazon Chime
+     * <code>AppInstance</code>. This is a developer API.
+     * </p>
+     * 
+     * @param describeChannelFlowRequest
+     * @return describeChannelFlowResult The response from the
+     *         DescribeChannelFlow service method, as returned by Amazon
+     *         ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public DescribeChannelFlowResult describeChannelFlow(
+            DescribeChannelFlowRequest describeChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeChannelFlowRequest> request = null;
+        Response<DescribeChannelFlowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeChannelFlowRequestMarshaller()
+                        .marshall(describeChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeChannelFlowResult, JsonUnmarshallerContext> unmarshaller = new DescribeChannelFlowResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeChannelFlowResult> responseHandler = new JsonResponseHandler<DescribeChannelFlowResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns the full details of a user's channel membership.
      * </p>
      * <note>
@@ -1382,6 +1714,124 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Disassociates a channel flow from all its channels. Once disassociated,
+     * all messages to that channel stop going through the channel flow
+     * processor.
+     * </p>
+     * <note>
+     * <p>
+     * Only administrators or channel moderators can disassociate a channel
+     * flow. The <code>x-amz-chime-bearer</code> request header is mandatory.
+     * Use the <code>AppInstanceUserArn</code> of the user that makes the API
+     * call as the value in the header.
+     * </p>
+     * </note>
+     * 
+     * @param disassociateChannelFlowRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws NotFoundException
+     * @throws UnauthorizedClientException
+     * @throws ConflictException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void disassociateChannelFlow(
+            DisassociateChannelFlowRequest disassociateChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(disassociateChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DisassociateChannelFlowRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DisassociateChannelFlowRequestMarshaller()
+                        .marshall(disassociateChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets the membership preferences of an <code>AppInstanceUser</code> for
+     * the specified channel. The <code>AppInstanceUser</code> must be a member
+     * of the channel. Only the <code>AppInstanceUser</code> who owns the
+     * membership can retrieve preferences. Users in the
+     * <code>AppInstanceAdmin</code> and channel moderator roles can't retrieve
+     * preferences for other users. Banned users can't retrieve membership
+     * preferences for the channel from which they are banned.
+     * </p>
+     * 
+     * @param getChannelMembershipPreferencesRequest
+     * @return getChannelMembershipPreferencesResult The response from the
+     *         GetChannelMembershipPreferences service method, as returned by
+     *         Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws UnauthorizedClientException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public GetChannelMembershipPreferencesResult getChannelMembershipPreferences(
+            GetChannelMembershipPreferencesRequest getChannelMembershipPreferencesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getChannelMembershipPreferencesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetChannelMembershipPreferencesRequest> request = null;
+        Response<GetChannelMembershipPreferencesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetChannelMembershipPreferencesRequestMarshaller()
+                        .marshall(getChannelMembershipPreferencesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetChannelMembershipPreferencesResult, JsonUnmarshallerContext> unmarshaller = new GetChannelMembershipPreferencesResultJsonUnmarshaller();
+            JsonResponseHandler<GetChannelMembershipPreferencesResult> responseHandler = new JsonResponseHandler<GetChannelMembershipPreferencesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the full details of a channel message.
      * </p>
      * <note>
@@ -1430,6 +1880,115 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<GetChannelMessageResult, JsonUnmarshallerContext> unmarshaller = new GetChannelMessageResultJsonUnmarshaller();
             JsonResponseHandler<GetChannelMessageResult> responseHandler = new JsonResponseHandler<GetChannelMessageResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Gets message status for a specified <code>messageId</code>. Use this API
+     * to determine the intermediate status of messages going through channel
+     * flow processing. The API provides an alternative to retrieving message
+     * status if the event was not received because a client wasn't connected to
+     * a websocket.
+     * </p>
+     * <p>
+     * Messages can have any one of these statuses.
+     * </p>
+     * <dl>
+     * <dt>SENT</dt>
+     * <dd>
+     * <p>
+     * Message processed successfully
+     * </p>
+     * </dd>
+     * <dt>PENDING</dt>
+     * <dd>
+     * <p>
+     * Ongoing processing
+     * </p>
+     * </dd>
+     * <dt>FAILED</dt>
+     * <dd>
+     * <p>
+     * Processing failed
+     * </p>
+     * </dd>
+     * <dt>DENIED</dt>
+     * <dd>
+     * <p>
+     * Messasge denied by the processor
+     * </p>
+     * </dd>
+     * </dl>
+     * <note>
+     * <ul>
+     * <li>
+     * <p>
+     * This API does not return statuses for denied messages, because we don't
+     * store them once the processor denies them.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Only the message sender can invoke this API.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * The <code>x-amz-chime-bearer</code> request header is mandatory. Use the
+     * <code>AppInstanceUserArn</code> of the user that makes the API call as
+     * the value in the header
+     * </p>
+     * </li>
+     * </ul>
+     * </note>
+     * 
+     * @param getChannelMessageStatusRequest
+     * @return getChannelMessageStatusResult The response from the
+     *         GetChannelMessageStatus service method, as returned by Amazon
+     *         ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public GetChannelMessageStatusResult getChannelMessageStatus(
+            GetChannelMessageStatusRequest getChannelMessageStatusRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getChannelMessageStatusRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetChannelMessageStatusRequest> request = null;
+        Response<GetChannelMessageStatusResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetChannelMessageStatusRequestMarshaller()
+                        .marshall(getChannelMessageStatusRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetChannelMessageStatusResult, JsonUnmarshallerContext> unmarshaller = new GetChannelMessageStatusResultJsonUnmarshaller();
+            JsonResponseHandler<GetChannelMessageStatusResult> responseHandler = new JsonResponseHandler<GetChannelMessageStatusResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1554,6 +2113,58 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Returns a paginated lists of all the channel flows created under a single
+     * Chime. This is a developer API.
+     * </p>
+     * 
+     * @param listChannelFlowsRequest
+     * @return listChannelFlowsResult The response from the ListChannelFlows
+     *         service method, as returned by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ListChannelFlowsResult listChannelFlows(ListChannelFlowsRequest listChannelFlowsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listChannelFlowsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListChannelFlowsRequest> request = null;
+        Response<ListChannelFlowsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListChannelFlowsRequestMarshaller().marshall(listChannelFlowsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListChannelFlowsResult, JsonUnmarshallerContext> unmarshaller = new ListChannelFlowsResultJsonUnmarshaller();
+            JsonResponseHandler<ListChannelFlowsResult> responseHandler = new JsonResponseHandler<ListChannelFlowsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Lists all channel memberships in a channel.
      * </p>
      * <note>
@@ -1563,6 +2174,12 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
      * the value in the header.
      * </p>
      * </note>
+     * <p>
+     * If you want to list the channels to which a specific app instance user
+     * belongs, see the <a href=
+     * "https://docs.aws.amazon.com/chime/latest/APIReference/API_messaging-chime_ListChannelMembershipsForAppInstanceUser.html"
+     * >ListChannelMembershipsForAppInstanceUser</a> API.
+     * </p>
      * 
      * @param listChannelMembershipsRequest
      * @return listChannelMembershipsResult The response from the
@@ -1883,6 +2500,62 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Lists all channels associated with a specified channel flow. You can
+     * associate a channel flow with multiple channels, but you can only
+     * associate a channel with one channel flow. This is a developer API.
+     * </p>
+     * 
+     * @param listChannelsAssociatedWithChannelFlowRequest
+     * @return listChannelsAssociatedWithChannelFlowResult The response from the
+     *         ListChannelsAssociatedWithChannelFlow service method, as returned
+     *         by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ListChannelsAssociatedWithChannelFlowResult listChannelsAssociatedWithChannelFlow(
+            ListChannelsAssociatedWithChannelFlowRequest listChannelsAssociatedWithChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listChannelsAssociatedWithChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListChannelsAssociatedWithChannelFlowRequest> request = null;
+        Response<ListChannelsAssociatedWithChannelFlowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListChannelsAssociatedWithChannelFlowRequestMarshaller()
+                        .marshall(listChannelsAssociatedWithChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListChannelsAssociatedWithChannelFlowResult, JsonUnmarshallerContext> unmarshaller = new ListChannelsAssociatedWithChannelFlowResultJsonUnmarshaller();
+            JsonResponseHandler<ListChannelsAssociatedWithChannelFlowResult> responseHandler = new JsonResponseHandler<ListChannelsAssociatedWithChannelFlowResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * A list of the channels moderated by an <code>AppInstanceUser</code>.
      * </p>
      * <note>
@@ -1931,6 +2604,121 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<ListChannelsModeratedByAppInstanceUserResult, JsonUnmarshallerContext> unmarshaller = new ListChannelsModeratedByAppInstanceUserResultJsonUnmarshaller();
             JsonResponseHandler<ListChannelsModeratedByAppInstanceUserResult> responseHandler = new JsonResponseHandler<ListChannelsModeratedByAppInstanceUserResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the tags applied to an Amazon Chime SDK messaging resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Sets the membership preferences of an <code>AppInstanceUser</code> for
+     * the specified channel. The <code>AppInstanceUser</code> must be a member
+     * of the channel. Only the <code>AppInstanceUser</code> who owns the
+     * membership can set preferences. Users in the
+     * <code>AppInstanceAdmin</code> and channel moderator roles can't set
+     * preferences for other users. Banned users can't set membership
+     * preferences for the channel from which they are banned.
+     * </p>
+     * 
+     * @param putChannelMembershipPreferencesRequest
+     * @return putChannelMembershipPreferencesResult The response from the
+     *         PutChannelMembershipPreferences service method, as returned by
+     *         Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws UnauthorizedClientException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public PutChannelMembershipPreferencesResult putChannelMembershipPreferences(
+            PutChannelMembershipPreferencesRequest putChannelMembershipPreferencesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(putChannelMembershipPreferencesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PutChannelMembershipPreferencesRequest> request = null;
+        Response<PutChannelMembershipPreferencesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new PutChannelMembershipPreferencesRequestMarshaller()
+                        .marshall(putChannelMembershipPreferencesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<PutChannelMembershipPreferencesResult, JsonUnmarshallerContext> unmarshaller = new PutChannelMembershipPreferencesResultJsonUnmarshaller();
+            JsonResponseHandler<PutChannelMembershipPreferencesResult> responseHandler = new JsonResponseHandler<PutChannelMembershipPreferencesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -2073,6 +2861,97 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
 
     /**
      * <p>
+     * Applies the specified tags to the specified Amazon Chime SDK messaging
+     * resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified tags from the specified Amazon Chime SDK messaging
+     * resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Update a channel's attributes.
      * </p>
      * <p>
@@ -2122,6 +3001,60 @@ public class AmazonChimeSDKMessagingClient extends AmazonWebServiceClient implem
             }
             Unmarshaller<UpdateChannelResult, JsonUnmarshallerContext> unmarshaller = new UpdateChannelResultJsonUnmarshaller();
             JsonResponseHandler<UpdateChannelResult> responseHandler = new JsonResponseHandler<UpdateChannelResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates channel flow attributes. This is a developer API.
+     * </p>
+     * 
+     * @param updateChannelFlowRequest
+     * @return updateChannelFlowResult The response from the UpdateChannelFlow
+     *         service method, as returned by Amazon ChimeSDK Messaging.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ConflictException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Messaging indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public UpdateChannelFlowResult updateChannelFlow(
+            UpdateChannelFlowRequest updateChannelFlowRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateChannelFlowRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateChannelFlowRequest> request = null;
+        Response<UpdateChannelFlowResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateChannelFlowRequestMarshaller()
+                        .marshall(updateChannelFlowRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateChannelFlowResult, JsonUnmarshallerContext> unmarshaller = new UpdateChannelFlowResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateChannelFlowResult> responseHandler = new JsonResponseHandler<UpdateChannelFlowResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

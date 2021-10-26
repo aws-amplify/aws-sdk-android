@@ -47,7 +47,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member that you're removing from the channel.
+     * The <code>AppInstanceUserArn</code> of the member that you're removing
+     * from the channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,7 +137,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member that you're removing from the channel.
+     * The <code>AppInstanceUserArn</code> of the member that you're removing
+     * from the channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +148,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the member that you're removing from the channel.
+     *         The <code>AppInstanceUserArn</code> of the member that you're
+     *         removing from the channel.
      *         </p>
      */
     public String getMemberArn() {
@@ -155,7 +158,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member that you're removing from the channel.
+     * The <code>AppInstanceUserArn</code> of the member that you're removing
+     * from the channel.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,7 +169,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member that you're removing from the channel.
+     *            The <code>AppInstanceUserArn</code> of the member that you're
+     *            removing from the channel.
      *            </p>
      */
     public void setMemberArn(String memberArn) {
@@ -174,7 +179,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The ARN of the member that you're removing from the channel.
+     * The <code>AppInstanceUserArn</code> of the member that you're removing
+     * from the channel.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,7 +193,8 @@ public class DeleteChannelMembershipRequest extends AmazonWebServiceRequest impl
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member that you're removing from the channel.
+     *            The <code>AppInstanceUserArn</code> of the member that you're
+     *            removing from the channel.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
