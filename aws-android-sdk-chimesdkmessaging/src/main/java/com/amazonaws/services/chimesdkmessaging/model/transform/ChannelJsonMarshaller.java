@@ -71,6 +71,11 @@ class ChannelJsonMarshaller {
             jsonWriter.name("LastUpdatedTimestamp");
             jsonWriter.value(lastUpdatedTimestamp);
         }
+        if (channel.getChannelFlowArn() != null) {
+            String channelFlowArn = channel.getChannelFlowArn();
+            jsonWriter.name("ChannelFlowArn");
+            jsonWriter.value(channelFlowArn);
+        }
         jsonWriter.endObject();
     }
 

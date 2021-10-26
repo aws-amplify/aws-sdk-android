@@ -39,6 +39,10 @@ public class UpdateChannelMessageResultJsonUnmarshaller implements
             } else if (name.equals("MessageId")) {
                 updateChannelMessageResult.setMessageId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Status")) {
+                updateChannelMessageResult.setStatus(ChannelMessageStatusStructureJsonUnmarshaller
+                        .getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }
