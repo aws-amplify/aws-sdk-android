@@ -704,6 +704,52 @@ public class AmazonChimeSDKIdentityClient extends AmazonWebServiceClient impleme
 
     /**
      * <p>
+     * Deregisters an <code>AppInstanceUserEndpoint</code>.
+     * </p>
+     * 
+     * @param deregisterAppInstanceUserEndpointRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void deregisterAppInstanceUserEndpoint(
+            DeregisterAppInstanceUserEndpointRequest deregisterAppInstanceUserEndpointRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deregisterAppInstanceUserEndpointRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeregisterAppInstanceUserEndpointRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeregisterAppInstanceUserEndpointRequestMarshaller()
+                        .marshall(deregisterAppInstanceUserEndpointRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns the full details of an <code>AppInstance</code>.
      * </p>
      * 
@@ -866,6 +912,60 @@ public class AmazonChimeSDKIdentityClient extends AmazonWebServiceClient impleme
 
     /**
      * <p>
+     * Returns the full details of an <code>AppInstanceUserEndpoint</code>.
+     * </p>
+     * 
+     * @param describeAppInstanceUserEndpointRequest
+     * @return describeAppInstanceUserEndpointResult The response from the
+     *         DescribeAppInstanceUserEndpoint service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public DescribeAppInstanceUserEndpointResult describeAppInstanceUserEndpoint(
+            DescribeAppInstanceUserEndpointRequest describeAppInstanceUserEndpointRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeAppInstanceUserEndpointRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeAppInstanceUserEndpointRequest> request = null;
+        Response<DescribeAppInstanceUserEndpointResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeAppInstanceUserEndpointRequestMarshaller()
+                        .marshall(describeAppInstanceUserEndpointRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeAppInstanceUserEndpointResult, JsonUnmarshallerContext> unmarshaller = new DescribeAppInstanceUserEndpointResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeAppInstanceUserEndpointResult> responseHandler = new JsonResponseHandler<DescribeAppInstanceUserEndpointResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the retention settings for an <code>AppInstance</code>.
      * </p>
      * 
@@ -962,6 +1062,61 @@ public class AmazonChimeSDKIdentityClient extends AmazonWebServiceClient impleme
             }
             Unmarshaller<ListAppInstanceAdminsResult, JsonUnmarshallerContext> unmarshaller = new ListAppInstanceAdminsResultJsonUnmarshaller();
             JsonResponseHandler<ListAppInstanceAdminsResult> responseHandler = new JsonResponseHandler<ListAppInstanceAdminsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists all the <code>AppInstanceUserEndpoints</code> created under a
+     * single <code>AppInstanceUser</code>.
+     * </p>
+     * 
+     * @param listAppInstanceUserEndpointsRequest
+     * @return listAppInstanceUserEndpointsResult The response from the
+     *         ListAppInstanceUserEndpoints service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ListAppInstanceUserEndpointsResult listAppInstanceUserEndpoints(
+            ListAppInstanceUserEndpointsRequest listAppInstanceUserEndpointsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listAppInstanceUserEndpointsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListAppInstanceUserEndpointsRequest> request = null;
+        Response<ListAppInstanceUserEndpointsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListAppInstanceUserEndpointsRequestMarshaller()
+                        .marshall(listAppInstanceUserEndpointsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListAppInstanceUserEndpointsResult, JsonUnmarshallerContext> unmarshaller = new ListAppInstanceUserEndpointsResultJsonUnmarshaller();
+            JsonResponseHandler<ListAppInstanceUserEndpointsResult> responseHandler = new JsonResponseHandler<ListAppInstanceUserEndpointsResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -1082,6 +1237,60 @@ public class AmazonChimeSDKIdentityClient extends AmazonWebServiceClient impleme
 
     /**
      * <p>
+     * Lists the tags applied to an Amazon Chime SDK identity resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listTagsForResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListTagsForResourceRequest> request = null;
+        Response<ListTagsForResourceResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListTagsForResourceRequestMarshaller()
+                        .marshall(listTagsForResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListTagsForResourceResult, JsonUnmarshallerContext> unmarshaller = new ListTagsForResourceResultJsonUnmarshaller();
+            JsonResponseHandler<ListTagsForResourceResult> responseHandler = new JsonResponseHandler<ListTagsForResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Sets the amount of time in days that a given <code>AppInstance</code>
      * retains data.
      * </p>
@@ -1129,6 +1338,156 @@ public class AmazonChimeSDKIdentityClient extends AmazonWebServiceClient impleme
             response = invoke(request, responseHandler, executionContext);
 
             return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Registers an endpoint under an Amazon Chime <code>AppInstanceUser</code>.
+     * The endpoint receives messages for a user. For push notifications, the
+     * endpoint is a mobile device used to receive mobile push notifications for
+     * a user.
+     * </p>
+     * 
+     * @param registerAppInstanceUserEndpointRequest
+     * @return registerAppInstanceUserEndpointResult The response from the
+     *         RegisterAppInstanceUserEndpoint service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public RegisterAppInstanceUserEndpointResult registerAppInstanceUserEndpoint(
+            RegisterAppInstanceUserEndpointRequest registerAppInstanceUserEndpointRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(registerAppInstanceUserEndpointRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<RegisterAppInstanceUserEndpointRequest> request = null;
+        Response<RegisterAppInstanceUserEndpointResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new RegisterAppInstanceUserEndpointRequestMarshaller()
+                        .marshall(registerAppInstanceUserEndpointRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<RegisterAppInstanceUserEndpointResult, JsonUnmarshallerContext> unmarshaller = new RegisterAppInstanceUserEndpointResultJsonUnmarshaller();
+            JsonResponseHandler<RegisterAppInstanceUserEndpointResult> responseHandler = new JsonResponseHandler<RegisterAppInstanceUserEndpointResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Applies the specified tags to the specified Amazon Chime SDK identity
+     * resource.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ResourceLimitExceededException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(tagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<TagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new TagResourceRequestMarshaller().marshall(tagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Removes the specified tags from the specified Amazon Chime SDK identity
+     * resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @throws BadRequestException
+     * @throws ForbiddenException
+     * @throws UnauthorizedClientException
+     * @throws ThrottledClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public void untagResource(UntagResourceRequest untagResourceRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(untagResourceRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UntagResourceRequest> request = null;
+        Response<Void> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UntagResourceRequestMarshaller().marshall(untagResourceRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            JsonResponseHandler<Void> responseHandler = new JsonResponseHandler<Void>(null);
+            invoke(request, responseHandler, executionContext);
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
             endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
@@ -1235,6 +1594,62 @@ public class AmazonChimeSDKIdentityClient extends AmazonWebServiceClient impleme
             }
             Unmarshaller<UpdateAppInstanceUserResult, JsonUnmarshallerContext> unmarshaller = new UpdateAppInstanceUserResultJsonUnmarshaller();
             JsonResponseHandler<UpdateAppInstanceUserResult> responseHandler = new JsonResponseHandler<UpdateAppInstanceUserResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Updates the details of an <code>AppInstanceUserEndpoint</code>. You can
+     * update the name and <code>AllowMessage</code> values.
+     * </p>
+     * 
+     * @param updateAppInstanceUserEndpointRequest
+     * @return updateAppInstanceUserEndpointResult The response from the
+     *         UpdateAppInstanceUserEndpoint service method, as returned by
+     *         Amazon ChimeSDK Identity.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws ForbiddenException
+     * @throws ThrottledClientException
+     * @throws UnauthorizedClientException
+     * @throws ServiceUnavailableException
+     * @throws ServiceFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             ChimeSDK Identity indicating either a problem with the data
+     *             in the request, or a server side issue.
+     */
+    public UpdateAppInstanceUserEndpointResult updateAppInstanceUserEndpoint(
+            UpdateAppInstanceUserEndpointRequest updateAppInstanceUserEndpointRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateAppInstanceUserEndpointRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateAppInstanceUserEndpointRequest> request = null;
+        Response<UpdateAppInstanceUserEndpointResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateAppInstanceUserEndpointRequestMarshaller()
+                        .marshall(updateAppInstanceUserEndpointRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateAppInstanceUserEndpointResult, JsonUnmarshallerContext> unmarshaller = new UpdateAppInstanceUserEndpointResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateAppInstanceUserEndpointResult> responseHandler = new JsonResponseHandler<UpdateAppInstanceUserEndpointResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
