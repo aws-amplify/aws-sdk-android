@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -32,7 +32,11 @@ public enum ChatItemType {
     MESSAGE("MESSAGE"),
     EVENT("EVENT"),
     ATTACHMENT("ATTACHMENT"),
-    CONNECTION_ACK("CONNECTION_ACK");
+    CONNECTION_ACK("CONNECTION_ACK"),
+    PARTICIPANT_ACTIVE("PARTICIPANT_ACTIVE"),
+    PARTICIPANT_INACTIVE("PARTICIPANT_INACTIVE"),
+    PARTICIPANT_ENGAGED("PARTICIPANT_ENGAGED"),
+    PARTICIPANT_DISENGAGED("PARTICIPANT_DISENGAGED");
 
     private String value;
 
@@ -58,6 +62,10 @@ public enum ChatItemType {
         enumMap.put("EVENT", EVENT);
         enumMap.put("ATTACHMENT", ATTACHMENT);
         enumMap.put("CONNECTION_ACK", CONNECTION_ACK);
+        enumMap.put("PARTICIPANT_ACTIVE", PARTICIPANT_ACTIVE);
+        enumMap.put("PARTICIPANT_INACTIVE", PARTICIPANT_INACTIVE);
+        enumMap.put("PARTICIPANT_ENGAGED", PARTICIPANT_ENGAGED);
+        enumMap.put("PARTICIPANT_DISENGAGED", PARTICIPANT_DISENGAGED);
     }
 
     /**

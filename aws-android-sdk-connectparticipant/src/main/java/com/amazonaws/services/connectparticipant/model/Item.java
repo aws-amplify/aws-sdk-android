@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -75,7 +75,8 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, PARTICIPANT_ACTIVE, PARTICIPANT_INACTIVE,
+     * PARTICIPANT_ENGAGED, PARTICIPANT_DISENGAGED
      */
     private String type;
 
@@ -364,7 +365,8 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, PARTICIPANT_ACTIVE, PARTICIPANT_INACTIVE,
+     * PARTICIPANT_ENGAGED, PARTICIPANT_DISENGAGED
      *
      * @return <p>
      *         Type of the item: message or event.
@@ -383,7 +385,8 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, PARTICIPANT_ACTIVE, PARTICIPANT_INACTIVE,
+     * PARTICIPANT_ENGAGED, PARTICIPANT_DISENGAGED
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -405,7 +408,8 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, PARTICIPANT_ACTIVE, PARTICIPANT_INACTIVE,
+     * PARTICIPANT_ENGAGED, PARTICIPANT_DISENGAGED
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -427,7 +431,8 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, PARTICIPANT_ACTIVE, PARTICIPANT_INACTIVE,
+     * PARTICIPANT_ENGAGED, PARTICIPANT_DISENGAGED
      *
      * @param type <p>
      *            Type of the item: message or event.
@@ -449,7 +454,8 @@ public class Item implements Serializable {
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>TYPING, PARTICIPANT_JOINED, PARTICIPANT_LEFT,
      * CHAT_ENDED, TRANSFER_SUCCEEDED, TRANSFER_FAILED, MESSAGE, EVENT,
-     * ATTACHMENT, CONNECTION_ACK
+     * ATTACHMENT, CONNECTION_ACK, PARTICIPANT_ACTIVE, PARTICIPANT_INACTIVE,
+     * PARTICIPANT_ENGAGED, PARTICIPANT_DISENGAGED
      *
      * @param type <p>
      *            Type of the item: message or event.
