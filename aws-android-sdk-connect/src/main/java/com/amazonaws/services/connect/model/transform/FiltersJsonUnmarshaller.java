@@ -39,6 +39,11 @@ class FiltersJsonUnmarshaller implements Unmarshaller<Filters, JsonUnmarshallerC
                 filters.setQueues(new ListUnmarshaller<String>(StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("RoutingProfiles")) {
+                filters.setRoutingProfiles(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                        .getInstance()
+                        )
+                                .unmarshall(context));
             } else if (name.equals("Channels")) {
                 filters.setChannels(new ListUnmarshaller<String>(StringJsonUnmarshaller
                         .getInstance()

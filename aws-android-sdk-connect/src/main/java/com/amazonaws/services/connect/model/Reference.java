@@ -41,7 +41,7 @@ public class Reference implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      */
     private String type;
 
@@ -111,7 +111,7 @@ public class Reference implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @return <p>
      *         A valid URL.
@@ -128,7 +128,7 @@ public class Reference implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
      *            A valid URL.
@@ -148,7 +148,7 @@ public class Reference implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
      *            A valid URL.
@@ -168,7 +168,7 @@ public class Reference implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
      *            A valid URL.
@@ -188,7 +188,7 @@ public class Reference implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT, NUMBER, STRING, DATE, EMAIL
      *
      * @param type <p>
      *            A valid URL.

@@ -24,7 +24,7 @@ public class CreateInstanceResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
     private String id;
 
@@ -41,7 +41,7 @@ public class CreateInstanceResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
      *         The identifier for the instance.
@@ -57,7 +57,7 @@ public class CreateInstanceResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
      *            The identifier for the instance.
@@ -76,7 +76,7 @@ public class CreateInstanceResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
      *            The identifier for the instance.

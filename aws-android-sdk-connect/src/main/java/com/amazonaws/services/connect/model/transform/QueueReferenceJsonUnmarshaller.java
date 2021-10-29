@@ -42,6 +42,9 @@ class QueueReferenceJsonUnmarshaller implements
             } else if (name.equals("Arn")) {
                 queueReference.setArn(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("QueueType")) {
+                queueReference.setQueueType(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -33,6 +33,13 @@ public class Filters implements Serializable {
 
     /**
      * <p>
+     * The filters used to sort routing profiles.
+     * </p>
+     */
+    private java.util.List<String> routingProfiles;
+
+    /**
+     * <p>
      * The channel to use to filter the metrics.
      * </p>
      */
@@ -117,6 +124,80 @@ public class Filters implements Serializable {
      */
     public Filters withQueues(java.util.Collection<String> queues) {
         setQueues(queues);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The filters used to sort routing profiles.
+     * </p>
+     *
+     * @return <p>
+     *         The filters used to sort routing profiles.
+     *         </p>
+     */
+    public java.util.List<String> getRoutingProfiles() {
+        return routingProfiles;
+    }
+
+    /**
+     * <p>
+     * The filters used to sort routing profiles.
+     * </p>
+     *
+     * @param routingProfiles <p>
+     *            The filters used to sort routing profiles.
+     *            </p>
+     */
+    public void setRoutingProfiles(java.util.Collection<String> routingProfiles) {
+        if (routingProfiles == null) {
+            this.routingProfiles = null;
+            return;
+        }
+
+        this.routingProfiles = new java.util.ArrayList<String>(routingProfiles);
+    }
+
+    /**
+     * <p>
+     * The filters used to sort routing profiles.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfiles <p>
+     *            The filters used to sort routing profiles.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Filters withRoutingProfiles(String... routingProfiles) {
+        if (getRoutingProfiles() == null) {
+            this.routingProfiles = new java.util.ArrayList<String>(routingProfiles.length);
+        }
+        for (String value : routingProfiles) {
+            this.routingProfiles.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * The filters used to sort routing profiles.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfiles <p>
+     *            The filters used to sort routing profiles.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Filters withRoutingProfiles(java.util.Collection<String> routingProfiles) {
+        setRoutingProfiles(routingProfiles);
         return this;
     }
 
@@ -207,6 +288,8 @@ public class Filters implements Serializable {
         sb.append("{");
         if (getQueues() != null)
             sb.append("Queues: " + getQueues() + ",");
+        if (getRoutingProfiles() != null)
+            sb.append("RoutingProfiles: " + getRoutingProfiles() + ",");
         if (getChannels() != null)
             sb.append("Channels: " + getChannels());
         sb.append("}");
@@ -219,6 +302,8 @@ public class Filters implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getQueues() == null) ? 0 : getQueues().hashCode());
+        hashCode = prime * hashCode
+                + ((getRoutingProfiles() == null) ? 0 : getRoutingProfiles().hashCode());
         hashCode = prime * hashCode + ((getChannels() == null) ? 0 : getChannels().hashCode());
         return hashCode;
     }
@@ -237,6 +322,11 @@ public class Filters implements Serializable {
         if (other.getQueues() == null ^ this.getQueues() == null)
             return false;
         if (other.getQueues() != null && other.getQueues().equals(this.getQueues()) == false)
+            return false;
+        if (other.getRoutingProfiles() == null ^ this.getRoutingProfiles() == null)
+            return false;
+        if (other.getRoutingProfiles() != null
+                && other.getRoutingProfiles().equals(this.getRoutingProfiles()) == false)
             return false;
         if (other.getChannels() == null ^ this.getChannels() == null)
             return false;

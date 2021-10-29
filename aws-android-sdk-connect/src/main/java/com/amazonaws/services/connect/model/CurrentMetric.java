@@ -46,7 +46,7 @@ public class CurrentMetric implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SECONDS, COUNT, PERCENT
+     * <b>Allowed Values: </b>SECONDS, MILLISECONDS, COUNT, PERCENT
      */
     private String unit;
 
@@ -168,7 +168,7 @@ public class CurrentMetric implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SECONDS, COUNT, PERCENT
+     * <b>Allowed Values: </b>SECONDS, MILLISECONDS, COUNT, PERCENT
      *
      * @return <p>
      *         The unit for the metric.
@@ -185,7 +185,7 @@ public class CurrentMetric implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SECONDS, COUNT, PERCENT
+     * <b>Allowed Values: </b>SECONDS, MILLISECONDS, COUNT, PERCENT
      *
      * @param unit <p>
      *            The unit for the metric.
@@ -205,7 +205,7 @@ public class CurrentMetric implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SECONDS, COUNT, PERCENT
+     * <b>Allowed Values: </b>SECONDS, MILLISECONDS, COUNT, PERCENT
      *
      * @param unit <p>
      *            The unit for the metric.
@@ -225,7 +225,7 @@ public class CurrentMetric implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SECONDS, COUNT, PERCENT
+     * <b>Allowed Values: </b>SECONDS, MILLISECONDS, COUNT, PERCENT
      *
      * @param unit <p>
      *            The unit for the metric.
@@ -245,7 +245,7 @@ public class CurrentMetric implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>SECONDS, COUNT, PERCENT
+     * <b>Allowed Values: </b>SECONDS, MILLISECONDS, COUNT, PERCENT
      *
      * @param unit <p>
      *            The unit for the metric.

@@ -39,6 +39,16 @@ public class QueueReference implements Serializable {
 
     /**
      * <p>
+     * The type of queue.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>STANDARD, AGENT
+     */
+    private String queueType;
+
+    /**
+     * <p>
      * The identifier of the queue.
      * </p>
      *
@@ -128,6 +138,103 @@ public class QueueReference implements Serializable {
     }
 
     /**
+     * <p>
+     * The type of queue.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>STANDARD, AGENT
+     *
+     * @return <p>
+     *         The type of queue.
+     *         </p>
+     * @see QueueType
+     */
+    public String getQueueType() {
+        return queueType;
+    }
+
+    /**
+     * <p>
+     * The type of queue.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>STANDARD, AGENT
+     *
+     * @param queueType <p>
+     *            The type of queue.
+     *            </p>
+     * @see QueueType
+     */
+    public void setQueueType(String queueType) {
+        this.queueType = queueType;
+    }
+
+    /**
+     * <p>
+     * The type of queue.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>STANDARD, AGENT
+     *
+     * @param queueType <p>
+     *            The type of queue.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see QueueType
+     */
+    public QueueReference withQueueType(String queueType) {
+        this.queueType = queueType;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of queue.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>STANDARD, AGENT
+     *
+     * @param queueType <p>
+     *            The type of queue.
+     *            </p>
+     * @see QueueType
+     */
+    public void setQueueType(QueueType queueType) {
+        this.queueType = queueType.toString();
+    }
+
+    /**
+     * <p>
+     * The type of queue.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>STANDARD, AGENT
+     *
+     * @param queueType <p>
+     *            The type of queue.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see QueueType
+     */
+    public QueueReference withQueueType(QueueType queueType) {
+        this.queueType = queueType.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -141,7 +248,9 @@ public class QueueReference implements Serializable {
         if (getId() != null)
             sb.append("Id: " + getId() + ",");
         if (getArn() != null)
-            sb.append("Arn: " + getArn());
+            sb.append("Arn: " + getArn() + ",");
+        if (getQueueType() != null)
+            sb.append("QueueType: " + getQueueType());
         sb.append("}");
         return sb.toString();
     }
@@ -153,6 +262,7 @@ public class QueueReference implements Serializable {
 
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
+        hashCode = prime * hashCode + ((getQueueType() == null) ? 0 : getQueueType().hashCode());
         return hashCode;
     }
 
@@ -174,6 +284,11 @@ public class QueueReference implements Serializable {
         if (other.getArn() == null ^ this.getArn() == null)
             return false;
         if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
+            return false;
+        if (other.getQueueType() == null ^ this.getQueueType() == null)
+            return false;
+        if (other.getQueueType() != null
+                && other.getQueueType().equals(this.getQueueType()) == false)
             return false;
         return true;
     }

@@ -42,6 +42,20 @@ public class Dimensions implements Serializable {
 
     /**
      * <p>
+     * The routing profile.
+     * </p>
+     */
+    private RoutingProfileReference routingProfile;
+
+    /**
+     * <p>
+     * The instance reference.
+     * </p>
+     */
+    private InstanceReference instanceReference;
+
+    /**
+     * <p>
      * Information about the queue for which metrics are returned.
      * </p>
      *
@@ -183,6 +197,96 @@ public class Dimensions implements Serializable {
     }
 
     /**
+     * <p>
+     * The routing profile.
+     * </p>
+     *
+     * @return <p>
+     *         The routing profile.
+     *         </p>
+     */
+    public RoutingProfileReference getRoutingProfile() {
+        return routingProfile;
+    }
+
+    /**
+     * <p>
+     * The routing profile.
+     * </p>
+     *
+     * @param routingProfile <p>
+     *            The routing profile.
+     *            </p>
+     */
+    public void setRoutingProfile(RoutingProfileReference routingProfile) {
+        this.routingProfile = routingProfile;
+    }
+
+    /**
+     * <p>
+     * The routing profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param routingProfile <p>
+     *            The routing profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Dimensions withRoutingProfile(RoutingProfileReference routingProfile) {
+        this.routingProfile = routingProfile;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The instance reference.
+     * </p>
+     *
+     * @return <p>
+     *         The instance reference.
+     *         </p>
+     */
+    public InstanceReference getInstanceReference() {
+        return instanceReference;
+    }
+
+    /**
+     * <p>
+     * The instance reference.
+     * </p>
+     *
+     * @param instanceReference <p>
+     *            The instance reference.
+     *            </p>
+     */
+    public void setInstanceReference(InstanceReference instanceReference) {
+        this.instanceReference = instanceReference;
+    }
+
+    /**
+     * <p>
+     * The instance reference.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param instanceReference <p>
+     *            The instance reference.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Dimensions withInstanceReference(InstanceReference instanceReference) {
+        this.instanceReference = instanceReference;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -196,7 +300,11 @@ public class Dimensions implements Serializable {
         if (getQueue() != null)
             sb.append("Queue: " + getQueue() + ",");
         if (getChannel() != null)
-            sb.append("Channel: " + getChannel());
+            sb.append("Channel: " + getChannel() + ",");
+        if (getRoutingProfile() != null)
+            sb.append("RoutingProfile: " + getRoutingProfile() + ",");
+        if (getInstanceReference() != null)
+            sb.append("InstanceReference: " + getInstanceReference());
         sb.append("}");
         return sb.toString();
     }
@@ -208,6 +316,10 @@ public class Dimensions implements Serializable {
 
         hashCode = prime * hashCode + ((getQueue() == null) ? 0 : getQueue().hashCode());
         hashCode = prime * hashCode + ((getChannel() == null) ? 0 : getChannel().hashCode());
+        hashCode = prime * hashCode
+                + ((getRoutingProfile() == null) ? 0 : getRoutingProfile().hashCode());
+        hashCode = prime * hashCode
+                + ((getInstanceReference() == null) ? 0 : getInstanceReference().hashCode());
         return hashCode;
     }
 
@@ -229,6 +341,16 @@ public class Dimensions implements Serializable {
         if (other.getChannel() == null ^ this.getChannel() == null)
             return false;
         if (other.getChannel() != null && other.getChannel().equals(this.getChannel()) == false)
+            return false;
+        if (other.getRoutingProfile() == null ^ this.getRoutingProfile() == null)
+            return false;
+        if (other.getRoutingProfile() != null
+                && other.getRoutingProfile().equals(this.getRoutingProfile()) == false)
+            return false;
+        if (other.getInstanceReference() == null ^ this.getInstanceReference() == null)
+            return false;
+        if (other.getInstanceReference() != null
+                && other.getInstanceReference().equals(this.getInstanceReference()) == false)
             return false;
         return true;
     }

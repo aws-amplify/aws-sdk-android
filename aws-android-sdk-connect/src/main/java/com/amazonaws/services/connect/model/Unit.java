@@ -24,6 +24,7 @@ import java.util.Map;
 public enum Unit {
 
     SECONDS("SECONDS"),
+    MILLISECONDS("MILLISECONDS"),
     COUNT("COUNT"),
     PERCENT("PERCENT");
 
@@ -42,6 +43,7 @@ public enum Unit {
     static {
         enumMap = new HashMap<String, Unit>();
         enumMap.put("SECONDS", SECONDS);
+        enumMap.put("MILLISECONDS", MILLISECONDS);
         enumMap.put("COUNT", COUNT);
         enumMap.put("PERCENT", PERCENT);
     }

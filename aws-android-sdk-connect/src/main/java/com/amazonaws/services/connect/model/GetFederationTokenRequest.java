@@ -41,7 +41,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
     private String instanceId;
 
@@ -52,7 +52,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
      *         The identifier of the Amazon Connect instance. You can find the
@@ -70,7 +70,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param instanceId <p>
      *            The identifier of the Amazon Connect instance. You can find
@@ -91,7 +91,7 @@ public class GetFederationTokenRequest extends AmazonWebServiceRequest implement
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param instanceId <p>
      *            The identifier of the Amazon Connect instance. You can find

@@ -41,7 +41,7 @@ public class ListRoutingProfilesRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
     private String instanceId;
 
@@ -71,7 +71,7 @@ public class ListRoutingProfilesRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
      *         The identifier of the Amazon Connect instance. You can find the
@@ -89,7 +89,7 @@ public class ListRoutingProfilesRequest extends AmazonWebServiceRequest implemen
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param instanceId <p>
      *            The identifier of the Amazon Connect instance. You can find
@@ -110,7 +110,7 @@ public class ListRoutingProfilesRequest extends AmazonWebServiceRequest implemen
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param instanceId <p>
      *            The identifier of the Amazon Connect instance. You can find

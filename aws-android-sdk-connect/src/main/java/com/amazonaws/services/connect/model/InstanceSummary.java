@@ -29,7 +29,7 @@ public class InstanceSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
     private String id;
 
@@ -105,7 +105,7 @@ public class InstanceSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
      *         The identifier of the instance.
@@ -121,7 +121,7 @@ public class InstanceSummary implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
      *            The identifier of the instance.
@@ -140,7 +140,7 @@ public class InstanceSummary implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 100<br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @param id <p>
      *            The identifier of the instance.

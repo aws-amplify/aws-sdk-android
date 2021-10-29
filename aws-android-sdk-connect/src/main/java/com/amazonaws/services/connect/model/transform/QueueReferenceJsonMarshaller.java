@@ -36,6 +36,11 @@ class QueueReferenceJsonMarshaller {
             jsonWriter.name("Arn");
             jsonWriter.value(arn);
         }
+        if (queueReference.getQueueType() != null) {
+            String queueType = queueReference.getQueueType();
+            jsonWriter.name("QueueType");
+            jsonWriter.value(queueType);
+        }
         jsonWriter.endObject();
     }
 

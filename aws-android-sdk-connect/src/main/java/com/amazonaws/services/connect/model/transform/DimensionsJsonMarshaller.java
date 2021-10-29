@@ -36,6 +36,17 @@ class DimensionsJsonMarshaller {
             jsonWriter.name("Channel");
             jsonWriter.value(channel);
         }
+        if (dimensions.getRoutingProfile() != null) {
+            RoutingProfileReference routingProfile = dimensions.getRoutingProfile();
+            jsonWriter.name("RoutingProfile");
+            RoutingProfileReferenceJsonMarshaller.getInstance()
+                    .marshall(routingProfile, jsonWriter);
+        }
+        if (dimensions.getInstanceReference() != null) {
+            InstanceReference instanceReference = dimensions.getInstanceReference();
+            jsonWriter.name("InstanceReference");
+            InstanceReferenceJsonMarshaller.getInstance().marshall(instanceReference, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
