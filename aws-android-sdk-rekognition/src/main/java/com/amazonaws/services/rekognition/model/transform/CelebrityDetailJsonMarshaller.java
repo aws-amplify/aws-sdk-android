@@ -63,6 +63,11 @@ class CelebrityDetailJsonMarshaller {
             jsonWriter.name("Face");
             FaceDetailJsonMarshaller.getInstance().marshall(face, jsonWriter);
         }
+        if (celebrityDetail.getKnownGender() != null) {
+            KnownGender knownGender = celebrityDetail.getKnownGender();
+            jsonWriter.name("KnownGender");
+            KnownGenderJsonMarshaller.getInstance().marshall(knownGender, jsonWriter);
+        }
         jsonWriter.endObject();
     }
 
