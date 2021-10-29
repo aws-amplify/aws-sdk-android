@@ -91,6 +91,17 @@ public class CreateVocabularyFilterRequestMarshaller implements
                 jsonWriter.name("VocabularyFilterFileUri");
                 jsonWriter.value(vocabularyFilterFileUri);
             }
+            if (createVocabularyFilterRequest.getTags() != null) {
+                java.util.List<Tag> tags = createVocabularyFilterRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

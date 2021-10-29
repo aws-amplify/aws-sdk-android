@@ -52,7 +52,9 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) that uniquely identifies the permissions
      * you've given Amazon Transcribe to access your Amazon S3 buckets
-     * containing your media files or text data.
+     * containing your media files or text data. ARNs have the format
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -193,7 +195,9 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) that uniquely identifies the permissions
      * you've given Amazon Transcribe to access your Amazon S3 buckets
-     * containing your media files or text data.
+     * containing your media files or text data. ARNs have the format
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -205,7 +209,10 @@ public class InputDataConfig implements Serializable {
      * @return <p>
      *         The Amazon Resource Name (ARN) that uniquely identifies the
      *         permissions you've given Amazon Transcribe to access your Amazon
-     *         S3 buckets containing your media files or text data.
+     *         S3 buckets containing your media files or text data. ARNs have
+     *         the format
+     *         <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     *         .
      *         </p>
      */
     public String getDataAccessRoleArn() {
@@ -216,7 +223,9 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) that uniquely identifies the permissions
      * you've given Amazon Transcribe to access your Amazon S3 buckets
-     * containing your media files or text data.
+     * containing your media files or text data. ARNs have the format
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * .
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -229,6 +238,9 @@ public class InputDataConfig implements Serializable {
      *            The Amazon Resource Name (ARN) that uniquely identifies the
      *            permissions you've given Amazon Transcribe to access your
      *            Amazon S3 buckets containing your media files or text data.
+     *            ARNs have the format
+     *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     *            .
      *            </p>
      */
     public void setDataAccessRoleArn(String dataAccessRoleArn) {
@@ -239,7 +251,9 @@ public class InputDataConfig implements Serializable {
      * <p>
      * The Amazon Resource Name (ARN) that uniquely identifies the permissions
      * you've given Amazon Transcribe to access your Amazon S3 buckets
-     * containing your media files or text data.
+     * containing your media files or text data. ARNs have the format
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * .
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -255,6 +269,9 @@ public class InputDataConfig implements Serializable {
      *            The Amazon Resource Name (ARN) that uniquely identifies the
      *            permissions you've given Amazon Transcribe to access your
      *            Amazon S3 buckets containing your media files or text data.
+     *            ARNs have the format
+     *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

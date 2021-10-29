@@ -78,6 +78,17 @@ public class CreateMedicalVocabularyRequestMarshaller implements
                 jsonWriter.name("VocabularyFileUri");
                 jsonWriter.value(vocabularyFileUri);
             }
+            if (createMedicalVocabularyRequest.getTags() != null) {
+                java.util.List<Tag> tags = createMedicalVocabularyRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

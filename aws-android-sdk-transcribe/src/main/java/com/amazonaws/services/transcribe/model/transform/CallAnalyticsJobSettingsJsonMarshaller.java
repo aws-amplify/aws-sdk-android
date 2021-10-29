@@ -63,6 +63,22 @@ class CallAnalyticsJobSettingsJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (callAnalyticsJobSettings.getLanguageIdSettings() != null) {
+            java.util.Map<String, LanguageIdSettings> languageIdSettings = callAnalyticsJobSettings
+                    .getLanguageIdSettings();
+            jsonWriter.name("LanguageIdSettings");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, LanguageIdSettings> languageIdSettingsEntry : languageIdSettings
+                    .entrySet()) {
+                LanguageIdSettings languageIdSettingsValue = languageIdSettingsEntry.getValue();
+                if (languageIdSettingsValue != null) {
+                    jsonWriter.name(languageIdSettingsEntry.getKey());
+                    LanguageIdSettingsJsonMarshaller.getInstance().marshall(
+                            languageIdSettingsValue, jsonWriter);
+                }
+            }
+            jsonWriter.endObject();
+        }
         jsonWriter.endObject();
     }
 

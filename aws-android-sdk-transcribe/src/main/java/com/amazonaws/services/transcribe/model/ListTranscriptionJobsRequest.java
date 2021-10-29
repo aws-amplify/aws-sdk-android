@@ -53,7 +53,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * If the result of the previous request to
-     * <code>ListTranscriptionJobs</code> was truncated, include the
+     * <code>ListTranscriptionJobs</code> is truncated, include the
      * <code>NextToken</code> to fetch the next set of jobs.
      * </p>
      * <p>
@@ -65,8 +65,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of jobs to return in the response. If there are fewer
-     * results in the list, this response contains only the actual results.
+     * The maximum number of jobs to return in each page of results. If there
+     * are fewer results than the value you specify, only the actual results are
+     * returned. If you do not specify a value, the default of 5 is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -272,7 +273,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * If the result of the previous request to
-     * <code>ListTranscriptionJobs</code> was truncated, include the
+     * <code>ListTranscriptionJobs</code> is truncated, include the
      * <code>NextToken</code> to fetch the next set of jobs.
      * </p>
      * <p>
@@ -282,7 +283,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @return <p>
      *         If the result of the previous request to
-     *         <code>ListTranscriptionJobs</code> was truncated, include the
+     *         <code>ListTranscriptionJobs</code> is truncated, include the
      *         <code>NextToken</code> to fetch the next set of jobs.
      *         </p>
      */
@@ -293,7 +294,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * If the result of the previous request to
-     * <code>ListTranscriptionJobs</code> was truncated, include the
+     * <code>ListTranscriptionJobs</code> is truncated, include the
      * <code>NextToken</code> to fetch the next set of jobs.
      * </p>
      * <p>
@@ -303,7 +304,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @param nextToken <p>
      *            If the result of the previous request to
-     *            <code>ListTranscriptionJobs</code> was truncated, include the
+     *            <code>ListTranscriptionJobs</code> is truncated, include the
      *            <code>NextToken</code> to fetch the next set of jobs.
      *            </p>
      */
@@ -314,7 +315,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
     /**
      * <p>
      * If the result of the previous request to
-     * <code>ListTranscriptionJobs</code> was truncated, include the
+     * <code>ListTranscriptionJobs</code> is truncated, include the
      * <code>NextToken</code> to fetch the next set of jobs.
      * </p>
      * <p>
@@ -327,7 +328,7 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      *
      * @param nextToken <p>
      *            If the result of the previous request to
-     *            <code>ListTranscriptionJobs</code> was truncated, include the
+     *            <code>ListTranscriptionJobs</code> is truncated, include the
      *            <code>NextToken</code> to fetch the next set of jobs.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -340,17 +341,19 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of jobs to return in the response. If there are fewer
-     * results in the list, this response contains only the actual results.
+     * The maximum number of jobs to return in each page of results. If there
+     * are fewer results than the value you specify, only the actual results are
+     * returned. If you do not specify a value, the default of 5 is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximum number of jobs to return in the response. If there
-     *         are fewer results in the list, this response contains only the
-     *         actual results.
+     *         The maximum number of jobs to return in each page of results. If
+     *         there are fewer results than the value you specify, only the
+     *         actual results are returned. If you do not specify a value, the
+     *         default of 5 is used.
      *         </p>
      */
     public Integer getMaxResults() {
@@ -359,17 +362,19 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of jobs to return in the response. If there are fewer
-     * results in the list, this response contains only the actual results.
+     * The maximum number of jobs to return in each page of results. If there
+     * are fewer results than the value you specify, only the actual results are
+     * returned. If you do not specify a value, the default of 5 is used.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of jobs to return in the response. If there
-     *            are fewer results in the list, this response contains only the
-     *            actual results.
+     *            The maximum number of jobs to return in each page of results.
+     *            If there are fewer results than the value you specify, only
+     *            the actual results are returned. If you do not specify a
+     *            value, the default of 5 is used.
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -378,8 +383,9 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
 
     /**
      * <p>
-     * The maximum number of jobs to return in the response. If there are fewer
-     * results in the list, this response contains only the actual results.
+     * The maximum number of jobs to return in each page of results. If there
+     * are fewer results than the value you specify, only the actual results are
+     * returned. If you do not specify a value, the default of 5 is used.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -389,9 +395,10 @@ public class ListTranscriptionJobsRequest extends AmazonWebServiceRequest implem
      * <b>Range: </b>1 - 100<br/>
      *
      * @param maxResults <p>
-     *            The maximum number of jobs to return in the response. If there
-     *            are fewer results in the list, this response contains only the
-     *            actual results.
+     *            The maximum number of jobs to return in each page of results.
+     *            If there are fewer results than the value you specify, only
+     *            the actual results are returned. If you do not specify a
+     *            value, the default of 5 is used.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

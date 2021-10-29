@@ -106,6 +106,21 @@ public class StartTranscriptionJobRequestMarshaller implements
                 jsonWriter.name("OutputEncryptionKMSKeyId");
                 jsonWriter.value(outputEncryptionKMSKeyId);
             }
+            if (startTranscriptionJobRequest.getKMSEncryptionContext() != null) {
+                java.util.Map<String, String> kMSEncryptionContext = startTranscriptionJobRequest
+                        .getKMSEncryptionContext();
+                jsonWriter.name("KMSEncryptionContext");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, String> kMSEncryptionContextEntry : kMSEncryptionContext
+                        .entrySet()) {
+                    String kMSEncryptionContextValue = kMSEncryptionContextEntry.getValue();
+                    if (kMSEncryptionContextValue != null) {
+                        jsonWriter.name(kMSEncryptionContextEntry.getKey());
+                        jsonWriter.value(kMSEncryptionContextValue);
+                    }
+                }
+                jsonWriter.endObject();
+            }
             if (startTranscriptionJobRequest.getSettings() != null) {
                 Settings settings = startTranscriptionJobRequest.getSettings();
                 jsonWriter.name("Settings");
@@ -145,6 +160,38 @@ public class StartTranscriptionJobRequestMarshaller implements
                     }
                 }
                 jsonWriter.endArray();
+            }
+            if (startTranscriptionJobRequest.getSubtitles() != null) {
+                Subtitles subtitles = startTranscriptionJobRequest.getSubtitles();
+                jsonWriter.name("Subtitles");
+                SubtitlesJsonMarshaller.getInstance().marshall(subtitles, jsonWriter);
+            }
+            if (startTranscriptionJobRequest.getTags() != null) {
+                java.util.List<Tag> tags = startTranscriptionJobRequest.getTags();
+                jsonWriter.name("Tags");
+                jsonWriter.beginArray();
+                for (Tag tagsItem : tags) {
+                    if (tagsItem != null) {
+                        TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                    }
+                }
+                jsonWriter.endArray();
+            }
+            if (startTranscriptionJobRequest.getLanguageIdSettings() != null) {
+                java.util.Map<String, LanguageIdSettings> languageIdSettings = startTranscriptionJobRequest
+                        .getLanguageIdSettings();
+                jsonWriter.name("LanguageIdSettings");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, LanguageIdSettings> languageIdSettingsEntry : languageIdSettings
+                        .entrySet()) {
+                    LanguageIdSettings languageIdSettingsValue = languageIdSettingsEntry.getValue();
+                    if (languageIdSettingsValue != null) {
+                        jsonWriter.name(languageIdSettingsEntry.getKey());
+                        LanguageIdSettingsJsonMarshaller.getInstance().marshall(
+                                languageIdSettingsValue, jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
             }
 
             jsonWriter.endObject();

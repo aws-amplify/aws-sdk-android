@@ -58,7 +58,11 @@ public enum LanguageCode {
     TaIN("ta-IN"),
     TeIN("te-IN"),
     TrTR("tr-TR"),
-    ZhCN("zh-CN");
+    ZhCN("zh-CN"),
+    ZhTW("zh-TW"),
+    ThTH("th-TH"),
+    EnZA("en-ZA"),
+    EnNZ("en-NZ");
 
     private String value;
 
@@ -110,6 +114,10 @@ public enum LanguageCode {
         enumMap.put("te-IN", TeIN);
         enumMap.put("tr-TR", TrTR);
         enumMap.put("zh-CN", ZhCN);
+        enumMap.put("zh-TW", ZhTW);
+        enumMap.put("th-TH", ThTH);
+        enumMap.put("en-ZA", EnZA);
+        enumMap.put("en-NZ", EnNZ);
     }
 
     /**

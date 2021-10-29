@@ -59,6 +59,12 @@ class CallAnalyticsJobSettingsJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("LanguageIdSettings")) {
+                callAnalyticsJobSettings
+                        .setLanguageIdSettings(new MapUnmarshaller<LanguageIdSettings>(
+                                LanguageIdSettingsJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

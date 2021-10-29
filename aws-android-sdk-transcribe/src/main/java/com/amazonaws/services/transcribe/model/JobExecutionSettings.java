@@ -33,6 +33,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -41,11 +44,12 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
-     * that contains the input files. Amazon Transcribe assumes this role to
-     * read queued media files. If you have specified an output S3 bucket for
-     * the transcription results, this role should have access to the output
-     * bucket as well.
+     * The Amazon Resource Name (ARN), in the form
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * , of a role that has access to the S3 bucket that contains the input
+     * files. Amazon Transcribe assumes this role to read queued media files. If
+     * you have specified an output S3 bucket for the transcription results,
+     * this role should have access to the output bucket as well.
      * </p>
      * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
@@ -70,6 +74,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -82,6 +89,10 @@ public class JobExecutionSettings implements Serializable {
      *         the concurrent execution limit. If the field is false, Amazon
      *         Transcribe returns a <code>LimitExceededException</code>
      *         exception.
+     *         </p>
+     *         <p>
+     *         Note that job queuing is enabled by default for call analytics
+     *         jobs.
      *         </p>
      *         <p>
      *         If you specify the <code>AllowDeferredExecution</code> field, you
@@ -102,6 +113,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -114,6 +128,10 @@ public class JobExecutionSettings implements Serializable {
      *         the concurrent execution limit. If the field is false, Amazon
      *         Transcribe returns a <code>LimitExceededException</code>
      *         exception.
+     *         </p>
+     *         <p>
+     *         Note that job queuing is enabled by default for call analytics
+     *         jobs.
      *         </p>
      *         <p>
      *         If you specify the <code>AllowDeferredExecution</code> field, you
@@ -134,6 +152,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -146,6 +167,10 @@ public class JobExecutionSettings implements Serializable {
      *            below the concurrent execution limit. If the field is false,
      *            Amazon Transcribe returns a
      *            <code>LimitExceededException</code> exception.
+     *            </p>
+     *            <p>
+     *            Note that job queuing is enabled by default for call analytics
+     *            jobs.
      *            </p>
      *            <p>
      *            If you specify the <code>AllowDeferredExecution</code> field,
@@ -166,6 +191,9 @@ public class JobExecutionSettings implements Serializable {
      * <code>LimitExceededException</code> exception.
      * </p>
      * <p>
+     * Note that job queuing is enabled by default for call analytics jobs.
+     * </p>
+     * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
      * specify the <code>DataAccessRoleArn</code> field.
      * </p>
@@ -183,6 +211,10 @@ public class JobExecutionSettings implements Serializable {
      *            <code>LimitExceededException</code> exception.
      *            </p>
      *            <p>
+     *            Note that job queuing is enabled by default for call analytics
+     *            jobs.
+     *            </p>
+     *            <p>
      *            If you specify the <code>AllowDeferredExecution</code> field,
      *            you must specify the <code>DataAccessRoleArn</code> field.
      *            </p>
@@ -196,11 +228,12 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
-     * that contains the input files. Amazon Transcribe assumes this role to
-     * read queued media files. If you have specified an output S3 bucket for
-     * the transcription results, this role should have access to the output
-     * bucket as well.
+     * The Amazon Resource Name (ARN), in the form
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * , of a role that has access to the S3 bucket that contains the input
+     * files. Amazon Transcribe assumes this role to read queued media files. If
+     * you have specified an output S3 bucket for the transcription results,
+     * this role should have access to the output bucket as well.
      * </p>
      * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
@@ -214,11 +247,13 @@ public class JobExecutionSettings implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @return <p>
-     *         The Amazon Resource Name (ARN) of a role that has access to the
-     *         S3 bucket that contains the input files. Amazon Transcribe
-     *         assumes this role to read queued media files. If you have
-     *         specified an output S3 bucket for the transcription results, this
-     *         role should have access to the output bucket as well.
+     *         The Amazon Resource Name (ARN), in the form
+     *         <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     *         , of a role that has access to the S3 bucket that contains the
+     *         input files. Amazon Transcribe assumes this role to read queued
+     *         media files. If you have specified an output S3 bucket for the
+     *         transcription results, this role should have access to the output
+     *         bucket as well.
      *         </p>
      *         <p>
      *         If you specify the <code>AllowDeferredExecution</code> field, you
@@ -231,11 +266,12 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
-     * that contains the input files. Amazon Transcribe assumes this role to
-     * read queued media files. If you have specified an output S3 bucket for
-     * the transcription results, this role should have access to the output
-     * bucket as well.
+     * The Amazon Resource Name (ARN), in the form
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * , of a role that has access to the S3 bucket that contains the input
+     * files. Amazon Transcribe assumes this role to read queued media files. If
+     * you have specified an output S3 bucket for the transcription results,
+     * this role should have access to the output bucket as well.
      * </p>
      * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
@@ -249,11 +285,13 @@ public class JobExecutionSettings implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of a role that has access to
-     *            the S3 bucket that contains the input files. Amazon Transcribe
-     *            assumes this role to read queued media files. If you have
-     *            specified an output S3 bucket for the transcription results,
-     *            this role should have access to the output bucket as well.
+     *            The Amazon Resource Name (ARN), in the form
+     *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     *            , of a role that has access to the S3 bucket that contains the
+     *            input files. Amazon Transcribe assumes this role to read
+     *            queued media files. If you have specified an output S3 bucket
+     *            for the transcription results, this role should have access to
+     *            the output bucket as well.
      *            </p>
      *            <p>
      *            If you specify the <code>AllowDeferredExecution</code> field,
@@ -266,11 +304,12 @@ public class JobExecutionSettings implements Serializable {
 
     /**
      * <p>
-     * The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
-     * that contains the input files. Amazon Transcribe assumes this role to
-     * read queued media files. If you have specified an output S3 bucket for
-     * the transcription results, this role should have access to the output
-     * bucket as well.
+     * The Amazon Resource Name (ARN), in the form
+     * <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     * , of a role that has access to the S3 bucket that contains the input
+     * files. Amazon Transcribe assumes this role to read queued media files. If
+     * you have specified an output S3 bucket for the transcription results,
+     * this role should have access to the output bucket as well.
      * </p>
      * <p>
      * If you specify the <code>AllowDeferredExecution</code> field, you must
@@ -287,11 +326,13 @@ public class JobExecutionSettings implements Serializable {
      * [0-9]{0,63}:role/[A-Za-z0-9:_/+=,@.-]{0,1024}$<br/>
      *
      * @param dataAccessRoleArn <p>
-     *            The Amazon Resource Name (ARN) of a role that has access to
-     *            the S3 bucket that contains the input files. Amazon Transcribe
-     *            assumes this role to read queued media files. If you have
-     *            specified an output S3 bucket for the transcription results,
-     *            this role should have access to the output bucket as well.
+     *            The Amazon Resource Name (ARN), in the form
+     *            <code>arn:partition:service:region:account-id:resource-type/resource-id</code>
+     *            , of a role that has access to the S3 bucket that contains the
+     *            input files. Amazon Transcribe assumes this role to read
+     *            queued media files. If you have specified an output S3 bucket
+     *            for the transcription results, this role should have access to
+     *            the output bucket as well.
      *            </p>
      *            <p>
      *            If you specify the <code>AllowDeferredExecution</code> field,

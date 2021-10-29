@@ -93,121 +93,22 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Transcribe will use machine learning to identify the language for you. To
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
-     * in the audio.
+     * in the audio. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     * >Supported languages and language-specific features</a> for additional
+     * information.
      * </p>
-     * <p>
-     * The following list shows the supported languages and corresponding
-     * language codes for call analytics jobs:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Gulf Arabic (ar-AE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Mandarin Chinese, Mainland (zh-CN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Australian English (en-AU)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * British English (en-GB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian English (en-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Irish English (en-IE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Scottish English (en-AB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US English (en-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Welsh English (en-WL)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es-ES)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US Spanish (es-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * French (fr-FR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Canadian French (fr-CA)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * German (de-DE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swiss German (de-CH)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian Hindi (hi-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Italian (it-IT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Japanese (ja-JP)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko-KR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt-PT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Brazilian Portuguese (pt-BR)
-     * </p>
-     * </li>
-     * </ul>
      */
     private java.util.List<String> languageOptions;
+
+    /**
+     * <p>
+     * The language identification settings associated with your call analytics
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     */
+    private java.util.Map<String, LanguageIdSettings> languageIdSettings;
 
     /**
      * <p>
@@ -615,119 +516,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Transcribe will use machine learning to identify the language for you. To
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
-     * in the audio.
+     * in the audio. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     * >Supported languages and language-specific features</a> for additional
+     * information.
      * </p>
-     * <p>
-     * The following list shows the supported languages and corresponding
-     * language codes for call analytics jobs:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Gulf Arabic (ar-AE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Mandarin Chinese, Mainland (zh-CN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Australian English (en-AU)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * British English (en-GB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian English (en-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Irish English (en-IE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Scottish English (en-AB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US English (en-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Welsh English (en-WL)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es-ES)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US Spanish (es-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * French (fr-FR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Canadian French (fr-CA)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * German (de-DE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swiss German (de-CH)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian Hindi (hi-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Italian (it-IT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Japanese (ja-JP)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko-KR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt-PT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Brazilian Portuguese (pt-BR)
-     * </p>
-     * </li>
-     * </ul>
      *
      * @return <p>
      *         When you run a call analytics job, you can specify the language
@@ -740,119 +533,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      *         and Amazon Transcribe will use machine learning to identify the
      *         language for you. To improve the ability of Amazon Transcribe to
      *         correctly identify the language, you can provide an array of the
-     *         languages that can be present in the audio.
+     *         languages that can be present in the audio. Refer to <a href=
+     *         "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     *         >Supported languages and language-specific features</a> for
+     *         additional information.
      *         </p>
-     *         <p>
-     *         The following list shows the supported languages and
-     *         corresponding language codes for call analytics jobs:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         Gulf Arabic (ar-AE)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Mandarin Chinese, Mainland (zh-CN)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Australian English (en-AU)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         British English (en-GB)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Indian English (en-IN)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Irish English (en-IE)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Scottish English (en-AB)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         US English (en-US)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Welsh English (en-WL)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Spanish (es-ES)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         US Spanish (es-US)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         French (fr-FR)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Canadian French (fr-CA)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         German (de-DE)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Swiss German (de-CH)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Indian Hindi (hi-IN)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Italian (it-IT)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Japanese (ja-JP)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Korean (ko-KR)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Portuguese (pt-PT)
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         Brazilian Portuguese (pt-BR)
-     *         </p>
-     *         </li>
-     *         </ul>
      */
     public java.util.List<String> getLanguageOptions() {
         return languageOptions;
@@ -870,119 +555,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Transcribe will use machine learning to identify the language for you. To
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
-     * in the audio.
+     * in the audio. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     * >Supported languages and language-specific features</a> for additional
+     * information.
      * </p>
-     * <p>
-     * The following list shows the supported languages and corresponding
-     * language codes for call analytics jobs:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Gulf Arabic (ar-AE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Mandarin Chinese, Mainland (zh-CN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Australian English (en-AU)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * British English (en-GB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian English (en-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Irish English (en-IE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Scottish English (en-AB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US English (en-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Welsh English (en-WL)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es-ES)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US Spanish (es-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * French (fr-FR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Canadian French (fr-CA)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * German (de-DE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swiss German (de-CH)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian Hindi (hi-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Italian (it-IT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Japanese (ja-JP)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko-KR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt-PT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Brazilian Portuguese (pt-BR)
-     * </p>
-     * </li>
-     * </ul>
      *
      * @param languageOptions <p>
      *            When you run a call analytics job, you can specify the
@@ -996,119 +573,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            identify the language for you. To improve the ability of
      *            Amazon Transcribe to correctly identify the language, you can
      *            provide an array of the languages that can be present in the
-     *            audio.
+     *            audio. Refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     *            >Supported languages and language-specific features</a> for
+     *            additional information.
      *            </p>
-     *            <p>
-     *            The following list shows the supported languages and
-     *            corresponding language codes for call analytics jobs:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Gulf Arabic (ar-AE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Mandarin Chinese, Mainland (zh-CN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Australian English (en-AU)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            British English (en-GB)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Indian English (en-IN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Irish English (en-IE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Scottish English (en-AB)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            US English (en-US)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Welsh English (en-WL)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Spanish (es-ES)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            US Spanish (es-US)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            French (fr-FR)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Canadian French (fr-CA)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            German (de-DE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Swiss German (de-CH)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Indian Hindi (hi-IN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Italian (it-IT)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Japanese (ja-JP)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Korean (ko-KR)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Portuguese (pt-PT)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Brazilian Portuguese (pt-BR)
-     *            </p>
-     *            </li>
-     *            </ul>
      */
     public void setLanguageOptions(java.util.Collection<String> languageOptions) {
         if (languageOptions == null) {
@@ -1131,119 +600,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Transcribe will use machine learning to identify the language for you. To
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
-     * in the audio.
+     * in the audio. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     * >Supported languages and language-specific features</a> for additional
+     * information.
      * </p>
-     * <p>
-     * The following list shows the supported languages and corresponding
-     * language codes for call analytics jobs:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Gulf Arabic (ar-AE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Mandarin Chinese, Mainland (zh-CN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Australian English (en-AU)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * British English (en-GB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian English (en-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Irish English (en-IE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Scottish English (en-AB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US English (en-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Welsh English (en-WL)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es-ES)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US Spanish (es-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * French (fr-FR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Canadian French (fr-CA)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * German (de-DE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swiss German (de-CH)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian Hindi (hi-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Italian (it-IT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Japanese (ja-JP)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko-KR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt-PT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Brazilian Portuguese (pt-BR)
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1260,119 +621,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            identify the language for you. To improve the ability of
      *            Amazon Transcribe to correctly identify the language, you can
      *            provide an array of the languages that can be present in the
-     *            audio.
+     *            audio. Refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     *            >Supported languages and language-specific features</a> for
+     *            additional information.
      *            </p>
-     *            <p>
-     *            The following list shows the supported languages and
-     *            corresponding language codes for call analytics jobs:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Gulf Arabic (ar-AE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Mandarin Chinese, Mainland (zh-CN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Australian English (en-AU)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            British English (en-GB)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Indian English (en-IN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Irish English (en-IE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Scottish English (en-AB)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            US English (en-US)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Welsh English (en-WL)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Spanish (es-ES)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            US Spanish (es-US)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            French (fr-FR)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Canadian French (fr-CA)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            German (de-DE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Swiss German (de-CH)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Indian Hindi (hi-IN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Italian (it-IT)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Japanese (ja-JP)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Korean (ko-KR)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Portuguese (pt-PT)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Brazilian Portuguese (pt-BR)
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -1398,119 +651,11 @@ public class CallAnalyticsJobSettings implements Serializable {
      * Transcribe will use machine learning to identify the language for you. To
      * improve the ability of Amazon Transcribe to correctly identify the
      * language, you can provide an array of the languages that can be present
-     * in the audio.
+     * in the audio. Refer to <a href=
+     * "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     * >Supported languages and language-specific features</a> for additional
+     * information.
      * </p>
-     * <p>
-     * The following list shows the supported languages and corresponding
-     * language codes for call analytics jobs:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * Gulf Arabic (ar-AE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Mandarin Chinese, Mainland (zh-CN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Australian English (en-AU)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * British English (en-GB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian English (en-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Irish English (en-IE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Scottish English (en-AB)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US English (en-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Welsh English (en-WL)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Spanish (es-ES)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * US Spanish (es-US)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * French (fr-FR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Canadian French (fr-CA)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * German (de-DE)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Swiss German (de-CH)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Indian Hindi (hi-IN)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Italian (it-IT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Japanese (ja-JP)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Korean (ko-KR)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Portuguese (pt-PT)
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * Brazilian Portuguese (pt-BR)
-     * </p>
-     * </li>
-     * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -1527,124 +672,115 @@ public class CallAnalyticsJobSettings implements Serializable {
      *            identify the language for you. To improve the ability of
      *            Amazon Transcribe to correctly identify the language, you can
      *            provide an array of the languages that can be present in the
-     *            audio.
+     *            audio. Refer to <a href=
+     *            "https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html"
+     *            >Supported languages and language-specific features</a> for
+     *            additional information.
      *            </p>
-     *            <p>
-     *            The following list shows the supported languages and
-     *            corresponding language codes for call analytics jobs:
-     *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            Gulf Arabic (ar-AE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Mandarin Chinese, Mainland (zh-CN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Australian English (en-AU)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            British English (en-GB)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Indian English (en-IN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Irish English (en-IE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Scottish English (en-AB)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            US English (en-US)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Welsh English (en-WL)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Spanish (es-ES)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            US Spanish (es-US)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            French (fr-FR)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Canadian French (fr-CA)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            German (de-DE)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Swiss German (de-CH)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Indian Hindi (hi-IN)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Italian (it-IT)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Japanese (ja-JP)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Korean (ko-KR)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Portuguese (pt-PT)
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            Brazilian Portuguese (pt-BR)
-     *            </p>
-     *            </li>
-     *            </ul>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
     public CallAnalyticsJobSettings withLanguageOptions(java.util.Collection<String> languageOptions) {
         setLanguageOptions(languageOptions);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your call analytics
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The language identification settings associated with your call
+     *         analytics job. These settings include <code>VocabularyName</code>, <code>VocabularyFilterName</code>, and
+     *         <code>LanguageModelName</code>.
+     *         </p>
+     */
+    public java.util.Map<String, LanguageIdSettings> getLanguageIdSettings() {
+        return languageIdSettings;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your call analytics
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     *
+     * @param languageIdSettings <p>
+     *            The language identification settings associated with your call
+     *            analytics job. These settings include
+     *            <code>VocabularyName</code>, <code>VocabularyFilterName</code>
+     *            , and <code>LanguageModelName</code>.
+     *            </p>
+     */
+    public void setLanguageIdSettings(java.util.Map<String, LanguageIdSettings> languageIdSettings) {
+        this.languageIdSettings = languageIdSettings;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your call analytics
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param languageIdSettings <p>
+     *            The language identification settings associated with your call
+     *            analytics job. These settings include
+     *            <code>VocabularyName</code>, <code>VocabularyFilterName</code>
+     *            , and <code>LanguageModelName</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CallAnalyticsJobSettings withLanguageIdSettings(
+            java.util.Map<String, LanguageIdSettings> languageIdSettings) {
+        this.languageIdSettings = languageIdSettings;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your call analytics
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into LanguageIdSettings parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into LanguageIdSettings.
+     * @param value The corresponding value of the entry to be added into
+     *            LanguageIdSettings.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CallAnalyticsJobSettings addLanguageIdSettingsEntry(String key, LanguageIdSettings value) {
+        if (null == this.languageIdSettings) {
+            this.languageIdSettings = new java.util.HashMap<String, LanguageIdSettings>();
+        }
+        if (this.languageIdSettings.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.languageIdSettings.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into LanguageIdSettings.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public CallAnalyticsJobSettings clearLanguageIdSettingsEntries() {
+        this.languageIdSettings = null;
         return this;
     }
 
@@ -1670,7 +806,9 @@ public class CallAnalyticsJobSettings implements Serializable {
         if (getContentRedaction() != null)
             sb.append("ContentRedaction: " + getContentRedaction() + ",");
         if (getLanguageOptions() != null)
-            sb.append("LanguageOptions: " + getLanguageOptions());
+            sb.append("LanguageOptions: " + getLanguageOptions() + ",");
+        if (getLanguageIdSettings() != null)
+            sb.append("LanguageIdSettings: " + getLanguageIdSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -1694,6 +832,8 @@ public class CallAnalyticsJobSettings implements Serializable {
                 + ((getContentRedaction() == null) ? 0 : getContentRedaction().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageOptions() == null) ? 0 : getLanguageOptions().hashCode());
+        hashCode = prime * hashCode
+                + ((getLanguageIdSettings() == null) ? 0 : getLanguageIdSettings().hashCode());
         return hashCode;
     }
 
@@ -1737,6 +877,11 @@ public class CallAnalyticsJobSettings implements Serializable {
             return false;
         if (other.getLanguageOptions() != null
                 && other.getLanguageOptions().equals(this.getLanguageOptions()) == false)
+            return false;
+        if (other.getLanguageIdSettings() == null ^ this.getLanguageIdSettings() == null)
+            return false;
+        if (other.getLanguageIdSettings() != null
+                && other.getLanguageIdSettings().equals(this.getLanguageIdSettings()) == false)
             return false;
         return true;
     }
