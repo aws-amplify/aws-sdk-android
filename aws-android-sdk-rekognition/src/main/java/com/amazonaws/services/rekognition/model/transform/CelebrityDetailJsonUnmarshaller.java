@@ -56,6 +56,9 @@ class CelebrityDetailJsonUnmarshaller implements
             } else if (name.equals("Face")) {
                 celebrityDetail.setFace(FaceDetailJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("KnownGender")) {
+                celebrityDetail.setKnownGender(KnownGenderJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

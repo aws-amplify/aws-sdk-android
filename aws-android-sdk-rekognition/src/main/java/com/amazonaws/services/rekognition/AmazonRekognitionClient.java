@@ -570,9 +570,98 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Creates a new Amazon Rekognition Custom Labels dataset. You can create a
+     * dataset by using an Amazon Sagemaker format manifest file or by copying
+     * an existing Amazon Rekognition Custom Labels dataset.
+     * </p>
+     * <p>
+     * To create a training dataset for a project, specify <code>train</code>
+     * for the value of <code>DatasetType</code>. To create the test dataset for
+     * a project, specify <code>test</code> for the value of
+     * <code>DatasetType</code>.
+     * </p>
+     * <p>
+     * The response from <code>CreateDataset</code> is the Amazon Resource Name
+     * (ARN) for the dataset. Creating a dataset takes a while to complete. Use
+     * <a>DescribeDataset</a> to check the current status. The dataset created
+     * successfully if the value of <code>Status</code> is
+     * <code>CREATE_COMPLETE</code>.
+     * </p>
+     * <p>
+     * To check if any non-terminal errors occurred, call
+     * <a>ListDatasetEntries</a> and check for the presence of
+     * <code>errors</code> lists in the JSON Lines.
+     * </p>
+     * <p>
+     * Dataset creation fails if a terminal error occurs (<code>Status</code> =
+     * <code>CREATE_FAILED</code>). Currently, you can't access the terminal
+     * error information.
+     * </p>
+     * <p>
+     * For more information, see Creating dataset in the <i>Amazon Rekognition
+     * Custom Labels Developer Guide</i>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:CreateDataset</code> action. If you want to copy an
+     * existing dataset, you also require permission to perform the
+     * <code>rekognition:ListDatasetEntries</code> action.
+     * </p>
+     * 
+     * @param createDatasetRequest
+     * @return createDatasetResult The response from the CreateDataset service
+     *         method, as returned by Amazon Rekognition.
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws LimitExceededException
+     * @throws InvalidS3ObjectException
+     * @throws ResourceAlreadyExistsException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public CreateDatasetResult createDataset(CreateDatasetRequest createDatasetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(createDatasetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<CreateDatasetRequest> request = null;
+        Response<CreateDatasetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new CreateDatasetRequestMarshaller().marshall(createDatasetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<CreateDatasetResult, JsonUnmarshallerContext> unmarshaller = new CreateDatasetResultJsonUnmarshaller();
+            JsonResponseHandler<CreateDatasetResult> responseHandler = new JsonResponseHandler<CreateDatasetResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Creates a new Amazon Rekognition Custom Labels project. A project is a
-     * logical grouping of resources (images, Labels, models) and operations
-     * (training, evaluation and detection).
+     * group of resources (datasets, model versions) that you use to create and
+     * manage Amazon Rekognition Custom Labels models.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -629,19 +718,49 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
     /**
      * <p>
      * Creates a new version of a model and begins training. Models are managed
-     * as part of an Amazon Rekognition Custom Labels project. You can specify
-     * one training dataset and one testing dataset. The response from
+     * as part of an Amazon Rekognition Custom Labels project. The response from
      * <code>CreateProjectVersion</code> is an Amazon Resource Name (ARN) for
      * the version of the model.
      * </p>
      * <p>
+     * Training uses the training and test datasets associated with the project.
+     * For more information, see Creating training and test dataset in the
+     * <i>Amazon Rekognition Custom Labels Developer Guide</i>.
+     * </p>
+     * <note>
+     * <p>
+     * You can train a modelin a project that doesn't have associated datasets
+     * by specifying manifest files in the <code>TrainingData</code> and
+     * <code>TestingData</code> fields.
+     * </p>
+     * <p>
+     * If you open the console after training a model with manifest files,
+     * Amazon Rekognition Custom Labels creates the datasets for you using the
+     * most recent manifest files. You can no longer train a model version for
+     * the project by specifying manifest files.
+     * </p>
+     * <p>
+     * Instead of training with a project without associated datasets, we
+     * recommend that you use the manifest files to create training and test
+     * datasets for the project.
+     * </p>
+     * </note>
+     * <p>
      * Training takes a while to complete. You can get the current status by
-     * calling <a>DescribeProjectVersions</a>.
+     * calling <a>DescribeProjectVersions</a>. Training completed successfully
+     * if the value of the <code>Status</code> field is
+     * <code>TRAINING_COMPLETED</code>.
+     * </p>
+     * <p>
+     * If training fails, see Debugging a failed model training in the <i>Amazon
+     * Rekognition Custom Labels</i> developer guide.
      * </p>
      * <p>
      * Once training has successfully completed, call
      * <a>DescribeProjectVersions</a> to get the training results and evaluate
-     * the model.
+     * the model. For more information, see Improving a trained Amazon
+     * Rekognition Custom Labels model in the <i>Amazon Rekognition Custom
+     * Labels</i> developers guide.
      * </p>
      * <p>
      * After evaluating the model, you start the model by calling
@@ -846,6 +965,73 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Deletes an existing Amazon Rekognition Custom Labels dataset. Deleting a
+     * dataset might take while. Use <a>DescribeDataset</a> to check the current
+     * status. The dataset is still deleting if the value of <code>Status</code>
+     * is <code>DELETE_IN_PROGRESS</code>. If you try to access the dataset
+     * after it is deleted, you get a <code>ResourceNotFoundException</code>
+     * exception.
+     * </p>
+     * <p>
+     * You can't delete a dataset while it is creating (<code>Status</code> =
+     * <code>CREATE_IN_PROGRESS</code>) or if the dataset is updating (
+     * <code>Status</code> = <code>UPDATE_IN_PROGRESS</code>).
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DeleteDataset</code> action.
+     * </p>
+     * 
+     * @param deleteDatasetRequest
+     * @return deleteDatasetResult The response from the DeleteDataset service
+     *         method, as returned by Amazon Rekognition.
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws LimitExceededException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DeleteDatasetResult deleteDataset(DeleteDatasetRequest deleteDatasetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(deleteDatasetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DeleteDatasetRequest> request = null;
+        Response<DeleteDatasetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DeleteDatasetRequestMarshaller().marshall(deleteDatasetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DeleteDatasetResult, JsonUnmarshallerContext> unmarshaller = new DeleteDatasetResultJsonUnmarshaller();
+            JsonResponseHandler<DeleteDatasetResult> responseHandler = new JsonResponseHandler<DeleteDatasetResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Deletes faces from a collection. You specify a collection ID and an array
      * of face IDs to remove from the collection.
      * </p>
@@ -905,6 +1091,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * Deletes an Amazon Rekognition Custom Labels project. To delete a project
      * you must first delete all models associated with the project. To delete a
      * model, see <a>DeleteProjectVersion</a>.
+     * </p>
+     * <p>
+     * <code>DeleteProject</code> is an asynchronous operation. To check if the
+     * project is deleted, call <a>DescribeProjects</a>. The project is deleted
+     * when the project no longer appears in the response.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -1145,10 +1336,67 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Lists and describes the models in an Amazon Rekognition Custom Labels
-     * project. You can specify up to 10 model versions in
+     * Describes an Amazon Rekognition Custom Labels dataset. You can get
+     * information such as the current status of a dataset and statistics about
+     * the images and labels in a dataset.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DescribeDataset</code> action.
+     * </p>
+     * 
+     * @param describeDatasetRequest
+     * @return describeDatasetResult The response from the DescribeDataset
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DescribeDatasetResult describeDataset(DescribeDatasetRequest describeDatasetRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(describeDatasetRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DescribeDatasetRequest> request = null;
+        Response<DescribeDatasetResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DescribeDatasetRequestMarshaller().marshall(describeDatasetRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DescribeDatasetResult, JsonUnmarshallerContext> unmarshaller = new DescribeDatasetResultJsonUnmarshaller();
+            JsonResponseHandler<DescribeDatasetResult> responseHandler = new JsonResponseHandler<DescribeDatasetResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists and describes the versions of a model in an Amazon Rekognition
+     * Custom Labels project. You can specify up to 10 model versions in
      * <code>ProjectVersionArns</code>. If you don't specify a value,
-     * descriptions for all models are returned.
+     * descriptions for all model versions in the project are returned.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -1207,8 +1455,7 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
-     * Lists and gets information about your Amazon Rekognition Custom Labels
-     * projects.
+     * Gets information about your Amazon Rekognition Custom Labels projects.
      * </p>
      * <p>
      * This operation requires permissions to perform the
@@ -1954,6 +2201,83 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Distributes the entries (images) in a training dataset across the
+     * training dataset and the test dataset for a project.
+     * <code>DistributeDatasetEntries</code> moves 20% of the training dataset
+     * images to the test dataset. An entry is a JSON Line that describes an
+     * image.
+     * </p>
+     * <p>
+     * You supply the Amazon Resource Names (ARN) of a project's training
+     * dataset and test dataset. The training dataset must contain the images
+     * that you want to split. The test dataset must be empty. The datasets must
+     * belong to the same project. To create training and test datasets for a
+     * project, call <a>CreateDataset</a>.
+     * </p>
+     * <p>
+     * Distributing a dataset takes a while to complete. To check the status
+     * call <code>DescribeDataset</code>. The operation is complete when the
+     * <code>Status</code> field for the training dataset and the test dataset
+     * is <code>UPDATE_COMPLETE</code>. If the dataset split fails, the value of
+     * <code>Status</code> is <code>UPDATE_FAILED</code>.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:DistributeDatasetEntries</code> action.
+     * </p>
+     * 
+     * @param distributeDatasetEntriesRequest
+     * @return distributeDatasetEntriesResult The response from the
+     *         DistributeDatasetEntries service method, as returned by Amazon
+     *         Rekognition.
+     * @throws ResourceNotFoundException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public DistributeDatasetEntriesResult distributeDatasetEntries(
+            DistributeDatasetEntriesRequest distributeDatasetEntriesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(distributeDatasetEntriesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<DistributeDatasetEntriesRequest> request = null;
+        Response<DistributeDatasetEntriesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new DistributeDatasetEntriesRequestMarshaller()
+                        .marshall(distributeDatasetEntriesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<DistributeDatasetEntriesResult, JsonUnmarshallerContext> unmarshaller = new DistributeDatasetEntriesResultJsonUnmarshaller();
+            JsonResponseHandler<DistributeDatasetEntriesResult> responseHandler = new JsonResponseHandler<DistributeDatasetEntriesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Gets the name and additional information about a celebrity based on their
      * Amazon Rekognition ID. The additional information is returned as an array
      * of URLs. If there is no additional information about the celebrity, this
@@ -2022,14 +2346,17 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * <p>
      * Celebrity recognition in a video is an asynchronous operation. Analysis
      * is started by a call to <a>StartCelebrityRecognition</a> which returns a
-     * job identifier (<code>JobId</code>). When the celebrity recognition
-     * operation finishes, Amazon Rekognition Video publishes a completion
-     * status to the Amazon Simple Notification Service topic registered in the
-     * initial call to <code>StartCelebrityRecognition</code>. To get the
-     * results of the celebrity recognition analysis, first check that the
-     * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>.
-     * If so, call <code>GetCelebrityDetection</code> and pass the job
-     * identifier (<code>JobId</code>) from the initial call to
+     * job identifier (<code>JobId</code>).
+     * </p>
+     * <p>
+     * When the celebrity recognition operation finishes, Amazon Rekognition
+     * Video publishes a completion status to the Amazon Simple Notification
+     * Service topic registered in the initial call to
+     * <code>StartCelebrityRecognition</code>. To get the results of the
+     * celebrity recognition analysis, first check that the status value
+     * published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
+     * <code>GetCelebrityDetection</code> and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
      * <code>StartCelebrityDetection</code>.
      * </p>
      * <p>
@@ -2042,16 +2369,20 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * <a>CelebrityRecognition</a> objects. Each
      * <code>CelebrityRecognition</code> contains information about the
      * celebrity in a <a>CelebrityDetail</a> object and the time,
-     * <code>Timestamp</code>, the celebrity was detected.
+     * <code>Timestamp</code>, the celebrity was detected. This
+     * <a>CelebrityDetail</a> object stores information about the detected
+     * celebrity's face attributes, a face bounding box, known gender, the
+     * celebrity's name, and a confidence estimate.
      * </p>
      * <note>
      * <p>
      * <code>GetCelebrityRecognition</code> only returns the default facial
      * attributes (<code>BoundingBox</code>, <code>Confidence</code>,
      * <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>). The
-     * other facial attributes listed in the <code>Face</code> object of the
-     * following response syntax are not returned. For more information, see
-     * FaceDetail in the Amazon Rekognition Developer Guide.
+     * <code>BoundingBox</code> field only applies to the detected face
+     * instance. The other facial attributes listed in the <code>Face</code>
+     * object of the following response syntax are not returned. For more
+     * information, see FaceDetail in the Amazon Rekognition Developer Guide.
      * </p>
      * </note>
      * <p>
@@ -3062,6 +3393,146 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
 
     /**
      * <p>
+     * Lists the entries (images) within a dataset. An entry is a JSON Line that
+     * contains the information for a single image, including the image
+     * location, assigned labels, and object location bounding boxes. For more
+     * information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-manifest-files.html"
+     * >Creating a manifest file</a>.
+     * </p>
+     * <p>
+     * JSON Lines in the response include information about non-terminal errors
+     * found in the dataset. Non terminal errors are reported in
+     * <code>errors</code> lists within each JSON Line. The same information is
+     * reported in the training and testing validation result manifests that
+     * Amazon Rekognition Custom Labels creates during model training.
+     * </p>
+     * <p>
+     * You can filter the response in variety of ways, such as choosing which
+     * labels to return and returning JSON Lines created after a specific date.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:ListDatasetEntries</code> action.
+     * </p>
+     * 
+     * @param listDatasetEntriesRequest
+     * @return listDatasetEntriesResult The response from the ListDatasetEntries
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws InvalidPaginationTokenException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListDatasetEntriesResult listDatasetEntries(
+            ListDatasetEntriesRequest listDatasetEntriesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDatasetEntriesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDatasetEntriesRequest> request = null;
+        Response<ListDatasetEntriesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDatasetEntriesRequestMarshaller()
+                        .marshall(listDatasetEntriesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDatasetEntriesResult, JsonUnmarshallerContext> unmarshaller = new ListDatasetEntriesResultJsonUnmarshaller();
+            JsonResponseHandler<ListDatasetEntriesResult> responseHandler = new JsonResponseHandler<ListDatasetEntriesResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Lists the labels in a dataset. Amazon Rekognition Custom Labels uses
+     * labels to describe images. For more information, see <a href=
+     * "https://docs.aws.amazon.com/rekognition/latest/customlabels-dg/md-labeling-images.html"
+     * >Labeling images</a>.
+     * </p>
+     * <p>
+     * Lists the labels in a dataset. Amazon Rekognition Custom Labels uses
+     * labels to describe images. For more information, see Labeling images in
+     * the <i>Amazon Rekognition Custom Labels Developer Guide</i>.
+     * </p>
+     * 
+     * @param listDatasetLabelsRequest
+     * @return listDatasetLabelsResult The response from the ListDatasetLabels
+     *         service method, as returned by Amazon Rekognition.
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws InvalidPaginationTokenException
+     * @throws ResourceNotFoundException
+     * @throws ResourceNotReadyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public ListDatasetLabelsResult listDatasetLabels(
+            ListDatasetLabelsRequest listDatasetLabelsRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(listDatasetLabelsRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<ListDatasetLabelsRequest> request = null;
+        Response<ListDatasetLabelsResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new ListDatasetLabelsRequestMarshaller()
+                        .marshall(listDatasetLabelsRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<ListDatasetLabelsResult, JsonUnmarshallerContext> unmarshaller = new ListDatasetLabelsResultJsonUnmarshaller();
+            JsonResponseHandler<ListDatasetLabelsResult> responseHandler = new JsonResponseHandler<ListDatasetLabelsResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Returns metadata for faces in the specified collection. This metadata
      * includes information such as the bounding box coordinates, the confidence
      * (that the bounding box contains a face), and face ID. For an example, see
@@ -3241,10 +3712,11 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
      * </p>
      * <p>
      * <code>RecognizeCelebrities</code> returns the 64 largest faces in the
-     * image. It lists recognized celebrities in the <code>CelebrityFaces</code>
-     * array and unrecognized faces in the <code>UnrecognizedFaces</code> array.
-     * <code>RecognizeCelebrities</code> doesn't return celebrities whose faces
-     * aren't among the largest 64 faces in the image.
+     * image. It lists the recognized celebrities in the
+     * <code>CelebrityFaces</code> array and any unrecognized faces in the
+     * <code>UnrecognizedFaces</code> array. <code>RecognizeCelebrities</code>
+     * doesn't return celebrities whose faces aren't among the largest 64 faces
+     * in the image.
      * </p>
      * <p>
      * For each celebrity recognized, <code>RecognizeCelebrities</code> returns
@@ -4479,6 +4951,98 @@ public class AmazonRekognitionClient extends AmazonWebServiceClient implements A
             }
             Unmarshaller<UntagResourceResult, JsonUnmarshallerContext> unmarshaller = new UntagResourceResultJsonUnmarshaller();
             JsonResponseHandler<UntagResourceResult> responseHandler = new JsonResponseHandler<UntagResourceResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Adds or updates one or more entries (images) in a dataset. An entry is a
+     * JSON Line which contains the information for a single image, including
+     * the image location, assigned labels, and object location bounding boxes.
+     * For more information, see Image-Level labels in manifest files and Object
+     * localization in manifest files in the <i>Amazon Rekognition Custom Labels
+     * Developer Guide</i>.
+     * </p>
+     * <p>
+     * If the <code>source-ref</code> field in the JSON line references an
+     * existing image, the existing image in the dataset is updated. If
+     * <code>source-ref</code> field doesn't reference an existing image, the
+     * image is added as a new image to the dataset.
+     * </p>
+     * <p>
+     * You specify the changes that you want to make in the <code>Changes</code>
+     * input parameter. There isn't a limit to the number JSON Lines that you
+     * can change, but the size of <code>Changes</code> must be less than 5MB.
+     * </p>
+     * <p>
+     * <code>UpdateDatasetEntries</code> returns immediatly, but the dataset
+     * update might take a while to complete. Use <a>DescribeDataset</a> to
+     * check the current status. The dataset updated successfully if the value
+     * of <code>Status</code> is <code>UPDATE_COMPLETE</code>.
+     * </p>
+     * <p>
+     * To check if any non-terminal errors occured, call
+     * <a>ListDatasetEntries</a> and check for the presence of
+     * <code>errors</code> lists in the JSON Lines.
+     * </p>
+     * <p>
+     * Dataset update fails if a terminal error occurs (<code>Status</code> =
+     * <code>UPDATE_FAILED</code>). Currently, you can't access the terminal
+     * error information from the Amazon Rekognition Custom Labels SDK.
+     * </p>
+     * <p>
+     * This operation requires permissions to perform the
+     * <code>rekognition:UpdateDatasetEntries</code> action.
+     * </p>
+     * 
+     * @param updateDatasetEntriesRequest
+     * @return updateDatasetEntriesResult The response from the
+     *         UpdateDatasetEntries service method, as returned by Amazon
+     *         Rekognition.
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws LimitExceededException
+     * @throws ResourceInUseException
+     * @throws ResourceNotFoundException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Rekognition indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public UpdateDatasetEntriesResult updateDatasetEntries(
+            UpdateDatasetEntriesRequest updateDatasetEntriesRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(updateDatasetEntriesRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<UpdateDatasetEntriesRequest> request = null;
+        Response<UpdateDatasetEntriesResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new UpdateDatasetEntriesRequestMarshaller()
+                        .marshall(updateDatasetEntriesRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<UpdateDatasetEntriesResult, JsonUnmarshallerContext> unmarshaller = new UpdateDatasetEntriesResultJsonUnmarshaller();
+            JsonResponseHandler<UpdateDatasetEntriesResult> responseHandler = new JsonResponseHandler<UpdateDatasetEntriesResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

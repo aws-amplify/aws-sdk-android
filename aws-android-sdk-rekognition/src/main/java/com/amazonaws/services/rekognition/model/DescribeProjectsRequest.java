@@ -21,8 +21,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists and gets information about your Amazon Rekognition Custom Labels
- * projects.
+ * Gets information about your Amazon Rekognition Custom Labels projects.
  * </p>
  * <p>
  * This operation requires permissions to perform the
@@ -54,6 +53,15 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
      * <b>Range: </b>1 - 100<br/>
      */
     private Integer maxResults;
+
+    /**
+     * <p>
+     * A list of the projects that you want Amazon Rekognition Custom Labels to
+     * describe. If you don't specify a value, the response includes
+     * descriptions for all the projects in your AWS account.
+     * </p>
+     */
+    private java.util.List<String> projectNames;
 
     /**
      * <p>
@@ -197,6 +205,99 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * A list of the projects that you want Amazon Rekognition Custom Labels to
+     * describe. If you don't specify a value, the response includes
+     * descriptions for all the projects in your AWS account.
+     * </p>
+     *
+     * @return <p>
+     *         A list of the projects that you want Amazon Rekognition Custom
+     *         Labels to describe. If you don't specify a value, the response
+     *         includes descriptions for all the projects in your AWS account.
+     *         </p>
+     */
+    public java.util.List<String> getProjectNames() {
+        return projectNames;
+    }
+
+    /**
+     * <p>
+     * A list of the projects that you want Amazon Rekognition Custom Labels to
+     * describe. If you don't specify a value, the response includes
+     * descriptions for all the projects in your AWS account.
+     * </p>
+     *
+     * @param projectNames <p>
+     *            A list of the projects that you want Amazon Rekognition Custom
+     *            Labels to describe. If you don't specify a value, the response
+     *            includes descriptions for all the projects in your AWS
+     *            account.
+     *            </p>
+     */
+    public void setProjectNames(java.util.Collection<String> projectNames) {
+        if (projectNames == null) {
+            this.projectNames = null;
+            return;
+        }
+
+        this.projectNames = new java.util.ArrayList<String>(projectNames);
+    }
+
+    /**
+     * <p>
+     * A list of the projects that you want Amazon Rekognition Custom Labels to
+     * describe. If you don't specify a value, the response includes
+     * descriptions for all the projects in your AWS account.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param projectNames <p>
+     *            A list of the projects that you want Amazon Rekognition Custom
+     *            Labels to describe. If you don't specify a value, the response
+     *            includes descriptions for all the projects in your AWS
+     *            account.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeProjectsRequest withProjectNames(String... projectNames) {
+        if (getProjectNames() == null) {
+            this.projectNames = new java.util.ArrayList<String>(projectNames.length);
+        }
+        for (String value : projectNames) {
+            this.projectNames.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * A list of the projects that you want Amazon Rekognition Custom Labels to
+     * describe. If you don't specify a value, the response includes
+     * descriptions for all the projects in your AWS account.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param projectNames <p>
+     *            A list of the projects that you want Amazon Rekognition Custom
+     *            Labels to describe. If you don't specify a value, the response
+     *            includes descriptions for all the projects in your AWS
+     *            account.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DescribeProjectsRequest withProjectNames(java.util.Collection<String> projectNames) {
+        setProjectNames(projectNames);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -210,7 +311,9 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken() + ",");
         if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults());
+            sb.append("MaxResults: " + getMaxResults() + ",");
+        if (getProjectNames() != null)
+            sb.append("ProjectNames: " + getProjectNames());
         sb.append("}");
         return sb.toString();
     }
@@ -222,6 +325,8 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
 
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode
+                + ((getProjectNames() == null) ? 0 : getProjectNames().hashCode());
         return hashCode;
     }
 
@@ -245,6 +350,11 @@ public class DescribeProjectsRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
+            return false;
+        if (other.getProjectNames() == null ^ this.getProjectNames() == null)
+            return false;
+        if (other.getProjectNames() != null
+                && other.getProjectNames().equals(this.getProjectNames()) == false)
             return false;
         return true;
     }

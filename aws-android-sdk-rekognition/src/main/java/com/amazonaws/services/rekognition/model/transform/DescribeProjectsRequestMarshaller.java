@@ -72,6 +72,17 @@ public class DescribeProjectsRequestMarshaller implements
                 jsonWriter.name("MaxResults");
                 jsonWriter.value(maxResults);
             }
+            if (describeProjectsRequest.getProjectNames() != null) {
+                java.util.List<String> projectNames = describeProjectsRequest.getProjectNames();
+                jsonWriter.name("ProjectNames");
+                jsonWriter.beginArray();
+                for (String projectNamesItem : projectNames) {
+                    if (projectNamesItem != null) {
+                        jsonWriter.value(projectNamesItem);
+                    }
+                }
+                jsonWriter.endArray();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

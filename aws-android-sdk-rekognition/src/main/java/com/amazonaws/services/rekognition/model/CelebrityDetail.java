@@ -74,6 +74,13 @@ public class CelebrityDetail implements Serializable {
 
     /**
      * <p>
+     * Retrieves the known gender for the celebrity.
+     * </p>
+     */
+    private KnownGender knownGender;
+
+    /**
+     * <p>
      * An array of URLs pointing to additional celebrity information.
      * </p>
      *
@@ -396,6 +403,51 @@ public class CelebrityDetail implements Serializable {
     }
 
     /**
+     * <p>
+     * Retrieves the known gender for the celebrity.
+     * </p>
+     *
+     * @return <p>
+     *         Retrieves the known gender for the celebrity.
+     *         </p>
+     */
+    public KnownGender getKnownGender() {
+        return knownGender;
+    }
+
+    /**
+     * <p>
+     * Retrieves the known gender for the celebrity.
+     * </p>
+     *
+     * @param knownGender <p>
+     *            Retrieves the known gender for the celebrity.
+     *            </p>
+     */
+    public void setKnownGender(KnownGender knownGender) {
+        this.knownGender = knownGender;
+    }
+
+    /**
+     * <p>
+     * Retrieves the known gender for the celebrity.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param knownGender <p>
+     *            Retrieves the known gender for the celebrity.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CelebrityDetail withKnownGender(KnownGender knownGender) {
+        this.knownGender = knownGender;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -417,7 +469,9 @@ public class CelebrityDetail implements Serializable {
         if (getBoundingBox() != null)
             sb.append("BoundingBox: " + getBoundingBox() + ",");
         if (getFace() != null)
-            sb.append("Face: " + getFace());
+            sb.append("Face: " + getFace() + ",");
+        if (getKnownGender() != null)
+            sb.append("KnownGender: " + getKnownGender());
         sb.append("}");
         return sb.toString();
     }
@@ -434,6 +488,8 @@ public class CelebrityDetail implements Serializable {
         hashCode = prime * hashCode
                 + ((getBoundingBox() == null) ? 0 : getBoundingBox().hashCode());
         hashCode = prime * hashCode + ((getFace() == null) ? 0 : getFace().hashCode());
+        hashCode = prime * hashCode
+                + ((getKnownGender() == null) ? 0 : getKnownGender().hashCode());
         return hashCode;
     }
 
@@ -473,6 +529,11 @@ public class CelebrityDetail implements Serializable {
         if (other.getFace() == null ^ this.getFace() == null)
             return false;
         if (other.getFace() != null && other.getFace().equals(this.getFace()) == false)
+            return false;
+        if (other.getKnownGender() == null ^ this.getKnownGender() == null)
+            return false;
+        if (other.getKnownGender() != null
+                && other.getKnownGender().equals(this.getKnownGender()) == false)
             return false;
         return true;
     }
