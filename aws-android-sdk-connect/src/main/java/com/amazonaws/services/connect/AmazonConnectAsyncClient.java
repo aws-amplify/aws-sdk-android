@@ -6591,6 +6591,91 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
 
     /**
      * <p>
+     * Initiates real-time message streaming for a new chat contact.
+     * </p>
+     * <p>
+     * For more information about message streaming, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param startContactStreamingRequest
+     * @return A Java Future object containing the response from the
+     *         StartContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartContactStreamingResult> startContactStreamingAsync(
+            final StartContactStreamingRequest startContactStreamingRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartContactStreamingResult>() {
+            public StartContactStreamingResult call() throws Exception {
+                return startContactStreaming(startContactStreamingRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Initiates real-time message streaming for a new chat contact.
+     * </p>
+     * <p>
+     * For more information about message streaming, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param startContactStreamingRequest
+     * @return A Java Future object containing the response from the
+     *         StartContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartContactStreamingResult> startContactStreamingAsync(
+            final StartContactStreamingRequest startContactStreamingRequest,
+            final AsyncHandler<StartContactStreamingRequest, StartContactStreamingResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartContactStreamingResult>() {
+            public StartContactStreamingResult call() throws Exception {
+                StartContactStreamingResult result = null;
+                try {
+                    result = startContactStreaming(startContactStreamingRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startContactStreamingRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Places an outbound call to a contact, and then initiates the contact
      * flow. It performs the actions in the contact flow that's specified (in
      * <code>ContactFlowId</code>).
@@ -6952,6 +7037,83 @@ public class AmazonConnectAsyncClient extends AmazonConnectClient implements Ama
                     throw ex;
                 }
                 asyncHandler.onSuccess(stopContactRecordingRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Ends message streaming on a specified contact. To restart message
+     * streaming on that contact, call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API.
+     * </p>
+     * 
+     * @param stopContactStreamingRequest
+     * @return A Java Future object containing the response from the
+     *         StopContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopContactStreamingResult> stopContactStreamingAsync(
+            final StopContactStreamingRequest stopContactStreamingRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopContactStreamingResult>() {
+            public StopContactStreamingResult call() throws Exception {
+                return stopContactStreaming(stopContactStreamingRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Ends message streaming on a specified contact. To restart message
+     * streaming on that contact, call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API.
+     * </p>
+     * 
+     * @param stopContactStreamingRequest
+     * @return A Java Future object containing the response from the
+     *         StopContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StopContactStreamingResult> stopContactStreamingAsync(
+            final StopContactStreamingRequest stopContactStreamingRequest,
+            final AsyncHandler<StopContactStreamingRequest, StopContactStreamingResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StopContactStreamingResult>() {
+            public StopContactStreamingResult call() throws Exception {
+                StopContactStreamingResult result = null;
+                try {
+                    result = stopContactStreaming(stopContactStreamingRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(stopContactStreamingRequest, result);
                 return result;
             }
         });
