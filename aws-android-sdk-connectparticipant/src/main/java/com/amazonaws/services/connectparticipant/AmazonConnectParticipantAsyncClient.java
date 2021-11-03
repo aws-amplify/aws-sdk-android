@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -147,6 +147,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * Allows you to confirm that the attachment has been uploaded using the
      * pre-signed URL provided in StartAttachmentUpload API.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param completeAttachmentUploadRequest
      * @return A Java Future object containing the response from the
@@ -180,6 +185,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * <p>
      * Allows you to confirm that the attachment has been uploaded using the
      * pre-signed URL provided in StartAttachmentUpload API.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param completeAttachmentUploadRequest
@@ -245,6 +255,25 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * parameter, clients need to call this API again to obtain a new websocket
      * URL and perform the same steps as before.
      * </p>
+     * <p>
+     * <b>Message streaming support</b>: This API can also be used together with
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API to create a participant connection for
+     * chat contacts that are not using a websocket. For more information about
+     * message streaming, <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * <p>
+     * <b>Feature specifications</b>: For information about feature
+     * specifications, such as the allowed number of open websocket connections
+     * per participant, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * >Feature specifications</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
+     * </p>
      * <note>
      * <p>
      * The Amazon Connect Participant Service APIs do not use <a href=
@@ -304,6 +333,25 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * Upon websocket URL expiry, as specified in the response ConnectionExpiry
      * parameter, clients need to call this API again to obtain a new websocket
      * URL and perform the same steps as before.
+     * </p>
+     * <p>
+     * <b>Message streaming support</b>: This API can also be used together with
+     * the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API to create a participant connection for
+     * chat contacts that are not using a websocket. For more information about
+     * message streaming, <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * <p>
+     * <b>Feature specifications</b>: For information about feature
+     * specifications, such as the allowed number of open websocket connections
+     * per participant, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits"
+     * >Feature specifications</a> in the <i>Amazon Connect Administrator
+     * Guide</i>.
      * </p>
      * <note>
      * <p>
@@ -436,6 +484,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * Provides a pre-signed URL for download of a completed attachment. This is
      * an asynchronous API for use with active contacts.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param getAttachmentRequest
      * @return A Java Future object containing the response from the
@@ -467,6 +520,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * <p>
      * Provides a pre-signed URL for download of a completed attachment. This is
      * an asynchronous API for use with active contacts.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param getAttachmentRequest
@@ -673,13 +731,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * Sends a message. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
-     * <note>
      * <p>
      * The Amazon Connect Participant Service APIs do not use <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
      * >Signature Version 4 authentication</a>.
      * </p>
-     * </note>
      * 
      * @param sendMessageRequest
      * @return A Java Future object containing the response from the SendMessage
@@ -710,13 +766,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * Sends a message. Note that ConnectionToken is used for invoking this API
      * instead of ParticipantToken.
      * </p>
-     * <note>
      * <p>
      * The Amazon Connect Participant Service APIs do not use <a href=
      * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
      * >Signature Version 4 authentication</a>.
      * </p>
-     * </note>
      * 
      * @param sendMessageRequest
      * @return A Java Future object containing the response from the SendMessage
@@ -756,6 +810,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * Provides a pre-signed Amazon S3 URL in response for uploading the file
      * directly to S3.
      * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
+     * </p>
      * 
      * @param startAttachmentUploadRequest
      * @return A Java Future object containing the response from the
@@ -788,6 +847,11 @@ public class AmazonConnectParticipantAsyncClient extends AmazonConnectParticipan
      * <p>
      * Provides a pre-signed Amazon S3 URL in response for uploading the file
      * directly to S3.
+     * </p>
+     * <p>
+     * The Amazon Connect Participant Service APIs do not use <a href=
+     * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+     * >Signature Version 4 authentication</a>.
      * </p>
      * 
      * @param startAttachmentUploadRequest

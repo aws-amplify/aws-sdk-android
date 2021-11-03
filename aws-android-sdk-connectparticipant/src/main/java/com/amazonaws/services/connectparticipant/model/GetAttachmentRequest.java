@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -23,6 +23,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Provides a pre-signed URL for download of a completed attachment. This is an
  * asynchronous API for use with active contacts.
+ * </p>
+ * <p>
+ * The Amazon Connect Participant Service APIs do not use <a href=
+ * "https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html"
+ * >Signature Version 4 authentication</a>.
  * </p>
  */
 public class GetAttachmentRequest extends AmazonWebServiceRequest implements Serializable {
