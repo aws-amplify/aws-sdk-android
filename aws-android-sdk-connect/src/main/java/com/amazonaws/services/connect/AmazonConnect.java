@@ -40,8 +40,8 @@ import com.amazonaws.services.connect.model.*;
  * Guide</i>.
  * </p>
  * <p>
- * You can connect programmatically to an AWS service by using an endpoint. For
- * a list of Amazon Connect endpoints, see <a
+ * You can connect programmatically to an Amazon Web Services service by using
+ * an endpoint. For a list of Amazon Connect endpoints, see <a
  * href="https://docs.aws.amazon.com/general/latest/gr/connect_region.html"
  * >Amazon Connect Endpoints</a>.
  * </p>
@@ -481,7 +481,8 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Creates an AWS resource association with an Amazon Connect instance.
+     * Creates an Amazon Web Services resource association with an Amazon
+     * Connect instance.
      * </p>
      * 
      * @param createIntegrationAssociationRequest
@@ -588,6 +589,38 @@ public interface AmazonConnect {
     CreateRoutingProfileResult createRoutingProfile(
             CreateRoutingProfileRequest createRoutingProfileRequest) throws AmazonClientException,
             AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a security profile.
+     * </p>
+     * 
+     * @param createSecurityProfileRequest
+     * @return createSecurityProfileResult The response from the
+     *         CreateSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    CreateSecurityProfileResult createSecurityProfile(
+            CreateSecurityProfileRequest createSecurityProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
 
     /**
      * <p>
@@ -728,8 +761,9 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Deletes an AWS resource association from an Amazon Connect instance. The
-     * association must not have any use cases associated with it.
+     * Deletes an Amazon Web Services resource association from an Amazon
+     * Connect instance. The association must not have any use cases associated
+     * with it.
      * </p>
      * 
      * @param deleteIntegrationAssociationRequest
@@ -769,6 +803,34 @@ public interface AmazonConnect {
      *             request, or a server side issue.
      */
     void deleteQuickConnect(DeleteQuickConnectRequest deleteQuickConnectRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Deletes a security profile.
+     * </p>
+     * 
+     * @param deleteSecurityProfileRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void deleteSecurityProfile(DeleteSecurityProfileRequest deleteSecurityProfileRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1106,6 +1168,36 @@ public interface AmazonConnect {
      */
     DescribeRoutingProfileResult describeRoutingProfile(
             DescribeRoutingProfileRequest describeRoutingProfileRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Gets basic information about the security profle.
+     * </p>
+     * 
+     * @param describeSecurityProfileRequest
+     * @return describeSecurityProfileResult The response from the
+     *         DescribeSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    DescribeSecurityProfileResult describeSecurityProfile(
+            DescribeSecurityProfileRequest describeSecurityProfileRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**
@@ -1768,8 +1860,8 @@ public interface AmazonConnect {
 
     /**
      * <p>
-     * Provides summary information about the AWS resource associations for the
-     * specified Amazon Connect instance.
+     * Provides summary information about the Amazon Web Services resource
+     * associations for the specified Amazon Connect instance.
      * </p>
      * 
      * @param listIntegrationAssociationsRequest
@@ -2092,6 +2184,40 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists the permissions granted to a security profile.
+     * </p>
+     * 
+     * @param listSecurityProfilePermissionsRequest
+     * @return listSecurityProfilePermissionsResult The response from the
+     *         ListSecurityProfilePermissions service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListSecurityProfilePermissionsResult listSecurityProfilePermissions(
+            ListSecurityProfilePermissionsRequest listSecurityProfilePermissionsRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Provides summary information about the security profiles for the
      * specified Amazon Connect instance.
      * </p>
@@ -2369,6 +2495,38 @@ public interface AmazonConnect {
 
     /**
      * <p>
+     * Initiates real-time message streaming for a new chat contact.
+     * </p>
+     * <p>
+     * For more information about message streaming, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param startContactStreamingRequest
+     * @return startContactStreamingResult The response from the
+     *         StartContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StartContactStreamingResult startContactStreaming(
+            StartContactStreamingRequest startContactStreamingRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
      * Places an outbound call to a contact, and then initiates the contact
      * flow. It performs the actions in the contact flow that's specified (in
      * <code>ContactFlowId</code>).
@@ -2506,6 +2664,34 @@ public interface AmazonConnect {
      */
     StopContactRecordingResult stopContactRecording(
             StopContactRecordingRequest stopContactRecordingRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
+     * Ends message streaming on a specified contact. To restart message
+     * streaming on that contact, call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API.
+     * </p>
+     * 
+     * @param stopContactStreamingRequest
+     * @return stopContactStreamingResult The response from the
+     *         StopContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    StopContactStreamingResult stopContactStreaming(
+            StopContactStreamingRequest stopContactStreamingRequest) throws AmazonClientException,
             AmazonServiceException;
 
     /**
@@ -3086,6 +3272,32 @@ public interface AmazonConnect {
      */
     void updateRoutingProfileQueues(
             UpdateRoutingProfileQueuesRequest updateRoutingProfileQueuesRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates a security profile.
+     * </p>
+     * 
+     * @param updateSecurityProfileRequest
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    void updateSecurityProfile(UpdateSecurityProfileRequest updateSecurityProfileRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

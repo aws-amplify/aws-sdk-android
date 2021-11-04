@@ -21,12 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Deletes an Amazon Web Services resource association from an Amazon Connect
- * instance. The association must not have any use cases associated with it.
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
+ * Deletes a security profile.
  * </p>
  */
-public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest implements
-        Serializable {
+public class DeleteSecurityProfileRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
@@ -40,13 +41,10 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
 
     /**
      * <p>
-     * The identifier for the integration association.
+     * The identifier for the security profle.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
      */
-    private String integrationAssociationId;
+    private String securityProfileId;
 
     /**
      * <p>
@@ -103,63 +101,53 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteIntegrationAssociationRequest withInstanceId(String instanceId) {
+    public DeleteSecurityProfileRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The identifier for the integration association.
+     * The identifier for the security profle.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
      *
      * @return <p>
-     *         The identifier for the integration association.
+     *         The identifier for the security profle.
      *         </p>
      */
-    public String getIntegrationAssociationId() {
-        return integrationAssociationId;
+    public String getSecurityProfileId() {
+        return securityProfileId;
     }
 
     /**
      * <p>
-     * The identifier for the integration association.
+     * The identifier for the security profle.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
      *
-     * @param integrationAssociationId <p>
-     *            The identifier for the integration association.
+     * @param securityProfileId <p>
+     *            The identifier for the security profle.
      *            </p>
      */
-    public void setIntegrationAssociationId(String integrationAssociationId) {
-        this.integrationAssociationId = integrationAssociationId;
+    public void setSecurityProfileId(String securityProfileId) {
+        this.securityProfileId = securityProfileId;
     }
 
     /**
      * <p>
-     * The identifier for the integration association.
+     * The identifier for the security profle.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 200<br/>
      *
-     * @param integrationAssociationId <p>
-     *            The identifier for the integration association.
+     * @param securityProfileId <p>
+     *            The identifier for the security profle.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public DeleteIntegrationAssociationRequest withIntegrationAssociationId(
-            String integrationAssociationId) {
-        this.integrationAssociationId = integrationAssociationId;
+    public DeleteSecurityProfileRequest withSecurityProfileId(String securityProfileId) {
+        this.securityProfileId = securityProfileId;
         return this;
     }
 
@@ -176,8 +164,8 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getIntegrationAssociationId() != null)
-            sb.append("IntegrationAssociationId: " + getIntegrationAssociationId());
+        if (getSecurityProfileId() != null)
+            sb.append("SecurityProfileId: " + getSecurityProfileId());
         sb.append("}");
         return sb.toString();
     }
@@ -188,10 +176,8 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
-        hashCode = prime
-                * hashCode
-                + ((getIntegrationAssociationId() == null) ? 0 : getIntegrationAssociationId()
-                        .hashCode());
+        hashCode = prime * hashCode
+                + ((getSecurityProfileId() == null) ? 0 : getSecurityProfileId().hashCode());
         return hashCode;
     }
 
@@ -202,20 +188,19 @@ public class DeleteIntegrationAssociationRequest extends AmazonWebServiceRequest
         if (obj == null)
             return false;
 
-        if (obj instanceof DeleteIntegrationAssociationRequest == false)
+        if (obj instanceof DeleteSecurityProfileRequest == false)
             return false;
-        DeleteIntegrationAssociationRequest other = (DeleteIntegrationAssociationRequest) obj;
+        DeleteSecurityProfileRequest other = (DeleteSecurityProfileRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getIntegrationAssociationId() == null
-                ^ this.getIntegrationAssociationId() == null)
+        if (other.getSecurityProfileId() == null ^ this.getSecurityProfileId() == null)
             return false;
-        if (other.getIntegrationAssociationId() != null
-                && other.getIntegrationAssociationId().equals(this.getIntegrationAssociationId()) == false)
+        if (other.getSecurityProfileId() != null
+                && other.getSecurityProfileId().equals(this.getSecurityProfileId()) == false)
             return false;
         return true;
     }

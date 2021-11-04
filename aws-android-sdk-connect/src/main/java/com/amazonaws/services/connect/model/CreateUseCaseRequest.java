@@ -59,7 +59,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -292,11 +292,12 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      *
      * @return <p>
-     *         One or more tags.
+     *         The tags used to organize, track, or control access for this
+     *         resource.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -305,11 +306,12 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -318,14 +320,15 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -337,7 +340,7 @@ public class CreateUseCaseRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a

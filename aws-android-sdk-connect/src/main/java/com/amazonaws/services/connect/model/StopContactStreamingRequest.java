@@ -21,19 +21,13 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * This API is in preview release for Amazon Connect and is subject to change.
- * </p>
- * <p>
- * Provides summary information about the security profiles for the specified
- * Amazon Connect instance.
- * </p>
- * <p>
- * For more information about security profiles, see <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html"
- * >Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.
+ * Ends message streaming on a specified contact. To restart message streaming
+ * on that contact, call the <a href=
+ * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+ * >StartContactStreaming</a> API.
  * </p>
  */
-public class ListSecurityProfilesRequest extends AmazonWebServiceRequest implements Serializable {
+public class StopContactStreamingRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
@@ -47,22 +41,24 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
 
     /**
      * <p>
-     * The token for the next set of results. Use the value returned in the
-     * previous response in the next request to retrieve the next set of
-     * results.
-     * </p>
-     */
-    private String nextToken;
-
-    /**
-     * <p>
-     * The maximum number of results to return per page.
+     * The identifier of the contact. This is the identifier of the contact that
+     * is associated with the first interaction with the contact center.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - 256<br/>
      */
-    private Integer maxResults;
+    private String contactId;
+
+    /**
+     * <p>
+     * The identifier of the streaming configuration enabled.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 100<br/>
+     */
+    private String streamingId;
 
     /**
      * <p>
@@ -119,119 +115,125 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withInstanceId(String instanceId) {
+    public StopContactStreamingRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
 
     /**
      * <p>
-     * The token for the next set of results. Use the value returned in the
-     * previous response in the next request to retrieve the next set of
-     * results.
+     * The identifier of the contact. This is the identifier of the contact that
+     * is associated with the first interaction with the contact center.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
      * @return <p>
-     *         The token for the next set of results. Use the value returned in
-     *         the previous response in the next request to retrieve the next
-     *         set of results.
+     *         The identifier of the contact. This is the identifier of the
+     *         contact that is associated with the first interaction with the
+     *         contact center.
      *         </p>
      */
-    public String getNextToken() {
-        return nextToken;
+    public String getContactId() {
+        return contactId;
     }
 
     /**
      * <p>
-     * The token for the next set of results. Use the value returned in the
-     * previous response in the next request to retrieve the next set of
-     * results.
+     * The identifier of the contact. This is the identifier of the contact that
+     * is associated with the first interaction with the contact center.
      * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param nextToken <p>
-     *            The token for the next set of results. Use the value returned
-     *            in the previous response in the next request to retrieve the
-     *            next set of results.
+     * @param contactId <p>
+     *            The identifier of the contact. This is the identifier of the
+     *            contact that is associated with the first interaction with the
+     *            contact center.
      *            </p>
      */
-    public void setNextToken(String nextToken) {
-        this.nextToken = nextToken;
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
     }
 
     /**
      * <p>
-     * The token for the next set of results. Use the value returned in the
-     * previous response in the next request to retrieve the next set of
-     * results.
+     * The identifier of the contact. This is the identifier of the contact that
+     * is associated with the first interaction with the contact center.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>1 - 256<br/>
      *
-     * @param nextToken <p>
-     *            The token for the next set of results. Use the value returned
-     *            in the previous response in the next request to retrieve the
-     *            next set of results.
+     * @param contactId <p>
+     *            The identifier of the contact. This is the identifier of the
+     *            contact that is associated with the first interaction with the
+     *            contact center.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withNextToken(String nextToken) {
-        this.nextToken = nextToken;
+    public StopContactStreamingRequest withContactId(String contactId) {
+        this.contactId = contactId;
         return this;
     }
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The identifier of the streaming configuration enabled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The maximum number of results to return per page.
+     *         The identifier of the streaming configuration enabled.
      *         </p>
      */
-    public Integer getMaxResults() {
-        return maxResults;
+    public String getStreamingId() {
+        return streamingId;
     }
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The identifier of the streaming configuration enabled.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
-     * @param maxResults <p>
-     *            The maximum number of results to return per page.
+     * @param streamingId <p>
+     *            The identifier of the streaming configuration enabled.
      *            </p>
      */
-    public void setMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public void setStreamingId(String streamingId) {
+        this.streamingId = streamingId;
     }
 
     /**
      * <p>
-     * The maximum number of results to return per page.
+     * The identifier of the streaming configuration enabled.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 1000<br/>
+     * <b>Length: </b>1 - 100<br/>
      *
-     * @param maxResults <p>
-     *            The maximum number of results to return per page.
+     * @param streamingId <p>
+     *            The identifier of the streaming configuration enabled.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withMaxResults(Integer maxResults) {
-        this.maxResults = maxResults;
+    public StopContactStreamingRequest withStreamingId(String streamingId) {
+        this.streamingId = streamingId;
         return this;
     }
 
@@ -248,10 +250,10 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         sb.append("{");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getNextToken() != null)
-            sb.append("NextToken: " + getNextToken() + ",");
-        if (getMaxResults() != null)
-            sb.append("MaxResults: " + getMaxResults());
+        if (getContactId() != null)
+            sb.append("ContactId: " + getContactId() + ",");
+        if (getStreamingId() != null)
+            sb.append("StreamingId: " + getStreamingId());
         sb.append("}");
         return sb.toString();
     }
@@ -262,8 +264,9 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
-        hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
-        hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
+        hashCode = prime * hashCode + ((getContactId() == null) ? 0 : getContactId().hashCode());
+        hashCode = prime * hashCode
+                + ((getStreamingId() == null) ? 0 : getStreamingId().hashCode());
         return hashCode;
     }
 
@@ -274,24 +277,24 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         if (obj == null)
             return false;
 
-        if (obj instanceof ListSecurityProfilesRequest == false)
+        if (obj instanceof StopContactStreamingRequest == false)
             return false;
-        ListSecurityProfilesRequest other = (ListSecurityProfilesRequest) obj;
+        StopContactStreamingRequest other = (StopContactStreamingRequest) obj;
 
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null
                 && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
-        if (other.getNextToken() == null ^ this.getNextToken() == null)
+        if (other.getContactId() == null ^ this.getContactId() == null)
             return false;
-        if (other.getNextToken() != null
-                && other.getNextToken().equals(this.getNextToken()) == false)
+        if (other.getContactId() != null
+                && other.getContactId().equals(this.getContactId()) == false)
             return false;
-        if (other.getMaxResults() == null ^ this.getMaxResults() == null)
+        if (other.getStreamingId() == null ^ this.getStreamingId() == null)
             return false;
-        if (other.getMaxResults() != null
-                && other.getMaxResults().equals(this.getMaxResults()) == false)
+        if (other.getStreamingId() != null
+                && other.getStreamingId().equals(this.getStreamingId()) == false)
             return false;
         return true;
     }

@@ -17,51 +17,52 @@ package com.amazonaws.services.connect.model;
 
 import java.io.Serializable;
 
-import com.amazonaws.AmazonWebServiceRequest;
-
 /**
  * <p>
- * Creates a quick connect for the specified Amazon Connect instance.
+ * Contains information about a security profile.
  * </p>
  */
-public class CreateQuickConnectRequest extends AmazonWebServiceRequest implements Serializable {
+public class SecurityProfile implements Serializable {
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier for the security profile.
+     * </p>
+     */
+    private String id;
+
+    /**
+     * <p>
+     * The organization resource identifier for the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      */
-    private String instanceId;
+    private String organizationResourceId;
 
     /**
      * <p>
-     * The name of the quick connect.
+     * The Amazon Resource Name (ARN) for the secruity profile.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
      */
-    private String name;
+    private String arn;
 
     /**
      * <p>
-     * The description of the quick connect.
+     * The name for the security profile.
+     * </p>
+     */
+    private String securityProfileName;
+
+    /**
+     * <p>
+     * The description of the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
+     * <b>Length: </b> - 250<br/>
      */
     private String description;
-
-    /**
-     * <p>
-     * Configuration settings for the quick connect.
-     * </p>
-     */
-    private QuickConnectConfig quickConnectConfig;
 
     /**
      * <p>
@@ -72,44 +73,84 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The identifier for the security profile.
+     * </p>
+     *
+     * @return <p>
+     *         The identifier for the security profile.
+     *         </p>
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * <p>
+     * The identifier for the security profile.
+     * </p>
+     *
+     * @param id <p>
+     *            The identifier for the security profile.
+     *            </p>
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * <p>
+     * The identifier for the security profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param id <p>
+     *            The identifier for the security profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withId(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The organization resource identifier for the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
      * @return <p>
-     *         The identifier of the Amazon Connect instance. You can find the
-     *         instanceId in the ARN of the instance.
+     *         The organization resource identifier for the security profile.
      *         </p>
      */
-    public String getInstanceId() {
-        return instanceId;
+    public String getOrganizationResourceId() {
+        return organizationResourceId;
     }
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The organization resource identifier for the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
-     * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     * @param organizationResourceId <p>
+     *            The organization resource identifier for the security profile.
      *            </p>
      */
-    public void setInstanceId(String instanceId) {
-        this.instanceId = instanceId;
+    public void setOrganizationResourceId(String organizationResourceId) {
+        this.organizationResourceId = organizationResourceId;
     }
 
     /**
      * <p>
-     * The identifier of the Amazon Connect instance. You can find the
-     * instanceId in the ARN of the instance.
+     * The organization resource identifier for the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -118,82 +159,117 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 100<br/>
      *
-     * @param instanceId <p>
-     *            The identifier of the Amazon Connect instance. You can find
-     *            the instanceId in the ARN of the instance.
+     * @param organizationResourceId <p>
+     *            The organization resource identifier for the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateQuickConnectRequest withInstanceId(String instanceId) {
-        this.instanceId = instanceId;
+    public SecurityProfile withOrganizationResourceId(String organizationResourceId) {
+        this.organizationResourceId = organizationResourceId;
         return this;
     }
 
     /**
      * <p>
-     * The name of the quick connect.
+     * The Amazon Resource Name (ARN) for the secruity profile.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
      *
      * @return <p>
-     *         The name of the quick connect.
+     *         The Amazon Resource Name (ARN) for the secruity profile.
      *         </p>
      */
-    public String getName() {
-        return name;
+    public String getArn() {
+        return arn;
     }
 
     /**
      * <p>
-     * The name of the quick connect.
+     * The Amazon Resource Name (ARN) for the secruity profile.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
      *
-     * @param name <p>
-     *            The name of the quick connect.
+     * @param arn <p>
+     *            The Amazon Resource Name (ARN) for the secruity profile.
      *            </p>
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setArn(String arn) {
+        this.arn = arn;
     }
 
     /**
      * <p>
-     * The name of the quick connect.
+     * The Amazon Resource Name (ARN) for the secruity profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
      *
-     * @param name <p>
-     *            The name of the quick connect.
+     * @param arn <p>
+     *            The Amazon Resource Name (ARN) for the secruity profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateQuickConnectRequest withName(String name) {
-        this.name = name;
+    public SecurityProfile withArn(String arn) {
+        this.arn = arn;
         return this;
     }
 
     /**
      * <p>
-     * The description of the quick connect.
+     * The name for the security profile.
+     * </p>
+     *
+     * @return <p>
+     *         The name for the security profile.
+     *         </p>
+     */
+    public String getSecurityProfileName() {
+        return securityProfileName;
+    }
+
+    /**
+     * <p>
+     * The name for the security profile.
+     * </p>
+     *
+     * @param securityProfileName <p>
+     *            The name for the security profile.
+     *            </p>
+     */
+    public void setSecurityProfileName(String securityProfileName) {
+        this.securityProfileName = securityProfileName;
+    }
+
+    /**
+     * <p>
+     * The name for the security profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param securityProfileName <p>
+     *            The name for the security profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SecurityProfile withSecurityProfileName(String securityProfileName) {
+        this.securityProfileName = securityProfileName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The description of the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
+     * <b>Length: </b> - 250<br/>
      *
      * @return <p>
-     *         The description of the quick connect.
+     *         The description of the security profile.
      *         </p>
      */
     public String getDescription() {
@@ -202,14 +278,14 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The description of the quick connect.
+     * The description of the security profile.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
+     * <b>Length: </b> - 250<br/>
      *
      * @param description <p>
-     *            The description of the quick connect.
+     *            The description of the security profile.
      *            </p>
      */
     public void setDescription(String description) {
@@ -218,68 +294,23 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
 
     /**
      * <p>
-     * The description of the quick connect.
+     * The description of the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
+     * <b>Length: </b> - 250<br/>
      *
      * @param description <p>
-     *            The description of the quick connect.
+     *            The description of the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateQuickConnectRequest withDescription(String description) {
+    public SecurityProfile withDescription(String description) {
         this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
-     * Configuration settings for the quick connect.
-     * </p>
-     *
-     * @return <p>
-     *         Configuration settings for the quick connect.
-     *         </p>
-     */
-    public QuickConnectConfig getQuickConnectConfig() {
-        return quickConnectConfig;
-    }
-
-    /**
-     * <p>
-     * Configuration settings for the quick connect.
-     * </p>
-     *
-     * @param quickConnectConfig <p>
-     *            Configuration settings for the quick connect.
-     *            </p>
-     */
-    public void setQuickConnectConfig(QuickConnectConfig quickConnectConfig) {
-        this.quickConnectConfig = quickConnectConfig;
-    }
-
-    /**
-     * <p>
-     * Configuration settings for the quick connect.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param quickConnectConfig <p>
-     *            Configuration settings for the quick connect.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateQuickConnectRequest withQuickConnectConfig(QuickConnectConfig quickConnectConfig) {
-        this.quickConnectConfig = quickConnectConfig;
         return this;
     }
 
@@ -326,7 +357,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateQuickConnectRequest withTags(java.util.Map<String, String> tags) {
+    public SecurityProfile withTags(java.util.Map<String, String> tags) {
         this.tags = tags;
         return this;
     }
@@ -344,7 +375,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateQuickConnectRequest addTagsEntry(String key, String value) {
+    public SecurityProfile addTagsEntry(String key, String value) {
         if (null == this.tags) {
             this.tags = new java.util.HashMap<String, String>();
         }
@@ -361,7 +392,7 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
      * Returns a reference to this object so that method calls can be chained
      * together.
      */
-    public CreateQuickConnectRequest clearTagsEntries() {
+    public SecurityProfile clearTagsEntries() {
         this.tags = null;
         return this;
     }
@@ -377,14 +408,16 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getInstanceId() != null)
-            sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getName() != null)
-            sb.append("Name: " + getName() + ",");
+        if (getId() != null)
+            sb.append("Id: " + getId() + ",");
+        if (getOrganizationResourceId() != null)
+            sb.append("OrganizationResourceId: " + getOrganizationResourceId() + ",");
+        if (getArn() != null)
+            sb.append("Arn: " + getArn() + ",");
+        if (getSecurityProfileName() != null)
+            sb.append("SecurityProfileName: " + getSecurityProfileName() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
-        if (getQuickConnectConfig() != null)
-            sb.append("QuickConnectConfig: " + getQuickConnectConfig() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags());
         sb.append("}");
@@ -396,12 +429,16 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
-        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getOrganizationResourceId() == null) ? 0 : getOrganizationResourceId()
+                        .hashCode());
+        hashCode = prime * hashCode + ((getArn() == null) ? 0 : getArn().hashCode());
+        hashCode = prime * hashCode
+                + ((getSecurityProfileName() == null) ? 0 : getSecurityProfileName().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode
-                + ((getQuickConnectConfig() == null) ? 0 : getQuickConnectConfig().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -413,28 +450,32 @@ public class CreateQuickConnectRequest extends AmazonWebServiceRequest implement
         if (obj == null)
             return false;
 
-        if (obj instanceof CreateQuickConnectRequest == false)
+        if (obj instanceof SecurityProfile == false)
             return false;
-        CreateQuickConnectRequest other = (CreateQuickConnectRequest) obj;
+        SecurityProfile other = (SecurityProfile) obj;
 
-        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+        if (other.getId() == null ^ this.getId() == null)
             return false;
-        if (other.getInstanceId() != null
-                && other.getInstanceId().equals(this.getInstanceId()) == false)
+        if (other.getId() != null && other.getId().equals(this.getId()) == false)
             return false;
-        if (other.getName() == null ^ this.getName() == null)
+        if (other.getOrganizationResourceId() == null ^ this.getOrganizationResourceId() == null)
             return false;
-        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+        if (other.getOrganizationResourceId() != null
+                && other.getOrganizationResourceId().equals(this.getOrganizationResourceId()) == false)
+            return false;
+        if (other.getArn() == null ^ this.getArn() == null)
+            return false;
+        if (other.getArn() != null && other.getArn().equals(this.getArn()) == false)
+            return false;
+        if (other.getSecurityProfileName() == null ^ this.getSecurityProfileName() == null)
+            return false;
+        if (other.getSecurityProfileName() != null
+                && other.getSecurityProfileName().equals(this.getSecurityProfileName()) == false)
             return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
-            return false;
-        if (other.getQuickConnectConfig() == null ^ this.getQuickConnectConfig() == null)
-            return false;
-        if (other.getQuickConnectConfig() != null
-                && other.getQuickConnectConfig().equals(this.getQuickConnectConfig()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

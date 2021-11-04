@@ -24,16 +24,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Provides summary information about the security profiles for the specified
- * Amazon Connect instance.
- * </p>
- * <p>
- * For more information about security profiles, see <a href=
- * "https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html"
- * >Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.
+ * Lists the permissions granted to a security profile.
  * </p>
  */
-public class ListSecurityProfilesRequest extends AmazonWebServiceRequest implements Serializable {
+public class ListSecurityProfilePermissionsRequest extends AmazonWebServiceRequest implements
+        Serializable {
+    /**
+     * <p>
+     * The identifier for the security profle.
+     * </p>
+     */
+    private String securityProfileId;
+
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
@@ -63,6 +65,51 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * <b>Range: </b>1 - 1000<br/>
      */
     private Integer maxResults;
+
+    /**
+     * <p>
+     * The identifier for the security profle.
+     * </p>
+     *
+     * @return <p>
+     *         The identifier for the security profle.
+     *         </p>
+     */
+    public String getSecurityProfileId() {
+        return securityProfileId;
+    }
+
+    /**
+     * <p>
+     * The identifier for the security profle.
+     * </p>
+     *
+     * @param securityProfileId <p>
+     *            The identifier for the security profle.
+     *            </p>
+     */
+    public void setSecurityProfileId(String securityProfileId) {
+        this.securityProfileId = securityProfileId;
+    }
+
+    /**
+     * <p>
+     * The identifier for the security profle.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param securityProfileId <p>
+     *            The identifier for the security profle.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ListSecurityProfilePermissionsRequest withSecurityProfileId(String securityProfileId) {
+        this.securityProfileId = securityProfileId;
+        return this;
+    }
 
     /**
      * <p>
@@ -119,7 +166,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withInstanceId(String instanceId) {
+    public ListSecurityProfilePermissionsRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
         return this;
     }
@@ -176,7 +223,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withNextToken(String nextToken) {
+    public ListSecurityProfilePermissionsRequest withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
@@ -230,7 +277,7 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListSecurityProfilesRequest withMaxResults(Integer maxResults) {
+    public ListSecurityProfilePermissionsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }
@@ -246,6 +293,8 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getSecurityProfileId() != null)
+            sb.append("SecurityProfileId: " + getSecurityProfileId() + ",");
         if (getInstanceId() != null)
             sb.append("InstanceId: " + getInstanceId() + ",");
         if (getNextToken() != null)
@@ -261,6 +310,8 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode
+                + ((getSecurityProfileId() == null) ? 0 : getSecurityProfileId().hashCode());
         hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
@@ -274,10 +325,15 @@ public class ListSecurityProfilesRequest extends AmazonWebServiceRequest impleme
         if (obj == null)
             return false;
 
-        if (obj instanceof ListSecurityProfilesRequest == false)
+        if (obj instanceof ListSecurityProfilePermissionsRequest == false)
             return false;
-        ListSecurityProfilesRequest other = (ListSecurityProfilesRequest) obj;
+        ListSecurityProfilePermissionsRequest other = (ListSecurityProfilePermissionsRequest) obj;
 
+        if (other.getSecurityProfileId() == null ^ this.getSecurityProfileId() == null)
+            return false;
+        if (other.getSecurityProfileId() != null
+                && other.getSecurityProfileId().equals(this.getSecurityProfileId()) == false)
+            return false;
         if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
         if (other.getInstanceId() != null

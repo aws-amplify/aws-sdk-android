@@ -24,10 +24,34 @@ import com.amazonaws.AmazonWebServiceRequest;
  * This API is in preview release for Amazon Connect and is subject to change.
  * </p>
  * <p>
- * Creates an agent status for the specified Amazon Connect instance.
+ * Creates a security profile.
  * </p>
  */
-public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements Serializable {
+public class CreateSecurityProfileRequest extends AmazonWebServiceRequest implements Serializable {
+    /**
+     * <p>
+     * The name of the security profile.
+     * </p>
+     */
+    private String securityProfileName;
+
+    /**
+     * <p>
+     * The description of the security profile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 250<br/>
+     */
+    private String description;
+
+    /**
+     * <p>
+     * Permissions assigned to the security profile.
+     * </p>
+     */
+    private java.util.List<String> permissions;
+
     /**
      * <p>
      * The identifier of the Amazon Connect instance. You can find the
@@ -41,50 +65,183 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
 
     /**
      * <p>
-     * The name of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
-     */
-    private String name;
-
-    /**
-     * <p>
-     * The description of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
-     */
-    private String description;
-
-    /**
-     * <p>
-     * The state of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, DISABLED
-     */
-    private String state;
-
-    /**
-     * <p>
-     * The display order of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     */
-    private Integer displayOrder;
-
-    /**
-     * <p>
      * The tags used to organize, track, or control access for this resource.
      * </p>
      */
     private java.util.Map<String, String> tags;
+
+    /**
+     * <p>
+     * The name of the security profile.
+     * </p>
+     *
+     * @return <p>
+     *         The name of the security profile.
+     *         </p>
+     */
+    public String getSecurityProfileName() {
+        return securityProfileName;
+    }
+
+    /**
+     * <p>
+     * The name of the security profile.
+     * </p>
+     *
+     * @param securityProfileName <p>
+     *            The name of the security profile.
+     *            </p>
+     */
+    public void setSecurityProfileName(String securityProfileName) {
+        this.securityProfileName = securityProfileName;
+    }
+
+    /**
+     * <p>
+     * The name of the security profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param securityProfileName <p>
+     *            The name of the security profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withSecurityProfileName(String securityProfileName) {
+        this.securityProfileName = securityProfileName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The description of the security profile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 250<br/>
+     *
+     * @return <p>
+     *         The description of the security profile.
+     *         </p>
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * <p>
+     * The description of the security profile.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 250<br/>
+     *
+     * @param description <p>
+     *            The description of the security profile.
+     *            </p>
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * <p>
+     * The description of the security profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b> - 250<br/>
+     *
+     * @param description <p>
+     *            The description of the security profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Permissions assigned to the security profile.
+     * </p>
+     *
+     * @return <p>
+     *         Permissions assigned to the security profile.
+     *         </p>
+     */
+    public java.util.List<String> getPermissions() {
+        return permissions;
+    }
+
+    /**
+     * <p>
+     * Permissions assigned to the security profile.
+     * </p>
+     *
+     * @param permissions <p>
+     *            Permissions assigned to the security profile.
+     *            </p>
+     */
+    public void setPermissions(java.util.Collection<String> permissions) {
+        if (permissions == null) {
+            this.permissions = null;
+            return;
+        }
+
+        this.permissions = new java.util.ArrayList<String>(permissions);
+    }
+
+    /**
+     * <p>
+     * Permissions assigned to the security profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param permissions <p>
+     *            Permissions assigned to the security profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withPermissions(String... permissions) {
+        if (getPermissions() == null) {
+            this.permissions = new java.util.ArrayList<String>(permissions.length);
+        }
+        for (String value : permissions) {
+            this.permissions.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Permissions assigned to the security profile.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param permissions <p>
+     *            Permissions assigned to the security profile.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public CreateSecurityProfileRequest withPermissions(java.util.Collection<String> permissions) {
+        setPermissions(permissions);
+        return this;
+    }
 
     /**
      * <p>
@@ -141,267 +298,8 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateAgentStatusRequest withInstanceId(String instanceId) {
+    public CreateSecurityProfileRequest withInstanceId(String instanceId) {
         this.instanceId = instanceId;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The name of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
-     *
-     * @return <p>
-     *         The name of the status.
-     *         </p>
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * <p>
-     * The name of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
-     *
-     * @param name <p>
-     *            The name of the status.
-     *            </p>
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * <p>
-     * The name of the status.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 127<br/>
-     *
-     * @param name <p>
-     *            The name of the status.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateAgentStatusRequest withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The description of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
-     *
-     * @return <p>
-     *         The description of the status.
-     *         </p>
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * <p>
-     * The description of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
-     *
-     * @param description <p>
-     *            The description of the status.
-     *            </p>
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    /**
-     * <p>
-     * The description of the status.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Length: </b>1 - 250<br/>
-     *
-     * @param description <p>
-     *            The description of the status.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateAgentStatusRequest withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The state of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, DISABLED
-     *
-     * @return <p>
-     *         The state of the status.
-     *         </p>
-     * @see AgentStatusState
-     */
-    public String getState() {
-        return state;
-    }
-
-    /**
-     * <p>
-     * The state of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, DISABLED
-     *
-     * @param state <p>
-     *            The state of the status.
-     *            </p>
-     * @see AgentStatusState
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    /**
-     * <p>
-     * The state of the status.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, DISABLED
-     *
-     * @param state <p>
-     *            The state of the status.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see AgentStatusState
-     */
-    public CreateAgentStatusRequest withState(String state) {
-        this.state = state;
-        return this;
-    }
-
-    /**
-     * <p>
-     * The state of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, DISABLED
-     *
-     * @param state <p>
-     *            The state of the status.
-     *            </p>
-     * @see AgentStatusState
-     */
-    public void setState(AgentStatusState state) {
-        this.state = state.toString();
-    }
-
-    /**
-     * <p>
-     * The state of the status.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>ENABLED, DISABLED
-     *
-     * @param state <p>
-     *            The state of the status.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     * @see AgentStatusState
-     */
-    public CreateAgentStatusRequest withState(AgentStatusState state) {
-        this.state = state.toString();
-        return this;
-    }
-
-    /**
-     * <p>
-     * The display order of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     *
-     * @return <p>
-     *         The display order of the status.
-     *         </p>
-     */
-    public Integer getDisplayOrder() {
-        return displayOrder;
-    }
-
-    /**
-     * <p>
-     * The display order of the status.
-     * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     *
-     * @param displayOrder <p>
-     *            The display order of the status.
-     *            </p>
-     */
-    public void setDisplayOrder(Integer displayOrder) {
-        this.displayOrder = displayOrder;
-    }
-
-    /**
-     * <p>
-     * The display order of the status.
-     * </p>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
-     *
-     * @param displayOrder <p>
-     *            The display order of the status.
-     *            </p>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public CreateAgentStatusRequest withDisplayOrder(Integer displayOrder) {
-        this.displayOrder = displayOrder;
         return this;
     }
 
@@ -448,7 +346,7 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateAgentStatusRequest withTags(java.util.Map<String, String> tags) {
+    public CreateSecurityProfileRequest withTags(java.util.Map<String, String> tags) {
         this.tags = tags;
         return this;
     }
@@ -466,7 +364,7 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public CreateAgentStatusRequest addTagsEntry(String key, String value) {
+    public CreateSecurityProfileRequest addTagsEntry(String key, String value) {
         if (null == this.tags) {
             this.tags = new java.util.HashMap<String, String>();
         }
@@ -483,7 +381,7 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
      * Returns a reference to this object so that method calls can be chained
      * together.
      */
-    public CreateAgentStatusRequest clearTagsEntries() {
+    public CreateSecurityProfileRequest clearTagsEntries() {
         this.tags = null;
         return this;
     }
@@ -499,16 +397,14 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getInstanceId() != null)
-            sb.append("InstanceId: " + getInstanceId() + ",");
-        if (getName() != null)
-            sb.append("Name: " + getName() + ",");
+        if (getSecurityProfileName() != null)
+            sb.append("SecurityProfileName: " + getSecurityProfileName() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
-        if (getState() != null)
-            sb.append("State: " + getState() + ",");
-        if (getDisplayOrder() != null)
-            sb.append("DisplayOrder: " + getDisplayOrder() + ",");
+        if (getPermissions() != null)
+            sb.append("Permissions: " + getPermissions() + ",");
+        if (getInstanceId() != null)
+            sb.append("InstanceId: " + getInstanceId() + ",");
         if (getTags() != null)
             sb.append("Tags: " + getTags());
         sb.append("}");
@@ -520,13 +416,13 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
         final int prime = 31;
         int hashCode = 1;
 
-        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
-        hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
+        hashCode = prime * hashCode
+                + ((getSecurityProfileName() == null) ? 0 : getSecurityProfileName().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
-        hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode());
         hashCode = prime * hashCode
-                + ((getDisplayOrder() == null) ? 0 : getDisplayOrder().hashCode());
+                + ((getPermissions() == null) ? 0 : getPermissions().hashCode());
+        hashCode = prime * hashCode + ((getInstanceId() == null) ? 0 : getInstanceId().hashCode());
         hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
         return hashCode;
     }
@@ -538,32 +434,29 @@ public class CreateAgentStatusRequest extends AmazonWebServiceRequest implements
         if (obj == null)
             return false;
 
-        if (obj instanceof CreateAgentStatusRequest == false)
+        if (obj instanceof CreateSecurityProfileRequest == false)
             return false;
-        CreateAgentStatusRequest other = (CreateAgentStatusRequest) obj;
+        CreateSecurityProfileRequest other = (CreateSecurityProfileRequest) obj;
 
-        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
+        if (other.getSecurityProfileName() == null ^ this.getSecurityProfileName() == null)
             return false;
-        if (other.getInstanceId() != null
-                && other.getInstanceId().equals(this.getInstanceId()) == false)
-            return false;
-        if (other.getName() == null ^ this.getName() == null)
-            return false;
-        if (other.getName() != null && other.getName().equals(this.getName()) == false)
+        if (other.getSecurityProfileName() != null
+                && other.getSecurityProfileName().equals(this.getSecurityProfileName()) == false)
             return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;
         if (other.getDescription() != null
                 && other.getDescription().equals(this.getDescription()) == false)
             return false;
-        if (other.getState() == null ^ this.getState() == null)
+        if (other.getPermissions() == null ^ this.getPermissions() == null)
             return false;
-        if (other.getState() != null && other.getState().equals(this.getState()) == false)
+        if (other.getPermissions() != null
+                && other.getPermissions().equals(this.getPermissions()) == false)
             return false;
-        if (other.getDisplayOrder() == null ^ this.getDisplayOrder() == null)
+        if (other.getInstanceId() == null ^ this.getInstanceId() == null)
             return false;
-        if (other.getDisplayOrder() != null
-                && other.getDisplayOrder().equals(this.getDisplayOrder()) == false)
+        if (other.getInstanceId() != null
+                && other.getInstanceId().equals(this.getInstanceId()) == false)
             return false;
         if (other.getTags() == null ^ this.getTags() == null)
             return false;

@@ -17,13 +17,13 @@ package com.amazonaws.services.connect.model;
 
 import java.io.Serializable;
 
-public class ListLambdaFunctionsResult implements Serializable {
+public class ListSecurityProfilePermissionsResult implements Serializable {
     /**
      * <p>
-     * The Lambda function ARNs associated with the specified instance.
+     * The permissions granted to the security profile.
      * </p>
      */
-    private java.util.List<String> lambdaFunctions;
+    private java.util.List<String> permissions;
 
     /**
      * <p>
@@ -35,79 +35,76 @@ public class ListLambdaFunctionsResult implements Serializable {
 
     /**
      * <p>
-     * The Lambda function ARNs associated with the specified instance.
+     * The permissions granted to the security profile.
      * </p>
      *
      * @return <p>
-     *         The Lambda function ARNs associated with the specified instance.
+     *         The permissions granted to the security profile.
      *         </p>
      */
-    public java.util.List<String> getLambdaFunctions() {
-        return lambdaFunctions;
+    public java.util.List<String> getPermissions() {
+        return permissions;
     }
 
     /**
      * <p>
-     * The Lambda function ARNs associated with the specified instance.
+     * The permissions granted to the security profile.
      * </p>
      *
-     * @param lambdaFunctions <p>
-     *            The Lambda function ARNs associated with the specified
-     *            instance.
+     * @param permissions <p>
+     *            The permissions granted to the security profile.
      *            </p>
      */
-    public void setLambdaFunctions(java.util.Collection<String> lambdaFunctions) {
-        if (lambdaFunctions == null) {
-            this.lambdaFunctions = null;
+    public void setPermissions(java.util.Collection<String> permissions) {
+        if (permissions == null) {
+            this.permissions = null;
             return;
         }
 
-        this.lambdaFunctions = new java.util.ArrayList<String>(lambdaFunctions);
+        this.permissions = new java.util.ArrayList<String>(permissions);
     }
 
     /**
      * <p>
-     * The Lambda function ARNs associated with the specified instance.
+     * The permissions granted to the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lambdaFunctions <p>
-     *            The Lambda function ARNs associated with the specified
-     *            instance.
+     * @param permissions <p>
+     *            The permissions granted to the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListLambdaFunctionsResult withLambdaFunctions(String... lambdaFunctions) {
-        if (getLambdaFunctions() == null) {
-            this.lambdaFunctions = new java.util.ArrayList<String>(lambdaFunctions.length);
+    public ListSecurityProfilePermissionsResult withPermissions(String... permissions) {
+        if (getPermissions() == null) {
+            this.permissions = new java.util.ArrayList<String>(permissions.length);
         }
-        for (String value : lambdaFunctions) {
-            this.lambdaFunctions.add(value);
+        for (String value : permissions) {
+            this.permissions.add(value);
         }
         return this;
     }
 
     /**
      * <p>
-     * The Lambda function ARNs associated with the specified instance.
+     * The permissions granted to the security profile.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
-     * @param lambdaFunctions <p>
-     *            The Lambda function ARNs associated with the specified
-     *            instance.
+     * @param permissions <p>
+     *            The permissions granted to the security profile.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListLambdaFunctionsResult withLambdaFunctions(
-            java.util.Collection<String> lambdaFunctions) {
-        setLambdaFunctions(lambdaFunctions);
+    public ListSecurityProfilePermissionsResult withPermissions(
+            java.util.Collection<String> permissions) {
+        setPermissions(permissions);
         return this;
     }
 
@@ -157,7 +154,7 @@ public class ListLambdaFunctionsResult implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public ListLambdaFunctionsResult withNextToken(String nextToken) {
+    public ListSecurityProfilePermissionsResult withNextToken(String nextToken) {
         this.nextToken = nextToken;
         return this;
     }
@@ -173,8 +170,8 @@ public class ListLambdaFunctionsResult implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getLambdaFunctions() != null)
-            sb.append("LambdaFunctions: " + getLambdaFunctions() + ",");
+        if (getPermissions() != null)
+            sb.append("Permissions: " + getPermissions() + ",");
         if (getNextToken() != null)
             sb.append("NextToken: " + getNextToken());
         sb.append("}");
@@ -187,7 +184,7 @@ public class ListLambdaFunctionsResult implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode
-                + ((getLambdaFunctions() == null) ? 0 : getLambdaFunctions().hashCode());
+                + ((getPermissions() == null) ? 0 : getPermissions().hashCode());
         hashCode = prime * hashCode + ((getNextToken() == null) ? 0 : getNextToken().hashCode());
         return hashCode;
     }
@@ -199,14 +196,14 @@ public class ListLambdaFunctionsResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof ListLambdaFunctionsResult == false)
+        if (obj instanceof ListSecurityProfilePermissionsResult == false)
             return false;
-        ListLambdaFunctionsResult other = (ListLambdaFunctionsResult) obj;
+        ListSecurityProfilePermissionsResult other = (ListSecurityProfilePermissionsResult) obj;
 
-        if (other.getLambdaFunctions() == null ^ this.getLambdaFunctions() == null)
+        if (other.getPermissions() == null ^ this.getPermissions() == null)
             return false;
-        if (other.getLambdaFunctions() != null
-                && other.getLambdaFunctions().equals(this.getLambdaFunctions()) == false)
+        if (other.getPermissions() != null
+                && other.getPermissions().equals(this.getPermissions()) == false)
             return false;
         if (other.getNextToken() == null ^ this.getNextToken() == null)
             return false;
