@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -102,8 +102,8 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      */
     private String message;
@@ -737,12 +737,12 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      *
      * @return <p>
-     *         An explanation of any errors that may have occured during the
+     *         An explanation of any errors that may have occurred during the
      *         translation job.
      *         </p>
      */
@@ -752,12 +752,12 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      *
      * @param message <p>
-     *            An explanation of any errors that may have occured during the
+     *            An explanation of any errors that may have occurred during the
      *            translation job.
      *            </p>
      */
@@ -767,15 +767,15 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param message <p>
-     *            An explanation of any errors that may have occured during the
+     *            An explanation of any errors that may have occurred during the
      *            translation job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
