@@ -51,6 +51,7 @@ import com.amazonaws.services.pinpoint.model.Event;
 import com.amazonaws.services.pinpoint.model.EventItemResponse;
 import com.amazonaws.services.pinpoint.model.EventsBatch;
 import com.amazonaws.services.pinpoint.model.EventsRequest;
+import com.amazonaws.services.pinpoint.model.ItemResponse;
 import com.amazonaws.services.pinpoint.model.PublicEndpoint;
 import com.amazonaws.services.pinpoint.model.PutEventsRequest;
 import com.amazonaws.services.pinpoint.model.PutEventsResult;
@@ -436,22 +437,26 @@ public class EventRecorder {
     }
 
     private void processEndpointResponse(EndpointProfile endpoint, PutEventsResult resultResponse) {
-        if (endpoint.getEndpointId().isEmpty()) {
-            log.error("EndpointId is missing.");
-        }
-        final EndpointItemResponse endpointItemResponse = resultResponse
+        final Map<String, ItemResponse> results = resultResponse
                 .getEventsResponse()
-                .getResults()
-                .get(endpoint.getEndpointId())
-                .getEndpointItemResponse();
-        if (endpointItemResponse == null) {
-            log.error("EndPointItemResponse is null!");
+                .getResults();
+        if (results.isEmpty()) {
+            log.error("PutEventsResult is empty!");
+        } else if (endpoint.getEndpointId().isEmpty()) {
+            log.error("EndpointId is missing.");
         } else {
-            if (202 == endpointItemResponse.getStatusCode()) {
-                log.info("EndpointProfile updated successfully.");
+            final EndpointItemResponse endpointItemResponse = results
+                    .get(endpoint.getEndpointId())
+                    .getEndpointItemResponse();
+            if (endpointItemResponse == null) {
+                log.error("EndPointItemResponse is null!");
             } else {
-                log.error("AmazonServiceException occurred during endpoint update: " +
-                        endpointItemResponse.getMessage());
+                if (202 == endpointItemResponse.getStatusCode()) {
+                    log.info("EndpointProfile updated successfully.");
+                } else {
+                    log.error("AmazonServiceException occurred during endpoint update: " +
+                            endpointItemResponse.getMessage());
+                }
             }
         }
     }
