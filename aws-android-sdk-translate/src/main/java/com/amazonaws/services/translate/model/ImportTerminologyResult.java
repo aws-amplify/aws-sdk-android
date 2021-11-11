@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -24,6 +24,16 @@ public class ImportTerminologyResult implements Serializable {
      * </p>
      */
     private TerminologyProperties terminologyProperties;
+
+    /**
+     * <p>
+     * The Amazon S3 location of a file that provides any errors or warnings
+     * that were produced by your input file. This file was created when Amazon
+     * Translate attempted to create a terminology resource. The location is
+     * returned as a presigned URL to that has a 30 minute expiration.
+     * </p>
+     */
+    private TerminologyDataLocation auxiliaryDataLocation;
 
     /**
      * <p>
@@ -72,6 +82,73 @@ public class ImportTerminologyResult implements Serializable {
     }
 
     /**
+     * <p>
+     * The Amazon S3 location of a file that provides any errors or warnings
+     * that were produced by your input file. This file was created when Amazon
+     * Translate attempted to create a terminology resource. The location is
+     * returned as a presigned URL to that has a 30 minute expiration.
+     * </p>
+     *
+     * @return <p>
+     *         The Amazon S3 location of a file that provides any errors or
+     *         warnings that were produced by your input file. This file was
+     *         created when Amazon Translate attempted to create a terminology
+     *         resource. The location is returned as a presigned URL to that has
+     *         a 30 minute expiration.
+     *         </p>
+     */
+    public TerminologyDataLocation getAuxiliaryDataLocation() {
+        return auxiliaryDataLocation;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 location of a file that provides any errors or warnings
+     * that were produced by your input file. This file was created when Amazon
+     * Translate attempted to create a terminology resource. The location is
+     * returned as a presigned URL to that has a 30 minute expiration.
+     * </p>
+     *
+     * @param auxiliaryDataLocation <p>
+     *            The Amazon S3 location of a file that provides any errors or
+     *            warnings that were produced by your input file. This file was
+     *            created when Amazon Translate attempted to create a
+     *            terminology resource. The location is returned as a presigned
+     *            URL to that has a 30 minute expiration.
+     *            </p>
+     */
+    public void setAuxiliaryDataLocation(TerminologyDataLocation auxiliaryDataLocation) {
+        this.auxiliaryDataLocation = auxiliaryDataLocation;
+    }
+
+    /**
+     * <p>
+     * The Amazon S3 location of a file that provides any errors or warnings
+     * that were produced by your input file. This file was created when Amazon
+     * Translate attempted to create a terminology resource. The location is
+     * returned as a presigned URL to that has a 30 minute expiration.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param auxiliaryDataLocation <p>
+     *            The Amazon S3 location of a file that provides any errors or
+     *            warnings that were produced by your input file. This file was
+     *            created when Amazon Translate attempted to create a
+     *            terminology resource. The location is returned as a presigned
+     *            URL to that has a 30 minute expiration.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ImportTerminologyResult withAuxiliaryDataLocation(
+            TerminologyDataLocation auxiliaryDataLocation) {
+        this.auxiliaryDataLocation = auxiliaryDataLocation;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -83,7 +160,9 @@ public class ImportTerminologyResult implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getTerminologyProperties() != null)
-            sb.append("TerminologyProperties: " + getTerminologyProperties());
+            sb.append("TerminologyProperties: " + getTerminologyProperties() + ",");
+        if (getAuxiliaryDataLocation() != null)
+            sb.append("AuxiliaryDataLocation: " + getAuxiliaryDataLocation());
         sb.append("}");
         return sb.toString();
     }
@@ -96,6 +175,9 @@ public class ImportTerminologyResult implements Serializable {
         hashCode = prime
                 * hashCode
                 + ((getTerminologyProperties() == null) ? 0 : getTerminologyProperties().hashCode());
+        hashCode = prime
+                * hashCode
+                + ((getAuxiliaryDataLocation() == null) ? 0 : getAuxiliaryDataLocation().hashCode());
         return hashCode;
     }
 
@@ -114,6 +196,11 @@ public class ImportTerminologyResult implements Serializable {
             return false;
         if (other.getTerminologyProperties() != null
                 && other.getTerminologyProperties().equals(this.getTerminologyProperties()) == false)
+            return false;
+        if (other.getAuxiliaryDataLocation() == null ^ this.getAuxiliaryDataLocation() == null)
+            return false;
+        if (other.getAuxiliaryDataLocation() != null
+                && other.getAuxiliaryDataLocation().equals(this.getAuxiliaryDataLocation()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ public class ListTextTranslationJobsResult implements Serializable {
 
     /**
      * <p>
-     * The token to use to retreive the next page of results. This value is
+     * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
      * </p>
      * <p>
@@ -118,7 +118,7 @@ public class ListTextTranslationJobsResult implements Serializable {
 
     /**
      * <p>
-     * The token to use to retreive the next page of results. This value is
+     * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
      * </p>
      * <p>
@@ -127,7 +127,7 @@ public class ListTextTranslationJobsResult implements Serializable {
      * <b>Pattern: </b>\p{ASCII}{0,8192}<br/>
      *
      * @return <p>
-     *         The token to use to retreive the next page of results. This value
+     *         The token to use to retrieve the next page of results. This value
      *         is <code>null</code> when there are no more results to return.
      *         </p>
      */
@@ -137,7 +137,7 @@ public class ListTextTranslationJobsResult implements Serializable {
 
     /**
      * <p>
-     * The token to use to retreive the next page of results. This value is
+     * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
      * </p>
      * <p>
@@ -146,7 +146,7 @@ public class ListTextTranslationJobsResult implements Serializable {
      * <b>Pattern: </b>\p{ASCII}{0,8192}<br/>
      *
      * @param nextToken <p>
-     *            The token to use to retreive the next page of results. This
+     *            The token to use to retrieve the next page of results. This
      *            value is <code>null</code> when there are no more results to
      *            return.
      *            </p>
@@ -157,7 +157,7 @@ public class ListTextTranslationJobsResult implements Serializable {
 
     /**
      * <p>
-     * The token to use to retreive the next page of results. This value is
+     * The token to use to retrieve the next page of results. This value is
      * <code>null</code> when there are no more results to return.
      * </p>
      * <p>
@@ -169,7 +169,7 @@ public class ListTextTranslationJobsResult implements Serializable {
      * <b>Pattern: </b>\p{ASCII}{0,8192}<br/>
      *
      * @param nextToken <p>
-     *            The token to use to retreive the next page of results. This
+     *            The token to use to retrieve the next page of results. This
      *            value is <code>null</code> when there are no more results to
      *            return.
      *            </p>

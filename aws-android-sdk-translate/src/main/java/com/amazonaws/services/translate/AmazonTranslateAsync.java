@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
     /**
      * <p>
      * Creates a parallel data resource in Amazon Translate by importing an
-     * input file from Amazon S3. Parallel data files contain examples of source
-     * phrases and their translations from your translation memory. By adding
-     * parallel data, you can influence the style, tone, and word choice in your
-     * translation output.
+     * input file from Amazon S3. Parallel data files contain examples that show
+     * how you want segments of text to be translated. By adding parallel data,
+     * you can influence the style, tone, and word choice in your translation
+     * output.
      * </p>
      * 
      * @param createParallelDataRequest
@@ -64,10 +64,10 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
     /**
      * <p>
      * Creates a parallel data resource in Amazon Translate by importing an
-     * input file from Amazon S3. Parallel data files contain examples of source
-     * phrases and their translations from your translation memory. By adding
-     * parallel data, you can influence the style, tone, and word choice in your
-     * translation output.
+     * input file from Amazon S3. Parallel data files contain examples that show
+     * how you want segments of text to be translated. By adding parallel data,
+     * you can influence the style, tone, and word choice in your translation
+     * output.
      * </p>
      * 
      * @param createParallelDataRequest
@@ -207,7 +207,7 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
 
     /**
      * <p>
-     * Gets the properties associated with an asycnhronous batch translation job
+     * Gets the properties associated with an asynchronous batch translation job
      * including name, ID, status, source and target languages, input/output S3
      * buckets, and so on.
      * </p>
@@ -233,7 +233,7 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
 
     /**
      * <p>
-     * Gets the properties associated with an asycnhronous batch translation job
+     * Gets the properties associated with an asynchronous batch translation job
      * including name, ID, status, source and target languages, input/output S3
      * buckets, and so on.
      * </p>
@@ -628,6 +628,7 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
      * @throws UnsupportedLanguagePairException
      * @throws InvalidRequestException
      * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or
@@ -672,6 +673,7 @@ public interface AmazonTranslateAsync extends AmazonTranslate {
      * @throws UnsupportedLanguagePairException
      * @throws InvalidRequestException
      * @throws ResourceNotFoundException
+     * @throws InvalidParameterValueException
      * @throws InternalServerException
      * @throws AmazonClientException If any internal errors are encountered
      *             inside the client while attempting to make the request or

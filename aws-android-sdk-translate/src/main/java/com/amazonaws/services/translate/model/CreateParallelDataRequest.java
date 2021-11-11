@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -22,10 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Creates a parallel data resource in Amazon Translate by importing an input
- * file from Amazon S3. Parallel data files contain examples of source phrases
- * and their translations from your translation memory. By adding parallel data,
- * you can influence the style, tone, and word choice in your translation
- * output.
+ * file from Amazon S3. Parallel data files contain examples that show how you
+ * want segments of text to be translated. By adding parallel data, you can
+ * influence the style, tone, and word choice in your translation output.
  * </p>
  */
 public class CreateParallelDataRequest extends AmazonWebServiceRequest implements Serializable {
