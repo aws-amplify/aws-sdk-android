@@ -440,24 +440,29 @@ public class EventRecorder {
         final Map<String, ItemResponse> results = resultResponse
                 .getEventsResponse()
                 .getResults();
-        if (results.isEmpty()) {
+        if (results == null || results.isEmpty()) {
             log.error("PutEventsResult is empty!");
-        } else if (endpoint.getEndpointId().isEmpty()) {
-            log.error("EndpointId is missing.");
+            return;
+        }
+
+        if (endpoint.getEndpointId().isEmpty()) {
+            log.error("EndpointId is missing!");
+            return;
+        }
+
+        final EndpointItemResponse endpointItemResponse = results
+                .get(endpoint.getEndpointId())
+                .getEndpointItemResponse();
+        if (endpointItemResponse == null) {
+            log.error("EndPointItemResponse is null!");
+            return;
+        }
+
+        if (202 == endpointItemResponse.getStatusCode()) {
+            log.info("EndpointProfile updated successfully.");
         } else {
-            final EndpointItemResponse endpointItemResponse = results
-                    .get(endpoint.getEndpointId())
-                    .getEndpointItemResponse();
-            if (endpointItemResponse == null) {
-                log.error("EndPointItemResponse is null!");
-            } else {
-                if (202 == endpointItemResponse.getStatusCode()) {
-                    log.info("EndpointProfile updated successfully.");
-                } else {
-                    log.error("AmazonServiceException occurred during endpoint update: " +
-                            endpointItemResponse.getMessage());
-                }
-            }
+            log.error("AmazonServiceException occurred during endpoint update: " +
+                    endpointItemResponse.getMessage());
         }
     }
 
