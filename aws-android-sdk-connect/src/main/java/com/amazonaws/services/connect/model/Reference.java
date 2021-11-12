@@ -26,8 +26,9 @@ import java.io.Serializable;
 public class Reference implements Serializable {
     /**
      * <p>
-     * A formatted URL that displays to an agent in the Contact Control Panel
-     * (CCP)
+     * A valid value for the reference. For example, for a URL reference, a
+     * formatted URL that is displayed to an agent in the Contact Control Panel
+     * (CCP).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,26 +38,29 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A valid URL.
+     * The type of the reference. Only <code>URL</code> type can be added or
+     * updated on a contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT
      */
     private String type;
 
     /**
      * <p>
-     * A formatted URL that displays to an agent in the Contact Control Panel
-     * (CCP)
+     * A valid value for the reference. For example, for a URL reference, a
+     * formatted URL that is displayed to an agent in the Contact Control Panel
+     * (CCP).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @return <p>
-     *         A formatted URL that displays to an agent in the Contact Control
-     *         Panel (CCP)
+     *         A valid value for the reference. For example, for a URL
+     *         reference, a formatted URL that is displayed to an agent in the
+     *         Contact Control Panel (CCP).
      *         </p>
      */
     public String getValue() {
@@ -65,16 +69,18 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A formatted URL that displays to an agent in the Contact Control Panel
-     * (CCP)
+     * A valid value for the reference. For example, for a URL reference, a
+     * formatted URL that is displayed to an agent in the Contact Control Panel
+     * (CCP).
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            A formatted URL that displays to an agent in the Contact
-     *            Control Panel (CCP)
+     *            A valid value for the reference. For example, for a URL
+     *            reference, a formatted URL that is displayed to an agent in
+     *            the Contact Control Panel (CCP).
      *            </p>
      */
     public void setValue(String value) {
@@ -83,8 +89,9 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A formatted URL that displays to an agent in the Contact Control Panel
-     * (CCP)
+     * A valid value for the reference. For example, for a URL reference, a
+     * formatted URL that is displayed to an agent in the Contact Control Panel
+     * (CCP).
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -94,8 +101,9 @@ public class Reference implements Serializable {
      * <b>Length: </b>0 - 4096<br/>
      *
      * @param value <p>
-     *            A formatted URL that displays to an agent in the Contact
-     *            Control Panel (CCP)
+     *            A valid value for the reference. For example, for a URL
+     *            reference, a formatted URL that is displayed to an agent in
+     *            the Contact Control Panel (CCP).
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -107,14 +115,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A valid URL.
+     * The type of the reference. Only <code>URL</code> type can be added or
+     * updated on a contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT
      *
      * @return <p>
-     *         A valid URL.
+     *         The type of the reference. Only <code>URL</code> type can be
+     *         added or updated on a contact.
      *         </p>
      * @see ReferenceType
      */
@@ -124,14 +134,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A valid URL.
+     * The type of the reference. Only <code>URL</code> type can be added or
+     * updated on a contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT
      *
      * @param type <p>
-     *            A valid URL.
+     *            The type of the reference. Only <code>URL</code> type can be
+     *            added or updated on a contact.
      *            </p>
      * @see ReferenceType
      */
@@ -141,17 +153,19 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A valid URL.
+     * The type of the reference. Only <code>URL</code> type can be added or
+     * updated on a contact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT
      *
      * @param type <p>
-     *            A valid URL.
+     *            The type of the reference. Only <code>URL</code> type can be
+     *            added or updated on a contact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -164,14 +178,16 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A valid URL.
+     * The type of the reference. Only <code>URL</code> type can be added or
+     * updated on a contact.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT
      *
      * @param type <p>
-     *            A valid URL.
+     *            The type of the reference. Only <code>URL</code> type can be
+     *            added or updated on a contact.
      *            </p>
      * @see ReferenceType
      */
@@ -181,17 +197,19 @@ public class Reference implements Serializable {
 
     /**
      * <p>
-     * A valid URL.
+     * The type of the reference. Only <code>URL</code> type can be added or
+     * updated on a contact.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>URL
+     * <b>Allowed Values: </b>URL, ATTACHMENT
      *
      * @param type <p>
-     *            A valid URL.
+     *            The type of the reference. Only <code>URL</code> type can be
+     *            added or updated on a contact.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Initiates a contact flow to start a new task.
+ * Initiates a contact flow to start a new task immediately or at a future date
+ * and time.
  * </p>
  */
 public class StartTaskContactRequest extends AmazonWebServiceRequest implements Serializable {
@@ -119,6 +120,15 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
      * <b>Length: </b> - 500<br/>
      */
     private String clientToken;
+
+    /**
+     * <p>
+     * The timestamp, in Unix Epoch seconds format, at which to start running
+     * the inbound contact flow. The scheduled time cannot be in the past. It
+     * must be within up to 6 days in future.
+     * </p>
+     */
+    private java.util.Date scheduledTime;
 
     /**
      * <p>
@@ -749,6 +759,63 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
     }
 
     /**
+     * <p>
+     * The timestamp, in Unix Epoch seconds format, at which to start running
+     * the inbound contact flow. The scheduled time cannot be in the past. It
+     * must be within up to 6 days in future.
+     * </p>
+     *
+     * @return <p>
+     *         The timestamp, in Unix Epoch seconds format, at which to start
+     *         running the inbound contact flow. The scheduled time cannot be in
+     *         the past. It must be within up to 6 days in future.
+     *         </p>
+     */
+    public java.util.Date getScheduledTime() {
+        return scheduledTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in Unix Epoch seconds format, at which to start running
+     * the inbound contact flow. The scheduled time cannot be in the past. It
+     * must be within up to 6 days in future.
+     * </p>
+     *
+     * @param scheduledTime <p>
+     *            The timestamp, in Unix Epoch seconds format, at which to start
+     *            running the inbound contact flow. The scheduled time cannot be
+     *            in the past. It must be within up to 6 days in future.
+     *            </p>
+     */
+    public void setScheduledTime(java.util.Date scheduledTime) {
+        this.scheduledTime = scheduledTime;
+    }
+
+    /**
+     * <p>
+     * The timestamp, in Unix Epoch seconds format, at which to start running
+     * the inbound contact flow. The scheduled time cannot be in the past. It
+     * must be within up to 6 days in future.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param scheduledTime <p>
+     *            The timestamp, in Unix Epoch seconds format, at which to start
+     *            running the inbound contact flow. The scheduled time cannot be
+     *            in the past. It must be within up to 6 days in future.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTaskContactRequest withScheduledTime(java.util.Date scheduledTime) {
+        this.scheduledTime = scheduledTime;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -774,7 +841,9 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getClientToken() != null)
-            sb.append("ClientToken: " + getClientToken());
+            sb.append("ClientToken: " + getClientToken() + ",");
+        if (getScheduledTime() != null)
+            sb.append("ScheduledTime: " + getScheduledTime());
         sb.append("}");
         return sb.toString();
     }
@@ -796,6 +865,8 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode
                 + ((getClientToken() == null) ? 0 : getClientToken().hashCode());
+        hashCode = prime * hashCode
+                + ((getScheduledTime() == null) ? 0 : getScheduledTime().hashCode());
         return hashCode;
     }
 
@@ -848,6 +919,11 @@ public class StartTaskContactRequest extends AmazonWebServiceRequest implements 
             return false;
         if (other.getClientToken() != null
                 && other.getClientToken().equals(this.getClientToken()) == false)
+            return false;
+        if (other.getScheduledTime() == null ^ this.getScheduledTime() == null)
+            return false;
+        if (other.getScheduledTime() != null
+                && other.getScheduledTime().equals(this.getScheduledTime()) == false)
             return false;
         return true;
     }

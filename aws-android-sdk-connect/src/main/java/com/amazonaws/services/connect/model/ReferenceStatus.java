@@ -19,16 +19,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Reference Type
+ * Reference Status
  */
-public enum ReferenceType {
+public enum ReferenceStatus {
 
-    URL("URL"),
-    ATTACHMENT("ATTACHMENT");
+    APPROVED("APPROVED"),
+    REJECTED("REJECTED");
 
     private String value;
 
-    private ReferenceType(String value) {
+    private ReferenceStatus(String value) {
         this.value = value;
     }
 
@@ -37,20 +37,20 @@ public enum ReferenceType {
         return value;
     }
 
-    private static final Map<String, ReferenceType> enumMap;
+    private static final Map<String, ReferenceStatus> enumMap;
     static {
-        enumMap = new HashMap<String, ReferenceType>();
-        enumMap.put("URL", URL);
-        enumMap.put("ATTACHMENT", ATTACHMENT);
+        enumMap = new HashMap<String, ReferenceStatus>();
+        enumMap.put("APPROVED", APPROVED);
+        enumMap.put("REJECTED", REJECTED);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ReferenceType corresponding to the value
+     * @return ReferenceStatus corresponding to the value
      */
-    public static ReferenceType fromValue(String value) {
+    public static ReferenceStatus fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

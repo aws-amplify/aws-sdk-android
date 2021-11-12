@@ -19,16 +19,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Reference Type
+ * Contact Initiation Method
  */
-public enum ReferenceType {
+public enum ContactInitiationMethod {
 
-    URL("URL"),
-    ATTACHMENT("ATTACHMENT");
+    INBOUND("INBOUND"),
+    OUTBOUND("OUTBOUND"),
+    TRANSFER("TRANSFER"),
+    QUEUE_TRANSFER("QUEUE_TRANSFER"),
+    CALLBACK("CALLBACK"),
+    API("API");
 
     private String value;
 
-    private ReferenceType(String value) {
+    private ContactInitiationMethod(String value) {
         this.value = value;
     }
 
@@ -37,20 +41,24 @@ public enum ReferenceType {
         return value;
     }
 
-    private static final Map<String, ReferenceType> enumMap;
+    private static final Map<String, ContactInitiationMethod> enumMap;
     static {
-        enumMap = new HashMap<String, ReferenceType>();
-        enumMap.put("URL", URL);
-        enumMap.put("ATTACHMENT", ATTACHMENT);
+        enumMap = new HashMap<String, ContactInitiationMethod>();
+        enumMap.put("INBOUND", INBOUND);
+        enumMap.put("OUTBOUND", OUTBOUND);
+        enumMap.put("TRANSFER", TRANSFER);
+        enumMap.put("QUEUE_TRANSFER", QUEUE_TRANSFER);
+        enumMap.put("CALLBACK", CALLBACK);
+        enumMap.put("API", API);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return ReferenceType corresponding to the value
+     * @return ContactInitiationMethod corresponding to the value
      */
-    public static ReferenceType fromValue(String value) {
+    public static ContactInitiationMethod fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {
