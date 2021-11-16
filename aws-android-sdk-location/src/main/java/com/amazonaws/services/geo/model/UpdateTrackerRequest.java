@@ -64,7 +64,7 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      */
     private String positionFiltering;
 
@@ -207,7 +207,7 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @return <p>
      *         Updates the position filtering for the tracker resource.
@@ -272,7 +272,7 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            Updates the position filtering for the tracker resource.
@@ -341,7 +341,7 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            Updates the position filtering for the tracker resource.
@@ -410,7 +410,7 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * </ul>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            Updates the position filtering for the tracker resource.
@@ -479,7 +479,7 @@ public class UpdateTrackerRequest extends AmazonWebServiceRequest implements Ser
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            Updates the position filtering for the tracker resource.

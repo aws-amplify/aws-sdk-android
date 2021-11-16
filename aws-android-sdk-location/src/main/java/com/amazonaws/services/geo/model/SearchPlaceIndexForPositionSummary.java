@@ -19,15 +19,15 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A summary of the reverse geocoding request sent using
+ * A summary of the request sent by using
  * <code>SearchPlaceIndexForPosition</code>.
  * </p>
  */
 public class SearchPlaceIndexForPositionSummary implements Serializable {
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The geospatial data provider attached to the place index resource
+     * specified in the request. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -37,12 +37,12 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * HERE
+     * Here
      * </p>
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
@@ -51,7 +51,20 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     */
+    private String language;
+
+    /**
+     * <p>
+     * Contains the optional result count limit that is specified in the
      * request.
      * </p>
      * <p>
@@ -65,15 +78,15 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The position given in the reverse geocoding request.
+     * The position specified in the request.
      * </p>
      */
     private java.util.List<Double> position;
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The geospatial data provider attached to the place index resource
+     * specified in the request. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -83,19 +96,19 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * HERE
+     * Here
      * </p>
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @return <p>
-     *         The data provider of geospatial data. Indicates one of the
-     *         available providers:
+     *         The geospatial data provider attached to the place index resource
+     *         specified in the request. Values can be one of the following:
      *         </p>
      *         <ul>
      *         <li>
@@ -105,12 +118,12 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         HERE
+     *         Here
      *         </p>
      *         </li>
      *         </ul>
      *         <p>
-     *         For additional details on data providers, see <a href=
+     *         For more information about data providers, see <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      *         >Amazon Location Service data providers</a>.
      *         </p>
@@ -121,8 +134,8 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The geospatial data provider attached to the place index resource
+     * specified in the request. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -132,19 +145,20 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * HERE
+     * Here
      * </p>
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @param dataSource <p>
-     *            The data provider of geospatial data. Indicates one of the
-     *            available providers:
+     *            The geospatial data provider attached to the place index
+     *            resource specified in the request. Values can be one of the
+     *            following:
      *            </p>
      *            <ul>
      *            <li>
@@ -154,12 +168,12 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            HERE
+     *            Here
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see <a href=
+     *            For more information about data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      *            >Amazon Location Service data providers</a>.
      *            </p>
@@ -170,8 +184,8 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The geospatial data provider attached to the place index resource
+     * specified in the request. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -181,12 +195,12 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * <li>
      * <p>
-     * HERE
+     * Here
      * </p>
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
@@ -195,8 +209,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * together.
      *
      * @param dataSource <p>
-     *            The data provider of geospatial data. Indicates one of the
-     *            available providers:
+     *            The geospatial data provider attached to the place index
+     *            resource specified in the request. Values can be one of the
+     *            following:
      *            </p>
      *            <ul>
      *            <li>
@@ -206,12 +221,12 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            HERE
+     *            Here
      *            </p>
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see <a href=
+     *            For more information about data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      *            >Amazon Location Service data providers</a>.
      *            </p>
@@ -225,7 +240,79 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     *
+     * @return <p>
+     *         The preferred language used to return results. Matches the
+     *         language in the request. The value is a valid <a
+     *         href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
+     *         tag, for example, <code>en</code> for English.
+     *         </p>
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    /**
+     * <p>
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     *
+     * @param language <p>
+     *            The preferred language used to return results. Matches the
+     *            language in the request. The value is a valid <a
+     *            href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
+     *            tag, for example, <code>en</code> for English.
+     *            </p>
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    /**
+     * <p>
+     * The preferred language used to return results. Matches the language in
+     * the request. The value is a valid <a
+     * href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag, for
+     * example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     *
+     * @param language <p>
+     *            The preferred language used to return results. Matches the
+     *            language in the request. The value is a valid <a
+     *            href="https://tools.ietf.org/search/bcp47">BCP 47</a> language
+     *            tag, for example, <code>en</code> for English.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForPositionSummary withLanguage(String language) {
+        this.language = language;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Contains the optional result count limit that is specified in the
      * request.
      * </p>
      * <p>
@@ -236,7 +323,7 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * <b>Range: </b>1 - 50<br/>
      *
      * @return <p>
-     *         An optional parameter. The maximum number of results returned per
+     *         Contains the optional result count limit that is specified in the
      *         request.
      *         </p>
      *         <p>
@@ -249,7 +336,7 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
+     * Contains the optional result count limit that is specified in the
      * request.
      * </p>
      * <p>
@@ -260,8 +347,8 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * <b>Range: </b>1 - 50<br/>
      *
      * @param maxResults <p>
-     *            An optional parameter. The maximum number of results returned
-     *            per request.
+     *            Contains the optional result count limit that is specified in
+     *            the request.
      *            </p>
      *            <p>
      *            Default value: <code>50</code>
@@ -273,7 +360,7 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * An optional parameter. The maximum number of results returned per
+     * Contains the optional result count limit that is specified in the
      * request.
      * </p>
      * <p>
@@ -287,8 +374,8 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * <b>Range: </b>1 - 50<br/>
      *
      * @param maxResults <p>
-     *            An optional parameter. The maximum number of results returned
-     *            per request.
+     *            Contains the optional result count limit that is specified in
+     *            the request.
      *            </p>
      *            <p>
      *            Default value: <code>50</code>
@@ -303,11 +390,11 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The position given in the reverse geocoding request.
+     * The position specified in the request.
      * </p>
      *
      * @return <p>
-     *         The position given in the reverse geocoding request.
+     *         The position specified in the request.
      *         </p>
      */
     public java.util.List<Double> getPosition() {
@@ -316,11 +403,11 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The position given in the reverse geocoding request.
+     * The position specified in the request.
      * </p>
      *
      * @param position <p>
-     *            The position given in the reverse geocoding request.
+     *            The position specified in the request.
      *            </p>
      */
     public void setPosition(java.util.Collection<Double> position) {
@@ -334,14 +421,14 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The position given in the reverse geocoding request.
+     * The position specified in the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param position <p>
-     *            The position given in the reverse geocoding request.
+     *            The position specified in the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -358,14 +445,14 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
 
     /**
      * <p>
-     * The position given in the reverse geocoding request.
+     * The position specified in the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param position <p>
-     *            The position given in the reverse geocoding request.
+     *            The position specified in the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -388,6 +475,8 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
         sb.append("{");
         if (getDataSource() != null)
             sb.append("DataSource: " + getDataSource() + ",");
+        if (getLanguage() != null)
+            sb.append("Language: " + getLanguage() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getPosition() != null)
@@ -402,6 +491,7 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getDataSource() == null) ? 0 : getDataSource().hashCode());
+        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getPosition() == null) ? 0 : getPosition().hashCode());
         return hashCode;
@@ -422,6 +512,10 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
             return false;
         if (other.getDataSource() != null
                 && other.getDataSource().equals(this.getDataSource()) == false)
+            return false;
+        if (other.getLanguage() == null ^ this.getLanguage() == null)
+            return false;
+        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;

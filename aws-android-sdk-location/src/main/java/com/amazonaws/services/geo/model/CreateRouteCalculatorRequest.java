@@ -181,6 +181,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      */
     private java.util.Map<String, String> tags;
@@ -911,6 +916,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      *
      * @return <p>
@@ -957,6 +967,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *         <p>
      *         Can use alphanumeric characters (A–Z, a–z, 0–9), and the
      *         following characters: + - = . _ : / @.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Cannot use "aws:" as a prefix for a key.
      *         </p>
      *         </li>
      *         </ul>
@@ -1012,6 +1027,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      *
      * @param tags <p>
@@ -1058,6 +1078,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            <p>
      *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
      *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Cannot use "aws:" as a prefix for a key.
      *            </p>
      *            </li>
      *            </ul>
@@ -1113,6 +1138,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1162,6 +1192,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      *            <p>
      *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
      *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Cannot use "aws:" as a prefix for a key.
      *            </p>
      *            </li>
      *            </ul>
@@ -1218,6 +1253,11 @@ public class CreateRouteCalculatorRequest extends AmazonWebServiceRequest implem
      * <p>
      * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
      * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
      * </p>
      * </li>
      * </ul>

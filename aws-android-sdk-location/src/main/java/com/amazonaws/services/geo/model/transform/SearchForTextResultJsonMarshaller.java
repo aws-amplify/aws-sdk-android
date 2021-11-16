@@ -27,10 +27,20 @@ class SearchForTextResultJsonMarshaller {
     public void marshall(SearchForTextResult searchForTextResult, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
+        if (searchForTextResult.getDistance() != null) {
+            Double distance = searchForTextResult.getDistance();
+            jsonWriter.name("Distance");
+            jsonWriter.value(distance);
+        }
         if (searchForTextResult.getPlace() != null) {
             Place place = searchForTextResult.getPlace();
             jsonWriter.name("Place");
             PlaceJsonMarshaller.getInstance().marshall(place, jsonWriter);
+        }
+        if (searchForTextResult.getRelevance() != null) {
+            Double relevance = searchForTextResult.getRelevance();
+            jsonWriter.name("Relevance");
+            jsonWriter.value(relevance);
         }
         jsonWriter.endObject();
     }

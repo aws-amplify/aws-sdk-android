@@ -66,6 +66,11 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
+        if (searchPlaceIndexForTextSummary.getLanguage() != null) {
+            String language = searchPlaceIndexForTextSummary.getLanguage();
+            jsonWriter.name("Language");
+            jsonWriter.value(language);
+        }
         if (searchPlaceIndexForTextSummary.getMaxResults() != null) {
             Integer maxResults = searchPlaceIndexForTextSummary.getMaxResults();
             jsonWriter.name("MaxResults");

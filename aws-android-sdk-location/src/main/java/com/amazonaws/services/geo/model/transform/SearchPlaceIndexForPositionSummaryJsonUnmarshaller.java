@@ -41,6 +41,9 @@ class SearchPlaceIndexForPositionSummaryJsonUnmarshaller implements
                 searchPlaceIndexForPositionSummary.setDataSource(StringJsonUnmarshaller
                         .getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Language")) {
+                searchPlaceIndexForPositionSummary.setLanguage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("MaxResults")) {
                 searchPlaceIndexForPositionSummary.setMaxResults(IntegerJsonUnmarshaller
                         .getInstance()

@@ -55,6 +55,9 @@ class SearchPlaceIndexForTextSummaryJsonUnmarshaller implements
                         StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
+            } else if (name.equals("Language")) {
+                searchPlaceIndexForTextSummary.setLanguage(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("MaxResults")) {
                 searchPlaceIndexForTextSummary.setMaxResults(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));

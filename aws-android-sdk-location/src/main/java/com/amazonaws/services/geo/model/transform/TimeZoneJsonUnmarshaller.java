@@ -21,40 +21,39 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO SearchForPositionResult
+ * JSON unmarshaller for POJO TimeZone
  */
-class SearchForPositionResultJsonUnmarshaller implements
-        Unmarshaller<SearchForPositionResult, JsonUnmarshallerContext> {
+class TimeZoneJsonUnmarshaller implements Unmarshaller<TimeZone, JsonUnmarshallerContext> {
 
-    public SearchForPositionResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public TimeZone unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        SearchForPositionResult searchForPositionResult = new SearchForPositionResult();
+        TimeZone timeZone = new TimeZone();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Distance")) {
-                searchForPositionResult.setDistance(DoubleJsonUnmarshaller.getInstance()
+            if (name.equals("Name")) {
+                timeZone.setName(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
-            } else if (name.equals("Place")) {
-                searchForPositionResult.setPlace(PlaceJsonUnmarshaller.getInstance()
+            } else if (name.equals("Offset")) {
+                timeZone.setOffset(IntegerJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return searchForPositionResult;
+        return timeZone;
     }
 
-    private static SearchForPositionResultJsonUnmarshaller instance;
+    private static TimeZoneJsonUnmarshaller instance;
 
-    public static SearchForPositionResultJsonUnmarshaller getInstance() {
+    public static TimeZoneJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new SearchForPositionResultJsonUnmarshaller();
+            instance = new TimeZoneJsonUnmarshaller();
         return instance;
     }
 }

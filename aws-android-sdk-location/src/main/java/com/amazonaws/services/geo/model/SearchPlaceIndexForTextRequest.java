@@ -25,8 +25,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * you to search for Places or points of interest.
  * </p>
  * <p>
- * Includes the option to apply additional parameters to narrow your list of
- * results.
+ * Optional parameters let you narrow your search results by bounding box or
+ * country, or bias your search toward a specific position on the globe.
  * </p>
  * <note>
  * <p>
@@ -36,92 +36,75 @@ import com.amazonaws.AmazonWebServiceRequest;
  * error.
  * </p>
  * </note>
+ * <p>
+ * Search results are returned in order of highest to lowest relevance.
+ * </p>
  */
 public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest implements Serializable {
     /**
      * <p>
-     * Searches for results closest to the given position. An optional parameter
-     * defined by longitude, and latitude.
+     * An optional parameter that indicates a preference for places that are
+     * closer to a specified position.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * The first <code>bias</code> position is the X coordinate, or longitude.
+     * If provided, this parameter must contain a pair of numbers. The first
+     * number represents the X coordinate, or longitude; the second number
+     * represents the Y coordinate, or latitude.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * The second <code>bias</code> position is the Y coordinate, or latitude.
+     * For example, <code>[-123.1174, 49.2847]</code> represents the position
+     * with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
      * </p>
-     * </li>
-     * </ul>
+     * <note>
      * <p>
-     * For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     * <code>BiasPosition</code> and <code>FilterBBox</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
+     * </note>
      */
     private java.util.List<Double> biasPosition;
 
     /**
      * <p>
-     * Filters the results by returning only Places within the provided bounding
-     * box. An optional parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are within the provided bounding box.
      * </p>
      * <p>
-     * The first 2 <code>bbox</code> parameters describe the lower southwest
-     * corner:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The first <code>bbox</code> position is the X coordinate or longitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The second <code>bbox</code> position is the Y coordinate or latitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     * If provided, this parameter must contain a total of four consecutive
+     * numbers in two pairs. The first pair of numbers represents the X and Y
+     * coordinates (longitude and latitude, respectively) of the southwest
+     * corner of the bounding box; the second pair of numbers represents the X
+     * and Y coordinates (longitude and latitude, respectively) of the northeast
+     * corner of the bounding box.
      * </p>
      * <p>
-     * The next <code>bbox</code> parameters describe the upper northeast
-     * corner:
+     * For example, <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     * represents a bounding box where the southwest corner has longitude
+     * <code>-12.7935</code> and latitude <code>-37.4835</code>, and the
+     * northeast corner has longitude <code>-12.0684</code> and latitude
+     * <code>-36.9542</code>.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * The third <code>bbox</code> position is the X coordinate, or longitude of
-     * the upper northeast corner.
+     * <code>FilterBBox</code> and <code>BiasPosition</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     * </p>
+     * </note>
      */
     private java.util.List<Double> filterBBox;
 
     /**
      * <p>
-     * Limits the search to the given a list of countries/regions. An optional
-     * parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are in a specified list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     * 3166</a> 3-digit country code. For example, Australia uses three
-     * upper-case characters: <code>AUS</code>.
+     * Valid values include <a
+     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
+     * 3-digit country codes. For example, Australia uses three upper-case
+     * characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
@@ -141,6 +124,24 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
+     * The preferred language used to return results. The value must be a valid
+     * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
+     * for example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * This setting affects the languages used in the results. It does not
+     * change which results are returned. If the language is not specified, or
+     * not supported for a particular result, the partner automatically chooses
+     * a language for the result.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     */
+    private String language;
+
+    /**
+     * <p>
      * An optional parameter. The maximum number of results returned per
      * request.
      * </p>
@@ -155,7 +156,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search. In free-form
+     * The address, name, city, or region to be used in the search in free-form
      * text format. For example, <code>123 Any Street</code>.
      * </p>
      * <p>
@@ -166,46 +167,45 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Searches for results closest to the given position. An optional parameter
-     * defined by longitude, and latitude.
+     * An optional parameter that indicates a preference for places that are
+     * closer to a specified position.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * The first <code>bias</code> position is the X coordinate, or longitude.
+     * If provided, this parameter must contain a pair of numbers. The first
+     * number represents the X coordinate, or longitude; the second number
+     * represents the Y coordinate, or latitude.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * The second <code>bias</code> position is the Y coordinate, or latitude.
+     * For example, <code>[-123.1174, 49.2847]</code> represents the position
+     * with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
      * </p>
-     * </li>
-     * </ul>
+     * <note>
      * <p>
-     * For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     * <code>BiasPosition</code> and <code>FilterBBox</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
+     * </note>
      *
      * @return <p>
-     *         Searches for results closest to the given position. An optional
-     *         parameter defined by longitude, and latitude.
+     *         An optional parameter that indicates a preference for places that
+     *         are closer to a specified position.
      *         </p>
-     *         <ul>
-     *         <li>
      *         <p>
-     *         The first <code>bias</code> position is the X coordinate, or
-     *         longitude.
+     *         If provided, this parameter must contain a pair of numbers. The
+     *         first number represents the X coordinate, or longitude; the
+     *         second number represents the Y coordinate, or latitude.
      *         </p>
-     *         </li>
-     *         <li>
      *         <p>
-     *         The second <code>bias</code> position is the Y coordinate, or
-     *         latitude.
+     *         For example, <code>[-123.1174, 49.2847]</code> represents the
+     *         position with longitude <code>-123.1174</code> and latitude
+     *         <code>49.2847</code>.
      *         </p>
-     *         </li>
-     *         </ul>
+     *         <note>
      *         <p>
-     *         For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     *         <code>BiasPosition</code> and <code>FilterBBox</code> are
+     *         mutually exclusive. Specifying both options results in an error.
      *         </p>
+     *         </note>
      */
     public java.util.List<Double> getBiasPosition() {
         return biasPosition;
@@ -213,46 +213,46 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Searches for results closest to the given position. An optional parameter
-     * defined by longitude, and latitude.
+     * An optional parameter that indicates a preference for places that are
+     * closer to a specified position.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * The first <code>bias</code> position is the X coordinate, or longitude.
+     * If provided, this parameter must contain a pair of numbers. The first
+     * number represents the X coordinate, or longitude; the second number
+     * represents the Y coordinate, or latitude.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * The second <code>bias</code> position is the Y coordinate, or latitude.
+     * For example, <code>[-123.1174, 49.2847]</code> represents the position
+     * with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
      * </p>
-     * </li>
-     * </ul>
+     * <note>
      * <p>
-     * For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     * <code>BiasPosition</code> and <code>FilterBBox</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
+     * </note>
      *
      * @param biasPosition <p>
-     *            Searches for results closest to the given position. An
-     *            optional parameter defined by longitude, and latitude.
+     *            An optional parameter that indicates a preference for places
+     *            that are closer to a specified position.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            The first <code>bias</code> position is the X coordinate, or
-     *            longitude.
+     *            If provided, this parameter must contain a pair of numbers.
+     *            The first number represents the X coordinate, or longitude;
+     *            the second number represents the Y coordinate, or latitude.
      *            </p>
-     *            </li>
-     *            <li>
      *            <p>
-     *            The second <code>bias</code> position is the Y coordinate, or
-     *            latitude.
+     *            For example, <code>[-123.1174, 49.2847]</code> represents the
+     *            position with longitude <code>-123.1174</code> and latitude
+     *            <code>49.2847</code>.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <note>
      *            <p>
-     *            For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     *            <code>BiasPosition</code> and <code>FilterBBox</code> are
+     *            mutually exclusive. Specifying both options results in an
+     *            error.
      *            </p>
+     *            </note>
      */
     public void setBiasPosition(java.util.Collection<Double> biasPosition) {
         if (biasPosition == null) {
@@ -265,49 +265,49 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Searches for results closest to the given position. An optional parameter
-     * defined by longitude, and latitude.
+     * An optional parameter that indicates a preference for places that are
+     * closer to a specified position.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * The first <code>bias</code> position is the X coordinate, or longitude.
+     * If provided, this parameter must contain a pair of numbers. The first
+     * number represents the X coordinate, or longitude; the second number
+     * represents the Y coordinate, or latitude.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * The second <code>bias</code> position is the Y coordinate, or latitude.
+     * For example, <code>[-123.1174, 49.2847]</code> represents the position
+     * with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
      * </p>
-     * </li>
-     * </ul>
+     * <note>
      * <p>
-     * For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     * <code>BiasPosition</code> and <code>FilterBBox</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param biasPosition <p>
-     *            Searches for results closest to the given position. An
-     *            optional parameter defined by longitude, and latitude.
+     *            An optional parameter that indicates a preference for places
+     *            that are closer to a specified position.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            The first <code>bias</code> position is the X coordinate, or
-     *            longitude.
+     *            If provided, this parameter must contain a pair of numbers.
+     *            The first number represents the X coordinate, or longitude;
+     *            the second number represents the Y coordinate, or latitude.
      *            </p>
-     *            </li>
-     *            <li>
      *            <p>
-     *            The second <code>bias</code> position is the Y coordinate, or
-     *            latitude.
+     *            For example, <code>[-123.1174, 49.2847]</code> represents the
+     *            position with longitude <code>-123.1174</code> and latitude
+     *            <code>49.2847</code>.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <note>
      *            <p>
-     *            For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     *            <code>BiasPosition</code> and <code>FilterBBox</code> are
+     *            mutually exclusive. Specifying both options results in an
+     *            error.
      *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -323,49 +323,49 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Searches for results closest to the given position. An optional parameter
-     * defined by longitude, and latitude.
+     * An optional parameter that indicates a preference for places that are
+     * closer to a specified position.
      * </p>
-     * <ul>
-     * <li>
      * <p>
-     * The first <code>bias</code> position is the X coordinate, or longitude.
+     * If provided, this parameter must contain a pair of numbers. The first
+     * number represents the X coordinate, or longitude; the second number
+     * represents the Y coordinate, or latitude.
      * </p>
-     * </li>
-     * <li>
      * <p>
-     * The second <code>bias</code> position is the Y coordinate, or latitude.
+     * For example, <code>[-123.1174, 49.2847]</code> represents the position
+     * with longitude <code>-123.1174</code> and latitude <code>49.2847</code>.
      * </p>
-     * </li>
-     * </ul>
+     * <note>
      * <p>
-     * For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     * <code>BiasPosition</code> and <code>FilterBBox</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param biasPosition <p>
-     *            Searches for results closest to the given position. An
-     *            optional parameter defined by longitude, and latitude.
+     *            An optional parameter that indicates a preference for places
+     *            that are closer to a specified position.
      *            </p>
-     *            <ul>
-     *            <li>
      *            <p>
-     *            The first <code>bias</code> position is the X coordinate, or
-     *            longitude.
+     *            If provided, this parameter must contain a pair of numbers.
+     *            The first number represents the X coordinate, or longitude;
+     *            the second number represents the Y coordinate, or latitude.
      *            </p>
-     *            </li>
-     *            <li>
      *            <p>
-     *            The second <code>bias</code> position is the Y coordinate, or
-     *            latitude.
+     *            For example, <code>[-123.1174, 49.2847]</code> represents the
+     *            position with longitude <code>-123.1174</code> and latitude
+     *            <code>49.2847</code>.
      *            </p>
-     *            </li>
-     *            </ul>
+     *            <note>
      *            <p>
-     *            For example, <code>bias=xLongitude&amp;bias=yLatitude</code>.
+     *            <code>BiasPosition</code> and <code>FilterBBox</code> are
+     *            mutually exclusive. Specifying both options results in an
+     *            error.
      *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -376,98 +376,58 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Filters the results by returning only Places within the provided bounding
-     * box. An optional parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are within the provided bounding box.
      * </p>
      * <p>
-     * The first 2 <code>bbox</code> parameters describe the lower southwest
-     * corner:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The first <code>bbox</code> position is the X coordinate or longitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The second <code>bbox</code> position is the Y coordinate or latitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     * If provided, this parameter must contain a total of four consecutive
+     * numbers in two pairs. The first pair of numbers represents the X and Y
+     * coordinates (longitude and latitude, respectively) of the southwest
+     * corner of the bounding box; the second pair of numbers represents the X
+     * and Y coordinates (longitude and latitude, respectively) of the northeast
+     * corner of the bounding box.
      * </p>
      * <p>
-     * The next <code>bbox</code> parameters describe the upper northeast
-     * corner:
+     * For example, <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     * represents a bounding box where the southwest corner has longitude
+     * <code>-12.7935</code> and latitude <code>-37.4835</code>, and the
+     * northeast corner has longitude <code>-12.0684</code> and latitude
+     * <code>-36.9542</code>.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * The third <code>bbox</code> position is the X coordinate, or longitude of
-     * the upper northeast corner.
+     * <code>FilterBBox</code> and <code>BiasPosition</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     * </p>
+     * </note>
      *
      * @return <p>
-     *         Filters the results by returning only Places within the provided
-     *         bounding box. An optional parameter.
+     *         An optional parameter that limits the search results by returning
+     *         only places that are within the provided bounding box.
      *         </p>
      *         <p>
-     *         The first 2 <code>bbox</code> parameters describe the lower
-     *         southwest corner:
-     *         </p>
-     *         <ul>
-     *         <li>
-     *         <p>
-     *         The first <code>bbox</code> position is the X coordinate or
-     *         longitude of the lower southwest corner.
-     *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         The second <code>bbox</code> position is the Y coordinate or
-     *         latitude of the lower southwest corner.
-     *         </p>
-     *         </li>
-     *         </ul>
-     *         <p>
-     *         For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     *         If provided, this parameter must contain a total of four
+     *         consecutive numbers in two pairs. The first pair of numbers
+     *         represents the X and Y coordinates (longitude and latitude,
+     *         respectively) of the southwest corner of the bounding box; the
+     *         second pair of numbers represents the X and Y coordinates
+     *         (longitude and latitude, respectively) of the northeast corner of
+     *         the bounding box.
      *         </p>
      *         <p>
-     *         The next <code>bbox</code> parameters describe the upper
-     *         northeast corner:
+     *         For example,
+     *         <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code> represents
+     *         a bounding box where the southwest corner has longitude
+     *         <code>-12.7935</code> and latitude <code>-37.4835</code>, and the
+     *         northeast corner has longitude <code>-12.0684</code> and latitude
+     *         <code>-36.9542</code>.
      *         </p>
-     *         <ul>
-     *         <li>
+     *         <note>
      *         <p>
-     *         The third <code>bbox</code> position is the X coordinate, or
-     *         longitude of the upper northeast corner.
+     *         <code>FilterBBox</code> and <code>BiasPosition</code> are
+     *         mutually exclusive. Specifying both options results in an error.
      *         </p>
-     *         </li>
-     *         <li>
-     *         <p>
-     *         The fourth <code>bbox</code> position is the Y coordinate, or
-     *         longitude of the upper northeast corner.
-     *         </p>
-     *         </li>
-     *         </ul>
-     *         <p>
-     *         For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     *         </p>
+     *         </note>
      */
     public java.util.List<Double> getFilterBBox() {
         return filterBBox;
@@ -475,100 +435,60 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Filters the results by returning only Places within the provided bounding
-     * box. An optional parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are within the provided bounding box.
      * </p>
      * <p>
-     * The first 2 <code>bbox</code> parameters describe the lower southwest
-     * corner:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The first <code>bbox</code> position is the X coordinate or longitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The second <code>bbox</code> position is the Y coordinate or latitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     * If provided, this parameter must contain a total of four consecutive
+     * numbers in two pairs. The first pair of numbers represents the X and Y
+     * coordinates (longitude and latitude, respectively) of the southwest
+     * corner of the bounding box; the second pair of numbers represents the X
+     * and Y coordinates (longitude and latitude, respectively) of the northeast
+     * corner of the bounding box.
      * </p>
      * <p>
-     * The next <code>bbox</code> parameters describe the upper northeast
-     * corner:
+     * For example, <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     * represents a bounding box where the southwest corner has longitude
+     * <code>-12.7935</code> and latitude <code>-37.4835</code>, and the
+     * northeast corner has longitude <code>-12.0684</code> and latitude
+     * <code>-36.9542</code>.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * The third <code>bbox</code> position is the X coordinate, or longitude of
-     * the upper northeast corner.
+     * <code>FilterBBox</code> and <code>BiasPosition</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     * </p>
+     * </note>
      *
      * @param filterBBox <p>
-     *            Filters the results by returning only Places within the
-     *            provided bounding box. An optional parameter.
+     *            An optional parameter that limits the search results by
+     *            returning only places that are within the provided bounding
+     *            box.
      *            </p>
      *            <p>
-     *            The first 2 <code>bbox</code> parameters describe the lower
-     *            southwest corner:
+     *            If provided, this parameter must contain a total of four
+     *            consecutive numbers in two pairs. The first pair of numbers
+     *            represents the X and Y coordinates (longitude and latitude,
+     *            respectively) of the southwest corner of the bounding box; the
+     *            second pair of numbers represents the X and Y coordinates
+     *            (longitude and latitude, respectively) of the northeast corner
+     *            of the bounding box.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The first <code>bbox</code> position is the X coordinate or
-     *            longitude of the lower southwest corner.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The second <code>bbox</code> position is the Y coordinate or
-     *            latitude of the lower southwest corner.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For example,
-     *            <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     *            <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     *            represents a bounding box where the southwest corner has
+     *            longitude <code>-12.7935</code> and latitude
+     *            <code>-37.4835</code>, and the northeast corner has longitude
+     *            <code>-12.0684</code> and latitude <code>-36.9542</code>.
      *            </p>
+     *            <note>
      *            <p>
-     *            The next <code>bbox</code> parameters describe the upper
-     *            northeast corner:
+     *            <code>FilterBBox</code> and <code>BiasPosition</code> are
+     *            mutually exclusive. Specifying both options results in an
+     *            error.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The third <code>bbox</code> position is the X coordinate, or
-     *            longitude of the upper northeast corner.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The fourth <code>bbox</code> position is the Y coordinate, or
-     *            longitude of the upper northeast corner.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            For example,
-     *            <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     *            </p>
+     *            </note>
      */
     public void setFilterBBox(java.util.Collection<Double> filterBBox) {
         if (filterBBox == null) {
@@ -581,103 +501,63 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Filters the results by returning only Places within the provided bounding
-     * box. An optional parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are within the provided bounding box.
      * </p>
      * <p>
-     * The first 2 <code>bbox</code> parameters describe the lower southwest
-     * corner:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The first <code>bbox</code> position is the X coordinate or longitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The second <code>bbox</code> position is the Y coordinate or latitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     * If provided, this parameter must contain a total of four consecutive
+     * numbers in two pairs. The first pair of numbers represents the X and Y
+     * coordinates (longitude and latitude, respectively) of the southwest
+     * corner of the bounding box; the second pair of numbers represents the X
+     * and Y coordinates (longitude and latitude, respectively) of the northeast
+     * corner of the bounding box.
      * </p>
      * <p>
-     * The next <code>bbox</code> parameters describe the upper northeast
-     * corner:
+     * For example, <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     * represents a bounding box where the southwest corner has longitude
+     * <code>-12.7935</code> and latitude <code>-37.4835</code>, and the
+     * northeast corner has longitude <code>-12.0684</code> and latitude
+     * <code>-36.9542</code>.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * The third <code>bbox</code> position is the X coordinate, or longitude of
-     * the upper northeast corner.
+     * <code>FilterBBox</code> and <code>BiasPosition</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filterBBox <p>
-     *            Filters the results by returning only Places within the
-     *            provided bounding box. An optional parameter.
+     *            An optional parameter that limits the search results by
+     *            returning only places that are within the provided bounding
+     *            box.
      *            </p>
      *            <p>
-     *            The first 2 <code>bbox</code> parameters describe the lower
-     *            southwest corner:
+     *            If provided, this parameter must contain a total of four
+     *            consecutive numbers in two pairs. The first pair of numbers
+     *            represents the X and Y coordinates (longitude and latitude,
+     *            respectively) of the southwest corner of the bounding box; the
+     *            second pair of numbers represents the X and Y coordinates
+     *            (longitude and latitude, respectively) of the northeast corner
+     *            of the bounding box.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The first <code>bbox</code> position is the X coordinate or
-     *            longitude of the lower southwest corner.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The second <code>bbox</code> position is the Y coordinate or
-     *            latitude of the lower southwest corner.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For example,
-     *            <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     *            <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     *            represents a bounding box where the southwest corner has
+     *            longitude <code>-12.7935</code> and latitude
+     *            <code>-37.4835</code>, and the northeast corner has longitude
+     *            <code>-12.0684</code> and latitude <code>-36.9542</code>.
      *            </p>
+     *            <note>
      *            <p>
-     *            The next <code>bbox</code> parameters describe the upper
-     *            northeast corner:
+     *            <code>FilterBBox</code> and <code>BiasPosition</code> are
+     *            mutually exclusive. Specifying both options results in an
+     *            error.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The third <code>bbox</code> position is the X coordinate, or
-     *            longitude of the upper northeast corner.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The fourth <code>bbox</code> position is the Y coordinate, or
-     *            longitude of the upper northeast corner.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            For example,
-     *            <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -693,103 +573,63 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Filters the results by returning only Places within the provided bounding
-     * box. An optional parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are within the provided bounding box.
      * </p>
      * <p>
-     * The first 2 <code>bbox</code> parameters describe the lower southwest
-     * corner:
-     * </p>
-     * <ul>
-     * <li>
-     * <p>
-     * The first <code>bbox</code> position is the X coordinate or longitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The second <code>bbox</code> position is the Y coordinate or latitude of
-     * the lower southwest corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     * If provided, this parameter must contain a total of four consecutive
+     * numbers in two pairs. The first pair of numbers represents the X and Y
+     * coordinates (longitude and latitude, respectively) of the southwest
+     * corner of the bounding box; the second pair of numbers represents the X
+     * and Y coordinates (longitude and latitude, respectively) of the northeast
+     * corner of the bounding box.
      * </p>
      * <p>
-     * The next <code>bbox</code> parameters describe the upper northeast
-     * corner:
+     * For example, <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     * represents a bounding box where the southwest corner has longitude
+     * <code>-12.7935</code> and latitude <code>-37.4835</code>, and the
+     * northeast corner has longitude <code>-12.0684</code> and latitude
+     * <code>-36.9542</code>.
      * </p>
-     * <ul>
-     * <li>
+     * <note>
      * <p>
-     * The third <code>bbox</code> position is the X coordinate, or longitude of
-     * the upper northeast corner.
+     * <code>FilterBBox</code> and <code>BiasPosition</code> are mutually
+     * exclusive. Specifying both options results in an error.
      * </p>
-     * </li>
-     * <li>
-     * <p>
-     * The fourth <code>bbox</code> position is the Y coordinate, or longitude
-     * of the upper northeast corner.
-     * </p>
-     * </li>
-     * </ul>
-     * <p>
-     * For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     * </p>
+     * </note>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param filterBBox <p>
-     *            Filters the results by returning only Places within the
-     *            provided bounding box. An optional parameter.
+     *            An optional parameter that limits the search results by
+     *            returning only places that are within the provided bounding
+     *            box.
      *            </p>
      *            <p>
-     *            The first 2 <code>bbox</code> parameters describe the lower
-     *            southwest corner:
+     *            If provided, this parameter must contain a total of four
+     *            consecutive numbers in two pairs. The first pair of numbers
+     *            represents the X and Y coordinates (longitude and latitude,
+     *            respectively) of the southwest corner of the bounding box; the
+     *            second pair of numbers represents the X and Y coordinates
+     *            (longitude and latitude, respectively) of the northeast corner
+     *            of the bounding box.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The first <code>bbox</code> position is the X coordinate or
-     *            longitude of the lower southwest corner.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The second <code>bbox</code> position is the Y coordinate or
-     *            latitude of the lower southwest corner.
-     *            </p>
-     *            </li>
-     *            </ul>
      *            <p>
      *            For example,
-     *            <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.
+     *            <code>[-12.7935, -37.4835, -12.0684, -36.9542]</code>
+     *            represents a bounding box where the southwest corner has
+     *            longitude <code>-12.7935</code> and latitude
+     *            <code>-37.4835</code>, and the northeast corner has longitude
+     *            <code>-12.0684</code> and latitude <code>-36.9542</code>.
      *            </p>
+     *            <note>
      *            <p>
-     *            The next <code>bbox</code> parameters describe the upper
-     *            northeast corner:
+     *            <code>FilterBBox</code> and <code>BiasPosition</code> are
+     *            mutually exclusive. Specifying both options results in an
+     *            error.
      *            </p>
-     *            <ul>
-     *            <li>
-     *            <p>
-     *            The third <code>bbox</code> position is the X coordinate, or
-     *            longitude of the upper northeast corner.
-     *            </p>
-     *            </li>
-     *            <li>
-     *            <p>
-     *            The fourth <code>bbox</code> position is the Y coordinate, or
-     *            longitude of the upper northeast corner.
-     *            </p>
-     *            </li>
-     *            </ul>
-     *            <p>
-     *            For example,
-     *            <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code>
-     *            </p>
+     *            </note>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
@@ -800,29 +640,30 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Limits the search to the given a list of countries/regions. An optional
-     * parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are in a specified list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     * 3166</a> 3-digit country code. For example, Australia uses three
-     * upper-case characters: <code>AUS</code>.
+     * Valid values include <a
+     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
+     * 3-digit country codes. For example, Australia uses three upper-case
+     * characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
-     *         Limits the search to the given a list of countries/regions. An
-     *         optional parameter.
+     *         An optional parameter that limits the search results by returning
+     *         only places that are in a specified list of countries.
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Use the <a
+     *         Valid values include <a
      *         href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *         3166</a> 3-digit country code. For example, Australia uses three
+     *         3166</a> 3-digit country codes. For example, Australia uses three
      *         upper-case characters: <code>AUS</code>.
      *         </p>
      *         </li>
@@ -834,29 +675,31 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Limits the search to the given a list of countries/regions. An optional
-     * parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are in a specified list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     * 3166</a> 3-digit country code. For example, Australia uses three
-     * upper-case characters: <code>AUS</code>.
+     * Valid values include <a
+     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
+     * 3-digit country codes. For example, Australia uses three upper-case
+     * characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
      *
      * @param filterCountries <p>
-     *            Limits the search to the given a list of countries/regions. An
-     *            optional parameter.
+     *            An optional parameter that limits the search results by
+     *            returning only places that are in a specified list of
+     *            countries.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Use the <a
+     *            Valid values include <a
      *            href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *            3166</a> 3-digit country code. For example, Australia uses
+     *            3166</a> 3-digit country codes. For example, Australia uses
      *            three upper-case characters: <code>AUS</code>.
      *            </p>
      *            </li>
@@ -873,15 +716,16 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Limits the search to the given a list of countries/regions. An optional
-     * parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are in a specified list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     * 3166</a> 3-digit country code. For example, Australia uses three
-     * upper-case characters: <code>AUS</code>.
+     * Valid values include <a
+     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
+     * 3-digit country codes. For example, Australia uses three upper-case
+     * characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
@@ -890,15 +734,16 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * together.
      *
      * @param filterCountries <p>
-     *            Limits the search to the given a list of countries/regions. An
-     *            optional parameter.
+     *            An optional parameter that limits the search results by
+     *            returning only places that are in a specified list of
+     *            countries.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Use the <a
+     *            Valid values include <a
      *            href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *            3166</a> 3-digit country code. For example, Australia uses
+     *            3166</a> 3-digit country codes. For example, Australia uses
      *            three upper-case characters: <code>AUS</code>.
      *            </p>
      *            </li>
@@ -918,15 +763,16 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * Limits the search to the given a list of countries/regions. An optional
-     * parameter.
+     * An optional parameter that limits the search results by returning only
+     * places that are in a specified list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     * 3166</a> 3-digit country code. For example, Australia uses three
-     * upper-case characters: <code>AUS</code>.
+     * Valid values include <a
+     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
+     * 3-digit country codes. For example, Australia uses three upper-case
+     * characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
@@ -935,15 +781,16 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * together.
      *
      * @param filterCountries <p>
-     *            Limits the search to the given a list of countries/regions. An
-     *            optional parameter.
+     *            An optional parameter that limits the search results by
+     *            returning only places that are in a specified list of
+     *            countries.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Use the <a
+     *            Valid values include <a
      *            href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *            3166</a> 3-digit country code. For example, Australia uses
+     *            3166</a> 3-digit country codes. For example, Australia uses
      *            three upper-case characters: <code>AUS</code>.
      *            </p>
      *            </li>
@@ -1014,6 +861,108 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      */
     public SearchPlaceIndexForTextRequest withIndexName(String indexName) {
         this.indexName = indexName;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The preferred language used to return results. The value must be a valid
+     * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
+     * for example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * This setting affects the languages used in the results. It does not
+     * change which results are returned. If the language is not specified, or
+     * not supported for a particular result, the partner automatically chooses
+     * a language for the result.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     *
+     * @return <p>
+     *         The preferred language used to return results. The value must be
+     *         a valid <a href="https://tools.ietf.org/search/bcp47">BCP 47</a>
+     *         language tag, for example, <code>en</code> for English.
+     *         </p>
+     *         <p>
+     *         This setting affects the languages used in the results. It does
+     *         not change which results are returned. If the language is not
+     *         specified, or not supported for a particular result, the partner
+     *         automatically chooses a language for the result.
+     *         </p>
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    /**
+     * <p>
+     * The preferred language used to return results. The value must be a valid
+     * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
+     * for example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * This setting affects the languages used in the results. It does not
+     * change which results are returned. If the language is not specified, or
+     * not supported for a particular result, the partner automatically chooses
+     * a language for the result.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     *
+     * @param language <p>
+     *            The preferred language used to return results. The value must
+     *            be a valid <a href="https://tools.ietf.org/search/bcp47">BCP
+     *            47</a> language tag, for example, <code>en</code> for English.
+     *            </p>
+     *            <p>
+     *            This setting affects the languages used in the results. It
+     *            does not change which results are returned. If the language is
+     *            not specified, or not supported for a particular result, the
+     *            partner automatically chooses a language for the result.
+     *            </p>
+     */
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    /**
+     * <p>
+     * The preferred language used to return results. The value must be a valid
+     * <a href="https://tools.ietf.org/search/bcp47">BCP 47</a> language tag,
+     * for example, <code>en</code> for English.
+     * </p>
+     * <p>
+     * This setting affects the languages used in the results. It does not
+     * change which results are returned. If the language is not specified, or
+     * not supported for a particular result, the partner automatically chooses
+     * a language for the result.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Length: </b>2 - 35<br/>
+     *
+     * @param language <p>
+     *            The preferred language used to return results. The value must
+     *            be a valid <a href="https://tools.ietf.org/search/bcp47">BCP
+     *            47</a> language tag, for example, <code>en</code> for English.
+     *            </p>
+     *            <p>
+     *            This setting affects the languages used in the results. It
+     *            does not change which results are returned. If the language is
+     *            not specified, or not supported for a particular result, the
+     *            partner automatically chooses a language for the result.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public SearchPlaceIndexForTextRequest withLanguage(String language) {
+        this.language = language;
         return this;
     }
 
@@ -1097,7 +1046,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search. In free-form
+     * The address, name, city, or region to be used in the search in free-form
      * text format. For example, <code>123 Any Street</code>.
      * </p>
      * <p>
@@ -1105,7 +1054,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 200<br/>
      *
      * @return <p>
-     *         The address, name, city, or region to be used in the search. In
+     *         The address, name, city, or region to be used in the search in
      *         free-form text format. For example, <code>123 Any Street</code>.
      *         </p>
      */
@@ -1115,7 +1064,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search. In free-form
+     * The address, name, city, or region to be used in the search in free-form
      * text format. For example, <code>123 Any Street</code>.
      * </p>
      * <p>
@@ -1123,8 +1072,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 200<br/>
      *
      * @param text <p>
-     *            The address, name, city, or region to be used in the search.
-     *            In free-form text format. For example,
+     *            The address, name, city, or region to be used in the search in
+     *            free-form text format. For example,
      *            <code>123 Any Street</code>.
      *            </p>
      */
@@ -1134,7 +1083,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search. In free-form
+     * The address, name, city, or region to be used in the search in free-form
      * text format. For example, <code>123 Any Street</code>.
      * </p>
      * <p>
@@ -1145,8 +1094,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 200<br/>
      *
      * @param text <p>
-     *            The address, name, city, or region to be used in the search.
-     *            In free-form text format. For example,
+     *            The address, name, city, or region to be used in the search in
+     *            free-form text format. For example,
      *            <code>123 Any Street</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1176,6 +1125,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
             sb.append("FilterCountries: " + getFilterCountries() + ",");
         if (getIndexName() != null)
             sb.append("IndexName: " + getIndexName() + ",");
+        if (getLanguage() != null)
+            sb.append("Language: " + getLanguage() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
         if (getText() != null)
@@ -1195,6 +1146,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
         hashCode = prime * hashCode
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
         hashCode = prime * hashCode + ((getIndexName() == null) ? 0 : getIndexName().hashCode());
+        hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         return hashCode;
@@ -1230,6 +1182,10 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
             return false;
         if (other.getIndexName() != null
                 && other.getIndexName().equals(this.getIndexName()) == false)
+            return false;
+        if (other.getLanguage() == null ^ this.getLanguage() == null)
+            return false;
+        if (other.getLanguage() != null && other.getLanguage().equals(this.getLanguage()) == false)
             return false;
         if (other.getMaxResults() == null ^ this.getMaxResults() == null)
             return false;

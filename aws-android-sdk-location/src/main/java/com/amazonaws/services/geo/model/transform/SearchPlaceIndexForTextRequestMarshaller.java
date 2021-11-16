@@ -100,6 +100,11 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
+            if (searchPlaceIndexForTextRequest.getLanguage() != null) {
+                String language = searchPlaceIndexForTextRequest.getLanguage();
+                jsonWriter.name("Language");
+                jsonWriter.value(language);
+            }
             if (searchPlaceIndexForTextRequest.getMaxResults() != null) {
                 Integer maxResults = searchPlaceIndexForTextRequest.getMaxResults();
                 jsonWriter.name("MaxResults");

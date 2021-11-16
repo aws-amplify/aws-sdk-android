@@ -56,7 +56,7 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      */
     private String positionFiltering;
 
@@ -321,7 +321,7 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @return <p>
      *         The position filtering method of the tracker resource.
@@ -338,7 +338,7 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            The position filtering method of the tracker resource.
@@ -358,7 +358,7 @@ public class DescribeTrackerResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            The position filtering method of the tracker resource.
@@ -378,7 +378,7 @@ public class DescribeTrackerResult implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            The position filtering method of the tracker resource.
@@ -398,7 +398,7 @@ public class DescribeTrackerResult implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>TimeBased, DistanceBased
+     * <b>Allowed Values: </b>TimeBased, DistanceBased, AccuracyBased
      *
      * @param positionFiltering <p>
      *            The position filtering method of the tracker resource.

@@ -32,6 +32,11 @@ class SearchPlaceIndexForPositionSummaryJsonMarshaller {
             jsonWriter.name("DataSource");
             jsonWriter.value(dataSource);
         }
+        if (searchPlaceIndexForPositionSummary.getLanguage() != null) {
+            String language = searchPlaceIndexForPositionSummary.getLanguage();
+            jsonWriter.name("Language");
+            jsonWriter.value(language);
+        }
         if (searchPlaceIndexForPositionSummary.getMaxResults() != null) {
             Integer maxResults = searchPlaceIndexForPositionSummary.getMaxResults();
             jsonWriter.name("MaxResults");
