@@ -22,7 +22,7 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Adds a statement to a topic's access control policy, granting access for the
- * specified accounts to the specified actions.
+ * specified Amazon Web Services accounts to the specified actions.
  * </p>
  */
 public class AddPermissionRequest extends AmazonWebServiceRequest implements Serializable {
@@ -42,9 +42,9 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The account IDs of the users (principals) who will be given access to the
-     * specified actions. The users must have account, but do not need to be
-     * signed up for this service.
+     * The Amazon Web Services account IDs of the users (principals) who will be
+     * given access to the specified actions. The users must have Amazon Web
+     * Services account, but do not need to be signed up for this service.
      * </p>
      */
     private java.util.List<String> aWSAccountIds = new java.util.ArrayList<String>();
@@ -81,9 +81,10 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
      *            A unique identifier for the new policy statement.
      *            </p>
      * @param aWSAccountIds <p>
-     *            The account IDs of the users (principals) who will be given
-     *            access to the specified actions. The users must have account,
-     *            but do not need to be signed up for this service.
+     *            The Amazon Web Services account IDs of the users (principals)
+     *            who will be given access to the specified actions. The users
+     *            must have Amazon Web Services account, but do not need to be
+     *            signed up for this service.
      *            </p>
      * @param actionNames <p>
      *            The action you want to allow for the specified principal(s).
@@ -196,15 +197,16 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The account IDs of the users (principals) who will be given access to the
-     * specified actions. The users must have account, but do not need to be
-     * signed up for this service.
+     * The Amazon Web Services account IDs of the users (principals) who will be
+     * given access to the specified actions. The users must have Amazon Web
+     * Services account, but do not need to be signed up for this service.
      * </p>
      *
      * @return <p>
-     *         The account IDs of the users (principals) who will be given
-     *         access to the specified actions. The users must have account, but
-     *         do not need to be signed up for this service.
+     *         The Amazon Web Services account IDs of the users (principals) who
+     *         will be given access to the specified actions. The users must
+     *         have Amazon Web Services account, but do not need to be signed up
+     *         for this service.
      *         </p>
      */
     public java.util.List<String> getAWSAccountIds() {
@@ -213,15 +215,16 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The account IDs of the users (principals) who will be given access to the
-     * specified actions. The users must have account, but do not need to be
-     * signed up for this service.
+     * The Amazon Web Services account IDs of the users (principals) who will be
+     * given access to the specified actions. The users must have Amazon Web
+     * Services account, but do not need to be signed up for this service.
      * </p>
      *
      * @param aWSAccountIds <p>
-     *            The account IDs of the users (principals) who will be given
-     *            access to the specified actions. The users must have account,
-     *            but do not need to be signed up for this service.
+     *            The Amazon Web Services account IDs of the users (principals)
+     *            who will be given access to the specified actions. The users
+     *            must have Amazon Web Services account, but do not need to be
+     *            signed up for this service.
      *            </p>
      */
     public void setAWSAccountIds(java.util.Collection<String> aWSAccountIds) {
@@ -235,18 +238,19 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The account IDs of the users (principals) who will be given access to the
-     * specified actions. The users must have account, but do not need to be
-     * signed up for this service.
+     * The Amazon Web Services account IDs of the users (principals) who will be
+     * given access to the specified actions. The users must have Amazon Web
+     * Services account, but do not need to be signed up for this service.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param aWSAccountIds <p>
-     *            The account IDs of the users (principals) who will be given
-     *            access to the specified actions. The users must have account,
-     *            but do not need to be signed up for this service.
+     *            The Amazon Web Services account IDs of the users (principals)
+     *            who will be given access to the specified actions. The users
+     *            must have Amazon Web Services account, but do not need to be
+     *            signed up for this service.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -263,18 +267,19 @@ public class AddPermissionRequest extends AmazonWebServiceRequest implements Ser
 
     /**
      * <p>
-     * The account IDs of the users (principals) who will be given access to the
-     * specified actions. The users must have account, but do not need to be
-     * signed up for this service.
+     * The Amazon Web Services account IDs of the users (principals) who will be
+     * given access to the specified actions. The users must have Amazon Web
+     * Services account, but do not need to be signed up for this service.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param aWSAccountIds <p>
-     *            The account IDs of the users (principals) who will be given
-     *            access to the specified actions. The users must have account,
-     *            but do not need to be signed up for this service.
+     *            The Amazon Web Services account IDs of the users (principals)
+     *            who will be given access to the specified actions. The users
+     *            must have Amazon Web Services account, but do not need to be
+     *            signed up for this service.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

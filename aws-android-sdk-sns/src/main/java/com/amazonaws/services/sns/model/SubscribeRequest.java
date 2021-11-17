@@ -22,9 +22,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S
- * or email, or if the endpoint and the topic are not in the same account, the
- * endpoint owner must run the <code>ConfirmSubscription</code> action to
- * confirm the subscription.
+ * or email, or if the endpoint and the topic are not in the same Amazon Web
+ * Services account, the endpoint owner must run the
+ * <code>ConfirmSubscription</code> action to confirm the subscription.
  * </p>
  * <p>
  * You call the <code>ConfirmSubscription</code> action with the token from the

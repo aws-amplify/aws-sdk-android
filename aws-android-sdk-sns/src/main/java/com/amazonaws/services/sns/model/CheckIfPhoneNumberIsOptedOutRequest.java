@@ -22,8 +22,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 /**
  * <p>
  * Accepts a phone number and indicates whether the phone holder has opted out
- * of receiving SMS messages from your account. You cannot send SMS messages to
- * a number that is opted out.
+ * of receiving SMS messages from your Amazon Web Services account. You cannot
+ * send SMS messages to a number that is opted out.
  * </p>
  * <p>
  * To resume sending messages, you can opt in the number by using the

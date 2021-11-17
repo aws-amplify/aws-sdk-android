@@ -19,19 +19,20 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Indicates that the rate at which requests have been submitted for this action
- * exceeds the limit for your Amazon Web Services account.
+ * The <code>Id</code> of a batch entry in a batch request doesn't abide by the
+ * specification.
  * </p>
  */
-public class ThrottledException extends AmazonServiceException {
+public class InvalidBatchEntryIdException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ThrottledException with the specified error message.
+     * Constructs a new InvalidBatchEntryIdException with the specified error
+     * message.
      *
      * @param message Describes the error encountered.
      */
-    public ThrottledException(String message) {
+    public InvalidBatchEntryIdException(String message) {
         super(message);
     }
 }

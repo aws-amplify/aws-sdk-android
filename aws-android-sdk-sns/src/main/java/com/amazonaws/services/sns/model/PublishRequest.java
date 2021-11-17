@@ -31,11 +31,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * on the notification protocol for each subscribed endpoint.
  * </p>
  * <p>
- * When a <code>messageId</code> is returned, the message has been saved and
- * Amazon SNS will attempt to deliver it shortly.
+ * When a <code>messageId</code> is returned, the message is saved and Amazon
+ * SNS immediately deliverers it to subscribers.
  * </p>
  * <p>
- * To use the <code>Publish</code> action for sending a message to a mobile
+ * To use the <code>Publish</code> action for publishing a message to a mobile
  * endpoint, such as an app on a Kindle device or mobile phone, you must specify
  * the EndpointArn for the TargetArn parameter. The EndpointArn is returned when
  * making a call with the <code>CreatePlatformEndpoint</code> action.
@@ -47,7 +47,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <important>
  * <p>
- * You can publish messages only to topics and endpoints in the same Region.
+ * You can publish messages only to topics and endpoints in the same Amazon Web
+ * Services Region.
  * </p>
  * </important>
  */
@@ -242,7 +243,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageDeduplicationId</code> can contain up to 128 alphanumeric
-     * characters (a-z, A-Z, 0-9) and punctuation
+     * characters <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -266,7 +267,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageGroupId</code> can contain up to 128 alphanumeric characters
-     * (a-z, A-Z, 0-9) and punctuation
+     * <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1745,7 +1746,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageDeduplicationId</code> can contain up to 128 alphanumeric
-     * characters (a-z, A-Z, 0-9) and punctuation
+     * characters <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1766,7 +1767,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @return <p>
      *         This parameter applies only to FIFO (first-in-first-out) topics.
      *         The <code>MessageDeduplicationId</code> can contain up to 128
-     *         alphanumeric characters (a-z, A-Z, 0-9) and punctuation
+     *         alphanumeric characters <code>(a-z, A-Z, 0-9)</code> and
+     *         punctuation
      *         <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *         </p>
      *         <p>
@@ -1793,7 +1795,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageDeduplicationId</code> can contain up to 128 alphanumeric
-     * characters (a-z, A-Z, 0-9) and punctuation
+     * characters <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1814,7 +1816,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param messageDeduplicationId <p>
      *            This parameter applies only to FIFO (first-in-first-out)
      *            topics. The <code>MessageDeduplicationId</code> can contain up
-     *            to 128 alphanumeric characters (a-z, A-Z, 0-9) and punctuation
+     *            to 128 alphanumeric characters <code>(a-z, A-Z, 0-9)</code>
+     *            and punctuation
      *            <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *            </p>
      *            <p>
@@ -1842,7 +1845,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageDeduplicationId</code> can contain up to 128 alphanumeric
-     * characters (a-z, A-Z, 0-9) and punctuation
+     * characters <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1866,7 +1869,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param messageDeduplicationId <p>
      *            This parameter applies only to FIFO (first-in-first-out)
      *            topics. The <code>MessageDeduplicationId</code> can contain up
-     *            to 128 alphanumeric characters (a-z, A-Z, 0-9) and punctuation
+     *            to 128 alphanumeric characters <code>(a-z, A-Z, 0-9)</code>
+     *            and punctuation
      *            <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *            </p>
      *            <p>
@@ -1897,7 +1901,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageGroupId</code> can contain up to 128 alphanumeric characters
-     * (a-z, A-Z, 0-9) and punctuation
+     * <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1911,7 +1915,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @return <p>
      *         This parameter applies only to FIFO (first-in-first-out) topics.
      *         The <code>MessageGroupId</code> can contain up to 128
-     *         alphanumeric characters (a-z, A-Z, 0-9) and punctuation
+     *         alphanumeric characters <code>(a-z, A-Z, 0-9)</code> and
+     *         punctuation
      *         <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *         </p>
      *         <p>
@@ -1931,7 +1936,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageGroupId</code> can contain up to 128 alphanumeric characters
-     * (a-z, A-Z, 0-9) and punctuation
+     * <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1945,7 +1950,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param messageGroupId <p>
      *            This parameter applies only to FIFO (first-in-first-out)
      *            topics. The <code>MessageGroupId</code> can contain up to 128
-     *            alphanumeric characters (a-z, A-Z, 0-9) and punctuation
+     *            alphanumeric characters <code>(a-z, A-Z, 0-9)</code> and
+     *            punctuation
      *            <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *            </p>
      *            <p>
@@ -1965,7 +1971,7 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * <p>
      * This parameter applies only to FIFO (first-in-first-out) topics. The
      * <code>MessageGroupId</code> can contain up to 128 alphanumeric characters
-     * (a-z, A-Z, 0-9) and punctuation
+     * <code>(a-z, A-Z, 0-9)</code> and punctuation
      * <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      * </p>
      * <p>
@@ -1982,7 +1988,8 @@ public class PublishRequest extends AmazonWebServiceRequest implements Serializa
      * @param messageGroupId <p>
      *            This parameter applies only to FIFO (first-in-first-out)
      *            topics. The <code>MessageGroupId</code> can contain up to 128
-     *            alphanumeric characters (a-z, A-Z, 0-9) and punctuation
+     *            alphanumeric characters <code>(a-z, A-Z, 0-9)</code> and
+     *            punctuation
      *            <code>(!"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~)</code>.
      *            </p>
      *            <p>

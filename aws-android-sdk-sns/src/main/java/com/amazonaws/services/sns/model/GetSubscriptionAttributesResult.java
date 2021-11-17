@@ -59,7 +59,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The account ID of the subscription's owner.
+     * <code>Owner</code> – The Amazon Web Services account ID of the
+     * subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -169,7 +170,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The account ID of the subscription's owner.
+     * <code>Owner</code> – The Amazon Web Services account ID of the
+     * subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -276,7 +278,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *         </li>
      *         <li>
      *         <p>
-     *         <code>Owner</code> – The account ID of the subscription's owner.
+     *         <code>Owner</code> – The Amazon Web Services account ID of the
+     *         subscription's owner.
      *         </p>
      *         </li>
      *         <li>
@@ -391,7 +394,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The account ID of the subscription's owner.
+     * <code>Owner</code> – The Amazon Web Services account ID of the
+     * subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -499,8 +503,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Owner</code> – The account ID of the subscription's
-     *            owner.
+     *            <code>Owner</code> – The Amazon Web Services account ID of the
+     *            subscription's owner.
      *            </p>
      *            </li>
      *            <li>
@@ -616,7 +620,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The account ID of the subscription's owner.
+     * <code>Owner</code> – The Amazon Web Services account ID of the
+     * subscription's owner.
      * </p>
      * </li>
      * <li>
@@ -727,8 +732,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      *            </li>
      *            <li>
      *            <p>
-     *            <code>Owner</code> – The account ID of the subscription's
-     *            owner.
+     *            <code>Owner</code> – The Amazon Web Services account ID of the
+     *            subscription's owner.
      *            </p>
      *            </li>
      *            <li>
@@ -847,7 +852,8 @@ public class GetSubscriptionAttributesResult implements Serializable {
      * </li>
      * <li>
      * <p>
-     * <code>Owner</code> – The account ID of the subscription's owner.
+     * <code>Owner</code> – The Amazon Web Services account ID of the
+     * subscription's owner.
      * </p>
      * </li>
      * <li>

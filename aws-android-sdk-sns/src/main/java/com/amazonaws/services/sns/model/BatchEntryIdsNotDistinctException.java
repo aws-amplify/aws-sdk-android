@@ -19,19 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Indicates that the rate at which requests have been submitted for this action
- * exceeds the limit for your Amazon Web Services account.
+ * Two or more batch entries in the request have the same <code>Id</code>.
  * </p>
  */
-public class ThrottledException extends AmazonServiceException {
+public class BatchEntryIdsNotDistinctException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ThrottledException with the specified error message.
+     * Constructs a new BatchEntryIdsNotDistinctException with the specified
+     * error message.
      *
      * @param message Describes the error encountered.
      */
-    public ThrottledException(String message) {
+    public BatchEntryIdsNotDistinctException(String message) {
         super(message);
     }
 }

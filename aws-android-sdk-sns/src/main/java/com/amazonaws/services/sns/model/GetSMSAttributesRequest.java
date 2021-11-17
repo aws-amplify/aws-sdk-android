@@ -21,7 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Returns the settings for sending SMS messages from your account.
+ * Returns the settings for sending SMS messages from your Amazon Web Services
+ * account.
  * </p>
  * <p>
  * These settings are set with the <code>SetSMSAttributes</code> action.

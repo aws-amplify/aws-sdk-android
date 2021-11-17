@@ -20,18 +20,21 @@ import java.io.Serializable;
 public class GetSMSSandboxAccountStatusResult implements Serializable {
     /**
      * <p>
-     * Indicates whether the calling account is in the SMS sandbox.
+     * Indicates whether the calling Amazon Web Services account is in the SMS
+     * sandbox.
      * </p>
      */
     private Boolean isInSandbox;
 
     /**
      * <p>
-     * Indicates whether the calling account is in the SMS sandbox.
+     * Indicates whether the calling Amazon Web Services account is in the SMS
+     * sandbox.
      * </p>
      *
      * @return <p>
-     *         Indicates whether the calling account is in the SMS sandbox.
+     *         Indicates whether the calling Amazon Web Services account is in
+     *         the SMS sandbox.
      *         </p>
      */
     public Boolean isIsInSandbox() {
@@ -40,11 +43,13 @@ public class GetSMSSandboxAccountStatusResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the calling account is in the SMS sandbox.
+     * Indicates whether the calling Amazon Web Services account is in the SMS
+     * sandbox.
      * </p>
      *
      * @return <p>
-     *         Indicates whether the calling account is in the SMS sandbox.
+     *         Indicates whether the calling Amazon Web Services account is in
+     *         the SMS sandbox.
      *         </p>
      */
     public Boolean getIsInSandbox() {
@@ -53,11 +58,13 @@ public class GetSMSSandboxAccountStatusResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the calling account is in the SMS sandbox.
+     * Indicates whether the calling Amazon Web Services account is in the SMS
+     * sandbox.
      * </p>
      *
      * @param isInSandbox <p>
-     *            Indicates whether the calling account is in the SMS sandbox.
+     *            Indicates whether the calling Amazon Web Services account is
+     *            in the SMS sandbox.
      *            </p>
      */
     public void setIsInSandbox(Boolean isInSandbox) {
@@ -66,14 +73,16 @@ public class GetSMSSandboxAccountStatusResult implements Serializable {
 
     /**
      * <p>
-     * Indicates whether the calling account is in the SMS sandbox.
+     * Indicates whether the calling Amazon Web Services account is in the SMS
+     * sandbox.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param isInSandbox <p>
-     *            Indicates whether the calling account is in the SMS sandbox.
+     *            Indicates whether the calling Amazon Web Services account is
+     *            in the SMS sandbox.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
