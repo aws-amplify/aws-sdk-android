@@ -25,12 +25,33 @@ import com.amazonaws.services.lambda.model.*;
  * <b>Overview</b>
  * </p>
  * <p>
- * This is the <i>Lambda API Reference</i>. The Lambda Developer Guide provides
- * additional information. For the service overview, see <a
+ * Lambda is a compute service that lets you run code without provisioning or
+ * managing servers. Lambda runs your code on a high-availability compute
+ * infrastructure and performs all of the administration of the compute
+ * resources, including server and operating system maintenance, capacity
+ * provisioning and automatic scaling, code monitoring and logging. With Lambda,
+ * you can run code for virtually any type of application or backend service.
+ * For more information about the Lambda service, see <a
  * href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">What is
- * Lambda</a>, and for information about how the service works, see <a href=
- * "https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html"
- * >Lambda: How it Works</a> in the <b>Lambda Developer Guide</b>.
+ * Lambda</a> in the <b>Lambda Developer Guide</b>.
+ * </p>
+ * <p>
+ * The <i>Lambda API Reference</i> provides information about each of the API
+ * methods, including details about the parameters in each API request and
+ * response.
+ * </p>
+ * <p/>
+ * <p>
+ * You can use Software Development Kits (SDKs), Integrated Development
+ * Environment (IDE) Toolkits, and command line tools to access the API. For
+ * installation instructions, see <a href="http://aws.amazon.com/tools/">Tools
+ * for Amazon Web Services</a>.
+ * </p>
+ * <p>
+ * For a list of Region-specific endpoints that Lambda supports, see <a
+ * href="https://docs.aws.amazon.com/general/latest/gr/lambda-service.html/"
+ * >Lambda endpoints and quotas </a> in the Amazon Web Services General
+ * Reference.
  * </p>
  **/
 public interface AWSLambda {
