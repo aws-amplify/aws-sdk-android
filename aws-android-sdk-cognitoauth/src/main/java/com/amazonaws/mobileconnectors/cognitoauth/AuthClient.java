@@ -177,7 +177,9 @@ public class AuthClient {
         this.isRedirectActivityDeclared = false;
         this.isBrowserInstalled = false;
         this.isCustomTabSupported = false;
-        preWarmChrome();
+        if (isCustomTabSupported()) {
+            preWarmCustomTabs();
+        }
     }
 
     /**
@@ -832,9 +834,12 @@ public class AuthClient {
     }
 
     /**
-     * Connects to Chrome Service on the device.
+     * Connects to Custom Tabs Service on the device.
      */
-    private void preWarmChrome() {
+    private void preWarmCustomTabs() {
+        if (customTabsPackageName == null) {
+            return;
+        }
         mCustomTabsServiceConnection = new CustomTabsServiceConnection() {
             @Override
             public void onCustomTabsServiceConnected(final ComponentName name, final CustomTabsClient client) {
@@ -848,6 +853,11 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
+        CustomTabsClient.bindCustomTabsService(
+                context,
+                customTabsPackageName,
+                mCustomTabsServiceConnection
+        );
     }
 
     // Inspects context to determine whether HostedUIRedirectActivity is declared in
