@@ -801,14 +801,11 @@ public class AuthClient {
                 userHandler.onFailure(new BrowserNotInstalledException("No browsers installed."));
                 return;
             }
-            if(!isCustomTabSupported()) {
-                userHandler.onFailure(new CustomTabsNotSupportedException("Browser with custom tabs support not found."));
-                return;
-            }
             CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
             mCustomTabsIntent = builder.build();
-            if(pool.getCustomTabExtras() != null)
+            if(pool.getCustomTabExtras() != null) {
                 mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
+            }
             if(browserPackage != null) {
                 mCustomTabsIntent.intent.setPackage(browserPackage);
             }
