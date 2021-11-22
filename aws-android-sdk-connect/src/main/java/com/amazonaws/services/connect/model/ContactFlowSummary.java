@@ -69,6 +69,16 @@ public class ContactFlowSummary implements Serializable {
 
     /**
      * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     */
+    private String contactFlowState;
+
+    /**
+     * <p>
      * The identifier of the contact flow.
      * </p>
      * <p>
@@ -328,6 +338,103 @@ public class ContactFlowSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @return <p>
+     *         The type of contact flow.
+     *         </p>
+     * @see ContactFlowState
+     */
+    public String getContactFlowState() {
+        return contactFlowState;
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param contactFlowState <p>
+     *            The type of contact flow.
+     *            </p>
+     * @see ContactFlowState
+     */
+    public void setContactFlowState(String contactFlowState) {
+        this.contactFlowState = contactFlowState;
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param contactFlowState <p>
+     *            The type of contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowState
+     */
+    public ContactFlowSummary withContactFlowState(String contactFlowState) {
+        this.contactFlowState = contactFlowState;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param contactFlowState <p>
+     *            The type of contact flow.
+     *            </p>
+     * @see ContactFlowState
+     */
+    public void setContactFlowState(ContactFlowState contactFlowState) {
+        this.contactFlowState = contactFlowState.toString();
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param contactFlowState <p>
+     *            The type of contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowState
+     */
+    public ContactFlowSummary withContactFlowState(ContactFlowState contactFlowState) {
+        this.contactFlowState = contactFlowState.toString();
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -345,7 +452,9 @@ public class ContactFlowSummary implements Serializable {
         if (getName() != null)
             sb.append("Name: " + getName() + ",");
         if (getContactFlowType() != null)
-            sb.append("ContactFlowType: " + getContactFlowType());
+            sb.append("ContactFlowType: " + getContactFlowType() + ",");
+        if (getContactFlowState() != null)
+            sb.append("ContactFlowState: " + getContactFlowState());
         sb.append("}");
         return sb.toString();
     }
@@ -360,6 +469,8 @@ public class ContactFlowSummary implements Serializable {
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode
                 + ((getContactFlowType() == null) ? 0 : getContactFlowType().hashCode());
+        hashCode = prime * hashCode
+                + ((getContactFlowState() == null) ? 0 : getContactFlowState().hashCode());
         return hashCode;
     }
 
@@ -390,6 +501,11 @@ public class ContactFlowSummary implements Serializable {
             return false;
         if (other.getContactFlowType() != null
                 && other.getContactFlowType().equals(this.getContactFlowType()) == false)
+            return false;
+        if (other.getContactFlowState() == null ^ this.getContactFlowState() == null)
+            return false;
+        if (other.getContactFlowState() != null
+                && other.getContactFlowState().equals(this.getContactFlowState()) == false)
             return false;
         return true;
     }

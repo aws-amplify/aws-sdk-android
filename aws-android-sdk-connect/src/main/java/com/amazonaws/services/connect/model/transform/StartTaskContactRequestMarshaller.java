@@ -117,6 +117,11 @@ public class StartTaskContactRequestMarshaller implements
                 jsonWriter.name("ClientToken");
                 jsonWriter.value(clientToken);
             }
+            if (startTaskContactRequest.getScheduledTime() != null) {
+                java.util.Date scheduledTime = startTaskContactRequest.getScheduledTime();
+                jsonWriter.name("ScheduledTime");
+                jsonWriter.value(scheduledTime);
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

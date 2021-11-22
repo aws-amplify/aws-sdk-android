@@ -749,6 +749,77 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Creates a contact flow module for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createContactFlowModuleRequest
+     * @return A Java Future object containing the response from the
+     *         CreateContactFlowModule service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidContactFlowModuleException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws IdempotencyException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateContactFlowModuleResult> createContactFlowModuleAsync(
+            CreateContactFlowModuleRequest createContactFlowModuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Creates a contact flow module for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param createContactFlowModuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateContactFlowModule service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidContactFlowModuleException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws LimitExceededException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws IdempotencyException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateContactFlowModuleResult> createContactFlowModuleAsync(
+            CreateContactFlowModuleRequest createContactFlowModuleRequest,
+            AsyncHandler<CreateContactFlowModuleRequest, CreateContactFlowModuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Creates hours of operation.
      * </p>
      * 
@@ -776,6 +847,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Creates hours of operation.
      * </p>
@@ -1133,6 +1208,75 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a security profile.
+     * </p>
+     * 
+     * @param createSecurityProfileRequest
+     * @return A Java Future object containing the response from the
+     *         CreateSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateSecurityProfileResult> createSecurityProfileAsync(
+            CreateSecurityProfileRequest createSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Creates a security profile.
+     * </p>
+     * 
+     * @param createSecurityProfileRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         CreateSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws LimitExceededException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<CreateSecurityProfileResult> createSecurityProfileAsync(
+            CreateSecurityProfileRequest createSecurityProfileRequest,
+            AsyncHandler<CreateSecurityProfileRequest, CreateSecurityProfileResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates a use case for an integration association.
      * </p>
      * 
@@ -1316,6 +1460,124 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Deletes a contact flow for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteContactFlowRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteContactFlow service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteContactFlowAsync(DeleteContactFlowRequest deleteContactFlowRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes a contact flow for the specified Amazon Connect instance.
+     * </p>
+     * 
+     * @param deleteContactFlowRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteContactFlow service method, as returned by Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteContactFlowAsync(DeleteContactFlowRequest deleteContactFlowRequest,
+            AsyncHandler<DeleteContactFlowRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified contact flow module.
+     * </p>
+     * 
+     * @param deleteContactFlowModuleRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteContactFlowModule service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteContactFlowModuleResult> deleteContactFlowModuleAsync(
+            DeleteContactFlowModuleRequest deleteContactFlowModuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Deletes the specified contact flow module.
+     * </p>
+     * 
+     * @param deleteContactFlowModuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteContactFlowModule service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DeleteContactFlowModuleResult> deleteContactFlowModuleAsync(
+            DeleteContactFlowModuleRequest deleteContactFlowModuleRequest,
+            AsyncHandler<DeleteContactFlowModuleRequest, DeleteContactFlowModuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Deletes an hours of operation.
      * </p>
      * 
@@ -1341,6 +1603,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Deletes an hours of operation.
      * </p>
@@ -1550,6 +1816,75 @@ public interface AmazonConnectAsync extends AmazonConnect {
      */
     Future<Void> deleteQuickConnectAsync(DeleteQuickConnectRequest deleteQuickConnectRequest,
             AsyncHandler<DeleteQuickConnectRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Deletes a security profile.
+     * </p>
+     * 
+     * @param deleteSecurityProfileRequest
+     * @return A Java Future object containing the response from the
+     *         DeleteSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteSecurityProfileAsync(
+            DeleteSecurityProfileRequest deleteSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Deletes a security profile.
+     * </p>
+     * 
+     * @param deleteSecurityProfileRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DeleteSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AccessDeniedException
+     * @throws ResourceInUseException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> deleteSecurityProfileAsync(
+            DeleteSecurityProfileRequest deleteSecurityProfileRequest,
+            AsyncHandler<DeleteSecurityProfileRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -1798,6 +2133,80 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the specified contact.
+     * </p>
+     * <important>
+     * <p>
+     * Contact information remains available in Amazon Connect for 24 months,
+     * and then it is deleted.
+     * </p>
+     * </important>
+     * 
+     * @param describeContactRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeContactResult> describeContactAsync(DescribeContactRequest describeContactRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Describes the specified contact.
+     * </p>
+     * <important>
+     * <p>
+     * Contact information remains available in Amazon Connect for 24 months,
+     * and then it is deleted.
+     * </p>
+     * </important>
+     * 
+     * @param describeContactRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeContactResult> describeContactAsync(
+            DescribeContactRequest describeContactRequest,
+            AsyncHandler<DescribeContactRequest, DescribeContactResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Describes the specified contact flow.
      * </p>
      * <p>
@@ -1867,6 +2276,69 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Describes the specified contact flow module.
+     * </p>
+     * 
+     * @param describeContactFlowModuleRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeContactFlowModule service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeContactFlowModuleResult> describeContactFlowModuleAsync(
+            DescribeContactFlowModuleRequest describeContactFlowModuleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Describes the specified contact flow module.
+     * </p>
+     * 
+     * @param describeContactFlowModuleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeContactFlowModule service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeContactFlowModuleResult> describeContactFlowModuleAsync(
+            DescribeContactFlowModuleRequest describeContactFlowModuleRequest,
+            AsyncHandler<DescribeContactFlowModuleRequest, DescribeContactFlowModuleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Describes the hours of operation.
      * </p>
      * 
@@ -1892,6 +2364,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Describes the hours of operation.
      * </p>
@@ -2302,6 +2778,71 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<DescribeRoutingProfileResult> describeRoutingProfileAsync(
             DescribeRoutingProfileRequest describeRoutingProfileRequest,
             AsyncHandler<DescribeRoutingProfileRequest, DescribeRoutingProfileResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Gets basic information about the security profle.
+     * </p>
+     * 
+     * @param describeSecurityProfileRequest
+     * @return A Java Future object containing the response from the
+     *         DescribeSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeSecurityProfileResult> describeSecurityProfileAsync(
+            DescribeSecurityProfileRequest describeSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Gets basic information about the security profle.
+     * </p>
+     * 
+     * @param describeSecurityProfileRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         DescribeSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<DescribeSecurityProfileResult> describeSecurityProfileAsync(
+            DescribeSecurityProfileRequest describeSecurityProfileRequest,
+            AsyncHandler<DescribeSecurityProfileRequest, DescribeSecurityProfileResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -3448,6 +3989,67 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Provides information about the contact flow modules for the specified
+     * Amazon Connect instance.
+     * </p>
+     * 
+     * @param listContactFlowModulesRequest
+     * @return A Java Future object containing the response from the
+     *         ListContactFlowModules service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListContactFlowModulesResult> listContactFlowModulesAsync(
+            ListContactFlowModulesRequest listContactFlowModulesRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Provides information about the contact flow modules for the specified
+     * Amazon Connect instance.
+     * </p>
+     * 
+     * @param listContactFlowModulesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListContactFlowModules service method, as returned by Amazon
+     *         Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListContactFlowModulesResult> listContactFlowModulesAsync(
+            ListContactFlowModulesRequest listContactFlowModulesRequest,
+            AsyncHandler<ListContactFlowModulesRequest, ListContactFlowModulesResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Provides information about the contact flows for the specified Amazon
      * Connect instance.
      * </p>
@@ -3521,6 +4123,73 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<ListContactFlowsResult> listContactFlowsAsync(
             ListContactFlowsRequest listContactFlowsRequest,
             AsyncHandler<ListContactFlowsRequest, ListContactFlowsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * For the specified <code>referenceTypes</code>, returns a list of
+     * references associated with the contact.
+     * </p>
+     * 
+     * @param listContactReferencesRequest
+     * @return A Java Future object containing the response from the
+     *         ListContactReferences service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListContactReferencesResult> listContactReferencesAsync(
+            ListContactReferencesRequest listContactReferencesRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * For the specified <code>referenceTypes</code>, returns a list of
+     * references associated with the contact.
+     * </p>
+     * 
+     * @param listContactReferencesRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListContactReferences service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListContactReferencesResult> listContactReferencesAsync(
+            ListContactReferencesRequest listContactReferencesRequest,
+            AsyncHandler<ListContactReferencesRequest, ListContactReferencesResult> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**
@@ -4498,6 +5167,71 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists the permissions granted to a security profile.
+     * </p>
+     * 
+     * @param listSecurityProfilePermissionsRequest
+     * @return A Java Future object containing the response from the
+     *         ListSecurityProfilePermissions service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListSecurityProfilePermissionsResult> listSecurityProfilePermissionsAsync(
+            ListSecurityProfilePermissionsRequest listSecurityProfilePermissionsRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Lists the permissions granted to a security profile.
+     * </p>
+     * 
+     * @param listSecurityProfilePermissionsRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         ListSecurityProfilePermissions service method, as returned by
+     *         Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<ListSecurityProfilePermissionsResult> listSecurityProfilePermissionsAsync(
+            ListSecurityProfilePermissionsRequest listSecurityProfilePermissionsRequest,
+            AsyncHandler<ListSecurityProfilePermissionsRequest, ListSecurityProfilePermissionsResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Provides summary information about the security profiles for the
      * specified Amazon Connect instance.
      * </p>
@@ -5094,6 +5828,75 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Initiates real-time message streaming for a new chat contact.
+     * </p>
+     * <p>
+     * For more information about message streaming, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param startContactStreamingRequest
+     * @return A Java Future object containing the response from the
+     *         StartContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartContactStreamingResult> startContactStreamingAsync(
+            StartContactStreamingRequest startContactStreamingRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Initiates real-time message streaming for a new chat contact.
+     * </p>
+     * <p>
+     * For more information about message streaming, see <a href=
+     * "https://docs.aws.amazon.com/connect/latest/adminguide/chat-message-streaming.html"
+     * >Enable real-time chat message streaming</a> in the <i>Amazon Connect
+     * Administrator Guide</i>.
+     * </p>
+     * 
+     * @param startContactStreamingRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StartContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StartContactStreamingResult> startContactStreamingAsync(
+            StartContactStreamingRequest startContactStreamingRequest,
+            AsyncHandler<StartContactStreamingRequest, StartContactStreamingResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Places an outbound call to a contact, and then initiates the contact
      * flow. It performs the actions in the contact flow that's specified (in
      * <code>ContactFlowId</code>).
@@ -5398,6 +6201,67 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Ends message streaming on a specified contact. To restart message
+     * streaming on that contact, call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API.
+     * </p>
+     * 
+     * @param stopContactStreamingRequest
+     * @return A Java Future object containing the response from the
+     *         StopContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopContactStreamingResult> stopContactStreamingAsync(
+            StopContactStreamingRequest stopContactStreamingRequest) throws AmazonServiceException,
+            AmazonClientException;
+
+    /**
+     * <p>
+     * Ends message streaming on a specified contact. To restart message
+     * streaming on that contact, call the <a href=
+     * "https://docs.aws.amazon.com/connect/latest/APIReference/API_StartContactStreaming.html"
+     * >StartContactStreaming</a> API.
+     * </p>
+     * 
+     * @param stopContactStreamingRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         StopContactStreaming service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<StopContactStreamingResult> stopContactStreamingAsync(
+            StopContactStreamingRequest stopContactStreamingRequest,
+            AsyncHandler<StopContactStreamingRequest, StopContactStreamingResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * When a contact is being recorded, this API suspends recording the call.
      * For example, you might suspend the call recording while collecting
      * sensitive information, such as a credit card number. Then use
@@ -5662,6 +6526,83 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Adds or updates user-defined contact information associated with the
+     * specified contact. At least one field to be updated must be present in
+     * the request.
+     * </p>
+     * <important>
+     * <p>
+     * You can add or update user-defined contact information for both ongoing
+     * and completed contacts.
+     * </p>
+     * </important>
+     * 
+     * @param updateContactRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactResult> updateContactAsync(UpdateContactRequest updateContactRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Adds or updates user-defined contact information associated with the
+     * specified contact. At least one field to be updated must be present in
+     * the request.
+     * </p>
+     * <important>
+     * <p>
+     * You can add or update user-defined contact information for both ongoing
+     * and completed contacts.
+     * </p>
+     * </important>
+     * 
+     * @param updateContactRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateContact service method, as returned by Amazon Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws InternalServiceException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactResult> updateContactAsync(UpdateContactRequest updateContactRequest,
+            AsyncHandler<UpdateContactRequest, UpdateContactResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * Creates or updates user-defined contact attributes associated with the
      * specified contact.
      * </p>
@@ -5842,6 +6783,187 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Updates metadata about specified contact flow.
+     * </p>
+     * 
+     * @param updateContactFlowMetadataRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateContactFlowMetadata service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> updateContactFlowMetadataAsync(
+            UpdateContactFlowMetadataRequest updateContactFlowMetadataRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates metadata about specified contact flow.
+     * </p>
+     * 
+     * @param updateContactFlowMetadataRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateContactFlowMetadata service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> updateContactFlowMetadataAsync(
+            UpdateContactFlowMetadataRequest updateContactFlowMetadataRequest,
+            AsyncHandler<UpdateContactFlowMetadataRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates specified contact flow module for the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param updateContactFlowModuleContentRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateContactFlowModuleContent service method, as returned by
+     *         Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidContactFlowModuleException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactFlowModuleContentResult> updateContactFlowModuleContentAsync(
+            UpdateContactFlowModuleContentRequest updateContactFlowModuleContentRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates specified contact flow module for the specified Amazon Connect
+     * instance.
+     * </p>
+     * 
+     * @param updateContactFlowModuleContentRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateContactFlowModuleContent service method, as returned by
+     *         Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidContactFlowModuleException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactFlowModuleContentResult> updateContactFlowModuleContentAsync(
+            UpdateContactFlowModuleContentRequest updateContactFlowModuleContentRequest,
+            AsyncHandler<UpdateContactFlowModuleContentRequest, UpdateContactFlowModuleContentResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates metadata about specified contact flow module.
+     * </p>
+     * 
+     * @param updateContactFlowModuleMetadataRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateContactFlowModuleMetadata service method, as returned by
+     *         Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactFlowModuleMetadataResult> updateContactFlowModuleMetadataAsync(
+            UpdateContactFlowModuleMetadataRequest updateContactFlowModuleMetadataRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates metadata about specified contact flow module.
+     * </p>
+     * 
+     * @param updateContactFlowModuleMetadataRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateContactFlowModuleMetadata service method, as returned by
+     *         Amazon Connect.
+     * @throws AccessDeniedException
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws DuplicateResourceException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactFlowModuleMetadataResult> updateContactFlowModuleMetadataAsync(
+            UpdateContactFlowModuleMetadataRequest updateContactFlowModuleMetadataRequest,
+            AsyncHandler<UpdateContactFlowModuleMetadataRequest, UpdateContactFlowModuleMetadataResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
      * The name of the contact flow.
      * </p>
      * <p>
@@ -5911,6 +7033,69 @@ public interface AmazonConnectAsync extends AmazonConnect {
 
     /**
      * <p>
+     * Updates the scheduled time of a task contact that is already scheduled.
+     * </p>
+     * 
+     * @param updateContactScheduleRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateContactSchedule service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactScheduleResult> updateContactScheduleAsync(
+            UpdateContactScheduleRequest updateContactScheduleRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * Updates the scheduled time of a task contact that is already scheduled.
+     * </p>
+     * 
+     * @param updateContactScheduleRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateContactSchedule service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<UpdateContactScheduleResult> updateContactScheduleAsync(
+            UpdateContactScheduleRequest updateContactScheduleRequest,
+            AsyncHandler<UpdateContactScheduleRequest, UpdateContactScheduleResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
      * Updates the hours of operation.
      * </p>
      * 
@@ -5937,6 +7122,10 @@ public interface AmazonConnectAsync extends AmazonConnect {
             throws AmazonServiceException, AmazonClientException;
 
     /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
      * <p>
      * Updates the hours of operation.
      * </p>
@@ -6779,6 +7968,71 @@ public interface AmazonConnectAsync extends AmazonConnect {
     Future<Void> updateRoutingProfileQueuesAsync(
             UpdateRoutingProfileQueuesRequest updateRoutingProfileQueuesRequest,
             AsyncHandler<UpdateRoutingProfileQueuesRequest, Void> asyncHandler)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates a security profile.
+     * </p>
+     * 
+     * @param updateSecurityProfileRequest
+     * @return A Java Future object containing the response from the
+     *         UpdateSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> updateSecurityProfileAsync(
+            UpdateSecurityProfileRequest updateSecurityProfileRequest)
+            throws AmazonServiceException, AmazonClientException;
+
+    /**
+     * <p>
+     * This API is in preview release for Amazon Connect and is subject to
+     * change.
+     * </p>
+     * <p>
+     * Updates a security profile.
+     * </p>
+     * 
+     * @param updateSecurityProfileRequest
+     * @param asyncHandler Asynchronous callback handler for events in the
+     *            life-cycle of the request. Users could provide the
+     *            implementation of the four callback methods in this interface
+     *            to process the operation result or handle the exception.
+     * @return A Java Future object containing the response from the
+     *         UpdateSecurityProfile service method, as returned by Amazon
+     *         Connect.
+     * @throws InvalidRequestException
+     * @throws InvalidParameterException
+     * @throws ResourceNotFoundException
+     * @throws ThrottlingException
+     * @throws InternalServiceException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Connect indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    Future<Void> updateSecurityProfileAsync(
+            UpdateSecurityProfileRequest updateSecurityProfileRequest,
+            AsyncHandler<UpdateSecurityProfileRequest, Void> asyncHandler)
             throws AmazonServiceException, AmazonClientException;
 
     /**

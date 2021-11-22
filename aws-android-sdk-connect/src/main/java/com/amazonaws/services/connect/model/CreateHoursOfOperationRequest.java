@@ -21,6 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
+ * This API is in preview release for Amazon Connect and is subject to change.
+ * </p>
+ * <p>
  * Creates hours of operation.
  * </p>
  */
@@ -73,7 +76,7 @@ public class CreateHoursOfOperationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      */
     private java.util.Map<String, String> tags;
@@ -376,11 +379,12 @@ public class CreateHoursOfOperationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      *
      * @return <p>
-     *         One or more tags.
+     *         The tags used to organize, track, or control access for this
+     *         resource.
      *         </p>
      */
     public java.util.Map<String, String> getTags() {
@@ -389,11 +393,12 @@ public class CreateHoursOfOperationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource.
      *            </p>
      */
     public void setTags(java.util.Map<String, String> tags) {
@@ -402,14 +407,15 @@ public class CreateHoursOfOperationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param tags <p>
-     *            One or more tags.
+     *            The tags used to organize, track, or control access for this
+     *            resource.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -421,7 +427,7 @@ public class CreateHoursOfOperationRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * One or more tags.
+     * The tags used to organize, track, or control access for this resource.
      * </p>
      * <p>
      * The method adds a new key-value pair into Tags parameter, and returns a
