@@ -47,7 +47,7 @@ dependencies {
     compileOnly project(':aws-android-sdk-auth-google')
     compileOnly project(':aws-android-sdk-auth-userpools')
     compileOnly project(':aws-android-sdk-cognitoauth')
-    compileOnly 'androidx.browser:browser:1.2.0'
+    compileOnly 'androidx.browser:browser:1.4.0'
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.2.4'
