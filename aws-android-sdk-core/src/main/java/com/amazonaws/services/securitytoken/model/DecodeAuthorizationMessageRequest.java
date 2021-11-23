@@ -41,10 +41,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </note>
  * <p>
  * The message is encoded because the details of the authorization status can
- * constitute privileged information that the user who requested the operation
+ * contain privileged information that the user who requested the operation
  * should not see. To decode an authorization status message, a user must be
- * granted permissions via an IAM policy to request the
- * <code>DecodeAuthorizationMessage</code> (
+ * granted permissions through an IAM <a href=
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html"
+ * >policy</a> to request the <code>DecodeAuthorizationMessage</code> (
  * <code>sts:DecodeAuthorizationMessage</code>) action.
  * </p>
  * <p>

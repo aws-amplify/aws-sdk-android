@@ -31,7 +31,7 @@ import com.amazonaws.AmazonServiceException;
  * <p>
  * You could receive this error even though you meet other defined session
  * policy and session tag limits. For more information, see <a href=
- * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html"
+ * "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_iam-quotas.html#reference_iam-limits-entity-length"
  * >IAM and STS Entity Character Limits</a> in the <i>IAM User Guide</i>.
  * </p>
  */

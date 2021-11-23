@@ -27,18 +27,18 @@ import java.io.Serializable;
 public class DecodeAuthorizationMessageResult implements Serializable {
     /**
      * <p>
-     * An XML document that contains the decoded message.
+     * The API returns a response with the decoded message.
      * </p>
      */
     private String decodedMessage;
 
     /**
      * <p>
-     * An XML document that contains the decoded message.
+     * The API returns a response with the decoded message.
      * </p>
      *
      * @return <p>
-     *         An XML document that contains the decoded message.
+     *         The API returns a response with the decoded message.
      *         </p>
      */
     public String getDecodedMessage() {
@@ -47,11 +47,11 @@ public class DecodeAuthorizationMessageResult implements Serializable {
 
     /**
      * <p>
-     * An XML document that contains the decoded message.
+     * The API returns a response with the decoded message.
      * </p>
      *
      * @param decodedMessage <p>
-     *            An XML document that contains the decoded message.
+     *            The API returns a response with the decoded message.
      *            </p>
      */
     public void setDecodedMessage(String decodedMessage) {
@@ -60,14 +60,14 @@ public class DecodeAuthorizationMessageResult implements Serializable {
 
     /**
      * <p>
-     * An XML document that contains the decoded message.
+     * The API returns a response with the decoded message.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param decodedMessage <p>
-     *            An XML document that contains the decoded message.
+     *            The API returns a response with the decoded message.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

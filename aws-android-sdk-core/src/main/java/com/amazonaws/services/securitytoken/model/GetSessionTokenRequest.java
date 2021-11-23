@@ -36,7 +36,8 @@ import com.amazonaws.AmazonWebServiceRequest;
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html"
  * >Requesting Temporary Security Credentials</a> and <a href=
  * "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.html#stsapi_comparison"
- * >Comparing the STS API operations</a> in the <i>IAM User Guide</i>.
+ * >Comparing the Amazon Web Services STS API operations</a> in the <i>IAM User
+ * Guide</i>.
  * </p>
  * <p>
  * <b>Session Duration</b>
@@ -125,8 +126,8 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * The value is either the serial number for a hardware device (such as
      * <code>GAHT12345678</code>) or an Amazon Resource Name (ARN) for a virtual
      * device (such as <code>arn:aws:iam::123456789012:mfa/user</code>). You can
-     * find the device for an IAM user by going to the Management Console and
-     * viewing the user's security credentials.
+     * find the device for an IAM user by going to the Amazon Web Services
+     * Management Console and viewing the user's security credentials.
      * </p>
      * <p>
      * The regex used to validate this parameter is a string of characters
@@ -262,8 +263,8 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * The value is either the serial number for a hardware device (such as
      * <code>GAHT12345678</code>) or an Amazon Resource Name (ARN) for a virtual
      * device (such as <code>arn:aws:iam::123456789012:mfa/user</code>). You can
-     * find the device for an IAM user by going to the Management Console and
-     * viewing the user's security credentials.
+     * find the device for an IAM user by going to the Amazon Web Services
+     * Management Console and viewing the user's security credentials.
      * </p>
      * <p>
      * The regex used to validate this parameter is a string of characters
@@ -284,8 +285,8 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *         number for a hardware device (such as <code>GAHT12345678</code>)
      *         or an Amazon Resource Name (ARN) for a virtual device (such as
      *         <code>arn:aws:iam::123456789012:mfa/user</code>). You can find
-     *         the device for an IAM user by going to the Management Console and
-     *         viewing the user's security credentials.
+     *         the device for an IAM user by going to the Amazon Web Services
+     *         Management Console and viewing the user's security credentials.
      *         </p>
      *         <p>
      *         The regex used to validate this parameter is a string of
@@ -306,8 +307,8 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * The value is either the serial number for a hardware device (such as
      * <code>GAHT12345678</code>) or an Amazon Resource Name (ARN) for a virtual
      * device (such as <code>arn:aws:iam::123456789012:mfa/user</code>). You can
-     * find the device for an IAM user by going to the Management Console and
-     * viewing the user's security credentials.
+     * find the device for an IAM user by going to the Amazon Web Services
+     * Management Console and viewing the user's security credentials.
      * </p>
      * <p>
      * The regex used to validate this parameter is a string of characters
@@ -329,8 +330,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *            as <code>GAHT12345678</code>) or an Amazon Resource Name (ARN)
      *            for a virtual device (such as
      *            <code>arn:aws:iam::123456789012:mfa/user</code>). You can find
-     *            the device for an IAM user by going to the Management Console
-     *            and viewing the user's security credentials.
+     *            the device for an IAM user by going to the Amazon Web Services
+     *            Management Console and viewing the user's security
+     *            credentials.
      *            </p>
      *            <p>
      *            The regex used to validate this parameter is a string of
@@ -351,8 +353,8 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      * The value is either the serial number for a hardware device (such as
      * <code>GAHT12345678</code>) or an Amazon Resource Name (ARN) for a virtual
      * device (such as <code>arn:aws:iam::123456789012:mfa/user</code>). You can
-     * find the device for an IAM user by going to the Management Console and
-     * viewing the user's security credentials.
+     * find the device for an IAM user by going to the Amazon Web Services
+     * Management Console and viewing the user's security credentials.
      * </p>
      * <p>
      * The regex used to validate this parameter is a string of characters
@@ -377,8 +379,9 @@ public class GetSessionTokenRequest extends AmazonWebServiceRequest implements S
      *            as <code>GAHT12345678</code>) or an Amazon Resource Name (ARN)
      *            for a virtual device (such as
      *            <code>arn:aws:iam::123456789012:mfa/user</code>). You can find
-     *            the device for an IAM user by going to the Management Console
-     *            and viewing the user's security credentials.
+     *            the device for an IAM user by going to the Amazon Web Services
+     *            Management Console and viewing the user's security
+     *            credentials.
      *            </p>
      *            <p>
      *            The regex used to validate this parameter is a string of
