@@ -177,6 +177,11 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * The JSON that you want to provide to your Lambda function as input.
      * </p>
+     * <p>
+     * You can enter the JSON directly. For example,
+     * <code>--payload '{ "key": "value" }'</code>. You can also specify a file
+     * path. For example, <code>--payload file://payload.json</code>.
+     * </p>
      */
     private java.nio.ByteBuffer payload;
 
@@ -922,10 +927,21 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * The JSON that you want to provide to your Lambda function as input.
      * </p>
+     * <p>
+     * You can enter the JSON directly. For example,
+     * <code>--payload '{ "key": "value" }'</code>. You can also specify a file
+     * path. For example, <code>--payload file://payload.json</code>.
+     * </p>
      *
      * @return <p>
      *         The JSON that you want to provide to your Lambda function as
      *         input.
+     *         </p>
+     *         <p>
+     *         You can enter the JSON directly. For example,
+     *         <code>--payload '{ "key": "value" }'</code>. You can also specify
+     *         a file path. For example,
+     *         <code>--payload file://payload.json</code>.
      *         </p>
      */
     public java.nio.ByteBuffer getPayload() {
@@ -936,10 +952,21 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * <p>
      * The JSON that you want to provide to your Lambda function as input.
      * </p>
+     * <p>
+     * You can enter the JSON directly. For example,
+     * <code>--payload '{ "key": "value" }'</code>. You can also specify a file
+     * path. For example, <code>--payload file://payload.json</code>.
+     * </p>
      *
      * @param payload <p>
      *            The JSON that you want to provide to your Lambda function as
      *            input.
+     *            </p>
+     *            <p>
+     *            You can enter the JSON directly. For example,
+     *            <code>--payload '{ "key": "value" }'</code>. You can also
+     *            specify a file path. For example,
+     *            <code>--payload file://payload.json</code>.
      *            </p>
      */
     public void setPayload(java.nio.ByteBuffer payload) {
@@ -951,12 +978,23 @@ public class InvokeRequest extends AmazonWebServiceRequest implements Serializab
      * The JSON that you want to provide to your Lambda function as input.
      * </p>
      * <p>
+     * You can enter the JSON directly. For example,
+     * <code>--payload '{ "key": "value" }'</code>. You can also specify a file
+     * path. For example, <code>--payload file://payload.json</code>.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param payload <p>
      *            The JSON that you want to provide to your Lambda function as
      *            input.
+     *            </p>
+     *            <p>
+     *            You can enter the JSON directly. For example,
+     *            <code>--payload '{ "key": "value" }'</code>. You can also
+     *            specify a file path. For example,
+     *            <code>--payload file://payload.json</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
