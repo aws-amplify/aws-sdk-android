@@ -19,15 +19,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Merge Strategy
+ * Profanity
  */
-public enum MergeStrategy {
+public enum Profanity {
 
-    OVERWRITE("OVERWRITE");
+    MASK("MASK");
 
     private String value;
 
-    private MergeStrategy(String value) {
+    private Profanity(String value) {
         this.value = value;
     }
 
@@ -36,19 +36,19 @@ public enum MergeStrategy {
         return value;
     }
 
-    private static final Map<String, MergeStrategy> enumMap;
+    private static final Map<String, Profanity> enumMap;
     static {
-        enumMap = new HashMap<String, MergeStrategy>();
-        enumMap.put("OVERWRITE", OVERWRITE);
+        enumMap = new HashMap<String, Profanity>();
+        enumMap.put("MASK", MASK);
     }
 
     /**
      * Use this in place of valueOf.
      *
      * @param value real value
-     * @return MergeStrategy corresponding to the value
+     * @return Profanity corresponding to the value
      */
-    public static MergeStrategy fromValue(String value) {
+    public static Profanity fromValue(String value) {
         if (value == null || value.isEmpty()) {
             throw new IllegalArgumentException("Value cannot be null or empty!");
         } else if (enumMap.containsKey(value)) {

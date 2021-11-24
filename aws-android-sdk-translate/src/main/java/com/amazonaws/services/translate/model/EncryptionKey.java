@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -25,8 +25,8 @@ import java.io.Serializable;
 public class EncryptionKey implements Serializable {
     /**
      * <p>
-     * The type of encryption key used by Amazon Translate to encrypt custom
-     * terminologies.
+     * The type of encryption key used by Amazon Translate to encrypt this
+     * object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -37,7 +37,7 @@ public class EncryptionKey implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the encryption key being used to
-     * encrypt the custom terminology.
+     * encrypt this object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -52,8 +52,8 @@ public class EncryptionKey implements Serializable {
 
     /**
      * <p>
-     * The type of encryption key used by Amazon Translate to encrypt custom
-     * terminologies.
+     * The type of encryption key used by Amazon Translate to encrypt this
+     * object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -61,7 +61,7 @@ public class EncryptionKey implements Serializable {
      *
      * @return <p>
      *         The type of encryption key used by Amazon Translate to encrypt
-     *         custom terminologies.
+     *         this object.
      *         </p>
      * @see EncryptionKeyType
      */
@@ -71,8 +71,8 @@ public class EncryptionKey implements Serializable {
 
     /**
      * <p>
-     * The type of encryption key used by Amazon Translate to encrypt custom
-     * terminologies.
+     * The type of encryption key used by Amazon Translate to encrypt this
+     * object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -80,7 +80,7 @@ public class EncryptionKey implements Serializable {
      *
      * @param type <p>
      *            The type of encryption key used by Amazon Translate to encrypt
-     *            custom terminologies.
+     *            this object.
      *            </p>
      * @see EncryptionKeyType
      */
@@ -90,8 +90,8 @@ public class EncryptionKey implements Serializable {
 
     /**
      * <p>
-     * The type of encryption key used by Amazon Translate to encrypt custom
-     * terminologies.
+     * The type of encryption key used by Amazon Translate to encrypt this
+     * object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -102,7 +102,7 @@ public class EncryptionKey implements Serializable {
      *
      * @param type <p>
      *            The type of encryption key used by Amazon Translate to encrypt
-     *            custom terminologies.
+     *            this object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -115,8 +115,8 @@ public class EncryptionKey implements Serializable {
 
     /**
      * <p>
-     * The type of encryption key used by Amazon Translate to encrypt custom
-     * terminologies.
+     * The type of encryption key used by Amazon Translate to encrypt this
+     * object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -124,7 +124,7 @@ public class EncryptionKey implements Serializable {
      *
      * @param type <p>
      *            The type of encryption key used by Amazon Translate to encrypt
-     *            custom terminologies.
+     *            this object.
      *            </p>
      * @see EncryptionKeyType
      */
@@ -134,8 +134,8 @@ public class EncryptionKey implements Serializable {
 
     /**
      * <p>
-     * The type of encryption key used by Amazon Translate to encrypt custom
-     * terminologies.
+     * The type of encryption key used by Amazon Translate to encrypt this
+     * object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -146,7 +146,7 @@ public class EncryptionKey implements Serializable {
      *
      * @param type <p>
      *            The type of encryption key used by Amazon Translate to encrypt
-     *            custom terminologies.
+     *            this object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -160,7 +160,7 @@ public class EncryptionKey implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the encryption key being used to
-     * encrypt the custom terminology.
+     * encrypt this object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -173,7 +173,7 @@ public class EncryptionKey implements Serializable {
      *
      * @return <p>
      *         The Amazon Resource Name (ARN) of the encryption key being used
-     *         to encrypt the custom terminology.
+     *         to encrypt this object.
      *         </p>
      */
     public String getId() {
@@ -183,7 +183,7 @@ public class EncryptionKey implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the encryption key being used to
-     * encrypt the custom terminology.
+     * encrypt this object.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -196,7 +196,7 @@ public class EncryptionKey implements Serializable {
      *
      * @param id <p>
      *            The Amazon Resource Name (ARN) of the encryption key being
-     *            used to encrypt the custom terminology.
+     *            used to encrypt this object.
      *            </p>
      */
     public void setId(String id) {
@@ -206,7 +206,7 @@ public class EncryptionKey implements Serializable {
     /**
      * <p>
      * The Amazon Resource Name (ARN) of the encryption key being used to
-     * encrypt the custom terminology.
+     * encrypt this object.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -222,7 +222,7 @@ public class EncryptionKey implements Serializable {
      *
      * @param id <p>
      *            The Amazon Resource Name (ARN) of the encryption key being
-     *            used to encrypt the custom terminology.
+     *            used to encrypt this object.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

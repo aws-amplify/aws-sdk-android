@@ -21,39 +21,37 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO Term
+ * JSON unmarshaller for POJO TranslationSettings
  */
-class TermJsonUnmarshaller implements Unmarshaller<Term, JsonUnmarshallerContext> {
+class TranslationSettingsJsonUnmarshaller implements
+        Unmarshaller<TranslationSettings, JsonUnmarshallerContext> {
 
-    public Term unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public TranslationSettings unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        Term term = new Term();
+        TranslationSettings translationSettings = new TranslationSettings();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("SourceText")) {
-                term.setSourceText(StringJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("TargetText")) {
-                term.setTargetText(StringJsonUnmarshaller.getInstance()
+            if (name.equals("Profanity")) {
+                translationSettings.setProfanity(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return term;
+        return translationSettings;
     }
 
-    private static TermJsonUnmarshaller instance;
+    private static TranslationSettingsJsonUnmarshaller instance;
 
-    public static TermJsonUnmarshaller getInstance() {
+    public static TranslationSettingsJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new TermJsonUnmarshaller();
+            instance = new TranslationSettingsJsonUnmarshaller();
         return instance;
     }
 }
