@@ -47,7 +47,7 @@ public class S3Object implements Serializable {
      * <p>
      * The file name of the input document. Synchronous operations can use image
      * files that are in JPEG or PNG format. Asynchronous operations also
-     * support PDF format files.
+     * support PDF and TIFF format files.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -134,7 +134,7 @@ public class S3Object implements Serializable {
      * <p>
      * The file name of the input document. Synchronous operations can use image
      * files that are in JPEG or PNG format. Asynchronous operations also
-     * support PDF format files.
+     * support PDF and TIFF format files.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -144,7 +144,7 @@ public class S3Object implements Serializable {
      * @return <p>
      *         The file name of the input document. Synchronous operations can
      *         use image files that are in JPEG or PNG format. Asynchronous
-     *         operations also support PDF format files.
+     *         operations also support PDF and TIFF format files.
      *         </p>
      */
     public String getName() {
@@ -155,7 +155,7 @@ public class S3Object implements Serializable {
      * <p>
      * The file name of the input document. Synchronous operations can use image
      * files that are in JPEG or PNG format. Asynchronous operations also
-     * support PDF format files.
+     * support PDF and TIFF format files.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,7 +165,8 @@ public class S3Object implements Serializable {
      * @param name <p>
      *            The file name of the input document. Synchronous operations
      *            can use image files that are in JPEG or PNG format.
-     *            Asynchronous operations also support PDF format files.
+     *            Asynchronous operations also support PDF and TIFF format
+     *            files.
      *            </p>
      */
     public void setName(String name) {
@@ -176,7 +177,7 @@ public class S3Object implements Serializable {
      * <p>
      * The file name of the input document. Synchronous operations can use image
      * files that are in JPEG or PNG format. Asynchronous operations also
-     * support PDF format files.
+     * support PDF and TIFF format files.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -189,7 +190,8 @@ public class S3Object implements Serializable {
      * @param name <p>
      *            The file name of the input document. Synchronous operations
      *            can use image files that are in JPEG or PNG format.
-     *            Asynchronous operations also support PDF format files.
+     *            Asynchronous operations also support PDF and TIFF format
+     *            files.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

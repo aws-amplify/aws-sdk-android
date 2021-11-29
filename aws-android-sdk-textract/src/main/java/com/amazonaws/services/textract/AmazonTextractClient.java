@@ -466,8 +466,8 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
-     * Analyzes an input document for financially related relationships between
-     * text.
+     * <code>AnalyzeExpense</code> synchronously analyzes an input document for
+     * financially related relationships between text.
      * </p>
      * <p>
      * Information is returned as <code>ExpenseDocuments</code> and seperated as
@@ -527,6 +527,62 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<AnalyzeExpenseResult, JsonUnmarshallerContext> unmarshaller = new AnalyzeExpenseResultJsonUnmarshaller();
             JsonResponseHandler<AnalyzeExpenseResult> responseHandler = new JsonResponseHandler<AnalyzeExpenseResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Analyzes identity documents for relevant information. This information is
+     * extracted and returned as <code>IdentityDocumentFields</code>, which
+     * records both the normalized field and value of the extracted text.
+     * </p>
+     * 
+     * @param analyzeIDRequest
+     * @return analyzeIDResult The response from the AnalyzeID service method,
+     *         as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public AnalyzeIDResult analyzeID(AnalyzeIDRequest analyzeIDRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(analyzeIDRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<AnalyzeIDRequest> request = null;
+        Response<AnalyzeIDResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new AnalyzeIDRequestMarshaller().marshall(analyzeIDRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<AnalyzeIDResult, JsonUnmarshallerContext> unmarshaller = new AnalyzeIDResultJsonUnmarshaller();
+            JsonResponseHandler<AnalyzeIDResult> responseHandler = new JsonResponseHandler<AnalyzeIDResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);
@@ -836,15 +892,101 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
 
     /**
      * <p>
+     * Gets the results for an Amazon Textract asynchronous operation that
+     * analyzes invoices and receipts. Amazon Textract finds contact
+     * information, items purchased, and vendor name, from input invoices and
+     * receipts.
+     * </p>
+     * <p>
+     * You start asynchronous invoice/receipt analysis by calling
+     * <a>StartExpenseAnalysis</a>, which returns a job identifier (
+     * <code>JobId</code>). Upon completion of the invoice/receipt analysis,
+     * Amazon Textract publishes the completion status to the Amazon Simple
+     * Notification Service (Amazon SNS) topic. This topic must be registered in
+     * the initial call to <code>StartExpenseAnalysis</code>. To get the results
+     * of the invoice/receipt analysis operation, first ensure that the status
+     * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
+     * call <code>GetExpenseAnalysis</code>, and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
+     * <code>StartExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * Use the MaxResults parameter to limit the number of blocks that are
+     * returned. If there are more results than specified in
+     * <code>MaxResults</code>, the value of <code>NextToken</code> in the
+     * operation response contains a pagination token for getting the next set
+     * of results. To get the next page of results, call
+     * <code>GetExpenseAnalysis</code>, and populate the <code>NextToken</code>
+     * request parameter with the token value that's returned from the previous
+     * call to <code>GetExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html"
+     * >Analyzing Invoices and Receipts</a>.
+     * </p>
+     * 
+     * @param getExpenseAnalysisRequest
+     * @return getExpenseAnalysisResult The response from the GetExpenseAnalysis
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidJobIdException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public GetExpenseAnalysisResult getExpenseAnalysis(
+            GetExpenseAnalysisRequest getExpenseAnalysisRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(getExpenseAnalysisRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<GetExpenseAnalysisRequest> request = null;
+        Response<GetExpenseAnalysisResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new GetExpenseAnalysisRequestMarshaller()
+                        .marshall(getExpenseAnalysisRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<GetExpenseAnalysisResult, JsonUnmarshallerContext> unmarshaller = new GetExpenseAnalysisResultJsonUnmarshaller();
+            JsonResponseHandler<GetExpenseAnalysisResult> responseHandler = new JsonResponseHandler<GetExpenseAnalysisResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
      * Starts the asynchronous analysis of an input document for relationships
      * between detected items such as key-value pairs, tables, and selection
      * elements.
      * </p>
      * <p>
      * <code>StartDocumentAnalysis</code> can analyze text in documents that are
-     * in JPEG, PNG, and PDF format. The documents are stored in an Amazon S3
-     * bucket. Use <a>DocumentLocation</a> to specify the bucket name and file
-     * name of the document.
+     * in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon
+     * S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and
+     * file name of the document.
      * </p>
      * <p>
      * <code>StartDocumentAnalysis</code> returns a job identifier (
@@ -926,9 +1068,9 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
      * </p>
      * <p>
      * <code>StartDocumentTextDetection</code> can analyze text in documents
-     * that are in JPEG, PNG, and PDF format. The documents are stored in an
-     * Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name
-     * and file name of the document.
+     * that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in
+     * an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket
+     * name and file name of the document.
      * </p>
      * <p>
      * <code>StartTextDetection</code> returns a job identifier (
@@ -992,6 +1134,92 @@ public class AmazonTextractClient extends AmazonWebServiceClient implements Amaz
             }
             Unmarshaller<StartDocumentTextDetectionResult, JsonUnmarshallerContext> unmarshaller = new StartDocumentTextDetectionResultJsonUnmarshaller();
             JsonResponseHandler<StartDocumentTextDetectionResult> responseHandler = new JsonResponseHandler<StartDocumentTextDetectionResult>(
+                    unmarshaller);
+
+            response = invoke(request, responseHandler, executionContext);
+
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response, LOGGING_AWS_REQUEST_METRIC);
+        }
+    }
+
+    /**
+     * <p>
+     * Starts the asynchronous analysis of invoices or receipts for data like
+     * contact information, items purchased, and vendor names.
+     * </p>
+     * <p>
+     * <code>StartExpenseAnalysis</code> can analyze text in documents that are
+     * in JPEG, PNG, and PDF format. The documents must be stored in an Amazon
+     * S3 bucket. Use the <a>DocumentLocation</a> parameter to specify the name
+     * of your S3 bucket and the name of the document in that bucket.
+     * </p>
+     * <p>
+     * <code>StartExpenseAnalysis</code> returns a job identifier (
+     * <code>JobId</code>) that you will provide to
+     * <code>GetExpenseAnalysis</code> to retrieve the results of the operation.
+     * When the analysis of the input invoices/receipts is finished, Amazon
+     * Textract publishes a completion status to the Amazon Simple Notification
+     * Service (Amazon SNS) topic that you provide to the
+     * <code>NotificationChannel</code>. To obtain the results of the invoice
+     * and receipt analysis operation, ensure that the status value published to
+     * the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
+     * <a>GetExpenseAnalysis</a>, and pass the job identifier (
+     * <code>JobId</code>) that was returned by your call to
+     * <code>StartExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/invoice-receipts.html"
+     * >Analyzing Invoices and Receipts</a>.
+     * </p>
+     * 
+     * @param startExpenseAnalysisRequest
+     * @return startExpenseAnalysisResult The response from the
+     *         StartExpenseAnalysis service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public StartExpenseAnalysisResult startExpenseAnalysis(
+            StartExpenseAnalysisRequest startExpenseAnalysisRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(startExpenseAnalysisRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<StartExpenseAnalysisRequest> request = null;
+        Response<StartExpenseAnalysisResult> response = null;
+        try {
+            awsRequestMetrics.startEvent(Field.RequestMarshallTime);
+            try {
+                request = new StartExpenseAnalysisRequestMarshaller()
+                        .marshall(startExpenseAnalysisRequest);
+                // Binds the request metrics to the current request.
+                request.setAWSRequestMetrics(awsRequestMetrics);
+            } finally {
+                awsRequestMetrics.endEvent(Field.RequestMarshallTime);
+            }
+            Unmarshaller<StartExpenseAnalysisResult, JsonUnmarshallerContext> unmarshaller = new StartExpenseAnalysisResultJsonUnmarshaller();
+            JsonResponseHandler<StartExpenseAnalysisResult> responseHandler = new JsonResponseHandler<StartExpenseAnalysisResult>(
                     unmarshaller);
 
             response = invoke(request, responseHandler, executionContext);

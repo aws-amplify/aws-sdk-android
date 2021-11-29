@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * <p>
  * Breakdown of detected information, seperated into the catagories Type,
- * LableDetection, and ValueDetection
+ * LabelDetection, and ValueDetection
  * </p>
  */
 public class ExpenseField implements Serializable {
