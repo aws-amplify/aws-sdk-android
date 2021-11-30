@@ -670,9 +670,9 @@ jobs:
       testmodule:
         type: string
     working_directory: ~/code
-    machine:
+    docker:
       # Android the primary container
-      image: android:202102-01
+      - image: circleci/android@sha256:b6646fdf7457f61825526e7bfce364d8e533da6ceb1cdb98e371e94348ecc834
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
