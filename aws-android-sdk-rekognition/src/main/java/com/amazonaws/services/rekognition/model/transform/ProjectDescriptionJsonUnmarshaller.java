@@ -45,6 +45,11 @@ class ProjectDescriptionJsonUnmarshaller implements
             } else if (name.equals("Status")) {
                 projectDescription.setStatus(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("Datasets")) {
+                projectDescription.setDatasets(new ListUnmarshaller<DatasetMetadata>(
+                        DatasetMetadataJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
             } else {
                 reader.skipValue();
             }

@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A description of a Amazon Rekognition Custom Labels project.
+ * A description of an Amazon Rekognition Custom Labels project. For more
+ * information, see <a>DescribeProjects</a>.
  * </p>
  */
 public class ProjectDescription implements Serializable {
@@ -52,6 +53,13 @@ public class ProjectDescription implements Serializable {
      * <b>Allowed Values: </b>CREATING, CREATED, DELETING
      */
     private String status;
+
+    /**
+     * <p>
+     * Information about the training and test datasets in the project.
+     * </p>
+     */
+    private java.util.List<DatasetMetadata> datasets;
 
     /**
      * <p>
@@ -262,6 +270,83 @@ public class ProjectDescription implements Serializable {
     }
 
     /**
+     * <p>
+     * Information about the training and test datasets in the project.
+     * </p>
+     *
+     * @return <p>
+     *         Information about the training and test datasets in the project.
+     *         </p>
+     */
+    public java.util.List<DatasetMetadata> getDatasets() {
+        return datasets;
+    }
+
+    /**
+     * <p>
+     * Information about the training and test datasets in the project.
+     * </p>
+     *
+     * @param datasets <p>
+     *            Information about the training and test datasets in the
+     *            project.
+     *            </p>
+     */
+    public void setDatasets(java.util.Collection<DatasetMetadata> datasets) {
+        if (datasets == null) {
+            this.datasets = null;
+            return;
+        }
+
+        this.datasets = new java.util.ArrayList<DatasetMetadata>(datasets);
+    }
+
+    /**
+     * <p>
+     * Information about the training and test datasets in the project.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param datasets <p>
+     *            Information about the training and test datasets in the
+     *            project.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectDescription withDatasets(DatasetMetadata... datasets) {
+        if (getDatasets() == null) {
+            this.datasets = new java.util.ArrayList<DatasetMetadata>(datasets.length);
+        }
+        for (DatasetMetadata value : datasets) {
+            this.datasets.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Information about the training and test datasets in the project.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param datasets <p>
+     *            Information about the training and test datasets in the
+     *            project.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ProjectDescription withDatasets(java.util.Collection<DatasetMetadata> datasets) {
+        setDatasets(datasets);
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -277,7 +362,9 @@ public class ProjectDescription implements Serializable {
         if (getCreationTimestamp() != null)
             sb.append("CreationTimestamp: " + getCreationTimestamp() + ",");
         if (getStatus() != null)
-            sb.append("Status: " + getStatus());
+            sb.append("Status: " + getStatus() + ",");
+        if (getDatasets() != null)
+            sb.append("Datasets: " + getDatasets());
         sb.append("}");
         return sb.toString();
     }
@@ -291,6 +378,7 @@ public class ProjectDescription implements Serializable {
         hashCode = prime * hashCode
                 + ((getCreationTimestamp() == null) ? 0 : getCreationTimestamp().hashCode());
         hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode + ((getDatasets() == null) ? 0 : getDatasets().hashCode());
         return hashCode;
     }
 
@@ -318,6 +406,10 @@ public class ProjectDescription implements Serializable {
         if (other.getStatus() == null ^ this.getStatus() == null)
             return false;
         if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getDatasets() == null ^ this.getDatasets() == null)
+            return false;
+        if (other.getDatasets() != null && other.getDatasets().equals(this.getDatasets()) == false)
             return false;
         return true;
     }

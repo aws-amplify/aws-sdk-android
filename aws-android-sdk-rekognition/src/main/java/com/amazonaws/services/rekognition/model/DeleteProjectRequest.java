@@ -26,6 +26,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * see <a>DeleteProjectVersion</a>.
  * </p>
  * <p>
+ * <code>DeleteProject</code> is an asynchronous operation. To check if the
+ * project is deleted, call <a>DescribeProjects</a>. The project is deleted when
+ * the project no longer appears in the response.
+ * </p>
+ * <p>
  * This operation requires permissions to perform the
  * <code>rekognition:DeleteProject</code> action.
  * </p>

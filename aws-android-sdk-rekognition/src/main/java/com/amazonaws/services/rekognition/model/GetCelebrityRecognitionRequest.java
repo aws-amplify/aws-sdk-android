@@ -27,13 +27,15 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * Celebrity recognition in a video is an asynchronous operation. Analysis is
  * started by a call to <a>StartCelebrityRecognition</a> which returns a job
- * identifier (<code>JobId</code>). When the celebrity recognition operation
- * finishes, Amazon Rekognition Video publishes a completion status to the
- * Amazon Simple Notification Service topic registered in the initial call to
- * <code>StartCelebrityRecognition</code>. To get the results of the celebrity
- * recognition analysis, first check that the status value published to the
- * Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
- * <code>GetCelebrityDetection</code> and pass the job identifier (
+ * identifier (<code>JobId</code>).
+ * </p>
+ * <p>
+ * When the celebrity recognition operation finishes, Amazon Rekognition Video
+ * publishes a completion status to the Amazon Simple Notification Service topic
+ * registered in the initial call to <code>StartCelebrityRecognition</code>. To
+ * get the results of the celebrity recognition analysis, first check that the
+ * status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If
+ * so, call <code>GetCelebrityDetection</code> and pass the job identifier (
  * <code>JobId</code>) from the initial call to
  * <code>StartCelebrityDetection</code>.
  * </p>
@@ -46,14 +48,18 @@ import com.amazonaws.AmazonWebServiceRequest;
  * time(s) they are detected in an array (<code>Celebrities</code>) of
  * <a>CelebrityRecognition</a> objects. Each <code>CelebrityRecognition</code>
  * contains information about the celebrity in a <a>CelebrityDetail</a> object
- * and the time, <code>Timestamp</code>, the celebrity was detected.
+ * and the time, <code>Timestamp</code>, the celebrity was detected. This
+ * <a>CelebrityDetail</a> object stores information about the detected
+ * celebrity's face attributes, a face bounding box, known gender, the
+ * celebrity's name, and a confidence estimate.
  * </p>
  * <note>
  * <p>
  * <code>GetCelebrityRecognition</code> only returns the default facial
  * attributes (<code>BoundingBox</code>, <code>Confidence</code>,
  * <code>Landmarks</code>, <code>Pose</code>, and <code>Quality</code>). The
- * other facial attributes listed in the <code>Face</code> object of the
+ * <code>BoundingBox</code> field only applies to the detected face instance.
+ * The other facial attributes listed in the <code>Face</code> object of the
  * following response syntax are not returned. For more information, see
  * FaceDetail in the Amazon Rekognition Developer Guide.
  * </p>

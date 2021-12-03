@@ -20,8 +20,8 @@ import java.io.Serializable;
 /**
  * <p>
  * The dataset used for testing. Optionally, if <code>AutoCreate</code> is set,
- * Amazon Rekognition Custom Labels creates a testing dataset using an 80/20
- * split of the training dataset.
+ * Amazon Rekognition Custom Labels uses the training dataset to create a test
+ * dataset with a temporary split of the training dataset.
  * </p>
  */
 public class TestingData implements Serializable {
@@ -34,8 +34,10 @@ public class TestingData implements Serializable {
 
     /**
      * <p>
-     * If specified, Amazon Rekognition Custom Labels creates a testing dataset
-     * with an 80/20 split of the training dataset.
+     * If specified, Amazon Rekognition Custom Labels temporarily splits the
+     * training dataset (80%) to create a test dataset (20%) for the training
+     * job. After training completes, the test dataset is not stored and the
+     * training dataset reverts to its previous size.
      * </p>
      */
     private Boolean autoCreate;
@@ -116,13 +118,17 @@ public class TestingData implements Serializable {
 
     /**
      * <p>
-     * If specified, Amazon Rekognition Custom Labels creates a testing dataset
-     * with an 80/20 split of the training dataset.
+     * If specified, Amazon Rekognition Custom Labels temporarily splits the
+     * training dataset (80%) to create a test dataset (20%) for the training
+     * job. After training completes, the test dataset is not stored and the
+     * training dataset reverts to its previous size.
      * </p>
      *
      * @return <p>
-     *         If specified, Amazon Rekognition Custom Labels creates a testing
-     *         dataset with an 80/20 split of the training dataset.
+     *         If specified, Amazon Rekognition Custom Labels temporarily splits
+     *         the training dataset (80%) to create a test dataset (20%) for the
+     *         training job. After training completes, the test dataset is not
+     *         stored and the training dataset reverts to its previous size.
      *         </p>
      */
     public Boolean isAutoCreate() {
@@ -131,13 +137,17 @@ public class TestingData implements Serializable {
 
     /**
      * <p>
-     * If specified, Amazon Rekognition Custom Labels creates a testing dataset
-     * with an 80/20 split of the training dataset.
+     * If specified, Amazon Rekognition Custom Labels temporarily splits the
+     * training dataset (80%) to create a test dataset (20%) for the training
+     * job. After training completes, the test dataset is not stored and the
+     * training dataset reverts to its previous size.
      * </p>
      *
      * @return <p>
-     *         If specified, Amazon Rekognition Custom Labels creates a testing
-     *         dataset with an 80/20 split of the training dataset.
+     *         If specified, Amazon Rekognition Custom Labels temporarily splits
+     *         the training dataset (80%) to create a test dataset (20%) for the
+     *         training job. After training completes, the test dataset is not
+     *         stored and the training dataset reverts to its previous size.
      *         </p>
      */
     public Boolean getAutoCreate() {
@@ -146,13 +156,18 @@ public class TestingData implements Serializable {
 
     /**
      * <p>
-     * If specified, Amazon Rekognition Custom Labels creates a testing dataset
-     * with an 80/20 split of the training dataset.
+     * If specified, Amazon Rekognition Custom Labels temporarily splits the
+     * training dataset (80%) to create a test dataset (20%) for the training
+     * job. After training completes, the test dataset is not stored and the
+     * training dataset reverts to its previous size.
      * </p>
      *
      * @param autoCreate <p>
-     *            If specified, Amazon Rekognition Custom Labels creates a
-     *            testing dataset with an 80/20 split of the training dataset.
+     *            If specified, Amazon Rekognition Custom Labels temporarily
+     *            splits the training dataset (80%) to create a test dataset
+     *            (20%) for the training job. After training completes, the test
+     *            dataset is not stored and the training dataset reverts to its
+     *            previous size.
      *            </p>
      */
     public void setAutoCreate(Boolean autoCreate) {
@@ -161,16 +176,21 @@ public class TestingData implements Serializable {
 
     /**
      * <p>
-     * If specified, Amazon Rekognition Custom Labels creates a testing dataset
-     * with an 80/20 split of the training dataset.
+     * If specified, Amazon Rekognition Custom Labels temporarily splits the
+     * training dataset (80%) to create a test dataset (20%) for the training
+     * job. After training completes, the test dataset is not stored and the
+     * training dataset reverts to its previous size.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param autoCreate <p>
-     *            If specified, Amazon Rekognition Custom Labels creates a
-     *            testing dataset with an 80/20 split of the training dataset.
+     *            If specified, Amazon Rekognition Custom Labels temporarily
+     *            splits the training dataset (80%) to create a test dataset
+     *            (20%) for the training job. After training completes, the test
+     *            dataset is not stored and the training dataset reverts to its
+     *            previous size.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
