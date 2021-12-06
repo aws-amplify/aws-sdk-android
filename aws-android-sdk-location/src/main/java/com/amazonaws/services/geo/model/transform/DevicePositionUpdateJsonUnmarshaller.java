@@ -36,12 +36,20 @@ class DevicePositionUpdateJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("DeviceId")) {
+            if (name.equals("Accuracy")) {
+                devicePositionUpdate.setAccuracy(PositionalAccuracyJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("DeviceId")) {
                 devicePositionUpdate.setDeviceId(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else if (name.equals("Position")) {
                 devicePositionUpdate.setPosition(new ListUnmarshaller<Double>(
                         DoubleJsonUnmarshaller.getInstance()
+                        )
+                                .unmarshall(context));
+            } else if (name.equals("PositionProperties")) {
+                devicePositionUpdate.setPositionProperties(new MapUnmarshaller<String>(
+                        StringJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else if (name.equals("SampleTime")) {

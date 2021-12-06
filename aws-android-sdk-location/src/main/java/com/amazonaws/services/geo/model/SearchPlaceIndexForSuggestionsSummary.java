@@ -19,10 +19,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- * A summary of the request sent by using <code>SearchPlaceIndexForText</code>.
+ * A summary of the request sent by using
+ * <code>SearchPlaceIndexForSuggestions</code>.
  * </p>
  */
-public class SearchPlaceIndexForTextSummary implements Serializable {
+public class SearchPlaceIndexForSuggestionsSummary implements Serializable {
     /**
      * <p>
      * Contains the coordinates for the optional bias position specified in the
@@ -97,29 +98,12 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * <p>
      * Contains the optional result count limit specified in the request.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      */
     private Integer maxResults;
 
     /**
      * <p>
-     * The bounding box that fully contains all search results.
-     * </p>
-     * <note>
-     * <p>
-     * If you specified the optional <code>FilterBBox</code> parameter in the
-     * request, <code>ResultBBox</code> is contained within
-     * <code>FilterBBox</code>.
-     * </p>
-     * </note>
-     */
-    private java.util.List<Double> resultBBox;
-
-    /**
-     * <p>
-     * The search text specified in the request.
+     * The free-form partial text input specified in the request.
      * </p>
      */
     private String text;
@@ -232,7 +216,7 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withBiasPosition(Double... biasPosition) {
+    public SearchPlaceIndexForSuggestionsSummary withBiasPosition(Double... biasPosition) {
         if (getBiasPosition() == null) {
             this.biasPosition = new java.util.ArrayList<Double>(biasPosition.length);
         }
@@ -277,7 +261,8 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withBiasPosition(java.util.Collection<Double> biasPosition) {
+    public SearchPlaceIndexForSuggestionsSummary withBiasPosition(
+            java.util.Collection<Double> biasPosition) {
         setBiasPosition(biasPosition);
         return this;
     }
@@ -432,7 +417,7 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withDataSource(String dataSource) {
+    public SearchPlaceIndexForSuggestionsSummary withDataSource(String dataSource) {
         this.dataSource = dataSource;
         return this;
     }
@@ -488,7 +473,7 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withFilterBBox(Double... filterBBox) {
+    public SearchPlaceIndexForSuggestionsSummary withFilterBBox(Double... filterBBox) {
         if (getFilterBBox() == null) {
             this.filterBBox = new java.util.ArrayList<Double>(filterBBox.length);
         }
@@ -514,7 +499,8 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withFilterBBox(java.util.Collection<Double> filterBBox) {
+    public SearchPlaceIndexForSuggestionsSummary withFilterBBox(
+            java.util.Collection<Double> filterBBox) {
         setFilterBBox(filterBBox);
         return this;
     }
@@ -564,7 +550,7 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withFilterCountries(String... filterCountries) {
+    public SearchPlaceIndexForSuggestionsSummary withFilterCountries(String... filterCountries) {
         if (getFilterCountries() == null) {
             this.filterCountries = new java.util.ArrayList<String>(filterCountries.length);
         }
@@ -588,7 +574,7 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withFilterCountries(
+    public SearchPlaceIndexForSuggestionsSummary withFilterCountries(
             java.util.Collection<String> filterCountries) {
         setFilterCountries(filterCountries);
         return this;
@@ -661,7 +647,7 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withLanguage(String language) {
+    public SearchPlaceIndexForSuggestionsSummary withLanguage(String language) {
         this.language = language;
         return this;
     }
@@ -670,9 +656,6 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * <p>
      * Contains the optional result count limit specified in the request.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      *
      * @return <p>
      *         Contains the optional result count limit specified in the
@@ -687,9 +670,6 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * <p>
      * Contains the optional result count limit specified in the request.
      * </p>
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      *
      * @param maxResults <p>
      *            Contains the optional result count limit specified in the
@@ -707,9 +687,6 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
-     * <p>
-     * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
      *
      * @param maxResults <p>
      *            Contains the optional result count limit specified in the
@@ -718,148 +695,18 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withMaxResults(Integer maxResults) {
+    public SearchPlaceIndexForSuggestionsSummary withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }
 
     /**
      * <p>
-     * The bounding box that fully contains all search results.
-     * </p>
-     * <note>
-     * <p>
-     * If you specified the optional <code>FilterBBox</code> parameter in the
-     * request, <code>ResultBBox</code> is contained within
-     * <code>FilterBBox</code>.
-     * </p>
-     * </note>
-     *
-     * @return <p>
-     *         The bounding box that fully contains all search results.
-     *         </p>
-     *         <note>
-     *         <p>
-     *         If you specified the optional <code>FilterBBox</code> parameter
-     *         in the request, <code>ResultBBox</code> is contained within
-     *         <code>FilterBBox</code>.
-     *         </p>
-     *         </note>
-     */
-    public java.util.List<Double> getResultBBox() {
-        return resultBBox;
-    }
-
-    /**
-     * <p>
-     * The bounding box that fully contains all search results.
-     * </p>
-     * <note>
-     * <p>
-     * If you specified the optional <code>FilterBBox</code> parameter in the
-     * request, <code>ResultBBox</code> is contained within
-     * <code>FilterBBox</code>.
-     * </p>
-     * </note>
-     *
-     * @param resultBBox <p>
-     *            The bounding box that fully contains all search results.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If you specified the optional <code>FilterBBox</code>
-     *            parameter in the request, <code>ResultBBox</code> is contained
-     *            within <code>FilterBBox</code>.
-     *            </p>
-     *            </note>
-     */
-    public void setResultBBox(java.util.Collection<Double> resultBBox) {
-        if (resultBBox == null) {
-            this.resultBBox = null;
-            return;
-        }
-
-        this.resultBBox = new java.util.ArrayList<Double>(resultBBox);
-    }
-
-    /**
-     * <p>
-     * The bounding box that fully contains all search results.
-     * </p>
-     * <note>
-     * <p>
-     * If you specified the optional <code>FilterBBox</code> parameter in the
-     * request, <code>ResultBBox</code> is contained within
-     * <code>FilterBBox</code>.
-     * </p>
-     * </note>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param resultBBox <p>
-     *            The bounding box that fully contains all search results.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If you specified the optional <code>FilterBBox</code>
-     *            parameter in the request, <code>ResultBBox</code> is contained
-     *            within <code>FilterBBox</code>.
-     *            </p>
-     *            </note>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForTextSummary withResultBBox(Double... resultBBox) {
-        if (getResultBBox() == null) {
-            this.resultBBox = new java.util.ArrayList<Double>(resultBBox.length);
-        }
-        for (Double value : resultBBox) {
-            this.resultBBox.add(value);
-        }
-        return this;
-    }
-
-    /**
-     * <p>
-     * The bounding box that fully contains all search results.
-     * </p>
-     * <note>
-     * <p>
-     * If you specified the optional <code>FilterBBox</code> parameter in the
-     * request, <code>ResultBBox</code> is contained within
-     * <code>FilterBBox</code>.
-     * </p>
-     * </note>
-     * <p>
-     * Returns a reference to this object so that method calls can be chained
-     * together.
-     *
-     * @param resultBBox <p>
-     *            The bounding box that fully contains all search results.
-     *            </p>
-     *            <note>
-     *            <p>
-     *            If you specified the optional <code>FilterBBox</code>
-     *            parameter in the request, <code>ResultBBox</code> is contained
-     *            within <code>FilterBBox</code>.
-     *            </p>
-     *            </note>
-     * @return A reference to this updated object so that method calls can be
-     *         chained together.
-     */
-    public SearchPlaceIndexForTextSummary withResultBBox(java.util.Collection<Double> resultBBox) {
-        setResultBBox(resultBBox);
-        return this;
-    }
-
-    /**
-     * <p>
-     * The search text specified in the request.
+     * The free-form partial text input specified in the request.
      * </p>
      *
      * @return <p>
-     *         The search text specified in the request.
+     *         The free-form partial text input specified in the request.
      *         </p>
      */
     public String getText() {
@@ -868,11 +715,11 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
 
     /**
      * <p>
-     * The search text specified in the request.
+     * The free-form partial text input specified in the request.
      * </p>
      *
      * @param text <p>
-     *            The search text specified in the request.
+     *            The free-form partial text input specified in the request.
      *            </p>
      */
     public void setText(String text) {
@@ -881,19 +728,19 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
 
     /**
      * <p>
-     * The search text specified in the request.
+     * The free-form partial text input specified in the request.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param text <p>
-     *            The search text specified in the request.
+     *            The free-form partial text input specified in the request.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextSummary withText(String text) {
+    public SearchPlaceIndexForSuggestionsSummary withText(String text) {
         this.text = text;
         return this;
     }
@@ -921,8 +768,6 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
             sb.append("Language: " + getLanguage() + ",");
         if (getMaxResults() != null)
             sb.append("MaxResults: " + getMaxResults() + ",");
-        if (getResultBBox() != null)
-            sb.append("ResultBBox: " + getResultBBox() + ",");
         if (getText() != null)
             sb.append("Text: " + getText());
         sb.append("}");
@@ -942,7 +787,6 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
                 + ((getFilterCountries() == null) ? 0 : getFilterCountries().hashCode());
         hashCode = prime * hashCode + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
         hashCode = prime * hashCode + ((getMaxResults() == null) ? 0 : getMaxResults().hashCode());
-        hashCode = prime * hashCode + ((getResultBBox() == null) ? 0 : getResultBBox().hashCode());
         hashCode = prime * hashCode + ((getText() == null) ? 0 : getText().hashCode());
         return hashCode;
     }
@@ -954,9 +798,9 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof SearchPlaceIndexForTextSummary == false)
+        if (obj instanceof SearchPlaceIndexForSuggestionsSummary == false)
             return false;
-        SearchPlaceIndexForTextSummary other = (SearchPlaceIndexForTextSummary) obj;
+        SearchPlaceIndexForSuggestionsSummary other = (SearchPlaceIndexForSuggestionsSummary) obj;
 
         if (other.getBiasPosition() == null ^ this.getBiasPosition() == null)
             return false;
@@ -986,11 +830,6 @@ public class SearchPlaceIndexForTextSummary implements Serializable {
             return false;
         if (other.getMaxResults() != null
                 && other.getMaxResults().equals(this.getMaxResults()) == false)
-            return false;
-        if (other.getResultBBox() == null ^ this.getResultBBox() == null)
-            return false;
-        if (other.getResultBBox() != null
-                && other.getResultBBox().equals(this.getResultBBox()) == false)
             return false;
         if (other.getText() == null ^ this.getText() == null)
             return false;

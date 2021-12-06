@@ -49,6 +49,11 @@ import com.amazonaws.AmazonWebServiceRequest;
  * The last geofence that a device was observed within is tracked for 30 days
  * after the most recent device position update.
  * </p>
+ * </note> <note>
+ * <p>
+ * Geofence evaluation uses the given device position. It does not account for
+ * the optional <code>Accuracy</code> of a <code>DevicePositionUpdate</code>.
+ * </p>
  * </note>
  */
 public class BatchEvaluateGeofencesRequest extends AmazonWebServiceRequest implements Serializable {

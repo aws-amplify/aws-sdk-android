@@ -20,31 +20,26 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO SearchForPositionResult
+ * JSON marshaller for POJO SearchForSuggestionsResult
  */
-class SearchForPositionResultJsonMarshaller {
+class SearchForSuggestionsResultJsonMarshaller {
 
-    public void marshall(SearchForPositionResult searchForPositionResult, AwsJsonWriter jsonWriter)
-            throws Exception {
+    public void marshall(SearchForSuggestionsResult searchForSuggestionsResult,
+            AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (searchForPositionResult.getDistance() != null) {
-            Double distance = searchForPositionResult.getDistance();
-            jsonWriter.name("Distance");
-            jsonWriter.value(distance);
-        }
-        if (searchForPositionResult.getPlace() != null) {
-            Place place = searchForPositionResult.getPlace();
-            jsonWriter.name("Place");
-            PlaceJsonMarshaller.getInstance().marshall(place, jsonWriter);
+        if (searchForSuggestionsResult.getText() != null) {
+            String text = searchForSuggestionsResult.getText();
+            jsonWriter.name("Text");
+            jsonWriter.value(text);
         }
         jsonWriter.endObject();
     }
 
-    private static SearchForPositionResultJsonMarshaller instance;
+    private static SearchForSuggestionsResultJsonMarshaller instance;
 
-    public static SearchForPositionResultJsonMarshaller getInstance() {
+    public static SearchForSuggestionsResultJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new SearchForPositionResultJsonMarshaller();
+            instance = new SearchForSuggestionsResultJsonMarshaller();
         return instance;
     }
 }

@@ -27,7 +27,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <code>DeparturePostiton</code> and <code>DestinationPosition</code>. Requires
  * that you first <a href=
  * "https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html"
- * >create a route calculator resource</a>
+ * >create a route calculator resource</a>.
  * </p>
  * <p>
  * By default, a request that doesn't specify a departure time uses the best
@@ -50,7 +50,7 @@ import com.amazonaws.AmazonWebServiceRequest;
  * <p>
  * You can't specify both <code>DepartureTime</code> and
  * <code>DepartureNow</code> in a single request. Specifying both parameters
- * returns an error message.
+ * returns a validation error.
  * </p>
  * </note></li>
  * <li>
@@ -71,7 +71,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The name of the route calculator resource that you want to use to
-     * calculate a route.
+     * calculate the route.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -139,8 +139,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Specifies the desired time of departure. Uses the given time to calculate
-     * a route. Otherwise, the best time of day to travel with the best traffic
-     * conditions is used to calculate the route.
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
      * <note>
      * <p>
@@ -300,7 +300,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The name of the route calculator resource that you want to use to
-     * calculate a route.
+     * calculate the route.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -309,7 +309,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *
      * @return <p>
      *         The name of the route calculator resource that you want to use to
-     *         calculate a route.
+     *         calculate the route.
      *         </p>
      */
     public String getCalculatorName() {
@@ -319,7 +319,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The name of the route calculator resource that you want to use to
-     * calculate a route.
+     * calculate the route.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -328,7 +328,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource that you want to use
-     *            to calculate a route.
+     *            to calculate the route.
      *            </p>
      */
     public void setCalculatorName(String calculatorName) {
@@ -338,7 +338,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * The name of the route calculator resource that you want to use to
-     * calculate a route.
+     * calculate the route.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -350,7 +350,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *
      * @param calculatorName <p>
      *            The name of the route calculator resource that you want to use
-     *            to calculate a route.
+     *            to calculate the route.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -819,8 +819,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Specifies the desired time of departure. Uses the given time to calculate
-     * a route. Otherwise, the best time of day to travel with the best traffic
-     * conditions is used to calculate the route.
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
      * <note>
      * <p>
@@ -840,8 +840,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *
      * @return <p>
      *         Specifies the desired time of departure. Uses the given time to
-     *         calculate a route. Otherwise, the best time of day to travel with
-     *         the best traffic conditions is used to calculate the route.
+     *         calculate the route. Otherwise, the best time of day to travel
+     *         with the best traffic conditions is used to calculate the route.
      *         </p>
      *         <note>
      *         <p>
@@ -867,8 +867,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Specifies the desired time of departure. Uses the given time to calculate
-     * a route. Otherwise, the best time of day to travel with the best traffic
-     * conditions is used to calculate the route.
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
      * <note>
      * <p>
@@ -888,7 +888,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *
      * @param departureTime <p>
      *            Specifies the desired time of departure. Uses the given time
-     *            to calculate a route. Otherwise, the best time of day to
+     *            to calculate the route. Otherwise, the best time of day to
      *            travel with the best traffic conditions is used to calculate
      *            the route.
      *            </p>
@@ -916,8 +916,8 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
     /**
      * <p>
      * Specifies the desired time of departure. Uses the given time to calculate
-     * a route. Otherwise, the best time of day to travel with the best traffic
-     * conditions is used to calculate the route.
+     * the route. Otherwise, the best time of day to travel with the best
+     * traffic conditions is used to calculate the route.
      * </p>
      * <note>
      * <p>
@@ -940,7 +940,7 @@ public class CalculateRouteRequest extends AmazonWebServiceRequest implements Se
      *
      * @param departureTime <p>
      *            Specifies the desired time of departure. Uses the given time
-     *            to calculate a route. Otherwise, the best time of day to
+     *            to calculate the route. Otherwise, the best time of day to
      *            travel with the best traffic conditions is used to calculate
      *            the route.
      *            </p>

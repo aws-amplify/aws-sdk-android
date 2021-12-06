@@ -25,6 +25,13 @@ import java.io.Serializable;
 public class DevicePositionUpdate implements Serializable {
     /**
      * <p>
+     * The accuracy of the device position.
+     * </p>
+     */
+    private PositionalAccuracy accuracy;
+
+    /**
+     * <p>
      * The device associated to the position update.
      * </p>
      * <p>
@@ -45,12 +52,69 @@ public class DevicePositionUpdate implements Serializable {
 
     /**
      * <p>
+     * Associates one of more properties with the position update. A property is
+     * a key-value pair stored with the position update and added to any
+     * geofence event the update may trigger.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     */
+    private java.util.Map<String, String> positionProperties;
+
+    /**
+     * <p>
      * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
      * </p>
      */
     private java.util.Date sampleTime;
+
+    /**
+     * <p>
+     * The accuracy of the device position.
+     * </p>
+     *
+     * @return <p>
+     *         The accuracy of the device position.
+     *         </p>
+     */
+    public PositionalAccuracy getAccuracy() {
+        return accuracy;
+    }
+
+    /**
+     * <p>
+     * The accuracy of the device position.
+     * </p>
+     *
+     * @param accuracy <p>
+     *            The accuracy of the device position.
+     *            </p>
+     */
+    public void setAccuracy(PositionalAccuracy accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    /**
+     * <p>
+     * The accuracy of the device position.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param accuracy <p>
+     *            The accuracy of the device position.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DevicePositionUpdate withAccuracy(PositionalAccuracy accuracy) {
+        this.accuracy = accuracy;
+        return this;
+    }
 
     /**
      * <p>
@@ -201,6 +265,124 @@ public class DevicePositionUpdate implements Serializable {
 
     /**
      * <p>
+     * Associates one of more properties with the position update. A property is
+     * a key-value pair stored with the position update and added to any
+     * geofence event the update may trigger.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     *
+     * @return <p>
+     *         Associates one of more properties with the position update. A
+     *         property is a key-value pair stored with the position update and
+     *         added to any geofence event the update may trigger.
+     *         </p>
+     *         <p>
+     *         Format: <code>"key" : "value"</code>
+     *         </p>
+     */
+    public java.util.Map<String, String> getPositionProperties() {
+        return positionProperties;
+    }
+
+    /**
+     * <p>
+     * Associates one of more properties with the position update. A property is
+     * a key-value pair stored with the position update and added to any
+     * geofence event the update may trigger.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     *
+     * @param positionProperties <p>
+     *            Associates one of more properties with the position update. A
+     *            property is a key-value pair stored with the position update
+     *            and added to any geofence event the update may trigger.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
+     *            </p>
+     */
+    public void setPositionProperties(java.util.Map<String, String> positionProperties) {
+        this.positionProperties = positionProperties;
+    }
+
+    /**
+     * <p>
+     * Associates one of more properties with the position update. A property is
+     * a key-value pair stored with the position update and added to any
+     * geofence event the update may trigger.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param positionProperties <p>
+     *            Associates one of more properties with the position update. A
+     *            property is a key-value pair stored with the position update
+     *            and added to any geofence event the update may trigger.
+     *            </p>
+     *            <p>
+     *            Format: <code>"key" : "value"</code>
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DevicePositionUpdate withPositionProperties(
+            java.util.Map<String, String> positionProperties) {
+        this.positionProperties = positionProperties;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Associates one of more properties with the position update. A property is
+     * a key-value pair stored with the position update and added to any
+     * geofence event the update may trigger.
+     * </p>
+     * <p>
+     * Format: <code>"key" : "value"</code>
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into PositionProperties parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into PositionProperties.
+     * @param value The corresponding value of the entry to be added into
+     *            PositionProperties.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DevicePositionUpdate addPositionPropertiesEntry(String key, String value) {
+        if (null == this.positionProperties) {
+            this.positionProperties = new java.util.HashMap<String, String>();
+        }
+        if (this.positionProperties.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.positionProperties.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into PositionProperties.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DevicePositionUpdate clearPositionPropertiesEntries() {
+        this.positionProperties = null;
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp at which the device's position was determined. Uses <a
      * href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>
@@ -269,10 +451,14 @@ public class DevicePositionUpdate implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getAccuracy() != null)
+            sb.append("Accuracy: " + getAccuracy() + ",");
         if (getDeviceId() != null)
             sb.append("DeviceId: " + getDeviceId() + ",");
         if (getPosition() != null)
             sb.append("Position: " + getPosition() + ",");
+        if (getPositionProperties() != null)
+            sb.append("PositionProperties: " + getPositionProperties() + ",");
         if (getSampleTime() != null)
             sb.append("SampleTime: " + getSampleTime());
         sb.append("}");
@@ -284,8 +470,11 @@ public class DevicePositionUpdate implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getAccuracy() == null) ? 0 : getAccuracy().hashCode());
         hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         hashCode = prime * hashCode + ((getPosition() == null) ? 0 : getPosition().hashCode());
+        hashCode = prime * hashCode
+                + ((getPositionProperties() == null) ? 0 : getPositionProperties().hashCode());
         hashCode = prime * hashCode + ((getSampleTime() == null) ? 0 : getSampleTime().hashCode());
         return hashCode;
     }
@@ -301,6 +490,10 @@ public class DevicePositionUpdate implements Serializable {
             return false;
         DevicePositionUpdate other = (DevicePositionUpdate) obj;
 
+        if (other.getAccuracy() == null ^ this.getAccuracy() == null)
+            return false;
+        if (other.getAccuracy() != null && other.getAccuracy().equals(this.getAccuracy()) == false)
+            return false;
         if (other.getDeviceId() == null ^ this.getDeviceId() == null)
             return false;
         if (other.getDeviceId() != null && other.getDeviceId().equals(this.getDeviceId()) == false)
@@ -308,6 +501,11 @@ public class DevicePositionUpdate implements Serializable {
         if (other.getPosition() == null ^ this.getPosition() == null)
             return false;
         if (other.getPosition() != null && other.getPosition().equals(this.getPosition()) == false)
+            return false;
+        if (other.getPositionProperties() == null ^ this.getPositionProperties() == null)
+            return false;
+        if (other.getPositionProperties() != null
+                && other.getPositionProperties().equals(this.getPositionProperties()) == false)
             return false;
         if (other.getSampleTime() == null ^ this.getSampleTime() == null)
             return false;

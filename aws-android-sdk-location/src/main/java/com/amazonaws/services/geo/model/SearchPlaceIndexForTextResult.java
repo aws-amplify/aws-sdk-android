@@ -20,31 +20,33 @@ import java.io.Serializable;
 public class SearchPlaceIndexForTextResult implements Serializable {
     /**
      * <p>
-     * A list of Places closest to the specified position. Each result contains
-     * additional information about the specific point of interest.
+     * A list of Places matching the input text. Each result contains additional
+     * information about the specific point of interest.
      * </p>
      */
     private java.util.List<SearchForTextResult> results;
 
     /**
      * <p>
-     * Contains a summary of the request. Contains the <code>BiasPosition</code>, <code>DataSource</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>MaxResults</code>,
-     * <code>ResultBBox</code>, and <code>Text</code>.
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index and the bounding box,
+     * <code>ResultBBox</code>, which surrounds the search results.
      * </p>
      */
     private SearchPlaceIndexForTextSummary summary;
 
     /**
      * <p>
-     * A list of Places closest to the specified position. Each result contains
-     * additional information about the specific point of interest.
+     * A list of Places matching the input text. Each result contains additional
+     * information about the specific point of interest.
      * </p>
      *
      * @return <p>
-     *         A list of Places closest to the specified position. Each result
-     *         contains additional information about the specific point of
-     *         interest.
+     *         A list of Places matching the input text. Each result contains
+     *         additional information about the specific point of interest.
      *         </p>
      */
     public java.util.List<SearchForTextResult> getResults() {
@@ -53,14 +55,13 @@ public class SearchPlaceIndexForTextResult implements Serializable {
 
     /**
      * <p>
-     * A list of Places closest to the specified position. Each result contains
-     * additional information about the specific point of interest.
+     * A list of Places matching the input text. Each result contains additional
+     * information about the specific point of interest.
      * </p>
      *
      * @param results <p>
-     *            A list of Places closest to the specified position. Each
-     *            result contains additional information about the specific
-     *            point of interest.
+     *            A list of Places matching the input text. Each result contains
+     *            additional information about the specific point of interest.
      *            </p>
      */
     public void setResults(java.util.Collection<SearchForTextResult> results) {
@@ -74,17 +75,16 @@ public class SearchPlaceIndexForTextResult implements Serializable {
 
     /**
      * <p>
-     * A list of Places closest to the specified position. Each result contains
-     * additional information about the specific point of interest.
+     * A list of Places matching the input text. Each result contains additional
+     * information about the specific point of interest.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param results <p>
-     *            A list of Places closest to the specified position. Each
-     *            result contains additional information about the specific
-     *            point of interest.
+     *            A list of Places matching the input text. Each result contains
+     *            additional information about the specific point of interest.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -101,17 +101,16 @@ public class SearchPlaceIndexForTextResult implements Serializable {
 
     /**
      * <p>
-     * A list of Places closest to the specified position. Each result contains
-     * additional information about the specific point of interest.
+     * A list of Places matching the input text. Each result contains additional
+     * information about the specific point of interest.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param results <p>
-     *            A list of Places closest to the specified position. Each
-     *            result contains additional information about the specific
-     *            point of interest.
+     *            A list of Places matching the input text. Each result contains
+     *            additional information about the specific point of interest.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -124,17 +123,21 @@ public class SearchPlaceIndexForTextResult implements Serializable {
 
     /**
      * <p>
-     * Contains a summary of the request. Contains the <code>BiasPosition</code>, <code>DataSource</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>MaxResults</code>,
-     * <code>ResultBBox</code>, and <code>Text</code>.
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index and the bounding box,
+     * <code>ResultBBox</code>, which surrounds the search results.
      * </p>
      *
      * @return <p>
-     *         Contains a summary of the request. Contains the
-     *         <code>BiasPosition</code>, <code>DataSource</code>,
-     *         <code>FilterBBox</code>, <code>FilterCountries</code>,
-     *         <code>MaxResults</code>, <code>ResultBBox</code>, and
-     *         <code>Text</code>.
+     *         Contains a summary of the request. Echoes the input values for
+     *         <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *         <code>FilterCountries</code>, <code>Language</code>,
+     *         <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     *         <code>DataSource</code> of the place index and the bounding box,
+     *         <code>ResultBBox</code>, which surrounds the search results.
      *         </p>
      */
     public SearchPlaceIndexForTextSummary getSummary() {
@@ -143,17 +146,22 @@ public class SearchPlaceIndexForTextResult implements Serializable {
 
     /**
      * <p>
-     * Contains a summary of the request. Contains the <code>BiasPosition</code>, <code>DataSource</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>MaxResults</code>,
-     * <code>ResultBBox</code>, and <code>Text</code>.
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index and the bounding box,
+     * <code>ResultBBox</code>, which surrounds the search results.
      * </p>
      *
      * @param summary <p>
-     *            Contains a summary of the request. Contains the
-     *            <code>BiasPosition</code>, <code>DataSource</code>,
-     *            <code>FilterBBox</code>, <code>FilterCountries</code>,
-     *            <code>MaxResults</code>, <code>ResultBBox</code>, and
-     *            <code>Text</code>.
+     *            Contains a summary of the request. Echoes the input values for
+     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *            <code>FilterCountries</code>, <code>Language</code>,
+     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
+     *            the <code>DataSource</code> of the place index and the
+     *            bounding box, <code>ResultBBox</code>, which surrounds the
+     *            search results.
      *            </p>
      */
     public void setSummary(SearchPlaceIndexForTextSummary summary) {
@@ -162,20 +170,25 @@ public class SearchPlaceIndexForTextResult implements Serializable {
 
     /**
      * <p>
-     * Contains a summary of the request. Contains the <code>BiasPosition</code>, <code>DataSource</code>, <code>FilterBBox</code>,
-     * <code>FilterCountries</code>, <code>MaxResults</code>,
-     * <code>ResultBBox</code>, and <code>Text</code>.
+     * Contains a summary of the request. Echoes the input values for
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index and the bounding box,
+     * <code>ResultBBox</code>, which surrounds the search results.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param summary <p>
-     *            Contains a summary of the request. Contains the
-     *            <code>BiasPosition</code>, <code>DataSource</code>,
-     *            <code>FilterBBox</code>, <code>FilterCountries</code>,
-     *            <code>MaxResults</code>, <code>ResultBBox</code>, and
-     *            <code>Text</code>.
+     *            Contains a summary of the request. Echoes the input values for
+     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *            <code>FilterCountries</code>, <code>Language</code>,
+     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
+     *            the <code>DataSource</code> of the place index and the
+     *            bounding box, <code>ResultBBox</code>, which surrounds the
+     *            search results.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

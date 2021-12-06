@@ -21,40 +21,37 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO SearchForPositionResult
+ * JSON unmarshaller for POJO PositionalAccuracy
  */
-class SearchForPositionResultJsonUnmarshaller implements
-        Unmarshaller<SearchForPositionResult, JsonUnmarshallerContext> {
+class PositionalAccuracyJsonUnmarshaller implements
+        Unmarshaller<PositionalAccuracy, JsonUnmarshallerContext> {
 
-    public SearchForPositionResult unmarshall(JsonUnmarshallerContext context) throws Exception {
+    public PositionalAccuracy unmarshall(JsonUnmarshallerContext context) throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        SearchForPositionResult searchForPositionResult = new SearchForPositionResult();
+        PositionalAccuracy positionalAccuracy = new PositionalAccuracy();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Distance")) {
-                searchForPositionResult.setDistance(DoubleJsonUnmarshaller.getInstance()
-                        .unmarshall(context));
-            } else if (name.equals("Place")) {
-                searchForPositionResult.setPlace(PlaceJsonUnmarshaller.getInstance()
+            if (name.equals("Horizontal")) {
+                positionalAccuracy.setHorizontal(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return searchForPositionResult;
+        return positionalAccuracy;
     }
 
-    private static SearchForPositionResultJsonUnmarshaller instance;
+    private static PositionalAccuracyJsonUnmarshaller instance;
 
-    public static SearchForPositionResultJsonUnmarshaller getInstance() {
+    public static PositionalAccuracyJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new SearchForPositionResultJsonUnmarshaller();
+            instance = new PositionalAccuracyJsonUnmarshaller();
         return instance;
     }
 }
