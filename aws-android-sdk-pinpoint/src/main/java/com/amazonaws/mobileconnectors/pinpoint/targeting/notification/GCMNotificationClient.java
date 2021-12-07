@@ -15,6 +15,8 @@
 
 package com.amazonaws.mobileconnectors.pinpoint.targeting.notification;
 
+import static android.os.Build.*;
+
 import android.app.PendingIntent;
 import android.os.Bundle;
 
@@ -44,15 +46,21 @@ final class GCMNotificationClient extends NotificationClientBase {
     @Override
     protected PendingIntent createOpenAppPendingIntent(final Bundle pushBundle, final Class<?> targetClass, final String eventSourceId,
                                                      final int requestId, final String intentAction) {
-        PendingIntent contentIntent = null;
+        PendingIntent contentIntent;
+        int flags = PendingIntent.FLAG_ONE_SHOT;
+
+        if (VERSION.SDK_INT >= VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+
         if (intentAction.equals(NotificationClient.GCM_INTENT_ACTION)) {
             contentIntent = PendingIntent.getService(pinpointContext.getApplicationContext(), requestId,
                     this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.GCM_INTENT_ACTION,
-                            targetClass), PendingIntent.FLAG_ONE_SHOT);
+                            targetClass), flags);
         } else {
             contentIntent = PendingIntent.getBroadcast(pinpointContext.getApplicationContext(), requestId,
                     this.notificationIntent(pushBundle, eventSourceId, requestId, NotificationClient.FCM_INTENT_ACTION,
-                            targetClass), PendingIntent.FLAG_ONE_SHOT);
+                            targetClass), flags);
             PinpointNotificationReceiver.setNotificationClient(this);
         }
         return contentIntent;
