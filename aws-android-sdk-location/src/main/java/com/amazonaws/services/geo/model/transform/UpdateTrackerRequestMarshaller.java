@@ -69,6 +69,11 @@ public class UpdateTrackerRequestMarshaller implements
                 jsonWriter.name("Description");
                 jsonWriter.value(description);
             }
+            if (updateTrackerRequest.getPositionFiltering() != null) {
+                String positionFiltering = updateTrackerRequest.getPositionFiltering();
+                jsonWriter.name("PositionFiltering");
+                jsonWriter.value(positionFiltering);
+            }
             if (updateTrackerRequest.getPricingPlan() != null) {
                 String pricingPlan = updateTrackerRequest.getPricingPlan();
                 jsonWriter.name("PricingPlan");

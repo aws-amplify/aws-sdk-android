@@ -1,3 +1,52 @@
+## [Release 2.36.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.36.0)
+
+### Features
+- Support for ap-southeast-3 (#2709)
+
+### Bug Fixes
+- **Pinpoint:** Add null check for endpoint response (#2704)
+
+[See all changes between 2.35.0 and 2.36.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.35.0...release_v2.36.0)
+
+## [Release 2.35.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.35.0)
+
+### Features
+- **aws-android-sdk-chimesdkmessaging:** update models to latest (#2676)
+- **aws-android-sdk-connect:** update models to latest (#2672)
+- **aws-android-sdk-chimesdkidentity:** update models to latest (#2675)
+
+[See all changes between 2.34.0 and 2.35.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.34.0...release_v2.35.0)
+
+---
+
+MOVE THIS SECTION TO THE CORRECT LOCATION
+
+### Misc. Updates
+
+- Model updates for the following services
+---chimesdkmessaging
+---chimesdkidentity
+## [Release 2.34.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.34.0)
+
+### Features
+- **aws-android-sdk-kms:** update models to latest (#2656)
+- **aws-android-sdk-location:** update models to latest (#2658)
+
+[See all changes between 2.33.0 and 2.34.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.33.0...release_v2.34.0)
+
+## [Release 2.33.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.33.0)
+
+### Features
+- **aws-android-sdk-lambda:** update models to latest (#2649)
+- **aws-android-sdk-connect:** update models to latest (#2645)
+- **aws-android-sdk-comprehend:** update models to latest (#2642)
+- **aws-android-sdk-iot:** update models to latest (#2641)
+
+### Bug Fixes
+- **cognitoidentityprovider:** Fix UserPoolId validation ReDoS (#2644)
+
+[See all changes between 2.32.0 and 2.33.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.32.0...release_v2.33.0)
+
 ## [Release 2.32.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.32.0)
 
 ### Features

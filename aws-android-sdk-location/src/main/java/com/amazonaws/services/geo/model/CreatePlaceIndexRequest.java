@@ -53,8 +53,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      * >HERE details on goecoding coverage</a>.
      * </p>
@@ -133,8 +132,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -213,8 +212,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      * >HERE details on goecoding coverage</a>.
      * </p>
@@ -262,7 +260,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         <p>
      *         <code>Here</code> – For additional information about <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *         >HERE Technologies</a>'s coverage in your region of interest, see
+     *         >HERE Technologies</a>' coverage in your region of interest, see
      *         <a href=
      *         "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      *         >HERE details on goecoding coverage</a>.
@@ -316,8 +314,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      * >HERE details on goecoding coverage</a>.
      * </p>
@@ -365,7 +362,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            <code>Here</code> – For additional information about <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            >HERE Technologies</a>' coverage in your region of interest,
      *            see <a href=
      *            "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      *            >HERE details on goecoding coverage</a>.
@@ -420,8 +417,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * <p>
      * <code>Here</code> – For additional information about <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a>'s coverage in your region of interest, see <a
-     * href=
+     * >HERE Technologies</a>' coverage in your region of interest, see <a href=
      * "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      * >HERE details on goecoding coverage</a>.
      * </p>
@@ -472,7 +468,7 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            <p>
      *            <code>Here</code> – For additional information about <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *            >HERE Technologies</a>'s coverage in your region of interest,
+     *            >HERE Technologies</a>' coverage in your region of interest,
      *            see <a href=
      *            "https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html"
      *            >HERE details on goecoding coverage</a>.
@@ -794,8 +790,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -807,9 +803,9 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
-     *         option, see the <a
+     *         option, see <a
      *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing page</a>.
+     *         Service pricing</a>.
      *         </p>
      * @see PricingPlan
      */
@@ -823,8 +819,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -836,9 +832,9 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -852,8 +848,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -868,9 +864,9 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -887,8 +883,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -900,9 +896,9 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -916,8 +912,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -932,9 +928,9 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

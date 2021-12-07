@@ -25,18 +25,12 @@ import java.io.Serializable;
 public class MapConfiguration implements Serializable {
     /**
      * <p>
-     * Specifies the map style selected from an available data provider. For
-     * additional information on each map style and to preview each map style,
-     * see <a
-     * href="location/latest/developerguide/esri.html#esri-map-styles">Esri map
-     * styles</a> and <a
-     * href="location/latest/developerguide/HERE.html#HERE-map-styles">HERE map
-     * styles</a>.
+     * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     * >Esri</a> styles:
+     * >Esri map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -88,7 +82,7 @@ public class MapConfiguration implements Serializable {
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a> styles:
+     * >HERE Technologies map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -115,18 +109,12 @@ public class MapConfiguration implements Serializable {
 
     /**
      * <p>
-     * Specifies the map style selected from an available data provider. For
-     * additional information on each map style and to preview each map style,
-     * see <a
-     * href="location/latest/developerguide/esri.html#esri-map-styles">Esri map
-     * styles</a> and <a
-     * href="location/latest/developerguide/HERE.html#HERE-map-styles">HERE map
-     * styles</a>.
+     * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     * >Esri</a> styles:
+     * >Esri map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -178,7 +166,7 @@ public class MapConfiguration implements Serializable {
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a> styles:
+     * >HERE Technologies map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -203,17 +191,11 @@ public class MapConfiguration implements Serializable {
      *
      * @return <p>
      *         Specifies the map style selected from an available data provider.
-     *         For additional information on each map style and to preview each
-     *         map style, see <a
-     *         href="location/latest/developerguide/esri.html#esri-map-styles"
-     *         >Esri map styles</a> and <a
-     *         href="location/latest/developerguide/HERE.html#HERE-map-styles"
-     *         >HERE map styles</a>.
      *         </p>
      *         <p>
      *         Valid <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     *         >Esri</a> styles:
+     *         >Esri map styles</a>:
      *         </p>
      *         <ul>
      *         <li>
@@ -269,7 +251,7 @@ public class MapConfiguration implements Serializable {
      *         <p>
      *         Valid <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *         >HERE Technologies</a> styles:
+     *         >HERE Technologies map styles</a>:
      *         </p>
      *         <ul>
      *         <li>
@@ -295,18 +277,12 @@ public class MapConfiguration implements Serializable {
 
     /**
      * <p>
-     * Specifies the map style selected from an available data provider. For
-     * additional information on each map style and to preview each map style,
-     * see <a
-     * href="location/latest/developerguide/esri.html#esri-map-styles">Esri map
-     * styles</a> and <a
-     * href="location/latest/developerguide/HERE.html#HERE-map-styles">HERE map
-     * styles</a>.
+     * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     * >Esri</a> styles:
+     * >Esri map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -358,7 +334,7 @@ public class MapConfiguration implements Serializable {
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a> styles:
+     * >HERE Technologies map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -383,17 +359,12 @@ public class MapConfiguration implements Serializable {
      *
      * @param style <p>
      *            Specifies the map style selected from an available data
-     *            provider. For additional information on each map style and to
-     *            preview each map style, see <a href=
-     *            "location/latest/developerguide/esri.html#esri-map-styles"
-     *            >Esri map styles</a> and <a href=
-     *            "location/latest/developerguide/HERE.html#HERE-map-styles"
-     *            >HERE map styles</a>.
+     *            provider.
      *            </p>
      *            <p>
      *            Valid <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     *            >Esri</a> styles:
+     *            >Esri map styles</a>:
      *            </p>
      *            <ul>
      *            <li>
@@ -449,7 +420,7 @@ public class MapConfiguration implements Serializable {
      *            <p>
      *            Valid <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *            >HERE Technologies</a> styles:
+     *            >HERE Technologies map styles</a>:
      *            </p>
      *            <ul>
      *            <li>
@@ -475,18 +446,12 @@ public class MapConfiguration implements Serializable {
 
     /**
      * <p>
-     * Specifies the map style selected from an available data provider. For
-     * additional information on each map style and to preview each map style,
-     * see <a
-     * href="location/latest/developerguide/esri.html#esri-map-styles">Esri map
-     * styles</a> and <a
-     * href="location/latest/developerguide/HERE.html#HERE-map-styles">HERE map
-     * styles</a>.
+     * Specifies the map style selected from an available data provider.
      * </p>
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     * >Esri</a> styles:
+     * >Esri map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -538,7 +503,7 @@ public class MapConfiguration implements Serializable {
      * <p>
      * Valid <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     * >HERE Technologies</a> styles:
+     * >HERE Technologies map styles</a>:
      * </p>
      * <ul>
      * <li>
@@ -566,17 +531,12 @@ public class MapConfiguration implements Serializable {
      *
      * @param style <p>
      *            Specifies the map style selected from an available data
-     *            provider. For additional information on each map style and to
-     *            preview each map style, see <a href=
-     *            "location/latest/developerguide/esri.html#esri-map-styles"
-     *            >Esri map styles</a> and <a href=
-     *            "location/latest/developerguide/HERE.html#HERE-map-styles"
-     *            >HERE map styles</a>.
+     *            provider.
      *            </p>
      *            <p>
      *            Valid <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/esri.html"
-     *            >Esri</a> styles:
+     *            >Esri map styles</a>:
      *            </p>
      *            <ul>
      *            <li>
@@ -632,7 +592,7 @@ public class MapConfiguration implements Serializable {
      *            <p>
      *            Valid <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/HERE.html"
-     *            >HERE Technologies</a> styles:
+     *            >HERE Technologies map styles</a>:
      *            </p>
      *            <ul>
      *            <li>

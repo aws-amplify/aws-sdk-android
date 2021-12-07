@@ -54,7 +54,7 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the member being banned.
+     * The <code>AppInstanceUserArn</code> of the member being banned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -143,7 +143,7 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the member being banned.
+     * The <code>AppInstanceUserArn</code> of the member being banned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -153,7 +153,7 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the member being banned.
+     *         The <code>AppInstanceUserArn</code> of the member being banned.
      *         </p>
      */
     public String getMemberArn() {
@@ -162,7 +162,7 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the member being banned.
+     * The <code>AppInstanceUserArn</code> of the member being banned.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -172,7 +172,8 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member being banned.
+     *            The <code>AppInstanceUserArn</code> of the member being
+     *            banned.
      *            </p>
      */
     public void setMemberArn(String memberArn) {
@@ -181,7 +182,7 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * The ARN of the member being banned.
+     * The <code>AppInstanceUserArn</code> of the member being banned.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -194,7 +195,8 @@ public class CreateChannelBanRequest extends AmazonWebServiceRequest implements 
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param memberArn <p>
-     *            The ARN of the member being banned.
+     *            The <code>AppInstanceUserArn</code> of the member being
+     *            banned.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

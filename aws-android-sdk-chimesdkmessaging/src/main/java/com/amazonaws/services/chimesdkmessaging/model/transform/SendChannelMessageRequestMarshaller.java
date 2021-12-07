@@ -102,6 +102,30 @@ public class SendChannelMessageRequestMarshaller implements
                 jsonWriter.name("ClientRequestToken");
                 jsonWriter.value(clientRequestToken);
             }
+            if (sendChannelMessageRequest.getPushNotification() != null) {
+                PushNotificationConfiguration pushNotification = sendChannelMessageRequest
+                        .getPushNotification();
+                jsonWriter.name("PushNotification");
+                PushNotificationConfigurationJsonMarshaller.getInstance().marshall(
+                        pushNotification, jsonWriter);
+            }
+            if (sendChannelMessageRequest.getMessageAttributes() != null) {
+                java.util.Map<String, MessageAttributeValue> messageAttributes = sendChannelMessageRequest
+                        .getMessageAttributes();
+                jsonWriter.name("MessageAttributes");
+                jsonWriter.beginObject();
+                for (java.util.Map.Entry<String, MessageAttributeValue> messageAttributesEntry : messageAttributes
+                        .entrySet()) {
+                    MessageAttributeValue messageAttributesValue = messageAttributesEntry
+                            .getValue();
+                    if (messageAttributesValue != null) {
+                        jsonWriter.name(messageAttributesEntry.getKey());
+                        MessageAttributeValueJsonMarshaller.getInstance().marshall(
+                                messageAttributesValue, jsonWriter);
+                    }
+                }
+                jsonWriter.endObject();
+            }
 
             jsonWriter.endObject();
             jsonWriter.close();

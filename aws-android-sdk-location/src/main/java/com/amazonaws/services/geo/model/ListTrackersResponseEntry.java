@@ -48,8 +48,8 @@ public class ListTrackersResponseEntry implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -202,8 +202,8 @@ public class ListTrackersResponseEntry implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -215,9 +215,9 @@ public class ListTrackersResponseEntry implements Serializable {
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
-     *         option, see the <a
+     *         option, see <a
      *         href="https://aws.amazon.com/location/pricing/">Amazon Location
-     *         Service pricing page</a>.
+     *         Service pricing</a>.
      *         </p>
      * @see PricingPlan
      */
@@ -231,8 +231,8 @@ public class ListTrackersResponseEntry implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -244,9 +244,9 @@ public class ListTrackersResponseEntry implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -260,8 +260,8 @@ public class ListTrackersResponseEntry implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -276,9 +276,9 @@ public class ListTrackersResponseEntry implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -295,8 +295,8 @@ public class ListTrackersResponseEntry implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -308,9 +308,9 @@ public class ListTrackersResponseEntry implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @see PricingPlan
      */
@@ -324,8 +324,8 @@ public class ListTrackersResponseEntry implements Serializable {
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
-     * the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-     * Service pricing page</a>.
+     * <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+     * Service pricing</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -340,9 +340,9 @@ public class ListTrackersResponseEntry implements Serializable {
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
-     *            option, see the <a
+     *            option, see <a
      *            href="https://aws.amazon.com/location/pricing/">Amazon
-     *            Location Service pricing page</a>.
+     *            Location Service pricing</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

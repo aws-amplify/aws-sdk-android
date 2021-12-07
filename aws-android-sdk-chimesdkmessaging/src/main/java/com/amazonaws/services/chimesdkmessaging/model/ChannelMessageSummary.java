@@ -103,6 +103,22 @@ public class ChannelMessageSummary implements Serializable {
 
     /**
      * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     */
+    private ChannelMessageStatusStructure status;
+
+    /**
+     * <p>
+     * The message attribues listed in a the summary of a channel message.
+     * </p>
+     */
+    private java.util.Map<String, MessageAttributeValue> messageAttributes;
+
+    /**
+     * <p>
      * The ID of the message.
      * </p>
      * <p>
@@ -608,6 +624,152 @@ public class ChannelMessageSummary implements Serializable {
     }
 
     /**
+     * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     *
+     * @return <p>
+     *         The message status. The status value is <code>SENT</code> for
+     *         messages sent to a channel without a channel flow. For channels
+     *         associated with channel flow, the value determines the processing
+     *         stage.
+     *         </p>
+     */
+    public ChannelMessageStatusStructure getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     *
+     * @param status <p>
+     *            The message status. The status value is <code>SENT</code> for
+     *            messages sent to a channel without a channel flow. For
+     *            channels associated with channel flow, the value determines
+     *            the processing stage.
+     *            </p>
+     */
+    public void setStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The message status. The status value is <code>SENT</code> for messages
+     * sent to a channel without a channel flow. For channels associated with
+     * channel flow, the value determines the processing stage.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param status <p>
+     *            The message status. The status value is <code>SENT</code> for
+     *            messages sent to a channel without a channel flow. For
+     *            channels associated with channel flow, the value determines
+     *            the processing stage.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageSummary withStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The message attribues listed in a the summary of a channel message.
+     * </p>
+     *
+     * @return <p>
+     *         The message attribues listed in a the summary of a channel
+     *         message.
+     *         </p>
+     */
+    public java.util.Map<String, MessageAttributeValue> getMessageAttributes() {
+        return messageAttributes;
+    }
+
+    /**
+     * <p>
+     * The message attribues listed in a the summary of a channel message.
+     * </p>
+     *
+     * @param messageAttributes <p>
+     *            The message attribues listed in a the summary of a channel
+     *            message.
+     *            </p>
+     */
+    public void setMessageAttributes(java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
+    }
+
+    /**
+     * <p>
+     * The message attribues listed in a the summary of a channel message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageAttributes <p>
+     *            The message attribues listed in a the summary of a channel
+     *            message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageSummary withMessageAttributes(
+            java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The message attribues listed in a the summary of a channel message.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into MessageAttributes parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into MessageAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            MessageAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessageSummary addMessageAttributesEntry(String key, MessageAttributeValue value) {
+        if (null == this.messageAttributes) {
+            this.messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
+        }
+        if (this.messageAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.messageAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into MessageAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public ChannelMessageSummary clearMessageAttributesEntries() {
+        this.messageAttributes = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -635,7 +797,11 @@ public class ChannelMessageSummary implements Serializable {
         if (getSender() != null)
             sb.append("Sender: " + getSender() + ",");
         if (getRedacted() != null)
-            sb.append("Redacted: " + getRedacted());
+            sb.append("Redacted: " + getRedacted() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus() + ",");
+        if (getMessageAttributes() != null)
+            sb.append("MessageAttributes: " + getMessageAttributes());
         sb.append("}");
         return sb.toString();
     }
@@ -657,6 +823,9 @@ public class ChannelMessageSummary implements Serializable {
                 + ((getLastEditedTimestamp() == null) ? 0 : getLastEditedTimestamp().hashCode());
         hashCode = prime * hashCode + ((getSender() == null) ? 0 : getSender().hashCode());
         hashCode = prime * hashCode + ((getRedacted() == null) ? 0 : getRedacted().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
         return hashCode;
     }
 
@@ -710,6 +879,15 @@ public class ChannelMessageSummary implements Serializable {
         if (other.getRedacted() == null ^ this.getRedacted() == null)
             return false;
         if (other.getRedacted() != null && other.getRedacted().equals(this.getRedacted()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getMessageAttributes() == null ^ this.getMessageAttributes() == null)
+            return false;
+        if (other.getMessageAttributes() != null
+                && other.getMessageAttributes().equals(this.getMessageAttributes()) == false)
             return false;
         return true;
     }

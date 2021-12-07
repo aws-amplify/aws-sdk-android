@@ -515,6 +515,33 @@ class RegionDefaults {
         updateRegion(region, "sqs", "sqs.me-south-1.amazonaws.com", false, true);
         updateRegion(region, "sts", "sts.me-south-1.amazonaws.com", false, true);
 
+        // Support Asia Pacific (Jakarta) `ap-southeast-3` region
+        region = new Region("ap-southeast-3", "amazonaws.com");
+        ret.add(region);
+        updateRegion(region, "autoscaling", "autoscaling.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "cognito-identity", "cognito-identity.ap-southeast-3.amazonaws.com",
+                false, true);
+        updateRegion(region, "cognito-idp", "cognito-idp.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "cognito-sync", "cognito-sync.ap-southeast-3.amazonaws.com", false,
+                true);
+        updateRegion(region, "data.iot", "data.iot.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "dynamodb", "dynamodb.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "ec2", "ec2.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "elasticloadbalancing",
+                "elasticloadbalancing.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "firehose", "firehose.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "iot", "iot.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "kinesis", "kinesis.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "kms", "kms.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "lambda", "lambda.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "logs", "logs.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "polly", "polly.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "s3", "s3.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "sdb", "sdb.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "sns", "sns.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "sqs", "sqs.ap-southeast-3.amazonaws.com", false, true);
+        updateRegion(region, "sts", "sts.ap-southeast-3.amazonaws.com", false, true);
+
         return ret;
     }
 

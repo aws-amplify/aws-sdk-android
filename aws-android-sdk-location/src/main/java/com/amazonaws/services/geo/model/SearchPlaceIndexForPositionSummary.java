@@ -42,9 +42,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      */
     private String dataSource;
@@ -88,9 +88,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @return <p>
@@ -110,9 +110,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      *         </li>
      *         </ul>
      *         <p>
-     *         For additional details on data providers, see the <a href=
+     *         For additional details on data providers, see <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *         >Amazon Location Service data providers page</a>.
+     *         >Amazon Location Service data providers</a>.
      *         </p>
      */
     public String getDataSource() {
@@ -137,9 +137,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @param dataSource <p>
@@ -159,9 +159,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see the <a href=
+     *            For additional details on data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers page</a>.
+     *            >Amazon Location Service data providers</a>.
      *            </p>
      */
     public void setDataSource(String dataSource) {
@@ -186,9 +186,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see the <a href=
+     * For additional details on data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     * >Amazon Location Service data providers page</a>.
+     * >Amazon Location Service data providers</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -211,9 +211,9 @@ public class SearchPlaceIndexForPositionSummary implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see the <a href=
+     *            For additional details on data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
-     *            >Amazon Location Service data providers page</a>.
+     *            >Amazon Location Service data providers</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

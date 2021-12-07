@@ -126,6 +126,22 @@ public class ChannelMessage implements Serializable {
 
     /**
      * <p>
+     * The status of the channel message.
+     * </p>
+     */
+    private ChannelMessageStatusStructure status;
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     */
+    private java.util.Map<String, MessageAttributeValue> messageAttributes;
+
+    /**
+     * <p>
      * The ARN of the channel.
      * </p>
      * <p>
@@ -791,6 +807,148 @@ public class ChannelMessage implements Serializable {
     }
 
     /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     *
+     * @return <p>
+     *         The status of the channel message.
+     *         </p>
+     */
+    public ChannelMessageStatusStructure getStatus() {
+        return status;
+    }
+
+    /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     *
+     * @param status <p>
+     *            The status of the channel message.
+     *            </p>
+     */
+    public void setStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+    }
+
+    /**
+     * <p>
+     * The status of the channel message.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param status <p>
+     *            The status of the channel message.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessage withStatus(ChannelMessageStatusStructure status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The attributes for the message, used for message filtering along
+     *         with a <code>FilterRule</code> defined in the
+     *         <code>PushNotificationPreferences</code>.
+     *         </p>
+     */
+    public java.util.Map<String, MessageAttributeValue> getMessageAttributes() {
+        return messageAttributes;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     *
+     * @param messageAttributes <p>
+     *            The attributes for the message, used for message filtering
+     *            along with a <code>FilterRule</code> defined in the
+     *            <code>PushNotificationPreferences</code>.
+     *            </p>
+     */
+    public void setMessageAttributes(java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param messageAttributes <p>
+     *            The attributes for the message, used for message filtering
+     *            along with a <code>FilterRule</code> defined in the
+     *            <code>PushNotificationPreferences</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessage withMessageAttributes(
+            java.util.Map<String, MessageAttributeValue> messageAttributes) {
+        this.messageAttributes = messageAttributes;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The attributes for the message, used for message filtering along with a
+     * <code>FilterRule</code> defined in the
+     * <code>PushNotificationPreferences</code>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into MessageAttributes parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into MessageAttributes.
+     * @param value The corresponding value of the entry to be added into
+     *            MessageAttributes.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public ChannelMessage addMessageAttributesEntry(String key, MessageAttributeValue value) {
+        if (null == this.messageAttributes) {
+            this.messageAttributes = new java.util.HashMap<String, MessageAttributeValue>();
+        }
+        if (this.messageAttributes.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.messageAttributes.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into MessageAttributes.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public ChannelMessage clearMessageAttributesEntries() {
+        this.messageAttributes = null;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -822,7 +980,11 @@ public class ChannelMessage implements Serializable {
         if (getRedacted() != null)
             sb.append("Redacted: " + getRedacted() + ",");
         if (getPersistence() != null)
-            sb.append("Persistence: " + getPersistence());
+            sb.append("Persistence: " + getPersistence() + ",");
+        if (getStatus() != null)
+            sb.append("Status: " + getStatus() + ",");
+        if (getMessageAttributes() != null)
+            sb.append("MessageAttributes: " + getMessageAttributes());
         sb.append("}");
         return sb.toString();
     }
@@ -847,6 +1009,9 @@ public class ChannelMessage implements Serializable {
         hashCode = prime * hashCode + ((getRedacted() == null) ? 0 : getRedacted().hashCode());
         hashCode = prime * hashCode
                 + ((getPersistence() == null) ? 0 : getPersistence().hashCode());
+        hashCode = prime * hashCode + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        hashCode = prime * hashCode
+                + ((getMessageAttributes() == null) ? 0 : getMessageAttributes().hashCode());
         return hashCode;
     }
 
@@ -910,6 +1075,15 @@ public class ChannelMessage implements Serializable {
             return false;
         if (other.getPersistence() != null
                 && other.getPersistence().equals(this.getPersistence()) == false)
+            return false;
+        if (other.getStatus() == null ^ this.getStatus() == null)
+            return false;
+        if (other.getStatus() != null && other.getStatus().equals(this.getStatus()) == false)
+            return false;
+        if (other.getMessageAttributes() == null ^ this.getMessageAttributes() == null)
+            return false;
+        if (other.getMessageAttributes() != null
+                && other.getMessageAttributes().equals(this.getMessageAttributes()) == false)
             return false;
         return true;
     }

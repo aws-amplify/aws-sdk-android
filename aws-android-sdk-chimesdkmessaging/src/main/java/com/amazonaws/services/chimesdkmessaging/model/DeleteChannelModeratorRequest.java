@@ -47,7 +47,7 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the moderator being deleted.
+     * The <code>AppInstanceUserArn</code> of the moderator being deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -136,7 +136,7 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the moderator being deleted.
+     * The <code>AppInstanceUserArn</code> of the moderator being deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -146,7 +146,8 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @return <p>
-     *         The ARN of the moderator being deleted.
+     *         The <code>AppInstanceUserArn</code> of the moderator being
+     *         deleted.
      *         </p>
      */
     public String getChannelModeratorArn() {
@@ -155,7 +156,7 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the moderator being deleted.
+     * The <code>AppInstanceUserArn</code> of the moderator being deleted.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -165,7 +166,8 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelModeratorArn <p>
-     *            The ARN of the moderator being deleted.
+     *            The <code>AppInstanceUserArn</code> of the moderator being
+     *            deleted.
      *            </p>
      */
     public void setChannelModeratorArn(String channelModeratorArn) {
@@ -174,7 +176,7 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
 
     /**
      * <p>
-     * The ARN of the moderator being deleted.
+     * The <code>AppInstanceUserArn</code> of the moderator being deleted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -187,7 +189,8 @@ public class DeleteChannelModeratorRequest extends AmazonWebServiceRequest imple
      * [a-z0-9-\.]{0,63}:[^/].{0,1023}<br/>
      *
      * @param channelModeratorArn <p>
-     *            The ARN of the moderator being deleted.
+     *            The <code>AppInstanceUserArn</code> of the moderator being
+     *            deleted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
