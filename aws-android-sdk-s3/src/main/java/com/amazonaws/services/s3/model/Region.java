@@ -314,7 +314,19 @@ public enum Region {
      * bucket in this region.
      * </p>
      */
-    AP_CapeTown("af-south-1");
+    AP_CapeTown("af-south-1"),
+
+    /**
+     * The Asia Pacific (Jakarta) Region. This region uses Amazon S3 servers
+     * located in Jakarta.
+     * <p>
+     * When using buckets in this region, set the client endpoint to
+     * <code>s3-ap-southeast-3.amazonaws.com</code> on all requests to these buckets
+     * to reduce any latency experienced after the first hour of creating a
+     * bucket in this region.
+     * </p>
+     */
+    AP_Jakarta("ap-southeast-3");
 
     /**
      * Used to extract the S3 regional id from an S3 end point. Note this
