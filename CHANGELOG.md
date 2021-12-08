@@ -1,3 +1,13 @@
+## [Release 2.36.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.36.0)
+
+### Features
+- Support for ap-southeast-3 (#2709)
+
+### Bug Fixes
+- **Pinpoint:** Add null check for endpoint response (#2704)
+
+[See all changes between 2.35.0 and 2.36.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.35.0...release_v2.36.0)
+
 ## [Release 2.35.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.35.0)
 
 ### Features
