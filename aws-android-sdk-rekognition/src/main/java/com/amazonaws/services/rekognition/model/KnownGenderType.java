@@ -26,7 +26,9 @@ import java.util.Map;
 public enum KnownGenderType {
 
     Male("Male"),
-    Female("Female");
+    Female("Female"),
+    Nonbinary("Nonbinary"),
+    Unlisted("Unlisted");
 
     private String value;
 
@@ -44,6 +46,8 @@ public enum KnownGenderType {
         enumMap = new HashMap<String, KnownGenderType>();
         enumMap.put("Male", Male);
         enumMap.put("Female", Female);
+        enumMap.put("Nonbinary", Nonbinary);
+        enumMap.put("Unlisted", Unlisted);
     }
 
     /**

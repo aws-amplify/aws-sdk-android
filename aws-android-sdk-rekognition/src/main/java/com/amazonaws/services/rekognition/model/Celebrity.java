@@ -72,6 +72,7 @@ public class Celebrity implements Serializable {
     /**
      * <p>
      * The known gender identity for the celebrity that matches the provided ID.
+     * The known gender identity can be Male, Female, Nonbinary, or Unlisted.
      * </p>
      */
     private KnownGender knownGender;
@@ -379,11 +380,13 @@ public class Celebrity implements Serializable {
     /**
      * <p>
      * The known gender identity for the celebrity that matches the provided ID.
+     * The known gender identity can be Male, Female, Nonbinary, or Unlisted.
      * </p>
      *
      * @return <p>
      *         The known gender identity for the celebrity that matches the
-     *         provided ID.
+     *         provided ID. The known gender identity can be Male, Female,
+     *         Nonbinary, or Unlisted.
      *         </p>
      */
     public KnownGender getKnownGender() {
@@ -393,11 +396,13 @@ public class Celebrity implements Serializable {
     /**
      * <p>
      * The known gender identity for the celebrity that matches the provided ID.
+     * The known gender identity can be Male, Female, Nonbinary, or Unlisted.
      * </p>
      *
      * @param knownGender <p>
      *            The known gender identity for the celebrity that matches the
-     *            provided ID.
+     *            provided ID. The known gender identity can be Male, Female,
+     *            Nonbinary, or Unlisted.
      *            </p>
      */
     public void setKnownGender(KnownGender knownGender) {
@@ -407,6 +412,7 @@ public class Celebrity implements Serializable {
     /**
      * <p>
      * The known gender identity for the celebrity that matches the provided ID.
+     * The known gender identity can be Male, Female, Nonbinary, or Unlisted.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -414,7 +420,8 @@ public class Celebrity implements Serializable {
      *
      * @param knownGender <p>
      *            The known gender identity for the celebrity that matches the
-     *            provided ID.
+     *            provided ID. The known gender identity can be Male, Female,
+     *            Nonbinary, or Unlisted.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.

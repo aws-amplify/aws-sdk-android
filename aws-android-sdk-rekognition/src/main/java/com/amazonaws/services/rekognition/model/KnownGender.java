@@ -19,7 +19,8 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The known gender identity for the celebrity that matches the provided ID.
+ * The known gender identity for the celebrity that matches the provided ID. The
+ * known gender identity can be Male, Female, Nonbinary, or Unlisted.
  * </p>
  */
 public class KnownGender implements Serializable {
@@ -29,7 +30,7 @@ public class KnownGender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Male, Female
+     * <b>Allowed Values: </b>Male, Female, Nonbinary, Unlisted
      */
     private String type;
 
@@ -39,7 +40,7 @@ public class KnownGender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Male, Female
+     * <b>Allowed Values: </b>Male, Female, Nonbinary, Unlisted
      *
      * @return <p>
      *         A string value of the KnownGender info about the Celebrity.
@@ -56,7 +57,7 @@ public class KnownGender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Male, Female
+     * <b>Allowed Values: </b>Male, Female, Nonbinary, Unlisted
      *
      * @param type <p>
      *            A string value of the KnownGender info about the Celebrity.
@@ -76,7 +77,7 @@ public class KnownGender implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Male, Female
+     * <b>Allowed Values: </b>Male, Female, Nonbinary, Unlisted
      *
      * @param type <p>
      *            A string value of the KnownGender info about the Celebrity.
@@ -96,7 +97,7 @@ public class KnownGender implements Serializable {
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Male, Female
+     * <b>Allowed Values: </b>Male, Female, Nonbinary, Unlisted
      *
      * @param type <p>
      *            A string value of the KnownGender info about the Celebrity.
@@ -116,7 +117,7 @@ public class KnownGender implements Serializable {
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Allowed Values: </b>Male, Female
+     * <b>Allowed Values: </b>Male, Female, Nonbinary, Unlisted
      *
      * @param type <p>
      *            A string value of the KnownGender info about the Celebrity.

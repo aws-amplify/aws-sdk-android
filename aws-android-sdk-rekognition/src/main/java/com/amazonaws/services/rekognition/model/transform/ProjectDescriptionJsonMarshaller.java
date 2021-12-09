@@ -42,6 +42,17 @@ class ProjectDescriptionJsonMarshaller {
             jsonWriter.name("Status");
             jsonWriter.value(status);
         }
+        if (projectDescription.getDatasets() != null) {
+            java.util.List<DatasetMetadata> datasets = projectDescription.getDatasets();
+            jsonWriter.name("Datasets");
+            jsonWriter.beginArray();
+            for (DatasetMetadata datasetsItem : datasets) {
+                if (datasetsItem != null) {
+                    DatasetMetadataJsonMarshaller.getInstance().marshall(datasetsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 

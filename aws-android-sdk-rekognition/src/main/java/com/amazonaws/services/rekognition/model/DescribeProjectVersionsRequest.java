@@ -21,10 +21,10 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Lists and describes the models in an Amazon Rekognition Custom Labels
- * project. You can specify up to 10 model versions in
+ * Lists and describes the versions of a model in an Amazon Rekognition Custom
+ * Labels project. You can specify up to 10 model versions in
  * <code>ProjectVersionArns</code>. If you don't specify a value, descriptions
- * for all models are returned.
+ * for all model versions in the project are returned.
  * </p>
  * <p>
  * This operation requires permissions to perform the

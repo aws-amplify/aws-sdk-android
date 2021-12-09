@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 /**
  * <p>
- * The description of a version of a model.
+ * A description of a version of an Amazon Rekognition Custom Labels model.
  * </p>
  */
 public class ProjectVersionDescription implements Serializable {
@@ -74,9 +74,9 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The duration, in seconds, that the model version has been billed for
-     * training. This value is only returned if the model version has been
-     * successfully trained.
+     * The duration, in seconds, that you were billed for a successful training
+     * of the model version. This value is only returned if the model version
+     * has been successfully trained.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -130,8 +130,8 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The identifer for the AWS Key Management Service (AWS KMS) customer
-     * master key that was used to encrypt the model during training.
+     * The identifer for the AWS Key Management Service key (AWS KMS key) that
+     * was used to encrypt the model during training.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -457,18 +457,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The duration, in seconds, that the model version has been billed for
-     * training. This value is only returned if the model version has been
-     * successfully trained.
+     * The duration, in seconds, that you were billed for a successful training
+     * of the model version. This value is only returned if the model version
+     * has been successfully trained.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @return <p>
-     *         The duration, in seconds, that the model version has been billed
-     *         for training. This value is only returned if the model version
-     *         has been successfully trained.
+     *         The duration, in seconds, that you were billed for a successful
+     *         training of the model version. This value is only returned if the
+     *         model version has been successfully trained.
      *         </p>
      */
     public Long getBillableTrainingTimeInSeconds() {
@@ -477,18 +477,18 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The duration, in seconds, that the model version has been billed for
-     * training. This value is only returned if the model version has been
-     * successfully trained.
+     * The duration, in seconds, that you were billed for a successful training
+     * of the model version. This value is only returned if the model version
+     * has been successfully trained.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Range: </b>0 - <br/>
      *
      * @param billableTrainingTimeInSeconds <p>
-     *            The duration, in seconds, that the model version has been
-     *            billed for training. This value is only returned if the model
-     *            version has been successfully trained.
+     *            The duration, in seconds, that you were billed for a
+     *            successful training of the model version. This value is only
+     *            returned if the model version has been successfully trained.
      *            </p>
      */
     public void setBillableTrainingTimeInSeconds(Long billableTrainingTimeInSeconds) {
@@ -497,9 +497,9 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The duration, in seconds, that the model version has been billed for
-     * training. This value is only returned if the model version has been
-     * successfully trained.
+     * The duration, in seconds, that you were billed for a successful training
+     * of the model version. This value is only returned if the model version
+     * has been successfully trained.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -509,9 +509,9 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Range: </b>0 - <br/>
      *
      * @param billableTrainingTimeInSeconds <p>
-     *            The duration, in seconds, that the model version has been
-     *            billed for training. This value is only returned if the model
-     *            version has been successfully trained.
+     *            The duration, in seconds, that you were billed for a
+     *            successful training of the model version. This value is only
+     *            returned if the model version has been successfully trained.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -809,8 +809,8 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The identifer for the AWS Key Management Service (AWS KMS) customer
-     * master key that was used to encrypt the model during training.
+     * The identifer for the AWS Key Management Service key (AWS KMS key) that
+     * was used to encrypt the model during training.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -818,9 +818,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
      * @return <p>
-     *         The identifer for the AWS Key Management Service (AWS KMS)
-     *         customer master key that was used to encrypt the model during
-     *         training.
+     *         The identifer for the AWS Key Management Service key (AWS KMS
+     *         key) that was used to encrypt the model during training.
      *         </p>
      */
     public String getKmsKeyId() {
@@ -829,8 +828,8 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The identifer for the AWS Key Management Service (AWS KMS) customer
-     * master key that was used to encrypt the model during training.
+     * The identifer for the AWS Key Management Service key (AWS KMS key) that
+     * was used to encrypt the model during training.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -838,9 +837,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
      * @param kmsKeyId <p>
-     *            The identifer for the AWS Key Management Service (AWS KMS)
-     *            customer master key that was used to encrypt the model during
-     *            training.
+     *            The identifer for the AWS Key Management Service key (AWS KMS
+     *            key) that was used to encrypt the model during training.
      *            </p>
      */
     public void setKmsKeyId(String kmsKeyId) {
@@ -849,8 +847,8 @@ public class ProjectVersionDescription implements Serializable {
 
     /**
      * <p>
-     * The identifer for the AWS Key Management Service (AWS KMS) customer
-     * master key that was used to encrypt the model during training.
+     * The identifer for the AWS Key Management Service key (AWS KMS key) that
+     * was used to encrypt the model during training.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -861,9 +859,8 @@ public class ProjectVersionDescription implements Serializable {
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      *
      * @param kmsKeyId <p>
-     *            The identifer for the AWS Key Management Service (AWS KMS)
-     *            customer master key that was used to encrypt the model during
-     *            training.
+     *            The identifer for the AWS Key Management Service key (AWS KMS
+     *            key) that was used to encrypt the model during training.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
