@@ -17,82 +17,75 @@ package com.amazonaws.services.geo.model;
 
 import java.io.Serializable;
 
-public class SearchPlaceIndexForPositionResult implements Serializable {
+public class SearchPlaceIndexForSuggestionsResult implements Serializable {
     /**
      * <p>
-     * Returns a list of Places closest to the specified position. Each result
-     * contains additional information about the Places returned.
+     * A list of place suggestions that best match the search text.
      * </p>
      */
-    private java.util.List<SearchForPositionResult> results;
+    private java.util.List<SearchForSuggestionsResult> results;
 
     /**
      * <p>
      * Contains a summary of the request. Echoes the input values for
-     * <code>Position</code>, <code>Language</code>, <code>MaxResults</code>,
-     * and the <code>DataSource</code> of the place index.
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
      * </p>
      */
-    private SearchPlaceIndexForPositionSummary summary;
+    private SearchPlaceIndexForSuggestionsSummary summary;
 
     /**
      * <p>
-     * Returns a list of Places closest to the specified position. Each result
-     * contains additional information about the Places returned.
+     * A list of place suggestions that best match the search text.
      * </p>
      *
      * @return <p>
-     *         Returns a list of Places closest to the specified position. Each
-     *         result contains additional information about the Places returned.
+     *         A list of place suggestions that best match the search text.
      *         </p>
      */
-    public java.util.List<SearchForPositionResult> getResults() {
+    public java.util.List<SearchForSuggestionsResult> getResults() {
         return results;
     }
 
     /**
      * <p>
-     * Returns a list of Places closest to the specified position. Each result
-     * contains additional information about the Places returned.
+     * A list of place suggestions that best match the search text.
      * </p>
      *
      * @param results <p>
-     *            Returns a list of Places closest to the specified position.
-     *            Each result contains additional information about the Places
-     *            returned.
+     *            A list of place suggestions that best match the search text.
      *            </p>
      */
-    public void setResults(java.util.Collection<SearchForPositionResult> results) {
+    public void setResults(java.util.Collection<SearchForSuggestionsResult> results) {
         if (results == null) {
             this.results = null;
             return;
         }
 
-        this.results = new java.util.ArrayList<SearchForPositionResult>(results);
+        this.results = new java.util.ArrayList<SearchForSuggestionsResult>(results);
     }
 
     /**
      * <p>
-     * Returns a list of Places closest to the specified position. Each result
-     * contains additional information about the Places returned.
+     * A list of place suggestions that best match the search text.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param results <p>
-     *            Returns a list of Places closest to the specified position.
-     *            Each result contains additional information about the Places
-     *            returned.
+     *            A list of place suggestions that best match the search text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForPositionResult withResults(SearchForPositionResult... results) {
+    public SearchPlaceIndexForSuggestionsResult withResults(SearchForSuggestionsResult... results) {
         if (getResults() == null) {
-            this.results = new java.util.ArrayList<SearchForPositionResult>(results.length);
+            this.results = new java.util.ArrayList<SearchForSuggestionsResult>(results.length);
         }
-        for (SearchForPositionResult value : results) {
+        for (SearchForSuggestionsResult value : results) {
             this.results.add(value);
         }
         return this;
@@ -100,23 +93,20 @@ public class SearchPlaceIndexForPositionResult implements Serializable {
 
     /**
      * <p>
-     * Returns a list of Places closest to the specified position. Each result
-     * contains additional information about the Places returned.
+     * A list of place suggestions that best match the search text.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param results <p>
-     *            Returns a list of Places closest to the specified position.
-     *            Each result contains additional information about the Places
-     *            returned.
+     *            A list of place suggestions that best match the search text.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForPositionResult withResults(
-            java.util.Collection<SearchForPositionResult> results) {
+    public SearchPlaceIndexForSuggestionsResult withResults(
+            java.util.Collection<SearchForSuggestionsResult> results) {
         setResults(results);
         return this;
     }
@@ -124,44 +114,52 @@ public class SearchPlaceIndexForPositionResult implements Serializable {
     /**
      * <p>
      * Contains a summary of the request. Echoes the input values for
-     * <code>Position</code>, <code>Language</code>, <code>MaxResults</code>,
-     * and the <code>DataSource</code> of the place index.
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
      * </p>
      *
      * @return <p>
      *         Contains a summary of the request. Echoes the input values for
-     *         <code>Position</code>, <code>Language</code>,
-     *         <code>MaxResults</code>, and the <code>DataSource</code> of the
-     *         place index.
+     *         <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *         <code>FilterCountries</code>, <code>Language</code>,
+     *         <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     *         <code>DataSource</code> of the place index.
      *         </p>
      */
-    public SearchPlaceIndexForPositionSummary getSummary() {
+    public SearchPlaceIndexForSuggestionsSummary getSummary() {
         return summary;
     }
 
     /**
      * <p>
      * Contains a summary of the request. Echoes the input values for
-     * <code>Position</code>, <code>Language</code>, <code>MaxResults</code>,
-     * and the <code>DataSource</code> of the place index.
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
      * </p>
      *
      * @param summary <p>
      *            Contains a summary of the request. Echoes the input values for
-     *            <code>Position</code>, <code>Language</code>,
-     *            <code>MaxResults</code>, and the <code>DataSource</code> of
-     *            the place index.
+     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *            <code>FilterCountries</code>, <code>Language</code>,
+     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
+     *            the <code>DataSource</code> of the place index.
      *            </p>
      */
-    public void setSummary(SearchPlaceIndexForPositionSummary summary) {
+    public void setSummary(SearchPlaceIndexForSuggestionsSummary summary) {
         this.summary = summary;
     }
 
     /**
      * <p>
      * Contains a summary of the request. Echoes the input values for
-     * <code>Position</code>, <code>Language</code>, <code>MaxResults</code>,
-     * and the <code>DataSource</code> of the place index.
+     * <code>BiasPosition</code>, <code>FilterBBox</code>,
+     * <code>FilterCountries</code>, <code>Language</code>,
+     * <code>MaxResults</code>, and <code>Text</code>. Also includes the
+     * <code>DataSource</code> of the place index.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -169,14 +167,16 @@ public class SearchPlaceIndexForPositionResult implements Serializable {
      *
      * @param summary <p>
      *            Contains a summary of the request. Echoes the input values for
-     *            <code>Position</code>, <code>Language</code>,
-     *            <code>MaxResults</code>, and the <code>DataSource</code> of
-     *            the place index.
+     *            <code>BiasPosition</code>, <code>FilterBBox</code>,
+     *            <code>FilterCountries</code>, <code>Language</code>,
+     *            <code>MaxResults</code>, and <code>Text</code>. Also includes
+     *            the <code>DataSource</code> of the place index.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForPositionResult withSummary(SearchPlaceIndexForPositionSummary summary) {
+    public SearchPlaceIndexForSuggestionsResult withSummary(
+            SearchPlaceIndexForSuggestionsSummary summary) {
         this.summary = summary;
         return this;
     }
@@ -217,9 +217,9 @@ public class SearchPlaceIndexForPositionResult implements Serializable {
         if (obj == null)
             return false;
 
-        if (obj instanceof SearchPlaceIndexForPositionResult == false)
+        if (obj instanceof SearchPlaceIndexForSuggestionsResult == false)
             return false;
-        SearchPlaceIndexForPositionResult other = (SearchPlaceIndexForPositionResult) obj;
+        SearchPlaceIndexForSuggestionsResult other = (SearchPlaceIndexForSuggestionsResult) obj;
 
         if (other.getResults() == null ^ this.getResults() == null)
             return false;

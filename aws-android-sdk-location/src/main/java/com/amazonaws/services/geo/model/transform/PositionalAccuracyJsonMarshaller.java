@@ -20,31 +20,26 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO SearchForPositionResult
+ * JSON marshaller for POJO PositionalAccuracy
  */
-class SearchForPositionResultJsonMarshaller {
+class PositionalAccuracyJsonMarshaller {
 
-    public void marshall(SearchForPositionResult searchForPositionResult, AwsJsonWriter jsonWriter)
+    public void marshall(PositionalAccuracy positionalAccuracy, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (searchForPositionResult.getDistance() != null) {
-            Double distance = searchForPositionResult.getDistance();
-            jsonWriter.name("Distance");
-            jsonWriter.value(distance);
-        }
-        if (searchForPositionResult.getPlace() != null) {
-            Place place = searchForPositionResult.getPlace();
-            jsonWriter.name("Place");
-            PlaceJsonMarshaller.getInstance().marshall(place, jsonWriter);
+        if (positionalAccuracy.getHorizontal() != null) {
+            Double horizontal = positionalAccuracy.getHorizontal();
+            jsonWriter.name("Horizontal");
+            jsonWriter.value(horizontal);
         }
         jsonWriter.endObject();
     }
 
-    private static SearchForPositionResultJsonMarshaller instance;
+    private static PositionalAccuracyJsonMarshaller instance;
 
-    public static SearchForPositionResultJsonMarshaller getInstance() {
+    public static PositionalAccuracyJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new SearchForPositionResultJsonMarshaller();
+            instance = new PositionalAccuracyJsonMarshaller();
         return instance;
     }
 }

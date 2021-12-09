@@ -21,8 +21,9 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Geocodes free-form text, such as an address, name, city, or region to allow
- * you to search for Places or points of interest.
+ * Generates suggestions for addresses and points of interest based on partial
+ * or misspelled free-form text. This operation is also known as autocomplete,
+ * autosuggest, or fuzzy matching.
  * </p>
  * <p>
  * Optional parameters let you narrow your search results by bounding box or
@@ -30,21 +31,20 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </p>
  * <note>
  * <p>
- * You can search for places near a given position using
- * <code>BiasPosition</code>, or filter results within a bounding box using
- * <code>FilterBBox</code>. Providing both parameters simultaneously returns an
- * error.
+ * You can search for suggested place names near a specified position by using
+ * <code>BiasPosition</code>, or filter results within a bounding box by using
+ * <code>FilterBBox</code>. These parameters are mutually exclusive; using both
+ * <code>BiasPosition</code> and <code>FilterBBox</code> in the same command
+ * returns an error.
  * </p>
  * </note>
- * <p>
- * Search results are returned in order of highest to lowest relevance.
- * </p>
  */
-public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest implements Serializable {
+public class SearchPlaceIndexForSuggestionsRequest extends AmazonWebServiceRequest implements
+        Serializable {
     /**
      * <p>
-     * An optional parameter that indicates a preference for places that are
-     * closer to a specified position.
+     * An optional parameter that indicates a preference for place suggestions
+     * that are closer to a specified position.
      * </p>
      * <p>
      * If provided, this parameter must contain a pair of numbers. The first
@@ -67,7 +67,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are within the provided bounding box.
+     * suggestions within a specified bounding box.
      * </p>
      * <p>
      * If provided, this parameter must contain a total of four consecutive
@@ -96,15 +96,14 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are in a specified list of countries.
+     * suggestions within the provided list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Valid values include <a
-     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
-     * 3-digit country codes. For example, Australia uses three upper-case
-     * characters: <code>AUS</code>.
+     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
+     * 3166</a> 3-digit country code. For example, Australia uses three
+     * upper-case characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
@@ -135,6 +134,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * a language for the result.
      * </p>
      * <p>
+     * Used only when the partner selected is Here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 35<br/>
      */
@@ -146,18 +148,18 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * request.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * The default: <code>5</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Range: </b>1 - 15<br/>
      */
     private Integer maxResults;
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * The free-form partial text to use to generate place suggestions. For
+     * example, <code>eiffel tow</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -167,8 +169,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * An optional parameter that indicates a preference for places that are
-     * closer to a specified position.
+     * An optional parameter that indicates a preference for place suggestions
+     * that are closer to a specified position.
      * </p>
      * <p>
      * If provided, this parameter must contain a pair of numbers. The first
@@ -187,8 +189,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * </note>
      *
      * @return <p>
-     *         An optional parameter that indicates a preference for places that
-     *         are closer to a specified position.
+     *         An optional parameter that indicates a preference for place
+     *         suggestions that are closer to a specified position.
      *         </p>
      *         <p>
      *         If provided, this parameter must contain a pair of numbers. The
@@ -213,8 +215,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * An optional parameter that indicates a preference for places that are
-     * closer to a specified position.
+     * An optional parameter that indicates a preference for place suggestions
+     * that are closer to a specified position.
      * </p>
      * <p>
      * If provided, this parameter must contain a pair of numbers. The first
@@ -233,8 +235,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * </note>
      *
      * @param biasPosition <p>
-     *            An optional parameter that indicates a preference for places
-     *            that are closer to a specified position.
+     *            An optional parameter that indicates a preference for place
+     *            suggestions that are closer to a specified position.
      *            </p>
      *            <p>
      *            If provided, this parameter must contain a pair of numbers.
@@ -265,8 +267,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * An optional parameter that indicates a preference for places that are
-     * closer to a specified position.
+     * An optional parameter that indicates a preference for place suggestions
+     * that are closer to a specified position.
      * </p>
      * <p>
      * If provided, this parameter must contain a pair of numbers. The first
@@ -288,8 +290,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * together.
      *
      * @param biasPosition <p>
-     *            An optional parameter that indicates a preference for places
-     *            that are closer to a specified position.
+     *            An optional parameter that indicates a preference for place
+     *            suggestions that are closer to a specified position.
      *            </p>
      *            <p>
      *            If provided, this parameter must contain a pair of numbers.
@@ -311,7 +313,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withBiasPosition(Double... biasPosition) {
+    public SearchPlaceIndexForSuggestionsRequest withBiasPosition(Double... biasPosition) {
         if (getBiasPosition() == null) {
             this.biasPosition = new java.util.ArrayList<Double>(biasPosition.length);
         }
@@ -323,8 +325,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * An optional parameter that indicates a preference for places that are
-     * closer to a specified position.
+     * An optional parameter that indicates a preference for place suggestions
+     * that are closer to a specified position.
      * </p>
      * <p>
      * If provided, this parameter must contain a pair of numbers. The first
@@ -346,8 +348,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * together.
      *
      * @param biasPosition <p>
-     *            An optional parameter that indicates a preference for places
-     *            that are closer to a specified position.
+     *            An optional parameter that indicates a preference for place
+     *            suggestions that are closer to a specified position.
      *            </p>
      *            <p>
      *            If provided, this parameter must contain a pair of numbers.
@@ -369,7 +371,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withBiasPosition(java.util.Collection<Double> biasPosition) {
+    public SearchPlaceIndexForSuggestionsRequest withBiasPosition(
+            java.util.Collection<Double> biasPosition) {
         setBiasPosition(biasPosition);
         return this;
     }
@@ -377,7 +380,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are within the provided bounding box.
+     * suggestions within a specified bounding box.
      * </p>
      * <p>
      * If provided, this parameter must contain a total of four consecutive
@@ -403,7 +406,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *
      * @return <p>
      *         An optional parameter that limits the search results by returning
-     *         only places that are within the provided bounding box.
+     *         only suggestions within a specified bounding box.
      *         </p>
      *         <p>
      *         If provided, this parameter must contain a total of four
@@ -436,7 +439,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are within the provided bounding box.
+     * suggestions within a specified bounding box.
      * </p>
      * <p>
      * If provided, this parameter must contain a total of four consecutive
@@ -462,8 +465,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *
      * @param filterBBox <p>
      *            An optional parameter that limits the search results by
-     *            returning only places that are within the provided bounding
-     *            box.
+     *            returning only suggestions within a specified bounding box.
      *            </p>
      *            <p>
      *            If provided, this parameter must contain a total of four
@@ -502,7 +504,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are within the provided bounding box.
+     * suggestions within a specified bounding box.
      * </p>
      * <p>
      * If provided, this parameter must contain a total of four consecutive
@@ -531,8 +533,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *
      * @param filterBBox <p>
      *            An optional parameter that limits the search results by
-     *            returning only places that are within the provided bounding
-     *            box.
+     *            returning only suggestions within a specified bounding box.
      *            </p>
      *            <p>
      *            If provided, this parameter must contain a total of four
@@ -561,7 +562,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withFilterBBox(Double... filterBBox) {
+    public SearchPlaceIndexForSuggestionsRequest withFilterBBox(Double... filterBBox) {
         if (getFilterBBox() == null) {
             this.filterBBox = new java.util.ArrayList<Double>(filterBBox.length);
         }
@@ -574,7 +575,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are within the provided bounding box.
+     * suggestions within a specified bounding box.
      * </p>
      * <p>
      * If provided, this parameter must contain a total of four consecutive
@@ -603,8 +604,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *
      * @param filterBBox <p>
      *            An optional parameter that limits the search results by
-     *            returning only places that are within the provided bounding
-     *            box.
+     *            returning only suggestions within a specified bounding box.
      *            </p>
      *            <p>
      *            If provided, this parameter must contain a total of four
@@ -633,7 +633,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withFilterBBox(java.util.Collection<Double> filterBBox) {
+    public SearchPlaceIndexForSuggestionsRequest withFilterBBox(
+            java.util.Collection<Double> filterBBox) {
         setFilterBBox(filterBBox);
         return this;
     }
@@ -641,29 +642,28 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are in a specified list of countries.
+     * suggestions within the provided list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Valid values include <a
-     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
-     * 3-digit country codes. For example, Australia uses three upper-case
-     * characters: <code>AUS</code>.
+     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
+     * 3166</a> 3-digit country code. For example, Australia uses three
+     * upper-case characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
      *
      * @return <p>
      *         An optional parameter that limits the search results by returning
-     *         only places that are in a specified list of countries.
+     *         only suggestions within the provided list of countries.
      *         </p>
      *         <ul>
      *         <li>
      *         <p>
-     *         Valid values include <a
+     *         Use the <a
      *         href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *         3166</a> 3-digit country codes. For example, Australia uses three
+     *         3166</a> 3-digit country code. For example, Australia uses three
      *         upper-case characters: <code>AUS</code>.
      *         </p>
      *         </li>
@@ -676,30 +676,29 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are in a specified list of countries.
+     * suggestions within the provided list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Valid values include <a
-     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
-     * 3-digit country codes. For example, Australia uses three upper-case
-     * characters: <code>AUS</code>.
+     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
+     * 3166</a> 3-digit country code. For example, Australia uses three
+     * upper-case characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
      *
      * @param filterCountries <p>
      *            An optional parameter that limits the search results by
-     *            returning only places that are in a specified list of
+     *            returning only suggestions within the provided list of
      *            countries.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Valid values include <a
+     *            Use the <a
      *            href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *            3166</a> 3-digit country codes. For example, Australia uses
+     *            3166</a> 3-digit country code. For example, Australia uses
      *            three upper-case characters: <code>AUS</code>.
      *            </p>
      *            </li>
@@ -717,15 +716,14 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are in a specified list of countries.
+     * suggestions within the provided list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Valid values include <a
-     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
-     * 3-digit country codes. For example, Australia uses three upper-case
-     * characters: <code>AUS</code>.
+     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
+     * 3166</a> 3-digit country code. For example, Australia uses three
+     * upper-case characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
@@ -735,15 +733,15 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *
      * @param filterCountries <p>
      *            An optional parameter that limits the search results by
-     *            returning only places that are in a specified list of
+     *            returning only suggestions within the provided list of
      *            countries.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Valid values include <a
+     *            Use the <a
      *            href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *            3166</a> 3-digit country codes. For example, Australia uses
+     *            3166</a> 3-digit country code. For example, Australia uses
      *            three upper-case characters: <code>AUS</code>.
      *            </p>
      *            </li>
@@ -751,7 +749,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withFilterCountries(String... filterCountries) {
+    public SearchPlaceIndexForSuggestionsRequest withFilterCountries(String... filterCountries) {
         if (getFilterCountries() == null) {
             this.filterCountries = new java.util.ArrayList<String>(filterCountries.length);
         }
@@ -764,15 +762,14 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
     /**
      * <p>
      * An optional parameter that limits the search results by returning only
-     * places that are in a specified list of countries.
+     * suggestions within the provided list of countries.
      * </p>
      * <ul>
      * <li>
      * <p>
-     * Valid values include <a
-     * href="https://www.iso.org/iso-3166-country-codes.html">ISO 3166</a>
-     * 3-digit country codes. For example, Australia uses three upper-case
-     * characters: <code>AUS</code>.
+     * Use the <a href="https://www.iso.org/iso-3166-country-codes.html">ISO
+     * 3166</a> 3-digit country code. For example, Australia uses three
+     * upper-case characters: <code>AUS</code>.
      * </p>
      * </li>
      * </ul>
@@ -782,15 +779,15 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *
      * @param filterCountries <p>
      *            An optional parameter that limits the search results by
-     *            returning only places that are in a specified list of
+     *            returning only suggestions within the provided list of
      *            countries.
      *            </p>
      *            <ul>
      *            <li>
      *            <p>
-     *            Valid values include <a
+     *            Use the <a
      *            href="https://www.iso.org/iso-3166-country-codes.html">ISO
-     *            3166</a> 3-digit country codes. For example, Australia uses
+     *            3166</a> 3-digit country code. For example, Australia uses
      *            three upper-case characters: <code>AUS</code>.
      *            </p>
      *            </li>
@@ -798,7 +795,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withFilterCountries(
+    public SearchPlaceIndexForSuggestionsRequest withFilterCountries(
             java.util.Collection<String> filterCountries) {
         setFilterCountries(filterCountries);
         return this;
@@ -859,7 +856,7 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withIndexName(String indexName) {
+    public SearchPlaceIndexForSuggestionsRequest withIndexName(String indexName) {
         this.indexName = indexName;
         return this;
     }
@@ -877,6 +874,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * a language for the result.
      * </p>
      * <p>
+     * Used only when the partner selected is Here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 35<br/>
      *
@@ -890,6 +890,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *         not change which results are returned. If the language is not
      *         specified, or not supported for a particular result, the partner
      *         automatically chooses a language for the result.
+     *         </p>
+     *         <p>
+     *         Used only when the partner selected is Here.
      *         </p>
      */
     public String getLanguage() {
@@ -909,6 +912,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * a language for the result.
      * </p>
      * <p>
+     * Used only when the partner selected is Here.
+     * </p>
+     * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>2 - 35<br/>
      *
@@ -922,6 +928,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *            does not change which results are returned. If the language is
      *            not specified, or not supported for a particular result, the
      *            partner automatically chooses a language for the result.
+     *            </p>
+     *            <p>
+     *            Used only when the partner selected is Here.
      *            </p>
      */
     public void setLanguage(String language) {
@@ -941,6 +950,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * a language for the result.
      * </p>
      * <p>
+     * Used only when the partner selected is Here.
+     * </p>
+     * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
@@ -958,10 +970,13 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      *            not specified, or not supported for a particular result, the
      *            partner automatically chooses a language for the result.
      *            </p>
+     *            <p>
+     *            Used only when the partner selected is Here.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withLanguage(String language) {
+    public SearchPlaceIndexForSuggestionsRequest withLanguage(String language) {
         this.language = language;
         return this;
     }
@@ -972,18 +987,18 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * request.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * The default: <code>5</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Range: </b>1 - 15<br/>
      *
      * @return <p>
      *         An optional parameter. The maximum number of results returned per
      *         request.
      *         </p>
      *         <p>
-     *         The default: <code>50</code>
+     *         The default: <code>5</code>
      *         </p>
      */
     public Integer getMaxResults() {
@@ -996,18 +1011,18 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * request.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * The default: <code>5</code>
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Range: </b>1 - 15<br/>
      *
      * @param maxResults <p>
      *            An optional parameter. The maximum number of results returned
      *            per request.
      *            </p>
      *            <p>
-     *            The default: <code>50</code>
+     *            The default: <code>5</code>
      *            </p>
      */
     public void setMaxResults(Integer maxResults) {
@@ -1020,42 +1035,42 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * request.
      * </p>
      * <p>
-     * The default: <code>50</code>
+     * The default: <code>5</code>
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      * <p>
      * <b>Constraints:</b><br/>
-     * <b>Range: </b>1 - 50<br/>
+     * <b>Range: </b>1 - 15<br/>
      *
      * @param maxResults <p>
      *            An optional parameter. The maximum number of results returned
      *            per request.
      *            </p>
      *            <p>
-     *            The default: <code>50</code>
+     *            The default: <code>5</code>
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withMaxResults(Integer maxResults) {
+    public SearchPlaceIndexForSuggestionsRequest withMaxResults(Integer maxResults) {
         this.maxResults = maxResults;
         return this;
     }
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * The free-form partial text to use to generate place suggestions. For
+     * example, <code>eiffel tow</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @return <p>
-     *         The address, name, city, or region to be used in the search in
-     *         free-form text format. For example, <code>123 Any Street</code>.
+     *         The free-form partial text to use to generate place suggestions.
+     *         For example, <code>eiffel tow</code>.
      *         </p>
      */
     public String getText() {
@@ -1064,17 +1079,16 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * The free-form partial text to use to generate place suggestions. For
+     * example, <code>eiffel tow</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 200<br/>
      *
      * @param text <p>
-     *            The address, name, city, or region to be used in the search in
-     *            free-form text format. For example,
-     *            <code>123 Any Street</code>.
+     *            The free-form partial text to use to generate place
+     *            suggestions. For example, <code>eiffel tow</code>.
      *            </p>
      */
     public void setText(String text) {
@@ -1083,8 +1097,8 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
 
     /**
      * <p>
-     * The address, name, city, or region to be used in the search in free-form
-     * text format. For example, <code>123 Any Street</code>.
+     * The free-form partial text to use to generate place suggestions. For
+     * example, <code>eiffel tow</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1094,14 +1108,13 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
      * <b>Length: </b>1 - 200<br/>
      *
      * @param text <p>
-     *            The address, name, city, or region to be used in the search in
-     *            free-form text format. For example,
-     *            <code>123 Any Street</code>.
+     *            The free-form partial text to use to generate place
+     *            suggestions. For example, <code>eiffel tow</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      */
-    public SearchPlaceIndexForTextRequest withText(String text) {
+    public SearchPlaceIndexForSuggestionsRequest withText(String text) {
         this.text = text;
         return this;
     }
@@ -1159,9 +1172,9 @@ public class SearchPlaceIndexForTextRequest extends AmazonWebServiceRequest impl
         if (obj == null)
             return false;
 
-        if (obj instanceof SearchPlaceIndexForTextRequest == false)
+        if (obj instanceof SearchPlaceIndexForSuggestionsRequest == false)
             return false;
-        SearchPlaceIndexForTextRequest other = (SearchPlaceIndexForTextRequest) obj;
+        SearchPlaceIndexForSuggestionsRequest other = (SearchPlaceIndexForSuggestionsRequest) obj;
 
         if (other.getBiasPosition() == null ^ this.getBiasPosition() == null)
             return false;

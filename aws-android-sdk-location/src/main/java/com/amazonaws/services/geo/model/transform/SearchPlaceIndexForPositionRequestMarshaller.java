@@ -65,6 +65,11 @@ public class SearchPlaceIndexForPositionRequestMarshaller implements
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
+            if (searchPlaceIndexForPositionRequest.getLanguage() != null) {
+                String language = searchPlaceIndexForPositionRequest.getLanguage();
+                jsonWriter.name("Language");
+                jsonWriter.value(language);
+            }
             if (searchPlaceIndexForPositionRequest.getMaxResults() != null) {
                 Integer maxResults = searchPlaceIndexForPositionRequest.getMaxResults();
                 jsonWriter.name("MaxResults");

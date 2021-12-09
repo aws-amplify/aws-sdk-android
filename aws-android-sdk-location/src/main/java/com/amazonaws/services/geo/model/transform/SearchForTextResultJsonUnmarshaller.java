@@ -36,8 +36,14 @@ class SearchForTextResultJsonUnmarshaller implements
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
-            if (name.equals("Place")) {
+            if (name.equals("Distance")) {
+                searchForTextResult.setDistance(DoubleJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Place")) {
                 searchForTextResult.setPlace(PlaceJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
+            } else if (name.equals("Relevance")) {
+                searchForTextResult.setRelevance(DoubleJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();

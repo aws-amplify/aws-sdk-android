@@ -49,6 +49,25 @@ public class Place implements Serializable {
 
     /**
      * <p>
+     * <code>True</code> if the result is interpolated from other known places.
+     * </p>
+     * <p>
+     * <code>False</code> if the Place is a known place.
+     * </p>
+     * <p>
+     * Not returned when the partner does not provide the information.
+     * </p>
+     * <p>
+     * For example, returns <code>False</code> for an address location that is
+     * found in the partner data, but returns <code>True</code> if an address
+     * does not exist in the partner data and its location is calculated by
+     * interpolating between other known addresses.
+     * </p>
+     */
+    private Boolean interpolated;
+
+    /**
+     * <p>
      * The full name and address of the point of interest such as a city,
      * region, or country. For example,
      * <code>123 Any Street, Any Town, USA</code>.
@@ -97,11 +116,19 @@ public class Place implements Serializable {
 
     /**
      * <p>
-     * A country, or an area that's part of a larger region . For example,
+     * A country, or an area that's part of a larger region. For example,
      * <code>Metro Vancouver</code>.
      * </p>
      */
     private String subRegion;
+
+    /**
+     * <p>
+     * The time zone in which the <code>Place</code> is located. Returned only
+     * when using Here as the selected partner.
+     * </p>
+     */
+    private TimeZone timeZone;
 
     /**
      * <p>
@@ -252,6 +279,168 @@ public class Place implements Serializable {
      */
     public Place withGeometry(PlaceGeometry geometry) {
         this.geometry = geometry;
+        return this;
+    }
+
+    /**
+     * <p>
+     * <code>True</code> if the result is interpolated from other known places.
+     * </p>
+     * <p>
+     * <code>False</code> if the Place is a known place.
+     * </p>
+     * <p>
+     * Not returned when the partner does not provide the information.
+     * </p>
+     * <p>
+     * For example, returns <code>False</code> for an address location that is
+     * found in the partner data, but returns <code>True</code> if an address
+     * does not exist in the partner data and its location is calculated by
+     * interpolating between other known addresses.
+     * </p>
+     *
+     * @return <p>
+     *         <code>True</code> if the result is interpolated from other known
+     *         places.
+     *         </p>
+     *         <p>
+     *         <code>False</code> if the Place is a known place.
+     *         </p>
+     *         <p>
+     *         Not returned when the partner does not provide the information.
+     *         </p>
+     *         <p>
+     *         For example, returns <code>False</code> for an address location
+     *         that is found in the partner data, but returns <code>True</code>
+     *         if an address does not exist in the partner data and its location
+     *         is calculated by interpolating between other known addresses.
+     *         </p>
+     */
+    public Boolean isInterpolated() {
+        return interpolated;
+    }
+
+    /**
+     * <p>
+     * <code>True</code> if the result is interpolated from other known places.
+     * </p>
+     * <p>
+     * <code>False</code> if the Place is a known place.
+     * </p>
+     * <p>
+     * Not returned when the partner does not provide the information.
+     * </p>
+     * <p>
+     * For example, returns <code>False</code> for an address location that is
+     * found in the partner data, but returns <code>True</code> if an address
+     * does not exist in the partner data and its location is calculated by
+     * interpolating between other known addresses.
+     * </p>
+     *
+     * @return <p>
+     *         <code>True</code> if the result is interpolated from other known
+     *         places.
+     *         </p>
+     *         <p>
+     *         <code>False</code> if the Place is a known place.
+     *         </p>
+     *         <p>
+     *         Not returned when the partner does not provide the information.
+     *         </p>
+     *         <p>
+     *         For example, returns <code>False</code> for an address location
+     *         that is found in the partner data, but returns <code>True</code>
+     *         if an address does not exist in the partner data and its location
+     *         is calculated by interpolating between other known addresses.
+     *         </p>
+     */
+    public Boolean getInterpolated() {
+        return interpolated;
+    }
+
+    /**
+     * <p>
+     * <code>True</code> if the result is interpolated from other known places.
+     * </p>
+     * <p>
+     * <code>False</code> if the Place is a known place.
+     * </p>
+     * <p>
+     * Not returned when the partner does not provide the information.
+     * </p>
+     * <p>
+     * For example, returns <code>False</code> for an address location that is
+     * found in the partner data, but returns <code>True</code> if an address
+     * does not exist in the partner data and its location is calculated by
+     * interpolating between other known addresses.
+     * </p>
+     *
+     * @param interpolated <p>
+     *            <code>True</code> if the result is interpolated from other
+     *            known places.
+     *            </p>
+     *            <p>
+     *            <code>False</code> if the Place is a known place.
+     *            </p>
+     *            <p>
+     *            Not returned when the partner does not provide the
+     *            information.
+     *            </p>
+     *            <p>
+     *            For example, returns <code>False</code> for an address
+     *            location that is found in the partner data, but returns
+     *            <code>True</code> if an address does not exist in the partner
+     *            data and its location is calculated by interpolating between
+     *            other known addresses.
+     *            </p>
+     */
+    public void setInterpolated(Boolean interpolated) {
+        this.interpolated = interpolated;
+    }
+
+    /**
+     * <p>
+     * <code>True</code> if the result is interpolated from other known places.
+     * </p>
+     * <p>
+     * <code>False</code> if the Place is a known place.
+     * </p>
+     * <p>
+     * Not returned when the partner does not provide the information.
+     * </p>
+     * <p>
+     * For example, returns <code>False</code> for an address location that is
+     * found in the partner data, but returns <code>True</code> if an address
+     * does not exist in the partner data and its location is calculated by
+     * interpolating between other known addresses.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param interpolated <p>
+     *            <code>True</code> if the result is interpolated from other
+     *            known places.
+     *            </p>
+     *            <p>
+     *            <code>False</code> if the Place is a known place.
+     *            </p>
+     *            <p>
+     *            Not returned when the partner does not provide the
+     *            information.
+     *            </p>
+     *            <p>
+     *            For example, returns <code>False</code> for an address
+     *            location that is found in the partner data, but returns
+     *            <code>True</code> if an address does not exist in the partner
+     *            data and its location is calculated by interpolating between
+     *            other known addresses.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withInterpolated(Boolean interpolated) {
+        this.interpolated = interpolated;
         return this;
     }
 
@@ -571,12 +760,12 @@ public class Place implements Serializable {
 
     /**
      * <p>
-     * A country, or an area that's part of a larger region . For example,
+     * A country, or an area that's part of a larger region. For example,
      * <code>Metro Vancouver</code>.
      * </p>
      *
      * @return <p>
-     *         A country, or an area that's part of a larger region . For
+     *         A country, or an area that's part of a larger region. For
      *         example, <code>Metro Vancouver</code>.
      *         </p>
      */
@@ -586,12 +775,12 @@ public class Place implements Serializable {
 
     /**
      * <p>
-     * A country, or an area that's part of a larger region . For example,
+     * A country, or an area that's part of a larger region. For example,
      * <code>Metro Vancouver</code>.
      * </p>
      *
      * @param subRegion <p>
-     *            A country, or an area that's part of a larger region . For
+     *            A country, or an area that's part of a larger region. For
      *            example, <code>Metro Vancouver</code>.
      *            </p>
      */
@@ -601,7 +790,7 @@ public class Place implements Serializable {
 
     /**
      * <p>
-     * A country, or an area that's part of a larger region . For example,
+     * A country, or an area that's part of a larger region. For example,
      * <code>Metro Vancouver</code>.
      * </p>
      * <p>
@@ -609,7 +798,7 @@ public class Place implements Serializable {
      * together.
      *
      * @param subRegion <p>
-     *            A country, or an area that's part of a larger region . For
+     *            A country, or an area that's part of a larger region. For
      *            example, <code>Metro Vancouver</code>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -617,6 +806,57 @@ public class Place implements Serializable {
      */
     public Place withSubRegion(String subRegion) {
         this.subRegion = subRegion;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The time zone in which the <code>Place</code> is located. Returned only
+     * when using Here as the selected partner.
+     * </p>
+     *
+     * @return <p>
+     *         The time zone in which the <code>Place</code> is located.
+     *         Returned only when using Here as the selected partner.
+     *         </p>
+     */
+    public TimeZone getTimeZone() {
+        return timeZone;
+    }
+
+    /**
+     * <p>
+     * The time zone in which the <code>Place</code> is located. Returned only
+     * when using Here as the selected partner.
+     * </p>
+     *
+     * @param timeZone <p>
+     *            The time zone in which the <code>Place</code> is located.
+     *            Returned only when using Here as the selected partner.
+     *            </p>
+     */
+    public void setTimeZone(TimeZone timeZone) {
+        this.timeZone = timeZone;
+    }
+
+    /**
+     * <p>
+     * The time zone in which the <code>Place</code> is located. Returned only
+     * when using Here as the selected partner.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param timeZone <p>
+     *            The time zone in which the <code>Place</code> is located.
+     *            Returned only when using Here as the selected partner.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public Place withTimeZone(TimeZone timeZone) {
+        this.timeZone = timeZone;
         return this;
     }
 
@@ -637,6 +877,8 @@ public class Place implements Serializable {
             sb.append("Country: " + getCountry() + ",");
         if (getGeometry() != null)
             sb.append("Geometry: " + getGeometry() + ",");
+        if (getInterpolated() != null)
+            sb.append("Interpolated: " + getInterpolated() + ",");
         if (getLabel() != null)
             sb.append("Label: " + getLabel() + ",");
         if (getMunicipality() != null)
@@ -650,7 +892,9 @@ public class Place implements Serializable {
         if (getStreet() != null)
             sb.append("Street: " + getStreet() + ",");
         if (getSubRegion() != null)
-            sb.append("SubRegion: " + getSubRegion());
+            sb.append("SubRegion: " + getSubRegion() + ",");
+        if (getTimeZone() != null)
+            sb.append("TimeZone: " + getTimeZone());
         sb.append("}");
         return sb.toString();
     }
@@ -664,6 +908,8 @@ public class Place implements Serializable {
                 + ((getAddressNumber() == null) ? 0 : getAddressNumber().hashCode());
         hashCode = prime * hashCode + ((getCountry() == null) ? 0 : getCountry().hashCode());
         hashCode = prime * hashCode + ((getGeometry() == null) ? 0 : getGeometry().hashCode());
+        hashCode = prime * hashCode
+                + ((getInterpolated() == null) ? 0 : getInterpolated().hashCode());
         hashCode = prime * hashCode + ((getLabel() == null) ? 0 : getLabel().hashCode());
         hashCode = prime * hashCode
                 + ((getMunicipality() == null) ? 0 : getMunicipality().hashCode());
@@ -673,6 +919,7 @@ public class Place implements Serializable {
         hashCode = prime * hashCode + ((getRegion() == null) ? 0 : getRegion().hashCode());
         hashCode = prime * hashCode + ((getStreet() == null) ? 0 : getStreet().hashCode());
         hashCode = prime * hashCode + ((getSubRegion() == null) ? 0 : getSubRegion().hashCode());
+        hashCode = prime * hashCode + ((getTimeZone() == null) ? 0 : getTimeZone().hashCode());
         return hashCode;
     }
 
@@ -699,6 +946,11 @@ public class Place implements Serializable {
         if (other.getGeometry() == null ^ this.getGeometry() == null)
             return false;
         if (other.getGeometry() != null && other.getGeometry().equals(this.getGeometry()) == false)
+            return false;
+        if (other.getInterpolated() == null ^ this.getInterpolated() == null)
+            return false;
+        if (other.getInterpolated() != null
+                && other.getInterpolated().equals(this.getInterpolated()) == false)
             return false;
         if (other.getLabel() == null ^ this.getLabel() == null)
             return false;
@@ -731,6 +983,10 @@ public class Place implements Serializable {
             return false;
         if (other.getSubRegion() != null
                 && other.getSubRegion().equals(this.getSubRegion()) == false)
+            return false;
+        if (other.getTimeZone() == null ^ this.getTimeZone() == null)
+            return false;
+        if (other.getTimeZone() != null && other.getTimeZone().equals(this.getTimeZone()) == false)
             return false;
         return true;
     }

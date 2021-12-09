@@ -38,35 +38,36 @@ import com.amazonaws.util.json.AwsJsonWriter;
 import com.amazonaws.util.json.JsonUtils;
 
 /**
- * JSON request marshaller for SearchPlaceIndexForTextRequest
+ * JSON request marshaller for SearchPlaceIndexForSuggestionsRequest
  */
-public class SearchPlaceIndexForTextRequestMarshaller implements
-        Marshaller<Request<SearchPlaceIndexForTextRequest>, SearchPlaceIndexForTextRequest> {
+public class SearchPlaceIndexForSuggestionsRequestMarshaller
+        implements
+        Marshaller<Request<SearchPlaceIndexForSuggestionsRequest>, SearchPlaceIndexForSuggestionsRequest> {
 
-    public Request<SearchPlaceIndexForTextRequest> marshall(
-            SearchPlaceIndexForTextRequest searchPlaceIndexForTextRequest) {
-        if (searchPlaceIndexForTextRequest == null) {
+    public Request<SearchPlaceIndexForSuggestionsRequest> marshall(
+            SearchPlaceIndexForSuggestionsRequest searchPlaceIndexForSuggestionsRequest) {
+        if (searchPlaceIndexForSuggestionsRequest == null) {
             throw new AmazonClientException(
-                    "Invalid argument passed to marshall(SearchPlaceIndexForTextRequest)");
+                    "Invalid argument passed to marshall(SearchPlaceIndexForSuggestionsRequest)");
         }
 
-        Request<SearchPlaceIndexForTextRequest> request = new DefaultRequest<SearchPlaceIndexForTextRequest>(
-                searchPlaceIndexForTextRequest, "AmazonLocation");
+        Request<SearchPlaceIndexForSuggestionsRequest> request = new DefaultRequest<SearchPlaceIndexForSuggestionsRequest>(
+                searchPlaceIndexForSuggestionsRequest, "AmazonLocation");
         request.setHttpMethod(HttpMethodName.POST);
 
-        String uriResourcePath = "/places/v0/indexes/{IndexName}/search/text";
+        String uriResourcePath = "/places/v0/indexes/{IndexName}/search/suggestions";
         uriResourcePath = uriResourcePath.replace(
                 "{IndexName}",
-                (searchPlaceIndexForTextRequest.getIndexName() == null) ? "" : StringUtils
-                        .fromString(searchPlaceIndexForTextRequest.getIndexName()));
+                (searchPlaceIndexForSuggestionsRequest.getIndexName() == null) ? "" : StringUtils
+                        .fromString(searchPlaceIndexForSuggestionsRequest.getIndexName()));
         request.setResourcePath(uriResourcePath);
         try {
             StringWriter stringWriter = new StringWriter();
             AwsJsonWriter jsonWriter = JsonUtils.getJsonWriter(stringWriter);
             jsonWriter.beginObject();
 
-            if (searchPlaceIndexForTextRequest.getBiasPosition() != null) {
-                java.util.List<Double> biasPosition = searchPlaceIndexForTextRequest
+            if (searchPlaceIndexForSuggestionsRequest.getBiasPosition() != null) {
+                java.util.List<Double> biasPosition = searchPlaceIndexForSuggestionsRequest
                         .getBiasPosition();
                 jsonWriter.name("BiasPosition");
                 jsonWriter.beginArray();
@@ -77,8 +78,9 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForTextRequest.getFilterBBox() != null) {
-                java.util.List<Double> filterBBox = searchPlaceIndexForTextRequest.getFilterBBox();
+            if (searchPlaceIndexForSuggestionsRequest.getFilterBBox() != null) {
+                java.util.List<Double> filterBBox = searchPlaceIndexForSuggestionsRequest
+                        .getFilterBBox();
                 jsonWriter.name("FilterBBox");
                 jsonWriter.beginArray();
                 for (Double filterBBoxItem : filterBBox) {
@@ -88,8 +90,8 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForTextRequest.getFilterCountries() != null) {
-                java.util.List<String> filterCountries = searchPlaceIndexForTextRequest
+            if (searchPlaceIndexForSuggestionsRequest.getFilterCountries() != null) {
+                java.util.List<String> filterCountries = searchPlaceIndexForSuggestionsRequest
                         .getFilterCountries();
                 jsonWriter.name("FilterCountries");
                 jsonWriter.beginArray();
@@ -100,18 +102,18 @@ public class SearchPlaceIndexForTextRequestMarshaller implements
                 }
                 jsonWriter.endArray();
             }
-            if (searchPlaceIndexForTextRequest.getLanguage() != null) {
-                String language = searchPlaceIndexForTextRequest.getLanguage();
+            if (searchPlaceIndexForSuggestionsRequest.getLanguage() != null) {
+                String language = searchPlaceIndexForSuggestionsRequest.getLanguage();
                 jsonWriter.name("Language");
                 jsonWriter.value(language);
             }
-            if (searchPlaceIndexForTextRequest.getMaxResults() != null) {
-                Integer maxResults = searchPlaceIndexForTextRequest.getMaxResults();
+            if (searchPlaceIndexForSuggestionsRequest.getMaxResults() != null) {
+                Integer maxResults = searchPlaceIndexForSuggestionsRequest.getMaxResults();
                 jsonWriter.name("MaxResults");
                 jsonWriter.value(maxResults);
             }
-            if (searchPlaceIndexForTextRequest.getText() != null) {
-                String text = searchPlaceIndexForTextRequest.getText();
+            if (searchPlaceIndexForSuggestionsRequest.getText() != null) {
+                String text = searchPlaceIndexForSuggestionsRequest.getText();
                 jsonWriter.name("Text");
                 jsonWriter.value(text);
             }

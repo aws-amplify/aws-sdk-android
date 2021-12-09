@@ -21,67 +21,66 @@ import com.amazonaws.transform.*;
 import com.amazonaws.util.json.AwsJsonReader;
 
 /**
- * JSON unmarshaller for POJO SearchPlaceIndexForTextSummary
+ * JSON unmarshaller for POJO SearchPlaceIndexForSuggestionsSummary
  */
-class SearchPlaceIndexForTextSummaryJsonUnmarshaller implements
-        Unmarshaller<SearchPlaceIndexForTextSummary, JsonUnmarshallerContext> {
+class SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller implements
+        Unmarshaller<SearchPlaceIndexForSuggestionsSummary, JsonUnmarshallerContext> {
 
-    public SearchPlaceIndexForTextSummary unmarshall(JsonUnmarshallerContext context)
+    public SearchPlaceIndexForSuggestionsSummary unmarshall(JsonUnmarshallerContext context)
             throws Exception {
         AwsJsonReader reader = context.getReader();
         if (!reader.isContainer()) {
             reader.skipValue();
             return null;
         }
-        SearchPlaceIndexForTextSummary searchPlaceIndexForTextSummary = new SearchPlaceIndexForTextSummary();
+        SearchPlaceIndexForSuggestionsSummary searchPlaceIndexForSuggestionsSummary = new SearchPlaceIndexForSuggestionsSummary();
         reader.beginObject();
         while (reader.hasNext()) {
             String name = reader.nextName();
             if (name.equals("BiasPosition")) {
-                searchPlaceIndexForTextSummary.setBiasPosition(new ListUnmarshaller<Double>(
+                searchPlaceIndexForSuggestionsSummary.setBiasPosition(new ListUnmarshaller<Double>(
                         DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else if (name.equals("DataSource")) {
-                searchPlaceIndexForTextSummary.setDataSource(StringJsonUnmarshaller.getInstance()
+                searchPlaceIndexForSuggestionsSummary.setDataSource(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("FilterBBox")) {
-                searchPlaceIndexForTextSummary.setFilterBBox(new ListUnmarshaller<Double>(
+                searchPlaceIndexForSuggestionsSummary.setFilterBBox(new ListUnmarshaller<Double>(
                         DoubleJsonUnmarshaller.getInstance()
                         )
                                 .unmarshall(context));
             } else if (name.equals("FilterCountries")) {
-                searchPlaceIndexForTextSummary.setFilterCountries(new ListUnmarshaller<String>(
-                        StringJsonUnmarshaller.getInstance()
+                searchPlaceIndexForSuggestionsSummary
+                        .setFilterCountries(new ListUnmarshaller<String>(StringJsonUnmarshaller
+                                .getInstance()
                         )
                                 .unmarshall(context));
             } else if (name.equals("Language")) {
-                searchPlaceIndexForTextSummary.setLanguage(StringJsonUnmarshaller.getInstance()
+                searchPlaceIndexForSuggestionsSummary.setLanguage(StringJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
             } else if (name.equals("MaxResults")) {
-                searchPlaceIndexForTextSummary.setMaxResults(IntegerJsonUnmarshaller.getInstance()
+                searchPlaceIndexForSuggestionsSummary.setMaxResults(IntegerJsonUnmarshaller
+                        .getInstance()
                         .unmarshall(context));
-            } else if (name.equals("ResultBBox")) {
-                searchPlaceIndexForTextSummary.setResultBBox(new ListUnmarshaller<Double>(
-                        DoubleJsonUnmarshaller.getInstance()
-                        )
-                                .unmarshall(context));
             } else if (name.equals("Text")) {
-                searchPlaceIndexForTextSummary.setText(StringJsonUnmarshaller.getInstance()
+                searchPlaceIndexForSuggestionsSummary.setText(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
             } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        return searchPlaceIndexForTextSummary;
+        return searchPlaceIndexForSuggestionsSummary;
     }
 
-    private static SearchPlaceIndexForTextSummaryJsonUnmarshaller instance;
+    private static SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller instance;
 
-    public static SearchPlaceIndexForTextSummaryJsonUnmarshaller getInstance() {
+    public static SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller getInstance() {
         if (instance == null)
-            instance = new SearchPlaceIndexForTextSummaryJsonUnmarshaller();
+            instance = new SearchPlaceIndexForSuggestionsSummaryJsonUnmarshaller();
         return instance;
     }
 }

@@ -20,15 +20,17 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO SearchPlaceIndexForTextSummary
+ * JSON marshaller for POJO SearchPlaceIndexForSuggestionsSummary
  */
-class SearchPlaceIndexForTextSummaryJsonMarshaller {
+class SearchPlaceIndexForSuggestionsSummaryJsonMarshaller {
 
-    public void marshall(SearchPlaceIndexForTextSummary searchPlaceIndexForTextSummary,
+    public void marshall(
+            SearchPlaceIndexForSuggestionsSummary searchPlaceIndexForSuggestionsSummary,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (searchPlaceIndexForTextSummary.getBiasPosition() != null) {
-            java.util.List<Double> biasPosition = searchPlaceIndexForTextSummary.getBiasPosition();
+        if (searchPlaceIndexForSuggestionsSummary.getBiasPosition() != null) {
+            java.util.List<Double> biasPosition = searchPlaceIndexForSuggestionsSummary
+                    .getBiasPosition();
             jsonWriter.name("BiasPosition");
             jsonWriter.beginArray();
             for (Double biasPositionItem : biasPosition) {
@@ -38,13 +40,14 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
-        if (searchPlaceIndexForTextSummary.getDataSource() != null) {
-            String dataSource = searchPlaceIndexForTextSummary.getDataSource();
+        if (searchPlaceIndexForSuggestionsSummary.getDataSource() != null) {
+            String dataSource = searchPlaceIndexForSuggestionsSummary.getDataSource();
             jsonWriter.name("DataSource");
             jsonWriter.value(dataSource);
         }
-        if (searchPlaceIndexForTextSummary.getFilterBBox() != null) {
-            java.util.List<Double> filterBBox = searchPlaceIndexForTextSummary.getFilterBBox();
+        if (searchPlaceIndexForSuggestionsSummary.getFilterBBox() != null) {
+            java.util.List<Double> filterBBox = searchPlaceIndexForSuggestionsSummary
+                    .getFilterBBox();
             jsonWriter.name("FilterBBox");
             jsonWriter.beginArray();
             for (Double filterBBoxItem : filterBBox) {
@@ -54,8 +57,8 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
-        if (searchPlaceIndexForTextSummary.getFilterCountries() != null) {
-            java.util.List<String> filterCountries = searchPlaceIndexForTextSummary
+        if (searchPlaceIndexForSuggestionsSummary.getFilterCountries() != null) {
+            java.util.List<String> filterCountries = searchPlaceIndexForSuggestionsSummary
                     .getFilterCountries();
             jsonWriter.name("FilterCountries");
             jsonWriter.beginArray();
@@ -66,40 +69,29 @@ class SearchPlaceIndexForTextSummaryJsonMarshaller {
             }
             jsonWriter.endArray();
         }
-        if (searchPlaceIndexForTextSummary.getLanguage() != null) {
-            String language = searchPlaceIndexForTextSummary.getLanguage();
+        if (searchPlaceIndexForSuggestionsSummary.getLanguage() != null) {
+            String language = searchPlaceIndexForSuggestionsSummary.getLanguage();
             jsonWriter.name("Language");
             jsonWriter.value(language);
         }
-        if (searchPlaceIndexForTextSummary.getMaxResults() != null) {
-            Integer maxResults = searchPlaceIndexForTextSummary.getMaxResults();
+        if (searchPlaceIndexForSuggestionsSummary.getMaxResults() != null) {
+            Integer maxResults = searchPlaceIndexForSuggestionsSummary.getMaxResults();
             jsonWriter.name("MaxResults");
             jsonWriter.value(maxResults);
         }
-        if (searchPlaceIndexForTextSummary.getResultBBox() != null) {
-            java.util.List<Double> resultBBox = searchPlaceIndexForTextSummary.getResultBBox();
-            jsonWriter.name("ResultBBox");
-            jsonWriter.beginArray();
-            for (Double resultBBoxItem : resultBBox) {
-                if (resultBBoxItem != null) {
-                    jsonWriter.value(resultBBoxItem);
-                }
-            }
-            jsonWriter.endArray();
-        }
-        if (searchPlaceIndexForTextSummary.getText() != null) {
-            String text = searchPlaceIndexForTextSummary.getText();
+        if (searchPlaceIndexForSuggestionsSummary.getText() != null) {
+            String text = searchPlaceIndexForSuggestionsSummary.getText();
             jsonWriter.name("Text");
             jsonWriter.value(text);
         }
         jsonWriter.endObject();
     }
 
-    private static SearchPlaceIndexForTextSummaryJsonMarshaller instance;
+    private static SearchPlaceIndexForSuggestionsSummaryJsonMarshaller instance;
 
-    public static SearchPlaceIndexForTextSummaryJsonMarshaller getInstance() {
+    public static SearchPlaceIndexForSuggestionsSummaryJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new SearchPlaceIndexForTextSummaryJsonMarshaller();
+            instance = new SearchPlaceIndexForSuggestionsSummaryJsonMarshaller();
         return instance;
     }
 }

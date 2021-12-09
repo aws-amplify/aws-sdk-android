@@ -24,7 +24,8 @@ import java.util.Map;
 public enum PositionFiltering {
 
     TimeBased("TimeBased"),
-    DistanceBased("DistanceBased");
+    DistanceBased("DistanceBased"),
+    AccuracyBased("AccuracyBased");
 
     private String value;
 
@@ -42,6 +43,7 @@ public enum PositionFiltering {
         enumMap = new HashMap<String, PositionFiltering>();
         enumMap.put("TimeBased", TimeBased);
         enumMap.put("DistanceBased", DistanceBased);
+        enumMap.put("AccuracyBased", AccuracyBased);
     }
 
     /**

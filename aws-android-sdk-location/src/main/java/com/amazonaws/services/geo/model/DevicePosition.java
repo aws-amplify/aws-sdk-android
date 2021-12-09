@@ -25,6 +25,13 @@ import java.io.Serializable;
 public class DevicePosition implements Serializable {
     /**
      * <p>
+     * The accuracy of the device position.
+     * </p>
+     */
+    private PositionalAccuracy accuracy;
+
+    /**
+     * <p>
      * The device whose position you retrieved.
      * </p>
      * <p>
@@ -43,6 +50,13 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
+     * The properties associated with the position.
+     * </p>
+     */
+    private java.util.Map<String, String> positionProperties;
+
+    /**
+     * <p>
      * The timestamp for when the tracker resource received the device position
      * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -58,6 +72,51 @@ public class DevicePosition implements Serializable {
      * </p>
      */
     private java.util.Date sampleTime;
+
+    /**
+     * <p>
+     * The accuracy of the device position.
+     * </p>
+     *
+     * @return <p>
+     *         The accuracy of the device position.
+     *         </p>
+     */
+    public PositionalAccuracy getAccuracy() {
+        return accuracy;
+    }
+
+    /**
+     * <p>
+     * The accuracy of the device position.
+     * </p>
+     *
+     * @param accuracy <p>
+     *            The accuracy of the device position.
+     *            </p>
+     */
+    public void setAccuracy(PositionalAccuracy accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    /**
+     * <p>
+     * The accuracy of the device position.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param accuracy <p>
+     *            The accuracy of the device position.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DevicePosition withAccuracy(PositionalAccuracy accuracy) {
+        this.accuracy = accuracy;
+        return this;
+    }
 
     /**
      * <p>
@@ -192,6 +251,88 @@ public class DevicePosition implements Serializable {
 
     /**
      * <p>
+     * The properties associated with the position.
+     * </p>
+     *
+     * @return <p>
+     *         The properties associated with the position.
+     *         </p>
+     */
+    public java.util.Map<String, String> getPositionProperties() {
+        return positionProperties;
+    }
+
+    /**
+     * <p>
+     * The properties associated with the position.
+     * </p>
+     *
+     * @param positionProperties <p>
+     *            The properties associated with the position.
+     *            </p>
+     */
+    public void setPositionProperties(java.util.Map<String, String> positionProperties) {
+        this.positionProperties = positionProperties;
+    }
+
+    /**
+     * <p>
+     * The properties associated with the position.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param positionProperties <p>
+     *            The properties associated with the position.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DevicePosition withPositionProperties(java.util.Map<String, String> positionProperties) {
+        this.positionProperties = positionProperties;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The properties associated with the position.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into PositionProperties parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into PositionProperties.
+     * @param value The corresponding value of the entry to be added into
+     *            PositionProperties.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public DevicePosition addPositionPropertiesEntry(String key, String value) {
+        if (null == this.positionProperties) {
+            this.positionProperties = new java.util.HashMap<String, String>();
+        }
+        if (this.positionProperties.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.positionProperties.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into PositionProperties.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public DevicePosition clearPositionPropertiesEntries() {
+        this.positionProperties = null;
+        return this;
+    }
+
+    /**
+     * <p>
      * The timestamp for when the tracker resource received the device position
      * in <a href="https://www.iso.org/iso-8601-date-and-time-format.html"> ISO
      * 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>.
@@ -320,10 +461,14 @@ public class DevicePosition implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
+        if (getAccuracy() != null)
+            sb.append("Accuracy: " + getAccuracy() + ",");
         if (getDeviceId() != null)
             sb.append("DeviceId: " + getDeviceId() + ",");
         if (getPosition() != null)
             sb.append("Position: " + getPosition() + ",");
+        if (getPositionProperties() != null)
+            sb.append("PositionProperties: " + getPositionProperties() + ",");
         if (getReceivedTime() != null)
             sb.append("ReceivedTime: " + getReceivedTime() + ",");
         if (getSampleTime() != null)
@@ -337,8 +482,11 @@ public class DevicePosition implements Serializable {
         final int prime = 31;
         int hashCode = 1;
 
+        hashCode = prime * hashCode + ((getAccuracy() == null) ? 0 : getAccuracy().hashCode());
         hashCode = prime * hashCode + ((getDeviceId() == null) ? 0 : getDeviceId().hashCode());
         hashCode = prime * hashCode + ((getPosition() == null) ? 0 : getPosition().hashCode());
+        hashCode = prime * hashCode
+                + ((getPositionProperties() == null) ? 0 : getPositionProperties().hashCode());
         hashCode = prime * hashCode
                 + ((getReceivedTime() == null) ? 0 : getReceivedTime().hashCode());
         hashCode = prime * hashCode + ((getSampleTime() == null) ? 0 : getSampleTime().hashCode());
@@ -356,6 +504,10 @@ public class DevicePosition implements Serializable {
             return false;
         DevicePosition other = (DevicePosition) obj;
 
+        if (other.getAccuracy() == null ^ this.getAccuracy() == null)
+            return false;
+        if (other.getAccuracy() != null && other.getAccuracy().equals(this.getAccuracy()) == false)
+            return false;
         if (other.getDeviceId() == null ^ this.getDeviceId() == null)
             return false;
         if (other.getDeviceId() != null && other.getDeviceId().equals(this.getDeviceId()) == false)
@@ -363,6 +515,11 @@ public class DevicePosition implements Serializable {
         if (other.getPosition() == null ^ this.getPosition() == null)
             return false;
         if (other.getPosition() != null && other.getPosition().equals(this.getPosition()) == false)
+            return false;
+        if (other.getPositionProperties() == null ^ this.getPositionProperties() == null)
+            return false;
+        if (other.getPositionProperties() != null
+                && other.getPositionProperties().equals(this.getPositionProperties()) == false)
             return false;
         if (other.getReceivedTime() == null ^ this.getReceivedTime() == null)
             return false;

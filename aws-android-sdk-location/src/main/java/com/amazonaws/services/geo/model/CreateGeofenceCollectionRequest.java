@@ -169,6 +169,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      */
     private java.util.Map<String, String> tags;
@@ -888,6 +893,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      *
      * @return <p>
@@ -926,6 +936,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      *         <p>
      *         Can use alphanumeric characters (A–Z, a–z, 0–9), and the
      *         following characters: + - = . _ : / @.
+     *         </p>
+     *         </li>
+     *         <li>
+     *         <p>
+     *         Cannot use "aws:" as a prefix for a key.
      *         </p>
      *         </li>
      *         </ul>
@@ -973,6 +988,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      *
      * @param tags <p>
@@ -1011,6 +1031,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      *            <p>
      *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
      *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Cannot use "aws:" as a prefix for a key.
      *            </p>
      *            </li>
      *            </ul>
@@ -1058,6 +1083,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * characters: + - = . _ : / @.
      * </p>
      * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
+     * </p>
+     * </li>
      * </ul>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1099,6 +1129,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      *            <p>
      *            Can use alphanumeric characters (A–Z, a–z, 0–9), and the
      *            following characters: + - = . _ : / @.
+     *            </p>
+     *            </li>
+     *            <li>
+     *            <p>
+     *            Cannot use "aws:" as a prefix for a key.
      *            </p>
      *            </li>
      *            </ul>
@@ -1147,6 +1182,11 @@ public class CreateGeofenceCollectionRequest extends AmazonWebServiceRequest imp
      * <p>
      * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
      * characters: + - = . _ : / @.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * Cannot use "aws:" as a prefix for a key.
      * </p>
      * </li>
      * </ul>

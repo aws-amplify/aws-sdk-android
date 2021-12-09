@@ -41,6 +41,11 @@ class PlaceJsonMarshaller {
             jsonWriter.name("Geometry");
             PlaceGeometryJsonMarshaller.getInstance().marshall(geometry, jsonWriter);
         }
+        if (place.getInterpolated() != null) {
+            Boolean interpolated = place.getInterpolated();
+            jsonWriter.name("Interpolated");
+            jsonWriter.value(interpolated);
+        }
         if (place.getLabel() != null) {
             String label = place.getLabel();
             jsonWriter.name("Label");
@@ -75,6 +80,11 @@ class PlaceJsonMarshaller {
             String subRegion = place.getSubRegion();
             jsonWriter.name("SubRegion");
             jsonWriter.value(subRegion);
+        }
+        if (place.getTimeZone() != null) {
+            TimeZone timeZone = place.getTimeZone();
+            jsonWriter.name("TimeZone");
+            TimeZoneJsonMarshaller.getInstance().marshall(timeZone, jsonWriter);
         }
         jsonWriter.endObject();
     }

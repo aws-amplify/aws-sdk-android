@@ -20,31 +20,30 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO SearchForPositionResult
+ * JSON marshaller for POJO TimeZone
  */
-class SearchForPositionResultJsonMarshaller {
+class TimeZoneJsonMarshaller {
 
-    public void marshall(SearchForPositionResult searchForPositionResult, AwsJsonWriter jsonWriter)
-            throws Exception {
+    public void marshall(TimeZone timeZone, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
-        if (searchForPositionResult.getDistance() != null) {
-            Double distance = searchForPositionResult.getDistance();
-            jsonWriter.name("Distance");
-            jsonWriter.value(distance);
+        if (timeZone.getName() != null) {
+            String name = timeZone.getName();
+            jsonWriter.name("Name");
+            jsonWriter.value(name);
         }
-        if (searchForPositionResult.getPlace() != null) {
-            Place place = searchForPositionResult.getPlace();
-            jsonWriter.name("Place");
-            PlaceJsonMarshaller.getInstance().marshall(place, jsonWriter);
+        if (timeZone.getOffset() != null) {
+            Integer offset = timeZone.getOffset();
+            jsonWriter.name("Offset");
+            jsonWriter.value(offset);
         }
         jsonWriter.endObject();
     }
 
-    private static SearchForPositionResultJsonMarshaller instance;
+    private static TimeZoneJsonMarshaller instance;
 
-    public static SearchForPositionResultJsonMarshaller getInstance() {
+    public static TimeZoneJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new SearchForPositionResultJsonMarshaller();
+            instance = new TimeZoneJsonMarshaller();
         return instance;
     }
 }

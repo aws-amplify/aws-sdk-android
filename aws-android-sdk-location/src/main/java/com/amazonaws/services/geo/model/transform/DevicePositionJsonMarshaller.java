@@ -26,6 +26,11 @@ class DevicePositionJsonMarshaller {
 
     public void marshall(DevicePosition devicePosition, AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (devicePosition.getAccuracy() != null) {
+            PositionalAccuracy accuracy = devicePosition.getAccuracy();
+            jsonWriter.name("Accuracy");
+            PositionalAccuracyJsonMarshaller.getInstance().marshall(accuracy, jsonWriter);
+        }
         if (devicePosition.getDeviceId() != null) {
             String deviceId = devicePosition.getDeviceId();
             jsonWriter.name("DeviceId");
@@ -41,6 +46,21 @@ class DevicePositionJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (devicePosition.getPositionProperties() != null) {
+            java.util.Map<String, String> positionProperties = devicePosition
+                    .getPositionProperties();
+            jsonWriter.name("PositionProperties");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> positionPropertiesEntry : positionProperties
+                    .entrySet()) {
+                String positionPropertiesValue = positionPropertiesEntry.getValue();
+                if (positionPropertiesValue != null) {
+                    jsonWriter.name(positionPropertiesEntry.getKey());
+                    jsonWriter.value(positionPropertiesValue);
+                }
+            }
+            jsonWriter.endObject();
         }
         if (devicePosition.getReceivedTime() != null) {
             java.util.Date receivedTime = devicePosition.getReceivedTime();

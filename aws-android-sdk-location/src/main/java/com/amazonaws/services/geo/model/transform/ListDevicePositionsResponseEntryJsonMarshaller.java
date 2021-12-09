@@ -27,6 +27,11 @@ class ListDevicePositionsResponseEntryJsonMarshaller {
     public void marshall(ListDevicePositionsResponseEntry listDevicePositionsResponseEntry,
             AwsJsonWriter jsonWriter) throws Exception {
         jsonWriter.beginObject();
+        if (listDevicePositionsResponseEntry.getAccuracy() != null) {
+            PositionalAccuracy accuracy = listDevicePositionsResponseEntry.getAccuracy();
+            jsonWriter.name("Accuracy");
+            PositionalAccuracyJsonMarshaller.getInstance().marshall(accuracy, jsonWriter);
+        }
         if (listDevicePositionsResponseEntry.getDeviceId() != null) {
             String deviceId = listDevicePositionsResponseEntry.getDeviceId();
             jsonWriter.name("DeviceId");
@@ -42,6 +47,21 @@ class ListDevicePositionsResponseEntryJsonMarshaller {
                 }
             }
             jsonWriter.endArray();
+        }
+        if (listDevicePositionsResponseEntry.getPositionProperties() != null) {
+            java.util.Map<String, String> positionProperties = listDevicePositionsResponseEntry
+                    .getPositionProperties();
+            jsonWriter.name("PositionProperties");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, String> positionPropertiesEntry : positionProperties
+                    .entrySet()) {
+                String positionPropertiesValue = positionPropertiesEntry.getValue();
+                if (positionPropertiesValue != null) {
+                    jsonWriter.name(positionPropertiesEntry.getKey());
+                    jsonWriter.value(positionPropertiesValue);
+                }
+            }
+            jsonWriter.endObject();
         }
         if (listDevicePositionsResponseEntry.getSampleTime() != null) {
             java.util.Date sampleTime = listDevicePositionsResponseEntry.getSampleTime();

@@ -29,8 +29,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The data provider of geospatial data. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -45,7 +44,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
@@ -195,8 +194,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The data provider of geospatial data. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -211,14 +209,14 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @return <p>
-     *         The data provider of geospatial data. Indicates one of the
-     *         available providers:
+     *         The data provider of geospatial data. Values can be one of the
+     *         following:
      *         </p>
      *         <ul>
      *         <li>
@@ -233,7 +231,7 @@ public class DescribePlaceIndexResult implements Serializable {
      *         </li>
      *         </ul>
      *         <p>
-     *         For additional details on data providers, see <a href=
+     *         For more information about data providers, see <a href=
      *         "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      *         >Amazon Location Service data providers</a>.
      *         </p>
@@ -244,8 +242,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The data provider of geospatial data. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -260,14 +257,14 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
      *
      * @param dataSource <p>
-     *            The data provider of geospatial data. Indicates one of the
-     *            available providers:
+     *            The data provider of geospatial data. Values can be one of the
+     *            following:
      *            </p>
      *            <ul>
      *            <li>
@@ -282,7 +279,7 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see <a href=
+     *            For more information about data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      *            >Amazon Location Service data providers</a>.
      *            </p>
@@ -293,8 +290,7 @@ public class DescribePlaceIndexResult implements Serializable {
 
     /**
      * <p>
-     * The data provider of geospatial data. Indicates one of the available
-     * providers:
+     * The data provider of geospatial data. Values can be one of the following:
      * </p>
      * <ul>
      * <li>
@@ -309,7 +305,7 @@ public class DescribePlaceIndexResult implements Serializable {
      * </li>
      * </ul>
      * <p>
-     * For additional details on data providers, see <a href=
+     * For more information about data providers, see <a href=
      * "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      * >Amazon Location Service data providers</a>.
      * </p>
@@ -318,8 +314,8 @@ public class DescribePlaceIndexResult implements Serializable {
      * together.
      *
      * @param dataSource <p>
-     *            The data provider of geospatial data. Indicates one of the
-     *            available providers:
+     *            The data provider of geospatial data. Values can be one of the
+     *            following:
      *            </p>
      *            <ul>
      *            <li>
@@ -334,7 +330,7 @@ public class DescribePlaceIndexResult implements Serializable {
      *            </li>
      *            </ul>
      *            <p>
-     *            For additional details on data providers, see <a href=
+     *            For more information about data providers, see <a href=
      *            "https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html"
      *            >Amazon Location Service data providers</a>.
      *            </p>
