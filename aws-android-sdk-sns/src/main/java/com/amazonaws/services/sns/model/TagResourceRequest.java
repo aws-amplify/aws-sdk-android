@@ -53,8 +53,9 @@ import com.amazonaws.AmazonWebServiceRequest;
  * </li>
  * <li>
  * <p>
- * Tagging actions are limited to 10 TPS per account, per Region. If your
- * application requires a higher throughput, file a <a href=
+ * Tagging actions are limited to 10 TPS per Amazon Web Services account, per
+ * Amazon Web Services Region. If your application requires a higher throughput,
+ * file a <a href=
  * "https://console.aws.amazon.com/support/home#/case/create?issueType=technical"
  * >technical support request</a>.
  * </p>

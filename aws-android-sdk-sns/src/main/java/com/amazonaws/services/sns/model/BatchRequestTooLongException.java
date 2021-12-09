@@ -19,19 +19,19 @@ import com.amazonaws.AmazonServiceException;
 
 /**
  * <p>
- * Indicates that the rate at which requests have been submitted for this action
- * exceeds the limit for your Amazon Web Services account.
+ * The length of all the batch messages put together is more than the limit.
  * </p>
  */
-public class ThrottledException extends AmazonServiceException {
+public class BatchRequestTooLongException extends AmazonServiceException {
     private static final long serialVersionUID = 1L;
 
     /**
-     * Constructs a new ThrottledException with the specified error message.
+     * Constructs a new BatchRequestTooLongException with the specified error
+     * message.
      *
      * @param message Describes the error encountered.
      */
-    public ThrottledException(String message) {
+    public BatchRequestTooLongException(String message) {
         super(message);
     }
 }

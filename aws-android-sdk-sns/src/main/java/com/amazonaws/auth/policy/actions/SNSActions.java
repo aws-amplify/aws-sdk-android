@@ -109,6 +109,9 @@ public enum SNSActions implements Action {
     /** Action for the Publish operation. */
     Publish("sns:Publish"),
 
+    /** Action for the PublishBatch operation. */
+    PublishBatch("sns:PublishBatch"),
+
     /** Action for the RemovePermission operation. */
     RemovePermission("sns:RemovePermission"),
 

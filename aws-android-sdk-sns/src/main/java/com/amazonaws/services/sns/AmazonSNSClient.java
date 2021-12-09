@@ -349,10 +349,14 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     private void init() {
         exceptionUnmarshallers.add(new AuthorizationErrorExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new BatchEntryIdsNotDistinctExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new BatchRequestTooLongExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ConcurrentAccessExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new EmptyBatchRequestExceptionUnmarshaller());
         exceptionUnmarshallers.add(new EndpointDisabledExceptionUnmarshaller());
         exceptionUnmarshallers.add(new FilterPolicyLimitExceededExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InternalErrorExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new InvalidBatchEntryIdExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidParameterExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidParameterValueExceptionUnmarshaller());
         exceptionUnmarshallers.add(new InvalidSecurityExceptionUnmarshaller());
@@ -371,6 +375,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
         exceptionUnmarshallers.add(new TagLimitExceededExceptionUnmarshaller());
         exceptionUnmarshallers.add(new TagPolicyExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ThrottledExceptionUnmarshaller());
+        exceptionUnmarshallers.add(new TooManyEntriesInBatchRequestExceptionUnmarshaller());
         exceptionUnmarshallers.add(new TopicLimitExceededExceptionUnmarshaller());
         exceptionUnmarshallers.add(new UserErrorExceptionUnmarshaller());
         exceptionUnmarshallers.add(new ValidationExceptionUnmarshaller());
@@ -397,7 +402,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
     /**
      * <p>
      * Adds a statement to a topic's access control policy, granting access for
-     * the specified accounts to the specified actions.
+     * the specified Amazon Web Services accounts to the specified actions.
      * </p>
      * 
      * @param addPermissionRequest
@@ -434,8 +439,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
     /**
      * <p>
      * Accepts a phone number and indicates whether the phone holder has opted
-     * out of receiving SMS messages from your account. You cannot send SMS
-     * messages to a number that is opted out.
+     * out of receiving SMS messages from your Amazon Web Services account. You
+     * cannot send SMS messages to a number that is opted out.
      * </p>
      * <p>
      * To resume sending messages, you can opt in the number by using the
@@ -563,9 +568,18 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </li>
      * <li>
      * <p>
-     * For <code>APNS</code> and <code>APNS_SANDBOX</code>,
-     * <code>PlatformPrincipal</code> is <code>SSL certificate</code> and
-     * <code>PlatformCredential</code> is <code>private key</code>.
+     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using certificate
+     * credentials, <code>PlatformPrincipal</code> is
+     * <code>SSL certificate</code> and <code>PlatformCredential</code> is
+     * <code>private key</code>.
+     * </p>
+     * </li>
+     * <li>
+     * <p>
+     * For <code>APNS</code> and <code>APNS_SANDBOX</code> using token
+     * credentials, <code>PlatformPrincipal</code> is
+     * <code>signing key ID</code> and <code>PlatformCredential</code> is
+     * <code>signing key</code>.
      * </p>
      * </li>
      * <li>
@@ -700,17 +714,18 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
-     * Adds a destination phone number to an account in the SMS sandbox and
-     * sends a one-time password (OTP) to that phone number.
+     * Adds a destination phone number to an Amazon Web Services account in the
+     * SMS sandbox and sends a one-time password (OTP) to that phone number.
      * </p>
      * <p>
-     * When you start using Amazon SNS to send SMS messages, your account is in
-     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
-     * you to try Amazon SNS features without risking your reputation as an SMS
-     * sender. While your account is in the SMS sandbox, you can use all of the
-     * features of Amazon SNS. However, you can send SMS messages only to
-     * verified destination phone numbers. For more information, including how
-     * to move out of the sandbox to send messages without restrictions, see <a
+     * When you start using Amazon SNS to send SMS messages, your Amazon Web
+     * Services account is in the <i>SMS sandbox</i>. The SMS sandbox provides a
+     * safe environment for you to try Amazon SNS features without risking your
+     * reputation as an SMS sender. While your Amazon Web Services account is in
+     * the SMS sandbox, you can use all of the features of Amazon SNS. However,
+     * you can send SMS messages only to verified destination phone numbers. For
+     * more information, including how to move out of the sandbox to send
+     * messages without restrictions, see <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
      * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
@@ -897,17 +912,18 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
-     * Deletes an account's verified or pending phone number from the SMS
-     * sandbox.
+     * Deletes an Amazon Web Services account's verified or pending phone number
+     * from the SMS sandbox.
      * </p>
      * <p>
-     * When you start using Amazon SNS to send SMS messages, your account is in
-     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
-     * you to try Amazon SNS features without risking your reputation as an SMS
-     * sender. While your account is in the SMS sandbox, you can use all of the
-     * features of Amazon SNS. However, you can send SMS messages only to
-     * verified destination phone numbers. For more information, including how
-     * to move out of the sandbox to send messages without restrictions, see <a
+     * When you start using Amazon SNS to send SMS messages, your Amazon Web
+     * Services account is in the <i>SMS sandbox</i>. The SMS sandbox provides a
+     * safe environment for you to try Amazon SNS features without risking your
+     * reputation as an SMS sender. While your Amazon Web Services account is in
+     * the SMS sandbox, you can use all of the features of Amazon SNS. However,
+     * you can send SMS messages only to verified destination phone numbers. For
+     * more information, including how to move out of the sandbox to send
+     * messages without restrictions, see <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
      * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
@@ -1094,7 +1110,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
-     * Returns the settings for sending SMS messages from your account.
+     * Returns the settings for sending SMS messages from your Amazon Web
+     * Services account.
      * </p>
      * <p>
      * These settings are set with the <code>SetSMSAttributes</code> action.
@@ -1140,17 +1157,18 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
-     * Retrieves the SMS sandbox status for the calling account in the target
-     * Region.
+     * Retrieves the SMS sandbox status for the calling Amazon Web Services
+     * account in the target Amazon Web Services Region.
      * </p>
      * <p>
-     * When you start using Amazon SNS to send SMS messages, your account is in
-     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
-     * you to try Amazon SNS features without risking your reputation as an SMS
-     * sender. While your account is in the SMS sandbox, you can use all of the
-     * features of Amazon SNS. However, you can send SMS messages only to
-     * verified destination phone numbers. For more information, including how
-     * to move out of the sandbox to send messages without restrictions, see <a
+     * When you start using Amazon SNS to send SMS messages, your Amazon Web
+     * Services account is in the <i>SMS sandbox</i>. The SMS sandbox provides a
+     * safe environment for you to try Amazon SNS features without risking your
+     * reputation as an SMS sender. While your Amazon Web Services account is in
+     * the SMS sandbox, you can use all of the features of Amazon SNS. However,
+     * you can send SMS messages only to verified destination phone numbers. For
+     * more information, including how to move out of the sandbox to send
+     * messages without restrictions, see <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
      * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
@@ -1344,8 +1362,9 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
-     * Lists the calling account's dedicated origination numbers and their
-     * metadata. For more information about origination numbers, see <a href=
+     * Lists the calling Amazon Web Services account's dedicated origination
+     * numbers and their metadata. For more information about origination
+     * numbers, see <a href=
      * "https://docs.aws.amazon.com/sns/latest/dg/channels-sms-originating-identities-origination-numbers.html"
      * >Origination numbers</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
@@ -1504,17 +1523,18 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
 
     /**
      * <p>
-     * Lists the calling account's current verified and pending destination
-     * phone numbers in the SMS sandbox.
+     * Lists the calling Amazon Web Services account's current verified and
+     * pending destination phone numbers in the SMS sandbox.
      * </p>
      * <p>
-     * When you start using Amazon SNS to send SMS messages, your account is in
-     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
-     * you to try Amazon SNS features without risking your reputation as an SMS
-     * sender. While your account is in the SMS sandbox, you can use all of the
-     * features of Amazon SNS. However, you can send SMS messages only to
-     * verified destination phone numbers. For more information, including how
-     * to move out of the sandbox to send messages without restrictions, see <a
+     * When you start using Amazon SNS to send SMS messages, your Amazon Web
+     * Services account is in the <i>SMS sandbox</i>. The SMS sandbox provides a
+     * safe environment for you to try Amazon SNS features without risking your
+     * reputation as an SMS sender. While your Amazon Web Services account is in
+     * the SMS sandbox, you can use all of the features of Amazon SNS. However,
+     * you can send SMS messages only to verified destination phone numbers. For
+     * more information, including how to move out of the sandbox to send
+     * messages without restrictions, see <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
      * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
@@ -1811,15 +1831,15 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * depends on the notification protocol for each subscribed endpoint.
      * </p>
      * <p>
-     * When a <code>messageId</code> is returned, the message has been saved and
-     * Amazon SNS will attempt to deliver it shortly.
+     * When a <code>messageId</code> is returned, the message is saved and
+     * Amazon SNS immediately deliverers it to subscribers.
      * </p>
      * <p>
-     * To use the <code>Publish</code> action for sending a message to a mobile
-     * endpoint, such as an app on a Kindle device or mobile phone, you must
-     * specify the EndpointArn for the TargetArn parameter. The EndpointArn is
-     * returned when making a call with the <code>CreatePlatformEndpoint</code>
-     * action.
+     * To use the <code>Publish</code> action for publishing a message to a
+     * mobile endpoint, such as an app on a Kindle device or mobile phone, you
+     * must specify the EndpointArn for the TargetArn parameter. The EndpointArn
+     * is returned when making a call with the
+     * <code>CreatePlatformEndpoint</code> action.
      * </p>
      * <p>
      * For more information about formatting messages, see <a href=
@@ -1829,7 +1849,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <important>
      * <p>
-     * You can publish messages only to topics and endpoints in the same Region.
+     * You can publish messages only to topics and endpoints in the same Amazon
+     * Web Services Region.
      * </p>
      * </important>
      * 
@@ -1872,6 +1893,97 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
             // Binds the request metrics to the current request.
             request.setAWSRequestMetrics(awsRequestMetrics);
             response = invoke(request, new PublishResultStaxUnmarshaller(), executionContext);
+            return response.getAwsResponse();
+        } finally {
+            awsRequestMetrics.endEvent(Field.ClientExecuteTime);
+            endClientExecution(awsRequestMetrics, request, response);
+        }
+    }
+
+    /**
+     * <p>
+     * Publishes up to ten messages to the specified topic. This is a batch
+     * version of <code>Publish</code>. For FIFO topics, multiple messages
+     * within a single batch are published in the order they are sent, and
+     * messages are deduplicated within the batch and across batches for 5
+     * minutes.
+     * </p>
+     * <p>
+     * The result of publishing each message is reported individually in the
+     * response. Because the batch request can result in a combination of
+     * successful and unsuccessful actions, you should check for batch errors
+     * even when the call returns an HTTP status code of <code>200</code>.
+     * </p>
+     * <p>
+     * The maximum allowed individual message size and the maximum total payload
+     * size (the sum of the individual lengths of all of the batched messages)
+     * are both 256 KB (262,144 bytes).
+     * </p>
+     * <p>
+     * Some actions take lists of parameters. These lists are specified using
+     * the <code>param.n</code> notation. Values of <code>n</code> are integers
+     * starting from 1. For example, a parameter list with two elements looks
+     * like this:
+     * </p>
+     * <p>
+     * &amp;AttributeName.1=first
+     * </p>
+     * <p>
+     * &amp;AttributeName.2=second
+     * </p>
+     * <p>
+     * If you send a batch message to a topic, Amazon SNS publishes the batch
+     * message to each endpoint that is subscribed to the topic. The format of
+     * the batch message depends on the notification protocol for each
+     * subscribed endpoint.
+     * </p>
+     * <p>
+     * When a <code>messageId</code> is returned, the batch message is saved and
+     * Amazon SNS immediately delivers the message to subscribers.
+     * </p>
+     * 
+     * @param publishBatchRequest
+     * @return publishBatchResult The response from the PublishBatch service
+     *         method, as returned by Amazon Simple Notification Service.
+     * @throws InvalidParameterException
+     * @throws InvalidParameterValueException
+     * @throws InternalErrorException
+     * @throws NotFoundException
+     * @throws EndpointDisabledException
+     * @throws PlatformApplicationDisabledException
+     * @throws AuthorizationErrorException
+     * @throws BatchEntryIdsNotDistinctException
+     * @throws BatchRequestTooLongException
+     * @throws EmptyBatchRequestException
+     * @throws InvalidBatchEntryIdException
+     * @throws TooManyEntriesInBatchRequestException
+     * @throws KMSDisabledException
+     * @throws KMSInvalidStateException
+     * @throws KMSNotFoundException
+     * @throws KMSOptInRequiredException
+     * @throws KMSThrottlingException
+     * @throws KMSAccessDeniedException
+     * @throws InvalidSecurityException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Simple Notification Service indicating either a problem with
+     *             the data in the request, or a server side issue.
+     */
+    public PublishBatchResult publishBatch(PublishBatchRequest publishBatchRequest)
+            throws AmazonServiceException, AmazonClientException {
+        ExecutionContext executionContext = createExecutionContext(publishBatchRequest);
+        AWSRequestMetrics awsRequestMetrics = executionContext.getAwsRequestMetrics();
+        awsRequestMetrics.startEvent(Field.ClientExecuteTime);
+        Request<PublishBatchRequest> request = null;
+        Response<PublishBatchResult> response = null;
+        try {
+            request = new PublishBatchRequestMarshaller().marshall(publishBatchRequest);
+            // Binds the request metrics to the current request.
+            request.setAWSRequestMetrics(awsRequestMetrics);
+            response = invoke(request, new PublishBatchResultStaxUnmarshaller(), executionContext);
             return response.getAwsResponse();
         } finally {
             awsRequestMetrics.endEvent(Field.ClientExecuteTime);
@@ -2152,8 +2264,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
      * HTTP/S or email, or if the endpoint and the topic are not in the same
-     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
-     * action to confirm the subscription.
+     * Amazon Web Services account, the endpoint owner must run the
+     * <code>ConfirmSubscription</code> action to confirm the subscription.
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
@@ -2236,8 +2348,9 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </li>
      * <li>
      * <p>
-     * Tagging actions are limited to 10 TPS per account, per Region. If your
-     * application requires a higher throughput, file a <a href=
+     * Tagging actions are limited to 10 TPS per Amazon Web Services account,
+     * per Amazon Web Services Region. If your application requires a higher
+     * throughput, file a <a href=
      * "https://console.aws.amazon.com/support/home#/case/create?issueType=technical"
      * >technical support request</a>.
      * </p>
@@ -2377,16 +2490,17 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
     /**
      * <p>
      * Verifies a destination phone number with a one-time password (OTP) for
-     * the calling account.
+     * the calling Amazon Web Services account.
      * </p>
      * <p>
-     * When you start using Amazon SNS to send SMS messages, your account is in
-     * the <i>SMS sandbox</i>. The SMS sandbox provides a safe environment for
-     * you to try Amazon SNS features without risking your reputation as an SMS
-     * sender. While your account is in the SMS sandbox, you can use all of the
-     * features of Amazon SNS. However, you can send SMS messages only to
-     * verified destination phone numbers. For more information, including how
-     * to move out of the sandbox to send messages without restrictions, see <a
+     * When you start using Amazon SNS to send SMS messages, your Amazon Web
+     * Services account is in the <i>SMS sandbox</i>. The SMS sandbox provides a
+     * safe environment for you to try Amazon SNS features without risking your
+     * reputation as an SMS sender. While your Amazon Web Services account is in
+     * the SMS sandbox, you can use all of the features of Amazon SNS. However,
+     * you can send SMS messages only to verified destination phone numbers. For
+     * more information, including how to move out of the sandbox to send
+     * messages without restrictions, see <a
      * href="https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html">SMS
      * sandbox</a> in the <i>Amazon SNS Developer Guide</i>.
      * </p>
@@ -2575,8 +2689,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * <p>
      * Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is
      * HTTP/S or email, or if the endpoint and the topic are not in the same
-     * account, the endpoint owner must run the <code>ConfirmSubscription</code>
-     * action to confirm the subscription.
+     * Amazon Web Services account, the endpoint owner must run the
+     * <code>ConfirmSubscription</code> action to confirm the subscription.
      * </p>
      * <p>
      * You call the <code>ConfirmSubscription</code> action with the token from
@@ -2736,7 +2850,7 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
     /**
      * <p>
      * Adds a statement to a topic's access control policy, granting access for
-     * the specified accounts to the specified actions.
+     * the specified Amazon Web Services accounts to the specified actions.
      * </p>
      * 
      * @param topicArn <p>
@@ -2747,9 +2861,10 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      *            A unique identifier for the new policy statement.
      *            </p>
      * @param aWSAccountIds <p>
-     *            The account IDs of the users (principals) who will be given
-     *            access to the specified actions. The users must have account,
-     *            but do not need to be signed up for this service.
+     *            The Amazon Web Services account IDs of the users (principals)
+     *            who will be given access to the specified actions. The users
+     *            must have Amazon Web Services account, but do not need to be
+     *            signed up for this service.
      *            </p>
      * @param actionNames <p>
      *            The action you want to allow for the specified principal(s).
@@ -3256,15 +3371,15 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * depends on the notification protocol for each subscribed endpoint.
      * </p>
      * <p>
-     * When a <code>messageId</code> is returned, the message has been saved and
-     * Amazon SNS will attempt to deliver it shortly.
+     * When a <code>messageId</code> is returned, the message is saved and
+     * Amazon SNS immediately deliverers it to subscribers.
      * </p>
      * <p>
-     * To use the <code>Publish</code> action for sending a message to a mobile
-     * endpoint, such as an app on a Kindle device or mobile phone, you must
-     * specify the EndpointArn for the TargetArn parameter. The EndpointArn is
-     * returned when making a call with the <code>CreatePlatformEndpoint</code>
-     * action.
+     * To use the <code>Publish</code> action for publishing a message to a
+     * mobile endpoint, such as an app on a Kindle device or mobile phone, you
+     * must specify the EndpointArn for the TargetArn parameter. The EndpointArn
+     * is returned when making a call with the
+     * <code>CreatePlatformEndpoint</code> action.
      * </p>
      * <p>
      * For more information about formatting messages, see <a href=
@@ -3274,7 +3389,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <important>
      * <p>
-     * You can publish messages only to topics and endpoints in the same Region.
+     * You can publish messages only to topics and endpoints in the same Amazon
+     * Web Services Region.
      * </p>
      * </important>
      * 
@@ -3431,15 +3547,15 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * depends on the notification protocol for each subscribed endpoint.
      * </p>
      * <p>
-     * When a <code>messageId</code> is returned, the message has been saved and
-     * Amazon SNS will attempt to deliver it shortly.
+     * When a <code>messageId</code> is returned, the message is saved and
+     * Amazon SNS immediately deliverers it to subscribers.
      * </p>
      * <p>
-     * To use the <code>Publish</code> action for sending a message to a mobile
-     * endpoint, such as an app on a Kindle device or mobile phone, you must
-     * specify the EndpointArn for the TargetArn parameter. The EndpointArn is
-     * returned when making a call with the <code>CreatePlatformEndpoint</code>
-     * action.
+     * To use the <code>Publish</code> action for publishing a message to a
+     * mobile endpoint, such as an app on a Kindle device or mobile phone, you
+     * must specify the EndpointArn for the TargetArn parameter. The EndpointArn
+     * is returned when making a call with the
+     * <code>CreatePlatformEndpoint</code> action.
      * </p>
      * <p>
      * For more information about formatting messages, see <a href=
@@ -3449,7 +3565,8 @@ public class AmazonSNSClient extends AmazonWebServiceClient implements AmazonSNS
      * </p>
      * <important>
      * <p>
-     * You can publish messages only to topics and endpoints in the same Region.
+     * You can publish messages only to topics and endpoints in the same Amazon
+     * Web Services Region.
      * </p>
      * </important>
      * 
