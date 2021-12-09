@@ -20,31 +20,26 @@ import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.json.AwsJsonWriter;
 
 /**
- * JSON marshaller for POJO ParallelDataDataLocation
+ * JSON marshaller for POJO TranslationSettings
  */
-class ParallelDataDataLocationJsonMarshaller {
+class TranslationSettingsJsonMarshaller {
 
-    public void marshall(ParallelDataDataLocation parallelDataDataLocation, AwsJsonWriter jsonWriter)
+    public void marshall(TranslationSettings translationSettings, AwsJsonWriter jsonWriter)
             throws Exception {
         jsonWriter.beginObject();
-        if (parallelDataDataLocation.getRepositoryType() != null) {
-            String repositoryType = parallelDataDataLocation.getRepositoryType();
-            jsonWriter.name("RepositoryType");
-            jsonWriter.value(repositoryType);
-        }
-        if (parallelDataDataLocation.getLocation() != null) {
-            String location = parallelDataDataLocation.getLocation();
-            jsonWriter.name("Location");
-            jsonWriter.value(location);
+        if (translationSettings.getProfanity() != null) {
+            String profanity = translationSettings.getProfanity();
+            jsonWriter.name("Profanity");
+            jsonWriter.value(profanity);
         }
         jsonWriter.endObject();
     }
 
-    private static ParallelDataDataLocationJsonMarshaller instance;
+    private static TranslationSettingsJsonMarshaller instance;
 
-    public static ParallelDataDataLocationJsonMarshaller getInstance() {
+    public static TranslationSettingsJsonMarshaller getInstance() {
         if (instance == null)
-            instance = new ParallelDataDataLocationJsonMarshaller();
+            instance = new TranslationSettingsJsonMarshaller();
         return instance;
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -79,6 +79,14 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
      * <b>Length: </b>2 - 5<br/>
      */
     private String targetLanguageCode;
+
+    /**
+     * <p>
+     * Settings to configure your translation output, including the option to
+     * mask profane words and phrases.
+     * </p>
+     */
+    private TranslationSettings settings;
 
     /**
      * <p>
@@ -424,6 +432,57 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
     }
 
     /**
+     * <p>
+     * Settings to configure your translation output, including the option to
+     * mask profane words and phrases.
+     * </p>
+     *
+     * @return <p>
+     *         Settings to configure your translation output, including the
+     *         option to mask profane words and phrases.
+     *         </p>
+     */
+    public TranslationSettings getSettings() {
+        return settings;
+    }
+
+    /**
+     * <p>
+     * Settings to configure your translation output, including the option to
+     * mask profane words and phrases.
+     * </p>
+     *
+     * @param settings <p>
+     *            Settings to configure your translation output, including the
+     *            option to mask profane words and phrases.
+     *            </p>
+     */
+    public void setSettings(TranslationSettings settings) {
+        this.settings = settings;
+    }
+
+    /**
+     * <p>
+     * Settings to configure your translation output, including the option to
+     * mask profane words and phrases.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param settings <p>
+     *            Settings to configure your translation output, including the
+     *            option to mask profane words and phrases.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TranslateTextRequest withSettings(TranslationSettings settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -441,7 +500,9 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
         if (getSourceLanguageCode() != null)
             sb.append("SourceLanguageCode: " + getSourceLanguageCode() + ",");
         if (getTargetLanguageCode() != null)
-            sb.append("TargetLanguageCode: " + getTargetLanguageCode());
+            sb.append("TargetLanguageCode: " + getTargetLanguageCode() + ",");
+        if (getSettings() != null)
+            sb.append("Settings: " + getSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -458,6 +519,7 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
                 + ((getSourceLanguageCode() == null) ? 0 : getSourceLanguageCode().hashCode());
         hashCode = prime * hashCode
                 + ((getTargetLanguageCode() == null) ? 0 : getTargetLanguageCode().hashCode());
+        hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         return hashCode;
     }
 
@@ -490,6 +552,10 @@ public class TranslateTextRequest extends AmazonWebServiceRequest implements Ser
             return false;
         if (other.getTargetLanguageCode() != null
                 && other.getTargetLanguageCode().equals(this.getTargetLanguageCode()) == false)
+            return false;
+        if (other.getSettings() == null ^ this.getSettings() == null)
+            return false;
+        if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ import com.amazonaws.http.HttpMethodName;
 import com.amazonaws.services.translate.model.*;
 import com.amazonaws.transform.Marshaller;
 import com.amazonaws.util.BinaryUtils;
+import com.amazonaws.util.DateUtils;
 import com.amazonaws.util.StringUtils;
 import com.amazonaws.util.StringInputStream;
 import com.amazonaws.util.json.AwsJsonWriter;
@@ -129,6 +130,11 @@ public class StartTextTranslationJobRequestMarshaller implements
                 String clientToken = startTextTranslationJobRequest.getClientToken();
                 jsonWriter.name("ClientToken");
                 jsonWriter.value(clientToken);
+            }
+            if (startTextTranslationJobRequest.getSettings() != null) {
+                TranslationSettings settings = startTextTranslationJobRequest.getSettings();
+                jsonWriter.name("Settings");
+                TranslationSettingsJsonMarshaller.getInstance().marshall(settings, jsonWriter);
             }
 
             jsonWriter.endObject();

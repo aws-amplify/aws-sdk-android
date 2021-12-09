@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -83,6 +83,26 @@ class TerminologyPropertiesJsonMarshaller {
             java.util.Date lastUpdatedAt = terminologyProperties.getLastUpdatedAt();
             jsonWriter.name("LastUpdatedAt");
             jsonWriter.value(lastUpdatedAt);
+        }
+        if (terminologyProperties.getDirectionality() != null) {
+            String directionality = terminologyProperties.getDirectionality();
+            jsonWriter.name("Directionality");
+            jsonWriter.value(directionality);
+        }
+        if (terminologyProperties.getMessage() != null) {
+            String message = terminologyProperties.getMessage();
+            jsonWriter.name("Message");
+            jsonWriter.value(message);
+        }
+        if (terminologyProperties.getSkippedTermCount() != null) {
+            Integer skippedTermCount = terminologyProperties.getSkippedTermCount();
+            jsonWriter.name("SkippedTermCount");
+            jsonWriter.value(skippedTermCount);
+        }
+        if (terminologyProperties.getFormat() != null) {
+            String format = terminologyProperties.getFormat();
+            jsonWriter.name("Format");
+            jsonWriter.value(format);
         }
         jsonWriter.endObject();
     }

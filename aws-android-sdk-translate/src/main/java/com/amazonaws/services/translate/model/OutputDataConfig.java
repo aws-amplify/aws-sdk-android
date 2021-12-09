@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -35,6 +35,13 @@ public class OutputDataConfig implements Serializable {
      * <b>Pattern: </b>s3://[a-z0-9][\.\-a-z0-9]{1,61}[a-z0-9](/.*)?<br/>
      */
     private String s3Uri;
+
+    /**
+     * <p>
+     * The encryption key used to encrypt this object.
+     * </p>
+     */
+    private EncryptionKey encryptionKey;
 
     /**
      * <p>
@@ -106,6 +113,51 @@ public class OutputDataConfig implements Serializable {
     }
 
     /**
+     * <p>
+     * The encryption key used to encrypt this object.
+     * </p>
+     *
+     * @return <p>
+     *         The encryption key used to encrypt this object.
+     *         </p>
+     */
+    public EncryptionKey getEncryptionKey() {
+        return encryptionKey;
+    }
+
+    /**
+     * <p>
+     * The encryption key used to encrypt this object.
+     * </p>
+     *
+     * @param encryptionKey <p>
+     *            The encryption key used to encrypt this object.
+     *            </p>
+     */
+    public void setEncryptionKey(EncryptionKey encryptionKey) {
+        this.encryptionKey = encryptionKey;
+    }
+
+    /**
+     * <p>
+     * The encryption key used to encrypt this object.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param encryptionKey <p>
+     *            The encryption key used to encrypt this object.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public OutputDataConfig withEncryptionKey(EncryptionKey encryptionKey) {
+        this.encryptionKey = encryptionKey;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -117,7 +169,9 @@ public class OutputDataConfig implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         if (getS3Uri() != null)
-            sb.append("S3Uri: " + getS3Uri());
+            sb.append("S3Uri: " + getS3Uri() + ",");
+        if (getEncryptionKey() != null)
+            sb.append("EncryptionKey: " + getEncryptionKey());
         sb.append("}");
         return sb.toString();
     }
@@ -128,6 +182,8 @@ public class OutputDataConfig implements Serializable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getS3Uri() == null) ? 0 : getS3Uri().hashCode());
+        hashCode = prime * hashCode
+                + ((getEncryptionKey() == null) ? 0 : getEncryptionKey().hashCode());
         return hashCode;
     }
 
@@ -145,6 +201,11 @@ public class OutputDataConfig implements Serializable {
         if (other.getS3Uri() == null ^ this.getS3Uri() == null)
             return false;
         if (other.getS3Uri() != null && other.getS3Uri().equals(this.getS3Uri()) == false)
+            return false;
+        if (other.getEncryptionKey() == null ^ this.getEncryptionKey() == null)
+            return false;
+        if (other.getEncryptionKey() != null
+                && other.getEncryptionKey().equals(this.getEncryptionKey()) == false)
             return false;
         return true;
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -102,8 +102,8 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      */
     private String message;
@@ -150,6 +150,13 @@ public class TextTranslationJobProperties implements Serializable {
      * <b>Pattern: </b>arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+<br/>
      */
     private String dataAccessRoleArn;
+
+    /**
+     * <p>
+     * Settings that configure the translation output.
+     * </p>
+     */
+    private TranslationSettings settings;
 
     /**
      * <p>
@@ -737,12 +744,12 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      *
      * @return <p>
-     *         An explanation of any errors that may have occured during the
+     *         An explanation of any errors that may have occurred during the
      *         translation job.
      *         </p>
      */
@@ -752,12 +759,12 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      *
      * @param message <p>
-     *            An explanation of any errors that may have occured during the
+     *            An explanation of any errors that may have occurred during the
      *            translation job.
      *            </p>
      */
@@ -767,15 +774,15 @@ public class TextTranslationJobProperties implements Serializable {
 
     /**
      * <p>
-     * An explanation of any errors that may have occured during the translation
-     * job.
+     * An explanation of any errors that may have occurred during the
+     * translation job.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
      *
      * @param message <p>
-     *            An explanation of any errors that may have occured during the
+     *            An explanation of any errors that may have occurred during the
      *            translation job.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1048,6 +1055,51 @@ public class TextTranslationJobProperties implements Serializable {
     }
 
     /**
+     * <p>
+     * Settings that configure the translation output.
+     * </p>
+     *
+     * @return <p>
+     *         Settings that configure the translation output.
+     *         </p>
+     */
+    public TranslationSettings getSettings() {
+        return settings;
+    }
+
+    /**
+     * <p>
+     * Settings that configure the translation output.
+     * </p>
+     *
+     * @param settings <p>
+     *            Settings that configure the translation output.
+     *            </p>
+     */
+    public void setSettings(TranslationSettings settings) {
+        this.settings = settings;
+    }
+
+    /**
+     * <p>
+     * Settings that configure the translation output.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param settings <p>
+     *            Settings that configure the translation output.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public TextTranslationJobProperties withSettings(TranslationSettings settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and
      * debugging.
      *
@@ -1085,7 +1137,9 @@ public class TextTranslationJobProperties implements Serializable {
         if (getOutputDataConfig() != null)
             sb.append("OutputDataConfig: " + getOutputDataConfig() + ",");
         if (getDataAccessRoleArn() != null)
-            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn());
+            sb.append("DataAccessRoleArn: " + getDataAccessRoleArn() + ",");
+        if (getSettings() != null)
+            sb.append("Settings: " + getSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -1117,6 +1171,7 @@ public class TextTranslationJobProperties implements Serializable {
                 + ((getOutputDataConfig() == null) ? 0 : getOutputDataConfig().hashCode());
         hashCode = prime * hashCode
                 + ((getDataAccessRoleArn() == null) ? 0 : getDataAccessRoleArn().hashCode());
+        hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         return hashCode;
     }
 
@@ -1196,6 +1251,10 @@ public class TextTranslationJobProperties implements Serializable {
             return false;
         if (other.getDataAccessRoleArn() != null
                 && other.getDataAccessRoleArn().equals(this.getDataAccessRoleArn()) == false)
+            return false;
+        if (other.getSettings() == null ^ this.getSettings() == null)
+            return false;
+        if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
             return false;
         return true;
     }

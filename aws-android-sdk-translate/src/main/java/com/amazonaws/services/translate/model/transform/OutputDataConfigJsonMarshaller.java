@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -31,6 +31,11 @@ class OutputDataConfigJsonMarshaller {
             String s3Uri = outputDataConfig.getS3Uri();
             jsonWriter.name("S3Uri");
             jsonWriter.value(s3Uri);
+        }
+        if (outputDataConfig.getEncryptionKey() != null) {
+            EncryptionKey encryptionKey = outputDataConfig.getEncryptionKey();
+            jsonWriter.name("EncryptionKey");
+            EncryptionKeyJsonMarshaller.getInstance().marshall(encryptionKey, jsonWriter);
         }
         jsonWriter.endObject();
     }
