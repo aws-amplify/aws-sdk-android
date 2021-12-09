@@ -39,7 +39,9 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     private String instanceId;
 
     /**
-     * <p/>
+     * <p>
+     * The integration type.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
@@ -127,13 +129,17 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * <p/>
+     * <p>
+     * The integration type.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
      * WISDOM_KNOWLEDGE_BASE
      *
-     * @return <p/>
+     * @return <p>
+     *         The integration type.
+     *         </p>
      * @see IntegrationType
      */
     public String getIntegrationType() {
@@ -141,13 +147,17 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * <p/>
+     * <p>
+     * The integration type.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
      * WISDOM_KNOWLEDGE_BASE
      *
-     * @param integrationType <p/>
+     * @param integrationType <p>
+     *            The integration type.
+     *            </p>
      * @see IntegrationType
      */
     public void setIntegrationType(String integrationType) {
@@ -155,7 +165,9 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * <p/>
+     * <p>
+     * The integration type.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -164,7 +176,9 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
      * WISDOM_KNOWLEDGE_BASE
      *
-     * @param integrationType <p/>
+     * @param integrationType <p>
+     *            The integration type.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see IntegrationType
@@ -175,13 +189,17 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * <p/>
+     * <p>
+     * The integration type.
+     * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
      * WISDOM_KNOWLEDGE_BASE
      *
-     * @param integrationType <p/>
+     * @param integrationType <p>
+     *            The integration type.
+     *            </p>
      * @see IntegrationType
      */
     public void setIntegrationType(IntegrationType integrationType) {
@@ -189,7 +207,9 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
     }
 
     /**
-     * <p/>
+     * <p>
+     * The integration type.
+     * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
      * together.
@@ -198,7 +218,9 @@ public class ListIntegrationAssociationsRequest extends AmazonWebServiceRequest 
      * <b>Allowed Values: </b>EVENT, VOICE_ID, PINPOINT_APP, WISDOM_ASSISTANT,
      * WISDOM_KNOWLEDGE_BASE
      *
-     * @param integrationType <p/>
+     * @param integrationType <p>
+     *            The integration type.
+     *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
      * @see IntegrationType

@@ -68,6 +68,16 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     */
+    private String state;
+
+    /**
+     * <p>
      * The description of the contact flow.
      * </p>
      */
@@ -389,6 +399,103 @@ public class ContactFlow implements Serializable {
 
     /**
      * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @return <p>
+     *         The type of contact flow.
+     *         </p>
+     * @see ContactFlowState
+     */
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param state <p>
+     *            The type of contact flow.
+     *            </p>
+     * @see ContactFlowState
+     */
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param state <p>
+     *            The type of contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowState
+     */
+    public ContactFlow withState(String state) {
+        this.state = state;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param state <p>
+     *            The type of contact flow.
+     *            </p>
+     * @see ContactFlowState
+     */
+    public void setState(ContactFlowState state) {
+        this.state = state.toString();
+    }
+
+    /**
+     * <p>
+     * The type of contact flow.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     * <p>
+     * <b>Constraints:</b><br/>
+     * <b>Allowed Values: </b>ACTIVE, ARCHIVED
+     *
+     * @param state <p>
+     *            The type of contact flow.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     * @see ContactFlowState
+     */
+    public ContactFlow withState(ContactFlowState state) {
+        this.state = state.toString();
+        return this;
+    }
+
+    /**
+     * <p>
      * The description of the contact flow.
      * </p>
      *
@@ -576,6 +683,8 @@ public class ContactFlow implements Serializable {
             sb.append("Name: " + getName() + ",");
         if (getType() != null)
             sb.append("Type: " + getType() + ",");
+        if (getState() != null)
+            sb.append("State: " + getState() + ",");
         if (getDescription() != null)
             sb.append("Description: " + getDescription() + ",");
         if (getContent() != null)
@@ -595,6 +704,7 @@ public class ContactFlow implements Serializable {
         hashCode = prime * hashCode + ((getId() == null) ? 0 : getId().hashCode());
         hashCode = prime * hashCode + ((getName() == null) ? 0 : getName().hashCode());
         hashCode = prime * hashCode + ((getType() == null) ? 0 : getType().hashCode());
+        hashCode = prime * hashCode + ((getState() == null) ? 0 : getState().hashCode());
         hashCode = prime * hashCode
                 + ((getDescription() == null) ? 0 : getDescription().hashCode());
         hashCode = prime * hashCode + ((getContent() == null) ? 0 : getContent().hashCode());
@@ -628,6 +738,10 @@ public class ContactFlow implements Serializable {
         if (other.getType() == null ^ this.getType() == null)
             return false;
         if (other.getType() != null && other.getType().equals(this.getType()) == false)
+            return false;
+        if (other.getState() == null ^ this.getState() == null)
+            return false;
+        if (other.getState() != null && other.getState().equals(this.getState()) == false)
             return false;
         if (other.getDescription() == null ^ this.getDescription() == null)
             return false;

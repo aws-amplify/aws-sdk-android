@@ -47,6 +47,9 @@ class ContactFlowJsonUnmarshaller implements Unmarshaller<ContactFlow, JsonUnmar
             } else if (name.equals("Type")) {
                 contactFlow.setType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("State")) {
+                contactFlow.setState(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else if (name.equals("Description")) {
                 contactFlow.setDescription(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));

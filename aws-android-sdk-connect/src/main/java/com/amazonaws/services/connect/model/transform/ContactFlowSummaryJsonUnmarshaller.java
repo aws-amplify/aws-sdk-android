@@ -48,6 +48,9 @@ class ContactFlowSummaryJsonUnmarshaller implements
             } else if (name.equals("ContactFlowType")) {
                 contactFlowSummary.setContactFlowType(StringJsonUnmarshaller.getInstance()
                         .unmarshall(context));
+            } else if (name.equals("ContactFlowState")) {
+                contactFlowSummary.setContactFlowState(StringJsonUnmarshaller.getInstance()
+                        .unmarshall(context));
             } else {
                 reader.skipValue();
             }

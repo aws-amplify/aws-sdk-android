@@ -46,6 +46,11 @@ class ContactFlowJsonMarshaller {
             jsonWriter.name("Type");
             jsonWriter.value(type);
         }
+        if (contactFlow.getState() != null) {
+            String state = contactFlow.getState();
+            jsonWriter.name("State");
+            jsonWriter.value(state);
+        }
         if (contactFlow.getDescription() != null) {
             String description = contactFlow.getDescription();
             jsonWriter.name("Description");

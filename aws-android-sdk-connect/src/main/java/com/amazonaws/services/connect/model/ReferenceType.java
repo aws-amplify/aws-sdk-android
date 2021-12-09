@@ -23,7 +23,8 @@ import java.util.Map;
  */
 public enum ReferenceType {
 
-    URL("URL");
+    URL("URL"),
+    ATTACHMENT("ATTACHMENT");
 
     private String value;
 
@@ -40,6 +41,7 @@ public enum ReferenceType {
     static {
         enumMap = new HashMap<String, ReferenceType>();
         enumMap.put("URL", URL);
+        enumMap.put("ATTACHMENT", ATTACHMENT);
     }
 
     /**
