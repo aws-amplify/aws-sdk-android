@@ -46,14 +46,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      */
     private String languageCode;
 
@@ -198,7 +199,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -216,6 +217,14 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Pattern: </b>^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$<br/>
      */
     private String outputEncryptionKMSKeyId;
+
+    /**
+     * <p>
+     * A map of plain text, non-secret key:value pairs, known as encryption
+     * context pairs, that provide an added layer of security for your data.
+     * </p>
+     */
+    private java.util.Map<String, String> kMSEncryptionContext;
 
     /**
      * <p>
@@ -268,10 +277,33 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      */
     private java.util.List<String> languageOptions;
+
+    /**
+     * <p>
+     * Add subtitles to your batch transcription job.
+     * </p>
+     */
+    private Subtitles subtitles;
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe transcription job.
+     * </p>
+     */
+    private java.util.List<Tag> tags;
+
+    /**
+     * <p>
+     * The language identification settings associated with your transcription
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     */
+    private java.util.Map<String, LanguageIdSettings> languageIdSettings;
 
     /**
      * <p>
@@ -363,21 +395,22 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @return <p>
      *         The language code for the language used in the input media file.
      *         </p>
      *         <p>
      *         To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *         audio or video file must be encoded at a sample rate of 16000 Hz
+     *         audio or video file must be encoded at a sample rate of 16,000 Hz
      *         or higher.
      *         </p>
      * @see LanguageCode
@@ -392,14 +425,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -407,7 +441,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      * @see LanguageCode
@@ -422,7 +456,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -432,7 +466,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -440,7 +475,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -458,14 +493,15 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -473,7 +509,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      * @see LanguageCode
@@ -488,7 +524,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -498,7 +534,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <b>Allowed Values: </b>af-ZA, ar-AE, ar-SA, cy-GB, da-DK, de-CH, de-DE,
      * en-AB, en-AU, en-GB, en-IE, en-IN, en-US, en-WL, es-ES, es-US, fa-IR,
      * fr-CA, fr-FR, ga-IE, gd-GB, he-IL, hi-IN, id-ID, it-IT, ja-JP, ko-KR,
-     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN
+     * ms-MY, nl-NL, pt-BR, pt-PT, ru-RU, ta-IN, te-IN, tr-TR, zh-CN, zh-TW,
+     * th-TH, en-ZA, en-NZ
      *
      * @param languageCode <p>
      *            The language code for the language used in the input media
@@ -506,7 +543,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1216,7 +1253,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -1270,7 +1307,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         <li>
      *         <p>
      *         ARN of a KMS Key Alias:
-     *         "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *         "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      *         </p>
      *         </li>
      *         </ul>
@@ -1326,7 +1363,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -1380,7 +1417,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            <li>
      *            <p>
      *            ARN of a KMS Key Alias:
-     *            "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *            "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      *            </p>
      *            </li>
      *            </ul>
@@ -1436,7 +1473,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * <li>
      * <p>
      * ARN of a KMS Key Alias:
-     * "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     * "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      * </p>
      * </li>
      * </ul>
@@ -1493,7 +1530,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            <li>
      *            <p>
      *            ARN of a KMS Key Alias:
-     *            "arn:aws:kms:region:account ID:alias/ExampleAlias"
+     *            "arn:aws:kms:region:account-ID:alias/ExampleAlias"
      *            </p>
      *            </li>
      *            </ul>
@@ -1512,6 +1549,99 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      */
     public StartTranscriptionJobRequest withOutputEncryptionKMSKeyId(String outputEncryptionKMSKeyId) {
         this.outputEncryptionKMSKeyId = outputEncryptionKMSKeyId;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A map of plain text, non-secret key:value pairs, known as encryption
+     * context pairs, that provide an added layer of security for your data.
+     * </p>
+     *
+     * @return <p>
+     *         A map of plain text, non-secret key:value pairs, known as
+     *         encryption context pairs, that provide an added layer of security
+     *         for your data.
+     *         </p>
+     */
+    public java.util.Map<String, String> getKMSEncryptionContext() {
+        return kMSEncryptionContext;
+    }
+
+    /**
+     * <p>
+     * A map of plain text, non-secret key:value pairs, known as encryption
+     * context pairs, that provide an added layer of security for your data.
+     * </p>
+     *
+     * @param kMSEncryptionContext <p>
+     *            A map of plain text, non-secret key:value pairs, known as
+     *            encryption context pairs, that provide an added layer of
+     *            security for your data.
+     *            </p>
+     */
+    public void setKMSEncryptionContext(java.util.Map<String, String> kMSEncryptionContext) {
+        this.kMSEncryptionContext = kMSEncryptionContext;
+    }
+
+    /**
+     * <p>
+     * A map of plain text, non-secret key:value pairs, known as encryption
+     * context pairs, that provide an added layer of security for your data.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param kMSEncryptionContext <p>
+     *            A map of plain text, non-secret key:value pairs, known as
+     *            encryption context pairs, that provide an added layer of
+     *            security for your data.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withKMSEncryptionContext(
+            java.util.Map<String, String> kMSEncryptionContext) {
+        this.kMSEncryptionContext = kMSEncryptionContext;
+        return this;
+    }
+
+    /**
+     * <p>
+     * A map of plain text, non-secret key:value pairs, known as encryption
+     * context pairs, that provide an added layer of security for your data.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into KMSEncryptionContext parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into KMSEncryptionContext.
+     * @param value The corresponding value of the entry to be added into
+     *            KMSEncryptionContext.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest addKMSEncryptionContextEntry(String key, String value) {
+        if (null == this.kMSEncryptionContext) {
+            this.kMSEncryptionContext = new java.util.HashMap<String, String>();
+        }
+        if (this.kMSEncryptionContext.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.kMSEncryptionContext.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into KMSEncryptionContext.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public StartTranscriptionJobRequest clearKMSEncryptionContextEntries() {
+        this.kMSEncryptionContext = null;
         return this;
     }
 
@@ -1823,7 +1953,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      *
      * @return <p>
@@ -1834,7 +1964,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *         </p>
      *         <p>
      *         To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *         audio or video file must be encoded at a sample rate of 16000 Hz
+     *         audio or video file must be encoded at a sample rate of 16,000 Hz
      *         or higher.
      *         </p>
      */
@@ -1850,7 +1980,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      *
      * @param languageOptions <p>
@@ -1861,7 +1991,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      */
@@ -1882,7 +2012,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1896,7 +2026,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1920,7 +2050,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      * </p>
      * <p>
      * To transcribe speech in Modern Standard Arabic (ar-SA), your audio or
-     * video file must be encoded at a sample rate of 16000 Hz or higher.
+     * video file must be encoded at a sample rate of 16,000 Hz or higher.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -1934,7 +2064,7 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
      *            </p>
      *            <p>
      *            To transcribe speech in Modern Standard Arabic (ar-SA), your
-     *            audio or video file must be encoded at a sample rate of 16000
+     *            audio or video file must be encoded at a sample rate of 16,000
      *            Hz or higher.
      *            </p>
      * @return A reference to this updated object so that method calls can be
@@ -1943,6 +2073,226 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
     public StartTranscriptionJobRequest withLanguageOptions(
             java.util.Collection<String> languageOptions) {
         setLanguageOptions(languageOptions);
+        return this;
+    }
+
+    /**
+     * <p>
+     * Add subtitles to your batch transcription job.
+     * </p>
+     *
+     * @return <p>
+     *         Add subtitles to your batch transcription job.
+     *         </p>
+     */
+    public Subtitles getSubtitles() {
+        return subtitles;
+    }
+
+    /**
+     * <p>
+     * Add subtitles to your batch transcription job.
+     * </p>
+     *
+     * @param subtitles <p>
+     *            Add subtitles to your batch transcription job.
+     *            </p>
+     */
+    public void setSubtitles(Subtitles subtitles) {
+        this.subtitles = subtitles;
+    }
+
+    /**
+     * <p>
+     * Add subtitles to your batch transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param subtitles <p>
+     *            Add subtitles to your batch transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withSubtitles(Subtitles subtitles) {
+        this.subtitles = subtitles;
+        return this;
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe transcription job.
+     * </p>
+     *
+     * @return <p>
+     *         Add tags to an Amazon Transcribe transcription job.
+     *         </p>
+     */
+    public java.util.List<Tag> getTags() {
+        return tags;
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe transcription job.
+     * </p>
+     *
+     * @param tags <p>
+     *            Add tags to an Amazon Transcribe transcription job.
+     *            </p>
+     */
+    public void setTags(java.util.Collection<Tag> tags) {
+        if (tags == null) {
+            this.tags = null;
+            return;
+        }
+
+        this.tags = new java.util.ArrayList<Tag>(tags);
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Add tags to an Amazon Transcribe transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withTags(Tag... tags) {
+        if (getTags() == null) {
+            this.tags = new java.util.ArrayList<Tag>(tags.length);
+        }
+        for (Tag value : tags) {
+            this.tags.add(value);
+        }
+        return this;
+    }
+
+    /**
+     * <p>
+     * Add tags to an Amazon Transcribe transcription job.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param tags <p>
+     *            Add tags to an Amazon Transcribe transcription job.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withTags(java.util.Collection<Tag> tags) {
+        setTags(tags);
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your transcription
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     *
+     * @return <p>
+     *         The language identification settings associated with your
+     *         transcription job. These settings include
+     *         <code>VocabularyName</code>, <code>VocabularyFilterName</code>,
+     *         and <code>LanguageModelName</code>.
+     *         </p>
+     */
+    public java.util.Map<String, LanguageIdSettings> getLanguageIdSettings() {
+        return languageIdSettings;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your transcription
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     *
+     * @param languageIdSettings <p>
+     *            The language identification settings associated with your
+     *            transcription job. These settings include
+     *            <code>VocabularyName</code>, <code>VocabularyFilterName</code>
+     *            , and <code>LanguageModelName</code>.
+     *            </p>
+     */
+    public void setLanguageIdSettings(java.util.Map<String, LanguageIdSettings> languageIdSettings) {
+        this.languageIdSettings = languageIdSettings;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your transcription
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     *
+     * @param languageIdSettings <p>
+     *            The language identification settings associated with your
+     *            transcription job. These settings include
+     *            <code>VocabularyName</code>, <code>VocabularyFilterName</code>
+     *            , and <code>LanguageModelName</code>.
+     *            </p>
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest withLanguageIdSettings(
+            java.util.Map<String, LanguageIdSettings> languageIdSettings) {
+        this.languageIdSettings = languageIdSettings;
+        return this;
+    }
+
+    /**
+     * <p>
+     * The language identification settings associated with your transcription
+     * job. These settings include <code>VocabularyName</code>,
+     * <code>VocabularyFilterName</code>, and <code>LanguageModelName</code>.
+     * </p>
+     * <p>
+     * The method adds a new key-value pair into LanguageIdSettings parameter,
+     * and returns a reference to this object so that method calls can be
+     * chained together.
+     *
+     * @param key The key of the entry to be added into LanguageIdSettings.
+     * @param value The corresponding value of the entry to be added into
+     *            LanguageIdSettings.
+     * @return A reference to this updated object so that method calls can be
+     *         chained together.
+     */
+    public StartTranscriptionJobRequest addLanguageIdSettingsEntry(String key,
+            LanguageIdSettings value) {
+        if (null == this.languageIdSettings) {
+            this.languageIdSettings = new java.util.HashMap<String, LanguageIdSettings>();
+        }
+        if (this.languageIdSettings.containsKey(key))
+            throw new IllegalArgumentException("Duplicated keys (" + key.toString()
+                    + ") are provided.");
+        this.languageIdSettings.put(key, value);
+        return this;
+    }
+
+    /**
+     * Removes all the entries added into LanguageIdSettings.
+     * <p>
+     * Returns a reference to this object so that method calls can be chained
+     * together.
+     */
+    public StartTranscriptionJobRequest clearLanguageIdSettingsEntries() {
+        this.languageIdSettings = null;
         return this;
     }
 
@@ -1973,6 +2323,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             sb.append("OutputKey: " + getOutputKey() + ",");
         if (getOutputEncryptionKMSKeyId() != null)
             sb.append("OutputEncryptionKMSKeyId: " + getOutputEncryptionKMSKeyId() + ",");
+        if (getKMSEncryptionContext() != null)
+            sb.append("KMSEncryptionContext: " + getKMSEncryptionContext() + ",");
         if (getSettings() != null)
             sb.append("Settings: " + getSettings() + ",");
         if (getModelSettings() != null)
@@ -1984,7 +2336,13 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (getIdentifyLanguage() != null)
             sb.append("IdentifyLanguage: " + getIdentifyLanguage() + ",");
         if (getLanguageOptions() != null)
-            sb.append("LanguageOptions: " + getLanguageOptions());
+            sb.append("LanguageOptions: " + getLanguageOptions() + ",");
+        if (getSubtitles() != null)
+            sb.append("Subtitles: " + getSubtitles() + ",");
+        if (getTags() != null)
+            sb.append("Tags: " + getTags() + ",");
+        if (getLanguageIdSettings() != null)
+            sb.append("LanguageIdSettings: " + getLanguageIdSettings());
         sb.append("}");
         return sb.toString();
     }
@@ -2010,6 +2368,8 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
                 * hashCode
                 + ((getOutputEncryptionKMSKeyId() == null) ? 0 : getOutputEncryptionKMSKeyId()
                         .hashCode());
+        hashCode = prime * hashCode
+                + ((getKMSEncryptionContext() == null) ? 0 : getKMSEncryptionContext().hashCode());
         hashCode = prime * hashCode + ((getSettings() == null) ? 0 : getSettings().hashCode());
         hashCode = prime * hashCode
                 + ((getModelSettings() == null) ? 0 : getModelSettings().hashCode());
@@ -2021,6 +2381,10 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
                 + ((getIdentifyLanguage() == null) ? 0 : getIdentifyLanguage().hashCode());
         hashCode = prime * hashCode
                 + ((getLanguageOptions() == null) ? 0 : getLanguageOptions().hashCode());
+        hashCode = prime * hashCode + ((getSubtitles() == null) ? 0 : getSubtitles().hashCode());
+        hashCode = prime * hashCode + ((getTags() == null) ? 0 : getTags().hashCode());
+        hashCode = prime * hashCode
+                + ((getLanguageIdSettings() == null) ? 0 : getLanguageIdSettings().hashCode());
         return hashCode;
     }
 
@@ -2075,6 +2439,11 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
         if (other.getOutputEncryptionKMSKeyId() != null
                 && other.getOutputEncryptionKMSKeyId().equals(this.getOutputEncryptionKMSKeyId()) == false)
             return false;
+        if (other.getKMSEncryptionContext() == null ^ this.getKMSEncryptionContext() == null)
+            return false;
+        if (other.getKMSEncryptionContext() != null
+                && other.getKMSEncryptionContext().equals(this.getKMSEncryptionContext()) == false)
+            return false;
         if (other.getSettings() == null ^ this.getSettings() == null)
             return false;
         if (other.getSettings() != null && other.getSettings().equals(this.getSettings()) == false)
@@ -2103,6 +2472,20 @@ public class StartTranscriptionJobRequest extends AmazonWebServiceRequest implem
             return false;
         if (other.getLanguageOptions() != null
                 && other.getLanguageOptions().equals(this.getLanguageOptions()) == false)
+            return false;
+        if (other.getSubtitles() == null ^ this.getSubtitles() == null)
+            return false;
+        if (other.getSubtitles() != null
+                && other.getSubtitles().equals(this.getSubtitles()) == false)
+            return false;
+        if (other.getTags() == null ^ this.getTags() == null)
+            return false;
+        if (other.getTags() != null && other.getTags().equals(this.getTags()) == false)
+            return false;
+        if (other.getLanguageIdSettings() == null ^ this.getLanguageIdSettings() == null)
+            return false;
+        if (other.getLanguageIdSettings() != null
+                && other.getLanguageIdSettings().equals(this.getLanguageIdSettings()) == false)
             return false;
         return true;
     }

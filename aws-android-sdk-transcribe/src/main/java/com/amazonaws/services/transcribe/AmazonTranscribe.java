@@ -145,7 +145,7 @@ public interface AmazonTranscribe {
 
     /**
      * <p>
-     * Creates a new custom vocabulary that you can use to change how Amazon
+     * Creates a new custom vocabulary that you can use to modify how Amazon
      * Transcribe Medical transcribes your audio file.
      * </p>
      * 
@@ -744,6 +744,32 @@ public interface AmazonTranscribe {
 
     /**
      * <p>
+     * Lists all tags associated with a given transcription job, vocabulary, or
+     * resource.
+     * </p>
+     * 
+     * @param listTagsForResourceRequest
+     * @return listTagsForResourceResult The response from the
+     *         ListTagsForResource service method, as returned by Amazon
+     *         Transcribe.
+     * @throws BadRequestException
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    ListTagsForResourceResult listTagsForResource(
+            ListTagsForResourceRequest listTagsForResourceRequest) throws AmazonClientException,
+            AmazonServiceException;
+
+    /**
+     * <p>
      * Lists transcription jobs with the specified status.
      * </p>
      * 
@@ -892,6 +918,54 @@ public interface AmazonTranscribe {
      */
     StartTranscriptionJobResult startTranscriptionJob(
             StartTranscriptionJobRequest startTranscriptionJobRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Tags an Amazon Transcribe resource with the given list of tags.
+     * </p>
+     * 
+     * @param tagResourceRequest
+     * @return tagResourceResult The response from the TagResource service
+     *         method, as returned by Amazon Transcribe.
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws NotFoundException
+     * @throws LimitExceededException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    TagResourceResult tagResource(TagResourceRequest tagResourceRequest)
+            throws AmazonClientException, AmazonServiceException;
+
+    /**
+     * <p>
+     * Removes specified tags from a specified Amazon Transcribe resource.
+     * </p>
+     * 
+     * @param untagResourceRequest
+     * @return untagResourceResult The response from the UntagResource service
+     *         method, as returned by Amazon Transcribe.
+     * @throws LimitExceededException
+     * @throws BadRequestException
+     * @throws ConflictException
+     * @throws NotFoundException
+     * @throws InternalFailureException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Transcribe indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    UntagResourceResult untagResource(UntagResourceRequest untagResourceRequest)
             throws AmazonClientException, AmazonServiceException;
 
     /**

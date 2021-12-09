@@ -124,6 +124,38 @@ class TranscriptionJobJsonMarshaller {
             jsonWriter.name("IdentifiedLanguageScore");
             jsonWriter.value(identifiedLanguageScore);
         }
+        if (transcriptionJob.getTags() != null) {
+            java.util.List<Tag> tags = transcriptionJob.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginArray();
+            for (Tag tagsItem : tags) {
+                if (tagsItem != null) {
+                    TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
+        if (transcriptionJob.getSubtitles() != null) {
+            SubtitlesOutput subtitles = transcriptionJob.getSubtitles();
+            jsonWriter.name("Subtitles");
+            SubtitlesOutputJsonMarshaller.getInstance().marshall(subtitles, jsonWriter);
+        }
+        if (transcriptionJob.getLanguageIdSettings() != null) {
+            java.util.Map<String, LanguageIdSettings> languageIdSettings = transcriptionJob
+                    .getLanguageIdSettings();
+            jsonWriter.name("LanguageIdSettings");
+            jsonWriter.beginObject();
+            for (java.util.Map.Entry<String, LanguageIdSettings> languageIdSettingsEntry : languageIdSettings
+                    .entrySet()) {
+                LanguageIdSettings languageIdSettingsValue = languageIdSettingsEntry.getValue();
+                if (languageIdSettingsValue != null) {
+                    jsonWriter.name(languageIdSettingsEntry.getKey());
+                    LanguageIdSettingsJsonMarshaller.getInstance().marshall(
+                            languageIdSettingsValue, jsonWriter);
+                }
+            }
+            jsonWriter.endObject();
+        }
         jsonWriter.endObject();
     }
 

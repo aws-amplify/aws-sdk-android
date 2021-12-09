@@ -104,6 +104,17 @@ class MedicalTranscriptionJobJsonMarshaller {
             jsonWriter.name("Type");
             jsonWriter.value(type);
         }
+        if (medicalTranscriptionJob.getTags() != null) {
+            java.util.List<Tag> tags = medicalTranscriptionJob.getTags();
+            jsonWriter.name("Tags");
+            jsonWriter.beginArray();
+            for (Tag tagsItem : tags) {
+                if (tagsItem != null) {
+                    TagJsonMarshaller.getInstance().marshall(tagsItem, jsonWriter);
+                }
+            }
+            jsonWriter.endArray();
+        }
         jsonWriter.endObject();
     }
 
