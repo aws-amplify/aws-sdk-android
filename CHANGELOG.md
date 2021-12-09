@@ -1,3 +1,22 @@
+## [Release 2.37.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.37.0)
+
+### Features
+- **aws-android-sdk-location:** update models to latest (#2739)
+- **aws-android-sdk-rekognition:** update models to latest (#2736)
+- **aws-android-sdk-textract:** update models to latest (#2733)
+- **aws-android-sdk-lambda:** update models to latest (#2731)
+- **aws-android-sdk-translate:** update models to latest (#2730)
+- **aws-android-sdk-core:** update models to latest (#2725)
+- **aws-android-sdk-connect:** update models to latest (#2722)
+- **aws-android-sdk-sns:** update models to latest (#2714)
+- **aws-android-sdk-connectparticipant:** update models to latest (#2691)
+- **aws-android-sdk-transcribe:** update models to latest (#2684)
+
+### Bug Fixes
+- **Pinpoint:** Add Immutable flag to PendingIntent (#2729)
+
+[See all changes between 2.36.0 and 2.37.0](https://github.com/aws-amplify/aws-sdk-android/compare/release_v2.36.0...release_v2.37.0)
+
 ## [Release 2.36.0](https://github.com/aws-amplify/aws-sdk-android/releases/tag/release_v2.36.0)
 
 ### Features
