@@ -1,5 +1,5 @@
 /*
- * Copyright 2010-2020 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2010-2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -20,8 +20,10 @@ import java.io.Serializable;
 public class GetAttachmentResult implements Serializable {
     /**
      * <p>
-     * The pre-signed URL using which file would be downloaded from Amazon S3 by
-     * the API caller.
+     * This is the pre-signed URL that can be used for uploading the file to
+     * Amazon S3 when used in response to <a href=
+     * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     * >StartAttachmentUpload</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -40,16 +42,20 @@ public class GetAttachmentResult implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL using which file would be downloaded from Amazon S3 by
-     * the API caller.
+     * This is the pre-signed URL that can be used for uploading the file to
+     * Amazon S3 when used in response to <a href=
+     * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     * >StartAttachmentUpload</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
      *
      * @return <p>
-     *         The pre-signed URL using which file would be downloaded from
-     *         Amazon S3 by the API caller.
+     *         This is the pre-signed URL that can be used for uploading the
+     *         file to Amazon S3 when used in response to <a href=
+     *         "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     *         >StartAttachmentUpload</a>.
      *         </p>
      */
     public String getUrl() {
@@ -58,16 +64,20 @@ public class GetAttachmentResult implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL using which file would be downloaded from Amazon S3 by
-     * the API caller.
+     * This is the pre-signed URL that can be used for uploading the file to
+     * Amazon S3 when used in response to <a href=
+     * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     * >StartAttachmentUpload</a>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
      * <b>Length: </b>1 - 2000<br/>
      *
      * @param url <p>
-     *            The pre-signed URL using which file would be downloaded from
-     *            Amazon S3 by the API caller.
+     *            This is the pre-signed URL that can be used for uploading the
+     *            file to Amazon S3 when used in response to <a href=
+     *            "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     *            >StartAttachmentUpload</a>.
      *            </p>
      */
     public void setUrl(String url) {
@@ -76,8 +86,10 @@ public class GetAttachmentResult implements Serializable {
 
     /**
      * <p>
-     * The pre-signed URL using which file would be downloaded from Amazon S3 by
-     * the API caller.
+     * This is the pre-signed URL that can be used for uploading the file to
+     * Amazon S3 when used in response to <a href=
+     * "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     * >StartAttachmentUpload</a>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -87,8 +99,10 @@ public class GetAttachmentResult implements Serializable {
      * <b>Length: </b>1 - 2000<br/>
      *
      * @param url <p>
-     *            The pre-signed URL using which file would be downloaded from
-     *            Amazon S3 by the API caller.
+     *            This is the pre-signed URL that can be used for uploading the
+     *            file to Amazon S3 when used in response to <a href=
+     *            "https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_StartAttachmentUpload.html"
+     *            >StartAttachmentUpload</a>.
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
