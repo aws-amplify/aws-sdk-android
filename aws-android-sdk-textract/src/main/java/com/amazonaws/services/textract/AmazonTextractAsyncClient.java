@@ -442,8 +442,8 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
 
     /**
      * <p>
-     * Analyzes an input document for financially related relationships between
-     * text.
+     * <code>AnalyzeExpense</code> synchronously analyzes an input document for
+     * financially related relationships between text.
      * </p>
      * <p>
      * Information is returned as <code>ExpenseDocuments</code> and seperated as
@@ -497,8 +497,8 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
 
     /**
      * <p>
-     * Analyzes an input document for financially related relationships between
-     * text.
+     * <code>AnalyzeExpense</code> synchronously analyzes an input document for
+     * financially related relationships between text.
      * </p>
      * <p>
      * Information is returned as <code>ExpenseDocuments</code> and seperated as
@@ -554,6 +554,87 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
                     throw ex;
                 }
                 asyncHandler.onSuccess(analyzeExpenseRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Analyzes identity documents for relevant information. This information is
+     * extracted and returned as <code>IdentityDocumentFields</code>, which
+     * records both the normalized field and value of the extracted text.
+     * </p>
+     * 
+     * @param analyzeIDRequest
+     * @return A Java Future object containing the response from the AnalyzeID
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<AnalyzeIDResult> analyzeIDAsync(final AnalyzeIDRequest analyzeIDRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AnalyzeIDResult>() {
+            public AnalyzeIDResult call() throws Exception {
+                return analyzeID(analyzeIDRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Analyzes identity documents for relevant information. This information is
+     * extracted and returned as <code>IdentityDocumentFields</code>, which
+     * records both the normalized field and value of the extracted text.
+     * </p>
+     * 
+     * @param analyzeIDRequest
+     * @return A Java Future object containing the response from the AnalyzeID
+     *         service method, as returned by Amazon Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<AnalyzeIDResult> analyzeIDAsync(final AnalyzeIDRequest analyzeIDRequest,
+            final AsyncHandler<AnalyzeIDRequest, AnalyzeIDResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<AnalyzeIDResult>() {
+            public AnalyzeIDResult call() throws Exception {
+                AnalyzeIDResult result = null;
+                try {
+                    result = analyzeID(analyzeIDRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(analyzeIDRequest, result);
                 return result;
             }
         });
@@ -1056,15 +1137,156 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
 
     /**
      * <p>
+     * Gets the results for an Amazon Textract asynchronous operation that
+     * analyzes invoices and receipts. Amazon Textract finds contact
+     * information, items purchased, and vendor name, from input invoices and
+     * receipts.
+     * </p>
+     * <p>
+     * You start asynchronous invoice/receipt analysis by calling
+     * <a>StartExpenseAnalysis</a>, which returns a job identifier (
+     * <code>JobId</code>). Upon completion of the invoice/receipt analysis,
+     * Amazon Textract publishes the completion status to the Amazon Simple
+     * Notification Service (Amazon SNS) topic. This topic must be registered in
+     * the initial call to <code>StartExpenseAnalysis</code>. To get the results
+     * of the invoice/receipt analysis operation, first ensure that the status
+     * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
+     * call <code>GetExpenseAnalysis</code>, and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
+     * <code>StartExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * Use the MaxResults parameter to limit the number of blocks that are
+     * returned. If there are more results than specified in
+     * <code>MaxResults</code>, the value of <code>NextToken</code> in the
+     * operation response contains a pagination token for getting the next set
+     * of results. To get the next page of results, call
+     * <code>GetExpenseAnalysis</code>, and populate the <code>NextToken</code>
+     * request parameter with the token value that's returned from the previous
+     * call to <code>GetExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html"
+     * >Analyzing Invoices and Receipts</a>.
+     * </p>
+     * 
+     * @param getExpenseAnalysisRequest
+     * @return A Java Future object containing the response from the
+     *         GetExpenseAnalysis service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidJobIdException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetExpenseAnalysisResult> getExpenseAnalysisAsync(
+            final GetExpenseAnalysisRequest getExpenseAnalysisRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetExpenseAnalysisResult>() {
+            public GetExpenseAnalysisResult call() throws Exception {
+                return getExpenseAnalysis(getExpenseAnalysisRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Gets the results for an Amazon Textract asynchronous operation that
+     * analyzes invoices and receipts. Amazon Textract finds contact
+     * information, items purchased, and vendor name, from input invoices and
+     * receipts.
+     * </p>
+     * <p>
+     * You start asynchronous invoice/receipt analysis by calling
+     * <a>StartExpenseAnalysis</a>, which returns a job identifier (
+     * <code>JobId</code>). Upon completion of the invoice/receipt analysis,
+     * Amazon Textract publishes the completion status to the Amazon Simple
+     * Notification Service (Amazon SNS) topic. This topic must be registered in
+     * the initial call to <code>StartExpenseAnalysis</code>. To get the results
+     * of the invoice/receipt analysis operation, first ensure that the status
+     * value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so,
+     * call <code>GetExpenseAnalysis</code>, and pass the job identifier (
+     * <code>JobId</code>) from the initial call to
+     * <code>StartExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * Use the MaxResults parameter to limit the number of blocks that are
+     * returned. If there are more results than specified in
+     * <code>MaxResults</code>, the value of <code>NextToken</code> in the
+     * operation response contains a pagination token for getting the next set
+     * of results. To get the next page of results, call
+     * <code>GetExpenseAnalysis</code>, and populate the <code>NextToken</code>
+     * request parameter with the token value that's returned from the previous
+     * call to <code>GetExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/invoices-receipts.html"
+     * >Analyzing Invoices and Receipts</a>.
+     * </p>
+     * 
+     * @param getExpenseAnalysisRequest
+     * @return A Java Future object containing the response from the
+     *         GetExpenseAnalysis service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InvalidJobIdException
+     * @throws InternalServerErrorException
+     * @throws ThrottlingException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<GetExpenseAnalysisResult> getExpenseAnalysisAsync(
+            final GetExpenseAnalysisRequest getExpenseAnalysisRequest,
+            final AsyncHandler<GetExpenseAnalysisRequest, GetExpenseAnalysisResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<GetExpenseAnalysisResult>() {
+            public GetExpenseAnalysisResult call() throws Exception {
+                GetExpenseAnalysisResult result = null;
+                try {
+                    result = getExpenseAnalysis(getExpenseAnalysisRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(getExpenseAnalysisRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
      * Starts the asynchronous analysis of an input document for relationships
      * between detected items such as key-value pairs, tables, and selection
      * elements.
      * </p>
      * <p>
      * <code>StartDocumentAnalysis</code> can analyze text in documents that are
-     * in JPEG, PNG, and PDF format. The documents are stored in an Amazon S3
-     * bucket. Use <a>DocumentLocation</a> to specify the bucket name and file
-     * name of the document.
+     * in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon
+     * S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and
+     * file name of the document.
      * </p>
      * <p>
      * <code>StartDocumentAnalysis</code> returns a job identifier (
@@ -1126,9 +1348,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * </p>
      * <p>
      * <code>StartDocumentAnalysis</code> can analyze text in documents that are
-     * in JPEG, PNG, and PDF format. The documents are stored in an Amazon S3
-     * bucket. Use <a>DocumentLocation</a> to specify the bucket name and file
-     * name of the document.
+     * in JPEG, PNG, TIFF, and PDF format. The documents are stored in an Amazon
+     * S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name and
+     * file name of the document.
      * </p>
      * <p>
      * <code>StartDocumentAnalysis</code> returns a job identifier (
@@ -1198,9 +1420,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * </p>
      * <p>
      * <code>StartDocumentTextDetection</code> can analyze text in documents
-     * that are in JPEG, PNG, and PDF format. The documents are stored in an
-     * Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name
-     * and file name of the document.
+     * that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in
+     * an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket
+     * name and file name of the document.
      * </p>
      * <p>
      * <code>StartTextDetection</code> returns a job identifier (
@@ -1261,9 +1483,9 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
      * </p>
      * <p>
      * <code>StartDocumentTextDetection</code> can analyze text in documents
-     * that are in JPEG, PNG, and PDF format. The documents are stored in an
-     * Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket name
-     * and file name of the document.
+     * that are in JPEG, PNG, TIFF, and PDF format. The documents are stored in
+     * an Amazon S3 bucket. Use <a>DocumentLocation</a> to specify the bucket
+     * name and file name of the document.
      * </p>
      * <p>
      * <code>StartTextDetection</code> returns a job identifier (
@@ -1321,6 +1543,145 @@ public class AmazonTextractAsyncClient extends AmazonTextractClient implements A
                     throw ex;
                 }
                 asyncHandler.onSuccess(startDocumentTextDetectionRequest, result);
+                return result;
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Starts the asynchronous analysis of invoices or receipts for data like
+     * contact information, items purchased, and vendor names.
+     * </p>
+     * <p>
+     * <code>StartExpenseAnalysis</code> can analyze text in documents that are
+     * in JPEG, PNG, and PDF format. The documents must be stored in an Amazon
+     * S3 bucket. Use the <a>DocumentLocation</a> parameter to specify the name
+     * of your S3 bucket and the name of the document in that bucket.
+     * </p>
+     * <p>
+     * <code>StartExpenseAnalysis</code> returns a job identifier (
+     * <code>JobId</code>) that you will provide to
+     * <code>GetExpenseAnalysis</code> to retrieve the results of the operation.
+     * When the analysis of the input invoices/receipts is finished, Amazon
+     * Textract publishes a completion status to the Amazon Simple Notification
+     * Service (Amazon SNS) topic that you provide to the
+     * <code>NotificationChannel</code>. To obtain the results of the invoice
+     * and receipt analysis operation, ensure that the status value published to
+     * the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
+     * <a>GetExpenseAnalysis</a>, and pass the job identifier (
+     * <code>JobId</code>) that was returned by your call to
+     * <code>StartExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/invoice-receipts.html"
+     * >Analyzing Invoices and Receipts</a>.
+     * </p>
+     * 
+     * @param startExpenseAnalysisRequest
+     * @return A Java Future object containing the response from the
+     *         StartExpenseAnalysis service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartExpenseAnalysisResult> startExpenseAnalysisAsync(
+            final StartExpenseAnalysisRequest startExpenseAnalysisRequest)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartExpenseAnalysisResult>() {
+            public StartExpenseAnalysisResult call() throws Exception {
+                return startExpenseAnalysis(startExpenseAnalysisRequest);
+            }
+        });
+    }
+
+    /**
+     * <p>
+     * Starts the asynchronous analysis of invoices or receipts for data like
+     * contact information, items purchased, and vendor names.
+     * </p>
+     * <p>
+     * <code>StartExpenseAnalysis</code> can analyze text in documents that are
+     * in JPEG, PNG, and PDF format. The documents must be stored in an Amazon
+     * S3 bucket. Use the <a>DocumentLocation</a> parameter to specify the name
+     * of your S3 bucket and the name of the document in that bucket.
+     * </p>
+     * <p>
+     * <code>StartExpenseAnalysis</code> returns a job identifier (
+     * <code>JobId</code>) that you will provide to
+     * <code>GetExpenseAnalysis</code> to retrieve the results of the operation.
+     * When the analysis of the input invoices/receipts is finished, Amazon
+     * Textract publishes a completion status to the Amazon Simple Notification
+     * Service (Amazon SNS) topic that you provide to the
+     * <code>NotificationChannel</code>. To obtain the results of the invoice
+     * and receipt analysis operation, ensure that the status value published to
+     * the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call
+     * <a>GetExpenseAnalysis</a>, and pass the job identifier (
+     * <code>JobId</code>) that was returned by your call to
+     * <code>StartExpenseAnalysis</code>.
+     * </p>
+     * <p>
+     * For more information, see <a href=
+     * "https://docs.aws.amazon.com/textract/latest/dg/invoice-receipts.html"
+     * >Analyzing Invoices and Receipts</a>.
+     * </p>
+     * 
+     * @param startExpenseAnalysisRequest
+     * @return A Java Future object containing the response from the
+     *         StartExpenseAnalysis service method, as returned by Amazon
+     *         Textract.
+     * @throws InvalidParameterException
+     * @throws InvalidS3ObjectException
+     * @throws InvalidKMSKeyException
+     * @throws UnsupportedDocumentException
+     * @throws DocumentTooLargeException
+     * @throws BadDocumentException
+     * @throws AccessDeniedException
+     * @throws ProvisionedThroughputExceededException
+     * @throws InternalServerErrorException
+     * @throws IdempotentParameterMismatchException
+     * @throws ThrottlingException
+     * @throws LimitExceededException
+     * @throws AmazonClientException If any internal errors are encountered
+     *             inside the client while attempting to make the request or
+     *             handle the response. For example if a network connection is
+     *             not available.
+     * @throws AmazonServiceException If an error response is returned by Amazon
+     *             Textract indicating either a problem with the data in the
+     *             request, or a server side issue.
+     */
+    public Future<StartExpenseAnalysisResult> startExpenseAnalysisAsync(
+            final StartExpenseAnalysisRequest startExpenseAnalysisRequest,
+            final AsyncHandler<StartExpenseAnalysisRequest, StartExpenseAnalysisResult> asyncHandler)
+            throws AmazonServiceException, AmazonClientException {
+        return executorService.submit(new Callable<StartExpenseAnalysisResult>() {
+            public StartExpenseAnalysisResult call() throws Exception {
+                StartExpenseAnalysisResult result = null;
+                try {
+                    result = startExpenseAnalysis(startExpenseAnalysisRequest);
+                } catch (Exception ex) {
+                    asyncHandler.onError(ex);
+                    throw ex;
+                }
+                asyncHandler.onSuccess(startExpenseAnalysisRequest, result);
                 return result;
             }
         });

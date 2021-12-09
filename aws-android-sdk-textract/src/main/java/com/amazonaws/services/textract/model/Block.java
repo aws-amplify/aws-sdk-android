@@ -288,9 +288,9 @@ public class Block implements Serializable {
      * <p>
      * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
-     * even if it contains multiple document pages, is considered to be a
-     * single-page document. The value of <code>Page</code> is always 1.
+     * multipage documents that are in PDF or TIFF format. A scanned image
+     * (JPEG/PNG), even if it contains multiple document pages, is considered to
+     * be a single-page document. The value of <code>Page</code> is always 1.
      * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
@@ -2305,9 +2305,9 @@ public class Block implements Serializable {
      * <p>
      * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
-     * even if it contains multiple document pages, is considered to be a
-     * single-page document. The value of <code>Page</code> is always 1.
+     * multipage documents that are in PDF or TIFF format. A scanned image
+     * (JPEG/PNG), even if it contains multiple document pages, is considered to
+     * be a single-page document. The value of <code>Page</code> is always 1.
      * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
@@ -2318,11 +2318,11 @@ public class Block implements Serializable {
      * @return <p>
      *         The page on which a block was detected. <code>Page</code> is
      *         returned by asynchronous operations. Page values greater than 1
-     *         are only returned for multipage documents that are in PDF format.
-     *         A scanned image (JPEG/PNG), even if it contains multiple document
-     *         pages, is considered to be a single-page document. The value of
-     *         <code>Page</code> is always 1. Synchronous operations don't
-     *         return <code>Page</code> because every input document is
+     *         are only returned for multipage documents that are in PDF or TIFF
+     *         format. A scanned image (JPEG/PNG), even if it contains multiple
+     *         document pages, is considered to be a single-page document. The
+     *         value of <code>Page</code> is always 1. Synchronous operations
+     *         don't return <code>Page</code> because every input document is
      *         considered to be a single-page document.
      *         </p>
      */
@@ -2334,9 +2334,9 @@ public class Block implements Serializable {
      * <p>
      * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
-     * even if it contains multiple document pages, is considered to be a
-     * single-page document. The value of <code>Page</code> is always 1.
+     * multipage documents that are in PDF or TIFF format. A scanned image
+     * (JPEG/PNG), even if it contains multiple document pages, is considered to
+     * be a single-page document. The value of <code>Page</code> is always 1.
      * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
@@ -2347,8 +2347,8 @@ public class Block implements Serializable {
      * @param page <p>
      *            The page on which a block was detected. <code>Page</code> is
      *            returned by asynchronous operations. Page values greater than
-     *            1 are only returned for multipage documents that are in PDF
-     *            format. A scanned image (JPEG/PNG), even if it contains
+     *            1 are only returned for multipage documents that are in PDF or
+     *            TIFF format. A scanned image (JPEG/PNG), even if it contains
      *            multiple document pages, is considered to be a single-page
      *            document. The value of <code>Page</code> is always 1.
      *            Synchronous operations don't return <code>Page</code> because
@@ -2364,9 +2364,9 @@ public class Block implements Serializable {
      * <p>
      * The page on which a block was detected. <code>Page</code> is returned by
      * asynchronous operations. Page values greater than 1 are only returned for
-     * multipage documents that are in PDF format. A scanned image (JPEG/PNG),
-     * even if it contains multiple document pages, is considered to be a
-     * single-page document. The value of <code>Page</code> is always 1.
+     * multipage documents that are in PDF or TIFF format. A scanned image
+     * (JPEG/PNG), even if it contains multiple document pages, is considered to
+     * be a single-page document. The value of <code>Page</code> is always 1.
      * Synchronous operations don't return <code>Page</code> because every input
      * document is considered to be a single-page document.
      * </p>
@@ -2380,8 +2380,8 @@ public class Block implements Serializable {
      * @param page <p>
      *            The page on which a block was detected. <code>Page</code> is
      *            returned by asynchronous operations. Page values greater than
-     *            1 are only returned for multipage documents that are in PDF
-     *            format. A scanned image (JPEG/PNG), even if it contains
+     *            1 are only returned for multipage documents that are in PDF or
+     *            TIFF format. A scanned image (JPEG/PNG), even if it contains
      *            multiple document pages, is considered to be a single-page
      *            document. The value of <code>Page</code> is always 1.
      *            Synchronous operations don't return <code>Page</code> because

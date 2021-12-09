@@ -21,8 +21,8 @@ import com.amazonaws.AmazonWebServiceRequest;
 
 /**
  * <p>
- * Analyzes an input document for financially related relationships between
- * text.
+ * <code>AnalyzeExpense</code> synchronously analyzes an input document for
+ * financially related relationships between text.
  * </p>
  * <p>
  * Information is returned as <code>ExpenseDocuments</code> and seperated as
