@@ -103,6 +103,8 @@ commands:
       - run:
           name: Setup emulator
           command: |
+            # disable pipefail
+            set +o pipefail
             sudo yes | sdkmanager "build-tools;27.0.1"
             sudo yes | sdkmanager "emulator"
             sudo yes | sdkmanager "extras;android;m2repository"
@@ -111,6 +113,7 @@ commands:
             sudo yes | sdkmanager "platforms;android-27"
             sudo yes | sdkmanager "system-images;android-24;default;armeabi-v7a"
             sudo echo "no" | avdmanager create avd -n test -k "system-images;android-24;default;armeabi-v7a"
+            set -o pipefail
       - run:
           name: Launch emulator
           command: |
