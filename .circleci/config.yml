@@ -708,7 +708,10 @@ jobs:
       - run:
           name: install sdk
           command: |
+            # disable pipefail
+            set +o pipefail
             sudo yes | sdkmanager "platforms;android-29"
+            set -o pipefail
       # - setup_emulator
       - setup_new_emulator
       - run:
