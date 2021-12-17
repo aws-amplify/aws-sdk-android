@@ -128,51 +128,6 @@ commands:
             echo "wait for emulator to have booted"
             circle-android wait-for-boot
             python3 CircleciScripts/unlock_emulatorscreen.py
-  
-  setup_new_emulator:
-    description: >-
-      setup new emulator
-    steps:
-      - run:
-          name: Create avd
-          command: |
-            SYSTEM_IMAGES="system-images;android-29;default;x86"
-            sdkmanager "$SYSTEM_IMAGES"
-            echo "no" | avdmanager --verbose create avd -n test -k "$SYSTEM_IMAGES"
-      - run:
-          name: Launch emulator
-          command: |
-            emulator -avd test -delay-adb -verbose -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          background: true
-      - run:
-          name: Generate cache key
-          command: |
-            find . -name 'build.gradle' | sort | xargs cat |
-            shasum | awk '{print $1}' > /tmp/gradle_cache_seed
-      - restore_cache:
-          key: gradle-v1-{{ arch }}-{{ checksum "/tmp/gradle_cache_seed" }}
-      - run:
-          name: Launch logcat
-          command:
-            adb logcat > logcat.log
-          background: true
-      - run:
-          # run in parallel with the emulator starting up, to optimize build time
-          name: Run assembleDebugAndroidTest task
-          command: |
-            ./gradlew assembleDebugAndroidTest
-      - run:
-          name: Wait for emulator to start
-          command: |
-            circle-android wait-for-boot
-      - run:
-          name: Disable emulator animations
-          command: |
-            adb shell settings put global window_animation_scale 0.0
-            adb shell settings put global transition_animation_scale 0.0
-            adb shell settings put global animator_duration_scale 0.0
-
-
   bump_version_pre:
     description: >-
       prepare bump version
@@ -712,8 +667,7 @@ jobs:
             set +o pipefail
             sudo yes | sdkmanager "platforms;android-29"
             set -o pipefail
-      # - setup_emulator
-      - setup_new_emulator
+      - setup_emulator
       - run:
           name: Generate testconfiguration.json
           command: |
