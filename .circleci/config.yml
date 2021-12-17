@@ -336,7 +336,7 @@ jobs:
   build:
     working_directory: ~/code
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -362,7 +362,7 @@ jobs:
   unittest:
     working_directory: ~/code
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -412,7 +412,7 @@ jobs:
 
   release_javadoc:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -553,7 +553,7 @@ jobs:
 
   release_s3:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -619,7 +619,7 @@ jobs:
 
   pre_integrationtest:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -654,7 +654,7 @@ jobs:
 
   post_integrationtest:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -672,7 +672,7 @@ jobs:
     working_directory: ~/code
     docker:
       # Android the primary container
-      - image: circleci/android@sha256:b6646fdf7457f61825526e7bfce364d8e533da6ceb1cdb98e371e94348ecc834
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -740,7 +740,7 @@ jobs:
   bump_sampleapp_version:
     working_directory: ~/code
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -774,7 +774,7 @@ jobs:
   bump_applifydocs_version:
     working_directory: ~/code
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     resource_class: xlarge
     environment:
       JVM_OPTS: -Xmx8192m
@@ -806,7 +806,7 @@ jobs:
       - bump_version_post
   bump_sdk_version:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -870,7 +870,7 @@ jobs:
 
   merge_to_main:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -913,7 +913,7 @@ jobs:
 
   prepare_release_sdk:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -942,7 +942,7 @@ jobs:
 
   create_pullrequest_for_modelupdate:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -959,7 +959,7 @@ jobs:
 
   check_sdk_on_maven:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -987,7 +987,7 @@ jobs:
 
   run_integrationtest_on_devicefarm:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
@@ -1052,7 +1052,7 @@ jobs:
               "https://circleci.com/api/v1.1/project/github/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/envvar?circle-token=${CIRCLE_API_USER_TOKEN}"
   check_testresult_on_devicefarm:
     docker:
-      - image: circleci/android@sha256:2d4ef38bcef095335302e83a7b20e6f24087ed01594a7c232b114599b5271dc9
+      - image: circleci/android:api-29
     environment:
       JVM_OPTS: -Xmx1024m
     steps:
