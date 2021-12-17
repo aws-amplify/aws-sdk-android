@@ -687,7 +687,8 @@ jobs:
       - run:
           name: install python3.7
           command: |
-            sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+            sudo apt-get update
+            sudo apt-get install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
             curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
             tar -xf Python-3.7.3.tar.xz
             cd Python-3.7.3
