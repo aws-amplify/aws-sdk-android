@@ -54,10 +54,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The membership type of a user, <code>DEFAULT</code> or
-     * <code>HIDDEN</code>. Default members are always returned as part of
-     * <code>ListChannelMemberships</code>. Hidden members are only returned if
-     * the type filter in <code>ListChannelMemberships</code> equals
-     * <code>HIDDEN</code>. Otherwise hidden members are not returned.
+     * <code>HIDDEN</code>. Default members are returned as part of
+     * <code>ListChannelMemberships</code> if no type is specified. Hidden
+     * members are only returned if the type filter in
+     * <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -168,10 +168,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The membership type of a user, <code>DEFAULT</code> or
-     * <code>HIDDEN</code>. Default members are always returned as part of
-     * <code>ListChannelMemberships</code>. Hidden members are only returned if
-     * the type filter in <code>ListChannelMemberships</code> equals
-     * <code>HIDDEN</code>. Otherwise hidden members are not returned.
+     * <code>HIDDEN</code>. Default members are returned as part of
+     * <code>ListChannelMemberships</code> if no type is specified. Hidden
+     * members are only returned if the type filter in
+     * <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -179,11 +179,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
      *
      * @return <p>
      *         The membership type of a user, <code>DEFAULT</code> or
-     *         <code>HIDDEN</code>. Default members are always returned as part
-     *         of <code>ListChannelMemberships</code>. Hidden members are only
-     *         returned if the type filter in
+     *         <code>HIDDEN</code>. Default members are returned as part of
+     *         <code>ListChannelMemberships</code> if no type is specified.
+     *         Hidden members are only returned if the type filter in
      *         <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
-     *         Otherwise hidden members are not returned.
      *         </p>
      * @see ChannelMembershipType
      */
@@ -194,10 +193,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The membership type of a user, <code>DEFAULT</code> or
-     * <code>HIDDEN</code>. Default members are always returned as part of
-     * <code>ListChannelMemberships</code>. Hidden members are only returned if
-     * the type filter in <code>ListChannelMemberships</code> equals
-     * <code>HIDDEN</code>. Otherwise hidden members are not returned.
+     * <code>HIDDEN</code>. Default members are returned as part of
+     * <code>ListChannelMemberships</code> if no type is specified. Hidden
+     * members are only returned if the type filter in
+     * <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -205,11 +204,11 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
      *
      * @param type <p>
      *            The membership type of a user, <code>DEFAULT</code> or
-     *            <code>HIDDEN</code>. Default members are always returned as
-     *            part of <code>ListChannelMemberships</code>. Hidden members
-     *            are only returned if the type filter in
+     *            <code>HIDDEN</code>. Default members are returned as part of
+     *            <code>ListChannelMemberships</code> if no type is specified.
+     *            Hidden members are only returned if the type filter in
      *            <code>ListChannelMemberships</code> equals <code>HIDDEN</code>
-     *            . Otherwise hidden members are not returned.
+     *            .
      *            </p>
      * @see ChannelMembershipType
      */
@@ -220,10 +219,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The membership type of a user, <code>DEFAULT</code> or
-     * <code>HIDDEN</code>. Default members are always returned as part of
-     * <code>ListChannelMemberships</code>. Hidden members are only returned if
-     * the type filter in <code>ListChannelMemberships</code> equals
-     * <code>HIDDEN</code>. Otherwise hidden members are not returned.
+     * <code>HIDDEN</code>. Default members are returned as part of
+     * <code>ListChannelMemberships</code> if no type is specified. Hidden
+     * members are only returned if the type filter in
+     * <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -234,11 +233,11 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
      *
      * @param type <p>
      *            The membership type of a user, <code>DEFAULT</code> or
-     *            <code>HIDDEN</code>. Default members are always returned as
-     *            part of <code>ListChannelMemberships</code>. Hidden members
-     *            are only returned if the type filter in
+     *            <code>HIDDEN</code>. Default members are returned as part of
+     *            <code>ListChannelMemberships</code> if no type is specified.
+     *            Hidden members are only returned if the type filter in
      *            <code>ListChannelMemberships</code> equals <code>HIDDEN</code>
-     *            . Otherwise hidden members are not returned.
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
@@ -252,10 +251,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The membership type of a user, <code>DEFAULT</code> or
-     * <code>HIDDEN</code>. Default members are always returned as part of
-     * <code>ListChannelMemberships</code>. Hidden members are only returned if
-     * the type filter in <code>ListChannelMemberships</code> equals
-     * <code>HIDDEN</code>. Otherwise hidden members are not returned.
+     * <code>HIDDEN</code>. Default members are returned as part of
+     * <code>ListChannelMemberships</code> if no type is specified. Hidden
+     * members are only returned if the type filter in
+     * <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
      * </p>
      * <p>
      * <b>Constraints:</b><br/>
@@ -263,11 +262,11 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
      *
      * @param type <p>
      *            The membership type of a user, <code>DEFAULT</code> or
-     *            <code>HIDDEN</code>. Default members are always returned as
-     *            part of <code>ListChannelMemberships</code>. Hidden members
-     *            are only returned if the type filter in
+     *            <code>HIDDEN</code>. Default members are returned as part of
+     *            <code>ListChannelMemberships</code> if no type is specified.
+     *            Hidden members are only returned if the type filter in
      *            <code>ListChannelMemberships</code> equals <code>HIDDEN</code>
-     *            . Otherwise hidden members are not returned.
+     *            .
      *            </p>
      * @see ChannelMembershipType
      */
@@ -278,10 +277,10 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
     /**
      * <p>
      * The membership type of a user, <code>DEFAULT</code> or
-     * <code>HIDDEN</code>. Default members are always returned as part of
-     * <code>ListChannelMemberships</code>. Hidden members are only returned if
-     * the type filter in <code>ListChannelMemberships</code> equals
-     * <code>HIDDEN</code>. Otherwise hidden members are not returned.
+     * <code>HIDDEN</code>. Default members are returned as part of
+     * <code>ListChannelMemberships</code> if no type is specified. Hidden
+     * members are only returned if the type filter in
+     * <code>ListChannelMemberships</code> equals <code>HIDDEN</code>.
      * </p>
      * <p>
      * Returns a reference to this object so that method calls can be chained
@@ -292,11 +291,11 @@ public class ListChannelMembershipsRequest extends AmazonWebServiceRequest imple
      *
      * @param type <p>
      *            The membership type of a user, <code>DEFAULT</code> or
-     *            <code>HIDDEN</code>. Default members are always returned as
-     *            part of <code>ListChannelMemberships</code>. Hidden members
-     *            are only returned if the type filter in
+     *            <code>HIDDEN</code>. Default members are returned as part of
+     *            <code>ListChannelMemberships</code> if no type is specified.
+     *            Hidden members are only returned if the type filter in
      *            <code>ListChannelMemberships</code> equals <code>HIDDEN</code>
-     *            . Otherwise hidden members are not returned.
+     *            .
      *            </p>
      * @return A reference to this updated object so that method calls can be
      *         chained together.
