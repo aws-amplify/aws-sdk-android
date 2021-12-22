@@ -132,7 +132,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your place index resource.
+     * Optionally specifies the pricing plan for the place index resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -797,7 +798,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your place index resource.
+     * Optionally specifies the pricing plan for the place index resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -810,7 +812,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for your place index resource.
+     *         Optionally specifies the pricing plan for the place index
+     *         resource. Defaults to <code>RequestBasedUsage</code>.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -826,7 +829,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your place index resource.
+     * Optionally specifies the pricing plan for the place index resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -839,7 +843,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your place index resource.
+     *            Optionally specifies the pricing plan for the place index
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -855,7 +860,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your place index resource.
+     * Optionally specifies the pricing plan for the place index resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -871,7 +877,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your place index resource.
+     *            Optionally specifies the pricing plan for the place index
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -890,7 +897,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your place index resource.
+     * Optionally specifies the pricing plan for the place index resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -903,7 +911,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your place index resource.
+     *            Optionally specifies the pricing plan for the place index
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -919,7 +928,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
 
     /**
      * <p>
-     * Specifies the pricing plan for your place index resource.
+     * Optionally specifies the pricing plan for the place index resource.
+     * Defaults to <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -935,7 +945,8 @@ public class CreatePlaceIndexRequest extends AmazonWebServiceRequest implements 
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your place index resource.
+     *            Optionally specifies the pricing plan for the place index
+     *            resource. Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan

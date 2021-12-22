@@ -77,7 +77,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource.
+     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -425,7 +426,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource.
+     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -438,7 +440,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @return <p>
-     *         Specifies the pricing plan for your map resource.
+     *         Optionally specifies the pricing plan for the map resource.
+     *         Defaults to <code>RequestBasedUsage</code>.
      *         </p>
      *         <p>
      *         For additional details and restrictions on each pricing plan
@@ -454,7 +457,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource.
+     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -467,7 +471,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource.
+     *            Optionally specifies the pricing plan for the map resource.
+     *            Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -483,7 +488,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource.
+     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -499,7 +505,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource.
+     *            Optionally specifies the pricing plan for the map resource.
+     *            Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -518,7 +525,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource.
+     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -531,7 +539,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource.
+     *            Optionally specifies the pricing plan for the map resource.
+     *            Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
@@ -547,7 +556,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
 
     /**
      * <p>
-     * Specifies the pricing plan for your map resource.
+     * Optionally specifies the pricing plan for the map resource. Defaults to
+     * <code>RequestBasedUsage</code>.
      * </p>
      * <p>
      * For additional details and restrictions on each pricing plan option, see
@@ -563,7 +573,8 @@ public class CreateMapRequest extends AmazonWebServiceRequest implements Seriali
      * MobileAssetManagement
      *
      * @param pricingPlan <p>
-     *            Specifies the pricing plan for your map resource.
+     *            Optionally specifies the pricing plan for the map resource.
+     *            Defaults to <code>RequestBasedUsage</code>.
      *            </p>
      *            <p>
      *            For additional details and restrictions on each pricing plan
