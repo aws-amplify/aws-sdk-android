@@ -41,7 +41,6 @@ import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthInvalidGrantExc
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthNavigationException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.AuthServiceException;
 import com.amazonaws.mobileconnectors.cognitoauth.exceptions.BrowserNotInstalledException;
-import com.amazonaws.mobileconnectors.cognitoauth.exceptions.CustomTabsNotSupportedException;
 import com.amazonaws.mobileconnectors.cognitoauth.util.AuthHttpResponseParser;
 import com.amazonaws.mobileconnectors.cognitoauth.handlers.AuthHandler;
 import com.amazonaws.mobileconnectors.cognitoauth.util.ClientConstants;
@@ -52,7 +51,6 @@ import com.amazonaws.mobileconnectors.cognitoauth.util.LocalDataManager;
 import java.net.URL;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,11 +91,6 @@ public class AuthClient {
      * Default timeout duration for auth redirects.
      */
     private static final long REDIRECT_TIMEOUT_SECONDS = 10;
-
-    /**
-     * Specifies what browser package to default to if one isn't specified.
-     */
-    private static final String DEFAULT_BROWSER_PACKAGE = ClientConstants.CHROME_PACKAGE;
 
     /**
      * Android application context.
@@ -149,6 +142,10 @@ public class AuthClient {
      */
     private boolean isCustomTabSupported;
 
+    /**
+     * Cache the packageName of the custom-tabs-service that should be used.
+     */
+    private String customTabsPackageName;
 
     // - Chrome Custom Tabs Controls
     private CustomTabsClient mCustomTabsClient;
@@ -180,7 +177,9 @@ public class AuthClient {
         this.isRedirectActivityDeclared = false;
         this.isBrowserInstalled = false;
         this.isCustomTabSupported = false;
-        preWarmChrome();
+        if (isCustomTabSupported()) {
+            preWarmCustomTabs();
+        }
     }
 
     /**
@@ -747,42 +746,39 @@ public class AuthClient {
     }
 
     /**
-     * Get list of browser packages that support Custom Tabs Service.
+     * Get list of packages that support Custom Tabs Service.
      * @return list of package names that support Custom Tabs.
      */
-    private Collection<String> getSupportedBrowserPackage(){
+    private List<String> getSupportedCustomTabsPackages() {
         PackageManager packageManager = context.getPackageManager();
-        // Get default VIEW intent handler.
-        Intent activityIntent = new Intent()
-                .setAction(Intent.ACTION_VIEW)
-                .addCategory(Intent.CATEGORY_BROWSABLE)
-                .setData(Uri.fromParts("http", "", null));
+        Intent serviceIntent = new Intent()
+                .setAction(ACTION_CUSTOM_TABS_CONNECTION);
 
-        // Get all apps that can handle VIEW intents.
-        List<ResolveInfo> resolvedActivityList = packageManager.queryIntentActivities(activityIntent, 0);
+        // Get all services that can handle ACTION_CUSTOM_TABS_CONNECTION intents.
+        List<ResolveInfo> resolvedServicesList = packageManager.queryIntentServices(serviceIntent, 0);
         List<String> packageNamesSupportingCustomTabs = new ArrayList<>();
-        for (ResolveInfo info : resolvedActivityList) {
-            Intent serviceIntent = new Intent()
-                    .setAction(ACTION_CUSTOM_TABS_CONNECTION)
-                    .setPackage(info.activityInfo.packageName);
-            // Check if this package also resolves the Custom Tabs service.
-            if(packageManager.resolveService(serviceIntent, 0) != null) {
-                packageNamesSupportingCustomTabs.add(info.activityInfo.packageName);
-            }
+        for (ResolveInfo info : resolvedServicesList) {
+            packageNamesSupportingCustomTabs.add(info.serviceInfo.packageName);
         }
         return packageNamesSupportingCustomTabs;
     }
 
     /***
-     * Check if there are any browsers on the deivce that support custom tabs.
+     * Check if there are any browsers on the device that support custom tabs.
      * @return true if custom tabs is supported by any browsers on the device else false.
      */
     private boolean isCustomTabSupported() {
         if (isCustomTabSupported) {
             return true;
         }
-        if (getSupportedBrowserPackage().size() > 0) {
+        List<String> supportedCustomTabsPackages = getSupportedCustomTabsPackages();
+        if (supportedCustomTabsPackages.size() > 0) {
             isCustomTabSupported = true;
+            // get the preferred Custom Tabs package
+            customTabsPackageName = CustomTabsClient.getPackageName(
+                    context,
+                    supportedCustomTabsPackages
+            );
             return true;
         }
         return false;
@@ -801,16 +797,15 @@ public class AuthClient {
                 userHandler.onFailure(new BrowserNotInstalledException("No browsers installed."));
                 return;
             }
-            if(!isCustomTabSupported()) {
-                userHandler.onFailure(new CustomTabsNotSupportedException("Browser with custom tabs support not found."));
-                return;
-            }
             CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder(mCustomTabsSession);
             mCustomTabsIntent = builder.build();
-            if(pool.getCustomTabExtras() != null)
+            if(pool.getCustomTabExtras() != null) {
                 mCustomTabsIntent.intent.putExtras(pool.getCustomTabExtras());
+            }
             if(browserPackage != null) {
                 mCustomTabsIntent.intent.setPackage(browserPackage);
+            } else if (customTabsPackageName != null) {
+                mCustomTabsIntent.intent.setPackage(customTabsPackageName);
             }
             mCustomTabsIntent.intent.setData(uri);
             if (activity != null) {
@@ -839,9 +834,12 @@ public class AuthClient {
     }
 
     /**
-     * Connects to Chrome Service on the device.
+     * Connects to Custom Tabs Service on the device.
      */
-    private void preWarmChrome() {
+    private void preWarmCustomTabs() {
+        if (customTabsPackageName == null) {
+            return;
+        }
         mCustomTabsServiceConnection = new CustomTabsServiceConnection() {
             @Override
             public void onCustomTabsServiceConnected(final ComponentName name, final CustomTabsClient client) {
@@ -855,6 +853,11 @@ public class AuthClient {
                 mCustomTabsClient = null;
             }
         };
+        CustomTabsClient.bindCustomTabsService(
+                context,
+                customTabsPackageName,
+                mCustomTabsServiceConnection
+        );
     }
 
     // Inspects context to determine whether HostedUIRedirectActivity is declared in
