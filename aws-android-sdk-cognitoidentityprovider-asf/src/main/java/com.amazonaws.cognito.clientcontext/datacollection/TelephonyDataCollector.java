@@ -20,7 +20,10 @@ package com.amazonaws.cognito.clientcontext.datacollection;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 
 /**
@@ -40,7 +43,16 @@ public class TelephonyDataCollector extends DataCollector {
             contextData.put(DataRecordKey.HAS_ICC_CARD, String.valueOf(telephonyManager.hasIccCard()));
             contextData.put(DataRecordKey.IS_NETWORK_ROAMING, String.valueOf(telephonyManager.isNetworkRoaming()));
             contextData.put(DataRecordKey.NETWORK_OPERATOR, telephonyManager.getNetworkOperatorName());
-            contextData.put(DataRecordKey.NETWORK_TYPE, String.valueOf(telephonyManager.getNetworkType()));
+
+            int hasReadPhoneStatePermission = context.checkCallingOrSelfPermission(Manifest.permission.READ_PHONE_STATE);
+            if (hasReadPhoneStatePermission == PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                    contextData.put(DataRecordKey.NETWORK_TYPE, String.valueOf(telephonyManager.getNetworkType()));
+                } else {
+                    contextData.put(DataRecordKey.NETWORK_TYPE, String.valueOf(telephonyManager.getDataNetworkType()));
+                }
+            }
+            
             contextData.put(DataRecordKey.PHONE_TYPE, String.valueOf(telephonyManager.getPhoneType()));
 
             if (telephonyManager.getSimState() == TelephonyManager.SIM_STATE_READY) {
