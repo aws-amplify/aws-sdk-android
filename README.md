@@ -37,6 +37,7 @@ Above, SERVICE might be `s3`, `ddb`, `pinpoint`, etc. A full list is provided be
  * cloudwatch
  * cognitoauth
  * cognitoidentityprovider
+ * cognitoidentityprovider-asf
  * comprehend
  * connect
  * connectparticipant
